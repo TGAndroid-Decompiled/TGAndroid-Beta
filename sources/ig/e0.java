@@ -1,7 +1,8 @@
 package ig;
 
-import android.widget.LinearLayout;
-import android.widget.TextView;
-public final class e0 extends LinearLayout {
-    public TextView f14043a;
+import android.graphics.fonts.Font;
+public final class e0 {
+    public Font f8295a;
+    public String f8296b;
+    public String f8297c;
 }

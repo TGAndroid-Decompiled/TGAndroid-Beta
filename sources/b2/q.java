@@ -1,13 +1,13 @@
 package b2;
 public final class q {
-    public static final q f3351c = new q(new Object());
+    public static final q f2190c = new q(new Object());
     public static final String d;
     public static final String e;
-    public final int f3352a = 0;
-    public final int f3353b = 0;
+    public final int f2191a = 0;
+    public final int f2192b = 0;
 
     static {
-        String str = e2.n0.f9691a;
+        String str = e2.l0.f6165a;
         Integer.toString(0, 36);
         d = Integer.toString(1, 36);
         e = Integer.toString(2, 36);
@@ -21,7 +21,7 @@ public final class q {
         if (this != obj) {
             if (obj instanceof q) {
                 q qVar = (q) obj;
-                if (this.f3352a == qVar.f3352a && this.f3353b == qVar.f3353b) {
+                if (this.f2191a == qVar.f2191a && this.f2192b == qVar.f2192b) {
                     return true;
                 }
                 return false;
@@ -32,6 +32,6 @@ public final class q {
     }
 
     public final int hashCode() {
-        return (((16337 + this.f3352a) * 31) + this.f3353b) * 31;
+        return (((16337 + this.f2191a) * 31) + this.f2192b) * 31;
     }
 }

@@ -1,94 +1,281 @@
 package bi;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Path;
-import android.graphics.drawable.Drawable;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-public final class p1 extends b7 {
-    public final float[] D0;
-    public final Path E0;
-    public final float[] F0;
-    public final x1 G0;
+import android.app.Activity;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import j$.util.Objects;
+import org.telegram.messenger.cd;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.ui.Components.dg;
+import org.telegram.ui.Components.vy;
+import org.telegram.ui.Components.z60;
+import org.telegram.ui.kh0;
+public final class p1 implements View.OnClickListener {
+    public final int f3275a;
+    public final k2 f3276b;
 
-    public p1(x1 x1Var, Context context, org.telegram.ui.ActionBar.u6 u6Var, a3.d dVar, bh.f fVar, bh.f fVar2, bh.f fVar3, bh.f fVar4, bh.f fVar5, bh.f fVar6) {
-        super(context, u6Var, dVar, fVar, null, fVar2, fVar3, fVar4, fVar5, fVar6);
-        this.G0 = x1Var;
-        this.D0 = new float[3];
-        this.E0 = new Path();
-        this.F0 = new float[8];
+    public p1(k2 k2Var, int i10) {
+        this.f3275a = i10;
+        this.f3276b = k2Var;
     }
 
     @Override
-    public final void d(c6 c6Var) {
-        super.d(c6Var);
-        this.G0.U(true);
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        canvas.save();
-        canvas.clipPath(this.E0);
-        super.dispatchDraw(canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final int getFinalHeight() {
-        return AndroidUtilities.dp(315.0f);
-    }
-
-    @Override
-    public final float getRealHeight() {
-        return AndroidUtilities.dp(315.0f);
-    }
-
-    @Override
-    public final void k(int i10) {
-        t1[] t1VarArr;
-        x1 x1Var = this.G0;
-        ImageView imageView = x1Var.m0;
-        if (imageView != null && org.telegram.ui.ActionBar.y6.E1(imageView.getBackground(), i10, false)) {
-            x1Var.m0.invalidate();
+    public final void onClick(View view) {
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        boolean z13;
+        boolean z14;
+        z5 U2;
+        c6 q6;
+        String str;
+        int i10 = this.f3275a;
+        TL_iv.pageTableCell pagetablecell = null;
+        r6 = null;
+        TL_iv.pageBlockMath pageblockmath = null;
+        pagetablecell = null;
+        final k2 k2Var = this.f3276b;
+        switch (i10) {
+            case 0:
+                k2Var.v0();
+                return;
+            case 1:
+                if (!k2Var.P.I2()) {
+                    k2Var.finishFragment();
+                    return;
+                }
+                return;
+            case 2:
+                o2 o2Var = k2Var.P.Q3;
+                if (o2Var != null) {
+                    o2Var.k();
+                    return;
+                }
+                return;
+            case 3:
+                o2 o2Var2 = k2Var.P.Q3;
+                if (o2Var2 != null) {
+                    o2Var2.i();
+                    return;
+                }
+                return;
+            case 4:
+                k2.Y(k2Var);
+                return;
+            case 5:
+                k2 k2Var2 = this.f3276b;
+                if (k2Var2.B0) {
+                    k2Var2.o0(true);
+                    n1 S2 = k2Var2.P.S2();
+                    if (S2 != null) {
+                        S2.N();
+                        org.telegram.messenger.i0.J3(S2);
+                        return;
+                    }
+                    return;
+                }
+                if (k2Var2.A0 == null) {
+                    vy vyVar = new vy(k2Var2, true, false, false, k2Var2.getParentActivity(), true, null, k2Var2.O, true, k2Var2.getResourceProvider(), false, false);
+                    k2Var2.A0 = vyVar;
+                    vyVar.setVisibility(8);
+                    vy vyVar2 = k2Var2.A0;
+                    vyVar2.f31933x2 = false;
+                    vyVar2.setDelegate(new a2(k2Var2));
+                    int indexOfChild = k2Var2.O.indexOfChild(k2Var2.f3135a0);
+                    if (indexOfChild < 0) {
+                        indexOfChild = k2Var2.O.getChildCount();
+                    }
+                    FrameLayout.LayoutParams e = w7.b6.e(-1, k2Var2.n0(), 87);
+                    e.bottomMargin = k2Var2.T0;
+                    k2Var2.O.addView(k2Var2.A0, indexOfChild, e);
+                }
+                int n02 = k2Var2.n0();
+                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) k2Var2.A0.getLayoutParams();
+                if (layoutParams == null) {
+                    layoutParams = w7.b6.e(-1, n02, 87);
+                } else {
+                    layoutParams.height = n02;
+                }
+                layoutParams.bottomMargin = k2Var2.T0;
+                k2Var2.A0.setLayoutParams(layoutParams);
+                k2Var2.A0.setVisibility(0);
+                k2Var2.B0 = true;
+                k2Var2.D0 = n02 + k2Var2.T0;
+                n1 S22 = k2Var2.P.S2();
+                if (S22 != null) {
+                    org.telegram.messenger.i0.v1(S22);
+                }
+                k2Var2.l0();
+                k2Var2.f3137b0.j(dg.d, true);
+                return;
+            case 6:
+                z60 z60Var = k2Var.f3165x0;
+                if (z60Var != null) {
+                    z60Var.u();
+                    k2Var.f3165x0 = null;
+                }
+                final z60 H = z60.H(k2Var, view);
+                H.Q = true;
+                a T2 = k2Var.P.T2();
+                if (T2 != null && T2.b()) {
+                    z10 = false;
+                } else {
+                    z10 = true;
+                }
+                H.j(z10, 2131231069, null, cd.L0(2131753999, null), new t1(k2Var, T2, 5));
+                if (T2 != null && T2.b() && !T2.a() && !T2.c()) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                H.j(z11, 2131231565, null, cd.L0(2131754005, null), new t1(k2Var, T2, 6));
+                if (T2 != null && T2.b() && !T2.a() && T2.c()) {
+                    z12 = true;
+                } else {
+                    z12 = false;
+                }
+                H.j(z12, 2131231577, null, cd.L0(2131754002, null), new t1(k2Var, T2, 7));
+                if (T2 != null && T2.b() && T2.a() && !T2.c()) {
+                    z13 = true;
+                } else {
+                    z13 = false;
+                }
+                H.j(z13, 2131231598, null, cd.L0(2131754004, null), new t1(k2Var, T2, 8));
+                if (T2 != null && (T2.f2818b instanceof TL_iv.pageBlockDetails)) {
+                    z14 = true;
+                } else {
+                    z14 = false;
+                }
+                String L0 = cd.L0(2131753987, null);
+                d4 d4Var = k2Var.P;
+                Objects.requireNonNull(d4Var);
+                H.j(z14, 2131231553, null, L0, new b(d4Var, 1));
+                boolean p22 = k2Var.P.p2();
+                boolean s22 = k2Var.P.s2();
+                if (p22 || s22) {
+                    H.k();
+                    if (p22) {
+                        H.c(2131231566, cd.L0(2131754013, null), new Runnable() {
+                            @Override
+                            public final void run() {
+                                switch (r3) {
+                                    case 0:
+                                        k2Var.P.u3(false);
+                                        H.u();
+                                        return;
+                                    default:
+                                        k2Var.P.u3(true);
+                                        H.u();
+                                        return;
+                                }
+                            }
+                        }, false);
+                    }
+                    if (s22) {
+                        H.c(2131231567, cd.L0(2131753998, null), new Runnable() {
+                            @Override
+                            public final void run() {
+                                switch (r3) {
+                                    case 0:
+                                        k2Var.P.u3(false);
+                                        H.u();
+                                        return;
+                                    default:
+                                        k2Var.P.u3(true);
+                                        H.u();
+                                        return;
+                                }
+                            }
+                        }, false);
+                    }
+                }
+                H.U = true;
+                H.Z();
+                k2Var.f3165x0 = H;
+                return;
+            case 7:
+                z60 z60Var2 = k2Var.f3165x0;
+                if (z60Var2 != null) {
+                    z60Var2.u();
+                    k2Var.f3165x0 = null;
+                }
+                d4 d4Var2 = k2Var.P;
+                z5 z5Var = d4Var2.f2941p4;
+                if (z5Var == null && (U2 = d4Var2.U2()) != null && U2.getModel() != null) {
+                    View findFocus = k2Var.P.findFocus();
+                    if ((findFocus instanceof n1) && (q6 = U2.q((n1) findFocus)) != null) {
+                        pagetablecell = q6.f2906b;
+                    }
+                    if (pagetablecell != null) {
+                        k2Var.P.j2(U2);
+                        if (U2.H.add(pagetablecell)) {
+                            U2.f3483w.invalidate();
+                            U2.v();
+                        }
+                        z5Var = U2;
+                    }
+                }
+                if (z5Var != null && z5Var.getModel() != null && !z5Var.H.isEmpty()) {
+                    k2Var.P.I4(z5Var);
+                    return;
+                } else {
+                    k2Var.P.U1(q6.u(2, 2));
+                    return;
+                }
+            case 8:
+                z60 z60Var3 = k2Var.f3165x0;
+                if (z60Var3 != null) {
+                    z60Var3.u();
+                    k2Var.f3165x0 = null;
+                }
+                a T22 = k2Var.P.T2();
+                if (T22 != null) {
+                    TL_iv.PageBlock pageBlock = T22.f2818b;
+                    if (pageBlock instanceof TL_iv.pageBlockMath) {
+                        pageblockmath = (TL_iv.pageBlockMath) pageBlock;
+                    }
+                }
+                Activity parentActivity = k2Var.getParentActivity();
+                if (pageblockmath != null && !TextUtils.isEmpty(pageblockmath.source)) {
+                    str = pageblockmath.source;
+                } else {
+                    str = "";
+                }
+                t.X(parentActivity, str, new ag.e0(5, k2Var, pageblockmath), k2Var.getResourceProvider());
+                return;
+            case 9:
+                k2Var.P.f2931i4 = null;
+                k2Var.s0(90, 0);
+                return;
+            case 10:
+                k2Var.v0();
+                kh0 kh0Var = k2Var.O0;
+                if (kh0Var != null) {
+                    kh0Var.g(true);
+                    k2Var.O0 = null;
+                    return;
+                }
+                return;
+            case 11:
+                k2Var.P.T4();
+                k2Var.C0();
+                return;
+            case 12:
+                k2Var.P.c4(view);
+                return;
+            case 13:
+                k2Var.P.d4();
+                return;
+            case 14:
+                k2Var.P.a4();
+                return;
+            case 15:
+                k2Var.P.e4();
+                return;
+            default:
+                k2Var.r0();
+                return;
         }
-        ImageView imageView2 = x1Var.f5654n0;
-        if (imageView2 != null && org.telegram.ui.ActionBar.y6.E1(imageView2.getBackground(), i10, false)) {
-            x1Var.f5654n0.invalidate();
-        }
-        for (t1 t1Var : x1Var.Z) {
-            Drawable background = t1Var.getBackground();
-            org.telegram.ui.Components.s6 s6Var = (org.telegram.ui.Components.s6) t1Var.d;
-            if (org.telegram.ui.ActionBar.y6.E1(background, i10, false)) {
-                t1Var.invalidate();
-            }
-            int f7 = i0.a.f(0.33f, i10, -1);
-            float[] fArr = this.D0;
-            Color.colorToHSV(f7, fArr);
-            fArr[1] = Math.min(1.0f, fArr[1] * 1.1f);
-            fArr[2] = Math.min(1.0f, fArr[2] * 1.1f);
-            int HSVToColor = Color.HSVToColor(fArr);
-            if (s6Var.getSizeableBackground() instanceof p6) {
-                ((p6) s6Var.getSizeableBackground()).f5231b.setColor(HSVToColor);
-                s6Var.invalidate();
-            } else if (org.telegram.ui.ActionBar.y6.E1(s6Var.getSizeableBackground(), HSVToColor, false)) {
-                s6Var.invalidate();
-            }
-        }
-    }
-
-    @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        float dp = AndroidUtilities.dp(12.0f);
-        float[] fArr = this.F0;
-        fArr[3] = dp;
-        fArr[2] = dp;
-        fArr[1] = dp;
-        fArr[0] = dp;
-        Path path = this.E0;
-        path.rewind();
-        path.addRoundRect(0.0f, 0.0f, i10, i11, this.F0, Path.Direction.CW);
     }
 }

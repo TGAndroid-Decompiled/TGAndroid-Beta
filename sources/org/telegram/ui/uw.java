@@ -1,19 +1,22 @@
 package org.telegram.ui;
-public final class uw extends s4.c0 {
-    public final dy I;
-    public final vw J;
 
-    public uw(vw vwVar, dy dyVar) {
-        this.J = vwVar;
-        this.I = dyVar;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class uw extends th.m {
+    public final ay O0;
+
+    public uw(ay ayVar, Context context, ay ayVar2, int i10, int i11) {
+        super(context, ayVar2, i10, i11);
+        this.O0 = ayVar;
     }
 
     @Override
-    public final int R0() {
-        dy dyVar = this.I;
-        if (dyVar.f38708s == 0 && this.J.W.h4() && dyVar.v == 2) {
-            return 1;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        org.telegram.ui.ActionBar.l lVar;
+        lVar = ((org.telegram.ui.ActionBar.k2) this.O0).actionBar;
+        if (!lVar.u() && super.dispatchTouchEvent(motionEvent)) {
+            return true;
         }
-        return 0;
+        return false;
     }
 }

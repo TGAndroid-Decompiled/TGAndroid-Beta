@@ -1,9 +1,10 @@
 package org.telegram.ui.Components;
-public final class dp0 {
-    public final int f27515a;
-    public int f27516b;
 
-    public dp0(int i10) {
-        this.f27515a = i10;
-    }
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class dp0 {
+    public final TLRPC.TL_dialog f25500a = new TLRPC.TL_dialog();
+    public TLObject f25501b;
+    public int f25502c;
+    public CharSequence d;
 }

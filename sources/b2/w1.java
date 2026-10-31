@@ -1,28 +1,28 @@
 package b2;
 public final class w1 {
-    public static final w1 f3543b;
-    public static final String f3544c;
-    public final f9.i0 f3545a;
+    public static final w1 f2380b;
+    public static final String f2381c;
+    public final e9.n0 f2382a;
 
     static {
-        f9.g0 g0Var = f9.i0.f10286b;
-        f3543b = new w1(f9.s1.e);
-        String str = e2.n0.f9691a;
-        f3544c = Integer.toString(0, 36);
+        e9.l0 l0Var = e9.n0.f6390b;
+        f2380b = new w1(e9.x1.e);
+        String str = e2.l0.f6165a;
+        f2381c = Integer.toString(0, 36);
     }
 
-    public w1(f9.s1 s1Var) {
-        this.f3545a = f9.i0.u(s1Var);
+    public w1(e9.x1 x1Var) {
+        this.f2382a = e9.n0.u(x1Var);
     }
 
     public final boolean a(int i10) {
         int i11 = 0;
         while (true) {
-            f9.i0 i0Var = this.f3545a;
-            if (i11 >= i0Var.size()) {
+            e9.n0 n0Var = this.f2382a;
+            if (i11 >= n0Var.size()) {
                 return false;
             }
-            v1 v1Var = (v1) i0Var.get(i11);
+            v1 v1Var = (v1) n0Var.get(i11);
             boolean[] zArr = v1Var.e;
             int length = zArr.length;
             int i12 = 0;
@@ -30,7 +30,7 @@ public final class w1 {
                 if (i12 >= length) {
                     break;
                 } else if (zArr[i12]) {
-                    if (v1Var.f3517b.f3360c == i10) {
+                    if (v1Var.f2354b.f2189c == i10) {
                         return true;
                     }
                 } else {
@@ -46,12 +46,12 @@ public final class w1 {
             return true;
         }
         if (obj != null && w1.class == obj.getClass()) {
-            return this.f3545a.equals(((w1) obj).f3545a);
+            return this.f2382a.equals(((w1) obj).f2382a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f3545a.hashCode();
+        return this.f2382a.hashCode();
     }
 }

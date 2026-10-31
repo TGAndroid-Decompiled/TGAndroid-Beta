@@ -1,125 +1,102 @@
 package ig;
 
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.ui.ActionBar.c7;
-import org.telegram.ui.Components.ar;
-public final class g implements c7, e2.o {
-    public final int f14058a;
+import java.util.Arrays;
+import java.util.List;
+import org.telegram.messenger.cd;
+public final class g extends h {
+    public static final List f8308c = Arrays.asList(new g(2), new g(3), new g(4), new g(1), new g(0));
+    public final int f8309b;
 
-    @Override
-    public int e(View view) {
-        Drawable background = view.getBackground();
-        if (background instanceof ar) {
-            Drawable drawable = ((ar) background).f26639a;
-            if (drawable instanceof ColorDrawable) {
-                return ((ColorDrawable) drawable).getColor();
-            }
-            return 0;
+    public g(int i10) {
+        this.f8309b = i10;
+    }
+
+    public static g p(int i10) {
+        List list = f8308c;
+        if (i10 >= 0 && i10 <= list.size()) {
+            return (g) list.get(i10);
         }
-        return 0;
+        StringBuilder sb2 = new StringBuilder("Shape type must be in range from 0 to ");
+        sb2.append(list.size() - 1);
+        sb2.append(", but got ");
+        sb2.append(i10);
+        throw new IndexOutOfBoundsException(sb2.toString());
     }
 
     @Override
-    public void invoke(Object obj) {
-        j2.b bVar = (j2.b) obj;
-        switch (this.f14058a) {
+    public final float a() {
+        return 1.0f;
+    }
+
+    @Override
+    public final int e() {
+        switch (this.f8309b) {
+            case 0:
+                return 2131232518;
             case 1:
-                bVar.getClass();
-                return;
+                return 2131232252;
             case 2:
-                bVar.getClass();
-                return;
+                return 2131232519;
             case 3:
-                bVar.getClass();
-                return;
-            case 4:
-                bVar.getClass();
-                return;
-            case 5:
-                bVar.getClass();
-                return;
-            case 6:
-                bVar.getClass();
-                return;
-            case 7:
-                bVar.getClass();
-                return;
-            case 8:
-                bVar.getClass();
-                return;
-            case 9:
-                bVar.getClass();
-                return;
-            case 10:
-                bVar.getClass();
-                return;
-            case 11:
-                bVar.getClass();
-                return;
-            case 12:
-                bVar.getClass();
-                return;
-            case 13:
-                bVar.getClass();
-                return;
-            case 14:
-                bVar.getClass();
-                return;
-            case 15:
-                bVar.getClass();
-                return;
-            case 16:
-                bVar.getClass();
-                return;
-            case 17:
-                bVar.getClass();
-                return;
-            case 18:
-                bVar.getClass();
-                return;
-            case 19:
-                bVar.getClass();
-                return;
-            case 20:
-                bVar.getClass();
-                return;
-            case 21:
-                bVar.getClass();
-                return;
-            case 22:
-                bVar.getClass();
-                return;
-            case 23:
-                bVar.getClass();
-                return;
-            case 24:
-                bVar.getClass();
-                return;
-            case 25:
-                bVar.getClass();
-                return;
-            case 26:
-                bVar.getClass();
-                return;
-            case 27:
-                bVar.getClass();
-                return;
-            case 28:
-                bVar.getClass();
-                return;
+                return 2131232524;
             default:
-                bVar.getClass();
-                return;
+                return 2131232526;
         }
     }
 
-    public g(j2.a aVar) {
-        this.f14058a = 22;
+    @Override
+    public final String i(int i10) {
+        if (i10 != 0 && i10 != 1) {
+            if (i10 != 2) {
+                return null;
+            }
+            return "brush";
+        }
+        return "shape";
     }
 
-    public g(j2.a aVar, int i10, int i11, char c10) {
-        this.f14058a = i11;
+    public final int m() {
+        switch (this.f8309b) {
+            case 0:
+                return 2131232518;
+            case 1:
+                return 2131232253;
+            case 2:
+                return 2131232520;
+            case 3:
+                return 2131232525;
+            default:
+                return 2131232527;
+        }
+    }
+
+    public final String n() {
+        switch (this.f8309b) {
+            case 0:
+                return cd.L0(2131747692, null);
+            case 1:
+                return cd.L0(2131747690, null);
+            case 2:
+                return cd.L0(2131747689, null);
+            case 3:
+                return cd.L0(2131747678, null);
+            default:
+                return cd.L0(2131747677, null);
+        }
+    }
+
+    public final int o() {
+        switch (this.f8309b) {
+            case 0:
+                return 4;
+            case 1:
+                return 3;
+            case 2:
+                return 0;
+            case 3:
+                return 1;
+            default:
+                return 2;
+        }
     }
 }

@@ -2,291 +2,177 @@ package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
-public final class eq extends sx0 {
-    public final int f27903a;
-    public boolean f27904b;
-    public long f27905c;
-    public boolean d;
-    public float e;
-    public int f27906f;
-    public final Paint f27907g;
-    public final Object h;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public class eq extends Drawable implements Drawable.Callback {
+    public Drawable f25839a;
+    public final Drawable f25840b;
+    public final int f25841c;
+    public final int d;
+    public int e;
+    public int f25842f;
+    public int h;
+    public int f25843n;
+    public boolean f25844r;
+    public int f25845s;
+    public int f25846w;
+    public boolean f25847x;
+    public float f25848y;
 
-    public eq() {
-        this.f27903a = 0;
-        this.f27905c = 0L;
-        this.f27904b = false;
-        this.d = true;
-        Paint paint = new Paint(1);
-        this.f27907g = paint;
-        this.h = new Paint(1);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(AndroidUtilities.dpf2(1.2f));
-    }
-
-    @Override
-    public final void b(int i10) {
-        switch (this.f27903a) {
-            case 0:
-                if (this.f27906f != i10) {
-                    ((Paint) this.h).setColor(i10);
-                    this.f27907g.setColor(i10);
-                }
-                this.f27906f = i10;
-                return;
-            default:
-                Paint paint = this.f27907g;
-                if (paint != null) {
-                    paint.setColor(i10);
-                    return;
-                }
-                return;
+    public eq(Drawable drawable, Drawable drawable2, int i10, int i11) {
+        this.f25839a = drawable;
+        this.f25840b = drawable2;
+        this.f25841c = i10;
+        this.d = i11;
+        if (drawable2 != null) {
+            drawable2.setCallback(this);
         }
     }
 
     @Override
-    public final void c(boolean z10) {
-        switch (this.f27903a) {
-            case 0:
-                return;
-            default:
-                this.f27904b = z10;
-                return;
+    public void draw(Canvas canvas) {
+        canvas.save();
+        canvas.translate(this.f25848y, 0.0f);
+        if (this.f25844r) {
+            Rect bounds = getBounds();
+            setBounds(bounds.centerX() - (getIntrinsicWidth() / 2), bounds.centerY() - (getIntrinsicHeight() / 2), (getIntrinsicWidth() / 2) + bounds.centerX(), (getIntrinsicHeight() / 2) + bounds.centerY());
         }
-    }
-
-    @Override
-    public final void d() {
-        switch (this.f27903a) {
-            case 0:
-                this.f27905c = System.currentTimeMillis();
-                this.f27904b = true;
-                invalidateSelf();
-                return;
-            default:
-                this.f27905c = System.currentTimeMillis();
-                this.d = true;
-                invalidateSelf();
-                return;
+        Drawable drawable = this.f25839a;
+        if (drawable != null) {
+            drawable.setBounds(getBounds());
+            this.f25839a.draw(canvas);
         }
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        float f7;
-        float f10;
-        float dp;
-        float dpf2;
-        float f11;
-        switch (this.f27903a) {
-            case 0:
-                float min = Math.min(this.e, 1.0f);
-                ds dsVar = ds.f27532i;
-                int i10 = (min > 0.3f ? 1 : (min == 0.3f ? 0 : -1));
-                if (i10 < 0) {
-                    f7 = min / 0.3f;
+        Drawable drawable2 = this.f25840b;
+        if (drawable2 != null) {
+            boolean z10 = this.f25847x;
+            int i10 = this.d;
+            int i11 = this.f25841c;
+            if (z10) {
+                Rect bounds2 = getBounds();
+                if (i11 != 0) {
+                    drawable2.setBounds(bounds2.left + i11, bounds2.top + i10, bounds2.right - i11, bounds2.bottom - i10);
                 } else {
-                    f7 = 1.0f;
+                    drawable2.setBounds(bounds2);
                 }
-                float interpolation = dsVar.getInterpolation(f7);
-                ds dsVar2 = ds.f27531g;
-                if (i10 < 0) {
-                    f10 = 0.0f;
-                } else {
-                    f10 = (min - 0.3f) / 0.7f;
-                }
-                float interpolation2 = dsVar2.getInterpolation(f10);
-                if (this.d) {
-                    dp = c3.h0.z(1.0f, interpolation, AndroidUtilities.dp(7.0f) - AndroidUtilities.dp(2.1f), AndroidUtilities.dp(2.1f) * interpolation);
-                    dpf2 = (1.0f - dsVar2.getInterpolation(this.e / 2.0f)) * AndroidUtilities.dpf2(1.5f);
-                } else {
-                    dp = ((AndroidUtilities.dp(7.0f) - AndroidUtilities.dp(2.1f)) * interpolation) + ((1.0f - interpolation) * AndroidUtilities.dp(2.1f));
-                    dpf2 = AndroidUtilities.dpf2(1.5f) * ds.h.getInterpolation(this.e / 2.0f);
-                }
-                float f12 = 11.0f;
-                float dp2 = AndroidUtilities.dp(11.0f) / 2.0f;
-                float dpf22 = AndroidUtilities.dpf2(2.0f);
-                float dpf23 = (AndroidUtilities.dpf2(0.5f) * interpolation) - (AndroidUtilities.dpf2(0.5f) * interpolation2);
-                Paint paint = this.f27907g;
-                if (paint == null) {
-                    paint = org.telegram.ui.ActionBar.y6.f23353d2;
-                }
-                Paint paint2 = (Paint) this.h;
-                if (paint2 == null) {
-                    paint2 = org.telegram.ui.ActionBar.y6.f23334c2;
-                }
-                if (paint.getStrokeWidth() != AndroidUtilities.dp(0.8f)) {
-                    paint.setStrokeWidth(AndroidUtilities.dp(0.8f));
-                }
-                int i11 = 0;
-                while (i11 < 2) {
-                    canvas.save();
-                    canvas.translate(AndroidUtilities.dpf2(0.2f) + (paint.getStrokeWidth() / 2.0f) + dpf2 + (AndroidUtilities.dp(9.0f) * i11) + getBounds().left, AndroidUtilities.dpf2(2.0f) + (paint.getStrokeWidth() / 2.0f) + getBounds().top);
-                    RectF rectF = AndroidUtilities.rectTmp;
-                    rectF.set(0.0f, dpf23, AndroidUtilities.dp(7.0f), AndroidUtilities.dp(f11) - dpf23);
-                    canvas.drawOval(rectF, paint);
-                    canvas.drawCircle(dp, dp2, dpf22, paint2);
-                    canvas.restore();
-                    i11++;
-                    f12 = f12;
-                }
-                if (this.f27904b) {
-                    long currentTimeMillis = System.currentTimeMillis();
-                    long j10 = currentTimeMillis - this.f27905c;
-                    this.f27905c = currentTimeMillis;
-                    if (j10 > 50) {
-                        j10 = 50;
-                    }
-                    float f13 = (((float) j10) / 500.0f) + this.e;
-                    this.e = f13;
-                    if (f13 >= 2.0f) {
-                        this.e = 0.0f;
-                        this.d = !this.d;
-                    }
-                    a();
-                    return;
-                }
-                return;
-            default:
-                RectF rectF2 = (RectF) this.h;
-                Paint paint3 = this.f27907g;
-                if (paint3 == null) {
-                    paint3 = org.telegram.ui.ActionBar.y6.f23353d2;
-                }
-                Paint paint4 = paint3;
-                float f14 = 2.0f;
-                if (paint4.getStrokeWidth() != AndroidUtilities.dp(2.0f)) {
-                    paint4.setStrokeWidth(AndroidUtilities.dp(2.0f));
-                }
-                canvas.save();
-                int dp3 = AndroidUtilities.dp(14.0f) / 2;
-                if (this.f27904b) {
-                    f14 = 1.0f;
-                }
-                canvas.translate(0.0f, AndroidUtilities.dp(f14) + dp3);
-                for (int i12 = 0; i12 < 4; i12++) {
-                    if (i12 == 0) {
-                        paint4.setAlpha((int) (this.f27906f * this.e));
-                    } else if (i12 == 3) {
-                        paint4.setAlpha((int) ((1.0f - this.e) * this.f27906f));
-                    } else {
-                        paint4.setAlpha(this.f27906f);
-                    }
-                    float dp4 = (AndroidUtilities.dp(4.0f) * this.e) + (AndroidUtilities.dp(4.0f) * i12);
-                    float f15 = -dp4;
-                    rectF2.set(f15, f15, dp4, dp4);
-                    canvas.drawArc(rectF2, -15.0f, 30.0f, false, paint4);
-                }
-                canvas.restore();
-                if (this.d) {
-                    long currentTimeMillis2 = System.currentTimeMillis();
-                    long j11 = currentTimeMillis2 - this.f27905c;
-                    this.f27905c = currentTimeMillis2;
-                    if (j11 > 50) {
-                        j11 = 50;
-                    }
-                    this.e = (((float) j11) / 800.0f) + this.e;
-                    while (true) {
-                        float f16 = this.e;
-                        if (f16 > 1.0f) {
-                            this.e = f16 - 1.0f;
-                        } else {
-                            a();
-                            return;
-                        }
-                    }
-                } else {
-                    return;
-                }
+            } else if (this.e != 0) {
+                int centerX = (getBounds().centerX() - (this.e / 2)) + i11 + this.f25845s;
+                int centerY = getBounds().centerY();
+                int i12 = this.f25842f;
+                int i13 = (centerY - (i12 / 2)) + i10 + this.f25846w;
+                drawable2.setBounds(centerX, i13, this.e + centerX, i12 + i13);
+            } else {
+                int centerX2 = (getBounds().centerX() - (drawable2.getIntrinsicWidth() / 2)) + i11;
+                int centerY2 = (getBounds().centerY() - (drawable2.getIntrinsicHeight() / 2)) + i10;
+                drawable2.setBounds(centerX2, centerY2, drawable2.getIntrinsicWidth() + centerX2, drawable2.getIntrinsicHeight() + centerY2);
+            }
+            drawable2.draw(canvas);
         }
+        canvas.restore();
     }
 
     @Override
-    public final void e() {
-        switch (this.f27903a) {
-            case 0:
-                this.f27904b = false;
-                return;
-            default:
-                this.d = false;
-                return;
-        }
+    public final Drawable.ConstantState getConstantState() {
+        return this.f25840b.getConstantState();
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        switch (this.f27903a) {
-            case 0:
-                return AndroidUtilities.dp(18.0f);
-            default:
-                return AndroidUtilities.dp(14.0f);
+        int i10 = this.f25843n;
+        if (i10 != 0) {
+            return i10;
         }
+        return this.f25839a.getIntrinsicHeight();
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        switch (this.f27903a) {
-            case 0:
-                return AndroidUtilities.dp(20.0f);
-            default:
-                return AndroidUtilities.dp(18.0f);
+        int i10 = this.h;
+        if (i10 != 0) {
+            return i10;
         }
+        return this.f25839a.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getMinimumHeight() {
+        int i10 = this.f25843n;
+        if (i10 != 0) {
+            return i10;
+        }
+        return this.f25839a.getMinimumHeight();
+    }
+
+    @Override
+    public final int getMinimumWidth() {
+        int i10 = this.h;
+        if (i10 != 0) {
+            return i10;
+        }
+        return this.f25839a.getMinimumWidth();
     }
 
     @Override
     public final int getOpacity() {
-        switch (this.f27903a) {
-            case 0:
-                return 0;
-            default:
-                return 0;
-        }
+        return this.f25840b.getOpacity();
+    }
+
+    @Override
+    public final int[] getState() {
+        return this.f25840b.getState();
+    }
+
+    @Override
+    public final void invalidateDrawable(Drawable drawable) {
+        invalidateSelf();
+    }
+
+    @Override
+    public final boolean isStateful() {
+        return this.f25840b.isStateful();
+    }
+
+    @Override
+    public final void jumpToCurrentState() {
+        this.f25840b.jumpToCurrentState();
+    }
+
+    @Override
+    public final boolean onStateChange(int[] iArr) {
+        return true;
+    }
+
+    @Override
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j10) {
+        scheduleSelf(runnable, j10);
     }
 
     @Override
     public final void setAlpha(int i10) {
-        switch (this.f27903a) {
-            case 0:
-                return;
-            default:
-                this.f27906f = i10;
-                return;
-        }
+        this.f25840b.setAlpha(i10);
+        this.f25839a.setAlpha(i10);
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        int i10 = this.f27903a;
+    public void setColorFilter(ColorFilter colorFilter) {
+        this.f25840b.setColorFilter(colorFilter);
     }
 
-    public eq(boolean z10) {
-        this.f27903a = 1;
-        this.f27904b = false;
-        this.f27905c = 0L;
-        this.d = false;
-        this.h = new RectF();
-        this.f27906f = 255;
-        if (z10) {
-            Paint paint = new Paint(1);
-            this.f27907g = paint;
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeCap(Paint.Cap.ROUND);
-            paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+    @Override
+    public final boolean setState(int[] iArr) {
+        this.f25840b.setState(iArr);
+        return true;
+    }
+
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        unscheduleSelf(runnable);
+    }
+
+    public eq(Drawable drawable, Drawable drawable2) {
+        this.f25839a = drawable;
+        this.f25840b = drawable2;
+        if (drawable2 != null) {
+            drawable2.setCallback(this);
         }
-    }
-
-    private final void f(int i10) {
-    }
-
-    private final void g(ColorFilter colorFilter) {
-    }
-
-    private final void h(ColorFilter colorFilter) {
-    }
-
-    private final void i(boolean z10) {
     }
 }

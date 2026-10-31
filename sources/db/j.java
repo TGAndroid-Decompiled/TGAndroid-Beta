@@ -1,41 +1,40 @@
 package db;
 
-import a8.jd;
-import ud.p;
-public final class j extends nd.i implements p {
-    public Object f8301a;
-    public final Object f8302b;
-    public final n1.d f8303c;
+import ld.p;
+public final class j extends ed.j implements p {
+    public Object f5854a;
+    public final Object f5855b;
+    public final n1.d f5856c;
     public final k d;
 
-    public j(Object obj, n1.d dVar, k kVar, ld.c cVar) {
+    public j(Object obj, n1.d dVar, k kVar, cd.c cVar) {
         super(2, cVar);
-        this.f8302b = obj;
-        this.f8303c = dVar;
+        this.f5855b = obj;
+        this.f5856c = dVar;
         this.d = kVar;
     }
 
     @Override
-    public final ld.c create(Object obj, ld.c cVar) {
-        j jVar = new j(this.f8302b, this.f8303c, this.d, cVar);
-        jVar.f8301a = obj;
+    public final cd.c create(Object obj, cd.c cVar) {
+        j jVar = new j(this.f5855b, this.f5856c, this.d, cVar);
+        jVar.f5854a = obj;
         return jVar;
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        jd.i iVar = jd.i.f15579a;
-        ((j) create((n1.b) obj, (ld.c) obj2)).invokeSuspend(iVar);
-        return iVar;
+        ad.j jVar = ad.j.f401a;
+        ((j) create((n1.b) obj, (cd.c) obj2)).invokeSuspend(jVar);
+        return jVar;
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        md.a aVar = md.a.f18411a;
-        jd.b(obj);
-        n1.b bVar = (n1.b) this.f8301a;
-        n1.d key = this.f8303c;
-        Object obj2 = this.f8302b;
+        dd.a aVar = dd.a.f5864a;
+        l9.b.b(obj);
+        n1.b bVar = (n1.b) this.f5854a;
+        n1.d key = this.f5856c;
+        Object obj2 = this.f5855b;
         if (obj2 != null) {
             bVar.getClass();
             kotlin.jvm.internal.i.e(key, "key");
@@ -43,13 +42,13 @@ public final class j extends nd.i implements p {
         } else {
             bVar.getClass();
             kotlin.jvm.internal.i.e(key, "key");
-            if (!bVar.f18573b.get()) {
-                bVar.f18572a.remove(key);
+            if (!bVar.f13410b.get()) {
+                bVar.f13409a.remove(key);
             } else {
                 throw new IllegalStateException("Do mutate preferences once returned to DataStore.");
             }
         }
         k.a(this.d, bVar);
-        return jd.i.f15579a;
+        return ad.j.f401a;
     }
 }

@@ -1,16 +1,12 @@
 package org.telegram.ui;
+public final class r7 {
+    public final String f41151a;
+    public final int f41152b;
+    public final f7 f41153c;
 
-import android.content.Context;
-public final class r7 extends org.telegram.ui.Cells.w7 {
-    public final s7 G0;
-
-    public r7(s7 s7Var, Context context, org.telegram.ui.Cells.v7 v7Var, int i10) {
-        super(context, v7Var, i10);
-        this.G0 = s7Var;
-    }
-
-    @Override
-    public final void h() {
-        this.G0.v.F.q(null, (ci.a) getTag(), true);
+    public r7(String str, int i10, f7 f7Var) {
+        this.f41151a = str;
+        this.f41152b = i10;
+        this.f41153c = f7Var;
     }
 }

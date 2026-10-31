@@ -1,66 +1,69 @@
 package org.telegram.ui.web;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.k71;
-import org.telegram.ui.Components.nm0;
-import org.telegram.ui.Components.s71;
-import org.telegram.ui.Components.t61;
-import org.telegram.ui.Components.u61;
-public final class e extends t61 {
-    public static final int f44729a = 0;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
+import org.telegram.ui.Components.qz0;
+public final class e extends Drawable {
+    public final int f43020a;
+    public final qz0 f43021b;
+    public final g f43022c;
 
-    static {
-        t61.setup(new t61());
+    public e(g gVar, String str, int i10) {
+        this.f43020a = i10;
+        switch (i10) {
+            case 1:
+                this.f43022c = gVar;
+                this.f43021b = new qz0(str, 14.0f, org.telegram.messenger.i0.o());
+                return;
+            default:
+                this.f43022c = gVar;
+                this.f43021b = new qz0(str, 14.0f, org.telegram.messenger.i0.o());
+                return;
+        }
     }
 
     @Override
-    public final void bindView(View view, u61 u61Var, boolean z10, k71 k71Var, s71 s71Var) {
-        int i10;
-        f fVar = (f) view;
-        if (u61Var.G == null) {
-            fVar.setAsShowMore((l) u61Var.H);
-            return;
+    public final void draw(Canvas canvas) {
+        switch (this.f43020a) {
+            case 0:
+                this.f43021b.c(getBounds().centerX() - (this.f43021b.f29774c / 2.0f), getBounds().centerY(), 1.0f, this.f43022c.f43039s, canvas);
+                return;
+            default:
+                this.f43021b.c(getBounds().centerX() - (this.f43021b.f29774c / 2.0f), getBounds().centerY(), 1.0f, this.f43022c.f43039s, canvas);
+                return;
         }
-        int i11 = u61Var.f33262z;
-        String charSequence = u61Var.f33249l.toString();
-        View.OnClickListener onClickListener = u61Var.D;
-        l lVar = (l) u61Var.H;
-        ImageView imageView = fVar.f44738a;
-        imageView.setVisibility(0);
-        int i12 = lVar.F;
-        int i13 = lVar.H;
-        TextView textView = fVar.f44739b;
-        textView.setTextColor(i13);
-        int o12 = y6.o1(0.6f, i13);
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        imageView.setColorFilter(new PorterDuffColorFilter(o12, mode));
-        ImageView imageView2 = fVar.f44740c;
-        imageView2.setColorFilter(new PorterDuffColorFilter(y6.o1(0.6f, i13), mode));
-        imageView2.setBackground(y6.a0(0, y6.o1(0.15f, i13), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f)));
-        if (i11 == 0) {
-            i10 = R.drawable.msg_clear_recent;
-        } else {
-            i10 = R.drawable.msg_search;
-        }
-        imageView.setImageResource(i10);
-        textView.setText(charSequence);
-        imageView2.setOnClickListener(onClickListener);
-        fVar.d.setColor(y6.o1(0.1f, lVar.H));
-        fVar.e = z10;
-        fVar.setWillNotDraw(!z10);
     }
 
     @Override
-    public final View createView(Context context, nm0 nm0Var, int i10, int i11, u6 u6Var) {
-        return new f(context);
+    public final int getOpacity() {
+        switch (this.f43020a) {
+            case 0:
+                return -2;
+            default:
+                return -2;
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        int i11 = this.f43020a;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        int i10 = this.f43020a;
+    }
+
+    private final void a(int i10) {
+    }
+
+    private final void b(int i10) {
+    }
+
+    private final void c(ColorFilter colorFilter) {
+    }
+
+    private final void d(ColorFilter colorFilter) {
     }
 }

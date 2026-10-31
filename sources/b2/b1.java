@@ -1,14 +1,57 @@
 package b2;
-public final class b1 {
-    public static final int[] f3146b = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 31, 20, 21, 22, 23, 24, 25, 33, 26, 34, 35, 27, 28, 29, 30, 32};
-    public Object f3147a;
 
-    public void a(int i10, boolean z10) {
-        u uVar = (u) this.f3147a;
-        if (z10) {
-            uVar.b(i10);
-        } else {
-            uVar.getClass();
+import android.os.Bundle;
+import android.util.SparseBooleanArray;
+import java.util.ArrayList;
+import v7.t6;
+public final class b1 {
+    public static final b1 f1982b;
+    public static final String f1983c;
+    public final v f1984a;
+
+    static {
+        SparseBooleanArray sparseBooleanArray = new SparseBooleanArray();
+        t6.p(!false);
+        f1982b = new b1(new v(sparseBooleanArray));
+        String str = e2.l0.f6165a;
+        f1983c = Integer.toString(0, 36);
+    }
+
+    public b1(v vVar) {
+        this.f1984a = vVar;
+    }
+
+    public final boolean a(int i10) {
+        return this.f1984a.f2347a.get(i10);
+    }
+
+    public final Bundle b() {
+        Bundle bundle = new Bundle();
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        int i10 = 0;
+        while (true) {
+            v vVar = this.f1984a;
+            if (i10 < vVar.f2347a.size()) {
+                arrayList.add(Integer.valueOf(vVar.a(i10)));
+                i10++;
+            } else {
+                bundle.putIntegerArrayList(f1983c, arrayList);
+                return bundle;
+            }
         }
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof b1)) {
+            return false;
+        }
+        return this.f1984a.equals(((b1) obj).f1984a);
+    }
+
+    public final int hashCode() {
+        return this.f1984a.hashCode();
     }
 }

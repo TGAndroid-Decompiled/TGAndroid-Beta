@@ -1,217 +1,188 @@
 package org.telegram.messenger;
 
-import android.os.Bundle;
-import java.io.File;
-import java.io.Serializable;
+import android.content.SharedPreferences;
+import android.text.TextUtils;
+import android.util.LongSparseArray;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicReference;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.l80;
-import org.telegram.ui.j11;
-public final class y2 implements Runnable {
-    public final int f21873a;
-    public final long f21874b;
-    public final long f21875c;
-    public final Object d;
-    public final Object e;
-    public final Object f21876f;
+public final class y2 {
+    public final int f19328a;
+    public boolean f19329b = false;
+    public final int[] f19330c = {-1, -1, -1, -1};
 
-    public y2(long j10, long j11, Runnable runnable, ArrayList arrayList, TopicsController topicsController) {
-        this.f21873a = 6;
-        this.d = topicsController;
-        this.f21874b = j10;
-        this.e = arrayList;
-        this.f21875c = j11;
-        this.f21876f = runnable;
+    public y2(int i10) {
+        this.f19328a = i10;
     }
 
-    @Override
-    public final void run() {
-        boolean z10;
-        ?? tL_inputStorePaymentStarsGiveaway;
+    public static long a(int i10) {
+        if (i10 == 0) {
+            return 604800L;
+        }
+        if (i10 == 1) {
+            return 2592000L;
+        }
+        if (i10 == 3) {
+            return 86400L;
+        }
+        if (i10 == 6) {
+            return 172800L;
+        }
+        if (i10 == 5) {
+            boolean z10 = v2.f18448a;
+            return Long.MAX_VALUE;
+        }
+        return Long.MAX_VALUE;
+    }
+
+    public static int b(int i10) {
+        if (i10 == 0) {
+            return 2;
+        }
+        if (i10 == 1) {
+            return 1;
+        }
+        if (i10 == 2) {
+            return 0;
+        }
+        if (i10 == 3) {
+            return 6;
+        }
+        return tz.G;
+    }
+
+    public static String f(int i10) {
+        if (i10 == 5) {
+            return cd.G(1, "Minutes", new Object[0]);
+        }
+        if (i10 == 3) {
+            return cd.G(1, "Days", new Object[0]);
+        }
+        if (i10 == 6) {
+            return cd.G(2, "Days", new Object[0]);
+        }
+        if (i10 == 0) {
+            return cd.G(1, "Weeks", new Object[0]);
+        }
+        if (i10 == 1) {
+            return cd.G(1, "Months", new Object[0]);
+        }
+        return cd.L0(2131753851, null);
+    }
+
+    public final int c(int i10) {
+        boolean z10 = this.f19329b;
+        int[] iArr = this.f19330c;
+        if (!z10) {
+            this.f19329b = true;
+            for (int i11 = 0; i11 < 4; i11++) {
+                iArr[i11] = tz.q().getInt(i0.a.i(i11, "keep_media_type_"), b(i11));
+            }
+        }
+        int i12 = iArr[i10];
+        if (i12 == -1) {
+            return tz.G;
+        }
+        return i12;
+    }
+
+    public final ArrayList d(int i10) {
+        ArrayList arrayList = new ArrayList();
+        HashSet hashSet = new HashSet();
+        SharedPreferences k10 = d20.i(this.f19328a).k();
+        String string = k10.getString("keep_media_exceptions_" + i10, "");
+        if (TextUtils.isEmpty(string)) {
+            return arrayList;
+        }
+        ByteBuffer wrap = ByteBuffer.wrap(Utilities.v(string));
+        int i11 = wrap.getInt();
+        for (int i12 = 0; i12 < i11; i12++) {
+            long j10 = wrap.getLong();
+            w2 w2Var = new w2(j10, wrap.getInt());
+            if (!hashSet.contains(Long.valueOf(j10))) {
+                hashSet.add(Long.valueOf(j10));
+                arrayList.add(w2Var);
+            }
+        }
+        wrap.clear();
+        return arrayList;
+    }
+
+    public final LongSparseArray e() {
+        LongSparseArray longSparseArray = new LongSparseArray();
+        for (int i10 = 0; i10 < 3; i10++) {
+            ArrayList d = d(i10);
+            for (int i11 = 0; i11 < d.size(); i11++) {
+                longSparseArray.put(((w2) d.get(i11)).f19043a, (w2) d.get(i11));
+            }
+        }
+        return longSparseArray;
+    }
+
+    public final void g(ArrayList arrayList) {
         int i10;
-        int i11;
-        int i12 = this.f21873a;
-        Object obj = this.f21876f;
-        Object obj2 = this.e;
-        Object obj3 = this.d;
-        switch (i12) {
-            case 0:
-                ((FileLoadOperation) obj3).lambda$getDownloadedLengthFromOffset$5((long[]) obj2, this.f21874b, this.f21875c, (CountDownLatch) obj);
-                return;
-            case 1:
-                ((GiftAuctionController) obj3).lambda$sendBid$6((Utilities.Callback2) obj2, this.f21874b, (zh.l) obj, this.f21875c);
-                return;
-            case 2:
-                ((MediaController) obj3).lambda$trimCurrentRecording$28((File) obj2, this.f21874b, this.f21875c, (Runnable) obj);
-                return;
-            case 3:
-                ((MessagesStorage) obj3).lambda$getMessage$146(this.f21874b, this.f21875c, (AtomicReference) obj2, (CountDownLatch) obj);
-                return;
-            case 4:
-                ((MessagesStorage) obj3).lambda$updateDialogsWithDeletedMessages$232(this.f21874b, this.f21875c, (ArrayList) obj2, (ArrayList) obj);
-                return;
-            case 5:
-                ((TopicsController) obj3).lambda$getTopicRepliesCount$29((TLObject) obj2, (TLRPC.TL_forumTopic) obj, this.f21874b, this.f21875c);
-                return;
-            case 6:
-                ((TopicsController) obj3).lambda$loadTopic$27(this.f21874b, (ArrayList) obj2, this.f21875c, (Runnable) obj);
-                return;
-            case 7:
-                ((l80) obj3).u();
-                Bundle bundle = new Bundle();
-                bundle.putLong("dialog_id", this.f21874b);
-                bundle.putLong("topic_id", this.f21875c);
-                ((org.telegram.ui.ActionBar.r2) obj2).presentFragment(new j11(bundle, (org.telegram.ui.ActionBar.u6) obj));
-                return;
-            default:
-                vg.a0 a0Var = (vg.a0) obj3;
-                TL_stories.PrepaidGiveaway prepaidGiveaway = (TL_stories.PrepaidGiveaway) obj2;
-                TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) obj;
-                int l4 = vg.s.l(a0Var.m0);
-                int i13 = a0Var.f50162j0;
-                int i14 = xg.u.v;
-                if (i13 == 1) {
-                    z10 = true;
-                } else {
-                    z10 = false;
+        int i11 = this.f19328a;
+        k8 k8Var = b8.G(i11).d;
+        k8Var.getClass();
+        CountDownLatch countDownLatch = new CountDownLatch(1);
+        LongSparseArray longSparseArray = new LongSparseArray();
+        k8Var.h(new ul(k8Var, arrayList, longSparseArray, countDownLatch, 7));
+        try {
+            countDownLatch.await();
+        } catch (InterruptedException e) {
+            f8.g(e, true);
+        }
+        LongSparseArray e7 = e();
+        for (int i12 = 0; i12 < longSparseArray.size(); i12++) {
+            long keyAt = longSparseArray.keyAt(i12);
+            ArrayList arrayList2 = (ArrayList) longSparseArray.valueAt(i12);
+            if (keyAt >= 0) {
+                i10 = 0;
+            } else {
+                long j10 = -keyAt;
+                TLRPC.Chat L0 = vp.r1(i11).L0(Long.valueOf(j10));
+                if (L0 == null) {
+                    L0 = hs.a0(i11).P(j10);
                 }
-                a0Var.f50168q0.b(true);
-                ArrayList arrayList = a0Var.f50155c0;
-                ArrayList arrayList2 = a0Var.f50157e0;
-                TLRPC.Chat chat = a0Var.f50154b0;
-                boolean z11 = a0Var.f50175x0;
-                boolean z12 = a0Var.f50174w0;
-                int i15 = prepaidGiveaway.quantity;
-                String str = a0Var.f50173v0;
-                vg.y yVar = new vg.y(a0Var, tL_prepaidStarsGiveaway, this.f21874b, this.f21875c, prepaidGiveaway);
-                vg.v vVar = new vg.v(a0Var, 6);
-                MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
-                ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
-                if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
-                    tL_inputStorePaymentStarsGiveaway = new TLRPC.TL_inputStorePaymentPremiumGiveaway();
-                    tL_inputStorePaymentStarsGiveaway.only_new_subscribers = z10;
-                    tL_inputStorePaymentStarsGiveaway.winners_are_visible = z11;
-                    tL_inputStorePaymentStarsGiveaway.prize_description = str;
-                    tL_inputStorePaymentStarsGiveaway.until_date = l4;
-                    int i16 = tL_inputStorePaymentStarsGiveaway.flags;
-                    tL_inputStorePaymentStarsGiveaway.flags = i16 | 6;
-                    if (z12) {
-                        tL_inputStorePaymentStarsGiveaway.flags = i16 | 22;
-                    }
-                    tL_inputStorePaymentStarsGiveaway.random_id = System.currentTimeMillis();
-                    tL_inputStorePaymentStarsGiveaway.additional_peers = new ArrayList<>();
-                    tL_inputStorePaymentStarsGiveaway.boost_peer = messagesController.getInputPeer(-chat.f22028id);
-                    tL_inputStorePaymentStarsGiveaway.currency = "";
-                    int size = arrayList2.size();
-                    int i17 = 0;
-                    while (i17 < size) {
-                        Object obj4 = arrayList2.get(i17);
-                        i17++;
-                        tL_inputStorePaymentStarsGiveaway.countries_iso2.add(((TLRPC.TL_help_country) ((TLObject) obj4)).iso2);
-                    }
-                    int size2 = arrayList.size();
-                    int i18 = 0;
-                    while (i18 < size2) {
-                        Object obj5 = arrayList.get(i18);
-                        i18++;
-                        TLObject tLObject = (TLObject) obj5;
-                        if (tLObject instanceof TLRPC.Chat) {
-                            i11 = size2;
-                            tL_inputStorePaymentStarsGiveaway.additional_peers.add(messagesController.getInputPeer(-((TLRPC.Chat) tLObject).f22028id));
-                        } else {
-                            i11 = size2;
-                        }
-                        size2 = i11;
-                    }
-                } else if (prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway) {
-                    tL_inputStorePaymentStarsGiveaway = new TLRPC.TL_inputStorePaymentStarsGiveaway();
-                    tL_inputStorePaymentStarsGiveaway.only_new_subscribers = z10;
-                    tL_inputStorePaymentStarsGiveaway.winners_are_visible = z11;
-                    tL_inputStorePaymentStarsGiveaway.prize_description = str;
-                    tL_inputStorePaymentStarsGiveaway.until_date = l4;
-                    int i19 = tL_inputStorePaymentStarsGiveaway.flags;
-                    tL_inputStorePaymentStarsGiveaway.flags = i19 | 6;
-                    if (z12) {
-                        tL_inputStorePaymentStarsGiveaway.flags = i19 | 22;
-                    }
-                    tL_inputStorePaymentStarsGiveaway.random_id = System.currentTimeMillis();
-                    tL_inputStorePaymentStarsGiveaway.additional_peers = new ArrayList<>();
-                    tL_inputStorePaymentStarsGiveaway.boost_peer = messagesController.getInputPeer(-chat.f22028id);
-                    tL_inputStorePaymentStarsGiveaway.currency = "";
-                    tL_inputStorePaymentStarsGiveaway.stars = ((TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway).stars;
-                    tL_inputStorePaymentStarsGiveaway.users = prepaidGiveaway.quantity;
-                    int size3 = arrayList2.size();
-                    int i20 = 0;
-                    while (i20 < size3) {
-                        Object obj6 = arrayList2.get(i20);
-                        i20++;
-                        tL_inputStorePaymentStarsGiveaway.countries_iso2.add(((TLRPC.TL_help_country) ((TLObject) obj6)).iso2);
-                    }
-                    int size4 = arrayList.size();
-                    int i21 = 0;
-                    while (i21 < size4) {
-                        Object obj7 = arrayList.get(i21);
-                        i21++;
-                        TLObject tLObject2 = (TLObject) obj7;
-                        if (tLObject2 instanceof TLRPC.Chat) {
-                            i10 = size4;
-                            tL_inputStorePaymentStarsGiveaway.additional_peers.add(messagesController.getInputPeer(-((TLRPC.Chat) tLObject2).f22028id));
-                        } else {
-                            i10 = size4;
-                        }
-                        size4 = i10;
-                    }
+                if (L0 == null) {
+                    i10 = -1;
+                } else if (w3.T(L0)) {
+                    i10 = 2;
                 } else {
-                    return;
+                    i10 = 1;
                 }
-                TLRPC.TL_payments_launchPrepaidGiveaway tL_payments_launchPrepaidGiveaway = new TLRPC.TL_payments_launchPrepaidGiveaway();
-                tL_payments_launchPrepaidGiveaway.giveaway_id = prepaidGiveaway.f22266id;
-                tL_payments_launchPrepaidGiveaway.peer = messagesController.getInputPeer(-chat.f22028id);
-                tL_payments_launchPrepaidGiveaway.purpose = tL_inputStorePaymentStarsGiveaway;
-                connectionsManager.sendRequest(tL_payments_launchPrepaidGiveaway, new bi.h2(vVar, messagesController, yVar, 23));
-                return;
+            }
+            w2 w2Var = (w2) e7.get(keyAt);
+            for (int i13 = 0; i13 < arrayList2.size(); i13++) {
+                x2 x2Var = (x2) arrayList2.get(i13);
+                if (i10 >= 0) {
+                    x2Var.f19182c = i10;
+                }
+                if (w2Var != null) {
+                    x2Var.f19181b = w2Var.f19044b;
+                }
+            }
         }
     }
 
-    public y2(Object obj, long j10, long j11, Object obj2, Object obj3, int i10) {
-        this.f21873a = i10;
-        this.d = obj;
-        this.f21874b = j10;
-        this.f21875c = j11;
-        this.e = obj2;
-        this.f21876f = obj3;
-    }
-
-    public y2(Object obj, Serializable serializable, long j10, long j11, Object obj2, int i10) {
-        this.f21873a = i10;
-        this.d = obj;
-        this.e = serializable;
-        this.f21874b = j10;
-        this.f21875c = j11;
-        this.f21876f = obj2;
-    }
-
-    public y2(Object obj, TLObject tLObject, TLObject tLObject2, long j10, long j11, int i10) {
-        this.f21873a = i10;
-        this.d = obj;
-        this.e = tLObject;
-        this.f21876f = tLObject2;
-        this.f21874b = j10;
-        this.f21875c = j11;
-    }
-
-    public y2(GiftAuctionController giftAuctionController, Utilities.Callback2 callback2, long j10, zh.l lVar, long j11) {
-        this.f21873a = 1;
-        this.d = giftAuctionController;
-        this.e = callback2;
-        this.f21874b = j10;
-        this.f21876f = lVar;
-        this.f21875c = j11;
+    public final void h(int i10, ArrayList arrayList) {
+        String i11 = i0.a.i(i10, "keep_media_exceptions_");
+        boolean isEmpty = arrayList.isEmpty();
+        int i12 = this.f19328a;
+        if (isEmpty) {
+            d20.i(i12).k().edit().remove(i11).apply();
+            return;
+        }
+        int size = arrayList.size();
+        ByteBuffer allocate = ByteBuffer.allocate((size * 12) + 4);
+        allocate.putInt(size);
+        for (int i13 = 0; i13 < size; i13++) {
+            allocate.putLong(((w2) arrayList.get(i13)).f19043a);
+            allocate.putInt(((w2) arrayList.get(i13)).f19044b);
+        }
+        d20.i(i12).k().edit().putString(i11, Utilities.f(allocate.array())).apply();
+        allocate.clear();
     }
 }

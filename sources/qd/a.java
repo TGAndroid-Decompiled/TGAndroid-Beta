@@ -1,26 +1,20 @@
 package qd;
-public abstract class a {
-    public static final Integer f47066a;
 
-    static {
-        Integer num;
-        Object obj;
-        Integer num2 = null;
-        try {
-            obj = Class.forName("android.os.Build$VERSION").getField("SDK_INT").get(null);
-        } catch (Throwable unused) {
+import java.util.Iterator;
+import java.util.concurrent.atomic.AtomicReference;
+public final class a implements b {
+    public final AtomicReference f45510a;
+
+    public a(e eVar) {
+        this.f45510a = new AtomicReference(eVar);
+    }
+
+    @Override
+    public final Iterator iterator() {
+        b bVar = (b) this.f45510a.getAndSet(null);
+        if (bVar != null) {
+            return bVar.iterator();
         }
-        if (obj instanceof Integer) {
-            num = (Integer) obj;
-            if (num != null && num.intValue() > 0) {
-                num2 = num;
-            }
-            f47066a = num2;
-        }
-        num = null;
-        if (num != null) {
-            num2 = num;
-        }
-        f47066a = num2;
+        throw new IllegalStateException("This sequence can be consumed only once.");
     }
 }

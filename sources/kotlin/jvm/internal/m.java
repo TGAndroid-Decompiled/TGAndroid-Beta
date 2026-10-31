@@ -1,17 +1,17 @@
 package kotlin.jvm.internal;
-public abstract class m extends b implements yd.g {
-    public final boolean f16665a;
+public abstract class m extends b implements pd.g {
+    public final boolean f11441a;
 
     public m(java.lang.Object r9, java.lang.Class r10, java.lang.String r11, java.lang.String r12, int r13) {
         throw new UnsupportedOperationException("Method not decompiled: kotlin.jvm.internal.m.<init>(java.lang.Object, java.lang.Class, java.lang.String, java.lang.String, int):void");
     }
 
     @Override
-    public final yd.g getReflected() {
-        if (!this.f16665a) {
-            yd.b compute = compute();
+    public final pd.g getReflected() {
+        if (!this.f11441a) {
+            pd.b compute = compute();
             if (compute != this) {
-                return (yd.g) compute;
+                return (pd.g) compute;
             }
             throw new Error("Kotlin reflection implementation is not found at runtime. Make sure you have kotlin-reflect.jar in the classpath");
         }
@@ -19,8 +19,8 @@ public abstract class m extends b implements yd.g {
     }
 
     @Override
-    public final yd.b compute() {
-        if (this.f16665a) {
+    public final pd.b compute() {
+        if (this.f11441a) {
             return this;
         }
         return super.compute();
@@ -36,7 +36,7 @@ public abstract class m extends b implements yd.g {
                 return true;
             }
             return false;
-        } else if (!(obj instanceof yd.g)) {
+        } else if (!(obj instanceof pd.g)) {
             return false;
         } else {
             return obj.equals(compute());
@@ -49,7 +49,7 @@ public abstract class m extends b implements yd.g {
     }
 
     public final String toString() {
-        yd.b compute = compute();
+        pd.b compute = compute();
         if (compute != this) {
             return compute.toString();
         }

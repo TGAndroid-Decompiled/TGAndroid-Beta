@@ -1,76 +1,44 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
-public abstract class l31 extends View {
-    public final m31 f30102a;
-    public Utilities.Callback f30103b;
-    public final org.telegram.ui.ActionBar.u6 f30104c;
-    public int d;
+import android.view.ViewGroup;
+public final class l31 extends s4.g0 {
+    public Context f28005c;
+    public View d;
+    public int e;
 
-    public l31(Context context, int i10, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(context);
-        this.f30104c = u6Var;
-        m31 m31Var = new m31(i10, this, u6Var, false);
-        this.f30102a = m31Var;
-        m31Var.f30373s = new np0(this, 24);
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        org.telegram.ui.ActionBar.u6 u6Var = this.f30104c;
-        if (u6Var != null) {
-            u6Var.b(0.0f, 0.0f, getMeasuredWidth(), this.d);
-        } else {
-            org.telegram.ui.ActionBar.y6.q(0.0f, 0.0f, getMeasuredWidth(), this.d);
+    public final void D(View view) {
+        if (this.d == view) {
+            return;
         }
-        this.f30102a.c(canvas, getWidth(), 0.0f, 0.0f, 0.75f, 1.0f, true);
+        this.e++;
+        this.d = view;
+        g(1);
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f30102a.a();
+    public final int b() {
+        return 2;
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f30102a.b();
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(33.0f), 1073741824));
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f30102a.d(motionEvent, false) && !super.onTouchEvent(motionEvent)) {
-            return false;
+    public final int d(int i10) {
+        if (i10 == 0) {
+            return 0;
         }
-        return true;
+        return this.e;
     }
 
-    public void set(MessageObject messageObject) {
-        m31 m31Var = this.f30102a;
-        m31Var.e(messageObject);
-        if (isAttachedToWindow()) {
-            m31Var.a();
+    @Override
+    public final s4.c1 w(ViewGroup viewGroup, int i10) {
+        if (i10 == 0) {
+            return new s4.c1(new bn(this.f28005c, 9));
         }
+        return new s4.c1(this.d);
     }
 
-    public void setBackgroundHeight(int i10) {
-        this.d = i10;
-    }
-
-    public void setOnTopicClickListener(Utilities.Callback<Long> callback) {
-        this.f30103b = callback;
+    @Override
+    public final void t(s4.c1 c1Var, int i10) {
     }
 }

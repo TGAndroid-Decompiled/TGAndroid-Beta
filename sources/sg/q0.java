@@ -1,119 +1,109 @@
 package sg;
 
-import android.content.Context;
-import android.graphics.PointF;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.wh;
-import org.telegram.ui.Components.il0;
-import org.telegram.ui.Components.kb1;
-public final class q0 extends j {
-    public final o0 f48510q0;
-    public int f48511r0;
-    public int f48512s0;
-    public boolean f48513t0;
-    public n0 f48514u0;
-
-    public q0(Context context, PointF pointF, int i10, n0 n0Var, float f7, int i11) {
-        super(context, pointF);
-        o0 o0Var = new o0(context, f7);
-        this.f48510q0 = o0Var;
-        o0Var.setMaxWidth(i11);
-        this.f48514u0 = n0Var;
-        o0Var.b(i10, n0Var, false);
-        m();
-        this.f48512s0 = 3;
-        o0Var.c(3, this.f48511r0);
-        addView(o0Var, kb1.i(-2, -2, 51));
-        setClipChildren(false);
-        setClipToPadding(false);
-        k();
-    }
-
-    @Override
-    public final i a() {
-        return new p0(this, getContext());
-    }
-
-    public int getColor() {
-        return this.f48511r0;
-    }
-
-    @Override
-    public float getMaxScale() {
-        return 1.5f;
-    }
-
-    public int getNextType() {
-        int i10 = this.f48512s0 + 1;
-        if (i10 == 4) {
-            return !this.f48513t0 ? 1 : 0;
+import android.graphics.Paint;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import org.telegram.messenger.d20;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.k2;
+import org.telegram.ui.Components.f5;
+import org.telegram.ui.Components.o5;
+import org.telegram.ui.LaunchActivity;
+import rh.r1;
+public abstract class q0 {
+    public static void a(TLRPC.TL_availableReaction tL_availableReaction, LinkedHashMap linkedHashMap, ArrayList arrayList, SpannableStringBuilder spannableStringBuilder, m mVar, Paint.FontMetricsInt fontMetricsInt) {
+        TLRPC.Document document = tL_availableReaction.activate_animation;
+        long j10 = document.f19799id;
+        o5 e = e(document, Long.valueOf(j10), fontMetricsInt);
+        linkedHashMap.put(Long.valueOf(j10), e);
+        arrayList.add(Long.valueOf(j10));
+        SpannableString spannableString = new SpannableString(tL_availableReaction.reaction);
+        spannableString.setSpan(e, 0, spannableString.length(), 33);
+        spannableStringBuilder.append((CharSequence) spannableString);
+        if (mVar != null) {
+            mVar.x(Long.valueOf(j10), false);
         }
-        return i10;
     }
 
-    @Override
-    public il0 getSelectionBounds() {
-        ViewGroup viewGroup = (ViewGroup) getParent();
-        if (viewGroup == null) {
-            return new Object();
+    public static void b(TLRPC.Reaction reaction, TLRPC.Reaction reaction2, TL_stories.StoryViews storyViews) {
+        if (storyViews != null) {
+            int i10 = 0;
+            boolean z10 = false;
+            while (i10 < storyViews.reactions.size()) {
+                TLRPC.ReactionCount reactionCount = storyViews.reactions.get(i10);
+                if (reaction != null && c(reactionCount.reaction, reaction)) {
+                    int i11 = reactionCount.count - 1;
+                    reactionCount.count = i11;
+                    if (i11 <= 0) {
+                        storyViews.reactions.remove(i10);
+                        i10--;
+                        i10++;
+                    }
+                }
+                if (reaction2 != null && c(reactionCount.reaction, reaction2)) {
+                    reactionCount.count++;
+                    z10 = true;
+                }
+                i10++;
+            }
+            if (!z10) {
+                TLRPC.TL_reactionCount tL_reactionCount = new TLRPC.TL_reactionCount();
+                tL_reactionCount.count = 1;
+                tL_reactionCount.reaction = reaction2;
+                storyViews.reactions.add(tL_reactionCount);
+            }
         }
-        float scaleX = viewGroup.getScaleX();
-        float scale = getScale();
-        float dp = (AndroidUtilities.dp(64.0f) / scaleX) + (scale * getMeasuredWidth());
-        float scale2 = getScale();
-        float dp2 = (AndroidUtilities.dp(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
-        float y3 = wh.y(dp, 2.0f, getPositionX(), scaleX);
-        return new il0(y3, wh.y(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + y3) - y3, dp2 * scaleX);
     }
 
-    @Override
-    public float getStickyPaddingBottom() {
-        return this.f48510q0.h;
+    public static boolean c(TLRPC.Reaction reaction, TLRPC.Reaction reaction2) {
+        if ((reaction instanceof TLRPC.TL_reactionEmoji) && (reaction2 instanceof TLRPC.TL_reactionEmoji) && TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, ((TLRPC.TL_reactionEmoji) reaction2).emoticon)) {
+            return true;
+        }
+        if ((reaction instanceof TLRPC.TL_reactionCustomEmoji) && (reaction2 instanceof TLRPC.TL_reactionCustomEmoji) && ((TLRPC.TL_reactionCustomEmoji) reaction).document_id == ((TLRPC.TL_reactionCustomEmoji) reaction2).document_id) {
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public float getStickyPaddingLeft() {
-        return this.f48510q0.f48438f;
+    public static boolean d(TLRPC.Reaction reaction, o0 o0Var) {
+        if ((reaction instanceof TLRPC.TL_reactionEmoji) && o0Var.f48435g == 0 && TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, o0Var.f48434f)) {
+            return true;
+        }
+        if (reaction instanceof TLRPC.TL_reactionCustomEmoji) {
+            long j10 = o0Var.f48435g;
+            if (j10 != 0 && ((TLRPC.TL_reactionCustomEmoji) reaction).document_id == j10) {
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
-    @Override
-    public float getStickyPaddingRight() {
-        return this.f48510q0.f48438f;
+    public static o5 e(TLRPC.Document document, Long l4, Paint.FontMetricsInt fontMetricsInt) {
+        o5 o5Var;
+        if (document != null) {
+            o5Var = new o5(document.f19799id, 1.0f, fontMetricsInt);
+            o5Var.document = document;
+        } else {
+            o5Var = new o5(l4.longValue(), 1.0f, fontMetricsInt);
+        }
+        o5Var.cacheType = f5.f();
+        return o5Var;
     }
 
-    @Override
-    public float getStickyPaddingTop() {
-        return this.f48510q0.h;
-    }
-
-    public int getType() {
-        return this.f48512s0;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        k();
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        k();
-    }
-
-    public void setColor(int i10) {
-        this.f48513t0 = true;
-        this.f48511r0 = i10;
-    }
-
-    public void setMaxWidth(int i10) {
-        this.f48510q0.setMaxWidth(i10);
-    }
-
-    public void setType(int i10) {
-        this.f48512s0 = i10;
-        this.f48510q0.c(i10, this.f48511r0);
+    public static void f(long j10, int i10, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
+        k2 Q = LaunchActivity.Q();
+        if (Q != null && tL_premium_boostsStatus != null) {
+            kg.q0 q0Var = new kg.q0(21, d20.f15147s0, Q.getContext(), Q, Q.getResourceProvider());
+            q0Var.J2 = i10;
+            q0Var.z1(tL_premium_boostsStatus, true);
+            q0Var.B1(j10);
+            q0Var.I2 = new r1(Q, j10);
+            q0Var.show();
+        }
     }
 }

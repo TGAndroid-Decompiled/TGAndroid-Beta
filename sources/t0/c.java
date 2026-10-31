@@ -5,21 +5,22 @@ import android.os.Bundle;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputConnectionWrapper;
 import android.view.inputmethod.InputContentInfo;
+import m2.t;
 public final class c extends InputConnectionWrapper {
-    public final e f48721a;
+    public final e f48522a;
 
     public c(InputConnection inputConnection, e eVar) {
         super(inputConnection, false);
-        this.f48721a = eVar;
+        this.f48522a = eVar;
     }
 
     @Override
     public final boolean commitContent(InputContentInfo inputContentInfo, int i10, Bundle bundle) {
-        i iVar = null;
+        t tVar = null;
         if (inputContentInfo != null && Build.VERSION.SDK_INT >= 25) {
-            iVar = new i(new g(inputContentInfo));
+            tVar = new t(new g(inputContentInfo), 27);
         }
-        if (this.f48721a.d(iVar, i10, bundle)) {
+        if (this.f48522a.p(tVar, i10, bundle)) {
             return true;
         }
         return super.commitContent(inputContentInfo, i10, bundle);

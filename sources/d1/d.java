@@ -1,34 +1,35 @@
 package d1;
 
-import v0.i;
+import kotlin.jvm.internal.i;
+import v0.h;
 public final class d implements Runnable {
-    public final int f7830a;
-    public final e f7831b;
+    public final int f5636a;
+    public final f f5637b;
 
-    public d(e eVar, int i10) {
-        this.f7830a = i10;
-        this.f7831b = eVar;
+    public d(f fVar, int i10) {
+        this.f5636a = i10;
+        this.f5637b = fVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f7830a) {
+        switch (this.f5636a) {
             case 0:
-                i iVar = this.f7831b.f7832f;
-                if (iVar != null) {
-                    iVar.onError(new w0.c("Failed to launch the selector UI. Hint: ensure the `context` parameter is an Activity-based context.", 2));
+                h hVar = this.f5637b.f5641f;
+                if (hVar != null) {
+                    hVar.g(new w0.c(2, "Failed to launch the selector UI. Hint: ensure the `context` parameter is an Activity-based context."));
                     return;
                 } else {
-                    kotlin.jvm.internal.i.h("callback");
+                    i.h("callback");
                     throw null;
                 }
             default:
-                i iVar2 = this.f7831b.f7832f;
-                if (iVar2 != null) {
-                    iVar2.onError(new y0.a(new x0.a(26), "Upon handling create public key credential response, fido module giving null bytes indicating internal error"));
+                h hVar2 = this.f5637b.f5641f;
+                if (hVar2 != null) {
+                    hVar2.g(new y0.a(new x0.a(26), "Upon handling create public key credential response, fido module giving null bytes indicating internal error"));
                     return;
                 } else {
-                    kotlin.jvm.internal.i.h("callback");
+                    i.h("callback");
                     throw null;
                 }
         }

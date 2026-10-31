@@ -1,33 +1,25 @@
 package org.telegram.ui.Components;
+public final class k21 {
+    public static final k21 f27622a;
+    public static final k21 f27623b;
+    public static final k21 f27624c;
+    public static final k21[] d;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class k21 extends AnimatorListenerAdapter {
-    public final int f29832a;
-    public final ThemeEditorView f29833b;
-
-    public k21(ThemeEditorView themeEditorView, int i10) {
-        this.f29832a = i10;
-        this.f29833b = themeEditorView;
+    static {
+        ?? r02 = new Enum("TOP", 0);
+        f27622a = r02;
+        ?? r12 = new Enum("LEFT", 1);
+        f27623b = r12;
+        ?? r32 = new Enum("BOTTOM", 2);
+        f27624c = r32;
+        d = new k21[]{r02, r12, r32};
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f29832a) {
-            case 0:
-                ThemeEditorView themeEditorView = this.f29833b;
-                i21 i21Var = themeEditorView.f26330c;
-                if (i21Var != null) {
-                    i21Var.setBackground(null);
-                    themeEditorView.f26334j.removeView(themeEditorView.f26330c);
-                    return;
-                }
-                return;
-            default:
-                ThemeEditorView themeEditorView2 = this.f29833b;
-                org.telegram.ui.ActionBar.y6.u1(themeEditorView2.f26339o, true, false, false);
-                themeEditorView2.b();
-                return;
-        }
+    public static k21 valueOf(String str) {
+        return (k21) Enum.valueOf(k21.class, str);
+    }
+
+    public static k21[] values() {
+        return (k21[]) d.clone();
     }
 }

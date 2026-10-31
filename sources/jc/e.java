@@ -1,34 +1,34 @@
 package jc;
-public enum e {
-    TERMINATOR(new int[]{0, 0, 0}, 0),
-    NUMERIC(new int[]{10, 12, 14}, 1),
-    ALPHANUMERIC(new int[]{9, 11, 13}, 2),
-    STRUCTURED_APPEND(new int[]{0, 0, 0}, 3),
-    BYTE(new int[]{8, 16, 16}, 4),
-    ECI(new int[]{0, 0, 0}, 7),
-    KANJI(new int[]{8, 10, 12}, 8),
-    FNC1_FIRST_POSITION(new int[]{0, 0, 0}, 5),
-    FNC1_SECOND_POSITION(new int[]{0, 0, 0}, 9),
-    HANZI(new int[]{8, 10, 12}, 13);
-    
-    public final int[] f15563a;
-    public final int f15564b;
 
-    e(int[] iArr, int i10) {
-        this.f15563a = iArr;
-        this.f15564b = i10;
+import f5.f;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+public abstract class e {
+    static {
+        Pattern.compile("(....|\\.\\.)(\\[(.*)\\])?");
     }
 
-    public final int a(f fVar) {
-        char c10;
-        int i10 = fVar.f15566a;
-        if (i10 <= 9) {
-            c10 = 0;
-        } else if (i10 <= 26) {
-            c10 = 1;
-        } else {
-            c10 = 2;
+    public static String a(f5.b bVar, String str) {
+        f parent = bVar.getParent();
+        ArrayList arrayList = ((com.googlecode.mp4parser.e) parent).f5621b;
+        int size = arrayList.size();
+        int i10 = 0;
+        int i11 = 0;
+        while (i11 < size) {
+            Object obj = arrayList.get(i11);
+            i11++;
+            f5.b bVar2 = (f5.b) obj;
+            if (bVar2.getType().equals(bVar.getType())) {
+                if (bVar2 == bVar) {
+                    break;
+                }
+                i10++;
+            }
         }
-        return this.f15563a[c10];
+        String str2 = String.format("/%s[%d]", bVar.getType(), Integer.valueOf(i10)) + str;
+        if (parent instanceof f5.b) {
+            return a((f5.b) parent, str2);
+        }
+        return str2;
     }
 }

@@ -1,55 +1,41 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class f5 extends LinearLayout {
-    public final RectF f36584a;
-    public final RectF f36585b;
-    public final RectF f36586c;
-    public final Paint d;
-    public final org.telegram.ui.ActionBar.u6 e;
-    public final g5 f36587f;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.ce;
+public final class f5 implements TextWatcher {
+    public final String[] f34500a;
+    public final k3 f34501b;
+    public final Runnable[] f34502c;
+    public final ce d;
 
-    public f5(g5 g5Var, Context context, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(context);
-        this.f36587f = g5Var;
-        this.e = u6Var;
-        this.f36584a = new RectF();
-        this.f36585b = new RectF();
-        this.f36586c = new RectF();
-        this.d = new Paint(1);
+    public f5(String[] strArr, k3 k3Var, Runnable[] runnableArr, ce ceVar) {
+        this.f34500a = strArr;
+        this.f34501b = k3Var;
+        this.f34502c = runnableArr;
+        this.d = ceVar;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        g5 g5Var = this.f36587f;
-        float d = g5Var.f36624f.d(g5Var.d, false);
-        double d10 = d;
-        TextView[] textViewArr = g5Var.f36623c;
-        int clamp = Utilities.clamp((int) Math.floor(d10), textViewArr.length, 0);
-        int clamp2 = Utilities.clamp((int) Math.ceil(d10), textViewArr.length, 0);
-        RectF rectF = this.f36584a;
-        if (clamp >= 0 && clamp < textViewArr.length) {
-            TextView textView = textViewArr[clamp];
-            rectF.set(textView.getX(), textView.getY(), textView.getX() + textView.getWidth(), textView.getY() + textView.getHeight());
+    public final void afterTextChanged(Editable editable) {
+        this.f34500a[0] = editable.toString();
+        this.f34501b.run();
+        Runnable[] runnableArr = this.f34502c;
+        Runnable runnable = runnableArr[0];
+        if (runnable != null) {
+            runnable.run();
+            runnableArr[0] = null;
         }
-        RectF rectF2 = this.f36585b;
-        if (clamp2 >= 0 && clamp2 < textViewArr.length) {
-            TextView textView2 = textViewArr[clamp2];
-            rectF2.set(textView2.getX(), textView2.getY(), textView2.getX() + textView2.getWidth(), textView2.getY() + textView2.getHeight());
-        }
-        RectF rectF3 = this.f36586c;
-        AndroidUtilities.lerp(rectF, rectF2, d - clamp, rectF3);
-        int o12 = org.telegram.ui.ActionBar.y6.o1(0.1f, org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Oh, this.e));
-        Paint paint = this.d;
-        paint.setColor(o12);
-        canvas.drawRoundRect(rectF3, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), paint);
-        super.dispatchDraw(canvas);
+        ce ceVar = this.d;
+        org.telegram.messenger.i0.r(ceVar);
+        org.telegram.messenger.i0.h3(ceVar, 1000L);
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

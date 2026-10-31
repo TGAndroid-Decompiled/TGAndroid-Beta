@@ -1,27 +1,26 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class sf0 implements View.OnClickListener {
-    public final int f43316a = 0;
-    public final vf0 f43317b;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class sf0 implements RequestDelegate {
+    public final int f41504a;
+    public final kg0 f41505b;
 
-    public sf0(vf0 vf0Var) {
-        this.f43317b = vf0Var;
+    public sf0(kg0 kg0Var, int i10) {
+        this.f41504a = i10;
+        this.f41505b = kg0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f43316a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f41504a) {
             case 0:
-                this.f43317b.a();
+                org.telegram.messenger.i0.g3(new yf0(this.f41505b, tL_error, tLObject, 0));
                 return;
             default:
-                this.f43317b.a();
+                org.telegram.messenger.i0.g3(new uf0(0, this.f41505b, tL_error));
                 return;
         }
-    }
-
-    public sf0(vf0 vf0Var, gg0 gg0Var) {
-        this.f43317b = vf0Var;
     }
 }

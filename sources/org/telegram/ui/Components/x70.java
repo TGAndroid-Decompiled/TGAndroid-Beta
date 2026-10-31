@@ -1,28 +1,27 @@
 package org.telegram.ui.Components;
+public final class x70 implements Runnable {
+    public final int f32410a;
+    public final y70 f32411b;
+    public final boolean f32412c;
+    public final boolean d;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class x70 extends AnimatorListenerAdapter {
-    public final int f34694a;
-    public final y70 f34695b;
-
-    public x70(y70 y70Var, int i10) {
-        this.f34694a = i10;
-        this.f34695b = y70Var;
+    public x70(y70 y70Var, boolean z10, boolean z11, int i10) {
+        this.f32410a = i10;
+        this.f32411b = y70Var;
+        this.f32412c = z10;
+        this.d = z11;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f34694a) {
+    public final void run() {
+        switch (this.f32410a) {
             case 0:
-                y70 y70Var = this.f34695b;
-                y70Var.e.f35264d0 = null;
-                y70Var.requestLayout();
+                org.telegram.messenger.i0.g3(new x70(this.f32411b, this.f32412c, this.d, 1));
                 return;
             default:
-                y70 y70Var2 = this.f34695b;
-                y70Var2.e.f35264d0 = null;
-                y70Var2.f34985a = false;
+                y70 y70Var = this.f32411b;
+                y70Var.setJoinRequest(this.f32412c);
+                y70Var.setJoinToSend(this.d);
                 return;
         }
     }

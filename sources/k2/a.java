@@ -1,23 +1,23 @@
 package k2;
 
 import android.os.Build;
-import f9.g2;
+import e9.m2;
 import j$.util.Objects;
 import java.util.Set;
 public final class a {
     public static final a d;
-    public final int f16113a;
-    public final int f16114b;
-    public final f9.t0 f16115c;
+    public final int f10592a;
+    public final int f10593b;
+    public final e9.y0 f10594c;
 
     static {
         a aVar;
         if (Build.VERSION.SDK_INT >= 33) {
-            ?? b0Var = new f9.b0(4);
+            ?? g0Var = new e9.g0(4);
             for (int i10 = 1; i10 <= 10; i10++) {
-                b0Var.c(Integer.valueOf(e2.n0.t(i10)));
+                g0Var.c(Integer.valueOf(e2.l0.t(i10)));
             }
-            aVar = new a(2, b0Var.g());
+            aVar = new a(2, g0Var.g());
         } else {
             aVar = new a(2, 10);
         }
@@ -25,15 +25,15 @@ public final class a {
     }
 
     public a(int i10, Set set) {
-        this.f16113a = i10;
-        f9.t0 u10 = f9.t0.u(set);
-        this.f16115c = u10;
-        g2 it = u10.iterator();
+        this.f10592a = i10;
+        e9.y0 u10 = e9.y0.u(set);
+        this.f10594c = u10;
+        m2 it = u10.iterator();
         int i11 = 0;
         while (it.hasNext()) {
             i11 = Math.max(i11, Integer.bitCount(((Integer) it.next()).intValue()));
         }
-        this.f16114b = i11;
+        this.f10593b = i11;
     }
 
     public final boolean equals(Object obj) {
@@ -44,7 +44,7 @@ public final class a {
             return false;
         }
         a aVar = (a) obj;
-        if (this.f16113a == aVar.f16113a && this.f16114b == aVar.f16114b && Objects.equals(this.f16115c, aVar.f16115c)) {
+        if (this.f10592a == aVar.f10592a && this.f10593b == aVar.f10593b && Objects.equals(this.f10594c, aVar.f10594c)) {
             return true;
         }
         return false;
@@ -52,23 +52,23 @@ public final class a {
 
     public final int hashCode() {
         int hashCode;
-        int i10 = ((this.f16113a * 31) + this.f16114b) * 31;
-        f9.t0 t0Var = this.f16115c;
-        if (t0Var == null) {
+        int i10 = ((this.f10592a * 31) + this.f10593b) * 31;
+        e9.y0 y0Var = this.f10594c;
+        if (y0Var == null) {
             hashCode = 0;
         } else {
-            hashCode = t0Var.hashCode();
+            hashCode = y0Var.hashCode();
         }
         return i10 + hashCode;
     }
 
     public final String toString() {
-        return "AudioProfile[format=" + this.f16113a + ", maxChannelCount=" + this.f16114b + ", channelMasks=" + this.f16115c + "]";
+        return "AudioProfile[format=" + this.f10592a + ", maxChannelCount=" + this.f10593b + ", channelMasks=" + this.f10594c + "]";
     }
 
     public a(int i10, int i11) {
-        this.f16113a = i10;
-        this.f16114b = i11;
-        this.f16115c = null;
+        this.f10592a = i10;
+        this.f10593b = i11;
+        this.f10594c = null;
     }
 }

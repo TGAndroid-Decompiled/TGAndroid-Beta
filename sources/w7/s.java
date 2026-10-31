@@ -1,13 +1,15 @@
 package w7;
 
-import java.io.DataInputStream;
+import android.view.View;
+import android.view.ViewParent;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+import android.widget.TextView;
 public abstract class s {
-    public static float[] a(DataInputStream dataInputStream) {
-        int readInt = dataInputStream.readInt();
-        float[] fArr = new float[readInt];
-        for (int i10 = 0; i10 < readInt; i10++) {
-            fArr[i10] = dataInputStream.readFloat();
+    public static void a(EditorInfo editorInfo, InputConnection inputConnection, TextView textView) {
+        if (inputConnection != null && editorInfo.hintText == null) {
+            for (ViewParent parent = textView.getParent(); parent instanceof View; parent = parent.getParent()) {
+            }
         }
-        return fArr;
     }
 }

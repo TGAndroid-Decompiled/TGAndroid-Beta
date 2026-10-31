@@ -1,35 +1,41 @@
 package k2;
 public final class s implements Runnable {
-    public final int f16266a;
-    public final rf.b f16267b;
-    public final i2.e f16268c;
+    public final int f10758a;
+    public final int f10759b;
+    public final long f10760c;
+    public final long d;
+    public final Object e;
 
-    public s(rf.b bVar, i2.e eVar, int i10) {
-        this.f16266a = i10;
-        this.f16267b = bVar;
-        this.f16268c = eVar;
+    public s(Object obj, int i10, long j10, long j11, int i11) {
+        this.f10758a = i11;
+        this.e = obj;
+        this.f10759b = i10;
+        this.f10760c = j10;
+        this.d = j11;
     }
 
     @Override
     public final void run() {
-        switch (this.f16266a) {
+        u2.g0 g0Var;
+        int i10 = this.f10758a;
+        Object obj = this.e;
+        switch (i10) {
             case 0:
-                rf.b bVar = this.f16267b;
-                i2.e eVar = this.f16268c;
-                synchronized (eVar) {
-                }
-                String str = e2.n0.f9691a;
-                j2.e eVar2 = ((i2.d0) ((v) bVar.f47371c)).f13508a.f13613s;
-                j2.a n10 = eVar2.n((u2.g0) eVar2.d.e);
-                eVar2.q(n10, 1013, new ig.g(n10, eVar, 28));
+                String str = e2.l0.f6165a;
+                j2.g gVar = ((i2.c0) ((w) ((hf.b) obj).f7658c)).f7821a.f7927s;
+                j2.a U = gVar.U();
+                gVar.V(U, 1011, new j2.e(U, this.f10759b, this.f10760c, this.d));
                 return;
             default:
-                rf.b bVar2 = this.f16267b;
-                i2.e eVar3 = this.f16268c;
-                String str2 = e2.n0.f9691a;
-                j2.e eVar4 = ((i2.d0) ((v) bVar2.f47371c)).f13508a.f13613s;
-                j2.a p10 = eVar4.p();
-                eVar4.q(p10, 1007, new ig.g(p10, eVar3, 23));
+                j2.g gVar2 = ((y2.b) obj).f54131b;
+                j2.f fVar = gVar2.d;
+                if (((e9.n0) fVar.f9348b).isEmpty()) {
+                    g0Var = null;
+                } else {
+                    g0Var = (u2.g0) e9.s.m((e9.n0) fVar.f9348b);
+                }
+                j2.a S = gVar2.S(g0Var);
+                gVar2.V(S, 1006, new j2.d(S, this.f10759b, this.f10760c, this.d));
                 return;
         }
     }

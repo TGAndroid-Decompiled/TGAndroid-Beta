@@ -1,3 +1,4 @@
 package x7;
-public abstract class fa {
+public interface fa {
+    void a(a5.a aVar);
 }

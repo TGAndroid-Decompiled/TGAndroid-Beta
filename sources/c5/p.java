@@ -1,12 +1,10 @@
 package c5;
+public final class p {
+    public final String f3805a;
+    public final String f3806b;
 
-import android.webkit.WebView;
-import org.chromium.support_lib_boundary.StaticsBoundaryInterface;
-import org.chromium.support_lib_boundary.WebViewProviderBoundaryInterface;
-public interface p {
-    String[] b();
-
-    WebViewProviderBoundaryInterface createWebView(WebView webView);
-
-    StaticsBoundaryInterface getStatics();
+    public p(a aVar) {
+        this.f3805a = aVar.f3731b;
+        this.f3806b = aVar.f3732c;
+    }
 }

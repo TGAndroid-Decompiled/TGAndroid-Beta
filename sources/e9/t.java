@@ -1,4 +1,23 @@
 package e9;
-public interface t {
-    Object get();
+public final class t extends v {
+    public final int f6416f;
+    public final x h;
+
+    public t(x xVar, int i10) {
+        super(xVar);
+        this.f6416f = i10;
+        this.h = xVar;
+    }
+
+    @Override
+    public final Object a(int i10) {
+        switch (this.f6416f) {
+            case 0:
+                return this.h.j()[i10];
+            case 1:
+                return new w(this.h, i10);
+            default:
+                return this.h.k()[i10];
+        }
+    }
 }

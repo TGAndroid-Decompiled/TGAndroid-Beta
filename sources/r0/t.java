@@ -1,8 +1,8 @@
 package r0;
-
-import j$.util.DesugarCollections;
-import java.util.Map;
-import java.util.WeakHashMap;
-public abstract class t {
-    public static final Map f47170a = DesugarCollections.synchronizedMap(new WeakHashMap());
+public final class t {
+    public final float[] f46150a = new float[20];
+    public final long[] f46151b = new long[20];
+    public float f46152c = 0.0f;
+    public int d = 0;
+    public int e = 0;
 }

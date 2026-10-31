@@ -1,30 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ObjectAnimator;
-import android.view.View;
-import android.widget.ImageView;
-import org.telegram.messenger.R;
-public final class em extends AnimatorListenerAdapter {
-    public final ChatAttachAlertPhotoLayout f27886a;
+import android.animation.ValueAnimator;
+public final class em implements ValueAnimator.AnimatorUpdateListener {
+    public final int f25829a;
+    public final im f25830b;
 
-    public em(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
-        this.f27886a = chatAttachAlertPhotoLayout;
+    public em(im imVar, int i10) {
+        this.f25829a = i10;
+        this.f25830b = imVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f27886a;
-        ImageView imageView = chatAttachAlertPhotoLayout.f26055r0;
-        pm pmVar = chatAttachAlertPhotoLayout.P;
-        if (pmVar != null && pmVar.isFrontface()) {
-            i10 = R.drawable.camera_revert1;
-        } else {
-            i10 = R.drawable.camera_revert2;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f25829a) {
+            case 0:
+                im imVar = this.f25830b;
+                imVar.getClass();
+                imVar.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                imVar.invalidate();
+                return;
+            default:
+                im imVar2 = this.f25830b;
+                imVar2.getClass();
+                imVar2.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                imVar2.invalidate();
+                return;
         }
-        imageView.setImageResource(i10);
-        ObjectAnimator.ofFloat(chatAttachAlertPhotoLayout.f26055r0, View.SCALE_X, 1.0f).setDuration(100L).start();
     }
 }

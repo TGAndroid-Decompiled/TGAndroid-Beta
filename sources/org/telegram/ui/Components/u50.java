@@ -1,14 +1,26 @@
 package org.telegram.ui.Components;
 
-import java.io.File;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-public final class u50 extends File {
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class u50 implements RequestDelegate {
+    public final int f30816a;
+    public final w50 f30817b;
+
+    public u50(w50 w50Var, int i10) {
+        this.f30816a = i10;
+        this.f30817b = w50Var;
+    }
+
     @Override
-    public final boolean delete() {
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.e("delete camera file");
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f30816a) {
+            case 0:
+                org.telegram.messenger.i0.g3(new jg(this.f30817b, tL_error, tLObject, 9));
+                return;
+            default:
+                org.telegram.messenger.i0.g3(new at(18, this.f30817b, tL_error));
+                return;
         }
-        return super.delete();
     }
 }

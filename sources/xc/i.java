@@ -1,0 +1,24 @@
+package xc;
+public final class i extends j {
+    @Override
+    public final f2.f b() {
+        k();
+        return this;
+    }
+
+    @Override
+    public final j k() {
+        super.b();
+        this.f53641k = new wc.b();
+        return this;
+    }
+
+    @Override
+    public final String toString() {
+        wc.b bVar = this.f53641k;
+        if (bVar != null && bVar.f52799a > 0) {
+            return "<" + i() + " " + this.f53641k.toString() + ">";
+        }
+        return "<" + i() + ">";
+    }
+}

@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 public final class c {
-    public final int f47192a;
-    public final int f47193b;
-    public final long f47194c;
+    public final int f46173a;
+    public final int f46174b;
+    public final long f46175c;
     public final byte[] d;
 
     public c(int i10, int i11, byte[] bArr) {
@@ -26,8 +26,8 @@ public final class c {
         ByteBuffer wrap = ByteBuffer.wrap(new byte[g.F[5]]);
         wrap.order(byteOrder);
         e eVar2 = eVarArr[0];
-        wrap.putInt((int) eVar2.f47198a);
-        wrap.putInt((int) eVar2.f47199b);
+        wrap.putInt((int) eVar2.f46179a);
+        wrap.putInt((int) eVar2.f46180b);
         return new c(5, 1, wrap.array());
     }
 
@@ -39,34 +39,34 @@ public final class c {
     }
 
     public final double d(ByteOrder byteOrder) {
-        Serializable g7 = g(byteOrder);
-        if (g7 != null) {
-            if (g7 instanceof String) {
-                return Double.parseDouble((String) g7);
+        Serializable g10 = g(byteOrder);
+        if (g10 != null) {
+            if (g10 instanceof String) {
+                return Double.parseDouble((String) g10);
             }
-            if (g7 instanceof long[]) {
-                long[] jArr = (long[]) g7;
+            if (g10 instanceof long[]) {
+                long[] jArr = (long[]) g10;
                 if (jArr.length == 1) {
                     return jArr[0];
                 }
                 throw new NumberFormatException("There are more than one component");
-            } else if (g7 instanceof int[]) {
-                int[] iArr = (int[]) g7;
+            } else if (g10 instanceof int[]) {
+                int[] iArr = (int[]) g10;
                 if (iArr.length == 1) {
                     return iArr[0];
                 }
                 throw new NumberFormatException("There are more than one component");
-            } else if (g7 instanceof double[]) {
-                double[] dArr = (double[]) g7;
+            } else if (g10 instanceof double[]) {
+                double[] dArr = (double[]) g10;
                 if (dArr.length == 1) {
                     return dArr[0];
                 }
                 throw new NumberFormatException("There are more than one component");
-            } else if (g7 instanceof e[]) {
-                e[] eVarArr = (e[]) g7;
+            } else if (g10 instanceof e[]) {
+                e[] eVarArr = (e[]) g10;
                 if (eVarArr.length == 1) {
                     e eVar = eVarArr[0];
-                    return eVar.f47198a / eVar.f47199b;
+                    return eVar.f46179a / eVar.f46180b;
                 }
                 throw new NumberFormatException("There are more than one component");
             } else {
@@ -77,19 +77,19 @@ public final class c {
     }
 
     public final int e(ByteOrder byteOrder) {
-        Serializable g7 = g(byteOrder);
-        if (g7 != null) {
-            if (g7 instanceof String) {
-                return Integer.parseInt((String) g7);
+        Serializable g10 = g(byteOrder);
+        if (g10 != null) {
+            if (g10 instanceof String) {
+                return Integer.parseInt((String) g10);
             }
-            if (g7 instanceof long[]) {
-                long[] jArr = (long[]) g7;
+            if (g10 instanceof long[]) {
+                long[] jArr = (long[]) g10;
                 if (jArr.length == 1) {
                     return (int) jArr[0];
                 }
                 throw new NumberFormatException("There are more than one component");
-            } else if (g7 instanceof int[]) {
-                int[] iArr = (int[]) g7;
+            } else if (g10 instanceof int[]) {
+                int[] iArr = (int[]) g10;
                 if (iArr.length == 1) {
                     return iArr[0];
                 }
@@ -102,15 +102,15 @@ public final class c {
     }
 
     public final String f(ByteOrder byteOrder) {
-        Serializable g7 = g(byteOrder);
-        if (g7 != null) {
-            if (g7 instanceof String) {
-                return (String) g7;
+        Serializable g10 = g(byteOrder);
+        if (g10 != null) {
+            if (g10 instanceof String) {
+                return (String) g10;
             }
             StringBuilder sb2 = new StringBuilder();
             int i10 = 0;
-            if (g7 instanceof long[]) {
-                long[] jArr = (long[]) g7;
+            if (g10 instanceof long[]) {
+                long[] jArr = (long[]) g10;
                 while (i10 < jArr.length) {
                     sb2.append(jArr[i10]);
                     i10++;
@@ -119,8 +119,8 @@ public final class c {
                     }
                 }
                 return sb2.toString();
-            } else if (g7 instanceof int[]) {
-                int[] iArr = (int[]) g7;
+            } else if (g10 instanceof int[]) {
+                int[] iArr = (int[]) g10;
                 while (i10 < iArr.length) {
                     sb2.append(iArr[i10]);
                     i10++;
@@ -129,8 +129,8 @@ public final class c {
                     }
                 }
                 return sb2.toString();
-            } else if (g7 instanceof double[]) {
-                double[] dArr = (double[]) g7;
+            } else if (g10 instanceof double[]) {
+                double[] dArr = (double[]) g10;
                 while (i10 < dArr.length) {
                     sb2.append(dArr[i10]);
                     i10++;
@@ -139,12 +139,12 @@ public final class c {
                     }
                 }
                 return sb2.toString();
-            } else if (g7 instanceof e[]) {
-                e[] eVarArr = (e[]) g7;
+            } else if (g10 instanceof e[]) {
+                e[] eVarArr = (e[]) g10;
                 while (i10 < eVarArr.length) {
-                    sb2.append(eVarArr[i10].f47198a);
+                    sb2.append(eVarArr[i10].f46179a);
                     sb2.append('/');
-                    sb2.append(eVarArr[i10].f47199b);
+                    sb2.append(eVarArr[i10].f46180b);
                     i10++;
                     if (i10 != eVarArr.length) {
                         sb2.append(",");
@@ -164,15 +164,15 @@ public final class c {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("(");
-        sb2.append(g.E[this.f47192a]);
+        sb2.append(g.E[this.f46173a]);
         sb2.append(", data length:");
-        return a1.g.n(this.d.length, ")", sb2);
+        return a1.g.p(sb2, this.d.length, ")");
     }
 
     public c(long j10, byte[] bArr, int i10, int i11) {
-        this.f47192a = i10;
-        this.f47193b = i11;
-        this.f47194c = j10;
+        this.f46173a = i10;
+        this.f46174b = i11;
+        this.f46175c = j10;
         this.d = bArr;
     }
 }

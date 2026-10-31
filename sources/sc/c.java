@@ -1,19 +1,34 @@
 package sc;
 
-import java.util.logging.Logger;
-public abstract class c {
-    public static c a(Class cls) {
-        if (System.getProperty("java.vm.name").equalsIgnoreCase("Dalvik")) {
-            String simpleName = cls.getSimpleName();
-            a aVar = new a(0);
-            aVar.f48118b = simpleName;
-            return aVar;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+public final class c implements Iterable {
+    public final HashMap f48149a = new HashMap();
+    public final ArrayList f48150b = new ArrayList();
+
+    public c(HashMap hashMap) {
+        String str = (String) hashMap.get("cookie");
+        if (str != null) {
+            for (String str2 : str.split(";")) {
+                String[] split = str2.trim().split("=");
+                if (split.length == 2) {
+                    this.f48149a.put(split[0], split[1]);
+                }
+            }
         }
-        String simpleName2 = cls.getSimpleName();
-        a aVar2 = new a(1);
-        aVar2.f48118b = Logger.getLogger(simpleName2);
-        return aVar2;
     }
 
-    public abstract void b(String str);
+    @Override
+    public final Iterator iterator() {
+        return this.f48149a.keySet().iterator();
+    }
+
+    public final void l() {
+        Iterator it = this.f48150b.iterator();
+        if (!it.hasNext()) {
+            return;
+        }
+        throw a1.g.h(it);
+    }
 }

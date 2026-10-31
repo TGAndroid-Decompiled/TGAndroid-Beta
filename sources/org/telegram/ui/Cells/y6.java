@@ -1,112 +1,82 @@
 package org.telegram.ui.Cells;
 
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-public final class y6 extends Drawable {
-    public final int f25763a;
-    public int f25764b;
-    public Object f25765c;
+import android.text.TextPaint;
+import android.text.style.ImageSpan;
+import org.telegram.messenger.cd;
+import org.telegram.ui.Components.t21;
+public final class y6 extends ImageSpan {
+    public static t21 f23623b;
+    public final int f23624a = 1;
 
-    public y6(int i10) {
-        this.f25763a = i10;
-        switch (i10) {
+    public y6(Drawable drawable) {
+        super(drawable);
+    }
+
+    @Override
+    public void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        switch (this.f23624a) {
+            case 0:
+                Drawable drawable = getDrawable();
+                canvas.save();
+                Paint.FontMetricsInt fontMetricsInt = paint.getFontMetricsInt();
+                int i15 = fontMetricsInt.descent;
+                canvas.translate(f7, ((i13 + i15) - ((i15 - fontMetricsInt.ascent) / 2)) - ((drawable.getBounds().bottom - drawable.getBounds().top) / 2));
+                if (cd.X) {
+                    canvas.scale(-1.0f, 1.0f, drawable.getIntrinsicWidth() / 2, drawable.getIntrinsicHeight() / 2);
+                }
+                drawable.draw(canvas);
+                canvas.restore();
+                return;
+            default:
+                super.draw(canvas, charSequence, i10, i11, f7, i12, i13, i14, paint);
+                return;
+        }
+    }
+
+    @Override
+    public int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        switch (this.f23624a) {
+            case 0:
+                Rect bounds = getDrawable().getBounds();
+                if (fontMetricsInt != null) {
+                    Paint.FontMetricsInt fontMetricsInt2 = paint.getFontMetricsInt();
+                    int i12 = fontMetricsInt2.descent;
+                    int i13 = fontMetricsInt2.ascent;
+                    int i14 = ((i12 - i13) / 2) + i13;
+                    int i15 = (bounds.bottom - bounds.top) / 2;
+                    int i16 = i14 - i15;
+                    fontMetricsInt.ascent = i16;
+                    fontMetricsInt.top = i16;
+                    int i17 = i14 + i15;
+                    fontMetricsInt.bottom = i17;
+                    fontMetricsInt.descent = i17;
+                }
+                return bounds.right;
+            default:
+                return super.getSize(paint, charSequence, i10, i11, fontMetricsInt);
+        }
+    }
+
+    @Override
+    public void updateDrawState(TextPaint textPaint) {
+        switch (this.f23624a) {
             case 1:
-                this.f25764b = 255;
+                float textSize = textPaint.getTextSize() * 0.89f;
+                int i10 = (int) (0.02f * textSize);
+                getDrawable().setBounds(0, i10, (int) textSize, ((int) (textSize * 1.25f)) + i10);
+                super.updateDrawState(textPaint);
                 return;
             default:
-                return;
-        }
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        switch (this.f25763a) {
-            case 0:
-                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, (Paint) this.f25765c);
-                return;
-            default:
+                super.updateDrawState(textPaint);
                 return;
         }
     }
 
-    @Override
-    public int getAlpha() {
-        switch (this.f25763a) {
-            case 1:
-                return this.f25764b;
-            default:
-                return super.getAlpha();
-        }
-    }
-
-    @Override
-    public ColorFilter getColorFilter() {
-        switch (this.f25763a) {
-            case 1:
-                return (ColorFilter) this.f25765c;
-            default:
-                return super.getColorFilter();
-        }
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        switch (this.f25763a) {
-            case 0:
-                return this.f25764b;
-            default:
-                return super.getIntrinsicHeight();
-        }
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        switch (this.f25763a) {
-            case 0:
-                return this.f25764b;
-            default:
-                return super.getIntrinsicWidth();
-        }
-    }
-
-    @Override
-    public final int getOpacity() {
-        switch (this.f25763a) {
-            case 0:
-                return -2;
-            default:
-                return -1;
-        }
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        switch (this.f25763a) {
-            case 0:
-                ((Paint) this.f25765c).setAlpha(i10);
-                return;
-            default:
-                this.f25764b = i10;
-                return;
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f25763a) {
-            case 0:
-                return;
-            default:
-                this.f25765c = colorFilter;
-                return;
-        }
-    }
-
-    private final void a(Canvas canvas) {
-    }
-
-    private final void b(ColorFilter colorFilter) {
+    public y6() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.y6.<init>():void");
     }
 }

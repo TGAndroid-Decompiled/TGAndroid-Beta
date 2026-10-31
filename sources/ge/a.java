@@ -1,18 +1,28 @@
 package ge;
 
-import bb.u;
-import java.util.concurrent.CancellationException;
-public final class a extends CancellationException {
-    public final transient u f12470a;
+import android.view.View;
+public interface a {
+    void G0();
 
-    public a(u uVar) {
-        super("Flow was aborted, no more elements needed");
-        this.f12470a = uVar;
-    }
+    boolean I1();
 
-    @Override
-    public final Throwable fillInStackTrace() {
-        setStackTrace(new StackTraceElement[0]);
-        return this;
-    }
+    void N(float f7, float f10);
+
+    boolean V0(float f7, float f10);
+
+    boolean d1(View view, float f7, float f10);
+
+    long getLongPressDuration();
+
+    boolean j0();
+
+    void m(View view, float f7, float f10);
+
+    void o1(View view, float f7, float f10);
+
+    void r(float f7, float f10);
+
+    void t0();
+
+    void u(View view, float f7, float f10);
 }

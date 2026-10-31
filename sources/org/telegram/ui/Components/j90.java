@@ -1,128 +1,37 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
-import android.view.animation.DecelerateInterpolator;
-import org.telegram.messenger.AndroidUtilities;
-public final class j90 extends View {
-    public static DecelerateInterpolator v;
-    public static Paint f29568w;
-    public long f29569a;
-    public float f29570b;
-    public float f29571c;
-    public long d;
-    public float e;
-    public float f29572f;
-    public int h;
-    public int f29573n;
-    public final RectF f29574r;
-    public org.telegram.ui.Components.voip.h f29575s;
+import android.app.Activity;
+import android.content.SharedPreferences;
+public final class j90 implements Runnable {
+    public final int f27266a;
+    public final n90 f27267b;
 
-    public j90(Context context) {
-        super(context);
-        this.f29572f = 1.0f;
-        this.f29574r = new RectF();
-        if (v == null) {
-            v = new DecelerateInterpolator();
-            Paint paint = new Paint(1);
-            f29568w = paint;
-            paint.setStrokeCap(Paint.Cap.ROUND);
-            f29568w.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        }
-    }
-
-    public final void a(float f7, boolean z10) {
-        if (!z10) {
-            this.e = f7;
-            this.f29571c = f7;
-        } else {
-            this.f29571c = this.e;
-        }
-        if (f7 != 1.0f) {
-            this.f29572f = 1.0f;
-        }
-        this.f29570b = f7;
-        this.d = 0L;
-        this.f29569a = System.currentTimeMillis();
-        invalidate();
-    }
-
-    public float getCurrentProgress() {
-        return this.f29570b;
+    public j90(n90 n90Var, int i10) {
+        this.f27266a = i10;
+        this.f27267b = n90Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int i10 = this.h;
-        RectF rectF = this.f29574r;
-        if (i10 != 0 && this.e != 1.0f) {
-            f29568w.setColor(i10);
-            f29568w.setAlpha((int) (this.f29572f * 255.0f));
-            getWidth();
-            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-            canvas.drawRoundRect(rectF, getHeight() / 2.0f, getHeight() / 2.0f, f29568w);
-        }
-        f29568w.setColor(this.f29573n);
-        f29568w.setAlpha((int) (this.f29572f * 255.0f));
-        rectF.set(0.0f, 0.0f, getWidth() * this.e, getHeight());
-        canvas.drawRoundRect(rectF, getHeight() / 2.0f, getHeight() / 2.0f, f29568w);
-        if (this.f29572f > 0.0f) {
-            if (this.f29575s == null) {
-                org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h(160, 0);
-                this.f29575s = hVar;
-                hVar.f33929k = false;
-                hVar.f33932n = 0.8f;
-                hVar.f33931m = 1.2f;
-            }
-            this.f29575s.f33925f = getMeasuredWidth();
-            this.f29575s.a(getHeight() / 2.0f, canvas, rectF, null);
-            invalidate();
-        }
-        long currentTimeMillis = System.currentTimeMillis();
-        long j10 = currentTimeMillis - this.f29569a;
-        this.f29569a = currentTimeMillis;
-        float f7 = this.e;
-        if (f7 != 1.0f) {
-            float f10 = this.f29570b;
-            if (f7 != f10) {
-                float f11 = this.f29571c;
-                float f12 = f10 - f11;
-                if (f12 > 0.0f) {
-                    long j11 = this.d + j10;
-                    this.d = j11;
-                    if (j11 >= 300) {
-                        this.e = f10;
-                        this.f29571c = f10;
-                        this.d = 0L;
-                    } else {
-                        this.e = (v.getInterpolation(((float) j11) / 300.0f) * f12) + f11;
-                    }
+    public final void run() {
+        int i10 = this.f27266a;
+        n90 n90Var = this.f27267b;
+        switch (i10) {
+            case 0:
+                n90Var.a0();
+                return;
+            default:
+                Activity parentActivity = n90Var.getParentActivity();
+                Activity parentActivity2 = n90Var.getParentActivity();
+                org.telegram.messenger.s5 s5Var = ig.k1.f8343m;
+                boolean z10 = parentActivity2.getSharedPreferences("shapedetector_conf", 0).getBoolean("learning", false);
+                SharedPreferences.Editor edit = parentActivity.getSharedPreferences("shapedetector_conf", 0).edit();
+                if (z10) {
+                    edit.clear();
+                } else {
+                    edit.putBoolean("learning", true);
                 }
-                invalidate();
-            }
+                edit.apply();
+                return;
         }
-        int i11 = (this.e > 1.0f ? 1 : (this.e == 1.0f ? 0 : -1));
-        if (i11 >= 0 && i11 == 0) {
-            float f13 = this.f29572f;
-            if (f13 != 0.0f) {
-                float f14 = f13 - (((float) j10) / 200.0f);
-                this.f29572f = f14;
-                if (f14 <= 0.0f) {
-                    this.f29572f = 0.0f;
-                }
-                invalidate();
-            }
-        }
-    }
-
-    public void setBackColor(int i10) {
-        this.h = i10;
-    }
-
-    public void setProgressColor(int i10) {
-        this.f29573n = i10;
     }
 }

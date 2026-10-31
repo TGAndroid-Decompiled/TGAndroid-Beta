@@ -1,89 +1,99 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.camera.Size;
-import org.telegram.ui.Components.AnimatedFileNative;
-public final class yt0 implements Runnable {
-    public final String f46081a;
-    public final long f46082b;
-    public final int f46083c;
-    public final PhotoViewer d;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+public final class yt0 extends org.telegram.ui.Components.sk0 {
+    public final PremiumPreviewFragment f43891c;
 
-    public yt0(PhotoViewer photoViewer, String str, long j10, int i10) {
-        this.d = photoViewer;
-        this.f46081a = str;
-        this.f46082b = j10;
-        this.f46083c = i10;
+    public yt0(PremiumPreviewFragment premiumPreviewFragment) {
+        this.f43891c = premiumPreviewFragment;
     }
 
     @Override
-    public final void run() {
-        boolean z10;
-        boolean z11;
-        if (this.d.f35848x8 == this) {
-            int videoBitrate = MediaController.getVideoBitrate(this.f46081a);
-            int[] iArr = new int[11];
-            AnimatedFileNative.d(this.f46081a, iArr, this.f46082b);
-            if (iArr[10] != 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            PhotoViewer photoViewer = this.d;
-            if (iArr[0] != 0 && (!z10 || iArr[9] != 0)) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            photoViewer.f35731k8 = z11;
-            PhotoViewer photoViewer2 = this.d;
-            if (videoBitrate == -1) {
-                videoBitrate = iArr[3];
-            }
-            photoViewer2.f35695g8 = videoBitrate;
-            photoViewer2.f35704h8 = videoBitrate;
-            if (this.d.f35731k8) {
-                PhotoViewer photoViewer3 = this.d;
-                int i10 = iArr[1];
-                photoViewer3.f35660c8 = i10;
-                photoViewer3.f35678e8 = i10;
-                PhotoViewer photoViewer4 = this.d;
-                int i11 = iArr[2];
-                photoViewer4.f35669d8 = i11;
-                photoViewer4.f35687f8 = i11;
-                PhotoViewer photoViewer5 = this.d;
-                int max = Math.max(photoViewer5.f35660c8, this.d.f35669d8);
-                if (max > 1280) {
-                    photoViewer5.Z7 = 4;
-                } else if (max > 854) {
-                    photoViewer5.Z7 = 3;
-                } else if (max > 640) {
-                    photoViewer5.Z7 = 2;
-                } else {
-                    photoViewer5.Z7 = 1;
-                }
-                PhotoViewer photoViewer6 = this.d;
-                int i12 = this.f46083c;
-                if (i12 == -1) {
-                    i12 = photoViewer6.y2();
-                }
-                photoViewer6.Y7 = i12;
-                PhotoViewer photoViewer7 = this.d;
-                if (photoViewer7.f35695g8 != 0 && photoViewer7.f35654c2 != 1) {
-                    Size q02 = photoViewer7.q0();
-                    if (q02.getWidth() == photoViewer7.f35660c8 && q02.getHeight() == photoViewer7.f35669d8) {
-                        MediaController.extractRealEncoderBitrate(q02.getWidth(), q02.getHeight(), photoViewer7.f35704h8, false);
-                    } else {
-                        MediaController.extractRealEncoderBitrate(q02.getWidth(), q02.getHeight(), MediaController.makeVideoBitrate(photoViewer7.f35669d8, photoViewer7.f35660c8, photoViewer7.f35704h8, q02.getHeight(), q02.getWidth()), false);
-                    }
-                }
-                this.d.f35738l8 = MediaController.isH264Video(this.f46081a);
-            }
-            if (this.d.f35848x8 != this) {
-                return;
-            }
-            AndroidUtilities.runOnUIThread(new ne0(this, this, iArr, 24));
+    public final boolean D(s4.c1 c1Var) {
+        int i10 = c1Var.f47901f;
+        if (i10 == 1 || i10 == 8) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public final int b() {
+        return this.f43891c.h;
+    }
+
+    @Override
+    public final int d(int i10) {
+        if (i10 != 0) {
+            PremiumPreviewFragment premiumPreviewFragment = this.f43891c;
+            if (i10 < premiumPreviewFragment.f33705n || i10 >= premiumPreviewFragment.f33710r) {
+                if (i10 >= premiumPreviewFragment.f33717w && i10 < premiumPreviewFragment.f33719x) {
+                    return 1;
+                }
+                if (i10 == 0) {
+                    return 4;
+                }
+                if (i10 != premiumPreviewFragment.f33721y && i10 != premiumPreviewFragment.D && i10 != premiumPreviewFragment.E && i10 != premiumPreviewFragment.H) {
+                    if (i10 == premiumPreviewFragment.F) {
+                        return 6;
+                    }
+                    if (i10 != premiumPreviewFragment.f33712s && i10 != premiumPreviewFragment.G) {
+                        if (i10 == premiumPreviewFragment.showAdsRow) {
+                            return 8;
+                        }
+                        return 0;
+                    }
+                    return 7;
+                }
+                return 5;
+            }
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void t(s4.c1 r18, int r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.yt0.t(s4.c1, int):void");
+    }
+
+    @Override
+    public final s4.c1 w(ViewGroup viewGroup, int i10) {
+        View u1Var;
+        org.telegram.ui.ActionBar.p6 p6Var;
+        Context context = viewGroup.getContext();
+        switch (i10) {
+            case 1:
+                u1Var = new kg.u1(this, context);
+                break;
+            case 2:
+                u1Var = new org.telegram.ui.Cells.c7(context, 0, 0);
+                break;
+            case 3:
+            default:
+                u1Var = new do0(this, context, 2);
+                u1Var.setTag(-33024);
+                break;
+            case 4:
+                u1Var = new jg.z2(context);
+                break;
+            case 5:
+                u1Var = new org.telegram.ui.Cells.b9(context);
+                break;
+            case 6:
+                u1Var = new View(context);
+                u1Var.setTag(-33024);
+                break;
+            case 7:
+                u1Var = new org.telegram.ui.Cells.p4(context);
+                break;
+            case 8:
+                p6Var = ((org.telegram.ui.ActionBar.k2) this.f43891c).resourceProvider;
+                u1Var = new org.telegram.ui.Cells.p8(23, context, p6Var, false, true);
+                break;
+        }
+        return sc.e.o(u1Var, u1Var, -1, -2);
     }
 }

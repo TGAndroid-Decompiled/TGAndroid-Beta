@@ -1,30 +1,32 @@
 package org.telegram.messenger;
-public final class ma implements Runnable {
-    public final int f20675a;
-    public final MessagesController f20676b;
-    public final int f20677c;
 
-    public ma(MessagesController messagesController, int i10, int i11) {
-        this.f20675a = i11;
-        this.f20676b = messagesController;
-        this.f20677c = i10;
+import j$.util.Objects;
+import org.telegram.tgnet.TLRPC;
+public final class ma {
+    public final long f16935a;
+    public final int f16936b;
+
+    public ma(TLRPC.Message message) {
+        long B0 = jj.B0(message);
+        int i10 = message.f19814id;
+        this.f16935a = B0;
+        this.f16936b = i10;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f20675a) {
-            case 0:
-                this.f20676b.lambda$updateTimerProc$156(this.f20677c);
-                return;
-            case 1:
-                this.f20676b.lambda$onFolderEmpty$196(this.f20677c);
-                return;
-            case 2:
-                this.f20676b.lambda$ensureMessagesLoaded$468(this.f20677c);
-                return;
-            default:
-                this.f20676b.lambda$didAddedNewTask$80(this.f20677c);
-                return;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (obj != null && ma.class == obj.getClass()) {
+            ma maVar = (ma) obj;
+            if (this.f16935a == maVar.f16935a && this.f16936b == maVar.f16936b) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(Long.valueOf(this.f16935a), Integer.valueOf(this.f16936b));
     }
 }

@@ -1,149 +1,356 @@
 package jh;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import j$.util.DesugarCollections;
-import java.util.ArrayList;
-import s4.e1;
-import s4.q0;
-public final class g {
-    public final RecyclerView f15952a;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
+import android.text.TextUtils;
+import bi.s0;
+import c3.i0;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.z20;
+import org.telegram.ui.ActionBar.p6;
+import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.Components.ChatActivityEnterView;
+import org.telegram.ui.Components.e6;
+import org.telegram.ui.Components.gr;
+import org.telegram.ui.Components.jc;
+import org.telegram.ui.Components.qz0;
+import org.telegram.ui.Components.se;
+public final class g extends Drawable {
+    public final int f10413a;
+    public final Object f10414b;
+    public final Object f10415c;
 
-    public g(RecyclerView recyclerView) {
-        this.f15952a = recyclerView;
+    public g(int i10, Object obj, Object obj2) {
+        this.f10413a = i10;
+        this.f10414b = obj;
+        this.f10415c = obj2;
     }
 
-    public void a(s4.a aVar) {
-        int i10 = aVar.f47703a;
-        RecyclerView recyclerView = this.f15952a;
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 != 4) {
-                    if (i10 != 8) {
-                        return;
-                    }
-                    recyclerView.f3084x.X(recyclerView, aVar.f47704b, aVar.d);
+    public static String a(float f7) {
+        Math.abs(f7 - 0.25f);
+        float round = Math.round(f7 * 10.0f) / 10.0f;
+        long j10 = round;
+        if (round == ((float) j10)) {
+            return a1.g.l(j10, "");
+        }
+        return "" + round;
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        float offsetY;
+        switch (this.f10413a) {
+            case 0:
+                ImageReceiver imageReceiver = (ImageReceiver) this.f10414b;
+                imageReceiver.h(canvas, null);
+                Drawable drawable = (Drawable) this.f10415c;
+                int intrinsicWidth = (int) (drawable.getIntrinsicWidth() * 0.8f);
+                int intrinsicHeight = (int) (drawable.getIntrinsicHeight() * 0.8f);
+                int B = (int) i0.B(imageReceiver.M0, intrinsicWidth, 2.0f, imageReceiver.K0);
+                int interpolation = (int) ((((imageReceiver.N0 / 2.0f) - intrinsicHeight) + imageReceiver.L0) - ((1.0f - gr.f26499k.getInterpolation(imageReceiver.f14384h1)) * org.telegram.messenger.i0.L(16.0f)));
+                drawable.setAlpha((int) (imageReceiver.getAlpha() * Math.min(1.0f, imageReceiver.f14384h1 * 5.0f) * 255.0f));
+                drawable.setBounds(B, interpolation, intrinsicWidth + B, intrinsicHeight + interpolation);
+                drawable.draw(canvas);
+                return;
+            case 1:
+                Bitmap bitmap = (Bitmap) this.f10414b;
+                if (!bitmap.isRecycled()) {
+                    canvas.drawBitmap(bitmap, (Rect) null, (Rect) this.f10415c, (Paint) null);
                     return;
                 }
-                recyclerView.f3084x.a0(recyclerView, aVar.f47704b, aVar.d, aVar.f47705c);
                 return;
-            }
-            recyclerView.f3084x.Y(recyclerView, aVar.f47704b, aVar.d);
+            case 2:
+                jc jcVar = (jc) this.f10415c;
+                if (jcVar.f27305c > 1) {
+                    jcVar.c(canvas, jcVar.f27314o);
+                    return;
+                } else {
+                    jcVar.c(canvas, (Paint) this.f10414b);
+                    return;
+                }
+            case 3:
+                Paint paint = (Paint) this.f10414b;
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f10415c;
+                if (chatActivityEnterView.U0 != null) {
+                    paint.setAlpha(Math.round(chatActivityEnterView.C3 * 102.0f));
+                    float width = chatActivityEnterView.getWidth();
+                    float y3 = (chatActivityEnterView.U0.getY() - chatActivityEnterView.getHeight()) + t6.f21017i3.getIntrinsicHeight();
+                    se seVar = chatActivityEnterView.E0;
+                    if (seVar == null) {
+                        offsetY = 0.0f;
+                    } else {
+                        offsetY = seVar.getOffsetY();
+                    }
+                    canvas.drawRect(0.0f, 0.0f, width, y3 + offsetY, paint);
+                    return;
+                }
+                return;
+            case 4:
+                Paint paint2 = (Paint) this.f10415c;
+                canvas.drawRect(getBounds(), (Paint) this.f10414b);
+                int L = org.telegram.messenger.i0.L(9.0f);
+                int width2 = getBounds().width() / L;
+                int height = getBounds().height() / L;
+                int i10 = getBounds().left;
+                int i11 = getBounds().top;
+                int i12 = 0;
+                int i13 = 0;
+                while (i13 < width2) {
+                    i13++;
+                    float f7 = (L * i13) + i10;
+                    canvas.drawLine(f7, i11, f7, getBounds().height() + i11, paint2);
+                }
+                while (i12 < height) {
+                    i12++;
+                    float f10 = (L * i12) + i11;
+                    canvas.drawLine(i10, f10, getBounds().width() + i10, f10, paint2);
+                }
+                return;
+            case 5:
+                e6 e6Var = (e6) this.f10414b;
+                Paint paint3 = (Paint) this.f10415c;
+                if (paint3 != null) {
+                    paint3.setStrokeWidth(org.telegram.messenger.i0.N(1.6f));
+                    RectF rectF = org.telegram.messenger.i0.P;
+                    rectF.set(((org.telegram.messenger.i0.L(24.0f) - e6Var.c()) / 2.0f) - org.telegram.messenger.i0.N(3.0f), org.telegram.messenger.i0.N(0.2f) + ((org.telegram.messenger.i0.L(24.0f) - e6Var.e) / 2.0f), org.telegram.messenger.i0.N(3.0f) + ((e6Var.c() + org.telegram.messenger.i0.L(24.0f)) / 2.0f), (org.telegram.messenger.i0.L(24.0f) + e6Var.e) / 2.0f);
+                    canvas.drawRoundRect(rectF, org.telegram.messenger.i0.N(3.0f), org.telegram.messenger.i0.N(3.0f), paint3);
+                }
+                e6Var.f25693a.setStrokeWidth(org.telegram.messenger.i0.N(0.3f));
+                e6Var.setBounds(0, (int) ((org.telegram.messenger.i0.L(24.0f) - e6Var.e) / 2.0f), org.telegram.messenger.i0.L(24.0f), (int) ((org.telegram.messenger.i0.L(24.0f) + e6Var.e) / 2.0f));
+                e6Var.draw(canvas);
+                return;
+            default:
+                ((qz0) this.f10414b).c(getBounds().centerX() - (((qz0) this.f10414b).f29774c / 2.0f), getBounds().centerY(), 1.0f, t6.w0(t6.G6, (p6) this.f10415c), canvas);
+                return;
+        }
+    }
+
+    @Override
+    public int getAlpha() {
+        switch (this.f10413a) {
+            case 0:
+                return (int) (((ImageReceiver) this.f10414b).getAlpha() * 255.0f);
+            default:
+                return super.getAlpha();
+        }
+    }
+
+    @Override
+    public int getIntrinsicHeight() {
+        switch (this.f10413a) {
+            case 4:
+                return 0;
+            case 5:
+                return org.telegram.messenger.i0.L(24.0f);
+            default:
+                return super.getIntrinsicHeight();
+        }
+    }
+
+    @Override
+    public int getIntrinsicWidth() {
+        switch (this.f10413a) {
+            case 4:
+                return 0;
+            case 5:
+                return org.telegram.messenger.i0.L(24.0f);
+            default:
+                return super.getIntrinsicWidth();
+        }
+    }
+
+    @Override
+    public final int getOpacity() {
+        switch (this.f10413a) {
+            case 0:
+                return 0;
+            case 1:
+                return -3;
+            case 2:
+                return -2;
+            case 3:
+                return -2;
+            case 4:
+                return 0;
+            case 5:
+                return -2;
+            default:
+                return -2;
+        }
+    }
+
+    public void n(boolean z10, float f7) {
+        e6 e6Var = (e6) this.f10414b;
+        String str = a(f7) + "X";
+        if (z10 && TextUtils.equals(e6Var.f25700i, str)) {
             return;
         }
-        recyclerView.f3084x.V(recyclerView, aVar.f47704b, aVar.d);
+        e6Var.a();
+        e6Var.t(str, z10, true);
+        invalidateSelf();
     }
 
-    public void b(int i10, int i11, Object obj) {
-        int i12;
-        int i13;
-        RecyclerView recyclerView = this.f15952a;
-        int o10 = recyclerView.e.o();
-        int i14 = i11 + i10;
-        for (int i15 = 0; i15 < o10; i15++) {
-            View n10 = recyclerView.e.n(i15);
-            e1 U = RecyclerView.U(n10);
-            if (U != null && !U.r() && (i13 = U.f47775c) >= i10 && i13 < i14) {
-                U.a(2);
-                if (obj == null) {
-                    U.a(1024);
-                } else if ((1024 & U.f47781l) == 0) {
-                    if (U.f47782m == null) {
-                        ArrayList arrayList = new ArrayList();
-                        U.f47782m = arrayList;
-                        U.f47783n = DesugarCollections.unmodifiableList(arrayList);
-                    }
-                    U.f47782m.add(obj);
-                }
-                ((q0) n10.getLayoutParams()).f47869c = true;
-            }
+    @Override
+    public void onBoundsChange(Rect rect) {
+        switch (this.f10413a) {
+            case 0:
+                ((ImageReceiver) this.f10414b).y0(org.telegram.messenger.i0.L(2.0f) + rect.left, org.telegram.messenger.i0.L(2.0f) + rect.top, z20.w(2.0f, rect.left, rect.right - org.telegram.messenger.i0.L(2.0f)), z20.w(2.0f, rect.top, rect.bottom - org.telegram.messenger.i0.L(2.0f)));
+                return;
+            default:
+                super.onBoundsChange(rect);
+                return;
         }
-        rf.e eVar = recyclerView.f3056b;
-        ArrayList arrayList2 = (ArrayList) eVar.e;
-        for (int size = arrayList2.size() - 1; size >= 0; size--) {
-            e1 e1Var = (e1) arrayList2.get(size);
-            if (e1Var != null && (i12 = e1Var.f47775c) >= i10 && i12 < i14) {
-                e1Var.a(2);
-                eVar.f(size);
-            }
-        }
-        recyclerView.f3087y0 = true;
     }
 
-    public void c(int i10, int i11) {
-        RecyclerView recyclerView = this.f15952a;
-        int o10 = recyclerView.e.o();
-        for (int i12 = 0; i12 < o10; i12++) {
-            e1 U = RecyclerView.U(recyclerView.e.n(i12));
-            if (U != null && !U.r() && U.f47775c >= i10) {
-                U.n(i11, false);
-                recyclerView.f3080u0.f47732f = true;
-            }
+    @Override
+    public final void setAlpha(int i10) {
+        switch (this.f10413a) {
+            case 0:
+                ((ImageReceiver) this.f10414b).setAlpha(i10 / 255.0f);
+                return;
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+                return;
+            case 5:
+                ((e6) this.f10414b).B = i10;
+                Paint paint = (Paint) this.f10415c;
+                if (paint != null) {
+                    paint.setAlpha(i10);
+                    return;
+                }
+                return;
+            default:
+                return;
         }
-        ArrayList arrayList = (ArrayList) recyclerView.f3056b.e;
-        int size = arrayList.size();
-        for (int i13 = 0; i13 < size; i13++) {
-            e1 e1Var = (e1) arrayList.get(i13);
-            if (e1Var != null && e1Var.f47775c >= i10) {
-                e1Var.n(i11, true);
-            }
-        }
-        recyclerView.requestLayout();
-        recyclerView.f3085x0 = true;
     }
 
-    public void d(int i10, int i11) {
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        int i16;
-        int i17;
-        int i18;
-        RecyclerView recyclerView = this.f15952a;
-        int o10 = recyclerView.e.o();
-        int i19 = -1;
-        if (i10 < i11) {
-            i13 = i10;
-            i12 = i11;
-            i14 = -1;
-        } else {
-            i12 = i10;
-            i13 = i11;
-            i14 = 1;
-        }
-        for (int i20 = 0; i20 < o10; i20++) {
-            e1 U = RecyclerView.U(recyclerView.e.n(i20));
-            if (U != null && (i18 = U.f47775c) >= i13 && i18 <= i12) {
-                if (i18 == i10) {
-                    U.n(i11 - i10, false);
-                } else {
-                    U.n(i14, false);
+    @Override
+    public void setBounds(int i10, int i11, int i12, int i13) {
+        switch (this.f10413a) {
+            case 1:
+                super.setBounds(i10, i11, i12, i13);
+                Bitmap bitmap = (Bitmap) this.f10414b;
+                if (bitmap != null && !bitmap.isRecycled()) {
+                    int i14 = i12 - i10;
+                    int i15 = i13 - i11;
+                    float width = bitmap.getWidth();
+                    float height = bitmap.getHeight();
+                    float min = Math.min(i14 / width, i15 / height);
+                    int round = Math.round(width * min);
+                    int round2 = Math.round(height * min);
+                    int i16 = i10 + ((i14 - round) / 2);
+                    int i17 = i11 + ((i15 - round2) / 2);
+                    ((Rect) this.f10415c).set(i16, i17, round + i16, round2 + i17);
+                    return;
                 }
-                recyclerView.f3080u0.f47732f = true;
-            }
+                return;
+            default:
+                super.setBounds(i10, i11, i12, i13);
+                return;
         }
-        ArrayList arrayList = (ArrayList) recyclerView.f3056b.e;
-        if (i10 < i11) {
-            i16 = i10;
-            i15 = i11;
-        } else {
-            i15 = i10;
-            i16 = i11;
-            i19 = 1;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        int i10 = this.f10413a;
+    }
+
+    public g(boolean z10) {
+        this.f10413a = 4;
+        Paint paint = new Paint();
+        this.f10414b = paint;
+        Paint paint2 = new Paint();
+        this.f10415c = paint2;
+        paint2.setStrokeWidth(org.telegram.messenger.i0.L(1.0f));
+        if (z10) {
+            paint.setColor(-14865331);
+            paint2.setColor(-15854042);
+            return;
         }
-        int size = arrayList.size();
-        for (int i21 = 0; i21 < size; i21++) {
-            e1 e1Var = (e1) arrayList.get(i21);
-            if (e1Var != null && (i17 = e1Var.f47775c) >= i16 && i17 <= i15) {
-                if (i17 == i10) {
-                    e1Var.n(i11 - i10, false);
-                } else {
-                    e1Var.n(i19, false);
-                }
-            }
-        }
-        recyclerView.requestLayout();
-        recyclerView.f3085x0 = true;
+        paint.setColor(-2172970);
+        paint2.setColor(-3752002);
+    }
+
+    public g() {
+        this.f10413a = 5;
+        s0 s0Var = new s0(this, 4);
+        e6 e6Var = new e6(false, true, true);
+        this.f10414b = e6Var;
+        e6Var.setCallback(s0Var);
+        e6Var.n(0.3f, 165L, gr.h);
+        e6Var.f25695b = 1;
+        e6Var.x(org.telegram.messenger.i0.o());
+        e6Var.w(org.telegram.messenger.i0.L(10.0f));
+        Paint.Style style = Paint.Style.FILL_AND_STROKE;
+        TextPaint textPaint = e6Var.f25693a;
+        textPaint.setStyle(style);
+        textPaint.setStrokeWidth(org.telegram.messenger.i0.N(0.6f));
+        Paint paint = new Paint(1);
+        this.f10415c = paint;
+        paint.setStyle(Paint.Style.STROKE);
+    }
+
+    public g(jc jcVar, Paint paint) {
+        this.f10413a = 2;
+        this.f10415c = jcVar;
+        this.f10414b = paint;
+    }
+
+    public g(Bitmap bitmap) {
+        this.f10413a = 1;
+        this.f10415c = new Rect();
+        this.f10414b = bitmap;
+    }
+
+    public g(ChatActivityEnterView chatActivityEnterView) {
+        this.f10413a = 3;
+        this.f10415c = chatActivityEnterView;
+        Paint paint = new Paint();
+        this.f10414b = paint;
+        paint.setColor(0);
+    }
+
+    private final void b(int i10) {
+    }
+
+    private final void c(int i10) {
+    }
+
+    private final void d(int i10) {
+    }
+
+    private final void e(int i10) {
+    }
+
+    private final void f(int i10) {
+    }
+
+    private final void g(ColorFilter colorFilter) {
+    }
+
+    private final void h(ColorFilter colorFilter) {
+    }
+
+    private final void i(ColorFilter colorFilter) {
+    }
+
+    private final void j(ColorFilter colorFilter) {
+    }
+
+    private final void k(ColorFilter colorFilter) {
+    }
+
+    private final void l(ColorFilter colorFilter) {
+    }
+
+    private final void m(ColorFilter colorFilter) {
     }
 }

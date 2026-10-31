@@ -1,36 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.View;
-public final class q41 extends nm0 {
-    public final g51 f31798f3;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class q41 implements ax0 {
+    public final TLRPC.InputStickerSet f29531a;
+    public final w41 f29532b;
 
-    public q41(g51 g51Var, Context context) {
-        super(context, null);
-        this.f31798f3 = g51Var;
+    public q41(w41 w41Var, TLRPC.InputStickerSet inputStickerSet) {
+        this.f29532b = w41Var;
+        this.f29531a = inputStickerSet;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            float y3 = motionEvent.getY();
-            g51 g51Var = this.f31798f3;
-            if (y3 < g51Var.K(true) - getTop()) {
-                g51Var.dismiss();
-                return true;
+    public final void a() {
+        w41 w41Var = this.f29532b;
+        s4.g0 adapter = w41Var.f31999n.getAdapter();
+        v41 v41Var = w41Var.f32001s;
+        TLRPC.InputStickerSet inputStickerSet = this.f29531a;
+        int i10 = 0;
+        if (adapter == v41Var) {
+            while (i10 < v41Var.e.size()) {
+                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) v41Var.e.get(i10);
+                if (stickerSetCovered.set.f19820id == inputStickerSet.f19813id) {
+                    v41Var.F(stickerSetCovered, null);
+                    return;
+                }
+                i10++;
             }
+            return;
         }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final boolean onRequestFocusInDescendants(int i10, Rect rect) {
-        return true;
-    }
-
-    @Override
-    public final void requestChildFocus(View view, View view2) {
+        zf.o1 o1Var = w41Var.f32002w;
+        ArrayList arrayList = o1Var.E;
+        while (i10 < arrayList.size()) {
+            TLRPC.StickerSetCovered stickerSetCovered2 = (TLRPC.StickerSetCovered) arrayList.get(i10);
+            if (stickerSetCovered2.set.f19820id == inputStickerSet.f19813id) {
+                o1Var.F(stickerSetCovered2, null);
+                return;
+            }
+            i10++;
+        }
     }
 }

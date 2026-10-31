@@ -7,11 +7,11 @@ import android.graphics.SurfaceTexture;
 import android.os.Looper;
 import android.view.TextureView;
 import android.view.View;
-import c3.h0;
 import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.i0;
+import org.telegram.messenger.sc;
 import org.telegram.messenger.voip.VoIPService;
+import org.telegram.ui.ActionBar.w5;
 import org.webrtc.EglBase;
 import org.webrtc.EglRenderer;
 import org.webrtc.GlGenericDrawer;
@@ -119,7 +119,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         if (Thread.currentThread() == Looper.getMainLooper().getThread()) {
             runnable.run();
         } else {
-            AndroidUtilities.runOnUIThread(runnable);
+            i0.g3(runnable);
         }
     }
 
@@ -143,7 +143,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
             sb2.append(", frame size: ");
             sb2.append(this.rotatedFrameWidth);
             sb2.append("x");
-            h0.q(sb2, this.rotatedFrameHeight, ", requested surface size: ", min, "x");
+            i0.a.t(sb2, this.rotatedFrameHeight, ", requested surface size: ", min, "x");
             sb2.append(min2);
             sb2.append(", old surface size: ");
             sb2.append(this.surfaceWidth);
@@ -210,11 +210,11 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
                     try {
                         Runnable runnable = this.updateScreenRunnable;
                         if (runnable != null) {
-                            AndroidUtilities.cancelRunOnUIThread(runnable);
+                            i0.r(runnable);
                         }
-                        i2.v vVar = new i2.v(this, i12, i14, 14);
-                        this.updateScreenRunnable = vVar;
-                        postOrRun(vVar);
+                        i2.u uVar = new i2.u(this, i12, i14, 16);
+                        this.updateScreenRunnable = uVar;
+                        postOrRun(uVar);
                     } catch (Throwable th2) {
                         throw th2;
                     }
@@ -345,7 +345,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     }
 
     public void setBackgroundRenderer(TextureView textureView) {
-        if (!LiteMode.isEnabled(512)) {
+        if (!sc.e(512)) {
             return;
         }
         this.backgroundRenderer = textureView;
@@ -596,7 +596,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
 
         @Override
         public void onFirstFrameRendered() {
-            AndroidUtilities.runOnUIThread(new h(this, 2));
+            i0.g3(new h(this, 2));
         }
 
         @Override
@@ -615,7 +615,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
             ThreadUtils.checkIsOnMainThread();
             CountDownLatch countDownLatch = new CountDownLatch(1);
-            releaseEglSurface(new org.telegram.ui.ActionBar.q(countDownLatch, 17), false);
+            releaseEglSurface(new w5(countDownLatch, 0), false);
             ThreadUtils.awaitUninterruptibly(countDownLatch);
             return true;
         }

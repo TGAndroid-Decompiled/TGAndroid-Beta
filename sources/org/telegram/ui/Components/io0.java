@@ -1,40 +1,71 @@
 package org.telegram.ui.Components;
 
+import android.os.Build;
+import android.view.KeyEvent;
 import android.view.View;
-public final class io0 extends s4.l {
-    @Override
-    public final boolean r(s4.e1 e1Var, b2.v0 v0Var, int i10, int i11, int i12, int i13) {
-        oo0 oo0Var;
-        no0 no0Var;
-        View view = e1Var.f47773a;
-        if ((view instanceof oo0) && (no0Var = (oo0Var = (oo0) view).f31351a) != null) {
-            no0Var.f4175i = no0Var.N;
-            no0Var.f4173g = no0Var.O;
-            no0Var.h = no0Var.P;
-            oo0Var.f31352b.d(0.0f, true);
-            oo0Var.invalidate();
-        }
-        int translationX = i10 + ((int) view.getTranslationX());
-        int translationY = i11 + ((int) view.getTranslationY());
-        R(e1Var);
-        int i14 = i12 - translationX;
-        int i15 = i13 - translationY;
-        if (i14 == 0 && i15 == 0) {
-            v(e1Var);
-            return false;
-        }
-        if (i14 != 0) {
-            view.setTranslationX(-i14);
-        }
-        if (i15 != 0) {
-            view.setTranslationY(-i15);
-        }
-        this.f47825r.add(new s4.k(e1Var, translationX, translationY, i12, i13));
-        return true;
+import android.view.WindowInsets;
+public final class io0 implements ei.n, r0.m, org.telegram.ui.ActionBar.i1, ei.o {
+    public final int f27048a;
+    public final op0 f27049b;
+
+    public io0(op0 op0Var, int i10) {
+        this.f27048a = i10;
+        this.f27049b = op0Var;
     }
 
     @Override
-    public final boolean t(s4.e1 e1Var) {
-        return true;
+    public r0.j1 R0(View view, r0.j1 j1Var) {
+        WindowInsets g10 = j1Var.g();
+        op0 op0Var = this.f27049b;
+        op0Var.t0(g10);
+        i0.c f7 = j1Var.f46132a.f(519);
+        if (!op0Var.f29152y2.equals(f7)) {
+            op0Var.f29152y2 = f7;
+            op0Var.f21589c.requestLayout();
+        }
+        return r0.j1.f46131b;
+    }
+
+    @Override
+    public int c() {
+        op0 op0Var = this.f27049b;
+        op0Var.getClass();
+        return org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f20929d6, op0Var.I0);
+    }
+
+    @Override
+    public void j(int i10) {
+        op0 op0Var = this.f27049b;
+        tg.f fVar = op0Var.G2;
+        if (Build.VERSION.SDK_INT >= 31 && fVar != null) {
+            if (v7.u7.a(i10, 4)) {
+                fVar.h(op0Var.X0.e());
+            }
+            fVar.e(op0Var.L2, op0Var.f21586b.getWidth(), op0Var.f21586b.getHeight());
+        }
+    }
+
+    @Override
+    public void r(KeyEvent keyEvent) {
+        org.telegram.ui.ActionBar.k1 k1Var;
+        org.telegram.ui.ActionBar.k1 k1Var2;
+        switch (this.f27048a) {
+            case 2:
+                op0 op0Var = this.f27049b;
+                op0Var.getClass();
+                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (k1Var = op0Var.B2) != null && k1Var.isShowing()) {
+                    op0Var.B2.d(true);
+                    return;
+                }
+                return;
+            default:
+                op0 op0Var2 = this.f27049b;
+                op0Var2.getClass();
+                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (k1Var2 = op0Var2.B2) != null && k1Var2.isShowing()) {
+                    op0Var2.B2.d(true);
+                    return;
+                }
+                return;
+        }
     }
 }

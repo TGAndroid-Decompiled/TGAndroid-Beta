@@ -1,94 +1,40 @@
 package org.telegram.ui.Wallet;
 
-import android.view.KeyEvent;
-import android.widget.EditText;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class l8 implements TextView.OnEditorActionListener {
-    public final int f36875a;
-    public final Object f36876b;
+import org.telegram.messenger.cd;
+import org.telegram.messenger.q20;
+import org.telegram.ui.Components.cc;
+import org.telegram.ui.Components.wb;
+public final class l8 implements q20 {
+    public final int f34868a;
+    public final t8 f34869b;
 
-    public l8(Object obj, int i10) {
-        this.f36875a = i10;
-        this.f36876b = obj;
+    public l8(t8 t8Var, int i10) {
+        this.f34868a = i10;
+        this.f34869b = t8Var;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        boolean z10;
-        switch (this.f36875a) {
+    public final void a(Object obj) {
+        int i10 = this.f34868a;
+        t8 t8Var = this.f34869b;
+        switch (i10) {
             case 0:
-                n8 n8Var = (n8) this.f36876b;
-                if (i10 != 3) {
-                    n8Var.getClass();
-                    return false;
-                }
-                AndroidUtilities.hideKeyboard(n8Var.f37057b);
-                return true;
+                k0.x(t8Var.currentAccount).z(new ih.s(26, t8Var, (q20) obj), true, false);
+                return;
             case 1:
-                i9 i9Var = (i9) this.f36876b;
-                if (i10 == 6) {
-                    fi.d dVar = i9Var.f36719d0;
-                    if (dVar.f10686c0) {
-                        dVar.performClick();
-                        return true;
-                    }
-                } else {
-                    i9Var.getClass();
+                String str = (String) obj;
+                if (str != null) {
+                    cc.a0(t8Var).e0(str, false);
+                    return;
                 }
-                return false;
+                wb I = cc.a0(t8Var).I(2131623989, cd.L0(2131743214, null), cd.L0(2131743212, null));
+                I.f32135j = 5000;
+                I.j();
+                t8Var.f29837a.f30819f3.O(true);
+                return;
             default:
-                ha haVar = (ha) this.f36876b;
-                EditText editText = haVar.f36676a;
-                if (keyEvent != null && (keyEvent.getKeyCode() == 66 || keyEvent.getKeyCode() == 160)) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (i10 != 5 && !z10) {
-                    return false;
-                }
-                if (keyEvent == null || (keyEvent.getAction() == 1 && !keyEvent.isCanceled())) {
-                    String lowerCase = editText.getText().toString().trim().toLowerCase();
-                    if (!lowerCase.isEmpty() && haVar.b()) {
-                        haVar.setError(false);
-                        haVar.a();
-                        Runnable runnable = haVar.f36681r;
-                        if (runnable != null) {
-                            editText.post(runnable);
-                        }
-                    } else {
-                        String str = null;
-                        if (!lowerCase.isEmpty()) {
-                            String[] mnemonicWordlist = WalletEngine2.getMnemonicWordlist();
-                            int length = mnemonicWordlist.length;
-                            int i11 = 0;
-                            while (true) {
-                                if (i11 < length) {
-                                    String str2 = mnemonicWordlist[i11];
-                                    if (str2.startsWith(lowerCase)) {
-                                        str = str2;
-                                    } else {
-                                        i11++;
-                                    }
-                                }
-                            }
-                        }
-                        if (str != null) {
-                            editText.setText(str);
-                            editText.setSelection(str.length());
-                            haVar.setError(false);
-                            haVar.a();
-                            Runnable runnable2 = haVar.f36681r;
-                            if (runnable2 != null) {
-                                editText.post(runnable2);
-                            }
-                        } else {
-                            haVar.setError(true);
-                        }
-                    }
-                }
-                return true;
+                t8.e0(t8Var, (Boolean) obj);
+                return;
         }
     }
 }

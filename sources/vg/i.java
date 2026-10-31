@@ -1,10 +1,14 @@
 package vg;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.nd0;
-public final class i extends nd0 {
-    @Override
-    public final CharSequence d(int i10) {
-        return LocaleController.formatPluralString("Minutes", i10, new Object[0]);
+import android.graphics.NinePatch;
+public final class i {
+    public final NinePatch f50855a;
+    public final int f50856b;
+    public final int f50857c;
+
+    public i(NinePatch ninePatch, int i10, int i11) {
+        this.f50855a = ninePatch;
+        this.f50856b = i10;
+        this.f50857c = i11;
     }
 }

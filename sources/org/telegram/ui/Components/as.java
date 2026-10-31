@@ -1,93 +1,39 @@
 package org.telegram.ui.Components;
+public final class as implements Runnable {
+    public final int f24453a;
+    public final org.telegram.ui.ActionBar.x1[] f24454b;
 
-import android.content.Context;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-public final class as extends Drawable {
-    public final Drawable f26649a;
-    public final RectF f26650b = new RectF();
-    public final Paint f26651c;
-    public final Paint d;
-    public int e;
-    public final int f26652f;
-    public float f26653g;
-    public boolean h;
-    public float f26654i;
-    public float f26655j;
-    public float f26656k;
-
-    public as(Context context, int i10, int i11) {
-        Paint paint = new Paint(1);
-        this.f26651c = paint;
-        Paint paint2 = new Paint(1);
-        this.d = paint2;
-        this.f26649a = context.getDrawable(i10);
-        this.f26652f = i11;
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint.setStrokeWidth(AndroidUtilities.dpf2(1.7f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint2.setColor(-16777216);
-        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        paint2.setStyle(style);
-        paint2.setStrokeWidth(AndroidUtilities.dpf2(2.5f));
+    public as(org.telegram.ui.ActionBar.x1[] x1VarArr, int i10) {
+        this.f24453a = i10;
+        this.f24454b = x1VarArr;
     }
 
-    public final void a(boolean z10, boolean z11) {
-        if (this.h != z10) {
-            this.h = z10;
-            float f7 = 0.0f;
-            if (!z11) {
-                if (z10) {
-                    f7 = 1.0f;
+    @Override
+    public final void run() {
+        switch (this.f24453a) {
+            case 0:
+                org.telegram.ui.ActionBar.x1 x1Var = this.f24454b[0];
+                if (x1Var != null) {
+                    x1Var.dismiss();
+                    return;
                 }
-                this.f26653g = f7;
-            } else {
-                if (!z10) {
-                    f7 = 1.0f;
+                return;
+            case 1:
+                org.telegram.ui.ActionBar.x1[] x1VarArr = this.f24454b;
+                try {
+                    x1VarArr[0].dismiss();
+                } catch (Throwable unused) {
                 }
-                this.f26653g = f7;
-            }
-            invalidateSelf();
+                x1VarArr[0] = null;
+                return;
+            default:
+                org.telegram.ui.ActionBar.x1[] x1VarArr2 = this.f24454b;
+                try {
+                    x1VarArr2[0].dismiss();
+                } catch (Throwable unused2) {
+                }
+                x1VarArr2[0] = null;
+                return;
         }
-    }
-
-    @Override
-    public final void draw(android.graphics.Canvas r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.as.draw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return this.f26649a.getIntrinsicHeight();
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.f26649a.getIntrinsicWidth();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setBounds(int i10, int i11, int i12, int i13) {
-        super.setBounds(i10, i11, i12, i13);
-        this.f26649a.setBounds(i10, i11, i12, i13);
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

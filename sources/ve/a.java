@@ -1,25 +1,11 @@
 package ve;
-
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import org.chromium.support_lib_boundary.FeatureFlagHolderBoundaryInterface;
-public final class a implements InvocationHandler {
-    public final FeatureFlagHolderBoundaryInterface f50144a;
-
-    public a(FeatureFlagHolderBoundaryInterface featureFlagHolderBoundaryInterface) {
-        this.f50144a = featureFlagHolderBoundaryInterface;
-    }
-
+public abstract class a extends df.c {
     @Override
-    public final Object invoke(Object obj, Method method, Object[] objArr) {
-        FeatureFlagHolderBoundaryInterface featureFlagHolderBoundaryInterface = this.f50144a;
-        try {
-            return Class.forName(method.getDeclaringClass().getName(), true, featureFlagHolderBoundaryInterface.getClass().getClassLoader()).getDeclaredMethod(method.getName(), method.getParameterTypes()).invoke(featureFlagHolderBoundaryInterface, objArr);
-        } catch (InvocationTargetException e) {
-            throw e.getTargetException();
-        } catch (ReflectiveOperationException e10) {
-            throw new RuntimeException("Reflection failed for method " + method, e10);
+    public final void e(df.c cVar) {
+        if (cVar instanceof a) {
+            this.f5877b = cVar;
+            return;
         }
+        throw new IllegalArgumentException("Parent of block must also be block (can not be inline)");
     }
 }

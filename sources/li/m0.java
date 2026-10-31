@@ -1,92 +1,54 @@
 package li;
 
+import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class m0 {
-    public static ArrayList d;
-    public final int f17352a;
-    public final String f17353b;
-    public final List f17354c;
+import org.telegram.messenger.qz;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.z2;
+public final class m0 implements Runnable {
+    public final int f12176a = 2;
+    public final boolean f12177b;
+    public final boolean f12178c;
+    public final int d;
+    public final Object e;
+    public final Object f12179f;
+    public final Object h;
+    public final Object f12180n;
 
-    public m0(int i10, String str, String... strArr) {
-        this.f17352a = i10;
-        this.f17353b = str;
-        this.f17354c = Arrays.asList(strArr);
+    public m0(int i10, TLObject tLObject, TL_stars.StarsSubscription starsSubscription, vh.d dVar, boolean z10, boolean z11, z2[] z2VarArr) {
+        this.e = dVar;
+        this.f12179f = z2VarArr;
+        this.d = i10;
+        this.f12177b = z10;
+        this.h = starsSubscription;
+        this.f12178c = z11;
+        this.f12180n = tLObject;
     }
 
-    public static ArrayList a(String str) {
-        String trim;
-        if (str == null) {
-            trim = "";
-        } else {
-            trim = str.trim();
-        }
-        if (trim.startsWith("/")) {
-            trim = trim.substring(1);
-        }
-        String lowerCase = trim.toLowerCase();
-        ArrayList arrayList = new ArrayList();
-        ArrayList arrayList2 = d;
-        if (arrayList2 == null) {
-            ArrayList arrayList3 = new ArrayList();
-            d = arrayList3;
-            arrayList3.add(new m0(R.drawable.iv_h1, LocaleController.getString(R.string.ArticleHeading1), "#", "/h1", "/header", "/title", "/heading"));
-            d.add(new m0(R.drawable.iv_h2, LocaleController.getString(R.string.ArticleHeading2), "##", "/h2"));
-            d.add(new m0(R.drawable.iv_h3, LocaleController.getString(R.string.ArticleHeading3), "###", "/h3"));
-            d.add(new m0(R.drawable.iv_h4, LocaleController.getString(R.string.ArticleHeading4), "####", "/h4"));
-            d.add(new m0(R.drawable.iv_h5, LocaleController.getString(R.string.ArticleHeading5), "#####", "/h5"));
-            d.add(new m0(R.drawable.iv_h6, LocaleController.getString(R.string.ArticleHeading6), "######", "/h6"));
-            d.add(new m0(R.drawable.iv_quote, LocaleController.getString(R.string.ArticleQuote), "|", "/quote"));
-            d.add(new m0(R.drawable.iv_pullquote, LocaleController.getString(R.string.ArticlePullquote), "/pullquote"));
-            d.add(new m0(R.drawable.iv_code, LocaleController.getString(R.string.ArticleCode), "```", "/code", "/pre", "/preformatted"));
-            d.add(new m0(R.drawable.iv_footer, LocaleController.getString(R.string.ArticleFooter), "/footer"));
-            d.add(new m0(R.drawable.iv_list, LocaleController.getString(R.string.ArticleCommandList), "-", "/list"));
-            d.add(new m0(R.drawable.iv_ordered_list, LocaleController.getString(R.string.ArticleCommandOrderedList), "1."));
-            d.add(new m0(R.drawable.iv_todo, LocaleController.getString(R.string.ArticleListChecklist), "[]", "/todo", "/checklist"));
-            d.add(new m0(R.drawable.iv_details, LocaleController.getString(R.string.ArticleCommandToggle), ">", "/toggle", "/details"));
-            d.add(new m0(R.drawable.iv_button, LocaleController.getString(R.string.RichEditorButton), "/button"));
-            d.add(new m0(R.drawable.iv_table, LocaleController.getString(R.string.ArticleCommandTable), "/table"));
-            d.add(new m0(R.drawable.iv_math, LocaleController.getString(R.string.ArticleCommandMath), "/math", "/latex", "/expression"));
-            d.add(new m0(R.drawable.iv_divider, LocaleController.getString(R.string.ArticleCommandDivider), "---"));
-            d.add(new m0(R.drawable.iv_media, LocaleController.getString(R.string.ArticleCommandImage), "/image", "/pic", "/picture", "/photo", "/img", "/media"));
-            d.add(new m0(R.drawable.iv_media, LocaleController.getString(R.string.ArticleCommandVideo), "/video", "/vid", "/media"));
-            d.add(new m0(R.drawable.iv_audio, LocaleController.getString(R.string.ArticleCommandAudio), "/audio", "/music", "/media"));
-            d.add(new m0(R.drawable.iv_location, LocaleController.getString(R.string.ArticleCommandMap), "/map", "/location", "/venue"));
-            arrayList2 = d;
-        }
-        int size = arrayList2.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList2.get(i10);
-            i10++;
-            m0 m0Var = (m0) obj;
-            if (!lowerCase.isEmpty()) {
-                String[] split = m0Var.f17353b.toLowerCase().split(" ");
-                int length = split.length;
-                int i11 = 0;
-                while (true) {
-                    if (i11 < length) {
-                        if (split[i11].startsWith(lowerCase)) {
-                            break;
-                        }
-                        i11++;
-                    } else {
-                        for (String str2 : m0Var.f17354c) {
-                            String lowerCase2 = str2.toLowerCase();
-                            if (lowerCase2.startsWith("/")) {
-                                lowerCase2 = lowerCase2.substring(1);
-                            }
-                            if (lowerCase2.startsWith(lowerCase)) {
-                            }
-                        }
-                    }
-                }
-            }
-            arrayList.add(m0Var);
-        }
-        return arrayList;
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: li.m0.run():void");
+    }
+
+    public m0(x0 x0Var, z zVar, boolean z10, File file, boolean z11, int i10, t0 t0Var) {
+        this.e = x0Var;
+        this.f12179f = zVar;
+        this.f12177b = z10;
+        this.h = file;
+        this.f12178c = z11;
+        this.d = i10;
+        this.f12180n = t0Var;
+    }
+
+    public m0(qz qzVar, boolean z10, TLRPC.Message message, ArrayList arrayList, boolean z11, ArrayList arrayList2, int i10) {
+        this.e = qzVar;
+        this.f12177b = z10;
+        this.f12179f = message;
+        this.h = arrayList;
+        this.f12178c = z11;
+        this.f12180n = arrayList2;
+        this.d = i10;
     }
 }

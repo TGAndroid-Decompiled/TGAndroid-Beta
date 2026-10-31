@@ -1,32 +1,54 @@
 package org.telegram.messenger;
 
-import android.view.View;
-import java.util.List;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class g1 implements Utilities.Callback {
-    public final int f20129a;
-    public final Object f20130b;
+import android.util.Log;
+import java.util.Locale;
+public final class g1 {
+    public final String f15653a;
+    public final String f15654b;
+    public final int f15655c;
 
-    public g1(Object obj, int i10) {
-        this.f20129a = i10;
-        this.f20130b = obj;
+    public g1(String str, String... strArr) {
+        String sb2;
+        if (strArr.length == 0) {
+            sb2 = "";
+        } else {
+            StringBuilder sb3 = new StringBuilder();
+            sb3.append('[');
+            for (String str2 : strArr) {
+                if (sb3.length() > 1) {
+                    sb3.append(",");
+                }
+                sb3.append(str2);
+            }
+            sb3.append("] ");
+            sb2 = sb3.toString();
+        }
+        this.f15654b = sb2;
+        this.f15653a = str;
+        int i10 = 2;
+        Object[] objArr = {str, 23};
+        if (str.length() <= 23) {
+            while (i10 <= 7 && !Log.isLoggable(this.f15653a, i10)) {
+                i10++;
+            }
+            this.f15655c = i10;
+            return;
+        }
+        throw new IllegalArgumentException(String.format("tag \"%s\" is longer than the %d character maximum", objArr));
     }
 
-    @Override
-    public final void run(Object obj) {
-        switch (this.f20129a) {
-            case 0:
-                ChatThemeController.q((ChatThemeController) this.f20130b, (List) obj);
-                return;
-            case 1:
-                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
-                ((Runnable) this.f20130b).run();
-                return;
-            default:
-                Object[] objArr = (Object[]) obj;
-                ((View) this.f20130b).invalidate();
-                return;
+    public void a(String str, Object... objArr) {
+        if (this.f15655c <= 3) {
+            if (objArr.length > 0) {
+                str = String.format(Locale.US, str, objArr);
+            }
+            Log.d(this.f15653a, this.f15654b.concat(str));
         }
+    }
+
+    public g1(String str, int i10, String str2) {
+        this.f15653a = str;
+        this.f15655c = i10;
+        this.f15654b = str2;
     }
 }

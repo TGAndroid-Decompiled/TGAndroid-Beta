@@ -1,4 +1,6 @@
 package ka;
+
+import ja.d;
 public interface a {
-    void a(Object obj, Object obj2);
+    a e(Class cls, d dVar);
 }

@@ -1,28 +1,85 @@
 package fc;
 
-import java.nio.charset.Charset;
-import java.nio.charset.CharsetEncoder;
-import java.nio.charset.UnsupportedCharsetException;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
-public final class d {
-    public static final ArrayList f10410c = new ArrayList();
-    public final CharsetEncoder[] f10411a;
-    public final int f10412b;
+import java.util.Arrays;
+import java.util.logging.Logger;
+public final class d extends b {
+    public static final Logger f6997m = Logger.getLogger(d.class.getName());
+    public int d;
+    public int e;
+    public int f6998f;
+    public int f6999g;
+    public long h;
+    public long f7000i;
+    public a f7001j;
+    public ArrayList f7002k;
+    public byte[] f7003l;
 
-    static {
-        String[] strArr = {"IBM437", "ISO-8859-2", "ISO-8859-3", "ISO-8859-4", "ISO-8859-5", "ISO-8859-6", "ISO-8859-7", "ISO-8859-8", "ISO-8859-9", "ISO-8859-10", "ISO-8859-11", "ISO-8859-13", "ISO-8859-14", "ISO-8859-15", "ISO-8859-16", "windows-1250", "windows-1251", "windows-1252", "windows-1256", "Shift_JIS"};
-        for (int i10 = 0; i10 < 20; i10++) {
-            String str = strArr[i10];
-            if (((c) c.d.get(str)) != null) {
-                try {
-                    f10410c.add(Charset.forName(str).newEncoder());
-                } catch (UnsupportedCharsetException unused) {
-                }
+    @Override
+    public final void b(ByteBuffer byteBuffer) {
+        b a2;
+        this.d = e5.b.a(byteBuffer.get());
+        int a10 = e5.b.a(byteBuffer.get());
+        this.e = a10 >>> 2;
+        this.f6998f = (a10 >> 1) & 1;
+        this.f6999g = e5.b.a(byteBuffer.get()) + (e5.b.h(byteBuffer) << 8);
+        this.h = e5.b.i(byteBuffer);
+        this.f7000i = e5.b.i(byteBuffer);
+        int remaining = byteBuffer.remaining();
+        Logger logger = f6997m;
+        if (remaining > 2) {
+            int position = byteBuffer.position();
+            b a11 = k.a(this.d, byteBuffer);
+            int position2 = byteBuffer.position() - position;
+            logger.finer(a11 + " - DecoderConfigDescr1 read: " + position2 + ", size: " + Integer.valueOf(a11.a()));
+            int a12 = a11.a();
+            if (position2 < a12) {
+                byte[] bArr = new byte[a12 - position2];
+                this.f7003l = bArr;
+                byteBuffer.get(bArr);
             }
+            if (a11 instanceof a) {
+                this.f7001j = (a) a11;
+            }
+        }
+        while (byteBuffer.remaining() > 2) {
+            long position3 = byteBuffer.position();
+            logger.finer(k.a(this.d, byteBuffer) + " - DecoderConfigDescr2 read: " + (byteBuffer.position() - position3) + ", size: " + Integer.valueOf(a2.a()));
         }
     }
 
-    public d(java.lang.String r12, java.nio.charset.Charset r13) {
-        throw new UnsupportedOperationException("Method not decompiled: fc.d.<init>(java.lang.String, java.nio.charset.Charset):void");
+    public final String toString() {
+        String obj;
+        StringBuilder sb2 = new StringBuilder("DecoderConfigDescriptor{objectTypeIndication=");
+        sb2.append(this.d);
+        sb2.append(", streamType=");
+        sb2.append(this.e);
+        sb2.append(", upStream=");
+        sb2.append(this.f6998f);
+        sb2.append(", bufferSizeDB=");
+        sb2.append(this.f6999g);
+        sb2.append(", maxBitRate=");
+        sb2.append(this.h);
+        sb2.append(", avgBitRate=");
+        sb2.append(this.f7000i);
+        sb2.append(", decoderSpecificInfo=null, audioSpecificInfo=");
+        sb2.append(this.f7001j);
+        sb2.append(", configDescriptorDeadBytes=");
+        byte[] bArr = this.f7003l;
+        if (bArr == null) {
+            bArr = new byte[0];
+        }
+        sb2.append(e5.b.c(0, bArr));
+        sb2.append(", profileLevelIndicationDescriptors=");
+        ArrayList arrayList = this.f7002k;
+        if (arrayList == null) {
+            obj = "null";
+        } else {
+            obj = Arrays.asList(arrayList).toString();
+        }
+        sb2.append(obj);
+        sb2.append('}');
+        return sb2.toString();
     }
 }

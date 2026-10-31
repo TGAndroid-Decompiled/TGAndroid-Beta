@@ -1,41 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class oo extends AnimatorListenerAdapter {
-    public final int f31349a;
-    public final po f31350b;
+import org.telegram.tgnet.tl.TL_stories;
+public final class oo implements org.telegram.messenger.q20 {
+    public final int f29108a;
+    public final dp f29109b;
 
-    public oo(po poVar, int i10) {
-        this.f31349a = i10;
-        this.f31350b = poVar;
+    public oo(dp dpVar, int i10) {
+        this.f29108a = i10;
+        this.f29109b = dpVar;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f31349a) {
+    public final void a(Object obj) {
+        switch (this.f29108a) {
             case 0:
-                this.f31350b.Q = null;
+                dp dpVar = this.f29109b;
+                dpVar.V1 = (TL_stories.TL_premium_boostsStatus) obj;
+                dpVar.U1 = true;
+                dpVar.Z0(true);
+                dpVar.T1 = false;
                 return;
             default:
-                super.onAnimationCancel(animator);
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f31349a) {
-            case 0:
-                po poVar = this.f31350b;
-                if (poVar.Q == animator) {
-                    poVar.getSubtitleTextView().setVisibility(4);
-                    poVar.Q = null;
+                org.telegram.messenger.h3 h3Var = (org.telegram.messenger.h3) obj;
+                dp dpVar2 = this.f29109b;
+                if (dpVar2.getContext() != null) {
+                    org.telegram.ui.un unVar = dpVar2.f25491r1;
+                    kg.q0 q0Var = new kg.q0(22, dpVar2.f21583a, dpVar2.getContext(), unVar, dpVar2.I0);
+                    q0Var.A1(h3Var);
+                    q0Var.z1(dpVar2.V1, true);
+                    q0Var.B1(dpVar2.f25491r1.a());
+                    q0Var.I2 = new mo(dpVar2, 2);
+                    q0Var.show();
                     return;
                 }
-                return;
-            default:
-                this.f31350b.Q = null;
                 return;
         }
     }

@@ -1,37 +1,26 @@
 package org.telegram.ui.Components;
+public final class p4 {
+    public final int f29279a;
+    public final int f29280b;
+    public final int f29281c;
+    public final int d;
+    public final int e;
+    public final int f29282f;
+    public final int f29283g;
+    public final int h;
 
-import android.content.Context;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class p4 extends nd0 {
-    public final int[] f31457y0;
-
-    public p4(Context context, org.telegram.ui.ActionBar.u6 u6Var, int[] iArr) {
-        super(context, u6Var);
-        this.f31457y0 = iArr;
+    public p4(org.telegram.ui.ActionBar.p6 r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.p4.<init>(org.telegram.ui.ActionBar.p6):void");
     }
 
-    @Override
-    public final CharSequence d(int i10) {
-        int i11 = this.f31457y0[i10];
-        if (i11 == 0) {
-            return LocaleController.getString(R.string.MuteNever);
-        }
-        if (i11 < 60) {
-            return LocaleController.formatPluralString("Minutes", i11, new Object[0]);
-        }
-        if (i11 < 1440) {
-            return LocaleController.formatPluralString("Hours", i11 / 60, new Object[0]);
-        }
-        if (i11 < 10080) {
-            return LocaleController.formatPluralString("Days", i11 / 1440, new Object[0]);
-        }
-        if (i11 < 44640) {
-            return LocaleController.formatPluralString("Weeks", i11 / 10080, new Object[0]);
-        }
-        if (i11 < 525600) {
-            return LocaleController.formatPluralString("Months", i11 / 44640, new Object[0]);
-        }
-        return LocaleController.formatPluralString("Years", i11 / 525600, new Object[0]);
+    public p4(int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18) {
+        this.f29279a = i10;
+        this.f29280b = i11;
+        this.f29281c = i12;
+        this.d = i13;
+        this.e = i14;
+        this.f29282f = i15;
+        this.f29283g = i16;
+        this.h = i17;
     }
 }

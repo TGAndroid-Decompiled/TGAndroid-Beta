@@ -1,64 +1,258 @@
 package g2;
 
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.content.res.AssetFileDescriptor;
+import android.content.res.Resources;
 import android.net.Uri;
-import java.util.Collections;
-import java.util.Map;
-public final class b0 implements h {
-    public final h f12228a;
-    public long f12229b;
-    public Uri f12230c;
-    public Map d;
+import android.text.TextUtils;
+import e2.l0;
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
+import java.util.List;
+public final class b0 extends c {
+    public final Context f7278a;
+    public n f7279b;
+    public AssetFileDescriptor f7280c;
+    public FileInputStream d;
+    public long e;
+    public boolean f7281f;
 
-    public b0(h hVar) {
-        hVar.getClass();
-        this.f12228a = hVar;
-        this.f12230c = Uri.EMPTY;
-        this.d = Collections.EMPTY_MAP;
+    public b0(Context context) {
+        super(false);
+        this.f7278a = context.getApplicationContext();
     }
 
-    @Override
-    public final void addTransferListener(c0 c0Var) {
-        c0Var.getClass();
-        this.f12228a.addTransferListener(c0Var);
+    @Deprecated
+    public static Uri buildRawResourceUri(int i10) {
+        return Uri.parse("rawresource:///" + i10);
     }
 
     @Override
     public final void close() {
-        this.f12228a.close();
-    }
-
-    @Override
-    public final Map getResponseHeaders() {
-        return this.f12228a.getResponseHeaders();
+        this.f7279b = null;
+        try {
+            try {
+                FileInputStream fileInputStream = this.d;
+                if (fileInputStream != null) {
+                    fileInputStream.close();
+                }
+                this.d = null;
+                try {
+                    try {
+                        AssetFileDescriptor assetFileDescriptor = this.f7280c;
+                        if (assetFileDescriptor != null) {
+                            assetFileDescriptor.close();
+                        }
+                    } catch (IOException e) {
+                        throw new k(null, e, 2000);
+                    }
+                } finally {
+                    this.f7280c = null;
+                    if (this.f7281f) {
+                        this.f7281f = false;
+                        transferEnded();
+                    }
+                }
+            } catch (IOException e7) {
+                throw new k(null, e7, 2000);
+            }
+        } catch (Throwable th2) {
+            this.d = null;
+            try {
+                try {
+                    AssetFileDescriptor assetFileDescriptor2 = this.f7280c;
+                    if (assetFileDescriptor2 != null) {
+                        assetFileDescriptor2.close();
+                    }
+                    this.f7280c = null;
+                    if (this.f7281f) {
+                        this.f7281f = false;
+                        transferEnded();
+                    }
+                    throw th2;
+                } catch (IOException e10) {
+                    throw new k(null, e10, 2000);
+                }
+            } finally {
+                this.f7280c = null;
+                if (this.f7281f) {
+                    this.f7281f = false;
+                    transferEnded();
+                }
+            }
+        }
     }
 
     @Override
     public final Uri getUri() {
-        return this.f12228a.getUri();
+        n nVar = this.f7279b;
+        if (nVar != null) {
+            return nVar.f7314a;
+        }
+        return null;
     }
 
     @Override
-    public final long open(m mVar) {
-        h hVar = this.f12228a;
-        this.f12230c = mVar.f12257a;
-        this.d = Collections.EMPTY_MAP;
-        try {
-            return hVar.open(mVar);
-        } finally {
-            Uri uri = hVar.getUri();
-            if (uri != null) {
-                this.f12230c = uri;
+    public final long open(n nVar) {
+        String host;
+        Resources resourcesForApplication;
+        int parseInt;
+        int i10;
+        Resources resources;
+        long min;
+        this.f7279b = nVar;
+        transferInitializing(nVar);
+        Uri uri = nVar.f7314a;
+        long j10 = nVar.f7317f;
+        long j11 = nVar.e;
+        Uri normalizeScheme = uri.normalizeScheme();
+        boolean equals = TextUtils.equals("rawresource", normalizeScheme.getScheme());
+        Context context = this.f7278a;
+        if (equals) {
+            resources = context.getResources();
+            List<String> pathSegments = normalizeScheme.getPathSegments();
+            if (pathSegments.size() == 1) {
+                try {
+                    i10 = Integer.parseInt(pathSegments.get(0));
+                } catch (NumberFormatException unused) {
+                    throw new k("Resource identifier must be an integer.", null, 1004);
+                }
+            } else {
+                throw new k("rawresource:// URI must have exactly one path element, found " + pathSegments.size(), null, 2000);
             }
-            this.d = hVar.getResponseHeaders();
+        } else if (TextUtils.equals("android.resource", normalizeScheme.getScheme())) {
+            String path = normalizeScheme.getPath();
+            path.getClass();
+            if (path.startsWith("/")) {
+                path = path.substring(1);
+            }
+            if (TextUtils.isEmpty(normalizeScheme.getHost())) {
+                host = context.getPackageName();
+            } else {
+                host = normalizeScheme.getHost();
+            }
+            if (host.equals(context.getPackageName())) {
+                resourcesForApplication = context.getResources();
+            } else {
+                try {
+                    resourcesForApplication = context.getPackageManager().getResourcesForApplication(host);
+                } catch (PackageManager.NameNotFoundException e) {
+                    throw new k("Package in android.resource:// URI not found. Check http://g.co/dev/packagevisibility.", e, 2005);
+                }
+            }
+            if (path.matches("\\d+")) {
+                try {
+                    parseInt = Integer.parseInt(path);
+                } catch (NumberFormatException unused2) {
+                    throw new k("Resource identifier must be an integer.", null, 1004);
+                }
+            } else {
+                parseInt = resourcesForApplication.getIdentifier(a1.g.C(host, ":", path), "raw", null);
+                if (parseInt == 0) {
+                    throw new k("Resource not found.", null, 2005);
+                }
+            }
+            i10 = parseInt;
+            resources = resourcesForApplication;
+        } else {
+            throw new k("Unsupported URI scheme (" + normalizeScheme.getScheme() + "). Only android.resource is supported.", null, 1004);
+        }
+        try {
+            AssetFileDescriptor openRawResourceFd = resources.openRawResourceFd(i10);
+            if (openRawResourceFd != null) {
+                this.f7280c = openRawResourceFd;
+                long length = openRawResourceFd.getLength();
+                FileInputStream fileInputStream = new FileInputStream(this.f7280c.getFileDescriptor());
+                this.d = fileInputStream;
+                int i11 = (length > (-1L) ? 1 : (length == (-1L) ? 0 : -1));
+                try {
+                    if (i11 != 0 && j11 > length) {
+                        throw new k(null, null, 2008);
+                    }
+                    long startOffset = this.f7280c.getStartOffset();
+                    long skip = fileInputStream.skip(startOffset + j11) - startOffset;
+                    if (skip == j11) {
+                        if (i11 == 0) {
+                            FileChannel channel = fileInputStream.getChannel();
+                            if (channel.size() == 0) {
+                                this.e = -1L;
+                            } else {
+                                long size = channel.size() - channel.position();
+                                this.e = size;
+                                if (size < 0) {
+                                    throw new k(null, null, 2008);
+                                }
+                            }
+                        } else {
+                            long j12 = length - skip;
+                            this.e = j12;
+                            if (j12 < 0) {
+                                throw new k(2008);
+                            }
+                        }
+                        int i12 = (j10 > (-1L) ? 1 : (j10 == (-1L) ? 0 : -1));
+                        if (i12 != 0) {
+                            long j13 = this.e;
+                            if (j13 == -1) {
+                                min = j10;
+                            } else {
+                                min = Math.min(j13, j10);
+                            }
+                            this.e = min;
+                        }
+                        this.f7281f = true;
+                        transferStarted(nVar);
+                        if (i12 != 0) {
+                            return j10;
+                        }
+                        return this.e;
+                    }
+                    throw new k(null, null, 2008);
+                } catch (a0 e7) {
+                    throw e7;
+                } catch (IOException e10) {
+                    throw new k(null, e10, 2000);
+                }
+            }
+            throw new k("Resource is compressed: " + normalizeScheme, null, 2000);
+        } catch (Resources.NotFoundException e11) {
+            throw new k(null, e11, 2005);
         }
     }
 
     @Override
     public final int read(byte[] bArr, int i10, int i11) {
-        int read = this.f12228a.read(bArr, i10, i11);
-        if (read != -1) {
-            this.f12229b += read;
+        if (i11 == 0) {
+            return 0;
         }
-        return read;
+        long j10 = this.e;
+        if (j10 != 0) {
+            if (j10 != -1) {
+                try {
+                    i11 = (int) Math.min(j10, i11);
+                } catch (IOException e) {
+                    throw new k(null, e, 2000);
+                }
+            }
+            FileInputStream fileInputStream = this.d;
+            String str = l0.f6165a;
+            int read = fileInputStream.read(bArr, i10, i11);
+            if (read == -1) {
+                if (this.e != -1) {
+                    throw new k("End of stream reached having not read sufficient data.", new EOFException(), 2000);
+                }
+            } else {
+                long j11 = this.e;
+                if (j11 != -1) {
+                    this.e = j11 - read;
+                }
+                bytesTransferred(read);
+                return read;
+            }
+        }
+        return -1;
     }
 }

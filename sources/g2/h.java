@@ -3,7 +3,7 @@ package g2;
 import android.net.Uri;
 import java.util.Map;
 public interface h extends b2.p {
-    void addTransferListener(c0 c0Var);
+    void addTransferListener(d0 d0Var);
 
     void close();
 
@@ -11,5 +11,5 @@ public interface h extends b2.p {
 
     Uri getUri();
 
-    long open(m mVar);
+    long open(n nVar);
 }

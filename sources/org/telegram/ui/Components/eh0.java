@@ -1,72 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.view.animation.AnimationUtils;
-import org.telegram.messenger.AndroidUtilities;
-public final class eh0 extends Drawable {
-    public final Paint f27847a;
-    public final int f27848b;
-    public boolean f27849c;
-    public float d;
-    public long e;
-    public View f27850f;
-    public int f27851g = 255;
-    public float h = 300.0f;
+import java.util.Locale;
+public final class eh0 implements wb0, yb0 {
+    public final int f25802a;
+    public final jh0 f25803b;
 
-    public eh0(int i10) {
-        this.f27848b = AndroidUtilities.dp(i10);
-        Paint paint = new Paint(1);
-        this.f27847a = paint;
-        paint.setColor(-1);
+    public eh0(jh0 jh0Var, int i10) {
+        this.f25802a = i10;
+        this.f25803b = jh0Var;
     }
 
-    public final void a(boolean z10, boolean z11) {
-        float f7;
-        if (this.f27849c != z10) {
-            this.f27849c = z10;
-            if (!z11) {
-                if (z10) {
-                    f7 = 1.0f;
-                } else {
-                    f7 = 0.0f;
+    @Override
+    public String e(int i10) {
+        int i11 = this.f25802a;
+        jh0 jh0Var = this.f25803b;
+        switch (i11) {
+            case 0:
+                if (jh0Var.O) {
+                    return org.telegram.messenger.cd.a0("MilesShort", null, 2131748442, Integer.valueOf(i10));
                 }
-                this.d = f7;
-            }
-            this.e = AnimationUtils.currentAnimationTimeMillis();
-            invalidateSelf();
+                return org.telegram.messenger.cd.a0("KMetersShort", null, 2131749071, Integer.valueOf(i10));
+            default:
+                if (jh0Var.O) {
+                    if (i10 == 1) {
+                        return org.telegram.messenger.cd.a0("FootsShort", null, 2131750602, 250);
+                    }
+                    if (i10 > 1) {
+                        i10--;
+                    }
+                    Locale locale = Locale.US;
+                    return i0.a.i(i10, ".");
+                } else if (i10 == 1) {
+                    return org.telegram.messenger.cd.a0("MetersShort", null, 2131748457, 50);
+                } else {
+                    if (i10 > 1) {
+                        i10--;
+                    }
+                    return org.telegram.messenger.cd.a0("MetersShort", null, 2131748457, Integer.valueOf(i10 * 100));
+                }
         }
     }
 
     @Override
-    public final void draw(android.graphics.Canvas r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.eh0.draw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return this.f27848b;
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.f27848b;
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f27851g = i10;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f27847a.setColorFilter(colorFilter);
+    public void t(ac0 ac0Var, int i10) {
+        jh0 jh0Var = this.f25803b;
+        try {
+            jh0Var.performHapticFeedback(3, 2);
+        } catch (Exception unused) {
+        }
+        jh0Var.c(true);
     }
 }

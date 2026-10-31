@@ -1,6 +1,15 @@
 package r0;
-public interface r {
-    void onScrollLimit(int i10, int i11, int i12, boolean z10);
 
-    void onScrollProgress(int i10, int i11, int i12, int i13);
+import android.os.Build;
+import androidx.core.widget.NestedScrollView;
+public final class r {
+    public final q f46145a;
+
+    public r(NestedScrollView nestedScrollView) {
+        if (Build.VERSION.SDK_INT >= 35) {
+            this.f46145a = new p(nestedScrollView);
+        } else {
+            this.f46145a = new jb.b(18);
+        }
+    }
 }

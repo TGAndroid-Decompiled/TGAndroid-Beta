@@ -1,175 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-public final class um0 extends Drawable {
-    public final jw e;
-    public final jw f33431f;
-    public float h;
-    public float f33433i;
-    public final Rect f33428a = new Rect();
-    public final ds f33429b = ut.f33457b;
-    public final int f33430c = AndroidUtilities.dp(24.0f);
-    public final int d = AndroidUtilities.dp(24.0f);
-    public long f33432g = -1;
+import android.content.Context;
+import java.util.ArrayList;
+public final class um0 extends gs {
+    public final org.telegram.ui.kx f30994k0;
 
-    public um0() {
-        jw jwVar = new jw();
-        this.e = jwVar;
-        jwVar.f29777c.setColor(-2130706433);
-        jw jwVar2 = new jw();
-        this.f33431f = jwVar2;
-        jwVar2.f29777c.setColor(-2130706433);
-    }
-
-    public final void a(Canvas canvas, float f7) {
-        Rect bounds = getBounds();
-        float interpolation = this.f33429b.getInterpolation(f7);
-        Rect rect = this.f33428a;
-        rect.left = (int) (AndroidUtilities.dp(2.0f) * this.h);
-        int dp = bounds.bottom - ((int) (AndroidUtilities.dp(6.0f) * this.f33433i));
-        rect.bottom = dp;
-        rect.right = bounds.right - rect.left;
-        rect.top = dp - ((int) (AndroidUtilities.dp(4.0f) * this.f33433i));
-        jw jwVar = this.f33431f;
-        jwVar.setBounds(rect);
-        jwVar.draw(canvas);
-        int dp2 = AndroidUtilities.dp(12.0f);
-        rect.right = dp2;
-        rect.left = dp2;
-        int dp3 = AndroidUtilities.dp(8.0f);
-        rect.bottom = dp3;
-        rect.top = dp3;
-        rect.inset(-AndroidUtilities.dp(AndroidUtilities.lerp(10, 11, interpolation)), -AndroidUtilities.dp(AndroidUtilities.lerp(2, 3, interpolation)));
-        jw jwVar2 = this.e;
-        jwVar2.setBounds(rect);
-        jwVar2.setAlpha(AndroidUtilities.lerp(128, 255, interpolation));
-        jwVar2.draw(canvas);
-    }
-
-    public final void b(Canvas canvas, float f7) {
-        Rect bounds = getBounds();
-        float interpolation = this.f33429b.getInterpolation(f7);
-        Rect rect = this.f33428a;
-        rect.left = (int) (AndroidUtilities.dp(2.0f) * this.h);
-        int dp = bounds.bottom - ((int) (AndroidUtilities.dp(6.0f) * this.f33433i));
-        rect.bottom = dp;
-        rect.right = bounds.right - rect.left;
-        rect.top = dp - ((int) (AndroidUtilities.dp(4.0f) * this.f33433i));
-        rect.offset(0, AndroidUtilities.dp(AndroidUtilities.lerp(0, -8, interpolation)));
-        jw jwVar = this.f33431f;
-        jwVar.setBounds(rect);
-        jwVar.draw(canvas);
-        rect.left = (int) (AndroidUtilities.dpf2(AndroidUtilities.lerp(1, 2, interpolation)) * this.h);
-        int dpf2 = (int) (AndroidUtilities.dpf2(AndroidUtilities.lerp(5, 6, interpolation)) * this.f33433i);
-        rect.top = dpf2;
-        rect.right = bounds.right - rect.left;
-        rect.bottom = dpf2 + ((int) (AndroidUtilities.dpf2(AndroidUtilities.lerp(6, 4, interpolation)) * this.f33433i));
-        rect.offset(0, AndroidUtilities.dp(AndroidUtilities.lerp(0, 8, interpolation)));
-        jw jwVar2 = this.e;
-        jwVar2.setBounds(rect);
-        jwVar2.setAlpha(255);
-        jwVar2.draw(canvas);
-    }
-
-    public final void c(Canvas canvas, float f7) {
-        Rect bounds = getBounds();
-        float interpolation = this.f33429b.getInterpolation(f7);
-        Rect rect = this.f33428a;
-        rect.left = (int) (AndroidUtilities.dp(2.0f) * this.h);
-        int dp = bounds.bottom - ((int) (AndroidUtilities.dp(6.0f) * this.f33433i));
-        rect.bottom = dp;
-        rect.right = bounds.right - rect.left;
-        rect.top = dp - ((int) (AndroidUtilities.dp(4.0f) * this.f33433i));
-        rect.offset(0, AndroidUtilities.dp(-8.0f));
-        jw jwVar = this.f33431f;
-        jwVar.setBounds(rect);
-        jwVar.draw(canvas);
-        rect.left = (int) (AndroidUtilities.dpf2(2.0f) * this.h);
-        int dpf2 = (int) (AndroidUtilities.dpf2(6.0f) * this.f33433i);
-        rect.top = dpf2;
-        rect.right = bounds.right - rect.left;
-        rect.bottom = dpf2 + ((int) (AndroidUtilities.dpf2(4.0f) * this.f33433i));
-        rect.offset(0, AndroidUtilities.dp(8.0f));
-        jw jwVar2 = this.e;
-        jwVar2.setBounds(rect);
-        jwVar2.setAlpha(AndroidUtilities.lerp(255, 128, interpolation));
-        jwVar2.draw(canvas);
+    public um0(org.telegram.ui.kx kxVar, tk0 tk0Var, Context context, int i10, int i11) {
+        super(tk0Var, context, i10, i11, false, null);
+        this.f30994k0 = kxVar;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        if (this.f33432g > 0) {
-            int currentTimeMillis = (int) (System.currentTimeMillis() - this.f33432g);
-            int i10 = currentTimeMillis - 300;
-            if (i10 >= 0) {
-                if (i10 < 150) {
-                    a(canvas, i10 / 150.0f);
-                } else {
-                    int i11 = currentTimeMillis - 750;
-                    if (i11 >= 0) {
-                        if (i11 < 200) {
-                            b(canvas, i11 / 200.0f);
-                        } else {
-                            int i12 = currentTimeMillis - 1250;
-                            if (i12 >= 0) {
-                                if (i12 < 150) {
-                                    c(canvas, i12 / 150.0f);
-                                } else {
-                                    c(canvas, 1.0f);
-                                    if (currentTimeMillis - 1400 >= 100) {
-                                        this.f33432g = System.currentTimeMillis();
-                                    }
-                                }
-                            } else {
-                                b(canvas, 1.0f);
-                            }
-                        }
-                    } else {
-                        a(canvas, 1.0f);
-                    }
-                }
-            } else {
-                a(canvas, 0.0f);
-            }
-            invalidateSelf();
-            return;
+    public final void O(boolean z10) {
+        boolean z11;
+        ArrayList arrayList;
+        super.O(z10);
+        tm0 tm0Var = this.f30994k0.f26460n0;
+        if (!this.f26506b0 && !this.f26507c0 && (arrayList = this.V) != null && arrayList.isEmpty()) {
+            z11 = false;
+        } else {
+            z11 = true;
         }
-        a(canvas, 0.0f);
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return this.d;
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.f33430c;
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -3;
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        this.h = rect.width() / this.f33430c;
-        this.f33433i = rect.height() / this.d;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.e.setColorFilter(colorFilter);
-        this.f33431f.setColorFilter(colorFilter);
-        invalidateSelf();
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
+        tm0Var.e(z11, z10);
+        tm0Var.d.setText(org.telegram.messenger.cd.L0(2131748183, null));
+        tm0Var.e.setVisibility(8);
     }
 }

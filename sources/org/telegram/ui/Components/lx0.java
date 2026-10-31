@@ -1,49 +1,97 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class lx0 extends bb {
-    public ct X;
+import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.HashSet;
+public final class lx0 extends FrameLayout implements org.telegram.ui.ActionBar.k6 {
+    public org.telegram.ui.Cells.x9 D;
+    public float E;
+    public float F;
+    public ValueAnimator G;
+    public ValueAnimator H;
+    public ac.a I;
+    public float J;
+    public boolean K;
+    public org.telegram.ui.Components.voip.g L;
+    public Paint f28212a;
+    public Paint f28213b;
+    public Paint f28214c;
+    public Paint d;
+    public boolean e;
+    public bi.t0 f28215f;
+    public TextView h;
+    public TextView f28216n;
+    public TextView f28217r;
+    public TextView f28218s;
+    public TextView f28219w;
+    public View f28220x;
+    public int f28221y;
 
-    public lx0(Context context) {
-        super(context, null, true, false, null);
-        fixNavigationBar();
-        this.E = true;
-        this.f26798y = true;
-        K();
-        nm0 nm0Var = this.d;
-        int i10 = this.backgroundPaddingLeft;
-        nm0Var.setPadding(i10, 0, i10, 0);
-        this.d.j(new ml(this, 15));
-        this.d.setOnItemClickListener(new j(this, 14));
+    @Override
+    public final void invalidate() {
+        TextView textView = this.f28218s;
+        TextView textView2 = this.f28217r;
+        TextView textView3 = this.f28216n;
+        TextView textView4 = this.h;
+        super.invalidate();
+        this.f28215f.invalidate();
+        int i10 = this.f28221y;
+        int i11 = org.telegram.ui.ActionBar.t6.Jj;
+        if (i10 != org.telegram.ui.ActionBar.t6.x0(null, i11, false)) {
+            this.f28221y = org.telegram.ui.ActionBar.t6.x0(null, i11, false);
+            textView4.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.t6.L(org.telegram.messenger.i0.L(10.0f), this.f28221y), (Drawable) null, (Drawable) null, (Drawable) null);
+            textView4.setCompoundDrawablePadding(org.telegram.messenger.i0.L(6.0f));
+            textView3.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.t6.L(org.telegram.messenger.i0.L(10.0f), this.f28221y), (Drawable) null, (Drawable) null, (Drawable) null);
+            textView3.setCompoundDrawablePadding(org.telegram.messenger.i0.L(6.0f));
+            textView2.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.t6.L(org.telegram.messenger.i0.L(10.0f), i0.b.o(this.f28221y, 64)), (Drawable) null, (Drawable) null, (Drawable) null);
+            textView2.setCompoundDrawablePadding(org.telegram.messenger.i0.L(6.0f));
+            textView.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.t6.L(org.telegram.messenger.i0.L(10.0f), i0.b.o(this.f28221y, 127)), (Drawable) null, (Drawable) null, (Drawable) null);
+            textView.setCompoundDrawablePadding(org.telegram.messenger.i0.L(6.0f));
+        }
+        org.telegram.ui.ActionBar.a7.V(this.D.getTextView(), org.telegram.ui.ActionBar.t6.G6, null);
+        org.telegram.ui.ActionBar.a7.i(org.telegram.ui.ActionBar.t6.f20930d7, this.f28220x, null);
     }
 
-    public static void P(lx0 lx0Var, int i10) {
-        Object obj;
-        u61 G = lx0Var.X.G(i10 - 1);
-        if (G != null) {
-            obj = G.G;
-        } else {
-            obj = null;
-        }
-        if (obj instanceof TLRPC.User) {
-            MessagesController.getInstance(lx0Var.currentAccount).openApp(lx0Var.attachedFragment, (TLRPC.User) obj, null, 0, null);
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        ac.a aVar = this.I;
+        if (aVar != null) {
+            aVar.f362a = true;
+            AnimatorSet animatorSet = (AnimatorSet) aVar.f364c;
+            if (!animatorSet.isRunning()) {
+                animatorSet.start();
+            }
         }
     }
 
     @Override
-    public final mm0 v(nm0 nm0Var) {
-        ct ctVar = new ct(nm0Var, getContext(), this.currentAccount, 0, true, this.resourcesProvider);
-        this.X = ctVar;
-        ctVar.f29878r = false;
-        return ctVar;
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        ac.a aVar = this.I;
+        if (aVar != null) {
+            aVar.f362a = false;
+            ((AnimatorSet) aVar.f364c).cancel();
+        }
     }
 
     @Override
-    public final CharSequence y() {
-        return LocaleController.getString(R.string.SearchAppsExamples);
+    public final void updateColors() {
+        try {
+            if (this.f28215f != null && this.h != null && this.f28221y != org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.Jj, false)) {
+                invalidate();
+            }
+        } catch (Exception e) {
+            org.telegram.messenger.f8.g(e, true);
+        }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

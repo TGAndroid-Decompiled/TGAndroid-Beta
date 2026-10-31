@@ -3,17 +3,17 @@ package p2;
 import b2.x;
 import j$.util.Objects;
 public final class v {
-    public final x f46669a;
-    public final String f46670b;
-    public final String f46671c;
+    public final x f44683a;
+    public final String f44684b;
+    public final String f44685c;
 
     public v(x xVar, String str, String str2) {
         b2.w a2 = xVar.a();
-        a2.f3519a = null;
-        a2.f3526k = null;
-        this.f46669a = new x(a2);
-        this.f46670b = str;
-        this.f46671c = str2;
+        a2.f2356a = null;
+        a2.f2363k = null;
+        this.f44683a = new x(a2);
+        this.f44684b = str;
+        this.f44685c = str2;
     }
 
     public final boolean equals(Object obj) {
@@ -24,13 +24,13 @@ public final class v {
             return false;
         }
         v vVar = (v) obj;
-        if (Objects.equals(this.f46669a, vVar.f46669a) && Objects.equals(this.f46670b, vVar.f46670b) && Objects.equals(this.f46671c, vVar.f46671c)) {
+        if (Objects.equals(this.f44683a, vVar.f44683a) && Objects.equals(this.f44684b, vVar.f44684b) && Objects.equals(this.f44685c, vVar.f44685c)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(this.f46669a, this.f46670b, this.f46671c);
+        return Objects.hash(this.f44683a, this.f44684b, this.f44685c);
     }
 }

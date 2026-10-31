@@ -1,40 +1,60 @@
 package org.telegram.ui.web;
 
-import android.app.Activity;
-import di.x7;
-import li.e3;
-import org.json.JSONObject;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.y9;
-public final class d0 implements NotificationCenter.NotificationCenterDelegate {
-    public final x7 f44726a;
-    public final a1 f44727b;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public interface d0 {
+    xh.s0 A();
 
-    public d0(a1 a1Var, x7 x7Var) {
-        this.f44727b = a1Var;
-        this.f44726a = x7Var;
-    }
+    void a();
 
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        int i12 = NotificationCenter.onRequestPermissionResultReceived;
-        if (i10 == i12) {
-            int intValue = ((Integer) objArr[0]).intValue();
-            int[] iArr = (int[]) objArr[2];
-            if (intValue == 5000) {
-                NotificationCenter.getGlobalInstance().removeObserver(this, i12);
-                int i13 = iArr[0];
-                a1 a1Var = this.f44727b;
-                if (i13 == 0) {
-                    Activity activity = a1Var.W;
-                    if (activity != null) {
-                        a1Var.f44675g0 = y9.f0(activity, 3, new e3(a1Var, 13));
-                        return;
-                    }
-                    return;
-                }
-                a1Var.x(this.f44726a, "scan_qr_popup_closed", new JSONObject());
-            }
-        }
-    }
+    void b();
+
+    void c();
+
+    void d(TLRPC.Document document);
+
+    void e(String str);
+
+    void f(ArrayList arrayList);
+
+    String g(boolean z10, boolean z11);
+
+    boolean h();
+
+    void i(boolean z10);
+
+    void j();
+
+    void k(boolean z10);
+
+    void l(boolean z10, boolean z11, String str, long j10, int i10, int i11, boolean z12, boolean z13, String str2);
+
+    void m(int i10);
+
+    void n(TLRPC.InputInvoice inputInvoice, String str, TLObject tLObject);
+
+    void o(int i10, boolean z10);
+
+    void p(boolean z10);
+
+    void q(boolean z10, boolean z11, String str, long j10, int i10, int i11, boolean z12, boolean z13);
+
+    void r(int i10);
+
+    void s();
+
+    void t(boolean z10);
+
+    void u(int i10, int i11, boolean z10);
+
+    void v(TLRPC.User user, String str, ArrayList arrayList);
+
+    void w(boolean z10);
+
+    void x(int i10);
+
+    void y(boolean z10);
+
+    void z();
 }

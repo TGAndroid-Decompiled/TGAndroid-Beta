@@ -1,26 +1,31 @@
 package org.telegram.ui.Components;
-public final class d21 implements Runnable {
-    public final int f27322a;
-    public final f21 f27323b;
-    public final e21 f27324c;
 
-    public d21(f21 f21Var, e21 e21Var, int i10) {
-        this.f27322a = i10;
-        this.f27323b = f21Var;
-        this.f27324c = e21Var;
+import androidx.recyclerview.widget.RecyclerView;
+public final class d21 extends s4.s0 {
+    public final int f25264a;
+    public final o21 f25265b;
+
+    public d21(o21 o21Var, int i10) {
+        this.f25264a = i10;
+        this.f25265b = o21Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f27322a) {
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        switch (this.f25264a) {
             case 0:
-                this.f27323b.b(this.f27324c);
-                return;
-            case 1:
-                this.f27323b.b(this.f27324c);
+                o21 o21Var = this.f25265b;
+                if (o21Var.l()) {
+                    o21Var.m();
+                    return;
+                }
                 return;
             default:
-                this.f27323b.b(this.f27324c);
+                o21 o21Var2 = this.f25265b;
+                if (o21Var2.l()) {
+                    o21Var2.m();
+                    return;
+                }
                 return;
         }
     }

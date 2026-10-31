@@ -8,118 +8,117 @@ import android.os.Handler;
 import android.view.Surface;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
-import li.h5;
-import org.telegram.ui.Wallet.a6;
+import org.telegram.ui.web.v1;
 public final class x implements l {
-    public final MediaCodec f47305a;
-    public final j f47306b;
+    public final MediaCodec f46287a;
+    public final j f46288b;
 
     public x(MediaCodec mediaCodec, j jVar) {
-        this.f47305a = mediaCodec;
-        this.f47306b = jVar;
+        this.f46287a = mediaCodec;
+        this.f46288b = jVar;
         if (Build.VERSION.SDK_INT >= 35 && jVar != null) {
             jVar.a(mediaCodec);
         }
     }
 
     @Override
-    public final void d(long j10, int i10, int i11, int i12) {
-        this.f47305a.queueInputBuffer(i10, 0, i11, j10, i12);
+    public final void a(int i10, int i11, int i12, long j10) {
+        this.f46287a.queueInputBuffer(i10, 0, i11, j10, i12);
     }
 
     @Override
-    public final void e(int i10, h2.d dVar, long j10, int i11) {
-        this.f47305a.queueSecureInputBuffer(i10, 0, dVar.f12565i, j10, i11);
+    public final void b(int i10, h2.d dVar, long j10, int i11) {
+        this.f46287a.queueSecureInputBuffer(i10, 0, dVar.f7582i, j10, i11);
     }
 
     @Override
-    public final void f(int i10) {
-        this.f47305a.releaseOutputBuffer(i10, false);
+    public final void c(int i10) {
+        this.f46287a.releaseOutputBuffer(i10, false);
+    }
+
+    @Override
+    public final void d(a3.m mVar, Handler handler) {
+        this.f46287a.setOnFrameRenderedListener(new a(this, mVar, 1), handler);
+    }
+
+    @Override
+    public final void e() {
+        this.f46287a.detachOutputSurface();
+    }
+
+    @Override
+    public final void f(v1 v1Var) {
+        v1Var.run();
     }
 
     @Override
     public final void flush() {
-        this.f47305a.flush();
+        this.f46287a.flush();
     }
 
     @Override
-    public final void g(a3.m mVar, Handler handler) {
-        this.f47305a.setOnFrameRenderedListener(new a(this, mVar, 1), handler);
+    public final void g(int i10, long j10) {
+        this.f46287a.releaseOutputBuffer(i10, j10);
     }
 
     @Override
     public final ByteBuffer getInputBuffer(int i10) {
-        return this.f47305a.getInputBuffer(i10);
+        return this.f46287a.getInputBuffer(i10);
     }
 
     @Override
     public final ByteBuffer getOutputBuffer(int i10) {
-        return this.f47305a.getOutputBuffer(i10);
+        return this.f46287a.getOutputBuffer(i10);
     }
 
     @Override
     public final MediaFormat getOutputFormat() {
-        return this.f47305a.getOutputFormat();
+        return this.f46287a.getOutputFormat();
     }
 
     @Override
-    public final void h() {
-        this.f47305a.detachOutputSurface();
+    public final int h() {
+        return this.f46287a.dequeueInputBuffer(0L);
     }
 
     @Override
-    public final void i(int i10, long j10) {
-        this.f47305a.releaseOutputBuffer(i10, j10);
-    }
-
-    @Override
-    public final int j() {
-        return this.f47305a.dequeueInputBuffer(0L);
-    }
-
-    @Override
-    public final int k(MediaCodec.BufferInfo bufferInfo) {
+    public final int i(MediaCodec.BufferInfo bufferInfo) {
         int dequeueOutputBuffer;
         do {
-            dequeueOutputBuffer = this.f47305a.dequeueOutputBuffer(bufferInfo, 0L);
+            dequeueOutputBuffer = this.f46287a.dequeueOutputBuffer(bufferInfo, 0L);
         } while (dequeueOutputBuffer == -3);
         return dequeueOutputBuffer;
     }
 
     @Override
-    public final boolean l(h5 h5Var) {
+    public final boolean j(n2.u uVar) {
         return false;
     }
 
     @Override
-    public final void m(int i10) {
-        this.f47305a.setVideoScalingMode(i10);
+    public final void k(int i10) {
+        this.f46287a.setVideoScalingMode(i10);
     }
 
     @Override
-    public final void n(Surface surface) {
-        this.f47305a.setOutputSurface(surface);
+    public final void l(Surface surface) {
+        this.f46287a.setOutputSurface(surface);
     }
 
     @Override
-    public final void o(a6 a6Var) {
-        a6Var.run();
+    public final void m(ArrayList arrayList) {
+        this.f46287a.subscribeToVendorParameters(arrayList);
     }
 
     @Override
-    public final void p(ArrayList arrayList) {
-        this.f47305a.subscribeToVendorParameters(arrayList);
-    }
-
-    @Override
-    public final void q(ArrayList arrayList) {
-        this.f47305a.unsubscribeFromVendorParameters(arrayList);
+    public final void n(ArrayList arrayList) {
+        this.f46287a.unsubscribeFromVendorParameters(arrayList);
     }
 
     @Override
     public final void release() {
-        j jVar = this.f47306b;
-        MediaCodec mediaCodec = this.f47305a;
+        j jVar = this.f46288b;
+        MediaCodec mediaCodec = this.f46287a;
         try {
             int i10 = Build.VERSION.SDK_INT;
             if (i10 >= 30 && i10 < 33) {
@@ -140,6 +139,6 @@ public final class x implements l {
 
     @Override
     public final void setParameters(Bundle bundle) {
-        this.f47305a.setParameters(bundle);
+        this.f46287a.setParameters(bundle);
     }
 }

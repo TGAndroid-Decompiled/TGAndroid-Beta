@@ -1,26 +1,32 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
-public final class zi implements Runnable {
-    public final int f22006a;
-    public final SendMessagesHelper f22007b;
-    public final TLRPC.Updates f22008c;
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
+public final class zi extends CharacterStyle {
+    public final int f19541a;
 
-    public zi(SendMessagesHelper sendMessagesHelper, TLRPC.Updates updates, int i10) {
-        this.f22006a = i10;
-        this.f22007b = sendMessagesHelper;
-        this.f22008c = updates;
+    public zi(int i10) {
+        this.f19541a = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f22006a) {
+    public final void updateDrawState(TextPaint textPaint) {
+        switch (this.f19541a) {
             case 0:
-                this.f22007b.lambda$performSendMessageRequest$97(this.f22008c);
+                textPaint.setTextSize(textPaint.getTextSize() * 0.8f);
+                textPaint.setColor(org.telegram.ui.ActionBar.t6.T2.getColor());
+                return;
+            case 1:
+                textPaint.setColor(org.telegram.ui.ActionBar.t6.f21130o2.linkColor);
+                return;
+            case 2:
                 return;
             default:
-                this.f22007b.lambda$performSendMessageRequestMulti$75(this.f22008c);
+                textPaint.setAlpha(128);
                 return;
         }
+    }
+
+    private final void a(TextPaint textPaint) {
     }
 }

@@ -1,15 +1,15 @@
 package org.telegram.ui;
-public final class kp0 extends w51 {
-    public final np0 e;
 
-    public kp0(np0 np0Var, jp0 jp0Var) {
-        super(jp0Var);
-        this.e = np0Var;
-    }
-
+import android.animation.ValueAnimator;
+import android.graphics.drawable.Drawable;
+public final class kp0 implements ValueAnimator.AnimatorUpdateListener {
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.e.f41855o0 = null;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        org.telegram.ui.Components.bb bbVar;
+        Drawable[] drawableArr = PhotoViewer.U8;
+        org.telegram.ui.Components.wb wbVar = org.telegram.ui.Components.wb.f32128w;
+        if (wbVar != null && (bbVar = wbVar.e) != null) {
+            bbVar.updatePosition();
+        }
     }
 }

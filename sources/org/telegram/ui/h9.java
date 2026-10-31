@@ -1,42 +1,43 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import java.util.HashSet;
-import org.telegram.messenger.AccountInstance;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
+import android.content.Context;
+import android.view.View;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
-public final class h9 extends t60 {
-    public final int f39819v0;
-    public final o9 f39820w0;
+public final class h9 extends org.telegram.ui.Components.z41 {
+    public static final int f37850b = 0;
 
-    public h9(Bundle bundle, int i10, o9 o9Var) {
-        super(bundle);
-        this.f39819v0 = i10;
-        this.f39820w0 = o9Var;
+    static {
+        org.telegram.ui.Components.z41.h(new org.telegram.ui.Components.z41());
     }
 
     @Override
-    public final void o0(HashSet hashSet) {
-        int size = hashSet.size();
-        int i10 = this.f39819v0;
-        if (size == 1) {
-            TLRPC.User user = MessagesController.getInstance(i10).getUser((Long) hashSet.iterator().next());
-            TLRPC.UserFull userFull = MessagesController.getInstance(i10).getUserFull(user.f22177id);
-            if (userFull == null) {
-                TLRPC.TL_users_getFullUser tL_users_getFullUser = new TLRPC.TL_users_getFullUser();
-                tL_users_getFullUser.f22170id = MessagesController.getInstance(i10).getInputUser(user.f22177id);
-                ConnectionsManager.getInstance(i10).sendRequest(tL_users_getFullUser, new ig.u(this, i10, user, 3));
-                return;
+    public final void b(View view, org.telegram.ui.Components.a51 a51Var, boolean z10, org.telegram.ui.Components.p51 p51Var, org.telegram.ui.Components.u51 u51Var) {
+        String lowerCase;
+        i9 i9Var = (i9) view;
+        TLRPC.Chat chat = (TLRPC.Chat) a51Var.G;
+        View.OnClickListener onClickListener = a51Var.D;
+        i9Var.f38212c = chat;
+        org.telegram.ui.Components.ch0 ch0Var = i9Var.f38211b;
+        ch0Var.setTag(Long.valueOf(chat.f19793id));
+        if (org.telegram.messenger.w3.T(chat) && !chat.megagroup) {
+            if (!org.telegram.messenger.w3.t0(chat)) {
+                lowerCase = org.telegram.messenger.cd.L0(2131752329, null).toLowerCase();
+            } else {
+                lowerCase = org.telegram.messenger.cd.L0(2131752318, null).toLowerCase();
             }
-            org.telegram.ui.Components.voip.g2.m(user, false, userFull.video_calls_available, getParentActivity(), userFull, AccountInstance.getInstance(i10));
+        } else if (chat.has_geo) {
+            lowerCase = org.telegram.messenger.cd.L0(2131748657, null);
+        } else if (!org.telegram.messenger.w3.t0(chat)) {
+            lowerCase = org.telegram.messenger.cd.L0(2131748656, null).toLowerCase();
         } else {
-            TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
-            createconferencecall.random_id = Utilities.random.nextInt();
-            ConnectionsManager.getInstance(i10).sendRequest(createconferencecall, new ig.u(i10, hashSet, this.f39820w0));
+            lowerCase = org.telegram.messenger.cd.L0(2131748653, null).toLowerCase();
         }
-        finishFragment();
+        i9Var.f38210a.z(chat, null, null, lowerCase, false, false);
+        ch0Var.setOnClickListener(onClickListener);
+    }
+
+    @Override
+    public final View d(Context context, org.telegram.ui.Components.tk0 tk0Var, int i10, org.telegram.ui.ActionBar.p6 p6Var) {
+        return new i9(context);
     }
 }

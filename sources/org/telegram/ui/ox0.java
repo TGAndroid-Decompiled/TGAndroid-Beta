@@ -1,39 +1,25 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class ox0 implements Runnable {
-    public final int f42246a;
-    public final PrivacySettingsActivity f42247b;
+import android.text.TextPaint;
+import android.text.style.URLSpan;
+import android.view.View;
+public final class ox0 extends URLSpan {
+    public final String f40389a;
+    public final xx0 f40390b;
 
-    public ox0(PrivacySettingsActivity privacySettingsActivity, int i10) {
-        this.f42246a = i10;
-        this.f42247b = privacySettingsActivity;
+    public ox0(xx0 xx0Var, String str, String str2) {
+        super(str);
+        this.f40390b = xx0Var;
+        this.f40389a = str2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f42246a) {
-            case 0:
-                PrivacySettingsActivity privacySettingsActivity = this.f42247b;
-                privacySettingsActivity.f35959a.l();
-                privacySettingsActivity.R = true;
-                return;
-            case 1:
-                this.f42247b.f35963c.dismiss();
-                return;
-            default:
-                PrivacySettingsActivity privacySettingsActivity2 = this.f42247b;
-                org.telegram.ui.Components.yb ybVar = new org.telegram.ui.Components.yb(privacySettingsActivity2.getParentActivity(), null);
-                ybVar.d(R.raw.email_check_inbox, new String[0]);
-                ybVar.f35028b.setText(LocaleController.getString(R.string.YourLoginEmailChangedSuccess));
-                org.telegram.ui.Components.qc.g(privacySettingsActivity2, ybVar, 1500).j();
-                try {
-                    privacySettingsActivity2.fragmentView.performHapticFeedback(3, 2);
-                } catch (Exception unused) {
-                }
-                privacySettingsActivity2.A0();
-                return;
-        }
+    public final void onClick(View view) {
+        gf.f.r(this.f40390b.e.getParentActivity(), this.f40389a);
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setUnderlineText(true);
     }
 }

@@ -1,28 +1,28 @@
 package org.telegram.messenger.secretmedia;
 
-import a8.yb;
 import android.content.Context;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.LongSparseArray;
-import e2.n0;
-import g2.a0;
+import e2.l0;
 import g2.b;
+import g2.b0;
 import g2.c;
-import g2.c0;
+import g2.d0;
 import g2.e;
 import g2.h;
-import g2.l;
 import g2.m;
-import g2.r;
+import g2.n;
+import g2.s;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import n4.s;
-import org.telegram.messenger.FileStreamLoadOperation;
+import n4.q;
+import org.telegram.messenger.x8;
+import v7.t6;
 public final class ExtendedDefaultDataSource implements h {
     private static final String SCHEME_ASSET = "asset";
     private static final String SCHEME_CONTENT = "content";
@@ -40,8 +40,8 @@ public final class ExtendedDefaultDataSource implements h {
     private final LongSparseArray<Uri> mtprotoUris;
     private h rawResourceDataSource;
     private h rtmpDataSource;
-    private FileStreamLoadOperation streamLoadOperation;
-    private final List<c0> transferListeners;
+    private x8 streamLoadOperation;
+    private final List<d0> transferListeners;
 
     public ExtendedDefaultDataSource(Context context, String str, boolean z10) {
         this(context, str, 8000, 8000, z10);
@@ -100,9 +100,9 @@ public final class ExtendedDefaultDataSource implements h {
 
     private h getRawResourceDataSource() {
         if (this.rawResourceDataSource == null) {
-            a0 a0Var = new a0(this.context);
-            this.rawResourceDataSource = a0Var;
-            addListenersToDataSource(a0Var);
+            b0 b0Var = new b0(this.context);
+            this.rawResourceDataSource = b0Var;
+            addListenersToDataSource(b0Var);
         }
         return this.rawResourceDataSource;
     }
@@ -127,29 +127,29 @@ public final class ExtendedDefaultDataSource implements h {
 
     private h getStreamDataSource() {
         if (this.streamLoadOperation == null) {
-            FileStreamLoadOperation fileStreamLoadOperation = new FileStreamLoadOperation();
-            this.streamLoadOperation = fileStreamLoadOperation;
-            addListenersToDataSource(fileStreamLoadOperation);
+            x8 x8Var = new x8();
+            this.streamLoadOperation = x8Var;
+            addListenersToDataSource(x8Var);
         }
         return this.streamLoadOperation;
     }
 
-    private void maybeAddListenerToDataSource(h hVar, c0 c0Var) {
+    private void maybeAddListenerToDataSource(h hVar, d0 d0Var) {
         if (hVar != null) {
-            hVar.addTransferListener(c0Var);
+            hVar.addTransferListener(d0Var);
         }
     }
 
     @Override
-    public void addTransferListener(c0 c0Var) {
-        this.baseDataSource.addTransferListener(c0Var);
-        this.transferListeners.add(c0Var);
-        maybeAddListenerToDataSource(this.fileDataSource, c0Var);
-        maybeAddListenerToDataSource(this.assetDataSource, c0Var);
-        maybeAddListenerToDataSource(this.contentDataSource, c0Var);
-        maybeAddListenerToDataSource(this.rtmpDataSource, c0Var);
-        maybeAddListenerToDataSource(this.dataSchemeDataSource, c0Var);
-        maybeAddListenerToDataSource(this.rawResourceDataSource, c0Var);
+    public void addTransferListener(d0 d0Var) {
+        this.baseDataSource.addTransferListener(d0Var);
+        this.transferListeners.add(d0Var);
+        maybeAddListenerToDataSource(this.fileDataSource, d0Var);
+        maybeAddListenerToDataSource(this.assetDataSource, d0Var);
+        maybeAddListenerToDataSource(this.contentDataSource, d0Var);
+        maybeAddListenerToDataSource(this.rtmpDataSource, d0Var);
+        maybeAddListenerToDataSource(this.dataSchemeDataSource, d0Var);
+        maybeAddListenerToDataSource(this.rawResourceDataSource, d0Var);
     }
 
     @Override
@@ -183,23 +183,23 @@ public final class ExtendedDefaultDataSource implements h {
     }
 
     @Override
-    public long open(m mVar) {
+    public long open(n nVar) {
         boolean z10;
         if (this.dataSource == null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        yb.p(z10);
-        Uri uri = mVar.f12257a;
+        t6.p(z10);
+        Uri uri = nVar.f7314a;
         if ("mtproto".equals(uri.getScheme())) {
-            uri = this.mtprotoUris.get(Long.parseLong(mVar.f12257a.toString().substring(8)));
-            l a2 = mVar.a();
+            uri = this.mtprotoUris.get(Long.parseLong(nVar.f7314a.toString().substring(8)));
+            m a2 = nVar.a();
             a2.e = uri;
-            mVar = a2.d();
+            nVar = a2.d();
         }
         String scheme = uri.getScheme();
-        String str = n0.f9691a;
+        String str = l0.f6165a;
         String scheme2 = uri.getScheme();
         if (!TextUtils.isEmpty(scheme2) && !Objects.equals(scheme2, "file")) {
             if ("tg".equals(scheme)) {
@@ -227,7 +227,7 @@ public final class ExtendedDefaultDataSource implements h {
                 this.dataSource = getFileDataSource();
             }
         }
-        return this.dataSource.open(mVar);
+        return this.dataSource.open(nVar);
     }
 
     @Override
@@ -238,7 +238,7 @@ public final class ExtendedDefaultDataSource implements h {
     }
 
     public ExtendedDefaultDataSource(Context context, String str, int i10, int i11, boolean z10) {
-        this(context, new r(str, i10, i11, z10, new s(19)), (LongSparseArray<Uri>) null);
+        this(context, new s(str, i10, i11, z10, new q(19)), (LongSparseArray<Uri>) null);
     }
 
     public ExtendedDefaultDataSource(Context context, h hVar, LongSparseArray<Uri> longSparseArray) {
@@ -250,11 +250,11 @@ public final class ExtendedDefaultDataSource implements h {
     }
 
     @Deprecated
-    public ExtendedDefaultDataSource(Context context, c0 c0Var, h hVar, LongSparseArray<Uri> longSparseArray) {
+    public ExtendedDefaultDataSource(Context context, d0 d0Var, h hVar, LongSparseArray<Uri> longSparseArray) {
         this(context, hVar, longSparseArray);
-        if (c0Var != null) {
-            this.transferListeners.add(c0Var);
-            hVar.addTransferListener(c0Var);
+        if (d0Var != null) {
+            this.transferListeners.add(d0Var);
+            hVar.addTransferListener(d0Var);
         }
     }
 }

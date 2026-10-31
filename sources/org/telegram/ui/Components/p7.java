@@ -1,41 +1,20 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class p7 implements am0 {
-    public final int f31517a;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class p7 extends nn0 {
+    public final w7 m0;
 
-    public p7(int i10) {
-        this.f31517a = i10;
+    public p7(w7 w7Var, Context context, org.telegram.ui.ActionBar.p6 p6Var) {
+        super(context, p6Var, false);
+        this.m0 = w7Var;
     }
 
     @Override
-    public final void c(int i10, View view) {
-        switch (this.f31517a) {
-            case 0:
-                if (view instanceof org.telegram.ui.Cells.w) {
-                    ((org.telegram.ui.Cells.w) view).a();
-                    return;
-                }
-                return;
-            case 1:
-                boolean z10 = ChatAttachAlertPhotoLayout.f26017q1;
-                if (view instanceof org.telegram.ui.Cells.x5) {
-                    org.telegram.ui.Cells.x5 x5Var = (org.telegram.ui.Cells.x5) view;
-                    x5Var.f25708w.b(x5Var);
-                    return;
-                }
-                return;
-            case 2:
-                return;
-            case 3:
-                int i11 = zh.c.f52970a0;
-                return;
-            default:
-                int i12 = zh.m.A0;
-                return;
+    public final boolean d(MotionEvent motionEvent) {
+        if (this.m0.f32081x2 != 0) {
+            return false;
         }
-    }
-
-    private final void a(int i10, View view) {
+        return super.d(motionEvent);
     }
 }

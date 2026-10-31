@@ -1,33 +1,18 @@
 package c5;
 
-import j$.util.Objects;
-import org.chromium.support_lib_boundary.WebMessagePayloadBoundaryInterface;
-public final class j implements WebMessagePayloadBoundaryInterface {
-    public final byte[] f6147a;
+import org.json.JSONObject;
+public final class j {
+    public final String f3793a;
+    public final long f3794b;
+    public final String f3795c;
+    public final String d;
 
-    public j(byte[] bArr) {
-        this.f6147a = bArr;
-    }
-
-    @Override
-    public final byte[] getAsArrayBuffer() {
-        byte[] bArr = this.f6147a;
-        Objects.requireNonNull(bArr);
-        return bArr;
-    }
-
-    @Override
-    public final String getAsString() {
-        throw new IllegalStateException("Expected 0, but type is 1");
-    }
-
-    @Override
-    public final String[] getSupportedFeatures() {
-        return new String[0];
-    }
-
-    @Override
-    public final int getType() {
-        return 1;
+    public j(JSONObject jSONObject) {
+        this.d = jSONObject.optString("billingPeriod");
+        this.f3795c = jSONObject.optString("priceCurrencyCode");
+        this.f3793a = jSONObject.optString("formattedPrice");
+        this.f3794b = jSONObject.optLong("priceAmountMicros");
+        jSONObject.optInt("recurrenceMode");
+        jSONObject.optInt("billingCycleCount");
     }
 }

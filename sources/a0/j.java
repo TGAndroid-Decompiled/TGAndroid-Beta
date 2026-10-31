@@ -3,8 +3,8 @@ package a0;
 import java.util.LinkedHashMap;
 public class j {
     public final int f19a;
-    public final b6.i f20b;
-    public final pa.d f21c;
+    public final a6.i f20b;
+    public final hb.a f21c;
     public int d;
     public int e;
     public int f22f;
@@ -12,8 +12,8 @@ public class j {
     public j(int i10) {
         this.f19a = i10;
         if (i10 > 0) {
-            this.f20b = new b6.i(5);
-            this.f21c = new Object();
+            this.f20b = new a6.i(6);
+            this.f21c = new hb.a(3);
             return;
         }
         throw new IllegalArgumentException("maxSize <= 0");
@@ -22,9 +22,9 @@ public class j {
     public final Object a(Object key) {
         kotlin.jvm.internal.i.e(key, "key");
         synchronized (this.f21c) {
-            b6.i iVar = this.f20b;
+            a6.i iVar = this.f20b;
             iVar.getClass();
-            Object obj = ((LinkedHashMap) iVar.f3670b).get(key);
+            Object obj = ((LinkedHashMap) iVar.f307b).get(key);
             if (obj != null) {
                 this.e++;
                 return obj;
@@ -39,9 +39,9 @@ public class j {
         kotlin.jvm.internal.i.e(key, "key");
         synchronized (this.f21c) {
             this.d++;
-            b6.i iVar = this.f20b;
+            a6.i iVar = this.f20b;
             iVar.getClass();
-            put = ((LinkedHashMap) iVar.f3670b).put(key, obj);
+            put = ((LinkedHashMap) iVar.f307b).put(key, obj);
             if (put != null) {
                 this.d--;
             }

@@ -20,14 +20,14 @@ public interface WebViewBuilderBoundaryInterface {
 
     public static class Config implements Consumer<BiConsumer<Integer, Object>> {
         public int baseline = 0;
-        public final ArrayList f19505a = new ArrayList();
-        public final ArrayList f19506b = new ArrayList();
-        public final ArrayList f19507c = new ArrayList();
+        public final ArrayList f14314a = new ArrayList();
+        public final ArrayList f14315b = new ArrayList();
+        public final ArrayList f14316c = new ArrayList();
 
         public void addJavascriptInterface(Object obj, String str, List<String> list) {
-            this.f19505a.add(obj);
-            this.f19506b.add(str);
-            this.f19507c.add(list);
+            this.f14314a.add(obj);
+            this.f14315b.add(str);
+            this.f14316c.add(list);
         }
 
         public Consumer andThen(Consumer consumer) {
@@ -37,7 +37,7 @@ public interface WebViewBuilderBoundaryInterface {
         @Override
         public void accept(BiConsumer<Integer, Object> biConsumer) {
             biConsumer.accept(0, Integer.valueOf(this.baseline));
-            biConsumer.accept(1, new Object[]{this.f19505a, this.f19506b, this.f19507c});
+            biConsumer.accept(1, new Object[]{this.f14314a, this.f14315b, this.f14316c});
         }
     }
 

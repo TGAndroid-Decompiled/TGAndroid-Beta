@@ -5,13 +5,13 @@ import android.net.Uri;
 public interface h {
     Uri a();
 
-    void b();
+    void c();
 
-    Uri c();
+    Uri d();
 
-    Object e();
+    Object f();
 
-    void f();
+    void g();
 
     ClipDescription getDescription();
 }

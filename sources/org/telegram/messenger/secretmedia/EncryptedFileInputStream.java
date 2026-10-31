@@ -3,8 +3,8 @@ package org.telegram.messenger.secretmedia;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.RandomAccessFile;
-import org.telegram.messenger.SecureDocumentKey;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.qw;
 public class EncryptedFileInputStream extends FileInputStream {
     private static final int MODE_CBC = 1;
     private static final int MODE_CTR = 0;
@@ -24,8 +24,8 @@ public class EncryptedFileInputStream extends FileInputStream {
         randomAccessFile.close();
     }
 
-    public static void decryptBytesWithKeyFile(byte[] bArr, int i10, int i11, SecureDocumentKey secureDocumentKey) {
-        Utilities.aesCbcEncryptionByteArraySafe(bArr, secureDocumentKey.file_key, secureDocumentKey.file_iv, i10, i11, 0, 0);
+    public static void decryptBytesWithKeyFile(byte[] bArr, int i10, int i11, qw qwVar) {
+        Utilities.b(bArr, qwVar.f17636a, qwVar.f17637b, i10, i11, 0, 0);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class EncryptedFileInputStream extends FileInputStream {
         byte[] bArr2;
         if (this.currentMode == 1 && this.fileOffset == 0) {
             super.read(new byte[32], 0, 32);
-            Utilities.aesCbcEncryptionByteArraySafe(bArr, this.key, this.iv, i10, i11, this.fileOffset, 0);
+            Utilities.b(bArr, this.key, this.iv, i10, i11, this.fileOffset, 0);
             this.fileOffset += 32;
             skip((bArr2[0] & 255) - 32);
         }
@@ -42,7 +42,7 @@ public class EncryptedFileInputStream extends FileInputStream {
         int i13 = this.currentMode;
         if (i13 == 1) {
             i12 = i11;
-            Utilities.aesCbcEncryptionByteArraySafe(bArr, this.key, this.iv, i10, i12, this.fileOffset, 0);
+            Utilities.b(bArr, this.key, this.iv, i10, i12, this.fileOffset, 0);
         } else {
             i12 = i11;
             if (i13 == 0) {
@@ -69,14 +69,14 @@ public class EncryptedFileInputStream extends FileInputStream {
         Utilities.aesCtrDecryptionByteArray(bArr, bArr2, bArr3, i10, i11, 0);
     }
 
-    public EncryptedFileInputStream(File file, SecureDocumentKey secureDocumentKey) {
+    public EncryptedFileInputStream(File file, qw qwVar) {
         super(file);
         byte[] bArr = new byte[32];
         this.key = bArr;
         this.iv = new byte[16];
         this.currentMode = 1;
-        System.arraycopy(secureDocumentKey.file_key, 0, bArr, 0, bArr.length);
-        byte[] bArr2 = secureDocumentKey.file_iv;
+        System.arraycopy(qwVar.f17636a, 0, bArr, 0, bArr.length);
+        byte[] bArr2 = qwVar.f17637b;
         byte[] bArr3 = this.iv;
         System.arraycopy(bArr2, 0, bArr3, 0, bArr3.length);
     }

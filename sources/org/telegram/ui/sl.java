@@ -1,30 +1,25 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.ui.Components.UndoView;
-public final class sl extends org.telegram.ui.Components.y20 {
-    public final wn f43352b;
+import android.graphics.Bitmap;
+import java.util.ArrayList;
+public final class sl extends yr0 {
+    public final Bitmap f41536a;
+    public final ArrayList f41537b;
+    public final un f41538c;
 
-    public sl(wn wnVar, Activity activity, org.telegram.ui.ActionBar.r2 r2Var) {
-        super(activity, r2Var);
-        this.f43352b = wnVar;
+    public sl(un unVar, Bitmap bitmap, ArrayList arrayList) {
+        this.f41538c = unVar;
+        this.f41536a = bitmap;
+        this.f41537b = arrayList;
     }
 
     @Override
-    public final void m() {
-        wn wnVar = this.f43352b;
-        wnVar.Z7();
-        UndoView undoView = wnVar.K3;
-        if (undoView == null) {
-            return;
-        }
-        undoView.j(75, 0L, null);
-        wnVar.getMessagesController().removeSuggestion(wnVar.f45168j6, "CONVERT_GIGAGROUP");
+    public final org.telegram.messenger.kc j(int i10) {
+        return new org.telegram.messenger.kc(this.f41536a, null, 0);
     }
 
     @Override
-    public final void n() {
-        wn wnVar = this.f43352b;
-        wnVar.getMessagesController().convertToGigaGroup(wnVar.getParentActivity(), wnVar.e, wnVar, new y0(this, 21));
+    public final void o(int i10, org.telegram.messenger.x20 x20Var, boolean z10, int i11, int i12, boolean z11) {
+        this.f41538c.t((org.telegram.messenger.ef) this.f41537b.get(0), x20Var, z10, i11, 0, z11, 0L);
     }
 }

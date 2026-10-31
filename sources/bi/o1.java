@@ -1,9 +1,65 @@
 package bi;
 
-import android.view.View;
-public final class o1 extends s4.l {
+import org.telegram.ui.kh0;
+public final class o1 implements Runnable {
+    public final int f3254a;
+    public final k2 f3255b;
+
+    public o1(k2 k2Var, int i10) {
+        this.f3254a = i10;
+        this.f3255b = k2Var;
+    }
+
     @Override
-    public final float A(View view) {
-        return 0.3f;
+    public final void run() {
+        switch (this.f3254a) {
+            case 0:
+                this.f3255b.F0();
+                return;
+            case 1:
+                k2 k2Var = this.f3255b;
+                if (k2Var.K0 != 0) {
+                    k2Var.f3135a0.setVisibility(8);
+                    return;
+                }
+                return;
+            case 2:
+                k2 k2Var2 = this.f3255b;
+                if (k2Var2.K0 != 1) {
+                    k2Var2.f3145h0.setVisibility(8);
+                    return;
+                }
+                return;
+            case 3:
+                k2 k2Var3 = this.f3255b;
+                if (k2Var3.K0 != 2) {
+                    k2Var3.f3161v0.setVisibility(8);
+                    return;
+                }
+                return;
+            case 4:
+                k2.Z(this.f3255b);
+                return;
+            case 5:
+                k2 k2Var4 = this.f3255b;
+                k2Var4.w0(2147483646, 0, true);
+                kh0 kh0Var = k2Var4.O0;
+                if (kh0Var != null) {
+                    kh0Var.g(false);
+                    k2Var4.O0 = null;
+                    return;
+                }
+                return;
+            default:
+                k2 k2Var5 = this.f3255b;
+                k2Var5.w0(0, 0, false);
+                kh0 kh0Var2 = k2Var5.O0;
+                if (kh0Var2 != null) {
+                    kh0Var2.g(true);
+                    k2Var5.O0 = null;
+                    return;
+                }
+                return;
+        }
     }
 }

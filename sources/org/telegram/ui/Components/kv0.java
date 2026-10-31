@@ -1,81 +1,34 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SavedMessagesController;
-public final class kv0 extends s4.w {
-    public final mv0 d;
+import org.telegram.ui.ProfileActivity;
+public final class kv0 implements Runnable {
+    public final int f27931a;
+    public final nv0 f27932b;
 
-    public kv0(mv0 mv0Var) {
-        this.d = mv0Var;
+    public kv0(nv0 nv0Var, int i10) {
+        this.f27931a = i10;
+        this.f27932b = nv0Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, s4.e1 e1Var) {
-        super.a(recyclerView, e1Var);
-        e1Var.f47773a.setPressed(false);
-    }
-
-    @Override
-    public final int e(RecyclerView recyclerView, s4.e1 e1Var) {
-        SavedMessagesController.SavedDialog r6;
-        int l4 = s4.w.l(0, 0);
-        bw0 bw0Var = this.d.f30642x;
-        if (bw0Var.E1 && recyclerView.getAdapter() != bw0Var.U && (r6 = r(e1Var)) != null && r6.pinned) {
-            return s4.w.l(3, 0);
+    public final void run() {
+        switch (this.f27931a) {
+            case 0:
+                nv0 nv0Var = this.f27932b;
+                nv0Var.invalidate();
+                org.telegram.messenger.i0.g3(new kv0(nv0Var, 1));
+                return;
+            default:
+                nv0 nv0Var2 = this.f27932b;
+                mv0 mv0Var = nv0Var2.e;
+                if (mv0Var != null) {
+                    nv0Var2.getVisibilityFactor();
+                    ProfileActivity profileActivity = ((org.telegram.ui.bv0) mv0Var).f36310b;
+                    profileActivity.f33890r.setTranslationX(profileActivity.l4(profileActivity.f33912t6, profileActivity.f33926v6));
+                    profileActivity.f33890r.setTranslationY(profileActivity.m4(profileActivity.f33934w6));
+                    return;
+                }
+                return;
         }
-        return l4;
-    }
-
-    @Override
-    public final boolean n(RecyclerView recyclerView, s4.e1 e1Var, s4.e1 e1Var2) {
-        mv0 mv0Var = this.d;
-        ArrayList arrayList = mv0Var.f30637f;
-        bw0 bw0Var = mv0Var.f30642x;
-        if (bw0Var.E1 && recyclerView.getAdapter() != bw0Var.U) {
-            SavedMessagesController.SavedDialog r6 = r(e1Var);
-            SavedMessagesController.SavedDialog r10 = r(e1Var2);
-            if (r6 != null && r10 != null && r6.pinned && r10.pinned) {
-                int b10 = e1Var.b();
-                int b11 = e1Var2.b();
-                arrayList.remove(b10);
-                arrayList.add(b11, r6);
-                mv0Var.p(b10, b11);
-                mv0Var.h = true;
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final void p(s4.e1 e1Var, int i10) {
-        tu0 tu0Var;
-        mv0 mv0Var = this.d;
-        np0 np0Var = mv0Var.f30638n;
-        if (e1Var != null && (tu0Var = mv0Var.f30640s) != null) {
-            tu0Var.d1(false);
-        }
-        if (i10 == 0) {
-            AndroidUtilities.cancelRunOnUIThread(np0Var);
-            AndroidUtilities.runOnUIThread(np0Var, 300L);
-        }
-    }
-
-    public final SavedMessagesController.SavedDialog r(s4.e1 e1Var) {
-        int b10;
-        if (e1Var != null && (b10 = e1Var.b()) >= 0) {
-            mv0 mv0Var = this.d;
-            if (b10 < mv0Var.f30637f.size()) {
-                return (SavedMessagesController.SavedDialog) mv0Var.f30637f.get(b10);
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public final void q(s4.e1 e1Var) {
     }
 }

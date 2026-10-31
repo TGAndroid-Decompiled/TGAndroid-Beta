@@ -1,24 +1,13 @@
 package org.telegram.ui;
+public final class ij0 extends org.telegram.ui.ActionBar.d5 {
+    public final vh.d f38268r;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class ij0 implements Runnable {
-    public final int f40200a;
-    public final qj0 f40201b;
-
-    public ij0(qj0 qj0Var, int i10) {
-        this.f40200a = i10;
-        this.f40201b = qj0Var;
+    public ij0(vh.d dVar) {
+        this.f38268r = dVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40200a) {
-            case 0:
-                AndroidUtilities.hideKeyboard(this.f40201b.f42726b);
-                return;
-            default:
-                AndroidUtilities.showKeyboard(this.f40201b.f42728c.getEditText());
-                return;
-        }
+    public final boolean y() {
+        return !this.f38268r.Q;
     }
 }

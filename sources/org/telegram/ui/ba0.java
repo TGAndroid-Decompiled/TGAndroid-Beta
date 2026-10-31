@@ -1,64 +1,35 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import java.util.regex.Pattern;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.NotificationsController;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.UserConfig;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class ba0 implements org.telegram.ui.Components.ke0, org.telegram.ui.ActionBar.b2 {
-    public final LaunchActivity f37962a;
+import android.content.ComponentName;
+import android.content.Context;
+public enum ba0 {
+    DEFAULT("DefaultIcon", 2131231491, 2131558426, 2131754237, false),
+    VINTAGE("VintageIcon", 2131231486, 2131558419, 2131754233, false),
+    AQUA("AquaIcon", 2131231480, 2131558426, 2131754239, false),
+    PREMIUM("PremiumIcon", 2131231477, 2131558407, 2131754235, true),
+    TURBO("TurboIcon", 2131231483, 2131558414, 2131754234, true),
+    NOX("NoxIcon", 2131558402, 2131558426, 2131754236, true);
+    
+    public final String f36147a;
+    public final int f36148b;
+    public final int f36149c;
+    public final int d;
+    public final boolean e;
+    public ComponentName f36150f;
 
-    public ba0(LaunchActivity launchActivity) {
-        this.f37962a = launchActivity;
+    ba0(String str, int i10, int i11, int i12, boolean z10) {
+        this.f36147a = str;
+        this.f36148b = i10;
+        this.f36149c = i11;
+        this.d = i12;
+        this.e = z10;
     }
 
-    @Override
-    public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        Pattern pattern = LaunchActivity.D1;
-        MessagesController.getInstance(this.f37962a.O).performLogout(2);
-    }
-
-    @Override
-    public void l(org.telegram.ui.Components.me0 me0Var) {
-        Pattern pattern = LaunchActivity.D1;
-        SharedConfig.isWaitingForPasscodeEnter = false;
-        LaunchActivity launchActivity = this.f37962a;
-        Intent intent = launchActivity.L0;
-        if (intent != null) {
-            launchActivity.X(intent, launchActivity.M0, launchActivity.N0, true, null, false, true);
-            launchActivity.L0 = null;
+    public final ComponentName a(Context context) {
+        if (this.f36150f == null) {
+            String packageName = context.getPackageName();
+            this.f36150f = new ComponentName(packageName, "org.telegram.messenger." + this.f36147a);
         }
-        launchActivity.f35577q0.getView().setVisibility(0);
-        launchActivity.f35577q0.W(true, true);
-        ActionBarLayout actionBarLayout = launchActivity.f35577q0;
-        org.telegram.ui.ActionBar.r2 lastFragment = actionBarLayout.getLastFragment();
-        if (lastFragment != null) {
-            lastFragment.setTitleOverlayText(actionBarLayout.M0, actionBarLayout.N0, actionBarLayout.O0);
-        }
-        if (AndroidUtilities.isTablet()) {
-            ActionBarLayout actionBarLayout2 = launchActivity.f35579r0;
-            if (actionBarLayout2 != null) {
-                actionBarLayout2.W(true, true);
-                if (launchActivity.f35579r0.getView().getVisibility() == 4) {
-                    launchActivity.f35579r0.getView().setVisibility(0);
-                }
-            }
-            ActionBarLayout actionBarLayout3 = launchActivity.f35581s0;
-            if (actionBarLayout3 != null) {
-                actionBarLayout3.W(true, true);
-                launchActivity.f35581s0.getView().setVisibility(0);
-            }
-        }
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.passcodeDismissed, me0Var);
-        try {
-            NotificationsController.getInstance(UserConfig.selectedAccount).showNotifications();
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
+        return this.f36150f;
     }
 }

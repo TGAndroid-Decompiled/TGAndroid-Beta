@@ -1,8 +1,10 @@
 package r0;
-public interface m0 {
-    void a();
+public abstract class m0 implements l0 {
+    @Override
+    public void a() {
+    }
 
-    void b();
-
-    void c();
+    @Override
+    public void b() {
+    }
 }

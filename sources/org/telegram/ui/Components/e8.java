@@ -1,20 +1,9 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class e8 extends mp0 {
-    public final m8 m0;
-
-    public e8(m8 m8Var, Context context, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(context, u6Var, false);
-        this.m0 = m8Var;
-    }
-
+import android.view.View;
+public final class e8 extends cq {
     @Override
-    public final boolean d(MotionEvent motionEvent) {
-        if (this.m0.G0 != 0) {
-            return false;
-        }
-        return super.d(motionEvent);
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(300.0f), 1073741824));
     }
 }

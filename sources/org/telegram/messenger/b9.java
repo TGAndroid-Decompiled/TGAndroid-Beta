@@ -1,53 +1,24 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
 public final class b9 implements Runnable {
-    public final int f19685a = 0;
-    public final int f19686b;
-    public final long f19687c;
-    public final long d;
-    public final int e;
-    public final int f19688f;
-    public final boolean h;
-    public final BaseController f19689n;
-    public final Object f19690r;
+    public final int f14749a;
+    public final d9 f14750b;
+    public final int[] f14751c;
 
-    public b9(MediaDataController mediaDataController, int i10, ArrayList arrayList, boolean z10, long j10, int i11, int i12, long j11) {
-        this.f19689n = mediaDataController;
-        this.f19686b = i10;
-        this.f19690r = arrayList;
-        this.h = z10;
-        this.f19687c = j10;
-        this.e = i11;
-        this.f19688f = i12;
-        this.d = j11;
+    public b9(d9 d9Var, int[] iArr, int i10) {
+        this.f14749a = i10;
+        this.f14750b = d9Var;
+        this.f14751c = iArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f19685a) {
+        switch (this.f14749a) {
             case 0:
-                int i10 = this.f19688f;
-                long j10 = this.d;
-                ((MediaDataController) this.f19689n).lambda$putMediaDatabase$140(this.f19686b, (ArrayList) this.f19690r, this.h, this.f19687c, this.e, i10, j10);
+                this.f14750b.f15208q.add(Integer.valueOf(this.f14751c[0]));
                 return;
             default:
-                int i11 = this.f19688f;
-                boolean z10 = this.h;
-                ((MessagesStorage) this.f19689n).lambda$putMessages$242(this.f19686b, (TLRPC.messages_Messages) this.f19690r, this.f19687c, this.d, this.e, i11, z10);
+                this.f14750b.f15208q.remove(Integer.valueOf(this.f14751c[0]));
                 return;
         }
-    }
-
-    public b9(MessagesStorage messagesStorage, int i10, TLRPC.messages_Messages messages_messages, long j10, long j11, int i11, int i12, boolean z10) {
-        this.f19689n = messagesStorage;
-        this.f19686b = i10;
-        this.f19690r = messages_messages;
-        this.f19687c = j10;
-        this.d = j11;
-        this.e = i11;
-        this.f19688f = i12;
-        this.h = z10;
     }
 }

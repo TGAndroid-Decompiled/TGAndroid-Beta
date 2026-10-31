@@ -1,33 +1,27 @@
 package ei;
 
-import android.content.Context;
-import di.z6;
-import org.telegram.ui.Components.fy0;
-public final class l extends q {
-    public final r v;
+import org.telegram.ui.Components.in0;
+public final class l implements Runnable {
+    public int f6657a;
+    public int f6658b;
+    public final in0 f6659c;
+    public final r d;
 
-    public l(r rVar, Context context) {
-        super(rVar, context);
-        this.v = rVar;
+    public l(r rVar, in0 in0Var) {
+        this.d = rVar;
+        this.f6659c = in0Var;
     }
 
     @Override
-    public final void l() {
-        boolean z10;
-        super.l();
-        r rVar = this.v;
-        if (rVar.f10005r.getVisibility() == 0) {
-            rVar.f10007w.l();
-        }
-        fy0 fy0Var = rVar.f10009y;
-        if (fy0Var != null) {
-            z6 z6Var = this.e;
-            if (z6Var != null && z6Var.k()) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            fy0Var.e(z10, true);
-        }
+    public final void run() {
+        in0 in0Var = this.f6659c;
+        int scrollX = in0Var.getScrollX();
+        int scrollY = in0Var.getScrollY();
+        r rVar = this.d;
+        rVar.f6677k += scrollX - this.f6657a;
+        rVar.f6678l += scrollY - this.f6658b;
+        this.f6657a = scrollX;
+        this.f6658b = scrollY;
+        rVar.f6674g++;
     }
 }

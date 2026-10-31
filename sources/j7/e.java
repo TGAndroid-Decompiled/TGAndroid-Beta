@@ -1,13 +1,43 @@
 package j7;
 
-import android.util.Base64;
-import java.security.SecureRandom;
-public abstract class e {
-    public static final SecureRandom f15536a = new SecureRandom();
+import android.os.IBinder;
+import android.os.IInterface;
+import n6.g;
+public final class e extends g {
+    @Override
+    public final boolean D() {
+        return true;
+    }
 
-    public static String a() {
-        byte[] bArr = new byte[16];
-        f15536a.nextBytes(bArr);
-        return Base64.encodeToString(bArr, 11);
+    @Override
+    public final int m() {
+        return 12451000;
+    }
+
+    @Override
+    public final IInterface r(IBinder iBinder) {
+        if (iBinder == null) {
+            return null;
+        }
+        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.auth.api.phone.internal.ISmsRetrieverApiService");
+        if (queryLocalInterface instanceof d) {
+            return (d) queryLocalInterface;
+        }
+        return new d(iBinder);
+    }
+
+    @Override
+    public final k6.c[] s() {
+        return b.f9703b;
+    }
+
+    @Override
+    public final String w() {
+        return "com.google.android.gms.auth.api.phone.internal.ISmsRetrieverApiService";
+    }
+
+    @Override
+    public final String x() {
+        return "com.google.android.gms.auth.api.phone.service.SmsRetrieverApiService.START";
     }
 }

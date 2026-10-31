@@ -1,42 +1,28 @@
 package org.telegram.messenger.voip;
-
-import org.telegram.messenger.voip.VideoCapturerDevice;
 public final class i implements Runnable {
-    public final int f21635a;
+    public final int f18656a;
+    public final GroupCallMessagesController f18657b;
+    public final long f18658c;
+    public final GroupCallMessage d;
 
-    public i(int i10) {
-        this.f21635a = i10;
+    public i(GroupCallMessagesController groupCallMessagesController, long j10, GroupCallMessage groupCallMessage, int i10) {
+        this.f18656a = i10;
+        this.f18657b = groupCallMessagesController;
+        this.f18658c = j10;
+        this.d = groupCallMessage;
     }
 
     @Override
     public final void run() {
-        switch (this.f21635a) {
+        switch (this.f18656a) {
             case 0:
-                VideoCapturerDevice.AnonymousClass1.lambda$onStop$0();
+                GroupCallMessagesController.a(this.f18657b, this.f18658c, this.d);
                 return;
             case 1:
-                VideoCapturerDevice.AnonymousClass2.lambda$onFirstFrameAvailable$0();
-                return;
-            case 2:
-                VoIPPreNotificationService.d();
-                return;
-            case 3:
-                VoIPService.r0();
-                return;
-            case 4:
-                VoIPService.S0();
-                return;
-            case 5:
-                VoIPService.H();
-                return;
-            case 6:
-                VoIPService.R0();
-                return;
-            case 7:
-                VoIPService.S();
+                GroupCallMessagesController.f(this.f18657b, this.f18658c, this.d);
                 return;
             default:
-                VoIPService.d1();
+                GroupCallMessagesController.g(this.f18657b, this.f18658c, this.d);
                 return;
         }
     }

@@ -1,69 +1,55 @@
 package h6;
 
-import android.os.SystemClock;
-import android.text.TextUtils;
-import c3.h0;
-import java.util.AbstractCollection;
-import java.util.ArrayList;
+import g6.b;
 import java.util.Iterator;
-import java.util.Random;
-import java.util.regex.Pattern;
+import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 public abstract class a {
-    public static final Pattern f12618a = Pattern.compile("urn:x-cast:[-A-Za-z0-9_]+(\\.[-A-Za-z0-9_]+)*");
-    public static final Random f12619b = new Random(SystemClock.elapsedRealtime());
+    public static final b f7628a = new b("MetadataUtils", null);
+    public static final String[] f7629b;
+    public static final String f7630c;
 
-    public static String a(String str, JSONObject jSONObject) {
-        if (jSONObject != null && jSONObject.has(str)) {
-            return jSONObject.optString(str);
-        }
-        return null;
+    static {
+        String[] strArr = {"Z", "+hh", "+hhmm", "+hh:mm"};
+        f7629b = strArr;
+        f7630c = "yyyyMMdd'T'HHmmss".concat(String.valueOf(strArr[0]));
     }
 
-    public static void b(String str) {
-        if (!TextUtils.isEmpty(str)) {
-            if (str.length() <= 128) {
-                if (str.startsWith("urn:x-cast:")) {
-                    if (str.length() != 11) {
-                        return;
-                    }
-                    throw new IllegalArgumentException("Namespace must begin with the prefix \"urn:x-cast:\" and have non-empty suffix");
-                }
-                throw new IllegalArgumentException("Namespace must begin with the prefix \"urn:x-cast:\"");
-            }
-            throw new IllegalArgumentException("Invalid namespace length");
-        }
-        throw new IllegalArgumentException("Namespace cannot be null or empty");
+    public static java.util.Calendar a(java.lang.String r8) {
+        throw new UnsupportedOperationException("Method not decompiled: h6.a.a(java.lang.String):java.util.Calendar");
     }
 
-    public static ArrayList c(int[] iArr) {
-        ArrayList arrayList = new ArrayList();
-        int length = iArr.length;
-        int i10 = 0;
-        while (i10 < length) {
-            i10 = h0.i(iArr[i10], i10, 1, arrayList);
-        }
-        return arrayList;
-    }
-
-    public static boolean d(Object obj, Object obj2) {
-        if (obj == null && obj2 == null) {
-            return true;
-        }
-        if (obj != null && obj2 != null && obj.equals(obj2)) {
-            return true;
-        }
-        return false;
-    }
-
-    public static int[] e(AbstractCollection abstractCollection) {
-        int[] iArr = new int[abstractCollection.size()];
-        Iterator it = abstractCollection.iterator();
-        int i10 = 0;
+    public static JSONArray b(List list) {
+        list.getClass();
+        JSONArray jSONArray = new JSONArray();
+        Iterator it = list.iterator();
         while (it.hasNext()) {
-            iArr[i10] = ((Integer) it.next()).intValue();
-            i10++;
+            m6.a aVar = (m6.a) it.next();
+            aVar.getClass();
+            JSONObject jSONObject = new JSONObject();
+            try {
+                jSONObject.put("url", aVar.f13016b.toString());
+                jSONObject.put("width", aVar.f13017c);
+                jSONObject.put("height", aVar.d);
+            } catch (JSONException unused) {
+            }
+            jSONArray.put(jSONObject);
         }
-        return iArr;
+        return jSONArray;
+    }
+
+    public static void c(List list, JSONArray jSONArray) {
+        try {
+            list.clear();
+            for (int i10 = 0; i10 < jSONArray.length(); i10++) {
+                try {
+                    list.add(new m6.a(jSONArray.getJSONObject(i10)));
+                } catch (IllegalArgumentException unused) {
+                }
+            }
+        } catch (JSONException unused2) {
+        }
     }
 }

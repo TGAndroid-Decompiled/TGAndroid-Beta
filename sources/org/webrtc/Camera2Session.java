@@ -11,12 +11,12 @@ import android.hardware.camera2.CaptureRequest;
 import android.os.Handler;
 import android.util.Range;
 import android.view.Surface;
-import di.h1;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.webrtc.CameraEnumerationAndroid;
 import org.webrtc.CameraSession;
+import th.s0;
 public class Camera2Session implements CameraSession {
     private static final String TAG = "Camera2Session";
     private final Context applicationContext;
@@ -66,7 +66,7 @@ public class Camera2Session implements CameraSession {
                     if (i10 != 3) {
                         if (i10 != 4) {
                             if (i10 != 5) {
-                                return ic.a.i(i10, "Unknown camera error: ");
+                                return i0.a.i(i10, "Unknown camera error: ");
                             }
                             return "Camera service has encountered a fatal error.";
                         }
@@ -266,7 +266,7 @@ public class Camera2Session implements CameraSession {
 
     public int getFrameOrientation() {
         int orientation;
-        if (h1.W != null) {
+        if (s0.W != null) {
             orientation = 0;
         } else {
             orientation = this.orientationHelper.getOrientation();

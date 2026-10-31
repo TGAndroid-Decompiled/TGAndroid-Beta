@@ -1,65 +1,165 @@
 package e9;
 
-import java.util.Arrays;
-public class c extends i {
-    public final int f9837a = 1;
-    public final Object f9838b;
+import j$.util.Objects;
+import java.util.AbstractMap;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import v7.s6;
+public final class c extends j2 {
+    public final int f6336b;
+    public final AbstractMap f6337c;
 
-    public c(i iVar) {
-        iVar.getClass();
-        this.f9838b = iVar;
+    public c(AbstractMap abstractMap, int i10) {
+        super(0);
+        this.f6336b = i10;
+        this.f6337c = abstractMap;
     }
 
     @Override
-    public final boolean apply(Object obj) {
-        switch (this.f9837a) {
+    public final void clear() {
+        m().clear();
+    }
+
+    @Override
+    public boolean contains(Object obj) {
+        switch (this.f6336b) {
             case 0:
-                return c(((Character) obj).charValue());
+                Set entrySet = ((e) this.f6337c).f6349b.entrySet();
+                entrySet.getClass();
+                try {
+                    return entrySet.contains(obj);
+                } catch (ClassCastException | NullPointerException unused) {
+                    return false;
+                }
             default:
-                return c(((Character) obj).charValue());
+                return l(obj);
         }
     }
 
     @Override
-    public final boolean c(char c10) {
-        switch (this.f9837a) {
+    public final boolean isEmpty() {
+        return m().isEmpty();
+    }
+
+    @Override
+    public final Iterator iterator() {
+        switch (this.f6336b) {
             case 0:
-                if (Arrays.binarySearch((char[]) this.f9838b, c10) >= 0) {
+                return new d((e) this.f6337c);
+            default:
+                m1 m1Var = (m1) this.f6337c;
+                Iterator it = m1Var.f6388a.entrySet().iterator();
+                l1 l1Var = m1Var.f6389b;
+                l1Var.getClass();
+                return new b1(it, new a6.i(l1Var, 20));
+        }
+    }
+
+    public final boolean l(Object obj) {
+        Object obj2;
+        if (obj instanceof Map.Entry) {
+            Map.Entry entry = (Map.Entry) obj;
+            Object key = entry.getKey();
+            Map m10 = m();
+            m10.getClass();
+            try {
+                obj2 = m10.get(key);
+            } catch (ClassCastException | NullPointerException unused) {
+                obj2 = null;
+            }
+            if (s6.a(obj2, entry.getValue())) {
+                if (obj2 != null || m().containsKey(key)) {
                     return true;
                 }
                 return false;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final Map m() {
+        switch (this.f6336b) {
+            case 0:
+                return (e) this.f6337c;
             default:
-                return !((i) this.f9838b).c(c10);
+                return (m1) this.f6337c;
+        }
+    }
+
+    public final boolean n(Object obj) {
+        if (contains(obj) && (obj instanceof Map.Entry)) {
+            return m().keySet().remove(((Map.Entry) obj).getKey());
+        }
+        return false;
+    }
+
+    @Override
+    public boolean remove(Object obj) {
+        Object obj2;
+        switch (this.f6336b) {
+            case 0:
+                if (!contains(obj)) {
+                    return false;
+                }
+                Map.Entry entry = (Map.Entry) obj;
+                Objects.requireNonNull(entry);
+                p1 p1Var = (p1) ((e) this.f6337c).e;
+                Object key = entry.getKey();
+                Map map = p1Var.e;
+                map.getClass();
+                try {
+                    obj2 = map.remove(key);
+                } catch (ClassCastException | NullPointerException unused) {
+                    obj2 = null;
+                }
+                Collection collection = (Collection) obj2;
+                if (collection != null) {
+                    int size = collection.size();
+                    collection.clear();
+                    p1Var.f6401f -= size;
+                }
+                return true;
+            default:
+                return n(obj);
         }
     }
 
     @Override
-    public i d() {
-        switch (this.f9837a) {
-            case 1:
-                return (i) this.f9838b;
-            default:
-                return super.d();
+    public final boolean removeAll(Collection collection) {
+        try {
+            collection.getClass();
+            return super.removeAll(collection);
+        } catch (UnsupportedOperationException unused) {
+            boolean z10 = false;
+            for (Object obj : collection) {
+                z10 |= remove(obj);
+            }
+            return z10;
         }
     }
 
-    public final String toString() {
-        switch (this.f9837a) {
-            case 0:
-                StringBuilder sb2 = new StringBuilder("CharMatcher.anyOf(\"");
-                for (char c10 : (char[]) this.f9838b) {
-                    sb2.append(i.a(c10));
+    @Override
+    public final boolean retainAll(Collection collection) {
+        try {
+            collection.getClass();
+            return super.retainAll(collection);
+        } catch (UnsupportedOperationException unused) {
+            HashSet hashSet = new HashSet(s.c(collection.size()));
+            for (Object obj : collection) {
+                if (contains(obj) && (obj instanceof Map.Entry)) {
+                    hashSet.add(((Map.Entry) obj).getKey());
                 }
-                sb2.append("\")");
-                return sb2.toString();
-            default:
-                return ((i) this.f9838b) + ".negate()";
+            }
+            return m().keySet().retainAll(hashSet);
         }
     }
 
-    public c(String str) {
-        char[] charArray = str.toString().toCharArray();
-        this.f9838b = charArray;
-        Arrays.sort(charArray);
+    @Override
+    public final int size() {
+        return m().size();
     }
 }

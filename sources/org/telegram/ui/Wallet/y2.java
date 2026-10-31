@@ -1,415 +1,114 @@
 package org.telegram.ui.Wallet;
 
-import android.animation.ValueAnimator;
-import android.app.Dialog;
-import android.graphics.Bitmap;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.os.Bundle;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.view.animation.LinearInterpolator;
-import android.widget.TextView;
-import java.math.BigDecimal;
-import java.util.Locale;
-import java.util.WeakHashMap;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.di0;
-import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.in0;
-import org.telegram.ui.Components.kb1;
-import org.telegram.ui.Components.zq;
-import org.telegram.ui.y10;
-import org.telegram.ui.zd0;
-public final class y2 extends Dialog {
-    public static final int W = 0;
-    public final hh.b E;
-    public final ch.b F;
-    public Bitmap G;
-    public i0.b H;
-    public float I;
-    public float J;
-    public boolean K;
-    public final y10 L;
-    public final RectF M;
-    public final RectF N;
-    public ValueAnimator O;
-    public ValueAnimator P;
-    public float Q;
-    public boolean R;
-    public boolean S;
-    public boolean T;
-    public Runnable U;
-    public final int[] V;
-    public final org.telegram.ui.ActionBar.r2 f37520a;
-    public final di0 f37521b;
-    public final boolean f37522c;
-    public final boolean d;
-    public final boolean e;
-    public final RectF f37523f;
-    public final w2 h;
-    public final x2 f37524n;
-    public final w5 f37525r;
-    public final t7 f37526s;
-    public final di.i4 v;
-    public final TextView f37527w;
-    public final Paint f37528x;
-    public final RectF f37529y;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.telegram.ui.hk;
+public final class y2 extends org.telegram.ui.ActionBar.z2 {
+    public final hk f35407i1;
+    public final ArrayList f35408j1;
+    public boolean f35409k1;
+    public FrameLayout l1;
+    public Integer f35410m1;
 
-    public y2(org.telegram.ui.ActionBar.r2 r2Var, di0 di0Var, TLRPC.User user, TL_wallet.card cardVar) {
-        super(r2Var.getParentActivity(), R.style.TransparentDialog);
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        int[] iArr;
-        int i10;
-        int i11;
-        String formatString;
-        RectF rectF = new RectF();
-        this.f37523f = rectF;
-        this.f37528x = new Paint(3);
-        this.f37529y = new RectF();
-        hh.b bVar = new hh.b();
-        this.E = bVar;
-        this.H = i0.b.e;
-        this.L = new y10();
-        this.M = new RectF();
-        this.N = new RectF();
-        this.V = new int[2];
-        this.f37520a = r2Var;
-        this.f37521b = di0Var;
-        if (user != null && user.f22177id == UserConfig.getInstance(r2Var.getCurrentAccount()).getClientUserId()) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public y2(Context context, org.telegram.ui.ActionBar.p6 p6Var, View... viewArr) {
+        super(1, context, p6Var, true);
+        List asList = Arrays.asList(viewArr);
+        ArrayList arrayList = new ArrayList();
+        this.f35408j1 = arrayList;
+        if (asList != null) {
+            arrayList.addAll(asList);
         }
-        this.e = z10;
-        if (user != null && !z10 && MessagesController.getInstance(r2Var.getCurrentAccount()).config.walletAvailable.get()) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        this.f37522c = z11;
-        if (user != null && !z10 && !z11) {
-            z12 = true;
-        } else {
-            z12 = false;
-        }
-        this.d = z12;
-        di0Var.getLocationOnScreen(new int[2]);
-        rectF.set(di0Var.v);
-        rectF.offset(iArr[0], iArr[1]);
-        AndroidUtilities.enableEdgeToEdge(getWindow());
-        w2 w2Var = new w2(this, getContext());
-        this.h = w2Var;
-        x2 x2Var = new x2(this, getContext());
-        this.f37524n = x2Var;
-        x2Var.setAlpha(0.0f);
-        w2Var.addView(x2Var, kb1.g(-1.0f, -1));
-        w2Var.setClipChildren(false);
-        w2Var.setClipToPadding(false);
-        w2Var.setOnClickListener(new s2(this, 0));
-        n2 n2Var = new n2(this, 1);
-        WeakHashMap weakHashMap = r0.i0.f47143a;
-        r0.a0.i(w2Var, n2Var);
-        w5 w5Var = new w5(getContext());
-        this.f37525r = w5Var;
-        w5Var.setDiamondOnCard(true);
-        int currentAccount = r2Var.getCurrentAccount();
-        String userName = UserObject.getUserName(user);
-        Locale locale = Locale.ROOT;
-        w5Var.setCardHolder(userName.toUpperCase(locale));
-        if (!TextUtils.isEmpty(cardVar.address)) {
-            w5Var.setCardNumber(w5.d(cardVar.address.toUpperCase(locale)));
-        }
-        w5Var.j(currentAccount, cardVar.balance);
-        CharSequence m10 = l0.x(currentAccount).m(cardVar.balance, false);
-        if (!TextUtils.isEmpty(m10)) {
-            w5Var.O.c(m10, false, true);
-        }
-        w5Var.setCardOnClickListener(new zd0(24, this, r2Var));
-        w5Var.setOnClickListener(new bh.f(24));
-        w5Var.setAlpha(0.0f);
-        w2Var.addView(w5Var, kb1.g(-2.0f, -2));
-        t7 t7Var = new t7(r2Var, w5Var, null, cardVar);
-        this.f37526s = t7Var;
-        w2Var.addView(t7Var, kb1.g(-1.0f, -1));
-        ch.b bVar2 = new ch.b(bVar);
-        this.F = bVar2;
-        bVar2.f6301f = new jh.k(w2Var);
-        bVar2.f6302g = w2Var;
-        di.i4 i4Var = new di.i4(getContext());
-        this.v = i4Var;
-        eh.d c10 = bVar2.c(i4Var, new fh.b(org.telegram.ui.ActionBar.y6.f23357d6, r2Var.getResourceProvider()), false);
-        c10.w(AndroidUtilities.dp(8.0f));
-        c10.x(AndroidUtilities.dp(22.0f));
-        i4Var.setBackground(c10);
-        kb1.c(i4Var, 0.02f, 1.2f);
-        fi.d dVar = new fi.d(getContext(), r2Var.getResourceProvider(), true);
-        dVar.setUseWrapContent(true);
-        dVar.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
-        dVar.setRoundRadius(19);
-        if (z10) {
-            i10 = R.string.WalletOpenMyMoney;
-        } else if (z11) {
-            i10 = R.string.WalletSendMoney;
-        } else {
-            i10 = R.string.HowDoesItWork;
-        }
-        CharSequence string = LocaleController.getString(i10);
-        if (!z11) {
-            dVar.i(string, false, true);
-        } else {
-            SpannableStringBuilder append = new SpannableStringBuilder("G  ").append(string);
-            zq zqVar = new zq(R.drawable.mini_gram_24, 0);
-            zqVar.setSize(AndroidUtilities.dp(20.0f));
-            zqVar.setOverrideColor(-1);
-            append.setSpan(zqVar, 0, 1, 33);
-            dVar.i(append, false, true);
-        }
-        dVar.setStateListAnimator(null);
-        i4Var.addView(dVar, kb1.i(-2, -1, 17));
-        i4Var.setContentDescription(string);
-        i4Var.setOnClickListener(new m1(this, r2Var, cardVar, 1));
-        i4Var.setAlpha(0.0f);
-        if (c()) {
-            i11 = 0;
-        } else {
-            i11 = 8;
-        }
-        i4Var.setVisibility(i11);
-        w2Var.addView(i4Var, kb1.i(-2, 60, 81));
-        TextView textView = new TextView(getContext());
-        this.f37527w = textView;
-        textView.setTextSize(14.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setGravity(17);
-        textView.setLineSpacing(AndroidUtilities.dp(18.0f) - textView.getPaint().getFontMetricsInt(null), 1.0f);
-        d();
-        textView.setAlpha(0.0f);
-        if (z10) {
-            textView.setText(LocaleController.getString(R.string.WalletPublicBalanceNote));
-        } else if (user != null) {
-            String firstName = UserObject.getFirstName(user);
-            if (new BigDecimal(l0.p(cardVar.balance, false)).signum() == 0) {
-                formatString = LocaleController.formatString(R.string.WalletProfileOwnsNoGrams, firstName);
-            } else {
-                formatString = LocaleController.formatString(R.string.WalletProfileOwnsGrams, firstName, l0.l("Grams", w5.e(cardVar.balance).toString(), R.string.Grams_other).toString().replace(' ', (char) 160));
-            }
-            textView.setText(fi.v3.b(formatString, textView.getPaint()));
-        }
-        textView.setVisibility(user == null ? 8 : 0);
-        w2Var.addView(textView, kb1.i(-2, -2, 49));
+        v2 v2Var = new v2(this, context);
+        this.f21586b = v2Var;
+        hk hkVar = new hk(this, context, 5);
+        this.f35407i1 = hkVar;
+        int i10 = this.f21615t0;
+        hkVar.setPadding(i10, 0, i10, org.telegram.messenger.i0.f16021n);
+        v2Var.addView(hkVar, w7.b6.e(-1, -1, 119));
     }
 
-    public final void a(float f7) {
-        boolean z10;
-        long j10;
-        ValueAnimator valueAnimator = this.O;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
+    @Override
+    public final boolean H() {
+        if (this.f35407i1.getCurrentPosition() == 0) {
+            return true;
         }
-        int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
-        if (i10 == 0 && this.T) {
+        return false;
+    }
+
+    public final void I0(x2 x2Var) {
+        this.f35408j1.add(x2Var);
+        if (this.f35409k1) {
+            hk hkVar = this.f35407i1;
+            hkVar.D(false);
+            hkVar.o(false);
+        }
+    }
+
+    @Override
+    public final boolean J(MotionEvent motionEvent) {
+        if (this.f35407i1.getCurrentPosition() == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void J0(int i10) {
+        this.f35410m1 = Integer.valueOf(i10);
+        v0(i10);
+        P(i10);
+        ((v2) this.f21586b).invalidate();
+    }
+
+    public final void K0(LinearLayout linearLayout) {
+        FrameLayout frameLayout = this.l1;
+        if (frameLayout == null) {
+            FrameLayout frameLayout2 = new FrameLayout(getContext());
+            this.l1 = frameLayout2;
+            frameLayout2.setClipChildren(false);
+            this.l1.setClipToPadding(false);
+            this.f21586b.addView(this.l1, w7.b6.e(-1, -2, 80));
+        } else {
+            frameLayout.removeAllViews();
+        }
+        this.l1.addView(linearLayout, w7.b6.e(-1, -2, 80));
+        hk hkVar = this.f35407i1;
+        int i10 = this.f21615t0;
+        hkVar.setPadding(i10, 0, i10, 0);
+        ((v2) this.f21586b).requestLayout();
+    }
+
+    @Override
+    public final void onBackPressed() {
+        View[] viewPages;
+        hk hkVar = this.f35407i1;
+        if (hkVar.getCurrentPosition() <= 0) {
+            super.onBackPressed();
             return;
         }
-        if (i10 == 0) {
-            this.T = true;
-        }
-        if (i10 == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.K = z10;
-        w5 w5Var = this.f37525r;
-        w5Var.getClass();
-        w5Var.setLayerType(2, null);
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.I, f7);
-        this.O = ofFloat;
-        if (i10 == 0) {
-            j10 = 650;
-        } else {
-            j10 = 380;
-        }
-        ofFloat.setDuration(j10);
-        this.O.setInterpolator(new LinearInterpolator());
-        this.O.addUpdateListener(new v2(this, 0));
-        this.O.addListener(new org.telegram.ui.ActionBar.a1(this, f7, 7));
-        this.O.start();
-    }
-
-    public final void b() {
-        if (!this.S) {
-            this.S = true;
-            this.f37525r.setLayerType(0, null);
-            this.f37521b.setEjectProgress(0.0f);
-            super.dismiss();
-            this.f37526s.p();
-            this.E.a(null);
-            this.G = null;
-            if (this.U != null && this.f37520a.getParentActivity() != null) {
-                Runnable runnable = this.U;
-                this.U = null;
-                AndroidUtilities.runOnUIThread(runnable);
+        for (View view : hkVar.getViewPages()) {
+            if (view != null) {
+                org.telegram.messenger.i0.v1(view);
             }
         }
-    }
-
-    public final boolean c() {
-        if (!this.f37522c && !this.d && !this.e) {
-            return false;
-        }
-        return true;
-    }
-
-    public final void d() {
-        int i10;
-        boolean q5 = org.telegram.ui.ActionBar.y6.I.q();
-        Bitmap bitmap = this.G;
-        TextView textView = this.f37527w;
-        if (bitmap != null && !bitmap.isRecycled()) {
-            w2 w2Var = this.h;
-            if (w2Var.getWidth() > 0 && w2Var.getHeight() > 0) {
-                q5 = AndroidUtilities.computePerceivedBrightness(this.G.getPixel(Utilities.clamp((int) (((((float) (textView.getRight() + textView.getLeft())) / 2.0f) / ((float) w2Var.getWidth())) * ((float) this.G.getWidth())), this.G.getWidth() - 1, 0), Utilities.clamp((int) (((((float) (textView.getBottom() + textView.getTop())) / 2.0f) / ((float) w2Var.getHeight())) * ((float) this.G.getHeight())), this.G.getHeight() - 1, 0))) < 0.5f;
-            }
-        }
-        if (q5) {
-            i10 = -1;
-        } else {
-            i10 = -16777216;
-        }
-        textView.setTextColor(org.telegram.ui.ActionBar.y6.o1(0.41f, i10));
-    }
-
-    @Override
-    public final void dismiss() {
-        if (!this.S && !this.R) {
-            this.R = true;
-            ValueAnimator valueAnimator = this.P;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            this.v.setEnabled(false);
-            if (this.h.isAttachedToWindow() && this.I != 0.0f) {
-                a(0.0f);
-            } else {
-                b();
-            }
-        }
-    }
-
-    public final void e() {
-        float f7;
-        float f10;
-        float interpolation = ds.f27531g.getInterpolation(Math.max(0.0f, Math.min(1.0f, this.I / 0.4f)));
-        float max = Math.max(0.0f, Math.min(1.0f, (this.I - 0.3f) / 0.7f));
-        float interpolation2 = ds.h.getInterpolation(max);
-        if (this.K) {
-            float sqrt = ((float) Math.sqrt(0.4375d)) * 10.0f;
-            double d = max * sqrt;
-            f7 = 1.0f - ((((7.5f / sqrt) * ((float) Math.sin(d))) + ((float) Math.cos(d))) * ((float) Math.exp((-7.5f) * max)));
-        } else {
-            f7 = interpolation2;
-        }
-        w5 w5Var = this.f37525r;
-        float width = w5Var.getWidth();
-        float height = w5Var.getHeight();
-        RectF rectF = this.f37523f;
-        float max2 = Math.max(0.2f, Math.min(1.0f, rectF.width() / Math.max(1.0f, height)));
-        float lerp = AndroidUtilities.lerp(max2, 1.0f, f7);
-        float centerY = rectF.centerY();
-        int[] iArr = this.V;
-        float f11 = centerY - iArr[1];
-        float f12 = max2 * width;
-        float centerX = rectF.centerX() - iArr[0];
-        float f13 = width / 2.0f;
-        float f14 = height / 2.0f;
-        float lerp2 = AndroidUtilities.lerp(centerX, w5Var.getLeft() + f13, f7);
-        float lerp3 = AndroidUtilities.lerp((f12 * interpolation) + (f11 - (f12 / 2.0f)), w5Var.getTop() + f14, f7);
-        float f15 = 1.0f - f7;
-        float f16 = (-90.0f) * f15;
-        double d10 = f16;
-        float cos = (float) Math.cos(Math.toRadians(d10));
-        float sin = (float) Math.sin(Math.toRadians(d10));
-        float f17 = centerX - lerp2;
-        float f18 = f11 - lerp3;
-        float lerp4 = AndroidUtilities.lerp((((sin * f18) + (cos * f17)) / lerp) + f13, f13, interpolation2);
-        float lerp5 = AndroidUtilities.lerp((((cos * f18) + ((-sin) * f17)) / lerp) + f14, f14, interpolation2);
-        float f19 = lerp4 - f13;
-        float f20 = lerp5 - f14;
-        w5Var.setPivotX(lerp4);
-        w5Var.setPivotY(lerp5);
-        w5Var.setScaleX(lerp);
-        w5Var.setScaleY(lerp);
-        w5Var.setRotation(f16);
-        w5Var.setRotationX(35.0f * f15);
-        w5Var.setTranslationX((((cos * f19) - (sin * f20)) * lerp) + ((lerp2 - w5Var.getLeft()) - lerp4));
-        w5Var.setTranslationY(org.telegram.ui.d3.e(cos, f20, sin * f19, lerp, (lerp3 - w5Var.getTop()) - lerp5));
-        if (this.I > 0.0f) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.0f;
-        }
-        w5Var.setAlpha(f10);
-        w5Var.setUseGyroscope(this.Q * interpolation2);
-        float f21 = 1.0f - interpolation2;
-        this.J = Math.max(0.0f, f11 * f21);
-        this.f37521b.setEjectProgress(interpolation);
-        this.f37524n.setAlpha(this.I);
-        this.f37526s.setAlpha(interpolation2);
-        di.i4 i4Var = this.v;
-        i4Var.setAlpha(interpolation2);
-        TextView textView = this.f37527w;
-        textView.setAlpha(interpolation2);
-        textView.setTranslationY((-AndroidUtilities.dp(8.0f)) * f21);
-        i4Var.setTranslationY(AndroidUtilities.dp(16.0f) * f21);
-        i4Var.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, interpolation2));
-        i4Var.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, interpolation2));
-        this.h.invalidate();
-    }
-
-    @Override
-    public final void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        Window window = getWindow();
-        window.setWindowAnimations(R.style.DialogNoAnimation);
-        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-1, -1);
-        w2 w2Var = this.h;
-        setContentView(w2Var, layoutParams);
-        WindowManager.LayoutParams attributes = window.getAttributes();
-        attributes.height = -1;
-        attributes.width = -1;
-        attributes.gravity = 119;
-        attributes.dimAmount = 0.0f;
-        attributes.flags = (attributes.flags & (-3)) | (-2147286784);
-        window.setAttributes(attributes);
-        window.setStatusBarColor(0);
-        window.setNavigationBarColor(0);
-        w2Var.setSystemUiVisibility(1792);
-        AndroidUtilities.setLightNavigationBar(w2Var, !org.telegram.ui.ActionBar.y6.I.q());
-        AndroidUtilities.setLightStatusBar(window, !org.telegram.ui.ActionBar.y6.I.q());
+        hkVar.E(hkVar.getCurrentPosition() - 1);
     }
 
     @Override
     public final void show() {
-        if (!AndroidUtilities.isSafeToShow(getContext())) {
-            return;
+        if (!this.f35409k1) {
+            this.f35409k1 = true;
+            this.f35407i1.setAdapter(new ig.n(this, 3));
         }
-        in0.d(new d(this, 6));
         super.show();
-        WeakHashMap weakHashMap = r0.i0.f47143a;
-        r0.y.c(this.h);
+        Integer num = this.f35410m1;
+        if (num != null) {
+            E0(num.intValue());
+        }
     }
 }

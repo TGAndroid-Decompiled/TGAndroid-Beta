@@ -1,42 +1,30 @@
 package jg;
 
-import android.content.DialogInterface;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Cells.g6;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class s implements DialogInterface.OnShowListener {
-    public final int f15824a;
-    public final EditTextBoldCursor f15825b;
+import android.view.KeyEvent;
+import org.telegram.messenger.m20;
+import org.telegram.tgnet.TLRPC;
+public final class s implements org.telegram.ui.ActionBar.i1, m20 {
+    public final r0 f10204a;
 
-    public s(EditTextBoldCursor editTextBoldCursor, int i10) {
-        this.f15824a = i10;
-        this.f15825b = editTextBoldCursor;
+    public s(r0 r0Var) {
+        this.f10204a = r0Var;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f15824a) {
-            case 0:
-                t tVar = (t) this.f15825b;
-                tVar.requestFocus();
-                AndroidUtilities.showKeyboard(tVar);
-                return;
-            case 1:
-                EditTextBoldCursor editTextBoldCursor = this.f15825b;
-                editTextBoldCursor.requestFocus();
-                AndroidUtilities.showKeyboard(editTextBoldCursor);
-                editTextBoldCursor.setSelection(0, editTextBoldCursor.length());
-                return;
-            case 2:
-                g6 g6Var = (g6) this.f15825b;
-                g6Var.requestFocus();
-                AndroidUtilities.showKeyboard(g6Var);
-                return;
-            default:
-                zh.y1 y1Var = (zh.y1) this.f15825b;
-                y1Var.requestFocus();
-                AndroidUtilities.showKeyboard(y1Var);
-                return;
+    public void i(Object obj, TLRPC.Document document, Boolean bool) {
+        g0 g02 = this.f10204a.g0(obj, document, true);
+        if (bool.booleanValue()) {
+            g02.setScale(1.5f);
+        }
+    }
+
+    @Override
+    public void r(KeyEvent keyEvent) {
+        org.telegram.ui.ActionBar.k1 k1Var;
+        r0 r0Var = this.f10204a;
+        r0Var.getClass();
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (k1Var = r0Var.A1) != null && k1Var.isShowing()) {
+            r0Var.A1.d(true);
         }
     }
 }

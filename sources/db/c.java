@@ -1,30 +1,29 @@
 package db;
 
-import a8.jd;
 import android.util.Log;
-import ud.p;
-public final class c extends nd.i implements p {
-    public Object f8284a;
+import ld.p;
+public final class c extends ed.j implements p {
+    public Object f5837a;
 
     @Override
-    public final ld.c create(Object obj, ld.c cVar) {
-        ?? iVar = new nd.i(2, cVar);
-        iVar.f8284a = obj;
-        return iVar;
+    public final cd.c create(Object obj, cd.c cVar) {
+        ?? jVar = new ed.j(2, cVar);
+        jVar.f5837a = obj;
+        return jVar;
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        jd.i iVar = jd.i.f15579a;
-        ((c) create((String) obj, (ld.c) obj2)).invokeSuspend(iVar);
-        return iVar;
+        ad.j jVar = ad.j.f401a;
+        ((c) create((String) obj, (cd.c) obj2)).invokeSuspend(jVar);
+        return jVar;
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        md.a aVar = md.a.f18411a;
-        jd.b(obj);
-        Log.e("SessionConfigFetcher", "Error failing to fetch the remote configs: " + ((String) this.f8284a));
-        return jd.i.f15579a;
+        dd.a aVar = dd.a.f5864a;
+        l9.b.b(obj);
+        Log.e("SessionConfigFetcher", "Error failing to fetch the remote configs: " + ((String) this.f5837a));
+        return ad.j.f401a;
     }
 }

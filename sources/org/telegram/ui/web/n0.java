@@ -1,76 +1,47 @@
 package org.telegram.ui.web;
 
-import android.webkit.PermissionRequest;
+import android.webkit.GeolocationPermissions;
 public final class n0 implements q0.a {
-    public final int f44840a;
-    public final u0 f44841b;
-    public final PermissionRequest f44842c;
+    public final int f43142a;
+    public final s0 f43143b;
+    public final GeolocationPermissions.Callback f43144c;
     public final String d;
 
-    public n0(u0 u0Var, PermissionRequest permissionRequest, String str, int i10) {
-        this.f44840a = i10;
-        this.f44841b = u0Var;
-        this.f44842c = permissionRequest;
+    public n0(s0 s0Var, GeolocationPermissions.Callback callback, String str, int i10) {
+        this.f43142a = i10;
+        this.f43143b = s0Var;
+        this.f43144c = callback;
         this.d = str;
     }
 
     @Override
     public final void accept(Object obj) {
         Boolean bool = (Boolean) obj;
-        switch (this.f44840a) {
+        switch (this.f43142a) {
             case 0:
-                u0 u0Var = this.f44841b;
-                if (u0Var.f44900a != null) {
-                    u0Var.f44900a = null;
+                s0 s0Var = this.f43143b;
+                if (s0Var.f43187a != null) {
+                    s0Var.f43187a = null;
                     boolean booleanValue = bool.booleanValue();
-                    PermissionRequest permissionRequest = this.f44842c;
+                    GeolocationPermissions.Callback callback = this.f43144c;
+                    String str = this.d;
                     if (booleanValue) {
-                        a1.a(u0Var.e.Q, new String[]{"android.permission.RECORD_AUDIO"}, new n0(u0Var, permissionRequest, this.d, 2));
+                        z0.a(s0Var.e.Q, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new n0(s0Var, callback, str, 1));
                         return;
                     } else {
-                        permissionRequest.deny();
+                        callback.invoke(str, false, false);
                         return;
                     }
                 }
-                return;
-            case 1:
-                u0 u0Var2 = this.f44841b;
-                if (u0Var2.f44900a != null) {
-                    u0Var2.f44900a = null;
-                    boolean booleanValue2 = bool.booleanValue();
-                    PermissionRequest permissionRequest2 = this.f44842c;
-                    if (booleanValue2) {
-                        a1.a(u0Var2.e.Q, new String[]{"android.permission.CAMERA"}, new n0(u0Var2, permissionRequest2, this.d, 3));
-                        return;
-                    } else {
-                        permissionRequest2.deny();
-                        return;
-                    }
-                }
-                return;
-            case 2:
-                u0 u0Var3 = this.f44841b;
-                u0Var3.getClass();
-                boolean booleanValue3 = bool.booleanValue();
-                PermissionRequest permissionRequest3 = this.f44842c;
-                if (booleanValue3) {
-                    permissionRequest3.grant(new String[]{this.d});
-                    u0Var3.e.Q.T = true;
-                    return;
-                }
-                permissionRequest3.deny();
                 return;
             default:
-                u0 u0Var4 = this.f44841b;
-                u0Var4.getClass();
-                boolean booleanValue4 = bool.booleanValue();
-                PermissionRequest permissionRequest4 = this.f44842c;
-                if (booleanValue4) {
-                    permissionRequest4.grant(new String[]{this.d});
-                    u0Var4.e.Q.T = true;
+                s0 s0Var2 = this.f43143b;
+                s0Var2.getClass();
+                this.f43144c.invoke(this.d, bool.booleanValue(), false);
+                if (bool.booleanValue()) {
+                    s0Var2.e.Q.T = true;
                     return;
                 }
-                permissionRequest4.deny();
                 return;
         }
     }

@@ -1,61 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.view.View;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class a9 extends org.telegram.ui.f61 {
-    public boolean f26460e2;
-    public final g9 f26461f2;
+import android.graphics.Bitmap;
+import org.telegram.messenger.Utilities;
+public final class a9 implements e9 {
+    public final f9 f24337a;
+    public final w7.y5[] f24338b;
+    public final Runnable[] f24339c;
+    public final k50[] d;
 
-    public a9(g9 g9Var, g9 g9Var2, Activity activity, int i10) {
-        super(g9Var2, activity, false, null, 4, true, null, 16, i10);
-        this.f26461f2 = g9Var;
-        this.f26460e2 = true;
+    public a9(f9 f9Var, w7.y5[] y5VarArr, Runnable[] runnableArr, k50[] k50VarArr) {
+        this.f24337a = f9Var;
+        this.f24338b = y5VarArr;
+        this.f24339c = runnableArr;
+        this.d = k50VarArr;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        if (this.f26460e2) {
-            this.f26460e2 = false;
-            this.f26461f2.f28473b.s(null);
-        }
-    }
-
-    @Override
-    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        int i10;
-        TLRPC.TL_emojiList tL_emojiList;
-        boolean z10;
-        long j10;
-        int i11;
-        boolean z11 = this.R;
-        g9 g9Var = this.f26461f2;
-        if (z11) {
-            i11 = ((org.telegram.ui.ActionBar.r2) g9Var).currentAccount;
-            tL_emojiList = MediaDataController.getInstance(i11).profileAvatarConstructorDefault;
-        } else {
-            i10 = ((org.telegram.ui.ActionBar.r2) g9Var).currentAccount;
-            tL_emojiList = MediaDataController.getInstance(i10).groupAvatarConstructorDefault;
-        }
-        long j11 = 0;
-        if (tL_emojiList != null) {
-            if (document != null) {
-                j10 = document.f22034id;
-            } else if (l4 != null) {
-                j10 = l4.longValue();
-            } else {
-                j10 = 0;
+    public final void dispose() {
+        f9 f9Var = this.f24337a;
+        w7.y5[] y5VarArr = this.f24338b;
+        Runnable[] runnableArr = this.f24339c;
+        k50[] k50VarArr = this.d;
+        y5VarArr[0] = null;
+        if (f9Var.e.contains(runnableArr)) {
+            org.telegram.messenger.r5 r5Var = Utilities.e;
+            r5Var.getClass();
+            for (Runnable runnable : runnableArr) {
+                r5Var.a(runnable);
             }
-            z10 = tL_emojiList.document_id.contains(Long.valueOf(j10));
-        } else {
-            z10 = false;
+            f9Var.e.remove(runnableArr);
         }
-        if (l4 != null) {
-            j11 = l4.longValue();
+        for (k50 k50Var : k50VarArr) {
+            Bitmap bitmap = (Bitmap) f9Var.f26015b.remove(k50Var);
+            f9Var.f26016c.remove(k50Var);
+            if (bitmap != null) {
+                bitmap.recycle();
+            }
         }
-        g9Var.i0(z10, j11, document);
     }
 }

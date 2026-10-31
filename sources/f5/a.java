@@ -1,3 +1,3 @@
 package f5;
-public interface a {
+public abstract class a extends com.googlecode.mp4parser.c {
 }

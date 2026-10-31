@@ -3,10 +3,10 @@ package a3;
 import android.os.SystemClock;
 import android.os.Trace;
 import b2.b2;
-import b2.w0;
+import b2.v0;
 import java.util.NoSuchElementException;
 public final class g0 {
-    public final rf.b f107a;
+    public final n4.q f107a;
     public final a0 f108b;
     public final z f109c = new z();
     public final e2.j0 d = new e2.j0();
@@ -19,15 +19,15 @@ public final class g0 {
     public b2 f114k;
     public long f115l;
 
-    public g0(rf.b bVar, a0 a0Var, b0 b0Var) {
-        this.f107a = bVar;
+    public g0(n4.q qVar, a0 a0Var, b0 b0Var) {
+        this.f107a = qVar;
         this.f108b = a0Var;
         this.f111g = b0Var;
         ?? obj = new Object();
         int highestOneBit = Integer.bitCount(16) != 1 ? Integer.highestOneBit(15) << 1 : 16;
-        obj.f9718a = 0;
-        obj.f9719b = -1;
-        obj.f9720c = 0;
+        obj.f6194a = 0;
+        obj.f6195b = -1;
+        obj.f6196c = 0;
         obj.e = new long[highestOneBit];
         obj.d = highestOneBit - 1;
         this.f110f = obj;
@@ -41,17 +41,17 @@ public final class g0 {
         boolean z10;
         long j12;
         b2.x xVar;
-        final rf.b bVar = this.f107a;
-        f fVar = (f) bVar.f47371c;
+        final n4.q qVar = this.f107a;
+        f fVar = (f) qVar.f13527b;
         while (true) {
             e2.s sVar = this.f110f;
-            int i10 = sVar.f9720c;
+            int i10 = sVar.f6196c;
             if (i10 == 0) {
                 return;
             }
             if (i10 != 0) {
-                long j13 = ((long[]) sVar.e)[sVar.f9718a];
-                Long l4 = (Long) this.e.g(j13);
+                long j13 = ((long[]) sVar.e)[sVar.f6194a];
+                Long l4 = (Long) this.e.j(j13);
                 a0 a0Var = this.f108b;
                 if (l4 != null && l4.longValue() != this.f115l) {
                     this.f115l = l4.longValue();
@@ -80,12 +80,12 @@ public final class g0 {
                         fVar.f84i.execute(new Runnable() {
                             @Override
                             public final void run() {
-                                switch (r2) {
+                                switch (r1) {
                                     case 0:
-                                        ((f) bVar.f47371c).h.onFirstFrameRendered();
+                                        ((f) qVar.f13527b).h.onFirstFrameRendered();
                                         return;
                                     default:
-                                        ((f) bVar.f47371c).h.z();
+                                        ((f) qVar.f13527b).h.V();
                                         return;
                                 }
                             }
@@ -95,7 +95,7 @@ public final class g0 {
                         r2.l lVar = jVar.f125a;
                         int i11 = jVar.f126b;
                         Trace.beginSection("dropVideoBuffer");
-                        lVar.f(i11);
+                        lVar.c(i11);
                         Trace.endSection();
                         nVar.R0(0, 1);
                     }
@@ -107,15 +107,15 @@ public final class g0 {
                         z10 = false;
                     }
                     long d = sVar.d();
-                    b2 b2Var = (b2) this.d.g(d);
+                    b2 b2Var = (b2) this.d.j(d);
                     if (b2Var != null && !b2Var.equals(b2.d) && !b2Var.equals(this.f114k)) {
                         this.f114k = b2Var;
                         b2.w wVar = new b2.w();
-                        wVar.f3539y = b2Var.f3150a;
-                        wVar.f3540z = b2Var.f3151b;
-                        wVar.f3533r = w0.n("video/raw");
-                        bVar.f47370b = new b2.x(wVar);
-                        fVar.f84i.execute(new a1.f(2, bVar, b2Var));
+                        wVar.f2376y = b2Var.f1987a;
+                        wVar.f2377z = b2Var.f1988b;
+                        wVar.f2370r = v0.n("video/raw");
+                        qVar.f13526a = new b2.x(wVar);
+                        fVar.f84i.execute(new a1.f(2, qVar, b2Var));
                     }
                     if (z10) {
                         j12 = System.nanoTime();
@@ -128,23 +128,23 @@ public final class g0 {
                     }
                     a0Var.e = 3;
                     a0Var.f64l.getClass();
-                    a0Var.f60g = e2.n0.S(SystemClock.elapsedRealtime());
+                    a0Var.f60g = e2.l0.S(SystemClock.elapsedRealtime());
                     if (z11 && fVar.e != null) {
                         fVar.f84i.execute(new Runnable() {
                             @Override
                             public final void run() {
-                                switch (r2) {
+                                switch (r1) {
                                     case 0:
-                                        ((f) bVar.f47371c).h.onFirstFrameRendered();
+                                        ((f) qVar.f13527b).h.onFirstFrameRendered();
                                         return;
                                     default:
-                                        ((f) bVar.f47371c).h.z();
+                                        ((f) qVar.f13527b).h.V();
                                         return;
                                 }
                             }
                         });
                     }
-                    b2.x xVar2 = (b2.x) bVar.f47370b;
+                    b2.x xVar2 = (b2.x) qVar.f13526a;
                     if (xVar2 == null) {
                         xVar = new b2.x(new b2.w());
                     } else {

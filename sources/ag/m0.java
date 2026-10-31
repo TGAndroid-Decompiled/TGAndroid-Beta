@@ -1,161 +1,110 @@
 package ag;
 
-import android.app.Activity;
-import android.content.Context;
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.voip.ConferenceCall;
+import org.telegram.messenger.f8;
+import org.telegram.messenger.hs;
+import org.telegram.messenger.vp;
+import org.telegram.messenger.zs;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.ActionBar.e2;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.Components.o70;
-import org.telegram.ui.Components.wc;
-import org.telegram.ui.p21;
-import org.telegram.ui.wn;
-import org.telegram.ui.x21;
-public final class m0 implements Runnable {
-    public final int f1339a = 1;
-    public final long f1340b;
-    public final Object f1341c;
-    public final Object d;
-    public final Object e;
-    public final Object f1342f;
-    public final Object h;
-    public final Object f1343n;
+import org.telegram.tgnet.tl.TL_account;
+public final class m0 implements RequestDelegate {
+    public final int f632a;
+    public final s0 f633b;
 
-    public m0(long j10, AtomicBoolean atomicBoolean, AtomicInteger atomicInteger, ConferenceCall conferenceCall, TLObject tLObject, TLRPC.TL_error tL_error, TL_phone.getGroupCallChainBlocks getgroupcallchainblocks) {
-        this.e = conferenceCall;
-        this.f1342f = getgroupcallchainblocks;
-        this.f1340b = j10;
-        this.f1341c = tLObject;
-        this.d = tL_error;
-        this.h = atomicBoolean;
-        this.f1343n = atomicInteger;
+    public m0(s0 s0Var, int i10) {
+        this.f632a = i10;
+        this.f633b = s0Var;
     }
 
     @Override
-    public final void run() {
-        TLRPC.VideoSize closestVideoSizeWithSize;
-        boolean z10;
-        switch (this.f1339a) {
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f632a) {
             case 0:
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.d;
-                wn wnVar = (wn) this.e;
-                TLObject tLObject = (TLObject) this.f1341c;
-                TLRPC.FileLocation[] fileLocationArr = (TLRPC.FileLocation[]) this.f1342f;
-                String str = (String) this.f1343n;
-                TLRPC.FileLocation[] fileLocationArr2 = (TLRPC.FileLocation[]) this.h;
-                if (tL_error == null) {
-                    TLRPC.User user = wnVar.getMessagesController().getUser(Long.valueOf(wnVar.getUserConfig().getClientUserId()));
-                    TLRPC.TL_photos_photo tL_photos_photo = (TLRPC.TL_photos_photo) tLObject;
-                    ArrayList<TLRPC.PhotoSize> arrayList = tL_photos_photo.photo.sizes;
-                    TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(arrayList, 150);
-                    TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(arrayList, 800);
-                    if (tL_photos_photo.photo.video_sizes.isEmpty()) {
-                        closestVideoSizeWithSize = null;
-                    } else {
-                        closestVideoSizeWithSize = FileLoader.getClosestVideoSizeWithSize(tL_photos_photo.photo.video_sizes, 1000);
+                final s0 s0Var = this.f633b;
+                org.telegram.messenger.i0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i10 = r3;
+                        TLObject tLObject2 = tLObject;
+                        s0 s0Var2 = s0Var;
+                        switch (i10) {
+                            case 0:
+                                int i11 = s0Var2.f701a;
+                                if (tLObject2 instanceof TL_account.TL_businessChatLink) {
+                                    TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) tLObject2;
+                                    s0Var2.f702b.add(tL_businessChatLink);
+                                    zs.f(i11).k(125, new Object[0]);
+                                    zs.f(i11).k(126, tL_businessChatLink);
+                                    s0Var2.f();
+                                    return;
+                                }
+                                return;
+                            default:
+                                ArrayList arrayList = s0Var2.f702b;
+                                int i12 = s0Var2.f701a;
+                                if (tLObject2 instanceof TL_account.businessChatLinks) {
+                                    TL_account.businessChatLinks businesschatlinks = (TL_account.businessChatLinks) tLObject2;
+                                    arrayList.clear();
+                                    arrayList.addAll(businesschatlinks.links);
+                                    vp.r1(i12).V3(businesschatlinks.users, false);
+                                    vp.r1(i12).P3(businesschatlinks.chats, false);
+                                    hs.a0(i12).m1(businesschatlinks.users, businesschatlinks.chats, true, true);
+                                    zs.f(i12).k(125, new Object[0]);
+                                    s0Var2.f();
+                                } else {
+                                    f8.g(new RuntimeException("Unexpected response from server!"), true);
+                                }
+                                s0Var2.f703c = false;
+                                s0Var2.d = true;
+                                return;
+                        }
                     }
-                    TLRPC.TL_userProfilePhoto tL_userProfilePhoto = new TLRPC.TL_userProfilePhoto();
-                    user.photo = tL_userProfilePhoto;
-                    tL_userProfilePhoto.photo_id = tL_photos_photo.photo.f22052id;
-                    if (closestPhotoSizeWithSize != null) {
-                        tL_userProfilePhoto.photo_small = closestPhotoSizeWithSize.location;
-                    }
-                    if (closestPhotoSizeWithSize2 != null) {
-                        tL_userProfilePhoto.photo_big = closestPhotoSizeWithSize2.location;
-                    }
-                    if (closestPhotoSizeWithSize != null && fileLocationArr[0] != null) {
-                        FileLoader.getInstance(wnVar.getCurrentAccount()).getPathToAttach(fileLocationArr[0], true).renameTo(FileLoader.getInstance(wnVar.getCurrentAccount()).getPathToAttach(closestPhotoSizeWithSize, true));
-                        StringBuilder sb2 = new StringBuilder();
-                        sb2.append(fileLocationArr[0].volume_id);
-                        sb2.append("_");
-                        String n10 = a1.g.n(fileLocationArr[0].local_id, "@50_50", sb2);
-                        StringBuilder sb3 = new StringBuilder();
-                        sb3.append(closestPhotoSizeWithSize.location.volume_id);
-                        sb3.append("_");
-                        z10 = true;
-                        ImageLoader.getInstance().replaceImageInCache(n10, a1.g.n(closestPhotoSizeWithSize.location.local_id, "@50_50", sb3), ImageLocation.getForUserOrChat(wnVar.getCurrentAccount(), user, 1), false);
-                    } else {
-                        z10 = true;
-                    }
-                    if (closestVideoSizeWithSize != null && str != null) {
-                        new File(str).renameTo(FileLoader.getInstance(wnVar.getCurrentAccount()).getPathToAttach(closestVideoSizeWithSize, "mp4", z10));
-                    } else if (closestPhotoSizeWithSize2 != null && fileLocationArr2[0] != null) {
-                        FileLoader.getInstance(wnVar.getCurrentAccount()).getPathToAttach(fileLocationArr2[0], true).renameTo(FileLoader.getInstance(wnVar.getCurrentAccount()).getPathToAttach(closestPhotoSizeWithSize2, true));
-                    }
-                    wnVar.getMessagesController().getDialogPhotos(user.f22177id).addPhotoAtStart(tL_photos_photo.photo);
-                    ArrayList arrayList2 = new ArrayList();
-                    arrayList2.add(user);
-                    wnVar.getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);
-                    MessagesController messagesController = wnVar.getMessagesController();
-                    long j10 = this.f1340b;
-                    TLRPC.UserFull userFull = messagesController.getUserFull(j10);
-                    userFull.profile_photo = tL_photos_photo.photo;
-                    wnVar.getMessagesStorage().updateUserInfo(userFull, false);
-                    wc.b0(wnVar).W(Collections.singletonList(user), AndroidUtilities.replaceTags(LocaleController.getString(R.string.ApplyAvatarHintTitle)), AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ApplyAvatarHint), new o0(j10, wnVar)), null).j();
-                    return;
-                }
-                return;
-            case 1:
-                ((ConferenceCall) this.e).lambda$poll$7((TL_phone.getGroupCallChainBlocks) this.f1342f, this.f1340b, (TLObject) this.f1341c, (TLRPC.TL_error) this.d, (AtomicBoolean) this.h, (AtomicInteger) this.f1343n);
-                return;
-            case 2:
-                o70.n((o70) this.d, (e2) this.e, (Context) this.f1341c, this.f1340b, (TLRPC.TL_chatInviteExported) this.f1342f, (TLRPC.TL_chatInviteImporter) this.h, (TLRPC.ChannelParticipant) this.f1343n);
+                });
                 return;
             default:
-                Activity activity = (Activity) this.d;
-                u6 u6Var = (u6) this.f1342f;
-                byte[] bArr = (byte[]) this.h;
-                MessageObject messageObject = (MessageObject) this.f1343n;
-                x21 x21Var = new x21(activity, u6Var, this.f1340b, bArr);
-                x21Var.R((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) ((TLObject) this.f1341c));
-                x21Var.v = new p21((wn) this.e, activity, u6Var, messageObject);
-                x21Var.show();
+                final s0 s0Var2 = this.f633b;
+                org.telegram.messenger.i0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i10 = r3;
+                        TLObject tLObject2 = tLObject;
+                        s0 s0Var22 = s0Var2;
+                        switch (i10) {
+                            case 0:
+                                int i11 = s0Var22.f701a;
+                                if (tLObject2 instanceof TL_account.TL_businessChatLink) {
+                                    TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) tLObject2;
+                                    s0Var22.f702b.add(tL_businessChatLink);
+                                    zs.f(i11).k(125, new Object[0]);
+                                    zs.f(i11).k(126, tL_businessChatLink);
+                                    s0Var22.f();
+                                    return;
+                                }
+                                return;
+                            default:
+                                ArrayList arrayList = s0Var22.f702b;
+                                int i12 = s0Var22.f701a;
+                                if (tLObject2 instanceof TL_account.businessChatLinks) {
+                                    TL_account.businessChatLinks businesschatlinks = (TL_account.businessChatLinks) tLObject2;
+                                    arrayList.clear();
+                                    arrayList.addAll(businesschatlinks.links);
+                                    vp.r1(i12).V3(businesschatlinks.users, false);
+                                    vp.r1(i12).P3(businesschatlinks.chats, false);
+                                    hs.a0(i12).m1(businesschatlinks.users, businesschatlinks.chats, true, true);
+                                    zs.f(i12).k(125, new Object[0]);
+                                    s0Var22.f();
+                                } else {
+                                    f8.g(new RuntimeException("Unexpected response from server!"), true);
+                                }
+                                s0Var22.f703c = false;
+                                s0Var22.d = true;
+                                return;
+                        }
+                    }
+                });
                 return;
         }
-    }
-
-    public m0(TLObject tLObject, Activity activity, u6 u6Var, long j10, byte[] bArr, wn wnVar, MessageObject messageObject) {
-        this.f1341c = tLObject;
-        this.d = activity;
-        this.f1342f = u6Var;
-        this.f1340b = j10;
-        this.h = bArr;
-        this.e = wnVar;
-        this.f1343n = messageObject;
-    }
-
-    public m0(TLRPC.TL_error tL_error, wn wnVar, TLObject tLObject, TLRPC.FileLocation[] fileLocationArr, String str, TLRPC.FileLocation[] fileLocationArr2, long j10) {
-        this.d = tL_error;
-        this.e = wnVar;
-        this.f1341c = tLObject;
-        this.f1342f = fileLocationArr;
-        this.f1343n = str;
-        this.h = fileLocationArr2;
-        this.f1340b = j10;
-    }
-
-    public m0(o70 o70Var, e2 e2Var, Context context, long j10, TLRPC.TL_chatInviteExported tL_chatInviteExported, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, TLRPC.ChannelParticipant channelParticipant) {
-        this.d = o70Var;
-        this.e = e2Var;
-        this.f1341c = context;
-        this.f1340b = j10;
-        this.f1342f = tL_chatInviteExported;
-        this.h = tL_chatInviteImporter;
-        this.f1343n = channelParticipant;
     }
 }

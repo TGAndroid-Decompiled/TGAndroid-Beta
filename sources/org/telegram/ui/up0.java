@@ -1,38 +1,27 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
-public final class up0 implements org.telegram.ui.Components.e5, org.telegram.ui.ActionBar.m1 {
-    public final int f44085a;
-    public final cq0 f44086b;
+import android.net.Uri;
+public final class up0 implements org.telegram.messenger.q20 {
+    public final int f42511a;
+    public final aq0 f42512b;
+    public final boolean f42513c;
 
-    public up0(cq0 cq0Var, int i10) {
-        this.f44085a = i10;
-        this.f44086b = cq0Var;
+    public up0(aq0 aq0Var, boolean z10, int i10) {
+        this.f42511a = i10;
+        this.f42512b = aq0Var;
+        this.f42513c = z10;
     }
 
     @Override
-    public void G(int i10, int i11, boolean z10) {
-        switch (this.f44085a) {
+    public final void a(Object obj) {
+        Uri uri = (Uri) obj;
+        switch (this.f42511a) {
             case 0:
-                cq0 cq0Var = this.f44086b;
-                cq0Var.W(cq0Var.f38433b, cq0Var.f38434c, z10, i10);
-                cq0Var.finishFragment();
+                org.telegram.ui.Components.cc.F(this.f42512b.f35697b.f33470e0, this.f42513c).j();
                 return;
             default:
-                cq0 cq0Var2 = this.f44086b;
-                cq0Var2.W(cq0Var2.f38433b, cq0Var2.f38434c, z10, i10);
-                cq0Var2.finishFragment();
+                org.telegram.ui.Components.cc.F(this.f42512b.f35697b.f33470e0, this.f42513c).j();
                 return;
-        }
-    }
-
-    @Override
-    public void n(KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.o1 o1Var;
-        cq0 cq0Var = this.f44086b;
-        cq0Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (o1Var = cq0Var.I) != null && o1Var.isShowing()) {
-            cq0Var.I.d(true);
         }
     }
 }

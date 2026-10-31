@@ -1,107 +1,55 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import java.util.ArrayList;
+import android.content.Context;
 import java.util.regex.Pattern;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class v80 implements xx {
-    public final int f44208a = 0;
-    public final LaunchActivity f44209b;
-    public final TLRPC.User f44210c;
-    public final String d;
-    public final int e;
+public final class v80 implements org.telegram.messenger.q20 {
+    public final int f42679a;
+    public final LaunchActivity f42680b;
 
-    public v80(LaunchActivity launchActivity, String str, int i10, TLRPC.User user) {
-        this.f44209b = launchActivity;
-        this.d = str;
-        this.e = i10;
-        this.f44210c = user;
+    public v80(LaunchActivity launchActivity, int i10) {
+        this.f42679a = i10;
+        this.f42680b = launchActivity;
     }
 
     @Override
-    public final boolean C() {
-        switch (this.f44208a) {
+    public final void a(Object obj) {
+        org.telegram.ui.ActionBar.k2 lastFragment;
+        int i10 = this.f42679a;
+        LaunchActivity launchActivity = this.f42680b;
+        switch (i10) {
             case 0:
-                return false;
+                boolean booleanValue = ((Boolean) obj).booleanValue();
+                if (launchActivity.f33377q0 != null && booleanValue && org.telegram.messenger.sc.c() < 100 && (lastFragment = launchActivity.f33377q0.getLastFragment()) != null && !(lastFragment instanceof bb0)) {
+                    int b10 = org.telegram.messenger.sc.b();
+                    org.telegram.ui.Components.cc a02 = org.telegram.ui.Components.cc.a0(lastFragment);
+                    org.telegram.ui.Components.i9 i9Var = new org.telegram.ui.Components.i9(b10 / 100.0f, lastFragment.getThemedColor(org.telegram.ui.ActionBar.t6.Y5));
+                    String L0 = org.telegram.messenger.cd.L0(2131748726, null);
+                    String a03 = org.telegram.messenger.cd.a0("LowPowerEnabledSubtitle", null, 2131748727, String.format("%d%%", Integer.valueOf(b10)));
+                    String L02 = org.telegram.messenger.cd.L0(2131751436, null);
+                    q70 q70Var = new q70(launchActivity, 11);
+                    a02.getClass();
+                    Context W = a02.W();
+                    org.telegram.ui.ActionBar.p6 p6Var = a02.f25043c;
+                    org.telegram.ui.Components.tb tbVar = new org.telegram.ui.Components.tb(W, p6Var);
+                    tbVar.f30536a.setImageDrawable(i9Var);
+                    tbVar.f30537b.setText(L0);
+                    tbVar.f30538c.setText(a03);
+                    org.telegram.ui.Components.ub ubVar = new org.telegram.ui.Components.ub(a02.W(), p6Var, true);
+                    ubVar.e(L02);
+                    ubVar.f30890b = q70Var;
+                    tbVar.setButton(ubVar);
+                    org.telegram.ui.Components.wb b11 = a02.b(tbVar, 2750);
+                    b11.f32135j = 5000;
+                    b11.j();
+                    return;
+                }
+                return;
             default:
-                return false;
-        }
-    }
-
-    @Override
-    public final boolean K(ey eyVar) {
-        switch (this.f44208a) {
-            case 0:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public final boolean v(ey eyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, cf1 cf1Var) {
-        int i12 = this.f44208a;
-        int i13 = this.e;
-        String str = this.d;
-        TLRPC.User user = this.f44210c;
-        LaunchActivity launchActivity = this.f44209b;
-        switch (i12) {
-            case 0:
+                TLRPC.User user = (TLRPC.User) obj;
                 Pattern pattern = LaunchActivity.D1;
-                long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
-                TLRPC.TL_inputMediaGame tL_inputMediaGame = new TLRPC.TL_inputMediaGame();
-                TLRPC.TL_inputGameShortName tL_inputGameShortName = new TLRPC.TL_inputGameShortName();
-                tL_inputMediaGame.f22090id = tL_inputGameShortName;
-                tL_inputGameShortName.short_name = str;
-                tL_inputGameShortName.bot_id = MessagesController.getInstance(i13).getInputUser(user);
-                SendMessagesHelper.getInstance(i13).sendGame(MessagesController.getInstance(i13).getInputPeer(j10), tL_inputMediaGame, 0L, 0L);
-                Bundle i14 = a1.g.i("scrollToTopOnResume", true);
-                if (DialogObject.isEncryptedDialog(j10)) {
-                    i14.putInt("enc_id", DialogObject.getEncryptedChatId(j10));
-                } else if (DialogObject.isUserDialog(j10)) {
-                    i14.putLong("user_id", j10);
-                } else {
-                    i14.putLong("chat_id", -j10);
-                }
-                if (MessagesController.getInstance(i13).checkCanOpenChat(i14, eyVar)) {
-                    NotificationCenter.getInstance(i13).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
-                    ((ActionBarLayout) launchActivity.O()).U(new wn(i14), true, false);
-                }
-                return true;
-            default:
-                Pattern pattern2 = LaunchActivity.D1;
-                long j11 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
-                Bundle i15 = a1.g.i("scrollToTopOnResume", true);
-                if (DialogObject.isEncryptedDialog(j11)) {
-                    i15.putInt("enc_id", DialogObject.getEncryptedChatId(j11));
-                } else if (DialogObject.isUserDialog(j11)) {
-                    i15.putLong("user_id", j11);
-                } else {
-                    i15.putLong("chat_id", -j11);
-                }
-                i15.putString("attach_bot", UserObject.getPublicUsername(user));
-                if (str != null) {
-                    i15.putString("attach_bot_start_command", str);
-                }
-                if (MessagesController.getInstance(i13).checkCanOpenChat(i15, eyVar)) {
-                    NotificationCenter.getInstance(i13).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
-                    ((ActionBarLayout) launchActivity.O()).U(new wn(i15), true, false);
-                }
-                return true;
+                org.telegram.messenger.vp.r1(launchActivity.O).u3(null, user, null, 0, null, false, false);
+                return;
         }
-    }
-
-    public v80(LaunchActivity launchActivity, TLRPC.User user, String str, int i10) {
-        this.f44209b = launchActivity;
-        this.f44210c = user;
-        this.d = str;
-        this.e = i10;
     }
 }

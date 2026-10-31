@@ -1,69 +1,78 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-import org.telegram.tgnet.ConnectionsManager;
-public final class os0 implements Runnable {
-    public final int f31381a;
-    public final org.telegram.ui.ActionBar.e2[] f31382b;
-    public final int f31383c;
-    public final int d;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class os0 implements zf.l1, org.telegram.ui.Cells.d5 {
+    public final qs0 f29174a;
 
-    public os0(org.telegram.ui.ActionBar.e2[] e2VarArr, int i10, int i11, int i12) {
-        this.f31381a = i12;
-        this.f31382b = e2VarArr;
-        this.f31383c = i10;
-        this.d = i11;
+    public os0(qs0 qs0Var) {
+        this.f29174a = qs0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f31381a) {
-            case 0:
-                org.telegram.ui.ActionBar.e2[] e2VarArr = this.f31382b;
-                org.telegram.ui.ActionBar.e2 e2Var = e2VarArr[0];
-                if (e2Var != null) {
-                    final int i10 = this.f31383c;
-                    final int i11 = this.d;
-                    e2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public final void onCancel(DialogInterface dialogInterface) {
-                            switch (r3) {
-                                case 0:
-                                    ConnectionsManager.getInstance(i10).cancelRequest(i11, true);
-                                    return;
-                                default:
-                                    ConnectionsManager.getInstance(i10).cancelRequest(i11, true);
-                                    return;
-                            }
-                        }
-                    });
-                    e2VarArr[0].show();
-                    return;
-                }
-                return;
-            default:
-                org.telegram.ui.ActionBar.e2[] e2VarArr2 = this.f31382b;
-                org.telegram.ui.ActionBar.e2 e2Var2 = e2VarArr2[0];
-                if (e2Var2 != null) {
-                    final int i12 = this.f31383c;
-                    final int i13 = this.d;
-                    e2Var2.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public final void onCancel(DialogInterface dialogInterface) {
-                            switch (r3) {
-                                case 0:
-                                    ConnectionsManager.getInstance(i12).cancelRequest(i13, true);
-                                    return;
-                                default:
-                                    ConnectionsManager.getInstance(i12).cancelRequest(i13, true);
-                                    return;
-                            }
-                        }
-                    });
-                    e2VarArr2[0].show();
-                    return;
-                }
-                return;
+    public a0.h M() {
+        return null;
+    }
+
+    @Override
+    public boolean Y(int i10) {
+        return true;
+    }
+
+    @Override
+    public boolean c(org.telegram.ui.Cells.e5 e5Var, boolean z10) {
+        int intValue = ((Integer) e5Var.getTag()).intValue();
+        qs0 qs0Var = this.f29174a;
+        TLObject E = qs0Var.E(intValue);
+        if (E instanceof TLRPC.ChannelParticipant) {
+            TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) E;
+            TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = new TLRPC.TL_chatChannelParticipant();
+            tL_chatChannelParticipant.channelParticipant = channelParticipant;
+            tL_chatChannelParticipant.user_id = org.telegram.messenger.jj.C1(channelParticipant.peer);
+            tL_chatChannelParticipant.inviter_id = channelParticipant.inviter_id;
+            tL_chatChannelParticipant.date = channelParticipant.date;
+            return qs0Var.f29738s.F1.h(tL_chatChannelParticipant, true, !z10, e5Var);
         }
+        return false;
+    }
+
+    @Override
+    public void i(int i10) {
+        qs0 qs0Var = this.f29174a;
+        qs0Var.f();
+        if (i10 == 1) {
+            int i11 = qs0Var.f29737r - 1;
+            qs0Var.f29737r = i11;
+            if (i11 == 0) {
+                int i12 = 0;
+                while (true) {
+                    zt0 zt0Var = qs0Var.f29738s;
+                    ss0[] ss0VarArr = zt0Var.m0;
+                    if (i12 < ss0VarArr.length) {
+                        ss0 ss0Var = ss0VarArr[i12];
+                        if (ss0Var.E == 7) {
+                            if (qs0Var.h == 0) {
+                                ss0Var.f30355w.e(false, true);
+                            } else {
+                                zt0Var.C(ss0Var.h, 0, null);
+                            }
+                        }
+                        i12++;
+                    } else {
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public a0.h x() {
+        return null;
+    }
+
+    @Override
+    public void c0(ArrayList arrayList) {
     }
 }

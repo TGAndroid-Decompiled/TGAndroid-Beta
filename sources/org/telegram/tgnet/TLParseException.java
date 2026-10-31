@@ -1,8 +1,8 @@
 package org.telegram.tgnet;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.f8;
+import org.telegram.messenger.i0;
+import org.telegram.messenger.zs;
 public class TLParseException extends RuntimeException {
     private TLParseException(String str) {
         super(str);
@@ -20,9 +20,9 @@ public class TLParseException extends RuntimeException {
         if (i10 != -847714938) {
             z11 = true;
         }
-        FileLog.e(tLParseException, z11);
+        f8.g(tLParseException, z11);
         if (i10 != -847714938 && i10 != -779361553 && i10 != -212046591) {
-            AndroidUtilities.runOnUIThread(new k2.c(tLParseException, 15));
+            i0.g3(new lg.s(tLParseException, 14));
         }
         if (!z10) {
             return;
@@ -31,6 +31,6 @@ public class TLParseException extends RuntimeException {
     }
 
     public static void lambda$doThrowOrLog$0(TLParseException tLParseException) {
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.tlSchemeParseException, tLParseException);
+        zs.e().k(zs.M5, tLParseException);
     }
 }

@@ -1,22 +1,22 @@
 package c0;
 public final class a {
-    public static final a f5891c;
+    public static final a f3490c;
     public static final a d;
-    public final boolean f5892a;
-    public final Throwable f5893b;
+    public final boolean f3491a;
+    public final Throwable f3492b;
 
     static {
         if (h.d) {
             d = null;
-            f5891c = null;
+            f3490c = null;
             return;
         }
         d = new a(null, false);
-        f5891c = new a(null, true);
+        f3490c = new a(null, true);
     }
 
     public a(Throwable th2, boolean z10) {
-        this.f5892a = z10;
-        this.f5893b = th2;
+        this.f3491a = z10;
+        this.f3492b = th2;
     }
 }

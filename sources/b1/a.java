@@ -14,7 +14,7 @@ public final class a {
         if (i.a(str, "CREATE_INTERRUPTED")) {
             return new w0.e(str2);
         }
-        return new w0.c(str2, 2);
+        return new w0.c(2, str2);
     }
 
     public static w0.i b(String str, String str2) {
@@ -32,7 +32,7 @@ public final class a {
                 return new w0.g(str2);
             }
         }
-        return new w0.h(str2, 2);
+        return new w0.h(2, str2);
     }
 
     public static void c(ResultReceiver resultReceiver, String str, String errMsg) {

@@ -1,17 +1,15 @@
 package w7;
-
-import org.telegram.ui.Components.b10;
-public final class v2 implements ka.d {
-    public static final v2 f51050a = new Object();
+public final class v2 implements ja.d {
+    public static final v2 f52714a = new Object();
 
     static {
-        b10.s(b10.m(h.class, new e(1)));
+        sc.e.v(sc.e.l(d.class, new a(1)));
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         if (obj == null) {
-            ka.e eVar = (ka.e) obj2;
+            ja.e eVar = (ja.e) obj2;
             throw null;
         }
         throw new ClassCastException();

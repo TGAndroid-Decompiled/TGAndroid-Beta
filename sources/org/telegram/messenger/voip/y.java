@@ -1,23 +1,27 @@
 package org.telegram.messenger.voip;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class y implements RequestDelegate {
-    public final int f21700a;
+import java.util.HashSet;
+public final class y implements Runnable {
+    public final int f18726a;
+    public final VoIPService f18727b;
+    public final HashSet f18728c;
+    public final String d;
 
-    public y(int i10) {
-        this.f21700a = i10;
+    public y(VoIPService voIPService, HashSet hashSet, String str, int i10) {
+        this.f18726a = i10;
+        this.f18727b = voIPService;
+        this.f18728c = hashSet;
+        this.d = str;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f21700a) {
+    public final void run() {
+        switch (this.f18726a) {
             case 0:
-                VoIPService.lambda$callFailed$114(tLObject, tL_error);
+                VoIPService.o0(this.f18727b, this.f18728c, this.d);
                 return;
             default:
-                VoIPService.lambda$createGroupInstance$67(tLObject, tL_error);
+                VoIPService.p1(this.f18727b, this.f18728c, this.d);
                 return;
         }
     }

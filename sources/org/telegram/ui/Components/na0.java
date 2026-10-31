@@ -1,6 +1,40 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.tl.TL_iv;
-public final class na0 extends TL_iv.RichText {
-    public int f30792a;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class na0 extends org.telegram.ui.ActionBar.b1 {
+    public final int V;
+
+    public na0(int i10, int i11, Context context, org.telegram.ui.ActionBar.p6 p6Var, boolean z10, boolean z11) {
+        super(i10, context, p6Var, z10, z11);
+        this.V = i11;
+    }
+
+    @Override
+    public final void l() {
+        switch (this.V) {
+            case 0:
+                setBackground(null);
+                return;
+            default:
+                setBackground(null);
+                return;
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.V) {
+            case 0:
+                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
+                    return super.onTouchEvent(motionEvent);
+                }
+                return false;
+            default:
+                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
+                    return super.onTouchEvent(motionEvent);
+                }
+                return false;
+        }
+    }
 }

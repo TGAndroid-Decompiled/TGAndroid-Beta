@@ -1,46 +1,32 @@
 package sg;
 
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.wn;
-public final class x extends wn {
-    public final m0 f48598od;
+import android.graphics.Outline;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+public final class x extends ViewOutlineProvider {
+    public final Rect f48484a = new Rect();
+    public final RectF f48485b = new RectF();
+    public final RectF f48486c = new RectF();
+    public final b0 d;
 
-    public x(m0 m0Var) {
-        super(null);
-        this.f48598od = m0Var;
+    public x(b0 b0Var) {
+        this.d = b0Var;
     }
 
     @Override
-    public final boolean I9() {
-        return false;
-    }
-
-    @Override
-    public final long a() {
-        return 0L;
-    }
-
-    @Override
-    public final Activity getParentActivity() {
-        return AndroidUtilities.findActivity(this.f48598od.getContext());
-    }
-
-    @Override
-    public final u6 getResourceProvider() {
-        return this.f48598od.F1;
-    }
-
-    @Override
-    public final TLRPC.User i() {
-        return UserConfig.getInstance(this.currentAccount).getCurrentUser();
-    }
-
-    @Override
-    public final boolean isLightStatusBar() {
-        return false;
+    public final void getOutline(View view, Outline outline) {
+        b0 b0Var = this.d;
+        float T1 = org.telegram.messenger.i0.T1(b0Var.e, org.telegram.messenger.i0.L(8.0f), b0Var.f48281j);
+        RectF rectF = this.f48485b;
+        rectF.set(0.0f, 0.0f, view.getMeasuredWidth(), view.getMeasuredHeight());
+        RectF rectF2 = b0Var.f48278f;
+        float f7 = b0Var.f48281j;
+        RectF rectF3 = this.f48486c;
+        org.telegram.messenger.i0.Z1(rectF2, rectF, f7, rectF3);
+        Rect rect = this.f48484a;
+        rectF3.round(rect);
+        outline.setRoundRect(rect, T1);
     }
 }

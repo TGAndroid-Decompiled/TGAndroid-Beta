@@ -1,37 +1,37 @@
 package org.telegram.ui.Components;
-public abstract class v60 extends kp0 {
-    @Override
-    public final boolean a() {
-        if (j() > 0) {
-            return true;
-        }
-        return false;
+
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.PopupWindow;
+public final class v60 implements PopupWindow.OnDismissListener {
+    public final ViewGroup f31152a;
+    public final z60 f31153b;
+
+    public v60(z60 z60Var, ViewGroup viewGroup) {
+        this.f31153b = z60Var;
+        this.f31152a = viewGroup;
     }
 
     @Override
-    public final boolean b() {
-        if (j() < i()) {
-            return true;
+    public final void onDismiss() {
+        View view;
+        z60 z60Var = this.f31153b;
+        z60Var.f32931m = null;
+        z60.a(z60Var, this.f31152a);
+        View view2 = z60Var.f32937p0;
+        if (view2 != null) {
+            view2.setPressed(false);
+            z60Var.f32937p0 = null;
         }
-        return false;
-    }
-
-    @Override
-    public final void c(boolean z10) {
-        int h = h();
-        if (z10) {
-            h *= -1;
+        if (z60Var.f32935o0 != null && (view = z60Var.f32918f) != null) {
+            view.setOnTouchListener(null);
         }
-        k(Math.min(i(), Math.max(0, j() + h)));
+        z60Var.f32935o0 = null;
+        z60Var.N();
+        Runnable runnable = z60Var.f32936p;
+        if (runnable != null) {
+            runnable.run();
+            z60Var.f32936p = null;
+        }
     }
-
-    public int h() {
-        return 1;
-    }
-
-    public abstract int i();
-
-    public abstract int j();
-
-    public abstract void k(int i10);
 }

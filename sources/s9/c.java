@@ -1,45 +1,33 @@
 package s9;
 
-import android.util.Log;
-import com.google.firebase.components.ComponentRegistrar;
-import java.lang.reflect.InvocationTargetException;
-import org.telegram.ui.Components.b10;
-public final class c implements ra.b {
-    public final int f48023a;
-    public final Object f48024b;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+public final class c implements h {
+    public final int f48101a;
+    public final f f48102b;
+    public final Runnable f48103c;
+    public final long d;
+    public final long e;
+    public final TimeUnit f48104f;
 
-    public c(Object obj, int i10) {
-        this.f48023a = i10;
-        this.f48024b = obj;
+    public c(f fVar, Runnable runnable, long j10, long j11, TimeUnit timeUnit, int i10) {
+        this.f48101a = i10;
+        this.f48102b = fVar;
+        this.f48103c = runnable;
+        this.d = j10;
+        this.e = j11;
+        this.f48104f = timeUnit;
     }
 
     @Override
-    public final Object get() {
-        switch (this.f48023a) {
+    public final ScheduledFuture a(g gVar) {
+        switch (this.f48101a) {
             case 0:
-                String str = (String) this.f48024b;
-                try {
-                    Class<?> cls = Class.forName(str);
-                    if (ComponentRegistrar.class.isAssignableFrom(cls)) {
-                        return (ComponentRegistrar) cls.getDeclaredConstructor(null).newInstance(null);
-                    }
-                    throw new RuntimeException("Class " + str + " is not an instance of com.google.firebase.components.ComponentRegistrar");
-                } catch (ClassNotFoundException unused) {
-                    Log.w("ComponentDiscovery", "Class " + str + " is not an found.");
-                    return null;
-                } catch (IllegalAccessException e) {
-                    throw new RuntimeException(a1.g.p("Could not instantiate ", str, "."), e);
-                } catch (InstantiationException e10) {
-                    throw new RuntimeException(a1.g.p("Could not instantiate ", str, "."), e10);
-                } catch (NoSuchMethodException e11) {
-                    throw new RuntimeException(b10.j("Could not instantiate ", str), e11);
-                } catch (InvocationTargetException e12) {
-                    throw new RuntimeException(b10.j("Could not instantiate ", str), e12);
-                }
-            case 1:
-                return (ComponentRegistrar) this.f48024b;
+                f fVar = this.f48102b;
+                return fVar.f48112b.scheduleAtFixedRate(new d(fVar, this.f48103c, gVar, 0), this.d, this.e, this.f48104f);
             default:
-                return new ta.b((m9.h) this.f48024b);
+                f fVar2 = this.f48102b;
+                return fVar2.f48112b.scheduleWithFixedDelay(new d(fVar2, this.f48103c, gVar, 2), this.d, this.e, this.f48104f);
         }
     }
 }

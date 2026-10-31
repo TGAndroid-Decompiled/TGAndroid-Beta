@@ -1,28 +1,42 @@
 package w7;
 
-import java.util.AbstractMap;
-public final class n9 extends k9 {
-    public final a f50998c;
-
-    public n9(a aVar) {
-        this.f50998c = aVar;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Looper;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
+public abstract class n9 {
+    public static com.google.android.gms.internal.clearcut.v0 a(Context context, GoogleSignInOptions googleSignInOptions) {
+        n6.l.g(googleSignInOptions);
+        return new com.google.android.gms.common.api.j(context, w5.a.f52454a, googleSignInOptions, new com.google.android.gms.common.api.i(new Object(), Looper.getMainLooper()));
     }
 
-    @Override
-    public final Object get(int i10) {
-        a aVar = this.f50998c;
-        z.a(i10, aVar.e);
-        int i11 = i10 + i10;
-        Object[] objArr = aVar.d;
-        Object obj = objArr[i11];
-        obj.getClass();
-        Object obj2 = objArr[i11 + 1];
-        obj2.getClass();
-        return new AbstractMap.SimpleImmutableEntry(obj, obj2);
-    }
-
-    @Override
-    public final int size() {
-        return this.f50998c.e;
+    public static Task b(Intent intent) {
+        z5.b bVar;
+        GoogleSignInAccount googleSignInAccount;
+        org.telegram.messenger.g1 g1Var = a6.h.f304a;
+        Status status = Status.h;
+        if (intent == null) {
+            bVar = new z5.b(null, status);
+        } else {
+            Status status2 = (Status) intent.getParcelableExtra("googleSignInStatus");
+            GoogleSignInAccount googleSignInAccount2 = (GoogleSignInAccount) intent.getParcelableExtra("googleSignInAccount");
+            if (googleSignInAccount2 == null) {
+                if (status2 != null) {
+                    status = status2;
+                }
+                bVar = new z5.b(null, status);
+            } else {
+                bVar = new z5.b(googleSignInAccount2, Status.e);
+            }
+        }
+        Status status3 = bVar.f54627a;
+        if (status3.b() && (googleSignInAccount = bVar.f54628b) != null) {
+            return Tasks.forResult(googleSignInAccount);
+        }
+        return Tasks.forException(n6.l.l(status3));
     }
 }

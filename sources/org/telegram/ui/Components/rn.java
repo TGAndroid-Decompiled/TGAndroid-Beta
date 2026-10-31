@@ -1,49 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.content.Intent;
-import java.util.ArrayList;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.Utilities;
-public final class rn implements ek {
-    public final Utilities.Callback f32289a;
-    public final nn f32290b;
-    public final org.telegram.ui.ActionBar.r2 f32291c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class rn extends AnimatorListenerAdapter {
+    public final int f29966a;
+    public final sn f29967b;
 
-    public rn(Utilities.Callback callback, org.telegram.ui.ActionBar.r2 r2Var, nn nnVar) {
-        this.f32289a = callback;
-        this.f32290b = nnVar;
-        this.f32291c = r2Var;
+    public rn(sn snVar, int i10) {
+        this.f29966a = i10;
+        this.f29967b = snVar;
     }
 
     @Override
-    public final void l(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j10, boolean z11, long j11) {
-        if (!arrayList.isEmpty()) {
-            this.f32289a.run(new th.c((String) arrayList.get(0)));
-        }
-        this.f32290b.dismiss(true);
-    }
-
-    @Override
-    public final void m(long j10, ArrayList arrayList, boolean z10, int i10) {
-        if (!arrayList.isEmpty()) {
-            this.f32289a.run(new th.d((SendMessagesHelper.SendingMediaInfo) arrayList.get(0)));
-        }
-        this.f32290b.dismiss(true);
-    }
-
-    @Override
-    public final void x() {
-        try {
-            Intent intent = new Intent("android.intent.action.GET_CONTENT");
-            intent.setType("*/*");
-            this.f32291c.getParentActivity().startActivityForResult(intent, 28);
-        } catch (Exception e) {
-            FileLog.e(e);
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f29966a) {
+            case 0:
+                this.f29967b.Q = null;
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
         }
     }
 
     @Override
-    public final void P() {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f29966a) {
+            case 0:
+                sn snVar = this.f29967b;
+                if (snVar.Q == animator) {
+                    snVar.getSubtitleTextView().setVisibility(4);
+                    snVar.Q = null;
+                    return;
+                }
+                return;
+            default:
+                this.f29967b.Q = null;
+                return;
+        }
     }
 }

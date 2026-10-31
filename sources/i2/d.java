@@ -1,71 +1,44 @@
 package i2;
 
-import android.media.MediaFormat;
-import j$.util.DesugarCollections;
-import java.nio.ByteBuffer;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.Locale;
 public final class d {
-    public static final d f13506b = new d(new HashMap());
-    public final Map f13507a;
+    public int f7823a;
+    public int f7824b;
+    public int f7825c;
+    public int d;
+    public int e;
+    public int f7826f;
+    public int f7827g;
+    public int h;
+    public int f7828i;
+    public int f7829j;
+    public long f7830k;
+    public int f7831l;
 
-    public d(HashMap hashMap) {
-        this.f13507a = DesugarCollections.unmodifiableMap(hashMap);
-    }
-
-    public static c a(MediaFormat mediaFormat, Set set) {
-        c cVar = new c(0);
-        Iterator it = set.iterator();
-        while (it.hasNext()) {
-            String str = (String) it.next();
-            if (mediaFormat.containsKey(str)) {
-                int valueTypeForKey = mediaFormat.getValueTypeForKey(str);
-                HashMap hashMap = cVar.f13502a;
-                if (valueTypeForKey != 1) {
-                    if (valueTypeForKey != 2) {
-                        if (valueTypeForKey != 3) {
-                            if (valueTypeForKey != 4) {
-                                if (valueTypeForKey == 5) {
-                                    ByteBuffer byteBuffer = mediaFormat.getByteBuffer(str);
-                                    if (byteBuffer == null) {
-                                        hashMap.put(str, null);
-                                    } else {
-                                        ByteBuffer allocate = ByteBuffer.allocate(byteBuffer.remaining());
-                                        allocate.put(byteBuffer.duplicate());
-                                        allocate.flip();
-                                        hashMap.put(str, allocate);
-                                    }
-                                }
-                            } else {
-                                hashMap.put(str, mediaFormat.getString(str));
-                            }
-                        } else {
-                            hashMap.put(str, Float.valueOf(mediaFormat.getFloat(str)));
-                        }
-                    } else {
-                        hashMap.put(str, Long.valueOf(mediaFormat.getLong(str)));
-                    }
-                } else {
-                    hashMap.put(str, Integer.valueOf(mediaFormat.getInteger(str)));
-                }
-            }
-        }
-        return cVar;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof d)) {
-            return false;
-        }
-        return this.f13507a.equals(((d) obj).f13507a);
-    }
-
-    public final int hashCode() {
-        return this.f13507a.hashCode();
+    public final String toString() {
+        int i10 = this.f7823a;
+        int i11 = this.f7824b;
+        int i12 = this.f7825c;
+        int i13 = this.d;
+        int i14 = this.e;
+        int i15 = this.f7826f;
+        int i16 = this.f7827g;
+        int i17 = this.h;
+        int i18 = this.f7828i;
+        int i19 = this.f7829j;
+        long j10 = this.f7830k;
+        int i20 = this.f7831l;
+        String str = e2.l0.f6165a;
+        Locale locale = Locale.US;
+        StringBuilder m10 = i0.a.m("DecoderCounters {\n decoderInits=", i10, ",\n decoderReleases=", i11, "\n queuedInputBuffers=");
+        i0.a.t(m10, i12, "\n skippedInputBuffers=", i13, "\n renderedOutputBuffers=");
+        i0.a.t(m10, i14, "\n skippedOutputBuffers=", i15, "\n droppedBuffers=");
+        i0.a.t(m10, i16, "\n droppedInputBuffers=", i17, "\n maxConsecutiveDroppedBuffers=");
+        i0.a.t(m10, i18, "\n droppedToKeyframeEvents=", i19, "\n totalVideoFrameProcessingOffsetUs=");
+        m10.append(j10);
+        m10.append("\n videoFrameProcessingOffsetCount=");
+        m10.append(i20);
+        m10.append("\n}");
+        return m10.toString();
     }
 }

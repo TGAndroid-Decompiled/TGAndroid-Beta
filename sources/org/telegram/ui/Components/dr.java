@@ -1,52 +1,92 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class dr extends LinearLayout {
-    public final y9 f27529a;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+public final class dr extends Drawable {
+    public final Drawable f25516a;
+    public final RectF f25517b = new RectF();
+    public final Paint f25518c;
+    public final Paint d;
+    public int e;
+    public final int f25519f;
+    public float f25520g;
+    public boolean h;
+    public float f25521i;
+    public float f25522j;
+    public float f25523k;
 
-    public dr(Context context) {
-        super(context);
-        setOrientation(1);
-        y9 y9Var = new y9(context);
-        this.f27529a = y9Var;
-        y9Var.setImageDrawable(new ga0(y9Var, "m418 282.6c13.4-21.1 20.2-44.9 20.2-70.8 0-88.3-79.8-175.3-178.9-175.3-100.1 0-178.9 88-178.9 175.3 0 46.6 16.9 73.1 29.1 86.1-19.3 23.4-30.9 52.3-34.6 86.1-2.5 22.7 3.2 41.4 17.4 57.3 14.3 16 51.7 35 148.1 35 41.2 0 119.9-5.3 156.7-18.3 49.5-17.4 59.2-41.1 59.2-76.2 0-41.5-12.9-74.8-38.3-99.2z", AndroidUtilities.dp(110.0f), AndroidUtilities.dp(110.0f)));
-        if (!AndroidUtilities.isTablet()) {
-            addView(y9Var, kb1.u(110, 110, 49));
+    public dr(Context context, int i10, int i11) {
+        Paint paint = new Paint(1);
+        this.f25518c = paint;
+        Paint paint2 = new Paint(1);
+        this.d = paint2;
+        this.f25516a = context.getDrawable(i10);
+        this.f25519f = i11;
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        paint.setStrokeWidth(org.telegram.messenger.i0.N(1.7f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint2.setColor(-16777216);
+        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        paint2.setStyle(style);
+        paint2.setStrokeWidth(org.telegram.messenger.i0.N(2.5f));
+    }
+
+    public final void a(boolean z10, boolean z11) {
+        if (this.h != z10) {
+            this.h = z10;
+            float f7 = 0.0f;
+            if (!z11) {
+                if (z10) {
+                    f7 = 1.0f;
+                }
+                this.f25520g = f7;
+            } else {
+                if (!z10) {
+                    f7 = 1.0f;
+                }
+                this.f25520g = f7;
+            }
+            invalidateSelf();
         }
-        TextView g7 = org.telegram.messenger.t.g(context, 1, 20.0f);
-        org.telegram.ui.ActionBar.f7.V(g7, org.telegram.ui.ActionBar.y6.G6, null);
-        g7.setGravity(1);
-        g7.setText(LocaleController.getString(R.string.NoContactsYet3));
-        g7.setTypeface(AndroidUtilities.bold());
-        addView(g7, kb1.x(-2, -2, 49, 0, 15, 0, 7));
-        TextView textView = new TextView(context);
-        textView.setTextSize(1, 14.0f);
-        org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23339c7, null);
-        textView.setGravity(1);
-        textView.setText(LocaleController.getString(R.string.NoContactsYet3Sub));
-        textView.setMaxWidth(AndroidUtilities.dp(260.0f));
-        textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        addView(textView, kb1.x(-2, -2, 49, 0, 0, 0, 19));
-        fi.d dVar = new fi.d(context, null, true);
-        dVar.setUseWrapContent(true);
-        dVar.f();
-        dVar.setPadding(AndroidUtilities.dp(28.0f), 0, AndroidUtilities.dp(28.0f), 0);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("c");
-        spannableStringBuilder.setSpan(new zq(R.drawable.filled_new_contact_24, 0), 0, 1, 33);
-        spannableStringBuilder.append((CharSequence) "  ").append((CharSequence) LocaleController.getString(R.string.NewContact));
-        dVar.i(spannableStringBuilder, false, true);
-        addView(dVar, kb1.u(-2, 44, 49));
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f27529a.setImageDrawable(new yj0(R.raw.utyan_empty, AndroidUtilities.dp(110.0f), AndroidUtilities.dp(110.0f)));
+    public final void draw(android.graphics.Canvas r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.dr.draw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.f25516a.getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f25516a.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setBounds(int i10, int i11, int i12, int i13) {
+        super.setBounds(i10, i11, i12, i13);
+        this.f25516a.setBounds(i10, i11, i12, i13);
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

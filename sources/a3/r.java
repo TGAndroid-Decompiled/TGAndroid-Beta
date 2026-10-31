@@ -1,18 +1,18 @@
 package a3;
 
-import a8.yb;
 import android.content.Context;
 import android.os.Build;
 import android.os.Looper;
 import android.os.Trace;
 import android.util.Pair;
 import android.view.Surface;
-import f9.s1;
+import e9.x1;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.Executor;
+import v7.t6;
 public final class r implements p0 {
-    public f9.i0 f185a;
+    public e9.n0 f185a;
     public b2.x f186b;
     public long f187c;
     public long d;
@@ -22,9 +22,9 @@ public final class r implements p0 {
 
     public r(w wVar, Context context) {
         this.f189g = wVar;
-        e2.n0.N(context);
-        f9.g0 g0Var = f9.i0.f10286b;
-        this.f185a = s1.e;
+        e2.l0.N(context);
+        e9.l0 l0Var = e9.n0.f6390b;
+        this.f185a = x1.e;
         this.d = -9223372036854775807L;
         this.f188f = w.f192q;
     }
@@ -43,7 +43,7 @@ public final class r implements p0 {
 
     @Override
     public final Surface d() {
-        yb.p(false);
+        t6.p(false);
         throw null;
     }
 
@@ -58,12 +58,12 @@ public final class r implements p0 {
         } else {
             z10 = false;
         }
-        yb.p(z10);
+        t6.p(z10);
         b2.o oVar = xVar.I;
         if (oVar == null || !oVar.d()) {
             oVar = b2.o.h;
         }
-        int i10 = oVar.f3302c;
+        int i10 = oVar.f2158c;
         if (i10 == 7) {
             try {
                 int i11 = Build.VERSION.SDK_INT;
@@ -132,36 +132,41 @@ public final class r implements p0 {
     }
 
     @Override
-    public final void h(long j10) {
+    public final void h(a6.i iVar) {
+        this.f188f = j9.r.f9763a;
+    }
+
+    @Override
+    public final void i(long j10) {
         this.f187c = j10;
     }
 
     @Override
-    public final void i() {
+    public final void j() {
         long j10 = this.d;
         w wVar = this.f189g;
         if (wVar.f204o >= j10) {
-            wVar.e.i();
+            wVar.e.j();
         }
     }
 
     @Override
-    public final void j(int i10) {
-        this.f189g.e.j(i10);
+    public final void k(int i10) {
+        this.f189g.e.k(i10);
     }
 
     @Override
-    public final void k() {
+    public final void l() {
         w wVar = this.f189g;
         wVar.getClass();
-        int i10 = e2.y.f9734c.f9735a;
+        int i10 = e2.y.f6210c.f6211a;
         wVar.f201l = null;
     }
 
     @Override
-    public final void l(b2.x xVar, long j10, int i10, List list) {
-        yb.p(false);
-        this.f185a = f9.i0.u(list);
+    public final void m(b2.x xVar, long j10, int i10, List list) {
+        t6.p(false);
+        this.f185a = e9.n0.u(list);
         this.f186b = xVar;
         b2.w a2 = xVar.a();
         b2.o oVar = xVar.I;
@@ -174,11 +179,6 @@ public final class r implements p0 {
     }
 
     @Override
-    public final void m(b6.i iVar) {
-        this.f188f = k9.r.f16490a;
-    }
-
-    @Override
     public final void n(boolean z10) {
         this.d = -9223372036854775807L;
         w wVar = this.f189g;
@@ -186,17 +186,17 @@ public final class r implements p0 {
         if (wVar.f203n == 1) {
             wVar.f202m++;
             fVar.n(z10);
-            while (wVar.f199j.j() > 1) {
-                wVar.f199j.f();
+            while (wVar.f199j.p() > 1) {
+                wVar.f199j.i();
             }
-            if (wVar.f199j.j() != 1) {
+            if (wVar.f199j.p() != 1) {
                 wVar.f204o = -9223372036854775807L;
                 e2.i0 i0Var = wVar.f200k;
                 i0Var.getClass();
                 i0Var.d(new d(wVar, 1));
                 return;
             }
-            ((v) wVar.f199j.f()).getClass();
+            ((v) wVar.f199j.i()).getClass();
             throw null;
         }
     }
@@ -206,7 +206,7 @@ public final class r implements p0 {
         long j11;
         long j12;
         int i10;
-        yb.p(false);
+        t6.p(false);
         long j13 = j10 + this.f187c;
         w wVar = this.f189g;
         b0 b0Var = wVar.f198i;
@@ -223,7 +223,7 @@ public final class r implements p0 {
                 r2.l lVar = jVar.f125a;
                 int i11 = jVar.f126b;
                 Trace.beginSection("dropVideoBuffer");
-                lVar.f(i11);
+                lVar.c(i11);
                 Trace.endSection();
                 nVar.R0(0, 1);
                 return true;
@@ -239,7 +239,7 @@ public final class r implements p0 {
     @Override
     public final void p(List list) {
         if (!this.f185a.equals(list)) {
-            this.f185a = f9.i0.u(list);
+            this.f185a = e9.n0.u(list);
             b2.x xVar = this.f186b;
             if (xVar == null) {
                 return;
@@ -276,7 +276,7 @@ public final class r implements p0 {
         }
         e2.i0 i0Var = wVar.f200k;
         if (i0Var != null) {
-            i0Var.f9671a.removeCallbacksAndMessages(null);
+            i0Var.f6151a.removeCallbacksAndMessages(null);
         }
         wVar.f201l = null;
         wVar.f203n = 2;
@@ -295,7 +295,7 @@ public final class r implements p0 {
             return;
         }
         wVar.f201l = Pair.create(surface, yVar);
-        int i10 = yVar.f9735a;
+        int i10 = yVar.f6211a;
     }
 
     @Override
@@ -311,15 +311,15 @@ public final class r implements p0 {
     @Override
     public final void x() {
         w wVar = this.f189g;
-        if (wVar.f199j.j() == 0) {
+        if (wVar.f199j.p() == 0) {
             wVar.e.x();
             return;
         }
         e2.j0 j0Var = new e2.j0();
-        if (wVar.f199j.j() <= 0) {
+        if (wVar.f199j.p() <= 0) {
             wVar.f199j = j0Var;
         } else {
-            ((v) wVar.f199j.f()).getClass();
+            ((v) wVar.f199j.i()).getClass();
             throw null;
         }
     }

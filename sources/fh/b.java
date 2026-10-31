@@ -1,80 +1,114 @@
 package fh;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
-import org.telegram.ui.ActionBar.f7;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.ActionBar.y6;
-public class b implements a {
-    public final u6 f10472a;
-    public final int f10473b;
-    public final float f10474c;
-    public int d;
-    public int e;
-    public int f10475f;
-    public int h;
-    public int f10476n;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.ShapeDrawable;
+import android.text.TextUtils;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import fe.e;
+import fe.f;
+import java.util.HashSet;
+import org.telegram.messenger.i0;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.p6;
+import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.Cells.d8;
+import org.telegram.ui.Components.gr;
+import rf.o;
+import w7.b6;
+public final class b extends FrameLayout implements e, k6 {
+    public ShapeDrawable f7097a;
+    public final p6 f7098b;
+    public final d8 f7099c;
+    public final TextView d;
+    public final fe.b e;
 
-    public b(int i10, u6 u6Var) {
-        this(u6Var, i10, LiteMode.isEnabled(262144) ? 0.85f : 0.76f);
+    public b(Context context, p6 p6Var) {
+        super(context);
+        this.e = new fe.b(0, this, gr.h, 380L, false);
+        this.f7098b = p6Var;
+        d8 d8Var = new d8(context, p6Var, false);
+        this.f7099c = d8Var;
+        addView(d8Var, b6.d(45, 45.0f, 49, 0.0f, 8.0f, 0.0f, 0.0f));
+        TextView textView = new TextView(context);
+        this.d = textView;
+        textView.setTextSize(1, 10.0f);
+        textView.setGravity(17);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setSingleLine();
+        addView(textView, b6.d(-1, -2.0f, 80, 6.0f, 0.0f, 6.0f, 5.0f));
+        updateColors();
     }
 
-    @Override
-    public int A() {
-        a();
-        return this.h;
-    }
-
-    public final void a() {
-        if (this.f10476n != f7.f22629b) {
-            c();
+    public final void a(boolean z10, boolean z11) {
+        if (z10 && this.f7097a == null) {
+            this.f7097a = t6.d0(i0.L(10.0f), i0.b.o(t6.w0(t6.Kl, this.f7098b), 25));
         }
-    }
-
-    public boolean b() {
-        if (AndroidUtilities.computePerceivedBrightness(y6.w0(this.f10473b, this.f10472a)) < 0.721f) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void c() {
-        this.f10476n = f7.f22629b;
-        this.d = y6.o1(this.f10474c, y6.w0(this.f10473b, this.f10472a));
-        if (b()) {
-            this.f10475f = 687865855;
-            this.h = 352321535;
-            this.e = 0;
+        fe.b bVar = this.e;
+        if (bVar.f7021f == z10 && !z11) {
             return;
         }
-        this.f10475f = -1;
-        this.h = -1;
-        this.e = 536870912;
+        bVar.a(z10, z11);
     }
 
     @Override
-    public int f0() {
-        a();
-        return this.e;
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(t6.Kl));
     }
 
     @Override
-    public int t() {
-        a();
-        return this.f10475f;
+    public final void dispatchDraw(Canvas canvas) {
+        ShapeDrawable shapeDrawable = this.f7097a;
+        if (shapeDrawable != null) {
+            fe.b bVar = this.e;
+            if (bVar.e > 0.0f) {
+                shapeDrawable.setBounds(0, 0, getWidth(), getHeight());
+                o.b(canvas, this.f7097a, i0.T1(0.9f, 1.0f, bVar.e));
+            }
+        }
+        super.dispatchDraw(canvas);
     }
 
     @Override
-    public int v0() {
-        a();
-        return this.d;
+    public final boolean isSelected() {
+        return this.e.f7021f;
     }
 
-    public b(u6 u6Var, int i10, float f7) {
-        this.f10476n = f7.f22629b;
-        this.f10472a = u6Var;
-        this.f10473b = i10;
-        this.f10474c = f7;
-        c();
+    public void setPack(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+        TLRPC.Document document;
+        this.d.setText(tL_messages_stickerSet.set.short_name);
+        if (!tL_messages_stickerSet.documents.isEmpty()) {
+            document = tL_messages_stickerSet.documents.get(0);
+        } else {
+            document = null;
+        }
+        this.f7099c.d(document, null, null, null, false, false);
+    }
+
+    @Override
+    public final void updateColors() {
+        ShapeDrawable shapeDrawable = this.f7097a;
+        p6 p6Var = this.f7098b;
+        if (shapeDrawable != null) {
+            t6.C1(i0.b.o(t6.w0(t6.Kl, p6Var), 25), shapeDrawable);
+            this.f7097a.setAlpha((int) (this.e.e * 255.0f));
+            invalidate();
+        }
+        this.d.setTextColor(i0.b.o(t6.w0(t6.Kl, p6Var), 229));
+    }
+
+    @Override
+    public final void v(int i10, float f7, float f10, f fVar) {
+        ShapeDrawable shapeDrawable = this.f7097a;
+        if (shapeDrawable != null) {
+            shapeDrawable.setAlpha((int) (f7 * 255.0f));
+        }
+        invalidate();
+    }
+
+    @Override
+    public final void E(float f7, int i10) {
     }
 }

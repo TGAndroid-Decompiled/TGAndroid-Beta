@@ -1,38 +1,22 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class vw extends s4.n0 {
-    public final sz f34384a;
+public final class vw extends s4.r {
+    public final vy Q;
 
-    public vw(sz szVar) {
-        this.f34384a = szVar;
+    public vw(vy vyVar) {
+        super(8);
+        this.Q = vyVar;
     }
 
     @Override
-    public final void d(Rect rect, View view, RecyclerView recyclerView, s4.b1 b1Var) {
-        int R = RecyclerView.R(view);
-        sz szVar = this.f34384a;
-        s4.h0 adapter = szVar.f32728h0.getAdapter();
-        xy xyVar = szVar.f32745n0;
-        int i10 = 0;
-        if (adapter == xyVar && R == xyVar.I) {
-            rect.set(0, 0, 0, 0);
-            return;
+    public final void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
+        try {
+            qw qwVar = new qw(this, recyclerView.getContext(), 1);
+            qwVar.f48045a = i10;
+            w0(qwVar);
+        } catch (Exception e) {
+            org.telegram.messenger.f8.g(e, true);
         }
-        if (R == 0) {
-            xyVar.getClass();
-        }
-        rect.left = 0;
-        rect.bottom = 0;
-        rect.top = AndroidUtilities.dp(2.0f);
-        yy yyVar = szVar.f32731i0;
-        xyVar.getClass();
-        if (!yyVar.F1(R)) {
-            i10 = AndroidUtilities.dp(2.0f);
-        }
-        rect.right = i10;
     }
 }

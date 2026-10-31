@@ -1,45 +1,59 @@
 package e9;
-public final class b extends g {
-    public static final b f9834c = new b("CharMatcher.any()", 0);
-    public static final b d = new b("CharMatcher.ascii()", 1);
-    public static final b e = new b("CharMatcher.javaIsoControl()", 2);
-    public static final b f9835f = new b("CharMatcher.none()", 3);
-    public final int f9836b;
 
-    public b(String str, int i10) {
-        super(str);
-        this.f9836b = i10;
+import j$.util.Objects;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Map;
+public final class b implements Iterator {
+    public final Iterator f6327a;
+    public Object f6328b = null;
+    public Collection f6329c = null;
+    public Iterator d = d1.f6344a;
+    public final p1 e;
+    public final int f6330f;
+
+    public b(p1 p1Var, int i10) {
+        this.f6330f = i10;
+        this.e = p1Var;
+        this.f6327a = p1Var.e.entrySet().iterator();
     }
 
     @Override
-    public final boolean c(char c10) {
-        switch (this.f9836b) {
+    public final boolean hasNext() {
+        if (!this.f6327a.hasNext() && !this.d.hasNext()) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final Object next() {
+        if (!this.d.hasNext()) {
+            Map.Entry entry = (Map.Entry) this.f6327a.next();
+            this.f6328b = entry.getKey();
+            Collection collection = (Collection) entry.getValue();
+            this.f6329c = collection;
+            this.d = collection.iterator();
+        }
+        Object obj = this.f6328b;
+        Object next = this.d.next();
+        switch (this.f6330f) {
             case 0:
-                return true;
-            case 1:
-                if (c10 <= 127) {
-                    return true;
-                }
-                return false;
-            case 2:
-                if (c10 > 31 && (c10 < 127 || c10 > 159)) {
-                    return false;
-                }
-                return true;
+                return next;
             default:
-                return false;
+                return new j0(obj, next);
         }
     }
 
     @Override
-    public i d() {
-        switch (this.f9836b) {
-            case 0:
-                return f9835f;
-            case 3:
-                return f9834c;
-            default:
-                return super.d();
+    public final void remove() {
+        this.d.remove();
+        Collection collection = this.f6329c;
+        Objects.requireNonNull(collection);
+        if (collection.isEmpty()) {
+            this.f6327a.remove();
         }
+        p1 p1Var = this.e;
+        p1Var.f6401f--;
     }
 }

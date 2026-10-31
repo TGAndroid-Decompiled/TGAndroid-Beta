@@ -1,23 +1,79 @@
 package m;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class x2 extends i1.b {
-    public static final Parcelable.Creator<x2> CREATOR = new a5.k(2);
-    public boolean f17900c;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.TouchDelegate;
+import android.view.View;
+import android.view.ViewConfiguration;
+public final class x2 extends TouchDelegate {
+    public final View f12591a;
+    public final Rect f12592b;
+    public final Rect f12593c;
+    public final Rect d;
+    public final int e;
+    public boolean f12594f;
 
-    public x2(Parcel parcel, ClassLoader classLoader) {
-        super(parcel, classLoader);
-        this.f17900c = ((Boolean) parcel.readValue(null)).booleanValue();
-    }
-
-    public final String toString() {
-        return "SearchView.SavedState{" + Integer.toHexString(System.identityHashCode(this)) + " isIconified=" + this.f17900c + "}";
+    public x2(Rect rect, Rect rect2, View view) {
+        super(rect, view);
+        int scaledTouchSlop = ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
+        this.e = scaledTouchSlop;
+        Rect rect3 = new Rect();
+        this.f12592b = rect3;
+        Rect rect4 = new Rect();
+        this.d = rect4;
+        Rect rect5 = new Rect();
+        this.f12593c = rect5;
+        rect3.set(rect);
+        rect4.set(rect);
+        int i10 = -scaledTouchSlop;
+        rect4.inset(i10, i10);
+        rect5.set(rect2);
+        this.f12591a = view;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        super.writeToParcel(parcel, i10);
-        parcel.writeValue(Boolean.valueOf(this.f17900c));
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean z10;
+        boolean z11;
+        int x10 = (int) motionEvent.getX();
+        int y3 = (int) motionEvent.getY();
+        int action = motionEvent.getAction();
+        boolean z12 = true;
+        if (action != 0) {
+            if (action != 1 && action != 2) {
+                if (action == 3) {
+                    z11 = this.f12594f;
+                    this.f12594f = false;
+                }
+                z10 = true;
+                z12 = false;
+            } else {
+                z11 = this.f12594f;
+                if (z11 && !this.d.contains(x10, y3)) {
+                    z12 = z11;
+                    z10 = false;
+                }
+            }
+            z12 = z11;
+            z10 = true;
+        } else {
+            if (this.f12592b.contains(x10, y3)) {
+                this.f12594f = true;
+                z10 = true;
+            }
+            z10 = true;
+            z12 = false;
+        }
+        if (!z12) {
+            return false;
+        }
+        Rect rect = this.f12593c;
+        View view = this.f12591a;
+        if (z10 && !rect.contains(x10, y3)) {
+            motionEvent.setLocation(view.getWidth() / 2, view.getHeight() / 2);
+        } else {
+            motionEvent.setLocation(x10 - rect.left, y3 - rect.top);
+        }
+        return view.dispatchTouchEvent(motionEvent);
     }
 }

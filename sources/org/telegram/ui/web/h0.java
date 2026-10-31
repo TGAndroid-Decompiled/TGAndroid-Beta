@@ -1,24 +1,49 @@
 package org.telegram.ui.web;
 
-import android.webkit.ValueCallback;
-import java.util.HashMap;
-public final class h0 implements ValueCallback {
-    public final int f44767a;
+import android.view.View;
+import android.webkit.WebView;
+public final class h0 implements View.OnLongClickListener {
+    public final v0 f43053a;
 
-    public h0(int i10) {
-        this.f44767a = i10;
+    public h0(v0 v0Var) {
+        this.f43053a = v0Var;
     }
 
     @Override
-    public final void onReceiveValue(Object obj) {
-        String str = (String) obj;
-        switch (this.f44767a) {
-            case 0:
-                int i10 = x0.V;
-                return;
-            default:
-                HashMap hashMap = h2.e;
-                return;
+    public final boolean onLongClick(View view) {
+        WebView.HitTestResult hitTestResult = this.f43053a.getHitTestResult();
+        if (hitTestResult.getType() == 7) {
+            final String extra = hitTestResult.getExtra();
+            org.telegram.messenger.i0.g3(new Runnable(this) {
+                public final h0 f43029b;
+
+                {
+                    this.f43029b = this;
+                }
+
+                @Override
+                public final void run() {
+                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.f0.run():void");
+                }
+            });
+            return true;
+        } else if (hitTestResult.getType() == 5) {
+            final String extra2 = hitTestResult.getExtra();
+            org.telegram.messenger.i0.g3(new Runnable(this) {
+                public final h0 f43029b;
+
+                {
+                    this.f43029b = this;
+                }
+
+                @Override
+                public final void run() {
+                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.f0.run():void");
+                }
+            });
+            return true;
+        } else {
+            return false;
         }
     }
 }

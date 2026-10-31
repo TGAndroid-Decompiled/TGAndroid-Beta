@@ -1,125 +1,73 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
+import android.content.Context;
+import java.util.ArrayList;
 import java.util.regex.Pattern;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class g90 implements Runnable {
-    public final int f39534a = 1;
-    public final LaunchActivity f39535b;
-    public final Bundle f39536c;
-    public final Long d;
-    public final kz e;
-    public final boolean f39537f;
-    public final qf.c h;
-    public final Long f39538n;
-    public final Integer f39539r;
-    public final Integer f39540s;
-    public final byte[] v;
-    public final org.telegram.ui.ActionBar.r2 f39541w;
-    public final int f39542x;
-    public final Object f39543y;
+public final class g90 implements org.telegram.messenger.q20 {
+    public final int f37492a;
+    public final int f37493b;
+    public final String f37494c;
+    public final Object d;
+    public final Object e;
+    public final Object f37495f;
 
-    public g90(LaunchActivity launchActivity, Bundle bundle, Long l4, int[] iArr, kz kzVar, boolean z10, qf.c cVar, Long l10, Integer num, Integer num2, byte[] bArr, org.telegram.ui.ActionBar.r2 r2Var, int i10) {
-        this.f39535b = launchActivity;
-        this.f39536c = bundle;
-        this.d = l4;
-        this.f39543y = iArr;
-        this.e = kzVar;
-        this.f39537f = z10;
-        this.h = cVar;
-        this.f39538n = l10;
-        this.f39539r = num;
-        this.f39540s = num2;
-        this.v = bArr;
-        this.f39541w = r2Var;
-        this.f39542x = i10;
+    public g90(Object obj, Object obj2, Object obj3, int i10, String str, int i11) {
+        this.f37492a = i11;
+        this.d = obj;
+        this.e = obj2;
+        this.f37495f = obj3;
+        this.f37493b = i10;
+        this.f37494c = str;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f39534a;
-        Object obj = this.f39543y;
+    public final void a(Object obj) {
+        TLRPC.User user;
+        int i10 = this.f37492a;
+        Object obj2 = this.f37495f;
+        Object obj3 = this.e;
+        Object obj4 = this.d;
         switch (i10) {
             case 0:
-                kz kzVar = this.e;
-                TLObject tLObject = (TLObject) obj;
+                LaunchActivity launchActivity = (LaunchActivity) obj4;
+                org.telegram.messenger.vp vpVar = (org.telegram.messenger.vp) obj3;
+                gf.e eVar = (gf.e) obj2;
+                Long l4 = (Long) obj;
                 Pattern pattern = LaunchActivity.D1;
-                try {
-                    kzVar.run();
-                } catch (Exception e) {
-                    FileLog.e(e);
+                if (l4 != null && l4.longValue() > 0 && l4.longValue() != Long.MAX_VALUE) {
+                    user = vpVar.Z1(l4);
+                } else {
+                    user = null;
                 }
-                boolean z10 = tLObject instanceof TLRPC.TL_messages_chats;
-                LaunchActivity launchActivity = this.f39535b;
-                if (z10) {
-                    TLRPC.TL_messages_chats tL_messages_chats = (TLRPC.TL_messages_chats) tLObject;
-                    if (!tL_messages_chats.chats.isEmpty()) {
-                        MessagesController.getInstance(launchActivity.O).putChats(tL_messages_chats.chats, false);
-                        TLRPC.Chat chat = tL_messages_chats.chats.get(0);
-                        Long l4 = this.d;
-                        if (chat != null && this.f39537f && ChatObject.isBoostSupported(chat)) {
-                            launchActivity.x0(Long.valueOf(-l4.longValue()), null, this.h, null);
-                        } else if (chat != null && chat.forum) {
-                            Long l10 = this.f39538n;
-                            Integer num = this.f39540s;
-                            byte[] bArr = this.v;
-                            if (l10 != null) {
-                                launchActivity.m0(-l4.longValue(), this.f39539r, null, num, bArr, null, 0, -1);
-                            } else {
-                                launchActivity.m0(-l4.longValue(), null, null, num, bArr, null, 0, -1);
-                            }
-                        }
-                        org.telegram.ui.ActionBar.r2 r2Var = this.f39541w;
-                        Bundle bundle = this.f39536c;
-                        if (r2Var == null || MessagesController.getInstance(this.f39542x).checkCanOpenChat(bundle, r2Var)) {
-                            ((ActionBarLayout) launchActivity.O()).R(new wn(bundle));
-                            return;
-                        }
-                        return;
-                    }
+                int i11 = this.f37493b;
+                if (user != null && !org.telegram.messenger.h20.B(user)) {
+                    launchActivity.Y(i11, user, this.f37494c, eVar);
+                    return;
                 }
-                launchActivity.G0(org.telegram.ui.Components.g5.G(launchActivity, LocaleController.getString(R.string.DialogNotAvailable), LocaleController.getString(R.string.LinkNotFound)));
+                if (eVar != null) {
+                    eVar.b();
+                }
+                if (user != null) {
+                    launchActivity.m0(i11, user.f19942id, null);
+                    return;
+                }
+                org.telegram.ui.ActionBar.k2 Q = LaunchActivity.Q();
+                if (Q != null) {
+                    org.telegram.messenger.m5.o(null, 2131748150, org.telegram.ui.Components.cc.a0(Q), null);
+                    return;
+                }
                 return;
             default:
-                int[] iArr = (int[]) obj;
-                Pattern pattern2 = LaunchActivity.D1;
-                LaunchActivity launchActivity2 = this.f39535b;
-                org.telegram.ui.ActionBar.j5 O = launchActivity2.O();
-                Bundle bundle2 = this.f39536c;
-                if (!((ActionBarLayout) O).R(new wn(bundle2))) {
-                    TLRPC.TL_channels_getChannels tL_channels_getChannels = new TLRPC.TL_channels_getChannels();
-                    TLRPC.TL_inputChannel tL_inputChannel = new TLRPC.TL_inputChannel();
-                    Long l11 = this.d;
-                    tL_inputChannel.channel_id = l11.longValue();
-                    tL_channels_getChannels.f22064id.add(tL_inputChannel);
-                    iArr[0] = ConnectionsManager.getInstance(launchActivity2.O).sendRequest(tL_channels_getChannels, new org.telegram.messenger.m1(launchActivity2, this.e, this.f39537f, l11, this.h, this.f39538n, this.f39539r, this.f39540s, this.v, this.f39541w, this.f39542x, bundle2));
+                Context context = (Context) obj3;
+                org.telegram.ui.ActionBar.p6 p6Var = (org.telegram.ui.ActionBar.p6) obj2;
+                ArrayList arrayList = (ArrayList) obj;
+                ((boolean[]) obj4)[0] = false;
+                if (arrayList != null) {
+                    new rh.t0(context, p6Var, this.f37493b, this.f37494c, arrayList, false).show();
                     return;
                 }
                 return;
         }
-    }
-
-    public g90(LaunchActivity launchActivity, kz kzVar, TLObject tLObject, boolean z10, Long l4, qf.c cVar, Long l10, Integer num, Integer num2, byte[] bArr, org.telegram.ui.ActionBar.r2 r2Var, int i10, Bundle bundle) {
-        this.f39535b = launchActivity;
-        this.e = kzVar;
-        this.f39543y = tLObject;
-        this.f39537f = z10;
-        this.d = l4;
-        this.h = cVar;
-        this.f39538n = l10;
-        this.f39539r = num;
-        this.f39540s = num2;
-        this.v = bArr;
-        this.f39541w = r2Var;
-        this.f39542x = i10;
-        this.f39536c = bundle;
     }
 }

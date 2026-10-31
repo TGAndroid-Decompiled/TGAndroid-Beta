@@ -2,27 +2,26 @@ package org.telegram.ui.web;
 
 import android.webkit.JavascriptInterface;
 import java.io.Serializable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.oy0;
+import org.telegram.ui.Components.u41;
 public class BotWebViewContainer$WebViewProxy {
-    public a1 f44655a;
-    public final x0 f44656b;
+    public z0 f42976a;
+    public final v0 f42977b;
 
-    public BotWebViewContainer$WebViewProxy(x0 x0Var, a1 a1Var) {
-        this.f44656b = x0Var;
-        this.f44655a = a1Var;
+    public BotWebViewContainer$WebViewProxy(v0 v0Var, z0 z0Var) {
+        this.f42977b = v0Var;
+        this.f42976a = z0Var;
     }
 
     @JavascriptInterface
     public void postEvent(String str, String str2) {
-        if (this.f44655a == null) {
+        if (this.f42976a == null) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new oy0(this, str, str2, 9));
+        org.telegram.messenger.i0.g3(new u41(this, str, str2, 7));
     }
 
     @JavascriptInterface
     public void resolveShare(String str, byte[] bArr, String str2, String str3) {
-        AndroidUtilities.runOnUIThread(new b0((Object) this, str, (Serializable) bArr, str2, str3, 5));
+        org.telegram.messenger.i0.g3(new x((Object) this, str, (Serializable) bArr, str2, str3, 5));
     }
 }

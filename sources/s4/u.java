@@ -1,79 +1,177 @@
 package s4;
 
-import android.graphics.Rect;
+import android.graphics.Canvas;
 import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-public abstract class u extends t {
-    public final ArrayList Q;
-    public boolean R;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.WeakHashMap;
+import org.telegram.ui.Cells.p2;
+import org.telegram.ui.gy;
+public abstract class u {
+    public static final p2 f48013b = new p2(2);
+    public static final p2 f48014c = new p2(3);
+    public int f48015a = -1;
 
-    public u(boolean z10) {
-        super(1000, z10);
-        this.Q = new ArrayList(4);
-        this.R = true;
+    public static int c(int i10, int i11) {
+        int i12;
+        int i13 = i10 & 789516;
+        if (i13 == 0) {
+            return i10;
+        }
+        int i14 = i10 & (~i13);
+        if (i11 == 0) {
+            i12 = i13 << 2;
+        } else {
+            int i15 = i13 << 1;
+            i14 |= (-789517) & i15;
+            i12 = (i15 & 789516) << 2;
+        }
+        return i14 | i12;
     }
 
-    public abstract boolean C1(int i10);
-
-    public abstract boolean D1(View view);
-
-    @Override
-    public final void Z0(rf.e r22, s4.b1 r23, s4.a0 r24, k2.l r25) {
-        throw new UnsupportedOperationException("Method not decompiled: s4.u.Z0(rf.e, s4.b1, s4.a0, k2.l):void");
+    public static int l(int i10, int i11) {
+        int i12 = i11 | i10;
+        return (i10 << 16) | (i11 << 8) | i12;
     }
 
-    @Override
-    public final boolean e() {
-        return this.R;
+    public void a(RecyclerView recyclerView, c1 c1Var) {
+        View view = c1Var.f47898a;
+        Object tag = view.getTag();
+        if (tag instanceof Float) {
+            float floatValue = ((Float) tag).floatValue();
+            WeakHashMap weakHashMap = r0.h0.f46123a;
+            r0.z.h(view, floatValue);
+        }
+        view.setTag(null);
+        view.setTranslationX(0.0f);
+        view.setTranslationY(0.0f);
     }
 
-    @Override
-    public final void e1(rf.e eVar, int i10, int i11) {
-        if (i10 >= 0) {
-            int r6 = r();
-            if (this.v) {
-                int i12 = r6 - 1;
-                for (int i13 = i12; i13 >= 0; i13--) {
-                    View q5 = q(i13);
-                    if (q5.getBottom() + ((ViewGroup.MarginLayoutParams) ((q0) q5.getLayoutParams())).bottomMargin <= i10) {
-                        if (q5.getHeight() + q5.getTop() <= i10) {
-                        }
-                    }
-                    d1(eVar, i12, i13);
-                    return;
-                }
-                return;
+    public int b(int i10, int i11) {
+        int i12;
+        int i13 = i10 & 3158064;
+        if (i13 == 0) {
+            return i10;
+        }
+        int i14 = i10 & (~i13);
+        if (i11 == 0) {
+            i12 = i13 >> 2;
+        } else {
+            int i15 = i13 >> 1;
+            i14 |= (-3158065) & i15;
+            i12 = (i15 & 3158064) >> 2;
+        }
+        return i14 | i12;
+    }
+
+    public long d(RecyclerView recyclerView, int i10, float f7, float f10) {
+        l0 itemAnimator = recyclerView.getItemAnimator();
+        if (itemAnimator == null) {
+            if (i10 == 8) {
+                return 200L;
             }
-            for (int i14 = 0; i14 < r6; i14++) {
-                View q9 = q(i14);
-                if (q9.getBottom() + ((ViewGroup.MarginLayoutParams) ((q0) q9.getLayoutParams())).bottomMargin <= i10) {
-                    if (q9.getHeight() + q9.getTop() <= i10) {
+            return 250L;
+        } else if (i10 == 8) {
+            return itemAnimator.j();
+        } else {
+            return itemAnimator.d;
+        }
+    }
+
+    public abstract int e(RecyclerView recyclerView, c1 c1Var);
+
+    public float g() {
+        return 0.5f;
+    }
+
+    public final int i(int i10, int i11, long j10) {
+        if (this.f48015a == -1) {
+            this.f48015a = org.telegram.messenger.i0.L(20.0f);
+        }
+        int i12 = this.f48015a;
+        float f7 = 1.0f;
+        int interpolation = (int) (f48014c.getInterpolation(Math.min(1.0f, (Math.abs(i11) * 1.0f) / i10)) * ((int) Math.signum(i11)) * i12);
+        if (j10 <= 500) {
+            f7 = ((float) j10) / 500.0f;
+        }
+        int interpolation2 = (int) (f48013b.getInterpolation(f7) * interpolation);
+        if (interpolation2 == 0) {
+            if (i11 <= 0) {
+                return -1;
+            }
+            return 1;
+        }
+        return interpolation2;
+    }
+
+    public boolean j() {
+        return true;
+    }
+
+    public boolean k() {
+        return !(this instanceof gy);
+    }
+
+    public void m(Canvas canvas, RecyclerView recyclerView, c1 c1Var, float f7, float f10, int i10, boolean z10) {
+        View view = c1Var.f47898a;
+        if (z10 && view.getTag() == null) {
+            WeakHashMap weakHashMap = r0.h0.f46123a;
+            Float valueOf = Float.valueOf(r0.z.e(view));
+            int childCount = recyclerView.getChildCount();
+            float f11 = 0.0f;
+            for (int i11 = 0; i11 < childCount; i11++) {
+                View childAt = recyclerView.getChildAt(i11);
+                if (childAt != view) {
+                    WeakHashMap weakHashMap2 = r0.h0.f46123a;
+                    float e = r0.z.e(childAt);
+                    if (e > f11) {
+                        f11 = e;
                     }
                 }
-                d1(eVar, 0, i14);
-                return;
+            }
+            r0.z.h(view, f11 + 1.0f);
+            view.setTag(valueOf);
+        }
+        view.setTranslationX(f7);
+        view.setTranslationY(f10);
+    }
+
+    public abstract boolean n(RecyclerView recyclerView, c1 c1Var, c1 c1Var2);
+
+    public void o(RecyclerView recyclerView, c1 c1Var, c1 c1Var2, int i10, int i11, int i12) {
+        View view = c1Var2.f47898a;
+        n0 layoutManager = recyclerView.getLayoutManager();
+        if (layoutManager instanceof a0) {
+            ((a0) layoutManager).b1(c1Var.f47898a, view, i11, i12);
+            return;
+        }
+        if (layoutManager.d()) {
+            if (n0.x(view) <= recyclerView.getPaddingLeft()) {
+                recyclerView.v0(i10);
+            }
+            if (n0.y(view) >= recyclerView.getWidth() - recyclerView.getPaddingRight()) {
+                recyclerView.v0(i10);
+            }
+        }
+        if (layoutManager.e()) {
+            if (n0.z(view) <= recyclerView.getPaddingTop()) {
+                recyclerView.v0(i10);
+            }
+            if (n0.v(view) >= recyclerView.getHeight() - recyclerView.getPaddingBottom()) {
+                recyclerView.v0(i10);
             }
         }
     }
 
-    @Override
-    public final int[] r1(int i10, int i11, int[] iArr) {
-        if (iArr == null || iArr.length != i10 + 1 || iArr[iArr.length - 1] != i11) {
-            iArr = new int[i10 + 1];
-        }
-        iArr[0] = 0;
-        for (int i12 = 1; i12 <= i10; i12++) {
-            iArr[i12] = (int) Math.ceil((i12 / i10) * i11);
-        }
-        return iArr;
+    public abstract void q(c1 c1Var);
+
+    public float f(float f7) {
+        return f7;
     }
 
-    @Override
-    public final void x1(View view, int i10, boolean z10) {
-        s sVar = (s) view.getLayoutParams();
-        Rect rect = sVar.f47868b;
-        int i11 = rect.top + rect.bottom + ((ViewGroup.MarginLayoutParams) sVar).topMargin + ((ViewGroup.MarginLayoutParams) sVar).bottomMargin;
-        y1(p0.s(false, this.K[sVar.f47874f], i10, rect.left + rect.right + ((ViewGroup.MarginLayoutParams) sVar).leftMargin + ((ViewGroup.MarginLayoutParams) sVar).rightMargin, ((ViewGroup.MarginLayoutParams) sVar).width), p0.s(true, this.f47745q.k(), this.f47861l, i11, ((ViewGroup.MarginLayoutParams) sVar).height), view, z10);
+    public float h(float f7) {
+        return f7;
+    }
+
+    public void p(c1 c1Var, int i10) {
     }
 }

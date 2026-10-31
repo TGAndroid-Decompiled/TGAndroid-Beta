@@ -1,96 +1,18 @@
 package org.telegram.ui.Components;
 
-import android.util.Property;
-import android.view.View;
-public final class je extends Property {
-    public final int f29662a;
-    public final ChatActivityEnterView f29663b;
+import android.view.ViewTreeObserver;
+public final class je implements ViewTreeObserver.OnDrawListener {
+    public final lu0 f27335a;
+    public final bo0 f27336b;
 
-    public je(ChatActivityEnterView chatActivityEnterView, int i10) {
-        super(Float.class, "emoji_button_scale");
-        this.f29662a = i10;
-        switch (i10) {
-            case 1:
-                this.f29663b = chatActivityEnterView;
-                super(Float.class, "attach_scale");
-                return;
-            case 2:
-                this.f29663b = chatActivityEnterView;
-                super(Float.class, "emoji_button_alpha");
-                return;
-            case 3:
-                this.f29663b = chatActivityEnterView;
-                super(Float.class, "attach_layout_translation_x");
-                return;
-            case 4:
-                this.f29663b = chatActivityEnterView;
-                super(Float.class, "message_text_translation_x");
-                return;
-            default:
-                this.f29663b = chatActivityEnterView;
-                return;
-        }
+    public je(lu0 lu0Var, bo0 bo0Var) {
+        this.f27335a = lu0Var;
+        this.f27336b = bo0Var;
     }
 
     @Override
-    public final Object get(Object obj) {
-        switch (this.f29662a) {
-            case 0:
-                View view = (View) obj;
-                return Float.valueOf(this.f29663b.h);
-            case 1:
-                View view2 = (View) obj;
-                return Float.valueOf(this.f29663b.E);
-            case 2:
-                View view3 = (View) obj;
-                return Float.valueOf(this.f29663b.f25924n);
-            case 3:
-                View view4 = (View) obj;
-                return Float.valueOf(this.f29663b.f25981x);
-            default:
-                View view5 = (View) obj;
-                return Float.valueOf(this.f29663b.G);
-        }
-    }
-
-    @Override
-    public final void set(Object obj, Object obj2) {
-        switch (this.f29662a) {
-            case 0:
-                View view = (View) obj;
-                float floatValue = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView = this.f29663b;
-                chatActivityEnterView.h = floatValue;
-                chatActivityEnterView.C1();
-                return;
-            case 1:
-                View view2 = (View) obj;
-                float floatValue2 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView2 = this.f29663b;
-                chatActivityEnterView2.E = floatValue2;
-                chatActivityEnterView2.x1();
-                return;
-            case 2:
-                View view3 = (View) obj;
-                float floatValue3 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView3 = this.f29663b;
-                chatActivityEnterView3.f25924n = floatValue3;
-                chatActivityEnterView3.C1();
-                return;
-            case 3:
-                View view4 = (View) obj;
-                float floatValue4 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView4 = this.f29663b;
-                chatActivityEnterView4.f25981x = floatValue4;
-                chatActivityEnterView4.x1();
-                return;
-            default:
-                View view5 = (View) obj;
-                float floatValue5 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView5 = this.f29663b;
-                chatActivityEnterView5.G = floatValue5;
-                chatActivityEnterView5.G1();
-                return;
-        }
+    public final void onDraw() {
+        lu0 lu0Var = this.f27335a;
+        lu0Var.post(new li.s(this, lu0Var, this.f27336b, 27));
     }
 }

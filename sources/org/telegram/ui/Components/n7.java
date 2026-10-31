@@ -1,54 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewGroup;
-public final class n7 implements o1.g {
-    public final int f30759a;
-    public final Object f30760b;
+import android.animation.AnimatorSet;
+import android.content.Context;
+import android.os.SystemClock;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+public final class n7 extends FrameLayout {
+    public final g9[] f28695a;
+    public int f28696b;
+    public AnimatorSet f28697c;
+    public long d;
+    public final w7 e;
 
-    public n7(Object obj, int i10) {
-        this.f30759a = i10;
-        this.f30760b = obj;
+    public n7(w7 w7Var, Context context) {
+        super(context);
+        this.e = w7Var;
+        this.f28695a = new g9[2];
+        for (int i10 = 0; i10 < 2; i10++) {
+            this.f28695a[i10] = new g9(context);
+            this.f28695a[i10].getImageReceiver().f14382g1 = new i2.q(this, i10, 7);
+            this.f28695a[i10].setRoundRadius(org.telegram.messenger.i0.L(4.0f));
+            if (i10 == 1) {
+                this.f28695a[i10].setVisibility(8);
+            }
+            addView(this.f28695a[i10], w7.b6.c(-1.0f, -1));
+        }
     }
 
     @Override
-    public final void a(o1.h hVar, float f7, float f10) {
-        oi.q qVar;
-        ViewGroup viewGroup;
-        switch (this.f30759a) {
-            case 0:
-                ((m8) this.f30760b).S.setBufferedProgress(f7 / 1000.0f);
-                return;
-            case 1:
-                qc qcVar = (qc) this.f30760b;
-                qcVar.f31867p = (int) f7;
-                qcVar.l();
-                return;
-            case 2:
-                if (Math.abs(f7) > ((ub) this.f30760b).getWidth()) {
-                    hVar.c();
-                    return;
-                }
-                return;
-            case 3:
-                ti tiVar = (ti) ((bi.x4) this.f30760b).d;
-                li liVar = tiVar.C0;
-                if (liVar == tiVar.m0 || liVar == tiVar.f33013n0 || (tiVar.F && tiVar.f33044w1 != null)) {
-                    tiVar.i2(1);
-                }
-                tiVar.C0.l(tiVar.f33018o2);
-                qVar = ((org.telegram.ui.ActionBar.k3) tiVar).glassEngine;
-                qVar.g();
-                viewGroup = ((org.telegram.ui.ActionBar.k3) tiVar).containerView;
-                viewGroup.invalidate();
-                return;
-            case 4:
-                al alVar = (al) this.f30760b;
-                alVar.m0 = f7;
-                alVar.k0();
-                return;
-            default:
-                ((vc0) this.f30760b).y();
-                return;
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        int action = motionEvent.getAction();
+        w7 w7Var = this.e;
+        if (action == 0) {
+            if (this.f28695a[this.f28696b].getImageReceiver().I()) {
+                w7Var.W0(true, true);
+                this.d = SystemClock.elapsedRealtime();
+                return true;
+            }
+        } else if (action != 2 && SystemClock.elapsedRealtime() - this.d >= 400) {
+            w7Var.W0(false, true);
         }
+        return true;
     }
 }

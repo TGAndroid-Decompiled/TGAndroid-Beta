@@ -8,23 +8,25 @@ import android.text.TextUtils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class SmsReceiver extends BroadcastReceiver {
-    public static void lambda$onReceive$0(String str) {
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didReceiveSmsCode, str);
-    }
+    public static final int f14517a = 0;
 
     @Override
-    public void onReceive(Context context, Intent intent) {
-        String str;
+    public final void onReceive(Context context, Intent intent) {
+        boolean z10;
         if (intent != null) {
             try {
-                SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
+                String str = "";
+                SharedPreferences sharedPreferences = w0.f19025b.getSharedPreferences("mainconfig", 0);
                 String string = sharedPreferences.getString("sms_hash", null);
-                if (!"com.google.android.gms.auth.api.phone.SMS_RETRIEVED".equals(intent.getAction())) {
-                    str = "";
-                } else if (AndroidUtilities.isWaitingForSms()) {
-                    str = (String) intent.getExtras().get("com.google.android.gms.auth.api.phone.EXTRA_SMS_MESSAGE");
-                } else {
-                    return;
+                if ("com.google.android.gms.auth.api.phone.SMS_RETRIEVED".equals(intent.getAction())) {
+                    synchronized (i0.f16016k) {
+                        z10 = i0.f16014j;
+                    }
+                    if (z10) {
+                        str = (String) intent.getExtras().get("com.google.android.gms.auth.api.phone.EXTRA_SMS_MESSAGE");
+                    } else {
+                        return;
+                    }
                 }
                 if (!TextUtils.isEmpty(str)) {
                     Matcher matcher = Pattern.compile("[0-9\\-]+").matcher(str);
@@ -35,12 +37,12 @@ public class SmsReceiver extends BroadcastReceiver {
                                 SharedPreferences.Editor edit = sharedPreferences.edit();
                                 edit.putString("sms_hash_code", string + "|" + replace).commit();
                             }
-                            AndroidUtilities.runOnUIThread(new y1(replace, 5));
+                            i0.g3(new o4(replace, 5));
                         }
                     }
                 }
             } catch (Throwable th2) {
-                FileLog.e(th2);
+                f8.g(th2, true);
             }
         }
     }

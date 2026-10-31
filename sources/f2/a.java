@@ -1,11 +1,11 @@
 package f2;
 
 import e2.x;
-public final class a implements hb.n {
-    public final String f10054a;
+public final class a {
+    public String f6727a;
 
     public a(String str) {
-        this.f10054a = str;
+        this.f6727a = str;
     }
 
     public static a a(x xVar) {
@@ -26,25 +26,20 @@ public final class a implements hb.n {
         } else {
             str = "dvhe";
         }
-        StringBuilder u10 = a1.g.u(str);
+        StringBuilder t10 = a1.g.t(str);
         String str3 = ".";
         if (i10 >= 10) {
             str2 = ".";
         } else {
             str2 = ".0";
         }
-        u10.append(str2);
-        u10.append(i10);
+        t10.append(str2);
+        t10.append(i10);
         if (A2 < 10) {
             str3 = ".0";
         }
-        u10.append(str3);
-        u10.append(A2);
-        return new a(u10.toString());
-    }
-
-    @Override
-    public Object U1() {
-        throw new RuntimeException(this.f10054a);
+        t10.append(str3);
+        t10.append(A2);
+        return new a(t10.toString());
     }
 }

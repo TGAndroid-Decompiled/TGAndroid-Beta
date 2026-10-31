@@ -1,34 +1,35 @@
 package e1;
 
-import v0.i;
+import kotlin.jvm.internal.i;
+import v0.h;
 public final class a implements Runnable {
-    public final int f9607a;
-    public final e f9608b;
+    public final int f6089a;
+    public final d f6090b;
 
-    public a(e eVar, int i10) {
-        this.f9607a = i10;
-        this.f9608b = eVar;
+    public a(d dVar, int i10) {
+        this.f6089a = i10;
+        this.f6090b = dVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f9607a) {
+        switch (this.f6089a) {
             case 0:
-                i iVar = this.f9608b.f9617f;
-                if (iVar != null) {
-                    iVar.onError(new w0.c("Failed to launch the selector UI. Hint: ensure the `context` parameter is an Activity-based context.", 2));
+                h hVar = this.f6090b.f6097f;
+                if (hVar != null) {
+                    hVar.g(new w0.c(2, "Failed to launch the selector UI. Hint: ensure the `context` parameter is an Activity-based context."));
                     return;
                 } else {
-                    kotlin.jvm.internal.i.h("callback");
+                    i.h("callback");
                     throw null;
                 }
             default:
-                i iVar2 = this.f9608b.f9617f;
-                if (iVar2 != null) {
-                    iVar2.onError(new w0.c("No provider data returned.", 2));
+                h hVar2 = this.f6090b.f6097f;
+                if (hVar2 != null) {
+                    hVar2.g(new w0.c(2, "No provider data returned."));
                     return;
                 } else {
-                    kotlin.jvm.internal.i.h("callback");
+                    i.h("callback");
                     throw null;
                 }
         }

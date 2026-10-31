@@ -1,57 +1,42 @@
 package bi;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.n91;
-import org.telegram.ui.Components.pm0;
-public final class w extends n91 {
-    public final x[] f5584a = new x[3];
-    public final Context f5585b;
-    public final pm0 f5586c;
-    public final y d;
+import org.telegram.tgnet.TLRPC;
+public final class w {
+    public int f3416a = 0;
+    public boolean f3417b;
+    public boolean f3418c;
+    public boolean d;
+    public String e;
+    public float f3419f;
+    public TLRPC.Photo f3420g;
+    public TLRPC.Document h;
+    public TLRPC.Document f3421i;
+    public int f3422j;
+    public int f3423k;
+    public int f3424l;
+    public int f3425m;
+    public boolean f3426n;
 
-    public w(y yVar, Context context, pm0 pm0Var) {
-        this.d = yVar;
-        this.f5585b = context;
-        this.f5586c = pm0Var;
-    }
-
-    @Override
-    public final void b(View view, int i10, int i11) {
-        this.f5586c.L(view);
-    }
-
-    @Override
-    public final View d(int i10) {
-        x[] xVarArr = this.f5584a;
-        if (xVarArr[i10] == null) {
-            xVarArr[i10] = new x(this.d, this.f5585b, i10);
+    public final boolean a() {
+        if (this.f3416a == 1) {
+            return true;
         }
-        return xVarArr[i10];
+        return false;
     }
 
-    @Override
-    public final int e() {
-        return this.f5584a.length;
-    }
-
-    @Override
-    public final CharSequence g(int i10) {
-        int i11;
-        if (i10 == 1) {
-            i11 = R.string.StarsTransactionsIncoming;
-        } else if (i10 == 2) {
-            i11 = R.string.StarsTransactionsOutgoing;
-        } else {
-            i11 = R.string.StarsTransactionsAll;
+    public final boolean b() {
+        if (this.f3416a == 2) {
+            if (!this.f3417b && !this.f3418c && !this.d) {
+                if (this.f3420g != null) {
+                    return true;
+                }
+                return false;
+            } else if (this.h != null) {
+                return true;
+            } else {
+                return false;
+            }
         }
-        return LocaleController.getString(i11);
-    }
-
-    @Override
-    public final int h(int i10) {
-        return i10;
+        return false;
     }
 }

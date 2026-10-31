@@ -1,158 +1,46 @@
 package i0;
 
-import a8.sc;
-import a8.tc;
-import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Typeface;
-import android.os.ParcelFileDescriptor;
-import android.system.ErrnoException;
-import android.system.Os;
-import android.system.OsConstants;
+import android.os.Build;
+import android.os.Trace;
 import android.util.Log;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-public class f extends sc {
-    public static Class f13457a = null;
-    public static Constructor f13458b = null;
-    public static Method f13459c = null;
-    public static Method d = null;
-    public static boolean e = false;
+import v7.x7;
+import w7.m8;
+public abstract class f {
+    public static final x7 f7771a;
+    public static final a0.j f7772b;
 
-    public static boolean g(Object obj, String str, int i10, boolean z10) {
-        h();
-        try {
-            return ((Boolean) f13459c.invoke(obj, str, Integer.valueOf(i10), Boolean.valueOf(z10))).booleanValue();
-        } catch (IllegalAccessException | InvocationTargetException e10) {
-            throw new RuntimeException(e10);
-        }
-    }
-
-    public static void h() {
-        Method method;
-        Class<?> cls;
-        Method method2;
-        if (e) {
-            return;
-        }
-        e = true;
-        Constructor<?> constructor = null;
-        try {
-            cls = Class.forName("android.graphics.FontFamily");
-            Constructor<?> constructor2 = cls.getConstructor(null);
-            method2 = cls.getMethod("addFontWeightStyle", String.class, Integer.TYPE, Boolean.TYPE);
-            method = Typeface.class.getMethod("createFromFamiliesWithDefault", Array.newInstance(cls, 1).getClass());
-            constructor = constructor2;
-        } catch (ClassNotFoundException | NoSuchMethodException e10) {
-            Log.e("TypefaceCompatApi21Impl", e10.getClass().getName(), e10);
-            method = null;
-            cls = null;
-            method2 = null;
-        }
-        f13458b = constructor;
-        f13457a = cls;
-        f13459c = method2;
-        d = method;
-    }
-
-    @Override
-    public Typeface a(Context context, h0.e eVar, Resources resources, int i10) {
-        h0.f[] fVarArr;
-        h();
-        try {
-            Object newInstance = f13458b.newInstance(null);
-            for (h0.f fVar : eVar.f12529a) {
-                File d10 = tc.d(context);
-                if (d10 == null) {
-                    return null;
+    static {
+        m8.a("TypefaceCompat static init");
+        int i10 = Build.VERSION.SDK_INT;
+        if (i10 >= 29) {
+            f7771a = new x7();
+        } else if (i10 >= 28) {
+            f7771a = new i();
+        } else if (i10 >= 26) {
+            f7771a = new i();
+        } else {
+            if (i10 >= 24) {
+                Method method = h.f7778c;
+                if (method == null) {
+                    Log.w("TypefaceCompatApi24Impl", "Unable to collect necessary private methods.Fallback to legacy implementation.");
                 }
-                try {
-                    if (!tc.b(d10, resources, fVar.f12533f)) {
-                        return null;
-                    }
-                    if (!g(newInstance, d10.getPath(), fVar.f12531b, fVar.f12532c)) {
-                        return null;
-                    }
-                    d10.delete();
-                } catch (RuntimeException unused) {
-                    return null;
-                } finally {
-                    d10.delete();
+                if (method != null) {
+                    f7771a = new x7();
                 }
             }
-            h();
-            try {
-                Object newInstance2 = Array.newInstance(f13457a, 1);
-                Array.set(newInstance2, 0, newInstance);
-                return (Typeface) d.invoke(null, newInstance2);
-            } catch (IllegalAccessException | InvocationTargetException e10) {
-                throw new RuntimeException(e10);
-            }
-        } catch (IllegalAccessException | InstantiationException | InvocationTargetException e11) {
-            throw new RuntimeException(e11);
+            f7771a = new x7();
         }
+        f7772b = new a0.j(16);
+        Trace.endSection();
     }
 
-    @Override
-    public Typeface b(Context context, o0.h[] hVarArr, int i10) {
-        File file;
-        FileInputStream fileInputStream;
-        String readlink;
-        if (hVarArr.length >= 1) {
-            try {
-                ParcelFileDescriptor openFileDescriptor = context.getContentResolver().openFileDescriptor(f(hVarArr, i10).f18936a, "r", null);
-                if (openFileDescriptor == null) {
-                    if (openFileDescriptor != null) {
-                        openFileDescriptor.close();
-                        return null;
-                    }
-                } else {
-                    try {
-                        readlink = Os.readlink("/proc/self/fd/" + openFileDescriptor.getFd());
-                    } catch (ErrnoException unused) {
-                    }
-                    try {
-                        if (OsConstants.S_ISREG(Os.stat(readlink).st_mode)) {
-                            file = new File(readlink);
-                            if (file != null && file.canRead()) {
-                                Typeface createFromFile = Typeface.createFromFile(file);
-                                openFileDescriptor.close();
-                                return createFromFile;
-                            }
-                            fileInputStream = new FileInputStream(openFileDescriptor.getFileDescriptor());
-                            Typeface d10 = d(context, fileInputStream);
-                            fileInputStream.close();
-                            openFileDescriptor.close();
-                            return d10;
-                        }
-                        Typeface d102 = d(context, fileInputStream);
-                        fileInputStream.close();
-                        openFileDescriptor.close();
-                        return d102;
-                    } catch (Throwable th2) {
-                        try {
-                            fileInputStream.close();
-                        } catch (Throwable th3) {
-                            th2.addSuppressed(th3);
-                        }
-                        throw th2;
-                    }
-                    file = null;
-                    if (file != null) {
-                        Typeface createFromFile2 = Typeface.createFromFile(file);
-                        openFileDescriptor.close();
-                        return createFromFile2;
-                    }
-                    fileInputStream = new FileInputStream(openFileDescriptor.getFileDescriptor());
-                }
-            } catch (IOException unused2) {
-            }
-        }
-        return null;
+    public static android.graphics.Typeface a(android.content.Context r12, h0.d r13, android.content.res.Resources r14, int r15, java.lang.String r16, int r17, int r18, e2.j0 r19) {
+        throw new UnsupportedOperationException("Method not decompiled: i0.f.a(android.content.Context, h0.d, android.content.res.Resources, int, java.lang.String, int, int, e2.j0):android.graphics.Typeface");
+    }
+
+    public static String b(Resources resources, int i10, String str, int i11, int i12) {
+        return resources.getResourcePackageName(i10) + '-' + str + '-' + i11 + '-' + i10 + '-' + i12;
     }
 }

@@ -1,42 +1,33 @@
 package org.telegram.ui;
 
-import java.util.HashMap;
 import java.util.regex.Pattern;
-import org.telegram.messenger.ContactsController;
-public final class l80 implements org.telegram.ui.ActionBar.b2 {
-    public final int f41002a;
-    public final int f41003b;
-    public final HashMap f41004c;
-    public final boolean d;
-    public final boolean e;
+public final class l80 implements org.telegram.messenger.q20 {
+    public final int f39088a;
+    public final Runnable f39089b;
 
-    public l80(int i10, HashMap hashMap, boolean z10, boolean z11, int i11) {
-        this.f41002a = i11;
-        this.f41003b = i10;
-        this.f41004c = hashMap;
-        this.d = z10;
-        this.e = z11;
+    public l80(ph.w3 w3Var, int i10) {
+        this.f39088a = i10;
+        this.f39089b = w3Var;
     }
 
     @Override
-    public final void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        int i11 = this.f41002a;
-        boolean z10 = this.e;
-        boolean z11 = this.d;
-        HashMap<String, ContactsController.Contact> hashMap = this.f41004c;
-        int i12 = this.f41003b;
-        switch (i11) {
+    public final void a(Object obj) {
+        int i10 = this.f39088a;
+        Runnable runnable = this.f39089b;
+        String str = (String) obj;
+        switch (i10) {
             case 0:
                 Pattern pattern = LaunchActivity.D1;
-                ContactsController.getInstance(i12).syncPhoneBookByAlert(hashMap, z11, z10, true);
-                return;
-            case 1:
-                Pattern pattern2 = LaunchActivity.D1;
-                ContactsController.getInstance(i12).syncPhoneBookByAlert(hashMap, z11, z10, false);
+                if (runnable != null && "paid".equals(str)) {
+                    runnable.run();
+                    return;
+                }
                 return;
             default:
-                Pattern pattern3 = LaunchActivity.D1;
-                ContactsController.getInstance(i12).syncPhoneBookByAlert(hashMap, z11, z10, true);
+                if (runnable != null && "paid".equals(str)) {
+                    runnable.run();
+                    return;
+                }
                 return;
         }
     }

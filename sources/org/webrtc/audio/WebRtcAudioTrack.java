@@ -8,7 +8,7 @@ import android.media.AudioTrack;
 import android.os.Build;
 import android.os.Process;
 import java.nio.ByteBuffer;
-import org.telegram.messenger.FileLog;
+import org.telegram.messenger.f8;
 import org.webrtc.Logging;
 import org.webrtc.ThreadUtils;
 import org.webrtc.audio.JavaAudioDeviceModule;
@@ -93,7 +93,7 @@ public class WebRtcAudioTrack {
                     Logging.e("WebRtcAudioTrackExternal", "AudioTrack.write played invalid number of bytes: " + writeBytes);
                     if (writeBytes < 0) {
                         this.keepAlive = false;
-                        WebRtcAudioTrack.this.reportWebRtcAudioTrackError(ic.a.i(writeBytes, "AudioTrack.write failed: "));
+                        WebRtcAudioTrack.this.reportWebRtcAudioTrackError(i0.a.i(writeBytes, "AudioTrack.write failed: "));
                     }
                 }
                 if (WebRtcAudioTrack.this.useLowLatency) {
@@ -109,7 +109,7 @@ public class WebRtcAudioTrack {
                     try {
                         Thread.sleep(nanoTime / 1000000, (int) (nanoTime % 1000000));
                     } catch (InterruptedException e) {
-                        FileLog.e(e);
+                        f8.g(e, true);
                     }
                 } else {
                     this.targetTimeNs = System.nanoTime();

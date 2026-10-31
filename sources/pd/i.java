@@ -1,0 +1,20 @@
+package pd;
+
+import v7.g7;
+public final class i {
+    public static final i[] f44911a;
+
+    static {
+        i[] iVarArr = {new Enum("PUBLIC", 0), new Enum("PROTECTED", 1), new Enum("INTERNAL", 2), new Enum("PRIVATE", 3)};
+        f44911a = iVarArr;
+        g7.a(iVarArr);
+    }
+
+    public static i valueOf(String str) {
+        return (i) Enum.valueOf(i.class, str);
+    }
+
+    public static i[] values() {
+        return (i[]) f44911a.clone();
+    }
+}

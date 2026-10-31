@@ -4,33 +4,27 @@ import android.os.Bundle;
 import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 public class GcmPushListenerService extends FirebaseMessagingService {
-    public static void lambda$onNewToken$0(String str) {
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("Refreshed FCM token: " + str);
-        }
-        ApplicationLoader.postInitApplication();
-        PushListenerController.sendRegistrationToServer(2, str);
-    }
+    public static final int f14364n = 0;
 
     @Override
-    public void onMessageReceived(com.google.firebase.messaging.o oVar) {
+    public final void c(xa.l lVar) {
         long parseLong;
-        Bundle bundle = oVar.f7755a;
+        Bundle bundle = lVar.f53551a;
         String string = bundle.getString("from");
-        if (oVar.f7756b == null) {
-            ?? lVar = new a0.l(0);
+        if (lVar.f53552b == null) {
+            ?? lVar2 = new a0.l(0);
             for (String str : bundle.keySet()) {
                 Object obj = bundle.get(str);
                 if (obj instanceof String) {
                     String str2 = (String) obj;
                     if (!str.startsWith("google.") && !str.startsWith("gcm.") && !str.equals("from") && !str.equals("message_type") && !str.equals("collapse_key")) {
-                        lVar.put(str, str2);
+                        lVar2.put(str, str2);
                     }
                 }
             }
-            oVar.f7756b = lVar;
+            lVar.f53552b = lVar2;
         }
-        a0.f fVar = oVar.f7756b;
+        a0.f fVar = lVar.f53552b;
         Object obj2 = bundle.get("google.sent_time");
         if (obj2 instanceof Long) {
             parseLong = ((Long) obj2).longValue();
@@ -44,14 +38,14 @@ public class GcmPushListenerService extends FirebaseMessagingService {
             }
             parseLong = 0;
         }
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("FCM received data: " + fVar + " from: " + string);
+        if (v2.f18448a) {
+            f8.b("FCM received data: " + fVar + " from: " + string);
         }
         PushListenerController.processRemoteMessage(2, (String) fVar.get("p"), parseLong);
     }
 
     @Override
-    public void onNewToken(String str) {
-        AndroidUtilities.runOnUIThread(new y1(str, 4));
+    public final void d(String str) {
+        i0.g3(new o4(str, 4));
     }
 }

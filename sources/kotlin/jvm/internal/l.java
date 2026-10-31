@@ -1,16 +1,16 @@
 package kotlin.jvm.internal;
-public final class l extends m implements yd.f {
+public final class l extends m implements pd.f {
     public l(Class cls) {
         super(b.NO_RECEIVER, cls, "dataStore", "getDataStore(Landroid/content/Context;)Landroidx/datastore/core/DataStore;", 0);
     }
 
     public final void c() {
-        ((l) ((yd.f) getReflected())).c();
+        ((l) ((pd.f) getReflected())).c();
     }
 
     @Override
-    public final yd.b computeReflected() {
-        q.f16669a.getClass();
+    public final pd.b computeReflected() {
+        q.f11445a.getClass();
         return this;
     }
 

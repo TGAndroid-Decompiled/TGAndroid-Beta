@@ -1,32 +1,37 @@
 package org.telegram.ui.web;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.r2;
-public final class d1 extends org.telegram.ui.ActionBar.j {
-    public final f1 f44728a;
+import java.io.File;
+import java.io.FileInputStream;
+public final class d1 extends FileInputStream {
+    public final long f43016a;
 
-    public d1(f1 f1Var) {
-        this.f44728a = f1Var;
+    public d1(long j10, long j11, File file) {
+        super(file);
+        this.f43016a = j11;
+        if (j10 > 0 && skip(j10) != j10) {
+            throw new RuntimeException("BoundedInputStream failed to skip");
+        }
     }
 
     @Override
-    public final void b(int i10) {
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        if (i10 == -1) {
-            f1 f1Var = this.f44728a;
-            kVar = ((r2) f1Var).actionBar;
-            if (kVar.q()) {
-                kVar2 = ((r2) f1Var).actionBar;
-                kVar2.p();
-                f1Var.v.clear();
-                AndroidUtilities.forEachViews((RecyclerView) f1Var.f30764a, (Utilities.Callback<View>) new di.e(23));
-                return;
-            }
-            f1Var.finishFragment();
+    public final int read() {
+        if (getChannel().position() >= this.f43016a) {
+            return -1;
         }
+        return super.read();
+    }
+
+    @Override
+    public final int read(byte[] bArr, int i10, int i11) {
+        long position = getChannel().position();
+        long j10 = this.f43016a;
+        if (position >= j10) {
+            return -1;
+        }
+        long position2 = j10 - getChannel().position();
+        if (i11 > position2) {
+            i11 = (int) position2;
+        }
+        return super.read(bArr, i10, i11);
     }
 }

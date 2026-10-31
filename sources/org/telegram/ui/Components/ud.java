@@ -1,41 +1,28 @@
 package org.telegram.ui.Components;
+public final class ud implements q4 {
+    public final int f30906a;
+    public final ChatActivityEnterView f30907b;
 
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.StickersActivity;
-import org.telegram.ui.ThemeActivity;
-public final class ud implements Runnable {
-    public final int f33364a;
-    public final org.telegram.ui.ActionBar.r2 f33365b;
-
-    public ud(int i10, org.telegram.ui.ActionBar.r2 r2Var) {
-        this.f33364a = i10;
-        this.f33365b = r2Var;
+    public ud(ChatActivityEnterView chatActivityEnterView, int i10) {
+        this.f30906a = i10;
+        this.f30907b = chatActivityEnterView;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f33364a;
-        org.telegram.ui.ActionBar.r2 r2Var = this.f33365b;
-        switch (i10) {
+    public final void K(int i10, int i11, boolean z10) {
+        switch (this.f30906a) {
             case 0:
-                int i11 = ChatActivityEnterView.f25845r5;
-                if (r2Var != null) {
-                    new tg.y0(r2Var, 11, false).show();
-                    return;
-                } else if (r2Var.getContext() instanceof LaunchActivity) {
-                    ((LaunchActivity) r2Var.getContext()).u0(new PremiumPreviewFragment(0, null));
-                    return;
-                } else {
-                    return;
-                }
-            case 1:
-                r2Var.presentFragment(new StickersActivity(0, null));
+                this.f30907b.R0(z10, i10, i11, 0L, true);
                 return;
             default:
-                ThemeActivity themeActivity = new ThemeActivity(0);
-                themeActivity.T0 = true;
-                r2Var.presentFragment(themeActivity);
+                ChatActivityEnterView chatActivityEnterView = this.f30907b;
+                chatActivityEnterView.R0(z10, i10, i11, 0L, true);
+                pe peVar = chatActivityEnterView.L0;
+                if (peVar != null) {
+                    peVar.h();
+                    chatActivityEnterView.L0 = null;
+                    return;
+                }
                 return;
         }
     }

@@ -1,21 +1,22 @@
 package org.telegram.ui;
+public final class pa0 implements Runnable {
+    public final int f40556a;
+    public final ua0 f40557b;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class pa0 implements View.OnLayoutChangeListener {
-    public boolean f42362a;
+    public pa0(ua0 ua0Var, int i10) {
+        this.f40556a = i10;
+        this.f40557b = ua0Var;
+    }
 
     @Override
-    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        boolean z10;
-        if (i13 - i11 > i12 - i10) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (z10 != this.f42362a) {
-            AndroidUtilities.runOnUIThread(new w90(this, 1));
-            this.f42362a = z10;
+    public final void run() {
+        switch (this.f40556a) {
+            case 0:
+                this.f40557b.b();
+                return;
+            default:
+                this.f40557b.c();
+                return;
         }
     }
 }

@@ -1,12 +1,17 @@
 package ig;
-
-import org.telegram.tgnet.TLRPC;
 public final class i1 {
-    public final TLRPC.Document f14104a;
-    public final Object f14105b;
+    public final int f8329a;
+    public double f8330b;
+    public double f8331c;
+    public double d;
+    public double e;
 
-    public i1(TLRPC.Document document, Object obj) {
-        this.f14104a = document;
-        this.f14105b = obj;
+    public String toString() {
+        switch (this.f8329a) {
+            case 0:
+                return "RectD{left=" + this.f8330b + ", top=" + this.f8331c + ", right=" + this.d + ", bottom=" + this.e + '}';
+            default:
+                return super.toString();
+        }
     }
 }

@@ -1,6 +1,4 @@
 package cd;
-
-import ef.e;
-public final class d extends e {
-    public String f6199g;
+public final class d implements g {
+    public static final d f4122a = new Object();
 }

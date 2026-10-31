@@ -1,52 +1,33 @@
 package org.telegram.ui;
+public final class l50 implements Runnable {
+    public final int f39056a;
+    public final v50 f39057b;
 
-import android.animation.ValueAnimator;
-import java.util.HashSet;
-public final class l50 extends s4.l {
-    public float F;
-    public ValueAnimator G;
-    public final HashSet H = new HashSet();
-    public final HashSet I = new HashSet();
-    public float J;
-    public float K;
-    public final x50 L;
-
-    public l50(x50 x50Var) {
-        this.L = x50Var;
+    public l50(v50 v50Var, int i10) {
+        this.f39056a = i10;
+        this.f39057b = v50Var;
     }
 
     @Override
-    public final void g() {
-        super.g();
-        this.I.clear();
-        this.H.clear();
-        this.K = Float.MAX_VALUE;
-        this.L.Q.invalidate();
-    }
-
-    @Override
-    public final void m() {
-        boolean isEmpty = this.f47823p.isEmpty();
-        boolean isEmpty2 = this.f47825r.isEmpty();
-        boolean isEmpty3 = this.f47824q.isEmpty();
-        ValueAnimator valueAnimator = this.G;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.G = null;
+    public final void run() {
+        switch (this.f39056a) {
+            case 0:
+                this.f39057b.finishFragment();
+                return;
+            case 1:
+                v50 v50Var = this.f39057b;
+                v50Var.m0();
+                v50Var.i0();
+                return;
+            case 2:
+                v50 v50Var2 = this.f39057b;
+                v50Var2.getClass();
+                v50Var2.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
+                return;
+            default:
+                v50 v50Var3 = this.f39057b;
+                v50Var3.f42621n.postOnAnimation(new l50(v50Var3, 1));
+                return;
         }
-        if (!isEmpty || !isEmpty2 || !isEmpty3) {
-            this.F = 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.G = ofFloat;
-            ofFloat.addUpdateListener(new b3(this, 15));
-            this.G.addListener(new k50(this, 0));
-            this.G.setDuration(350L);
-            this.G.setInterpolator(org.telegram.ui.Components.ds.f27530f);
-            this.G.start();
-            x50 x50Var = this.L;
-            x50Var.Q.invalidate();
-            x50Var.a2.invalidate();
-        }
-        super.m();
     }
 }

@@ -5,7 +5,7 @@ public final class a extends f {
     public final HashMap e = new HashMap();
 
     @Override
-    public final c h(Object obj) {
+    public final c l(Object obj) {
         return (c) this.e.get(obj);
     }
 

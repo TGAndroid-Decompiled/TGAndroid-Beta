@@ -1,51 +1,114 @@
 package c2;
 
+import android.app.Notification;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Icon;
+import android.hardware.display.DisplayManager;
 import android.media.AudioFocusRequest;
 import android.media.AudioManager;
 import android.os.Build;
-import android.os.Handler;
-import j$.util.Objects;
-public final class h {
-    public final int f5945a;
-    public final AudioManager.OnAudioFocusChangeListener f5946b;
-    public final Handler f5947c;
-    public final b2.f d;
-    public final boolean e;
-    public final Object f5948f;
+import android.os.Looper;
+import android.view.Display;
+import android.view.ViewConfiguration;
+public abstract class h {
+    public static AudioManager f3543a;
 
-    public h(int i10, AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener, Handler handler, b2.f fVar, boolean z10, boolean z11) {
-        this.f5945a = i10;
-        this.f5947c = handler;
-        this.d = fVar;
-        this.e = z10;
-        int i11 = Build.VERSION.SDK_INT;
-        if (i11 < 26) {
-            this.f5946b = new g(onAudioFocusChangeListener, handler);
-        } else {
-            this.f5946b = onAudioFocusChangeListener;
+    public static void a(AudioManager audioManager, g gVar) {
+        if (Build.VERSION.SDK_INT >= 26) {
+            Object obj = gVar.f3542f;
+            obj.getClass();
+            audioManager.abandonAudioFocusRequest((AudioFocusRequest) obj);
+            return;
         }
-        if (i11 >= 26) {
-            this.f5948f = new AudioFocusRequest.Builder(i10).setAudioAttributes(fVar.b()).setWillPauseWhenDucked(z10).setOnAudioFocusChangeListener(onAudioFocusChangeListener, handler).setAcceptsDelayedFocusGain(z11).build();
-        } else {
-            this.f5948f = null;
-        }
+        audioManager.abandonAudioFocus(gVar.f3540b);
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public static Notification.Builder b(Context context, String str) {
+        return new Notification.Builder(context, str);
+    }
+
+    public static Icon c(Bitmap bitmap) {
+        return Icon.createWithAdaptiveBitmap(bitmap);
+    }
+
+    public static boolean d(Context context) {
+        Display display;
+        Display.HdrCapabilities hdrCapabilities;
+        DisplayManager displayManager = (DisplayManager) context.getSystemService("display");
+        if (displayManager != null) {
+            display = displayManager.getDisplay(0);
+        } else {
+            display = null;
         }
-        if (!(obj instanceof h)) {
+        if (display == null || !display.isHdr() || (hdrCapabilities = display.getHdrCapabilities()) == null) {
             return false;
         }
-        h hVar = (h) obj;
-        if (this.f5945a == hVar.f5945a && this.e == hVar.e && Objects.equals(this.f5946b, hVar.f5946b) && Objects.equals(this.f5947c, hVar.f5947c) && Objects.equals(this.d, hVar.d)) {
-            return true;
+        for (int i10 : hdrCapabilities.getSupportedHdrTypes()) {
+            if (i10 == 1) {
+                return true;
+            }
         }
         return false;
     }
 
-    public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f5945a), this.f5946b, this.f5947c, this.d, Boolean.valueOf(this.e));
+    public static synchronized AudioManager e(Context context) {
+        synchronized (h.class) {
+            synchronized (h.class) {
+                Context applicationContext = context.getApplicationContext();
+                if (applicationContext != null) {
+                    f3543a = null;
+                }
+                AudioManager audioManager = f3543a;
+                if (audioManager != null) {
+                    return audioManager;
+                }
+                Looper myLooper = Looper.myLooper();
+                if (myLooper != null && myLooper != Looper.getMainLooper()) {
+                    e2.i iVar = new e2.i();
+                    e2.a.e().execute(new a1.f(29, applicationContext, iVar));
+                    iVar.b();
+                    AudioManager audioManager2 = f3543a;
+                    audioManager2.getClass();
+                    return audioManager2;
+                }
+                AudioManager audioManager3 = (AudioManager) applicationContext.getSystemService("audio");
+                f3543a = audioManager3;
+                audioManager3.getClass();
+                return audioManager3;
+            }
+        }
+    }
+
+    public static float f(ViewConfiguration viewConfiguration) {
+        return viewConfiguration.getScaledHorizontalScrollFactor();
+    }
+
+    public static float g(ViewConfiguration viewConfiguration) {
+        return viewConfiguration.getScaledVerticalScrollFactor();
+    }
+
+    public static int h(android.media.AudioManager r4, c2.g r5) {
+        throw new UnsupportedOperationException("Method not decompiled: c2.h.h(android.media.AudioManager, c2.g):int");
+    }
+
+    public static void i(Notification.Builder builder) {
+        builder.setBadgeIconType(0);
+    }
+
+    public static void j(Notification.Builder builder, int i10) {
+        builder.setGroupAlertBehavior(i10);
+    }
+
+    public static void k(Notification.Builder builder) {
+        builder.setSettingsText(null);
+    }
+
+    public static void l(Notification.Builder builder, String str) {
+        builder.setShortcutId(str);
+    }
+
+    public static void m(Notification.Builder builder, long j10) {
+        builder.setTimeoutAfter(j10);
     }
 }

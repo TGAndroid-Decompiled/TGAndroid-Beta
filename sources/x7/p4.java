@@ -1,19 +1,15 @@
 package x7;
-
-import org.telegram.ui.Components.b10;
-public final class p4 implements ka.d {
-    public static final p4 f51666a = new Object();
-
-    static {
-        b10.s(b10.n(d.class, new a(1)));
-    }
+public final class p4 implements ja.d {
+    public static final p4 f53286a = new Object();
+    public static final ja.c f53287b = new ja.c("maxLabels", i0.a.o(sc.e.m(c0.class, new z(1))));
+    public static final ja.c f53288c = new ja.c("confidenceThreshold", i0.a.o(sc.e.m(c0.class, new z(2))));
+    public static final ja.c d = new ja.c("customLocalModelOptions", i0.a.o(sc.e.m(c0.class, new z(3))));
 
     @Override
     public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ka.e eVar = (ka.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+        ja.e eVar = (ja.e) obj2;
+        eVar.d(f53287b, null);
+        eVar.d(f53288c, ((i8) obj).f53193a);
+        eVar.d(d, null);
     }
 }

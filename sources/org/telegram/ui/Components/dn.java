@@ -1,28 +1,39 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.Utilities;
-public final class dn implements Utilities.Callback {
-    public final int f27486a;
-    public final go f27487b;
-    public final int f27488c;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.ImageView;
+public final class dn implements View.OnKeyListener {
+    public final int f25469a;
+    public final Object f25470b;
 
-    public dn(go goVar, int i10, int i11) {
-        this.f27486a = i11;
-        this.f27487b = goVar;
-        this.f27488c = i10;
+    public dn(Object obj, int i10) {
+        this.f25469a = i10;
+        this.f25470b = obj;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f27486a) {
+    public final boolean onKey(View view, int i10, KeyEvent keyEvent) {
+        switch (this.f25469a) {
             case 0:
-                this.f27487b.h0(this.f27488c, (sh.e) obj);
-                return;
+                hn hnVar = (hn) this.f25470b;
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
+                if (i10 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor.length() == 0) {
+                    ImageView imageView = hnVar.f21861f;
+                    if (imageView != null) {
+                        imageView.callOnClick();
+                    }
+                    return true;
+                }
+                return false;
             default:
-                go goVar = this.f27487b;
-                goVar.getClass();
-                goVar.h0(this.f27488c, new th.e((String) obj));
-                return;
+                ju juVar = (ju) this.f25470b;
+                juVar.getClass();
+                if (i10 == 82 && keyEvent.getRepeatCount() == 0 && keyEvent.getAction() == 1 && juVar.isShowing()) {
+                    juVar.dismiss();
+                    return true;
+                }
+                return false;
         }
     }
 }

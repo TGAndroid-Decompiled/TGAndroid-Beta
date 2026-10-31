@@ -1,19 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-public interface sz0 {
-    void d(TextWatcher textWatcher);
+import android.text.TextPaint;
+import android.text.style.MetricAffectingSpan;
+public final class sz0 extends MetricAffectingSpan {
+    public TextPaint f30387a;
 
-    EditTextBoldCursor getEditField();
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        TextPaint textPaint2 = this.f30387a;
+        if (textPaint2 != null) {
+            textPaint.setColor(textPaint2.getColor());
+            textPaint.setTypeface(textPaint2.getTypeface());
+            textPaint.setFlags(textPaint2.getFlags());
+            textPaint.setTextSize(textPaint2.getTextSize());
+            textPaint.baselineShift = textPaint2.baselineShift;
+            textPaint.bgColor = textPaint2.bgColor;
+        }
+    }
 
-    Editable getEditText();
-
-    CharSequence getFieldText();
-
-    org.telegram.ui.ActionBar.r2 getParentFragment();
-
-    int getVisibility();
-
-    void setFieldText(CharSequence charSequence);
+    @Override
+    public final void updateMeasureState(TextPaint textPaint) {
+        TextPaint textPaint2 = this.f30387a;
+        if (textPaint2 != null) {
+            textPaint.setColor(textPaint2.getColor());
+            textPaint.setTypeface(textPaint2.getTypeface());
+            textPaint.setFlags(textPaint2.getFlags());
+            textPaint.setTextSize(textPaint2.getTextSize());
+            textPaint.baselineShift = textPaint2.baselineShift;
+            textPaint.bgColor = textPaint2.bgColor;
+        }
+    }
 }

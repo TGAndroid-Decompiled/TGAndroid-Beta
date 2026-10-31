@@ -1,17 +1,132 @@
 package org.telegram.ui.Components;
 
-import android.graphics.LinearGradient;
-import android.graphics.Shader;
-public final class rt {
-    public int f32362a;
-    public Object f32363b;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MotionEvent;
+public final class rt extends mt {
+    public Drawable Y1;
+    public final int Z1;
+    public final wt a2;
 
-    public boolean a(int i10) {
-        if (((ag.o) this.f32363b) != null && this.f32362a == i10) {
+    public rt(wt wtVar, Context context, org.telegram.ui.ActionBar.p6 p6Var, int i10) {
+        super(context, p6Var);
+        this.a2 = wtVar;
+        this.Z1 = i10;
+        this.Y1 = null;
+    }
+
+    @Override
+    public final void F(int i10, int i11) {
+        this.a2.q(i10, i11);
+    }
+
+    @Override
+    public final int e() {
+        return this.a2.h();
+    }
+
+    @Override
+    public final int getActionModeStyle() {
+        int i10 = this.Z1;
+        if (i10 == 2 || i10 == 3) {
+            return 2;
+        }
+        return super.getActionModeStyle();
+    }
+
+    @Override
+    public final void o(ActionMode actionMode, Menu menu) {
+        boolean z10;
+        wt wtVar = this.a2;
+        if (wtVar.a()) {
+            if (wtVar.L == 3) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            org.telegram.ui.un.t8(menu, null, z10, true, true, true);
+            return;
+        }
+        wtVar.i(actionMode, menu);
+    }
+
+    @Override
+    public final void onSelectionChanged(int i10, int i11) {
+        boolean z10;
+        super.onSelectionChanged(i10, i11);
+        wt wtVar = this.a2;
+        bl0 bl0Var = wtVar.f32241c;
+        if (bl0Var != null) {
+            boolean z11 = false;
+            if (i11 != i10) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            if (wtVar.a() && z10) {
+                org.telegram.messenger.d6.i();
+                z11 = true;
+            }
+            if (wtVar.f32243n != z11) {
+                wtVar.f32243n = z11;
+                if (z11) {
+                    this.Y1 = bl0Var.d;
+                    bl0Var.a(2131232115, true);
+                    return;
+                }
+                bl0Var.b(this.Y1, true);
+                this.Y1 = null;
+            }
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        int i10;
+        st stVar;
+        wt wtVar = this.a2;
+        if (wtVar.e && motionEvent.getAction() == 0) {
+            wtVar.u();
+            if (wtVar.f32248y && (stVar = wtVar.d) != null) {
+                stVar.t(false);
+                wtVar.f32248y = false;
+                wtVar.k(true);
+                org.telegram.messenger.i0.J3(this);
+            } else {
+                if (org.telegram.messenger.i0.D) {
+                    i10 = 0;
+                } else {
+                    i10 = 2;
+                }
+                wtVar.x(i10);
+            }
+            wtVar.v();
+        }
+        if (motionEvent.getAction() == 0) {
+            boolean isFocused = isFocused();
+            requestFocus();
+            if (!org.telegram.messenger.i0.J3(this)) {
+                clearFocus();
+                requestFocus();
+            }
+            if (!isFocused) {
+                setSelection(getText().length());
+            }
+        }
+        try {
+            return super.onTouchEvent(motionEvent);
+        } catch (Exception e) {
+            org.telegram.messenger.f8.g(e, true);
             return false;
         }
-        this.f32362a = i10;
-        this.f32363b = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, new int[]{i10, i10}, (float[]) null, Shader.TileMode.CLAMP);
-        return true;
+    }
+
+    @Override
+    public final void scrollTo(int i10, int i11) {
+        if (this.a2.t(i11)) {
+            super.scrollTo(i10, i11);
+        }
     }
 }

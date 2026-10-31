@@ -1,211 +1,213 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.os.Build;
-import android.view.View;
-import android.view.ViewGroup;
+import android.app.Activity;
+import android.graphics.Typeface;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.LongSparseArray;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class je1 extends org.telegram.ui.Components.ww0 {
-    public boolean f40521l0;
-    public final Paint m0;
-    public final cf1 f40522n0;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class je1 implements org.telegram.ui.ActionBar.u1, ux {
+    public final ke1 f38509a;
 
-    public je1(cf1 cf1Var, Context context) {
-        super(context, null);
-        this.f40522n0 = cf1Var;
-        setWillNotDraw(false);
-        this.m0 = new Paint();
+    public je1(ke1 ke1Var) {
+        this.f38509a = ke1Var;
     }
 
     @Override
-    public final void H(Canvas canvas, float f7, Rect rect, Paint paint, boolean z10) {
-        if (Build.VERSION.SDK_INT >= 29 && SharedConfig.chatBlurEnabled()) {
-            cf1 cf1Var = this.f40522n0;
-            if (cf1Var.f38307h1 != null) {
-                canvas.save();
-                canvas.translate(0.0f, -f7);
-                cf1Var.f38307h1.w(canvas, rect.left, rect.top + f7, rect.right, rect.bottom + f7);
-                canvas.restore();
-                int alpha = paint.getAlpha();
-                paint.setAlpha(178);
-                canvas.drawRect(rect, paint);
-                paint.setAlpha(alpha);
-                return;
+    public boolean G() {
+        return false;
+    }
+
+    @Override
+    public boolean N(ay ayVar) {
+        return false;
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
+        org.telegram.ui.ActionBar.i5 i5Var;
+        org.telegram.ui.ActionBar.i5 i5Var2;
+        char c10;
+        int i11;
+        String str;
+        ke1 ke1Var = this.f38509a;
+        WallpapersListActivity wallpapersListActivity = ke1Var.f38786a;
+        Activity parentActivity = wallpapersListActivity.getParentActivity();
+        LongSparseArray longSparseArray = wallpapersListActivity.f35481e0;
+        org.telegram.ui.ActionBar.x1 x1Var2 = new org.telegram.ui.ActionBar.x1(3, parentActivity, null);
+        wallpapersListActivity.L = x1Var2;
+        char c11 = 0;
+        x1Var2.f21488i0 = false;
+        x1Var2.show();
+        new ArrayList();
+        int[] iArr = new int[1];
+        iArr[0] = 0;
+        int i12 = 0;
+        while (i12 < longSparseArray.size()) {
+            Object valueAt = longSparseArray.valueAt(i12);
+            if (valueAt instanceof me1) {
+                me1 me1Var = (me1) valueAt;
+                TLRPC.WallPaper wallPaper = me1Var.f39694l;
+                if (wallPaper != null && wallPaper.f19947id < 0) {
+                    org.telegram.messenger.hs messagesStorage = wallpapersListActivity.getMessagesStorage();
+                    c10 = c11;
+                    messagesStorage.f15938a.c(new org.telegram.messenger.cq(messagesStorage, me1Var.f39694l.f19947id, 1));
+                    wallpapersListActivity.f35477b0.remove(me1Var);
+                    wallpapersListActivity.Z.remove(me1Var.a());
+                } else {
+                    c10 = c11;
+                    valueAt = wallPaper;
+                }
+            } else {
+                c10 = c11;
             }
-        }
-        canvas.drawRect(rect, paint);
-    }
-
-    @Override
-    public final void K(Canvas canvas, ArrayList arrayList) {
-        int i10 = 0;
-        while (true) {
-            cf1 cf1Var = this.f40522n0;
-            if (i10 < cf1Var.N.getChildCount()) {
-                View childAt = cf1Var.N.getChildAt(i10);
-                if (childAt.getY() < AndroidUtilities.dp(100.0f) && childAt.getVisibility() == 0) {
-                    int save = canvas.save();
-                    canvas.translate(childAt.getX() + cf1Var.N.getX(), childAt.getY() + cf1Var.N.getY() + getY());
-                    if (arrayList != null && (childAt instanceof org.telegram.ui.Components.tw0)) {
-                        arrayList.add((org.telegram.ui.Components.tw0) childAt);
+            if (valueAt instanceof TLRPC.WallPaper) {
+                iArr[c10] = iArr[c10] + 1;
+                TLRPC.WallPaper wallPaper2 = (TLRPC.WallPaper) valueAt;
+                TL_account.saveWallPaper savewallpaper = new TL_account.saveWallPaper();
+                savewallpaper.settings = new TLRPC.TL_wallPaperSettings();
+                savewallpaper.unsave = true;
+                if (valueAt instanceof TLRPC.TL_wallPaperNoFile) {
+                    TLRPC.TL_inputWallPaperNoFile tL_inputWallPaperNoFile = new TLRPC.TL_inputWallPaperNoFile();
+                    tL_inputWallPaperNoFile.f19866id = wallPaper2.f19947id;
+                    savewallpaper.wallpaper = tL_inputWallPaperNoFile;
+                } else {
+                    TLRPC.TL_inputWallPaper tL_inputWallPaper = new TLRPC.TL_inputWallPaper();
+                    tL_inputWallPaper.f19865id = wallPaper2.f19947id;
+                    tL_inputWallPaper.access_hash = wallPaper2.access_hash;
+                    savewallpaper.wallpaper = tL_inputWallPaper;
+                }
+                String str2 = wallPaper2.slug;
+                if (str2 != null && str2.equals(wallpapersListActivity.O)) {
+                    if (org.telegram.ui.ActionBar.t6.g1()) {
+                        str = "t";
+                    } else {
+                        str = "d";
                     }
-                    childAt.draw(canvas);
-                    canvas.restoreToCount(save);
+                    wallpapersListActivity.O = str;
+                    org.telegram.ui.ActionBar.t6.I.v(null);
+                    org.telegram.ui.ActionBar.t6.u1(true);
                 }
-                i10++;
-            } else {
-                return;
+                i11 = ((org.telegram.ui.ActionBar.k2) wallpapersListActivity).currentAccount;
+                ConnectionsManager.getInstance(i11).sendRequest(savewallpaper, new ul0(20, ke1Var, iArr));
             }
+            i12++;
+            c11 = c10;
         }
+        if (iArr[c11] == 0) {
+            wallpapersListActivity.F0(true);
+        }
+        longSparseArray.clear();
+        i5Var = ((org.telegram.ui.ActionBar.k2) wallpapersListActivity).simpleActionBar;
+        i5Var.r();
+        i5Var2 = ((org.telegram.ui.ActionBar.k2) wallpapersListActivity).simpleActionBar;
+        i5Var2.j(true);
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        int measuredWidth;
-        int measuredHeight;
-        cf1 cf1Var = this.f40522n0;
-        hh.d dVar = cf1Var.f38309i1;
-        hh.d dVar2 = cf1Var.f38307h1;
-        ch.f fVar = cf1Var.f38305g1;
-        if (Build.VERSION.SDK_INT >= 31 && fVar != null) {
-            cf1Var.x0();
-            ey eyVar = cf1Var.M0;
-            if (eyVar != null) {
-                measuredWidth = eyVar.fragmentView.getMeasuredWidth();
-            } else {
-                measuredWidth = getMeasuredWidth();
-            }
-            ey eyVar2 = cf1Var.M0;
-            if (eyVar2 != null) {
-                measuredHeight = eyVar2.fragmentView.getMeasuredHeight();
-            } else {
-                measuredHeight = getMeasuredHeight();
-            }
-            if (dVar2 != null && !dVar2.f12842r && dVar2.c(measuredWidth, measuredHeight)) {
-                fVar.b(dVar2.a(measuredWidth, measuredHeight), -3);
-                dVar2.b();
-            }
-            if (dVar != null && !dVar.f12842r && dVar.c(measuredWidth, measuredHeight)) {
-                fVar.b(dVar.a(measuredWidth, measuredHeight), -2);
-                dVar.b();
-            }
-        }
-        super.dispatchDraw(canvas);
-        if (cf1Var.isInPreviewMode()) {
-            int themedColor = cf1Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23357d6);
-            Paint paint = this.m0;
-            paint.setColor(themedColor);
-            paint.setAlpha((int) (cf1Var.W * 255.0f));
-            canvas2 = canvas;
-            canvas2.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.statusBarHeight, paint);
-            canvas2.drawLine(0.0f, 0.0f, 0.0f, getHeight(), org.telegram.ui.ActionBar.y6.f23479k0);
-        } else {
-            canvas2 = canvas;
-        }
-        if (cf1Var.M0 == null) {
-            AndroidUtilities.drawNavigationBarProtection(canvas2, this, cf1Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23357d6), cf1Var.f38303f1);
-        }
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        org.telegram.ui.ActionBar.k kVar3;
-        float f7;
-        cf1 cf1Var = this.f40522n0;
-        kVar = ((org.telegram.ui.ActionBar.r2) cf1Var).actionBar;
-        if (view == kVar && !cf1Var.isInPreviewMode()) {
-            kVar2 = ((org.telegram.ui.ActionBar.r2) cf1Var).actionBar;
-            float y3 = kVar2.getY();
-            kVar3 = ((org.telegram.ui.ActionBar.r2) cf1Var).actionBar;
-            float height = kVar3.getHeight();
-            org.telegram.ui.Components.u91 u91Var = cf1Var.f38290a1;
-            if (u91Var != null && u91Var.getVisibility() != 8) {
-                f7 = cf1Var.f38290a1.getMeasuredHeight();
-            } else {
-                f7 = 0.0f;
-            }
-            int i10 = (int) (y3 + ((int) ((f7 * cf1Var.W) + height)));
-            ((ActionBarLayout) cf1Var.getParentLayout()).p(canvas, (int) ((1.0f - cf1Var.W) * 255.0f), i10);
-            float f10 = cf1Var.W;
-            if (f10 > 0.0f) {
-                if (f10 < 1.0f) {
-                    int alpha = org.telegram.ui.ActionBar.y6.f23479k0.getAlpha();
-                    org.telegram.ui.ActionBar.y6.f23479k0.setAlpha((int) (alpha * cf1Var.W));
-                    float f11 = i10;
-                    canvas.drawLine(0.0f, f11, getMeasuredWidth(), f11, org.telegram.ui.ActionBar.y6.f23479k0);
-                    org.telegram.ui.ActionBar.y6.f23479k0.setAlpha(alpha);
-                } else {
-                    float f12 = i10;
-                    canvas.drawLine(0.0f, f12, getMeasuredWidth(), f12, org.telegram.ui.ActionBar.y6.f23479k0);
-                }
-            }
-        }
-        return super.drawChild(canvas, view, j10);
-    }
-
-    @Override
-    public final void onLayout(boolean r10, int r11, int r12, int r13, int r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.je1.onLayout(boolean, int, int, int, int):void");
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
+    public boolean y(ay ayVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, pb1 pb1Var) {
+        LongSparseArray longSparseArray;
+        org.telegram.ui.ActionBar.i5 i5Var;
+        org.telegram.ui.ActionBar.i5 i5Var2;
         int i12;
-        int size = View.MeasureSpec.getSize(i10);
-        int size2 = View.MeasureSpec.getSize(i11);
-        cf1 cf1Var = this.f40522n0;
-        r41 r41Var = cf1Var.f38319o0;
-        if (r41Var != null) {
-            this.f40521l0 = true;
-            ViewGroup.LayoutParams layoutParams = r41Var.getLayoutParams();
-            int dp = AndroidUtilities.dp(51.0f);
-            int i13 = cf1Var.f38303f1;
-            layoutParams.height = dp + i13;
-            cf1Var.f38319o0.setPadding(0, 0, 0, i13);
-            this.f40521l0 = false;
-        }
-        int i14 = 0;
-        for (int i15 = 0; i15 < getChildCount(); i15++) {
-            View childAt = getChildAt(i15);
-            if (childAt instanceof org.telegram.ui.ActionBar.k) {
-                childAt.measure(i10, View.MeasureSpec.makeMeasureSpec(0, 0));
-                i14 = childAt.getMeasuredHeight();
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        String b10;
+        WallpapersListActivity wallpapersListActivity = this.f38509a.f38786a;
+        StringBuilder sb2 = new StringBuilder();
+        int i18 = 0;
+        while (true) {
+            longSparseArray = wallpapersListActivity.f35481e0;
+            if (i18 >= longSparseArray.size()) {
+                break;
             }
-        }
-        int i16 = 0;
-        while (i16 < getChildCount()) {
-            View childAt2 = getChildAt(i16);
-            if (!(childAt2 instanceof org.telegram.ui.ActionBar.k)) {
-                if (childAt2.getFitsSystemWindows()) {
-                    measureChildWithMargins(childAt2, i10, 0, i11, 0);
-                } else {
-                    i12 = i14;
-                    measureChildWithMargins(childAt2, i10, 0, i11, i12);
-                    i16++;
-                    i14 = i12;
+            Object valueAt = longSparseArray.valueAt(i18);
+            if (valueAt instanceof TLRPC.TL_wallPaper) {
+                Typeface typeface = org.telegram.messenger.i0.f15999a;
+                TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) valueAt;
+                b10 = "https://" + org.telegram.messenger.vp.r1(org.telegram.messenger.d20.f15147s0).U2 + "/bg/" + tL_wallPaper.slug;
+                StringBuilder sb3 = new StringBuilder();
+                TLRPC.WallPaperSettings wallPaperSettings = tL_wallPaper.settings;
+                if (wallPaperSettings != null) {
+                    if (wallPaperSettings.blur) {
+                        sb3.append("blur");
+                    }
+                    if (tL_wallPaper.settings.motion) {
+                        if (sb3.length() > 0) {
+                            sb3.append("+");
+                        }
+                        sb3.append("motion");
+                    }
                 }
+                if (sb3.length() > 0) {
+                    StringBuilder i19 = sc.e.i(b10, "?mode=");
+                    i19.append(sb3.toString());
+                    b10 = i19.toString();
+                }
+            } else if (valueAt instanceof me1) {
+                b10 = ((me1) valueAt).b();
+            } else {
+                i18++;
             }
-            i12 = i14;
-            i16++;
-            i14 = i12;
+            if (!TextUtils.isEmpty(b10)) {
+                if (sb2.length() > 0) {
+                    sb2.append('\n');
+                }
+                sb2.append(b10);
+            }
+            i18++;
         }
-        setMeasuredDimension(size, size2);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f40521l0) {
-            return;
+        longSparseArray.clear();
+        i5Var = ((org.telegram.ui.ActionBar.k2) wallpapersListActivity).simpleActionBar;
+        i5Var.r();
+        i5Var2 = ((org.telegram.ui.ActionBar.k2) wallpapersListActivity).simpleActionBar;
+        i5Var2.j(true);
+        if (arrayList.size() <= 1) {
+            long j10 = ((org.telegram.messenger.gs) arrayList.get(0)).f15760a;
+            i14 = ((org.telegram.ui.ActionBar.k2) wallpapersListActivity).currentAccount;
+            if (j10 != org.telegram.messenger.d20.i(i14).e() && charSequence == null) {
+                long j11 = ((org.telegram.messenger.gs) arrayList.get(0)).f15760a;
+                Bundle g10 = a1.g.g("scrollToTopOnResume", true);
+                if (org.telegram.messenger.o5.C(j11)) {
+                    g10.putInt("enc_id", (int) (4294967295L & j11));
+                } else {
+                    if (org.telegram.messenger.o5.E(j11)) {
+                        g10.putLong("user_id", j11);
+                    } else if (org.telegram.messenger.o5.z(j11)) {
+                        g10.putLong("chat_id", -j11);
+                    }
+                    i15 = ((org.telegram.ui.ActionBar.k2) wallpapersListActivity).currentAccount;
+                    if (!org.telegram.messenger.vp.r1(i15).E(g10, ayVar, null, null)) {
+                        return true;
+                    }
+                }
+                i16 = ((org.telegram.ui.ActionBar.k2) wallpapersListActivity).currentAccount;
+                org.telegram.messenger.zs.f(i16).k(org.telegram.messenger.zs.f19690t, new Object[0]);
+                wallpapersListActivity.presentFragment(new un(g10), true);
+                i17 = ((org.telegram.ui.ActionBar.k2) wallpapersListActivity).currentAccount;
+                org.telegram.messenger.qz.C(i17).r0(org.telegram.messenger.oz.b(sb2.toString(), j11, null, null, null, true, null, null, null, true, 0, 0, null, false));
+                return true;
+            }
         }
-        super.requestLayout();
+        wallpapersListActivity.H0();
+        for (int i20 = 0; i20 < arrayList.size(); i20++) {
+            long j12 = ((org.telegram.messenger.gs) arrayList.get(i20)).f15760a;
+            if (charSequence != null) {
+                i13 = ((org.telegram.ui.ActionBar.k2) wallpapersListActivity).currentAccount;
+                org.telegram.messenger.qz.C(i13).r0(org.telegram.messenger.oz.b(charSequence.toString(), j12, null, null, null, true, null, null, null, true, 0, 0, null, false));
+            }
+            if (!TextUtils.isEmpty(sb2)) {
+                i12 = ((org.telegram.ui.ActionBar.k2) wallpapersListActivity).currentAccount;
+                org.telegram.messenger.qz.C(i12).r0(org.telegram.messenger.oz.b(sb2.toString(), j12, null, null, null, true, null, null, null, true, 0, 0, null, false));
+            }
+        }
+        ayVar.finishFragment();
+        return true;
     }
 }

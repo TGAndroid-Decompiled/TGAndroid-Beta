@@ -1,36 +1,30 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class my implements View.OnClickListener {
-    public final boolean[] f30672a;
-    public final org.telegram.ui.ActionBar.e3 f30673b;
-    public final ny f30674c;
+public final class my extends org.telegram.ui.Cells.d8 {
+    public final int O;
 
-    public my(ny nyVar, boolean[] zArr, org.telegram.ui.ActionBar.e3 e3Var) {
-        this.f30674c = nyVar;
-        this.f30672a = zArr;
-        this.f30673b = e3Var;
+    public my(int i10, Context context, org.telegram.ui.ActionBar.p6 p6Var, boolean z10) {
+        super(context, p6Var, z10);
+        this.O = i10;
     }
 
     @Override
-    public final void onClick(View view) {
-        sy syVar = this.f30674c.f31095a;
-        boolean[] zArr = this.f30672a;
-        if (zArr[0]) {
-            return;
+    public final void onMeasure(int i10, int i11) {
+        switch (this.O) {
+            case 0:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(82.0f), 1073741824));
+                return;
+            case 1:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(82.0f), 1073741824));
+                return;
+            case 2:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(82.0f), 1073741824));
+                return;
+            default:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(82.0f), 1073741824));
+                return;
         }
-        zArr[0] = true;
-        org.telegram.ui.ActionBar.e2[] e2VarArr = {new org.telegram.ui.ActionBar.e2(syVar.F.getContext(), 3, null)};
-        TLRPC.TL_messages_getEmojiURL tL_messages_getEmojiURL = new TLRPC.TL_messages_getEmojiURL();
-        sz szVar = syVar.F;
-        String str = syVar.f32700w;
-        if (str == null) {
-            str = szVar.W0[0];
-        }
-        tL_messages_getEmojiURL.lang_code = str;
-        AndroidUtilities.runOnUIThread(new org.telegram.ui.g4(this, e2VarArr, ConnectionsManager.getInstance(szVar.f32713c1).sendRequest(tL_messages_getEmojiURL, new bi.h2(this, e2VarArr, this.f30673b, 13)), 8), 1000L);
     }
 }

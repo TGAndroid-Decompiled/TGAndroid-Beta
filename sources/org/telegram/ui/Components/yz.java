@@ -1,160 +1,140 @@
 package org.telegram.ui.Components;
 
-import android.util.SparseArray;
+import android.animation.ValueAnimator;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.text.TextPaint;
 import android.view.View;
-import android.view.ViewGroup;
-import androidx.recyclerview.widget.RecyclerView;
-public class yz extends s4.c0 {
-    public final SparseArray I;
-    public int J;
-    public int K;
-    public int L;
-    public int M;
-    public final RecyclerView N;
-    public boolean O;
-    public boolean P;
-    public final boolean Q;
-    public boolean R;
-    public int S;
-    public final boolean T;
+public final class yz extends View {
+    public int D;
+    public int E;
+    public RectF F;
+    public float G;
+    public ValueAnimator H;
+    public boolean f32840a;
+    public boolean f32841b;
+    public boolean f32842c;
+    public String d;
+    public TextPaint e;
+    public Paint f32843f;
+    public Paint h;
+    public Paint f32844n;
+    public int f32845r;
+    public int f32846s;
+    public int f32847w;
+    public int f32848x;
+    public int f32849y;
 
-    public yz(nm0 nm0Var, int i10) {
-        this.I = new SparseArray();
-        this.J = -1;
-        this.P = true;
-        this.Q = true;
-        this.T = true;
-        this.N = nm0Var;
-        this.M = i10;
-    }
-
-    @Override
-    public final void P(View view) {
-        s4.e1 T;
-        if (this.T) {
-            RecyclerView recyclerView = this.N;
-            View F = recyclerView.F(view);
-            if (F == null) {
-                T = null;
-            } else {
-                T = recyclerView.T(F);
+    public final void a(boolean z10, boolean z11) {
+        this.f32841b = z10;
+        float f7 = 0.0f;
+        if (this.f32840a && z11) {
+            ValueAnimator valueAnimator = this.H;
+            if (valueAnimator != null) {
+                valueAnimator.removeAllListeners();
+                this.H.cancel();
             }
-            if (T.b() == B() - 1) {
-                ((ViewGroup.MarginLayoutParams) ((s4.q0) view.getLayoutParams())).height = Math.max(this.J, 0);
+            float f10 = this.G;
+            if (z10) {
+                f7 = 1.0f;
             }
-        }
-        super.P(view);
-    }
-
-    @Override
-    public final void Q() {
-        this.I.clear();
-        q1();
-    }
-
-    @Override
-    public final void V(RecyclerView recyclerView, int i10, int i11) {
-        q1();
-    }
-
-    @Override
-    public final void W(RecyclerView recyclerView) {
-        this.I.clear();
-        q1();
-    }
-
-    @Override
-    public final void X(RecyclerView recyclerView, int i10, int i11) {
-        q1();
-    }
-
-    @Override
-    public final void Y(RecyclerView recyclerView, int i10, int i11) {
-        q1();
-    }
-
-    @Override
-    public final void Z() {
-        q1();
-    }
-
-    @Override
-    public final void a0(RecyclerView recyclerView, int i10, int i11, Object obj) {
-        q1();
-        q1();
-    }
-
-    @Override
-    public final void d0(rf.e eVar, s4.b1 b1Var, int i10, int i11) {
-        int i12 = this.K;
-        this.L = View.MeasureSpec.getSize(i10);
-        int size = View.MeasureSpec.getSize(i11);
-        this.K = size;
-        if (i12 != size) {
-            q1();
-        }
-        super.d0(eVar, b1Var, i10, i11);
-    }
-
-    @Override
-    public final boolean e() {
-        return this.Q;
-    }
-
-    public final void q1() {
-        RecyclerView recyclerView;
-        s4.h0 adapter;
-        if (this.K <= 0 || (adapter = (recyclerView = this.N).getAdapter()) == null) {
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
+            this.H = ofFloat;
+            ofFloat.addUpdateListener(new a6(this, 24));
+            this.H.setDuration(300L);
+            this.H.start();
             return;
         }
-        int h = adapter.h() - 1;
-        int i10 = 0;
-        int i11 = 0;
-        for (int i12 = this.O; i12 < h; i12++) {
-            int j10 = adapter.j(i12);
-            SparseArray sparseArray = this.I;
-            s4.e1 e1Var = (s4.e1) sparseArray.get(j10, null);
-            if (e1Var == null) {
-                e1Var = adapter.g(recyclerView, j10);
-                View view = e1Var.f47773a;
-                sparseArray.put(j10, e1Var);
-                if (view.getLayoutParams() == null) {
-                    view.setLayoutParams(n());
-                }
-            }
-            View view2 = e1Var.f47773a;
-            if (this.P) {
-                adapter.v(e1Var, i12);
-            }
-            s4.q0 q0Var = (s4.q0) view2.getLayoutParams();
-            view2.measure(s4.p0.s(d(), this.L, this.f47860k, E() + D() + ((ViewGroup.MarginLayoutParams) q0Var).leftMargin + ((ViewGroup.MarginLayoutParams) q0Var).rightMargin, ((ViewGroup.MarginLayoutParams) q0Var).width), s4.p0.s(this.Q, this.K, this.f47861l, C() + F() + ((ViewGroup.MarginLayoutParams) q0Var).topMargin + ((ViewGroup.MarginLayoutParams) q0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) q0Var).height));
-            i10 += view2.getMeasuredHeight();
-            if (i12 == 0) {
-                i11 = view2.getMeasuredHeight();
-            }
-            if (this.R) {
-                if (i10 >= this.K + i11) {
-                    break;
-                }
-            } else if (i10 >= this.K) {
-                break;
-            }
+        if (z10) {
+            f7 = 1.0f;
         }
-        if (this.R) {
-            this.J = Math.max(this.S, (((this.K - i10) - this.M) - recyclerView.getPaddingBottom()) + i11);
+        this.G = f7;
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        float f7;
+        Canvas canvas2;
+        int i10 = this.f32848x;
+        RectF rectF = this.F;
+        Paint paint = this.h;
+        Paint paint2 = this.f32844n;
+        Paint paint3 = this.f32843f;
+        TextPaint textPaint = this.e;
+        super.draw(canvas);
+        float f10 = this.G;
+        if (f10 <= 0.5f) {
+            f7 = f10 / 0.5f;
+            paint3.setColor(Color.rgb(Color.red(this.f32845r) + ((int) ((Color.red(this.f32846s) - Color.red(this.f32845r)) * f7)), Color.green(this.f32845r) + ((int) ((Color.green(this.f32846s) - Color.green(this.f32845r)) * f7)), Color.blue(this.f32845r) + ((int) ((Color.blue(this.f32846s) - Color.blue(this.f32845r)) * f7))));
+            textPaint.setColor(Color.rgb(Color.red(this.f32846s) + ((int) ((Color.red(this.f32847w) - Color.red(this.f32846s)) * f7)), Color.green(this.f32846s) + ((int) ((Color.green(this.f32847w) - Color.green(this.f32846s)) * f7)), Color.blue(this.f32846s) + ((int) ((Color.blue(this.f32847w) - Color.blue(this.f32846s)) * f7))));
         } else {
-            this.J = Math.max(this.S, ((this.K - i10) - this.M) - recyclerView.getPaddingBottom());
+            textPaint.setColor(this.f32847w);
+            paint3.setColor(this.f32846s);
+            f7 = 1.0f;
+        }
+        int measuredHeight = getMeasuredHeight() >> 1;
+        paint.setColor(this.f32846s);
+        canvas.drawRoundRect(rectF, i10 / 2.0f, i10 / 2.0f, paint3);
+        canvas.drawRoundRect(rectF, i10 / 2.0f, i10 / 2.0f, paint);
+        String str = this.d;
+        if (str != null) {
+            canvas.drawText(str, (f7 * this.D) + (getMeasuredWidth() >> 1), (textPaint.getTextSize() * 0.35f) + measuredHeight, textPaint);
+        }
+        float f11 = 2.0f - (this.G / 0.5f);
+        canvas.save();
+        canvas.scale(0.9f, 0.9f, org.telegram.messenger.i0.N(7.0f), measuredHeight);
+        canvas.translate(org.telegram.messenger.i0.L(12.0f), measuredHeight - org.telegram.messenger.i0.L(9.0f));
+        if (this.G > 0.5f) {
+            paint2.setColor(this.f32847w);
+            float f12 = 1.0f - f11;
+            canvas2 = canvas;
+            canvas2.drawLine(org.telegram.messenger.i0.N(7.0f), (int) org.telegram.messenger.i0.N(13.0f), (int) (org.telegram.messenger.i0.N(7.0f) - (org.telegram.messenger.i0.L(4.0f) * f12)), (int) (org.telegram.messenger.i0.N(13.0f) - (org.telegram.messenger.i0.L(4.0f) * f12)), paint2);
+            canvas2.drawLine((int) org.telegram.messenger.i0.N(7.0f), (int) org.telegram.messenger.i0.N(13.0f), (int) ((org.telegram.messenger.i0.L(8.0f) * f12) + org.telegram.messenger.i0.N(7.0f)), (int) (org.telegram.messenger.i0.N(13.0f) - (org.telegram.messenger.i0.L(8.0f) * f12)), paint2);
+        } else {
+            canvas2 = canvas;
+        }
+        canvas2.restore();
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f32840a = true;
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f32840a = false;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int measureText;
+        Paint paint = this.h;
+        RectF rectF = this.F;
+        int i12 = this.E;
+        String str = this.d;
+        if (str == null) {
+            measureText = 0;
+        } else {
+            measureText = (int) this.e.measureText(str);
+        }
+        setMeasuredDimension((i12 * 2) + measureText + (this.f32849y << 1), org.telegram.messenger.i0.L(4.0f) + this.f32848x);
+        if (getMeasuredWidth() != 0) {
+            rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            rectF.inset((paint.getStrokeWidth() / 2.0f) + i12, (paint.getStrokeWidth() / 2.0f) + i12);
         }
     }
 
-    public yz(int i10, int i11, nm0 nm0Var) {
-        super(1, false);
-        this.I = new SparseArray();
-        this.J = -1;
-        this.P = true;
-        this.Q = true;
-        this.T = true;
-        this.N = nm0Var;
-        this.M = i10;
+    public void setChecked(boolean z10) {
+        a(z10, true);
+    }
+
+    public void setText(String str) {
+        this.d = str;
+        requestLayout();
     }
 }

@@ -8,53 +8,54 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicInteger;
-import ui.h;
+import ki.g;
+import ki.i;
 public final class d {
     public long A;
     public long B;
-    public final File f46442a;
-    public final File f46443b;
-    public final long f46444c;
+    public final File f44276a;
+    public final File f44277b;
+    public final long f44278c;
     public final long d;
-    public final h e;
-    public final ui.b f46445f;
-    public final dc.e f46446g;
+    public final i e;
+    public final ki.b f44279f;
+    public final g f44280g;
     public final HandlerThread h;
-    public final Handler f46447i;
-    public final HandlerThread f46448j;
-    public final Handler f46449k;
-    public volatile boolean f46452n;
-    public volatile boolean f46453o;
-    public AudioRecord f46454p;
-    public long f46455q;
-    public long f46456r;
-    public AudioRecorderNative f46458t;
-    public AudioNoiseSuppressor f46459u;
+    public final Handler f44281i;
+    public final HandlerThread f44282j;
+    public final Handler f44283k;
+    public volatile boolean f44286n;
+    public volatile boolean f44287o;
+    public AudioRecord f44288p;
+    public long f44289q;
+    public long f44290r;
+    public AudioRecorderNative f44292t;
+    public AudioNoiseSuppressor f44293u;
     public Exception v;
-    public boolean f46460w;
-    public long f46461x;
-    public int f46462y;
-    public long f46463z;
-    public final ConcurrentLinkedQueue f46450l = new ConcurrentLinkedQueue();
-    public final AtomicInteger f46451m = new AtomicInteger();
-    public final ByteBuffer f46457s = ByteBuffer.allocateDirect(1920).order(ByteOrder.nativeOrder());
+    public boolean f44294w;
+    public long f44295x;
+    public int f44296y;
+    public long f44297z;
+    public final ConcurrentLinkedQueue f44284l = new ConcurrentLinkedQueue();
+    public final AtomicInteger f44285m = new AtomicInteger();
+    public final ByteBuffer f44291s = ByteBuffer.allocateDirect(1920).order(ByteOrder.nativeOrder());
 
-    public d(File file, File file2, long j10, long j11, h hVar, ui.b bVar, dc.e eVar) {
-        this.f46442a = file;
-        this.f46443b = file2;
-        this.f46444c = j10;
+    public d(File file, File file2, long j10, long j11, i iVar, ki.b bVar, g gVar) {
+        this.f44276a = file;
+        this.f44277b = file2;
+        this.f44278c = j10;
         this.d = j11;
-        this.e = hVar;
-        this.f46445f = bVar;
-        this.f46446g = eVar;
+        this.e = iVar;
+        this.f44279f = bVar;
+        this.f44280g = gVar;
         HandlerThread handlerThread = new HandlerThread("AudioRecorderCapture", -16);
         this.h = handlerThread;
         handlerThread.start();
-        this.f46447i = new Handler(handlerThread.getLooper());
+        this.f44281i = new Handler(handlerThread.getLooper());
         HandlerThread handlerThread2 = new HandlerThread("AudioRecorderEncoder", 0);
-        this.f46448j = handlerThread2;
+        this.f44282j = handlerThread2;
         handlerThread2.start();
-        this.f46449k = new Handler(handlerThread2.getLooper());
+        this.f44283k = new Handler(handlerThread2.getLooper());
     }
 
     public static Exception a(Throwable th2) {
@@ -65,28 +66,28 @@ public final class d {
     }
 
     public final void b(int i10) {
-        ByteBuffer byteBuffer = this.f46457s;
+        ByteBuffer byteBuffer = this.f44291s;
         byteBuffer.position(0);
         byteBuffer.limit(i10);
-        if (this.f46459u != null) {
+        if (this.f44293u != null) {
             long nanoTime = System.nanoTime();
-            boolean b10 = this.f46459u.b(i10 / 2, byteBuffer);
+            boolean b10 = this.f44293u.b(i10 / 2, byteBuffer);
             long nanoTime2 = System.nanoTime() - nanoTime;
-            this.f46463z++;
+            this.f44297z++;
             this.A += nanoTime2;
             this.B = Math.max(this.B, nanoTime2);
-            ui.b bVar = this.f46445f;
+            ki.b bVar = this.f44279f;
             if (!b10) {
                 bVar.b("RNNoise processing failed; recording unprocessed PCM");
-                this.f46459u.c();
-                this.f46459u = null;
-            } else if (this.f46463z % 100 == 0) {
-                bVar.b("RNNoise processing: averageMs=" + ((this.A / this.f46463z) / 1000000.0d) + ", maxMs=" + (this.B / 1000000.0d));
+                this.f44293u.c();
+                this.f44293u = null;
+            } else if (this.f44297z % 100 == 0) {
+                bVar.b("RNNoise processing: averageMs=" + ((this.A / this.f44297z) / 1000000.0d) + ", maxMs=" + (this.B / 1000000.0d));
             }
             byteBuffer.position(0);
             byteBuffer.limit(i10);
         }
-        AudioRecorderNative audioRecorderNative = this.f46458t;
+        AudioRecorderNative audioRecorderNative = this.f44292t;
         if (audioRecorderNative != null && audioRecorderNative.g(byteBuffer, i10) != 0) {
             return;
         }
@@ -94,32 +95,32 @@ public final class d {
     }
 
     public final void c(ByteBuffer byteBuffer) {
-        if (!this.f46460w) {
-            this.f46450l.offer(byteBuffer);
+        if (!this.f44294w) {
+            this.f44284l.offer(byteBuffer);
         }
     }
 
     public final void d() {
-        this.f46452n = true;
-        if (!this.f46453o) {
-            this.f46447i.postAtFrontOfQueue(new ui.a(this, 1));
+        this.f44286n = true;
+        if (!this.f44287o) {
+            this.f44281i.postAtFrontOfQueue(new ki.a(this, 1));
         }
     }
 
     public final void e(Exception exc) {
-        if (this.f46453o) {
+        if (this.f44287o) {
             return;
         }
-        this.f46453o = true;
-        this.f46452n = true;
+        this.f44287o = true;
+        this.f44286n = true;
         if (exc != null) {
-            this.f46445f.a("capture failed", exc);
+            this.f44279f.a("capture failed", exc);
         }
-        AudioRecord audioRecord = this.f46454p;
+        AudioRecord audioRecord = this.f44288p;
         if (audioRecord != null) {
             try {
                 if (audioRecord.getRecordingState() == 3) {
-                    this.f46454p.stop();
+                    this.f44288p.stop();
                 }
             } finally {
                 if (exc == null) {
@@ -129,7 +130,7 @@ public final class d {
                 }
             }
         }
-        this.f46449k.post(new b(this, this.f46455q, exc));
+        this.f44283k.post(new b(this, this.f44289q, exc));
         this.h.quitSafely();
     }
 }

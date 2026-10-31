@@ -1,130 +1,69 @@
 package jg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.ShapeDrawable;
-import android.text.TextUtils;
-import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.b7;
-import org.telegram.ui.ActionBar.f7;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.kb1;
-public final class u extends FrameLayout {
-    public final b6 f15856a;
-    public final xh.n f15857b;
-    public final b6 f15858c;
-    public final u6 d;
-    public boolean e;
-    public TL_account.TL_businessChatLink f15859f;
+import org.telegram.ui.Components.y90;
+public final class u implements o1.f {
+    public final int f10287a;
+    public final FrameLayout f10288b;
+    public final boolean f10289c;
 
-    public u(Context context, u6 u6Var) {
-        super(context);
+    public u(FrameLayout frameLayout, boolean z10, int i10) {
+        this.f10287a = i10;
+        this.f10288b = frameLayout;
+        this.f10289c = z10;
+    }
+
+    @Override
+    public final void a(o1.j jVar, boolean z10, float f7, float f10) {
         int i10;
-        int i11;
-        this.d = u6Var;
-        setWillNotDraw(false);
-        ImageView imageView = new ImageView(context);
-        imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-        imageView.setImageResource(R.drawable.msg_limit_links);
-        imageView.setPadding(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f));
-        imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        int dp = AndroidUtilities.dp(36.0f);
-        int i12 = y6.Oh;
-        ShapeDrawable K = y6.K(dp, y6.x0(null, i12, false));
-        b7 N = f7.N(i12);
-        imageView.setBackground(K);
-        f7.k(imageView, K, N, null, null);
-        imageView.setOnClickListener(new ig.d0(this, 7));
-        addView(imageView, kb1.m(36.0f, 36.0f, 8388627, 14.0f, 0.0f, 14.0f, 0.0f));
-        b6 b6Var = new b6(context);
-        this.f15856a = b6Var;
-        b6Var.setTextSize(15);
-        f7.Y(b6Var, y6.G6, null);
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
+        switch (this.f10287a) {
+            case 0:
+                r0 r0Var = (r0) this.f10288b;
+                a2 a2Var = r0Var.f10167e1;
+                if (jVar == r0Var.f10181o1) {
+                    r0Var.f10181o1 = null;
+                    if (!this.f10289c) {
+                        a2Var.setVisibility(8);
+                    }
+                    a2Var.setMaskProvider(null);
+                    return;
+                }
+                return;
+            case 1:
+                r0 r0Var2 = (r0) this.f10288b;
+                m0 m0Var = r0Var2.f10183p1;
+                if (jVar == r0Var2.f10195v1) {
+                    r0Var2.f10195v1 = null;
+                    if (!this.f10289c) {
+                        m0Var.setVisibility(8);
+                        ig.s0.e(r0Var2.f10201y1).g();
+                        m0Var.getAdapter().f();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                y90 y90Var = (y90) this.f10288b;
+                if (!z10) {
+                    y90Var.K = null;
+                    boolean z11 = this.f10289c;
+                    if (z11) {
+                        i10 = 8;
+                    } else {
+                        i10 = 0;
+                    }
+                    y90Var.setVisibility(i10);
+                    if (y90Var.N && z11) {
+                        y90Var.N = false;
+                        y90Var.f32665b.setLayoutManager(y90Var.getNeededLayoutManager());
+                        y90Var.I = true;
+                        y90Var.o(true);
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-        b6Var.setGravity(i10);
-        addView(b6Var, kb1.m(-1.0f, 20.0f, 55, 64.0f, 10.0f, 14.0f, 0.0f));
-        b6 b6Var2 = new b6(context);
-        this.f15858c = b6Var2;
-        b6Var2.setTextSize(14);
-        int i13 = y6.f23768z6;
-        f7.Y(b6Var2, i13, null);
-        if (LocaleController.isRTL) {
-            i11 = 3;
-        } else {
-            i11 = 5;
-        }
-        b6Var2.setGravity(i11);
-        addView(b6Var2, kb1.m(-1.0f, 18.0f, 55, 64.0f, 10.66f, 14.0f, 0.0f));
-        xh.n nVar = new xh.n(context);
-        this.f15857b = nVar;
-        nVar.setTextSize(1, 13.0f);
-        nVar.setMaxLines(1);
-        nVar.setEllipsize(TextUtils.TruncateAt.END);
-        f7.V(nVar, i13, u6Var);
-        nVar.setGravity(LocaleController.isRTL ? 5 : 3);
-        nVar.f51971r = false;
-        nVar.setUseAlphaForEmoji(false);
-        NotificationCenter.listenEmojiLoading(nVar);
-        addView(nVar, kb1.m(-1.0f, 20.0f, 87, 64.0f, 0.0f, 14.0f, 6.0f));
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f7;
-        super.onDraw(canvas);
-        if (this.e) {
-            Paint V0 = y6.V0("paintDivider", this.d);
-            if (V0 == null) {
-                V0 = y6.f23479k0;
-            }
-            Paint paint = V0;
-            float f10 = 64.0f;
-            if (LocaleController.isRTL) {
-                f7 = 0.0f;
-            } else {
-                f7 = 64.0f;
-            }
-            float dp = AndroidUtilities.dp(f7);
-            float measuredHeight = getMeasuredHeight() - 1;
-            int width = getWidth();
-            if (!LocaleController.isRTL) {
-                f10 = 0.0f;
-            }
-            canvas.drawRect(dp, measuredHeight, width - AndroidUtilities.dp(f10), getMeasuredHeight(), paint);
-        }
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        boolean z11 = LocaleController.isRTL;
-        b6 b6Var = this.f15858c;
-        b6 b6Var2 = this.f15856a;
-        if (z11) {
-            b6Var2.setPadding(b6Var.getTextWidth(), 0, 0, 0);
-        } else {
-            b6Var2.setPadding(0, 0, b6Var.getTextWidth(), 0);
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f) + (this.e ? 1 : 0), 1073741824));
     }
 }

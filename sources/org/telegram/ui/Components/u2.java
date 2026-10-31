@@ -1,53 +1,26 @@
 package org.telegram.ui.Components;
+public final class u2 implements org.telegram.ui.ActionBar.u1 {
+    public final int f30763a;
+    public final org.telegram.messenger.q20 f30764b;
+    public final boolean[] f30765c;
 
-import android.view.KeyEvent;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class u2 implements TextView.OnEditorActionListener {
-    public final int f33193a;
-
-    public u2(int i10) {
-        this.f33193a = i10;
+    public u2(int i10, org.telegram.messenger.q20 q20Var, boolean[] zArr) {
+        this.f30763a = i10;
+        this.f30764b = q20Var;
+        this.f30765c = zArr;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        switch (this.f33193a) {
+    public final void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
+        switch (this.f30763a) {
             case 0:
-                AndroidUtilities.hideKeyboard(textView);
-                return false;
-            case 1:
-                if (i10 == 6) {
-                    AndroidUtilities.hideKeyboard(textView);
-                    return true;
-                }
-                return false;
-            case 2:
-                if (i10 == 6) {
-                    AndroidUtilities.hideKeyboard(textView);
-                    return true;
-                }
-                return false;
-            case 3:
-                if (i10 == 6) {
-                    AndroidUtilities.hideKeyboard(textView);
-                    return true;
-                }
-                return false;
-            case 4:
-                if (i10 == 6) {
-                    textView.clearFocus();
-                    AndroidUtilities.hideKeyboard(textView);
-                    return false;
-                }
-                return false;
+                this.f30764b.a(Boolean.valueOf(this.f30765c[0]));
+                return;
             default:
-                if (i10 == 6) {
-                    textView.clearFocus();
-                    AndroidUtilities.hideKeyboard(textView);
-                    return false;
-                }
-                return false;
+                this.f30764b.a(Boolean.TRUE);
+                this.f30765c[0] = true;
+                x1Var.dismiss();
+                return;
         }
     }
 }

@@ -1,28 +1,34 @@
 package org.telegram.messenger;
-public final class n0 implements Runnable {
-    public final int f20718a;
-    public final BotForumHelper f20719b;
-    public final long f20720c;
-    public final int d;
-    public final long e;
 
-    public n0(BotForumHelper botForumHelper, long j10, int i10, long j11, int i11) {
-        this.f20718a = i11;
-        this.f20719b = botForumHelper;
-        this.f20720c = j10;
-        this.d = i10;
-        this.e = j11;
+import android.content.SharedPreferences;
+import org.telegram.tgnet.TLRPC;
+public final class n0 implements m0 {
+    public final String f17025a;
+    public final long f17026b;
+    public long f17027c;
+
+    public n0(String str, long j10) {
+        this.f17025a = str;
+        this.f17026b = j10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f20718a) {
-            case 0:
-                BotForumHelper.a(this.f20719b, this.f20720c, this.d, this.e);
-                return;
-            default:
-                BotForumHelper.c(this.f20719b, this.f20720c, this.d, this.e);
-                return;
+    public final boolean a(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue) {
+        if (jSONValue instanceof TLRPC.TL_jsonNumber) {
+            double d = ((TLRPC.TL_jsonNumber) jSONValue).value;
+            if (d != this.f17027c) {
+                long j10 = (long) d;
+                this.f17027c = j10;
+                editor.putLong(this.f17025a, j10);
+                return true;
+            }
+            return false;
         }
+        return false;
+    }
+
+    @Override
+    public final void b(SharedPreferences sharedPreferences) {
+        this.f17027c = sharedPreferences.getLong(this.f17025a, this.f17026b);
     }
 }

@@ -5,11 +5,11 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import kotlin.jvm.internal.i;
 public final class c {
-    public static final c f6179a = new Object();
-    public static final Map f6180b = DesugarCollections.synchronizedMap(new LinkedHashMap());
+    public static final c f4095a = new Object();
+    public static final Map f4096b = DesugarCollections.synchronizedMap(new LinkedHashMap());
 
     public static a a(d dVar) {
-        Map dependencies = f6180b;
+        Map dependencies = f4096b;
         i.d(dependencies, "dependencies");
         Object obj = dependencies.get(dVar);
         if (obj != null) {
@@ -18,7 +18,7 @@ public final class c {
         throw new IllegalStateException("Cannot get dependency " + dVar + ". Dependencies should be added at class load time.");
     }
 
-    public final java.lang.Object b(nd.c r11) {
-        throw new UnsupportedOperationException("Method not decompiled: cb.c.b(nd.c):java.lang.Object");
+    public final java.lang.Object b(ed.c r11) {
+        throw new UnsupportedOperationException("Method not decompiled: cb.c.b(ed.c):java.lang.Object");
     }
 }

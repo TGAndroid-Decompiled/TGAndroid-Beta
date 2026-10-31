@@ -1,15 +1,11 @@
 package org.telegram.ui.ActionBar;
 
-import java.util.Comparator;
-public final class n4 implements Comparator {
-    public final int f22895a;
-
-    public n4(int i10) {
-        this.f22895a = i10;
-    }
+import android.view.animation.Interpolator;
+public final class n4 implements Interpolator {
+    public final float f20611a = 1.0f / ((float) (1.0d - Math.pow(100, -1.0f)));
 
     @Override
-    public final int compare(java.lang.Object r14, java.lang.Object r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.n4.compare(java.lang.Object, java.lang.Object):int");
+    public final float getInterpolation(float f7) {
+        return 1.0f - (((float) (1.0d - Math.pow(100, -(1.0f - f7)))) * this.f20611a);
     }
 }

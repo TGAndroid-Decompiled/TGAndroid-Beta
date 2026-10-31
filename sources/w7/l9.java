@@ -1,51 +1,110 @@
 package w7;
-
-import java.util.Set;
-public abstract class l9 extends h9 implements Set {
-    public transient k9 f50980b;
-
-    @Override
-    public final boolean equals(Object obj) {
-        if (obj == this || obj == this) {
-            return true;
-        }
-        if (obj instanceof Set) {
-            Set set = (Set) obj;
-            try {
-                if (size() == set.size()) {
-                    if (containsAll(set)) {
-                        return true;
-                    }
-                    return false;
+public abstract class l9 {
+    public static final w0.d a(CharSequence charSequence, String str) {
+        String str2;
+        switch (str.hashCode()) {
+            case -2055374133:
+                if (str.equals("android.credentials.CreateCredentialException.TYPE_USER_CANCELED")) {
+                    return new w0.b(charSequence);
                 }
-            } catch (ClassCastException | NullPointerException unused) {
-            }
+                break;
+            case -1166690414:
+                if (str.equals("androidx.credentials.TYPE_CREATE_CREDENTIAL_UNSUPPORTED_EXCEPTION")) {
+                    return new w0.c(3, charSequence);
+                }
+                break;
+            case -580283253:
+                if (str.equals("androidx.credentials.TYPE_CREATE_CREDENTIAL_PROVIDER_CONFIGURATION_EXCEPTION")) {
+                    return new w0.c(1, charSequence);
+                }
+                break;
+            case 1316905704:
+                if (str.equals("android.credentials.CreateCredentialException.TYPE_UNKNOWN")) {
+                    return new w0.c(2, charSequence);
+                }
+                break;
+            case 2092588512:
+                if (str.equals("android.credentials.CreateCredentialException.TYPE_INTERRUPTED")) {
+                    return new w0.e(charSequence);
+                }
+                break;
+            case 2131915191:
+                if (str.equals("android.credentials.CreateCredentialException.TYPE_NO_CREATE_OPTIONS")) {
+                    return new w0.f(charSequence);
+                }
+                break;
         }
-        return false;
-    }
-
-    @Override
-    public final int hashCode() {
-        int i10;
-        int i11 = 0;
-        for (Object obj : this) {
-            if (obj != null) {
-                i10 = obj.hashCode();
+        if (rd.j.h(str, "androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION")) {
+            int i10 = y0.a.f54119c;
+            if (charSequence != null) {
+                str2 = charSequence.toString();
             } else {
-                i10 = 0;
+                str2 = null;
             }
-            i11 += i10;
+            try {
+                if (rd.j.b(str, "androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION")) {
+                    int i11 = y0.a.f54119c;
+                    return c9.a(str, str2);
+                }
+                throw new Exception();
+            } catch (z0.a unused) {
+                return new w0.c(str2, str);
+            }
         }
-        return i11;
+        return new w0.c(charSequence, str);
     }
 
-    public final k9 p() {
-        k9 k9Var = this.f50980b;
-        if (k9Var == null) {
-            n9 n9Var = new n9((a) this);
-            this.f50980b = n9Var;
-            return n9Var;
+    public static final w0.i b(CharSequence charSequence, String str) {
+        String str2;
+        switch (str.hashCode()) {
+            case -781118336:
+                if (str.equals("android.credentials.GetCredentialException.TYPE_UNKNOWN")) {
+                    return new w0.h(2, charSequence);
+                }
+                break;
+            case -408155724:
+                if (str.equals("androidx.credentials.TYPE_GET_CREDENTIAL_UNSUPPORTED_EXCEPTION")) {
+                    return new w0.h(3, charSequence);
+                }
+                break;
+            case -45448328:
+                if (str.equals("android.credentials.GetCredentialException.TYPE_INTERRUPTED")) {
+                    return new w0.j(charSequence);
+                }
+                break;
+            case 580557411:
+                if (str.equals("android.credentials.GetCredentialException.TYPE_USER_CANCELED")) {
+                    return new w0.g(charSequence);
+                }
+                break;
+            case 627896683:
+                if (str.equals("android.credentials.GetCredentialException.TYPE_NO_CREDENTIAL")) {
+                    return new w0.k(charSequence);
+                }
+                break;
+            case 1594095913:
+                if (str.equals("androidx.credentials.TYPE_GET_CREDENTIAL_PROVIDER_CONFIGURATION_EXCEPTION")) {
+                    return new w0.h(1, charSequence);
+                }
+                break;
         }
-        return k9Var;
+        if (rd.j.h(str, "androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION")) {
+            int i10 = y0.b.f54121c;
+            if (charSequence != null) {
+                str2 = charSequence.toString();
+            } else {
+                str2 = null;
+            }
+            try {
+                if (rd.j.h(str, "androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION")) {
+                    int i11 = y0.b.f54121c;
+                    return e9.a(str, str2);
+                }
+                throw new Exception();
+            } catch (z0.a unused) {
+                return new w0.h(str2, str);
+            }
+        }
+        return new w0.h(charSequence, str);
     }
 }

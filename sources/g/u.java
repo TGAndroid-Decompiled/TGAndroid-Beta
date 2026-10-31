@@ -6,14 +6,14 @@ import android.view.View;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 public final class u implements View.OnClickListener {
-    public final View f12192a;
-    public final String f12193b;
-    public Method f12194c;
+    public final View f7246a;
+    public final String f7247b;
+    public Method f7248c;
     public Context d;
 
     public u(View view, String str) {
-        this.f12192a = view;
-        this.f12193b = str;
+        this.f7246a = view;
+        this.f7247b = str;
     }
 
     @Override
@@ -21,15 +21,15 @@ public final class u implements View.OnClickListener {
         int id2;
         String str;
         Method method;
-        if (this.f12194c == null) {
-            View view2 = this.f12192a;
+        if (this.f7248c == null) {
+            View view2 = this.f7246a;
             Context context = view2.getContext();
             while (true) {
-                String str2 = this.f12193b;
+                String str2 = this.f7247b;
                 if (context != null) {
                     try {
                         if (!context.isRestricted() && (method = context.getClass().getMethod(str2, View.class)) != null) {
-                            this.f12194c = method;
+                            this.f7248c = method;
                             this.d = context;
                         }
                     } catch (NoSuchMethodException unused) {
@@ -45,19 +45,19 @@ public final class u implements View.OnClickListener {
                     } else {
                         str = " with id '" + view2.getContext().getResources().getResourceEntryName(id2) + "'";
                     }
-                    StringBuilder v = a1.g.v("Could not find method ", str2, "(View) in a parent or ancestor Context for android:onClick attribute defined on view ");
-                    v.append(view2.getClass());
-                    v.append(str);
-                    throw new IllegalStateException(v.toString());
+                    StringBuilder u10 = a1.g.u("Could not find method ", str2, "(View) in a parent or ancestor Context for android:onClick attribute defined on view ");
+                    u10.append(view2.getClass());
+                    u10.append(str);
+                    throw new IllegalStateException(u10.toString());
                 }
             }
         }
         try {
-            this.f12194c.invoke(this.d, view);
+            this.f7248c.invoke(this.d, view);
         } catch (IllegalAccessException e) {
             throw new IllegalStateException("Could not execute non-public method for android:onClick", e);
-        } catch (InvocationTargetException e10) {
-            throw new IllegalStateException("Could not execute method for android:onClick", e10);
+        } catch (InvocationTargetException e7) {
+            throw new IllegalStateException("Could not execute method for android:onClick", e7);
         }
     }
 }

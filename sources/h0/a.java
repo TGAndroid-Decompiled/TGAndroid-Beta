@@ -1,39 +1,39 @@
 package h0;
 
 import android.graphics.Color;
-import c3.h0;
+import c3.i0;
 public final class a {
-    public final float f12521a;
-    public final float f12522b;
-    public final float f12523c;
+    public final float f7536a;
+    public final float f7537b;
+    public final float f7538c;
     public final float d;
     public final float e;
-    public final float f12524f;
+    public final float f7539f;
 
     public a(float f7, float f10, float f11, float f12, float f13, float f14) {
-        this.f12521a = f7;
-        this.f12522b = f10;
-        this.f12523c = f11;
+        this.f7536a = f7;
+        this.f7537b = f10;
+        this.f7538c = f11;
         this.d = f12;
         this.e = f13;
-        this.f12524f = f14;
+        this.f7539f = f14;
     }
 
     public static a a(int i10) {
         float f7;
         float pow;
-        k kVar = k.f12545k;
+        k kVar = k.f7560k;
         float e = b.e(Color.red(i10));
-        float e10 = b.e(Color.green(i10));
-        float e11 = b.e(Color.blue(i10));
+        float e7 = b.e(Color.green(i10));
+        float e10 = b.e(Color.blue(i10));
         float[][] fArr = b.d;
         float[] fArr2 = fArr[0];
-        float f10 = (fArr2[2] * e11) + (fArr2[1] * e10) + (fArr2[0] * e);
+        float f10 = (fArr2[2] * e10) + (fArr2[1] * e7) + (fArr2[0] * e);
         float[] fArr3 = fArr[1];
-        float f11 = (fArr3[2] * e11) + (fArr3[1] * e10) + (fArr3[0] * e);
+        float f11 = (fArr3[2] * e10) + (fArr3[1] * e7) + (fArr3[0] * e);
         float[] fArr4 = fArr[2];
-        float f12 = (e11 * fArr4[2]) + (e10 * fArr4[1]) + (e * fArr4[0]);
-        float[][] fArr5 = b.f12525a;
+        float f12 = (e10 * fArr4[2]) + (e7 * fArr4[1]) + (e * fArr4[0]);
+        float[][] fArr5 = b.f7540a;
         float[] fArr6 = fArr5[0];
         float f13 = (fArr6[2] * f12) + (fArr6[1] * f11) + (fArr6[0] * f10);
         float[] fArr7 = fArr5[1];
@@ -41,10 +41,10 @@ public final class a {
         float f15 = fArr7[2] * f12;
         float[] fArr8 = fArr5[2];
         float f16 = (f12 * fArr8[2]) + (f11 * fArr8[1]) + (f10 * fArr8[0]);
-        float[] fArr9 = kVar.f12550g;
-        float f17 = kVar.f12551i;
+        float[] fArr9 = kVar.f7565g;
+        float f17 = kVar.f7566i;
         float f18 = kVar.d;
-        float f19 = kVar.f12546a;
+        float f19 = kVar.f7561a;
         float f20 = fArr9[0] * f13;
         float f21 = fArr9[1] * (f15 + f14 + (fArr7[0] * f10));
         float f22 = fArr9[2] * f16;
@@ -59,7 +59,7 @@ public final class a {
         float f24 = ((float) (((signum2 * (-12.0d)) + (signum * 11.0d)) + d)) / 11.0f;
         float f25 = ((float) ((signum + signum2) - (d * 2.0d))) / 9.0f;
         float f26 = signum2 * 20.0f;
-        float x9 = h0.x(signum3, 21.0f, (signum * 20.0f) + f26, 20.0f);
+        float x10 = i0.x(signum3, 21.0f, (signum * 20.0f) + f26, 20.0f);
         float f27 = (((signum * 40.0f) + f26) + signum3) / 20.0f;
         float atan2 = (((float) Math.atan2(f25, f24)) * 180.0f) / 3.1415927f;
         if (atan2 < 0.0f) {
@@ -68,7 +68,7 @@ public final class a {
             atan2 -= 360.0f;
         }
         float f28 = (3.1415927f * atan2) / 180.0f;
-        float pow5 = ((float) Math.pow((f27 * kVar.f12547b) / f19, kVar.f12552j * f18)) * 100.0f;
+        float pow5 = ((float) Math.pow((f27 * kVar.f7562b) / f19, kVar.f7567j * f18)) * 100.0f;
         Math.sqrt(pow5 / 100.0f);
         float f29 = f19 + 4.0f;
         if (atan2 < 20.14d) {
@@ -76,7 +76,7 @@ public final class a {
         } else {
             f7 = atan2;
         }
-        float pow6 = ((float) Math.pow(1.64d - Math.pow(0.29d, kVar.f12549f), 0.73d)) * ((float) Math.pow((((((((float) (Math.cos(((f7 * 3.141592653589793d) / 180.0d) + 2.0d) + 3.8d)) * 0.25f) * 3846.1538f) * kVar.e) * kVar.f12548c) * ((float) Math.sqrt((f25 * f25) + (f24 * f24)))) / (x9 + 0.305f), 0.9d)) * ((float) Math.sqrt(pow5 / 100.0d));
+        float pow6 = ((float) Math.pow(1.64d - Math.pow(0.29d, kVar.f7564f), 0.73d)) * ((float) Math.pow((((((((float) (Math.cos(((f7 * 3.141592653589793d) / 180.0d) + 2.0d) + 3.8d)) * 0.25f) * 3846.1538f) * kVar.e) * kVar.f7563c) * ((float) Math.sqrt((f25 * f25) + (f24 * f24)))) / (x10 + 0.305f), 0.9d)) * ((float) Math.sqrt(pow5 / 100.0d));
         Math.sqrt((pow * f18) / f29);
         float f30 = (1.7f * pow5) / ((0.007f * pow5) + 1.0f);
         float log = ((float) Math.log((f17 * pow6 * 0.0228f) + 1.0f)) * 43.85965f;
@@ -87,11 +87,11 @@ public final class a {
     public static a b(float f7, float f10, float f11) {
         k kVar;
         double d;
-        float f12 = k.f12545k.d;
+        float f12 = k.f7560k.d;
         Math.sqrt(f7 / 100.0d);
-        Math.sqrt(((f10 / ((float) Math.sqrt(d))) * kVar.d) / (kVar.f12546a + 4.0f));
+        Math.sqrt(((f10 / ((float) Math.sqrt(d))) * kVar.d) / (kVar.f7561a + 4.0f));
         float f13 = (1.7f * f7) / ((0.007f * f7) + 1.0f);
-        float log = ((float) Math.log((kVar.f12551i * f10 * 0.0228d) + 1.0d)) * 43.85965f;
+        float log = ((float) Math.log((kVar.f7566i * f10 * 0.0228d) + 1.0d)) * 43.85965f;
         double d10 = (3.1415927f * f11) / 180.0f;
         return new a(f11, f10, f7, f13, log * ((float) Math.cos(d10)), log * ((float) Math.sin(d10)));
     }
@@ -99,77 +99,77 @@ public final class a {
     public final int c(k kVar) {
         float f7;
         float[] fArr;
-        float f10 = this.f12522b;
+        float f10 = this.f7537b;
         int i10 = (f10 > 0.0d ? 1 : (f10 == 0.0d ? 0 : -1));
-        float f11 = this.f12523c;
+        float f11 = this.f7538c;
         if (i10 != 0) {
             double d = f11;
             if (d != 0.0d) {
                 f7 = f10 / ((float) Math.sqrt(d / 100.0d));
-                float f12 = kVar.f12549f;
+                float f12 = kVar.f7564f;
                 float f13 = kVar.h;
                 float pow = (float) Math.pow(f7 / Math.pow(1.64d - Math.pow(0.29d, f12), 0.73d), 1.1111111111111112d);
-                double d10 = (this.f12521a * 3.1415927f) / 180.0f;
-                float pow2 = kVar.f12546a * ((float) Math.pow(f11 / 100.0d, (1.0d / kVar.d) / kVar.f12552j));
-                float cos = ((float) (Math.cos(2.0d + d10) + 3.8d)) * 0.25f * 3846.1538f * kVar.e * kVar.f12548c;
-                float f14 = pow2 / kVar.f12547b;
+                double d10 = (this.f7536a * 3.1415927f) / 180.0f;
+                float pow2 = kVar.f7561a * ((float) Math.pow(f11 / 100.0d, (1.0d / kVar.d) / kVar.f7567j));
+                float cos = ((float) (Math.cos(2.0d + d10) + 3.8d)) * 0.25f * 3846.1538f * kVar.e * kVar.f7563c;
+                float f14 = pow2 / kVar.f7562b;
                 float sin = (float) Math.sin(d10);
                 float cos2 = (float) Math.cos(d10);
-                float u10 = (((0.305f + f14) * 23.0f) * pow) / (((pow * 108.0f) * sin) + h0.u(pow, 11.0f, cos2, cos * 23.0f));
+                float u10 = (((0.305f + f14) * 23.0f) * pow) / (((pow * 108.0f) * sin) + i0.u(pow, 11.0f, cos2, cos * 23.0f));
                 float f15 = cos2 * u10;
                 float f16 = u10 * sin;
                 float f17 = f14 * 460.0f;
-                float x9 = h0.x(f16, 288.0f, (451.0f * f15) + f17, 1403.0f);
-                float f18 = h0.f(f16, 261.0f, f17 - (891.0f * f15), 1403.0f);
-                float f19 = h0.f(f16, 6300.0f, f17 - (f15 * 220.0f), 1403.0f);
-                float f20 = 100.0f / f13;
-                float signum = Math.signum(x9) * f20 * ((float) Math.pow((float) Math.max(0.0d, (Math.abs(x9) * 27.13d) / (400.0d - Math.abs(x9))), 2.380952380952381d));
-                float signum2 = Math.signum(f18) * f20 * ((float) Math.pow((float) Math.max(0.0d, (Math.abs(f18) * 27.13d) / (400.0d - Math.abs(f18))), 2.380952380952381d));
-                float[] fArr2 = kVar.f12550g;
-                float f21 = signum / fArr2[0];
-                float f22 = signum2 / fArr2[1];
-                float signum3 = ((Math.signum(f19) * f20) * ((float) Math.pow((float) Math.max(0.0d, (Math.abs(f19) * 27.13d) / (400.0d - Math.abs(f19))), 2.380952380952381d))) / fArr2[2];
-                float[][] fArr3 = b.f12526b;
+                float x10 = i0.x(f16, 288.0f, (451.0f * f15) + f17, 1403.0f);
+                float g10 = i0.g(f16, 261.0f, f17 - (891.0f * f15), 1403.0f);
+                float g11 = i0.g(f16, 6300.0f, f17 - (f15 * 220.0f), 1403.0f);
+                float f18 = 100.0f / f13;
+                float signum = Math.signum(x10) * f18 * ((float) Math.pow((float) Math.max(0.0d, (Math.abs(x10) * 27.13d) / (400.0d - Math.abs(x10))), 2.380952380952381d));
+                float signum2 = Math.signum(g10) * f18 * ((float) Math.pow((float) Math.max(0.0d, (Math.abs(g10) * 27.13d) / (400.0d - Math.abs(g10))), 2.380952380952381d));
+                float[] fArr2 = kVar.f7565g;
+                float f19 = signum / fArr2[0];
+                float f20 = signum2 / fArr2[1];
+                float signum3 = ((Math.signum(g11) * f18) * ((float) Math.pow((float) Math.max(0.0d, (Math.abs(g11) * 27.13d) / (400.0d - Math.abs(g11))), 2.380952380952381d))) / fArr2[2];
+                float[][] fArr3 = b.f7541b;
                 float[] fArr4 = fArr3[0];
-                float f23 = (fArr4[2] * signum3) + (fArr4[1] * f22) + (fArr4[0] * f21);
+                float f21 = (fArr4[2] * signum3) + (fArr4[1] * f20) + (fArr4[0] * f19);
                 float[] fArr5 = fArr3[1];
-                float f24 = fArr5[1] * f22;
-                float f25 = fArr5[2] * signum3;
-                float f26 = f21 * fArr3[2][0];
-                return i0.a.e(f23, f25 + f24 + (fArr5[0] * f21), (signum3 * fArr[2]) + (f22 * fArr[1]) + f26);
+                float f22 = fArr5[1] * f20;
+                float f23 = fArr5[2] * signum3;
+                float f24 = f19 * fArr3[2][0];
+                return i0.b.e(f21, f23 + f22 + (fArr5[0] * f19), (signum3 * fArr[2]) + (f20 * fArr[1]) + f24);
             }
         }
         f7 = 0.0f;
-        float f122 = kVar.f12549f;
+        float f122 = kVar.f7564f;
         float f132 = kVar.h;
         float pow3 = (float) Math.pow(f7 / Math.pow(1.64d - Math.pow(0.29d, f122), 0.73d), 1.1111111111111112d);
-        double d102 = (this.f12521a * 3.1415927f) / 180.0f;
-        float pow22 = kVar.f12546a * ((float) Math.pow(f11 / 100.0d, (1.0d / kVar.d) / kVar.f12552j));
-        float cos3 = ((float) (Math.cos(2.0d + d102) + 3.8d)) * 0.25f * 3846.1538f * kVar.e * kVar.f12548c;
-        float f142 = pow22 / kVar.f12547b;
+        double d102 = (this.f7536a * 3.1415927f) / 180.0f;
+        float pow22 = kVar.f7561a * ((float) Math.pow(f11 / 100.0d, (1.0d / kVar.d) / kVar.f7567j));
+        float cos3 = ((float) (Math.cos(2.0d + d102) + 3.8d)) * 0.25f * 3846.1538f * kVar.e * kVar.f7563c;
+        float f142 = pow22 / kVar.f7562b;
         float sin2 = (float) Math.sin(d102);
         float cos22 = (float) Math.cos(d102);
-        float u102 = (((0.305f + f142) * 23.0f) * pow3) / (((pow3 * 108.0f) * sin2) + h0.u(pow3, 11.0f, cos22, cos3 * 23.0f));
+        float u102 = (((0.305f + f142) * 23.0f) * pow3) / (((pow3 * 108.0f) * sin2) + i0.u(pow3, 11.0f, cos22, cos3 * 23.0f));
         float f152 = cos22 * u102;
         float f162 = u102 * sin2;
         float f172 = f142 * 460.0f;
-        float x92 = h0.x(f162, 288.0f, (451.0f * f152) + f172, 1403.0f);
-        float f182 = h0.f(f162, 261.0f, f172 - (891.0f * f152), 1403.0f);
-        float f192 = h0.f(f162, 6300.0f, f172 - (f152 * 220.0f), 1403.0f);
-        float f202 = 100.0f / f132;
-        float signum4 = Math.signum(x92) * f202 * ((float) Math.pow((float) Math.max(0.0d, (Math.abs(x92) * 27.13d) / (400.0d - Math.abs(x92))), 2.380952380952381d));
-        float signum22 = Math.signum(f182) * f202 * ((float) Math.pow((float) Math.max(0.0d, (Math.abs(f182) * 27.13d) / (400.0d - Math.abs(f182))), 2.380952380952381d));
-        float[] fArr22 = kVar.f12550g;
-        float f212 = signum4 / fArr22[0];
-        float f222 = signum22 / fArr22[1];
-        float signum32 = ((Math.signum(f192) * f202) * ((float) Math.pow((float) Math.max(0.0d, (Math.abs(f192) * 27.13d) / (400.0d - Math.abs(f192))), 2.380952380952381d))) / fArr22[2];
-        float[][] fArr32 = b.f12526b;
+        float x102 = i0.x(f162, 288.0f, (451.0f * f152) + f172, 1403.0f);
+        float g102 = i0.g(f162, 261.0f, f172 - (891.0f * f152), 1403.0f);
+        float g112 = i0.g(f162, 6300.0f, f172 - (f152 * 220.0f), 1403.0f);
+        float f182 = 100.0f / f132;
+        float signum4 = Math.signum(x102) * f182 * ((float) Math.pow((float) Math.max(0.0d, (Math.abs(x102) * 27.13d) / (400.0d - Math.abs(x102))), 2.380952380952381d));
+        float signum22 = Math.signum(g102) * f182 * ((float) Math.pow((float) Math.max(0.0d, (Math.abs(g102) * 27.13d) / (400.0d - Math.abs(g102))), 2.380952380952381d));
+        float[] fArr22 = kVar.f7565g;
+        float f192 = signum4 / fArr22[0];
+        float f202 = signum22 / fArr22[1];
+        float signum32 = ((Math.signum(g112) * f182) * ((float) Math.pow((float) Math.max(0.0d, (Math.abs(g112) * 27.13d) / (400.0d - Math.abs(g112))), 2.380952380952381d))) / fArr22[2];
+        float[][] fArr32 = b.f7541b;
         float[] fArr42 = fArr32[0];
-        float f232 = (fArr42[2] * signum32) + (fArr42[1] * f222) + (fArr42[0] * f212);
+        float f212 = (fArr42[2] * signum32) + (fArr42[1] * f202) + (fArr42[0] * f192);
         float[] fArr52 = fArr32[1];
-        float f242 = fArr52[1] * f222;
-        float f252 = fArr52[2] * signum32;
-        float f262 = f212 * fArr32[2][0];
-        return i0.a.e(f232, f252 + f242 + (fArr52[0] * f212), (signum32 * fArr[2]) + (f222 * fArr[1]) + f262);
+        float f222 = fArr52[1] * f202;
+        float f232 = fArr52[2] * signum32;
+        float f242 = f192 * fArr32[2][0];
+        return i0.b.e(f212, f232 + f222 + (fArr52[0] * f192), (signum32 * fArr[2]) + (f202 * fArr[1]) + f242);
     }
 }

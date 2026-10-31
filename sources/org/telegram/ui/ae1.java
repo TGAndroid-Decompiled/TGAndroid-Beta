@@ -1,39 +1,51 @@
 package org.telegram.ui;
-public final class ae1 implements Runnable {
-    public final int f37758a;
-    public final cf1 f37759b;
 
-    public ae1(cf1 cf1Var, int i10) {
-        this.f37758a = i10;
-        this.f37759b = cf1Var;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.View;
+public final class ae1 extends View {
+    public final Paint f35635a;
+    public final org.telegram.ui.Components.t8 f35636b;
+    public org.telegram.ui.Components.qz0 f35637c;
+
+    public ae1(Activity activity) {
+        super(activity);
+        Paint paint = new Paint(1);
+        this.f35635a = paint;
+        paint.setColor(-14538189);
+        org.telegram.ui.Components.t8 t8Var = new org.telegram.ui.Components.t8(this, false);
+        this.f35636b = t8Var;
+        t8Var.f30491p = org.telegram.messenger.i0.L(100.0f);
+        t8Var.f30490o = org.telegram.messenger.i0.L(30.0f);
+        t8Var.f30498x = false;
+        t8Var.f30494s = org.telegram.messenger.i0.L(24.0f);
+        t8Var.h(org.telegram.messenger.i0.L(18.0f));
+        t8Var.f30495t = 0.58f;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37758a) {
-            case 0:
-                cf1 cf1Var = this.f37759b;
-                cf1Var.x0();
-                cf1Var.B0();
-                return;
-            case 1:
-                this.f37759b.x0();
-                return;
-            case 2:
-                this.f37759b.O0(true);
-                return;
-            case 3:
-                this.f37759b.finishPreviewFragment();
-                return;
-            case 4:
-                cf1 cf1Var2 = this.f37759b;
-                cf1Var2.A0 = null;
-                cf1Var2.V0(true, false);
-                return;
-            default:
-                cf1 cf1Var3 = this.f37759b;
-                cf1Var3.N.postOnAnimation(new ae1(cf1Var3, 1));
-                return;
+    public final void onDraw(Canvas canvas) {
+        if (this.f35637c == null) {
+            return;
         }
+        org.telegram.ui.Components.t8 t8Var = this.f35636b;
+        float c10 = t8Var.c() + org.telegram.messenger.i0.L(4.0f) + org.telegram.messenger.i0.L(7.0f) + this.f35637c.f29774c + org.telegram.messenger.i0.L(13.0f);
+        RectF rectF = org.telegram.messenger.i0.P;
+        rectF.set((getWidth() - c10) / 2.0f, 0.0f, (getWidth() + c10) / 2.0f, getHeight());
+        float L = org.telegram.messenger.i0.L(30.0f) / 2.0f;
+        canvas.drawRoundRect(rectF, L, L, this.f35635a);
+        canvas.save();
+        canvas.translate(rectF.left + org.telegram.messenger.i0.L(4.0f), 0.0f);
+        t8Var.g(canvas);
+        canvas.translate(t8Var.A + org.telegram.messenger.i0.L(7.0f), 0.0f);
+        this.f35637c.c(0.0f, L, 1.0f, -1, canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), org.telegram.messenger.i0.L(30.0f));
     }
 }

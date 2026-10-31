@@ -1,37 +1,15 @@
 package org.telegram.ui.Components;
+public final class k implements gk0 {
+    public final int f27584a;
+    public final Object f27585b;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-public final class k implements TextWatcher {
-    public final e0 f29793a;
-
-    public k(e0 e0Var) {
-        this.f29793a = e0Var;
+    public k(Object obj, int i10) {
+        this.f27584a = i10;
+        this.f27585b = obj;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i10;
-        d0 d0Var;
-        e0 e0Var = this.f29793a;
-        d0 d0Var2 = e0Var.f27631w0;
-        if (d0Var2 != null) {
-            i10 = d0Var2.getSelectedTab();
-        } else {
-            i10 = 0;
-        }
-        if (i10 == 1 && (d0Var = e0Var.f27632x0) != null && (d0Var.getSelectedTone() instanceof z)) {
-            e0Var.c0();
-            e0Var.q0();
-            e0Var.p0(true);
-        }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void f(int r39, android.view.View r40) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.k.f(int, android.view.View):void");
     }
 }

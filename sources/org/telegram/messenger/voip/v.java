@@ -1,31 +1,25 @@
 package org.telegram.messenger.voip;
 
-import java.util.ArrayList;
-public final class v implements Runnable {
-    public final int f21688a;
-    public final VoIPService f21689b;
-    public final ArrayList f21690c;
-    public final ArrayList d;
-    public final ArrayList e;
-    public final String f21691f;
+import org.telegram.messenger.j20;
+public final class v implements j20 {
+    public final int f18712a;
+    public final VoIPService f18713b;
 
-    public v(VoIPService voIPService, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, String str, int i10) {
-        this.f21688a = i10;
-        this.f21689b = voIPService;
-        this.f21690c = arrayList;
-        this.d = arrayList2;
-        this.e = arrayList3;
-        this.f21691f = str;
+    public v(VoIPService voIPService, int i10) {
+        this.f18712a = i10;
+        this.f18713b = voIPService;
     }
 
     @Override
-    public final void run() {
-        switch (this.f21688a) {
+    public final void a(Object obj, Object obj2) {
+        Boolean bool = (Boolean) obj;
+        Boolean bool2 = (Boolean) obj2;
+        switch (this.f18712a) {
             case 0:
-                this.f21689b.lambda$startConferenceGroupCall$47(this.f21690c, this.d, this.e, this.f21691f);
+                this.f18713b.lambda$switchToSpeaker$91(bool, bool2);
                 return;
             default:
-                this.f21689b.lambda$startConferenceGroupCall$39(this.f21690c, this.d, this.e, this.f21691f);
+                this.f18713b.lambda$toggleSpeakerphoneOrShowRouteSheet$95(bool, bool2);
                 return;
         }
     }

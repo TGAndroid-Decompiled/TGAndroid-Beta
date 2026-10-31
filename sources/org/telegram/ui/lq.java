@@ -1,57 +1,56 @@
 package org.telegram.ui;
 
 import android.view.View;
-import org.telegram.messenger.MessagesStorage;
-public final class lq implements MessagesStorage.LongCallback, org.telegram.ui.ActionBar.b2, org.telegram.ui.Components.bm0, org.telegram.ui.Components.cm0 {
-    public final int f41232a;
-    public final mr f41233b;
+public final class lq implements org.telegram.messenger.cs, org.telegram.ui.ActionBar.u1, org.telegram.ui.Components.hk0, org.telegram.ui.Components.ik0 {
+    public final int f39365a;
+    public final pr f39366b;
 
-    public lq(mr mrVar, int i10) {
-        this.f41232a = i10;
-        this.f41233b = mrVar;
+    public lq(pr prVar, int i10) {
+        this.f39365a = i10;
+        this.f39366b = prVar;
     }
 
     @Override
-    public boolean c(int i10, View view) {
-        mr mrVar = this.f41233b;
-        if (mrVar.getParentActivity() != null) {
-            s4.h0 adapter = mrVar.f41508c.getAdapter();
-            ir irVar = mrVar.f41502a;
-            if (adapter == irVar) {
-                return mrVar.i0(irVar.E(i10), false, view);
+    public void b(float f7, float f10, int i10, View view) {
+        pr.Z(this.f39366b, view, i10);
+    }
+
+    @Override
+    public boolean f(int i10, View view) {
+        pr prVar = this.f39366b;
+        if (prVar.getParentActivity() != null) {
+            s4.g0 adapter = prVar.f40724c.getAdapter();
+            lr lrVar = prVar.f40718a;
+            if (adapter == lrVar) {
+                return prVar.l0(lrVar.E(i10), false, view);
             }
         }
         return false;
     }
 
     @Override
-    public boolean c1(View view) {
-        return false;
-    }
-
-    @Override
-    public void e(float f7, float f10, int i10, View view) {
-        mr.W(this.f41233b, view, i10);
-    }
-
-    @Override
-    public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        switch (this.f41232a) {
+    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
+        switch (this.f39365a) {
             case 1:
-                this.f41233b.v0();
+                this.f39366b.y0();
                 return;
             default:
-                this.f41233b.finishFragment();
+                this.f39366b.finishFragment();
                 return;
         }
     }
 
     @Override
-    public void run(long j10) {
-        mr.V(this.f41233b, j10);
+    public boolean h1(View view) {
+        return false;
     }
 
     @Override
-    public void l0(View view, float f7, float f10) {
+    public void run(long j10) {
+        pr.Y(this.f39366b, j10);
+    }
+
+    @Override
+    public void q0(View view, float f7, float f10) {
     }
 }

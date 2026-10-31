@@ -1,31 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
-public final class o51 extends xh.n {
-    public final org.telegram.ui.y10 U;
-    public final r51 V;
+import android.graphics.drawable.ColorDrawable;
+public final class o51 extends ColorDrawable {
+    public final int f28976a;
+    public final org.telegram.ui.ActionBar.p6 f28977b;
 
-    public o51(r51 r51Var, Context context) {
-        super(context);
-        this.V = r51Var;
-        this.U = new org.telegram.ui.y10();
+    public o51(int i10, org.telegram.ui.ActionBar.p6 p6Var) {
+        super(org.telegram.ui.ActionBar.t6.w0(i10, p6Var));
+        this.f28976a = i10;
+        this.f28977b = p6Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int dp = AndroidUtilities.dp(8.0f) + this.V.d.getWidth();
-        canvas.saveLayerAlpha(getScrollX(), 0.0f, (getWidth() + getScrollX()) - dp, getHeight(), 255, 31);
-        super.onDraw(canvas);
-        canvas.save();
-        canvas.translate(getPaddingLeft(), getPaddingTop());
-        ix0.a(canvas, getLayout());
-        canvas.restore();
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set((getWidth() - dp) - AndroidUtilities.dp(24.0f), 0.0f, getWidth() - dp, getHeight());
-        this.U.b(canvas, rectF, 2, 1.0f);
-        canvas.restore();
+    public final void draw(Canvas canvas) {
+        int w02 = org.telegram.ui.ActionBar.t6.w0(this.f28976a, this.f28977b);
+        if (getColor() != w02) {
+            setColor(w02);
+        }
+        super.draw(canvas);
     }
 }

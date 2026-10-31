@@ -1,591 +1,242 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.Point;
-import android.graphics.PointF;
-import android.graphics.RectF;
-import android.os.SystemClock;
 import android.view.View;
-import android.view.ViewGroup;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.R;
-public final class bn extends ViewGroup {
-    public an E;
-    public zm F;
-    public float G;
-    public float H;
-    public float I;
-    public float J;
-    public final PointF K;
-    public boolean L;
-    public final m.g3 M;
-    public final xm N;
-    public int O;
-    public final cn P;
-    public final org.telegram.ui.Cells.v0 f26856a;
-    public final ArrayList f26857b;
-    public final HashMap f26858c;
-    public HashMap d;
-    public ArrayList e;
-    public HashMap f26859f;
-    public ArrayList h;
-    public final int f26860n;
-    public final int f26861r;
-    public int f26862s;
-    public float v;
-    public float f26863w;
-    public boolean[] f26864x;
-    public long f26865y;
+public final class bn extends View {
+    public final int f24841a;
 
-    public bn(cn cnVar, Context context) {
+    public bn(Context context, int i10) {
         super(context);
-        this.P = cnVar;
-        this.f26857b = new ArrayList();
-        this.f26858c = new HashMap();
-        this.f26860n = AndroidUtilities.dp(16.0f);
-        this.f26861r = AndroidUtilities.dp(64.0f);
-        this.f26862s = 0;
-        this.f26864x = null;
-        this.f26865y = 0L;
-        this.E = null;
-        this.F = null;
-        this.G = 0.0f;
-        this.K = new PointF();
-        this.L = false;
-        this.M = new m.g3(this, 12);
-        this.N = new xm(this);
-        this.O = 0;
-        new HashMap();
-        setWillNotDraw(false);
-        org.telegram.ui.Cells.v0 v0Var = new org.telegram.ui.Cells.v0(context, cnVar.f27209n, true);
-        this.f26856a = v0Var;
-        v0Var.setCustomText(LocaleController.getString(R.string.AttachMediaDragHint));
-        addView(v0Var);
-    }
-
-    public final void a() {
-        String str;
-        this.d = this.P.P.getSelectedPhotos();
-        this.e = new ArrayList(this.d.entrySet());
-        this.f26859f = new HashMap();
-        this.h = new ArrayList();
-        ArrayList arrayList = this.f26857b;
-        int size = arrayList.size();
-        for (int i10 = 0; i10 < size; i10++) {
-            ArrayList arrayList2 = ((an) arrayList.get(i10)).f26619k.f33772g;
-            if (arrayList2.size() != 0) {
-                int size2 = arrayList2.size();
-                for (int i11 = 0; i11 < size2; i11++) {
-                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) arrayList2.get(i11);
-                    HashMap hashMap = this.f26858c;
-                    if (hashMap.containsKey(photoEntry)) {
-                        Object obj = hashMap.get(photoEntry);
-                        this.f26859f.put(obj, photoEntry);
-                        this.h.add(obj);
-                    } else {
-                        int i12 = 0;
-                        while (true) {
-                            if (i12 < this.e.size()) {
-                                Map.Entry entry = (Map.Entry) this.e.get(i12);
-                                Object value = entry.getValue();
-                                if (value == photoEntry) {
-                                    Object key = entry.getKey();
-                                    this.f26859f.put(key, value);
-                                    this.h.add(key);
-                                    break;
-                                }
-                                i12++;
-                            } else {
-                                int i13 = 0;
-                                while (true) {
-                                    if (i13 < this.e.size()) {
-                                        Map.Entry entry2 = (Map.Entry) this.e.get(i13);
-                                        Object value2 = entry2.getValue();
-                                        if ((value2 instanceof MediaController.PhotoEntry) && (str = ((MediaController.PhotoEntry) value2).path) != null && photoEntry != null && str.equals(photoEntry.path)) {
-                                            Object key2 = entry2.getKey();
-                                            this.f26859f.put(key2, value2);
-                                            this.h.add(key2);
-                                            break;
-                                        }
-                                        i13++;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    public final PointF b() {
-        cn cnVar = this.P;
-        zm zmVar = cnVar.J;
-        PointF pointF = this.K;
-        if (zmVar == null) {
-            pointF.x = 0.0f;
-            pointF.y = 0.0f;
-            return pointF;
-        } else if (!cnVar.K) {
-            RectF f7 = zmVar.f(zmVar.e());
-            RectF f10 = cnVar.J.f(1.0f);
-            pointF.x = AndroidUtilities.lerp((f7.width() / 2.0f) + f10.left, cnVar.f27214y - ((cnVar.G - 0.5f) * cnVar.H), this.G);
-            pointF.y = AndroidUtilities.lerp((f7.height() / 2.0f) + cnVar.J.f35377a.f26612a + f10.top, (cnVar.E - ((cnVar.F - 0.5f) * cnVar.I)) + cnVar.M, this.G);
-            return pointF;
-        } else {
-            RectF f11 = zmVar.f(zmVar.e());
-            RectF f12 = cnVar.J.f(1.0f);
-            pointF.x = AndroidUtilities.lerp((f11.width() / 2.0f) + f12.left, this.H, this.G / this.J);
-            pointF.y = AndroidUtilities.lerp((f11.height() / 2.0f) + cnVar.J.f35377a.f26612a + f12.top, this.I, this.G / this.J);
-            return pointF;
-        }
-    }
-
-    public final void c() {
-        ArrayList arrayList;
-        int i10 = 0;
-        while (true) {
-            arrayList = this.f26857b;
-            if (i10 >= arrayList.size()) {
-                break;
-            }
-            ArrayList arrayList2 = ((an) arrayList.get(i10)).h;
-            for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-                zm zmVar = (zm) arrayList2.get(i11);
-                xh.f fVar = zmVar.f35392s;
-                if (fVar != null) {
-                    fVar.b(zmVar.O.f26633z);
-                    zmVar.f35392s = null;
-                }
-            }
-            i10++;
-        }
-        arrayList.clear();
-        ArrayList arrayList3 = new ArrayList();
-        int size = this.h.size();
-        int i12 = size - 1;
-        for (int i13 = 0; i13 < size; i13++) {
-            Integer num = (Integer) this.h.get(i13);
-            num.getClass();
-            arrayList3.add((MediaController.PhotoEntry) this.d.get(num));
-            if (i13 % 10 == 9 || i13 == i12) {
-                an anVar = new an(this);
-                an.a(anVar, new vm(this.P, arrayList3), false);
-                arrayList.add(anVar);
-                arrayList3 = new ArrayList();
-            }
-        }
-    }
-
-    public final boolean[] d() {
-        cn cnVar;
-        bi.r1 r1Var;
-        boolean z10;
-        ArrayList arrayList = this.f26857b;
-        boolean[] zArr = new boolean[arrayList.size()];
-        float f7 = this.f26860n;
-        int computeVerticalScrollOffset = this.P.f27210r.computeVerticalScrollOffset();
-        this.v = Math.max(0, computeVerticalScrollOffset - cnVar.getListTopPadding());
-        this.f26863w = (r1Var.getMeasuredHeight() - cnVar.getListTopPadding()) + computeVerticalScrollOffset;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            float b10 = ((an) arrayList.get(i10)).b() + f7;
-            float f10 = this.v;
-            if ((f7 >= f10 && f7 <= this.f26863w) || ((b10 >= f10 && b10 <= this.f26863w) || (f7 <= f10 && b10 >= this.f26863w))) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            zArr[i10] = z10;
-            i10++;
-            f7 = b10;
-        }
-        return zArr;
+        this.f24841a = i10;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        return false;
-    }
-
-    public final int e() {
-        int i10 = this.f26860n + this.f26861r;
-        ArrayList arrayList = this.f26857b;
-        int size = arrayList.size();
-        for (int i11 = 0; i11 < size; i11++) {
-            i10 = (int) (((an) arrayList.get(i11)).b() + i10);
-        }
-        org.telegram.ui.Cells.v0 v0Var = this.f26856a;
-        if (v0Var.getMeasuredHeight() <= 0) {
-            v0Var.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.x, 1073741824), View.MeasureSpec.makeMeasureSpec(9999, Integer.MIN_VALUE));
-        }
-        return v0Var.getMeasuredHeight() + i10;
-    }
-
-    public final void f(an anVar, MediaController.PhotoEntry photoEntry, int i10) {
-        an anVar2;
-        ArrayList arrayList = anVar.f26619k.f33772g;
-        arrayList.add(Math.min(arrayList.size(), i10), photoEntry);
-        if (anVar.f26619k.f33772g.size() == 11) {
-            MediaController.PhotoEntry photoEntry2 = (MediaController.PhotoEntry) anVar.f26619k.f33772g.get(10);
-            anVar.f26619k.f33772g.remove(10);
-            ArrayList arrayList2 = this.f26857b;
-            int indexOf = arrayList2.indexOf(anVar);
-            if (indexOf >= 0) {
-                int i11 = indexOf + 1;
-                if (i11 == arrayList2.size()) {
-                    anVar2 = null;
-                } else {
-                    anVar2 = (an) arrayList2.get(i11);
-                }
-                if (anVar2 == null) {
-                    an anVar3 = new an(this);
-                    ArrayList arrayList3 = new ArrayList();
-                    arrayList3.add(photoEntry2);
-                    an.a(anVar3, new vm(this.P, arrayList3), true);
-                    invalidate();
-                } else {
-                    f(anVar2, photoEntry2, 0);
-                }
-            }
-        }
-        an.a(anVar, anVar.f26619k, true);
-    }
-
-    public final void g() {
-        float f7 = this.f26860n;
-        ArrayList arrayList = this.f26857b;
-        int size = arrayList.size();
-        int i10 = 0;
-        for (int i11 = 0; i11 < size; i11++) {
-            an anVar = (an) arrayList.get(i11);
-            float b10 = anVar.b();
-            anVar.f26612a = f7;
-            anVar.f26613b = i10;
-            f7 += b10;
-            i10 += anVar.f26619k.f33772g.size();
-        }
-    }
-
-    public final void h() {
-        cn cnVar = this.P;
-        ValueAnimator valueAnimator = cnVar.L;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        PointF b10 = b();
-        float f7 = this.G;
-        this.J = f7;
-        this.H = b10.x;
-        this.I = b10.y;
-        cnVar.K = true;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, 0.0f);
-        cnVar.L = ofFloat;
-        ofFloat.addUpdateListener(new wm(this, 1));
-        cnVar.L.addListener(new org.telegram.ui.sp(this, 16));
-        cnVar.L.setDuration(200L);
-        cnVar.L.start();
-        invalidate();
-    }
-
-    public final void i(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, boolean z10) {
-        boolean z11;
-        boolean z12;
-        boolean z13;
-        boolean z14;
-        int size = chatAttachAlertPhotoLayout.getSelectedPhotosOrder().size();
-        a();
-        HashMap hashMap = this.f26859f;
-        ArrayList arrayList = this.h;
-        tm tmVar = chatAttachAlertPhotoLayout.G;
-        ti tiVar = chatAttachAlertPhotoLayout.f30254b;
-        fm fmVar = chatAttachAlertPhotoLayout.E;
-        HashMap hashMap2 = ChatAttachAlertPhotoLayout.f26019s1;
-        hashMap2.clear();
-        hashMap2.putAll(hashMap);
-        ArrayList arrayList2 = ChatAttachAlertPhotoLayout.f26020t1;
-        arrayList2.clear();
-        arrayList2.addAll(arrayList);
-        if (z10) {
-            boolean z15 = false;
-            chatAttachAlertPhotoLayout.z0(false);
-            chatAttachAlertPhotoLayout.x0();
-            int childCount = fmVar.getChildCount();
-            int i10 = 0;
-            while (i10 < childCount) {
-                View childAt = fmVar.getChildAt(i10);
-                if (childAt instanceof org.telegram.ui.Cells.x5) {
-                    int R = RecyclerView.R(childAt);
-                    boolean z16 = tmVar.f33106f;
-                    boolean z17 = tmVar.d;
-                    if (z16 && R > chatAttachAlertPhotoLayout.M0) {
-                        R--;
-                    }
-                    if (z17 && chatAttachAlertPhotoLayout.T0 == chatAttachAlertPhotoLayout.U0) {
-                        R--;
-                    }
-                    org.telegram.ui.Cells.x5 x5Var = (org.telegram.ui.Cells.x5) childAt;
-                    if (tiVar.T0 != 0 || tiVar.H) {
-                        x5Var.getCheckBox().setVisibility(8);
-                    }
-                    MediaController.PhotoEntry c02 = chatAttachAlertPhotoLayout.c0(R);
-                    if (c02 != null) {
-                        if (hashMap2.size() > 1) {
-                            z12 = true;
-                        } else {
-                            z12 = false;
-                        }
-                        if (z17 && chatAttachAlertPhotoLayout.T0 == chatAttachAlertPhotoLayout.U0) {
-                            z13 = true;
-                        } else {
-                            z13 = false;
-                        }
-                        if (R == tmVar.h() - 1) {
-                            z14 = true;
-                        } else {
-                            z14 = false;
-                        }
-                        x5Var.d(c02, z12, z13, z14, tiVar.f32999i0);
-                        if ((tiVar.f32990f0 instanceof org.telegram.ui.wn) && tiVar.W1) {
-                            z11 = false;
-                            x5Var.b(arrayList2.indexOf(Integer.valueOf(c02.imageId)), hashMap2.containsKey(Integer.valueOf(c02.imageId)), false);
-                        } else {
-                            z11 = false;
-                            x5Var.b(-1, hashMap2.containsKey(Integer.valueOf(c02.imageId)), false);
-                        }
-                    } else {
-                        z11 = false;
-                    }
-                } else {
-                    z11 = z15;
-                }
-                i10++;
-                z15 = z11;
-            }
-        }
-        if (size != this.h.size()) {
-            this.P.f30254b.d2(1);
-        }
-    }
-
-    @Override
-    public final void invalidate() {
-        int c10 = org.telegram.messenger.t.c(45.0f, AndroidUtilities.displaySize.y - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), e());
-        if (this.f26862s != c10) {
-            this.f26862s = c10;
-            requestLayout();
-        }
-        super.invalidate();
-    }
-
-    public final void j() {
-        ArrayList arrayList = this.f26857b;
-        int size = arrayList.size();
-        for (int i10 = 0; i10 < size; i10++) {
-            an anVar = (an) arrayList.get(i10);
-            if (anVar.f26619k.f33772g.size() < 10 && i10 < arrayList.size() - 1) {
-                int size2 = 10 - anVar.f26619k.f33772g.size();
-                an anVar2 = (an) arrayList.get(i10 + 1);
-                ArrayList arrayList2 = new ArrayList();
-                int min = Math.min(size2, anVar2.f26619k.f33772g.size());
-                for (int i11 = 0; i11 < min; i11++) {
-                    arrayList2.add((MediaController.PhotoEntry) anVar2.f26619k.f33772g.remove(0));
-                }
-                anVar.f26619k.f33772g.addAll(arrayList2);
-                an.a(anVar, anVar.f26619k, true);
-                an.a(anVar2, anVar2.f26619k, true);
-            }
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        bi.r1 r1Var;
-        float f7;
-        ArrayList arrayList;
+    public void onDraw(Canvas canvas) {
+        float L;
         int i10;
+        float L2;
         int i11;
+        float L3;
         int i12;
-        boolean z10;
-        float f10;
-        zm zmVar;
-        float f11;
-        float f12 = this.f26860n;
-        cn cnVar = this.P;
-        int computeVerticalScrollOffset = cnVar.f27210r.computeVerticalScrollOffset();
-        this.v = Math.max(0, computeVerticalScrollOffset - cnVar.getListTopPadding());
-        this.f26863w = (r1Var.getMeasuredHeight() - cnVar.getListTopPadding()) + computeVerticalScrollOffset;
-        canvas.save();
-        canvas.translate(0.0f, f12);
-        ArrayList arrayList2 = this.f26857b;
-        int size = arrayList2.size();
-        float f13 = f12;
-        int i13 = 0;
-        int i14 = 0;
-        while (i13 < size) {
-            an anVar = (an) arrayList2.get(i13);
-            float b10 = anVar.b();
-            anVar.f26612a = f13;
-            anVar.f26613b = i14;
-            float f14 = this.v;
-            if (f13 < f14 || f13 > this.f26863w) {
-                float f15 = f13 + b10;
-                if ((f15 < f14 || f15 > this.f26863w) && (f13 > f14 || f15 < this.f26863w)) {
-                    f7 = b10;
-                    arrayList = arrayList2;
-                    i10 = size;
-                    i11 = i13;
-                    i12 = i14;
-                    canvas.translate(0.0f, f7);
-                    f13 += f7;
-                    i14 = anVar.f26619k.f33772g.size() + i12;
-                    i13 = i11 + 1;
-                    size = i10;
-                    arrayList2 = arrayList;
-                }
-            }
-            ArrayList arrayList3 = anVar.h;
-            int i15 = anVar.f26620l;
-            org.telegram.ui.ActionBar.l5 l5Var = anVar.f26631x;
-            bn bnVar = anVar.f26633z;
-            arrayList = arrayList2;
-            float interpolation = anVar.f26618j.getInterpolation(Math.min(1.0f, ((float) (SystemClock.elapsedRealtime() - anVar.f26614c)) / 200.0f));
-            if (interpolation < 1.0f) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            Point point = AndroidUtilities.displaySize;
-            float max = Math.max(point.x, point.y) * 0.5f;
-            float lerp = AndroidUtilities.lerp(anVar.f26615f, anVar.d, interpolation);
-            int width = bnVar.getWidth();
-            cn cnVar2 = bnVar.P;
-            float previewScale = width * lerp * cnVar2.getPreviewScale();
-            boolean z11 = z10;
-            float previewScale2 = cnVar2.getPreviewScale() * AndroidUtilities.lerp(anVar.f26616g, anVar.e, interpolation) * max;
-            if (l5Var != null) {
-                f10 = 2.0f;
-                anVar.f26624p = 0.0f;
-                float width2 = bnVar.getWidth();
-                float f16 = i15;
-                anVar.f26622n = (width2 - Math.max(f16, previewScale)) / 2.0f;
-                anVar.f26623o = (Math.max(f16, previewScale) + bnVar.getWidth()) / 2.0f;
-                anVar.f26625q = Math.max(i15 * 2, previewScale2);
-                anVar.f26631x.n(0, (int) previewScale, (int) previewScale2, 0, 0, 0, false, false);
-                l5Var.setBounds((int) anVar.f26622n, (int) anVar.f26624p, (int) anVar.f26623o, (int) anVar.f26625q);
-                if (anVar.d <= 0.0f) {
-                    f11 = 1.0f - interpolation;
-                } else if (anVar.f26615f <= 0.0f) {
-                    f11 = interpolation;
+        float L4;
+        int i13;
+        float L5;
+        int i14;
+        switch (this.f24841a) {
+            case 5:
+                super.onDraw(canvas);
+                canvas.drawLine(0.0f, org.telegram.messenger.i0.L(14.0f), 2.0f, getMeasuredHeight() - org.telegram.messenger.i0.L(14.0f), org.telegram.ui.ActionBar.t6.f21052k0);
+                return;
+            case 12:
+                if (org.telegram.messenger.cd.X) {
+                    L = 0.0f;
                 } else {
-                    f11 = 1.0f;
+                    L = org.telegram.messenger.i0.L(20.0f);
                 }
-                l5Var.setAlpha((int) (f11 * 255.0f));
-                l5Var.d(canvas, anVar.f26632y, null);
-                anVar.f26624p += f16;
-                anVar.f26622n += f16;
-                anVar.f26625q -= f16;
-                anVar.f26623o -= f16;
-            } else {
-                f10 = 2.0f;
-            }
-            anVar.f26626r = anVar.f26623o - anVar.f26622n;
-            anVar.f26627s = anVar.f26625q - anVar.f26624p;
-            int size2 = arrayList3.size();
-            for (int i16 = 0; i16 < size2; i16++) {
-                zm zmVar2 = (zm) arrayList3.get(i16);
-                if (zmVar2 != null && (((zmVar = cnVar2.J) == null || zmVar.f35378b != zmVar2.f35378b) && zmVar2.c(canvas, false))) {
-                    z11 = true;
+                float f7 = L;
+                float measuredHeight = getMeasuredHeight() - 1;
+                int measuredWidth = getMeasuredWidth();
+                if (org.telegram.messenger.cd.X) {
+                    i10 = org.telegram.messenger.i0.L(20.0f);
+                } else {
+                    i10 = 0;
                 }
-            }
-            Paint paint = anVar.f26630w;
-            RectF rectF = anVar.f26628t;
-            long j10 = anVar.f26617i;
-            if (j10 <= 0) {
-                i10 = size;
-                i11 = i13;
-                i12 = i14;
-                f7 = b10;
-            } else {
-                if (anVar.f26629u == null || anVar.v != j10) {
-                    anVar.v = j10;
-                    anVar.f26629u = new r11(bi.dd.W0(false, LocaleController.formatPluralStringComma("UnlockPaidContent", (int) j10), 0.7f, null), 14.0f, AndroidUtilities.bold());
+                canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.t6.f21052k0);
+                return;
+            case 13:
+                if (org.telegram.messenger.cd.X) {
+                    L2 = 0.0f;
+                } else {
+                    L2 = org.telegram.messenger.i0.L(20.0f);
                 }
-                float dp = AndroidUtilities.dp(28.0f) + anVar.f26629u.f32090c;
-                float dp2 = AndroidUtilities.dp(32.0f);
-                float f17 = anVar.f26622n;
-                float f18 = anVar.f26626r;
-                float f19 = f10;
-                float B = c3.h0.B(f18, dp, f19, f17);
-                i10 = size;
-                float f20 = anVar.f26624p;
-                i11 = i13;
-                float f21 = anVar.f26627s;
-                i12 = i14;
-                rectF.set(B, c3.h0.B(f21, dp2, f19, f20), org.telegram.messenger.t.b(f18, dp, f19, f17), org.telegram.messenger.t.b(f21, dp2, f19, f20));
-                paint.setColor(1610612736);
-                float f22 = dp2 / f19;
-                canvas.drawRoundRect(rectF, f22, f22, paint);
-                f7 = b10;
-                anVar.f26629u.c(AndroidUtilities.dp(14.0f) + (((anVar.f26626r / f19) + anVar.f26622n) - (dp / f19)), anVar.f26624p + (anVar.f26627s / f19), 1.0f, -1, canvas);
-            }
-            if (z11) {
-                invalidate();
-            }
-            canvas.translate(0.0f, f7);
-            f13 += f7;
-            i14 = anVar.f26619k.f33772g.size() + i12;
-            i13 = i11 + 1;
-            size = i10;
-            arrayList2 = arrayList;
+                float f10 = L2;
+                float measuredHeight2 = getMeasuredHeight() - 1;
+                int measuredWidth2 = getMeasuredWidth();
+                if (org.telegram.messenger.cd.X) {
+                    i11 = org.telegram.messenger.i0.L(20.0f);
+                } else {
+                    i11 = 0;
+                }
+                canvas.drawLine(f10, measuredHeight2, measuredWidth2 - i11, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.t6.f21052k0);
+                return;
+            case 14:
+                if (org.telegram.messenger.cd.X) {
+                    L3 = 0.0f;
+                } else {
+                    L3 = org.telegram.messenger.i0.L(20.0f);
+                }
+                float f11 = L3;
+                float measuredHeight3 = getMeasuredHeight() - 1;
+                int measuredWidth3 = getMeasuredWidth();
+                if (org.telegram.messenger.cd.X) {
+                    i12 = org.telegram.messenger.i0.L(20.0f);
+                } else {
+                    i12 = 0;
+                }
+                canvas.drawLine(f11, measuredHeight3, measuredWidth3 - i12, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.t6.f21052k0);
+                return;
+            case 15:
+                if (org.telegram.messenger.cd.X) {
+                    L4 = 0.0f;
+                } else {
+                    L4 = org.telegram.messenger.i0.L(20.0f);
+                }
+                float f12 = L4;
+                float measuredHeight4 = getMeasuredHeight() - 1;
+                int measuredWidth4 = getMeasuredWidth();
+                if (org.telegram.messenger.cd.X) {
+                    i13 = org.telegram.messenger.i0.L(20.0f);
+                } else {
+                    i13 = 0;
+                }
+                canvas.drawLine(f12, measuredHeight4, measuredWidth4 - i13, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.t6.f21052k0);
+                return;
+            case 23:
+                if (org.telegram.messenger.cd.X) {
+                    L5 = 0.0f;
+                } else {
+                    L5 = org.telegram.messenger.i0.L(20.0f);
+                }
+                float f13 = L5;
+                float measuredHeight5 = getMeasuredHeight() - 1;
+                int measuredWidth5 = getMeasuredWidth();
+                if (org.telegram.messenger.cd.X) {
+                    i14 = org.telegram.messenger.i0.L(20.0f);
+                } else {
+                    i14 = 0;
+                }
+                canvas.drawLine(f13, measuredHeight5, measuredWidth5 - i14, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.t6.f21052k0);
+                return;
+            case 25:
+                if (getAlpha() != 0.0f) {
+                    org.telegram.messenger.i0.P.set(0.0f, 0.0f, getWidth(), getHeight());
+                    invalidate();
+                    return;
+                }
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
         }
-        org.telegram.ui.Cells.v0 v0Var = this.f26856a;
-        v0Var.Y(f13, v0Var.getMeasuredHeight());
-        if (v0Var.J()) {
-            v0Var.y(canvas, true);
-            v0Var.B(canvas, true);
-        }
-        v0Var.draw(canvas);
-        canvas.restore();
-        if (cnVar.J != null) {
-            canvas.save();
-            PointF b11 = b();
-            canvas.translate(b11.x, b11.y);
-            if (cnVar.J.c(canvas, true)) {
-                invalidate();
-            }
-            canvas.restore();
-        }
-        super.onDraw(canvas);
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        org.telegram.ui.Cells.v0 v0Var = this.f26856a;
-        v0Var.layout(0, 0, v0Var.getMeasuredWidth(), v0Var.getMeasuredHeight());
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        this.f26856a.measure(i10, View.MeasureSpec.makeMeasureSpec(9999, Integer.MIN_VALUE));
-        if (this.f26862s <= 0) {
-            this.f26862s = org.telegram.messenger.t.c(45.0f, AndroidUtilities.displaySize.y - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), e());
+    public void onMeasure(int i10, int i11) {
+        boolean z10;
+        float f7;
+        float f10;
+        switch (this.f24841a) {
+            case 1:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(16.0f), 1073741824));
+                return;
+            case 2:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(68.0f), 1073741824));
+                return;
+            case 3:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(52.0f), 1073741824));
+                return;
+            case 4:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((int) (org.telegram.messenger.i0.f16026q.y * 0.4f), 1073741824));
+                return;
+            case 5:
+            case 12:
+            case 13:
+            case 14:
+            case 15:
+            case 23:
+            case 25:
+            default:
+                super.onMeasure(i10, i11);
+                return;
+            case 6:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(300.0f), 1073741824));
+                return;
+            case 7:
+                Point point = org.telegram.messenger.i0.f16026q;
+                int i12 = point.x;
+                int i13 = point.y;
+                if (i12 < i13) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                float f11 = i13;
+                if (z10) {
+                    f7 = 0.56f;
+                } else {
+                    f7 = 0.3f;
+                }
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((int) (f11 * f7), 1073741824));
+                return;
+            case 8:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(5.0f), 1073741824));
+                return;
+            case 9:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (org.telegram.messenger.i0.f16026q.y * 0.4f), 1073741824));
+                return;
+            case 10:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(4.0f), 1073741824));
+                return;
+            case 11:
+                if (org.telegram.ui.b50.f35991w5) {
+                    f10 = 0.0f;
+                } else {
+                    f10 = 8.0f;
+                }
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(f10), 1073741824));
+                return;
+            case 16:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(12.0f), 1073741824));
+                return;
+            case 17:
+                setMeasuredDimension(View.MeasureSpec.getSize(i10), org.telegram.messenger.i0.L(36.0f));
+                return;
+            case 18:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(7.33f), 1073741824));
+                return;
+            case 19:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(16.0f), 1073741824));
+                return;
+            case 20:
+                super.onMeasure(i10, i11);
+                setPivotX(getMeasuredWidth() / 2);
+                setPivotY(getMeasuredHeight());
+                return;
+            case 21:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(52.0f), 1073741824));
+                return;
+            case 22:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(4.0f), 1073741824));
+                return;
+            case 24:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(6.0f), 1073741824));
+                return;
+            case 26:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(32.0f), 1073741824));
+                return;
+            case 27:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(60.0f), 1073741824));
+                return;
+            case 28:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(52.0f), 1073741824));
+                return;
+            case 29:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(81.0f), 1073741824));
+                return;
         }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(View.MeasureSpec.getSize(i11), this.f26862s), 1073741824));
     }
 
     @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r30) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.bn.onTouchEvent(android.view.MotionEvent):boolean");
+    public void onSizeChanged(int i10, int i11, int i12, int i13) {
+        switch (this.f24841a) {
+            case 25:
+                super.onSizeChanged(i10, i11, i12, i13);
+                return;
+            default:
+                super.onSizeChanged(i10, i11, i12, i13);
+                return;
+        }
     }
 }

@@ -1,39 +1,33 @@
 package org.telegram.ui.Components;
+public final class rm extends org.telegram.ui.yr0 {
+    public boolean f29953a;
+    public final int f29954b;
+    public final jn f29955c;
 
-import android.graphics.Outline;
-import android.view.View;
-import android.view.ViewOutlineProvider;
-import org.telegram.messenger.AndroidUtilities;
-public final class rm extends ViewOutlineProvider {
-    public final tm f32279a;
-
-    public rm(tm tmVar) {
-        this.f32279a = tmVar;
+    public rm(jn jnVar, int i10) {
+        this.f29955c = jnVar;
+        this.f29954b = i10;
     }
 
     @Override
-    public final void getOutline(View view, Outline outline) {
-        org.telegram.ui.Cells.x5 x5Var = (org.telegram.ui.Cells.x5) view;
-        if (x5Var.getTag() == null) {
-            return;
+    public final void D() {
+        if (this.f29953a) {
+            this.f29955c.e0(this.f29954b);
         }
-        int intValue = ((Integer) x5Var.getTag()).intValue();
-        tm tmVar = this.f32279a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tmVar.v;
-        if (tmVar.d && chatAttachAlertPhotoLayout.T0 == chatAttachAlertPhotoLayout.U0 && !chatAttachAlertPhotoLayout.O0) {
-            intValue++;
-        }
-        if (chatAttachAlertPhotoLayout.f26035g1) {
-            intValue++;
-        }
-        if (intValue == 0) {
-            int dp = AndroidUtilities.dp(16.0f);
-            outline.setRoundRect(0, 0, view.getMeasuredWidth() + dp, view.getMeasuredHeight() + dp, dp);
-        } else if (intValue == chatAttachAlertPhotoLayout.M0 - 1) {
-            int dp2 = AndroidUtilities.dp(16.0f);
-            outline.setRoundRect(-dp2, 0, view.getMeasuredWidth(), view.getMeasuredHeight() + dp2, dp2);
-        } else {
-            outline.setRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
-        }
+    }
+
+    @Override
+    public final void J() {
+        this.f29955c.h0(this.f29954b, null);
+    }
+
+    @Override
+    public final void W() {
+        this.f29953a = true;
+    }
+
+    @Override
+    public final boolean z() {
+        return false;
     }
 }

@@ -1,33 +1,50 @@
 package pe;
 
-import android.view.MotionEvent;
-import android.view.View;
-public interface a {
-    boolean forceEnableVibration();
+import df.c;
+import se.b;
+import ve.r;
+public final class a implements ye.a {
+    @Override
+    public final int a(b bVar, b bVar2) {
+        if (bVar.f48192g >= 2 && bVar2.f48192g >= 2) {
+            return 2;
+        }
+        return 0;
+    }
 
-    long getLongPressDuration();
+    @Override
+    public final char b() {
+        return '~';
+    }
 
-    boolean ignoreHapticFeedbackSettings(float f7, float f10);
+    @Override
+    public final void c(r rVar, r rVar2, int i10) {
+        c cVar = new c();
+        for (c cVar2 = (c) rVar.f5879f; cVar2 != null && cVar2 != rVar2; cVar2 = (c) cVar2.f5879f) {
+            cVar.b(cVar2);
+        }
+        cVar.g();
+        c cVar3 = (c) rVar.f5879f;
+        cVar.f5879f = cVar3;
+        if (cVar3 != null) {
+            cVar3.e = cVar;
+        }
+        cVar.e = rVar;
+        rVar.f5879f = cVar;
+        c cVar4 = (c) rVar.f5877b;
+        cVar.f5877b = cVar4;
+        if (((c) cVar.f5879f) == null) {
+            cVar4.d = cVar;
+        }
+    }
 
-    boolean needCancelTouchBySlopMove();
+    @Override
+    public final int d() {
+        return 2;
+    }
 
-    boolean needClickAt(View view, float f7, float f10);
-
-    boolean needLongPress(float f7, float f10);
-
-    void onClickAt(View view, float f7, float f10);
-
-    void onClickTouchDown(View view, float f7, float f10);
-
-    void onClickTouchMove(View view, float f7, float f10);
-
-    void onClickTouchUp(View view, float f7, float f10);
-
-    void onLongPressCancelled(View view, float f7, float f10);
-
-    void onLongPressFinish(View view, float f7, float f10);
-
-    void onLongPressMove(View view, MotionEvent motionEvent, float f7, float f10, float f11, float f12);
-
-    boolean onLongPressRequestedAt(View view, float f7, float f10);
+    @Override
+    public final char e() {
+        return '~';
+    }
 }

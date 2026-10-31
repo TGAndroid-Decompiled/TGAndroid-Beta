@@ -1,44 +1,51 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
+import android.view.ActionMode;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.tgnet.TLRPC;
-public final class vs0 extends org.telegram.ui.Components.nr0 {
-    public final FrameLayout f44415a1;
-    public final boolean f44416b1;
-    public final PhotoViewer f44417c1;
+public final class vs0 extends org.telegram.ui.Cells.e6 {
+    public final ys0 F;
 
-    public vs0(PhotoViewer photoViewer, Context context, wn wnVar, ArrayList arrayList, String str, Integer num, FrameLayout frameLayout, boolean z10) {
-        super(context, wnVar, arrayList, null, null, false, str, null, false, true, false, num, null);
-        this.f44417c1 = photoViewer;
-        this.f44415a1 = frameLayout;
-        this.f44416b1 = z10;
+    public vs0(ys0 ys0Var, Context context, int i10) {
+        super(context, i10, null, null);
+        this.F = ys0Var;
     }
 
     @Override
-    public final void T0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        if (!z10) {
-            return;
-        }
-        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.as0(this, this.f44415a1, hVar, i10, 14), 250L);
+    public final void i(boolean z10) {
+        at0.h0(this.F.d, this, z10);
     }
 
     @Override
-    public final void dismissInternal() {
-        super.dismissInternal();
-        if (this.f44416b1) {
-            AndroidUtilities.runOnUIThread(new nj0(this, 19), 50L);
+    public final void j(org.telegram.ui.Cells.e6 e6Var) {
+        at0.i0(this.F.d, e6Var);
+    }
+
+    @Override
+    public final boolean l(ArrayList arrayList) {
+        at0 at0Var = this.F.d;
+        if (arrayList.isEmpty()) {
+            return false;
         }
-        PhotoViewer photoViewer = this.f44417c1;
-        photoViewer.f35661d0.softInputMode = 272;
-        try {
-            ((WindowManager) photoViewer.f35849y.getSystemService("window")).updateViewLayout(photoViewer.f35688g0, photoViewer.f35661d0);
-        } catch (Exception e) {
-            FileLog.e(e);
+        ih.b bVar = this.d;
+        bVar.getText().replace(bVar.getSelectionStart(), bVar.getSelectionEnd(), (CharSequence) arrayList.remove(0));
+        int i10 = 0;
+        while (!arrayList.isEmpty() && i10 < at0Var.f35725n) {
+            for (int length = at0Var.f35737w.length - 1; length > i10; length--) {
+                CharSequence[] charSequenceArr = at0Var.f35737w;
+                charSequenceArr[length] = charSequenceArr[length - 1];
+            }
+            at0Var.f35737w[i10] = (CharSequence) arrayList.remove(0);
+            at0Var.D++;
+            i10++;
         }
+        at0Var.v0();
+        at0Var.f35719g0 = (at0Var.f35726n0 + i10) - 1;
+        at0Var.f35711b.f();
+        return true;
+    }
+
+    @Override
+    public final void g(ih.b bVar, ActionMode actionMode) {
     }
 }

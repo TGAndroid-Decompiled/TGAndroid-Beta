@@ -1,80 +1,93 @@
 package ii;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_communities;
-import org.telegram.ui.Components.k71;
-import org.telegram.ui.Components.u61;
-import org.telegram.ui.Components.wc;
-public final class b implements Utilities.Callback2 {
-    public final int f14325a;
-    public final f f14326b;
+import android.content.Context;
+import android.util.SparseArray;
+import android.util.SparseIntArray;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import org.telegram.tgnet.SerializedData;
+public final class b {
+    public static SparseIntArray f8584b;
+    public static final b f8585c = new b();
+    public final SparseArray f8586a;
 
-    public b(f fVar, int i10) {
-        this.f14325a = i10;
-        this.f14326b = fVar;
+    public b() {
+        this.f8586a = new SparseArray();
     }
 
-    @Override
-    public final void run(Object obj, Object obj2) {
-        String string;
-        int i10;
-        switch (this.f14325a) {
-            case 0:
-                ArrayList arrayList = (ArrayList) obj;
-                k71 k71Var = (k71) obj2;
-                f fVar = this.f14326b;
-                arrayList.add(u61.l(0, fVar.h));
-                u61 c10 = u61.c(1, R.drawable.msg_groups_create, LocaleController.getString(R.string.CommunityCreateCommunity));
-                c10.f33254q = true;
-                arrayList.add(c10);
-                arrayList.add(u61.E(2, AndroidUtilities.dp(14.0f)));
-                ArrayList arrayList2 = fVar.f14341n;
-                if (arrayList2 != null && !arrayList2.isEmpty()) {
-                    arrayList.add(u61.t(3, LocaleController.getString(R.string.CommunityAddToExistingCommunity)));
-                    ArrayList arrayList3 = fVar.f14341n;
-                    int size = arrayList3.size();
-                    int i11 = 0;
-                    while (i11 < size) {
-                        Object obj3 = arrayList3.get(i11);
-                        i11++;
-                        TLRPC.Chat chat = (TLRPC.Chat) obj3;
-                        TLRPC.ChatFull chatFull = fVar.getMessagesController().getChatFull(chat.f22028id);
-                        u61 w10 = u61.w(chat);
-                        long j10 = chat.f22028id;
-                        w10.d = (int) (j10 ^ (j10 >>> 32));
-                        if (chatFull != null) {
-                            ArrayList<TL_communities.CommunityPeer> arrayList4 = chatFull.linked_peers;
-                            if (arrayList4 != null) {
-                                i10 = arrayList4.size();
-                            } else {
-                                i10 = 0;
-                            }
-                            string = LocaleController.formatPluralString("Chats", i10, new Object[0]);
-                        } else {
-                            string = LocaleController.getString(R.string.Loading);
-                        }
-                        w10.f33250m = string;
-                        arrayList.add(w10);
-                    }
-                    return;
+    public static SparseArray a(Context context, String str, SparseArray sparseArray) {
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(context.getAssets().open(str));
+        try {
+            SerializedData serializedData = new SerializedData(bufferedInputStream);
+            int readInt32 = serializedData.readInt32(true);
+            int i10 = 0;
+            if (sparseArray == null) {
+                sparseArray = new SparseArray(readInt32);
+                while (i10 < readInt32) {
+                    sparseArray.append(serializedData.readInt32(true), serializedData.readString(true));
+                    i10++;
                 }
-                return;
-            default:
-                TLRPC.Bool bool = (TLRPC.Bool) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                f fVar2 = this.f14326b;
-                if (tL_error != null) {
-                    fVar2.getClass();
-                    wc.b0(fVar2).g0(tL_error, false);
-                    return;
+            } else {
+                while (i10 < readInt32) {
+                    sparseArray.put(serializedData.readInt32(true), serializedData.readString(true));
+                    i10++;
                 }
-                s0.d(fVar2, fVar2.f14338b, 0);
-                return;
+            }
+            bufferedInputStream.close();
+            return sparseArray;
+        } catch (Throwable th2) {
+            try {
+                bufferedInputStream.close();
+            } catch (Throwable th3) {
+                th2.addSuppressed(th3);
+            }
+            throw th2;
         }
+    }
+
+    public final String b(String str) {
+        if (str != null) {
+            return (String) this.f8586a.get(str.hashCode());
+        }
+        return null;
+    }
+
+    public final String c(int i10, Context context, String str) {
+        String str2;
+        if (str != null) {
+            str2 = b(str);
+        } else {
+            str2 = null;
+        }
+        if (str2 == null && i10 != 0) {
+            if (context != null && i10 != 0) {
+                if (f8584b == null) {
+                    try {
+                        BufferedInputStream bufferedInputStream = new BufferedInputStream(context.getResources().getAssets().open("string_resource_ids.bin"));
+                        SerializedData serializedData = new SerializedData(bufferedInputStream);
+                        int readInt32 = serializedData.readInt32(true);
+                        SparseIntArray sparseIntArray = new SparseIntArray(readInt32);
+                        for (int i11 = 0; i11 < readInt32; i11++) {
+                            sparseIntArray.append(serializedData.readInt32(true), serializedData.readInt32(true));
+                        }
+                        bufferedInputStream.close();
+                        f8584b = sparseIntArray;
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                int i12 = f8584b.get(i10);
+                if (i12 != 0) {
+                    return (String) this.f8586a.get(i12);
+                }
+            }
+            return null;
+        }
+        return str2;
+    }
+
+    public b(a aVar) {
+        SparseArray sparseArray = aVar.f8583a;
+        this.f8586a = sparseArray == null ? new SparseArray() : sparseArray;
     }
 }

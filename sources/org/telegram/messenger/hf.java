@@ -1,34 +1,64 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.MessagesStorage;
-public final class hf implements Runnable {
-    public final int f20254a;
-    public final MessagesStorage f20255b;
-    public final long f20256c;
-    public final MessagesStorage.IntCallback d;
-
-    public hf(MessagesStorage messagesStorage, long j10, MessagesStorage.IntCallback intCallback, int i10) {
-        this.f20254a = i10;
-        this.f20255b = messagesStorage;
-        this.f20256c = j10;
-        this.d = intCallback;
-    }
+import java.util.HashMap;
+import org.telegram.tgnet.TLRPC;
+public final class hf extends ze {
+    public String B;
+    public String C;
+    public String D;
+    public int E;
+    public int F;
+    public int G;
+    public int H;
+    public CharSequence I;
+    public TLRPC.Document J;
+    public TLRPC.Photo K;
+    public TLRPC.PhotoSize L;
+    public TLRPC.PhotoSize M;
+    public TLRPC.BotInlineResult N;
+    public HashMap O;
 
     @Override
-    public final void run() {
-        switch (this.f20254a) {
-            case 0:
-                this.f20255b.lambda$getDialogMaxMessageId$259(this.f20256c, this.d);
-                return;
-            case 1:
-                this.f20255b.lambda$getDialogFolderId$247(this.f20256c, this.d);
-                return;
-            case 2:
-                this.f20255b.lambda$getMessagesCount$162(this.f20256c, this.d);
-                return;
-            default:
-                this.f20255b.lambda$getSavedDialogMaxMessageId$56(this.f20256c, this.d);
-                return;
+    public final String a() {
+        if (this.L != null) {
+            b8.G(d20.f15147s0);
+            return b8.K(this.L, null, true, true).getAbsolutePath();
+        } else if (this.J != null) {
+            b8.G(d20.f15147s0);
+            return b8.K(this.J, null, true, true).getAbsolutePath();
+        } else {
+            return hc.A(this.C).getAbsolutePath();
+        }
+    }
+
+    public final hf clone() {
+        ?? obj = new Object();
+        obj.B = this.B;
+        obj.C = this.C;
+        obj.D = this.D;
+        obj.E = this.E;
+        obj.F = this.F;
+        obj.G = this.G;
+        obj.H = this.H;
+        obj.I = this.I;
+        obj.J = this.J;
+        obj.K = this.K;
+        obj.L = this.L;
+        obj.M = this.M;
+        obj.N = this.N;
+        obj.O = this.O;
+        return obj;
+    }
+
+    public final String g() {
+        if (this.L != null) {
+            b8.G(d20.f15147s0);
+            return b8.K(this.L, null, true, true).getAbsolutePath();
+        } else if (this.J != null) {
+            b8.G(d20.f15147s0);
+            return b8.K(this.J, null, true, true).getAbsolutePath();
+        } else {
+            return this.C;
         }
     }
 }

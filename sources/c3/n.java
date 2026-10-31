@@ -1,8 +1,8 @@
 package c3;
 
 import java.io.EOFException;
-public final class n implements j0 {
-    public final byte[] f6090a = new byte[4096];
+public final class n implements k0 {
+    public final byte[] f3685a = new byte[4096];
 
     @Override
     public final int a(b2.p pVar, int i10, boolean z10) {
@@ -11,12 +11,12 @@ public final class n implements j0 {
 
     @Override
     public final void d(int i10, e2.x xVar) {
-        h0.a(this, xVar, i10);
+        i0.a(this, xVar, i10);
     }
 
     @Override
     public final int f(b2.p pVar, int i10, boolean z10) {
-        byte[] bArr = this.f6090a;
+        byte[] bArr = this.f3685a;
         int read = pVar.read(bArr, 0, Math.min(bArr.length, i10));
         if (read == -1) {
             if (z10) {
@@ -41,6 +41,6 @@ public final class n implements j0 {
     }
 
     @Override
-    public final void c(long j10, int i10, int i11, int i12, i0 i0Var) {
+    public final void c(long j10, int i10, int i11, int i12, j0 j0Var) {
     }
 }

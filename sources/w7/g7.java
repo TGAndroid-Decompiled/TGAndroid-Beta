@@ -1,4 +1,9 @@
 package w7;
-public final class g7 {
-    public final String f50919a;
+public abstract class g7 {
+    public static void a(Object obj, String str) {
+        if (obj != null) {
+            return;
+        }
+        throw new NullPointerException(str);
+    }
 }

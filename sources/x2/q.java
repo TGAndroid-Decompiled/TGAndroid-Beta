@@ -1,12 +1,12 @@
 package x2;
 
-import b2.q1;
+import b2.p1;
 import b2.x;
 import java.util.List;
 public interface q {
     boolean a(int i10, long j10);
 
-    q1 b();
+    p1 b();
 
     int c();
 

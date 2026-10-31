@@ -1,40 +1,31 @@
 package org.telegram.ui.Cells;
 
-import android.animation.ValueAnimator;
-public final class t2 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f25437a;
-    public final v2 f25438b;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.style.ReplacementSpan;
+public final class t2 extends ReplacementSpan {
+    public final int f23085a;
 
-    public t2(v2 v2Var, int i10) {
-        this.f25437a = i10;
-        this.f25438b = v2Var;
+    public t2(int i10) {
+        this.f23085a = i10;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f25437a) {
-            case 0:
-                v2 v2Var = this.f25438b;
-                v2Var.getClass();
-                v2Var.f25578a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                v2Var.requestLayout();
-                q0.a aVar = v2Var.f25580c;
-                if (aVar != null) {
-                    aVar.accept(Float.valueOf(v2Var.f25578a));
-                    return;
-                }
-                return;
-            default:
-                v2 v2Var2 = this.f25438b;
-                v2Var2.getClass();
-                v2Var2.f25578a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                v2Var2.requestLayout();
-                q0.a aVar2 = v2Var2.f25580c;
-                if (aVar2 != null) {
-                    aVar2.accept(Float.valueOf(v2Var2.f25578a));
-                    return;
-                }
-                return;
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        if (fontMetricsInt == null) {
+            fontMetricsInt = paint.getFontMetricsInt();
         }
+        if (fontMetricsInt != null) {
+            int i12 = 1 - (fontMetricsInt.descent - fontMetricsInt.ascent);
+            fontMetricsInt.descent = i12;
+            fontMetricsInt.bottom = i12;
+            fontMetricsInt.ascent = -1;
+            fontMetricsInt.top = -1;
+        }
+        return this.f23085a;
+    }
+
+    @Override
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
     }
 }

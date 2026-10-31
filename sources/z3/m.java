@@ -1,10 +1,10 @@
 package z3;
 public interface m {
-    void G(byte[] bArr, int i10, int i11, l lVar, e2.j jVar);
+    d l(int i10, int i11, byte[] bArr);
 
-    d j(int i10, int i11, byte[] bArr);
+    int o();
 
     void reset();
 
-    int y();
+    void z(byte[] bArr, int i10, int i11, l lVar, e2.j jVar);
 }

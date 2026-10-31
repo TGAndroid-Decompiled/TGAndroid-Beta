@@ -1,96 +1,72 @@
 package i2;
+public final class i implements x0 {
+    public final w1 f7892a;
+    public final s0 f7893b;
+    public b f7894c;
+    public x0 d;
+    public boolean e;
+    public boolean f7895f;
 
-import a8.yb;
-import j$.util.concurrent.ConcurrentHashMap;
-import java.util.Map;
-public final class i implements u0 {
-    public static final f9.s1 f13557r;
-    public final b2.o1 f13558a;
-    public final b2.m1 f13559b;
-    public final y2.d f13560c;
-    public final long d;
-    public final long e;
-    public final long f13561f;
-    public final long f13562g;
-    public final long h;
-    public final long f13563i;
-    public final long f13564j;
-    public final long f13565k;
-    public final int f13566l;
-    public final boolean f13567m;
-    public final long f13568n;
-    public final f9.l0 f13569o;
-    public final ConcurrentHashMap f13570p;
-    public long f13571q;
-
-    static {
-        f9.g0 g0Var = f9.i0.f10286b;
-        Object[] objArr = {"file", "content", "data", "android.resource", "rawresource", "asset"};
-        f9.o.d(6, objArr);
-        f13557r = f9.i0.s(6, objArr);
+    public i(s0 s0Var, e2.g0 g0Var) {
+        this.f7893b = s0Var;
+        ?? obj = new Object();
+        obj.d = g0Var;
+        obj.e = b2.z0.d;
+        this.f7892a = obj;
+        this.e = true;
     }
 
-    public i(y2.d dVar, int i10, int i11, int i12, int i13, int i14, boolean z10, Map map) {
-        a(i11, 0, "bufferForPlaybackMs", "0");
-        a(i12, 0, "bufferForPlaybackForLocalPlaybackMs", "0");
-        a(i13, 0, "bufferForPlaybackAfterRebufferMs", "0");
-        a(i14, 0, "bufferForPlaybackAfterRebufferForLocalPlaybackMs", "0");
-        a(50000, i11, "minBufferMs", "bufferForPlaybackMs");
-        a(i10, i12, "minBufferForLocalPlaybackMs", "bufferForPlaybackForLocalPlaybackMs");
-        a(50000, i13, "minBufferMs", "bufferForPlaybackAfterRebufferMs");
-        a(i10, i14, "minBufferForLocalPlaybackMs", "bufferForPlaybackAfterRebufferForLocalPlaybackMs");
-        a(50000, 50000, "maxBufferMs", "minBufferMs");
-        a(50000, i10, "maxBufferForLocalPlaybackMs", "minBufferForLocalPlaybackMs");
-        a(0, 0, "backBufferDurationMs", "0");
-        this.f13558a = new b2.o1();
-        this.f13559b = new b2.m1();
-        this.f13560c = dVar;
-        long j10 = 50000;
-        this.d = e2.n0.S(j10);
-        this.e = e2.n0.S(i10);
-        this.f13561f = e2.n0.S(j10);
-        this.f13562g = e2.n0.S(j10);
-        this.h = e2.n0.S(i11);
-        this.f13563i = e2.n0.S(i12);
-        this.f13564j = e2.n0.S(i13);
-        this.f13565k = e2.n0.S(i14);
-        this.f13566l = -1;
-        this.f13567m = z10;
-        this.f13568n = e2.n0.S(0);
-        this.f13570p = new ConcurrentHashMap();
-        this.f13569o = f9.l0.a(map);
-        this.f13571q = -1L;
-    }
-
-    public static void a(int i10, int i11, String str, String str2) {
-        boolean z10;
-        if (i10 >= i11) {
-            z10 = true;
-        } else {
-            z10 = false;
+    @Override
+    public final long a() {
+        if (this.e) {
+            return this.f7892a.a();
         }
-        yb.i(z10, "%s cannot be less than %s", str, str2);
+        x0 x0Var = this.d;
+        x0Var.getClass();
+        return x0Var.a();
     }
 
-    public final boolean b(i2.t0 r15) {
-        throw new UnsupportedOperationException("Method not decompiled: i2.i.b(i2.t0):boolean");
+    @Override
+    public final boolean b() {
+        if (this.e) {
+            this.f7892a.getClass();
+            return false;
+        }
+        x0 x0Var = this.d;
+        x0Var.getClass();
+        return x0Var.b();
     }
 
-    public final void c() {
-        int i10 = 0;
-        if (this.f13570p.isEmpty()) {
-            y2.d dVar = this.f13560c;
-            synchronized (dVar) {
-                if (dVar.f51991a) {
-                    dVar.d(0);
-                }
+    @Override
+    public final void c(b2.z0 z0Var) {
+        x0 x0Var = this.d;
+        if (x0Var != null) {
+            x0Var.c(z0Var);
+            z0Var = this.d.g();
+        }
+        this.f7892a.c(z0Var);
+    }
+
+    public final void d(b bVar) {
+        x0 x0Var;
+        x0 i10 = bVar.i();
+        if (i10 != null && i10 != (x0Var = this.d)) {
+            if (x0Var == null) {
+                this.d = i10;
+                this.f7894c = bVar;
+                i10.c((b2.z0) this.f7892a.e);
+                return;
             }
-            return;
+            throw new l(2, new IllegalStateException("Multiple renderer media clocks enabled."), 1000);
         }
-        y2.d dVar2 = this.f13560c;
-        for (h hVar : this.f13570p.values()) {
-            i10 += hVar.f13551c;
+    }
+
+    @Override
+    public final b2.z0 g() {
+        x0 x0Var = this.d;
+        if (x0Var != null) {
+            return x0Var.g();
         }
-        dVar2.d(i10);
+        return (b2.z0) this.f7892a.e;
     }
 }

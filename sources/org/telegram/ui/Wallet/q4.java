@@ -1,50 +1,59 @@
 package org.telegram.ui.Wallet;
 
-import java.util.ArrayList;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.tl.TL_wallet;
-public final class q4 implements NotificationCenter.NotificationCenterDelegate {
-    public final int f37154a;
-    public final TL_wallet.walletTransaction[] f37155b;
-    public final di.s f37156c;
+import android.content.Context;
+import android.text.SpannableString;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.l20;
+import org.telegram.messenger.q20;
+import org.telegram.ui.Components.dq;
+import org.telegram.ui.Components.wy0;
+public final class q4 implements q20 {
+    public final int f35064a = 0;
+    public final int f35065b;
+    public final Object f35066c;
+    public final View d;
+    public final Object e;
+    public final Object f35067f;
+    public final Object f35068g;
+    public final ViewGroup h;
+    public final Object f35069i;
+    public final Object f35070j;
+    public final Object f35071k;
+    public final Object f35072l;
 
-    public q4(int i10, TL_wallet.walletTransaction[] wallettransactionArr, di.s sVar) {
-        this.f37154a = i10;
-        this.f37155b = wallettransactionArr;
-        this.f37156c = sVar;
+    public q4(LinearLayout linearLayout, d5 d5Var, org.telegram.ui.ActionBar.p6 p6Var, int i10, TextView textView, z2[] z2VarArr, wy0 wy0Var, l20 l20Var, Context context, TextView[] textViewArr, SpannableString[] spannableStringArr) {
+        this.f35066c = linearLayout;
+        this.d = d5Var;
+        this.e = p6Var;
+        this.f35065b = i10;
+        this.f35067f = textView;
+        this.f35068g = z2VarArr;
+        this.h = wy0Var;
+        this.f35069i = l20Var;
+        this.f35070j = context;
+        this.f35071k = textViewArr;
+        this.f35072l = spannableStringArr;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        TL_wallet.walletTransaction[] wallettransactionArr;
-        TL_wallet.walletTransaction wallettransaction;
-        if (i10 == NotificationCenter.walletUpdate || i10 == NotificationCenter.walletTransactionsUpdate) {
-            ArrayList arrayList = l0.x(this.f37154a).B().f36789c;
-            int size = arrayList.size();
-            int i12 = 0;
-            while (true) {
-                wallettransactionArr = this.f37155b;
-                if (i12 < size) {
-                    Object obj = arrayList.get(i12);
-                    i12++;
-                    wallettransaction = (TL_wallet.walletTransaction) obj;
-                    TL_wallet.walletTransaction wallettransaction2 = wallettransactionArr[0];
-                    if (wallettransaction != wallettransaction2) {
-                        if (l0.i0(wallettransaction2, wallettransaction)) {
-                            break;
-                        }
-                    } else {
-                        break;
-                    }
-                } else {
-                    wallettransaction = null;
-                    break;
-                }
-            }
-            if (wallettransaction != null) {
-                wallettransactionArr[0] = wallettransaction;
-                this.f37156c.run(wallettransaction);
-            }
-        }
+    public final void a(java.lang.Object r33) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.q4.a(java.lang.Object):void");
+    }
+
+    public q4(long[] jArr, vh.d dVar, dq[] dqVarArr, th.h0 h0Var, th.c0 c0Var, int i10, org.telegram.ui.Components.voip.i0 i0Var, org.telegram.ui.Components.voip.i0 i0Var2, org.telegram.ui.Components.voip.i0 i0Var3, th.n nVar, boolean[] zArr) {
+        this.f35066c = jArr;
+        this.d = dVar;
+        this.e = dqVarArr;
+        this.f35067f = h0Var;
+        this.f35068g = c0Var;
+        this.f35065b = i10;
+        this.h = i0Var;
+        this.f35069i = i0Var2;
+        this.f35070j = i0Var3;
+        this.f35071k = nVar;
+        this.f35072l = zArr;
     }
 }

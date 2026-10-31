@@ -1,29 +1,38 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLObject;
-public final class hd implements Runnable {
-    public final int f20245a;
-    public final MessagesController f20246b;
-    public final TLObject f20247c;
-    public final org.telegram.ui.ActionBar.x6 d;
-    public final org.telegram.ui.ActionBar.w6 e;
+import android.location.Location;
+public final class hd implements q0.a {
+    public final int f15875a;
+    public final nd f15876b;
 
-    public hd(MessagesController messagesController, TLObject tLObject, org.telegram.ui.ActionBar.x6 x6Var, org.telegram.ui.ActionBar.w6 w6Var, int i10) {
-        this.f20245a = i10;
-        this.f20246b = messagesController;
-        this.f20247c = tLObject;
-        this.d = x6Var;
-        this.e = w6Var;
+    public hd(nd ndVar, int i10) {
+        this.f15875a = i10;
+        this.f15876b = ndVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f20245a) {
+    public final void accept(Object obj) {
+        switch (this.f15875a) {
             case 0:
-                this.f20246b.lambda$didReceivedNotification$47(this.f20247c, this.d, this.e);
+                this.f15876b.m((Location) obj);
                 return;
             default:
-                this.f20246b.lambda$didReceivedNotification$45(this.f20247c, this.d, this.e);
+                nd ndVar = this.f15876b;
+                Integer num = (Integer) obj;
+                ndVar.getClass();
+                int intValue = num.intValue();
+                if (intValue != 0) {
+                    if (intValue != 1) {
+                        if (intValue == 2) {
+                            Utilities.d.c(new ed(ndVar, 4));
+                            return;
+                        }
+                        return;
+                    }
+                    Utilities.d.c(new id(ndVar, num, 0));
+                    return;
+                }
+                Utilities.d.c(new c20(3, ndVar, true));
                 return;
         }
     }

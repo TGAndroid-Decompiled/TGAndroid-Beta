@@ -1,19 +1,31 @@
 package x8;
+public final class g implements Runnable {
+    public final int f53433a;
+    public final d f53434b;
 
-import a8.df;
-import android.os.Parcel;
-import android.os.Parcelable;
-import w8.s;
-public final class g extends p6.a {
-    public static final Parcelable.Creator<g> CREATOR = new s(21);
-    public String f51757a;
-    public String f51758b;
+    public g(d dVar, o6.a aVar, int i10) {
+        this.f53433a = i10;
+        this.f53434b = dVar;
+    }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q5 = df.q(parcel, 20293);
-        df.l(parcel, 2, this.f51757a);
-        df.l(parcel, 3, this.f51758b);
-        df.r(parcel, q5);
+    public final void run() {
+        switch (this.f53433a) {
+            case 0:
+                this.f53434b.f53429c.getClass();
+                return;
+            case 1:
+                this.f53434b.f53429c.getClass();
+                return;
+            case 2:
+                this.f53434b.f53429c.getClass();
+                return;
+            case 3:
+                this.f53434b.f53429c.getClass();
+                return;
+            default:
+                this.f53434b.f53429c.getClass();
+                return;
+        }
     }
 }

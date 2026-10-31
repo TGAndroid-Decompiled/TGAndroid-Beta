@@ -1,45 +1,11 @@
 package w7;
 public abstract class v {
-    public static void a(int i10, int i11) {
-        String a2;
-        if (i10 >= 0 && i10 < i11) {
-            return;
-        }
-        if (i10 >= 0) {
-            if (i11 < 0) {
-                throw new IllegalArgumentException(ic.a.i(i11, "negative size: "));
-            }
-            a2 = w.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i10), Integer.valueOf(i11));
-        } else {
-            a2 = w.a("%s (%s) must not be negative", "index", Integer.valueOf(i10));
-        }
-        throw new IndexOutOfBoundsException(a2);
-    }
-
-    public static void b(int i10, int i11, int i12) {
-        String c10;
-        if (i10 >= 0 && i11 >= i10 && i11 <= i12) {
-            return;
-        }
-        if (i10 >= 0 && i10 <= i12) {
-            if (i11 >= 0 && i11 <= i12) {
-                c10 = w.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i11), Integer.valueOf(i10));
-            } else {
-                c10 = c(i11, i12, "end index");
-            }
-        } else {
-            c10 = c(i10, i12, "start index");
-        }
-        throw new IndexOutOfBoundsException(c10);
-    }
-
-    public static String c(int i10, int i11, String str) {
-        if (i10 < 0) {
-            return w.a("%s (%s) must not be negative", str, Integer.valueOf(i10));
-        }
-        if (i11 >= 0) {
-            return w.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i10), Integer.valueOf(i11));
-        }
-        throw new IllegalArgumentException(ic.a.i(i11, "negative size: "));
+    public static m1.c a(String name) {
+        ae.d dVar = td.m0.f48642b;
+        td.i1 i1Var = new td.i1();
+        dVar.getClass();
+        yd.e b10 = td.e0.b(v7.g5.c(dVar, i1Var));
+        kotlin.jvm.internal.i.e(name, "name");
+        return new m1.c(name, m1.a.f12615b, b10);
     }
 }

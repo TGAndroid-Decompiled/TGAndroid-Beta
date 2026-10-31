@@ -1,6 +1,5 @@
 package h0;
 
-import a8.ng;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -17,31 +16,31 @@ import java.util.List;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 public abstract class b {
-    public static final float[][] f12525a = {new float[]{0.401288f, 0.650173f, -0.051461f}, new float[]{-0.250268f, 1.204414f, 0.045854f}, new float[]{-0.002079f, 0.048952f, 0.953127f}};
-    public static final float[][] f12526b = {new float[]{1.8620678f, -1.0112547f, 0.14918678f}, new float[]{0.38752654f, 0.62144744f, -0.00897398f}, new float[]{-0.0158415f, -0.03412294f, 1.0499644f}};
-    public static final float[] f12527c = {95.047f, 100.0f, 108.883f};
+    public static final float[][] f7540a = {new float[]{0.401288f, 0.650173f, -0.051461f}, new float[]{-0.250268f, 1.204414f, 0.045854f}, new float[]{-0.002079f, 0.048952f, 0.953127f}};
+    public static final float[][] f7541b = {new float[]{1.8620678f, -1.0112547f, 0.14918678f}, new float[]{0.38752654f, 0.62144744f, -0.00897398f}, new float[]{-0.0158415f, -0.03412294f, 1.0499644f}};
+    public static final float[] f7542c = {95.047f, 100.0f, 108.883f};
     public static final float[][] d = {new float[]{0.41233894f, 0.35762063f, 0.18051042f}, new float[]{0.2126f, 0.7152f, 0.0722f}, new float[]{0.01932141f, 0.11916382f, 0.9503448f}};
 
-    public static ng a(TypedArray typedArray, XmlPullParser xmlPullParser, Resources.Theme theme, String str, int i10) {
-        ng ngVar;
+    public static a5.a a(TypedArray typedArray, XmlPullParser xmlPullParser, Resources.Theme theme, String str, int i10) {
+        a5.a aVar;
         if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", str) != null) {
             TypedValue typedValue = new TypedValue();
             typedArray.getValue(i10, typedValue);
             int i11 = typedValue.type;
             if (i11 >= 28 && i11 <= 31) {
-                return new ng((Shader) null, (ColorStateList) null, typedValue.data);
+                return new a5.a((Shader) null, (ColorStateList) null, typedValue.data);
             }
             try {
-                ngVar = ng.h(typedArray.getResources(), typedArray.getResourceId(i10, 0), theme);
+                aVar = a5.a.j(typedArray.getResources(), typedArray.getResourceId(i10, 0), theme);
             } catch (Exception e) {
                 Log.e("ComplexColorCompat", "Failed to inflate ComplexColor.", e);
-                ngVar = null;
+                aVar = null;
             }
-            if (ngVar != null) {
-                return ngVar;
+            if (aVar != null) {
+                return aVar;
             }
         }
-        return new ng((Shader) null, (ColorStateList) null, 0);
+        return new a5.a((Shader) null, (ColorStateList) null, 0);
     }
 
     public static String b(TypedArray typedArray, XmlPullParser xmlPullParser, String str, int i10) {
@@ -88,8 +87,8 @@ public abstract class b {
         if (!z10) {
             f13 = ((f12 * 116.0f) - 16.0f) / 903.2963f;
         }
-        float[] fArr = f12527c;
-        return i0.a.e(f11 * fArr[0], f10 * fArr[1], f13 * fArr[2]);
+        float[] fArr = f7542c;
+        return i0.b.e(f11 * fArr[0], f10 * fArr[1], f13 * fArr[2]);
     }
 
     public static float e(int i10) {
@@ -126,7 +125,7 @@ public abstract class b {
         if (next == 2) {
             xmlResourceParser.require(2, null, "font-family");
             if (xmlResourceParser.getName().equals("font-family")) {
-                TypedArray obtainAttributes = resources.obtainAttributes(Xml.asAttributeSet(xmlResourceParser), d0.a.f7819b);
+                TypedArray obtainAttributes = resources.obtainAttributes(Xml.asAttributeSet(xmlResourceParser), d0.a.f5625b);
                 String string = obtainAttributes.getString(0);
                 String string2 = obtainAttributes.getString(5);
                 String string3 = obtainAttributes.getString(6);
@@ -152,7 +151,7 @@ public abstract class b {
                 while (xmlResourceParser.next() != 3) {
                     if (xmlResourceParser.getEventType() == 2) {
                         if (xmlResourceParser.getName().equals("font")) {
-                            TypedArray obtainAttributes2 = resources.obtainAttributes(Xml.asAttributeSet(xmlResourceParser), d0.a.f7820c);
+                            TypedArray obtainAttributes2 = resources.obtainAttributes(Xml.asAttributeSet(xmlResourceParser), d0.a.f5626c);
                             int i13 = 8;
                             if (!obtainAttributes2.hasValue(8)) {
                                 i13 = 1;

@@ -1,200 +1,160 @@
 package org.telegram.ui.Components;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLObject;
+import android.graphics.drawable.GradientDrawable;
+import android.util.Property;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import java.util.HashSet;
 import org.telegram.tgnet.TLRPC;
-public final class o9 extends Drawable {
-    public final ViewGroup f31235a;
-    public final int f31236b;
-    public boolean d;
-    public final int e;
-    public final int f31238f;
-    public final float f31239g;
-    public final oe.j f31237c = new oe.j(new jg.i(this), ds.h, 380);
-    public final ArrayList h = new ArrayList();
-    public int f31240i = 255;
+public final class o9 extends FrameLayout implements org.telegram.messenger.us, org.telegram.ui.ActionBar.k6 {
+    public boolean D;
+    public int E;
+    public int F;
+    public TextView f29001a;
+    public TextView f29002b;
+    public jg.l0 f29003c;
+    public jg.l0 d;
+    public fi0 e;
+    public ScrollView f29004f;
+    public AnimatorSet h;
+    public TLRPC.TL_help_appUpdate f29005n;
+    public String f29006r;
+    public int f29007s;
+    public int f29008w;
+    public GradientDrawable f29009x;
+    public GradientDrawable f29010y;
 
-    public o9(int i10, ViewGroup viewGroup, int i11, int i12, float f7) {
-        this.f31236b = i10;
-        this.f31235a = viewGroup;
-        this.e = i11;
-        this.f31238f = i12;
-        this.f31239g = f7;
+    public final void a(boolean z10) {
+        jg.l0 l0Var = this.d;
+        TextView textView = this.f29002b;
+        jg.l0 l0Var2 = this.f29003c;
+        AnimatorSet animatorSet = this.h;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+        }
+        this.h = new AnimatorSet();
+        Property property = View.ALPHA;
+        Property property2 = View.SCALE_Y;
+        Property property3 = View.SCALE_X;
+        if (z10) {
+            l0Var2.setVisibility(0);
+            l0Var.setEnabled(false);
+            this.h.playTogether(ObjectAnimator.ofFloat(textView, property3, 0.1f), ObjectAnimator.ofFloat(textView, property2, 0.1f), ObjectAnimator.ofFloat(textView, property, 0.0f), ObjectAnimator.ofFloat(l0Var2, property3, 1.0f), ObjectAnimator.ofFloat(l0Var2, property2, 1.0f), ObjectAnimator.ofFloat(l0Var2, property, 1.0f));
+        } else {
+            textView.setVisibility(0);
+            l0Var.setEnabled(true);
+            this.h.playTogether(ObjectAnimator.ofFloat(l0Var2, property3, 0.1f), ObjectAnimator.ofFloat(l0Var2, property2, 0.1f), ObjectAnimator.ofFloat(l0Var2, property, 0.0f), ObjectAnimator.ofFloat(textView, property3, 1.0f), ObjectAnimator.ofFloat(textView, property2, 1.0f), ObjectAnimator.ofFloat(textView, property, 1.0f));
+        }
+        this.h.addListener(new eg.m(16, this, z10));
+        this.h.setDuration(150L);
+        this.h.start();
     }
 
-    public final void a() {
-        if (!this.d) {
-            this.d = true;
-            ArrayList arrayList = this.h;
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                n9 n9Var = (n9) obj;
-                if (n9Var.f30787c != 0 && !n9Var.d) {
-                    n9Var.d = true;
-                    n9Var.f30785a.onAttachedToWindow();
-                }
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == org.telegram.messenger.zs.Y1) {
+            String str = (String) objArr[0];
+            String str2 = this.f29006r;
+            if (str2 != null && str2.equals(str)) {
+                a(false);
+                org.telegram.messenger.w0.f19024a.v((Activity) getContext(), this.f29005n.document);
+            }
+        } else if (i10 == org.telegram.messenger.zs.Z1) {
+            String str3 = (String) objArr[0];
+            String str4 = this.f29006r;
+            if (str4 != null && str4.equals(str3)) {
+                a(false);
+            }
+        } else if (i10 == org.telegram.messenger.zs.X1) {
+            String str5 = (String) objArr[0];
+            String str6 = this.f29006r;
+            if (str6 != null && str6.equals(str5)) {
+                this.e.e(true, Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue())));
             }
         }
     }
 
-    public final void b() {
-        if (this.d) {
-            this.d = false;
-            ArrayList arrayList = this.h;
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                n9 n9Var = (n9) obj;
-                if (n9Var.d) {
-                    n9Var.d = false;
-                    n9Var.f30785a.onDetachedFromWindow();
-                }
-            }
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        GradientDrawable gradientDrawable = this.f29009x;
+        ScrollView scrollView = this.f29004f;
+        gradientDrawable.setBounds(scrollView.getLeft(), scrollView.getTop(), scrollView.getRight(), org.telegram.messenger.i0.L(16.0f) + scrollView.getTop());
+        gradientDrawable.draw(canvas);
+        GradientDrawable gradientDrawable2 = this.f29010y;
+        gradientDrawable2.setBounds(scrollView.getLeft(), scrollView.getBottom() - org.telegram.messenger.i0.L(18.0f), scrollView.getRight(), scrollView.getBottom());
+        gradientDrawable2.draw(canvas);
+    }
+
+    @Override
+    public void setVisibility(int i10) {
+        super.setVisibility(i10);
+        if (i10 == 8) {
+            org.telegram.messenger.zs.f(this.f29007s).n(this, org.telegram.messenger.zs.Y1);
+            org.telegram.messenger.zs.f(this.f29007s).n(this, org.telegram.messenger.zs.Z1);
+            org.telegram.messenger.zs.f(this.f29007s).n(this, org.telegram.messenger.zs.X1);
         }
     }
 
-    public final void c(Canvas canvas) {
-        Rect bounds = getBounds();
-        if (!bounds.isEmpty() && this.f31240i != 0) {
-            float f7 = bounds.left;
-            float f10 = bounds.top;
-            oe.j jVar = this.f31237c;
-            canvas.saveLayer(f7, f10, f7 + jVar.d.f19343f.f19350a, f10 + this.e, null);
-            for (int size = jVar.f19346b.size() - 1; size >= 0; size--) {
-                oe.g m10 = jVar.m(size);
-                RectF b10 = m10.b();
-                Object obj = m10.f19336a;
-                float f11 = m10.f19339f.f19350a;
-                float c10 = m10.c();
-                float width = b10.width() - f11;
-                float f12 = f7 + b10.left + f11;
-                float f13 = width / 2.0f;
-                float f14 = f12 + f13;
-                float f15 = f10 + f13;
-                canvas.save();
-                canvas.scale(c10, c10, f14, f15);
-                canvas.drawCircle(f14, f15, f13 + this.f31239g, org.telegram.ui.ActionBar.y6.Nl);
-                n9 n9Var = (n9) obj;
-                n9Var.f30785a.setImageCoords(f12, f10, width, width);
-                n9Var.f30785a.setAlpha((this.f31240i / 255.0f) * m10.c());
-                n9Var.f30785a.draw(canvas);
-                canvas.restore();
+    @Override
+    public final void updateColors() {
+        boolean z10;
+        boolean z11;
+        int x02;
+        ScrollView scrollView;
+        GradientDrawable gradientDrawable = this.f29010y;
+        GradientDrawable gradientDrawable2 = this.f29009x;
+        try {
+            int x03 = org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f20929d6, false);
+            if (this.D) {
+                if (x03 != this.E) {
+                }
+                x02 = org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f21206s8, false);
+                scrollView = this.f29004f;
+                if (scrollView != null && (!this.D || x02 != this.F)) {
+                    this.F = x02;
+                    org.telegram.messenger.i0.y3(scrollView, x02);
+                }
+                this.D = true;
+                invalidate();
             }
-            canvas.restore();
+            this.E = x03;
+            if (gradientDrawable2 != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            if (z10) {
+                gradientDrawable2.setColors(new int[]{x03, 0});
+            }
+            if (gradientDrawable != null) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            if (z11) {
+                gradientDrawable.setColors(new int[]{x03, 0});
+            }
+            x02 = org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f21206s8, false);
+            scrollView = this.f29004f;
+            if (scrollView != null) {
+                this.F = x02;
+                org.telegram.messenger.i0.y3(scrollView, x02);
+            }
+            this.D = true;
+            invalidate();
+        } catch (Exception e) {
+            org.telegram.messenger.f8.g(e, true);
         }
     }
 
-    public final void d(List list, boolean z10) {
-        n9 n9Var;
-        oe.j jVar = this.f31237c;
-        if (list != null && !list.isEmpty()) {
-            if (!z10) {
-                jVar.q(null, false);
-            }
-            ArrayList arrayList = new ArrayList(list.size());
-            Iterator it = list.iterator();
-            while (it.hasNext()) {
-                long peerDialogId = DialogObject.getPeerDialogId((TLRPC.Peer) it.next());
-                ArrayList arrayList2 = this.h;
-                int size = arrayList2.size();
-                int i10 = 0;
-                while (true) {
-                    if (i10 < size) {
-                        Object obj = arrayList2.get(i10);
-                        i10++;
-                        n9Var = (n9) obj;
-                        if (n9Var.f30787c == peerDialogId) {
-                            break;
-                        }
-                    } else {
-                        n9Var = null;
-                        break;
-                    }
-                }
-                if (n9Var == null) {
-                    int size2 = arrayList2.size();
-                    int i11 = 0;
-                    while (true) {
-                        if (i11 < size2) {
-                            Object obj2 = arrayList2.get(i11);
-                            i11++;
-                            n9Var = (n9) obj2;
-                            if (n9Var.f30787c == 0) {
-                                break;
-                            }
-                        } else {
-                            n9Var = null;
-                            break;
-                        }
-                    }
-                }
-                if (n9Var == null) {
-                    n9Var = new n9(this, this.f31235a);
-                    arrayList2.add(n9Var);
-                }
-                ImageReceiver imageReceiver = n9Var.f30785a;
-                j9 j9Var = n9Var.f30786b;
-                if (n9Var.f30787c != peerDialogId) {
-                    n9Var.f30787c = peerDialogId;
-                    int i12 = this.f31236b;
-                    TLObject userOrChat = MessagesController.getInstance(i12).getUserOrChat(peerDialogId);
-                    if (userOrChat != null) {
-                        j9Var.j(i12, userOrChat);
-                        imageReceiver.setForUserOrChat(userOrChat, j9Var);
-                    } else {
-                        j9Var.n(peerDialogId, "", "");
-                        imageReceiver.clearImage();
-                    }
-                }
-                arrayList.add(n9Var);
-                if (this.d && !n9Var.d) {
-                    n9Var.d = true;
-                    imageReceiver.onAttachedToWindow();
-                }
-            }
-            jVar.q(arrayList, z10);
-            return;
-        }
-        jVar.q(null, z10);
-    }
-
     @Override
-    public final void draw(Canvas canvas) {
-        c(canvas);
-    }
-
-    @Override
-    public final int getAlpha() {
-        return this.f31240i;
-    }
-
-    @Override
-    public final int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f31240i = i10;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

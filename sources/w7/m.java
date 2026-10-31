@@ -1,52 +1,30 @@
 package w7;
+
+import com.google.android.gms.tasks.Task;
+import com.google.mlkit.nl.languageid.internal.LanguageIdentifierImpl;
+import java.util.concurrent.Executor;
 public abstract class m {
-    public static void a(int i10, int i11) {
+    public static LanguageIdentifierImpl a() {
         String a2;
-        if (i10 >= 0 && i10 < i11) {
-            return;
-        }
-        if (i10 >= 0) {
-            if (i11 < 0) {
-                throw new IllegalArgumentException(ic.a.i(i11, "negative size: "));
-            }
-            a2 = n.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i10), Integer.valueOf(i11));
+        nb.a aVar = (nb.a) jb.g.c().a(nb.a.class);
+        nb.e eVar = aVar.f13736b;
+        eVar.getClass();
+        v7.x8 x8Var = aVar.f13735a;
+        LanguageIdentifierImpl languageIdentifierImpl = new LanguageIdentifierImpl(eVar, x8Var, (Executor) aVar.f13737c.f9778a.get());
+        ?? obj = new Object();
+        obj.f53556c = languageIdentifierImpl.f5611f;
+        q5.d dVar = new q5.d(13, false);
+        dVar.f45488c = LanguageIdentifierImpl.k();
+        obj.d = new v7.d7(dVar);
+        a5.a aVar2 = new a5.a((xa.n) obj, 1);
+        Task task = x8Var.e;
+        if (task.isSuccessful()) {
+            a2 = (String) task.getResult();
         } else {
-            a2 = n.a("%s (%s) must not be negative", "index", Integer.valueOf(i10));
+            a2 = n6.i.f13599c.a(x8Var.f50643g);
         }
-        throw new IndexOutOfBoundsException(a2);
-    }
-
-    public static void b(int i10, int i11) {
-        if (i10 >= 0 && i10 <= i11) {
-            return;
-        }
-        throw new IndexOutOfBoundsException(d(i10, i11, "index"));
-    }
-
-    public static void c(int i10, int i11, int i12) {
-        String d;
-        if (i10 >= 0 && i11 >= i10 && i11 <= i12) {
-            return;
-        }
-        if (i10 >= 0 && i10 <= i12) {
-            if (i11 >= 0 && i11 <= i12) {
-                d = n.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i11), Integer.valueOf(i10));
-            } else {
-                d = d(i11, i12, "end index");
-            }
-        } else {
-            d = d(i10, i12, "start index");
-        }
-        throw new IndexOutOfBoundsException(d);
-    }
-
-    public static String d(int i10, int i11, String str) {
-        if (i10 < 0) {
-            return n.a("%s (%s) must not be negative", str, Integer.valueOf(i10));
-        }
-        if (i11 >= 0) {
-            return n.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i10), Integer.valueOf(i11));
-        }
-        throw new IllegalArgumentException(ic.a.i(i11, "negative size: "));
+        jb.m.f9797a.execute(new com.google.android.gms.internal.cast.o(x8Var, aVar2, v7.g6.ON_DEVICE_LANGUAGE_IDENTIFICATION_CREATE, a2, 6));
+        ((nb.e) languageIdentifierImpl.d.get()).f9788b.incrementAndGet();
+        return languageIdentifierImpl;
     }
 }

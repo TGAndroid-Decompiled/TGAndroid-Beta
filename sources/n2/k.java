@@ -2,13 +2,13 @@ package n2;
 
 import u2.g0;
 public interface k {
-    void a(int i10, g0 g0Var, int i11);
+    void E(int i10, g0 g0Var);
 
-    void b(int i10, g0 g0Var, Exception exc);
+    void J(int i10, g0 g0Var);
 
-    void g(int i10, g0 g0Var);
+    void b(int i10, g0 g0Var, int i11);
 
-    void i(int i10, g0 g0Var);
+    void j(int i10, g0 g0Var, Exception exc);
 
-    void k(int i10, g0 g0Var, pa.d dVar);
+    void l(int i10, g0 g0Var, oa.d dVar);
 }

@@ -1,22 +1,34 @@
 package org.telegram.ui.Components;
+public final class dg {
+    public static final dg f25405a;
+    public static final dg f25406b;
+    public static final dg f25407c;
+    public static final dg d;
+    public static final dg e;
+    public static final dg f25408f;
+    public static final dg[] h;
 
-import android.content.Context;
-import android.view.ViewGroup;
-import org.telegram.tgnet.TLRPC;
-public final class dg extends sz {
-    public final ChatActivityEnterView V2;
-
-    public dg(ChatActivityEnterView chatActivityEnterView, org.telegram.ui.ActionBar.r2 r2Var, boolean z10, Context context, TLRPC.ChatFull chatFull, ViewGroup viewGroup, boolean z11, org.telegram.ui.ActionBar.u6 u6Var, boolean z12, boolean z13) {
-        super(r2Var, z10, true, true, context, true, chatFull, viewGroup, z11, u6Var, z12, z13);
-        this.V2 = chatActivityEnterView;
+    static {
+        ?? r02 = new Enum("VOICE", 0);
+        f25405a = r02;
+        ?? r12 = new Enum("VIDEO", 1);
+        f25406b = r12;
+        ?? r32 = new Enum("STICKER", 2);
+        f25407c = r32;
+        ?? r52 = new Enum("KEYBOARD", 3);
+        d = r52;
+        ?? r72 = new Enum("SMILE", 4);
+        e = r72;
+        ?? r92 = new Enum("GIF", 5);
+        f25408f = r92;
+        h = new dg[]{r02, r12, r32, r52, r72, r92};
     }
 
-    @Override
-    public final void setTranslationY(float f7) {
-        super.setTranslationY(f7);
-        ChatActivityEnterView chatActivityEnterView = this.V2;
-        if (chatActivityEnterView.V0 != null && chatActivityEnterView.f25934o3 == 0) {
-            chatActivityEnterView.Z2.t(f7);
-        }
+    public static dg valueOf(String str) {
+        return (dg) Enum.valueOf(dg.class, str);
+    }
+
+    public static dg[] values() {
+        return (dg[]) h.clone();
     }
 }

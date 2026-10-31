@@ -1,549 +1,256 @@
 package ai;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
-import androidx.recyclerview.widget.RecyclerView;
-import bi.ad;
-import bi.dd;
-import bi.h7;
-import bi.x1;
-import fi.l2;
-import fi.v3;
-import fi.y1;
-import fi.z1;
-import hi.d4;
-import jg.f2;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.ActionBar.r2;
-import org.telegram.ui.ActionBar.r5;
-import org.telegram.ui.Components.c10;
-import org.telegram.ui.Components.ck;
-import org.telegram.ui.Components.fj;
-import org.telegram.ui.Components.ij;
-import org.telegram.ui.Components.m8;
-import org.telegram.ui.Components.mk;
-import org.telegram.ui.Components.nf;
-import org.telegram.ui.Components.nk;
-import org.telegram.ui.Components.nm0;
-import org.telegram.ui.Components.ok;
-import org.telegram.ui.Components.s71;
-import org.telegram.ui.Components.ti;
-import org.telegram.ui.Components.wl0;
-import org.telegram.ui.Components.ww0;
-import org.telegram.ui.Components.x7;
-import org.telegram.ui.Components.xj;
-import org.telegram.ui.sw;
-public final class b extends s4.u0 {
-    public final int f1435a;
-    public final Object f1436b;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.cd;
+import org.telegram.messenger.i0;
+import org.telegram.ui.ActionBar.a7;
+import org.telegram.ui.ActionBar.g0;
+import org.telegram.ui.ActionBar.p6;
+import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.ActionBar.w6;
+import org.telegram.ui.Cells.c2;
+import org.telegram.ui.Components.cq;
+import org.telegram.ui.Components.f6;
+import org.telegram.ui.Components.g9;
+import org.telegram.ui.Components.p80;
+import rh.o7;
+import rh.s8;
+import sc.e;
+import th.c0;
+import w7.b6;
+public final class b extends LinearLayout {
+    public final int f832a;
+    public Object f833b;
+    public Object f834c;
+    public View d;
 
-    public b(Object obj, int i10) {
-        this.f1435a = i10;
-        this.f1436b = obj;
-    }
-
-    @Override
-    public void a(RecyclerView recyclerView, int i10) {
-        wl0 wl0Var;
-        int i11;
-        wl0 wl0Var2;
-        wl0 wl0Var3;
-        int top;
-        int i12;
-        wl0 wl0Var4;
-        switch (this.f1435a) {
-            case 0:
-                d dVar = (d) this.f1436b;
-                boolean z10 = true;
-                if (i10 != 1) {
-                    z10 = false;
-                }
-                dVar.f1457c0 = z10;
-                if (i10 != 0) {
-                    dVar.f1453a0 = d.b();
-                }
-                dVar.invalidate();
-                return;
+    public b(Context context, int i10) {
+        super(context);
+        this.f832a = i10;
+        switch (i10) {
             case 1:
-                if (i10 == 0) {
-                    ((x0) this.f1436b).v = false;
-                    return;
-                }
-                return;
-            case 10:
-                z1 z1Var = (z1) this.f1436b;
-                if (i10 == 0 && z1Var.f12052n >= 0.0f && !z1Var.f12049b.canScrollVertically(-1)) {
-                    z1Var.f12052n = -1.0f;
-                    return;
-                }
-                return;
-            case 15:
-                ii.g0 g0Var = (ii.g0) this.f1436b;
-                if (i10 == 0) {
-                    g0Var.e = !g0Var.d.canScrollVertically(-1);
-                    g0Var.d.canScrollVertically(1);
-                    return;
-                }
-                return;
-            case 19:
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(((f2) this.f1436b).getParentActivity().getCurrentFocus());
-                    return;
-                }
-                return;
-            case 20:
-                ((oi.q) this.f1436b).e++;
-                return;
-            case 23:
-                m8 m8Var = (m8) this.f1436b;
-                x7 x7Var = m8Var.f30444n;
-                if (i10 == 0) {
-                    if (m8.m0(m8Var) + ((m8Var.f30462z0 - m8.l0(m8Var)) - AndroidUtilities.dp(13.0f)) < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && x7Var.canScrollVertically(1) && (wl0Var = (wl0) x7Var.K(m8Var.f30454u0 ? 1 : 0)) != null) {
-                        View view = wl0Var.f47773a;
-                        if (view.getTop() > AndroidUtilities.dp(7.0f)) {
-                            x7Var.w0(0, view.getTop() - AndroidUtilities.dp(7.0f), null);
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                } else if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(m8Var.getCurrentFocus());
-                    return;
-                } else {
-                    return;
-                }
-            case 26:
-                ij ijVar = (ij) this.f1436b;
-                bi.r1 r1Var = ijVar.f29340n;
-                ti tiVar = ijVar.f30254b;
-                if (i10 == 0) {
-                    int dp = AndroidUtilities.dp(13.0f);
-                    org.telegram.ui.ActionBar.w0 w0Var = tiVar.f32984d1;
-                    if (w0Var != null) {
-                        i11 = AndroidUtilities.dp(w0Var.getAlpha() * 26.0f);
-                    } else {
-                        i11 = 0;
-                    }
-                    int i13 = dp + i11;
-                    int backgroundPaddingTop = tiVar.getBackgroundPaddingTop();
-                    if (((tiVar.f32988e2[0] - backgroundPaddingTop) - i13) + backgroundPaddingTop < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (wl0Var2 = (wl0) r1Var.K(0)) != null) {
-                        View view2 = wl0Var2.f47773a;
-                        if (view2.getTop() > AndroidUtilities.dp(7.0f)) {
-                            r1Var.w0(0, view2.getTop() - AndroidUtilities.dp(7.0f), null);
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 28:
-                nk nkVar = (nk) this.f1436b;
-                ck ckVar = nkVar.f30947r;
-                ti tiVar2 = nkVar.f30254b;
-                boolean z11 = false;
-                if (i10 == 0) {
-                    int dp2 = AndroidUtilities.dp(13.0f);
-                    int backgroundPaddingTop2 = tiVar2.getBackgroundPaddingTop();
-                    if (((tiVar2.f32988e2[0] - backgroundPaddingTop2) - dp2) + backgroundPaddingTop2 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (wl0Var3 = (wl0) ckVar.K(0)) != null && (top = (wl0Var3.f47773a.getTop() - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(56.0f)) > 0) {
-                        ckVar.w0(0, top, null);
-                    }
-                }
-                if (i10 == 1 && nkVar.f30941b0 && ckVar.getAdapter() == nkVar.f30951y) {
-                    AndroidUtilities.hideKeyboard(tiVar2.getCurrentFocus());
-                }
-                if (i10 != 0) {
-                    z11 = true;
-                }
-                nkVar.U = z11;
-                return;
-            case 29:
-                ok okVar = (ok) this.f1436b;
-                nm0 nm0Var = okVar.f31334r;
-                ti tiVar3 = okVar.f30254b;
-                if (i10 == 0) {
-                    int dp3 = AndroidUtilities.dp(13.0f);
-                    org.telegram.ui.ActionBar.w0 w0Var2 = tiVar3.f32984d1;
-                    if (w0Var2 != null) {
-                        i12 = AndroidUtilities.dp(w0Var2.getAlpha() * 26.0f);
-                    } else {
-                        i12 = 0;
-                    }
-                    int i14 = dp3 + i12;
-                    int backgroundPaddingTop3 = tiVar3.getBackgroundPaddingTop();
-                    if (((tiVar3.f32988e2[0] - backgroundPaddingTop3) - i14) + backgroundPaddingTop3 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (wl0Var4 = (wl0) nm0Var.K(0)) != null) {
-                        View view3 = wl0Var4.f47773a;
-                        if (view3.getTop() > AndroidUtilities.dp(7.0f)) {
-                            nm0Var.w0(0, view3.getTop() - AndroidUtilities.dp(7.0f), null);
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
+                super(context);
                 return;
             default:
+                setOrientation(1);
+                g9 g9Var = new g9(context);
+                this.f833b = g9Var;
+                g9Var.setRoundRadius(i0.L(35.0f));
+                addView(g9Var, b6.r(70, 70, 1));
+                TextView textView = new TextView(context);
+                this.f834c = textView;
+                textView.setTypeface(i0.o());
+                textView.setTextSize(1, 20.0f);
+                textView.setGravity(17);
+                addView(textView, b6.s(-1, -2, 0, 0.0f, 11.33f, 0.0f, 7.0f));
+                TextView textView2 = new TextView(context);
+                this.d = textView2;
+                textView2.setTextSize(1, 14.0f);
+                textView2.setLineSpacing(i0.L(2.0f), 1.0f);
+                textView2.setGravity(17);
+                addView(textView2, b6.o(-1, -2));
                 return;
         }
     }
 
     @Override
-    public void b(RecyclerView recyclerView, int i10, int i11) {
-        int i12;
-        boolean z10;
-        float f7;
-        int dp;
-        float f10;
-        float y3;
-        int measuredHeight;
-        boolean z11;
-        r5 r5Var;
-        fi.f2 f2Var;
-        int i13;
-        fi.f2 f2Var2;
-        boolean z12;
-        float f11;
-        ig.p0 p0Var;
-        switch (this.f1435a) {
-            case 0:
-                d dVar = (d) this.f1436b;
-                if (i11 != 0) {
-                    dVar.f1453a0 = d.b();
-                    dVar.invalidate();
-                    return;
-                }
-                return;
-            case 1:
-                x0 x0Var = (x0) this.f1436b;
-                if (!x0Var.v) {
-                    x0Var.h.a(x0Var.f(x0Var.c()), true);
-                    return;
-                }
-                return;
-            case 2:
-                ((bh.x) this.f1436b).c(true);
-                return;
-            case 3:
-                bi.x xVar = (bi.x) this.f1436b;
-                a3.d dVar2 = xVar.f5638n;
-                if (!recyclerView.canScrollVertically(1)) {
-                    xVar.removeCallbacks(dVar2);
-                    xVar.post(dVar2);
-                    return;
-                }
-                return;
-            case 4:
-                x1 x1Var = (x1) this.f1436b;
-                View view = x1Var.f5657q0;
-                FrameLayout frameLayout = x1Var.f5653l0;
-                nm0 nm0Var = x1Var.d;
-                boolean z13 = true;
-                int childCount = nm0Var.getChildCount() - 1;
-                while (true) {
-                    i12 = 0;
-                    if (childCount >= 0) {
-                        View childAt = nm0Var.getChildAt(childCount);
-                        int R = RecyclerView.R(childAt);
-                        if (R >= 0) {
-                            if (R == 2) {
-                                y3 = childAt.getY();
-                                measuredHeight = frameLayout.getMeasuredHeight();
-                            } else if (R == 1) {
-                                f7 = childAt.getY();
-                            } else if (R == 0) {
-                                y3 = childAt.getY();
-                                measuredHeight = frameLayout.getMeasuredHeight();
-                            }
-                        }
-                        childCount--;
-                    } else {
-                        z10 = false;
-                        f7 = 0.0f;
-                    }
-                }
-                f7 = y3 - measuredHeight;
-                z10 = true;
-                float height = frameLayout.getHeight() + f7;
-                if (z10 && height >= 0.0f) {
-                    z13 = false;
-                }
-                if (x1Var.f5662v0 != z13) {
-                    x1Var.f5662v0 = z13;
-                    if (z13) {
-                        view.setVisibility(0);
-                    }
-                    ViewPropertyAnimator animate = view.animate();
-                    if (z13) {
-                        f10 = 1.0f;
-                    } else {
-                        f10 = 0.0f;
-                    }
-                    animate.alpha(f10).setDuration(200L).withEndAction(new bh.n(1, x1Var, z13)).start();
-                }
-                if (f7 <= 0.0f) {
-                    dp = 0;
-                } else {
-                    dp = AndroidUtilities.dp(6.0f);
-                }
-                x1Var.K = dp;
-                if (!z10) {
-                    i12 = 8;
-                }
-                frameLayout.setVisibility(i12);
-                frameLayout.setTranslationY(f7);
-                return;
+    public void dispatchDraw(Canvas canvas) {
+        switch (this.f832a) {
             case 5:
-                ((h7) this.f1436b).Y.e();
-                return;
-            case 6:
-                dd ddVar = (dd) this.f1436b;
-                oe.b bVar = ddVar.X;
-                if (!ddVar.f39131c.canScrollVertically(-1)) {
-                    r5Var = ((r2) ddVar).simpleActionBar;
-                    if (!r5Var.o()) {
-                        z11 = false;
-                        bVar.a(z11, true);
-                        return;
+                Path path = (Path) this.f834c;
+                if (((c0) this.d).f48812a) {
+                    path.rewind();
+                    RectF rectF = i0.P;
+                    rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+                    path.addRoundRect(rectF, i0.L(13.0f), i0.L(13.0f), Path.Direction.CW);
+                    canvas.save();
+                    canvas.clipPath(path);
+                    if (((s8) this.f833b) == null) {
+                        this.f833b = new s8(1, 250);
                     }
+                    ((s8) this.f833b).f(0, 0, getWidth(), getHeight());
+                    s8 s8Var = (s8) this.f833b;
+                    s8Var.h = 30.0f;
+                    s8Var.d();
+                    ((s8) this.f833b).b(canvas, -1, 0.85f);
+                    invalidate();
+                    canvas.restore();
                 }
-                z11 = true;
-                bVar.a(z11, true);
+                super.dispatchDraw(canvas);
                 return;
-            case 7:
-                ad adVar = (ad) this.f1436b;
-                s71 s71Var = adVar.f4289a;
-                if (s71Var.canScrollVertically(1)) {
-                    for (int i14 = 0; i14 < s71Var.getChildCount(); i14++) {
-                        if (!(s71Var.getChildAt(i14) instanceof c10)) {
-                        }
-                    }
-                    return;
-                }
-                adVar.h.run();
-                return;
-            case 8:
-                sw swVar = (sw) this.f1436b;
-                swVar.invalidate();
-                swVar.c();
-                v3 v3Var = swVar.J;
-                if (v3Var != null) {
-                    v3Var.e(true);
-                    return;
-                }
-                return;
-            case 9:
-                fi.u1 u1Var = (fi.u1) this.f1436b;
-                fi.s1 s1Var = u1Var.f11742c;
-                l2 l2Var = u1Var.f11745r;
-                l2.t(l2Var).invalidate();
-                if (l2.G(l2Var) && u1Var.f11741b.I1 && (f2Var = u1Var.d) != null && f2Var.e != null) {
-                    l2Var.q0();
-                }
-                if (u1Var.e.M0() + 7 >= s1Var.h() - 1) {
-                    s1Var.G();
-                    return;
-                }
-                return;
-            case 10:
-                z1 z1Var = (z1) this.f1436b;
-                y1 y1Var = z1Var.f12050c;
-                fi.n1 n1Var = z1Var.f12049b;
-                l2 l2Var2 = z1Var.f12054s;
-                l2.J(l2Var2).invalidate();
-                int i15 = -1;
-                if (z1Var.f12052n < 0.0f) {
-                    i13 = z1Var.d.I0();
-                } else {
-                    int i16 = 0;
-                    while (true) {
-                        if (i16 < n1Var.getChildCount()) {
-                            View childAt2 = n1Var.getChildAt(i16);
-                            if (childAt2.getY() + childAt2.getHeight() > z1Var.f12052n + n1Var.getPaddingTop()) {
-                                n1Var.getClass();
-                                i13 = RecyclerView.R(childAt2);
-                            } else {
-                                i16++;
-                            }
-                        } else {
-                            i13 = -1;
-                        }
-                    }
-                    if (i13 == -1) {
-                        return;
-                    }
-                }
-                int size = y1Var.f11990y.size() - 1;
-                while (true) {
-                    if (size >= 0) {
-                        int keyAt = y1Var.f11990y.keyAt(size);
-                        int valueAt = y1Var.f11990y.valueAt(size);
-                        if (i13 >= keyAt) {
-                            i15 = valueAt;
-                        } else {
-                            size--;
-                        }
-                    }
-                }
-                if (i15 >= 0) {
-                    z1Var.e.j(i15, true);
-                }
-                if (l2.K(l2Var2) && n1Var.I1 && (f2Var2 = z1Var.f12051f) != null && f2Var2.e != null) {
-                    l2Var2.q0();
-                    return;
-                }
-                return;
-            case 11:
-                gi.h hVar = (gi.h) this.f1436b;
-                oe.b bVar2 = hVar.X;
-                if (!hVar.f39131c.canScrollVertically(-1) && !gi.h.y0(hVar).o()) {
-                    z12 = false;
-                } else {
-                    z12 = true;
-                }
-                bVar2.a(z12, true);
-                return;
-            case 12:
-                nf nfVar = (nf) this.f1436b;
-                View m10 = nfVar.f12948c.getLayoutManager().m(0);
-                float f12 = 0.0f;
-                if (m10 != null) {
-                    f11 = m10.getY();
-                } else {
-                    f11 = 0.0f;
-                }
-                if (f11 >= 0.0f) {
-                    f12 = f11;
-                }
-                nfVar.h = f12;
-                nfVar.b();
-                return;
-            case 13:
-                d4 d4Var = (d4) this.f1436b;
-                long j10 = d4Var.R;
-                int i17 = 0;
-                while (true) {
-                    if (i17 < d4Var.f39131c.getChildCount()) {
-                        if (!(d4Var.f39131c.getChildAt(i17) instanceof c10)) {
-                            i17++;
-                        }
-                    } else if (recyclerView.canScrollVertically(1)) {
-                        return;
-                    }
-                }
-                bi.m0.g(d4.B0(d4Var)).d(j10).a();
-                bi.m0.g(d4.C0(d4Var)).e(j10).a();
-                return;
-            case 14:
-                ii.r rVar = (ii.r) this.f1436b;
-                rVar.v.b(rVar.d);
-                return;
-            case 15:
-                ii.j0.W(((ii.g0) this.f1436b).f14349f).invalidate();
-                return;
-            case 16:
-                ii.i0 i0Var = (ii.i0) this.f1436b;
-                i0Var.h.M.b(i0Var.d);
-                return;
-            case 17:
-                jg.n.c0((jg.n) this.f1436b);
-                return;
-            case 18:
-                jg.i0 i0Var2 = (jg.i0) this.f1436b;
-                i0Var2.f30254b.f2(i0Var2, i11);
-                i0Var2.P();
-                return;
-            case 19:
             default:
+                super.dispatchDraw(canvas);
                 return;
-            case 20:
-                ((oi.q) this.f1436b).h(i10, i11);
-                return;
-            case 21:
-                ((org.telegram.messenger.voip.m0) this.f1436b).run();
-                return;
-            case 22:
-                ((org.telegram.ui.Components.e0) this.f1436b).r0();
-                return;
-            case 23:
-                m8 m8Var = (m8) this.f1436b;
-                s4.c0 c0Var = m8Var.f30449r;
-                m8.P(m8Var);
-                m8Var.K0();
-                if (!m8Var.f30436f) {
-                    int L0 = c0Var.L0();
-                    int i18 = 0;
-                    if (m8Var.f30454u0) {
-                        L0 = Math.max(0, L0 - 1);
-                    }
-                    if (L0 != -1) {
-                        i18 = Math.abs(c0Var.N0() - L0) + 1;
-                    }
-                    int h = recyclerView.getAdapter().h();
-                    MediaController.getInstance().getPlayingMessageObject();
-                    if (SharedConfig.playOrderReversed) {
-                        if (L0 < 10) {
-                            MediaController.getInstance().loadMoreMusic();
-                            return;
-                        }
-                        return;
-                    } else if (L0 + i18 > h - 10) {
-                        MediaController.getInstance().loadMoreMusic();
-                        return;
-                    } else {
-                        return;
-                    }
+        }
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        float f7;
+        switch (this.f832a) {
+            case 3:
+                RectF rectF = (RectF) this.f833b;
+                Paint paint = (Paint) this.f834c;
+                cq cqVar = (cq) this.d;
+                paint.setColor(t6.w0(t6.f21019i5, cqVar.f25140d0));
+                int left = cqVar.E[0].getLeft() - i0.L(13.0f);
+                float L = i0.L(91.0f);
+                g0 g0Var = cqVar.F;
+                if (g0Var.getVisibility() == 0) {
+                    f7 = g0Var.getAlpha() * i0.L(25.0f);
+                } else {
+                    f7 = 0.0f;
                 }
+                rectF.set(left, i0.L(5.0f), left + ((int) (L + f7)), i0.L(37.0f));
+                canvas.drawRoundRect(rectF, i0.L(16.0f), i0.L(16.0f), paint);
                 return;
-            case 24:
-                ((ww0) this.f1436b).invalidate();
+            default:
+                super.onDraw(canvas);
                 return;
-            case 25:
-                fj fjVar = (fj) this.f1436b;
-                fjVar.f30254b.f2(fjVar, i11);
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f832a) {
+            case 2:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(i0.L(32.0f), 1073741824));
                 return;
-            case 26:
-                ij ijVar = (ij) this.f1436b;
-                if (ijVar.f29340n.getChildCount() > 0) {
-                    ijVar.f30254b.f2(ijVar, i11);
-                    return;
-                }
+            default:
+                super.onMeasure(i10, i11);
                 return;
-            case 27:
-                xj xjVar = (xj) this.f1436b;
-                xjVar.f30254b.f2(xjVar, i11);
-                xjVar.R();
+        }
+    }
+
+    public b(cq cqVar, Context context) {
+        super(context);
+        this.f832a = 3;
+        this.d = cqVar;
+        this.f833b = new RectF();
+        this.f834c = new Paint(1);
+    }
+
+    public b(c2 c2Var, Context context, int i10) {
+        super(context);
+        this.f832a = 2;
+        int i11 = t6.G6;
+        p6 p6Var = c2Var.f21775b;
+        t6.w0(i11, p6Var);
+        if (i10 != 0) {
+            ImageView imageView = new ImageView(context);
+            this.f833b = imageView;
+            a7.t(imageView, i11, p6Var, PorterDuff.Mode.MULTIPLY);
+            imageView.setImageResource(i10);
+        }
+        f6 f6Var = new f6(context, false, true, false);
+        this.f834c = f6Var;
+        f6Var.setTextSize(i0.L(13.0f));
+        a7.Z(f6Var, i11, p6Var);
+        f6Var.setIncludeFontPadding(false);
+        f6Var.setTypeface(i0.o());
+        View view = new View(context);
+        this.d = view;
+        Drawable mutate = getContext().getResources().getDrawable(2131230871).mutate();
+        a7.y(this, mutate, i11, p6Var, PorterDuff.Mode.MULTIPLY);
+        view.setBackground(mutate);
+        if (cd.X) {
+            addView(view, b6.t(16, 16, 16, 11, 0, 3, 0));
+            addView(f6Var, b6.t(-2, 16, 16, 0, 0, ((ImageView) this.f833b) != null ? 3 : 11, 0));
+            View view2 = (ImageView) this.f833b;
+            if (view2 != null) {
+                addView(view2, b6.t(16, 16, 16, 0, 0, 11, 0));
+            }
+        } else {
+            View view3 = (ImageView) this.f833b;
+            if (view3 != null) {
+                addView(view3, b6.t(16, 16, 16, 11, 0, 3, 0));
+            }
+            addView(f6Var, b6.t(-2, 16, 16, ((ImageView) this.f833b) == null ? 11 : 0, 0, 3, 0));
+            addView(view, b6.t(16, 16, 16, 0, 0, 11, 0));
+        }
+        int i12 = t6.f21020i6;
+        Drawable a02 = t6.a0(t6.w0(i12, p6Var), 16, 16);
+        w6 N = a7.N(i12);
+        setBackground(a02);
+        a7.k(this, a02, null, N, p6Var);
+        setClickable(true);
+    }
+
+    public b(c0 c0Var, Context context) {
+        super(context);
+        this.f832a = 5;
+        this.d = c0Var;
+        this.f834c = new Path();
+    }
+
+    public b(int i10, Context context, p6 p6Var) {
+        super(context);
+        this.f832a = i10;
+        switch (i10) {
+            case 6:
+                super(context);
+                setOrientation(1);
+                FrameLayout frameLayout = new FrameLayout(context);
+                frameLayout.setClipChildren(false);
+                frameLayout.setClipToPadding(false);
+                o7 o7Var = new o7(context, 70, 0, 1);
+                frameLayout.addView(o7Var, b6.c(-1.0f, -1));
+                org.telegram.ui.Wallet.a7 a7Var = new org.telegram.ui.Wallet.a7(170, context, false);
+                this.f833b = a7Var;
+                a7Var.setStarParticlesView(o7Var);
+                frameLayout.addView(a7Var, b6.d(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
+                a7Var.setPaused(false);
+                addView(frameLayout, b6.c(180.0f, -1));
+                TextView textView = new TextView(context);
+                this.f834c = textView;
+                e.t(textView, 1, 20.0f);
+                int i11 = t6.f21037j5;
+                a7.V(textView, i11, p6Var);
+                textView.setGravity(17);
+                addView(textView, b6.t(-2, -2, 1, 0, 2, 0, 0));
+                TextView textView2 = new TextView(context);
+                this.d = textView2;
+                textView2.setTextSize(1, 14.0f);
+                a7.V(textView2, i11, p6Var);
+                textView2.setGravity(17);
+                addView(textView2, b6.t(-2, -2, 1, 0, 9, 0, 18));
                 return;
-            case 28:
-                nk nkVar = (nk) this.f1436b;
-                jg.e0 e0Var = nkVar.E;
-                nkVar.f30254b.f2(nkVar, i11);
-                nkVar.X();
-                s4.h0 adapter = nkVar.f30947r.getAdapter();
-                mk mkVar = nkVar.f30951y;
-                if (adapter == mkVar) {
-                    int L02 = e0Var.L0();
-                    int N0 = e0Var.N0();
-                    int abs = Math.abs(N0 - L02) + 1;
-                    int h10 = recyclerView.getAdapter().h();
-                    if (abs > 0 && N0 >= h10 - 10) {
-                        mk mkVar2 = mkVar.X.f30951y;
-                        if (!mkVar2.S && !mkVar2.V && (p0Var = mkVar.f30553y) != null) {
-                            mkVar.Z(mkVar.f30552x, mkVar.E, mkVar.F, p0Var, mkVar.J, false);
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 29:
-                ok okVar = (ok) this.f1436b;
-                okVar.f30254b.f2(okVar, i11);
-                okVar.v.setTranslationY(Math.max(0, okVar.getCurrentItemTop()));
+            default:
+                setOrientation(1);
+                FrameLayout frameLayout2 = new FrameLayout(context);
+                frameLayout2.setClipChildren(false);
+                frameLayout2.setClipToPadding(false);
+                frameLayout2.addView(new o7(context, 70, 0, 0), b6.c(-1.0f, -1));
+                g9 g9Var = new g9(context);
+                this.f833b = g9Var;
+                g9Var.setRoundRadius(i0.L(50.0f));
+                frameLayout2.addView(g9Var, b6.d(100, 100.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
+                addView(frameLayout2, b6.c(150.0f, -1));
+                TextView textView3 = new TextView(context);
+                this.f834c = textView3;
+                e.t(textView3, 1, 20.0f);
+                int i12 = t6.f21037j5;
+                a7.V(textView3, i12, p6Var);
+                textView3.setGravity(17);
+                addView(textView3, b6.t(-2, -2, 1, 0, 2, 0, 0));
+                p80 p80Var = new p80(context, p6Var);
+                this.d = p80Var;
+                a7.H(p80Var, t6.Uc, p6Var);
+                p80Var.setTextSize(1, 14.0f);
+                a7.V(p80Var, i12, p6Var);
+                p80Var.setGravity(17);
+                addView(p80Var, b6.t(-2, -2, 1, 0, 9, 0, 18));
                 return;
         }
     }

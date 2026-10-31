@@ -1,29 +1,48 @@
 package org.telegram.ui.Components;
+public final class v0 implements org.telegram.ui.ActionBar.u1 {
+    public final int f31104a;
+    public final Runnable f31105b;
 
-import java.util.function.ToLongFunction;
-import org.telegram.messenger.MessageObject;
-public final class v0 implements ToLongFunction {
-    public final int f33501a;
-
-    public v0(int i10) {
-        this.f33501a = i10;
+    public v0(int i10, Runnable runnable) {
+        this.f31104a = i10;
+        this.f31105b = runnable;
     }
 
     @Override
-    public final long applyAsLong(Object obj) {
-        switch (this.f33501a) {
+    public final void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
+        switch (this.f31104a) {
             case 0:
-                return ((MessageObject) obj).getFromChatId();
-            case 1:
-                MessageObject messageObject = ((org.telegram.ui.v91) obj).f44217b;
-                if (messageObject == null) {
-                    return 0L;
+                Runnable runnable = this.f31105b;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
                 }
-                return messageObject.messageOwner.date;
+                return;
+            case 1:
+                Runnable runnable2 = this.f31105b;
+                if (runnable2 != null) {
+                    runnable2.run();
+                    return;
+                }
+                return;
             case 2:
-                return ((org.telegram.ui.Wallet.s7) obj).I;
+                this.f31105b.run();
+                return;
+            case 3:
+                this.f31105b.run();
+                return;
+            case 4:
+                this.f31105b.run();
+                x1Var.dismiss();
+                return;
             default:
-                return ((org.telegram.ui.Wallet.s7) obj).J;
+                x1Var.dismiss();
+                Runnable runnable3 = this.f31105b;
+                if (runnable3 != null) {
+                    runnable3.run();
+                    return;
+                }
+                return;
         }
     }
 }

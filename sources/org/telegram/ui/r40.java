@@ -1,26 +1,13 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-public final class r40 extends org.telegram.ui.Components.nr0 {
-    public final x50 f42846a1;
-
-    public r40(x50 x50Var, Context context, String str, String str2, String str3, String str4) {
-        super(context, null, str, str2, false, str3, str4, true);
-        this.f42846a1 = x50Var;
-    }
-
+import android.view.View;
+public final class r40 extends org.telegram.ui.Cells.b4 {
     @Override
-    public final void T0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        if (!z10) {
-            return;
-        }
-        int m10 = hVar.m();
-        x50 x50Var = this.f42846a1;
-        if (m10 == 1) {
-            x50Var.k1().m(((TLRPC.Dialog) hVar.n(0)).f22032id, Integer.valueOf(i10), 41);
+    public final void onMeasure(int i10, int i11) {
+        if (org.telegram.messenger.i0.Q1()) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.i0.L(420.0f), View.MeasureSpec.getSize(i10)), 1073741824), i11);
         } else {
-            x50Var.k1().k(0L, 41, Integer.valueOf(i10), Integer.valueOf(hVar.m()), null, null);
+            super.onMeasure(i10, i11);
         }
     }
 }

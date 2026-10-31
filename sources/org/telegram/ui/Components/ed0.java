@@ -1,12 +1,5 @@
 package org.telegram.ui.Components;
-
-import android.view.View;
-public interface ed0 {
-    void addOnLayoutChangeListener(View.OnLayoutChangeListener onLayoutChangeListener);
-
-    int getMeasuredHeight();
-
-    int getTop();
-
-    void removeOnLayoutChangeListener(View.OnLayoutChangeListener onLayoutChangeListener);
+public final class ed0 {
+    public float f25764a;
+    public float f25765b;
 }

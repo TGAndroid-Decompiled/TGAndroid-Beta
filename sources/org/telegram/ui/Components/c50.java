@@ -1,28 +1,16 @@
 package org.telegram.ui.Components;
+public final class c50 {
+    public final boolean f24985a;
+    public final int f24986b;
+    public final int f24987c;
+    public final long d;
+    public final long e;
 
-import android.content.Intent;
-import java.util.ArrayList;
-import org.telegram.messenger.FileLog;
-public final class c50 implements org.telegram.ui.bq0 {
-    public final g50 f27075a;
-
-    public c50(g50 g50Var) {
-        this.f27075a = g50Var;
-    }
-
-    @Override
-    public final void a(ArrayList arrayList) {
-        g50.a(this.f27075a, false, arrayList);
-    }
-
-    @Override
-    public final void b() {
-        try {
-            Intent intent = new Intent("android.intent.action.GET_CONTENT");
-            intent.setType("image/*");
-            this.f27075a.f28388a.startActivityForResult(intent, 14);
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
+    public c50(int i10, int i11, long j10, long j11, boolean z10) {
+        this.f24985a = z10;
+        this.f24986b = i10;
+        this.f24987c = i11;
+        this.d = j10;
+        this.e = j11;
     }
 }

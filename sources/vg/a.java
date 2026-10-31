@@ -1,105 +1,70 @@
 package vg;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.text.SpannableString;
-import android.text.TextPaint;
-import android.text.style.ReplacementSpan;
-import android.util.Pair;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.ui.Cells.s1;
-import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.r6;
-public final class a extends ReplacementSpan {
-    public final Drawable f50149a;
-    public final Drawable f50150b;
-    public boolean f50151c;
-    public boolean d;
-    public final r6 e;
-    public final TextPaint f50152f;
-    public final int h;
+import android.graphics.Shader;
+import java.lang.ref.WeakReference;
+import org.telegram.ui.ActionBar.t6;
+import w7.k8;
+public final class a extends k8 {
+    public final Paint f50813a;
+    public final Paint f50814b;
+    public final Matrix f50815c;
+    public WeakReference d;
+    public BitmapShader e;
+    public final f f50816f;
 
-    public a(s1 s1Var, TextPaint textPaint, int i10) {
-        this.f50152f = textPaint;
-        r6 r6Var = new r6(false, false, true);
-        this.e = r6Var;
-        r6Var.n(0.3f, 250L, ds.h);
-        r6Var.setCallback(s1Var);
-        r6Var.w(AndroidUtilities.dp(11.5f));
-        r6Var.x(AndroidUtilities.bold());
-        r6Var.t("", true, true);
-        r6Var.f32142b = 17;
-        Drawable mutate = s1Var.getContext().getDrawable(R.drawable.mini_boost_profile_badge).mutate();
-        this.f50149a = mutate;
-        Drawable mutate2 = s1Var.getContext().getDrawable(R.drawable.mini_boost_profile_badge2).mutate();
-        this.f50150b = mutate2;
-        mutate.setBounds(0, 0, mutate.getIntrinsicWidth(), mutate.getIntrinsicHeight());
-        mutate2.setBounds(0, 0, mutate2.getIntrinsicWidth(), mutate2.getIntrinsicHeight());
-        this.h = i10;
-        r6Var.t(i10 > 1 ? String.valueOf(i10) : "", false, true);
-    }
-
-    public static Pair a(s1 s1Var, TextPaint textPaint, int i10) {
-        SpannableString spannableString = new SpannableString("d");
-        a aVar = new a(s1Var, textPaint, i10);
-        spannableString.setSpan(aVar, 0, 1, 33);
-        return new Pair(spannableString, aVar);
-    }
-
-    public final int b() {
-        int i10;
-        if (this.d) {
-            i10 = 8;
-        } else {
-            i10 = 0;
-        }
-        return (int) (this.e.e() + AndroidUtilities.dp(i10 + 16));
+    public a(f fVar) {
+        this.f50816f = fVar;
+        Paint paint = new Paint(1);
+        this.f50813a = paint;
+        this.f50814b = new Paint(1);
+        this.f50815c = new Matrix();
+        this.d = new WeakReference(null);
+        paint.setFilterBitmap(true);
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        int i15;
-        TextPaint textPaint = this.f50152f;
-        int color = textPaint.getColor();
-        r6 r6Var = this.e;
-        int color2 = r6Var.f32140a.getColor();
-        Drawable drawable = this.f50150b;
-        Drawable drawable2 = this.f50149a;
-        if (color != color2) {
-            r6Var.u(textPaint.getColor());
-            int color3 = r6Var.f32140a.getColor();
-            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-            drawable2.setColorFilter(new PorterDuffColorFilter(color3, mode));
-            drawable.setColorFilter(new PorterDuffColorFilter(r6Var.f32140a.getColor(), mode));
+    public final void b(Canvas canvas, hi.a aVar) {
+        hi.b bVar = (hi.b) f.u(aVar);
+        f fVar = this.f50816f;
+        int i10 = fVar.f6649c;
+        Bitmap bitmap = bVar.d;
+        Object obj = this.d.get();
+        Paint paint = this.f50813a;
+        if (bitmap != obj) {
+            this.d = new WeakReference(bitmap);
+            if (bitmap != null && !bitmap.isRecycled()) {
+                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
+                this.e = bitmapShader;
+                paint.setShader(bitmapShader);
+            } else {
+                this.e = null;
+                paint.setShader(null);
+            }
         }
-        canvas.save();
-        if (this.d && !this.f50151c) {
-            i15 = AndroidUtilities.dp(8.0f);
-        } else {
-            i15 = 0;
+        if (Color.alpha(fVar.f50845r) > 0) {
+            fVar.Y.c(canvas, 0);
         }
-        canvas.translate(f7 + i15, -AndroidUtilities.dp(0.2f));
-        if (this.h == 1) {
-            canvas.translate(AndroidUtilities.dp(1.5f), 0.0f);
-            drawable2.draw(canvas);
-        } else {
-            drawable.draw(canvas);
+        if (this.e != null && bitmap != null && !bitmap.isRecycled() && i10 > 0) {
+            Matrix matrix = bVar.f7706b;
+            Matrix matrix2 = this.f50815c;
+            matrix2.set(matrix);
+            matrix2.postTranslate(-fVar.d, -fVar.e);
+            this.e.setLocalMatrix(matrix2);
+            paint.setAlpha(i10);
+            fVar.M.b(canvas, paint);
         }
-        canvas.translate(AndroidUtilities.dp(16.0f), 0.0f);
-        Rect rect = AndroidUtilities.rectTmp2;
-        rect.set(0, 0, (int) r6Var.c(), (int) r6Var.e);
-        r6Var.setBounds(rect);
-        r6Var.draw(canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        return b();
+        int r12 = t6.r1(i10 / 255.0f, fVar.f50846s);
+        if (Color.alpha(r12) > 0) {
+            Paint paint2 = this.f50814b;
+            paint2.setColor(r12);
+            fVar.M.b(canvas, paint2);
+        }
     }
 }

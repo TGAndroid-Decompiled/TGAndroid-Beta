@@ -1,40 +1,40 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class r6 implements Runnable {
-    public final int f42858a;
-    public final boolean[] f42859b;
-    public final v6 f42860c;
-    public final long[] d;
-    public final s6 e;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.View;
+import java.util.HashSet;
+public final class r6 extends View implements org.telegram.ui.ActionBar.k6 {
+    public Paint f41136a;
+    public Paint f41137b;
+    public float f41138c;
+    public org.telegram.ui.Components.t5 d;
 
-    public r6(boolean[] zArr, v6 v6Var, long[] jArr, s6 s6Var, int i10) {
-        this.f42858a = i10;
-        this.f42859b = zArr;
-        this.f42860c = v6Var;
-        this.d = jArr;
-        this.e = s6Var;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        RectF rectF = org.telegram.messenger.i0.P;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawRoundRect(rectF, org.telegram.messenger.i0.L(3.0f), org.telegram.messenger.i0.L(3.0f), this.f41137b);
+        rectF.set(0.0f, 0.0f, this.d.e(false, this.f41138c) * getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawRoundRect(rectF, org.telegram.messenger.i0.L(3.0f), org.telegram.messenger.i0.L(3.0f), this.f41136a);
     }
 
     @Override
-    public final void run() {
-        switch (this.f42858a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new r6(this.f42859b, this.f42860c, this.d, this.e, 1));
-                return;
-            default:
-                this.f42859b[0] = true;
-                this.f42860c.a(1.0f);
-                long[] jArr = this.d;
-                int i10 = (jArr[0] > 0L ? 1 : (jArr[0] == 0L ? 0 : -1));
-                s6 s6Var = this.e;
-                if (i10 > 0) {
-                    AndroidUtilities.runOnUIThread(new bu0(s6Var, 16), Math.max(0L, 1000 - (System.currentTimeMillis() - jArr[0])));
-                    return;
-                } else {
-                    s6Var.dismiss();
-                    return;
-                }
+    public final void updateColors() {
+        try {
+            Paint paint = this.f41136a;
+            int i10 = org.telegram.ui.ActionBar.t6.N6;
+            paint.setColor(org.telegram.ui.ActionBar.t6.x0(null, i10, false));
+            this.f41137b.setColor(org.telegram.ui.ActionBar.t6.r1(0.2f, org.telegram.ui.ActionBar.t6.x0(null, i10, false)));
+            invalidate();
+        } catch (Exception e) {
+            org.telegram.messenger.f8.g(e, true);
         }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

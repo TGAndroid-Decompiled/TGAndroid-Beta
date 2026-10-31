@@ -1,70 +1,67 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
+import android.content.Context;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class jn0 extends FrameLayout {
-    public TextView f40567a;
-    public TextView f40568b;
-    public ImageView f40569c;
-    public boolean d;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class jn0 extends i31 {
+    public final mn0 f38554e2;
+    public final z21[] f38555f2;
+    public final nn0 f38556g2;
 
-    public final void a(String str, boolean z10) {
-        this.f40567a.setText(str);
-        this.f40568b.setText("");
-        this.d = z10;
-        setWillNotDraw(!z10);
+    public jn0(nn0 nn0Var, org.telegram.ui.ActionBar.k2 k2Var, Context context, Integer num, int i10, org.telegram.ui.ActionBar.p6 p6Var, int i11, int i12, mn0 mn0Var, z21[] z21VarArr) {
+        super(k2Var, context, true, num, i10, true, p6Var, i11, i12);
+        this.f38556g2 = nn0Var;
+        this.f38554e2 = mn0Var;
+        this.f38555f2 = z21VarArr;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float dp;
-        int i10;
-        if (this.d) {
-            if (LocaleController.isRTL) {
-                dp = 0.0f;
-            } else {
-                dp = AndroidUtilities.dp(20.0f);
-            }
-            float f7 = dp;
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (LocaleController.isRTL) {
-                i10 = AndroidUtilities.dp(20.0f);
-            } else {
-                i10 = 0;
-            }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.y6.f23479k0);
-        }
+    public final float getScrimDrawableTranslationY() {
+        return 0.0f;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.d ? 1 : 0), 1073741824));
-    }
-
-    public void setChecked(boolean z10) {
-        int i10;
-        ImageView imageView = this.f40569c;
-        if (z10) {
-            i10 = 0;
+    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        long longValue;
+        nn0 nn0Var = this.f38556g2;
+        if (tL_starGiftUnique != null) {
+            if (nn0Var.m0 == 0) {
+                TLRPC.PeerColor peerColor = tL_starGiftUnique.peer_color;
+                if (peerColor instanceof TLRPC.TL_peerColorCollectible) {
+                    nn0Var.f40003s = (TLRPC.TL_peerColorCollectible) peerColor;
+                    nn0Var.f40002r = null;
+                } else {
+                    return;
+                }
+            } else {
+                nn0Var.f40003s = null;
+                nn0Var.f40002r = org.telegram.messenger.vp.q0(tL_starGiftUnique);
+            }
+            nn0Var.I = null;
+            nn0Var.h = -1;
         } else {
-            i10 = 4;
+            if (l4 == null) {
+                longValue = 0;
+            } else {
+                longValue = l4.longValue();
+            }
+            nn0Var.f39998n = longValue;
+            nn0Var.f40002r = null;
+            nn0Var.f40003s = null;
+            nn0Var.I = null;
         }
-        imageView.setVisibility(i10);
-    }
-
-    public void setNeedDivider(boolean z10) {
-        this.d = z10;
-        setWillNotDraw(!z10);
-        invalidate();
-    }
-
-    public void setValue(CharSequence charSequence) {
-        this.f40568b.setText(charSequence);
+        mn0 mn0Var = this.f38554e2;
+        if (mn0Var != null) {
+            mn0Var.b(true);
+        }
+        nn0Var.j(true);
+        nn0Var.i();
+        nn0Var.f(true);
+        z21 z21Var = this.f38555f2[0];
+        if (z21Var != null) {
+            nn0Var.f40000o0 = null;
+            z21Var.dismiss();
+        }
     }
 }

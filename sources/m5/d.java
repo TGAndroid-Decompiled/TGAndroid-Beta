@@ -1,14 +1,32 @@
 package m5;
-public final class d implements ka.d {
-    public static final d f18318a = new Object();
-    public static final ka.c f18319b = new ka.c("logSource", ic.a.m(ic.a.l(na.d.class, new na.a(1))));
-    public static final ka.c f18320c = new ka.c("logEventDropped", ic.a.m(ic.a.l(na.d.class, new na.a(2))));
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        p5.e eVar = (p5.e) obj;
-        ka.e eVar2 = (ka.e) obj2;
-        eVar2.a(f18319b, eVar.f46845a);
-        eVar2.a(f18320c, eVar.f46846b);
+import android.content.Context;
+import com.google.android.datatransport.cct.CctBackendFactory;
+import java.util.HashMap;
+import li.k;
+public final class d {
+    public final m4.c f13009a;
+    public final k f13010b;
+    public final HashMap f13011c;
+
+    public d(Context context, k kVar) {
+        m4.c cVar = new m4.c(context);
+        this.f13011c = new HashMap();
+        this.f13009a = cVar;
+        this.f13010b = kVar;
+    }
+
+    public final synchronized f a(String str) {
+        if (this.f13011c.containsKey(str)) {
+            return (f) this.f13011c.get(str);
+        }
+        CctBackendFactory E = this.f13009a.E(str);
+        if (E == null) {
+            return null;
+        }
+        k kVar = this.f13010b;
+        f create = E.create(new b((Context) kVar.f12100b, (u5.a) kVar.f12101c, (u5.a) kVar.d, str));
+        this.f13011c.put(str, create);
+        return create;
     }
 }

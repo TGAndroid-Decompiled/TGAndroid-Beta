@@ -1,106 +1,169 @@
 package org.telegram.ui.Cells;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.text.SpannableStringBuilder;
-import android.view.ActionMode;
-import android.view.Menu;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.a21;
-import org.telegram.ui.Components.r61;
-import org.telegram.ui.Components.ru;
-import org.telegram.ui.Components.ww0;
-public final class b3 extends ru {
-    public final org.telegram.ui.ActionBar.u6 V;
-    public final boolean W;
-    public final d3 f23898a0;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.ViewSwitcher;
+import java.util.ArrayList;
+import org.telegram.messenger.cd;
+import org.telegram.messenger.d20;
+import org.telegram.messenger.vp;
+import org.telegram.messenger.z20;
+import org.telegram.ui.Components.a01;
+import org.telegram.ui.Components.ei0;
+import org.telegram.ui.Components.vs;
+public final class b3 extends LinearLayout {
+    public static final int f21709x = 0;
+    public float f21710a;
+    public Runnable f21711b;
+    public q0.a f21712c;
+    public boolean d;
+    public ValueAnimator e;
+    public final ei0 f21713f;
+    public final TextView h;
+    public final a01 f21714n;
+    public int f21715r;
+    public int f21716s;
+    public final int f21717w;
 
-    public b3(d3 d3Var, Context context, ww0 ww0Var, org.telegram.ui.ActionBar.u6 u6Var, boolean z10) {
-        super(context, ww0Var, null, 4, true, null);
-        this.f23898a0 = d3Var;
-        this.V = u6Var;
-        this.W = z10;
+    public b3(final Context context) {
+        super(context);
+        this.f21715r = -1;
+        this.f21717w = d20.f15147s0;
+        setGravity(17);
+        setOrientation(1);
+        setOnTouchListener(new org.telegram.ui.ActionBar.n2(4));
+        ?? imageView = new ImageView(context);
+        this.f21713f = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        addView((View) imageView, w7.b6.d(100, 100.0f, 17, 52.0f, 4.0f, 52.0f, 0.0f));
+        imageView.setOnClickListener(new a(this, 3));
+        TextView textView = new TextView(context);
+        this.h = textView;
+        org.telegram.messenger.m5.m(textView, org.telegram.ui.ActionBar.t6.f21098m9, null, 1, 20.0f);
+        textView.setGravity(17);
+        addView(textView, w7.b6.d(-1, -2.0f, 51, 52.0f, 10.0f, 52.0f, 0.0f));
+        ?? viewSwitcher = new ViewSwitcher(context);
+        this.f21714n = viewSwitcher;
+        viewSwitcher.setFactory(new ViewSwitcher.ViewFactory() {
+            @Override
+            public final View makeView() {
+                TextView textView2 = new TextView(context);
+                org.telegram.ui.ActionBar.a7.V(textView2, org.telegram.ui.ActionBar.t6.f20988g9, null);
+                textView2.setTextSize(1, 14.0f);
+                textView2.setGravity(17);
+                textView2.setLineSpacing(org.telegram.messenger.i0.L(2.0f), 1.0f);
+                return textView2;
+            }
+        });
+        viewSwitcher.setInAnimation(context, 2130771980);
+        viewSwitcher.setOutAnimation(context, 2130771981);
+        addView((View) viewSwitcher, w7.b6.d(-1, -2.0f, 51, 52.0f, 7.0f, 52.0f, 0.0f));
     }
 
-    @Override
-    public final boolean a() {
-        if (this.f23898a0.f24007r && super.a()) {
-            return true;
+    public final void a(boolean z10) {
+        ValueAnimator valueAnimator = this.e;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
         }
-        return false;
+        this.d = true;
+        if (z10) {
+            String L0 = cd.L0(2131748246, null);
+            if (org.telegram.messenger.i0.Q1() && !org.telegram.messenger.i0.P1()) {
+                L0 = L0.replace('\n', ' ');
+            }
+            this.f21714n.a(L0, true, false);
+        }
+        ValueAnimator duration = ValueAnimator.ofFloat(this.f21710a, 1.0f).setDuration(250L);
+        this.e = duration;
+        duration.setInterpolator(vs.d);
+        this.e.addUpdateListener(new z2(this, 0));
+        this.e.addListener(new a3(this, 1));
+        this.e.start();
+    }
+
+    public final void b() {
+        int i10;
+        int i11 = 0;
+        if ((getParent() instanceof View) && (((i10 = this.f21715r) == 2 || i10 == 3) && ((View) getParent()).getPaddingTop() != 0)) {
+            i11 = 0 - (getTop() / 2);
+        }
+        int i12 = this.f21715r;
+        if (i12 == 0 || i12 == 1) {
+            i11 -= (int) ((1.0f - this.f21710a) * (org.telegram.ui.ActionBar.l.getCurrentActionBarHeight() / 2.0f));
+        }
+        float f7 = i11;
+        this.f21713f.setTranslationY(f7);
+        this.h.setTranslationY(f7);
+        this.f21714n.setTranslationY(f7);
     }
 
     @Override
-    public final int h() {
-        return this.f23898a0.a();
+    public final void offsetTopAndBottom(int i10) {
+        super.offsetTopAndBottom(i10);
+        b();
     }
 
     @Override
-    public final void i(ActionMode actionMode, Menu menu) {
-        if (menu.findItem(R.id.menu_bold) != null) {
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        b();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int size;
+        int size2;
+        int i12 = this.f21715r;
+        if (i12 != 0 && i12 != 1) {
+            if (i12 != 2 && i12 != 3) {
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(166.0f), 1073741824));
+                return;
+            }
+            if (getParent() instanceof View) {
+                View view = (View) getParent();
+                size2 = view.getMeasuredHeight();
+                if (view.getPaddingTop() != 0) {
+                    size2 -= org.telegram.messenger.i0.f16020m;
+                }
+            } else {
+                size2 = View.MeasureSpec.getSize(i11);
+            }
+            if (size2 == 0) {
+                size2 = (org.telegram.messenger.i0.f16026q.y - org.telegram.ui.ActionBar.l.getCurrentActionBarHeight()) - org.telegram.messenger.i0.f16020m;
+            }
+            if (getParent() instanceof org.telegram.ui.Components.r9) {
+                size2 -= ((org.telegram.ui.Components.r9) getParent()).f29884e3;
+            }
+            ArrayList arrayList = vp.r1(this.f21717w).f18893s;
+            if (!arrayList.isEmpty()) {
+                int L = org.telegram.messenger.i0.L(72.0f);
+                size2 = z20.w(50.0f, (arrayList.size() + (arrayList.size() * L)) - 1, size2);
+            }
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
             return;
         }
-        menu.removeItem(16908341);
-        menu.add(R.id.menu_groupbolditalic, R.id.menu_spoiler, 6, LocaleController.getString(R.string.Spoiler));
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(R.string.Bold));
-        spannableStringBuilder.setSpan(new r61(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
-        menu.add(R.id.menu_groupbolditalic, R.id.menu_bold, 7, spannableStringBuilder);
-        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(LocaleController.getString(R.string.Italic));
-        spannableStringBuilder2.setSpan(new r61(AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
-        menu.add(R.id.menu_groupbolditalic, R.id.menu_italic, 8, spannableStringBuilder2);
-        SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(LocaleController.getString(R.string.Strike));
-        ?? obj = new Object();
-        obj.f35208a |= 8;
-        spannableStringBuilder3.setSpan(new a21(obj, 0), 0, spannableStringBuilder3.length(), 33);
-        menu.add(R.id.menu_groupbolditalic, R.id.menu_strike, 9, spannableStringBuilder3);
-        menu.add(R.id.menu_groupbolditalic, R.id.menu_regular, 10, LocaleController.getString(R.string.Regular));
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f7;
-        int i10;
-        canvas.save();
-        int i11 = 0;
-        canvas.clipRect(getPaddingLeft() + getScrollX(), 0, (getWidth() + getScrollX()) - getPaddingRight(), getHeight());
-        super.onDraw(canvas);
-        canvas.restore();
-        d3 d3Var = this.f23898a0;
-        org.telegram.ui.Components.r6 r6Var = d3Var.f24009w;
-        org.telegram.ui.Components.j5 j5Var = d3Var.f24008s;
-        if (j5Var != null) {
-            if (d3Var.v <= 0) {
-                i10 = org.telegram.ui.ActionBar.y6.f23582p7;
-            } else {
-                i10 = org.telegram.ui.ActionBar.y6.P5;
-            }
-            r6Var.u(j5Var.a(org.telegram.ui.ActionBar.y6.w0(i10, this.V), false));
-        }
-        int min = Math.min(AndroidUtilities.dp(48.0f), getHeight());
-        boolean z10 = this.W;
-        if (z10) {
-            f7 = 0.0f;
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
+        if (getParent() instanceof View) {
+            View view2 = (View) getParent();
+            size = (view2.getMeasuredHeight() - view2.getPaddingTop()) - view2.getPaddingBottom();
         } else {
-            f7 = -AndroidUtilities.dp(1.0f);
+            size = View.MeasureSpec.getSize(i11);
         }
-        float scrollX = getScrollX();
-        float height = (getHeight() + f7) - min;
-        int width = getWidth() + getScrollX();
-        if (!z10) {
-            i11 = 44;
+        if (size == 0) {
+            size = (org.telegram.messenger.i0.f16026q.y - org.telegram.ui.ActionBar.l.getCurrentActionBarHeight()) - org.telegram.messenger.i0.f16020m;
         }
-        r6Var.o(scrollX, height, width - AndroidUtilities.dp(i11 + 12), f7 + getHeight());
-        r6Var.draw(canvas);
+        super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec((int) (((org.telegram.messenger.i0.L(320.0f) - size) * this.f21710a) + size), 1073741824));
     }
 
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f23898a0.f24009w && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
+    public void setOnUtyanAnimationEndListener(Runnable runnable) {
+        this.f21711b = runnable;
+    }
+
+    public void setOnUtyanAnimationUpdateListener(q0.a aVar) {
+        this.f21712c = aVar;
     }
 }

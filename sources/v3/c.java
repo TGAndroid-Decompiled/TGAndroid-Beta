@@ -3,21 +3,21 @@ package v3;
 import android.util.Pair;
 import c3.a0;
 import c3.c0;
-import e2.n0;
+import e2.l0;
 public final class c implements h {
-    public final long[] f50069a;
-    public final long[] f50070b;
-    public final long f50071c;
+    public final long[] f50334a;
+    public final long[] f50335b;
+    public final long f50336c;
 
     public c(long j10, long[] jArr, long[] jArr2) {
-        this.f50069a = jArr;
-        this.f50070b = jArr2;
-        this.f50071c = j10 == -9223372036854775807L ? n0.S(jArr2[jArr2.length - 1]) : j10;
+        this.f50334a = jArr;
+        this.f50335b = jArr2;
+        this.f50336c = j10 == -9223372036854775807L ? l0.S(jArr2[jArr2.length - 1]) : j10;
     }
 
     public static Pair i(long j10, long[] jArr, long[] jArr2) {
         double d;
-        int f7 = n0.f(jArr, j10, true);
+        int f7 = l0.f(jArr, j10, true);
         long j11 = jArr[f7];
         long j12 = jArr2[f7];
         int i10 = f7 + 1;
@@ -36,7 +36,7 @@ public final class c implements h {
 
     @Override
     public final long a(long j10) {
-        return n0.S(((Long) i(j10, this.f50069a, this.f50070b).second).longValue());
+        return l0.S(((Long) i(j10, this.f50334a, this.f50335b).second).longValue());
     }
 
     @Override
@@ -61,8 +61,8 @@ public final class c implements h {
 
     @Override
     public final a0 f(long j10) {
-        Pair i10 = i(n0.h0(n0.j(j10, 0L, this.f50071c)), this.f50070b, this.f50069a);
-        c0 c0Var = new c0(n0.S(((Long) i10.first).longValue()), ((Long) i10.second).longValue());
+        Pair i10 = i(l0.h0(l0.j(j10, 0L, this.f50336c)), this.f50335b, this.f50334a);
+        c0 c0Var = new c0(l0.S(((Long) i10.first).longValue()), ((Long) i10.second).longValue());
         return new a0(c0Var, c0Var);
     }
 
@@ -73,6 +73,6 @@ public final class c implements h {
 
     @Override
     public final long h() {
-        return this.f50071c;
+        return this.f50336c;
     }
 }

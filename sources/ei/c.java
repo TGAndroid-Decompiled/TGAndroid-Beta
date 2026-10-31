@@ -1,146 +1,110 @@
 package ei;
 
+import android.graphics.ColorFilter;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Rect;
 import android.graphics.RectF;
-import android.view.WindowManager;
-import di.s8;
-import fi.eb;
-import fi.p9;
-import fi.rb;
-import fi.sb;
-import fi.w7;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.gh;
-import org.telegram.ui.Components.ri;
-import org.telegram.ui.Components.ti;
-public final class c implements ri {
-    public final ti f9978a;
-    public final String f9979b;
-    public final v f9980c;
+import android.graphics.RenderEffect;
+import android.graphics.RenderNode;
+import android.graphics.Shader;
+import c3.i0;
+import e0.f0;
+public final class c {
+    public final RenderNode e;
+    public final RenderNode f6610f;
+    public final RenderNode f6611g;
+    public final RenderNode h;
+    public final RenderNode f6612i;
+    public ColorFilter f6613j;
+    public int f6614k;
+    public int f6615l;
+    public int f6616m;
+    public int f6617n;
+    public int f6618o;
+    public int f6619p;
+    public float f6622s;
+    public float f6623t;
+    public int f6624u;
+    public int v;
+    public int f6625w;
+    public int f6626x;
+    public final RectF f6607a = new RectF();
+    public final Rect f6608b = new Rect();
+    public final RectF f6609c = new RectF();
+    public final RectF d = new RectF();
+    public int f6620q = 1;
+    public final RectF f6621r = new RectF();
 
-    public c(v vVar, ti tiVar, String str) {
-        this.f9980c = vVar;
-        this.f9978a = tiVar;
-        this.f9979b = str;
+    public c(int i10) {
+        RenderNode renderNode = new RenderNode("cap-" + i10);
+        this.e = renderNode;
+        renderNode.setUseCompositingLayer(true, null);
+        RenderNode renderNode2 = new RenderNode("glass-" + i10);
+        this.f6610f = renderNode2;
+        renderNode2.setRenderEffect(f0.d());
+        this.f6611g = new RenderNode("glass-frosted-" + i10);
+        RenderNode renderNode3 = new RenderNode("filtered-" + i10);
+        this.h = renderNode3;
+        renderNode3.setRenderEffect(RenderEffect.createColorFilterEffect(e.v));
+        this.f6612i = new RenderNode("frosted-filtered-" + i10);
     }
 
-    @Override
-    public final void A(gh ghVar) {
-        ghVar.run();
-    }
-
-    @Override
-    public final boolean E() {
-        return false;
-    }
-
-    @Override
-    public final void p0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
-        int i13;
-        rb rbVar;
-        v vVar = this.f9980c;
-        long j12 = vVar.d;
-        ti tiVar = this.f9978a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f33002j0;
-        if (!chatAttachAlertPhotoLayout.getSelectedPhotos().isEmpty()) {
-            HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
-            chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
-            if (selectedPhotos.size() == 1) {
-                Object next = selectedPhotos.values().iterator().next();
-                if (next instanceof MediaController.PhotoEntry) {
-                    w7 l4 = w7.l((MediaController.PhotoEntry) next);
-                    l4.J0 = j12;
-                    String str = this.f9979b;
-                    l4.K0 = str;
-                    l4.A();
-                    sb D = sb.D(vVar.f10014a.getParentActivity(), vVar.f10015b);
-                    RectF rectF = D.H;
-                    WindowManager.LayoutParams layoutParams = D.h;
-                    int i14 = D.f11611c;
-                    WindowManager windowManager = D.f11621f;
-                    if (!D.d) {
-                        if (MessagesController.getInstance(i14).isFrozen()) {
-                            org.telegram.ui.b.b(i14);
-                        } else {
-                            D.f11671v0 = j12;
-                            D.f11675w0 = str;
-                            D.f11668u0 = false;
-                            D.e = false;
-                            D.B2 = false;
-                            if (windowManager != null && (rbVar = D.f11644n) != null && rbVar.getParent() == null) {
-                                AndroidUtilities.setPreferredMaxRefreshRate(windowManager, D.f11644n, layoutParams);
-                                windowManager.addView(D.f11644n, layoutParams);
-                                D.f0();
-                            }
-                            D.K1 = l4;
-                            l4.J0 = j12;
-                            l4.K0 = str;
-                            D.O1 = l4.K ? 1 : 0;
-                            D.f11662s0.f11305g = false;
-                            D.J = 0;
-                            rectF.set(0.0f, AndroidUtilities.dp(100.0f), AndroidUtilities.displaySize.x, AndroidUtilities.dp(100.0f) + AndroidUtilities.displaySize.y);
-                            D.G = AndroidUtilities.dp(8.0f);
-                            D.f11657r.c();
-                            eb ebVar = D.f11628h0;
-                            int i15 = D.J;
-                            if (i15 != 1 && i15 != 0) {
-                                i13 = -14737633;
-                            } else {
-                                i13 = 0;
-                            }
-                            ebVar.setBackgroundColor(i13);
-                            D.f11657r.setTranslationX(0.0f);
-                            D.f11657r.setTranslationY(0.0f);
-                            D.f11657r.b(0.0f);
-                            D.f11657r.setScaleX(1.0f);
-                            D.f11657r.setScaleY(1.0f);
-                            D.K = 0.0f;
-                            AndroidUtilities.lockOrientation(D.f11607b, 1);
-                            w7 w7Var = D.K1;
-                            if (w7Var != null) {
-                                D.f11613c1.setText(w7Var.C0);
-                            }
-                            D.J(1, false);
-                            D.k0(-1, false, false);
-                            D.f11609b1.b(false, false);
-                            D.f11609b1.b(true, true);
-                            D.f(1.0f, true, new p9(D, 6));
-                            D.d();
-                        }
+    public final RenderNode a(int i10) {
+        int c10 = m1.j.c(i10);
+        if (c10 != 0) {
+            if (c10 != 1) {
+                if (c10 != 2) {
+                    if (c10 == 3) {
+                        return this.f6612i;
                     }
-                    AndroidUtilities.runOnUIThread(new s8(tiVar, 7), 400L);
+                    throw new IllegalArgumentException("Unknown source index: ".concat(i0.F(i10)));
                 }
+                return this.f6611g;
             }
+            return this.f6610f;
         }
+        return this.e;
     }
 
-    @Override
-    public final boolean x0() {
-        return true;
+    public final void b(int i10, int i11, int i12) {
+        float max;
+        float f7 = 0.0f;
+        if (this.f6618o != i10) {
+            this.f6618o = i10;
+            float N = org.telegram.messenger.i0.N(7.0f);
+            if (N <= 0.0f) {
+                max = 0.0f;
+            } else {
+                max = Math.max(0.0f, ((((N * 0.57735f) + 0.5f) / i10) - 0.5f) / 0.57735f);
+            }
+            this.f6622s = max;
+            this.e.setRenderEffect(RenderEffect.createBlurEffect(max, max, Shader.TileMode.CLAMP));
+        }
+        if (this.f6619p != i11) {
+            this.f6619p = i11;
+            float N2 = org.telegram.messenger.i0.N(36.0f);
+            if (N2 > 0.0f) {
+                f7 = Math.max(0.0f, ((((N2 * 0.57735f) + 0.5f) / i11) - 0.5f) / 0.57735f);
+            }
+            this.f6623t = f7;
+            RenderNode renderNode = this.f6611g;
+            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+            renderNode.setRenderEffect(RenderEffect.createBlurEffect(f7, f7, tileMode));
+            RenderNode renderNode2 = this.f6612i;
+            float f10 = this.f6623t;
+            renderNode2.setRenderEffect(RenderEffect.createBlurEffect(f10, f10, tileMode));
+        }
+        this.f6620q = i12;
     }
 
-    @Override
-    public final void T(Object obj) {
-    }
-
-    @Override
-    public final void Y(TLRPC.User user) {
-    }
-
-    @Override
-    public final void H() {
-    }
-
-    @Override
-    public final void R() {
-    }
-
-    @Override
-    public final void z0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11) {
+    public final void c(ColorMatrixColorFilter colorMatrixColorFilter) {
+        if (this.f6613j != colorMatrixColorFilter) {
+            this.f6613j = colorMatrixColorFilter;
+            RenderNode renderNode = this.h;
+            if (colorMatrixColorFilter == null) {
+                colorMatrixColorFilter = e.v;
+            }
+            renderNode.setRenderEffect(RenderEffect.createColorFilterEffect(colorMatrixColorFilter));
+        }
     }
 }

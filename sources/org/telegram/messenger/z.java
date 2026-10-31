@@ -1,32 +1,33 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.ChannelBoostsController;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class z implements Utilities.Callback {
-    public final int f21945a;
-    public final Object f21946b;
-    public final Object f21947c;
+import android.view.animation.Interpolator;
+public final class z implements Interpolator {
+    public final double f19462a;
+    public final double f19463b;
+    public final double f19464c;
+    public final double d;
 
-    public z(int i10, Object obj, Object obj2) {
-        this.f21945a = i10;
-        this.f21946b = obj;
-        this.f21947c = obj2;
+    public z(double d, double d10, double d11, double d12) {
+        this.f19462a = d;
+        this.f19463b = d10;
+        this.f19464c = d11;
+        this.d = d12;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f21945a) {
-            case 0:
-                ((BetaUpdaterController) this.f21946b).lambda$checkForUpdate$2((Runnable) this.f21947c, (String) obj);
-                return;
-            case 1:
-                ChannelBoostsController.lambda$userCanBoostChannel$3((ChannelBoostsController.CanApplyBoost) this.f21946b, (Utilities.Callback) this.f21947c, (TLRPC.TL_error) obj);
-                return;
-            default:
-                ((SendMessagesHelper) this.f21946b).lambda$sendMessage$51((SendMessagesHelper.SendMessageParams) this.f21947c, (Long) obj);
-                return;
+    public final float getInterpolation(float f7) {
+        double exp;
+        double d = this.f19462a;
+        int i10 = (d > 1.0d ? 1 : (d == 1.0d ? 0 : -1));
+        double d10 = this.d;
+        double d11 = this.f19463b;
+        if (i10 < 0) {
+            double exp2 = Math.exp((-f7) * d * d11);
+            double d12 = this.f19464c * f7;
+            exp = 1.0d - (((Math.sin(d12) * d10) + (Math.cos(d12) * 1.0d)) * exp2);
+        } else {
+            exp = 1.0d - (Math.exp((-f7) * d11) * ((d10 * f7) + 1.0d));
         }
+        return (float) exp;
     }
 }

@@ -1,15 +1,56 @@
 package sa;
-public final class b implements Runnable {
-    public final int f48058a;
-    public final c f48059b;
 
-    public b(c cVar, int i10) {
-        this.f48058a = i10;
-        this.f48059b = cVar;
+import android.content.SharedPreferences;
+import android.util.Base64;
+import android.util.Log;
+import java.security.KeyFactory;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.X509EncodedKeySpec;
+public final class b {
+    public static final String[] f48127c = {"*", "FCM", "GCM", ""};
+    public final SharedPreferences f48128a;
+    public final String f48129b;
+
+    public b(l9.h r4) {
+        throw new UnsupportedOperationException("Method not decompiled: sa.b.<init>(l9.h):void");
     }
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: sa.b.run():void");
+    public final String a() {
+        String string;
+        synchronized (this.f48128a) {
+            string = this.f48128a.getString("|S|id", null);
+        }
+        return string;
+    }
+
+    public final String b() {
+        PublicKey publicKey;
+        synchronized (this.f48128a) {
+            String str = null;
+            String string = this.f48128a.getString("|S||P|", null);
+            if (string == null) {
+                return null;
+            }
+            try {
+                publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(Base64.decode(string, 8)));
+            } catch (IllegalArgumentException | NoSuchAlgorithmException | InvalidKeySpecException e) {
+                Log.w("ContentValues", "Invalid key stored " + e);
+                publicKey = null;
+            }
+            if (publicKey == null) {
+                return null;
+            }
+            try {
+                byte[] digest = MessageDigest.getInstance("SHA1").digest(publicKey.getEncoded());
+                digest[0] = (byte) (((digest[0] & 15) + 112) & 255);
+                str = Base64.encodeToString(digest, 0, 8, 11);
+            } catch (NoSuchAlgorithmException unused) {
+                Log.w("ContentValues", "Unexpected error, device missing required algorithms");
+            }
+            return str;
+        }
     }
 }

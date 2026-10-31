@@ -1,23 +1,65 @@
 package dc;
 
-import a8.me;
-import sb.g;
-public final class a implements s9.d {
-    public static final a f8309b = new a(0);
-    public static final a f8310c = new a(1);
-    public final int f8311a;
+import java.io.FilterInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+public final class a extends FilterInputStream {
+    public int f5862a;
+    public int f5863b;
 
-    public a(int i10) {
-        this.f8311a = i10;
+    public a(InputStream inputStream) {
+        super(inputStream);
+        this.f5862a = -1;
+        this.f5863b = -1;
     }
 
     @Override
-    public final Object d1(me meVar) {
-        switch (this.f8311a) {
-            case 0:
-                return new c((g) meVar.a(g.class));
-            default:
-                return new b((c) meVar.a(c.class), (sb.d) meVar.a(sb.d.class));
+    public final boolean markSupported() {
+        return false;
+    }
+
+    @Override
+    public final int read() {
+        int read = super.read();
+        if (read == 3 && this.f5862a == 0 && this.f5863b == 0) {
+            this.f5862a = -1;
+            this.f5863b = -1;
+            read = super.read();
         }
+        this.f5862a = this.f5863b;
+        this.f5863b = read;
+        return read;
+    }
+
+    @Override
+    public final int read(byte[] bArr, int i10, int i11) {
+        bArr.getClass();
+        if (i10 < 0 || i11 < 0 || i11 > bArr.length - i10) {
+            throw new IndexOutOfBoundsException();
+        }
+        if (i11 == 0) {
+            return 0;
+        }
+        int read = read();
+        if (read == -1) {
+            return -1;
+        }
+        bArr[i10] = (byte) read;
+        int i12 = 1;
+        while (true) {
+            if (i12 < i11) {
+                try {
+                    int read2 = read();
+                    if (read2 == -1) {
+                        break;
+                    }
+                    bArr[i10 + i12] = (byte) read2;
+                    i12++;
+                } catch (IOException unused) {
+                }
+            }
+            return i12;
+        }
+        return i12;
     }
 }

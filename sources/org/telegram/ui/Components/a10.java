@@ -1,141 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.TextPaint;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class a10 extends View {
-    public int E;
-    public RectF F;
-    public float G;
-    public ValueAnimator H;
-    public boolean f26389a;
-    public boolean f26390b;
-    public boolean f26391c;
-    public String d;
-    public TextPaint e;
-    public Paint f26392f;
-    public Paint h;
-    public Paint f26393n;
-    public int f26394r;
-    public int f26395s;
-    public int v;
-    public int f26396w;
-    public int f26397x;
-    public int f26398y;
+import android.text.TextUtils;
+import android.view.ViewGroup;
+import org.telegram.messenger.voip.GroupCallMessage;
+public final class a10 implements ie.a {
+    public final ViewGroup f24261a;
+    public final dh.d f24262b;
 
-    public final void a(boolean z10, boolean z11) {
-        this.f26390b = z10;
-        float f7 = 0.0f;
-        if (this.f26389a && z11) {
-            ValueAnimator valueAnimator = this.H;
-            if (valueAnimator != null) {
-                valueAnimator.removeAllListeners();
-                this.H.cancel();
-            }
-            float f10 = this.G;
-            if (z10) {
-                f7 = 1.0f;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-            this.H = ofFloat;
-            ofFloat.addUpdateListener(new n6(this, 25));
-            this.H.setDuration(300L);
-            this.H.start();
-            return;
-        }
-        if (z10) {
-            f7 = 1.0f;
-        }
-        this.G = f7;
+    public a10(org.telegram.ui.Cells.a5 a5Var, GroupCallMessage groupCallMessage) {
+        dh.d dVar = new dh.d(a5Var.getContext());
+        this.f24262b = dVar;
+        dVar.setBackgroundColor(i0.b.o(-16777216, 34));
+        nh.p pVar = dVar.f5942w;
+        pVar.setMaxLines(1);
+        pVar.setSingleLine(true);
+        pVar.setEllipsize(TextUtils.TruncateAt.END);
+        dVar.set(groupCallMessage);
+        dVar.setAlpha(0.0f);
+        this.f24261a = a5Var;
+        a5Var.addView(dVar);
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        float f7;
-        Canvas canvas2;
-        int i10 = this.f26396w;
-        RectF rectF = this.F;
-        Paint paint = this.h;
-        Paint paint2 = this.f26393n;
-        Paint paint3 = this.f26392f;
-        TextPaint textPaint = this.e;
-        super.draw(canvas);
-        float f10 = this.G;
-        if (f10 <= 0.5f) {
-            f7 = f10 / 0.5f;
-            paint3.setColor(Color.rgb(Color.red(this.f26394r) + ((int) ((Color.red(this.f26395s) - Color.red(this.f26394r)) * f7)), Color.green(this.f26394r) + ((int) ((Color.green(this.f26395s) - Color.green(this.f26394r)) * f7)), Color.blue(this.f26394r) + ((int) ((Color.blue(this.f26395s) - Color.blue(this.f26394r)) * f7))));
-            textPaint.setColor(Color.rgb(Color.red(this.f26395s) + ((int) ((Color.red(this.v) - Color.red(this.f26395s)) * f7)), Color.green(this.f26395s) + ((int) ((Color.green(this.v) - Color.green(this.f26395s)) * f7)), Color.blue(this.f26395s) + ((int) ((Color.blue(this.v) - Color.blue(this.f26395s)) * f7))));
-        } else {
-            textPaint.setColor(this.v);
-            paint3.setColor(this.f26395s);
-            f7 = 1.0f;
-        }
-        int measuredHeight = getMeasuredHeight() >> 1;
-        paint.setColor(this.f26395s);
-        canvas.drawRoundRect(rectF, i10 / 2.0f, i10 / 2.0f, paint3);
-        canvas.drawRoundRect(rectF, i10 / 2.0f, i10 / 2.0f, paint);
-        String str = this.d;
-        if (str != null) {
-            canvas.drawText(str, (f7 * this.f26398y) + (getMeasuredWidth() >> 1), (textPaint.getTextSize() * 0.35f) + measuredHeight, textPaint);
-        }
-        float f11 = 2.0f - (this.G / 0.5f);
-        canvas.save();
-        canvas.scale(0.9f, 0.9f, AndroidUtilities.dpf2(7.0f), measuredHeight);
-        canvas.translate(AndroidUtilities.dp(12.0f), measuredHeight - AndroidUtilities.dp(9.0f));
-        if (this.G > 0.5f) {
-            paint2.setColor(this.v);
-            float f12 = 1.0f - f11;
-            canvas2 = canvas;
-            canvas2.drawLine(AndroidUtilities.dpf2(7.0f), (int) AndroidUtilities.dpf2(13.0f), (int) (AndroidUtilities.dpf2(7.0f) - (AndroidUtilities.dp(4.0f) * f12)), (int) (AndroidUtilities.dpf2(13.0f) - (AndroidUtilities.dp(4.0f) * f12)), paint2);
-            canvas2.drawLine((int) AndroidUtilities.dpf2(7.0f), (int) AndroidUtilities.dpf2(13.0f), (int) ((AndroidUtilities.dp(8.0f) * f12) + AndroidUtilities.dpf2(7.0f)), (int) (AndroidUtilities.dpf2(13.0f) - (AndroidUtilities.dp(8.0f) * f12)), paint2);
-        } else {
-            canvas2 = canvas;
-        }
-        canvas2.restore();
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f26389a = true;
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f26389a = false;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int measureText;
-        Paint paint = this.h;
-        RectF rectF = this.F;
-        int i12 = this.E;
-        String str = this.d;
-        if (str == null) {
-            measureText = 0;
-        } else {
-            measureText = (int) this.e.measureText(str);
-        }
-        setMeasuredDimension((i12 * 2) + measureText + (this.f26397x << 1), AndroidUtilities.dp(4.0f) + this.f26396w);
-        if (getMeasuredWidth() != 0) {
-            rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            rectF.inset((paint.getStrokeWidth() / 2.0f) + i12, (paint.getStrokeWidth() / 2.0f) + i12);
-        }
-    }
-
-    public void setChecked(boolean z10) {
-        a(z10, true);
-    }
-
-    public void setText(String str) {
-        this.d = str;
-        requestLayout();
+    public final void a() {
+        this.f24261a.removeView(this.f24262b);
     }
 }

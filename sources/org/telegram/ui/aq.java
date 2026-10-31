@@ -1,28 +1,25 @@
 package org.telegram.ui;
 
 import android.os.Bundle;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class aq implements Runnable {
-    public final int f37807a;
-    public final iq f37808b;
+    public final int f35694a;
+    public final iq f35695b;
 
     public aq(iq iqVar, int i10) {
-        this.f37807a = i10;
-        this.f37808b = iqVar;
+        this.f35694a = i10;
+        this.f35695b = iqVar;
     }
 
     @Override
     public final void run() {
         TLRPC.TL_chatAdminRights tL_chatAdminRights;
-        int i10 = this.f37807a;
-        iq iqVar = this.f37808b;
+        int i10 = this.f35694a;
+        iq iqVar = this.f35695b;
         int i11 = 1;
         switch (i10) {
             case 0:
-                TLRPC.User user = iqVar.v;
+                TLRPC.User user = iqVar.f38323w;
                 fq fqVar = iqVar.X0;
                 if (fqVar != null) {
                     if (iqVar.K) {
@@ -32,25 +29,25 @@ public final class aq implements Runnable {
                     }
                     fqVar.b(0, tL_chatAdminRights, null, iqVar.S);
                 }
-                Bundle i12 = a1.g.i("scrollToTopOnResume", true);
-                i12.putLong("chat_id", iqVar.f40255w.f22028id);
-                if (!iqVar.getMessagesController().checkCanOpenChat(i12, iqVar)) {
-                    iqVar.u0(false);
+                Bundle g10 = a1.g.g("scrollToTopOnResume", true);
+                g10.putLong("chat_id", iqVar.f38325x.f19793id);
+                if (!iqVar.getMessagesController().E(g10, iqVar, null, null)) {
+                    iqVar.x0(false);
                     return;
                 }
-                wn wnVar = new wn(i12);
-                iqVar.presentFragment(wnVar, true);
-                if (org.telegram.ui.Components.wc.a(wnVar)) {
+                un unVar = new un(g10);
+                iqVar.presentFragment(unVar, true);
+                if (org.telegram.ui.Components.cc.a(unVar)) {
                     boolean z10 = iqVar.Z0;
                     if (z10 && iqVar.K) {
                         String str = user.first_name;
-                        org.telegram.ui.Components.yb ybVar = new org.telegram.ui.Components.yb(wnVar.getParentActivity(), wnVar.f45309ua);
-                        ybVar.d(R.raw.ic_admin, "Shield");
-                        ybVar.f35028b.setText(AndroidUtilities.replaceTags(LocaleController.formatString("UserAddedAsAdminHint", R.string.UserAddedAsAdminHint, str)));
-                        org.telegram.ui.Components.qc.g(wnVar, ybVar, 1500).j();
+                        org.telegram.ui.Components.eb ebVar = new org.telegram.ui.Components.eb(unVar.getParentActivity(), unVar.f42477xa);
+                        ebVar.d(2131624047, "Shield");
+                        org.telegram.messenger.m5.q("UserAddedAsAdminHint", null, 2131743794, new Object[]{str}, ebVar.f25745b);
+                        org.telegram.ui.Components.wb.g(unVar, ebVar, 1500).j();
                         return;
                     } else if (!z10 && !iqVar.L && iqVar.K) {
-                        org.telegram.ui.Components.wc.C(wnVar, user.first_name).j();
+                        org.telegram.ui.Components.cc.C(user.first_name, unVar).j();
                         return;
                     } else {
                         return;
@@ -58,14 +55,14 @@ public final class aq implements Runnable {
                 }
                 return;
             case 1:
-                iqVar.s0(false);
+                iqVar.v0(false);
                 return;
             default:
-                if (iqVar.f40248r) {
-                    long j10 = iqVar.f40243n;
-                    org.telegram.ui.ActionBar.e2[] e2VarArr = {new org.telegram.ui.ActionBar.e2(iqVar.getParentActivity(), 3, null)};
-                    iqVar.getMessagesController().toggleChatJoinRequest(iqVar.f40250s, j10, true, false, true, new og(e2VarArr, 2), new og(e2VarArr, 3));
-                    e2VarArr[0].r(300L);
+                if (iqVar.f38316r) {
+                    long j10 = iqVar.f38311n;
+                    org.telegram.ui.ActionBar.x1[] x1VarArr = {new org.telegram.ui.ActionBar.x1(3, iqVar.getParentActivity(), null)};
+                    iqVar.getMessagesController().Z4(iqVar.f38318s, j10, true, false, true, new pg(x1VarArr, 2), new pg(x1VarArr, 3));
+                    x1VarArr[0].r(300L);
                 }
                 fq fqVar2 = iqVar.X0;
                 if (fqVar2 != null) {

@@ -1,17 +1,15 @@
 package b3;
 
-import c3.h0;
-import e2.n0;
+import e2.l0;
 import e2.x;
 import h2.h;
 import i2.b;
-import i2.e0;
+import i2.d0;
 import java.nio.ByteBuffer;
-import n4.s;
 public final class a extends b {
     public final h I;
     public final x J;
-    public e0 K;
+    public d0 K;
     public long L;
 
     public a() {
@@ -22,16 +20,16 @@ public final class a extends b {
 
     @Override
     public final int C(b2.x xVar) {
-        if ("application/x-camera-motion".equals(xVar.f3586s)) {
-            return h0.c(4, 0, 0, 0);
+        if ("application/x-camera-motion".equals(xVar.f2423s)) {
+            return i0.a.a(4, 0, 0, 0);
         }
-        return h0.c(0, 0, 0, 0);
+        return i0.a.a(0, 0, 0, 0);
     }
 
     @Override
-    public final void c(int i10, Object obj) {
+    public final void d(int i10, Object obj) {
         if (i10 == 8) {
-            this.K = (e0) obj;
+            this.K = (d0) obj;
         }
     }
 
@@ -52,18 +50,18 @@ public final class a extends b {
 
     @Override
     public final void n() {
-        e0 e0Var = this.K;
-        if (e0Var != null) {
-            e0Var.d();
+        d0 d0Var = this.K;
+        if (d0Var != null) {
+            d0Var.c();
         }
     }
 
     @Override
     public final void p(long j10, boolean z10, boolean z11) {
         this.L = Long.MIN_VALUE;
-        e0 e0Var = this.K;
-        if (e0Var != null) {
-            e0Var.d();
+        d0 d0Var = this.K;
+        if (d0Var != null) {
+            d0Var.c();
         }
     }
 
@@ -74,20 +72,20 @@ public final class a extends b {
         while (!k() && this.L < 100000 + j10) {
             h hVar = this.I;
             hVar.clear();
-            s sVar = this.f13491c;
-            sVar.d();
-            if (w(sVar, hVar, 0) == -4 && !hVar.isEndOfStream()) {
+            hf.b bVar = this.f7809c;
+            bVar.L();
+            if (w(bVar, hVar, 0) == -4 && !hVar.isEndOfStream()) {
                 long j12 = hVar.e;
                 this.L = j12;
-                if (j12 < this.f13496w) {
+                if (j12 < this.f7815x) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 if (this.K != null && !z10) {
                     hVar.d();
-                    ByteBuffer byteBuffer = hVar.f12569c;
-                    String str = n0.f9691a;
+                    ByteBuffer byteBuffer = hVar.f7586c;
+                    String str = l0.f6165a;
                     if (byteBuffer.remaining() != 16) {
                         fArr = null;
                     } else {

@@ -1,68 +1,70 @@
 package org.telegram.messenger;
 
-import java.io.File;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.TextView;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class y6 implements Runnable {
-    public final int f21885a;
-    public final int f21886b;
-    public final Object f21887c;
+public final class y6 implements TextWatcher {
+    public boolean f19339a;
+    public final int f19340b;
+    public final w6 f19341c;
+    public final TextView[] d;
+    public final TLRPC.TL_factCheck e;
 
-    public y6(int i10, Object obj, int i11) {
-        this.f21885a = i11;
-        this.f21886b = i10;
-        this.f21887c = obj;
+    public y6(int i10, w6 w6Var, TextView[] textViewArr, TLRPC.TL_factCheck tL_factCheck) {
+        this.f19340b = i10;
+        this.f19341c = w6Var;
+        this.d = textViewArr;
+        this.e = tL_factCheck;
     }
 
     @Override
-    public final void run() {
-        switch (this.f21885a) {
-            case 0:
-                ((MediaController.AnonymousClass4) this.f21887c).lambda$onCallStateChanged$0(this.f21886b);
-                return;
-            case 1:
-                MessagesController.AnonymousClass1.lambda$setLocal$2(this.f21886b, (TLRPC.TL_help_appConfig) this.f21887c);
-                return;
-            case 2:
-                MessagesController.AnonymousClass4.lambda$setLocal$2(this.f21886b, (TLRPC.messages_AvailableEffects) this.f21887c);
-                return;
-            case 3:
-                MessagesController.AnonymousClass5.lambda$setLocal$1(this.f21886b, (TL_account.TL_webBrowserSettings) this.f21887c);
-                return;
-            case 4:
-                AutoDeleteMediaTask.b(this.f21886b, (File) this.f21887c);
-                return;
-            case 5:
-                FileLoader.lambda$deleteFiles$18((ArrayList) this.f21887c, this.f21886b);
-                return;
-            case 6:
-                ((FilesMigrationService) this.f21887c).lambda$updateProgress$1(this.f21886b);
-                return;
-            case 7:
-                MediaController.lambda$saveFile$50((org.telegram.ui.ActionBar.e2) this.f21887c, this.f21886b);
-                return;
-            case 8:
-                PushListenerController.lambda$sendRegistrationToServer$1((String) this.f21887c, this.f21886b);
-                return;
-            case 9:
-                PushListenerController.lambda$processRemoteMessage$2(this.f21886b, (TLRPC.TL_updates) this.f21887c);
-                return;
-            case 10:
-                SendMessagesHelper.lambda$handleError$122(this.f21886b, (AccountInstance) this.f21887c);
-                return;
-            default:
-                Utilities.lambda$doCallbacks$0(this.f21886b, (Utilities.Callback[]) this.f21887c);
-                return;
+    public final void afterTextChanged(Editable editable) {
+        int i10;
+        int i11;
+        if (!this.f19339a) {
+            int length = editable.length();
+            boolean z10 = true;
+            int i12 = this.f19340b;
+            if (length > i12) {
+                this.f19339a = true;
+                editable.delete(i12, editable.length());
+                w6 w6Var = this.f19341c;
+                i0.E3(w6Var);
+                try {
+                    w6Var.performHapticFeedback(3, 2);
+                } catch (Exception unused) {
+                }
+                this.f19339a = false;
+            }
+            TextView[] textViewArr = this.d;
+            if (textViewArr[0] != null) {
+                if (editable.length() <= 0 && this.e != null) {
+                    z10 = false;
+                }
+                TextView textView = textViewArr[0];
+                if (z10) {
+                    i10 = 2131751355;
+                } else {
+                    i10 = 2131746336;
+                }
+                textView.setText(cd.L0(i10, null));
+                TextView textView2 = textViewArr[0];
+                if (z10) {
+                    i11 = org.telegram.ui.ActionBar.t6.H5;
+                } else {
+                    i11 = org.telegram.ui.ActionBar.t6.f21170q7;
+                }
+                textView2.setTextColor(org.telegram.ui.ActionBar.t6.x0(null, i11, false));
+            }
         }
     }
 
-    public y6(Object obj, int i10, int i11) {
-        this.f21885a = i11;
-        this.f21887c = obj;
-        this.f21886b = i10;
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

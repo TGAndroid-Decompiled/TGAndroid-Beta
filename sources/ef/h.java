@@ -1,15 +1,12 @@
 package ef;
+public final class h {
+    public int f6505a;
+    public int f6506b;
+    public int f6507c;
+    public boolean d;
+    public boolean e;
 
-import a8.bc;
-public final class h extends a {
-    public char f9924g;
-    public int h;
-    public int f9925i;
-    public String f9926j;
-    public String f9927k;
-
-    @Override
-    public final void a(bc bcVar) {
-        bcVar.f(this);
+    public final String toString() {
+        return String.format("%s[version=%s, totalTagSize=%d]", h.class.getSimpleName(), Integer.valueOf(this.f6505a), Integer.valueOf(this.f6506b));
     }
 }

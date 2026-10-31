@@ -1,62 +1,31 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class xo0 extends org.telegram.ui.Components.n91 {
-    public final int f45743a;
-    public final Object f45744b;
+import android.graphics.drawable.Drawable;
+import android.text.style.ClickableSpan;
+import android.widget.TextView;
+public final class xo0 implements org.telegram.messenger.j20 {
+    public final int f43612a;
+    public final PhotoViewer f43613b;
 
-    public xo0(Object obj, int i10) {
-        this.f45743a = i10;
-        this.f45744b = obj;
+    public xo0(PhotoViewer photoViewer, int i10) {
+        this.f43612a = i10;
+        this.f43613b = photoViewer;
     }
 
     @Override
-    public final void b(View view, int i10, int i11) {
-        switch (this.f45743a) {
+    public final void a(Object obj, Object obj2) {
+        int i10 = this.f43612a;
+        PhotoViewer photoViewer = this.f43613b;
+        switch (i10) {
             case 0:
+                Drawable[] drawableArr = PhotoViewer.U8;
+                photoViewer.a2((ClickableSpan) obj, (TextView) obj2);
                 return;
             default:
-                if (view instanceof org.telegram.ui.Wallet.g2) {
-                    ((org.telegram.ui.Wallet.g2) view).getClass();
-                    return;
-                }
+                Drawable[] drawableArr2 = PhotoViewer.U8;
+                photoViewer.getClass();
+                photoViewer.E0(((Boolean) obj2).booleanValue(), false, (((Float) obj).floatValue() * 2.8f) + 0.2f);
                 return;
         }
-    }
-
-    @Override
-    public final View d(int i10) {
-        switch (this.f45743a) {
-            case 0:
-                tp0 tp0Var = (tp0) this.f45744b;
-                if (i10 == 1) {
-                    return tp0Var.h;
-                }
-                if (i10 == 0) {
-                    return tp0Var.f43719n;
-                }
-                return null;
-            default:
-                return (View) ((org.telegram.ui.Wallet.i2) this.f45744b).f36693c.get(i10);
-        }
-    }
-
-    @Override
-    public final int e() {
-        switch (this.f45743a) {
-            case 0:
-                return 2;
-            default:
-                return ((org.telegram.ui.Wallet.i2) this.f45744b).f36693c.size();
-        }
-    }
-
-    @Override
-    public final int h(int i10) {
-        int i11 = this.f45743a;
-        return i10;
-    }
-
-    private final void i(View view, int i10, int i11) {
     }
 }

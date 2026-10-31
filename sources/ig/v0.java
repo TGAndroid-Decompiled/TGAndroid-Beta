@@ -1,37 +1,65 @@
 package ig;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.ui.Components.cb0;
-public final class v0 implements MediaDataController.KeywordResultCallback, org.telegram.ui.Cells.c2 {
-    public final j1 f14272a;
+import android.graphics.PointF;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+public final class v0 {
+    public float f8488a;
+    public float f8489b;
+    public float f8490c;
+    public float d;
+    public float e;
+    public float f8491f;
+    public double f8492g;
+    public int h;
+    public int f8493i;
+    public ByteBuffer f8494j;
 
-    public v0(j1 j1Var) {
-        this.f14272a = j1Var;
+    public final boolean a(PointF pointF, float f7, float f10, float f11, int i10) {
+        if ((i10 != -1 && i10 >= this.f8493i) || this.f8494j.position() == this.f8494j.limit()) {
+            d();
+            return false;
+        }
+        if (i10 != -1) {
+            this.f8494j.position(i10 * 20);
+        }
+        this.f8494j.putFloat(pointF.x);
+        this.f8494j.putFloat(pointF.y);
+        this.f8494j.putFloat(f7);
+        this.f8494j.putFloat(f10);
+        this.f8494j.putFloat(f11);
+        return true;
     }
 
-    @Override
-    public void run(ArrayList arrayList, String str) {
-        boolean z10;
-        j1 j1Var = this.f14272a;
-        j1Var.N = arrayList;
-        j1Var.I = null;
-        j1Var.A0 = null;
-        j1Var.f14137x = null;
-        j1Var.f14139y = null;
-        j1Var.J = null;
-        j1Var.Q = null;
-        j1Var.M = null;
-        j1Var.K = null;
-        j1Var.P = null;
-        j1Var.l();
-        cb0 cb0Var = j1Var.V;
-        ArrayList arrayList2 = j1Var.N;
-        if (arrayList2 != null && !arrayList2.isEmpty()) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void b(int i10) {
+        int i11 = this.h + i10;
+        if (i11 > this.f8493i || this.f8494j == null) {
+            d();
         }
-        cb0Var.a(z10);
+        this.h = i11;
+    }
+
+    public final void c() {
+        this.h = 0;
+        if (this.f8494j != null) {
+            return;
+        }
+        this.f8493i = 256;
+        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(256 * 5 * 4);
+        this.f8494j = allocateDirect;
+        allocateDirect.order(ByteOrder.nativeOrder());
+        this.f8494j.position(0);
+    }
+
+    public final void d() {
+        if (this.f8494j != null) {
+            this.f8494j = null;
+        }
+        int max = Math.max(this.f8493i * 2, 256);
+        this.f8493i = max;
+        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(max * 20);
+        this.f8494j = allocateDirect;
+        allocateDirect.order(ByteOrder.nativeOrder());
+        this.f8494j.position(0);
     }
 }

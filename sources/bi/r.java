@@ -1,82 +1,60 @@
 package bi;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.LinearLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class r extends LinearLayout {
-    public static float f5310b = 1.0f;
-    public final int f5311a;
+import android.content.Intent;
+import java.util.ArrayList;
+import org.telegram.messenger.f8;
+import org.telegram.messenger.jj;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.bi;
+import org.telegram.ui.Components.nj;
+public final class r implements nj {
+    public final bi f3310a;
+    public final t f3311b;
 
-    public r(Context context, int i10) {
-        super(context);
-        this.f5311a = i10;
+    public r(t tVar, bi biVar) {
+        this.f3311b = tVar;
+        this.f3310a = biVar;
     }
 
     @Override
-    public void dispatchSetPressed(boolean z10) {
-        switch (this.f5311a) {
-            case 7:
-                return;
-            default:
-                super.dispatchSetPressed(z10);
-                return;
+    public final void A() {
+        try {
+            Intent intent = new Intent("android.intent.action.GET_CONTENT");
+            intent.setType("*/*");
+            this.f3311b.f30947b.W1.startActivityForResult(intent, 21);
+        } catch (Exception e) {
+            f8.g(e, true);
         }
     }
 
     @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f5311a) {
-            case 4:
-                super.onLayout(z10, i10, i11, i12, i13);
-                setPivotX(getWidth());
-                return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
+    public final void m(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j10, boolean z11, long j11) {
+        String str2;
+        d4 d4Var = this.f3311b.f3350r;
+        if (!arrayList.isEmpty()) {
+            d4Var.f2((String) arrayList.get(0));
+        } else if (!arrayList3.isEmpty()) {
+            jj jjVar = (jj) arrayList3.get(0);
+            d4Var.getClass();
+            if (jjVar != null && jjVar.F0() != null) {
+                TLRPC.Document F0 = jjVar.F0();
+                TLRPC.Message message = jjVar.f16337k;
+                if (message != null) {
+                    str2 = message.attachPath;
+                } else {
+                    str2 = null;
+                }
+                d4Var.g2(F0, str2);
+            }
         }
+        this.f3310a.a(true);
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f5311a) {
-            case 0:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
-                return;
-            case 1:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
-                return;
-            case 2:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
-                return;
-            case 3:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
-                return;
-            case 4:
-            case 6:
-            case 7:
-            default:
-                super.onMeasure(i10, i11);
-                return;
-            case 5:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(220.0f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)), i11);
-                return;
-            case 8:
-                super.onMeasure(i10, i11);
-                setPivotY(0.0f);
-                setPivotX(0.0f);
-                return;
-            case 9:
-                super.onMeasure(i10, i11);
-                setPivotY(0.0f);
-                setPivotX(getMeasuredWidth());
-                return;
-            case 10:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(600.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i11), AndroidUtilities.dp(800.0f)), 1073741824));
-                return;
-        }
+    public final void S() {
     }
 
-    private final void a(boolean z10) {
+    @Override
+    public final void o(ArrayList arrayList, boolean z10, int i10, long j10) {
     }
 }

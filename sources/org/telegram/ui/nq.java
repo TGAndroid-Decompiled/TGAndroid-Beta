@@ -1,56 +1,109 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.MediaController;
-import org.telegram.tgnet.TLObject;
+import android.os.SystemClock;
 import org.telegram.tgnet.TLRPC;
-public final class nq implements org.telegram.ui.ActionBar.b2, org.telegram.ui.Components.e5 {
-    public final String f41862a;
-    public final boolean f41863b;
-    public final Object f41864c;
+public final class nq implements org.telegram.messenger.j20 {
+    public final int f40023a;
+    public final boolean f40024b;
+    public final org.telegram.messenger.us f40025c;
     public final Object d;
-    public final Object e;
-    public final Object f41865f;
-    public final Object h;
 
-    public nq(mr mrVar, TLRPC.User user, TLObject tLObject, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z10) {
-        this.f41864c = mrVar;
-        this.d = user;
-        this.e = tLObject;
-        this.f41865f = tL_chatAdminRights;
-        this.h = tL_chatBannedRights;
-        this.f41862a = str;
-        this.f41863b = z10;
+    public nq(org.telegram.messenger.us usVar, Object obj, boolean z10, int i10) {
+        this.f40023a = i10;
+        this.f40025c = usVar;
+        this.d = obj;
+        this.f40024b = z10;
     }
 
     @Override
-    public void G(int i10, int i11, boolean z10) {
-        boolean z11 = this.f41863b;
-        ((org.telegram.ui.Components.gg) this.f41864c).B((View) this.d, this.e, this.f41862a, this.f41865f, z10, i10, i11, (MediaController.PhotoEntry) this.h, z11);
-    }
-
-    @Override
-    public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        mr mrVar = (mr) this.f41864c;
-        TLObject tLObject = (TLObject) this.e;
-        TLRPC.TL_chatAdminRights tL_chatAdminRights = (TLRPC.TL_chatAdminRights) this.f41865f;
-        TLRPC.TL_chatBannedRights tL_chatBannedRights = (TLRPC.TL_chatBannedRights) this.h;
-        mrVar.getClass();
-        long j10 = ((TLRPC.User) this.d).f22177id;
-        int i11 = 1;
-        if (mrVar.f41512d1 == 1) {
-            i11 = 0;
+    public final void a(Object obj, Object obj2) {
+        String str;
+        int i10 = this.f40023a;
+        boolean z10 = false;
+        boolean z11 = this.f40024b;
+        Object obj3 = this.d;
+        org.telegram.messenger.us usVar = this.f40025c;
+        switch (i10) {
+            case 0:
+                pr prVar = (pr) usVar;
+                org.telegram.ui.Cells.p8 p8Var = (org.telegram.ui.Cells.p8) obj3;
+                TLRPC.Updates updates = (TLRPC.Updates) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                if (updates != null) {
+                    prVar.getMessagesController().L3(updates, false);
+                    return;
+                }
+                prVar.getClass();
+                if (tL_error != null) {
+                    p8Var.setChecked(z11);
+                    org.telegram.ui.Components.cc.a0(prVar).f0(tL_error, false);
+                    return;
+                }
+                return;
+            default:
+                qh.m0 m0Var = (qh.m0) usVar;
+                TLRPC.TL_exportedNoPaidMessagesToken tL_exportedNoPaidMessagesToken = (TLRPC.TL_exportedNoPaidMessagesToken) obj;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                qh.x0 x0Var = m0Var.f45688b;
+                if (m0Var.f45691n == ((int[]) obj3)[0] && !m0Var.E) {
+                    m0Var.f45691n = 0;
+                    boolean z12 = true;
+                    if (tL_exportedNoPaidMessagesToken == null) {
+                        String str2 = null;
+                        if (tL_error2 != null) {
+                            str = tL_error2.text;
+                        } else {
+                            str = null;
+                        }
+                        org.telegram.messenger.f8.d("QrShare: exportNoPaidMessagesToken " + str);
+                        TLRPC.TL_exportedNoPaidMessagesToken tL_exportedNoPaidMessagesToken2 = m0Var.f45690f;
+                        if (tL_exportedNoPaidMessagesToken2 != null) {
+                            if (tL_exportedNoPaidMessagesToken2.expires == 0) {
+                                z12 = false;
+                            }
+                            if (z12 == z11) {
+                                if (str != null) {
+                                    x0Var.getClass();
+                                    x0Var.d1(2131232435, org.telegram.messenger.cd.L0(2131751106, null), null);
+                                    return;
+                                }
+                                return;
+                            }
+                        }
+                        m0Var.d = 0;
+                        m0Var.f().edit().putBoolean("qrNoPaidPermanent", false).apply();
+                        if (x0Var.f46005v0) {
+                            if (str != null) {
+                                str2 = org.telegram.messenger.cd.L0(2131751106, null);
+                            }
+                            x0Var.U0(str2);
+                            return;
+                        } else if (str != null) {
+                            x0Var.d1(2131232435, org.telegram.messenger.cd.L0(2131751106, null), null);
+                            return;
+                        } else {
+                            return;
+                        }
+                    }
+                    int i11 = m0Var.d;
+                    if (i11 != 0) {
+                        if (i11 == 1) {
+                            z10 = true;
+                        }
+                        if (z11 == z10) {
+                            if (tL_exportedNoPaidMessagesToken.expires == 0) {
+                                m0Var.f().edit().putString("qrNoPaidToken", tL_exportedNoPaidMessagesToken.token).putString("qrNoPaidUrl", tL_exportedNoPaidMessagesToken.url).apply();
+                            }
+                            m0Var.f45690f = tL_exportedNoPaidMessagesToken;
+                            m0Var.h = SystemClock.elapsedRealtime();
+                            x0Var.setFreeLink(m0Var.d(tL_exportedNoPaidMessagesToken));
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-        mrVar.u0(j10, tLObject, tL_chatAdminRights, tL_chatBannedRights, this.f41862a, this.f41863b, i11, false);
-    }
-
-    public nq(org.telegram.ui.Components.gg ggVar, View view, Object obj, String str, Object obj2, MediaController.PhotoEntry photoEntry, boolean z10) {
-        this.f41864c = ggVar;
-        this.d = view;
-        this.e = obj;
-        this.f41862a = str;
-        this.f41865f = obj2;
-        this.h = photoEntry;
-        this.f41863b = z10;
     }
 }

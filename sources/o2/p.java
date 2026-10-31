@@ -1,6 +1,6 @@
 package o2;
 
-import a8.h0;
+import android.support.v4.media.session.a0;
 import b2.t0;
 import b2.u0;
 import b2.w;
@@ -11,8 +11,8 @@ public final class p extends c1 {
     public final Map J;
     public b2.t K;
 
-    public p(h0 h0Var, n2.m mVar, n2.j jVar, Map map) {
-        super(h0Var, mVar, jVar);
+    public p(a0 a0Var, n2.m mVar, n2.j jVar, Map map) {
+        super(a0Var, mVar, jVar);
         this.J = map;
     }
 
@@ -21,21 +21,21 @@ public final class p extends c1 {
         b2.t tVar;
         b2.t tVar2 = this.K;
         if (tVar2 == null) {
-            tVar2 = xVar.f3589w;
+            tVar2 = xVar.f2426w;
         }
-        if (tVar2 != null && (tVar = (b2.t) this.J.get(tVar2.f3439c)) != null) {
+        if (tVar2 != null && (tVar = (b2.t) this.J.get(tVar2.f2276c)) != null) {
             tVar2 = tVar;
         }
-        u0 u0Var = xVar.f3579l;
+        u0 u0Var = xVar.f2416l;
         u0 u0Var2 = null;
         if (u0Var != null) {
-            t0[] t0VarArr = u0Var.f3465a;
+            t0[] t0VarArr = u0Var.f2302a;
             int length = t0VarArr.length;
             int i10 = 0;
             while (true) {
                 if (i10 < length) {
                     t0 t0Var = t0VarArr[i10];
-                    if ((t0Var instanceof q3.m) && "com.apple.streaming.transportStreamTimestamp".equals(((q3.m) t0Var).f46985b)) {
+                    if ((t0Var instanceof q3.n) && "com.apple.streaming.transportStreamTimestamp".equals(((q3.n) t0Var).f45449b)) {
                         break;
                     }
                     i10++;
@@ -55,20 +55,20 @@ public final class p extends c1 {
                     u0Var2 = new u0(t0VarArr2);
                 }
             }
-            if (tVar2 == xVar.f3589w || u0Var != xVar.f3579l) {
+            if (tVar2 == xVar.f2426w || u0Var != xVar.f2416l) {
                 w a2 = xVar.a();
                 a2.v = tVar2;
-                a2.f3526k = u0Var;
+                a2.f2363k = u0Var;
                 xVar = new x(a2);
             }
             return super.r(xVar);
         }
         u0Var = u0Var2;
-        if (tVar2 == xVar.f3589w) {
+        if (tVar2 == xVar.f2426w) {
         }
         w a22 = xVar.a();
         a22.v = tVar2;
-        a22.f3526k = u0Var;
+        a22.f2363k = u0Var;
         xVar = new x(a22);
         return super.r(xVar);
     }

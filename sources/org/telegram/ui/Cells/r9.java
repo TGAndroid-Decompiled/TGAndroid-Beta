@@ -1,6 +1,12 @@
 package org.telegram.ui.Cells;
+public interface r9 {
+    int getBottom();
 
-import java.util.ArrayList;
-public interface r9 extends aa {
-    void fillTextLayoutBlocks(ArrayList arrayList);
+    int getTop();
+
+    float getX();
+
+    float getY();
+
+    void invalidate();
 }

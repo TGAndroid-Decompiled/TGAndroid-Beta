@@ -4,10 +4,8 @@ import android.content.Context;
 import android.media.MediaRecorder;
 import android.os.Handler;
 import android.os.Looper;
-import c3.h0;
 import java.util.Arrays;
 import java.util.List;
-import org.telegram.ui.Components.b10;
 import org.webrtc.CameraSession;
 import org.webrtc.CameraVideoCapturer;
 abstract class CameraCapturer implements CameraVideoCapturer {
@@ -209,18 +207,6 @@ abstract class CameraCapturer implements CameraVideoCapturer {
     public CameraCapturer(String str, CameraVideoCapturer.CameraEventsHandler cameraEventsHandler, CameraEnumerator cameraEnumerator) {
         this.eventsHandler = cameraEventsHandler == null ? new CameraVideoCapturer.CameraEventsHandler() {
             @Override
-            public void onCameraError(String str2) {
-            }
-
-            @Override
-            public void onCameraFreezed(String str2) {
-            }
-
-            @Override
-            public void onCameraOpening(String str2) {
-            }
-
-            @Override
             public void onCameraClosed() {
             }
 
@@ -231,6 +217,18 @@ abstract class CameraCapturer implements CameraVideoCapturer {
             @Override
             public void onFirstFrameAvailable() {
             }
+
+            @Override
+            public void onCameraError(String str2) {
+            }
+
+            @Override
+            public void onCameraFreezed(String str2) {
+            }
+
+            @Override
+            public void onCameraOpening(String str2) {
+            }
         } : cameraEventsHandler;
         this.cameraEnumerator = cameraEnumerator;
         this.cameraName = str;
@@ -240,7 +238,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
             if (asList.contains(this.cameraName)) {
                 return;
             }
-            throw new IllegalArgumentException(a1.g.s(new StringBuilder("Camera name "), this.cameraName, " does not match any known camera device."));
+            throw new IllegalArgumentException(a1.g.r(new StringBuilder("Camera name "), this.cameraName, " does not match any known camera device."));
         }
         throw new RuntimeException("No cameras attached.");
     }
@@ -280,7 +278,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
     public void switchCameraInternal(CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler, String str) {
         Logging.d("CameraCapturer", "switchCamera internal");
         if (!Arrays.asList(this.cameraEnumerator.getDeviceNames()).contains(str)) {
-            reportCameraSwitchError(b10.j("Attempted to switch to unknown camera device ", str), cameraSwitchHandler);
+            reportCameraSwitchError(sc.e.h("Attempted to switch to unknown camera device ", str), cameraSwitchHandler);
             return;
         }
         synchronized (this.stateLock) {
@@ -330,9 +328,9 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
     @Override
     public void changeCaptureFormat(int i10, int i11, int i12) {
-        StringBuilder n10 = h0.n("changeCaptureFormat: ", i10, "x", i11, "@");
-        n10.append(i12);
-        Logging.d("CameraCapturer", n10.toString());
+        StringBuilder m10 = i0.a.m("changeCaptureFormat: ", i10, "x", i11, "@");
+        m10.append(i12);
+        Logging.d("CameraCapturer", m10.toString());
         synchronized (this.stateLock) {
             stopCapture();
             startCapture(i10, i11, i12);
@@ -394,9 +392,9 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
     @Override
     public void startCapture(int i10, int i11, int i12) {
-        StringBuilder n10 = h0.n("startCapture: ", i10, "x", i11, "@");
-        n10.append(i12);
-        Logging.d("CameraCapturer", n10.toString());
+        StringBuilder m10 = i0.a.m("startCapture: ", i10, "x", i11, "@");
+        m10.append(i12);
+        Logging.d("CameraCapturer", m10.toString());
         if (this.applicationContext != null) {
             synchronized (this.stateLock) {
                 try {

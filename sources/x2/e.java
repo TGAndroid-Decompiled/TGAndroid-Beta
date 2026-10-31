@@ -1,118 +1,88 @@
 package x2;
 
-import android.view.View;
-import b2.q1;
-import bi.h0;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.Task;
-import f9.f0;
-import f9.s1;
-import java.util.ArrayList;
-import java.util.Iterator;
+import e9.b0;
+import e9.v1;
+import e9.z;
+import java.io.File;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BillingController;
-import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.ActionBar.e2;
-import r0.k1;
-import zh.i0;
-import zh.p1;
-public final class e implements l, Continuation, e2.j, ag.s, b2, r0.n, BillingController.ProductDetailsResponseListenerLegacy {
-    public final int f51371a;
-    public final Object f51372b;
+import org.telegram.tgnet.TLRPC;
+import z9.d0;
+import z9.h1;
+import zf.k1;
+import zf.y;
+public final class e implements Comparator {
+    public final int f52909a;
 
-    public e(Object obj, int i10) {
-        this.f51371a = i10;
-        this.f51372b = obj;
+    public e(int i10) {
+        this.f52909a = i10;
     }
 
     @Override
-    public k1 P0(View view, k1 k1Var) {
-        ((i0) this.f51372b).h.j(k1Var);
-        return k1.f47152b;
-    }
-
-    @Override
-    public s1 a(int i10, q1 q1Var, int[] iArr) {
-        j jVar = (j) this.f51372b;
-        f0 t10 = f9.i0.t();
-        for (int i11 = 0; i11 < q1Var.f3358a; i11++) {
-            t10.c(new g(i10, q1Var, i11, jVar, iArr[i11]));
-        }
-        return t10.f();
-    }
-
-    @Override
-    public void accept(Object obj) {
-        switch (this.f51371a) {
+    public final int compare(Object obj, Object obj2) {
+        v1 a2;
+        switch (this.f52909a) {
+            case 0:
+                List list = (List) obj;
+                List list2 = (List) obj2;
+                return z.f(n.c((n) Collections.max(list, new e(3)), (n) Collections.max(list2, new e(3)))).a(list.size(), list2.size()).b((n) Collections.max(list, new e(4)), (n) Collections.max(list2, new e(4)), new e(4)).e();
+            case 1:
+                return ((f) Collections.max((List) obj)).compareTo((f) Collections.max((List) obj2));
             case 2:
-                z3.h hVar = (z3.h) this.f51372b;
-                z3.a aVar = (z3.a) obj;
-                z3.g gVar = new z3.g(aVar.f52701b, pa.d.f(aVar.f52700a, aVar.f52702c));
-                hVar.f52711c.add(gVar);
-                long j10 = hVar.f52715j;
-                if (j10 == -9223372036854775807L || aVar.d >= j10) {
-                    hVar.g(gVar);
-                    return;
+                return ((k) ((List) obj).get(0)).compareTo((k) ((List) obj2).get(0));
+            case 3:
+                return n.c((n) obj, (n) obj2);
+            case 4:
+                n nVar = (n) obj;
+                n nVar2 = (n) obj2;
+                boolean z10 = nVar.e;
+                int i10 = nVar.f52937s;
+                if (z10 && nVar.f52935n) {
+                    a2 = o.f52941l;
+                } else {
+                    a2 = o.f52941l.a();
                 }
-                return;
+                boolean z11 = nVar.f52934f.F;
+                b0 b0Var = b0.f6331a;
+                if (z11) {
+                    b0Var = b0Var.b(Integer.valueOf(i10), Integer.valueOf(nVar2.f52937s), o.f52941l.a());
+                }
+                b0 b10 = b0Var.c(nVar.O, nVar2.O).b(Integer.valueOf(nVar.f52938w), Integer.valueOf(nVar2.f52938w), a2);
+                if (nVar.K && nVar.M) {
+                    b10 = b10.a(nVar.N, nVar2.N);
+                }
+                return b10.c(nVar.L, nVar2.L).b(Integer.valueOf(i10), Integer.valueOf(nVar2.f52937s), a2).e();
+            case 5:
+                return Long.compare(((File) obj2).lastModified(), ((File) obj).lastModified());
+            case 6:
+                return ((d0) ((h1) obj)).f55259a.compareTo(((d0) ((h1) obj2)).f55259a);
+            case 7:
+                return ((y2.p) obj).f54171a - ((y2.p) obj2).f54171a;
+            case 8:
+                return Float.compare(((y2.p) obj).f54173c, ((y2.p) obj2).f54173c);
+            case 9:
+                int i11 = ((y) obj).f55679b;
+                int i12 = ((y) obj2).f55679b;
+                if (i11 < i12) {
+                    return 1;
+                }
+                if (i11 > i12) {
+                    return -1;
+                }
+                return 0;
+            case 10:
+                return Double.compare(((TLRPC.TL_topPeer) obj2).rating, ((TLRPC.TL_topPeer) obj).rating);
             default:
-                ((f0) this.f51372b).c((z3.a) obj);
-                return;
-        }
-    }
-
-    @Override
-    public void f(long j10) {
-        ((zh.d) this.f51372b).a(j10, true);
-    }
-
-    @Override
-    public void h(e2 e2Var, int i10) {
-        ((h0) this.f51372b).run();
-    }
-
-    @Override
-    public void onProductDetailsResponse(d5.i iVar, List list) {
-        int i10;
-        p1 p1Var = (p1) this.f51372b;
-        ArrayList arrayList = p1Var.f53259n0;
-        Iterator it = list.iterator();
-        long j10 = 0;
-        while (true) {
-            i10 = 0;
-            if (!it.hasNext()) {
-                break;
-            }
-            d5.o oVar = (d5.o) it.next();
-            int size = arrayList.size();
-            while (true) {
-                if (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    tg.k kVar = (tg.k) obj;
-                    if (kVar.h() != null && kVar.h().equals(oVar.f8001c)) {
-                        kVar.h = oVar;
-                        if (kVar.f() > j10) {
-                            j10 = kVar.f();
-                        }
-                    }
+                int i13 = ((k1) obj).f55557b;
+                int i14 = ((k1) obj2).f55557b;
+                if (i13 < i14) {
+                    return 1;
                 }
-            }
+                if (i13 > i14) {
+                    return -1;
+                }
+                return 0;
         }
-        int size2 = arrayList.size();
-        while (i10 < size2) {
-            Object obj2 = arrayList.get(i10);
-            i10++;
-            ((tg.k) obj2).f48950g = j10;
-        }
-        AndroidUtilities.runOnUIThread(new ti.g(p1Var, 19));
-    }
-
-    @Override
-    public Object then(Task task) {
-        ((CountDownLatch) this.f51372b).countDown();
-        return null;
     }
 }

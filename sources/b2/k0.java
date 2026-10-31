@@ -4,54 +4,54 @@ import android.net.Uri;
 import j$.util.Objects;
 import java.util.List;
 public final class k0 {
-    public static final String f3247i;
-    public static final String f3248j;
-    public static final String f3249k;
-    public static final String f3250l;
-    public static final String f3251m;
-    public static final String f3252n;
-    public static final String f3253o;
-    public static final String f3254p;
-    public final Uri f3255a;
-    public final String f3256b;
-    public final h0 f3257c;
+    public static final String f2083i;
+    public static final String f2084j;
+    public static final String f2085k;
+    public static final String f2086l;
+    public static final String f2087m;
+    public static final String f2088n;
+    public static final String f2089o;
+    public static final String f2090p;
+    public final Uri f2091a;
+    public final String f2092b;
+    public final h0 f2093c;
     public final c0 d;
     public final List e;
-    public final String f3258f;
-    public final f9.i0 f3259g;
+    public final String f2094f;
+    public final e9.n0 f2095g;
     public final long h;
 
     static {
-        String str = e2.n0.f9691a;
-        f3247i = Integer.toString(0, 36);
-        f3248j = Integer.toString(1, 36);
-        f3249k = Integer.toString(2, 36);
-        f3250l = Integer.toString(3, 36);
-        f3251m = Integer.toString(4, 36);
-        f3252n = Integer.toString(5, 36);
-        f3253o = Integer.toString(6, 36);
-        f3254p = Integer.toString(7, 36);
+        String str = e2.l0.f6165a;
+        f2083i = Integer.toString(0, 36);
+        f2084j = Integer.toString(1, 36);
+        f2085k = Integer.toString(2, 36);
+        f2086l = Integer.toString(3, 36);
+        f2087m = Integer.toString(4, 36);
+        f2088n = Integer.toString(5, 36);
+        f2089o = Integer.toString(6, 36);
+        f2090p = Integer.toString(7, 36);
     }
 
-    public k0(Uri uri, String str, h0 h0Var, c0 c0Var, List list, String str2, f9.i0 i0Var, long j10) {
-        this.f3255a = uri;
-        this.f3256b = w0.n(str);
-        this.f3257c = h0Var;
+    public k0(Uri uri, String str, h0 h0Var, c0 c0Var, List list, String str2, e9.n0 n0Var, long j10) {
+        this.f2091a = uri;
+        this.f2092b = v0.n(str);
+        this.f2093c = h0Var;
         this.d = c0Var;
         this.e = list;
-        this.f3258f = str2;
-        this.f3259g = i0Var;
-        f9.f0 t10 = f9.i0.t();
-        for (int i10 = 0; i10 < i0Var.size(); i10++) {
-            o0 o0Var = (o0) i0Var.get(i10);
+        this.f2094f = str2;
+        this.f2095g = n0Var;
+        e9.k0 t10 = e9.n0.t();
+        for (int i10 = 0; i10 < n0Var.size(); i10++) {
+            o0 o0Var = (o0) n0Var.get(i10);
             ?? obj = new Object();
-            obj.f3289c = o0Var.f3311a;
-            obj.d = o0Var.f3312b;
-            obj.e = o0Var.f3313c;
-            obj.f3287a = o0Var.d;
-            obj.f3288b = o0Var.e;
-            obj.f3290f = o0Var.f3314f;
-            obj.f3291g = o0Var.f3315g;
+            obj.f2125c = o0Var.f2167a;
+            obj.d = o0Var.f2168b;
+            obj.e = o0Var.f2169c;
+            obj.f2123a = o0Var.d;
+            obj.f2124b = o0Var.e;
+            obj.f2126f = o0Var.f2170f;
+            obj.f2127g = o0Var.f2171g;
             t10.c(new o0(obj));
         }
         t10.f();
@@ -62,7 +62,7 @@ public final class k0 {
         if (this != obj) {
             if (obj instanceof k0) {
                 k0 k0Var = (k0) obj;
-                if (this.f3255a.equals(k0Var.f3255a) && Objects.equals(this.f3256b, k0Var.f3256b) && Objects.equals(this.f3257c, k0Var.f3257c) && Objects.equals(this.d, k0Var.d) && this.e.equals(k0Var.e) && Objects.equals(this.f3258f, k0Var.f3258f) && this.f3259g.equals(k0Var.f3259g) && this.h == k0Var.h) {
+                if (this.f2091a.equals(k0Var.f2091a) && Objects.equals(this.f2092b, k0Var.f2092b) && Objects.equals(this.f2093c, k0Var.f2093c) && Objects.equals(this.d, k0Var.d) && this.e.equals(k0Var.e) && Objects.equals(this.f2094f, k0Var.f2094f) && this.f2095g.equals(k0Var.f2095g) && this.h == k0Var.h) {
                     return true;
                 }
                 return false;
@@ -76,16 +76,16 @@ public final class k0 {
         int hashCode;
         int hashCode2;
         int hashCode3;
-        int hashCode4 = this.f3255a.hashCode() * 31;
+        int hashCode4 = this.f2091a.hashCode() * 31;
         int i10 = 0;
-        String str = this.f3256b;
+        String str = this.f2092b;
         if (str == null) {
             hashCode = 0;
         } else {
             hashCode = str.hashCode();
         }
         int i11 = (hashCode4 + hashCode) * 31;
-        h0 h0Var = this.f3257c;
+        h0 h0Var = this.f2093c;
         if (h0Var == null) {
             hashCode2 = 0;
         } else {
@@ -99,10 +99,10 @@ public final class k0 {
             hashCode3 = c0Var.hashCode();
         }
         int hashCode5 = (this.e.hashCode() + ((i12 + hashCode3) * 31)) * 31;
-        String str2 = this.f3258f;
+        String str2 = this.f2094f;
         if (str2 != null) {
             i10 = str2.hashCode();
         }
-        return (int) (((this.f3259g.hashCode() + ((hashCode5 + i10) * 31)) * 31 * 31) + this.h);
+        return (int) (((this.f2095g.hashCode() + ((hashCode5 + i10) * 31)) * 31 * 31) + this.h);
     }
 }

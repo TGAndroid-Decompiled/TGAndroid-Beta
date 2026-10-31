@@ -1,36 +1,17 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.widget.FrameLayout;
-import org.telegram.messenger.R;
-public final class l1 extends FrameLayout {
-    public final Drawable f22825a;
+import android.view.ViewTreeObserver;
+public final class l1 implements ViewTreeObserver.OnPreDrawListener {
+    public final int f20530a;
+    public final Object f20531b;
 
-    public l1(Context context, u6 u6Var) {
-        this(context, y6.H8, u6Var);
+    public l1(Object obj, int i10) {
+        this.f20530a = i10;
+        this.f20531b = obj;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        Drawable drawable = this.f22825a;
-        if (drawable != null) {
-            drawable.setBounds(0, 0, getWidth(), getHeight());
-            drawable.draw(canvas);
-        }
-    }
-
-    public void setColor(int i10) {
-        setBackgroundColor(i10);
-    }
-
-    public l1(Context context, int i10, u6 u6Var) {
-        super(context);
-        int w02 = y6.w0(i10, u6Var);
-        int w03 = y6.w0(y6.f23319b7, u6Var);
-        this.f22825a = y6.W0(getContext(), R.drawable.greydivider, w03);
-        setBackgroundColor(w02);
+    public final boolean onPreDraw() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.l1.onPreDraw():boolean");
     }
 }

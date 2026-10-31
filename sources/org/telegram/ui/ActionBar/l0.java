@@ -1,27 +1,27 @@
 package org.telegram.ui.ActionBar;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class l0 extends AnimatorListenerAdapter {
-    public final int f22823a;
-    public final w0 f22824b;
+import android.view.ViewTreeObserver;
+import org.telegram.ui.Components.gr;
+public final class l0 implements ViewTreeObserver.OnPreDrawListener {
+    public final float f20528a;
+    public final t0 f20529b;
 
-    public l0(w0 w0Var, int i10) {
-        this.f22823a = i10;
-        this.f22824b = w0Var;
+    public l0(t0 t0Var, float f7) {
+        this.f20529b = t0Var;
+        this.f20528a = f7;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f22823a) {
-            case 0:
-                w0 w0Var = this.f22824b;
-                w0Var.f23198s.setVisibility(4);
-                w0Var.v = null;
-                return;
-            default:
-                this.f22824b.v = null;
-                return;
+    public final boolean onPreDraw() {
+        t0 t0Var = this.f20529b;
+        t0Var.e.getViewTreeObserver().removeOnPreDrawListener(this);
+        float x10 = t0Var.e.getX();
+        float f7 = this.f20528a;
+        if (x10 != f7) {
+            n0 n0Var = t0Var.e;
+            n0Var.setTranslationX(f7 - n0Var.getX());
         }
+        t0Var.e.animate().translationX(0.0f).setDuration(250L).setStartDelay(0L).setInterpolator(gr.f26495f).start();
+        return true;
     }
 }

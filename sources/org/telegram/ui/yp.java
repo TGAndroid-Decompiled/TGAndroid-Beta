@@ -1,58 +1,70 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.TLRPC;
-public final class yp implements org.telegram.ui.ActionBar.b2, MessagesController.ErrorDelegate, MessagesStorage.LongCallback {
-    public final int f46065a;
-    public final iq f46066b;
+public final class yp implements org.telegram.ui.ActionBar.u1, org.telegram.messenger.gp, org.telegram.messenger.cs {
+    public final int f43877a;
+    public final iq f43878b;
 
     public yp(iq iqVar, int i10) {
-        this.f46065a = i10;
-        this.f46066b = iqVar;
+        this.f43877a = i10;
+        this.f43878b = iqVar;
     }
 
     @Override
-    public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        TLRPC.TL_chatAdminRights p02;
-        switch (this.f46065a) {
+    public boolean a(TLRPC.TL_error tL_error) {
+        switch (this.f43877a) {
+            case 2:
+                this.f43878b.x0(false);
+                return true;
+            case 3:
+                this.f43878b.x0(false);
+                return true;
+            default:
+                return iq.a0(this.f43878b, tL_error);
+        }
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
+        TLRPC.TL_chatAdminRights s02;
+        switch (this.f43877a) {
             case 0:
-                this.f46066b.s0(true);
+                this.f43878b.v0(true);
                 return;
             case 1:
-                iq iqVar = this.f46066b;
-                iqVar.u0(true);
+                iq iqVar = this.f43878b;
+                iqVar.x0(true);
                 aq aqVar = new aq(iqVar, 0);
                 if (!iqVar.K && !iqVar.L) {
-                    iqVar.getMessagesController().addUserToChat(iqVar.f40255w.f22028id, iqVar.v, 0, iqVar.Y0, iqVar, true, aqVar, new yp(iqVar, 3));
+                    iqVar.getMessagesController().m(iqVar.f38325x.f19793id, iqVar.f38323w, 0, iqVar.Y0, iqVar, true, aqVar, new yp(iqVar, 3), null);
                     return;
                 }
-                MessagesController messagesController = iqVar.getMessagesController();
-                long j10 = iqVar.f40255w.f22028id;
-                TLRPC.User user = iqVar.v;
+                org.telegram.messenger.vp messagesController = iqVar.getMessagesController();
+                long j10 = iqVar.f38325x.f19793id;
+                TLRPC.User user = iqVar.f38323w;
                 if (iqVar.K) {
-                    p02 = iqVar.M;
+                    s02 = iqVar.M;
                 } else {
-                    p02 = iq.p0(false);
+                    s02 = iq.s0(false);
                 }
-                messagesController.setUserAdminRole(j10, user, p02, iqVar.S, false, iqVar, iqVar.Z0, iqVar.K, iqVar.Y0, aqVar, new yp(iqVar, 2));
+                messagesController.M4(j10, user, s02, iqVar.S, false, iqVar, iqVar.Z0, iqVar.K, iqVar.Y0, aqVar, new yp(iqVar, 2));
                 return;
             case 2:
             case 3:
             default:
-                iq iqVar2 = this.f46066b;
+                iq iqVar2 = this.f43878b;
                 iqVar2.getClass();
-                iqVar2.presentFragment(new fg1(6, null));
+                iqVar2.presentFragment(new tc1(6, null));
                 return;
             case 4:
-                this.f46066b.finishFragment();
+                this.f43878b.finishFragment();
                 return;
             case 5:
                 TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
-                iq iqVar3 = this.f46066b;
-                m4.s0 s0Var = new m4.s0(26, iqVar3, twoStepVerificationActivity);
+                iq iqVar3 = this.f43878b;
+                ng.d dVar = new ng.d(21, iqVar3, twoStepVerificationActivity);
                 twoStepVerificationActivity.Z = 0;
-                twoStepVerificationActivity.f36329b0 = s0Var;
+                twoStepVerificationActivity.f34129b0 = dVar;
                 iqVar3.presentFragment(twoStepVerificationActivity);
                 return;
         }
@@ -60,20 +72,6 @@ public final class yp implements org.telegram.ui.ActionBar.b2, MessagesControlle
 
     @Override
     public void run(long j10) {
-        iq.V(this.f46066b, j10);
-    }
-
-    @Override
-    public boolean run(TLRPC.TL_error tL_error) {
-        switch (this.f46065a) {
-            case 2:
-                this.f46066b.u0(false);
-                return true;
-            case 3:
-                this.f46066b.u0(false);
-                return true;
-            default:
-                return iq.X(this.f46066b, tL_error);
-        }
+        iq.Y(this.f43878b, j10);
     }
 }

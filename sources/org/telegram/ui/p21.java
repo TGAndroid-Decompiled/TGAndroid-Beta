@@ -1,34 +1,36 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-public final class p21 implements s21 {
-    public final wn f42288a;
-    public final Activity f42289b;
-    public final org.telegram.ui.ActionBar.u6 f42290c;
-    public final MessageObject d;
+import android.animation.ValueAnimator;
+public final class p21 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f40433a;
+    public final s21 f40434b;
 
-    public p21(wn wnVar, Activity activity, org.telegram.ui.ActionBar.u6 u6Var, MessageObject messageObject) {
-        this.f42288a = wnVar;
-        this.f42289b = activity;
-        this.f42290c = u6Var;
-        this.d = messageObject;
+    public p21(s21 s21Var, int i10) {
+        this.f40433a = i10;
+        this.f40434b = s21Var;
     }
 
     @Override
-    public final void a() {
-        AndroidUtilities.runOnUIThread(new j21(this.f42288a, this.f42289b, this.f42290c, this.d, 2), 200L);
-    }
-
-    @Override
-    public final void b() {
-        AndroidUtilities.runOnUIThread(new te(this.f42288a, this.d, 8), 200L);
-    }
-
-    @Override
-    public final void c() {
-        wn wnVar = this.f42288a;
-        wnVar.showDialog(new tg.y0((org.telegram.ui.ActionBar.r2) wnVar, 3, true));
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f40433a) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                s21 s21Var = this.f40434b;
+                s21Var.N = floatValue;
+                s21Var.V.f38129h0.invalidate();
+                return;
+            case 1:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                s21 s21Var2 = this.f40434b;
+                s21Var2.N = floatValue2;
+                s21Var2.V.f38129h0.invalidate();
+                return;
+            default:
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                s21 s21Var3 = this.f40434b;
+                s21Var3.N = floatValue3;
+                s21Var3.V.f38129h0.invalidate();
+                return;
+        }
     }
 }

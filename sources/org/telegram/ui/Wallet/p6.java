@@ -1,32 +1,26 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.Utilities;
-public final class p6 implements Runnable {
-    public final int f37124a;
-    public final WalletEngine2 f37125b;
-    public final byte[] f37126c;
-    public final d2 d;
-    public final String e;
-    public final Utilities.Callback2 f37127f;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.widget.FrameLayout;
+public final class p6 extends FrameLayout {
+    public final s6 f35038a;
 
-    public p6(WalletEngine2 walletEngine2, byte[] bArr, d2 d2Var, String str, Utilities.Callback2 callback2, int i10) {
-        this.f37124a = i10;
-        this.f37125b = walletEngine2;
-        this.f37126c = bArr;
-        this.d = d2Var;
-        this.e = str;
-        this.f37127f = callback2;
+    public p6(s6 s6Var, Context context) {
+        super(context);
+        this.f35038a = s6Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37124a) {
-            case 0:
-                this.f37125b.lambda$signMessage$11(this.f37126c, this.d, this.e, this.f37127f);
-                return;
-            default:
-                this.f37125b.lambda$prepareTonConnectTransfer$5(this.f37126c, this.d, this.e, this.f37127f);
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        canvas.translate(-getLeft(), -getTop());
+        s6 s6Var = this.f35038a;
+        s6Var.f35187j.c(canvas);
+        canvas.restore();
+        super.dispatchDraw(canvas);
+        if (s6Var.f35187j.d()) {
+            postInvalidateOnAnimation();
         }
     }
 }

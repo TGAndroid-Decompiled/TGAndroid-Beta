@@ -1,32 +1,29 @@
 package bi;
+public final class q2 implements Runnable {
+    public final int f3293a;
+    public final d4 f3294b;
+    public final int f3295c;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class q2 implements RequestDelegate {
-    public final int f5257a;
-    public final h7 f5258b;
-    public final TL_stars.TL_starGiftUnique f5259c;
-    public final bg.a d;
-    public final Runnable e;
-
-    public q2(h7 h7Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, bg.a aVar, Runnable runnable, int i10) {
-        this.f5257a = i10;
-        this.f5258b = h7Var;
-        this.f5259c = tL_starGiftUnique;
-        this.d = aVar;
-        this.e = runnable;
+    public q2(d4 d4Var, int i10, int i11) {
+        this.f3293a = i11;
+        this.f3294b = d4Var;
+        this.f3295c = i10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f5257a) {
+    public final void run() {
+        switch (this.f3293a) {
             case 0:
-                h7.D0(this.f5258b, this.f5259c, this.d, this.e, tLObject, tL_error);
+                this.f3294b.g4(this.f3295c);
+                return;
+            case 1:
+                this.f3294b.i4(this.f3295c);
+                return;
+            case 2:
+                this.f3294b.scrollBy(0, this.f3295c);
                 return;
             default:
-                h7.s0(this.f5258b, this.f5259c, this.d, this.e, tLObject, tL_error);
+                this.f3294b.h4(this.f3295c);
                 return;
         }
     }

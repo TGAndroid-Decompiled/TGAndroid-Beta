@@ -1,11 +1,15 @@
 package md;
+public abstract class d {
+    public static final a f13054a;
 
-import a8.jd;
-import nd.g;
-public final class d extends g {
-    @Override
-    public final Object invokeSuspend(Object obj) {
-        jd.b(obj);
-        return obj;
+    static {
+        b bVar;
+        Integer num = id.a.f8245a;
+        if (num != null && num.intValue() < 34) {
+            bVar = new b();
+        } else {
+            bVar = new Object();
+        }
+        f13054a = bVar;
     }
 }

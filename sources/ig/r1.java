@@ -1,48 +1,89 @@
 package ig;
 
-import hi.u2;
-import java.util.TimerTask;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.d71;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.ot;
-public final class r1 extends TimerTask {
-    public final int f14224a;
-    public final String f14225b;
-    public final mm0 f14226c;
+import android.graphics.Bitmap;
+import android.opengl.GLES20;
+import android.opengl.GLUtils;
+import android.os.Build;
+import java.nio.ByteBuffer;
+import java.nio.IntBuffer;
+import org.telegram.messenger.f8;
+import org.telegram.ui.Components.pu0;
+import v7.h8;
+public final class r1 {
+    public final Bitmap f8439a;
+    public int f8440b;
 
-    public r1(mm0 mm0Var, String str, int i10) {
-        this.f14224a = i10;
-        this.f14226c = mm0Var;
-        this.f14225b = str;
+    public r1(Bitmap bitmap) {
+        this.f8439a = bitmap;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f14224a) {
-            case 0:
-                t1 t1Var = (t1) this.f14226c;
-                try {
-                    t1Var.f14252n.cancel();
-                    t1Var.f14252n = null;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
-                String str = this.f14225b;
-                t1Var.getClass();
-                AndroidUtilities.runOnUIThread(new u2(11, t1Var, str));
-                return;
-            default:
-                try {
-                    ((ot) this.f14226c).d.cancel();
-                    ((ot) this.f14226c).d = null;
-                } catch (Exception e10) {
-                    FileLog.e(e10);
-                }
-                Utilities.searchQueue.postRunnable(new d71(18, (ot) this.f14226c, this.f14225b));
-                return;
+    public static int b(pu0 pu0Var) {
+        int i10 = (int) pu0Var.f29435a;
+        int i11 = (int) pu0Var.f29436b;
+        int[] iArr = new int[1];
+        GLES20.glGenTextures(1, iArr, 0);
+        int i12 = iArr[0];
+        GLES20.glBindTexture(3553, i12);
+        GLES20.glTexParameteri(3553, 10242, 33071);
+        GLES20.glTexParameteri(3553, 10243, 33071);
+        GLES20.glTexParameteri(3553, 10240, 9729);
+        GLES20.glTexParameteri(3553, 10241, 9729);
+        GLES20.glTexImage2D(3553, 0, 6408, i10, i11, 0, 6408, 5121, null);
+        return i12;
+    }
+
+    public final void a(boolean z10) {
+        Bitmap bitmap;
+        int i10 = this.f8440b;
+        if (i10 != 0) {
+            GLES20.glDeleteTextures(1, new int[]{i10}, 0);
+            this.f8440b = 0;
+            if (z10 && (bitmap = this.f8439a) != null && !bitmap.isRecycled()) {
+                bitmap.recycle();
+            }
         }
+    }
+
+    public final int c() {
+        int i10 = this.f8440b;
+        if (i10 != 0) {
+            return i10;
+        }
+        Bitmap bitmap = this.f8439a;
+        if (bitmap == null || bitmap.isRecycled()) {
+            return 0;
+        }
+        int[] iArr = new int[1];
+        GLES20.glGenTextures(1, iArr, 0);
+        int i11 = iArr[0];
+        this.f8440b = i11;
+        GLES20.glBindTexture(3553, i11);
+        GLES20.glTexParameteri(3553, 10242, 33071);
+        GLES20.glTexParameteri(3553, 10243, 33071);
+        GLES20.glTexParameteri(3553, 10240, 9729);
+        GLES20.glTexParameteri(3553, 10241, 9729);
+        try {
+            GLUtils.texImage2D(3553, 0, 6408, this.f8439a, 5121, 0);
+        } catch (Exception e) {
+            f8.g(e, true);
+            int width = bitmap.getWidth();
+            int height = bitmap.getHeight();
+            int i12 = width * height;
+            int[] iArr2 = new int[i12];
+            this.f8439a.getPixels(iArr2, 0, width, 0, 0, width, height);
+            for (int i13 = 0; i13 < i12; i13++) {
+                int i14 = iArr2[i13];
+                iArr2[i13] = ((i14 >> 16) & 255) | (i14 & (-16711936)) | ((i14 & 255) << 16);
+            }
+            GLES20.glTexImage2D(3553, 0, 6408, width, height, 0, 6408, 5121, IntBuffer.wrap(iArr2));
+        }
+        if (!bitmap.isRecycled() && Build.VERSION.SDK_INT <= 28) {
+            int pixel = bitmap.getPixel(0, 0);
+            ByteBuffer allocateDirect = ByteBuffer.allocateDirect(4);
+            allocateDirect.putInt(((pixel >> 16) & 255) | (pixel & (-16711936)) | ((pixel & 255) << 16)).position(0);
+            GLES20.glTexSubImage2D(3553, 0, 0, 0, 1, 1, 6408, 5121, allocateDirect);
+        }
+        h8.a();
+        return this.f8440b;
     }
 }

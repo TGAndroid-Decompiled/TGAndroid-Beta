@@ -1,21 +1,30 @@
 package l5;
-public final class p {
-    public static final p f16912a;
-    public static final p[] f16913b;
-    p EF0;
 
-    static {
-        Enum r02 = new Enum("UNKNOWN", 0);
-        ?? r12 = new Enum("ANDROID_FIREBASE", 1);
-        f16912a = r12;
-        f16913b = new p[]{r02, r12};
+import android.os.Looper;
+import com.google.android.gms.internal.cast.z;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+public final class p implements Executor {
+    public final int f11677a = 1;
+    public final Object f11678b;
+
+    public p(Looper looper) {
+        this.f11678b = new z(looper, 4);
     }
 
-    public static p valueOf(String str) {
-        return (p) Enum.valueOf(p.class, str);
+    @Override
+    public final void execute(Runnable runnable) {
+        switch (this.f11677a) {
+            case 0:
+                ((Executor) this.f11678b).execute(new o(0, runnable));
+                return;
+            default:
+                ((z) this.f11678b).post(runnable);
+                return;
+        }
     }
 
-    public static p[] values() {
-        return (p[]) f16913b.clone();
+    public p(ExecutorService executorService) {
+        this.f11678b = executorService;
     }
 }

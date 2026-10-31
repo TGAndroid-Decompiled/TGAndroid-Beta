@@ -1,56 +1,78 @@
 package li;
 
-import org.telegram.messenger.UserConfig;
-import org.telegram.ui.pi0;
+import android.os.Handler;
 public final class d implements Runnable {
-    public final int f17178a;
-    public final q f17179b;
+    public final int f12035a;
+    public final l f12036b;
+    public final o f12037c;
 
-    public d(q qVar, int i10) {
-        this.f17178a = i10;
-        this.f17179b = qVar;
+    public d(l lVar, o oVar, int i10) {
+        this.f12035a = i10;
+        this.f12036b = lVar;
+        this.f12037c = oVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f17178a) {
+        v vVar;
+        switch (this.f12035a) {
             case 0:
-                q qVar = this.f17179b;
-                qVar.K(2147483646, true, 0, false, 0L);
-                pi0 pi0Var = qVar.O;
-                if (pi0Var != null) {
-                    pi0Var.g(false);
-                    qVar.O = null;
+                l lVar = this.f12036b;
+                d dVar = new d(lVar, this.f12037c, 3);
+                Handler handler = lVar.f12139n;
+                if (handler != null) {
+                    handler.post(dVar);
                     return;
                 }
                 return;
             case 1:
-                q qVar2 = this.f17179b;
-                qVar2.K(0, false, 0, false, 0L);
-                pi0 pi0Var2 = qVar2.O;
-                if (pi0Var2 != null) {
-                    pi0Var2.g(true);
-                    qVar2.O = null;
+                l lVar2 = this.f12036b;
+                d dVar2 = new d(lVar2, this.f12037c, 2);
+                Handler handler2 = lVar2.f12139n;
+                if (handler2 != null) {
+                    handler2.post(dVar2);
                     return;
                 }
                 return;
             case 2:
-                q qVar3 = this.f17179b;
-                if (!UserConfig.getInstance(qVar3.f17416n).isPremium()) {
-                    new tg.y0(qVar3.f30254b.f32990f0, qVar3.getContext(), qVar3.f17416n, 43, true).show();
-                    return;
-                }
-                return;
-            case 3:
-                q qVar4 = this.f17179b;
-                a4 a4Var = qVar4.f17418s;
-                if (a4Var != null) {
-                    a4Var.setSendEnabled(qVar4.f17417r.S3());
+                l lVar3 = this.f12036b;
+                o oVar = this.f12037c;
+                if (lVar3.V && !lVar3.f12109b0 && lVar3.f12166x == oVar) {
+                    lVar3.k();
+                    if (lVar3.f12127i0 == 0) {
+                        lVar3.f12127i0 = oVar.e;
+                    }
+                    p pVar = lVar3.f12129j;
+                    pVar.b("common A/V start completed: segmentElapsedMs=" + l.z(lVar3.F0));
+                    x0 x0Var = (x0) lVar3.f12132k.f279b;
+                    x0Var.f12312i.post(new l0(x0Var, 2));
                     return;
                 }
                 return;
             default:
-                this.f17179b.d0();
+                l lVar4 = this.f12036b;
+                o oVar2 = this.f12037c;
+                if (lVar4.V && !lVar4.f12109b0 && lVar4.f12166x == oVar2 && lVar4.A != null && (vVar = lVar4.f12164w) != null) {
+                    try {
+                        long j10 = oVar2.F;
+                        if (j10 > 0) {
+                            vVar.f12276p = j10;
+                            vVar.Q = -1L;
+                            vVar.R = 0L;
+                            vVar.S = -1L;
+                            vVar.f12278q = Long.MAX_VALUE;
+                            vVar.f12283s0 = true;
+                            p pVar2 = lVar4.f12129j;
+                            pVar2.b("common A/V start armed; waiting for next camera frame: segmentElapsedMs=" + l.z(lVar4.F0));
+                            return;
+                        }
+                        throw new IllegalArgumentException("Invalid recording time origin");
+                    } catch (RuntimeException e) {
+                        lVar4.k();
+                        lVar4.N(e);
+                        return;
+                    }
+                }
                 return;
         }
     }

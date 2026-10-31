@@ -1,22 +1,22 @@
 package org.telegram.ui.ActionBar;
-public final class g5 {
-    public final r2 f22663a;
-    public boolean f22664b;
-    public boolean f22665c;
-    public boolean d = true;
-    public boolean e;
-    public ActionBarPopupWindow$ActionBarPopupWindowLayout f22666f;
-    public boolean f22667g;
+public final class g5 implements Runnable {
+    public final int f20344a;
+    public final u5 f20345b;
 
-    public g5(r2 r2Var) {
-        this.f22663a = r2Var;
+    public g5(u5 u5Var, int i10) {
+        this.f20344a = i10;
+        this.f20345b = u5Var;
     }
 
-    public final void a() {
-        this.f22665c = true;
-    }
-
-    public final void b(boolean z10) {
-        this.f22664b = z10;
+    @Override
+    public final void run() {
+        switch (this.f20344a) {
+            case 0:
+                this.f20345b.setVisibility(8);
+                return;
+            default:
+                this.f20345b.setVisibility(8);
+                return;
+        }
     }
 }

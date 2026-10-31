@@ -1,48 +1,284 @@
 package org.telegram.ui.Cells;
 
+import android.animation.AnimatorSet;
+import android.content.Context;
+import android.graphics.BlendMode;
 import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.widget.ImageView;
+import java.io.File;
 import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-public final class ta extends FrameLayout implements org.telegram.ui.ActionBar.p6 {
-    public boolean f25468a;
-    public org.telegram.ui.Components.y9 f25469b;
-    public TextView f25470c;
-    public TextView d;
+import org.telegram.messenger.d00;
+import org.telegram.messenger.hf;
+import org.telegram.messenger.ic;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.CheckBox;
+import org.telegram.ui.Components.jb0;
+import org.telegram.ui.me1;
+import org.telegram.ui.ne1;
+public final class ta extends FrameLayout implements org.telegram.ui.ActionBar.k6 {
+    public final ag.d2 f23110a;
+    public final ImageView f23111b;
+    public final CheckBox f23112c;
+    public final View d;
+    public boolean e;
+    public AnimatorSet f23113f;
+    public Object h;
+    public int f23114n;
+    public int f23115r;
+    public final ua f23116s;
 
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.f23341c9));
+    public ta(ua uaVar, Context context) {
+        super(context);
+        this.f23116s = uaVar;
+        setWillNotDraw(false);
+        ag.d2 d2Var = new ag.d2(this, context, 3);
+        this.f23110a = d2Var;
+        addView(d2Var, w7.b6.e(-1, -1, 51));
+        ImageView imageView = new ImageView(context);
+        this.f23111b = imageView;
+        imageView.setImageResource(2131231273);
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        addView(imageView, w7.b6.e(-1, -1, 51));
+        View view = new View(context);
+        this.d = view;
+        view.setBackgroundDrawable(org.telegram.ui.ActionBar.t6.N0(false));
+        addView(view, w7.b6.c(-1.0f, -1));
+        CheckBox checkBox = new CheckBox(context, 2131232673);
+        this.f23112c = checkBox;
+        checkBox.setVisibility(4);
+        checkBox.c(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f21021i7, false), org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f21059k7, false));
+        addView(checkBox, w7.b6.d(22, 22.0f, 53, 0.0f, 2.0f, 2.0f, 0.0f));
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        if (this.f25468a) {
-            canvas.drawLine(AndroidUtilities.dp(72.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.y6.f23479k0);
+    public final void a(Object obj, Object obj2) {
+        boolean z10;
+        int V0;
+        long j10;
+        long j11;
+        int V02;
+        org.telegram.ui.Components.g9 g9Var;
+        this.h = obj;
+        org.telegram.ui.Components.g9 g9Var2 = this.f23110a;
+        int i10 = 0;
+        g9Var2.setVisibility(0);
+        this.f23111b.setVisibility(4);
+        TLRPC.PhotoSize photoSize = null;
+        g9Var2.setBackgroundDrawable(null);
+        g9Var2.getImageReceiver().f14397o1 = null;
+        g9Var2.getImageReceiver().setAlpha(1.0f);
+        g9Var2.getImageReceiver().Z(null);
+        g9Var2.getImageReceiver().m0(null);
+        if (obj == obj2) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.e = z10;
+        if (obj instanceof TLRPC.TL_wallPaper) {
+            TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) obj;
+            TLRPC.PhotoSize w9 = org.telegram.messenger.b8.w(tL_wallPaper.document.thumbs, org.telegram.messenger.i0.L(100), false, null, false);
+            TLRPC.PhotoSize w10 = org.telegram.messenger.b8.w(tL_wallPaper.document.thumbs, org.telegram.messenger.i0.L(180), false, null, false);
+            if (w10 != w9) {
+                photoSize = w10;
+            }
+            if (photoSize != null) {
+                j11 = photoSize.size;
+            } else {
+                j11 = tL_wallPaper.document.size;
+            }
+            if (tL_wallPaper.pattern) {
+                TLRPC.WallPaperSettings wallPaperSettings = tL_wallPaper.settings;
+                if (wallPaperSettings.third_background_color != 0) {
+                    TLRPC.WallPaperSettings wallPaperSettings2 = tL_wallPaper.settings;
+                    jb0 jb0Var = new jb0(true, wallPaperSettings2.background_color, wallPaperSettings2.second_background_color, wallPaperSettings2.third_background_color, wallPaperSettings2.fourth_background_color);
+                    if (tL_wallPaper.settings.intensity < 0 && org.telegram.ui.ActionBar.t6.I.q()) {
+                        g9Var2.getImageReceiver().m0(jb0Var.f27287k);
+                    } else {
+                        g9Var2.setBackground(jb0Var);
+                        if (Build.VERSION.SDK_INT >= 29) {
+                            g9Var2.getImageReceiver().Z(BlendMode.SOFT_LIGHT);
+                        }
+                    }
+                    TLRPC.WallPaperSettings wallPaperSettings3 = tL_wallPaper.settings;
+                    V02 = jb0.g(wallPaperSettings3.background_color, wallPaperSettings3.second_background_color, wallPaperSettings3.third_background_color, wallPaperSettings3.fourth_background_color);
+                } else {
+                    g9Var2.setBackgroundColor(org.telegram.ui.ActionBar.t6.a1(wallPaperSettings.background_color));
+                    V02 = org.telegram.messenger.i0.V0(tL_wallPaper.settings.background_color, false);
+                }
+                if (Build.VERSION.SDK_INT < 29 || tL_wallPaper.settings.third_background_color == 0) {
+                    g9Var2.getImageReceiver().f14397o1 = new PorterDuffColorFilter(org.telegram.messenger.i0.V0(V02, false), PorterDuff.Mode.SRC_IN);
+                }
+                if (photoSize != null) {
+                    ic c10 = ic.c(photoSize, tL_wallPaper.document);
+                    ic c11 = ic.c(w9, tL_wallPaper.document);
+                    g9Var = g9Var2;
+                    g9Var.g(1, j11, tL_wallPaper, "180_180", null, "jpg", c10, c11);
+                } else {
+                    ic c12 = ic.c(w9, tL_wallPaper.document);
+                    g9Var = g9Var2;
+                    g9Var.g(1, j11, tL_wallPaper, "180_180", null, "jpg", c12, null);
+                }
+                g9Var.getImageReceiver().setAlpha(Math.abs(tL_wallPaper.settings.intensity) / 100.0f);
+            } else if (photoSize != null) {
+                g9Var2.g(1, j11, tL_wallPaper, "180_180", "100_100_b", "jpg", ic.c(photoSize, tL_wallPaper.document), ic.c(w9, tL_wallPaper.document));
+            } else {
+                g9Var2.g(1, j11, tL_wallPaper, "180_180", "100_100_b", "jpg", ic.b(tL_wallPaper.document), ic.c(w9, tL_wallPaper.document));
+            }
+        } else if (obj instanceof me1) {
+            me1 me1Var = (me1) obj;
+            File file = me1Var.f39691i;
+            int i11 = me1Var.d;
+            int i12 = me1Var.f39688c;
+            int i13 = me1Var.f39687b;
+            if (file == null && me1Var.f39690g == null && !"d".equals(me1Var.f39686a)) {
+                g9Var2.setImageBitmap(null);
+                if (me1Var.f39693k) {
+                    g9Var2.setBackground(new jb0(true, me1Var.f39687b, me1Var.f39688c, me1Var.d, me1Var.e));
+                    return;
+                } else if (i12 != 0) {
+                    g9Var2.setBackground(new GradientDrawable(GradientDrawable.Orientation.BL_TR, new int[]{i13 | (-16777216), i12 | (-16777216)}));
+                    return;
+                } else {
+                    g9Var2.setBackgroundColor(i13 | (-16777216));
+                    return;
+                }
+            }
+            if (i11 != 0) {
+                jb0 jb0Var2 = new jb0(true, me1Var.f39687b, me1Var.f39688c, me1Var.d, me1Var.e);
+                if (me1Var.h >= 0.0f) {
+                    g9Var2.setBackground(new jb0(true, me1Var.f39687b, me1Var.f39688c, me1Var.d, me1Var.e));
+                    if (Build.VERSION.SDK_INT >= 29) {
+                        g9Var2.getImageReceiver().Z(BlendMode.SOFT_LIGHT);
+                    }
+                } else {
+                    g9Var2.getImageReceiver().m0(jb0Var2.f27287k);
+                }
+                V0 = jb0.g(i13, i12, i11, me1Var.e);
+            } else {
+                V0 = org.telegram.messenger.i0.V0(i13, false);
+            }
+            int i14 = V0;
+            if ("d".equals(me1Var.f39686a)) {
+                if (me1Var.f39695m == null) {
+                    me1Var.f39695m = d00.d(2131623997, 100, 180, -16777216);
+                }
+                g9Var2.setImageBitmap(me1Var.f39695m);
+                g9Var2.getImageReceiver().setAlpha(Math.abs(me1Var.h));
+            } else if (file != null) {
+                g9Var2.h(file.getAbsolutePath(), "180_180", null);
+            } else {
+                TLRPC.PhotoSize w11 = org.telegram.messenger.b8.w(me1Var.f39690g.document.thumbs, 100, false, null, false);
+                if (w11 != null) {
+                    j10 = w11.size;
+                } else {
+                    j10 = me1Var.f39690g.document.size;
+                }
+                g9Var2.g(1, j10, me1Var.f39690g, "180_180", null, "jpg", ic.c(w11, me1Var.f39690g.document), null);
+                g9Var2.getImageReceiver().setAlpha(Math.abs(me1Var.h));
+                if (Build.VERSION.SDK_INT >= 29 && i11 != 0) {
+                    return;
+                }
+                g9Var2.getImageReceiver().f14397o1 = new PorterDuffColorFilter(org.telegram.messenger.i0.V0(i14, false), PorterDuff.Mode.SRC_IN);
+            }
+        } else if (obj instanceof ne1) {
+            ne1 ne1Var = (ne1) obj;
+            File file2 = ne1Var.e;
+            if (file2 != null) {
+                g9Var2.h(file2.getAbsolutePath(), "180_180", null);
+                return;
+            }
+            File file3 = ne1Var.d;
+            if (file3 != null) {
+                g9Var2.h(file3.getAbsolutePath(), "180_180", null);
+            } else if ("t".equals(ne1Var.f39922a)) {
+                g9Var2.setImageDrawable(org.telegram.ui.ActionBar.t6.Z0(g9Var2, true));
+            } else {
+                g9Var2.setImageResource(ne1Var.f39924c);
+            }
+        } else if (obj instanceof hf) {
+            hf hfVar = (hf) obj;
+            TLRPC.Photo photo = hfVar.K;
+            if (photo != null) {
+                TLRPC.PhotoSize w12 = org.telegram.messenger.b8.w(photo.sizes, org.telegram.messenger.i0.L(100), false, null, false);
+                TLRPC.PhotoSize w13 = org.telegram.messenger.b8.w(hfVar.K.sizes, org.telegram.messenger.i0.L(180), false, null, false);
+                if (w13 == w12) {
+                    w13 = null;
+                }
+                if (w13 != null) {
+                    i10 = w13.size;
+                }
+                g9Var2.g(1, i10, hfVar, "180_180", "100_100_b", "jpg", ic.i(w13, hfVar.K), ic.i(w12, hfVar.K));
+                return;
+            }
+            g9Var2.h(hfVar.D, "180_180", null);
+        } else {
+            this.e = false;
         }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
+    public final void clearAnimation() {
+        super.clearAnimation();
+        AnimatorSet animatorSet = this.f23113f;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+            this.f23113f = null;
+        }
+    }
+
+    @Override
+    public final void invalidate() {
+        super.invalidate();
+        this.f23110a.invalidate();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        ua uaVar = this.f23116s;
+        if (!uaVar.f23151b || !this.f23112c.f23905y) {
+            ag.d2 d2Var = this.f23110a;
+            if (d2Var.getImageReceiver().I() && d2Var.getImageReceiver().f14384h1 == 1.0f) {
+                return;
+            }
+        }
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), uaVar.f23156s);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        this.d.drawableHotspotChanged(motionEvent.getX(), motionEvent.getY());
+        return super.onTouchEvent(motionEvent);
     }
 
     @Override
     public final void updateColors() {
-        org.telegram.ui.Components.y9 y9Var = this.f25469b;
-        if (y9Var != null) {
-            try {
-                if (y9Var.getImageReceiver() != null && (y9Var.getImageReceiver().getDrawable() instanceof pg.c)) {
-                    ((pg.c) y9Var.getImageReceiver().getDrawable()).a(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23341c9, false));
-                    y9Var.invalidate();
+        try {
+            int x02 = org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f21021i7, false);
+            int x03 = org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f21059k7, false);
+            CheckBox checkBox = this.f23112c;
+            if (checkBox != null) {
+                if (x02 == this.f23114n) {
+                    if (x03 != this.f23115r) {
+                    }
                 }
-            } catch (Exception e) {
-                FileLog.e(e);
+                this.f23114n = x02;
+                this.f23115r = x03;
+                checkBox.c(x02, x03);
             }
+            invalidate();
+        } catch (Exception e) {
+            org.telegram.messenger.f8.g(e, true);
         }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

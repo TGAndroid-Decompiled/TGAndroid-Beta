@@ -1,159 +1,120 @@
 package bh;
 
-import android.graphics.Rect;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.t5;
-import org.telegram.ui.Components.yj0;
-import org.telegram.ui.qy;
-public final class e {
-    public static int f4013m;
-    public t5 f4014a;
-    public Rect f4015b;
-    public ArrayList f4016c;
-    public View d;
-    public long e;
-    public boolean f4017f;
-    public boolean f4018g;
-    public int h;
-    public boolean f4019i;
-    public ImageReceiver f4020j;
-    public int f4021k;
-    public long f4022l;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.cd;
+import org.telegram.messenger.i0;
+import org.telegram.ui.ActionBar.a7;
+import org.telegram.ui.ActionBar.p6;
+import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.jj;
+import w7.b6;
+import w7.e6;
+public final class e extends LinearLayout {
+    public static final int e = 0;
+    public final p6 f2780a;
+    public final d f2781b;
+    public final d f2782c;
+    public float d;
 
-    public static e a(t5 t5Var, boolean z10, boolean z11) {
-        int i10 = UserConfig.selectedAccount;
-        ?? obj = new Object();
-        obj.f4015b = new Rect();
-        obj.f4016c = new ArrayList();
-        obj.f4018g = true;
-        obj.f4021k = -1;
-        obj.f4014a = t5Var;
-        obj.f4017f = z10;
-        obj.h = i10;
-        obj.f4019i = z11;
-        obj.e = System.currentTimeMillis();
-        if (z11 && LiteMode.isEnabled(4112)) {
-            ImageReceiver imageReceiver = new ImageReceiver();
-            obj.f4020j = imageReceiver;
-            if (z10) {
-                imageReceiver.setAllowDrawWhileCacheGenerating(true);
-            }
+    public e(Context context, p6 p6Var, jj jjVar, tg.b bVar) {
+        super(context);
+        d dVar = new d(this);
+        this.f2781b = dVar;
+        d dVar2 = new d(this);
+        this.f2782c = dVar2;
+        this.f2780a = p6Var;
+        ah.a c10 = ah.a.c(context, p6Var, bVar, jjVar);
+        dVar.f2777a = c10;
+        c10.setOnClickListener(new c(0));
+        e6.b((ah.a) dVar.f2777a, 0.065f, 2.0f);
+        ah.a c11 = ah.a.c(context, p6Var, bVar, jjVar);
+        dVar2.f2777a = c11;
+        c11.setOnClickListener(new c(0));
+        e6.b((ah.a) dVar2.f2777a, 0.065f, 2.0f);
+        a(dVar, cd.L0(2131746278, null), 2131231511, false);
+        a(dVar2, cd.L0(2131750588, null), 2131231503, true);
+        setOrientation(0);
+        setClipChildren(false);
+        addView((ah.a) dVar.f2777a, b6.m(1.0f, 0, 56, 1, -1, 0));
+        addView((ah.a) dVar2.f2777a, b6.m(1.0f, 0, 56, -1, 1, 0));
+    }
+
+    public final void a(d dVar, String str, int i10, boolean z10) {
+        Drawable drawable;
+        TextView textView = new TextView(getContext());
+        textView.setText(str);
+        textView.setGravity(16);
+        textView.setTextSize(1, 15.0f);
+        textView.setPadding(i0.L(21.0f), 0, i0.L(21.0f), 0);
+        textView.setCompoundDrawablePadding(i0.L(6.0f));
+        int i11 = t6.Ll;
+        p6 p6Var = this.f2780a;
+        a7.V(textView, i11, p6Var);
+        textView.setTypeface(i0.o());
+        Drawable mutate = getContext().getResources().getDrawable(i10).mutate();
+        a7.y(this, mutate, t6.Kl, p6Var, PorterDuff.Mode.MULTIPLY);
+        if (z10) {
+            drawable = mutate;
+        } else {
+            drawable = null;
         }
-        return obj;
-    }
-
-    public final void b(android.graphics.Canvas r18) {
-        throw new UnsupportedOperationException("Method not decompiled: bh.e.b(android.graphics.Canvas):void");
-    }
-
-    public final boolean c() {
-        if (System.currentTimeMillis() - this.e > 2500) {
-            return true;
+        if (z10) {
+            mutate = null;
         }
-        return false;
+        textView.setCompoundDrawablesWithIntrinsicBounds(drawable, (Drawable) null, mutate, (Drawable) null);
+        dVar.f2778b = textView;
+        ((ah.a) dVar.f2777a).addView(textView, b6.e(-2, -2, 17));
     }
 
-    public final void d(View view) {
-        this.f4014a.o(view);
-        ImageReceiver imageReceiver = this.f4020j;
-        if (imageReceiver != null) {
-            imageReceiver.onDetachedFromWindow();
-            imageReceiver.clearImage();
+    public final void b(d dVar) {
+        int i10;
+        float f7 = this.d * ((fe.b) dVar.f2779c).e;
+        float f10 = (1.0f - f7) * (-i0.L(54.0f));
+        float interpolation = (1.0f - ee.a.f6489a.getInterpolation(f7)) * (getMeasuredWidth() / 2.0f);
+        if (dVar == this.f2781b) {
+            interpolation *= -1.0f;
         }
-    }
-
-    public final void e(int i10, int i11, int i12, int i13) {
-        Rect rect = this.f4015b;
-        rect.set(i10, i11, i12, i13);
-        ImageReceiver imageReceiver = this.f4020j;
-        if (imageReceiver != null) {
-            imageReceiver.setImageCoords(rect);
+        ((ah.a) dVar.f2777a).setTranslationX(interpolation);
+        ((ah.a) dVar.f2777a).setTranslationY(f10);
+        ((ah.a) dVar.f2777a).setAlpha(f7);
+        ah.a aVar = (ah.a) dVar.f2777a;
+        if (f7 > 0.0f) {
+            i10 = 0;
+        } else {
+            i10 = 4;
         }
+        aVar.setVisibility(i10);
     }
 
-    public final void f(View view) {
-        boolean z10;
-        boolean z11;
-        TLRPC.TL_availableReaction tL_availableReaction;
-        TLRPC.Document document;
-        boolean z12 = this.f4017f;
-        int i10 = this.h;
-        t5 t5Var = this.f4014a;
-        t5Var.a(view);
-        this.d = view;
-        ImageReceiver imageReceiver = this.f4020j;
-        if (imageReceiver != null && this.f4019i) {
-            imageReceiver.onAttachedToWindow();
-            TLRPC.Document document2 = t5Var.e;
-            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = null;
-            String findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(document2, null);
-            if (findAnimatedEmojiEmoticon != null && (tL_availableReaction = MediaDataController.getInstance(i10).getReactionsMap().get(findAnimatedEmojiEmoticon)) != null && (document = tL_availableReaction.around_animation) != null) {
-                if (z12) {
-                    StringBuilder sb2 = new StringBuilder();
-                    int i11 = f4013m;
-                    f4013m = i11 + 1;
-                    sb2.append(i11);
-                    sb2.append(" ");
-                    imageReceiver.setUniqKeyPrefix(sb2.toString());
-                    int f7 = qy.f();
-                    TLRPC.Document document3 = tL_availableReaction.around_animation;
-                    z10 = true;
-                    imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.around_animation), f7 + "_" + f7 + "_pcache_compress", null, null, document3, 0);
-                } else {
-                    ImageLocation forDocument = ImageLocation.getForDocument(document);
-                    String a2 = s0.a();
-                    TLRPC.Document document4 = tL_availableReaction.around_animation;
-                    z10 = true;
-                    imageReceiver.setImage(forDocument, a2, null, null, document4, 0);
-                }
-                z11 = z10;
-            } else {
-                z10 = true;
-                z11 = false;
-            }
-            if (!z11) {
-                String str = UserConfig.getInstance(i10).genericAnimationsStickerPack;
-                if (str != null && (tL_messages_stickerSet = MediaDataController.getInstance(i10).getStickerSetByName(str)) == null) {
-                    tL_messages_stickerSet = MediaDataController.getInstance(i10).getStickerSetByEmojiOrName(str);
-                }
-                if (tL_messages_stickerSet != null) {
-                    if (this.f4021k < 0) {
-                        this.f4021k = Math.abs(Utilities.fastRandom.nextInt() % tL_messages_stickerSet.documents.size());
-                    }
-                    if (z12) {
-                        StringBuilder sb3 = new StringBuilder();
-                        int i12 = f4013m;
-                        f4013m = i12 + 1;
-                        sb3.append(i12);
-                        sb3.append(" ");
-                        imageReceiver.setUniqKeyPrefix(sb3.toString());
-                        int f10 = qy.f();
-                        imageReceiver.setImage(ImageLocation.getForDocument(tL_messages_stickerSet.documents.get(this.f4021k)), f10 + "_" + f10 + "_pcache_compress", null, null, tL_messages_stickerSet.documents.get(this.f4021k), 0);
-                    } else {
-                        imageReceiver.setImage(ImageLocation.getForDocument(tL_messages_stickerSet.documents.get(this.f4021k)), "60_60", null, null, tL_messages_stickerSet.documents.get(this.f4021k), 0);
-                    }
-                    z11 = z10;
-                }
-            }
-            if (z11) {
-                if (imageReceiver.getLottieAnimation() != null) {
-                    imageReceiver.getLottieAnimation().N(0, false, z10);
-                }
-                imageReceiver.setAutoRepeat(0);
-                return;
-            }
-            imageReceiver.setImageBitmap(new yj0(R.raw.custom_emoji_reaction, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null));
+    public View getForwardButton() {
+        return (ah.a) this.f2782c.f2777a;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        b(this.f2782c);
+        b(this.f2781b);
+    }
+
+    public void setForwardButtonOnClickListener(View.OnClickListener onClickListener) {
+        ((ah.a) this.f2782c.f2777a).setOnClickListener(onClickListener);
+    }
+
+    public void setReplyButtonOnClickListener(View.OnClickListener onClickListener) {
+        ((ah.a) this.f2781b.f2777a).setOnClickListener(onClickListener);
+    }
+
+    public void setTotalVisibilityFactor(float f7) {
+        if (this.d != f7) {
+            this.d = f7;
+            b(this.f2782c);
+            b(this.f2781b);
         }
     }
 }

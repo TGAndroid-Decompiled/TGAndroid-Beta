@@ -2,18 +2,17 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class mj extends s4.d0 {
-    public final jg.e0 f30546r;
+public final class mj extends s4.b0 {
+    public final ag.d1 f28496r;
 
-    public mj(jg.e0 e0Var, Context context) {
+    public mj(ag.d1 d1Var, Context context) {
         super(context);
-        this.f30546r = e0Var;
+        this.f28496r = d1Var;
     }
 
     @Override
     public final int k(int i10, View view) {
-        return org.telegram.messenger.t.B(8.0f, ((xj) this.f30546r.V).f34784s.getPaddingTop() - AndroidUtilities.statusBarHeight, super.k(i10, view));
+        return org.telegram.messenger.m5.B(56.0f, ((xj) this.f28496r.V).f32487r.getPaddingTop() - org.telegram.messenger.i0.f16020m, super.k(i10, view));
     }
 
     @Override

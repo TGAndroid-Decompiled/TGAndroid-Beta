@@ -5,68 +5,68 @@ import android.os.Looper;
 import j$.util.Objects;
 public final class y0 extends a {
     public final g2.g h;
-    public final org.telegram.ui.Components.voip.j1 f49513i;
-    public final n2.m f49514j;
-    public final u7.s f49515k;
-    public final int f49516l;
-    public final b2.x f49517m;
-    public boolean f49518n = true;
-    public long f49519o = -9223372036854775807L;
-    public boolean f49520p;
-    public boolean f49521q;
-    public boolean f49522r;
-    public g2.c0 f49523s;
-    public b2.p0 f49524t;
+    public final rh.d0 f50057i;
+    public final n2.m f50058j;
+    public final hb.a f50059k;
+    public final int f50060l;
+    public final b2.x f50061m;
+    public boolean f50062n = true;
+    public long f50063o = -9223372036854775807L;
+    public boolean f50064p;
+    public boolean f50065q;
+    public boolean f50066r;
+    public g2.d0 f50067s;
+    public b2.p0 f50068t;
 
-    public y0(b2.p0 p0Var, g2.g gVar, org.telegram.ui.Components.voip.j1 j1Var, n2.m mVar, u7.s sVar, int i10, b2.x xVar) {
-        this.f49524t = p0Var;
+    public y0(b2.p0 p0Var, g2.g gVar, rh.d0 d0Var, n2.m mVar, hb.a aVar, int i10, b2.x xVar) {
+        this.f50068t = p0Var;
         this.h = gVar;
-        this.f49513i = j1Var;
-        this.f49514j = mVar;
-        this.f49515k = sVar;
-        this.f49516l = i10;
-        this.f49517m = xVar;
+        this.f50057i = d0Var;
+        this.f50058j = mVar;
+        this.f50059k = aVar;
+        this.f50060l = i10;
+        this.f50061m = xVar;
     }
 
     @Override
     public final boolean a(b2.p0 p0Var) {
-        b2.k0 k0Var = i().f3345b;
+        b2.k0 k0Var = i().f2182b;
         k0Var.getClass();
-        b2.k0 k0Var2 = p0Var.f3345b;
-        if (k0Var2 != null && k0Var2.f3255a.equals(k0Var.f3255a) && k0Var2.h == k0Var.h && Objects.equals(k0Var2.f3258f, k0Var.f3258f)) {
+        b2.k0 k0Var2 = p0Var.f2182b;
+        if (k0Var2 != null && k0Var2.f2091a.equals(k0Var.f2091a) && k0Var2.h == k0Var.h && Objects.equals(k0Var2.f2094f, k0Var.f2094f)) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final e0 c(g0 g0Var, a8.h0 h0Var, long j10) {
+    public final e0 c(g0 g0Var, android.support.v4.media.session.a0 a0Var, long j10) {
         g2.h createDataSource = this.h.createDataSource();
-        g2.c0 c0Var = this.f49523s;
-        if (c0Var != null) {
-            createDataSource.addTransferListener(c0Var);
+        g2.d0 d0Var = this.f50067s;
+        if (d0Var != null) {
+            createDataSource.addTransferListener(d0Var);
         }
-        b2.k0 k0Var = i().f3345b;
+        b2.k0 k0Var = i().f2182b;
         k0Var.getClass();
-        Uri uri = k0Var.f3255a;
-        this.f49278g.getClass();
-        return new w0(uri, createDataSource, new s4.d((c3.r) this.f49513i.f33980b), this.f49514j, new n2.j(this.d.f18626c, 0, g0Var), this.f49515k, b(g0Var), this, h0Var, k0Var.f3258f, this.f49516l, this.f49517m, e2.n0.S(k0Var.h), null);
+        Uri uri = k0Var.f2091a;
+        this.f49821g.getClass();
+        return new w0(uri, createDataSource, new q5.d((c3.r) this.f50057i.f46749b), this.f50058j, new n2.j(this.d.f13463c, 0, g0Var), this.f50059k, b(g0Var), this, a0Var, k0Var.f2094f, this.f50060l, this.f50061m, e2.l0.S(k0Var.h), null);
     }
 
     @Override
     public final synchronized b2.p0 i() {
-        return this.f49524t;
+        return this.f50068t;
     }
 
     @Override
-    public final void m(g2.c0 c0Var) {
-        this.f49523s = c0Var;
+    public final void m(g2.d0 d0Var) {
+        this.f50067s = d0Var;
         Looper myLooper = Looper.myLooper();
         myLooper.getClass();
-        j2.j jVar = this.f49278g;
-        jVar.getClass();
-        n2.m mVar = this.f49514j;
-        mVar.f(myLooper, jVar);
+        j2.l lVar = this.f49821g;
+        lVar.getClass();
+        n2.m mVar = this.f50058j;
+        mVar.g(myLooper, lVar);
         mVar.a();
         u();
     }
@@ -82,58 +82,58 @@ public final class y0 extends a {
                 if (gVar != null) {
                     gVar.a(c1Var.e);
                     c1Var.h = null;
-                    c1Var.f49301g = null;
+                    c1Var.f49844g = null;
                 }
             }
         }
-        w0Var.f49501x.e(w0Var);
+        w0Var.f50046y.e(w0Var);
         w0Var.H.removeCallbacksAndMessages(null);
         w0Var.I = null;
-        w0Var.f49496h0 = true;
+        w0Var.f50040h0 = true;
     }
 
     @Override
     public final void q() {
-        this.f49514j.release();
+        this.f50058j.release();
     }
 
     @Override
     public final synchronized void t(b2.p0 p0Var) {
-        this.f49524t = p0Var;
+        this.f50068t = p0Var;
     }
 
     public final void u() {
         b2.j0 j0Var;
-        long j10 = this.f49519o;
-        boolean z10 = this.f49520p;
-        boolean z11 = this.f49521q;
+        long j10 = this.f50063o;
+        boolean z10 = this.f50064p;
+        boolean z11 = this.f50065q;
         b2.p0 i10 = i();
         if (z11) {
-            j0Var = i10.f3346c;
+            j0Var = i10.f2183c;
         } else {
             j0Var = null;
         }
-        b2.p1 j1Var = new j1(-9223372036854775807L, -9223372036854775807L, j10, j10, 0L, 0L, z10, false, false, null, i10, j0Var);
-        if (this.f49518n) {
+        b2.o1 j1Var = new j1(-9223372036854775807L, -9223372036854775807L, j10, j10, 0L, 0L, z10, false, false, null, i10, j0Var);
+        if (this.f50062n) {
             j1Var = new v(j1Var, 1);
         }
         n(j1Var);
     }
 
     public final void v(long j10, c3.b0 b0Var, boolean z10) {
-        if (!this.f49522r || !b0Var.e()) {
-            this.f49522r = !b0Var.e();
+        if (!this.f50066r || !b0Var.e()) {
+            this.f50066r = !b0Var.e();
             if (j10 == -9223372036854775807L) {
-                j10 = this.f49519o;
+                j10 = this.f50063o;
             }
             boolean d = b0Var.d();
-            if (!this.f49518n && this.f49519o == j10 && this.f49520p == d && this.f49521q == z10) {
+            if (!this.f50062n && this.f50063o == j10 && this.f50064p == d && this.f50065q == z10) {
                 return;
             }
-            this.f49519o = j10;
-            this.f49520p = d;
-            this.f49521q = z10;
-            this.f49518n = false;
+            this.f50063o = j10;
+            this.f50064p = d;
+            this.f50065q = z10;
+            this.f50062n = false;
             u();
         }
     }

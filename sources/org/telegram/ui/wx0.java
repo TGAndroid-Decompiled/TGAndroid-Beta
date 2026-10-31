@@ -1,97 +1,149 @@
 package org.telegram.ui;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Intent;
-import android.net.Uri;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class wx0 implements Runnable {
-    public final int f45421a;
-    public final ProfileActivity f45422b;
-    public final TLRPC.User f45423c;
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.ui.Components.qq;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.tc1;
+import org.telegram.ui.wx0;
+public final class wx0 extends org.telegram.ui.Cells.b7 {
+    public final xx0 h;
 
-    public wx0(ProfileActivity profileActivity, TLRPC.User user, int i10) {
-        this.f45421a = i10;
-        this.f45422b = profileActivity;
-        this.f45423c = user;
-    }
+    public wx0(xx0 xx0Var, Context context, org.telegram.ui.ActionBar.p6 p6Var) {
+        super(context);
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        this.h = xx0Var;
+        this.f21734f = org.telegram.messenger.d20.f15147s0;
+        setOrientation(1);
+        TextView textView = new TextView(context);
+        this.f21731a = textView;
+        sc.e.t(textView, 1, 15.0f);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        if (org.telegram.messenger.cd.X) {
+            i10 = 5;
+        } else {
+            i10 = 3;
+        }
+        textView.setGravity(i10 | 16);
+        org.telegram.ui.ActionBar.a7.V(textView, org.telegram.ui.ActionBar.t6.L6, p6Var);
+        if (org.telegram.messenger.cd.X) {
+            i11 = 5;
+        } else {
+            i11 = 3;
+        }
+        addView(textView, w7.b6.t(-1, -2, i11 | 48, 21, 15, 21, 0));
+        org.telegram.ui.Components.p80 p80Var = new org.telegram.ui.Components.p80(context, p6Var);
+        this.f21732b = p80Var;
+        org.telegram.ui.ActionBar.a7.V(p80Var, org.telegram.ui.ActionBar.t6.G6, p6Var);
+        p80Var.setTextSize(1, 14.0f);
+        org.telegram.ui.ActionBar.a7.H(p80Var, org.telegram.ui.ActionBar.t6.J6, p6Var);
+        org.telegram.ui.ActionBar.a7.D(p80Var, org.telegram.ui.ActionBar.t6.K6, p6Var);
+        p80Var.setMovementMethod(new org.telegram.messenger.e0(false));
+        if (org.telegram.messenger.cd.X) {
+            i12 = 5;
+        } else {
+            i12 = 3;
+        }
+        p80Var.setGravity(i12);
+        if (org.telegram.messenger.cd.X) {
+            i13 = 5;
+        } else {
+            i13 = 3;
+        }
+        addView(p80Var, w7.b6.t(-2, -2, i13, 21, 14, 21, 0));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(0);
+        addView(linearLayout, w7.b6.k(21.0f, 16.0f, 21.0f, 15.0f, -1, 44));
+        for (int i16 = 0; i16 < 2; i16++) {
+            TextView textView2 = new TextView(context);
+            textView2.setBackground(org.telegram.ui.ActionBar.j6.f(org.telegram.ui.ActionBar.t6.Ci, 8.0f));
+            w7.e6.b(textView2, 0.02f, 1.5f);
+            textView2.setLines(1);
+            textView2.setSingleLine(true);
+            textView2.setGravity(1);
+            textView2.setEllipsize(TextUtils.TruncateAt.END);
+            textView2.setGravity(17);
+            org.telegram.messenger.m5.m(textView2, org.telegram.ui.ActionBar.t6.Gi, p6Var, 1, 14.0f);
+            if (i16 == 0) {
+                i14 = 0;
+            } else {
+                i14 = 4;
+            }
+            if (i16 == 0) {
+                i15 = 4;
+            } else {
+                i15 = 0;
+            }
+            linearLayout.addView(textView2, w7.b6.m(0.5f, 0, 44, i14, i15, 0));
+            if (i16 == 0) {
+                this.f21733c = textView2;
+                textView2.setOnClickListener(new View.OnClickListener(this) {
+                    public final wx0 f21679b;
 
-    @Override
-    public final void run() {
-        boolean z10;
-        boolean z11;
-        switch (this.f45421a) {
-            case 0:
-                ProfileActivity profileActivity = this.f45422b;
-                TLRPC.User user = this.f45423c;
-                int i10 = ProfileActivity.R6;
-                profileActivity.getClass();
-                profileActivity.presentFragment(wn.ea(user.f22177id));
-                return;
-            case 1:
-                ProfileActivity profileActivity2 = this.f45422b;
-                TLRPC.User user2 = this.f45423c;
-                int i11 = ProfileActivity.R6;
-                if (profileActivity2.getParentActivity() != null) {
-                    TLRPC.UserFull userFull = profileActivity2.f36122v2;
-                    if (userFull != null && userFull.video_calls_available) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
+                    {
+                        this.f21679b = this;
                     }
-                    org.telegram.ui.Components.voip.g2.m(user2, false, z10, profileActivity2.getParentActivity(), profileActivity2.f36122v2, profileActivity2.getAccountInstance());
-                    return;
-                }
-                return;
-            case 2:
-                ProfileActivity profileActivity3 = this.f45422b;
-                TLRPC.User user3 = this.f45423c;
-                int i12 = ProfileActivity.R6;
-                if (profileActivity3.getParentActivity() != null) {
-                    TLRPC.UserFull userFull2 = profileActivity3.f36122v2;
-                    if (userFull2 != null && userFull2.video_calls_available) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
+
+                    @Override
+                    public final void onClick(View view) {
+                        switch (r2) {
+                            case 0:
+                                wx0 wx0Var = this.f21679b;
+                                org.telegram.messenger.i0.g3(new qq(wx0Var, wx0Var.e, 19));
+                                return;
+                            default:
+                                wx0 wx0Var2 = this.f21679b;
+                                int i17 = wx0Var2.e;
+                                ProfileActivity profileActivity = wx0Var2.h.e;
+                                if (i17 == 0) {
+                                    profileActivity.presentFragment(new org.telegram.ui.f(3));
+                                    return;
+                                } else {
+                                    profileActivity.presentFragment(new tc1(8, null));
+                                    return;
+                                }
+                        }
                     }
-                    org.telegram.ui.Components.voip.g2.m(user3, true, z11, profileActivity3.getParentActivity(), profileActivity3.f36122v2, profileActivity3.getAccountInstance());
-                    return;
-                }
-                return;
-            case 3:
-                ProfileActivity profileActivity4 = this.f45422b;
-                TLRPC.User user4 = this.f45423c;
-                int i13 = ProfileActivity.R6;
-                profileActivity4.getClass();
-                try {
-                    Intent intent = new Intent("android.intent.action.DIAL", Uri.parse("tel:+" + user4.phone));
-                    intent.addFlags(268435456);
-                    profileActivity4.getParentActivity().startActivityForResult(intent, 500);
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
-            default:
-                ProfileActivity profileActivity5 = this.f45422b;
-                TLRPC.User user5 = this.f45423c;
-                int i14 = ProfileActivity.R6;
-                try {
-                    ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", "+" + user5.phone));
-                    if (AndroidUtilities.shouldShowClipboardToast()) {
-                        org.telegram.ui.Components.wc.b0(profileActivity5).i(LocaleController.getString(R.string.PhoneCopied)).j();
-                        return;
+                });
+            } else {
+                this.d = textView2;
+                textView2.setOnClickListener(new View.OnClickListener(this) {
+                    public final wx0 f21679b;
+
+                    {
+                        this.f21679b = this;
                     }
-                    return;
-                } catch (Exception e10) {
-                    FileLog.e(e10);
-                    return;
-                }
+
+                    @Override
+                    public final void onClick(View view) {
+                        switch (r2) {
+                            case 0:
+                                wx0 wx0Var = this.f21679b;
+                                org.telegram.messenger.i0.g3(new qq(wx0Var, wx0Var.e, 19));
+                                return;
+                            default:
+                                wx0 wx0Var2 = this.f21679b;
+                                int i17 = wx0Var2.e;
+                                ProfileActivity profileActivity = wx0Var2.h.e;
+                                if (i17 == 0) {
+                                    profileActivity.presentFragment(new org.telegram.ui.f(3));
+                                    return;
+                                } else {
+                                    profileActivity.presentFragment(new tc1(8, null));
+                                    return;
+                                }
+                        }
+                    }
+                });
+            }
         }
     }
 }

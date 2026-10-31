@@ -1,20 +1,56 @@
 package org.telegram.ui;
 
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class ur {
-    public ActionBarPopupWindow$ActionBarPopupWindowLayout f44091a;
-    public org.telegram.ui.ActionBar.c1 f44092b;
-    public org.telegram.ui.ActionBar.g1[] f44093c;
+import android.graphics.drawable.Drawable;
+public final class ur implements Drawable.Callback {
+    public final int f42518a;
+    public final Drawable f42519b;
 
-    public final void a(float f7, boolean z10) {
-        org.telegram.ui.ActionBar.g1[] g1VarArr = this.f44093c;
-        for (int i10 = 0; i10 < g1VarArr.length; i10++) {
-            if (z10 && ((i10 == 0 && Math.abs(f7 - 0.2f) < 0.01f) || ((i10 == 1 && Math.abs(f7 - 0.5f) < 0.1f) || ((i10 == 2 && Math.abs(f7 - 1.0f) < 0.1f) || ((i10 == 3 && Math.abs(f7 - 1.5f) < 0.1f) || (i10 == 4 && Math.abs(f7 - 2.0f) < 0.1f)))))) {
-                g1VarArr[i10].d(-9718023, -9718023);
-            } else {
-                g1VarArr[i10].d(-328966, -328966);
-            }
+    public ur(int i10, Drawable drawable) {
+        this.f42518a = i10;
+        this.f42519b = drawable;
+    }
+
+    @Override
+    public final void invalidateDrawable(Drawable drawable) {
+        switch (this.f42518a) {
+            case 0:
+                ((vr) this.f42519b).invalidateSelf();
+                return;
+            default:
+                org.telegram.ui.Cells.s0 s0Var = ((iy0) this.f42519b).h;
+                if (s0Var != null) {
+                    s0Var.invalidate();
+                    return;
+                }
+                return;
         }
-        this.f44092b.e(f7, true);
+    }
+
+    @Override
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j10) {
+        switch (this.f42518a) {
+            case 0:
+                ((vr) this.f42519b).scheduleSelf(runnable, j10);
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        switch (this.f42518a) {
+            case 0:
+                ((vr) this.f42519b).unscheduleSelf(runnable);
+                return;
+            default:
+                return;
+        }
+    }
+
+    private final void b(Drawable drawable, Runnable runnable) {
+    }
+
+    private final void a(Drawable drawable, Runnable runnable, long j10) {
     }
 }

@@ -1,51 +1,25 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class zx0 implements RequestDelegate {
-    public final int f35462a;
-    public final Utilities.Callback4 f35463b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class zx0 extends AnimatorListenerAdapter {
+    public final int f33259a;
+    public final Switch f33260b;
 
-    public zx0(Utilities.Callback4 callback4, int i10) {
-        this.f35462a = i10;
-        this.f35463b = callback4;
+    public zx0(Switch r12, int i10) {
+        this.f33259a = i10;
+        this.f33260b = r12;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f35462a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f33259a) {
             case 0:
-                boolean z10 = tLObject instanceof TLRPC.TL_messages_emojiGroupsNotModified;
-                Utilities.Callback4 callback4 = this.f35463b;
-                if (z10) {
-                    Boolean bool = Boolean.TRUE;
-                    callback4.run(bool, null, 0L, bool);
-                    return;
-                } else if (tLObject instanceof TLRPC.TL_messages_emojiGroups) {
-                    TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) tLObject;
-                    callback4.run(Boolean.FALSE, tL_messages_emojiGroups, Long.valueOf(tL_messages_emojiGroups.hash), Boolean.TRUE);
-                    return;
-                } else {
-                    callback4.run(Boolean.FALSE, null, 0L, Boolean.TRUE);
-                    return;
-                }
+                this.f33260b.d = null;
+                return;
             default:
-                boolean z11 = tLObject instanceof TLRPC.TL_emojiListNotModified;
-                Utilities.Callback4 callback42 = this.f35463b;
-                if (z11) {
-                    Boolean bool2 = Boolean.TRUE;
-                    callback42.run(bool2, null, 0L, bool2);
-                    return;
-                } else if (tLObject instanceof TLRPC.TL_emojiList) {
-                    TLRPC.TL_emojiList tL_emojiList = (TLRPC.TL_emojiList) tLObject;
-                    callback42.run(Boolean.FALSE, tL_emojiList, Long.valueOf(tL_emojiList.hash), Boolean.TRUE);
-                    return;
-                } else {
-                    callback42.run(Boolean.FALSE, null, 0L, Boolean.TRUE);
-                    return;
-                }
+                this.f33260b.e = null;
+                return;
         }
     }
 }

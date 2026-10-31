@@ -1,27 +1,27 @@
 package org.webrtc;
 public final class q implements Runnable {
-    public final int f46497a;
-    public final SurfaceTextureHelper f46498b;
+    public final int f44509a;
+    public final SurfaceTextureHelper f44510b;
 
     public q(SurfaceTextureHelper surfaceTextureHelper, int i10) {
-        this.f46497a = i10;
-        this.f46498b = surfaceTextureHelper;
+        this.f44509a = i10;
+        this.f44510b = surfaceTextureHelper;
     }
 
     @Override
     public final void run() {
-        switch (this.f46497a) {
+        switch (this.f44509a) {
             case 0:
-                SurfaceTextureHelper.a(this.f46498b);
+                SurfaceTextureHelper.a(this.f44510b);
                 return;
             case 1:
-                SurfaceTextureHelper.d(this.f46498b);
+                SurfaceTextureHelper.d(this.f44510b);
                 return;
             case 2:
-                SurfaceTextureHelper.c(this.f46498b);
+                SurfaceTextureHelper.c(this.f44510b);
                 return;
             default:
-                SurfaceTextureHelper.e(this.f46498b);
+                SurfaceTextureHelper.e(this.f44510b);
                 return;
         }
     }

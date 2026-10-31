@@ -8,8 +8,9 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
 import java.util.function.UnaryOperator;
+import w7.z7;
 public abstract class d extends a implements List, RandomAccess, j$.util.List {
-    public static final b f49632b = new b(g.e, 0);
+    public static final b f50181b = new b(e.e, 0);
 
     @Override
     public final void add(int i10, Object obj) {
@@ -66,15 +67,6 @@ public abstract class d extends a implements List, RandomAccess, j$.util.List {
     }
 
     @Override
-    public int h(Object[] objArr) {
-        int size = size();
-        for (int i10 = 0; i10 < size; i10++) {
-            objArr[i10] = get(i10);
-        }
-        return size;
-    }
-
-    @Override
     public final int hashCode() {
         int size = size();
         int i10 = 1;
@@ -104,6 +96,15 @@ public abstract class d extends a implements List, RandomAccess, j$.util.List {
     }
 
     @Override
+    public int l(Object[] objArr) {
+        int size = size();
+        for (int i10 = 0; i10 < size; i10++) {
+            objArr[i10] = get(i10);
+        }
+        return size;
+    }
+
+    @Override
     public final int lastIndexOf(Object obj) {
         if (obj == null) {
             return -1;
@@ -123,24 +124,27 @@ public abstract class d extends a implements List, RandomAccess, j$.util.List {
 
     @Override
     public d subList(int i10, int i11) {
-        w7.m.c(i10, i11, size());
+        z7.b(i10, i11, size());
         int i12 = i11 - i10;
         if (i12 == size()) {
             return this;
         }
         if (i12 == 0) {
-            return g.e;
+            return e.e;
         }
         return new c(this, i10, i12);
     }
 
     @Override
     public final b listIterator(int i10) {
-        w7.m.b(i10, size());
-        if (isEmpty()) {
-            return f49632b;
+        int size = size();
+        if (i10 >= 0 && i10 <= size) {
+            if (isEmpty()) {
+                return f50181b;
+            }
+            return new b(this, i10);
         }
-        return new b(this, i10);
+        throw new IndexOutOfBoundsException(z7.c(i10, size, "index"));
     }
 
     @Override

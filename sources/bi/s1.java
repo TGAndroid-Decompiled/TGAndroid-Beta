@@ -1,14 +1,29 @@
 package bi;
 
-import org.telegram.tgnet.tl.TL_stars;
-public final class s1 {
-    public final TL_stars.starGiftAttributeBackdrop f5384a;
-    public final TL_stars.starGiftAttributePattern f5385b;
-    public final TL_stars.starGiftAttributeModel f5386c;
+import org.telegram.messenger.us;
+import org.telegram.ui.Components.tu0;
+public final class s1 implements tu0 {
+    public final int f3337a;
+    public final us f3338b;
 
-    public s1(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop, TL_stars.starGiftAttributePattern stargiftattributepattern, TL_stars.starGiftAttributeModel stargiftattributemodel) {
-        this.f5384a = stargiftattributebackdrop;
-        this.f5385b = stargiftattributepattern;
-        this.f5386c = stargiftattributemodel;
+    public s1(us usVar, int i10) {
+        this.f3337a = i10;
+        this.f3338b = usVar;
+    }
+
+    @Override
+    public final void K(int i10, boolean z10) {
+        switch (this.f3337a) {
+            case 0:
+                ((k2) this.f3338b).getClass();
+                return;
+            default:
+                xh.d2 d2Var = ((xh.m2) this.f3338b).f53904x;
+                if (i10 > org.telegram.messenger.i0.L(20.0f)) {
+                    d2Var.e(d2Var.getTopActionBarOffsetY() + (-d2Var.getOffsetY()));
+                    return;
+                }
+                return;
+        }
     }
 }

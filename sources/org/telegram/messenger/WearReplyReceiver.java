@@ -7,68 +7,55 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import java.util.ArrayList;
-import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
 public class WearReplyReceiver extends BroadcastReceiver {
-    public void lambda$onReceive$0(AccountInstance accountInstance, TLRPC.User user, CharSequence charSequence, long j10, long j11, int i10, int[] iArr) {
-        accountInstance.getMessagesController().putUser(user, true);
-        sendMessage(accountInstance, charSequence, j10, j11, i10, iArr);
-    }
+    public static final int f14536a = 0;
 
-    public void lambda$onReceive$1(AccountInstance accountInstance, long j10, CharSequence charSequence, long j11, int i10, int[] iArr) {
-        AndroidUtilities.runOnUIThread(new xc(this, accountInstance, accountInstance.getMessagesStorage().getUserSync(j10), charSequence, j10, j11, i10, iArr, 2));
-    }
-
-    public void lambda$onReceive$2(AccountInstance accountInstance, TLRPC.Chat chat, CharSequence charSequence, long j10, long j11, int i10, int[] iArr) {
-        accountInstance.getMessagesController().putChat(chat, true);
-        sendMessage(accountInstance, charSequence, j10, j11, i10, iArr);
-    }
-
-    public void lambda$onReceive$3(AccountInstance accountInstance, long j10, CharSequence charSequence, long j11, int i10, int[] iArr) {
-        AndroidUtilities.runOnUIThread(new xc(this, accountInstance, accountInstance.getMessagesStorage().getChatSync(-j10), charSequence, j10, j11, i10, iArr, 3));
-    }
-
-    private void sendMessage(AccountInstance accountInstance, CharSequence charSequence, long j10, long j11, int i10, int[] iArr) {
-        MessageObject messageObject;
-        MessageObject messageObject2 = null;
+    public static void a(c cVar, CharSequence charSequence, long j10, long j11, int i10, int[] iArr) {
+        jj jjVar;
+        int i11 = cVar.f14863a;
+        jj jjVar2 = null;
         if (i10 != 0) {
             TLRPC.TL_message tL_message = new TLRPC.TL_message();
             tL_message.message = "";
-            tL_message.f22049id = i10;
-            tL_message.peer_id = accountInstance.getMessagesController().getPeer(j10);
-            messageObject = new MessageObject(accountInstance.getCurrentAccount(), tL_message, false, false);
+            tL_message.f19814id = i10;
+            tL_message.peer_id = vp.r1(i11).y1(j10);
+            jjVar = new jj(i11, tL_message, false, false);
         } else {
-            messageObject = null;
+            jjVar = null;
         }
-        int i11 = (j11 > 0L ? 1 : (j11 == 0L ? 0 : -1));
-        if (i11 != 0) {
+        int i12 = (j11 > 0L ? 1 : (j11 == 0L ? 0 : -1));
+        if (i12 != 0) {
             TLRPC.TL_message tL_message2 = new TLRPC.TL_message();
             tL_message2.message = "";
-            tL_message2.f22049id = (int) j11;
-            tL_message2.peer_id = accountInstance.getMessagesController().getPeer(j10);
+            tL_message2.f19814id = (int) j11;
+            tL_message2.peer_id = vp.r1(i11).y1(j10);
             TLRPC.TL_messageActionTopicCreate tL_messageActionTopicCreate = new TLRPC.TL_messageActionTopicCreate();
             tL_message2.action = tL_messageActionTopicCreate;
             tL_messageActionTopicCreate.title = "";
-            messageObject2 = new MessageObject(accountInstance.getCurrentAccount(), tL_message2, false, false);
+            jjVar2 = new jj(i11, tL_message2, false, false);
         }
-        accountInstance.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j10, messageObject, messageObject2, null, true, null, null, null, true, 0, 0, null, false));
+        qz.C(i11).r0(oz.b(charSequence.toString(), j10, jjVar, jjVar2, null, true, null, null, null, true, 0, 0, null, false));
         if (iArr != null && iArr.length > 0) {
-            ArrayList<Integer> arrayList = new ArrayList<>(iArr.length);
+            ArrayList arrayList = new ArrayList(iArr.length);
             int length = iArr.length;
-            int i12 = 0;
-            while (i12 < length) {
-                i12 = c3.h0.i(iArr[i12], i12, 1, arrayList);
+            int i13 = 0;
+            while (i13 < length) {
+                i13 = c3.i0.j(iArr[i13], i13, 1, arrayList);
             }
-            accountInstance.getMessagesStorage().markVoiceMessageContentAsRead(j10, arrayList);
+            hs a02 = hs.a0(i11);
+            if (!arrayList.isEmpty()) {
+                a02.f15938a.c(new tr(a02, arrayList, j10, 0));
+            }
         }
-        if (i11 == 0) {
-            accountInstance.getMessagesController().markDialogAsRead(j10, i10, i10, 0, false, j11, 0, true, 0);
+        if (i12 == 0) {
+            vp.r1(i11).h3(j10, i10, i10, 0, false, j11, 0, true, 0);
         }
     }
 
     @Override
-    public void onReceive(Context context, Intent intent) {
-        ApplicationLoader.postInitApplication();
+    public final void onReceive(Context context, Intent intent) {
+        w0.w();
         Bundle resultsFromIntent = RemoteInput.getResultsFromIntent(intent);
         if (resultsFromIntent != null) {
             final CharSequence charSequence = resultsFromIntent.getCharSequence("extra_voice_reply");
@@ -78,54 +65,70 @@ public class WearReplyReceiver extends BroadcastReceiver {
                 final long longExtra2 = intent.getLongExtra("topic_id", 0L);
                 int intExtra2 = intent.getIntExtra("currentAccount", 0);
                 final int[] intArrayExtra = intent.getIntArrayExtra("voice_msg_ids");
-                if (longExtra != 0 && intExtra != 0 && UserConfig.isValidAccount(intExtra2)) {
-                    final AccountInstance accountInstance = AccountInstance.getInstance(intExtra2);
-                    if (DialogObject.isUserDialog(longExtra)) {
-                        if (accountInstance.getMessagesController().getUser(Long.valueOf(longExtra)) == null) {
-                            Utilities.globalQueue.postRunnable(new Runnable(this) {
-                                public final WearReplyReceiver f21941b;
+                if (longExtra != 0 && intExtra != 0 && d20.r(intExtra2)) {
+                    final c a2 = c.a(intExtra2);
+                    if (o5.E(longExtra)) {
+                        if (vp.r1(a2.f14863a).Z1(Long.valueOf(longExtra)) == null) {
+                            Utilities.e.c(new Runnable(this) {
+                                public final WearReplyReceiver f14569b;
 
                                 {
-                                    this.f21941b = this;
+                                    this.f14569b = this;
                                 }
 
                                 @Override
                                 public final void run() {
                                     switch (r10) {
                                         case 0:
-                                            this.f21941b.lambda$onReceive$1(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
+                                            int i10 = WearReplyReceiver.f14536a;
+                                            c cVar = a2;
+                                            hs a02 = hs.a0(cVar.f14863a);
+                                            long j10 = longExtra;
+                                            i0.g3(new zm(this.f14569b, cVar, a02.k0(j10), charSequence, j10, longExtra2, intExtra, intArrayExtra));
                                             return;
                                         default:
-                                            this.f21941b.lambda$onReceive$3(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
+                                            int i11 = WearReplyReceiver.f14536a;
+                                            c cVar2 = a2;
+                                            hs a03 = hs.a0(cVar2.f14863a);
+                                            long j11 = longExtra;
+                                            i0.g3(new zm(this.f14569b, cVar2, a03.P(-j11), charSequence, j11, longExtra2, intExtra, intArrayExtra));
                                             return;
                                     }
                                 }
                             });
                             return;
                         }
-                    } else if (DialogObject.isChatDialog(longExtra) && accountInstance.getMessagesController().getChat(Long.valueOf(-longExtra)) == null) {
-                        Utilities.globalQueue.postRunnable(new Runnable(this) {
-                            public final WearReplyReceiver f21941b;
+                    } else if (o5.z(longExtra) && vp.r1(a2.f14863a).L0(Long.valueOf(-longExtra)) == null) {
+                        Utilities.e.c(new Runnable(this) {
+                            public final WearReplyReceiver f14569b;
 
                             {
-                                this.f21941b = this;
+                                this.f14569b = this;
                             }
 
                             @Override
                             public final void run() {
                                 switch (r10) {
                                     case 0:
-                                        this.f21941b.lambda$onReceive$1(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
+                                        int i10 = WearReplyReceiver.f14536a;
+                                        c cVar = a2;
+                                        hs a02 = hs.a0(cVar.f14863a);
+                                        long j10 = longExtra;
+                                        i0.g3(new zm(this.f14569b, cVar, a02.k0(j10), charSequence, j10, longExtra2, intExtra, intArrayExtra));
                                         return;
                                     default:
-                                        this.f21941b.lambda$onReceive$3(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
+                                        int i11 = WearReplyReceiver.f14536a;
+                                        c cVar2 = a2;
+                                        hs a03 = hs.a0(cVar2.f14863a);
+                                        long j11 = longExtra;
+                                        i0.g3(new zm(this.f14569b, cVar2, a03.P(-j11), charSequence, j11, longExtra2, intExtra, intArrayExtra));
                                         return;
                                 }
                             }
                         });
                         return;
                     }
-                    sendMessage(accountInstance, charSequence, longExtra, longExtra2, intExtra, intArrayExtra);
+                    a(a2, charSequence, longExtra, longExtra2, intExtra, intArrayExtra);
                 }
             }
         }

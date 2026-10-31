@@ -1,26 +1,58 @@
 package tc;
 
-import java.util.ArrayList;
-public final class b {
-    public int f48812a;
-    public int f48813b;
-    public int f48814c;
-    public int d;
-    public int e;
-    public ArrayList f48815f;
-    public ArrayList f48816g;
-    public boolean h;
-    public int f48817i;
-    public int f48818j;
-    public int f48819k;
-    public ArrayList f48820l;
-    public int f48821m;
-    public int f48822n;
-    public int f48823o;
-    public int f48824p;
-    public int f48825q;
+import q3.h;
+import w7.e8;
+public final class b extends xe.a {
+    public final a f48593a = new df.c();
+    public final StringBuilder f48594b = new StringBuilder();
+    public final int f48595c;
 
-    public final String toString() {
-        return "AvcDecoderConfigurationRecord{configurationVersion=" + this.f48812a + ", avcProfileIndication=" + this.f48813b + ", profileCompatibility=" + this.f48814c + ", avcLevelIndication=" + this.d + ", lengthSizeMinusOne=" + this.e + ", hasExts=" + this.h + ", chromaFormat=" + this.f48817i + ", bitDepthLumaMinus8=" + this.f48818j + ", bitDepthChromaMinus8=" + this.f48819k + ", lengthSizeMinusOnePaddingBits=" + this.f48821m + ", numberOfSequenceParameterSetsPaddingBits=" + this.f48822n + ", chromaFormatPaddingBits=" + this.f48823o + ", bitDepthLumaMinus8PaddingBits=" + this.f48824p + ", bitDepthChromaMinus8PaddingBits=" + this.f48825q + '}';
+    public b(int i10) {
+        this.f48595c = i10;
+    }
+
+    @Override
+    public final void a(CharSequence charSequence) {
+        StringBuilder sb2 = this.f48594b;
+        sb2.append(charSequence);
+        sb2.append('\n');
+    }
+
+    @Override
+    public final void d() {
+        this.f48593a.f48592g = this.f48594b.toString();
+    }
+
+    @Override
+    public final ve.a e() {
+        return this.f48593a;
+    }
+
+    @Override
+    public final h h(se.d dVar) {
+        int i10;
+        int i11 = dVar.e;
+        CharSequence charSequence = dVar.f48197a;
+        int length = charSequence.length();
+        if (dVar.f48201g < 4) {
+            int i12 = i11;
+            while (true) {
+                if (i12 < length) {
+                    if ('$' != charSequence.charAt(i12)) {
+                        i10 = i12 - i11;
+                        break;
+                    }
+                    i12++;
+                } else {
+                    i10 = length - i11;
+                    break;
+                }
+            }
+            int i13 = this.f48595c;
+            if (i10 == i13 && e8.b(' ', charSequence, i11 + i13, length) == length) {
+                return new h(-1, -1, true);
+            }
+        }
+        return h.a(dVar.f48198b);
     }
 }

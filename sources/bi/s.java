@@ -1,52 +1,193 @@
 package bi;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import org.telegram.ui.Components.s71;
-import org.telegram.ui.Components.sd0;
-import org.telegram.ui.ke;
-public final class s extends sd0 {
-    public final int L;
-    public final Object M;
+import android.text.SpannableString;
+import android.view.KeyEvent;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.fj;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.vx;
+import org.telegram.ui.Components.w41;
+public final class s implements vx {
+    public final t f3334a;
 
-    public s(Object obj, Context context, int i10) {
-        super(context, null);
-        this.L = i10;
-        this.M = obj;
+    public s(t tVar) {
+        this.f3334a = tVar;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.L) {
-            case 0:
-                y yVar = (y) this.M;
-                t tVar = yVar.Z;
-                if (tVar != null && !tVar.isFocusable()) {
-                    yVar.Z.setFocusable(true);
-                    yVar.Z.setFocusableInTouchMode(true);
-                    int D1 = yVar.e.D1(1);
-                    if (D1 >= 0 && D1 < yVar.e.f32504g3.f29882y.size()) {
-                        yVar.e.C0();
-                        yVar.e.y0(D1);
-                    }
-                    yVar.Z.requestFocus();
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            default:
-                ke keVar = (ke) this.M;
-                s71 s71Var = keVar.X0;
-                t tVar2 = keVar.O0;
-                if (tVar2 != null && !tVar2.isFocusable()) {
-                    tVar2.setFocusable(true);
-                    tVar2.setFocusableInTouchMode(true);
-                    int D12 = s71Var.D1(3);
-                    if (D12 >= 0 && D12 < s71Var.f32504g3.f29882y.size()) {
-                        s71Var.C0();
-                        s71Var.y0(D12);
-                    }
-                    tVar2.requestFocus();
-                }
-                return super.dispatchTouchEvent(motionEvent);
+    public final boolean A() {
+        return false;
+    }
+
+    @Override
+    public final long a() {
+        return 0L;
+    }
+
+    @Override
+    public final boolean b() {
+        return false;
+    }
+
+    @Override
+    public final boolean c() {
+        return false;
+    }
+
+    @Override
+    public final int f() {
+        return 0;
+    }
+
+    @Override
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final void i(int i10) {
+        n1 focusedEditTextOrNull;
+        boolean z10 = false;
+        t tVar = this.f3334a;
+        if (i10 != 0 && (focusedEditTextOrNull = tVar.f3350r.getFocusedEditTextOrNull()) != null) {
+            tVar.F = focusedEditTextOrNull;
+            tVar.G = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
         }
+        if (i10 != 0) {
+            z10 = true;
+        }
+        tVar.D = z10;
+        tVar.V();
+    }
+
+    @Override
+    public final boolean j() {
+        return false;
+    }
+
+    @Override
+    public final boolean k() {
+        n1 P = t.P(this.f3334a);
+        if (P == null || P.length() == 0) {
+            return false;
+        }
+        P.dispatchKeyEvent(new KeyEvent(0, 67));
+        return true;
+    }
+
+    @Override
+    public final void l(String str) {
+        t tVar = this.f3334a;
+        n1 P = t.P(tVar);
+        if (P != null) {
+            int Q = t.Q(tVar, P);
+            try {
+                CharSequence m10 = org.telegram.messenger.k6.m(str, P.getPaint().getFontMetricsInt(), false, null, 0);
+                P.setText(P.getText().insert(Q, m10));
+                int length = Q + m10.length();
+                P.setSelection(length, length);
+                if (P == tVar.F) {
+                    tVar.G = length;
+                }
+            } catch (Exception unused) {
+            }
+        }
+    }
+
+    @Override
+    public final float p() {
+        return 0.0f;
+    }
+
+    @Override
+    public final void x(long j10, TLRPC.Document document, String str, boolean z10) {
+        org.telegram.ui.Components.o5 o5Var;
+        t tVar = this.f3334a;
+        n1 P = t.P(tVar);
+        if (P != null) {
+            int Q = t.Q(tVar, P);
+            try {
+                if (str == null) {
+                    str = "😀";
+                }
+                SpannableString spannableString = new SpannableString(str);
+                if (document != null) {
+                    o5Var = new org.telegram.ui.Components.o5(document, P.getPaint().getFontMetricsInt());
+                } else {
+                    o5Var = new org.telegram.ui.Components.o5(j10, P.getPaint().getFontMetricsInt());
+                }
+                o5Var.cacheType = org.telegram.ui.Components.f5.f();
+                spannableString.setSpan(o5Var, 0, spannableString.length(), 33);
+                P.setText(P.getText().insert(Q, spannableString));
+                int length = Q + spannableString.length();
+                P.setSelection(length, length);
+                if (P == tVar.F) {
+                    tVar.G = length;
+                }
+            } catch (Exception unused) {
+            }
+        }
+    }
+
+    @Override
+    public final boolean z() {
+        return this.f3334a.D;
+    }
+
+    @Override
+    public final void n() {
+    }
+
+    @Override
+    public final void q() {
+    }
+
+    @Override
+    public final void u() {
+    }
+
+    @Override
+    public final void w() {
+    }
+
+    @Override
+    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void o(w41 w41Var) {
+    }
+
+    @Override
+    public final void r(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void s(int i10) {
+    }
+
+    @Override
+    public final void t(ArrayList arrayList) {
+    }
+
+    @Override
+    public final void y(long j10) {
+    }
+
+    @Override
+    public final void m(View view, TLRPC.Document document, String str, Object obj, fj fjVar, boolean z10, int i10) {
+    }
+
+    @Override
+    public final void v(View view, Object obj, String str, Object obj2, boolean z10, int i10, int i11) {
+    }
+
+    @Override
+    public final void e(Object obj, Object obj2) {
+    }
+
+    @Override
+    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z10) {
     }
 }

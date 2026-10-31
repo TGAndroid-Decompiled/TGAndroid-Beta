@@ -1,14 +1,18 @@
 package k2;
 public final class l {
-    public int f16200a = 0;
-    public boolean f16201b;
-    public boolean f16202c;
-    public boolean d;
+    public final boolean f10694a;
+    public final boolean f10695b;
+    public final boolean f10696c;
+    public final int d;
 
-    public m a() {
-        if (!this.f16201b && (this.f16202c || this.d)) {
-            throw new IllegalStateException("Secondary offload attribute fields are true but primary isFormatSupportedForOffload is false");
-        }
-        return new m(this);
+    static {
+        new k().a();
+    }
+
+    public l(k kVar) {
+        this.f10694a = kVar.f10691b;
+        this.f10695b = kVar.f10692c;
+        this.f10696c = kVar.d;
+        this.d = kVar.f10690a;
     }
 }

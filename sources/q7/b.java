@@ -1,37 +1,20 @@
 package q7;
 
-import android.os.IBinder;
-import android.os.IInterface;
-public final class b extends o6.g {
-    @Override
-    public final boolean C() {
-        return true;
-    }
+import k6.c;
+public abstract class b {
+    public static final c f45490a;
+    public static final c f45491b;
+    public static final c[] f45492c;
 
-    @Override
-    public final int l() {
-        return 12600000;
-    }
-
-    @Override
-    public final IInterface q(IBinder iBinder) {
-        if (iBinder == null) {
-            return null;
-        }
-        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.appdatasearch.internal.ILightweightAppDataSearch");
-        if (queryLocalInterface instanceof a) {
-            return (a) queryLocalInterface;
-        }
-        return new a(iBinder);
-    }
-
-    @Override
-    public final String v() {
-        return "com.google.android.gms.appdatasearch.internal.ILightweightAppDataSearch";
-    }
-
-    @Override
-    public final String w() {
-        return "com.google.android.gms.icing.LIGHTWEIGHT_INDEX_SERVICE";
+    static {
+        c cVar = new c("GET_CREDENTIAL", 1L);
+        f45490a = cVar;
+        c cVar2 = new c("CREDENTIAL_REGISTRY", 1L);
+        c cVar3 = new c("CLEAR_REGISTRY", 2L);
+        c cVar4 = new c("CLEAR_CREATION_OPTIONS", 1L);
+        c cVar5 = new c("CLEAR_CREDENTIAL_STATE", 1L);
+        c cVar6 = new c("CREATE_CREDENTIAL", 3L);
+        f45491b = cVar6;
+        f45492c = new c[]{cVar, cVar2, cVar3, cVar4, cVar5, cVar6, new c("REGISTER_CREATION_OPTIONS", 1L), new c("REGISTER_EXPORT", 1L), new c("IMPORT_CREDENTIALS", 1L), new c("SIGNAL_CREDENTIAL_STATE", 1L), new c("CLEAR_EXPORT", 1L), new c("IMPORT_CREDENTIALS_FOR_DEVICE_SETUP", 3L), new c("EXPORT_CREDENTIALS_TO_DEVICE_SETUP", 3L), new c("GET_CREDENTIAL_TRANSFER_CAPABILITIES", 3L)};
     }
 }

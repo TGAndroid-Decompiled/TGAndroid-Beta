@@ -1,46 +1,110 @@
 package gi;
 
-import org.telegram.ui.Components.iw0;
-public final class a implements oe.d, iw0 {
-    public final int f12488a;
-    public final h f12489b;
+import android.graphics.RectF;
+import java.util.ArrayList;
+public final class a {
+    public final ArrayList f7531a = new ArrayList();
+    public int f7532b;
 
-    public a(h hVar, int i10) {
-        this.f12488a = i10;
-        this.f12489b = hVar;
+    public final RectF a(float f7, float f10, float f11, float f12) {
+        RectF rectF;
+        int i10 = this.f7532b;
+        ArrayList arrayList = this.f7531a;
+        if (i10 < arrayList.size()) {
+            rectF = (RectF) arrayList.get(this.f7532b);
+            rectF.set(f7, f10, f11, f12);
+        } else {
+            rectF = new RectF(f7, f10, f11, f12);
+            arrayList.add(rectF);
+        }
+        this.f7532b++;
+        return rectF;
     }
 
-    @Override
-    public void E(int i10, float f7, float f10, oe.e eVar) {
-        switch (this.f12488a) {
-            case 0:
-                this.f12489b.E0();
-                return;
-            case 1:
-                this.f12489b.E0();
-                return;
-            default:
-                this.f12489b.W.setAlpha(f7);
-                return;
+    public final void b(float f7, float f10, float f11) {
+        int i10 = 0;
+        while (i10 < this.f7532b) {
+            RectF rectF = (RectF) this.f7531a.get(i10);
+            float f12 = rectF.right;
+            if (f12 > 0.0f) {
+                float f13 = rectF.bottom;
+                if (f13 > f7) {
+                    float f14 = rectF.left;
+                    if (f14 < f10) {
+                        float f15 = rectF.top;
+                        if (f15 < f11) {
+                            if (f14 < 0.0f) {
+                                rectF.left = 0.0f;
+                            }
+                            if (f15 < f7) {
+                                rectF.top = f7;
+                            }
+                            if (f12 > f10) {
+                                rectF.right = f10;
+                            }
+                            if (f13 > f11) {
+                                rectF.bottom = f11;
+                            }
+                            i10++;
+                        }
+                    }
+                }
+            }
+            d(i10);
         }
     }
 
-    @Override
-    public int c() {
-        return this.f12489b.f12502a0;
+    public final RectF c(int i10) {
+        if (i10 >= 0 && i10 < this.f7532b) {
+            return (RectF) this.f7531a.get(i10);
+        }
+        StringBuilder l4 = i0.a.l(i10, "index=", ", size=");
+        l4.append(this.f7532b);
+        throw new IndexOutOfBoundsException(l4.toString());
     }
 
-    @Override
-    public void z(float f7, int i10) {
-        int i11 = this.f12488a;
+    public final void d(int i10) {
+        int i11;
+        if (i10 >= 0 && i10 < (i11 = this.f7532b)) {
+            int i12 = i11 - 1;
+            ArrayList arrayList = this.f7531a;
+            RectF rectF = (RectF) arrayList.get(i10);
+            if (i10 != i12) {
+                arrayList.set(i10, (RectF) arrayList.get(i12));
+                arrayList.set(i12, rectF);
+            }
+            this.f7532b = i12;
+            return;
+        }
+        StringBuilder l4 = i0.a.l(i10, "index=", ", size=");
+        l4.append(this.f7532b);
+        throw new IndexOutOfBoundsException(l4.toString());
     }
 
-    private final void a(float f7, int i10) {
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof a)) {
+            return false;
+        }
+        a aVar = (a) obj;
+        if (this.f7532b != aVar.f7532b) {
+            return false;
+        }
+        for (int i10 = 0; i10 < this.f7532b; i10++) {
+            if (!((RectF) this.f7531a.get(i10)).equals(aVar.f7531a.get(i10))) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    private final void b(float f7, int i10) {
-    }
-
-    private final void d(float f7, int i10) {
+    public final int hashCode() {
+        int i10 = 1;
+        for (int i11 = 0; i11 < this.f7532b; i11++) {
+            i10 = (i10 * 31) + ((RectF) this.f7531a.get(i11)).hashCode();
+        }
+        return i10;
     }
 }

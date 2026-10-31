@@ -1,12 +1,34 @@
 package org.telegram.ui.Components;
+public final class k50 {
+    public final int f27639a;
+    public final int f27640b;
 
-import android.opengl.GLES20;
-import org.telegram.messenger.R;
-public final class k50 extends m50 {
-    public final int f29860g;
+    public k50(int i10, int i11) {
+        this.f27639a = i10;
+        this.f27640b = i11;
+    }
 
-    public k50() {
-        super(R.raw.round_blur_stage_1_frag);
-        this.f29860g = GLES20.glGetUniformLocation(this.f30410a, "texOffset");
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && k50.class == obj.getClass()) {
+            k50 k50Var = (k50) obj;
+            if (this.f27639a == k50Var.f27639a && this.f27640b == k50Var.f27640b) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return (this.f27639a * 31) + this.f27640b;
+    }
+
+    public final String toString() {
+        StringBuilder sb2 = new StringBuilder("IntSize(");
+        sb2.append(this.f27639a);
+        sb2.append(", ");
+        return a1.g.p(sb2, this.f27640b, ")");
     }
 }

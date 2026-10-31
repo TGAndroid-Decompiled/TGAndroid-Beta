@@ -1,31 +1,36 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-public final class n70 extends org.telegram.ui.Cells.i9 {
-    public final m.g3 f30761w;
-    public boolean f30762x;
-    public final o70 f30763y;
+import org.telegram.tgnet.TLRPC;
+public final class n70 implements Runnable {
+    public final int f28698a;
+    public final u70 f28699b;
+    public final TLRPC.TL_chatInviteJoinResultWebView f28700c;
+    public final long d;
 
-    public n70(o70 o70Var, Context context) {
-        super(context);
-        this.f30763y = o70Var;
-        this.f30761w = new m.g3(this, 20);
+    public n70(u70 u70Var, TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView, long j10, int i10) {
+        this.f28698a = i10;
+        this.f28699b = u70Var;
+        this.f28700c = tL_chatInviteJoinResultWebView;
+        this.d = j10;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        m.g3 g3Var = this.f30761w;
-        AndroidUtilities.cancelRunOnUIThread(g3Var);
-        if (this.f30762x) {
-            AndroidUtilities.runOnUIThread(g3Var, 500L);
+    public final void run() {
+        switch (this.f28698a) {
+            case 0:
+                u70 u70Var = this.f28699b;
+                org.telegram.messenger.vp r12 = org.telegram.messenger.vp.r1(u70Var.f21583a);
+                TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView = this.f28700c;
+                r12.V3(tL_chatInviteJoinResultWebView.users, false);
+                org.telegram.messenger.o2.b(u70Var.f21583a).c(this.d, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id, false);
+                return;
+            default:
+                u70 u70Var2 = this.f28699b;
+                org.telegram.messenger.vp r13 = org.telegram.messenger.vp.r1(u70Var2.f21583a);
+                TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView2 = this.f28700c;
+                r13.V3(tL_chatInviteJoinResultWebView2.users, false);
+                org.telegram.messenger.o2.b(u70Var2.f21583a).c(this.d, tL_chatInviteJoinResultWebView2.bot_id, tL_chatInviteJoinResultWebView2.query_id, false);
+                return;
         }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        AndroidUtilities.cancelRunOnUIThread(this.f30761w);
     }
 }

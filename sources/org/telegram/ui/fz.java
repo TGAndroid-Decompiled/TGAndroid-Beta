@@ -1,63 +1,71 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.widget.FrameLayout;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-public final class fz extends FrameLayout implements org.telegram.ui.ActionBar.p6 {
-    public Paint f39450a;
-    public float[] f39451b;
-    public Path f39452c;
-    public float d;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class fz implements TextWatcher {
+    public final int f37366a;
+    public boolean f37367b;
+    public final EditTextBoldCursor f37368c;
 
-    public final void a(float f7, float f10) {
-        float[] fArr = this.f39451b;
-        fArr[7] = f7;
-        fArr[6] = f7;
-        fArr[1] = f7;
-        fArr[0] = f7;
-        fArr[5] = f10;
-        fArr[4] = f10;
-        fArr[3] = f10;
-        fArr[2] = f10;
+    public fz(EditTextBoldCursor editTextBoldCursor, int i10) {
+        this.f37366a = i10;
+        this.f37368c = editTextBoldCursor;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        float measuredWidth = getMeasuredWidth() / 2.0f;
-        Path path = this.f39452c;
-        path.rewind();
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(0.0f, 0.0f, measuredWidth - AndroidUtilities.lerp(0, AndroidUtilities.dp(4.0f), this.d), getMeasuredHeight());
-        a(AndroidUtilities.dp(8.0f), AndroidUtilities.lerp(0, AndroidUtilities.dp(8.0f), this.d));
-        float[] fArr = this.f39451b;
-        Path.Direction direction = Path.Direction.CW;
-        path.addRoundRect(rectF, fArr, direction);
-        Paint paint = this.f39450a;
-        canvas.drawPath(path, paint);
-        path.rewind();
-        rectF.set(measuredWidth + AndroidUtilities.lerp(0, AndroidUtilities.dp(4.0f), this.d), 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        a(AndroidUtilities.lerp(0, AndroidUtilities.dp(8.0f), this.d), AndroidUtilities.dp(8.0f));
-        path.addRoundRect(rectF, fArr, direction);
-        canvas.drawPath(path, paint);
-    }
-
-    @Override
-    public final void updateColors() {
-        try {
-            this.f39450a.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.Oh, false));
-            invalidate();
-        } catch (Exception e) {
-            FileLog.e(e);
+    public final void afterTextChanged(Editable editable) {
+        switch (this.f37366a) {
+            case 0:
+                if (!this.f37367b && editable.length() > 32) {
+                    this.f37367b = true;
+                    editable.delete(32, editable.length());
+                    EditTextBoldCursor editTextBoldCursor = this.f37368c;
+                    org.telegram.messenger.i0.E3(editTextBoldCursor);
+                    try {
+                        editTextBoldCursor.performHapticFeedback(3, 2);
+                    } catch (Exception unused) {
+                    }
+                    this.f37367b = false;
+                    return;
+                }
+                return;
+            default:
+                if (!this.f37367b && editable.length() > 40) {
+                    this.f37367b = true;
+                    editable.delete(40, editable.length());
+                    EditTextBoldCursor editTextBoldCursor2 = this.f37368c;
+                    org.telegram.messenger.i0.E3(editTextBoldCursor2);
+                    try {
+                        editTextBoldCursor2.performHapticFeedback(3, 2);
+                    } catch (Exception unused2) {
+                    }
+                    this.f37367b = false;
+                    return;
+                }
+                return;
         }
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f37366a;
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f37366a;
+    }
+
+    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

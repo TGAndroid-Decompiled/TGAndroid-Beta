@@ -1,36 +1,26 @@
 package org.telegram.messenger.voip;
 
-import org.telegram.messenger.voip.Instance;
-import org.telegram.messenger.voip.NativeInstance;
-public final class g0 implements NativeInstance.AudioLevelsCallback, Instance.OnStateUpdatedListener, Instance.OnSignalBarsUpdatedListener, Instance.OnSignalingDataListener, Instance.OnRemoteMediaStateUpdatedListener {
-    public final VoIPService f21631a;
+import bi.i6;
+import org.telegram.tgnet.RequestDelegate;
+public final class g0 implements RequestDelegate {
+    public final int f18648a;
+    public final int f18649b;
+    public final Object f18650c;
 
-    public g0(VoIPService voIPService) {
-        this.f21631a = voIPService;
+    public g0(int i10, i6 i6Var) {
+        this.f18648a = 7;
+        this.f18649b = i10;
+        this.f18650c = i6Var;
     }
 
     @Override
-    public void onMediaStateUpdated(int i10, int i11) {
-        this.f21631a.lambda$initiateActualEncryptedCall$87(i10, i11);
+    public final void run(org.telegram.tgnet.TLObject r12, org.telegram.tgnet.TLRPC.TL_error r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.g0.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
     }
 
-    @Override
-    public void onSignalBarsUpdated(int i10) {
-        this.f21631a.onSignalBarCountChanged(i10);
-    }
-
-    @Override
-    public void onSignalingData(byte[] bArr) {
-        this.f21631a.onSignalingData(bArr);
-    }
-
-    @Override
-    public void onStateUpdated(int i10, boolean z10) {
-        this.f21631a.onConnectionStateChanged(i10, z10);
-    }
-
-    @Override
-    public void run(int[] iArr, float[] fArr, boolean[] zArr) {
-        this.f21631a.lambda$initiateActualEncryptedCall$85(iArr, fArr, zArr);
+    public g0(Object obj, int i10, int i11) {
+        this.f18648a = i11;
+        this.f18650c = obj;
+        this.f18649b = i10;
     }
 }

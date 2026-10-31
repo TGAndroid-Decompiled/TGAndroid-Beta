@@ -1,36 +1,71 @@
 package s4;
+public final class h1 {
+    public int f47939a;
+    public int f47940b;
+    public int f47941c;
+    public int d;
+    public int e;
 
-import android.content.Context;
-import android.util.DisplayMetrics;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.Wallet.i5;
-public final class h1 extends d0 {
-    public final i5 f47805r;
-
-    public h1(i5 i5Var, Context context) {
-        super(context);
-        this.f47805r = i5Var;
-    }
-
-    @Override
-    public final void g(View view, z0 z0Var) {
-        RecyclerView recyclerView = this.f47805r.f36697a;
-        if (recyclerView != null) {
-            p0 layoutManager = recyclerView.getLayoutManager();
-            layoutManager.getClass();
-            int[] iArr = {0, p0.z(view) - layoutManager.F()};
-            int i10 = iArr[0];
-            int i11 = iArr[1];
-            int m10 = m(Math.max(Math.abs(i10), Math.abs(i11)));
-            if (m10 > 0) {
-                z0Var.b(i10, i11, m10, this.f47759j);
+    public final boolean a() {
+        int i10;
+        int i11;
+        int i12;
+        int i13 = this.f47939a;
+        int i14 = 2;
+        if ((i13 & 7) != 0) {
+            int i15 = this.d;
+            int i16 = this.f47940b;
+            if (i15 > i16) {
+                i12 = 1;
+            } else if (i15 == i16) {
+                i12 = 2;
+            } else {
+                i12 = 4;
+            }
+            if ((i12 & i13) == 0) {
+                return false;
             }
         }
-    }
-
-    @Override
-    public final float l(DisplayMetrics displayMetrics) {
-        return 100.0f / displayMetrics.densityDpi;
+        if ((i13 & 112) != 0) {
+            int i17 = this.d;
+            int i18 = this.f47941c;
+            if (i17 > i18) {
+                i11 = 1;
+            } else if (i17 == i18) {
+                i11 = 2;
+            } else {
+                i11 = 4;
+            }
+            if (((i11 << 4) & i13) == 0) {
+                return false;
+            }
+        }
+        if ((i13 & 1792) != 0) {
+            int i19 = this.e;
+            int i20 = this.f47940b;
+            if (i19 > i20) {
+                i10 = 1;
+            } else if (i19 == i20) {
+                i10 = 2;
+            } else {
+                i10 = 4;
+            }
+            if (((i10 << 8) & i13) == 0) {
+                return false;
+            }
+        }
+        if ((i13 & 28672) != 0) {
+            int i21 = this.e;
+            int i22 = this.f47941c;
+            if (i21 > i22) {
+                i14 = 1;
+            } else if (i21 != i22) {
+                i14 = 4;
+            }
+            if ((i13 & (i14 << 12)) == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }

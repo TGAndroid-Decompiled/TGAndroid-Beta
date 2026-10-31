@@ -1,87 +1,124 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLRPC;
-public final class ii implements org.telegram.ui.sq0 {
-    public boolean f29337a;
-    public final HashMap f29338b;
-    public final ArrayList f29339c;
-    public final ti d;
+import android.content.Context;
+public final class ii extends u51 {
+    public final int f26981m3 = 3;
+    public final Object f26982n3;
 
-    public ii(ti tiVar, HashMap hashMap, ArrayList arrayList) {
-        this.d = tiVar;
-        this.f29338b = hashMap;
-        this.f29339c = arrayList;
+    public ii(r51 r51Var, r51 r51Var2, d dVar, q51 q51Var, q51 q51Var2) {
+        super(r51Var2, dVar, q51Var, q51Var2);
+        this.f26982n3 = r51Var;
     }
 
     @Override
-    public final void d(int i10, boolean z10, boolean z11) {
-        String str;
-        if (!z10) {
-            HashMap hashMap = this.f29338b;
-            if (!hashMap.isEmpty() && !this.f29337a) {
-                this.f29337a = true;
-                ArrayList arrayList = new ArrayList();
-                int i11 = 0;
-                while (true) {
-                    ArrayList arrayList2 = this.f29339c;
-                    if (i11 < arrayList2.size()) {
-                        Object obj = hashMap.get(arrayList2.get(i11));
-                        SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-                        arrayList.add(sendingMediaInfo);
-                        MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
-                        String str2 = searchImage.imagePath;
-                        if (str2 != null) {
-                            sendingMediaInfo.path = str2;
-                        } else {
-                            sendingMediaInfo.searchImage = searchImage;
-                        }
-                        sendingMediaInfo.thumbPath = searchImage.thumbPath;
-                        sendingMediaInfo.videoEditedInfo = searchImage.editedInfo;
-                        CharSequence charSequence = searchImage.caption;
-                        if (charSequence != null) {
-                            str = charSequence.toString();
-                        } else {
-                            str = null;
-                        }
-                        sendingMediaInfo.caption = str;
-                        sendingMediaInfo.entities = searchImage.entities;
-                        sendingMediaInfo.masks = searchImage.stickers;
-                        sendingMediaInfo.ttl = searchImage.ttl;
-                        TLRPC.BotInlineResult botInlineResult = searchImage.inlineResult;
-                        if (botInlineResult != null && searchImage.type == 1) {
-                            sendingMediaInfo.inlineResult = botInlineResult;
-                            sendingMediaInfo.params = searchImage.params;
-                        }
-                        searchImage.date = (int) (System.currentTimeMillis() / 1000);
-                        i11++;
-                    } else {
-                        ((org.telegram.ui.wn) this.d.f32990f0).m8(i10, arrayList, z11);
-                        return;
-                    }
+    public boolean E0(float f7) {
+        int i10;
+        switch (this.f26981m3) {
+            case 0:
+                bi biVar = ((mi) this.f26982n3).f30947b;
+                int L = org.telegram.messenger.i0.L(30.0f) + biVar.V3[0];
+                if (!biVar.X1) {
+                    i10 = org.telegram.messenger.i0.f16020m;
+                } else {
+                    i10 = 0;
                 }
-            }
+                if (f7 < L + i10) {
+                    return false;
+                }
+                return true;
+            default:
+                return super.E0(f7);
         }
     }
 
     @Override
-    public final boolean e() {
-        return true;
+    public void F1() {
+        switch (this.f26981m3) {
+            case 0:
+                mi miVar = (mi) this.f26982n3;
+                miVar.f30947b.L1(miVar, 0);
+                return;
+            default:
+                return;
+        }
     }
 
     @Override
-    public final void a() {
+    public void K1() {
+        switch (this.f26981m3) {
+            case 4:
+                org.telegram.messenger.i0.d0(((vh.k7) this.f26982n3).f52192b, new ph.h1(this, 25));
+                return;
+            default:
+                return;
+        }
     }
 
     @Override
-    public final void c() {
+    public Integer V0(int i10) {
+        switch (this.f26981m3) {
+            case 4:
+                return 0;
+            default:
+                return super.V0(i10);
+        }
     }
 
     @Override
-    public final void b(Editable editable) {
+    public void l0(int i10) {
+        org.telegram.ui.web.h hVar;
+        switch (this.f26981m3) {
+            case 2:
+                if (!canScrollVertically(1) && (hVar = ((org.telegram.ui.web.j) this.f26982n3).D) != null && hVar.h) {
+                    hVar.d();
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        switch (this.f26981m3) {
+            case 0:
+                super.onLayout(z10, i10, i11, i12, i13);
+                mi miVar = (mi) this.f26982n3;
+                miVar.f30947b.L1(miVar, 0);
+                return;
+            case 1:
+                super.onLayout(z10, i10, i11, i12, i13);
+                ((r51) this.f26982n3).f29839c = -1;
+                return;
+            case 2:
+            default:
+                super.onLayout(z10, i10, i11, i12, i13);
+                return;
+            case 3:
+                super.onLayout(z10, i10, i11, i12, i13);
+                ((vq0) this.f26982n3).p();
+                return;
+        }
+    }
+
+    public ii(vh.k7 k7Var, Context context, int i10, vh.t2 t2Var, rh.d0 d0Var, th.b bVar) {
+        super(context, i10, 0, false, t2Var, d0Var, null, bVar, -1, 0);
+        this.f26982n3 = k7Var;
+    }
+
+    public ii(org.telegram.ui.web.j jVar, Context context, int i10, ag.a aVar, org.telegram.ui.web.a aVar2, org.telegram.ui.ActionBar.x4 x4Var) {
+        super(context, i10, 0, false, aVar, aVar2, null, x4Var);
+        this.f26982n3 = jVar;
+    }
+
+    public ii(mi miVar, Context context, int i10, d dVar, fi fiVar, fi fiVar2, org.telegram.ui.ActionBar.p6 p6Var) {
+        super(context, i10, 0, false, dVar, fiVar, fiVar2, p6Var);
+        this.f26982n3 = miVar;
+    }
+
+    public ii(Context context, int i10, ag.a aVar, ph.a2 a2Var, ph.a2 a2Var2, org.telegram.ui.ActionBar.p6 p6Var, vq0 vq0Var) {
+        super(context, i10, 0, false, aVar, a2Var, a2Var2, p6Var, 3, 1);
+        this.f26982n3 = vq0Var;
     }
 }

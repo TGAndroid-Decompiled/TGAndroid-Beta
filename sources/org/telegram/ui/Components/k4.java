@@ -1,31 +1,7 @@
 package org.telegram.ui.Components;
-
-import android.content.Context;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class k4 extends nd0 {
-    public final int[] f29854y0;
-
-    public k4(Context context, org.telegram.ui.ActionBar.u6 u6Var, int[] iArr) {
-        super(context, u6Var);
-        this.f29854y0 = iArr;
-    }
-
+public final class k4 extends ac0 {
     @Override
     public final CharSequence d(int i10) {
-        int i11 = this.f29854y0[i10];
-        if (i11 == 0) {
-            return LocaleController.getString(R.string.AutoDeleteNever);
-        }
-        if (i11 < 10080) {
-            return LocaleController.formatPluralString("Days", i11 / 1440, new Object[0]);
-        }
-        if (i11 < 44640) {
-            return LocaleController.formatPluralString("Weeks", i11 / 1440, new Object[0]);
-        }
-        if (i11 < 525600) {
-            return LocaleController.formatPluralString("Months", i11 / 10080, new Object[0]);
-        }
-        return LocaleController.formatPluralString("Years", ((i11 * 5) / 31) * 1440, new Object[0]);
+        return org.telegram.messenger.cd.G(i10, "Hours", new Object[0]);
     }
 }

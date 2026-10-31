@@ -1,52 +1,30 @@
 package me;
 
-import a8.jd;
-import ce.m;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import v0.c;
-import v0.i;
-import w0.d;
-public final class b implements OnCompleteListener, i {
-    public final m f18420a;
-
-    public b(m mVar) {
-        this.f18420a = mVar;
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Proxy;
+public abstract class b {
+    public static Object a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() != 0) {
+            return creator.createFromParcel(parcel);
+        }
+        return null;
     }
 
-    @Override
-    public void onComplete(Task task) {
-        Exception exception = task.getException();
-        m mVar = this.f18420a;
-        if (exception == null) {
-            if (task.isCanceled()) {
-                mVar.n(null);
-                return;
-            } else {
-                mVar.resumeWith(task.getResult());
-                return;
-            }
+    public static Object b(Class cls, InvocationHandler invocationHandler) {
+        if (invocationHandler == null) {
+            return null;
         }
-        mVar.resumeWith(jd.a(exception));
+        return cls.cast(Proxy.newProxyInstance(b.class.getClassLoader(), new Class[]{cls}, invocationHandler));
     }
 
-    @Override
-    public void onError(Object obj) {
-        d e = (d) obj;
-        kotlin.jvm.internal.i.e(e, "e");
-        m mVar = this.f18420a;
-        if (mVar.w()) {
-            mVar.resumeWith(jd.a(e));
+    public static void c(Parcel parcel, Parcelable parcelable) {
+        if (parcelable != null) {
+            parcel.writeInt(1);
+            parcelable.writeToParcel(parcel, 0);
+            return;
         }
-    }
-
-    @Override
-    public void onResult(Object obj) {
-        c result = (c) obj;
-        kotlin.jvm.internal.i.e(result, "result");
-        m mVar = this.f18420a;
-        if (mVar.w()) {
-            mVar.resumeWith(result);
-        }
+        parcel.writeInt(0);
     }
 }

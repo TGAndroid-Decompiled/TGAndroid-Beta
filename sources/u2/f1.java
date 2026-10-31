@@ -1,12 +1,12 @@
 package u2;
 public interface f1 {
-    long b();
+    long c();
 
-    boolean c();
+    boolean d();
 
     boolean m(i2.w0 w0Var);
 
-    long q();
+    long s();
 
-    void s(long j10);
+    void u(long j10);
 }

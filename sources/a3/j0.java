@@ -1,12 +1,12 @@
 package a3;
 public final class j0 implements Runnable {
     public final int f128a = 0;
-    public final n4.s f129b;
+    public final hf.b f129b;
     public final long f130c;
     public final int d;
 
-    public j0(n4.s sVar, int i10, long j10) {
-        this.f129b = sVar;
+    public j0(hf.b bVar, int i10, long j10) {
+        this.f129b = bVar;
         this.d = i10;
         this.f130c = j10;
     }
@@ -16,25 +16,25 @@ public final class j0 implements Runnable {
         int i10 = this.f128a;
         int i11 = this.d;
         long j10 = this.f130c;
-        n4.s sVar = this.f129b;
+        hf.b bVar = this.f129b;
         switch (i10) {
             case 0:
-                String str = e2.n0.f9691a;
-                j2.e eVar = ((i2.d0) ((m0) sVar.f18696c)).f13508a.f13613s;
-                j2.a n10 = eVar.n((u2.g0) eVar.d.e);
-                eVar.q(n10, 1018, new ig.g(n10, i11, j10));
+                String str = e2.l0.f6165a;
+                j2.g gVar = ((i2.c0) ((m0) bVar.f7658c)).f7821a.f7927s;
+                j2.a S = gVar.S((u2.g0) gVar.d.e);
+                gVar.V(S, 1018, new j2.c(S, i11, j10));
                 return;
             default:
-                String str2 = e2.n0.f9691a;
-                j2.e eVar2 = ((i2.d0) ((m0) sVar.f18696c)).f13508a.f13613s;
-                j2.a n11 = eVar2.n((u2.g0) eVar2.d.e);
-                eVar2.q(n11, 1021, new ig.g(n11, j10, i11));
+                String str2 = e2.l0.f6165a;
+                j2.g gVar2 = ((i2.c0) ((m0) bVar.f7658c)).f7821a.f7927s;
+                j2.a S2 = gVar2.S((u2.g0) gVar2.d.e);
+                gVar2.V(S2, 1021, new j2.c(S2, j10, i11));
                 return;
         }
     }
 
-    public j0(n4.s sVar, long j10, int i10) {
-        this.f129b = sVar;
+    public j0(hf.b bVar, long j10, int i10) {
+        this.f129b = bVar;
         this.f130c = j10;
         this.d = i10;
     }

@@ -2,7 +2,7 @@ package org.webrtc;
 
 import java.util.Map;
 public class RTCStats {
-    private final String f46468id;
+    private final String f44480id;
     private final Map<String, Object> members;
     private final long timestampUs;
     private final String type;
@@ -10,7 +10,7 @@ public class RTCStats {
     public RTCStats(long j10, String str, String str2, Map<String, Object> map) {
         this.timestampUs = j10;
         this.type = str;
-        this.f46468id = str2;
+        this.f44480id = str2;
         this.members = map;
     }
 
@@ -39,7 +39,7 @@ public class RTCStats {
     }
 
     public String getId() {
-        return this.f46468id;
+        return this.f44480id;
     }
 
     public Map<String, Object> getMembers() {
@@ -55,19 +55,19 @@ public class RTCStats {
     }
 
     public String toString() {
-        StringBuilder u10 = a1.g.u("{ timestampUs: ");
-        u10.append(this.timestampUs);
-        u10.append(", type: ");
-        u10.append(this.type);
-        u10.append(", id: ");
-        u10.append(this.f46468id);
+        StringBuilder t10 = a1.g.t("{ timestampUs: ");
+        t10.append(this.timestampUs);
+        t10.append(", type: ");
+        t10.append(this.type);
+        t10.append(", id: ");
+        t10.append(this.f44480id);
         for (Map.Entry<String, Object> entry : this.members.entrySet()) {
-            u10.append(", ");
-            u10.append(entry.getKey());
-            u10.append(": ");
-            appendValue(u10, entry.getValue());
+            t10.append(", ");
+            t10.append(entry.getKey());
+            t10.append(": ");
+            appendValue(t10, entry.getValue());
         }
-        u10.append(" }");
-        return u10.toString();
+        t10.append(" }");
+        return t10.toString();
     }
 }

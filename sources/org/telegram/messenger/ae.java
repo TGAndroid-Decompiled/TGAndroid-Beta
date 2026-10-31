@@ -1,25 +1,33 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
-public final class ae implements Runnable {
-    public final int f19623a;
-    public final MessagesController f19624b;
-    public final TLRPC.TL_help_peerColors f19625c;
+import android.content.DialogInterface;
+public final class ae implements DialogInterface.OnCancelListener {
+    public final int f14602a;
+    public final Object f14603b;
 
-    public ae(MessagesController messagesController, TLRPC.TL_help_peerColors tL_help_peerColors, int i10) {
-        this.f19623a = i10;
-        this.f19624b = messagesController;
-        this.f19625c = tL_help_peerColors;
+    public ae(Object obj, int i10) {
+        this.f14602a = i10;
+        this.f14603b = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19623a) {
+    public final void onCancel(DialogInterface dialogInterface) {
+        int i10 = this.f14602a;
+        Object obj = this.f14603b;
+        switch (i10) {
             case 0:
-                this.f19624b.lambda$checkPeerColors$496(this.f19625c);
+                String[] strArr = MediaController.U1;
+                ((boolean[]) obj)[0] = true;
+                return;
+            case 1:
+                String[] strArr2 = MediaController.U1;
+                ((boolean[]) obj)[0] = true;
+                return;
+            case 2:
+                ((boolean[]) obj)[0] = true;
                 return;
             default:
-                this.f19624b.lambda$checkPeerColors$498(this.f19625c);
+                ((cf) obj).f15014f = true;
                 return;
         }
     }

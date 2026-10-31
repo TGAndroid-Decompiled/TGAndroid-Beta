@@ -1,80 +1,64 @@
 package org.telegram.ui.Components;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class iw extends un0 {
-    public long h;
-    public boolean f29427n;
-    public float f29428r;
-    public final kw f29429s;
+import android.view.ViewGroup;
+public final class iw extends z4.g {
+    public final vy f27108w0;
 
-    public iw(kw kwVar, Context context) {
+    public iw(vy vyVar, Context context) {
         super(context);
-        float f7;
-        this.f29429s = kwVar;
-        boolean z10 = kwVar.f30040n;
-        this.f29427n = z10;
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
+        this.f27108w0 = vyVar;
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (this.f27108w0.f31873f) {
+            return false;
         }
-        this.f29428r = f7;
-        setSmoothScrollingEnabled(true);
-        int i10 = 0;
-        setHorizontalScrollBarEnabled(false);
-        setVerticalScrollBarEnabled(false);
-        setNestedScrollingEnabled(true);
-        org.telegram.ui.za1 za1Var = new org.telegram.ui.za1(this, context, 9);
-        this.f33435b = za1Var;
-        za1Var.setOrientation(0);
-        addView(this.f33435b, new FrameLayout.LayoutParams(-2, -1));
-        while (true) {
-            int[] iArr = kw.f30034e0;
-            if (i10 < 8) {
-                int i11 = iArr[i10];
-                hw hwVar = new hw(this, context, kw.f30035f0[i10]);
-                hwVar.setContentDescription(kw.f(i10));
-                this.f33435b.addView(hwVar);
-                i10++;
+        if (getParent() != null) {
+            getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
+        }
+        try {
+            return super.onInterceptTouchEvent(motionEvent);
+        } catch (IllegalArgumentException unused) {
+            return false;
+        }
+    }
+
+    @Override
+    public final void x(int i10, boolean z10) {
+        boolean z11;
+        vy vyVar = this.f27108w0;
+        zw zwVar = vyVar.I;
+        if (i10 == 1) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        vy.a(vyVar, z11);
+        if (i10 == getCurrentItem()) {
+            if (i10 == 0) {
+                vyVar.Q0[1] = 0;
+                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(zwVar, ViewGroup.TRANSLATION_Y, 0.0f);
+                ofFloat.setDuration(150L);
+                ofFloat.setInterpolator(gr.h);
+                ofFloat.start();
+                vyVar.H(1, 0);
+                if (zwVar != null) {
+                    zwVar.j(0, true);
+                    return;
+                }
+                return;
+            } else if (i10 == 1) {
+                vyVar.f31880h0.y0(0);
+                return;
             } else {
+                vyVar.D0.y0(1);
                 return;
             }
         }
-    }
-
-    public final void d(MotionEvent motionEvent) {
-        if (this.f29427n && !this.d) {
-            int action = motionEvent.getAction();
-            if (action != 0) {
-                if (action != 1) {
-                    if (action != 2) {
-                        return;
-                    }
-                } else {
-                    this.f33434a = false;
-                    return;
-                }
-            }
-            this.f33434a = true;
-            if (!this.d) {
-                this.e = -1;
-            }
-            this.f29429s.requestDisallowInterceptTouchEvent(true);
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.lerp(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(Math.min(5.7f, this.f33435b.getChildCount()) * 32.0f), this.f29428r), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        d(motionEvent);
-        return super.onTouchEvent(motionEvent);
+        super.x(i10, z10);
     }
 }

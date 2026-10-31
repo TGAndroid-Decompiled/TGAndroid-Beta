@@ -1,31 +1,39 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-public final class n2 extends ReplacementSpan {
-    public final int f24524a;
+import android.content.Context;
+import android.view.ViewGroup;
+import org.telegram.ui.Components.ep;
+public final class n2 extends ep {
+    public final int d;
+    public final ViewGroup e;
 
-    public n2(int i10) {
-        this.f24524a = i10;
+    public n2(ViewGroup viewGroup, Context context, org.telegram.ui.ActionBar.p6 p6Var, int i10) {
+        super(21, context, p6Var);
+        this.d = i10;
+        this.e = viewGroup;
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        if (fontMetricsInt == null) {
-            fontMetricsInt = paint.getFontMetricsInt();
+    public final void invalidate() {
+        switch (this.d) {
+            case 0:
+                super.invalidate();
+                ((v2) this.e).invalidate();
+                return;
+            case 1:
+                super.invalidate();
+                ((org.telegram.ui.web.g) this.e).invalidate();
+                return;
+            default:
+                super.invalidate();
+                ((vh.h2) this.e).invalidate();
+                return;
         }
-        if (fontMetricsInt != null) {
-            int i12 = 1 - (fontMetricsInt.descent - fontMetricsInt.ascent);
-            fontMetricsInt.descent = i12;
-            fontMetricsInt.bottom = i12;
-            fontMetricsInt.ascent = -1;
-            fontMetricsInt.top = -1;
-        }
-        return this.f24524a;
     }
 
-    @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    public n2(vh.h2 h2Var, Context context, org.telegram.ui.ActionBar.p6 p6Var) {
+        super(24, context, p6Var);
+        this.d = 2;
+        this.e = h2Var;
     }
 }

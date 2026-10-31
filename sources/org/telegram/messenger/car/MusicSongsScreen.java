@@ -1,20 +1,21 @@
 package org.telegram.messenger.car;
 
-import androidx.car.app.m;
+import androidx.car.app.l;
 import androidx.lifecycle.e;
 import androidx.lifecycle.t;
-import org.telegram.messenger.NotificationCenter;
-public class MusicSongsScreen extends m implements e, NotificationCenter.NotificationCenterDelegate {
+import org.telegram.messenger.us;
+import org.telegram.messenger.zs;
+public class MusicSongsScreen extends l implements e, us {
     @Override
     public final void a(t tVar) {
-        NotificationCenter.getGlobalInstance().addWeakObserver(this, NotificationCenter.messagePlayingDidStart);
-        NotificationCenter.getGlobalInstance().addWeakObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
-        NotificationCenter.getGlobalInstance().addWeakObserver(this, NotificationCenter.activeAccountChanged);
+        zs.e().c(this, zs.f19622h2);
+        zs.e().c(this, zs.f19616g2);
+        zs.e().c(this, zs.f19594c4);
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.activeAccountChanged) {
+        if (i10 == zs.f19594c4) {
             throw null;
         }
         throw null;
@@ -22,9 +23,9 @@ public class MusicSongsScreen extends m implements e, NotificationCenter.Notific
 
     @Override
     public final void e(t tVar) {
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.messagePlayingDidStart);
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.activeAccountChanged);
+        zs.e().n(this, zs.f19622h2);
+        zs.e().n(this, zs.f19616g2);
+        zs.e().n(this, zs.f19594c4);
     }
 
     @Override

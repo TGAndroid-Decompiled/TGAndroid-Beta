@@ -1,21 +1,21 @@
 package x1;
 
-import a8.gg;
+import a6.d;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-import b6.d;
+import c5.t;
 import com.google.android.gms.common.api.m;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
-import t9.i;
+import td.z1;
 public final class a implements Runnable {
-    public static Handler f51344f;
+    public static Handler f52882f;
     public final d e;
-    public volatile int f51346b = 1;
-    public final AtomicBoolean f51347c = new AtomicBoolean();
+    public volatile int f52884b = 1;
+    public final AtomicBoolean f52885c = new AtomicBoolean();
     public final AtomicBoolean d = new AtomicBoolean();
-    public final b f51345a = new b(this, new gg(this, 7));
+    public final b f52883a = new b(this, new t(this, 7));
 
     public a(d dVar) {
         this.e = dVar;
@@ -24,13 +24,13 @@ public final class a implements Runnable {
     public final void a() {
         d dVar = this.e;
         int i10 = 0;
-        for (m mVar : dVar.f3663j) {
-            if (mVar.d(dVar)) {
+        for (m mVar : dVar.f300j) {
+            if (mVar.b(dVar)) {
                 i10++;
             }
         }
         try {
-            dVar.f3662i.tryAcquire(i10, 5L, TimeUnit.SECONDS);
+            dVar.f299i.tryAcquire(i10, 5L, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             Log.i("GACSignInLoader", "Unexpected InterruptedException", e);
             Thread.currentThread().interrupt();
@@ -41,15 +41,15 @@ public final class a implements Runnable {
         Handler handler;
         synchronized (a.class) {
             try {
-                if (f51344f == null) {
-                    f51344f = new Handler(Looper.getMainLooper());
+                if (f52882f == null) {
+                    f52882f = new Handler(Looper.getMainLooper());
                 }
-                handler = f51344f;
+                handler = f52882f;
             } catch (Throwable th2) {
                 throw th2;
             }
         }
-        handler.post(new i(6, this, obj));
+        handler.post(new z1(this, obj, false, 7));
     }
 
     @Override

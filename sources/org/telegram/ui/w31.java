@@ -1,53 +1,19 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-public final class w31 extends AnimatorListenerAdapter {
-    public final int f44508a;
-    public final SecretMediaViewer f44509b;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class w31 implements View.OnLongClickListener {
+    public final TLRPC.TL_authorization f42868a;
+    public final c41 f42869b;
 
-    public w31(SecretMediaViewer secretMediaViewer, int i10) {
-        this.f44508a = i10;
-        this.f44509b = secretMediaViewer;
+    public w31(c41 c41Var, TLRPC.TL_authorization tL_authorization) {
+        this.f42869b = c41Var;
+        this.f42868a = tL_authorization;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f44508a) {
-            case 0:
-                SecretMediaViewer secretMediaViewer = this.f44509b;
-                Runnable runnable = secretMediaViewer.f36206o0;
-                if (runnable != null) {
-                    runnable.run();
-                    secretMediaViewer.f36206o0 = null;
-                    return;
-                }
-                return;
-            case 1:
-                SecretMediaViewer secretMediaViewer2 = this.f44509b;
-                AnimatorSet animatorSet = secretMediaViewer2.G;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    secretMediaViewer2.F.setVisibility(8);
-                    secretMediaViewer2.G = null;
-                    secretMediaViewer2.f36176a0.scrollTo(0, 0);
-                    return;
-                }
-                return;
-            case 2:
-                SecretMediaViewer secretMediaViewer3 = this.f44509b;
-                Runnable runnable2 = secretMediaViewer3.f36206o0;
-                if (runnable2 != null) {
-                    runnable2.run();
-                    secretMediaViewer3.f36206o0 = null;
-                    return;
-                }
-                return;
-            default:
-                SecretMediaViewer secretMediaViewer4 = this.f44509b;
-                secretMediaViewer4.K0 = null;
-                secretMediaViewer4.e.invalidate();
-                return;
-        }
+    public final boolean onLongClick(View view) {
+        c41.I0(this.f42869b, this.f42868a.country);
+        return true;
     }
 }

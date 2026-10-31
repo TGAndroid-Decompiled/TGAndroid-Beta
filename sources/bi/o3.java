@@ -1,38 +1,75 @@
 package bi;
 
-import org.telegram.messenger.BillingController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stars;
-public final class o3 implements Runnable {
-    public final int f5167a;
-    public final t0 f5168b;
-    public final org.telegram.ui.Components.yc[] f5169c;
-    public final TL_stars.UniqueStarGiftValueInfo d;
-    public final String e;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public final class o3 implements k5 {
+    public final w f3261a;
+    public final a f3262b;
+    public final d4 f3263c;
 
-    public o3(t0 t0Var, org.telegram.ui.Components.yc[] ycVarArr, TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo, String str, int i10) {
-        this.f5167a = i10;
-        this.f5168b = t0Var;
-        this.f5169c = ycVarArr;
-        this.d = uniqueStarGiftValueInfo;
-        this.e = str;
+    public o3(a aVar, w wVar, d4 d4Var) {
+        this.f3263c = d4Var;
+        this.f3261a = wVar;
+        this.f3262b = aVar;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f5167a;
-        String str = this.e;
-        TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo = this.d;
-        org.telegram.ui.Components.yc[] ycVarArr = this.f5169c;
-        t0 t0Var = this.f5168b;
-        switch (i10) {
-            case 0:
-                t0Var.run(ycVarArr[0], LocaleController.formatString(R.string.GiftValueMinPriceInfo, BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.floor_price, uniqueStarGiftValueInfo.currency), str));
-                return;
-            default:
-                t0Var.run(ycVarArr[0], LocaleController.formatString(R.string.GiftValueAveragePriceInfo, BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.average_price, uniqueStarGiftValueInfo.currency), str));
-                return;
+    public final void a() {
+        w wVar = this.f3261a;
+        wVar.f3416a = 3;
+        d4 d4Var = this.f3263c;
+        d4Var.f2929g4.remove(wVar);
+        int indexOf = d4Var.f2946s3.indexOf(this.f3262b);
+        if (indexOf >= 0) {
+            d4Var.f2946s3.remove(indexOf);
+            d4Var.f30819f3.O(true);
         }
+        d4Var.f2938o3.onContentChanged();
+    }
+
+    @Override
+    public final void f(TLRPC.Document document) {
+        w wVar = this.f3261a;
+        wVar.h = document;
+        wVar.f3421i = document;
+        wVar.f3416a = 2;
+        TL_iv.PageBlock pageBlock = this.f3262b.f2818b;
+        if (pageBlock instanceof TL_iv.pageBlockAudio) {
+            ((TL_iv.pageBlockAudio) pageBlock).audio_id = document.f19799id;
+        }
+        d4 d4Var = this.f3263c;
+        d4Var.f2929g4.remove(wVar);
+        d4Var.f30819f3.O(false);
+        d4Var.f2938o3.onContentChanged();
+    }
+
+    @Override
+    public final void g(float f7) {
+        this.f3261a.f3419f = f7;
+        a aVar = this.f3262b;
+        d4 d4Var = this.f3263c;
+        View C1 = d4Var.C1(aVar);
+        if (C1 instanceof b0) {
+            ((b0) C1).o(false);
+            C1.invalidate();
+        }
+        d4Var.f2938o3.onContentChanged();
+    }
+
+    @Override
+    public final void c(TLRPC.Photo photo) {
+    }
+
+    @Override
+    public final void d(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void e(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void b(int i10, int i11) {
     }
 }

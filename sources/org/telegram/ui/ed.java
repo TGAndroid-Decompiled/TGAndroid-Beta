@@ -1,314 +1,276 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.net.Uri;
-import android.text.TextUtils;
-import android.view.View;
-import java.util.ArrayList;
-import java.util.Iterator;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
 public final class ed implements Runnable {
-    public final int f38840a;
-    public final Object f38841b;
-    public final Object f38842c;
+    public final int f37017a;
+    public final TLRPC.PhotoSize f37018b;
+    public final TLRPC.InputFile f37019c;
+    public final TLRPC.InputFile d;
+    public final TLRPC.VideoSize e;
+    public final TLRPC.PhotoSize f37020f;
+    public final double h;
+    public final String f37021n;
+    public final org.telegram.ui.Components.a40 f37022r;
 
-    public ed(int i10, Object obj, Object obj2) {
-        this.f38840a = i10;
-        this.f38841b = obj;
-        this.f38842c = obj2;
+    public ed(org.telegram.ui.ActionBar.k2 k2Var, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, String str, double d, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, int i10) {
+        this.f37017a = i10;
+        this.f37022r = (org.telegram.ui.Components.a40) k2Var;
+        this.f37019c = inputFile;
+        this.d = inputFile2;
+        this.e = videoSize;
+        this.f37021n = str;
+        this.h = d;
+        this.f37018b = photoSize;
+        this.f37020f = photoSize2;
     }
 
     @Override
     public final void run() {
-        boolean z10;
-        org.telegram.ui.Components.k71 k71Var;
-        org.telegram.ui.Components.h21 h21Var;
-        int[] iArr;
-        fi.v3 v3Var;
-        TLRPC.Message message;
-        TLRPC.MessageMedia messageMedia;
-        TLRPC.WebPage webPage;
-        String str;
-        String formatString;
-        TLRPC.Chat chat;
-        int i10 = this.f38840a;
-        MessageObject messageObject = null;
-        boolean z11 = true;
-        boolean z12 = false;
-        Object obj = this.f38842c;
-        Object obj2 = this.f38841b;
+        long j10;
+        int i10 = this.f37017a;
+        double d = this.h;
+        String str = this.f37021n;
+        TLRPC.VideoSize videoSize = this.e;
+        TLRPC.InputFile inputFile = this.d;
+        TLRPC.InputFile inputFile2 = this.f37019c;
+        TLRPC.PhotoSize photoSize = this.f37020f;
+        TLRPC.PhotoSize photoSize2 = this.f37018b;
+        org.telegram.ui.Components.a40 a40Var = this.f37022r;
         switch (i10) {
             case 0:
-                nd ndVar = (nd) obj2;
-                TLObject tLObject = (TLObject) obj;
-                ArrayList arrayList = ndVar.f41753g0;
-                ndVar.f41750e0 = false;
-                if (tLObject != null && ndVar.getParentActivity() != null) {
-                    for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                        ndVar.L.removeView((View) arrayList.get(i11));
-                    }
-                    arrayList.clear();
-                    TLRPC.TL_messages_chats tL_messages_chats = (TLRPC.TL_messages_chats) tLObject;
-                    for (int i12 = 0; i12 < tL_messages_chats.chats.size(); i12++) {
-                        org.telegram.ui.Cells.n nVar = new org.telegram.ui.Cells.n(ndVar.getParentActivity(), new fd(ndVar, 0), false, 0);
-                        TLRPC.Chat chat2 = tL_messages_chats.chats.get(i12);
-                        if (i12 == tL_messages_chats.chats.size() - 1) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        nVar.a(chat2, z10);
-                        arrayList.add(nVar);
-                        ndVar.M.addView(nVar, org.telegram.ui.Components.kb1.r(-1, 72));
-                    }
-                    ndVar.j0();
+                kd kdVar = (kd) a40Var;
+                if (inputFile2 == null && inputFile == null) {
+                    TLRPC.FileLocation fileLocation = photoSize2.location;
+                    kdVar.D = fileLocation;
+                    kdVar.E = photoSize.location;
+                    kdVar.f38751f.j(org.telegram.messenger.ic.e(fileLocation), "50_50", kdVar.f38771w, null);
+                    kdVar.j0(true, false);
                     return;
                 }
+                kdVar.m0 = inputFile2;
+                kdVar.f38760n0 = inputFile;
+                kdVar.f38761o0 = videoSize;
+                kdVar.f38762p0 = str;
+                kdVar.f38763q0 = d;
+                if (kdVar.f38765r0) {
+                    org.telegram.ui.ActionBar.x1 x1Var = kdVar.f38770v0;
+                    if (x1Var != null) {
+                        try {
+                            x1Var.dismiss();
+                            kdVar.f38770v0 = null;
+                        } catch (Exception e) {
+                            org.telegram.messenger.f8.g(e, true);
+                        }
+                    }
+                    kdVar.l0(false);
+                    kdVar.f38767s0 = false;
+                    kdVar.f38743a.performClick();
+                }
+                kdVar.j0(false, true);
+                kdVar.f38759n.setImageDrawable(null);
                 return;
             case 1:
-                ke keVar = (ke) obj2;
-                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
-                keVar.f40773q0 = tL_premium_boostsStatus;
-                if (tL_premium_boostsStatus != null) {
-                    keVar.f40775r0 = tL_premium_boostsStatus.level;
-                }
-                org.telegram.ui.Components.s71 s71Var = keVar.X0;
-                if (s71Var != null && (k71Var = s71Var.f32504g3) != null) {
-                    k71Var.O(true);
+                oo ooVar = (oo) a40Var;
+                TLRPC.FileLocation fileLocation2 = photoSize2.location;
+                ooVar.f40340u0 = fileLocation2;
+                TLRPC.InputFile inputFile3 = this.f37019c;
+                TLRPC.InputFile inputFile4 = this.d;
+                TLRPC.VideoSize videoSize2 = this.e;
+                if (inputFile3 == null && inputFile4 == null && videoSize2 == null) {
+                    ag.d2 d2Var = ooVar.e;
+                    org.telegram.messenger.ic e7 = org.telegram.messenger.ic.e(fileLocation2);
+                    org.telegram.ui.Components.r8 r8Var = ooVar.f40335r;
+                    Object obj = ooVar.C0;
+                    if (obj == null) {
+                        obj = ooVar.f40343w0;
+                    }
+                    d2Var.j(e7, "50_50", r8Var, obj);
+                    ooVar.f40317b0.o(2131232046, org.telegram.messenger.cd.L0(2131752213, "ChatSetNewPhoto"), true);
+                    if (ooVar.R0 == null) {
+                        ooVar.R0 = new org.telegram.ui.Components.bi0(2131623965, org.telegram.messenger.i0.L(50.0f), org.telegram.messenger.i0.L(50.0f), false, null);
+                    }
+                    ooVar.f40317b0.e.setTranslationX(-org.telegram.messenger.i0.L(8.0f));
+                    ooVar.f40317b0.e.setAnimation(ooVar.R0);
+                    ooVar.r0(true, false);
                     return;
                 }
+                int i11 = (ooVar.B0 > 0L ? 1 : (ooVar.B0 == 0L ? 0 : -1));
+                double d10 = this.h;
+                if (i11 != 0) {
+                    TLRPC.User user = ooVar.C0;
+                    if (user != null) {
+                        user.photo = new TLRPC.TL_userProfilePhoto();
+                        TLRPC.UserProfilePhoto userProfilePhoto = ooVar.C0.photo;
+                        if (inputFile3 != null) {
+                            j10 = inputFile3.f19807id;
+                        } else if (inputFile4 != null) {
+                            j10 = inputFile4.f19807id;
+                        } else {
+                            j10 = 0;
+                        }
+                        userProfilePhoto.photo_id = j10;
+                        userProfilePhoto.photo_big = photoSize.location;
+                        userProfilePhoto.photo_small = photoSize2.location;
+                        ooVar.getMessagesController().U3(ooVar.C0, true, false);
+                    }
+                    TLRPC.TL_photos_uploadProfilePhoto tL_photos_uploadProfilePhoto = new TLRPC.TL_photos_uploadProfilePhoto();
+                    if (inputFile3 != null) {
+                        tL_photos_uploadProfilePhoto.file = inputFile3;
+                        tL_photos_uploadProfilePhoto.flags |= 1;
+                    }
+                    if (inputFile4 != null) {
+                        tL_photos_uploadProfilePhoto.video = inputFile4;
+                        int i12 = tL_photos_uploadProfilePhoto.flags;
+                        tL_photos_uploadProfilePhoto.video_start_ts = d10;
+                        tL_photos_uploadProfilePhoto.flags = i12 | 6;
+                    }
+                    if (videoSize2 != null) {
+                        tL_photos_uploadProfilePhoto.video_emoji_markup = videoSize2;
+                        tL_photos_uploadProfilePhoto.flags |= 16;
+                    }
+                    tL_photos_uploadProfilePhoto.bot = ooVar.getMessagesController().p1(ooVar.C0);
+                    tL_photos_uploadProfilePhoto.flags |= 32;
+                    ooVar.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new fo(ooVar, 1));
+                } else {
+                    ooVar.getMessagesController().B(ooVar.f40341v0, null, inputFile3, inputFile4, videoSize2, d10, this.f37021n, photoSize2.location, photoSize.location, null);
+                }
+                if (ooVar.M0) {
+                    try {
+                        org.telegram.ui.ActionBar.x1 x1Var2 = ooVar.f40316b;
+                        if (x1Var2 != null && x1Var2.isShowing()) {
+                            ooVar.f40316b.dismiss();
+                            ooVar.f40316b = null;
+                        }
+                    } catch (Exception e10) {
+                        org.telegram.messenger.f8.g(e10, true);
+                    }
+                    ooVar.N0 = false;
+                    ooVar.f40314a.performClick();
+                }
+                ooVar.r0(false, true);
                 return;
             case 2:
-                ((ke) obj2).D((TLRPC.TL_payments_starsRevenueStats) obj);
+                j40 j40Var = (j40) a40Var;
+                long j11 = j40Var.e;
+                b50 b50Var = j40Var.f38426f;
+                org.telegram.messenger.c cVar = b50Var.f36036k1;
+                TLRPC.InputFile inputFile5 = this.f37019c;
+                TLRPC.InputFile inputFile6 = this.d;
+                TLRPC.VideoSize videoSize3 = this.e;
+                if (inputFile5 == null && inputFile6 == null && videoSize3 == null) {
+                    j40Var.f38425c = photoSize2.location;
+                    TLRPC.FileLocation fileLocation3 = photoSize.location;
+                    j40Var.f38424b = fileLocation3;
+                    org.telegram.messenger.ic e11 = org.telegram.messenger.ic.e(fileLocation3);
+                    j40Var.d = e11;
+                    b50Var.f36026i1.A(e11, org.telegram.messenger.ic.e(j40Var.f38425c));
+                    org.telegram.messenger.i0.a4(b50Var.H1);
+                    return;
+                }
+                int i13 = (j11 > 0L ? 1 : (j11 == 0L ? 0 : -1));
+                double d11 = this.h;
+                String str2 = this.f37021n;
+                if (i13 > 0) {
+                    TLRPC.TL_photos_uploadProfilePhoto tL_photos_uploadProfilePhoto2 = new TLRPC.TL_photos_uploadProfilePhoto();
+                    if (inputFile5 != null) {
+                        tL_photos_uploadProfilePhoto2.file = inputFile5;
+                        tL_photos_uploadProfilePhoto2.flags |= 1;
+                    }
+                    if (inputFile6 != null) {
+                        tL_photos_uploadProfilePhoto2.video = inputFile6;
+                        int i14 = tL_photos_uploadProfilePhoto2.flags;
+                        tL_photos_uploadProfilePhoto2.video_start_ts = d11;
+                        tL_photos_uploadProfilePhoto2.flags = i14 | 6;
+                    }
+                    if (videoSize3 != null) {
+                        tL_photos_uploadProfilePhoto2.video_emoji_markup = videoSize3;
+                        tL_photos_uploadProfilePhoto2.flags |= 16;
+                    }
+                    ConnectionsManager.getInstance(cVar.f14863a).sendRequest(tL_photos_uploadProfilePhoto2, new org.telegram.ui.Components.t20(13, j40Var, str2));
+                    return;
+                }
+                org.telegram.messenger.vp.r1(cVar.f14863a).B(-j11, null, inputFile5, inputFile6, videoSize3, d11, str2, photoSize2.location, photoSize.location, new zy(j40Var, 7));
                 return;
             case 3:
-                wn wnVar = (wn) obj2;
-                org.telegram.ui.Components.h21[] h21VarArr = (org.telegram.ui.Components.h21[]) obj;
-                if (!wnVar.Kb && (h21Var = h21VarArr[0]) != null) {
-                    h21VarArr[0] = null;
-                    if (wnVar.f45312v0 == h21Var) {
-                        wnVar.f45312v0 = null;
-                    }
-                    AndroidUtilities.removeFromParent(h21Var);
+                c60 c60Var = (c60) a40Var;
+                if (inputFile2 == null && inputFile == null && videoSize == null) {
+                    TLRPC.FileLocation fileLocation4 = photoSize2.location;
+                    c60Var.D = fileLocation4;
+                    c60Var.E = photoSize.location;
+                    c60Var.d.j(org.telegram.messenger.ic.e(fileLocation4), "50_50", c60Var.f36396r, null);
+                    c60Var.d0(true, false);
                     return;
                 }
+                c60Var.F = inputFile2;
+                c60Var.G = inputFile;
+                c60Var.H = videoSize;
+                c60Var.I = str;
+                c60Var.J = d;
+                if (c60Var.L) {
+                    c60Var.getMessagesController().U(c60Var.f36393c.getText().toString(), c60Var.K, null, c60Var.P, c60Var.S, c60Var.U, c60Var.T, c60Var.W, c60Var);
+                }
+                c60Var.d0(false, true);
+                c60Var.f36394f.setImageDrawable(null);
                 return;
             case 4:
-                wn wnVar2 = (wn) obj2;
-                wnVar2.getClass();
-                wnVar2.presentFragment(ProfileActivity.t4(((TLRPC.User[]) obj)[0].f22177id));
+                ProfileActivity.i0((ProfileActivity) a40Var, this.f37019c, this.d, this.e, this.h, this.f37021n, this.f37018b, this.f37020f);
                 return;
             case 5:
-                wn wnVar3 = (wn) obj2;
-                org.telegram.ui.Cells.s1 s1Var = (org.telegram.ui.Cells.s1) obj;
-                s1Var.getLocationInWindow(new int[2]);
-                wnVar3.L1.setTranslationY(s1Var.getTimeY() + ((iArr[1] - v3Var.getTop()) - AndroidUtilities.dp(120.0f)));
-                wnVar3.L1.m(0.0f, ((((-AndroidUtilities.dp(16.0f)) + iArr[0]) + s1Var.f25266rb) + s1Var.pb) - (s1Var.f25282sb / 2.0f));
-                wnVar3.L1.u();
-                return;
-            case 6:
-                wn.H0((wn) obj2, (TLRPC.TL_inlineBotWebView) obj);
-                return;
-            case 7:
-                ((bi.b3) obj2).run((TLRPC.User) obj);
-                return;
-            case 8:
-                wn wnVar4 = (wn) obj2;
-                int[] iArr2 = (int[]) obj;
-                wnVar4.getClass();
-                if (iArr2[0] != 0) {
-                    wnVar4.getConnectionsManager().cancelRequest(iArr2[0], true);
-                    iArr2[0] = 0;
-                    return;
-                }
-                return;
-            case 9:
-                wn wnVar5 = (wn) obj2;
-                Activity parentActivity = wnVar5.getParentActivity();
-                String str2 = ((TLRPC.TL_bankCardOpenUrl) obj).url;
-                if (wnVar5.f45320v8 != 0) {
-                    z11 = false;
-                }
-                qf.d.o(parentActivity, Uri.parse(str2), z11, false);
-                return;
-            case 10:
-                ((wn) obj2).q8((zg) obj);
-                return;
-            case 11:
-                ((wn) obj2).xa((TLRPC.Chat) obj);
-                return;
-            case 12:
-                wn.h0((wn) obj2, (TLRPC.TL_messages_sendScheduledMessages) obj);
-                return;
-            case 13:
-                wn wnVar6 = (wn) obj2;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
-                if (tL_error.text.startsWith("SLOWMODE_WAIT_")) {
-                    org.telegram.ui.Components.g5.v0(wnVar6, LocaleController.getString(R.string.SlowmodeSendError));
-                    return;
-                } else if (tL_error.text.equals("CHAT_SEND_MEDIA_FORBIDDEN")) {
-                    org.telegram.ui.Components.g5.v0(wnVar6, LocaleController.getString(R.string.AttachMediaRestrictedForever));
-                    return;
-                } else {
-                    org.telegram.ui.Components.g5.v0(wnVar6, tL_error.text);
-                    return;
-                }
-            case 14:
-                a0.h hVar = (a0.h) obj2;
-                q6 q6Var = (q6) obj;
-                if (hVar.m() == 1 && hVar.n(0) != null && ((ArrayList) hVar.n(0)).size() == 1) {
-                    messageObject = (MessageObject) ((ArrayList) hVar.n(0)).get(0);
-                }
-                if (messageObject != null && (message = messageObject.messageOwner) != null && (messageMedia = message.media) != null && (webPage = messageMedia.webpage) != null && webPage.attributes != null) {
-                    for (int i13 = 0; i13 < messageObject.messageOwner.media.webpage.attributes.size(); i13++) {
-                        TLRPC.WebPageAttribute webPageAttribute = messageObject.messageOwner.media.webpage.attributes.get(i13);
-                        if ((webPageAttribute instanceof TLRPC.TL_webPageAttributeStory) && ((TLRPC.TL_webPageAttributeStory) webPageAttribute).storyItem != null) {
-                            AndroidUtilities.runOnUIThread(new ed(15, q6Var, messageObject.messageOwner.media.webpage));
-                            return;
-                        }
-                    }
-                }
-                AndroidUtilities.runOnUIThread(new bu0(q6Var, 29));
-                return;
-            case 15:
-                ((q6) obj2).run(Boolean.TRUE, (TLRPC.WebPage) obj);
-                return;
-            case 16:
-                wn wnVar7 = (wn) obj2;
-                View view = (View) obj;
-                if (wnVar7.getParentActivity() != null) {
-                    wnVar7.W0.setPadding(AndroidUtilities.dp(7.33f), 0, AndroidUtilities.dp(7.33f), 0);
-                    wnVar7.W0.q(16.0f);
-                    wnVar7.W0.p(true);
-                    wnVar7.W0.s(LocaleController.getString(R.string.BotCantReadChatTooltip));
-                    wnVar7.W0.l(0.0f, 96.0f);
-                    wnVar7.W0.setTranslationY(AndroidUtilities.dp(10.0f) + ((view.getTop() - wnVar7.Qa) - wnVar7.f45163j1.getHeight()));
-                    wnVar7.f45163j1.addView(wnVar7.W0, org.telegram.ui.Components.kb1.i(-1, 100, 87));
-                    fi.v3 v3Var2 = wnVar7.W0;
-                    v3Var2.f11797l0 = new le(wnVar7, 26);
-                    v3Var2.u();
-                    org.telegram.ui.Components.u40.f33226w.b();
-                    return;
-                }
-                return;
-            case 17:
-                ((wn) obj2).f45163j1.removeView((org.telegram.ui.Components.gl0) obj);
-                return;
-            case 18:
-                MessageObject messageObject2 = (MessageObject) obj;
-                wn wnVar8 = ((ri) obj2).f43053s;
-                MessageObject messageObject3 = (MessageObject) wnVar8.E6[0].get(messageObject2.getId());
-                if (messageObject3 != null && messageObject3 != messageObject2) {
-                    MessageObject messageObject4 = (MessageObject) wnVar8.E6[0].get(messageObject2.getId());
-                    messageObject4.messageOwner.reactions = messageObject2.messageOwner.reactions;
-                    messageObject2 = messageObject4;
-                }
-                wnVar8.Hc(messageObject2, true);
-                bh.s0.f();
-                return;
-            case 19:
-                org.telegram.ui.Cells.v0 v0Var = (org.telegram.ui.Cells.v0) obj;
-                wn wnVar9 = ((yl) ((an) obj2).f37802f).f46046a.Q;
-                int i14 = wn.f45035fd;
-                wnVar9.Ya();
-                v0Var.getMessageObject().flickerLoading = false;
-                v0Var.invalidate();
-                return;
-            case 20:
-                fi.v3 v3Var3 = (fi.v3) obj;
-                wn wnVar10 = ((hn) obj2).f39938a;
-                wnVar10.f45163j1.removeView(v3Var3);
-                if (v3Var3 == wnVar10.M1) {
-                    wnVar10.M1 = null;
-                    return;
-                }
-                return;
-            case 21:
-                Long l4 = (Long) obj;
-                wn wnVar11 = ((bn) obj2).f38071b1.f39938a;
-                if (l4.longValue() < 0 && (chat = wnVar11.getMessagesController().getChat(Long.valueOf(-l4.longValue()))) != null) {
-                    str = chat.title;
-                } else {
-                    str = "";
-                }
-                org.telegram.ui.Components.wc b02 = org.telegram.ui.Components.wc.b0(wnVar11);
-                int i15 = R.raw.contact_check;
-                if (TextUtils.isEmpty(str)) {
-                    formatString = LocaleController.getString(R.string.RepostedToProfile);
-                } else {
-                    formatString = LocaleController.formatString(R.string.RepostedToChannelProfile, str);
-                }
-                b02.R(i15, 36, AndroidUtilities.replaceTags(formatString)).j();
-                return;
-            case 22:
-                oo ooVar = (oo) obj2;
-                ooVar.getClass();
-                ooVar.presentFragment(y91.c0((TLRPC.Chat) obj, true));
-                return;
-            case 23:
-                cp cpVar = (cp) obj2;
-                String str3 = (String) obj;
-                TLRPC.TL_channels_checkUsername tL_channels_checkUsername = new TLRPC.TL_channels_checkUsername();
-                tL_channels_checkUsername.username = str3;
-                tL_channels_checkUsername.channel = cpVar.getMessagesController().getInputChannel(cpVar.Z);
-                cpVar.f38412h0 = cpVar.getConnectionsManager().sendRequest(tL_channels_checkUsername, new ea(cpVar, str3, tL_channels_checkUsername, 6), 2);
-                return;
-            case 24:
-                cp cpVar2 = (cp) obj2;
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj;
-                z12 = (tL_error2 == null || !tL_error2.text.equals("CHANNELS_ADMIN_PUBLIC_TOO_MUCH")) ? true : true;
-                cpVar2.f38406c0 = z12;
-                if (!z12 && cpVar2.getUserConfig().isPremium() && !cpVar2.f38407d0 && cpVar2.f38427x != null) {
-                    cpVar2.f38407d0 = true;
-                    cpVar2.d0();
-                    cpVar2.getConnectionsManager().sendRequest(new TLRPC.TL_channels_getAdminedPublicChannels(), new po(cpVar2, 2));
-                    return;
-                }
-                return;
-            case 25:
-                pp.V((pp) obj2, (org.telegram.ui.ActionBar.e2[]) obj);
-                return;
-            case 26:
-                pp ppVar = (pp) obj2;
-                TLObject tLObject2 = (TLObject) obj;
-                if (tLObject2 instanceof TLRPC.messages_Chats) {
-                    TLRPC.messages_Chats messages_chats = (TLRPC.messages_Chats) tLObject2;
-                    ppVar.getMessagesController().putChats(messages_chats.chats, false);
-                    ArrayList<TLRPC.Chat> arrayList2 = messages_chats.chats;
-                    ppVar.v = arrayList2;
-                    Iterator<TLRPC.Chat> it = arrayList2.iterator();
-                    while (it.hasNext()) {
-                        TLRPC.Chat next = it.next();
-                        if (ChatObject.isForum(next) || ChatObject.isMonoForum(next)) {
-                            it.remove();
-                        }
-                    }
-                }
-                ppVar.f42471w = false;
-                ppVar.f42472x = true;
-                ppVar.c0();
-                return;
-            case 27:
-                ((lp) obj2).f41228x.d.P = false;
-                ((org.telegram.ui.Components.f90) obj).run();
-                return;
-            case 28:
-                ((lp) obj2).f41228x.d.O = false;
-                ((org.telegram.ui.Components.g90) obj).run();
+                e51.d0((e51) a40Var, this.f37019c, this.d, this.e, this.h, this.f37021n, this.f37018b, this.f37020f);
                 return;
             default:
-                pp ppVar2 = ((lp) obj2).f41228x.d;
-                ppVar2.O = false;
-                ppVar2.P = false;
-                ((Runnable) obj).run();
+                yh.l lVar = (yh.l) a40Var;
+                TLRPC.FileLocation fileLocation5 = photoSize2.location;
+                lVar.G = fileLocation5;
+                TLRPC.InputFile inputFile7 = this.f37019c;
+                TLRPC.InputFile inputFile8 = this.d;
+                TLRPC.VideoSize videoSize4 = this.e;
+                if (inputFile7 == null && inputFile8 == null && videoSize4 == null) {
+                    lVar.f54506x.j(org.telegram.messenger.ic.e(fileLocation5), "50_50", lVar.E, lVar.I);
+                    lVar.e0(true, false);
+                } else {
+                    lVar.getMessagesController().B(lVar.f54500c, null, inputFile7, inputFile8, videoSize4, this.h, this.f37021n, photoSize2.location, photoSize.location, null);
+                    lVar.e0(false, true);
+                }
+                lVar.e.f30819f3.O(true);
                 return;
         }
+    }
+
+    public ed(oo ooVar, TLRPC.PhotoSize photoSize, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, TLRPC.PhotoSize photoSize2, double d, String str) {
+        this.f37017a = 1;
+        this.f37022r = ooVar;
+        this.f37018b = photoSize;
+        this.f37019c = inputFile;
+        this.d = inputFile2;
+        this.e = videoSize;
+        this.f37020f = photoSize2;
+        this.h = d;
+        this.f37021n = str;
+    }
+
+    public ed(org.telegram.ui.Components.a40 a40Var, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, int i10) {
+        this.f37017a = i10;
+        this.f37022r = a40Var;
+        this.f37019c = inputFile;
+        this.d = inputFile2;
+        this.e = videoSize;
+        this.h = d;
+        this.f37021n = str;
+        this.f37018b = photoSize;
+        this.f37020f = photoSize2;
+    }
+
+    public ed(yh.l lVar, TLRPC.PhotoSize photoSize, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, double d, String str, TLRPC.PhotoSize photoSize2) {
+        this.f37017a = 6;
+        this.f37022r = lVar;
+        this.f37018b = photoSize;
+        this.f37019c = inputFile;
+        this.d = inputFile2;
+        this.e = videoSize;
+        this.h = d;
+        this.f37021n = str;
+        this.f37020f = photoSize2;
     }
 }

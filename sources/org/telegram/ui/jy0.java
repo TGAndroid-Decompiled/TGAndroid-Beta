@@ -1,34 +1,30 @@
 package org.telegram.ui;
 
-import android.app.Activity;
+import android.content.Context;
 import android.view.View;
-public final class jy0 implements View.OnClickListener {
-    public final int f40627a;
-    public final ProfileActivity f40628b;
-    public final String f40629c;
+import android.widget.TextView;
+import java.util.HashSet;
+public final class jy0 extends TextView implements org.telegram.ui.ActionBar.k6 {
+    public final ProfileActivity f38632a;
 
-    public jy0(ProfileActivity profileActivity, String str, int i10) {
-        this.f40627a = i10;
-        this.f40628b = profileActivity;
-        this.f40629c = str;
+    public jy0(ProfileActivity profileActivity, Context context) {
+        super(context);
+        this.f38632a = profileActivity;
+        updateColors();
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10 = this.f40627a;
-        String str = this.f40629c;
-        ProfileActivity profileActivity = this.f40628b;
-        switch (i10) {
-            case 0:
-                int i11 = ProfileActivity.R6;
-                Activity parentActivity = profileActivity.getParentActivity();
-                qf.d.r(parentActivity, "https://" + profileActivity.getMessagesController().linkPrefix + "/nft/" + str);
-                return;
-            default:
-                int i12 = ProfileActivity.R6;
-                Activity parentActivity2 = profileActivity.getParentActivity();
-                qf.d.r(parentActivity2, "https://" + profileActivity.getMessagesController().linkPrefix + "/nft/" + str);
-                return;
-        }
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.G6));
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    }
+
+    @Override
+    public final void updateColors() {
+        setTextColor(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.G6, this.f38632a.f33950z0));
     }
 }

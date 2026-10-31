@@ -1,66 +1,128 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RadialGradient;
 import android.graphics.RectF;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class gc extends FrameLayout {
-    public final h6 f28533a;
-    public final h6 f28534b;
-    public final Paint f28535c;
-    public final RectF d;
-    public final long e;
-    public final hc f28536f;
+public final class gc {
+    public float A;
+    public float B;
+    public float C;
+    public float D;
+    public final ic E;
+    public final Paint f26323a;
+    public Bitmap f26324b;
+    public float f26325c;
+    public float d;
+    public final t5 e;
+    public final t5 f26326f;
+    public float f26327g;
+    public final t5 h;
+    public float f26328i;
+    public final t5 f26329j;
+    public final e6 f26330k;
+    public float f26331l;
+    public final t5 f26332m;
+    public boolean f26333n;
+    public final t5 f26334o;
+    public final Path f26335p;
+    public final Paint f26336q;
+    public final RectF f26337r;
+    public final Paint f26338s;
+    public final Paint f26339t;
+    public final RectF f26340u;
+    public RadialGradient v;
+    public Matrix f26341w;
+    public float f26342x;
+    public float f26343y;
+    public float f26344z;
 
-    public gc(hc hcVar, Activity activity) {
-        super(activity);
-        this.f28536f = hcVar;
-        ds dsVar = ds.h;
-        this.f28533a = new h6(this, 320L, dsVar);
-        this.f28534b = new h6(this, 320L, dsVar);
-        Paint paint = new Paint(1);
-        this.f28535c = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setColor(268435455);
-        paint.setStrokeWidth(AndroidUtilities.dp(1.66f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        this.d = new RectF();
-        this.e = System.currentTimeMillis();
+    public gc(ic icVar) {
+        this.E = icVar;
+        Paint paint = new Paint(3);
+        this.f26323a = paint;
+        paint.setColor(-1);
+        gr grVar = gr.h;
+        this.e = new t5(icVar, 650L, grVar);
+        this.f26326f = new t5(icVar, 650L, grVar);
+        gr grVar2 = gr.f26496g;
+        this.h = new t5(icVar, 0L, 150L, grVar2);
+        this.f26328i = 1.0f;
+        this.f26329j = new t5(icVar, 0L, 150L, grVar2);
+        e6 e6Var = new e6(false, true, true);
+        this.f26330k = e6Var;
+        this.f26332m = new t5(icVar, 0L, 150L, grVar2);
+        this.f26334o = new t5(icVar, 0L, 200L, grVar);
+        e6Var.u(-1);
+        e6Var.n(0.35f, 200L, grVar);
+        e6Var.x(org.telegram.messenger.i0.o());
+        e6Var.w(org.telegram.messenger.i0.L(15.0f));
+        e6Var.f25695b = 17;
+        this.f26335p = new Path();
+        Paint paint2 = new Paint(1);
+        this.f26336q = paint2;
+        this.f26337r = new RectF();
+        this.f26338s = new Paint(1);
+        Paint paint3 = new Paint(1);
+        this.f26339t = paint3;
+        paint3.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
+        this.f26340u = new RectF();
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        boolean z10;
-        int i10;
-        hc hcVar = this.f28536f;
-        float d = this.f28533a.d(hcVar.f28951a, false);
-        if (hcVar.f28951a >= 1.0f) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void a(Canvas canvas, float f7, float f10, float f11, float f12, float f13, float f14, float f15, float f16, float f17, float f18) {
+        double d;
+        if (f18 > 0.0f && org.telegram.messenger.sc.e(360928)) {
+            long currentTimeMillis = System.currentTimeMillis();
+            float sqrt = (float) Math.sqrt(2.0d);
+            if (ic.f26952b0 < 0) {
+                ic.f26952b0 = currentTimeMillis;
+            }
+            float f19 = ((float) (currentTimeMillis - ic.f26952b0)) / 10000.0f;
+            Bitmap bitmap = this.f26324b;
+            if (bitmap != null) {
+                int width = bitmap.getWidth();
+                float f20 = width;
+                float N = org.telegram.messenger.i0.N(15.0f) / f20;
+                float f21 = 7.0f;
+                int floor = (int) Math.floor((f13 % 360.0f) / 7.0f);
+                int ceil = (int) Math.ceil((f14 % 360.0f) / 7.0f);
+                while (floor <= ceil) {
+                    float f22 = floor * f21;
+                    float sin = (float) (((((Math.sin(2000.0f * f22) + 1.0d) * 0.25d) + 1.0d) * (100.0f + f19)) % 1.0d);
+                    float f23 = f20 * sqrt;
+                    float f24 = f19;
+                    double T1 = org.telegram.messenger.i0.T1(f15 - f23, f16 + f23, sin);
+                    float c10 = (float) i0.a.c(ic.a(f22), T1, f7);
+                    int i10 = width;
+                    float sin2 = (float) ((Math.sin(ic.a(f22)) * T1) + f10);
+                    float abs = (Math.abs(sin - 0.5f) * (-1.75f)) + 1.0f;
+                    float C = c3.i0.C((float) (Math.sin(sin * 3.141592653589793d) - 1.0d), 0.25f, 1.0f, abs * 0.65f * f18);
+                    Paint paint = this.f26323a;
+                    paint.setAlpha((int) (Math.max(0.0f, Math.min(1.0f, org.telegram.messenger.i0.T1(1.0f, Math.min(w7.z8.a(c10, sin2, f11, f12) / org.telegram.messenger.i0.N(64.0f), 1.0f), f17) * C)) * 255.0f));
+                    float f25 = N;
+                    float sin3 = f25 * ((float) ((((Math.sin(f22) + 1.0d) * 0.25d) + 0.800000011920929d) * c3.i0.C((float) (Math.sin(d) - 1.0d), 0.25f, 1.0f, 0.75f)));
+                    canvas.save();
+                    canvas.translate(c10, sin2);
+                    canvas.scale(sin3, sin3);
+                    float f26 = -(i10 >> 1);
+                    canvas.drawBitmap(this.f26324b, f26, f26, paint);
+                    canvas.restore();
+                    floor++;
+                    sqrt = sqrt;
+                    width = i10;
+                    f20 = f20;
+                    N = f25;
+                    f19 = f24;
+                    f21 = 7.0f;
+                }
+            }
         }
-        float e = this.f28534b.e(z10);
-        float width = getWidth() / 2.0f;
-        float height = getHeight() / 2.0f;
-        RectF rectF = this.d;
-        rectF.set(width - AndroidUtilities.dpf2(13.0f), height - AndroidUtilities.dpf2(13.0f), AndroidUtilities.dpf2(13.0f) + width, AndroidUtilities.dpf2(13.0f) + height);
-        float currentTimeMillis = (((float) (System.currentTimeMillis() - this.e)) * 0.45f) % 5400.0f;
-        float max = Math.max(0.0f, ((1520.0f * currentTimeMillis) / 5400.0f) - 20.0f);
-        for (int i11 = 0; i11 < 4; i11++) {
-            u1.a aVar = gq.h;
-            aVar.getInterpolation((currentTimeMillis - (i11 * 1350)) / 667.0f);
-            max += aVar.getInterpolation((currentTimeMillis - (i10 + 667)) / 667.0f) * 250.0f;
-        }
-        int o12 = org.telegram.ui.ActionBar.y6.o1((1.0f - e) * 1.0f, -1);
-        Paint paint = this.f28535c;
-        paint.setColor(o12);
-        canvas.drawArc(rectF, (-90.0f) - max, Math.max(0.02f, d) * (-360.0f), false, paint);
-        if (d < 1.0f && e < 1.0f) {
-            invalidate();
-        }
-        super.onDraw(canvas);
     }
 }

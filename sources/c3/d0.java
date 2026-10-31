@@ -1,37 +1,38 @@
 package c3;
 
-import a8.yb;
-import b2.w0;
-import f9.s1;
+import b2.v0;
+import e9.n0;
+import e9.x1;
 import java.util.List;
+import v7.t6;
 public final class d0 implements o {
-    public final int f6042a;
-    public final int f6043b;
-    public final String f6044c;
+    public final int f3635a;
+    public final int f3636b;
+    public final String f3637c;
     public int d;
     public int e;
-    public q f6045f;
-    public j0 f6046g;
+    public q f3638f;
+    public k0 f3639g;
 
     public d0(int i10, int i11, String str) {
-        this.f6042a = i10;
-        this.f6043b = i11;
-        this.f6044c = str;
+        this.f3635a = i10;
+        this.f3636b = i11;
+        this.f3637c = str;
     }
 
     @Override
     public final boolean a(p pVar) {
         boolean z10;
-        int i10 = this.f6043b;
-        int i11 = this.f6042a;
+        int i10 = this.f3636b;
+        int i11 = this.f3635a;
         if (i11 != -1 && i10 != -1) {
             z10 = true;
         } else {
             z10 = false;
         }
-        yb.p(z10);
+        t6.p(z10);
         e2.x xVar = new e2.x(i10);
-        ((l) pVar).h(xVar.f9731a, 0, i10, false);
+        ((l) pVar).j(xVar.f6207a, 0, i10, false);
         if (xVar.H() == i11) {
             return true;
         }
@@ -40,16 +41,16 @@ public final class d0 implements o {
 
     @Override
     public final void c(q qVar) {
-        this.f6045f = qVar;
-        j0 F1 = qVar.F1(1024, 4);
-        this.f6046g = F1;
+        this.f3638f = qVar;
+        k0 I1 = qVar.I1(1024, 4);
+        this.f3639g = I1;
         b2.w wVar = new b2.w();
-        String str = this.f6044c;
-        wVar.f3532q = w0.n(str);
-        wVar.f3533r = w0.n(str);
-        ic.a.u(wVar, F1);
-        this.f6045f.Q0();
-        this.f6045f.D1(new Object());
+        String str = this.f3637c;
+        wVar.f2369q = v0.n(str);
+        wVar.f2370r = v0.n(str);
+        i0.a.r(wVar, I1);
+        this.f3638f.Q0();
+        this.f3638f.G1(new Object());
         this.e = 1;
     }
 
@@ -64,8 +65,8 @@ public final class d0 implements o {
 
     @Override
     public final List e() {
-        f9.g0 g0Var = f9.i0.f10286b;
-        return s1.e;
+        e9.l0 l0Var = n0.f6390b;
+        return x1.e;
     }
 
     @Override
@@ -77,12 +78,12 @@ public final class d0 implements o {
             }
             throw new IllegalStateException();
         }
-        j0 j0Var = this.f6046g;
-        j0Var.getClass();
-        int a2 = j0Var.a(pVar, 1024, true);
+        k0 k0Var = this.f3639g;
+        k0Var.getClass();
+        int a2 = k0Var.a(pVar, 1024, true);
         if (a2 == -1) {
             this.e = 2;
-            this.f6046g.c(0L, 1, this.d, 0, null);
+            this.f3639g.c(0L, 1, this.d, 0, null);
             this.d = 0;
             return 0;
         }

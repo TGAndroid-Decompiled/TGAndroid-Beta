@@ -1,65 +1,100 @@
 package df;
 
-import c3.h0;
-import java.io.BufferedReader;
+import a1.g;
+import java.io.DataInputStream;
+import java.io.EOFException;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-public abstract class b {
-    public static final Map f8346a;
-    public static final Pattern f8347b;
+public final class b extends c {
+    public final int f5875g;
 
-    static {
-        HashMap hashMap = new HashMap();
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(b.class.getResourceAsStream("/org/commonmark/internal/util/entities.properties"), Charset.forName("UTF-8")));
-            while (true) {
-                String readLine = bufferedReader.readLine();
-                if (readLine != null) {
-                    if (readLine.length() != 0) {
-                        int indexOf = readLine.indexOf("=");
-                        hashMap.put(readLine.substring(0, indexOf), readLine.substring(indexOf + 1));
-                    }
-                } else {
-                    bufferedReader.close();
-                    hashMap.put("NewLine", "\n");
-                    f8346a = hashMap;
-                    f8347b = Pattern.compile("^&#[Xx]?");
-                    return;
-                }
+    public b(ff.a aVar, c cVar, String str, int i10) {
+        super(aVar, cVar, str);
+        this.f5875g = i10;
+    }
+
+    public static void h(StringBuffer stringBuffer, c cVar) {
+        c cVar2 = (c) cVar.f5878c;
+        if (cVar2 != null) {
+            h(stringBuffer, cVar2);
+            stringBuffer.append("/");
+        }
+        stringBuffer.append((String) cVar.d);
+    }
+
+    public long i() {
+        return ((ff.b) ((ff.a) this.f5877b)).e();
+    }
+
+    public boolean j() {
+        long j10;
+        b bVar = (b) this.f5879f;
+        if (bVar != null) {
+            j10 = bVar.i();
+        } else {
+            j10 = 0;
+        }
+        if (j10 < i()) {
+            return true;
+        }
+        return false;
+    }
+
+    public b k(String str) {
+        while (i() > 0) {
+            b c10 = c();
+            if (((String) c10.d).matches(str)) {
+                return c10;
             }
-        } catch (IOException e) {
-            throw new IllegalStateException("Failed reading data for HTML named character references", e);
+        }
+        throw new IOException("atom type mismatch, not found: ".concat(str));
+    }
+
+    public short l() {
+        return ((DataInputStream) this.e).readShort();
+    }
+
+    public String m() {
+        byte[] bArr = new byte[(int) i()];
+        ((DataInputStream) this.e).readFully(bArr);
+        String str = new String(bArr, "UTF-8");
+        int indexOf = str.indexOf(0);
+        if (indexOf < 0) {
+            return str;
+        }
+        return str.substring(0, indexOf);
+    }
+
+    public void n(int i10) {
+        int i11 = 0;
+        while (i11 < i10) {
+            int skipBytes = ((DataInputStream) this.e).skipBytes(i10 - i11);
+            if (skipBytes > 0) {
+                i11 += skipBytes;
+            } else {
+                throw new EOFException();
+            }
         }
     }
 
-    public static String a(String str) {
-        int i10;
-        Matcher matcher = f8347b.matcher(str);
-        if (matcher.find()) {
-            if (matcher.end() == 2) {
-                i10 = 10;
-            } else {
-                i10 = 16;
-            }
-            try {
-                int parseInt = Integer.parseInt(str.substring(matcher.end(), str.length() - 1), i10);
-                if (parseInt == 0) {
-                    return "�";
-                }
-                return new String(Character.toChars(parseInt));
-            } catch (IllegalArgumentException unused) {
-                return "�";
-            }
+    @Override
+    public final String toString() {
+        switch (this.f5875g) {
+            case 0:
+                StringBuffer stringBuffer = new StringBuffer();
+                h(stringBuffer, this);
+                stringBuffer.append("[off=");
+                long j10 = ((ff.a) ((c) this.f5878c).f5877b).f7055b;
+                ff.a aVar = (ff.a) this.f5877b;
+                stringBuffer.append(j10 - aVar.f7055b);
+                stringBuffer.append(",pos=");
+                stringBuffer.append(aVar.f7055b);
+                stringBuffer.append(",len=");
+                ff.b bVar = (ff.b) aVar;
+                stringBuffer.append(bVar.e() + bVar.f7055b);
+                stringBuffer.append("]");
+                return stringBuffer.toString();
+            default:
+                return g.q(new StringBuilder("mp4[pos="), ((ff.a) this.f5877b).f7055b, "]");
         }
-        String str2 = (String) f8346a.get(h0.l(1, 1, str));
-        if (str2 != null) {
-            return str2;
-        }
-        return str;
     }
 }

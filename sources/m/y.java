@@ -1,6 +1,5 @@
 package m;
 
-import a8.mf;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
@@ -21,18 +20,19 @@ import android.view.inputmethod.InputConnection;
 import android.widget.AbsSeekBar;
 import android.widget.EditText;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+import w7.q6;
 public class y {
     public static final int[] d = {16843067, 16843068};
-    public final int f17901a = 2;
-    public View f17902b;
-    public Object f17903c;
+    public final int f12595a = 2;
+    public View f12596b;
+    public Object f12597c;
 
     public y() {
     }
 
     public KeyListener a(KeyListener keyListener) {
         if (!(keyListener instanceof NumberKeyListener)) {
-            ((m4.c) ((jg.s0) this.f17903c).f15827b).getClass();
+            ((m4.c) ((n2.u) this.f12597c).f13480b).getClass();
             if (keyListener instanceof q1.e) {
                 return keyListener;
             }
@@ -49,14 +49,14 @@ public class y {
 
     public void b(AttributeSet attributeSet, int i10) {
         boolean z10 = true;
-        switch (this.f17901a) {
+        switch (this.f12595a) {
             case 0:
-                AbsSeekBar absSeekBar = (AbsSeekBar) this.f17902b;
-                k6.c D = k6.c.D(absSeekBar.getContext(), attributeSet, d, i10);
-                Drawable x9 = D.x(0);
-                if (x9 != null) {
-                    if (x9 instanceof AnimationDrawable) {
-                        AnimationDrawable animationDrawable = (AnimationDrawable) x9;
+                AbsSeekBar absSeekBar = (AbsSeekBar) this.f12596b;
+                li.k G = li.k.G(absSeekBar.getContext(), attributeSet, d, i10);
+                Drawable z11 = G.z(0);
+                if (z11 != null) {
+                    if (z11 instanceof AnimationDrawable) {
+                        AnimationDrawable animationDrawable = (AnimationDrawable) z11;
                         int numberOfFrames = animationDrawable.getNumberOfFrames();
                         AnimationDrawable animationDrawable2 = new AnimationDrawable();
                         animationDrawable2.setOneShot(animationDrawable.isOneShot());
@@ -66,18 +66,18 @@ public class y {
                             animationDrawable2.addFrame(e, animationDrawable.getDuration(i11));
                         }
                         animationDrawable2.setLevel(10000);
-                        x9 = animationDrawable2;
+                        z11 = animationDrawable2;
                     }
-                    absSeekBar.setIndeterminateDrawable(x9);
+                    absSeekBar.setIndeterminateDrawable(z11);
                 }
-                Drawable x10 = D.x(1);
-                if (x10 != null) {
-                    absSeekBar.setProgressDrawable(e(x10, false));
+                Drawable z12 = G.z(1);
+                if (z12 != null) {
+                    absSeekBar.setProgressDrawable(e(z12, false));
                 }
-                D.E();
+                G.I();
                 return;
             default:
-                TypedArray obtainStyledAttributes = ((EditText) this.f17902b).getContext().obtainStyledAttributes(attributeSet, f.a.f10029i, i10, 0);
+                TypedArray obtainStyledAttributes = ((EditText) this.f12596b).getContext().obtainStyledAttributes(attributeSet, f.a.f6699i, i10, 0);
                 try {
                     if (obtainStyledAttributes.hasValue(14)) {
                         z10 = obtainStyledAttributes.getBoolean(14, true);
@@ -93,39 +93,39 @@ public class y {
     }
 
     public q1.b c(InputConnection inputConnection, EditorInfo editorInfo) {
-        jg.s0 s0Var = (jg.s0) this.f17903c;
+        n2.u uVar = (n2.u) this.f12597c;
         if (inputConnection == null) {
-            s0Var.getClass();
+            uVar.getClass();
             inputConnection = null;
         } else {
-            m4.c cVar = (m4.c) s0Var.f15827b;
+            m4.c cVar = (m4.c) uVar.f13480b;
             cVar.getClass();
             if (!(inputConnection instanceof q1.b)) {
-                inputConnection = new q1.b((EditText) cVar.f18008b, inputConnection, editorInfo);
+                inputConnection = new q1.b((EditText) cVar.f12705b, inputConnection, editorInfo);
             }
         }
         return (q1.b) inputConnection;
     }
 
     public void d(boolean z10) {
-        q1.i iVar = (q1.i) ((m4.c) ((jg.s0) this.f17903c).f15827b).f18009c;
-        if (iVar.f46949c != z10) {
-            if (iVar.f46948b != null) {
+        q1.i iVar = (q1.i) ((m4.c) ((n2.u) this.f12597c).f13480b).f12706c;
+        if (iVar.f45409c != z10) {
+            if (iVar.f45408b != null) {
                 androidx.emoji2.text.l a2 = androidx.emoji2.text.l.a();
-                q1.h hVar = iVar.f46948b;
+                q1.h hVar = iVar.f45408b;
                 a2.getClass();
-                mf.a(hVar, "initCallback cannot be null");
-                ReentrantReadWriteLock reentrantReadWriteLock = a2.f2556a;
+                q6.a(hVar, "initCallback cannot be null");
+                ReentrantReadWriteLock reentrantReadWriteLock = a2.f1390a;
                 reentrantReadWriteLock.writeLock().lock();
                 try {
-                    a2.f2557b.remove(hVar);
+                    a2.f1391b.remove(hVar);
                 } finally {
                     reentrantReadWriteLock.writeLock().unlock();
                 }
             }
-            iVar.f46949c = z10;
+            iVar.f45409c = z10;
             if (z10) {
-                q1.i.a(iVar.f46947a, androidx.emoji2.text.l.a().b());
+                q1.i.a(iVar.f45407a, androidx.emoji2.text.l.a().b());
             }
         }
     }
@@ -165,8 +165,8 @@ public class y {
         } else if (drawable instanceof BitmapDrawable) {
             BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
             Bitmap bitmap = bitmapDrawable.getBitmap();
-            if (((Bitmap) this.f17903c) == null) {
-                this.f17903c = bitmap;
+            if (((Bitmap) this.f12597c) == null) {
+                this.f12597c = bitmap;
             }
             ShapeDrawable shapeDrawable = new ShapeDrawable(new RoundRectShape(new float[]{5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f}, null, null));
             shapeDrawable.getPaint().setShader(new BitmapShader(bitmap, Shader.TileMode.REPEAT, Shader.TileMode.CLAMP));
@@ -180,11 +180,11 @@ public class y {
     }
 
     public y(AbsSeekBar absSeekBar) {
-        this.f17902b = absSeekBar;
+        this.f12596b = absSeekBar;
     }
 
     public y(EditText editText) {
-        this.f17902b = editText;
-        this.f17903c = new jg.s0(editText);
+        this.f12596b = editText;
+        this.f12597c = new n2.u(editText);
     }
 }

@@ -1,22 +1,178 @@
 package s4;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class b0 implements Parcelable {
-    public static final Parcelable.Creator<b0> CREATOR = new q7.m(4);
-    public int f47726a;
-    public int f47727b;
-    public boolean f47728c;
+import android.content.Context;
+import android.graphics.PointF;
+import android.util.DisplayMetrics;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
+import org.telegram.messenger.v2;
+public class b0 extends y0 {
+    public static final boolean f47882q;
+    public PointF f47885k;
+    public final DisplayMetrics f47886l;
+    public float f47888n;
+    public final LinearInterpolator f47883i = new LinearInterpolator();
+    public final DecelerateInterpolator f47884j = new DecelerateInterpolator();
+    public boolean f47887m = false;
+    public int f47889o = 0;
+    public int f47890p = 0;
 
-    @Override
-    public final int describeContents() {
-        return 0;
+    static {
+        boolean z10 = v2.f18448a;
+        f47882q = true;
+    }
+
+    public b0(Context context) {
+        this.f47886l = context.getResources().getDisplayMetrics();
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeInt(this.f47726a);
-        parcel.writeInt(this.f47727b);
-        parcel.writeInt(this.f47728c ? 1 : 0);
+    public final void d(int i10, int i11, x0 x0Var) {
+        PointF pointF;
+        if (this.f48046b.f1924y.r() == 0) {
+            h();
+        } else if (f47882q && (pointF = this.f47885k) != null && (pointF.x * i10 < 0.0f || pointF.y * i11 < 0.0f)) {
+            throw new IllegalStateException("Scroll happened in the opposite direction of the target. Some calculations are wrong");
+        } else {
+            int i12 = this.f47889o;
+            int i13 = i12 - i10;
+            int i14 = 0;
+            if (i12 * i13 <= 0) {
+                i13 = 0;
+            }
+            this.f47889o = i13;
+            int i15 = this.f47890p;
+            int i16 = i15 - i11;
+            if (i15 * i16 > 0) {
+                i14 = i16;
+            }
+            this.f47890p = i14;
+            if (i13 == 0 && i14 == 0) {
+                q(x0Var);
+            }
+        }
+    }
+
+    @Override
+    public final void f() {
+        this.f47890p = 0;
+        this.f47889o = 0;
+        this.f47885k = null;
+    }
+
+    @Override
+    public void g(View view, x0 x0Var) {
+        int j10 = j(o(), view);
+        int k10 = k(p(), view);
+        int m10 = m((int) Math.sqrt((k10 * k10) + (j10 * j10)));
+        if (m10 > 0) {
+            x0Var.b(-j10, -k10, m10, this.f47884j);
+        }
+    }
+
+    public int i(int i10, int i11, int i12, int i13, int i14) {
+        if (i14 != -1) {
+            if (i14 != 0) {
+                if (i14 == 1) {
+                    return i13 - i11;
+                }
+                throw new IllegalArgumentException("snap preference should be one of the constants defined in SmoothScroller, starting with SNAP_");
+            }
+            int i15 = i12 - i10;
+            if (i15 > 0) {
+                return i15;
+            }
+            int i16 = i13 - i11;
+            if (i16 < 0) {
+                return i16;
+            }
+            return 0;
+        }
+        return i12 - i10;
+    }
+
+    public final int j(int i10, View view) {
+        n0 n0Var = this.f48047c;
+        if (n0Var != null && n0Var.d()) {
+            o0 o0Var = (o0) view.getLayoutParams();
+            return i(n0.x(view) - ((ViewGroup.MarginLayoutParams) o0Var).leftMargin, n0.y(view) + ((ViewGroup.MarginLayoutParams) o0Var).rightMargin, n0Var.D(), n0Var.f47987m - n0Var.E(), i10);
+        }
+        return 0;
+    }
+
+    public int k(int i10, View view) {
+        n0 n0Var = this.f48047c;
+        if (n0Var != null && n0Var.e()) {
+            o0 o0Var = (o0) view.getLayoutParams();
+            return i(n0.z(view) - ((ViewGroup.MarginLayoutParams) o0Var).topMargin, n0.v(view) + ((ViewGroup.MarginLayoutParams) o0Var).bottomMargin, n0Var.F(), n0Var.f47988n - n0Var.C(), i10);
+        }
+        return 0;
+    }
+
+    public float l(DisplayMetrics displayMetrics) {
+        return 25.0f / displayMetrics.densityDpi;
+    }
+
+    public int m(int i10) {
+        return (int) Math.ceil(n(i10) / 0.3356d);
+    }
+
+    public int n(int i10) {
+        float abs = Math.abs(i10);
+        if (!this.f47887m) {
+            this.f47888n = l(this.f47886l);
+            this.f47887m = true;
+        }
+        return (int) Math.ceil(abs * this.f47888n);
+    }
+
+    public final int o() {
+        PointF pointF = this.f47885k;
+        if (pointF != null) {
+            float f7 = pointF.x;
+            if (f7 != 0.0f) {
+                if (f7 > 0.0f) {
+                    return 1;
+                }
+                return -1;
+            }
+            return 0;
+        }
+        return 0;
+    }
+
+    public int p() {
+        PointF pointF = this.f47885k;
+        if (pointF != null) {
+            float f7 = pointF.y;
+            if (f7 != 0.0f) {
+                if (f7 > 0.0f) {
+                    return 1;
+                }
+                return -1;
+            }
+            return 0;
+        }
+        return 0;
+    }
+
+    public void q(x0 x0Var) {
+        PointF a2 = a(this.f48045a);
+        if (a2 != null && (a2.x != 0.0f || a2.y != 0.0f)) {
+            y0.b(a2);
+            this.f47885k = a2;
+            this.f47889o = (int) (a2.x * 10000.0f);
+            this.f47890p = (int) (a2.y * 10000.0f);
+            x0Var.b((int) (this.f47889o * 1.2f), (int) (this.f47890p * 1.2f), (int) (n(10000) * 1.2f), this.f47883i);
+            return;
+        }
+        x0Var.d = this.f48045a;
+        h();
+    }
+
+    @Override
+    public final void e() {
     }
 }

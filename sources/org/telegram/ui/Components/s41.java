@@ -1,24 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewGroup;
-public final class s41 extends s4.l {
-    public final g51 F;
+import android.view.MotionEvent;
+import org.telegram.tgnet.TLRPC;
+public abstract class s41 {
+    public String[] f30124a = new String[0];
 
-    public s41(g51 g51Var) {
-        this.F = g51Var;
+    public boolean a() {
+        return false;
     }
 
-    @Override
-    public final void O() {
-        ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.k3) this.F).containerView;
-        viewGroup.invalidate();
+    public String[] b() {
+        return this.f30124a;
     }
 
-    @Override
-    public final void P(s4.e1 e1Var) {
-        ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.k3) this.F).containerView;
-        viewGroup.invalidate();
+    public boolean c() {
+        return false;
+    }
+
+    public boolean d(l41 l41Var, MotionEvent motionEvent) {
+        return false;
+    }
+
+    public boolean e(l41 l41Var, k kVar, MotionEvent motionEvent) {
+        return false;
+    }
+
+    public abstract void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10);
+
+    public abstract void h(TLRPC.StickerSetCovered stickerSetCovered);
+
+    public void i(String[] strArr) {
+        this.f30124a = strArr;
+    }
+
+    public void f(TLRPC.Document document, Object obj, boolean z10, int i10) {
     }
 }

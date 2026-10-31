@@ -1,63 +1,103 @@
 package t6;
 
-import a8.df;
-import android.os.Parcel;
-import android.os.Parcelable;
-import com.google.android.gms.common.api.n;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.TreeSet;
-import o6.l;
-public final class a extends p6.a {
-    public static final Parcelable.Creator<a> CREATOR = new Object();
-    public final List f48749a;
-    public final boolean f48750b;
-    public final String f48751c;
-    public final String d;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.util.Log;
+import j$.util.concurrent.ConcurrentHashMap;
+import java.util.NoSuchElementException;
+import java.util.concurrent.Executor;
+import n6.h0;
+import n6.l;
+import w6.b;
+public final class a {
+    public static final Object f48532b = new Object();
+    public static volatile a f48533c;
+    public final ConcurrentHashMap f48534a = new ConcurrentHashMap();
 
-    public a(ArrayList arrayList, boolean z10, String str, String str2) {
-        l.h(arrayList);
-        this.f48749a = arrayList;
-        this.f48750b = z10;
-        this.f48751c = str;
-        this.d = str2;
-    }
-
-    public static a b(List list, boolean z10) {
-        TreeSet treeSet = new TreeSet(b.f48752a);
-        Iterator it = list.iterator();
-        while (it.hasNext()) {
-            Collections.addAll(treeSet, ((n) it.next()).c());
+    public static a a() {
+        if (f48533c == null) {
+            synchronized (f48532b) {
+                try {
+                    if (f48533c == null) {
+                        f48533c = new a();
+                    }
+                } finally {
+                }
+            }
         }
-        return new a(new ArrayList(treeSet), z10, null, null);
+        a aVar = f48533c;
+        l.g(aVar);
+        return aVar;
     }
 
-    public final boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof a)) {
-            return false;
+    public final void b(Context context, ServiceConnection serviceConnection) {
+        if (!(serviceConnection instanceof h0)) {
+            ConcurrentHashMap concurrentHashMap = this.f48534a;
+            if (concurrentHashMap.containsKey(serviceConnection)) {
+                try {
+                    try {
+                        context.unbindService((ServiceConnection) concurrentHashMap.get(serviceConnection));
+                    } catch (IllegalArgumentException | IllegalStateException | NoSuchElementException unused) {
+                    }
+                    return;
+                } finally {
+                    concurrentHashMap.remove(serviceConnection);
+                }
+            }
         }
-        a aVar = (a) obj;
-        if (this.f48750b != aVar.f48750b || !l.l(this.f48749a, aVar.f48749a) || !l.l(this.f48751c, aVar.f48751c) || !l.l(this.d, aVar.d)) {
-            return false;
+        try {
+            context.unbindService(serviceConnection);
+        } catch (IllegalArgumentException | IllegalStateException | NoSuchElementException unused2) {
         }
-        return true;
     }
 
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f48750b), this.f48749a, this.f48751c, this.d});
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q5 = df.q(parcel, 20293);
-        df.p(parcel, 1, this.f48749a);
-        df.s(parcel, 2, 4);
-        parcel.writeInt(this.f48750b ? 1 : 0);
-        df.l(parcel, 3, this.f48751c);
-        df.l(parcel, 4, this.d);
-        df.r(parcel, q5);
+    public final boolean c(Context context, String str, Intent intent, ServiceConnection serviceConnection, int i10, Executor executor) {
+        boolean bindService;
+        ComponentName component = intent.getComponent();
+        if (component != null) {
+            String packageName = component.getPackageName();
+            "com.google.android.gms".equals(packageName);
+            try {
+                if ((b.a(context).f1116a.getPackageManager().getApplicationInfo(packageName, 0).flags & 2097152) != 0) {
+                    Log.w("ConnectionTracker", "Attempted to bind to a service in a STOPPED package.");
+                    return false;
+                }
+            } catch (PackageManager.NameNotFoundException unused) {
+            }
+        }
+        if (!(serviceConnection instanceof h0)) {
+            ConcurrentHashMap concurrentHashMap = this.f48534a;
+            ServiceConnection serviceConnection2 = (ServiceConnection) concurrentHashMap.putIfAbsent(serviceConnection, serviceConnection);
+            if (serviceConnection2 != null && serviceConnection != serviceConnection2) {
+                Log.w("ConnectionTracker", String.format("Duplicate binding with the same ServiceConnection: %s, %s, %s.", serviceConnection, str, intent.getAction()));
+            }
+            if (executor == null) {
+                executor = null;
+            }
+            try {
+                if (Build.VERSION.SDK_INT >= 29 && executor != null) {
+                    bindService = context.bindService(intent, i10, executor, serviceConnection);
+                } else {
+                    bindService = context.bindService(intent, serviceConnection, i10);
+                }
+                if (!bindService) {
+                    return false;
+                }
+                return bindService;
+            } finally {
+                concurrentHashMap.remove(serviceConnection, serviceConnection);
+            }
+        }
+        if (executor == null) {
+            executor = null;
+        }
+        if (Build.VERSION.SDK_INT >= 29 && executor != null) {
+            return context.bindService(intent, i10, executor, serviceConnection);
+        }
+        return context.bindService(intent, serviceConnection, i10);
     }
 }

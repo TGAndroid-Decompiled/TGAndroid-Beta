@@ -1,291 +1,40 @@
 package org.telegram.ui.Components;
+public final class eg {
+    public static final eg d;
+    public static final eg e;
+    public static final eg[] f25774f;
+    public final dg f25775a;
+    public final dg f25776b;
+    public final int f25777c;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.PhotoViewer;
-public final class eg implements org.telegram.ui.qu0 {
-    public boolean f27841a;
-    public final Object f27842b;
-    public final Object f27843c;
-    public final MediaController.PhotoEntry d;
-    public final gg e;
-
-    public eg(gg ggVar, Object obj, Object obj2, MediaController.PhotoEntry photoEntry) {
-        this.e = ggVar;
-        this.f27842b = obj;
-        this.f27843c = obj2;
-        this.d = photoEntry;
+    static {
+        dg dgVar = dg.f25405a;
+        dg dgVar2 = dg.f25406b;
+        eg egVar = new eg("VOICE_TO_VIDEO", 0, dgVar, dgVar2, 2131624328);
+        d = egVar;
+        dg dgVar3 = dg.f25407c;
+        dg dgVar4 = dg.d;
+        eg egVar2 = new eg("STICKER_TO_KEYBOARD", 1, dgVar3, dgVar4, 2131624227);
+        dg dgVar5 = dg.e;
+        eg egVar3 = new eg("SMILE_TO_KEYBOARD", 2, dgVar5, dgVar4, 2131624194);
+        eg egVar4 = new eg("VIDEO_TO_VOICE", 3, dgVar2, dgVar, 2131624328);
+        e = egVar4;
+        eg egVar5 = new eg("KEYBOARD_TO_STICKER", 4, dgVar4, dgVar3, 2131624074);
+        dg dgVar6 = dg.f25408f;
+        f25774f = new eg[]{egVar, egVar2, egVar3, egVar4, egVar5, new eg("KEYBOARD_TO_GIF", 5, dgVar4, dgVar6, 2131624072), new eg("KEYBOARD_TO_SMILE", 6, dgVar4, dgVar5, 2131624073), new eg("GIF_TO_KEYBOARD", 7, dgVar6, dgVar4, 2131624030), new eg("GIF_TO_SMILE", 8, dgVar6, dgVar5, 2131624031), new eg("SMILE_TO_GIF", 9, dgVar5, dgVar6, 2131624193), new eg("SMILE_TO_STICKER", 10, dgVar5, dgVar3, 2131624195), new eg("STICKER_TO_SMILE", 11, dgVar3, dgVar5, 2131624228)};
     }
 
-    @Override
-    public final boolean A() {
-        return this.f27841a;
+    public eg(String str, int i10, dg dgVar, dg dgVar2, int i11) {
+        this.f25775a = dgVar;
+        this.f25776b = dgVar2;
+        this.f25777c = i11;
     }
 
-    @Override
-    public final CharSequence C(int i10) {
-        return null;
+    public static eg valueOf(String str) {
+        return (eg) Enum.valueOf(eg.class, str);
     }
 
-    @Override
-    public final org.telegram.ui.su0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        return null;
-    }
-
-    @Override
-    public final void F(boolean z10) {
-        this.f27841a = z10;
-    }
-
-    @Override
-    public final int H() {
-        return 0;
-    }
-
-    @Override
-    public final boolean I() {
-        return true;
-    }
-
-    @Override
-    public final boolean K() {
-        return false;
-    }
-
-    @Override
-    public final boolean L() {
-        return false;
-    }
-
-    @Override
-    public final boolean N() {
-        return true;
-    }
-
-    @Override
-    public final boolean O() {
-        return false;
-    }
-
-    @Override
-    public final boolean P() {
-        return false;
-    }
-
-    @Override
-    public final boolean Q() {
-        return false;
-    }
-
-    @Override
-    public final int R(Object obj) {
-        return 0;
-    }
-
-    @Override
-    public final int S(int i10) {
-        return 0;
-    }
-
-    @Override
-    public final boolean T() {
-        return false;
-    }
-
-    @Override
-    public final boolean U() {
-        return true;
-    }
-
-    @Override
-    public final MessageObject V() {
-        return null;
-    }
-
-    @Override
-    public final boolean Z() {
-        return false;
-    }
-
-    @Override
-    public final long a() {
-        return 0L;
-    }
-
-    @Override
-    public final boolean b() {
-        return false;
-    }
-
-    @Override
-    public final String b0() {
-        return "";
-    }
-
-    @Override
-    public final ArrayList c() {
-        return null;
-    }
-
-    @Override
-    public final CharSequence c0(int i10) {
-        return null;
-    }
-
-    @Override
-    public final void d() {
-        fi.g gVar;
-        jd h12 = PhotoViewer.v1().h1();
-        if (h12 != null && (gVar = h12.f11198f) != null) {
-            mu muVar = gVar.f32365a;
-            muVar.requestFocus();
-            AndroidUtilities.showKeyboard(muVar);
-        }
-    }
-
-    @Override
-    public final boolean g() {
-        return false;
-    }
-
-    @Override
-    public final boolean h() {
-        return false;
-    }
-
-    @Override
-    public final ImageReceiver.BitmapHolder j(int i10) {
-        return null;
-    }
-
-    @Override
-    public final int k(int i10, VideoEditedInfo videoEditedInfo) {
-        return 0;
-    }
-
-    @Override
-    public final boolean l() {
-        return true;
-    }
-
-    @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        this.e.B(null, this.f27842b, null, this.f27843c, z10, i11, i12, this.d, this.f27841a);
-    }
-
-    @Override
-    public final boolean p() {
-        return false;
-    }
-
-    @Override
-    public final boolean q() {
-        return false;
-    }
-
-    @Override
-    public final boolean r() {
-        return false;
-    }
-
-    @Override
-    public final boolean t() {
-        return true;
-    }
-
-    @Override
-    public final boolean u() {
-        return false;
-    }
-
-    @Override
-    public final HashMap v() {
-        return null;
-    }
-
-    @Override
-    public final boolean w() {
-        return false;
-    }
-
-    @Override
-    public final boolean x(int i10) {
-        return false;
-    }
-
-    @Override
-    public final int y() {
-        return 0;
-    }
-
-    @Override
-    public final boolean z() {
-        return true;
-    }
-
-    @Override
-    public final void D() {
-    }
-
-    @Override
-    public final void G() {
-    }
-
-    @Override
-    public final void J() {
-    }
-
-    @Override
-    public final void W() {
-    }
-
-    @Override
-    public final void i() {
-    }
-
-    @Override
-    public final void m() {
-    }
-
-    @Override
-    public final void n() {
-    }
-
-    @Override
-    public final void s() {
-    }
-
-    @Override
-    public final void B(int i10) {
-    }
-
-    @Override
-    public final void M(VideoEditedInfo videoEditedInfo) {
-    }
-
-    @Override
-    public final void X(int i10) {
-    }
-
-    @Override
-    public final void Y(int i10) {
-    }
-
-    @Override
-    public final void a0(int i10) {
-    }
-
-    @Override
-    public final void e(CharSequence charSequence) {
-    }
-
-    @Override
-    public final void f(String str, String str2, boolean z10) {
+    public static eg[] values() {
+        return (eg[]) f25774f.clone();
     }
 }

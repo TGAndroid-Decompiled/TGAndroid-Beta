@@ -1,33 +1,185 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_iv;
-public final class ce implements Utilities.Callback {
-    public final int f27143a;
-    public final ChatActivityEnterView f27144b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class ce extends AnimatorListenerAdapter {
+    public final int f25061a;
+    public final ChatActivityEnterView f25062b;
 
     public ce(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f27143a = i10;
-        this.f27144b = chatActivityEnterView;
+        this.f25061a = i10;
+        this.f25062b = chatActivityEnterView;
     }
 
     @Override
-    public final void run(Object obj) {
-        int i10 = this.f27143a;
-        ChatActivityEnterView chatActivityEnterView = this.f27144b;
-        switch (i10) {
-            case 0:
-                chatActivityEnterView.N0((TL_iv.RichMessage) obj);
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f25061a) {
+            case 2:
+                ChatActivityEnterView chatActivityEnterView = this.f25062b;
+                if (animator.equals(chatActivityEnterView.f23785s2)) {
+                    chatActivityEnterView.f23785s2 = null;
+                    return;
+                }
                 return;
-            case 1:
-                CharSequence charSequence = (CharSequence) obj;
-                chatActivityEnterView.E0.setText(charSequence);
-                chatActivityEnterView.E0.setSelection(charSequence.length(), charSequence.length());
+            case 3:
+                ChatActivityEnterView chatActivityEnterView2 = this.f25062b;
+                if (animator.equals(chatActivityEnterView2.f23778r2)) {
+                    chatActivityEnterView2.f23778r2 = null;
+                    return;
+                }
+                return;
+            case 4:
+                ChatActivityEnterView chatActivityEnterView3 = this.f25062b;
+                if (animator.equals(chatActivityEnterView3.f23785s2)) {
+                    chatActivityEnterView3.f23785s2 = null;
+                    return;
+                }
+                return;
+            case 5:
+                ChatActivityEnterView chatActivityEnterView4 = this.f25062b;
+                if (animator.equals(chatActivityEnterView4.f23778r2)) {
+                    chatActivityEnterView4.f23778r2 = null;
+                    return;
+                }
+                return;
+            case 6:
+                ChatActivityEnterView chatActivityEnterView5 = this.f25062b;
+                if (animator.equals(chatActivityEnterView5.f23785s2)) {
+                    chatActivityEnterView5.f23785s2 = null;
+                    return;
+                }
+                return;
+            case 7:
+                ChatActivityEnterView chatActivityEnterView6 = this.f25062b;
+                if (animator.equals(chatActivityEnterView6.f23778r2)) {
+                    chatActivityEnterView6.f23778r2 = null;
+                    return;
+                }
                 return;
             default:
-                int i11 = ChatActivityEnterView.f25845r5;
-                chatActivityEnterView.a0((Canvas) obj, false);
+                super.onAnimationCancel(animator);
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f25061a) {
+            case 0:
+                this.f25062b.f23680b0.setVisibility(8);
+                return;
+            case 1:
+                ChatActivityEnterView chatActivityEnterView = this.f25062b;
+                pd pdVar = chatActivityEnterView.f23700e1;
+                if (pdVar != null) {
+                    pdVar.setVisibility(8);
+                }
+                se seVar = chatActivityEnterView.E0;
+                if (seVar != null) {
+                    seVar.requestFocus();
+                }
+                chatActivityEnterView.u0();
+                return;
+            case 2:
+                ChatActivityEnterView chatActivityEnterView2 = this.f25062b;
+                if (animator.equals(chatActivityEnterView2.f23785s2)) {
+                    chatActivityEnterView2.f23765p1.setVisibility(8);
+                    chatActivityEnterView2.f23785s2 = null;
+                    return;
+                }
+                return;
+            case 3:
+                ChatActivityEnterView chatActivityEnterView3 = this.f25062b;
+                if (animator.equals(chatActivityEnterView3.f23778r2)) {
+                    chatActivityEnterView3.getSendButtonInternal().setVisibility(8);
+                    chatActivityEnterView3.P0.setVisibility(8);
+                    chatActivityEnterView3.Z0.setVisibility(8);
+                    fe feVar = chatActivityEnterView3.S0;
+                    if (feVar != null) {
+                        feVar.setVisibility(8);
+                    }
+                    chatActivityEnterView3.f23778r2 = null;
+                    chatActivityEnterView3.f23800v2 = 0;
+                    return;
+                }
+                return;
+            case 4:
+                ChatActivityEnterView chatActivityEnterView4 = this.f25062b;
+                if (animator.equals(chatActivityEnterView4.f23785s2)) {
+                    chatActivityEnterView4.f23785s2 = null;
+                    return;
+                }
+                return;
+            case 5:
+                ChatActivityEnterView chatActivityEnterView5 = this.f25062b;
+                if (animator.equals(chatActivityEnterView5.f23778r2)) {
+                    chatActivityEnterView5.getSendButtonInternal().setVisibility(8);
+                    chatActivityEnterView5.P0.setVisibility(8);
+                    chatActivityEnterView5.setSlowModeButtonVisible(false);
+                    chatActivityEnterView5.Z0.setVisibility(8);
+                    chatActivityEnterView5.S0.setVisibility(0);
+                    chatActivityEnterView5.f23778r2 = null;
+                    chatActivityEnterView5.f23800v2 = 0;
+                    return;
+                }
+                return;
+            case 6:
+                ChatActivityEnterView chatActivityEnterView6 = this.f25062b;
+                if (animator.equals(chatActivityEnterView6.f23785s2)) {
+                    chatActivityEnterView6.f23785s2 = null;
+                    return;
+                }
+                return;
+            case 7:
+                ChatActivityEnterView chatActivityEnterView7 = this.f25062b;
+                if (animator.equals(chatActivityEnterView7.f23778r2)) {
+                    chatActivityEnterView7.setSlowModeButtonVisible(false);
+                    chatActivityEnterView7.f23778r2 = null;
+                    chatActivityEnterView7.f23800v2 = 0;
+                    yd ydVar = chatActivityEnterView7.Z0;
+                    if (ydVar != null) {
+                        ydVar.setVisibility(0);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 8:
+                zd zdVar = this.f25062b.f23681b1;
+                if (zdVar != null) {
+                    zdVar.setScaleX(1.0f);
+                    zdVar.setScaleY(1.0f);
+                    return;
+                }
+                return;
+            case 9:
+                super.onAnimationEnd(animator);
+                zd zdVar2 = this.f25062b.f23681b1;
+                if (zdVar2 != null) {
+                    zdVar2.setAlpha(1.0f);
+                    return;
+                }
+                return;
+            case 10:
+                ChatActivityEnterView chatActivityEnterView8 = this.f25062b;
+                chatActivityEnterView8.V0 = null;
+                sf sfVar = chatActivityEnterView8.Z2;
+                if (sfVar != null) {
+                    sfVar.y(0.0f);
+                }
+                chatActivityEnterView8.requestLayout();
+                chatActivityEnterView8.L3.e();
+                return;
+            case 11:
+                ChatActivityEnterView chatActivityEnterView9 = this.f25062b;
+                chatActivityEnterView9.B3 = null;
+                chatActivityEnterView9.U0.setLayerType(0, null);
+                return;
+            default:
+                ChatActivityEnterView chatActivityEnterView10 = this.f25062b;
+                chatActivityEnterView10.B3 = null;
+                chatActivityEnterView10.U0.setLayerType(0, null);
+                chatActivityEnterView10.L3.e();
                 return;
         }
     }

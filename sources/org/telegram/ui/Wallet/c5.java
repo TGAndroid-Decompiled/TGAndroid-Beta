@@ -2,35 +2,51 @@ package org.telegram.ui.Wallet;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.k71;
-import org.telegram.ui.Components.nm0;
-import org.telegram.ui.Components.s71;
-import org.telegram.ui.Components.t61;
-import org.telegram.ui.Components.u61;
-public final class c5 extends t61 {
-    public static final int f36454a = 0;
+import android.view.ViewGroup;
+import org.telegram.ui.Components.w71;
+public final class c5 extends z2 {
+    public final ViewGroup T1;
+    public final View[] U1;
+    public final Context V1;
 
-    static {
-        t61.setup(new t61());
+    public c5(Context context, ViewGroup viewGroup, org.telegram.ui.ActionBar.p6 p6Var, ViewGroup viewGroup2, View[] viewArr, Context context2) {
+        super(context, viewGroup, p6Var);
+        this.T1 = viewGroup2;
+        this.U1 = viewArr;
+        this.V1 = context2;
     }
 
     @Override
-    public final void bindView(View view, u61 u61Var, boolean z10, k71 k71Var, s71 s71Var) {
-        ((d5) view).a(u61Var.f33249l, u61Var.f33250m, u61Var.f33248k);
+    public final void T0(float f7) {
+        super.T0(f7);
+        if (this.T1 instanceof w71) {
+            this.f21612r0.setBounds(0, (int) f7, this.f21586b.getWidth(), this.f21586b.getHeight());
+        }
     }
 
     @Override
-    public final View createView(Context context, nm0 nm0Var, int i10, int i11, org.telegram.ui.ActionBar.u6 u6Var) {
-        return new d5(context, u6Var);
+    public final boolean Z0() {
+        return !(this.T1 instanceof w71);
     }
 
     @Override
-    public final boolean isClickable() {
-        return false;
+    public final int d1() {
+        return org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f20929d6, this.I0);
     }
 
     @Override
-    public final boolean isShadow() {
-        return true;
+    public final void show() {
+        super.show();
+        if (this.T1 instanceof w71) {
+            View[] viewArr = this.U1;
+            if (viewArr[0] == null) {
+                b5 b5Var = new b5(this, this.V1);
+                viewArr[0] = b5Var;
+                this.f21586b.addView(b5Var, 0, w7.b6.e(-1, 50, 80));
+            }
+            this.f21586b.setBackground(null);
+            this.f21586b.setPadding(0, 0, 0, 0);
+            this.f26666k1.setPadding(0, 0, 0, 0);
+        }
     }
 }

@@ -1,9 +1,17 @@
 package ef;
 
-import a8.bc;
-public final class b extends a {
-    @Override
-    public final void a(bc bcVar) {
-        bcVar.a(this);
+import java.nio.charset.Charset;
+public enum b {
+    ISO_8859_1(Charset.forName("ISO-8859-1"), 1),
+    UTF_16(Charset.forName("UTF-16"), 2),
+    UTF_16BE(Charset.forName("UTF-16BE"), 2),
+    UTF_8(Charset.forName("UTF-8"), 1);
+    
+    public final Charset f6492a;
+    public final int f6493b;
+
+    b(Charset charset, int i10) {
+        this.f6492a = charset;
+        this.f6493b = i10;
     }
 }

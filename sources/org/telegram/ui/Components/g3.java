@@ -1,36 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class g3 implements View.OnClickListener {
-    public final int f28366a;
-    public final org.telegram.ui.ActionBar.k3 f28367b;
+import android.content.Context;
+import android.widget.FrameLayout;
+public final class g3 extends FrameLayout {
+    public final int f26242a;
+    public final org.telegram.ui.Cells.c2[] f26243b;
 
-    public g3(org.telegram.ui.ActionBar.k3 k3Var, int i10) {
-        this.f28366a = i10;
-        this.f28367b = k3Var;
+    public g3(Context context, org.telegram.ui.Cells.c2[] c2VarArr, int i10) {
+        super(context);
+        this.f26242a = i10;
+        this.f26243b = c2VarArr;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f28366a) {
+    public final void onMeasure(int i10, int i11) {
+        switch (this.f26242a) {
             case 0:
-                this.f28367b.dismiss();
-                return;
-            case 1:
-                org.telegram.ui.ActionBar.r2 R = LaunchActivity.R();
-                if (R != null) {
-                    R.presentFragment(new PremiumPreviewFragment(0, "contact"));
-                    this.f28367b.dismiss();
+                super.onMeasure(i10, i11);
+                org.telegram.ui.Cells.c2[] c2VarArr = this.f26243b;
+                if (c2VarArr[0] != null) {
+                    int measuredWidth = getMeasuredWidth();
+                    int measuredHeight = getMeasuredHeight();
+                    setMeasuredDimension(measuredWidth, org.telegram.messenger.i0.L(7.0f) + c2VarArr[0].getMeasuredHeight() + measuredHeight);
                     return;
                 }
                 return;
-            case 2:
-                this.f28367b.dismiss();
-                return;
             default:
-                this.f28367b.dismiss();
+                super.onMeasure(i10, i11);
+                org.telegram.ui.Cells.c2[] c2VarArr2 = this.f26243b;
+                if (c2VarArr2[0] != null) {
+                    int measuredWidth2 = getMeasuredWidth();
+                    int measuredHeight2 = getMeasuredHeight();
+                    setMeasuredDimension(measuredWidth2, org.telegram.messenger.i0.L(7.0f) + c2VarArr2[0].getMeasuredHeight() + measuredHeight2);
+                    return;
+                }
                 return;
         }
     }

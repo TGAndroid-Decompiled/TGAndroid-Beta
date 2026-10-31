@@ -9,7 +9,7 @@ import android.media.AudioRecordingConfiguration;
 import android.media.AudioTimestamp;
 import android.os.Build;
 import android.os.Process;
-import com.google.firebase.messaging.h;
+import g2.i;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +20,7 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
-import org.telegram.ui.li1;
+import org.telegram.utils.twidget.t;
 import org.webrtc.Logging;
 import org.webrtc.ThreadUtils;
 import org.webrtc.audio.JavaAudioDeviceModule;
@@ -206,7 +206,7 @@ public class WebRtcAudioRecord {
                 i11 = 4;
                 if (i10 != 4) {
                     if (i10 != 13) {
-                        throw new IllegalArgumentException(ic.a.i(i10, "Bad audio format "));
+                        throw new IllegalArgumentException(i0.a.i(i10, "Bad audio format "));
                     }
                 }
             }
@@ -264,7 +264,7 @@ public class WebRtcAudioRecord {
                 return -1;
             }
         }
-        reportWebRtcAudioRecordInitError(ic.a.i(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
+        reportWebRtcAudioRecordInitError(i0.a.i(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
         return -1;
     }
 
@@ -281,15 +281,15 @@ public class WebRtcAudioRecord {
         assertTrue(!list.isEmpty());
         Logging.d("WebRtcAudioRecordExternal", "AudioRecordingConfigurations: ");
         for (AudioRecordingConfiguration audioRecordingConfiguration : list) {
-            AudioRecordingConfiguration a2 = li1.a(audioRecordingConfiguration);
+            AudioRecordingConfiguration g10 = t.g(audioRecordingConfiguration);
             StringBuilder sb2 = new StringBuilder("  client audio source=");
-            sb2.append(WebRtcAudioUtils.audioSourceToString(a2.getClientAudioSource()));
+            sb2.append(WebRtcAudioUtils.audioSourceToString(g10.getClientAudioSource()));
             sb2.append(", client session id=");
-            sb2.append(a2.getClientAudioSessionId());
+            sb2.append(g10.getClientAudioSessionId());
             sb2.append(" (");
             sb2.append(i10);
             sb2.append(")\n  Device AudioFormat: channel count=");
-            AudioFormat format = a2.getFormat();
+            AudioFormat format = g10.getFormat();
             sb2.append(format.getChannelCount());
             sb2.append(", channel index mask=");
             sb2.append(format.getChannelIndexMask());
@@ -300,7 +300,7 @@ public class WebRtcAudioRecord {
             sb2.append(", sample rate=");
             sb2.append(format.getSampleRate());
             sb2.append("\n  Client AudioFormat: channel count=");
-            AudioFormat clientFormat = a2.getClientFormat();
+            AudioFormat clientFormat = g10.getClientFormat();
             sb2.append(clientFormat.getChannelCount());
             sb2.append(", channel index mask=");
             sb2.append(clientFormat.getChannelIndexMask());
@@ -311,7 +311,7 @@ public class WebRtcAudioRecord {
             sb2.append(", sample rate=");
             sb2.append(clientFormat.getSampleRate());
             sb2.append("\n");
-            AudioDeviceInfo audioDevice = a2.getAudioDevice();
+            AudioDeviceInfo audioDevice = g10.getAudioDevice();
             if (audioDevice != null) {
                 assertTrue(audioDevice.isSource());
                 sb2.append("  AudioDevice: type=");
@@ -414,12 +414,12 @@ public class WebRtcAudioRecord {
         if (Build.VERSION.SDK_INT < 24) {
             return;
         }
-        h hVar = new h(3, this, audioRecord);
+        i iVar = new i(2, this, audioRecord);
         ScheduledFuture<String> scheduledFuture = this.future;
         if (scheduledFuture != null && !scheduledFuture.isDone()) {
             this.future.cancel(true);
         }
-        this.future = this.executor.schedule(hVar, 100L, TimeUnit.MILLISECONDS);
+        this.future = this.executor.schedule(iVar, 100L, TimeUnit.MILLISECONDS);
     }
 
     private boolean startRecording() {
@@ -485,9 +485,9 @@ public class WebRtcAudioRecord {
     private static boolean verifyAudioConfig(int i10, int i11, AudioFormat audioFormat, AudioDeviceInfo audioDeviceInfo, List<AudioRecordingConfiguration> list) {
         assertTrue(!list.isEmpty());
         for (AudioRecordingConfiguration audioRecordingConfiguration : list) {
-            AudioRecordingConfiguration a2 = li1.a(audioRecordingConfiguration);
-            AudioDeviceInfo audioDevice = a2.getAudioDevice();
-            if (audioDevice != null && a2.getClientAudioSource() == i10 && a2.getClientAudioSessionId() == i11 && a2.getClientFormat().getEncoding() == audioFormat.getEncoding() && a2.getClientFormat().getSampleRate() == audioFormat.getSampleRate() && a2.getClientFormat().getChannelMask() == audioFormat.getChannelMask() && a2.getClientFormat().getChannelIndexMask() == audioFormat.getChannelIndexMask() && a2.getFormat().getEncoding() != 0 && a2.getFormat().getSampleRate() > 0 && (a2.getFormat().getChannelMask() != 0 || a2.getFormat().getChannelIndexMask() != 0)) {
+            AudioRecordingConfiguration g10 = t.g(audioRecordingConfiguration);
+            AudioDeviceInfo audioDevice = g10.getAudioDevice();
+            if (audioDevice != null && g10.getClientAudioSource() == i10 && g10.getClientAudioSessionId() == i11 && g10.getClientFormat().getEncoding() == audioFormat.getEncoding() && g10.getClientFormat().getSampleRate() == audioFormat.getSampleRate() && g10.getClientFormat().getChannelMask() == audioFormat.getChannelMask() && g10.getClientFormat().getChannelIndexMask() == audioFormat.getChannelIndexMask() && g10.getFormat().getEncoding() != 0 && g10.getFormat().getSampleRate() > 0 && (g10.getFormat().getChannelMask() != 0 || g10.getFormat().getChannelIndexMask() != 0)) {
                 if (checkDeviceMatch(audioDevice, audioDeviceInfo)) {
                     Logging.d("WebRtcAudioRecordExternal", "verifyAudioConfig: PASS");
                     return true;

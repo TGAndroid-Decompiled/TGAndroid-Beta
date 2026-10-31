@@ -1,34 +1,39 @@
 package org.telegram.messenger;
 
-import android.icu.text.Collator;
-import java.util.Comparator;
-import java.util.HashMap;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.TranslateController;
-public final class sk implements Comparator {
-    public final int f21252a;
-    public final Object f21253b;
+import org.telegram.messenger.support.LongSparseIntArray;
+import org.telegram.tgnet.tl.TL_update;
+public final class sk implements Runnable {
+    public final int f17921a;
+    public final vp f17922b;
+    public final TL_update.TL_updatePeerBlocked f17923c;
 
-    public sk(Object obj, int i10) {
-        this.f21252a = i10;
-        this.f21253b = obj;
+    public sk(vp vpVar, TL_update.TL_updatePeerBlocked tL_updatePeerBlocked, int i10) {
+        this.f17921a = i10;
+        this.f17922b = vpVar;
+        this.f17923c = tL_updatePeerBlocked;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int lambda$getMusicDialogsSortedByVisibleOrder$1;
-        int lambda$getLocales$3;
-        int lambda$getLanguages$1;
-        switch (this.f21252a) {
+    public final void run() {
+        switch (this.f17921a) {
             case 0:
-                lambda$getMusicDialogsSortedByVisibleOrder$1 = TelegramMediaSession.lambda$getMusicDialogsSortedByVisibleOrder$1((HashMap) this.f21253b, (Long) obj, (Long) obj2);
-                return lambda$getMusicDialogsSortedByVisibleOrder$1;
-            case 1:
-                lambda$getLocales$3 = TranslateController.lambda$getLocales$3((LocaleController.LocaleInfo) this.f21253b, (LocaleController.LocaleInfo) obj, (LocaleController.LocaleInfo) obj2);
-                return lambda$getLocales$3;
+                i0.g3(new sk(this.f17922b, this.f17923c, 1));
+                return;
             default:
-                lambda$getLanguages$1 = TranslateController.lambda$getLanguages$1((Collator) this.f21253b, (TranslateController.Language) obj, (TranslateController.Language) obj2);
-                return lambda$getLanguages$1;
+                vp vpVar = this.f17922b;
+                LongSparseIntArray longSparseIntArray = vpVar.G0;
+                TL_update.TL_updatePeerBlocked tL_updatePeerBlocked = this.f17923c;
+                long C1 = jj.C1(tL_updatePeerBlocked.peer_id);
+                if (tL_updatePeerBlocked.blocked) {
+                    if (longSparseIntArray.indexOfKey(C1) < 0) {
+                        longSparseIntArray.put(C1, 1);
+                    }
+                } else {
+                    longSparseIntArray.delete(C1);
+                }
+                vpVar.getNotificationCenter().k(43, new Object[0]);
+                vpVar.O1().m0(C1, tL_updatePeerBlocked.blocked_my_stories_from, false);
+                return;
         }
     }
 }

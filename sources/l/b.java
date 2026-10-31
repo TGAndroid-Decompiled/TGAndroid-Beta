@@ -4,26 +4,26 @@ import android.view.View;
 import androidx.appcompat.view.menu.ActionMenuItemView;
 import m.u1;
 public final class b extends u1 {
-    public final int f16684s = 0;
-    public final View v;
+    public final int f11459s = 0;
+    public final View f11460w;
 
     public b(ActionMenuItemView actionMenuItemView) {
         super(actionMenuItemView);
-        this.v = actionMenuItemView;
+        this.f11460w = actionMenuItemView;
     }
 
     @Override
-    public final b0 b() {
+    public final c0 b() {
         m.d dVar;
-        switch (this.f16684s) {
+        switch (this.f11459s) {
             case 0:
-                c cVar = ((ActionMenuItemView) this.v).f2168x;
-                if (cVar != null && (dVar = ((m.e) cVar).f17707a.J) != null) {
+                c cVar = ((ActionMenuItemView) this.f11460w).f1001y;
+                if (cVar != null && (dVar = ((m.e) cVar).f12400a.J) != null) {
                     return dVar.a();
                 }
                 return null;
             default:
-                m.d dVar2 = ((m.g) this.v).d.I;
+                m.d dVar2 = ((m.g) this.f11460w).d.I;
                 if (dVar2 == null) {
                     return null;
                 }
@@ -33,26 +33,26 @@ public final class b extends u1 {
 
     @Override
     public final boolean c() {
-        b0 b10;
-        switch (this.f16684s) {
+        c0 b10;
+        switch (this.f11459s) {
             case 0:
-                ActionMenuItemView actionMenuItemView = (ActionMenuItemView) this.v;
-                j jVar = actionMenuItemView.v;
-                if (jVar != null && jVar.a(actionMenuItemView.f2164n) && (b10 = b()) != null && b10.a()) {
+                ActionMenuItemView actionMenuItemView = (ActionMenuItemView) this.f11460w;
+                k kVar = actionMenuItemView.f999w;
+                if (kVar != null && kVar.a(actionMenuItemView.f996n) && (b10 = b()) != null && b10.a()) {
                     return true;
                 }
                 return false;
             default:
-                ((m.g) this.v).d.l();
+                ((m.g) this.f11460w).d.l();
                 return true;
         }
     }
 
     @Override
     public boolean d() {
-        switch (this.f16684s) {
+        switch (this.f11459s) {
             case 1:
-                m.h hVar = ((m.g) this.v).d;
+                m.h hVar = ((m.g) this.f11460w).d;
                 if (hVar.K != null) {
                     return false;
                 }
@@ -65,6 +65,6 @@ public final class b extends u1 {
 
     public b(m.g gVar, m.g gVar2) {
         super(gVar2);
-        this.v = gVar;
+        this.f11460w = gVar;
     }
 }

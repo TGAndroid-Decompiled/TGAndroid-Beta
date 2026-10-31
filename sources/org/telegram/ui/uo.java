@@ -4,12 +4,11 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class uo extends org.telegram.ui.Components.hp0 {
+public final class uo extends org.telegram.ui.Components.in0 {
     public final cp N;
 
-    public uo(cp cpVar, Context context, org.telegram.ui.Components.gp0 gp0Var, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(context, gp0Var, u6Var, false);
+    public uo(cp cpVar, Context context, org.telegram.ui.Components.hn0 hn0Var, org.telegram.ui.ActionBar.p6 p6Var) {
+        super(context, hn0Var, p6Var, false);
         this.N = cpVar;
     }
 
@@ -34,7 +33,7 @@ public final class uo extends org.telegram.ui.Components.hp0 {
 
     @Override
     public final boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
-        rect.bottom = AndroidUtilities.dp(60.0f) + rect.bottom;
+        rect.bottom = org.telegram.messenger.i0.L(60.0f) + rect.bottom;
         return super.requestChildRectangleOnScreen(view, rect, z10);
     }
 }

@@ -1,26 +1,24 @@
 package org.telegram.ui.Wallet;
-
-import org.telegram.messenger.AndroidUtilities;
 public final class y1 implements Runnable {
-    public final int f37517a;
-    public final boolean[] f37518b;
-    public final a2 f37519c;
-    public final i2 d;
+    public final int f35404a;
+    public final boolean[] f35405b;
+    public final a2 f35406c;
+    public final y2 d;
 
-    public y1(boolean[] zArr, a2 a2Var, i2 i2Var, int i10) {
-        this.f37517a = i10;
-        this.f37518b = zArr;
-        this.f37519c = a2Var;
-        this.d = i2Var;
+    public y1(boolean[] zArr, a2 a2Var, y2 y2Var, int i10) {
+        this.f35404a = i10;
+        this.f35405b = zArr;
+        this.f35406c = a2Var;
+        this.d = y2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f37517a) {
+        switch (this.f35404a) {
             case 0:
-                if (!this.f37518b[0]) {
-                    if (this.f37519c.f36370m) {
-                        AndroidUtilities.runOnUIThread(this, 1000L);
+                if (!this.f35405b[0]) {
+                    if (this.f35406c.f34171m) {
+                        org.telegram.messenger.i0.h3(this, 1000L);
                         return;
                     } else {
                         this.d.dismiss();
@@ -29,9 +27,9 @@ public final class y1 implements Runnable {
                 }
                 return;
             default:
-                if (!this.f37518b[0]) {
-                    if (this.f37519c.f36370m) {
-                        AndroidUtilities.runOnUIThread(this, 1000L);
+                if (!this.f35405b[0]) {
+                    if (this.f35406c.f34171m) {
+                        org.telegram.messenger.i0.h3(this, 1000L);
                         return;
                     } else {
                         this.d.dismiss();

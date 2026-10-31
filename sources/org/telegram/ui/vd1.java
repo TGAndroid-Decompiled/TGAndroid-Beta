@@ -1,21 +1,24 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-public final class vd1 extends org.telegram.ui.Components.ww0 {
-    public boolean f44322l0;
+import org.webrtc.RendererCommon;
+public final class vd1 implements RendererCommon.RendererEvents {
+    public final be1 f42711a;
+
+    public vd1(be1 be1Var) {
+        this.f42711a = be1Var;
+    }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        Q();
-        if (getKeyboardHeight() == 0 && !this.f44322l0) {
-            int i12 = MessagesController.getGlobalEmojiSettings().getInt("kbd_height", AndroidUtilities.dp(200.0f));
-            this.f34588f = i12;
-            setPadding(0, 0, 0, i12);
-        } else {
-            this.f44322l0 = true;
-            setPadding(0, 0, 0, 0);
+    public final void onFirstFrameRendered() {
+        be1 be1Var = this.f42711a;
+        com.google.android.gms.internal.cast.o oVar = be1Var.l1;
+        if (oVar != null) {
+            oVar.run();
+            be1Var.l1 = null;
         }
-        super.onMeasure(i10, i11);
+    }
+
+    @Override
+    public final void onFrameResolutionChanged(int i10, int i11, int i12) {
     }
 }

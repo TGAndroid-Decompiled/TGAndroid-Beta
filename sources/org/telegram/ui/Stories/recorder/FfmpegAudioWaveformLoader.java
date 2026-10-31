@@ -1,20 +1,17 @@
 package org.telegram.ui.Stories.recorder;
 
-import ai.h0;
-import di.s8;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.i0;
+import org.telegram.messenger.j20;
+import org.telegram.ui.Wallet.x0;
+import vh.d0;
 public class FfmpegAudioWaveformLoader {
-    private Utilities.Callback2<short[], Integer> onChunkReceived;
+    private j20 onChunkReceived;
     private volatile boolean running = true;
 
-    public FfmpegAudioWaveformLoader(String str, int i10, Utilities.Callback2<short[], Integer> callback2) {
-        this.onChunkReceived = callback2;
-        Utilities.phoneBookQueue.postRunnable(new h0(this, str, i10, 10));
-    }
-
-    public static void b(FfmpegAudioWaveformLoader ffmpegAudioWaveformLoader) {
-        ffmpegAudioWaveformLoader.lambda$destroy$2();
+    public FfmpegAudioWaveformLoader(String str, int i10, j20 j20Var) {
+        this.onChunkReceived = j20Var;
+        Utilities.h.c(new x0(this, str, i10, 19));
     }
 
     public native void lambda$new$0(String str, int i10);
@@ -24,14 +21,14 @@ public class FfmpegAudioWaveformLoader {
     }
 
     public void lambda$receiveChunk$1(short[] sArr, int i10) {
-        this.onChunkReceived.run(sArr, Integer.valueOf(i10));
+        this.onChunkReceived.a(sArr, Integer.valueOf(i10));
     }
 
     private void receiveChunk(short[] sArr, int i10) {
-        AndroidUtilities.runOnUIThread(new h0(this, sArr, i10, 11));
+        i0.g3(new x0(this, sArr, i10, 20));
     }
 
     public void destroy() {
-        Utilities.phoneBookQueue.postRunnable(new s8(this, 19));
+        Utilities.h.c(new d0(this, 7));
     }
 }

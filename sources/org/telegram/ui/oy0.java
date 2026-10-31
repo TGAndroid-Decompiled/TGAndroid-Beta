@@ -1,187 +1,184 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.TLRPC;
-public final class oy0 implements Runnable {
-    public final int f42251a;
-    public final Object f42252b;
+import android.graphics.Canvas;
+import android.graphics.PointF;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+public final class oy0 extends View {
+    public static final String[] f40392s = {"🎉", "🎆", "🎈"};
+    public final ProfileActivity f40393a;
+    public ly0 f40394b;
+    public ly0 f40395c;
+    public final PointF d;
+    public boolean e;
+    public boolean f40396f;
+    public float h;
+    public long f40397n;
+    public boolean f40398r;
 
-    public oy0(Object obj, int i10) {
-        this.f42251a = i10;
-        this.f42252b = obj;
+    public oy0(ProfileActivity profileActivity, ly0 ly0Var) {
+        super(profileActivity.getParentActivity());
+        this.d = new PointF();
+        this.h = 1.0f;
+        this.f40398r = false;
+        this.f40393a = profileActivity;
+        this.f40394b = ly0Var;
+    }
+
+    public final boolean a() {
+        ly0 ly0Var = this.f40394b;
+        if (!ly0Var.f39437b || this.h < 1.0f) {
+            return false;
+        }
+        if (ly0Var.f39438c.B() != null) {
+            this.f40394b.f39438c.B().N(0, false, false);
+            this.f40394b.f39438c.B().H(true);
+        }
+        this.f40398r = true;
+        this.h = 0.0f;
+        invalidate();
+        return true;
+    }
+
+    public final void b(ly0 ly0Var) {
+        if (this.f40394b != ly0Var && ly0Var != null) {
+            ArrayList arrayList = ly0Var.e;
+            if (this.f40398r) {
+                this.f40395c = ly0Var;
+                return;
+            }
+            if (this.f40396f) {
+                for (int i10 = 0; i10 < this.f40394b.e.size(); i10++) {
+                    ((ny0) this.f40394b.e.get(i10)).H0(null);
+                }
+                this.f40396f = false;
+            }
+            ly0 ly0Var2 = this.f40394b;
+            ArrayList arrayList2 = ly0Var2.f39442j;
+            arrayList2.remove(this);
+            if (arrayList2.isEmpty() && ly0Var2.f39441i) {
+                ly0Var2.b(true);
+                ly0Var2.f39441i = false;
+            }
+            this.f40394b = ly0Var;
+            if (!this.f40396f) {
+                for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                    ((ny0) arrayList.get(i11)).H0(this);
+                }
+                this.f40396f = true;
+            }
+        }
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f42251a;
-        int i11 = 0;
-        Object obj = this.f42252b;
-        switch (i10) {
-            case 0:
-                int i12 = ProfileActivity.R6;
-                AndroidUtilities.addToClipboard("@" + UserObject.getPublicUsername((TLRPC.User) obj));
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f40394b.f39442j.add(this);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (this.f40396f) {
+            for (int i10 = 0; i10 < this.f40394b.e.size(); i10++) {
+                ((ny0) this.f40394b.e.get(i10)).H0(null);
+            }
+            this.f40396f = false;
+        }
+        ly0 ly0Var = this.f40394b;
+        ArrayList arrayList = ly0Var.f39442j;
+        arrayList.remove(this);
+        if (arrayList.isEmpty() && ly0Var.f39441i) {
+            ly0Var.b(true);
+            ly0Var.f39441i = false;
+        }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        if (this.f40394b.f39437b) {
+            boolean z10 = true;
+            if (!this.f40396f) {
+                for (int i10 = 0; i10 < this.f40394b.e.size(); i10++) {
+                    ((ny0) this.f40394b.e.get(i10)).H0(this);
+                }
+                this.f40396f = true;
+                if (!this.e) {
+                    this.e = true;
+                    post(new wv0(this, 7));
+                }
+            }
+            if (!this.f40398r) {
                 return;
-            case 1:
-                sy0 sy0Var = (sy0) obj;
-                sy0Var.G.getNotificationCenter().onAnimationFinish(sy0Var.F);
-                return;
-            case 2:
-                ProfileActivity profileActivity = (ProfileActivity) ((bh.p) obj).f4102c;
-                if (profileActivity.f36111t5 != 1.0f) {
-                    bz0 bz0Var = profileActivity.f36064n0;
-                    while (bz0Var.D0.k(i11) != bz0Var.getRealCount() - 1) {
-                        i11++;
+            }
+            long currentTimeMillis = System.currentTimeMillis();
+            this.h = Utilities.i(this.h + (((float) Utilities.k(currentTimeMillis - this.f40397n, 20L, 0L)) / 4200.0f), 1.0f, 0.0f);
+            this.f40397n = currentTimeMillis;
+            ProfileActivity profileActivity = this.f40393a;
+            bw0 bw0Var = profileActivity.f33772a;
+            int i11 = profileActivity.T2;
+            PointF pointF = this.d;
+            float f7 = 2.0f;
+            if (i11 >= 0) {
+                int i12 = 0;
+                while (true) {
+                    if (i12 >= bw0Var.getChildCount()) {
+                        break;
                     }
-                    bz0Var.x(i11, true);
-                    return;
-                }
-                return;
-            case 3:
-                ProfileActivity profileActivity2 = ((tz0) obj).f43810b;
-                int i13 = ProfileActivity.R6;
-                profileActivity2.getMessagesController().toggleChatNoForwards(profileActivity2.f36003e1, 0, true, new fi.ga(2, profileActivity2, true));
-                return;
-            case 4:
-                xz0 xz0Var = (xz0) obj;
-                xz0Var.T0(xz0Var.getTabProgress());
-                return;
-            case 5:
-                ((o01) obj).c();
-                return;
-            case 6:
-                ((d11) obj).a();
-                return;
-            case 7:
-                a11 a11Var = (a11) obj;
-                a11Var.f37646f.add(a11Var.f37645c);
-                a11Var.a();
-                return;
-            case 8:
-                Runnable[] runnableArr = (Runnable[]) obj;
-                runnableArr[0].run();
-                runnableArr[0] = null;
-                return;
-            case 9:
-                ((di.v6) obj).e();
-                return;
-            case 10:
-                org.telegram.ui.Components.wc wcVar = (org.telegram.ui.Components.wc) obj;
-                if (LaunchActivity.U() != null) {
-                    if (wcVar == null) {
-                        wcVar = org.telegram.ui.Components.wc.b0(LaunchActivity.U());
+                    View childAt = bw0Var.getChildAt(i12);
+                    if (i11 == RecyclerView.R(childAt) && (childAt instanceof org.telegram.ui.Cells.z8)) {
+                        nh.p pVar = ((org.telegram.ui.Cells.z8) childAt).f23648a;
+                        pointF.set(pVar.getX() + childAt.getX() + bw0Var.getX() + org.telegram.messenger.i0.L(12.0f), (pVar.getMeasuredHeight() / 2.0f) + pVar.getY() + childAt.getY() + bw0Var.getY());
+                        break;
                     }
-                    if (wcVar != null) {
-                        org.telegram.ui.Components.qc M = wcVar.M(LocaleController.getString(R.string.ReportChatSent), LocaleController.getString(R.string.Reported2), R.raw.msg_antispam);
-                        M.f31861j = 5000;
-                        M.j();
-                        return;
-                    }
-                    return;
+                    i12++;
                 }
+            }
+            float f10 = ly.f();
+            this.f40394b.f39438c.y0((getWidth() - org.telegram.messenger.i0.L(f10)) / 2.0f, Math.max(0.0f, pointF.y - (org.telegram.messenger.i0.L(f10) * 0.5f)), org.telegram.messenger.i0.L(f10), org.telegram.messenger.i0.L(f10));
+            canvas.save();
+            canvas.scale(-1.0f, 1.0f, getWidth() / 2.0f, 0.0f);
+            ly0 ly0Var = null;
+            this.f40394b.f39438c.h(canvas, null);
+            this.f40394b.f39438c.setAlpha(1.0f - ((this.h - 0.9f) / 0.1f));
+            canvas.restore();
+            int L = org.telegram.messenger.i0.L(110.0f);
+            int size = this.f40394b.d.size() - 1;
+            while (size >= 0) {
+                ny0 ny0Var = (ny0) this.f40394b.d.get(size);
+                float f11 = size;
+                float s10 = org.telegram.messenger.i0.s(this.h, f11, this.f40394b.d.size(), 1.8f);
+                float f12 = L;
+                boolean z11 = z10;
+                float f13 = f12 * 0.88f;
+                float g10 = c3.i0.g(f13, this.f40394b.d.size() - 1, getWidth(), f7);
+                float f14 = pointF.x;
+                float f15 = f7;
+                float f16 = pointF.y;
+                float f17 = ((g10 - f14) * s10) + (f13 * f11) + f14;
+                double d = this.h;
+                PointF pointF2 = pointF;
+                float interpolation = org.telegram.ui.Components.gr.h.getInterpolation(Utilities.i(s10 / 0.4f, 1.0f, 0.0f));
+                float f18 = (f12 / f15) * interpolation;
+                float f19 = f12 * interpolation;
+                ny0Var.y0(f17 - f18, (f16 - ((f16 + f12) * ((float) Math.pow(d, 2.0d)))) - f18, f19, f19);
+                ny0Var.h(canvas, null);
+                size--;
+                ly0Var = null;
+                pointF = pointF2;
+                z10 = z11;
+                f7 = f15;
+            }
+            ly0 ly0Var2 = ly0Var;
+            if (this.h >= 1.0f) {
+                this.f40398r = false;
+                b(this.f40395c);
+                this.f40395c = ly0Var2;
                 return;
-            case 11:
-                ((g31) obj).invalidate();
-                return;
-            case 12:
-                SaveToGallerySettingsActivity saveToGallerySettingsActivity = (SaveToGallerySettingsActivity) obj;
-                saveToGallerySettingsActivity.v.clear();
-                saveToGallerySettingsActivity.getUserConfig().updateSaveGalleryExceptions(saveToGallerySettingsActivity.f36167a, saveToGallerySettingsActivity.v);
-                saveToGallerySettingsActivity.b0();
-                return;
-            case 13:
-                o31 o31Var = (o31) obj;
-                o31Var.dismiss();
-                qf.d.r(o31Var.getContext(), LocaleController.getString(R.string.PromoteUrl));
-                return;
-            case 14:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) ((org.telegram.ui.Components.ml0) obj).f30559c;
-                Runnable runnable = secretMediaViewer.f36206o0;
-                if (runnable != null) {
-                    runnable.run();
-                    secretMediaViewer.f36206o0 = null;
-                    return;
-                }
-                return;
-            case 15:
-                f41 f41Var = ((e41) obj).f38754a;
-                f41Var.Q = true;
-                f41Var.N.invalidate();
-                return;
-            case 16:
-                ((NotificationCenter) obj).runDelayedNotifications();
-                return;
-            case 17:
-                AndroidUtilities.updateViewShow(((u51) obj).f43881c, true);
-                return;
-            case 18:
-                org.telegram.ui.Components.k71 k71Var = ((p61) obj).f42324i0;
-                if (k71Var != null) {
-                    k71Var.O(true);
-                    return;
-                }
-                return;
-            case 19:
-                ((i61) obj).a();
-                return;
-            case 20:
-                jg.f.a(((SessionsActivity) obj).currentAccount).b();
-                return;
-            case 21:
-                y91 y91Var = (y91) obj;
-                y91Var.m0.a(y91Var.f45921j0.f30653e0, y91Var.f45922k0.isAttachedToWindow());
-                return;
-            case 22:
-                ((ee1) obj).J.f38324r.l();
-                return;
-            case 23:
-                ((me1) obj).f41427b.C0();
-                return;
-            case 24:
-                ((VoIPFeedbackActivity) obj).finish();
-                return;
-            case 25:
-                ((gh1) obj).f39620a.G();
-                return;
-            case 26:
-                ((hh1) obj).f39898a.G();
-                return;
-            case 27:
-                rh1 rh1Var = ((fh1) obj).f39384b;
-                rh1Var.L0.unlock();
-                org.telegram.ui.Components.voip.n2.k().getClass();
-                if (VoIPService.getSharedInstance() != null) {
-                    VoIPService.getSharedInstance().swapSinks();
-                }
-                rh1Var.Y.setCornerRadius(-1.0f);
-                rh1Var.f43007c0.d.release();
-                rh1Var.f43009d0.d.release();
-                rh1Var.f43004b0.release();
-                rh1Var.k();
-                rh1Var.f43038u0.d();
-                org.telegram.ui.Components.voip.n2.U = false;
-                rh1Var.E0 = false;
-                rh1.f42999n1 = null;
-                return;
-            case 28:
-                ph1 ph1Var = (ph1) obj;
-                ph1Var.getClass();
-                if (VoIPService.getSharedState() != null) {
-                    VoIPService.getSharedState().acceptIncomingCall();
-                    if (ph1Var.f42405a.f43029n0 && VoIPService.getSharedInstance() != null) {
-                        VoIPService.getSharedInstance().requestVideoCall(false);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                ((VoIPPermissionActivity) obj).finish();
-                return;
+            }
+            invalidate();
         }
     }
 }

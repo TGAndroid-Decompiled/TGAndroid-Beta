@@ -1,12 +1,12 @@
 package u2;
 
-import a8.yb;
 import android.net.Uri;
 import java.util.Map;
+import v7.t6;
 public final class t implements g2.h {
-    public final g2.h f49457a;
-    public final int f49458b;
-    public final t0 f49459c;
+    public final g2.h f50000a;
+    public final int f50001b;
+    public final t0 f50002c;
     public final byte[] d;
     public int e;
 
@@ -17,18 +17,18 @@ public final class t implements g2.h {
         } else {
             z10 = false;
         }
-        yb.g(z10);
-        this.f49457a = hVar;
-        this.f49458b = i10;
-        this.f49459c = t0Var;
+        t6.f(z10);
+        this.f50000a = hVar;
+        this.f50001b = i10;
+        this.f50002c = t0Var;
         this.d = new byte[1];
         this.e = i10;
     }
 
     @Override
-    public final void addTransferListener(g2.c0 c0Var) {
-        c0Var.getClass();
-        this.f49457a.addTransferListener(c0Var);
+    public final void addTransferListener(g2.d0 d0Var) {
+        d0Var.getClass();
+        this.f50000a.addTransferListener(d0Var);
     }
 
     @Override
@@ -38,16 +38,16 @@ public final class t implements g2.h {
 
     @Override
     public final Map getResponseHeaders() {
-        return this.f49457a.getResponseHeaders();
+        return this.f50000a.getResponseHeaders();
     }
 
     @Override
     public final Uri getUri() {
-        return this.f49457a.getUri();
+        return this.f50000a.getUri();
     }
 
     @Override
-    public final long open(g2.m mVar) {
+    public final long open(g2.n nVar) {
         throw new UnsupportedOperationException();
     }
 
@@ -55,7 +55,7 @@ public final class t implements g2.h {
     public final int read(byte[] bArr, int i10, int i11) {
         long max;
         int i12 = this.e;
-        g2.h hVar = this.f49457a;
+        g2.h hVar = this.f50000a;
         if (i12 == 0) {
             byte[] bArr2 = this.d;
             int i13 = 0;
@@ -76,22 +76,22 @@ public final class t implements g2.h {
                     }
                     if (i14 > 0) {
                         e2.x xVar = new e2.x(bArr3, i14);
-                        t0 t0Var = this.f49459c;
-                        if (!t0Var.f49467w) {
-                            max = t0Var.f49465r;
+                        t0 t0Var = this.f50002c;
+                        if (!t0Var.f50011x) {
+                            max = t0Var.f50008r;
                         } else {
-                            max = Math.max(t0Var.f49468x.j(true), t0Var.f49465r);
+                            max = Math.max(t0Var.f50012y.r(true), t0Var.f50008r);
                         }
                         long j10 = max;
                         int a2 = xVar.a();
-                        c3.j0 j0Var = t0Var.v;
-                        j0Var.getClass();
-                        j0Var.d(a2, xVar);
-                        j0Var.c(j10, 1, a2, 0, null);
-                        t0Var.f49467w = true;
+                        c3.k0 k0Var = t0Var.f50010w;
+                        k0Var.getClass();
+                        k0Var.d(a2, xVar);
+                        k0Var.c(j10, 1, a2, 0, null);
+                        t0Var.f50011x = true;
                     }
                 }
-                this.e = this.f49458b;
+                this.e = this.f50001b;
             }
             return -1;
         }

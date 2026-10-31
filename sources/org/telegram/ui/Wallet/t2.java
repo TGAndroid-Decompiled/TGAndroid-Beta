@@ -1,34 +1,26 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.wc;
-public final class t2 implements Runnable {
-    public final int f37286a;
-    public final org.telegram.ui.ActionBar.r2 f37287b;
+import android.os.SystemClock;
+import org.telegram.ui.Components.qq;
+public final class t2 {
+    public final y2 f35226a;
+    public final r2 f35227b;
+    public final long f35228c = SystemClock.uptimeMillis();
+    public boolean d;
+    public boolean e;
+    public boolean f35229f;
+    public Runnable f35230g;
+    public qq h;
 
-    public t2(int i10, org.telegram.ui.ActionBar.r2 r2Var) {
-        this.f37286a = i10;
-        this.f37287b = r2Var;
+    public t2(y2 y2Var, r2 r2Var) {
+        this.f35226a = y2Var;
+        this.f35227b = r2Var;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f37286a) {
-            case 0:
-                org.telegram.ui.ActionBar.r2 r2Var = this.f37287b;
-                m5.E0(r2Var.getContext(), r2Var.getResourceProvider());
-                return;
-            case 1:
-                this.f37287b.presentFragment(new m5());
-                return;
-            default:
-                org.telegram.ui.ActionBar.r2 r2Var2 = this.f37287b;
-                if (wc.a(r2Var2)) {
-                    wc.b0(r2Var2).M(LocaleController.getString(R.string.WalletCreated), LocaleController.getString(R.string.WalletCreatedInfo), R.raw.contact_check).j();
-                    return;
-                }
-                return;
+    public final boolean a() {
+        if (SystemClock.uptimeMillis() - this.f35228c < 700) {
+            return true;
         }
+        return false;
     }
 }

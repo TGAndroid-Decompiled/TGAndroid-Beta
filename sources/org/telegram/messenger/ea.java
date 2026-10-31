@@ -1,76 +1,22 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class ea implements RequestDelegate {
-    public final int f19985a;
-    public final MessagesController f19986b;
-    public final long f19987c;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+public final class ea implements wa {
+    public LatLngBounds f15374a;
 
-    public ea(MessagesController messagesController, long j10, int i10) {
-        this.f19985a = i10;
-        this.f19986b = messagesController;
-        this.f19987c = j10;
-    }
-
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f19985a) {
-            case 0:
-                this.f19986b.lambda$markMessageAsRead2$234(this.f19987c, tLObject, tL_error);
-                return;
-            case 1:
-                this.f19986b.lambda$markMessageAsRead2$235(this.f19987c, tLObject, tL_error);
-                return;
-            case 2:
-                this.f19986b.lambda$pinDialog$365(this.f19987c, tLObject, tL_error);
-                return;
-            case 3:
-                this.f19986b.lambda$saveWallpaperToServer$120(this.f19987c, tLObject, tL_error);
-                return;
-            case 4:
-                this.f19986b.lambda$updateTimerProc$159(this.f19987c, tLObject, tL_error);
-                return;
-            case 5:
-                this.f19986b.lambda$deleteUserPhoto$114(this.f19987c, tLObject, tL_error);
-                return;
-            case 6:
-                this.f19986b.lambda$reorderPinnedDialogs$364(this.f19987c, tLObject, tL_error);
-                return;
-            case 7:
-                this.f19986b.lambda$loadPeerSettings$79(this.f19987c, tLObject, tL_error);
-                return;
-            case 8:
-                this.f19986b.lambda$setChannelSlowMode$93(this.f19987c, tLObject, tL_error);
-                return;
-            case 9:
-                this.f19986b.lambda$loadChannelAdmins$64(this.f19987c, tLObject, tL_error);
-                return;
-            case 10:
-                this.f19986b.lambda$deleteDialog$140(this.f19987c, tLObject, tL_error);
-                return;
-            case 11:
-                this.f19986b.lambda$addDialogToFolder$197(this.f19987c, tLObject, tL_error);
-                return;
-            case 12:
-                this.f19986b.lambda$setDefaultSendAs$274(this.f19987c, tLObject, tL_error);
-                return;
-            case 13:
-                this.f19986b.lambda$deleteMessages$121(this.f19987c, tLObject, tL_error);
-                return;
-            case 14:
-                this.f19986b.lambda$deleteMessages$122(this.f19987c, tLObject, tL_error);
-                return;
-            case 15:
-                this.f19986b.lambda$deleteMessages$124(this.f19987c, tLObject, tL_error);
-                return;
-            case 16:
-                this.f19986b.lambda$setBoostsToUnblockRestrictions$95(this.f19987c, tLObject, tL_error);
-                return;
-            default:
-                this.f19986b.lambda$markDialogAsUnread$361(this.f19987c, tLObject, tL_error);
-                return;
+    public final cb a() {
+        LatLngBounds latLngBounds = this.f15374a;
+        LatLng latLng = latLngBounds.f5418a;
+        double d = latLng.f5416a;
+        LatLng latLng2 = latLngBounds.f5419b;
+        double d10 = (d + latLng2.f5416a) / 2.0d;
+        double d11 = latLng2.f5417b;
+        double d12 = latLng.f5417b;
+        if (d12 > d11) {
+            d11 += 360.0d;
         }
+        LatLng latLng3 = new LatLng(d10, (d11 + d12) / 2.0d);
+        return new cb(latLng3.f5416a, latLng3.f5417b);
     }
 }

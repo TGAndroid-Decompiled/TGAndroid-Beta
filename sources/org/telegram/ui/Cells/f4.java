@@ -1,12 +1,11 @@
 package org.telegram.ui.Cells;
 
 import android.graphics.Canvas;
-import org.telegram.messenger.AndroidUtilities;
-public final class f4 extends org.telegram.ui.Components.s5 {
+public final class f4 extends org.telegram.ui.Components.e5 {
     @Override
     public final void draw(Canvas canvas) {
         canvas.save();
-        canvas.translate(AndroidUtilities.dp(-2.0f), AndroidUtilities.dp(0.0f));
+        canvas.translate(org.telegram.messenger.i0.L(-2.0f), org.telegram.messenger.i0.L(0.0f));
         super.draw(canvas);
         canvas.restore();
     }

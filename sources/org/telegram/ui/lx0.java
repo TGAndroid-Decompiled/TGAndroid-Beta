@@ -1,38 +1,37 @@
 package org.telegram.ui;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.text.style.ClickableSpan;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class lx0 extends ClickableSpan {
-    public final String f41274a;
-    public final mx0 f41275b;
+public final class lx0 implements View.OnClickListener {
+    public final int f39424a;
+    public final xx0 f39425b;
 
-    public lx0(mx0 mx0Var, String str) {
-        this.f41275b = mx0Var;
-        this.f41274a = str;
+    public lx0(xx0 xx0Var, int i10) {
+        this.f39424a = i10;
+        this.f39425b = xx0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        org.telegram.ui.Components.qc b10;
-        ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", this.f41274a));
-        org.telegram.ui.Components.wc b02 = org.telegram.ui.Components.wc.b0(this.f41275b.d);
-        String string = LocaleController.getString(R.string.LinkCopied);
-        org.telegram.ui.ActionBar.u6 resourceProvider = this.f41275b.d.getResourceProvider();
-        b02.getClass();
-        if (!AndroidUtilities.shouldShowClipboardToast()) {
-            b10 = new org.telegram.ui.Components.qc();
-        } else {
-            org.telegram.ui.Components.yb ybVar = new org.telegram.ui.Components.yb(b02.X(), resourceProvider);
-            ybVar.c(R.raw.voip_invite, 36, 36, "Wibe", "Circle");
-            ybVar.f35028b.setText(string);
-            b10 = b02.b(ybVar, 1500);
+        switch (this.f39424a) {
+            case 0:
+                ProfileActivity profileActivity = this.f39425b.e;
+                profileActivity.getMessagesController().u3(profileActivity, profileActivity.getMessagesController().Z1(Long.valueOf(profileActivity.f33796d1)), null, profileActivity.getClassGuid(), null, false, false);
+                return;
+            default:
+                ProfileActivity profileActivity2 = this.f39425b.e;
+                profileActivity2.O4 = !profileActivity2.O4;
+                if (!profileActivity2.N4) {
+                    profileActivity2.N4 = true;
+                }
+                profileActivity2.S4();
+                view.requestLayout();
+                profileActivity2.d.g(profileActivity2.N3);
+                int i10 = profileActivity2.f33844j6;
+                if (i10 >= 0) {
+                    profileActivity2.f33787c.h1(i10, profileActivity2.f33851k6 - profileActivity2.f33772a.getPaddingTop());
+                    return;
+                }
+                return;
         }
-        b10.j();
     }
 }

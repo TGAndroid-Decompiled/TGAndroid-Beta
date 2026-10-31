@@ -1,14 +1,30 @@
 package w7;
-public final class n6 {
-    public final h8 f50995a;
-    public final m6 f50996b;
-    public final k6 f50997c;
-    public final k7 d;
 
-    public n6(ti.e eVar) {
-        this.f50995a = (h8) eVar.f49219b;
-        this.f50996b = (m6) eVar.f49220c;
-        this.f50997c = (k6) eVar.d;
-        this.d = (k7) eVar.e;
+import android.os.Build;
+import android.util.Log;
+public abstract class n6 {
+    public static void a(Object obj, String str, String str2) {
+        String c10 = c(str);
+        if (Log.isLoggable(c10, 3)) {
+            Log.d(c10, String.format(str2, obj));
+        }
+    }
+
+    public static void b(String str, String str2, Exception exc) {
+        String c10 = c(str);
+        if (Log.isLoggable(c10, 6)) {
+            Log.e(c10, str2, exc);
+        }
+    }
+
+    public static String c(String str) {
+        if (Build.VERSION.SDK_INT < 26) {
+            String concat = "TRuntime.".concat(str);
+            if (concat.length() > 23) {
+                return concat.substring(0, 23);
+            }
+            return concat;
+        }
+        return "TRuntime.".concat(str);
     }
 }

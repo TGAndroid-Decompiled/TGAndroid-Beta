@@ -1,19 +1,19 @@
 package db;
-public final class g extends nd.c {
-    public h f8292a;
-    public Object f8293b;
-    public final h f8294c;
+public final class g extends ed.c {
+    public h f5845a;
+    public Object f5846b;
+    public final h f5847c;
     public int d;
 
-    public g(h hVar, nd.c cVar) {
+    public g(h hVar, ed.c cVar) {
         super(cVar);
-        this.f8294c = hVar;
+        this.f5847c = hVar;
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        this.f8293b = obj;
+        this.f5846b = obj;
         this.d |= Integer.MIN_VALUE;
-        return this.f8294c.b(this);
+        return this.f5847c.b(this);
     }
 }

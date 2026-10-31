@@ -1,10 +1,10 @@
 package w2;
 
-import f9.i0;
+import e9.n0;
 public interface a {
     long a(long j10);
 
-    i0 b(long j10);
+    n0 b(long j10);
 
     boolean c(z3.a aVar, long j10);
 

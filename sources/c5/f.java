@@ -1,23 +1,17 @@
 package c5;
 
-import android.webkit.WebView;
-import org.chromium.support_lib_boundary.StaticsBoundaryInterface;
-import org.chromium.support_lib_boundary.WebViewProviderBoundaryInterface;
-public final class f implements p {
-    public static final String[] f6142a = new String[0];
+import android.content.Context;
+public final class f {
+    public boolean f3781a;
+    public Object f3782b;
+    public Object f3783c;
+    public Object d;
+    public Object e = new d0(this, true);
+    public Object f3784f = new d0(this, false);
 
-    @Override
-    public final String[] b() {
-        return f6142a;
-    }
-
-    @Override
-    public final WebViewProviderBoundaryInterface createWebView(WebView webView) {
-        throw new UnsupportedOperationException("This should never happen, if this method was called it means we're trying to reach into WebView APK code on an incompatible device. This most likely means the current method is being called too early, or is being called on start-up rather than lazily");
-    }
-
-    @Override
-    public final StaticsBoundaryInterface getStatics() {
-        throw new UnsupportedOperationException("This should never happen, if this method was called it means we're trying to reach into WebView APK code on an incompatible device. This most likely means the current method is being called too early, or is being called on start-up rather than lazily");
+    public f(Context context, o oVar, hf.b bVar) {
+        this.f3782b = context;
+        this.f3783c = oVar;
+        this.d = bVar;
     }
 }

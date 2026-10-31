@@ -1,21 +1,40 @@
 package org.telegram.ui.Components;
-public final class qw0 extends o1.i {
-    public final ow0 f32057a;
-    public final pw0 f32058b;
-    public float f32059c = 1.0f;
 
-    public qw0(ow0 ow0Var, pw0 pw0Var) {
-        this.f32057a = ow0Var;
-        this.f32058b = pw0Var;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+public final class qw0 extends AnimatorListenerAdapter {
+    public final int f29756a;
+    public final boolean f29757b;
+    public final cx0 f29758c;
+
+    public qw0(cx0 cx0Var, int i10, boolean z10) {
+        this.f29758c = cx0Var;
+        this.f29756a = i10;
+        this.f29757b = z10;
     }
 
     @Override
-    public final float a(Object obj) {
-        return this.f32057a.get(obj) * this.f32059c;
+    public final void onAnimationCancel(Animator animator) {
+        AnimatorSet[] animatorSetArr = this.f29758c.f25225z1;
+        int i10 = this.f29756a;
+        AnimatorSet animatorSet = animatorSetArr[i10];
+        if (animatorSet != null && animatorSet.equals(animator)) {
+            animatorSetArr[i10] = null;
+        }
     }
 
     @Override
-    public final void b(Object obj, float f7) {
-        this.f32058b.b(obj, f7 / this.f32059c);
+    public final void onAnimationEnd(Animator animator) {
+        cx0 cx0Var = this.f29758c;
+        AnimatorSet[] animatorSetArr = cx0Var.f25225z1;
+        int i10 = this.f29756a;
+        AnimatorSet animatorSet = animatorSetArr[i10];
+        if (animatorSet != null && animatorSet.equals(animator)) {
+            if (!this.f29757b) {
+                cx0Var.A1[i10].setVisibility(4);
+            }
+            animatorSetArr[i10] = null;
+        }
     }
 }

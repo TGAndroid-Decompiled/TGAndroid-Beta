@@ -1,202 +1,234 @@
 package org.telegram.ui.Cells;
 
+import android.content.ClipboardManager;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.wh;
-import org.telegram.ui.Components.kb1;
-public class h9 extends FrameLayout {
-    public final TextView f24212a;
-    public final TextView f24213b;
-    public final ImageView f24214c;
-    public boolean d;
-    public boolean e;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuItem;
+import org.telegram.messenger.cd;
+import org.telegram.messenger.jj;
+import org.telegram.messenger.js;
+import org.telegram.ui.Components.m31;
+import org.telegram.ui.Components.mt;
+import org.telegram.ui.e01;
+public final class h9 implements ActionMode.Callback {
+    public final int f22004a;
+    public Object f22005b;
+    public final Object f22006c;
 
-    public h9(Context context) {
-        super(context);
-        int i10;
-        int i11;
-        int i12;
-        int i13;
-        TextView textView = new TextView(context);
-        this.f24212a = textView;
-        org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.G6, null);
-        wh.r(textView, 1, 16.0f, 1, 1);
-        textView.setSingleLine(true);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        textView.setGravity(i10 | 16);
-        if (LocaleController.isRTL) {
-            i11 = 5;
-        } else {
-            i11 = 3;
-        }
-        addView(textView, kb1.h(-2, -2.0f, i11 | 48, 21.0f, 10.0f, 21.0f, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.f24213b = textView2;
-        org.telegram.ui.ActionBar.f7.V(textView2, org.telegram.ui.ActionBar.y6.f23768z6, null);
-        textView2.setTextSize(1, 13.0f);
-        if (LocaleController.isRTL) {
-            i12 = 5;
-        } else {
-            i12 = 3;
-        }
-        textView2.setGravity(i12);
-        textView2.setLines(1);
-        textView2.setMaxLines(1);
-        textView2.setSingleLine(true);
-        textView2.setPadding(0, 0, 0, 0);
-        if (LocaleController.isRTL) {
-            i13 = 5;
-        } else {
-            i13 = 3;
-        }
-        addView(textView2, kb1.h(-2, -2.0f, i13 | 48, 21.0f, 35.0f, 21.0f, 0.0f));
-        ImageView imageView = new ImageView(context);
-        this.f24214c = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        org.telegram.ui.ActionBar.f7.t(imageView, org.telegram.ui.ActionBar.y6.f23521m6, null, PorterDuff.Mode.MULTIPLY);
-        imageView.setVisibility(8);
-        addView(imageView, kb1.h(52, 52.0f, (LocaleController.isRTL ? 5 : 3) | 48, 8.0f, 6.0f, 8.0f, 0.0f));
+    public h9(mt mtVar, ActionMode.Callback callback) {
+        this.f22004a = 1;
+        this.f22006c = mtVar;
+        this.f22005b = callback;
     }
 
-    public final void a(String str, String str2, boolean z10) {
-        this.f24212a.setText(str);
-        this.f24213b.setText(str2);
-        this.d = z10;
-        this.f24214c.setVisibility(8);
-        setWillNotDraw(!z10);
-    }
-
-    public final void b(int i10, String str, String str2, boolean z10) {
-        int dp;
-        int i11;
-        int dp2;
-        int i12;
-        int i13;
-        TextView textView = this.f24212a;
-        textView.setText(str);
-        TextView textView2 = this.f24213b;
-        textView2.setText(str2);
-        ImageView imageView = this.f24214c;
-        imageView.setImageResource(i10);
-        imageView.setVisibility(0);
-        if (LocaleController.isRTL) {
-            dp = 0;
-        } else {
-            dp = AndroidUtilities.dp(50.0f);
-        }
-        if (LocaleController.isRTL) {
-            i11 = AndroidUtilities.dp(50.0f);
-        } else {
-            i11 = 0;
-        }
-        textView.setPadding(dp, 0, i11, 0);
-        if (LocaleController.isRTL) {
-            dp2 = 0;
-        } else {
-            dp2 = AndroidUtilities.dp(50.0f);
-        }
-        if (LocaleController.isRTL) {
-            i12 = AndroidUtilities.dp(50.0f);
-        } else {
-            i12 = 0;
-        }
-        if (this.e) {
-            i13 = AndroidUtilities.dp(12.0f);
-        } else {
-            i13 = 0;
-        }
-        textView2.setPadding(dp2, 0, i12, i13);
-        this.d = z10;
-        setWillNotDraw(!z10);
-    }
-
-    public TextView getTextView() {
-        return this.f24212a;
-    }
-
-    public TextView getValueTextView() {
-        return this.f24213b;
-    }
-
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        this.f24212a.invalidate();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f7;
-        float dp;
-        int i10;
-        if (this.d && org.telegram.ui.ActionBar.y6.f23479k0 != null) {
-            boolean z10 = LocaleController.isRTL;
-            float f10 = 20.0f;
-            ImageView imageView = this.f24214c;
-            if (z10) {
-                dp = 0.0f;
-            } else {
-                if (imageView.getVisibility() == 0) {
-                    f7 = 71.0f;
-                } else {
-                    f7 = 20.0f;
-                }
-                dp = AndroidUtilities.dp(f7);
-            }
-            float f11 = dp;
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (LocaleController.isRTL) {
-                if (imageView.getVisibility() == 0) {
-                    f10 = 71.0f;
-                }
-                i10 = AndroidUtilities.dp(f10);
-            } else {
-                i10 = 0;
-            }
-            canvas.drawLine(f11, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.y6.f23479k0);
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        if (!this.e) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.d ? 1 : 0), 1073741824));
-        } else {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
-        }
-    }
-
-    public void setMultilineDetail(boolean z10) {
-        this.e = z10;
-        TextView textView = this.f24213b;
-        if (z10) {
-            textView.setLines(0);
-            textView.setMaxLines(0);
-            textView.setSingleLine(false);
-            textView.setPadding(0, 0, 0, AndroidUtilities.dp(12.0f));
+    public void b(Menu menu) {
+        boolean z10;
+        cd.D0().f15003y.getLanguage();
+        MenuItem findItem = menu.findItem(3);
+        if (findItem == null) {
             return;
         }
-        textView.setLines(1);
-        textView.setMaxLines(1);
-        textView.setSingleLine(true);
-        textView.setPadding(0, 0, 0, 0);
+        if (((w9) this.f22006c).f23430k0 != null && ((String) this.f22005b) != null && !e01.c0().contains((String) this.f22005b)) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        findItem.setVisible(z10);
     }
 
-    public void setValue(CharSequence charSequence) {
-        this.f24213b.setText(charSequence);
+    @Override
+    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+        jj jjVar;
+        CharSequence s10;
+        int i10 = this.f22004a;
+        Object obj = this.f22006c;
+        switch (i10) {
+            case 0:
+                w9 w9Var = (w9) obj;
+                f fVar = w9Var.m0;
+                if (w9Var.x()) {
+                    int itemId = menuItem.getItemId();
+                    if (itemId == 16908321) {
+                        if (w9Var.x() && w9Var.b()) {
+                            if (!w9Var.C()) {
+                                CharSequence r10 = w9Var.r();
+                                if (r10 != null) {
+                                    org.telegram.messenger.i0.g(r10);
+                                }
+                            }
+                            w9Var.u();
+                            w9Var.f(true);
+                            w7.x5 x5Var = w9Var.D;
+                            if (x5Var != null) {
+                                x5Var.b();
+                            }
+                        }
+                    } else if (itemId == 16908319) {
+                        if (!w9Var.J() && (s10 = w9Var.s(w9Var.W, false)) != null) {
+                            w9Var.f23443u = 0;
+                            w9Var.v = s10.length();
+                            w9Var.u();
+                            w9Var.w();
+                            org.telegram.messenger.i0.r(fVar);
+                            org.telegram.messenger.i0.g3(fVar);
+                        }
+                    } else if (itemId == 3) {
+                        if (w9Var.f23430k0 != null) {
+                            String language = cd.D0().f15003y.getLanguage();
+                            org.telegram.ui.r rVar = w9Var.f23430k0;
+                            CharSequence r11 = w9Var.r();
+                            f fVar2 = new f(this, 8);
+                            org.telegram.ui.h4 h4Var = rVar.f41098a;
+                            m31.U0(h4Var.L, h4Var.M, (String) this.f22005b, language, r11, null, fVar2);
+                        }
+                        w9Var.u();
+                    } else if (itemId == 2131296502) {
+                        if (w9Var.x()) {
+                            r9 r9Var = w9Var.W;
+                            if (r9Var instanceof q1) {
+                                jjVar = ((q1) r9Var).getMessageObject();
+                            } else {
+                                jjVar = null;
+                            }
+                            if (jjVar != null && w9Var.r() != null) {
+                                w9Var.I(w9Var.f23443u, w9Var.v, jjVar);
+                                w9Var.f(true);
+                            }
+                        }
+                        w9Var.u();
+                    } else if (itemId == 16908320) {
+                        w9Var.D();
+                        w9Var.u();
+                    } else if (itemId == 16908322) {
+                        w9Var.H();
+                        w9Var.u();
+                    } else {
+                        w9Var.f(false);
+                    }
+                }
+                return true;
+            default:
+                if (((mt) obj).G(menuItem.getItemId())) {
+                    actionMode.finish();
+                    return true;
+                }
+                try {
+                    return ((ActionMode.Callback) this.f22005b).onActionItemClicked(actionMode, menuItem);
+                } catch (Exception unused) {
+                    return true;
+                }
+        }
+    }
+
+    @Override
+    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+        switch (this.f22004a) {
+            case 0:
+                menu.add(0, 16908321, 0, 17039361);
+                menu.add(0, 2131296502, 1, cd.L0(2131746455, null));
+                menu.add(0, 3, 2, cd.L0(2131743981, null));
+                menu.add(0, 16908320, 3, 17039363);
+                menu.add(0, 16908322, 4, 17039371);
+                menu.add(0, 16908319, 5, 17039373);
+                return true;
+            default:
+                ((mt) this.f22006c).E();
+                return ((ActionMode.Callback) this.f22005b).onCreateActionMode(actionMode, menu);
+        }
+    }
+
+    @Override
+    public final void onDestroyActionMode(ActionMode actionMode) {
+        switch (this.f22004a) {
+            case 0:
+                return;
+            default:
+                ((mt) this.f22006c).D();
+                ((ActionMode.Callback) this.f22005b).onDestroyActionMode(actionMode);
+                return;
+        }
+    }
+
+    @Override
+    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+        Context context;
+        ClipboardManager clipboardManager;
+        boolean z10;
+        w9 w9Var;
+        r9 r9Var;
+        switch (this.f22004a) {
+            case 0:
+                MenuItem findItem = menu.findItem(2131296502);
+                if (findItem != null) {
+                    findItem.setVisible(((w9) this.f22006c).e());
+                }
+                MenuItem findItem2 = menu.findItem(16908321);
+                if (findItem2 != null) {
+                    findItem2.setVisible(((w9) this.f22006c).b());
+                }
+                MenuItem findItem3 = menu.findItem(16908319);
+                if (findItem3 != null && (r9Var = (w9Var = (w9) this.f22006c).W) != null) {
+                    CharSequence s10 = w9Var.s(r9Var, false);
+                    if (!((w9) this.f22006c).b()) {
+                        findItem3.setVisible(false);
+                    } else if (((w9) this.f22006c).j()) {
+                        findItem3.setVisible(true);
+                    } else {
+                        w9 w9Var2 = (w9) this.f22006c;
+                        if (!w9Var2.Z && (w9Var2.f23443u > 0 || w9Var2.v < s10.length() - 1)) {
+                            findItem3.setVisible(true);
+                        } else {
+                            findItem3.setVisible(false);
+                        }
+                    }
+                }
+                MenuItem findItem4 = menu.findItem(16908320);
+                if (findItem4 != null) {
+                    findItem4.setVisible(((w9) this.f22006c) instanceof bi.q3);
+                }
+                MenuItem findItem5 = menu.findItem(16908322);
+                if (findItem5 != null) {
+                    w9 w9Var3 = (w9) this.f22006c;
+                    if (w9Var3 instanceof bi.q3) {
+                        try {
+                            v9 v9Var = w9Var3.C;
+                            if (v9Var != null) {
+                                context = v9Var.getContext();
+                            } else {
+                                context = org.telegram.messenger.w0.f19025b;
+                            }
+                        } catch (Exception unused) {
+                        }
+                        if (context != null && (clipboardManager = (ClipboardManager) context.getSystemService("clipboard")) != null) {
+                            if (clipboardManager.hasPrimaryClip()) {
+                                z10 = true;
+                                findItem5.setVisible(z10);
+                            }
+                        }
+                    }
+                    z10 = false;
+                    findItem5.setVisible(z10);
+                }
+                w9 w9Var4 = (w9) this.f22006c;
+                if (w9Var4.f23430k0 != null && w9Var4.r() != null) {
+                    js.d(((w9) this.f22006c).r().toString(), new g9(this, menu), new g9(this, menu), false);
+                } else {
+                    this.f22005b = null;
+                    b(menu);
+                }
+                return true;
+            default:
+                return ((ActionMode.Callback) this.f22005b).onPrepareActionMode(actionMode, menu);
+        }
+    }
+
+    public h9(w9 w9Var) {
+        this.f22004a = 0;
+        this.f22006c = w9Var;
+        this.f22005b = null;
+    }
+
+    private final void a(ActionMode actionMode) {
     }
 }

@@ -1,69 +1,204 @@
 package bh;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.graphics.RectF;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.text.style.ReplacementSpan;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.ActionBar.y6;
-public final class c extends ReplacementSpan {
-    public final TextPaint f3995a;
-    public final RectF f3996b;
-    public StaticLayout f3997c;
-    public float d;
-    public float e;
-    public int f3998f;
-    public final u6 h;
+import android.net.Uri;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+import kg.x;
+import mg.i2;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.f8;
+import org.telegram.messenger.jj;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.messenger.zs;
+import org.telegram.ui.ActionBar.k2;
+import org.telegram.ui.Cells.c2;
+import org.telegram.ui.Cells.w;
+import org.telegram.ui.Components.FragmentContextView;
+import org.telegram.ui.Components.cq;
+import org.telegram.ui.Components.ec;
+import org.telegram.ui.Components.hu;
+import org.telegram.ui.Components.jf0;
+import org.telegram.ui.Components.lr;
+import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.voip.s0;
+import org.telegram.ui.Components.voip.t1;
+import org.telegram.ui.ExternalActionActivity;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.PremiumPreviewFragment;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.Wallet.p3;
+import ph.d0;
+import ph.m;
+import rh.t0;
+import th.w0;
+public final class c implements View.OnClickListener {
+    public final int f2776a;
 
-    public c(u6 u6Var) {
-        TextPaint textPaint = new TextPaint(1);
-        this.f3995a = textPaint;
-        this.f3996b = new RectF();
-        this.h = u6Var;
-        textPaint.setTextSize(AndroidUtilities.dp(15.0f));
-        textPaint.setColor(y6.w0(y6.C6, u6Var));
+    public c(int i10) {
+        this.f2776a = i10;
     }
 
-    public final void a() {
-        Layout.Alignment alignment;
-        if (this.f3997c == null) {
-            String string = LocaleController.getString(R.string.ReactionAddReactionsHint);
-            int i10 = AndroidUtilities.displaySize.x;
-            if (LocaleController.isRTL) {
-                alignment = Layout.Alignment.ALIGN_OPPOSITE;
-            } else {
-                alignment = Layout.Alignment.ALIGN_NORMAL;
-            }
-            StaticLayout staticLayout = new StaticLayout(string, this.f3995a, i10, alignment, 1.0f, 0.0f, false);
-            this.f3997c = staticLayout;
-            this.d = staticLayout.getLineWidth(0);
-            this.e = this.f3997c.getHeight();
+    @Override
+    public final void onClick(View view) {
+        int i10;
+        c2 c2Var;
+        switch (this.f2776a) {
+            case 0:
+                int i11 = e.e;
+                return;
+            case 1:
+                return;
+            case 2:
+                PhotoViewer.v1().k0(1.0f, 0.0f, 0.0f, false);
+                return;
+            case 3:
+                int i12 = w.L;
+                return;
+            case 4:
+                k2 Q = LaunchActivity.Q();
+                if (Q != null) {
+                    Q.presentFragment(new PremiumPreviewFragment(0, "contact"));
+                    return;
+                }
+                return;
+            case 5:
+                if (!MediaController.B().A0) {
+                    if (MediaController.B().H()) {
+                        MediaController.B().S(MediaController.B().f14482u0);
+                        return;
+                    } else {
+                        MediaController.B().R(MediaController.B().f14482u0, true);
+                        return;
+                    }
+                }
+                return;
+            case 6:
+                int i13 = cq.f25133f0;
+                return;
+            case 7:
+                int i14 = lr.f28167x;
+                return;
+            case 8:
+                float[] fArr = FragmentContextView.W0;
+                MediaController B = MediaController.B();
+                u61 u61Var = B.E0;
+                if (u61Var != null) {
+                    u61Var.s0(false);
+                }
+                B.n0();
+                B.m();
+                jj jjVar = B.f14482u0;
+                if (jjVar != null) {
+                    zs f7 = zs.f(jjVar.I1);
+                    jj jjVar2 = B.f14482u0;
+                    if (jjVar2 != null) {
+                        i10 = jjVar2.f1();
+                    } else {
+                        i10 = 0;
+                    }
+                    f7.k(150, Integer.valueOf(i10));
+                    return;
+                }
+                return;
+            case 9:
+                jf0 jf0Var = jf0.f27345p0;
+                hu huVar = jf0Var.U;
+                if (huVar != null) {
+                    huVar.I0();
+                } else {
+                    PhotoViewer photoViewer = jf0Var.V;
+                    if (photoViewer != null) {
+                        photoViewer.Q0();
+                        MediaController.B().F0();
+                    }
+                }
+                jf0.b(false);
+                return;
+            case 10:
+                s0.b();
+                return;
+            case 11:
+                ((c2) view).c(!c2Var.b(), true);
+                return;
+            case 12:
+                VoIPService sharedInstance = VoIPService.getSharedInstance();
+                if (sharedInstance != null) {
+                    sharedInstance.hangUp();
+                    return;
+                } else {
+                    t1.a();
+                    return;
+                }
+            case 13:
+                i2.l1(0, null);
+                return;
+            case 14:
+                ArrayList arrayList = ExternalActionActivity.f33321y;
+                return;
+            case 15:
+                return;
+            case 16:
+                Pattern pattern = LaunchActivity.D1;
+                return;
+            case 17:
+                return;
+            case 18:
+                RectF rectF = ProfileActivity.R6;
+                try {
+                    view.getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://fragment.com")));
+                    return;
+                } catch (ActivityNotFoundException e) {
+                    f8.g(e, true);
+                    return;
+                }
+            case 19:
+                int i15 = p3.W;
+                return;
+            case 20:
+                int i16 = m.f45213s2;
+                return;
+            case 21:
+                ec[] ecVarArr = ph.w.f45335h2;
+                return;
+            case 22:
+                int i17 = d0.Y1;
+                return;
+            case 23:
+                int i18 = t0.f47470s2;
+                return;
+            case 24:
+                int i19 = sg.f.e;
+                return;
+            case 25:
+                w0.b();
+                return;
+            case 26:
+                int i20 = x.e;
+                return;
+            case 27:
+                PhotoViewer.v1().k0(1.0f, 0.0f, 0.0f, false);
+                return;
+            default:
+                int i21 = xh.k.f53834n;
+                return;
         }
     }
 
-    @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        a();
-        this.f3995a.setColor(y6.w0(y6.C6, this.h));
-        Rect clipBounds = canvas.getClipBounds();
-        RectF rectF = this.f3996b;
-        rectF.set(clipBounds);
-        canvas.saveLayerAlpha(rectF, this.f3998f, 31);
-        canvas.translate(f7 + AndroidUtilities.dp(4.0f), (((i14 - i12) / 2.0f) + i12) - (this.e / 2.0f));
-        this.f3997c.draw(canvas);
-        canvas.restore();
+    public c(Object obj, int i10) {
+        this.f2776a = i10;
     }
 
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        a();
-        return (int) (AndroidUtilities.dp(8.0f) + this.d);
+    private final void a(View view) {
+    }
+
+    private final void b(View view) {
+    }
+
+    private final void c(View view) {
     }
 }

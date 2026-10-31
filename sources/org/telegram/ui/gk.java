@@ -1,30 +1,53 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class gk extends org.telegram.ui.Components.gp {
-    public final wn f39638f;
+import android.widget.FrameLayout;
+import org.telegram.ui.Components.FragmentContextView;
+public final class gk extends FragmentContextView {
+    public final int X0;
+    public final un Y0;
 
-    public gk(wn wnVar, Context context) {
-        super(context);
-        this.f39638f = wnVar;
+    public gk(un unVar, Context context, un unVar2, org.telegram.ui.ActionBar.p6 p6Var, int i10) {
+        super(context, unVar2, null, true, p6Var);
+        this.X0 = i10;
+        switch (i10) {
+            case 1:
+                this.Y0 = unVar;
+                super(context, unVar2, null, false, p6Var);
+                return;
+            default:
+                this.Y0 = unVar;
+                return;
+        }
     }
 
     @Override
-    public final void a(boolean z10) {
-        wn wnVar = this.f39638f;
-        wnVar.C7();
-        wnVar.A7();
-        wnVar.D7();
-        wnVar.E7();
-        zk zkVar = wnVar.Ab;
-        if (zkVar != null) {
-            zkVar.setTranslationY(wnVar.M9 + getCurrentHeight());
+    public final void setVisibility(int i10) {
+        boolean z10;
+        boolean z11;
+        switch (this.X0) {
+            case 0:
+                un unVar = this.Y0;
+                org.telegram.ui.Components.hg hgVar = unVar.f42180a1;
+                FrameLayout frameLayout = unVar.f42356o2;
+                if (i10 == 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                hgVar.i(frameLayout, z10, true);
+                return;
+            default:
+                un unVar2 = this.Y0;
+                org.telegram.ui.Components.hg hgVar2 = unVar2.f42180a1;
+                FrameLayout frameLayout2 = unVar2.f42329m2;
+                if (i10 == 0) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                hgVar2.i(frameLayout2, z11, true);
+                return;
         }
-        if (z10) {
-            wnVar.T9 = true;
-            wnVar.Ac();
-            return;
-        }
-        wnVar.A9();
     }
 }

@@ -1,26 +1,35 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.LanguageDetector;
-import org.telegram.messenger.TranslateController;
-import org.telegram.tgnet.tl.TL_stories;
-public final class nl implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback {
-    public final TranslateController f20814a;
-    public final TL_stories.StoryItem f20815b;
-    public final TranslateController.StoryKey f20816c;
+import org.telegram.tgnet.TLRPC;
+public final class nl implements Runnable {
+    public final int f17142a;
+    public final vp f17143b;
+    public final TLRPC.TL_error f17144c;
+    public final long d;
 
-    public nl(TranslateController translateController, TL_stories.StoryItem storyItem, TranslateController.StoryKey storyKey) {
-        this.f20814a = translateController;
-        this.f20815b = storyItem;
-        this.f20816c = storyKey;
+    public nl(vp vpVar, TLRPC.TL_error tL_error, long j10, int i10) {
+        this.f17142a = i10;
+        this.f17143b = vpVar;
+        this.f17144c = tL_error;
+        this.d = j10;
     }
 
     @Override
-    public void run(Exception exc) {
-        this.f20814a.lambda$detectStoryLanguage$34(this.f20815b, this.f20816c, exc);
-    }
-
-    @Override
-    public void run(String str) {
-        this.f20814a.lambda$detectStoryLanguage$32(this.f20815b, this.f20816c, str);
+    public final void run() {
+        int i10 = this.f17142a;
+        long j10 = this.d;
+        TLRPC.TL_error tL_error = this.f17144c;
+        vp vpVar = this.f17143b;
+        switch (i10) {
+            case 0:
+                vpVar.F(j10, tL_error.text);
+                zs.f(vpVar.currentAccount).k(333, Long.valueOf(j10));
+                return;
+            default:
+                vpVar.getClass();
+                vpVar.F(j10, tL_error.text);
+                vpVar.f18895s1.remove(Long.valueOf(j10));
+                return;
+        }
     }
 }

@@ -1,181 +1,35 @@
 package yc;
 
-import a8.r0;
-import he.v;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import javax.net.ssl.HttpsURLConnection;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.telegram.ui.Components.b10;
-import wc.g;
-public abstract class b {
-    public static final c f52577a = new c();
+import java.util.regex.Pattern;
+import ve.r;
+public final class b extends h {
+    public static final Pattern e = i.f54380m;
 
-    public static HttpURLConnection a(String str, v vVar) {
-        Throwable th2;
-        OutputStream outputStream;
-        HttpURLConnection httpURLConnection = (HttpURLConnection) new URL("https://api.stripe.com/v1/tokens").openConnection();
-        httpURLConnection.setConnectTimeout(30000);
-        httpURLConnection.setReadTimeout(80000);
-        httpURLConnection.setUseCaches(false);
-        HashMap hashMap = new HashMap();
-        hashMap.put("Accept-Charset", "UTF-8");
-        hashMap.put("Accept", "application/json");
-        hashMap.put("User-Agent", "Stripe/v1 JavaBindings/3.5.0");
-        String str2 = vVar.f12820b;
-        hashMap.put("Authorization", "Bearer " + str2);
-        String[] strArr = {"os.name", "os.version", "os.arch", "java.version", "java.vendor", "java.vm.version", "java.vm.vendor"};
-        HashMap hashMap2 = new HashMap();
-        for (int i10 = 0; i10 < 7; i10++) {
-            String str3 = strArr[i10];
-            hashMap2.put(str3, System.getProperty(str3));
+    @Override
+    public final df.c b() {
+        this.d++;
+        if (c() == '\n') {
+            ve.g gVar = new ve.g(1);
+            this.d++;
+            return gVar;
         }
-        hashMap2.put("bindings.version", "3.5.0");
-        hashMap2.put("lang", "Java");
-        hashMap2.put("publisher", "Stripe");
-        hashMap.put("X-Stripe-Client-User-Agent", new JSONObject(hashMap2).toString());
-        for (Map.Entry entry : hashMap.entrySet()) {
-            httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
-        }
-        if (httpURLConnection instanceof HttpsURLConnection) {
-            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f52577a);
-        }
-        httpURLConnection.setDoOutput(true);
-        httpURLConnection.setRequestMethod("POST");
-        httpURLConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
-        try {
-            outputStream = httpURLConnection.getOutputStream();
-            try {
-                outputStream.write(str.getBytes("UTF-8"));
-                outputStream.close();
-                return httpURLConnection;
-            } catch (Throwable th3) {
-                th2 = th3;
-                if (outputStream != null) {
-                    outputStream.close();
-                }
-                throw th2;
+        if (this.d < this.f54376c.length()) {
+            String str = this.f54376c;
+            int i10 = this.d;
+            if (e.matcher(str.substring(i10, i10 + 1)).matches()) {
+                String str2 = this.f54376c;
+                int i11 = this.d;
+                this.f54374a.getClass();
+                r rVar = new r(str2.substring(i11, i11 + 1));
+                this.d++;
+                return rVar;
             }
-        } catch (Throwable th4) {
-            th2 = th4;
-            outputStream = null;
         }
+        return f("\\");
     }
 
-    public static String b(HashMap hashMap) {
-        String encode;
-        String encode2;
-        StringBuilder sb2 = new StringBuilder();
-        for (a aVar : d(null, hashMap)) {
-            if (sb2.length() > 0) {
-                sb2.append("&");
-            }
-            String str = aVar.f52575a;
-            String str2 = aVar.f52576b;
-            if (str == null) {
-                encode = null;
-            } else {
-                encode = URLEncoder.encode(str, "UTF-8");
-            }
-            if (str2 == null) {
-                encode2 = null;
-            } else {
-                encode2 = URLEncoder.encode(str2, "UTF-8");
-            }
-            sb2.append(encode + "=" + encode2);
-        }
-        return sb2.toString();
-    }
-
-    public static s4.d c(java.util.HashMap r7, he.v r8) {
-        throw new UnsupportedOperationException("Method not decompiled: yc.b.c(java.util.HashMap, he.v):s4.d");
-    }
-
-    public static LinkedList d(String str, Map map) {
-        LinkedList linkedList = new LinkedList();
-        if (map != null) {
-            for (Map.Entry entry : map.entrySet()) {
-                String str2 = (String) entry.getKey();
-                Object value = entry.getValue();
-                if (str != null) {
-                    str2 = str + "[" + str2 + "]";
-                }
-                linkedList.addAll(e(value, str2));
-            }
-        }
-        return linkedList;
-    }
-
-    public static List e(Object obj, String str) {
-        if (obj instanceof Map) {
-            return d(str, (Map) obj);
-        }
-        if (obj instanceof List) {
-            List<Object> list = (List) obj;
-            LinkedList linkedList = new LinkedList();
-            String u10 = b10.u(str, "[]");
-            if (list.isEmpty()) {
-                linkedList.add(new a(str, ""));
-                return linkedList;
-            }
-            for (Object obj2 : list) {
-                linkedList.addAll(e(obj2, u10));
-            }
-            return linkedList;
-        } else if (!"".equals(obj)) {
-            if (obj == null) {
-                LinkedList linkedList2 = new LinkedList();
-                linkedList2.add(new a(str, ""));
-                return linkedList2;
-            }
-            LinkedList linkedList3 = new LinkedList();
-            linkedList3.add(new a(str, obj.toString()));
-            return linkedList3;
-        } else {
-            throw new g(b10.k("You cannot set '", str, "' to an empty string. We interpret empty strings as null in requests. You may set '", str, "' to null to delete the property."), null, null);
-        }
-    }
-
-    public static a8.ng f(java.util.HashMap r7, he.v r8) {
-        throw new UnsupportedOperationException("Method not decompiled: yc.b.f(java.util.HashMap, he.v):a8.ng");
-    }
-
-    public static void g(int i10, String str, String str2) {
-        String str3;
-        try {
-            JSONObject jSONObject = new JSONObject(str).getJSONObject("error");
-            r0.a(jSONObject.optString("charge"));
-            r0.a(jSONObject.optString("code"));
-            r0.a(jSONObject.optString("decline_code"));
-            str3 = r0.a(jSONObject.optString("message"));
-            r0.a(jSONObject.optString("param"));
-            r0.a(jSONObject.optString("type"));
-        } catch (JSONException unused) {
-            str3 = "An improperly formatted error response was found.";
-        }
-        if (i10 != 429) {
-            switch (i10) {
-                case 400:
-                    throw new g(str3, str2, null);
-                case 401:
-                    throw new g(str3, str2);
-                case 402:
-                    throw new g(str3, str2, null);
-                case 403:
-                    throw new g(str3, str2);
-                case 404:
-                    throw new g(str3, str2, null);
-                default:
-                    throw new g(str3, str2, null);
-            }
-        }
-        throw new g(str3, str2, null);
+    @Override
+    public final char d() {
+        return '\\';
     }
 }

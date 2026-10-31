@@ -47,21 +47,21 @@ public class AccentedAtom extends Atom {
         } else {
             f7 = 0.0f;
         }
-        Char r6 = teXFont.getChar(this.accent.getName(), style);
-        while (teXFont.hasNextLarger(r6)) {
-            Char nextLarger = teXFont.getNextLarger(r6, style);
+        Char r62 = teXFont.getChar(this.accent.getName(), style);
+        while (teXFont.hasNextLarger(r62)) {
+            Char nextLarger = teXFont.getNextLarger(r62, style);
             if (nextLarger.getWidth() > width) {
                 break;
             }
-            r6 = nextLarger;
+            r62 = nextLarger;
         }
         float f12 = -SpaceAtom.getFactor(5, teXEnvironment);
         if (!this.acc) {
-            f12 = Math.min(createBox.getHeight(), teXFont.getXHeight(style, r6.getFontCode()));
+            f12 = Math.min(createBox.getHeight(), teXFont.getXHeight(style, r62.getFontCode()));
         }
         VerticalBox verticalBox = new VerticalBox();
-        float italic = r6.getItalic();
-        HorizontalBox charBox = new CharBox(r6);
+        float italic = r62.getItalic();
+        HorizontalBox charBox = new CharBox(r62);
         if (this.acc) {
             SymbolAtom symbolAtom = this.accent;
             if (this.changeSize) {
@@ -128,7 +128,7 @@ public class AccentedAtom extends Atom {
                 return;
             }
         }
-        throw new InvalidSymbolTypeException(g.p("The symbol with the name '", str, "' is not defined as an accent (type='acc') in 'TeXSymbols.xml'!"));
+        throw new InvalidSymbolTypeException(g.n("The symbol with the name '", str, "' is not defined as an accent (type='acc') in 'TeXSymbols.xml'!"));
     }
 
     public AccentedAtom(Atom atom, TeXFormula teXFormula) {

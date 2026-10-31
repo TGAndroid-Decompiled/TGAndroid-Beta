@@ -1,27 +1,110 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class uz implements RequestDelegate {
-    public final int f44143a;
-    public final q00 f44144b;
+import android.content.Context;
+import org.telegram.tgnet.tl.TL_chatlists;
+public final class uz extends c00 {
+    public final vz E;
 
-    public uz(q00 q00Var, int i10) {
-        this.f44143a = i10;
-        this.f44144b = q00Var;
+    public uz(vz vzVar, Context context, int i10, int i11) {
+        super(context, null, i10, i11);
+        this.E = vzVar;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f44143a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new kz(3, this.f44144b, tLObject));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new pq(this.f44144b, tL_error, tLObject, 6));
-                return;
+    public final void b(TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite) {
+        vz vzVar = this.E;
+        vzVar.d.R1.remove(tL_exportedChatlistInvite);
+        vzVar.d.g1();
+        vzVar.d.h1(true);
+    }
+
+    @Override
+    public final void c() {
+        org.telegram.ui.Components.z60 F = org.telegram.ui.Components.z60.F(this.E.d.f21589c, null, this);
+        F.c(2131232102, org.telegram.messenger.cd.L0(2131751762, null), new Runnable(this) {
+            public final uz f41971b;
+
+            {
+                this.f41971b = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (r2) {
+                    case 0:
+                        uz uzVar = this.f41971b;
+                        String str = uzVar.f36349y;
+                        if (str != null && org.telegram.messenger.i0.g(str)) {
+                            new org.telegram.ui.Components.cc(uzVar.E.d.S1, null).k(false).j();
+                            return;
+                        }
+                        return;
+                    case 1:
+                        this.f41971b.d();
+                        return;
+                    default:
+                        this.f41971b.a();
+                        return;
+                }
+            }
+        }, false);
+        F.c(2131232319, org.telegram.messenger.cd.L0(2131750481, null), new Runnable(this) {
+            public final uz f41971b;
+
+            {
+                this.f41971b = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (r2) {
+                    case 0:
+                        uz uzVar = this.f41971b;
+                        String str = uzVar.f36349y;
+                        if (str != null && org.telegram.messenger.i0.g(str)) {
+                            new org.telegram.ui.Components.cc(uzVar.E.d.S1, null).k(false).j();
+                            return;
+                        }
+                        return;
+                    case 1:
+                        this.f41971b.d();
+                        return;
+                    default:
+                        this.f41971b.a();
+                        return;
+                }
+            }
+        }, false);
+        F.c(2131232107, org.telegram.messenger.cd.L0(2131751535, null), new Runnable(this) {
+            public final uz f41971b;
+
+            {
+                this.f41971b = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (r2) {
+                    case 0:
+                        uz uzVar = this.f41971b;
+                        String str = uzVar.f36349y;
+                        if (str != null && org.telegram.messenger.i0.g(str)) {
+                            new org.telegram.ui.Components.cc(uzVar.E.d.S1, null).k(false).j();
+                            return;
+                        }
+                        return;
+                    case 1:
+                        this.f41971b.d();
+                        return;
+                    default:
+                        this.f41971b.a();
+                        return;
+                }
+            }
+        }, true);
+        if (org.telegram.messenger.cd.X) {
+            F.f32923i = 3;
         }
+        F.Z();
     }
 }

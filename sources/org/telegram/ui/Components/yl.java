@@ -1,63 +1,84 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-public final class yl implements q0.a {
-    public final int f35104a;
-    public final Object f35105b;
-    public final boolean f35106c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import org.telegram.messenger.camera.CameraView;
+public final class yl extends CameraView {
+    public final k7 f32754a;
+    public boolean f32755b;
+    public final ChatAttachAlertPhotoLayout f32756c;
 
-    public yl(int i10, Object obj, boolean z10) {
-        this.f35104a = i10;
-        this.f35105b = obj;
-        this.f35106c = z10;
+    public yl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, Context context, boolean z10, boolean z11) {
+        super(context, z10, z11);
+        this.f32756c = chatAttachAlertPhotoLayout;
+        this.f32754a = new k7(this, 2);
     }
 
     @Override
-    public final void accept(Object obj) {
-        qc qcVar;
-        int i10 = this.f35104a;
-        boolean z10 = false;
-        boolean z11 = this.f35106c;
-        Object obj2 = this.f35105b;
-        switch (i10) {
-            case 0:
-                ArrayList arrayList = (ArrayList) obj2;
-                View view = (View) obj;
-                boolean z12 = ChatAttachAlertPhotoLayout.f26017q1;
-                if (view instanceof org.telegram.ui.Cells.x5) {
-                    org.telegram.ui.Cells.x5 x5Var = (org.telegram.ui.Cells.x5) view;
-                    MediaController.PhotoEntry photoEntry = x5Var.getPhotoEntry();
-                    if (photoEntry != null && arrayList.contains(Integer.valueOf(photoEntry.imageId)) && z11) {
-                        z10 = true;
-                    }
-                    x5Var.setHasSpoiler(z10);
-                    return;
-                }
-                return;
-            case 1:
-                ArrayList arrayList2 = (ArrayList) obj2;
-                View view2 = (View) obj;
-                boolean z13 = ChatAttachAlertPhotoLayout.f26017q1;
-                if (view2 instanceof org.telegram.ui.Cells.x5) {
-                    org.telegram.ui.Cells.x5 x5Var2 = (org.telegram.ui.Cells.x5) view2;
-                    MediaController.PhotoEntry photoEntry2 = x5Var2.getPhotoEntry();
-                    if (photoEntry2 != null && arrayList2.contains(Integer.valueOf(photoEntry2.imageId)) && z11) {
-                        z10 = true;
-                    }
-                    x5Var2.setHighQuality(z10);
-                    return;
-                }
-                return;
-            default:
-                Float f7 = (Float) obj;
-                ob obVar = ((jb) obj2).f29613b.f31868q;
-                if (obVar != null && !z11) {
-                    obVar.c(qcVar.e.getHeight() - f7.floatValue());
-                    return;
-                }
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        float f7;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f32756c;
+        bi biVar = chatAttachAlertPhotoLayout.f30947b;
+        if (org.telegram.messenger.i0.m0) {
+            return;
         }
+        if (!this.f32755b && (chatAttachAlertPhotoLayout.f23856d0 || !chatAttachAlertPhotoLayout.f23852b0)) {
+            float translationY = (biVar.f21586b.getTranslationY() + (biVar.A2[1] + chatAttachAlertPhotoLayout.W0)) - chatAttachAlertPhotoLayout.P.getTranslationY();
+            oh ohVar = biVar.f24746y4;
+            if (ohVar != null) {
+                f7 = ohVar.d() + org.telegram.messenger.i0.L(8.0f);
+            } else {
+                f7 = 0.0f;
+            }
+            int min = (int) Math.min(translationY - f7, getMeasuredHeight());
+            boolean z10 = chatAttachAlertPhotoLayout.f23856d0;
+            if (z10) {
+                RectF rectF = org.telegram.messenger.i0.P;
+                float f10 = chatAttachAlertPhotoLayout.f23876n1;
+                boolean z11 = ChatAttachAlertPhotoLayout.f23845q1;
+                float f11 = 1.0f - chatAttachAlertPhotoLayout.f23858e0;
+                rectF.set((0.0f * f11) + f10, (f11 * chatAttachAlertPhotoLayout.W) + chatAttachAlertPhotoLayout.f23871k1, chatAttachAlertPhotoLayout.f23873m1, org.telegram.messenger.i0.T1(Math.min(min, chatAttachAlertPhotoLayout.l1), getMeasuredHeight(), chatAttachAlertPhotoLayout.f23858e0));
+            } else if (!z10 && !chatAttachAlertPhotoLayout.f23852b0) {
+                RectF rectF2 = org.telegram.messenger.i0.P;
+                boolean z12 = ChatAttachAlertPhotoLayout.f23845q1;
+                rectF2.set(0.0f, chatAttachAlertPhotoLayout.W, getMeasuredWidth(), Math.min(min, getMeasuredHeight()));
+                return;
+            } else {
+                org.telegram.messenger.i0.P.set(0.0f, 0.0f, getMeasuredWidth(), Math.min(min, getMeasuredHeight()));
+            }
+            canvas.save();
+            canvas.clipRect(org.telegram.messenger.i0.P);
+            super.dispatchDraw(canvas);
+            canvas.restore();
+            return;
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f32756c;
+        wb.a(chatAttachAlertPhotoLayout.P, this.f32754a);
+        chatAttachAlertPhotoLayout.E.invalidate();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        wb.h(this.f32756c.P);
+    }
+
+    @Override
+    public void setVisibility(int i10) {
+        super.setVisibility(i10);
+        this.f32756c.E.invalidate();
+    }
+
+    @Override
+    public final void showTexture(boolean z10, boolean z11) {
+        super.showTexture(z10, z11);
+        this.f32756c.E.invalidate();
     }
 }

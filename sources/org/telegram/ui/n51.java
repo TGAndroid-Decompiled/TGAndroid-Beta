@@ -1,21 +1,26 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-public final class n51 extends tg.c1 {
-    public final o51 M;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class n51 implements RequestDelegate {
+    public final int f39830a;
+    public final u61 f39831b;
 
-    public n51(o51 o51Var, Context context) {
-        super(context, 2, null);
-        this.M = o51Var;
+    public n51(u61 u61Var, int i10) {
+        this.f39830a = i10;
+        this.f39831b = u61Var;
     }
 
     @Override
-    public final void invalidate() {
-        super.invalidate();
-        o51 o51Var = this.M;
-        if (o51Var.getParent() instanceof View) {
-            ((View) o51Var.getParent()).invalidate();
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f39830a) {
+            case 0:
+                u61.Z(this.f39831b, tLObject);
+                return;
+            default:
+                u61.Y(this.f39831b, tLObject);
+                return;
         }
     }
 }

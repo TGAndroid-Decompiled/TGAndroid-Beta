@@ -1,72 +1,82 @@
 package org.telegram.ui.Components;
+public final class bc {
+    public static final bc D;
+    public static final bc E;
+    public static final bc F;
+    public static final bc G;
+    public static final bc H;
+    public static final bc I;
+    public static final bc[] J;
+    public static final bc e;
+    public static final bc f24597f;
+    public static final bc h;
+    public static final bc f24598n;
+    public static final bc f24599r;
+    public static final bc f24600s;
+    public static final bc f24601w;
+    public static final bc f24602x;
+    public static final bc f24603y;
+    public final String f24604a;
+    public final int f24605b;
+    public final boolean f24606c;
+    public final ac d;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.support.SparseLongArray;
-public final class bc extends yb implements NotificationCenter.NotificationCenterDelegate {
-    public final zb d;
-    public SparseLongArray e;
-    public final org.telegram.ui.ActionBar.r2 f26800f;
-    public final int h;
-    public qc f26801n;
-
-    public bc(int i10, org.telegram.ui.ActionBar.r2 r2Var) {
-        super(r2Var.getContext(), r2Var.getResourceProvider());
-        this.f26800f = r2Var;
-        this.h = i10;
-        this.f35028b.setLayoutParams(kb1.m(-2.0f, -2.0f, 8388659, 56.0f, 6.0f, 8.0f, 0.0f));
-        this.f35027a.setLayoutParams(kb1.l(56.0f, 48.0f, 8388659));
-        zb zbVar = new zb(this, r2Var, getContext(), r2Var.getCurrentAccount(), r2Var.getResourceProvider());
-        this.d = zbVar;
-        zbVar.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(0.0f));
-        this.d.setDelegate(new ac(this));
-        this.d.setTop(true);
-        this.d.setClipChildren(false);
-        this.d.setClipToPadding(false);
-        this.d.setVisibility(0);
-        this.d.setBubbleOffset(-AndroidUtilities.dp(80.0f));
-        this.d.setHint(LocaleController.getString(R.string.SavedTagReactionsHint));
-        addView(this.d, kb1.h(-2, 92.5f, 1, 0.0f, 36.0f, 0.0f, 0.0f));
-        this.d.p(null, null, true);
+    static {
+        ac acVar = ac.SAVED_TO_GALLERY;
+        bc bcVar = new bc("PHOTO", 0, "PhotoSavedHint", 2131747280, acVar);
+        e = bcVar;
+        bc bcVar2 = new bc("PHOTOS", 1, "PhotosSavedHint", acVar);
+        f24597f = bcVar2;
+        bc bcVar3 = new bc("VIDEO", 2, "VideoSavedHint", 2131743611, acVar);
+        h = bcVar3;
+        bc bcVar4 = new bc("VIDEOS", 3, "VideosSavedHint", acVar);
+        f24598n = bcVar4;
+        bc bcVar5 = new bc("LIVEPHOTO", 4, "LivePhotoSavedHint", 2131748844, acVar);
+        f24599r = bcVar5;
+        bc bcVar6 = new bc("LIVEPHOTOS", 5, "LivePhotosSavedHint", acVar);
+        f24600s = bcVar6;
+        bc bcVar7 = new bc("MEDIA", 6, "MediaSavedHint", acVar);
+        f24601w = bcVar7;
+        ac acVar2 = ac.SAVED_TO_DOWNLOADS;
+        bc bcVar8 = new bc("PHOTO_TO_DOWNLOADS", 7, "PhotoSavedToDownloadsHintLinked", 2131747279, acVar2);
+        f24602x = bcVar8;
+        bc bcVar9 = new bc("VIDEO_TO_DOWNLOADS", 8, "VideoSavedToDownloadsHintLinked", 2131743610, acVar2);
+        f24603y = bcVar9;
+        bc bcVar10 = new bc("GIF", 9, "GifSavedHint", 2131750479, ac.SAVED_TO_GIFS);
+        D = bcVar10;
+        bc bcVar11 = new bc("GIF_TO_DOWNLOADS", 10, "GifSavedToDownloadsHintLinked", 2131750478, acVar2);
+        E = bcVar11;
+        ac acVar3 = ac.SAVED_TO_MUSIC;
+        bc bcVar12 = new bc("AUDIO", 11, "AudioSavedHint", 2131753908, acVar3);
+        F = bcVar12;
+        bc bcVar13 = new bc("AUDIOS", 12, "AudiosSavedHint", acVar3);
+        G = bcVar13;
+        bc bcVar14 = new bc("UNKNOWN", 13, "FileSavedHintLinked", 2131750829, acVar2);
+        H = bcVar14;
+        bc bcVar15 = new bc("UNKNOWNS", 14, "FilesSavedHintLinked", acVar2);
+        I = bcVar15;
+        J = new bc[]{bcVar, bcVar2, bcVar3, bcVar4, bcVar5, bcVar6, bcVar7, bcVar8, bcVar9, bcVar10, bcVar11, bcVar12, bcVar13, bcVar14, bcVar15};
     }
 
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.savedMessagesForwarded) {
-            this.e = (SparseLongArray) objArr[0];
-        }
+    public bc(String str, int i10, String str2, int i11, ac acVar) {
+        this.f24604a = str2;
+        this.f24605b = i11;
+        this.d = acVar;
+        this.f24606c = false;
     }
 
-    public final void f() {
-        if (this.d.getReactionsWindow() != null) {
-            this.d.e();
-            if (this.d.getReactionsWindow().f4047a != null) {
-                this.d.getReactionsWindow().f4047a.animate().alpha(0.0f).setDuration(180L).start();
-            }
-        }
+    public static bc valueOf(String str) {
+        return (bc) Enum.valueOf(bc.class, str);
     }
 
-    @Override
-    public int getMeasuredBackgroundHeight() {
-        return AndroidUtilities.dp(30.0f) + this.f35028b.getMeasuredHeight();
+    public static bc[] values() {
+        return (bc[]) J.clone();
     }
 
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        NotificationCenter.getInstance(UserConfig.selectedAccount).addWeakObserver(this, NotificationCenter.savedMessagesForwarded);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        NotificationCenter.getInstance(UserConfig.selectedAccount).removeObserver(this, NotificationCenter.savedMessagesForwarded);
-    }
-
-    public void setBulletin(qc qcVar) {
-        this.f26801n = qcVar;
+    public bc(String str, int i10, String str2, ac acVar) {
+        this.f24604a = str2;
+        this.d = acVar;
+        this.f24605b = 0;
+        this.f24606c = true;
     }
 }

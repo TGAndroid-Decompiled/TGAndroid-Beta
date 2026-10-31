@@ -1,98 +1,38 @@
 package bi;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.RadialGradient;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ds;
-public final class y5 extends Drawable {
-    public Drawable f5763g;
-    public int h;
-    public int f5764i;
-    public final Paint f5760b = new Paint(1);
-    public final Shader[] f5761c = new Shader[2];
-    public final Matrix d = new Matrix();
-    public final org.telegram.ui.Components.h6 e = new org.telegram.ui.Components.h6(1.0f, new a3.d(this, 29), 0, 420, ds.h);
-    public final RectF f5762f = new RectF();
-    public final int f5759a = 1;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+public final class y5 extends ViewGroup {
+    public final int f3472a;
+    public final z5 f3473b;
 
-    public final void a(int i10, int i11) {
-        if (this.h == i10 && this.f5764i == i11) {
-            return;
-        }
-        Shader[] shaderArr = this.f5761c;
-        shaderArr[0] = shaderArr[1];
-        if (this.f5759a == 0) {
-            this.h = i10;
-            this.f5764i = i11;
-            shaderArr[1] = new LinearGradient(0.0f, 0.0f, 100.0f, 0.0f, new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        } else {
-            this.h = i10;
-            this.f5764i = i11;
-            shaderArr[1] = new RadialGradient(0.0f, 0.0f, AndroidUtilities.dp(340.0f), new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        }
-        this.e.d(0.0f, true);
-        invalidateSelf();
+    public y5(z5 z5Var, Context context) {
+        super(context);
+        this.f3473b = z5Var;
+        this.f3472a = org.telegram.messenger.i0.L(16.0f);
+        setClipChildren(false);
+        setClipToPadding(false);
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        RectF rectF = this.f5762f;
-        rectF.set(bounds);
-        rectF.right = rectF.width() + rectF.left;
-        int i10 = 0;
-        float d = this.e.d(1.0f, false);
-        while (true) {
-            Shader[] shaderArr = this.f5761c;
-            if (i10 >= shaderArr.length) {
-                break;
-            }
-            if (shaderArr[i10] != null) {
-                float pow = (float) Math.pow(1.0f - Math.abs(i10 - d), 0.25d);
-                if (pow > 0.0f) {
-                    Matrix matrix = this.d;
-                    matrix.reset();
-                    if (this.f5759a == 1) {
-                        matrix.postTranslate(rectF.centerX(), AndroidUtilities.dp(145.0f));
-                    } else {
-                        matrix.postScale(getBounds().width() / 100.0f, 1.0f);
-                    }
-                    shaderArr[i10].setLocalMatrix(matrix);
-                    Shader shader = shaderArr[i10];
-                    Paint paint = this.f5760b;
-                    paint.setShader(shader);
-                    paint.setAlpha((int) (pow * 255.0f));
-                    canvas.drawRoundRect(rectF, 0.0f, 0.0f, paint);
-                }
-            }
-            i10++;
-        }
-        if (this.f5763g != null) {
-            canvas.save();
-            canvas.translate(rectF.centerX(), AndroidUtilities.dp(145.0f));
-            l1.a(canvas, 0, this.f5763g, rectF.width(), AndroidUtilities.dp(290.0f), 2.0f, 1.0f);
-            canvas.restore();
-        }
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        z5 z5Var = this.f3473b;
+        int measuredWidth = z5Var.f3483w.getMeasuredWidth();
+        int measuredHeight = z5Var.f3483w.getMeasuredHeight();
+        b6 b6Var = z5Var.f3483w;
+        int i14 = this.f3472a;
+        b6Var.layout(-i14, 0, measuredWidth - i14, measuredHeight);
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void onMeasure(int i10, int i11) {
+        int size = View.MeasureSpec.getSize(i10);
+        int i12 = this.f3472a;
+        int max = Math.max(0, size + i12);
+        z5 z5Var = this.f3473b;
+        z5Var.f3483w.measure(View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE), i11);
+        int measuredWidth = z5Var.f3483w.getMeasuredWidth();
+        setMeasuredDimension(Math.max(0, measuredWidth - i12), z5Var.f3483w.getMeasuredHeight());
     }
 }

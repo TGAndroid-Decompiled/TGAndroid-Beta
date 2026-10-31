@@ -2,84 +2,13 @@ package e0;
 
 import android.app.Notification;
 import android.app.Person;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import java.util.ArrayList;
-public final class w {
-    public final CharSequence f9597a;
-    public final long f9598b;
-    public final l0 f9599c;
-    public final Bundle d = new Bundle();
-    public String e;
-    public Uri f9600f;
-
-    public w(CharSequence charSequence, long j10, l0 l0Var) {
-        this.f9597a = charSequence;
-        this.f9598b = j10;
-        this.f9599c = l0Var;
+import android.os.Parcelable;
+public abstract class w {
+    public static Parcelable a(Person person) {
+        return person;
     }
 
-    public static Bundle[] a(ArrayList arrayList) {
-        Bundle[] bundleArr = new Bundle[arrayList.size()];
-        int size = arrayList.size();
-        for (int i10 = 0; i10 < size; i10++) {
-            w wVar = (w) arrayList.get(i10);
-            l0 l0Var = wVar.f9599c;
-            Bundle bundle = new Bundle();
-            CharSequence charSequence = wVar.f9597a;
-            if (charSequence != null) {
-                bundle.putCharSequence("text", charSequence);
-            }
-            bundle.putLong("time", wVar.f9598b);
-            if (l0Var != null) {
-                bundle.putCharSequence("sender", l0Var.f9564a);
-                if (Build.VERSION.SDK_INT >= 28) {
-                    bundle.putParcelable("sender_person", v.a(c5.d.E(l0Var)));
-                } else {
-                    bundle.putBundle("person", l0Var.c());
-                }
-            }
-            String str = wVar.e;
-            if (str != null) {
-                bundle.putString("type", str);
-            }
-            Uri uri = wVar.f9600f;
-            if (uri != null) {
-                bundle.putParcelable("uri", uri);
-            }
-            Bundle bundle2 = wVar.d;
-            if (bundle2 != null) {
-                bundle.putBundle("extras", bundle2);
-            }
-            bundleArr[i10] = bundle;
-        }
-        return bundleArr;
-    }
-
-    public final Notification.MessagingStyle.Message b() {
-        Notification.MessagingStyle.Message a2;
-        int i10 = Build.VERSION.SDK_INT;
-        CharSequence charSequence = null;
-        Person person = null;
-        long j10 = this.f9598b;
-        CharSequence charSequence2 = this.f9597a;
-        l0 l0Var = this.f9599c;
-        if (i10 >= 28) {
-            if (l0Var != null) {
-                person = c5.d.E(l0Var);
-            }
-            a2 = v.b(charSequence2, j10, person);
-        } else {
-            if (l0Var != null) {
-                charSequence = l0Var.f9564a;
-            }
-            a2 = u.a(charSequence2, j10, charSequence);
-        }
-        String str = this.e;
-        if (str != null) {
-            u.b(a2, str, this.f9600f);
-        }
-        return a2;
+    public static Notification.MessagingStyle.Message b(CharSequence charSequence, long j10, Person person) {
+        return new Notification.MessagingStyle.Message(charSequence, j10, person);
     }
 }

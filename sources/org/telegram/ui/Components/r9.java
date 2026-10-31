@@ -1,60 +1,84 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Rect;
-import android.graphics.drawable.GradientDrawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class r9 implements Runnable {
-    public final int f32182a = 0;
-    public final x9 f32183b;
-    public final Runnable[] f32184c;
-    public final w60 d;
-    public final int e;
-    public final kb1[] f32185f;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
+import android.view.ViewGroup;
+public abstract class r9 extends tk0 {
+    public int f29884e3;
+    public int f29885f3;
+    public boolean f29886g3;
+    public int f29887h3;
+    public boolean f29888i3;
 
-    public r9(x9 x9Var, w60 w60Var, Runnable[] runnableArr, int i10, kb1[] kb1VarArr) {
-        this.f32183b = x9Var;
-        this.d = w60Var;
-        this.f32184c = runnableArr;
-        this.e = i10;
-        this.f32185f = kb1VarArr;
+    public final void A1() {
+        if (getLayoutParams() == null) {
+            return;
+        }
+        if (org.telegram.messenger.tz.f()) {
+            this.f29884e3 = z1();
+            ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = -this.f29884e3;
+            return;
+        }
+        this.f29884e3 = 0;
+        ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = 0;
     }
 
     @Override
-    public final void run() {
-        switch (this.f32182a) {
-            case 0:
-                x9 x9Var = this.f32183b;
-                w60 w60Var = this.d;
-                Runnable[] runnableArr = this.f32184c;
-                int i10 = this.e;
-                kb1[] kb1VarArr = this.f32185f;
-                try {
-                    GradientDrawable.Orientation orientation = x9Var.getOrientation();
-                    int[] iArr = x9Var.f34702a;
-                    int i11 = w60Var.f34460a;
-                    int i12 = w60Var.f34461b;
-                    Rect e = x9.e(orientation, i11, i12);
-                    Bitmap createBitmap = Bitmap.createBitmap(i11, i12, Bitmap.Config.ARGB_8888);
-                    Utilities.drawDitheredGradient(createBitmap, iArr, e.left, e.top, e.right, e.bottom);
-                    AndroidUtilities.runOnUIThread(new ag.q0(x9Var, runnableArr, createBitmap, w60Var, i10, kb1VarArr, 10));
-                    return;
-                } catch (Throwable th2) {
-                    AndroidUtilities.runOnUIThread(new r9(x9Var, runnableArr, w60Var, i10, kb1VarArr));
-                    throw th2;
-                }
-            default:
-                x9.a(this.f32183b, this.f32184c, null, this.d, this.e, this.f32185f);
-                return;
-        }
+    public final void d(Canvas canvas, RectF rectF) {
+        this.f29888i3 = true;
+        super.d(canvas, rectF);
+        this.f29888i3 = false;
     }
 
-    public r9(x9 x9Var, Runnable[] runnableArr, w60 w60Var, int i10, kb1[] kb1VarArr) {
-        this.f32183b = x9Var;
-        this.f32184c = runnableArr;
-        this.d = w60Var;
-        this.e = i10;
-        this.f32185f = kb1VarArr;
+    @Override
+    public void dispatchDraw(Canvas canvas) {
+        if (this.f29884e3 != 0 && !Y0()) {
+            canvas.clipRect(0, this.f29884e3, getMeasuredWidth(), getMeasuredHeight() + this.f29887h3);
+            super.dispatchDraw(canvas);
+            return;
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public boolean drawChild(Canvas canvas, View view, long j10) {
+        if (view.getY() + view.getMeasuredHeight() < this.f29884e3 && !this.f29888i3 && !Y0()) {
+            return true;
+        }
+        return super.drawChild(canvas, view, j10);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        A1();
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        this.f29886g3 = true;
+        A1();
+        super.setPadding(getPaddingLeft(), this.f29885f3 + this.f29884e3, getPaddingRight(), getPaddingBottom());
+        this.f29886g3 = false;
+        super.onMeasure(i10, i11);
+    }
+
+    @Override
+    public void requestLayout() {
+        if (this.f29886g3) {
+            return;
+        }
+        super.requestLayout();
+    }
+
+    @Override
+    public final void setPadding(int i10, int i11, int i12, int i13) {
+        this.f29885f3 = i11;
+        super.setPadding(i10, i11 + this.f29884e3, i12, i13);
+    }
+
+    public int z1() {
+        return org.telegram.messenger.i0.L(203.0f);
     }
 }

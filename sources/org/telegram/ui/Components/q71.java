@@ -1,25 +1,16 @@
 package org.telegram.ui.Components;
-public final class q71 extends g.o {
-    public final p71 f31820c;
-    public final s71 d;
 
-    public q71(s71 s71Var, p71 p71Var) {
-        this.d = s71Var;
-        this.f31820c = p71Var;
+import android.content.Context;
+public final class q71 extends s4.b0 {
+    public final org.telegram.ui.br f29551r;
+
+    public q71(org.telegram.ui.br brVar, Context context) {
+        super(context);
+        this.f29551r = brVar;
     }
 
     @Override
-    public final int i(int i10) {
-        int i11;
-        k71 k71Var = this.d.f32504g3;
-        p71 p71Var = this.f31820c;
-        if (k71Var == null) {
-            return p71Var.J;
-        }
-        u61 G = k71Var.G(i10);
-        if (G != null && (i11 = G.f33258u) != -1) {
-            return i11;
-        }
-        return p71Var.J;
+    public final void g(android.view.View r6, s4.x0 r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.q71.g(android.view.View, s4.x0):void");
     }
 }

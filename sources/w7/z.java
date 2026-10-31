@@ -1,45 +1,19 @@
 package w7;
+
+import android.os.Parcel;
+import android.os.RemoteException;
 public abstract class z {
-    public static void a(int i10, int i11) {
-        String a2;
-        if (i10 >= 0 && i10 < i11) {
-            return;
-        }
-        if (i10 >= 0) {
-            if (i11 < 0) {
-                throw new IllegalArgumentException(ic.a.i(i11, "negative size: "));
+    public static void a(m4.m mVar) {
+        if (mVar != null) {
+            try {
+                m4.l lVar = (m4.l) mVar;
+                Parcel obtain = Parcel.obtain();
+                obtain.writeInterfaceToken("androidx.media3.session.IMediaController");
+                obtain.writeInt(0);
+                lVar.f12819a.transact(3006, obtain, null, 1);
+                obtain.recycle();
+            } catch (RemoteException unused) {
             }
-            a2 = a0.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i10), Integer.valueOf(i11));
-        } else {
-            a2 = a0.a("%s (%s) must not be negative", "index", Integer.valueOf(i10));
         }
-        throw new IndexOutOfBoundsException(a2);
-    }
-
-    public static void b(int i10, int i11, int i12) {
-        String c10;
-        if (i10 >= 0 && i11 >= i10 && i11 <= i12) {
-            return;
-        }
-        if (i10 >= 0 && i10 <= i12) {
-            if (i11 >= 0 && i11 <= i12) {
-                c10 = a0.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i11), Integer.valueOf(i10));
-            } else {
-                c10 = c(i11, i12, "end index");
-            }
-        } else {
-            c10 = c(i10, i12, "start index");
-        }
-        throw new IndexOutOfBoundsException(c10);
-    }
-
-    public static String c(int i10, int i11, String str) {
-        if (i10 < 0) {
-            return a0.a("%s (%s) must not be negative", str, Integer.valueOf(i10));
-        }
-        if (i11 >= 0) {
-            return a0.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i10), Integer.valueOf(i11));
-        }
-        throw new IllegalArgumentException(ic.a.i(i11, "negative size: "));
     }
 }

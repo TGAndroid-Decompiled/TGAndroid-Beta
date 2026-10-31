@@ -1,38 +1,35 @@
 package org.telegram.ui.Components;
+public final class yp0 implements Runnable {
+    public final int f32771a;
+    public final zt0 f32772b;
+    public final int f32773c;
 
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-import androidx.recyclerview.widget.RecyclerView;
-public final class yp0 extends s4.u0 {
-    public final ef f35127a;
-
-    public yp0(ef efVar) {
-        this.f35127a = efVar;
+    public yp0(zt0 zt0Var, int i10, int i11) {
+        this.f32771a = i11;
+        this.f32772b = zt0Var;
+        this.f32773c = i10;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        boolean z10;
-        float f7;
-        ef efVar = this.f35127a;
-        View view = efVar.f27232u;
-        if (efVar.f27233w.I0() != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void run() {
+        switch (this.f32771a) {
+            case 0:
+                this.f32772b.n1(this.f32773c);
+                return;
+            case 1:
+                zt0 zt0Var = this.f32772b;
+                zt0Var.V0(zt0Var.f33240x1, zt0Var.l1, this.f32773c);
+                return;
+            case 2:
+                this.f32772b.m1(this.f32773c, false);
+                return;
+            case 3:
+                this.f32772b.n1(this.f32773c);
+                return;
+            default:
+                zt0 zt0Var2 = this.f32772b;
+                zt0Var2.W0(zt0Var2.f33240x1, zt0Var2.l1, this.f32773c);
+                return;
         }
-        Boolean bool = efVar.f27234x;
-        if (bool != null && z10 == bool.booleanValue()) {
-            return;
-        }
-        view.animate().cancel();
-        ViewPropertyAnimator animate = view.animate();
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        animate.alpha(f7).setDuration(150L).start();
-        efVar.f27234x = Boolean.valueOf(z10);
     }
 }

@@ -1,22 +1,16 @@
 package s6;
 
-import a8.df;
-import android.app.PendingIntent;
-import android.os.Parcel;
-import android.os.Parcelable;
-import q7.m;
-public final class b extends p6.a {
-    public static final Parcelable.Creator<b> CREATOR = new m(6);
-    public final PendingIntent f47924a;
-
-    public b(PendingIntent pendingIntent) {
-        this.f47924a = pendingIntent;
-    }
+import java.util.Comparator;
+public final class b implements Comparator {
+    public static final b f48084a = new Object();
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q5 = df.q(parcel, 20293);
-        df.k(parcel, 1, this.f47924a, i10);
-        df.r(parcel, q5);
+    public final int compare(Object obj, Object obj2) {
+        k6.c cVar = (k6.c) obj;
+        k6.c cVar2 = (k6.c) obj2;
+        if (!cVar.f10931a.equals(cVar2.f10931a)) {
+            return cVar.f10931a.compareTo(cVar2.f10931a);
+        }
+        return (cVar.b() > cVar2.b() ? 1 : (cVar.b() == cVar2.b() ? 0 : -1));
     }
 }

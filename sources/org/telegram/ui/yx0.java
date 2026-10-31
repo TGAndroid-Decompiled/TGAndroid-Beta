@@ -1,151 +1,122 @@
 package org.telegram.ui;
 
+import android.animation.ValueAnimator;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.GradientDrawable;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.FlagSecureReason;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class yx0 implements org.telegram.ui.ActionBar.b2, org.telegram.ui.Components.ox0, MessagesStorage.BooleanCallback, r0.n, org.telegram.ui.Components.bi0, org.telegram.ui.Components.cm0, FlagSecureReason.FlagSecureCondition, oe.d, o60 {
-    public final int f46098a;
-    public final ProfileActivity f46099b;
+import java.util.Arrays;
+public final class yx0 extends View implements org.telegram.ui.Components.qg0 {
+    public final float[] D;
+    public boolean E;
+    public float F;
+    public float G;
+    public float[] H;
+    public long I;
+    public float J;
+    public int K;
+    public float L;
+    public int M;
+    public float N;
+    public int O;
+    public final ProfileActivity P;
+    public final int f43904a;
+    public final Rect f43905b;
+    public final Rect f43906c;
+    public final RectF d;
+    public final GradientDrawable e;
+    public final GradientDrawable f43907f;
+    public final ValueAnimator h;
+    public final float[] f43908n;
+    public final Paint f43909r;
+    public final Paint f43910s;
+    public final Paint f43911w;
+    public final GradientDrawable[] f43912x;
+    public final boolean[] f43913y;
 
-    public yx0(ProfileActivity profileActivity, int i10) {
-        this.f46098a = i10;
-        this.f46099b = profileActivity;
+    public yx0(org.telegram.ui.ProfileActivity r7, android.content.Context r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.yx0.<init>(org.telegram.ui.ProfileActivity, android.content.Context):void");
     }
 
     @Override
-    public void E(int i10, float f7, float f10, oe.e eVar) {
-        int i11 = ProfileActivity.R6;
-        this.f46099b.g5();
+    public final void a() {
+        Arrays.fill(this.f43913y, false);
+        postInvalidateOnAnimation();
     }
 
     @Override
-    public r0.k1 P0(View view, r0.k1 k1Var) {
-        int i10 = ProfileActivity.R6;
-        int i11 = k1Var.f47153a.f(519).d;
-        ProfileActivity profileActivity = this.f46099b;
-        profileActivity.f36156z6 = i11;
-        FrameLayout frameLayout = profileActivity.f36148y5;
-        if (frameLayout != null) {
-            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) frameLayout.getLayoutParams();
-            int i12 = profileActivity.f36156z6 + profileActivity.f36149y6;
-            if (marginLayoutParams != null && marginLayoutParams.bottomMargin != i12) {
-                marginLayoutParams.bottomMargin = i12;
-                profileActivity.f36148y5.setLayoutParams(marginLayoutParams);
+    public final void b(boolean z10) {
+        this.f43913y[!z10 ? 1 : 0] = true;
+        postInvalidateOnAnimation();
+    }
+
+    @Override
+    public final void c() {
+        RectF rectF = ProfileActivity.R6;
+        this.P.H5(false);
+    }
+
+    @Override
+    public final void d() {
+        invalidate();
+    }
+
+    public final void e(boolean z10, float f7) {
+        int i10 = (int) (255.0f * f7);
+        this.e.setAlpha(i10);
+        this.f43907f.setAlpha(i10);
+        this.f43909r.setAlpha((int) (66.0f * f7));
+        this.f43910s.setAlpha((int) (85.0f * f7));
+        this.f43911w.setAlpha(i10);
+        this.G = f7;
+        if (!z10) {
+            this.F = f7;
+        }
+        invalidate();
+    }
+
+    public final void f(boolean z10, float f7) {
+        if (z10 != this.E) {
+            this.E = z10;
+            ValueAnimator valueAnimator = this.h;
+            valueAnimator.cancel();
+            float f10 = this.F;
+            float[] fArr = this.f43908n;
+            float U1 = org.telegram.messenger.i0.U1(f10, fArr);
+            float f11 = 1.0f;
+            if (z10) {
+                valueAnimator.setDuration(((1.0f - U1) * 250.0f) / f7);
+            } else {
+                valueAnimator.setDuration((250.0f * U1) / f7);
             }
-        }
-        if (profileActivity.N != null) {
-            profileActivity.C3();
-            org.telegram.ui.Components.ws0 ws0Var = profileActivity.N.f26925a0;
-            if (ws0Var != null) {
-                ws0Var.setButtonOffset(profileActivity.f36156z6 + profileActivity.f36149y6);
+            fArr[0] = U1;
+            if (!z10) {
+                f11 = 0.0f;
             }
-        }
-        return r0.k1.f47152b;
-    }
-
-    @Override
-    public boolean c(int i10, View view) {
-        ProfileActivity profileActivity = this.f46099b;
-        w01 w01Var = profileActivity.e;
-        if (w01Var.f44477w || w01Var.v.isEmpty()) {
-            return false;
-        }
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(profileActivity.getParentActivity(), 0, profileActivity.f36150z0);
-        alertDialog$Builder.f22369a.R = LocaleController.getString(R.string.ClearSearchAlertTitle);
-        alertDialog$Builder.f22369a.T = LocaleController.getString(R.string.ClearSearchAlert);
-        alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new yx0(profileActivity, 9));
-        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-        org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22369a;
-        profileActivity.showDialog(e2Var);
-        TextView textView = (TextView) e2Var.d(-1);
-        if (textView != null) {
-            org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23599q7, null);
-            return true;
-        }
-        return true;
-    }
-
-    @Override
-    public void f(int i10, ArrayList arrayList) {
-        TLRPC.ChatParticipants chatParticipants;
-        int i11 = ProfileActivity.R6;
-        HashSet hashSet = new HashSet();
-        ArrayList arrayList2 = new ArrayList();
-        ProfileActivity profileActivity = this.f46099b;
-        TLRPC.ChatFull chatFull = profileActivity.f36115u2;
-        if (chatFull != null && (chatParticipants = chatFull.participants) != null && chatParticipants.participants != null) {
-            for (int i12 = 0; i12 < profileActivity.f36115u2.participants.participants.size(); i12++) {
-                hashSet.add(Long.valueOf(profileActivity.f36115u2.participants.participants.get(i12).user_id));
-            }
-        }
-        profileActivity.getMessagesController().addUsersToChat(profileActivity.E2, profileActivity, arrayList, i10, new h3(arrayList2, 5), new h3(profileActivity, 6), new ne0(profileActivity, arrayList2, hashSet, 27));
-    }
-
-    @Override
-    public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        int i11 = this.f46098a;
-        ProfileActivity profileActivity = this.f46099b;
-        switch (i11) {
-            case 0:
-                int i12 = ProfileActivity.R6;
-                profileActivity.getMessagesController().blockPeer(profileActivity.f36003e1);
-                if (org.telegram.ui.Components.wc.a(profileActivity)) {
-                    org.telegram.ui.Components.wc.d(profileActivity, true).j();
-                    return;
-                }
-                return;
-            case 6:
-                int i13 = ProfileActivity.R6;
-                profileActivity.getClass();
-                SharedConfig.pushAuthKey = null;
-                SharedConfig.pushAuthKeyId = null;
-                SharedConfig.saveConfig();
-                profileActivity.getConnectionsManager().switchBackend(true);
-                return;
-            default:
-                w01 w01Var = profileActivity.e;
-                w01Var.v.clear();
-                MessagesController.getGlobalMainSettings().edit().remove("settingsSearchRecent2").commit();
-                w01Var.l();
-                return;
+            fArr[1] = f11;
+            valueAnimator.start();
         }
     }
 
     @Override
-    public boolean run() {
-        ProfileActivity profileActivity = this.f46099b;
-        return profileActivity.D2 != null || profileActivity.n4();
+    public final void onDraw(android.graphics.Canvas r32) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.yx0.onDraw(android.graphics.Canvas):void");
     }
 
     @Override
-    public void run(boolean z10) {
-        ProfileActivity profileActivity = this.f46099b;
-        profileActivity.J1 = 0;
-        NotificationCenter notificationCenter = profileActivity.getNotificationCenter();
-        int i10 = NotificationCenter.closeChats;
-        notificationCenter.removeObserver(profileActivity, i10);
-        profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i10, new Object[0]);
-        profileActivity.finishFragment();
-        profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-profileActivity.E2.f22028id), null, profileActivity.E2, Boolean.valueOf(z10));
-    }
-
-    @Override
-    public void e(TLRPC.User user) {
-    }
-
-    @Override
-    public void z(float f7, int i10) {
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        int currentActionBarHeight = org.telegram.ui.ActionBar.l.getCurrentActionBarHeight() + this.f43904a;
+        Rect rect = this.f43905b;
+        rect.set(0, 0, i10, (int) (currentActionBarHeight * 0.5f));
+        Rect rect2 = this.f43906c;
+        rect2.set(0, (int) (i11 - (org.telegram.messenger.i0.L(72.0f) * 0.5f)), i10, i11);
+        this.e.setBounds(0, rect.bottom, i10, org.telegram.messenger.i0.L(16.0f) + currentActionBarHeight);
+        RectF rectF = ProfileActivity.R6;
+        this.f43907f.setBounds(0, ((i11 - this.P.d4()) - org.telegram.messenger.i0.L(72.0f)) - org.telegram.messenger.i0.L(24.0f), i10, rect2.top);
+        GradientDrawable[] gradientDrawableArr = this.f43912x;
+        int i14 = i10 / 5;
+        gradientDrawableArr[0].setBounds(0, 0, i14, i11);
+        gradientDrawableArr[1].setBounds(i10 - i14, 0, i10, i11);
     }
 }

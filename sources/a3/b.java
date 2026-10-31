@@ -1,7 +1,6 @@
 package a3;
 
 import java.util.concurrent.Executor;
-import org.telegram.messenger.AndroidUtilities;
 public final class b implements Executor {
     public final int f68a;
 
@@ -15,7 +14,10 @@ public final class b implements Executor {
             case 0:
                 return;
             case 1:
-                AndroidUtilities.runOnUIThread(runnable);
+                org.telegram.messenger.i0.g3(runnable);
+                return;
+            case 2:
+                org.telegram.messenger.i0.g3(runnable);
                 return;
             default:
                 runnable.run();

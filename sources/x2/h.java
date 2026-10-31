@@ -1,20 +1,19 @@
 package x2;
 
 import b2.x;
-import c3.h0;
-import f9.w;
+import e9.b0;
 public final class h implements Comparable {
-    public final boolean f51381a;
-    public final boolean f51382b;
+    public final boolean f52918a;
+    public final boolean f52919b;
 
     public h(x xVar, int i10) {
-        this.f51381a = (xVar.e & 1) != 0;
-        this.f51382b = h0.e(i10, false);
+        this.f52918a = (xVar.e & 1) != 0;
+        this.f52919b = i0.a.b(i10, false);
     }
 
     @Override
     public final int compareTo(Object obj) {
         h hVar = (h) obj;
-        return w.f10351a.c(this.f51382b, hVar.f51382b).c(this.f51381a, hVar.f51381a).e();
+        return b0.f6331a.c(this.f52919b, hVar.f52919b).c(this.f52918a, hVar.f52918a).e();
     }
 }

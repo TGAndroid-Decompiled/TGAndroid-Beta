@@ -1,8 +1,11 @@
 package s4;
 
-import android.view.View;
+import android.view.MotionEvent;
+import androidx.recyclerview.widget.RecyclerView;
 public interface r0 {
-    void a(View view);
+    void a(RecyclerView recyclerView, MotionEvent motionEvent);
 
-    void c();
+    boolean b(RecyclerView recyclerView, MotionEvent motionEvent);
+
+    void c(boolean z10);
 }

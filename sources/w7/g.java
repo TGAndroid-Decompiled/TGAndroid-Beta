@@ -1,15 +1,6 @@
 package w7;
-public final class g {
-    public static final g f50913a;
-    public static final g[] f50914b;
-
-    static {
-        ?? r02 = new Enum("DEFAULT", 0);
-        f50913a = r02;
-        f50914b = new g[]{r02, new Enum("SIGNED", 1), new Enum("FIXED", 2)};
-    }
-
-    public static g[] values() {
-        return (g[]) f50914b.clone();
+public abstract class g {
+    public static final java.lang.Object a(java.util.List r6, k1.s r7, ed.c r8) {
+        throw new UnsupportedOperationException("Method not decompiled: w7.g.a(java.util.List, k1.s, ed.c):java.lang.Object");
     }
 }

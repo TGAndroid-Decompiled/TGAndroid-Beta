@@ -1,44 +1,223 @@
 package org.telegram.ui.Components;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-public final class ve0 implements org.telegram.ui.ActionBar.b2 {
-    public final int f33705a;
-    public final Activity f33706b;
+import android.provider.Settings;
+import android.view.MotionEvent;
+import android.view.View;
+import android.webkit.WebView;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.Locale;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.PhotoViewer;
+public abstract class ve0 extends FrameLayout {
+    public TLRPC.WebPage D;
+    public float E;
+    public boolean F;
+    public boolean G;
+    public int H;
+    public int I;
+    public float J;
+    public boolean K;
+    public eb0 L;
+    public int f31234a;
+    public PhotoViewer f31235b;
+    public LinearLayout f31236c;
+    public TextView d;
+    public TextView e;
+    public cu f31237f;
+    public bi.t0 h;
+    public RadialProgressView f31238n;
+    public View f31239r;
+    public String f31240s;
+    public ArrayList f31241w;
+    public String f31242x;
+    public boolean f31243y;
 
-    public ve0(Activity activity, int i10) {
-        this.f33705a = i10;
-        this.f33706b = activity;
+    public static void a(org.telegram.ui.mr0 mr0Var, String str) {
+        String str2;
+        double ceil;
+        int videoDuration = mr0Var.getVideoDuration() / 1000;
+        ArrayList arrayList = mr0Var.f31241w;
+        arrayList.clear();
+        if (videoDuration > 15) {
+            String[] split = str.split("\\|");
+            String r10 = a1.g.r(new StringBuilder(), split[0].split("\\$")[0], "2/");
+            String str3 = split[0].split("\\$N")[1];
+            if (split.length == 3) {
+                str2 = split[2].split("M#")[1];
+            } else if (split.length == 2) {
+                str2 = split[1].split("t#")[1];
+            } else {
+                str2 = split[3].split("M#")[1];
+            }
+            if (videoDuration <= 100) {
+                ceil = Math.ceil(videoDuration / 25.0f);
+            } else if (videoDuration <= 250) {
+                ceil = Math.ceil((videoDuration / 2.0f) / 25.0f);
+            } else if (videoDuration <= 500) {
+                ceil = Math.ceil((videoDuration / 4.0f) / 25.0f);
+            } else if (videoDuration <= 1000) {
+                ceil = Math.ceil((videoDuration / 5.0f) / 25.0f);
+            } else {
+                ceil = Math.ceil((videoDuration / 10.0f) / 25.0f);
+            }
+            int i10 = (int) ceil;
+            for (int i11 = 0; i11 < i10; i11++) {
+                Locale locale = Locale.ROOT;
+                arrayList.add(r10 + "M" + i11 + str3 + "&sigh=" + str2);
+            }
+        }
+    }
+
+    public final void b(boolean z10) {
+        eb0 eb0Var = this.L;
+        if (!z10 && this.G) {
+            org.telegram.messenger.i0.h3(eb0Var, 500L);
+        } else if (z10 && !this.G) {
+            org.telegram.messenger.i0.r(eb0Var);
+        }
+    }
+
+    public final java.lang.String c(int r6) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ve0.c(int):java.lang.String");
+    }
+
+    public final boolean d() {
+        return this.f31243y;
     }
 
     @Override
-    public final void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        switch (this.f33705a) {
-            case 0:
-                Activity activity = this.f33706b;
-                try {
-                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    activity.startActivity(intent);
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
-            default:
-                Activity activity2 = this.f33706b;
-                try {
-                    Intent intent2 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent2.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    activity2.startActivity(intent2);
-                    return;
-                } catch (Exception e10) {
-                    FileLog.e(e10);
-                    return;
-                }
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (this.K) {
+            return false;
         }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    public final boolean e() {
+        boolean z10;
+        if (this.f31243y && "inapp".equals(org.telegram.messenger.vp.r1(this.f31234a).A3)) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (!z10 && !Settings.canDrawOverlays(getContext())) {
+            s4.A((Activity) getContext(), null, false);
+            return false;
+        } else if (this.f31238n.getVisibility() == 0) {
+            return false;
+        } else {
+            if (jf0.f27345p0.P) {
+                jf0.b(false);
+                org.telegram.messenger.i0.h3(new re0(this, 0), 300L);
+                return true;
+            }
+            this.h.setVisibility(0);
+            Activity activity = (Activity) getContext();
+            cu cuVar = this.f31237f;
+            TLRPC.WebPage webPage = this.D;
+            if (jf0.x(z10, activity, this, cuVar, webPage.embed_width, webPage.embed_height, false)) {
+                jf0.w(PhotoViewer.v1());
+            }
+            return true;
+        }
+    }
+
+    public final void f() {
+        if (this.G && this.f31243y) {
+            h("pauseVideo();");
+            this.G = false;
+            b(true);
+        }
+    }
+
+    public final void g() {
+        if (!this.G && this.f31243y) {
+            h("playVideo();");
+            this.G = true;
+            b(false);
+        }
+    }
+
+    public float getBufferedPosition() {
+        return this.J;
+    }
+
+    public int getCurrentPosition() {
+        return this.I;
+    }
+
+    public int getVideoDuration() {
+        return this.H;
+    }
+
+    public WebView getWebView() {
+        return this.f31237f;
+    }
+
+    public final void h(String str) {
+        this.f31237f.evaluateJavascript(str, null);
+    }
+
+    public final void i(long j10) {
+        boolean z10 = this.G;
+        this.I = (int) j10;
+        if (z10) {
+            f();
+        }
+        if (z10) {
+            org.telegram.messenger.i0.h3(new bi.e(this, j10, 12), 100L);
+            return;
+        }
+        h("seekTo(" + Math.round(((float) j10) / 1000.0f) + ", true);");
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        cu cuVar = this.f31237f;
+        if (cuVar.getParent() == this) {
+            TLRPC.WebPage webPage = this.D;
+            int i12 = webPage.embed_width;
+            int i13 = 100;
+            if (i12 == 0) {
+                i12 = 100;
+            }
+            int i14 = webPage.embed_height;
+            if (i14 != 0) {
+                i13 = i14;
+            }
+            int size = View.MeasureSpec.getSize(i10);
+            int size2 = View.MeasureSpec.getSize(i11);
+            float f7 = i12;
+            float f10 = i13;
+            float min = Math.min(size / f7, size2 / f10);
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) cuVar.getLayoutParams();
+            int i15 = (int) (f7 * min);
+            layoutParams.width = i15;
+            int i16 = (int) (f10 * min);
+            layoutParams.height = i16;
+            layoutParams.topMargin = (size2 - i16) / 2;
+            layoutParams.leftMargin = (size - i15) / 2;
+        }
+        super.onMeasure(i10, i11);
+    }
+
+    public void setPlaybackSpeed(float f7) {
+        this.E = f7;
+        if (this.f31238n.getVisibility() != 0) {
+            if (this.f31243y) {
+                h("setPlaybackSpeed(" + f7 + ");");
+                return;
+            }
+            return;
+        }
+        this.F = true;
+    }
+
+    public void setTouchDisabled(boolean z10) {
+        this.K = z10;
     }
 }

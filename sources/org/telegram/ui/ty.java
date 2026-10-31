@@ -1,11 +1,21 @@
 package org.telegram.ui;
-public final class ty extends org.telegram.ui.Components.s71 {
+
+import android.view.ViewTreeObserver;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class ty implements ViewTreeObserver.OnGlobalLayoutListener {
+    public final ExternalActionActivity f41969a;
+
+    public ty(ExternalActionActivity externalActionActivity) {
+        this.f41969a = externalActionActivity;
+    }
+
     @Override
-    public final Integer W0(int i10) {
-        org.telegram.ui.Components.u61 G = this.f32504g3.G(i10);
-        if (G != null && G.d == 2) {
-            return 0;
+    public final void onGlobalLayout() {
+        ExternalActionActivity externalActionActivity = this.f41969a;
+        externalActionActivity.f();
+        ActionBarLayout actionBarLayout = externalActionActivity.f33324c;
+        if (actionBarLayout != null) {
+            actionBarLayout.getView().getViewTreeObserver().removeOnGlobalLayoutListener(this);
         }
-        return super.W0(i10);
     }
 }

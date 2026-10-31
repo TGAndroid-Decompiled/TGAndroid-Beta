@@ -1,130 +1,45 @@
 package jg;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.UserConfig;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.nm0;
-public final class f0 extends im0 {
-    public final ArrayList f15697r;
-    public final int f15698s;
-    public final Context v;
-    public final i0 f15699w;
+import android.app.Activity;
+import org.telegram.messenger.d20;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.p6;
+import org.telegram.ui.un;
+public final class f0 extends un {
+    public final r0 f9962jd;
 
-    public f0(i0 i0Var, Context context) {
-        this.f15699w = i0Var;
-        ArrayList arrayList = new ArrayList();
-        this.f15697r = arrayList;
-        int i10 = UserConfig.selectedAccount;
-        this.f15698s = i10;
-        this.v = context;
-        arrayList.addAll(c2.f(i10).e());
+    public f0(r0 r0Var) {
+        super(null);
+        this.f9962jd = r0Var;
     }
 
     @Override
-    public final String F(int i10) {
-        return null;
-    }
-
-    @Override
-    public final void G(nm0 nm0Var, float f7, int[] iArr) {
-        iArr[0] = 0;
-        iArr[1] = 0;
-    }
-
-    @Override
-    public final int M(int i10) {
-        if (i10 != 0 && i10 != 2) {
-            return this.f15697r.size();
-        }
-        return 1;
-    }
-
-    @Override
-    public final Object O(int i10, int i11) {
-        if (i10 != 0 && i11 >= 0) {
-            ArrayList arrayList = this.f15697r;
-            if (i11 < arrayList.size()) {
-                return arrayList.get(i11);
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public final int P(int i10, int i11) {
-        if (i10 == 0) {
-            return 1;
-        }
-        if (i10 == 2) {
-            return 2;
-        }
-        return 0;
-    }
-
-    @Override
-    public final int R() {
-        return 3;
-    }
-
-    @Override
-    public final View T(int i10, View view) {
-        return null;
-    }
-
-    @Override
-    public final boolean V(int i10, int i11, s4.e1 e1Var) {
-        if (i10 != 0 && i10 != 2 && i11 < this.f15697r.size()) {
-            return true;
-        }
+    public final boolean J9() {
         return false;
     }
 
     @Override
-    public final void W(int i10, int i11, s4.e1 e1Var) {
-        if (e1Var.f47776f == 0) {
-            y1 y1Var = (y1) e1Var.f47773a;
-            Object O = O(i10, i11);
-            boolean z10 = true;
-            if (i10 == 1 && i11 == M(i10) - 1) {
-                z10 = false;
-            }
-            if (O instanceof b2) {
-                b2 b2Var = (b2) O;
-                y1Var.a(b2Var, null, z10);
-                y1Var.d.a(this.f15699w.f15729w.contains(Integer.valueOf(b2Var.f15639a)), false);
-            }
-        }
+    public final long a() {
+        return 0L;
     }
 
     @Override
-    public final void l() {
-        ArrayList arrayList = this.f15697r;
-        arrayList.clear();
-        arrayList.addAll(c2.f(this.f15698s).e());
-        X(false);
-        this.f15699w.O();
+    public final Activity getParentActivity() {
+        return org.telegram.messenger.i0.W(this.f9962jd.getContext());
     }
 
     @Override
-    public final s4.e1 x(ViewGroup viewGroup, int i10) {
-        View y1Var;
-        Context context = this.v;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                y1Var = new View(context);
-                y1Var.setTag(-33024);
-            } else {
-                y1Var = new View(context);
-                y1Var.setLayoutParams(new s4.q0(-1, AndroidUtilities.dp(56.0f)));
-                y1Var.setTag(-33024);
-            }
-        } else {
-            y1Var = new y1(context, this.f15699w.f30253a, false);
-        }
-        return new s4.e1(y1Var);
+    public final p6 getResourceProvider() {
+        return this.f9962jd.f10203z1;
+    }
+
+    @Override
+    public final boolean isLightStatusBar() {
+        return false;
+    }
+
+    @Override
+    public final TLRPC.User j() {
+        return d20.i(this.currentAccount).f();
     }
 }

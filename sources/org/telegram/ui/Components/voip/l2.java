@@ -1,25 +1,22 @@
 package org.telegram.ui.Components.voip;
 
-import a8.fg;
-import org.webrtc.RendererCommon;
-public final class l2 implements RendererCommon.RendererEvents {
-    public final n2 f34044a;
-
-    public l2(n2 n2Var) {
-        this.f34044a = n2Var;
-    }
+import android.graphics.Canvas;
+import android.view.View;
+import org.telegram.ui.Components.fv0;
+public final class l2 extends View {
+    public fv0 f31532a;
+    public boolean f31533b;
 
     @Override
-    public final void onFirstFrameRendered() {
-        n2 n2Var = this.f34044a;
-        fg fgVar = n2Var.S;
-        if (fgVar != null) {
-            fgVar.run();
-            n2Var.S = null;
+    public final void onDraw(Canvas canvas) {
+        fv0 fv0Var;
+        if (!this.f31533b && (fv0Var = this.f31532a) != null) {
+            fv0Var.b(canvas, this);
         }
     }
 
-    @Override
-    public final void onFrameResolutionChanged(int i10, int i11, int i12) {
+    public void setState(boolean z10) {
+        this.f31533b = z10;
+        invalidate();
     }
 }

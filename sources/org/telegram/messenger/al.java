@@ -1,33 +1,33 @@
 package org.telegram.messenger;
+public final class al implements Runnable {
+    public final int f14627a;
+    public final boolean[] f14628b;
+    public final Runnable[] f14629c;
 
-import org.telegram.messenger.Utilities;
-public final class al implements Utilities.Callback2 {
-    public final int f19652a;
-    public final TranslateController f19653b;
-    public final Utilities.Callback4 f19654c;
-    public final boolean d;
-    public final int e;
-    public final String f19655f;
-    public final long f19656g;
-
-    public al(TranslateController translateController, Utilities.Callback4 callback4, boolean z10, int i10, String str, long j10, int i11) {
-        this.f19652a = i11;
-        this.f19653b = translateController;
-        this.f19654c = callback4;
-        this.d = z10;
-        this.e = i10;
-        this.f19655f = str;
-        this.f19656g = j10;
+    public al(boolean[] zArr, Runnable[] runnableArr, int i10) {
+        this.f14627a = i10;
+        this.f14628b = zArr;
+        this.f14629c = runnableArr;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f19652a) {
+    public final void run() {
+        switch (this.f14627a) {
             case 0:
-                this.f19653b.lambda$pushToTranslate$21(this.f19654c, this.d, this.e, this.f19655f, this.f19656g, (String) obj, (Boolean) obj2);
+                this.f14628b[0] = true;
+                Runnable runnable = this.f14629c[0];
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
                 return;
             default:
-                this.f19653b.lambda$pushToTranslate$20(this.f19654c, this.d, this.e, this.f19655f, this.f19656g, (String) obj, (Boolean) obj2);
+                this.f14628b[0] = true;
+                Runnable runnable2 = this.f14629c[0];
+                if (runnable2 != null) {
+                    runnable2.run();
+                    return;
+                }
                 return;
         }
     }

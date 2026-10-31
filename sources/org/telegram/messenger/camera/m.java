@@ -1,25 +1,36 @@
 package org.telegram.messenger.camera;
-
-import org.telegram.messenger.camera.CameraView;
 public final class m implements Runnable {
-    public final int f19800a;
-    public final CameraView f19801b;
-    public final CameraView.CameraGLThread f19802c;
+    public final int f14954a;
+    public final CameraView f14955b;
 
-    public m(CameraView cameraView, CameraView.CameraGLThread cameraGLThread, int i10) {
-        this.f19800a = i10;
-        this.f19801b = cameraView;
-        this.f19802c = cameraGLThread;
+    public m(CameraView cameraView, int i10) {
+        this.f14954a = i10;
+        this.f14955b = cameraView;
     }
 
     @Override
     public final void run() {
-        switch (this.f19800a) {
+        switch (this.f14954a) {
             case 0:
-                this.f19801b.lambda$createCamera$10(this.f19802c);
+                CameraView.k(this.f14955b);
+                return;
+            case 1:
+                CameraView.b(this.f14955b);
+                return;
+            case 2:
+                CameraView.a(this.f14955b);
+                return;
+            case 3:
+                CameraView.m(this.f14955b);
+                return;
+            case 4:
+                CameraView.e(this.f14955b);
+                return;
+            case 5:
+                CameraView.o(this.f14955b);
                 return;
             default:
-                this.f19801b.lambda$createCamera$8(this.f19802c);
+                CameraView.g(this.f14955b);
                 return;
         }
     }

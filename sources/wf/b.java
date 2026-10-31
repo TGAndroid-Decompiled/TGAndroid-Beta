@@ -1,40 +1,24 @@
 package wf;
 
-import android.view.View;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import java.util.ArrayList;
-import oi.h;
-import org.telegram.messenger.R;
-public final class b implements View.OnAttachStateChangeListener {
-    @Override
-    public final void onViewAttachedToWindow(View view) {
-        a a2;
-        c cVar = (c) view.getTag(R.id.tag_view_on_post_draw_state);
-        if (cVar != null && (a2 = d.a(view, cVar)) != null) {
-            ArrayList arrayList = cVar.f51218a;
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                ((se.b) a2.f51217a.f8617b).add((h) obj);
-            }
-        }
+import java.util.List;
+public final class b extends BitmapDrawable {
+    public final List f52836a;
+
+    public b(Bitmap bitmap, List list) {
+        super(bitmap);
+        this.f52836a = list;
     }
 
-    @Override
-    public final void onViewDetachedFromWindow(View view) {
-        a aVar;
-        c cVar = (c) view.getTag(R.id.tag_view_on_post_draw_state);
-        if (cVar != null && (aVar = cVar.f51219b) != null) {
-            ArrayList arrayList = cVar.f51218a;
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                ((se.b) aVar.f51217a.f8617b).remove((h) obj);
-            }
-            cVar.f51219b = null;
+    public static BitmapDrawable a(Bitmap bitmap, ArrayList arrayList) {
+        if (bitmap == null) {
+            return null;
         }
+        if (arrayList != null && !arrayList.isEmpty()) {
+            return new b(bitmap, arrayList);
+        }
+        return new BitmapDrawable(bitmap);
     }
 }

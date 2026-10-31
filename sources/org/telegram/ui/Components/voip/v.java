@@ -1,43 +1,47 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.ValueAnimator;
-import org.telegram.ui.t40;
-import org.telegram.ui.x50;
-public final class v implements ValueAnimator.AnimatorUpdateListener {
-    public final int f34243a;
-    public final l0 f34244b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class v extends AnimatorListenerAdapter {
+    public final int f31684a;
+    public final w f31685b;
 
-    public v(l0 l0Var, int i10) {
-        this.f34243a = i10;
-        this.f34244b = l0Var;
+    public v(w wVar, int i10) {
+        this.f31684a = i10;
+        this.f31685b = wVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float f7;
-        switch (this.f34243a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f31684a) {
             case 0:
-                l0 l0Var = this.f34244b;
-                l0Var.getClass();
-                l0Var.I0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                l0Var.invalidate();
+                w wVar = this.f31685b;
+                wVar.N0 = null;
+                wVar.D.E = false;
+                r rVar = wVar.E;
+                if (rVar != null) {
+                    if (rVar.getParent() != null) {
+                        wVar.removeView(wVar.E);
+                        wVar.E.e();
+                    }
+                    wVar.E = null;
+                    return;
+                }
+                return;
+            case 1:
+                super.onAnimationEnd(animator);
+                w wVar2 = this.f31685b;
+                wVar2.J0 = null;
+                wVar2.I0 = 0.0f;
+                wVar2.invalidate();
                 return;
             default:
-                l0 l0Var2 = this.f34244b;
-                l0Var2.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                l0Var2.f34010c = floatValue;
-                x50 x50Var = l0Var2.f34019j0;
-                x50Var.f45596z1.setAlpha(1.0f - floatValue);
-                t40 t40Var = x50Var.O;
-                if (t40Var.getTag() != null) {
-                    f7 = 1.0f;
-                } else {
-                    f7 = 0.0f;
-                }
-                t40Var.setAlpha((1.0f - x50Var.a2.f34010c) * f7);
-                x50Var.E1(x50Var.f45592y0);
-                l0Var2.l();
+                w wVar3 = this.f31685b;
+                wVar3.B0 = null;
+                wVar3.f31743y0 = 1.0f;
+                wVar3.f31732r0 = 0.0f;
+                wVar3.f31734s0 = 0.0f;
+                wVar3.invalidate();
                 return;
         }
     }

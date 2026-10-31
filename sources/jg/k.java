@@ -1,132 +1,75 @@
 package jg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.h6;
-import org.telegram.ui.Components.ti;
-import org.telegram.ui.y10;
-public final class k extends FrameLayout {
-    public final int f15744a = 0;
-    public int f15745b;
-    public final Object f15746c;
-    public final Object d;
-    public final NotificationCenter.NotificationCenterDelegate e;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.er0;
+public final class k implements View.OnClickListener {
+    public final int f10071a;
+    public final r0 f10072b;
 
-    public k(n nVar, Context context) {
-        super(context);
-        this.e = nVar;
-        this.f15745b = -1;
-        this.f15746c = new Rect();
-        this.d = new h6(this, 220L, ds.h);
+    public k(r0 r0Var, int i10) {
+        this.f10071a = i10;
+        this.f10072b = r0Var;
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.f15744a) {
-            case 1:
-                y10 y10Var = (y10) this.d;
-                Path path = (Path) this.f15746c;
-                ti tiVar = (ti) this.e;
-                eh.d dVar = tiVar.E0;
-                if (dVar != null) {
-                    dVar.setBounds(0, (int) tiVar.Y1, getMeasuredWidth(), getMeasuredHeight());
-                    tiVar.E0.draw(canvas);
-                }
-                float dp = AndroidUtilities.dp(20.0f);
-                int dp2 = AndroidUtilities.dp(7.0f);
-                int dp3 = AndroidUtilities.dp(7.0f);
-                RectF rectF = AndroidUtilities.rectTmp;
-                float f7 = dp2;
-                rectF.set(getPaddingLeft(), f7, getWidth() - getPaddingRight(), getHeight() - dp3);
-                path.rewind();
-                path.addRoundRect(rectF, dp, dp, Path.Direction.CW);
-                canvas.save();
-                canvas.clipPath(path);
-                canvas.saveLayerAlpha(rectF, 255, 31);
-                super.dispatchDraw(canvas);
-                rectF.set(getPaddingLeft(), f7, getWidth() - getPaddingRight(), AndroidUtilities.dp(6.0f) + dp2);
-                y10Var.b(canvas, rectF, 1, 1.0f);
-                rectF.set(getPaddingLeft(), (getHeight() - dp3) - AndroidUtilities.dp(6.0f), getWidth() - getPaddingRight(), getHeight() - dp3);
-                y10Var.b(canvas, rectF, 3, 1.0f);
-                canvas.restore();
-                canvas.restore();
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public boolean drawChild(Canvas canvas, View view, long j10) {
-        switch (this.f15744a) {
+    public final void onClick(View view) {
+        switch (this.f10071a) {
             case 0:
-                float width = getWidth() / 2.0f;
-                n nVar = (n) this.e;
-                float d = ((h6) this.d).d(nVar.f15780n.getWidth(), false);
-                Rect rect = (Rect) this.f15746c;
-                float f7 = d / 2.0f;
-                rect.set((int) (width - (nVar.f15780n.getScaleX() * f7)), (int) (((1.0f - nVar.f15780n.getScaleY()) * nVar.f15780n.getHeight()) + nVar.f15780n.getY()), (int) ((nVar.f15780n.getScaleX() * f7) + width), (int) (nVar.f15780n.getY() + nVar.f15780n.getHeight()));
-                nVar.f15781r.setBounds(rect);
-                nVar.f15781r.draw(canvas);
-                return super.drawChild(canvas, view, j10);
-            default:
-                return super.drawChild(canvas, view, j10);
-        }
-    }
-
-    @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f15744a) {
+                r0 r0Var = this.f10072b;
+                if (r0Var.C0) {
+                    r0Var.q0(null, true);
+                    return;
+                } else {
+                    r0Var.A0(0);
+                    return;
+                }
             case 1:
-                int i14 = this.f15745b;
-                ti tiVar = (ti) this.e;
-                int top = i14 - tiVar.f33042w.getTop();
-                super.onLayout(z10, i10, i11, i12, i13);
-                this.f15745b = getHeight();
-                if (tiVar.f33042w.getVisibility() == 0 && getHeight() - tiVar.f33042w.getTop() != top) {
-                    tiVar.f33042w.setTranslationY(tiVar.f33042w.getTranslationY() + ((getHeight() - tiVar.f33042w.getTop()) - top));
-                    tiVar.f33042w.animate().translationY(0.0f).setDuration(320L).setInterpolator(ds.h).start();
+                r0 r0Var2 = this.f10072b;
+                int i10 = r0Var2.P0;
+                r0Var2.A0(1);
+                r0Var2.postDelayed(new n(r0Var2, 1), 350L);
+                vh.u1 u1Var = new vh.u1(r0Var2.getContext(), r0Var2.f10203z1, false, false);
+                u1Var.f52006v1 = new s(r0Var2);
+                u1Var.N0(new v(r0Var2, 0));
+                u1Var.setOnDismissListener(new w(r0Var2, i10));
+                u1Var.show();
+                PhotoViewer photoViewer = ((er0) r0Var2).X1;
+                if (photoViewer.F2 != null) {
+                    photoViewer.H2 = false;
+                    photoViewer.v0();
+                    photoViewer.F2.g0();
                     return;
                 }
                 return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f15744a) {
-            case 0:
-                n nVar = (n) this.e;
-                nVar.f15780n.measure(i10, i11);
-                invalidate();
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(this.f15745b, AndroidUtilities.dp(36.0f) + nVar.f15780n.getMeasuredHeight()), 1073741824));
-                if (this.f15745b < 0) {
-                    this.f15745b = getMeasuredHeight();
+            case 2:
+                r0 r0Var3 = this.f10072b;
+                j jVar = r0Var3.B0;
+                if ((jVar instanceof g3) && !r0Var3.C0) {
+                    g3 g3Var = (g3) jVar;
+                    r0Var3.C0 = true;
+                    g3Var.q();
+                    View focusedView = g3Var.getFocusedView();
+                    focusedView.requestFocus();
+                    org.telegram.messenger.i0.J3(focusedView);
+                }
+                org.telegram.ui.ActionBar.k1 k1Var = r0Var3.A1;
+                if (k1Var != null && k1Var.isShowing()) {
+                    r0Var3.A1.d(true);
                     return;
                 }
                 return;
+            case 3:
+                r0.Z(this.f10072b);
+                return;
             default:
-                super.onMeasure(i10, i11);
+                r0 r0Var4 = this.f10072b;
+                r0Var4.A0(2);
+                if (!(r0Var4.B0 instanceof g3)) {
+                    r0Var4.h0(true);
+                    return;
+                }
                 return;
         }
-    }
-
-    public k(ti tiVar, Context context) {
-        super(context);
-        this.e = tiVar;
-        this.f15746c = new Path();
-        this.d = new y10();
     }
 }

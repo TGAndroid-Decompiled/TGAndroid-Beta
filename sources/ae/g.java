@@ -1,3 +1,4 @@
 package ae;
-public abstract class g extends f {
+public final class g {
+    public static final g f421a = new Object();
 }

@@ -1,66 +1,66 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class wy extends org.telegram.ui.ActionBar.r2 {
-    public long f45424a;
-    public TLRPC.Chat f45425b;
-    public boolean f45426c;
-    public boolean d;
-    public ty e;
-    public bi.m5 f45427f;
+public final class wy implements RequestDelegate {
+    public final int f43395a;
+    public final iz f43396b;
 
-    public final void V() {
-        if (this.d && getParentLayout() != null) {
-            for (org.telegram.ui.ActionBar.r2 r2Var : getParentLayout().getFragmentStack()) {
-                if (r2Var instanceof ey) {
-                    vw vwVar = ((ey) r2Var).G3;
-                    if (vwVar.c()) {
-                        vwVar.a();
+    public wy(iz izVar, int i10) {
+        this.f43395a = i10;
+        this.f43396b = izVar;
+    }
+
+    @Override
+    public final void run(TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f43395a) {
+            case 0:
+                final iz izVar = this.f43396b;
+                org.telegram.messenger.i0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i10 = r3;
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        iz izVar2 = izVar;
+                        switch (i10) {
+                            case 0:
+                                izVar2.E = 0;
+                                if (tL_error2 == null) {
+                                    org.telegram.messenger.m5.n(null, 2131750743, org.telegram.ui.Components.cc.a0(izVar2), 2131623989, 36);
+                                    return;
+                                }
+                                return;
+                            default:
+                                iz.Y(izVar2, tL_error2);
+                                return;
+                        }
                     }
-                }
-            }
+                });
+                return;
+            default:
+                final iz izVar2 = this.f43396b;
+                org.telegram.messenger.i0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i10 = r3;
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        iz izVar22 = izVar2;
+                        switch (i10) {
+                            case 0:
+                                izVar22.E = 0;
+                                if (tL_error2 == null) {
+                                    org.telegram.messenger.m5.n(null, 2131750743, org.telegram.ui.Components.cc.a0(izVar22), 2131623989, 36);
+                                    return;
+                                }
+                                return;
+                            default:
+                                iz.Y(izVar22, tL_error2);
+                                return;
+                        }
+                    }
+                });
+                return;
         }
-    }
-
-    @Override
-    public final View createView(Context context) {
-        setHasOwnBackground(true);
-        this.simpleActionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.simpleActionBar.setActionBarMenuOnItemClick(new ga(this, 26));
-        this.simpleActionBar.setTitle(LocaleController.getString(R.string.TopicsTitle));
-        FrameLayout frameLayout = new FrameLayout(context);
-        ?? s71Var = new org.telegram.ui.Components.s71(this, new e5(this, 13), new st(this, 8), null);
-        this.e = s71Var;
-        s71Var.u1();
-        this.e.setSectionsDrawBackground(true);
-        frameLayout.addView(this.e, org.telegram.ui.Components.kb1.i(-1, -1, 119));
-        this.fragmentView = frameLayout;
-        return frameLayout;
-    }
-
-    @Override
-    public final org.telegram.ui.Components.nm0 getListViewForSimpleGlass() {
-        return this.e;
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
-    }
-
-    @Override
-    public final boolean onFragmentCreate() {
-        this.f45425b = getMessagesController().getChat(Long.valueOf(-this.f45424a));
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public final boolean useSimpleActionBar() {
-        return true;
     }
 }

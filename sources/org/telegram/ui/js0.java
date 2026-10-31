@@ -1,21 +1,8 @@
 package org.telegram.ui;
+public final class js0 {
+    public final float f38584a;
 
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.MessageObject;
-public final class js0 implements Runnable {
-    public final PhotoViewer f40590a;
-
-    public js0(PhotoViewer photoViewer) {
-        this.f40590a = photoViewer;
-    }
-
-    @Override
-    public final void run() {
-        PhotoViewer photoViewer = this.f40590a;
-        MessageObject messageObject = photoViewer.T4;
-        if (messageObject == null) {
-            return;
-        }
-        FileLoader.getInstance(messageObject.currentAccount).setLoadingVideo(photoViewer.T4.getDocument(), true, false);
+    public js0(float f7) {
+        this.f38584a = f7;
     }
 }

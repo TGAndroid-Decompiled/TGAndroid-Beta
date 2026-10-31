@@ -1,10 +1,8 @@
 package org.telegram.messenger;
+public final class me {
+    public final MediaController f16945a;
 
-import java.util.HashSet;
-import java.util.function.Supplier;
-public final class me implements Supplier {
-    @Override
-    public final Object get() {
-        return new HashSet();
+    public me(MediaController mediaController) {
+        this.f16945a = mediaController;
     }
 }

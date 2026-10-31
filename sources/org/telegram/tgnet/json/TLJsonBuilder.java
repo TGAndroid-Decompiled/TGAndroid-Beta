@@ -4,7 +4,7 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.telegram.messenger.FileLog;
+import org.telegram.messenger.f8;
 public class TLJsonBuilder {
     private final JSONObject result2 = new JSONObject();
 
@@ -24,7 +24,7 @@ public class TLJsonBuilder {
             serializable.serializeToJson(tLJsonBuilder);
             return tLJsonBuilder.result2;
         } catch (Exception e) {
-            FileLog.e(e);
+            f8.g(e, true);
             return null;
         }
     }
@@ -33,7 +33,7 @@ public class TLJsonBuilder {
         try {
             this.result2.putOpt(str, obj);
         } catch (JSONException e) {
-            FileLog.e(e);
+            f8.g(e, true);
         }
     }
 

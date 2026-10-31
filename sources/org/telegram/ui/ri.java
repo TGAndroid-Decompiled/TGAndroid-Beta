@@ -1,43 +1,23 @@
 package org.telegram.ui;
+public final class ri implements org.telegram.ui.Components.xf0 {
+    public boolean f41234a = true;
+    public final org.telegram.ui.Components.mj0 f41235b;
 
-import org.telegram.messenger.MessageObject;
-public final class ri implements Runnable {
-    public final boolean f43047a;
-    public final boolean f43048b;
-    public final int f43049c;
-    public final boolean d;
-    public final org.telegram.ui.Components.gl0 e;
-    public final float f43050f;
-    public final float h;
-    public final bh.x0 f43051n;
-    public final MessageObject f43052r;
-    public final wn f43053s;
-
-    public ri(wn wnVar, boolean z10, boolean z11, int i10, boolean z12, org.telegram.ui.Components.gl0 gl0Var, float f7, float f10, bh.x0 x0Var, MessageObject messageObject) {
-        this.f43053s = wnVar;
-        this.f43047a = z10;
-        this.f43048b = z11;
-        this.f43049c = i10;
-        this.d = z12;
-        this.e = gl0Var;
-        this.f43050f = f7;
-        this.h = f10;
-        this.f43051n = x0Var;
-        this.f43052r = messageObject;
+    public ri(org.telegram.ui.Components.mj0 mj0Var) {
+        this.f41235b = mj0Var;
     }
 
     @Override
-    public final void run() {
-        if (!this.f43047a) {
-            wn wnVar = this.f43053s;
-            if (wnVar.Cc != null) {
-                wnVar.Cc = null;
-                if (this.f43048b) {
-                    wnVar.q8(new qi(this, this.f43049c, this.d, this.e, this.f43050f, this.h, this.f43051n, 0));
-                } else {
-                    wnVar.q8(new ed(18, this, this.f43052r));
-                }
-                wnVar.J7(true);
+    public final void a(float f7, float f10) {
+        int i10 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
+        org.telegram.ui.Components.mj0 mj0Var = this.f41235b;
+        if (i10 == 0 && !this.f41234a) {
+            mj0Var.r(false);
+            this.f41234a = true;
+        } else if (f7 == 1.0f && this.f41234a) {
+            mj0Var.setAlpha(1.0f - f10);
+            if (f10 == 1.0f) {
+                this.f41234a = false;
             }
         }
     }

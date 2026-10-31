@@ -1,21 +1,21 @@
 package org.telegram.messenger.voip;
 public final class h implements Runnable {
-    public final int f21632a;
-    public final VideoCapturerDevice f21633b;
+    public final int f18651a;
+    public final GroupCallMessage f18652b;
 
-    public h(VideoCapturerDevice videoCapturerDevice, int i10) {
-        this.f21632a = i10;
-        this.f21633b = videoCapturerDevice;
+    public h(GroupCallMessage groupCallMessage, int i10) {
+        this.f18651a = i10;
+        this.f18652b = groupCallMessage;
     }
 
     @Override
     public final void run() {
-        switch (this.f21632a) {
+        switch (this.f18651a) {
             case 0:
-                this.f21633b.lambda$onDestroy$8();
+                this.f18652b.notifyStateUpdate();
                 return;
             default:
-                this.f21633b.lambda$onDestroy$9();
+                GroupCallMessagesController.c(this.f18652b);
                 return;
         }
     }

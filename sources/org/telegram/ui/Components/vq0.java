@@ -1,56 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.View;
-public final class vq0 implements View.OnTouchListener {
-    public final int f34353a;
-    public final Rect f34354b;
-    public final nr0 f34355c;
+import android.content.Context;
+import android.view.ViewPropertyAnimator;
+import android.widget.TextView;
+public final class vq0 extends ph.j2 {
+    public final zt0 V;
 
-    public vq0(nr0 nr0Var, int i10) {
-        this.f34353a = i10;
-        switch (i10) {
-            case 1:
-                this.f34355c = nr0Var;
-                this.f34354b = new Rect();
-                return;
-            default:
-                this.f34355c = nr0Var;
-                this.f34354b = new Rect();
-                return;
-        }
+    public vq0(zt0 zt0Var, org.telegram.ui.ActionBar.k2 k2Var, Context context, int i10, long j10, org.telegram.ui.ActionBar.p6 p6Var, tg.b bVar) {
+        super(k2Var, context, i10, j10, p6Var, bVar);
+        this.V = zt0Var;
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        nr0 nr0Var;
-        org.telegram.ui.ActionBar.o1 o1Var;
-        nr0 nr0Var2;
-        org.telegram.ui.ActionBar.o1 o1Var2;
-        switch (this.f34353a) {
-            case 0:
-                if (motionEvent.getActionMasked() == 0 && (o1Var = (nr0Var = this.f34355c).K0) != null && o1Var.isShowing()) {
-                    Rect rect = this.f34354b;
-                    view.getHitRect(rect);
-                    if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        nr0Var.K0.d(true);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-            default:
-                if (motionEvent.getActionMasked() == 0 && (o1Var2 = (nr0Var2 = this.f34355c).K0) != null && o1Var2.isShowing()) {
-                    Rect rect2 = this.f34354b;
-                    view.getHitRect(rect2);
-                    if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        nr0Var2.K0.d(true);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
+    public final void q(boolean z10) {
+        float f7;
+        float f10;
+        zt0 zt0Var = this.V;
+        TextView textView = zt0Var.f33227s0;
+        textView.setVisibility(0);
+        ViewPropertyAnimator animate = textView.animate();
+        float f11 = 1.0f;
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
         }
+        ViewPropertyAnimator alpha = animate.alpha(f7);
+        if (z10) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.4f;
+        }
+        ViewPropertyAnimator scaleX = alpha.scaleX(f10);
+        if (!z10) {
+            f11 = 0.4f;
+        }
+        scaleX.scaleY(f11).withEndAction(new k2.v(20, this, z10)).start();
+        zt0Var.D1(true);
     }
 }

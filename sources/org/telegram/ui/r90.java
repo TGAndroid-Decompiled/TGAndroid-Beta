@@ -1,59 +1,71 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import java.util.regex.Pattern;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class r90 implements Utilities.Callback {
-    public final int f42894a;
-    public final LaunchActivity f42895b;
+import android.os.Bundle;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class r90 implements org.telegram.messenger.jp {
+    public final f70 f41179a;
+    public final String f41180b;
+    public final org.telegram.ui.ActionBar.k2 f41181c;
+    public final long d;
+    public final Integer e;
+    public final Bundle f41182f;
+    public final LaunchActivity h;
 
-    public r90(LaunchActivity launchActivity, int i10) {
-        this.f42894a = i10;
-        this.f42895b = launchActivity;
+    public r90(LaunchActivity launchActivity, f70 f70Var, String str, org.telegram.ui.ActionBar.k2 k2Var, long j10, Integer num, Bundle bundle) {
+        this.h = launchActivity;
+        this.f41179a = f70Var;
+        this.f41180b = str;
+        this.f41181c = k2Var;
+        this.d = j10;
+        this.e = num;
+        this.f41182f = bundle;
     }
 
     @Override
-    public final void run(Object obj) {
-        org.telegram.ui.ActionBar.r2 lastFragment;
-        int i10 = this.f42894a;
-        LaunchActivity launchActivity = this.f42895b;
-        switch (i10) {
-            case 0:
-                boolean booleanValue = ((Boolean) obj).booleanValue();
-                if (launchActivity.f35577q0 != null && booleanValue && LiteMode.getPowerSaverLevel() < 100 && (lastFragment = launchActivity.f35577q0.getLastFragment()) != null && !(lastFragment instanceof wb0)) {
-                    int batteryLevel = LiteMode.getBatteryLevel();
-                    org.telegram.ui.Components.wc b02 = org.telegram.ui.Components.wc.b0(lastFragment);
-                    org.telegram.ui.Components.ba baVar = new org.telegram.ui.Components.ba(batteryLevel / 100.0f, lastFragment.getThemedColor(org.telegram.ui.ActionBar.y6.Y5));
-                    String string = LocaleController.getString(R.string.LowPowerEnabledTitle);
-                    String formatString = LocaleController.formatString("LowPowerEnabledSubtitle", R.string.LowPowerEnabledSubtitle, String.format("%d%%", Integer.valueOf(batteryLevel)));
-                    String string2 = LocaleController.getString(R.string.Disable);
-                    p80 p80Var = new p80(launchActivity, 10);
-                    b02.getClass();
-                    Context X = b02.X();
-                    org.telegram.ui.ActionBar.u6 u6Var = b02.f34498c;
-                    org.telegram.ui.Components.nc ncVar = new org.telegram.ui.Components.nc(X, u6Var);
-                    ncVar.f30858a.setImageDrawable(baVar);
-                    ncVar.f30859b.setText(string);
-                    ncVar.f30860c.setText(formatString);
-                    org.telegram.ui.Components.oc ocVar = new org.telegram.ui.Components.oc(b02.X(), u6Var, true);
-                    ocVar.e(string2);
-                    ocVar.f31259b = p80Var;
-                    ncVar.setButton(ocVar);
-                    org.telegram.ui.Components.qc b10 = b02.b(ncVar, 2750);
-                    b10.f31861j = 5000;
-                    b10.j();
-                    return;
+    public final void a() {
+        LaunchActivity launchActivity = this.h;
+        if (!launchActivity.isFinishing()) {
+            org.telegram.ui.Components.s4.t0((org.telegram.ui.ActionBar.k2) i0.a.g(1, launchActivity.f33353d0), null, org.telegram.messenger.cd.L0(2131749085, null), null);
+        }
+        try {
+            this.f41179a.run();
+        } catch (Exception e) {
+            org.telegram.messenger.f8.g(e, true);
+        }
+    }
+
+    @Override
+    public final void g(boolean z10) {
+        try {
+            this.f41179a.run();
+        } catch (Exception e) {
+            org.telegram.messenger.f8.g(e, true);
+        }
+        LaunchActivity launchActivity = this.h;
+        if (!launchActivity.isFinishing()) {
+            String str = this.f41180b;
+            long j10 = this.d;
+            org.telegram.ui.ActionBar.k2 k2Var = this.f41181c;
+            if (str == null || !(k2Var instanceof un) || ((un) k2Var).a() != j10) {
+                if (k2Var instanceof un) {
+                    un unVar = (un) k2Var;
+                    if (unVar.a() == j10 && this.e == null) {
+                        org.telegram.messenger.i0.F3(5.0f, unVar.f42492z0, null);
+                        org.telegram.messenger.t2.APP_ERROR.a();
+                        mk mkVar = unVar.Z;
+                        for (int i10 = 0; i10 < mkVar.getChildCount(); i10++) {
+                            org.telegram.messenger.i0.F3(5.0f, mkVar.getChildAt(i10), null);
+                        }
+                        org.telegram.ui.ActionBar.l actionBar = unVar.getActionBar();
+                        for (int i11 = 0; i11 < actionBar.getChildCount(); i11++) {
+                            org.telegram.messenger.i0.F3(5.0f, actionBar.getChildAt(i11), null);
+                        }
+                    }
                 }
-                return;
-            default:
-                Pattern pattern = LaunchActivity.D1;
-                MessagesController.getInstance(launchActivity.O).openApp((TLRPC.User) obj, 0);
-                return;
+                k2Var = new un(this.f41182f);
+                ((ActionBarLayout) launchActivity.M()).R(k2Var);
+            }
+            org.telegram.messenger.i0.h3(new ag.a3(this, this.f41180b, this.d, k2Var, 10), 150L);
         }
     }
 }

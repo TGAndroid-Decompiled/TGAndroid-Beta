@@ -9,7 +9,7 @@ import java.nio.ByteBuffer;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
-import org.telegram.messenger.FileLog;
+import org.telegram.messenger.f8;
 import org.webrtc.EglBase;
 import org.webrtc.EncodedImage;
 import org.webrtc.ThreadUtils;
@@ -76,11 +76,12 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
             this.frameInfos = new LinkedBlockingDeque();
             return;
         }
-        throw new IllegalArgumentException(ic.a.i(i10, "Unsupported color format: "));
+        throw new IllegalArgumentException(i0.a.i(i10, "Unsupported color format: "));
     }
 
     private VideoFrame.Buffer copyI420Buffer(ByteBuffer byteBuffer, int i10, int i11, int i12, int i13) {
         int i14;
+        boolean z10;
         if (i10 % 2 == 0) {
             int i15 = (i12 + 1) / 2;
             if (i11 % 2 == 0) {
@@ -100,32 +101,40 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
             try {
                 byteBuffer.limit(i18);
                 byteBuffer.position(0);
-                copyPlane(byteBuffer.slice(), i10, allocateI420Buffer.getDataY(), allocateI420Buffer.getStrideY(), i12, i13);
-                byteBuffer.limit(i21);
-                byteBuffer.position(i19);
-                copyPlane(byteBuffer.slice(), i17, allocateI420Buffer.getDataU(), allocateI420Buffer.getStrideU(), i15, i16);
-                if (i11 % 2 == 1) {
-                    byteBuffer.position(((i16 - 1) * i17) + i19);
-                    ByteBuffer dataU = allocateI420Buffer.getDataU();
-                    dataU.position(allocateI420Buffer.getStrideU() * i16);
-                    dataU.put(byteBuffer);
+                z10 = true;
+                try {
+                    copyPlane(byteBuffer.slice(), i10, allocateI420Buffer.getDataY(), allocateI420Buffer.getStrideY(), i12, i13);
+                    byteBuffer.limit(i21);
+                    byteBuffer.position(i19);
+                    copyPlane(byteBuffer.slice(), i17, allocateI420Buffer.getDataU(), allocateI420Buffer.getStrideU(), i15, i16);
+                    if (i11 % 2 == 1) {
+                        byteBuffer.position(((i16 - 1) * i17) + i19);
+                        ByteBuffer dataU = allocateI420Buffer.getDataU();
+                        dataU.position(allocateI420Buffer.getStrideU() * i16);
+                        dataU.put(byteBuffer);
+                    }
+                    byteBuffer.limit(i23);
+                    byteBuffer.position(i22);
+                    copyPlane(byteBuffer.slice(), i17, allocateI420Buffer.getDataV(), allocateI420Buffer.getStrideV(), i15, i16);
+                    if (i11 % 2 == 1) {
+                        byteBuffer.position(((i16 - 1) * i17) + i22);
+                        ByteBuffer dataV = allocateI420Buffer.getDataV();
+                        dataV.position(allocateI420Buffer.getStrideV() * i16);
+                        dataV.put(byteBuffer);
+                    }
+                    return allocateI420Buffer;
+                } catch (Throwable th2) {
+                    th = th2;
+                    f8.g(th, z10);
+                    return allocateI420Buffer;
                 }
-                byteBuffer.limit(i23);
-                byteBuffer.position(i22);
-                copyPlane(byteBuffer.slice(), i17, allocateI420Buffer.getDataV(), allocateI420Buffer.getStrideV(), i15, i16);
-                if (i11 % 2 == 1) {
-                    byteBuffer.position(((i16 - 1) * i17) + i22);
-                    ByteBuffer dataV = allocateI420Buffer.getDataV();
-                    dataV.position(allocateI420Buffer.getStrideV() * i16);
-                    dataV.put(byteBuffer);
-                }
-                return allocateI420Buffer;
-            } catch (Throwable th2) {
-                FileLog.e(th2);
-                return allocateI420Buffer;
+            } catch (Throwable th3) {
+                th = th3;
+                z10 = true;
             }
+        } else {
+            throw new AssertionError(i0.a.i(i10, "Stride is not divisible by two: "));
         }
-        throw new AssertionError(ic.a.i(i10, "Stride is not divisible by two: "));
     }
 
     private VideoFrame.Buffer copyNV12ToI420Buffer(ByteBuffer byteBuffer, int i10, int i11, int i12, int i13) {
@@ -252,8 +261,8 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
                 Logging.e("AndroidVideoDecoder", "initDecode failed", e);
                 release();
                 return VideoCodecStatus.FALLBACK_SOFTWARE;
-            } catch (IllegalStateException e10) {
-                e = e10;
+            } catch (IllegalStateException e7) {
+                e = e7;
                 Logging.e("AndroidVideoDecoder", "initDecode failed", e);
                 release();
                 return VideoCodecStatus.FALLBACK_SOFTWARE;
@@ -296,9 +305,9 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
         }
         try {
             this.codec.release();
-        } catch (Exception e10) {
-            Logging.e("AndroidVideoDecoder", "Media decoder release failed", e10);
-            this.shutdownException = e10;
+        } catch (Exception e7) {
+            Logging.e("AndroidVideoDecoder", "Media decoder release failed", e7);
+            this.shutdownException = e7;
         }
         Logging.d("AndroidVideoDecoder", "Release on output thread done");
     }
@@ -407,12 +416,12 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
                         this.frameInfos.pollLast();
                         return VideoCodecStatus.ERROR;
                     }
-                } catch (IllegalStateException e10) {
-                    Logging.e("AndroidVideoDecoder", "getInputBuffer with index=" + dequeueInputBuffer + " failed", e10);
+                } catch (IllegalStateException e7) {
+                    Logging.e("AndroidVideoDecoder", "getInputBuffer with index=" + dequeueInputBuffer + " failed", e7);
                     return VideoCodecStatus.ERROR;
                 }
-            } catch (IllegalStateException e11) {
-                Logging.e("AndroidVideoDecoder", "dequeueInputBuffer failed", e11);
+            } catch (IllegalStateException e10) {
+                Logging.e("AndroidVideoDecoder", "dequeueInputBuffer failed", e10);
                 return VideoCodecStatus.ERROR;
             }
         }

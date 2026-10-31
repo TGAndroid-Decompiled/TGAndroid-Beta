@@ -1,30 +1,33 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.graphics.Outline;
-import android.view.View;
-import android.view.ViewOutlineProvider;
-import org.telegram.messenger.AndroidUtilities;
-public final class ws0 extends ViewOutlineProvider {
-    public final int f45395a;
-    public final float f45396b;
-    public final Object f45397c;
+import android.content.Context;
+import android.view.ActionMode;
+import android.view.Menu;
+public final class ws0 extends org.telegram.ui.Cells.e6 {
+    public final ys0 F;
 
-    public ws0(Object obj, float f7, int i10) {
-        this.f45395a = i10;
-        this.f45397c = obj;
-        this.f45396b = f7;
+    public ws0(ys0 ys0Var, Context context, int i10) {
+        super(context, i10, null, null);
+        this.F = ys0Var;
     }
 
     @Override
-    public final void getOutline(View view, Outline outline) {
-        switch (this.f45395a) {
-            case 0:
-                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), (1.0f / this.f45396b) * ((Float) ((ValueAnimator) this.f45397c).getAnimatedValue()).floatValue() * AndroidUtilities.dp(10.0f));
-                return;
-            default:
-                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), (1.0f / this.f45396b) * (1.0f - ((PhotoViewer) this.f45397c).W) * AndroidUtilities.dp(10.0f));
-                return;
+    public final void g(ih.b bVar, ActionMode actionMode) {
+        if (bVar.isFocused() && bVar.hasSelection()) {
+            Menu menu = actionMode.getMenu();
+            if (menu.findItem(16908321) != null) {
+                un.t8(menu, this.F.d.f35717f.h, false, true, true, true);
+            }
         }
+    }
+
+    @Override
+    public final void i(boolean z10) {
+        at0.h0(this.F.d, this, z10);
+    }
+
+    @Override
+    public final void j(org.telegram.ui.Cells.e6 e6Var) {
+        at0.i0(this.F.d, e6Var);
     }
 }

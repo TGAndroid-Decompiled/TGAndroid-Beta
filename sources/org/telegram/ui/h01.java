@@ -1,19 +1,36 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class h01 extends org.telegram.ui.Cells.n5 {
-    public final l01 v;
+import android.animation.ValueAnimator;
+public final class h01 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f37681a;
+    public final k01 f37682b;
 
-    public h01(l01 l01Var, Context context, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(18, 70, context, u6Var, false);
-        this.v = l01Var;
+    public h01(k01 k01Var, int i10) {
+        this.f37681a = i10;
+        this.f37682b = k01Var;
     }
 
     @Override
-    public final int a(int i10) {
-        ProfileActivity profileActivity = this.v.e;
-        int i11 = ProfileActivity.R6;
-        profileActivity.getClass();
-        return i10;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f37681a) {
+            case 0:
+                k01 k01Var = this.f37682b;
+                k01Var.getClass();
+                k01Var.e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k01Var.g();
+                return;
+            case 1:
+                k01 k01Var2 = this.f37682b;
+                k01Var2.getClass();
+                k01Var2.e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k01Var2.g();
+                return;
+            default:
+                k01 k01Var3 = this.f37682b;
+                k01Var3.getClass();
+                k01Var3.e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k01Var3.g();
+                return;
+        }
     }
 }

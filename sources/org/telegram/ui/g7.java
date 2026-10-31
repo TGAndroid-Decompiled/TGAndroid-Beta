@@ -1,28 +1,53 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class g7 implements org.telegram.ui.Components.am0 {
-    public final org.telegram.ui.Components.nm0 f39518a;
-    public final h7 f39519b;
+import java.util.ArrayList;
+public abstract class g7 extends f7 {
+    public final ArrayList f37445f;
+    public final t7 h;
 
-    public g7(h7 h7Var, org.telegram.ui.Components.nm0 nm0Var) {
-        this.f39519b = h7Var;
-        this.f39518a = nm0Var;
+    public g7(t7 t7Var, int i10) {
+        super(i10);
+        this.h = t7Var;
+        this.f37445f = new ArrayList();
     }
 
     @Override
-    public final void c(int i10, View view) {
-        x7 x7Var = this.f39519b.f39802f;
-        org.telegram.ui.Components.nm0 nm0Var = this.f39518a;
-        j7 j7Var = (j7) nm0Var.getAdapter();
-        q7 q7Var = (q7) j7Var.e.get(i10);
-        if (view instanceof org.telegram.ui.Cells.w7) {
-            x7.a(x7Var, q7Var, (s7) j7Var, nm0Var);
-            return;
+    public boolean D(s4.c1 c1Var) {
+        return !(this instanceof o7);
+    }
+
+    @Override
+    public void F() {
+        ArrayList arrayList;
+        ArrayList arrayList2 = this.f37445f;
+        arrayList2.clear();
+        ArrayList arrayList3 = this.e;
+        arrayList2.addAll(arrayList3);
+        arrayList3.clear();
+        sh.b bVar = this.h.h;
+        if (bVar != null) {
+            int i10 = this.d;
+            if (i10 == 1) {
+                arrayList = bVar.d;
+            } else if (i10 == 2) {
+                arrayList = bVar.e;
+            } else if (i10 == 3) {
+                arrayList = bVar.f48500f;
+            } else if (i10 == 5) {
+                arrayList = bVar.f48501g;
+            } else if (i10 == 4) {
+                arrayList = bVar.h;
+            } else {
+                arrayList = null;
+            }
+            if (arrayList != null) {
+                for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                    ?? bVar2 = new hg.b(2, true);
+                    bVar2.d = (sh.a) arrayList.get(i11);
+                    arrayList3.add(bVar2);
+                }
+            }
         }
-        m7 m7Var = x7Var.F;
-        if (m7Var != null) {
-            m7Var.q(q7Var.f42625c, q7Var.d, false);
-        }
+        E(arrayList2, arrayList3);
     }
 }

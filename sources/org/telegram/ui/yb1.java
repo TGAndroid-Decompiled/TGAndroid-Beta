@@ -1,62 +1,41 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.ViewGroup;
-public final class yb1 extends AnimatorListenerAdapter {
-    public final int f45953a;
-    public final vc1 f45954b;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class yb1 implements Runnable {
+    public final int f43815a;
+    public final TwoStepVerificationActivity f43816b;
 
-    public yb1(vc1 vc1Var, int i10) {
-        this.f45953a = i10;
-        this.f45954b = vc1Var;
+    public yb1(TwoStepVerificationActivity twoStepVerificationActivity, int i10) {
+        this.f43815a = i10;
+        this.f43816b = twoStepVerificationActivity;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f45953a) {
+    public final void run() {
+        EditTextBoldCursor editTextBoldCursor;
+        switch (this.f43815a) {
             case 0:
-                super.onAnimationEnd(animator);
-                vc1 vc1Var = this.f45954b;
-                vc1Var.f44312y0.invalidate();
-                vc1Var.f44309x0[1].setVisibility(8);
-                vc1Var.f44259d2 = null;
-                return;
-            case 1:
-                this.f45954b.C0 = null;
-                return;
-            case 2:
-                vc1 vc1Var2 = this.f45954b;
-                if (vc1Var2.E0.getTag() == null) {
-                    vc1Var2.E0.setVisibility(4);
-                }
-                vc1Var2.I0 = null;
-                return;
-            case 3:
-                vc1 vc1Var3 = this.f45954b;
-                if (vc1Var3.F0.getTag() == null) {
-                    vc1Var3.F0.setVisibility(4);
-                }
-                vc1Var3.J0 = null;
-                return;
-            case 4:
-                vc1 vc1Var4 = this.f45954b;
-                mc mcVar = vc1Var4.f44275i2;
-                if (mcVar != null) {
-                    if (mcVar.getParent() != null) {
-                        ((ViewGroup) vc1Var4.f44275i2.getParent()).removeView(vc1Var4.f44275i2);
-                    }
-                    vc1Var4.f44275i2 = null;
-                }
-                vc1Var4.f44281k2 = null;
-                super.onAnimationEnd(animator);
-                return;
-            default:
-                vc1 vc1Var5 = this.f45954b;
-                if (!vc1Var5.f44292q1.a()) {
-                    vc1Var5.S1.setVisibility(8);
+                TwoStepVerificationActivity twoStepVerificationActivity = this.f43816b;
+                if (!twoStepVerificationActivity.isFinishing() && !twoStepVerificationActivity.H && (editTextBoldCursor = twoStepVerificationActivity.f34135s) != null) {
+                    editTextBoldCursor.requestFocus();
+                    org.telegram.messenger.i0.J3(twoStepVerificationActivity.f34135s);
                     return;
                 }
+                return;
+            case 1:
+                TwoStepVerificationActivity twoStepVerificationActivity2 = this.f43816b;
+                yb1 yb1Var = twoStepVerificationActivity2.V;
+                org.telegram.messenger.i0.r(yb1Var);
+                org.telegram.messenger.i0.h3(yb1Var, 1500L);
+                twoStepVerificationActivity2.U = true;
+                return;
+            case 2:
+                TwoStepVerificationActivity twoStepVerificationActivity3 = this.f43816b;
+                twoStepVerificationActivity3.U = false;
+                twoStepVerificationActivity3.f34136w.a(0.0f);
+                return;
+            default:
+                this.f43816b.C0();
                 return;
         }
     }

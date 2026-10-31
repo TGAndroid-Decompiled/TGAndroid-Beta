@@ -1,100 +1,115 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-public final class ng implements Runnable {
-    public final int f41794a;
-    public final wn f41795b;
-    public final org.telegram.ui.ActionBar.e2[] f41796c;
-    public final int d;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class ng implements org.telegram.messenger.j20 {
+    public final int f39933a;
+    public final int f39934b;
+    public final Object f39935c;
+    public final Object d;
 
-    public ng(wn wnVar, org.telegram.ui.ActionBar.e2[] e2VarArr, int i10, int i11) {
-        this.f41794a = i11;
-        this.f41795b = wnVar;
-        this.f41796c = e2VarArr;
-        this.d = i10;
+    public ng(Object obj, int i10, TLObject tLObject, int i11) {
+        this.f39933a = i11;
+        this.f39935c = obj;
+        this.f39934b = i10;
+        this.d = tLObject;
     }
 
     @Override
-    public final void run() {
-        switch (this.f41794a) {
+    public final void a(Object obj, Object obj2) {
+        TLRPC.Updates updates;
+        int i10 = this.f39933a;
+        int i11 = this.f39934b;
+        Object obj3 = this.d;
+        Object obj4 = this.f39935c;
+        switch (i10) {
             case 0:
-                org.telegram.ui.ActionBar.e2[] e2VarArr = this.f41796c;
-                org.telegram.ui.ActionBar.e2 e2Var = e2VarArr[0];
-                if (e2Var != null) {
-                    final wn wnVar = this.f41795b;
-                    final int i10 = this.d;
-                    e2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public final void onCancel(DialogInterface dialogInterface) {
-                            switch (r3) {
-                                case 0:
-                                    wnVar.getConnectionsManager().cancelRequest(i10, true);
-                                    return;
-                                case 1:
-                                    wnVar.getConnectionsManager().cancelRequest(i10, true);
-                                    return;
-                                default:
-                                    wnVar.getConnectionsManager().cancelRequest(i10, true);
-                                    return;
-                            }
-                        }
-                    });
-                    wnVar.showDialog(e2VarArr[0]);
-                    return;
-                }
+                org.telegram.messenger.i0.g3(new i2.g1((un) obj4, this.f39934b, (Boolean) obj, (TLRPC.WebPage) obj2, (TL_account.getWebPagePreview) obj3, 6));
                 return;
             case 1:
-                org.telegram.ui.ActionBar.e2[] e2VarArr2 = this.f41796c;
-                org.telegram.ui.ActionBar.e2 e2Var2 = e2VarArr2[0];
-                if (e2Var2 != null) {
-                    final wn wnVar2 = this.f41795b;
-                    final int i11 = this.d;
-                    e2Var2.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public final void onCancel(DialogInterface dialogInterface) {
-                            switch (r3) {
-                                case 0:
-                                    wnVar2.getConnectionsManager().cancelRequest(i11, true);
-                                    return;
-                                case 1:
-                                    wnVar2.getConnectionsManager().cancelRequest(i11, true);
-                                    return;
-                                default:
-                                    wnVar2.getConnectionsManager().cancelRequest(i11, true);
-                                    return;
-                            }
-                        }
-                    });
-                    wnVar2.showDialog(e2VarArr2[0]);
+                LaunchActivity launchActivity = (LaunchActivity) obj4;
+                f70 f70Var = (f70) obj3;
+                TLRPC.ChatInviteJoinResult chatInviteJoinResult = (TLRPC.ChatInviteJoinResult) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                Pattern pattern = LaunchActivity.D1;
+                if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultOk) {
+                    TLRPC.Updates updates2 = ((TLRPC.TL_chatInviteJoinResultOk) chatInviteJoinResult).updates;
+                    org.telegram.messenger.vp.r1(launchActivity.O).L3(updates2, false);
+                    updates = updates2;
+                } else {
+                    if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultWebView) {
+                        org.telegram.messenger.i0.g3(new f70(3, launchActivity, (TLRPC.TL_chatInviteJoinResultWebView) chatInviteJoinResult));
+                    }
+                    updates = null;
+                }
+                org.telegram.messenger.i0.g3(new i2.g1(launchActivity, f70Var, tL_error, updates, this.f39934b, 15));
+                return;
+            case 2:
+                PasskeysActivity passkeysActivity = (PasskeysActivity) obj4;
+                TL_account.Passkey passkey = (TL_account.Passkey) obj3;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                ArrayList arrayList = passkeysActivity.f33428b;
+                if (((TLRPC.Bool) obj) instanceof TLRPC.TL_boolFalse) {
+                    org.telegram.ui.Components.cc.a0(passkeysActivity).e0("FALSE", false);
+                    arrayList.add(Utilities.j(i11, arrayList.size(), 0), passkey);
+                    passkeysActivity.f33427a.f30819f3.O(true);
+                    return;
+                } else if (tL_error2 != null) {
+                    org.telegram.ui.Components.cc.a0(passkeysActivity).f0(tL_error2, false);
+                    arrayList.add(Utilities.j(i11, arrayList.size(), 0), passkey);
+                    passkeysActivity.f33427a.f30819f3.O(true);
+                    return;
+                } else {
                     return;
                 }
-                return;
             default:
-                org.telegram.ui.ActionBar.e2[] e2VarArr3 = this.f41796c;
-                org.telegram.ui.ActionBar.e2 e2Var3 = e2VarArr3[0];
-                if (e2Var3 != null) {
-                    final wn wnVar3 = this.f41795b;
-                    final int i12 = this.d;
-                    e2Var3.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public final void onCancel(DialogInterface dialogInterface) {
-                            switch (r3) {
-                                case 0:
-                                    wnVar3.getConnectionsManager().cancelRequest(i12, true);
-                                    return;
-                                case 1:
-                                    wnVar3.getConnectionsManager().cancelRequest(i12, true);
-                                    return;
-                                default:
-                                    wnVar3.getConnectionsManager().cancelRequest(i12, true);
-                                    return;
-                            }
+                org.telegram.ui.Wallet.h8 h8Var = (org.telegram.ui.Wallet.h8) obj4;
+                TL_wallet.card cardVar = (TL_wallet.card) obj3;
+                TL_wallet.card cardVar2 = (TL_wallet.card) obj;
+                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
+                h8Var.f34641f1 = 0;
+                if (cardVar2 != null) {
+                    org.telegram.ui.Wallet.h8.e0(i11, cardVar2);
+                    if (!h8Var.f34628a1) {
+                        if (h8Var.f34636d1) {
+                            h8Var.f34631b1 = cardVar2;
+                            h8Var.f34634c1 = org.telegram.ui.Wallet.h8.T(cardVar2);
+                            h8Var.Q();
+                            return;
                         }
-                    });
-                    wnVar3.showDialog(e2VarArr3[0]);
+                        h8Var.d(cardVar2);
+                        return;
+                    }
+                    return;
+                }
+                if (cardVar != null) {
+                    org.telegram.ui.Wallet.h8.e0(i11, cardVar);
+                }
+                if (!h8Var.f34628a1) {
+                    if (tL_error3 != null) {
+                        org.telegram.ui.Components.cc.a0(h8Var.f34626a).f0(tL_error3, false);
+                    }
+                    h8Var.f34636d1 = false;
+                    TL_wallet.card cardVar3 = h8Var.f34631b1;
+                    if (cardVar3 != null) {
+                        h8Var.d(cardVar3);
+                        return;
+                    }
                     return;
                 }
                 return;
         }
+    }
+
+    public ng(LaunchActivity launchActivity, f70 f70Var, int i10) {
+        this.f39933a = 1;
+        this.f39935c = launchActivity;
+        this.d = f70Var;
+        this.f39934b = i10;
     }
 }

@@ -1,50 +1,27 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
 public final class x7 implements Runnable {
-    public final int f21819a;
-    public final Utilities.Callback f21820b;
+    public final int f19219a;
+    public final b8 f19220b;
+    public final TLRPC.Document f19221c;
+    public final boolean d;
 
-    public x7(int i10, Utilities.Callback callback) {
-        this.f21819a = i10;
-        this.f21820b = callback;
+    public x7(b8 b8Var, TLRPC.Document document, boolean z10, int i10) {
+        this.f19219a = i10;
+        this.f19220b = b8Var;
+        this.f19221c = document;
+        this.d = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f21819a) {
+        switch (this.f19219a) {
             case 0:
-                MediaDataController.lambda$loadStickers$98(this.f21820b);
-                return;
-            case 1:
-                MediaDataController.lambda$loadStickers$99(this.f21820b);
-                return;
-            case 2:
-                MediaDataController.lambda$loadStickers$94(this.f21820b);
-                return;
-            case 3:
-                MediaDataController.lambda$loadStickers$95(this.f21820b);
-                return;
-            case 4:
-                MediaDataController.lambda$loadStickers$96(this.f21820b);
-                return;
-            case 5:
-                MediaDataController.lambda$loadBotInfo$199(this.f21820b);
-                return;
-            case 6:
-                this.f21820b.run(null);
-                return;
-            case 7:
-                MessagesController.lambda$addUserToChat$300(this.f21820b);
-                return;
-            case 8:
-                MessagesController.lambda$addUserToChat$304(this.f21820b);
-                return;
-            case 9:
-                this.f21820b.run(null);
+                this.f19220b.e0(this.f19221c, this.d);
                 return;
             default:
-                ShortcutResultReceiver.a(this.f21820b);
+                this.f19220b.b0(this.f19221c, this.d);
                 return;
         }
     }

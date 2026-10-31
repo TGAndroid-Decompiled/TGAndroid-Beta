@@ -1,174 +1,46 @@
 package org.telegram.ui;
-
-import android.os.Bundle;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLRPC;
 public final class hb0 implements Runnable {
-    public final int f39845a;
-    public final ProfileActivity f39846b;
+    public final int f37884a;
+    public final yb0 f37885b;
+    public final org.telegram.messenger.za f37886c;
 
-    public hb0(ProfileActivity profileActivity, int i10) {
-        this.f39845a = i10;
-        this.f39846b = profileActivity;
+    public hb0(yb0 yb0Var, org.telegram.messenger.za zaVar, int i10) {
+        this.f37884a = i10;
+        this.f37885b = yb0Var;
+        this.f37886c = zaVar;
     }
 
     @Override
     public final void run() {
-        l01 l01Var;
-        int i10 = this.f39845a;
-        ProfileActivity profileActivity = this.f39846b;
-        switch (i10) {
+        switch (this.f37884a) {
             case 0:
-                xz0 xz0Var = profileActivity.N;
-                if (xz0Var != null) {
-                    xz0Var.e1(14);
-                    profileActivity.O4(false);
-                    return;
+                yb0 yb0Var = this.f37885b;
+                org.telegram.messenger.za zaVar = this.f37886c;
+                if (yb0Var.I != null && yb0Var.getParentActivity() != null) {
+                    try {
+                        ((bh.d) zaVar).z();
+                        ((t7.u) org.telegram.messenger.w0.k()).initializeMaps(org.telegram.messenger.w0.f19025b);
+                        ((bh.d) yb0Var.I).w(new jb0(yb0Var, 0));
+                        yb0Var.C0 = true;
+                        if (yb0Var.D0) {
+                            ((bh.d) yb0Var.I).F();
+                            return;
+                        }
+                        return;
+                    } catch (Exception e) {
+                        org.telegram.messenger.f8.g(e, true);
+                        return;
+                    }
                 }
-                return;
-            case 1:
-                xz0 xz0Var2 = profileActivity.N;
-                if (xz0Var2 != null) {
-                    xz0Var2.e1(14);
-                    profileActivity.O4(false);
-                    return;
-                }
-                return;
-            case 2:
-                AndroidUtilities.runOnUIThread(new hb0(profileActivity, 0), 200L);
-                return;
-            case 3:
-                AndroidUtilities.runOnUIThread(new hb0(profileActivity, 1), 200L);
-                return;
-            case 4:
-                int i11 = ProfileActivity.R6;
-                profileActivity.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of("/start", profileActivity.f36003e1, null, null, null, false, null, null, null, true, 0, 0, null, false));
-                return;
-            case 5:
-                int i12 = ProfileActivity.R6;
-                profileActivity.H4(false);
-                return;
-            case 6:
-                int i13 = ProfileActivity.R6;
-                profileActivity.getClass();
-                profileActivity.presentFragment(new UserInfoActivity());
-                return;
-            case 7:
-                int i14 = ProfileActivity.R6;
-                profileActivity.H4(true);
-                return;
-            case 8:
-                int i15 = ProfileActivity.R6;
-                profileActivity.getClass();
-                profileActivity.presentFragment(new jg.h1());
-                return;
-            case 9:
-                int i16 = ProfileActivity.R6;
-                profileActivity.getClass();
-                profileActivity.presentFragment(new jg.d1());
-                return;
-            case 10:
-                int i17 = ProfileActivity.R6;
-                profileActivity.getClass();
-                profileActivity.presentFragment(new ta(null));
-                return;
-            case 11:
-                int i18 = ProfileActivity.R6;
-                profileActivity.getClass();
-                profileActivity.presentFragment(new UserInfoActivity());
-                return;
-            case 12:
-                int i19 = ProfileActivity.R6;
-                profileActivity.getClass();
-                profileActivity.presentFragment(new g(3));
-                return;
-            case 13:
-                profileActivity.presentFragment(wn.ea(profileActivity.f36003e1));
-                return;
-            case 14:
-                int i20 = ProfileActivity.R6;
-                ?? obj = new Object();
-                obj.f22929a = true;
-                profileActivity.showAsSheet(new PrivacyControlActivity(11, false), obj);
-                return;
-            case 15:
-                int i21 = ProfileActivity.R6;
-                profileActivity.r4(true);
-                if (profileActivity.f36040j2.isRunning()) {
-                    profileActivity.f36040j2.cancel();
-                }
-                profileActivity.R4(1.0f);
-                return;
-            case 16:
-                int i22 = ProfileActivity.R6;
-                profileActivity.p5(false, false);
-                return;
-            case 17:
-                int i23 = ProfileActivity.R6;
-                profileActivity.N3();
-                return;
-            case 18:
-                xz0 xz0Var3 = profileActivity.N;
-                if (xz0Var3 != null) {
-                    xz0Var3.J1(true);
-                    profileActivity.N.y1();
-                    return;
-                }
-                return;
-            case 19:
-                if (!profileActivity.f35972a.c0() && (l01Var = profileActivity.d) != null) {
-                    l01Var.l();
-                    return;
-                }
-                return;
-            case 20:
-                int i24 = ProfileActivity.R6;
-                profileActivity.getMessagesController().reloadUser(profileActivity.a());
-                return;
-            case 21:
-                int i25 = ProfileActivity.R6;
-                profileActivity.p5(false, false);
-                return;
-            case 22:
-                int i26 = ProfileActivity.R6;
-                profileActivity.getClass();
-                Bundle bundle = new Bundle();
-                bundle.putLong("chat_id", profileActivity.f36011f1);
-                bundle.putLong("user_id", profileActivity.f36003e1);
-                profileActivity.presentFragment(new ai.z0(bundle));
-                return;
-            case 23:
-                int i27 = ProfileActivity.R6;
-                profileActivity.getClass();
-                profileActivity.presentFragment(new ta(null));
-                return;
-            case 24:
-                ProfileActivity.W(profileActivity);
-                return;
-            case 25:
-                profileActivity.E5.setVisibility(8);
-                return;
-            case 26:
-                TLRPC.UserFull userFull = profileActivity.f36122v2;
-                if (userFull != null) {
-                    AndroidUtilities.addToClipboard(MessageObject.formatTextWithEntities(userFull.note, false));
-                    org.telegram.messenger.wh.m(R.string.TextCopied, org.telegram.ui.Components.wc.b0(profileActivity));
-                    return;
-                }
-                return;
-            case 27:
-                int i28 = ProfileActivity.R6;
-                profileActivity.getClass();
-                Bundle bundle2 = new Bundle();
-                bundle2.putLong("user_id", profileActivity.f36003e1);
-                bundle2.putBoolean("focus_notes", true);
-                profileActivity.presentFragment(new ls(bundle2, profileActivity.f36150z0));
                 return;
             default:
-                profileActivity.O4(true);
+                yb0 yb0Var2 = this.f37885b;
+                org.telegram.messenger.za zaVar2 = this.f37886c;
+                try {
+                    ((bh.d) zaVar2).z();
+                } catch (Exception unused) {
+                }
+                org.telegram.messenger.i0.g3(new hb0(yb0Var2, zaVar2, 0));
                 return;
         }
     }

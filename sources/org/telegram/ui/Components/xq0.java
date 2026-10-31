@@ -1,85 +1,85 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class xq0 extends org.telegram.ui.ActionBar.q1 {
-    public final yq0 f34835x;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+public final class xq0 extends Drawable {
+    public final int f32533a;
+    public final ShapeDrawable f32534b;
+    public final Rect f32535c;
 
-    public xq0(yq0 yq0Var, yq0 yq0Var2) {
-        super(yq0Var2);
-        this.f34835x = yq0Var;
+    public xq0(vq0 vq0Var) {
+        this.f32533a = 1;
+        this.f32534b = org.telegram.ui.ActionBar.t6.e0(org.telegram.messenger.i0.L(16.0f), org.telegram.messenger.i0.L(16.0f), 0);
+        this.f32535c = new Rect();
     }
 
     @Override
-    public final boolean b() {
-        nr0 nr0Var = this.f34835x.f35153v0;
-        if (!nr0Var.isDismissed() && nr0Var.Z) {
-            return !nr0Var.d.m();
+    public final void draw(Canvas canvas) {
+        switch (this.f32533a) {
+            case 0:
+                Rect bounds = getBounds();
+                Rect rect = this.f32535c;
+                rect.set(bounds);
+                rect.inset(org.telegram.messenger.i0.L(2.0f), org.telegram.messenger.i0.L(8.0f));
+                ShapeDrawable shapeDrawable = this.f32534b;
+                shapeDrawable.setBounds(rect);
+                shapeDrawable.draw(canvas);
+                return;
+            default:
+                Rect bounds2 = getBounds();
+                Rect rect2 = this.f32535c;
+                rect2.set(bounds2);
+                rect2.inset(org.telegram.messenger.i0.L(2.0f), org.telegram.messenger.i0.L(8.0f));
+                ShapeDrawable shapeDrawable2 = this.f32534b;
+                shapeDrawable2.setBounds(rect2);
+                shapeDrawable2.draw(canvas);
+                return;
         }
-        return false;
     }
 
     @Override
-    public final void e(float r9, float r10, boolean r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.xq0.e(float, float, boolean):void");
+    public final int getOpacity() {
+        switch (this.f32533a) {
+            case 0:
+                return -2;
+            default:
+                return -2;
+        }
     }
 
     @Override
-    public final void f() {
-        nr0 nr0Var = this.f34835x.f35153v0;
-        sq0 sq0Var = nr0Var.d;
-        if (sq0Var == null || !sq0Var.m()) {
-            int i10 = nr0Var.O0;
-            AndroidUtilities.dp(20.0f);
+    public final void setAlpha(int i10) {
+        switch (this.f32533a) {
+            case 0:
+                this.f32534b.setAlpha(i10);
+                return;
+            default:
+                this.f32534b.setAlpha(i10);
+                return;
         }
-        nr0Var.f31053s0 = false;
-        int i11 = nr0Var.f31049q0;
-        nr0Var.f31051r0 = i11;
-        nr0Var.G.setTopGlowOffset(i11);
-        nr0Var.f31031b.setTranslationY(nr0Var.f31049q0);
-        nr0Var.R.setTranslationY(nr0Var.f31049q0);
-        nr0Var.G.setTranslationY(0.0f);
-        nr0Var.H.setTranslationY(0.0f);
-        nr0Var.b1();
     }
 
     @Override
-    public final void g(int i10, boolean z10) {
-        int i11;
-        yq0 yq0Var = this.f34835x;
-        nr0 nr0Var = yq0Var.f35153v0;
-        int i12 = nr0Var.f31051r0;
-        int i13 = nr0Var.f31049q0;
-        if (i12 != i13) {
-            yq0Var.f35148q0 = i12;
-            yq0Var.f35149r0 = i13;
-            nr0Var.f31053s0 = true;
-            nr0Var.f31049q0 = i12;
-        } else {
-            yq0Var.f35148q0 = -1;
-        }
-        int i14 = yq0Var.f35146o0;
-        int i15 = yq0Var.f35147p0;
-        if (i14 != i15) {
-            yq0Var.f35150s0 = 0;
-            yq0Var.f35151t0 = 0;
-            nr0Var.f31053s0 = true;
-            if (!z10) {
-                yq0Var.f35151t0 = 0 - (i14 - i15);
-            } else {
-                yq0Var.f35151t0 = i14 - i15;
-            }
-            if (z10) {
-                i11 = yq0Var.f35148q0;
-            } else {
-                i11 = yq0Var.f35149r0;
-            }
-            nr0Var.f31049q0 = i11;
-        } else {
-            yq0Var.f35150s0 = -1;
-        }
-        nr0Var.G.setTopGlowOffset((int) (nr0Var.f31055u0 + nr0Var.f31049q0));
-        nr0Var.f31031b.setTranslationY(nr0Var.f31055u0 + nr0Var.f31049q0);
-        nr0Var.R.setTranslationY(nr0Var.f31055u0 + nr0Var.f31049q0);
-        yq0Var.invalidate();
+    public final void setColorFilter(ColorFilter colorFilter) {
+        int i10 = this.f32533a;
+    }
+
+    public xq0(yq0 yq0Var) {
+        this.f32533a = 0;
+        int L = org.telegram.messenger.i0.L(16.0f);
+        int L2 = org.telegram.messenger.i0.L(16.0f);
+        int i10 = org.telegram.ui.ActionBar.t6.f20929d6;
+        org.telegram.ui.ActionBar.p6 p6Var = yq0Var.f32776c;
+        this.f32534b = org.telegram.ui.ActionBar.t6.e0(L, L2, org.telegram.ui.ActionBar.t6.w(org.telegram.ui.ActionBar.t6.w0(i10, p6Var), org.telegram.ui.ActionBar.t6.r1(0.04f, org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.G6, p6Var))));
+        this.f32535c = new Rect();
+    }
+
+    private final void a(ColorFilter colorFilter) {
+    }
+
+    private final void b(ColorFilter colorFilter) {
     }
 }

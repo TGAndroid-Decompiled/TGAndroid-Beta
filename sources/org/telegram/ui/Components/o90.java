@@ -1,40 +1,47 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
-import android.widget.PopupWindow;
-public final class o90 implements PopupWindow.OnDismissListener {
-    public final int f31241a;
-    public final FrameLayout f31242b;
-    public final View f31243c;
-    public final ViewTreeObserver.OnPreDrawListener d;
-    public final ViewGroup e;
+public final class o90 extends oh.q {
+    public final int E = 1;
+    public final Object F;
 
-    public o90(ViewGroup viewGroup, View view, FrameLayout frameLayout, ViewTreeObserver.OnPreDrawListener onPreDrawListener, int i10) {
-        this.f31241a = i10;
-        this.e = viewGroup;
-        this.f31243c = view;
-        this.f31242b = frameLayout;
-        this.d = onPreDrawListener;
+    public o90(kg.q1 q1Var, kg.q1 q1Var2, FrameLayout frameLayout, long j10) {
+        super(q1Var2, frameLayout, j10, true);
+        this.F = q1Var;
     }
 
     @Override
-    public final void onDismiss() {
-        switch (this.f31241a) {
+    public final void f(String str, boolean z10, boolean z11) {
+        switch (this.E) {
             case 0:
-                ((s90) this.e).f32526s = null;
-                fi.f6 f6Var = (fi.f6) this.f31243c;
-                f6Var.animate().cancel();
-                f6Var.animate().alpha(0.0f).setDuration(150L).setListener(new i10(this, 5));
-                return;
+                oh.c cVar = (oh.c) this.F;
+                dw0 dw0Var = cVar.N1;
+                if (this.e.isEmpty()) {
+                    if (dw0Var.getVisibility() != 4) {
+                        dw0Var.setVisibility(4);
+                        return;
+                    }
+                    return;
+                } else if (z11) {
+                    cVar.f25726s1.J.setText("");
+                    return;
+                } else {
+                    super.f(str, z10, z11);
+                    return;
+                }
             default:
-                ((org.telegram.ui.mz) this.e).f39729x = null;
-                fi.f6 f6Var2 = (fi.f6) this.f31243c;
-                f6Var2.animate().cancel();
-                f6Var2.animate().alpha(0.0f).setDuration(150L).setListener(new i31(this, 28));
-                return;
+                if (z11) {
+                    kg.q1.Y((kg.q1) this.F).setSearchFieldText("");
+                    return;
+                } else {
+                    super.f(str, z10, z11);
+                    return;
+                }
         }
+    }
+
+    public o90(oh.c cVar, org.telegram.ui.ActionBar.k2 k2Var, org.telegram.ui.ActionBar.p2 p2Var, long j10) {
+        super(k2Var, p2Var, j10, false);
+        this.F = cVar;
     }
 }

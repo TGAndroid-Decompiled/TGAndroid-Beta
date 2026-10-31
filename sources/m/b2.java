@@ -2,15 +2,15 @@ package m;
 
 import android.widget.AbsListView;
 public final class b2 implements AbsListView.OnScrollListener {
-    public final d2 f17678a;
+    public final d2 f12376a;
 
     public b2(d2 d2Var) {
-        this.f17678a = d2Var;
+        this.f12376a = d2Var;
     }
 
     @Override
     public final void onScrollStateChanged(AbsListView absListView, int i10) {
-        d2 d2Var = this.f17678a;
+        d2 d2Var = this.f12376a;
         a2 a2Var = d2Var.G;
         x xVar = d2Var.O;
         if (i10 == 1 && xVar.getInputMethodMode() != 2 && xVar.getContentView() != null) {

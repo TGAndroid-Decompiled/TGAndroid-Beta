@@ -1,45 +1,20 @@
 package y9;
+public final class a implements ja.d {
+    public static final a f54319a = new Object();
+    public static final ja.c f54320b = ja.c.c("rolloutId");
+    public static final ja.c f54321c = ja.c.c("parameterKey");
+    public static final ja.c d = ja.c.c("parameterValue");
+    public static final ja.c e = ja.c.c("variantId");
+    public static final ja.c f54322f = ja.c.c("templateVersion");
 
-import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.os.Build;
-import java.util.ArrayList;
-public final class a {
-    public final String f52468a;
-    public final String f52469b;
-    public final ArrayList f52470c;
-    public final String d;
-    public final String e;
-    public final String f52471f;
-    public final String f52472g;
-    public final m4.c h;
-
-    public a(String str, String str2, ArrayList arrayList, String str3, String str4, String str5, String str6, m4.c cVar) {
-        this.f52468a = str;
-        this.f52469b = str2;
-        this.f52470c = arrayList;
-        this.d = str3;
-        this.e = str4;
-        this.f52471f = str5;
-        this.f52472g = str6;
-        this.h = cVar;
-    }
-
-    public static a a(Context context, v vVar, String str, String str2, ArrayList arrayList, m4.c cVar) {
-        String num;
-        String packageName = context.getPackageName();
-        String c10 = vVar.c();
-        PackageInfo packageInfo = context.getPackageManager().getPackageInfo(packageName, 0);
-        if (Build.VERSION.SDK_INT >= 28) {
-            num = Long.toString(packageInfo.getLongVersionCode());
-        } else {
-            num = Integer.toString(packageInfo.versionCode);
-        }
-        String str3 = num;
-        String str4 = packageInfo.versionName;
-        if (str4 == null) {
-            str4 = "0.0";
-        }
-        return new a(str, str2, arrayList, c10, packageName, str3, str4, cVar);
+    @Override
+    public final void a(Object obj, Object obj2) {
+        ja.e eVar = (ja.e) obj2;
+        b bVar = (b) ((l) obj);
+        eVar.d(f54320b, bVar.f54323b);
+        eVar.d(f54321c, bVar.f54324c);
+        eVar.d(d, bVar.d);
+        eVar.d(e, bVar.e);
+        eVar.f(f54322f, bVar.f54325f);
     }
 }

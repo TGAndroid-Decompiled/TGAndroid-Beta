@@ -1,6 +1,3 @@
 package ld;
-public interface c {
-    h getContext();
-
-    void resumeWith(Object obj);
+public interface c extends ad.a {
 }

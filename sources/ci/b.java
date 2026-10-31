@@ -1,217 +1,153 @@
 package ci;
 
-import android.util.LongSparseArray;
-import android.util.SparseArray;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import org.telegram.ui.w6;
-import org.telegram.ui.x6;
-public final class b {
-    public final boolean f6369a;
-    public long f6376k;
-    public boolean f6378m;
-    public boolean f6379n;
-    public boolean f6380o;
-    public boolean f6381p;
-    public boolean f6382q;
-    public long f6383r;
-    public long f6384s;
-    public long f6385t;
-    public long f6386u;
-    public long v;
-    public ArrayList f6370b = new ArrayList();
-    public final LongSparseArray f6371c = new LongSparseArray();
-    public final ArrayList d = new ArrayList();
-    public final ArrayList e = new ArrayList();
-    public final ArrayList f6372f = new ArrayList();
-    public final ArrayList f6373g = new ArrayList();
-    public final ArrayList h = new ArrayList();
-    public final HashSet f6374i = new HashSet();
-    public final HashSet f6375j = new HashSet();
-    public final HashSet f6377l = new HashSet();
+import android.animation.ValueAnimator;
+import android.view.View;
+import java.util.concurrent.atomic.AtomicBoolean;
+import jg.r0;
+import org.telegram.messenger.i0;
+import org.telegram.ui.Cells.q1;
+import org.telegram.ui.Cells.x1;
+import org.telegram.ui.Components.gr;
+import org.telegram.ui.Components.ob0;
+import th.f2;
+import th.z2;
+import vh.a9;
+import vh.b4;
+public final class b implements ValueAnimator.AnimatorUpdateListener {
+    public final int f4190a;
+    public final Object f4191b;
+    public final Object f4192c;
+    public final Object d;
 
-    public b(boolean z10) {
-        this.f6369a = z10;
+    public b(Object obj, Object obj2, Object obj3, int i10) {
+        this.f4190a = i10;
+        this.f4191b = obj;
+        this.f4192c = obj2;
+        this.d = obj3;
     }
 
-    public final void a(int i10, boolean z10) {
-        if (this.f6369a) {
-            if (!z10) {
-                if (i10 == 0) {
-                    this.f6378m = false;
-                    return;
-                } else if (i10 == 1) {
-                    this.f6379n = false;
-                    return;
-                } else if (i10 == 2) {
-                    this.f6380o = false;
-                    return;
-                } else if (i10 == 3) {
-                    this.f6381p = false;
-                    return;
-                } else if (i10 == 4) {
-                    this.f6382q = false;
-                    return;
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float f7;
+        float f10;
+        switch (this.f4190a) {
+            case 0:
+                n nVar = (n) this.f4191b;
+                x1 x1Var = (x1) this.f4192c;
+                q1 q1Var = (q1) this.d;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                if (nVar.f4235l) {
+                    x1Var.f23487h0 = (-nVar.f4242s) * floatValue;
+                    x1Var.f23492i0 = (-nVar.f4243t) * floatValue;
+                    x1Var.f23502k0 = (-nVar.f4244u) * floatValue;
+                    x1Var.f23497j0 = (-nVar.v) * floatValue;
                 } else {
+                    x1Var.f23487h0 = ((-nVar.f4242s) * floatValue) - q1Var.getAnimationOffsetX();
+                    x1Var.f23492i0 = ((-nVar.f4243t) * floatValue) - q1Var.getAnimationOffsetX();
+                    x1Var.f23502k0 = ((-nVar.f4244u) * floatValue) - q1Var.getTranslationY();
+                    x1Var.f23497j0 = ((-nVar.v) * floatValue) - q1Var.getTranslationY();
+                }
+                q1Var.invalidate();
+                return;
+            case 1:
+                r0 r0Var = (r0) this.f4191b;
+                View view = (View) this.f4192c;
+                View view2 = (View) this.d;
+                r0Var.R0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                r0Var.O0.invalidate();
+                r0Var.L0.invalidate();
+                r0Var.M0.invalidate();
+                for (int i10 = 0; i10 < r0Var.O0.getChildCount(); i10++) {
+                    View childAt = r0Var.O0.getChildAt(i10);
+                    if (i10 == r0Var.Q0) {
+                        f7 = r0Var.R0;
+                    } else if (i10 == r0Var.P0) {
+                        f7 = 1.0f - r0Var.R0;
+                    } else {
+                        f7 = 0.0f;
+                    }
+                    childAt.setAlpha((f7 * 0.4f) + 0.6f);
+                }
+                float interpolation = gr.f26495f.getInterpolation(r0Var.R0);
+                if (view != null && view2 != null) {
+                    float f11 = 1.0f - interpolation;
+                    float f12 = (f11 * 0.4f) + 0.6f;
+                    view.setScaleX(f12);
+                    view.setScaleY(f12);
+                    view.setTranslationY((Math.min(interpolation, 0.25f) * i0.L(16.0f)) / 0.25f);
+                    view.setAlpha(1.0f - (Math.min(interpolation, 0.25f) / 0.25f));
+                    float f13 = (interpolation * 0.4f) + 0.6f;
+                    view2.setScaleX(f13);
+                    view2.setScaleY(f13);
+                    view2.setTranslationY((Math.min(f11, 0.25f) * (-i0.L(16.0f))) / 0.25f);
+                    view2.setAlpha(1.0f - (Math.min(f11, 0.25f) / 0.25f));
                     return;
                 }
-            }
-            ArrayList arrayList = this.d;
-            if (i10 == 0) {
-                this.f6378m = b(i10, arrayList);
-            } else if (i10 == 1) {
-                this.f6379n = b(i10, arrayList);
-            } else if (i10 == 2) {
-                this.f6380o = b(i10, this.e);
-            } else if (i10 == 3) {
-                this.f6381p = b(i10, this.f6372f);
-            } else if (i10 == 4) {
-                this.f6382q = b(i10, this.f6373g);
-            } else if (i10 == 7) {
-                b(i10, this.h);
-            }
-        }
-    }
-
-    public final boolean b(int i10, ArrayList arrayList) {
-        for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            if (((a) arrayList.get(i11)).d == i10 && !this.f6375j.contains(arrayList.get(i11))) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public final void c() {
-        if (!this.f6369a) {
-            HashSet hashSet = this.f6374i;
-            hashSet.clear();
-            HashSet hashSet2 = this.f6375j;
-            Iterator it = hashSet2.iterator();
-            while (it.hasNext()) {
-                long j10 = ((a) it.next()).f6365b;
-                if (j10 != 0) {
-                    hashSet.add(Long.valueOf(j10));
-                }
-            }
-            HashSet hashSet3 = this.f6377l;
-            hashSet3.clear();
-            Iterator it2 = hashSet.iterator();
-            while (it2.hasNext()) {
-                w6 w6Var = (w6) this.f6371c.get(((Long) it2.next()).longValue());
-                if (w6Var != null) {
-                    SparseArray sparseArray = w6Var.d;
-                    int i10 = 0;
-                    while (true) {
-                        if (i10 < sparseArray.size()) {
-                            ArrayList arrayList = ((x6) sparseArray.valueAt(i10)).f45603b;
-                            int size = arrayList.size();
-                            int i11 = 0;
-                            while (i11 < size) {
-                                Object obj = arrayList.get(i11);
-                                i11++;
-                                if (!hashSet2.contains((a) obj)) {
-                                    break;
-                                }
-                            }
-                            i10++;
-                        } else {
-                            hashSet3.add(Long.valueOf(w6Var.f44525a));
-                            break;
-                        }
+                return;
+            case 2:
+                boolean[] zArr = (boolean[]) this.d;
+                z2 z2Var = ((f2) this.f4191b).f48950a;
+                z2Var.f49704e3 = ((Float) ((ValueAnimator) this.f4192c).getAnimatedValue()).floatValue();
+                z2Var.invalidate();
+                if (z2Var.f49704e3 > 0.8f && !zArr[0]) {
+                    zArr[0] = true;
+                    z2Var.Z2 = true;
+                    try {
+                        z2Var.performHapticFeedback(3);
+                        return;
+                    } catch (Exception unused) {
+                        return;
                     }
                 }
-            }
+                return;
+            case 3:
+                b4 b4Var = (b4) this.f4191b;
+                View view3 = (View) this.f4192c;
+                View view4 = (View) this.d;
+                b4Var.J0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                b4Var.F0.invalidate();
+                b4Var.C0.invalidate();
+                b4Var.D0.invalidate();
+                for (int i11 = 0; i11 < b4Var.F0.getChildCount(); i11++) {
+                    View childAt2 = b4Var.F0.getChildAt(i11);
+                    if (i11 == b4Var.I0) {
+                        f10 = b4Var.J0;
+                    } else if (i11 == b4Var.H0) {
+                        f10 = 1.0f - b4Var.J0;
+                    } else {
+                        f10 = 0.0f;
+                    }
+                    childAt2.setAlpha((f10 * 0.4f) + 0.6f);
+                }
+                float interpolation2 = gr.f26495f.getInterpolation(b4Var.J0);
+                if (view3 != null && view4 != null) {
+                    float f14 = 1.0f - interpolation2;
+                    float f15 = (f14 * 0.4f) + 0.6f;
+                    view3.setScaleX(f15);
+                    view3.setScaleY(f15);
+                    view3.setTranslationY((Math.min(interpolation2, 0.25f) * i0.L(16.0f)) / 0.25f);
+                    view3.setAlpha(1.0f - (Math.min(interpolation2, 0.25f) / 0.25f));
+                    float f16 = (interpolation2 * 0.4f) + 0.6f;
+                    view4.setScaleX(f16);
+                    view4.setScaleY(f16);
+                    view4.setTranslationY((Math.min(f14, 0.25f) * (-i0.L(16.0f))) / 0.25f);
+                    view4.setAlpha(1.0f - (Math.min(f14, 0.25f) / 0.25f));
+                    return;
+                }
+                return;
+            default:
+                a9 a9Var = (a9) this.f4191b;
+                AtomicBoolean atomicBoolean = (AtomicBoolean) this.f4192c;
+                ob0 ob0Var = (ob0) this.d;
+                a9Var.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                Math.abs(floatValue2 - 0.5f);
+                if (floatValue2 >= 0.5f && !atomicBoolean.get()) {
+                    atomicBoolean.set(true);
+                    a9Var.setDrawable(ob0Var);
+                    return;
+                }
+                return;
         }
-    }
-
-    public final void d() {
-        this.f6376k = 0L;
-        this.f6375j.clear();
-        this.f6377l.clear();
-    }
-
-    public final ArrayList e(int i10) {
-        if (i10 == 0 || i10 == 1) {
-            return this.d;
-        }
-        if (i10 == 2) {
-            return this.e;
-        }
-        if (i10 == 3) {
-            return this.f6372f;
-        }
-        if (i10 == 4) {
-            return this.f6373g;
-        }
-        if (i10 == 7) {
-            return this.h;
-        }
-        return null;
-    }
-
-    public final long f(int i10) {
-        if (i10 == 0) {
-            return this.f6383r;
-        }
-        if (i10 == 1) {
-            return this.f6384s;
-        }
-        if (i10 == 2) {
-            return this.f6385t;
-        }
-        if (i10 == 3) {
-            return this.f6386u;
-        }
-        if (i10 == 4) {
-            return this.v;
-        }
-        return -1L;
-    }
-
-    public final void g(a aVar, boolean z10) {
-        long j10 = aVar.f6366c;
-        if (!z10) {
-            j10 = -j10;
-        }
-        int i10 = aVar.d;
-        if (i10 == 0) {
-            this.f6383r += j10;
-        } else if (i10 == 1) {
-            this.f6384s += j10;
-        } else if (i10 == 2) {
-            this.f6385t += j10;
-        } else if (i10 == 3) {
-            this.f6386u += j10;
-        } else if (i10 == 4) {
-            this.v += j10;
-        }
-    }
-
-    public final boolean h() {
-        if (this.d.isEmpty() && this.e.isEmpty() && this.f6372f.isEmpty()) {
-            if (this.f6369a || this.f6370b.isEmpty()) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final void i(a aVar) {
-        HashSet hashSet = this.f6375j;
-        if (hashSet.contains(aVar)) {
-            hashSet.remove(aVar);
-            g(aVar, false);
-            this.f6376k -= aVar.f6366c;
-            a(aVar.d, false);
-        } else {
-            hashSet.add(aVar);
-            g(aVar, true);
-            this.f6376k += aVar.f6366c;
-            a(aVar.d, true);
-        }
-        c();
     }
 }

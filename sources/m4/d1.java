@@ -1,26 +1,26 @@
 package m4;
 
-import a8.qd;
+import v7.p8;
 public final class d1 implements h1, e2.j {
-    public final e f18023a;
+    public final e f12721a;
 
     public d1(e eVar) {
-        this.f18023a = eVar;
+        this.f12721a = eVar;
     }
 
     @Override
     public void accept(Object obj) {
-        this.f18023a.f((n1) obj);
+        this.f12721a.f((n1) obj);
     }
 
     @Override
-    public Object c(f0 f0Var, w wVar, int i10) {
-        Object obj = this.f18023a.f18034g;
+    public Object f(f0 f0Var, w wVar, int i10) {
+        Object obj = this.f12721a.f12732g;
         obj.getClass();
-        b2.h1 h1Var = (b2.h1) obj;
-        qb.a aVar = f0Var.e;
+        b2.g1 g1Var = (b2.g1) obj;
+        oa.d dVar = f0Var.e;
         f0Var.s(wVar);
-        aVar.getClass();
-        return qd.b(new t1(-6));
+        dVar.getClass();
+        return p8.b(new t1(-6));
     }
 }

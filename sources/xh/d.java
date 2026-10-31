@@ -1,43 +1,63 @@
 package xh;
 
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
+import android.app.Activity;
+import org.telegram.messenger.cd;
+import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.tgnet.tl.TL_payments;
 public final class d implements Runnable {
-    public final int f51895a;
-    public final f f51896b;
+    public final int f53722a;
+    public final i f53723b;
 
-    public d(f fVar, int i10) {
-        this.f51895a = i10;
-        this.f51896b = fVar;
+    public d(i iVar, int i10) {
+        this.f53722a = i10;
+        this.f53723b = iVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f51895a) {
+        int i10;
+        int i11;
+        int i12 = this.f53722a;
+        String str = null;
+        i iVar = this.f53723b;
+        switch (i12) {
             case 0:
-                f fVar = this.f51896b;
-                if (fVar.f51914j.isEmpty()) {
-                    fVar.f51913i = true;
-                    f.f51907n = null;
-                    e eVar = fVar.f51911f;
-                    if (eVar != null) {
-                        eVar.f51897a = false;
-                        fVar.f51911f = null;
-                    }
-                    fVar.d.removeView(fVar.e);
-                    if (fVar.d.getParent() instanceof ViewGroup) {
-                        ((ViewGroup) fVar.d.getParent()).removeView(fVar.d);
-                        return;
-                    }
+                ph.i iVar2 = iVar.V;
+                if (iVar.f53796a0.end_date != 0) {
+                    str = qg.k.f((i10 - iVar.getConnectionsManager().getCurrentTime()) * 1000);
+                }
+                iVar2.g(str, true);
+                if (iVar.f53796a0.end_date != 0 && iVar.f53799d0) {
+                    org.telegram.messenger.i0.h3(iVar.X, 1000L);
                     return;
                 }
                 return;
-            default:
-                ArrayList arrayList = this.f51896b.f51914j;
-                for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    ((View) arrayList.get(i10)).invalidate();
+            case 1:
+                TL_bots.updateStarRefProgram updatestarrefprogram = new TL_bots.updateStarRefProgram();
+                updatestarrefprogram.bot = iVar.getMessagesController().n1(iVar.R);
+                TL_payments.starRefProgram starrefprogram = iVar.f53796a0;
+                updatestarrefprogram.commission_permille = starrefprogram.commission_permille;
+                int i13 = starrefprogram.duration_months;
+                updatestarrefprogram.duration_months = i13;
+                if (i13 > 0) {
+                    updatestarrefprogram.flags |= 1;
+                    starrefprogram.duration_months = i13 | 1;
+                } else {
+                    updatestarrefprogram.flags &= -2;
+                    starrefprogram.duration_months = i13 & (-2);
                 }
+                org.telegram.ui.ActionBar.x1 x1Var = new org.telegram.ui.ActionBar.x1(3, iVar.getParentActivity(), null);
+                x1Var.r(150L);
+                iVar.getConnectionsManager().sendRequest(updatestarrefprogram, new b(iVar, x1Var, 1));
+                return;
+            default:
+                Activity parentActivity = iVar.getParentActivity();
+                if (!iVar.Y && iVar.f53796a0.end_date == 0) {
+                    i11 = 2131754327;
+                } else {
+                    i11 = 2131754314;
+                }
+                gf.f.r(parentActivity, cd.L0(i11, null));
                 return;
         }
     }

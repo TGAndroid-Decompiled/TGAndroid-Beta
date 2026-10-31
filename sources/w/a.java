@@ -1,6 +1,5 @@
 package w;
 
-import a8.bf;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.media.MediaDescription;
@@ -14,38 +13,40 @@ import android.support.v4.media.MediaBrowserCompat$MediaItem;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.RatingCompat;
-import androidx.fragment.app.e0;
-import androidx.fragment.app.k0;
-import androidx.fragment.app.n0;
+import androidx.fragment.app.f0;
+import androidx.fragment.app.l0;
+import androidx.fragment.app.o0;
+import c7.a0;
+import c7.b0;
+import c7.h0;
+import c7.j;
+import c7.k;
+import c7.m;
+import c7.m0;
+import c7.n0;
+import c7.p0;
+import c7.q0;
+import c7.t;
+import c7.u;
+import c7.v;
+import c7.w;
+import c7.x;
+import c7.y;
+import c7.z;
+import c7.z0;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.internal.SignInConfiguration;
 import com.google.android.gms.fido.common.Transport;
-import com.google.firebase.messaging.o;
-import d7.b0;
-import d7.h0;
-import d7.j;
-import d7.k;
-import d7.m;
-import d7.m0;
-import d7.o0;
-import d7.p0;
-import d7.q0;
-import d7.t;
-import d7.u;
-import d7.v;
-import d7.w;
-import d7.x;
-import d7.y;
-import d7.z0;
 import j$.util.Objects;
 import java.util.ArrayList;
 import kotlin.jvm.internal.i;
-import o7.s0;
+import n7.s0;
+import w7.g0;
 public final class a implements Parcelable.Creator {
-    public final int f50696a;
+    public final int f52317a;
 
     public a(int i10) {
-        this.f50696a = i10;
+        this.f52317a = i10;
     }
 
     @Override
@@ -64,23 +65,68 @@ public final class a implements Parcelable.Creator {
         byte[][] bArr = null;
         s0 s0Var = null;
         String str4 = null;
-        Bundle bundle2 = null;
         c.b bVar = null;
         String str5 = null;
-        switch (this.f50696a) {
+        switch (this.f52317a) {
             case 0:
                 Bundle readBundle = inParcel.readBundle(a.class.getClassLoader());
                 Objects.requireNonNull(readBundle);
                 return new b(readBundle);
             case 1:
+                int z13 = g0.z(inParcel);
+                int i12 = 0;
+                while (inParcel.dataPosition() < z13) {
+                    int readInt = inParcel.readInt();
+                    char c10 = (char) readInt;
+                    if (c10 != 1) {
+                        if (c10 != 2) {
+                            if (c10 != 3) {
+                                g0.y(inParcel, readInt);
+                            } else {
+                                bundle = g0.a(inParcel, readInt);
+                            }
+                        } else {
+                            i12 = g0.u(inParcel, readInt);
+                        }
+                    } else {
+                        i10 = g0.u(inParcel, readInt);
+                    }
+                }
+                g0.m(inParcel, z13);
+                return new a6.a(i10, i12, bundle);
+            case 2:
+                int z14 = g0.z(inParcel);
+                GoogleSignInOptions googleSignInOptions = null;
+                while (inParcel.dataPosition() < z14) {
+                    int readInt2 = inParcel.readInt();
+                    char c11 = (char) readInt2;
+                    if (c11 != 2) {
+                        if (c11 != 5) {
+                            g0.y(inParcel, readInt2);
+                        } else {
+                            googleSignInOptions = (GoogleSignInOptions) g0.g(inParcel, readInt2, GoogleSignInOptions.CREATOR);
+                        }
+                    } else {
+                        str5 = g0.h(inParcel, readInt2);
+                    }
+                }
+                g0.m(inParcel, z14);
+                return new SignInConfiguration(str5, googleSignInOptions);
+            case 3:
+                try {
+                    return Transport.a(inParcel.readString());
+                } catch (a7.a e) {
+                    throw new RuntimeException(e);
+                }
+            case 4:
                 return new Parcelable(inParcel) {
-                    public static final Parcelable.Creator<MediaBrowserCompat$MediaItem> CREATOR = new w.a(1);
-                    public final int f2013a;
-                    public final MediaDescriptionCompat f2014b;
+                    public static final Parcelable.Creator<MediaBrowserCompat$MediaItem> CREATOR = new w.a(4);
+                    public final int f835a;
+                    public final MediaDescriptionCompat f836b;
 
                     {
-                        this.f2013a = inParcel.readInt();
-                        this.f2014b = MediaDescriptionCompat.CREATOR.createFromParcel(inParcel);
+                        this.f835a = inParcel.readInt();
+                        this.f836b = MediaDescriptionCompat.CREATOR.createFromParcel(inParcel);
                     }
 
                     @Override
@@ -89,221 +135,163 @@ public final class a implements Parcelable.Creator {
                     }
 
                     public final String toString() {
-                        return "MediaItem{mFlags=" + this.f2013a + ", mDescription=" + this.f2014b + '}';
+                        return "MediaItem{mFlags=" + this.f835a + ", mDescription=" + this.f836b + '}';
                     }
 
                     @Override
-                    public final void writeToParcel(Parcel parcel, int i12) {
-                        parcel.writeInt(this.f2013a);
-                        this.f2014b.writeToParcel(parcel, i12);
+                    public final void writeToParcel(Parcel parcel, int i13) {
+                        parcel.writeInt(this.f835a);
+                        this.f836b.writeToParcel(parcel, i13);
                     }
                 };
-            case 2:
-                return MediaDescriptionCompat.a(MediaDescription.CREATOR.createFromParcel(inParcel));
-            case 3:
-                return new MediaMetadataCompat(inParcel);
-            case 4:
-                return new RatingCompat(inParcel.readInt(), inParcel.readFloat());
             case 5:
-                return new androidx.activity.result.a(inParcel);
+                return MediaDescriptionCompat.a(MediaDescription.CREATOR.createFromParcel(inParcel));
             case 6:
+                return new MediaMetadataCompat(inParcel);
+            case 7:
+                return new RatingCompat(inParcel.readInt(), inParcel.readFloat());
+            case 8:
+                return new androidx.activity.result.a(inParcel);
+            case 9:
                 i.e(inParcel, "inParcel");
                 Parcelable readParcelable = inParcel.readParcelable(IntentSender.class.getClassLoader());
                 i.b(readParcelable);
                 return new androidx.activity.result.g((IntentSender) readParcelable, (Intent) inParcel.readParcelable(Intent.class.getClassLoader()), inParcel.readInt(), inParcel.readInt());
-            case 7:
-                return new androidx.fragment.app.b(inParcel);
-            case 8:
-                return new androidx.fragment.app.c(inParcel);
-            case 9:
-                ?? obj = new Object();
-                obj.f2624a = inParcel.readString();
-                obj.f2625b = inParcel.readInt();
-                return obj;
             case 10:
+                return new androidx.fragment.app.b(inParcel);
+            case 11:
+                return new androidx.fragment.app.c(inParcel);
+            case 12:
+                ?? obj = new Object();
+                obj.f1464a = inParcel.readString();
+                obj.f1465b = inParcel.readInt();
+                return obj;
+            case 13:
                 ?? obj2 = new Object();
                 obj2.e = null;
-                obj2.f2665f = new ArrayList();
+                obj2.f1505f = new ArrayList();
                 obj2.h = new ArrayList();
-                obj2.f2662a = inParcel.createStringArrayList();
-                obj2.f2663b = inParcel.createStringArrayList();
-                obj2.f2664c = (androidx.fragment.app.b[]) inParcel.createTypedArray(androidx.fragment.app.b.CREATOR);
+                obj2.f1502a = inParcel.createStringArrayList();
+                obj2.f1503b = inParcel.createStringArrayList();
+                obj2.f1504c = (androidx.fragment.app.b[]) inParcel.createTypedArray(androidx.fragment.app.b.CREATOR);
                 obj2.d = inParcel.readInt();
                 obj2.e = inParcel.readString();
-                obj2.f2665f = inParcel.createStringArrayList();
+                obj2.f1505f = inParcel.createStringArrayList();
                 obj2.h = inParcel.createTypedArrayList(androidx.fragment.app.c.CREATOR);
-                obj2.f2666n = inParcel.createTypedArrayList(e0.CREATOR);
+                obj2.f1506n = inParcel.createTypedArrayList(f0.CREATOR);
                 return obj2;
-            case 11:
-                return new n0(inParcel);
-            case 12:
-                int z13 = bf.z(inParcel);
-                int i12 = 0;
-                while (inParcel.dataPosition() < z13) {
-                    int readInt = inParcel.readInt();
-                    char c10 = (char) readInt;
-                    if (c10 != 1) {
-                        if (c10 != 2) {
-                            if (c10 != 3) {
-                                bf.y(inParcel, readInt);
-                            } else {
-                                bundle = bf.a(inParcel, readInt);
-                            }
-                        } else {
-                            i12 = bf.u(inParcel, readInt);
-                        }
-                    } else {
-                        i10 = bf.u(inParcel, readInt);
-                    }
-                }
-                bf.m(inParcel, z13);
-                return new b6.a(i10, i12, bundle);
-            case 13:
-                int z14 = bf.z(inParcel);
-                GoogleSignInOptions googleSignInOptions = null;
-                while (inParcel.dataPosition() < z14) {
-                    int readInt2 = inParcel.readInt();
-                    char c11 = (char) readInt2;
-                    if (c11 != 2) {
-                        if (c11 != 5) {
-                            bf.y(inParcel, readInt2);
-                        } else {
-                            googleSignInOptions = (GoogleSignInOptions) bf.g(inParcel, readInt2, GoogleSignInOptions.CREATOR);
-                        }
-                    } else {
-                        str5 = bf.h(inParcel, readInt2);
-                    }
-                }
-                bf.m(inParcel, z14);
-                return new SignInConfiguration(str5, googleSignInOptions);
             case 14:
-                try {
-                    return Transport.a(inParcel.readString());
-                } catch (b7.a e) {
-                    throw new RuntimeException(e);
-                }
+                return new o0(inParcel);
             case 15:
                 ?? obj3 = new Object();
                 IBinder readStrongBinder = inParcel.readStrongBinder();
-                int i13 = c.c.f5888b;
+                int i13 = c.c.f3487b;
                 if (readStrongBinder != null) {
                     IInterface queryLocalInterface = readStrongBinder.queryLocalInterface(c.b.h);
                     if (queryLocalInterface != null && (queryLocalInterface instanceof c.b)) {
                         bVar = (c.b) queryLocalInterface;
                     } else {
                         ?? obj4 = new Object();
-                        obj4.f5887a = readStrongBinder;
+                        obj4.f3486a = readStrongBinder;
                         bVar = obj4;
                     }
                 }
-                obj3.f5890a = bVar;
+                obj3.f3489a = bVar;
                 return obj3;
             case 16:
-                int z15 = bf.z(inParcel);
+                try {
+                    return c7.c.a(inParcel.readString());
+                } catch (c7.b e7) {
+                    throw new RuntimeException(e7);
+                }
+            case 17:
+                int z15 = g0.z(inParcel);
                 while (inParcel.dataPosition() < z15) {
                     int readInt3 = inParcel.readInt();
-                    if (((char) readInt3) != 2) {
-                        bf.y(inParcel, readInt3);
+                    if (((char) readInt3) != 1) {
+                        g0.y(inParcel, readInt3);
                     } else {
-                        bundle2 = bf.a(inParcel, readInt3);
+                        z12 = g0.n(inParcel, readInt3);
                     }
                 }
-                bf.m(inParcel, z15);
-                return new o(bundle2);
-            case 17:
-                try {
-                    return d7.c.a(inParcel.readString());
-                } catch (d7.b e10) {
-                    throw new RuntimeException(e10);
-                }
+                g0.m(inParcel, z15);
+                return new z0(z12);
             case 18:
-                int z16 = bf.z(inParcel);
+                int z16 = g0.z(inParcel);
+                long j10 = 0;
                 while (inParcel.dataPosition() < z16) {
                     int readInt4 = inParcel.readInt();
                     if (((char) readInt4) != 1) {
-                        bf.y(inParcel, readInt4);
+                        g0.y(inParcel, readInt4);
                     } else {
-                        z12 = bf.n(inParcel, readInt4);
+                        j10 = g0.w(inParcel, readInt4);
                     }
                 }
-                bf.m(inParcel, z16);
-                return new z0(z12);
+                g0.m(inParcel, z16);
+                return new m0(j10);
             case 19:
-                int z17 = bf.z(inParcel);
-                long j10 = 0;
+                int z17 = g0.z(inParcel);
                 while (inParcel.dataPosition() < z17) {
                     int readInt5 = inParcel.readInt();
                     if (((char) readInt5) != 1) {
-                        bf.y(inParcel, readInt5);
+                        g0.y(inParcel, readInt5);
                     } else {
-                        j10 = bf.w(inParcel, readInt5);
+                        z11 = g0.n(inParcel, readInt5);
                     }
                 }
-                bf.m(inParcel, z17);
-                return new m0(j10);
+                g0.m(inParcel, z17);
+                return new n0(z11);
             case 20:
-                int z18 = bf.z(inParcel);
+                int z18 = g0.z(inParcel);
                 while (inParcel.dataPosition() < z18) {
                     int readInt6 = inParcel.readInt();
                     if (((char) readInt6) != 1) {
-                        bf.y(inParcel, readInt6);
+                        g0.y(inParcel, readInt6);
                     } else {
-                        z11 = bf.n(inParcel, readInt6);
+                        z10 = g0.n(inParcel, readInt6);
                     }
                 }
-                bf.m(inParcel, z18);
-                return new d7.n0(z11);
+                g0.m(inParcel, z18);
+                return new t(z10);
             case 21:
-                int z19 = bf.z(inParcel);
+                int z19 = g0.z(inParcel);
                 while (inParcel.dataPosition() < z19) {
                     int readInt7 = inParcel.readInt();
                     if (((char) readInt7) != 1) {
-                        bf.y(inParcel, readInt7);
+                        g0.y(inParcel, readInt7);
                     } else {
-                        z10 = bf.n(inParcel, readInt7);
+                        str4 = g0.h(inParcel, readInt7);
                     }
                 }
-                bf.m(inParcel, z19);
-                return new t(z10);
+                g0.m(inParcel, z19);
+                return new c7.o0(str4);
             case 22:
-                int z20 = bf.z(inParcel);
-                while (inParcel.dataPosition() < z20) {
-                    int readInt8 = inParcel.readInt();
-                    if (((char) readInt8) != 1) {
-                        bf.y(inParcel, readInt8);
-                    } else {
-                        str4 = bf.h(inParcel, readInt8);
-                    }
-                }
-                bf.m(inParcel, z20);
-                return new o0(str4);
-            case 23:
-                int z21 = bf.z(inParcel);
+                int z20 = g0.z(inParcel);
                 byte[] bArr2 = null;
                 byte[] bArr3 = null;
                 byte[] bArr4 = null;
-                while (inParcel.dataPosition() < z21) {
-                    int readInt9 = inParcel.readInt();
-                    char c12 = (char) readInt9;
+                while (inParcel.dataPosition() < z20) {
+                    int readInt8 = inParcel.readInt();
+                    char c12 = (char) readInt8;
                     if (c12 != 1) {
                         if (c12 != 2) {
                             if (c12 != 3) {
                                 if (c12 != 4) {
-                                    bf.y(inParcel, readInt9);
+                                    g0.y(inParcel, readInt8);
                                 } else {
-                                    i11 = bf.u(inParcel, readInt9);
+                                    i11 = g0.u(inParcel, readInt8);
                                 }
                             } else {
-                                bArr4 = bf.b(inParcel, readInt9);
+                                bArr4 = g0.b(inParcel, readInt8);
                             }
                         } else {
-                            bArr3 = bf.b(inParcel, readInt9);
+                            bArr3 = g0.b(inParcel, readInt8);
                         }
                     } else {
-                        bArr2 = bf.b(inParcel, readInt9);
+                        bArr2 = g0.b(inParcel, readInt8);
                     }
                 }
-                bf.m(inParcel, z21);
+                g0.m(inParcel, z20);
                 if (bArr2 == null) {
                     s10 = null;
                 } else {
@@ -318,20 +306,20 @@ public final class a implements Parcelable.Creator {
                     s0Var = s0.s(bArr4.length, bArr4);
                 }
                 return new p0(s10, s11, s0Var, i11);
-            case 24:
-                int z22 = bf.z(inParcel);
-                while (inParcel.dataPosition() < z22) {
-                    int readInt10 = inParcel.readInt();
-                    if (((char) readInt10) != 1) {
-                        bf.y(inParcel, readInt10);
+            case 23:
+                int z21 = g0.z(inParcel);
+                while (inParcel.dataPosition() < z21) {
+                    int readInt9 = inParcel.readInt();
+                    if (((char) readInt9) != 1) {
+                        g0.y(inParcel, readInt9);
                     } else {
-                        bArr = bf.c(inParcel, readInt10);
+                        bArr = g0.c(inParcel, readInt9);
                     }
                 }
-                bf.m(inParcel, z22);
+                g0.m(inParcel, z21);
                 return new q0(bArr);
-            case 25:
-                int z23 = bf.z(inParcel);
+            case 24:
+                int z22 = g0.z(inParcel);
                 y yVar = null;
                 b0 b0Var = null;
                 byte[] bArr5 = null;
@@ -342,242 +330,248 @@ public final class a implements Parcelable.Creator {
                 Integer num = null;
                 h0 h0Var = null;
                 String str6 = null;
-                d7.f fVar = null;
+                c7.f fVar = null;
                 String str7 = null;
                 ResultReceiver resultReceiver = null;
-                while (inParcel.dataPosition() < z23) {
-                    int readInt11 = inParcel.readInt();
-                    switch ((char) readInt11) {
+                while (inParcel.dataPosition() < z22) {
+                    int readInt10 = inParcel.readInt();
+                    switch ((char) readInt10) {
                         case 2:
-                            yVar = (y) bf.g(inParcel, readInt11, y.CREATOR);
+                            yVar = (y) g0.g(inParcel, readInt10, y.CREATOR);
                             break;
                         case 3:
-                            b0Var = (b0) bf.g(inParcel, readInt11, b0.CREATOR);
+                            b0Var = (b0) g0.g(inParcel, readInt10, b0.CREATOR);
                             break;
                         case 4:
-                            bArr5 = bf.b(inParcel, readInt11);
+                            bArr5 = g0.b(inParcel, readInt10);
                             break;
                         case 5:
-                            arrayList = bf.l(inParcel, readInt11, x.CREATOR);
+                            arrayList = g0.l(inParcel, readInt10, x.CREATOR);
                             break;
                         case 6:
-                            int x9 = bf.x(inParcel, readInt11);
-                            if (x9 == 0) {
+                            int x10 = g0.x(inParcel, readInt10);
+                            if (x10 == 0) {
                                 d = null;
                                 break;
                             } else {
-                                bf.A(inParcel, x9, 8);
+                                g0.A(inParcel, x10, 8);
                                 d = Double.valueOf(inParcel.readDouble());
                                 break;
                             }
                         case 7:
-                            arrayList2 = bf.l(inParcel, readInt11, w.CREATOR);
+                            arrayList2 = g0.l(inParcel, readInt10, w.CREATOR);
                             break;
                         case '\b':
-                            mVar = (m) bf.g(inParcel, readInt11, m.CREATOR);
+                            mVar = (m) g0.g(inParcel, readInt10, m.CREATOR);
                             break;
                         case '\t':
-                            num = bf.v(inParcel, readInt11);
+                            num = g0.v(inParcel, readInt10);
                             break;
                         case '\n':
-                            h0Var = (h0) bf.g(inParcel, readInt11, h0.CREATOR);
+                            h0Var = (h0) g0.g(inParcel, readInt10, h0.CREATOR);
                             break;
                         case 11:
-                            str6 = bf.h(inParcel, readInt11);
+                            str6 = g0.h(inParcel, readInt10);
                             break;
                         case '\f':
-                            fVar = (d7.f) bf.g(inParcel, readInt11, d7.f.CREATOR);
+                            fVar = (c7.f) g0.g(inParcel, readInt10, c7.f.CREATOR);
                             break;
                         case '\r':
-                            str7 = bf.h(inParcel, readInt11);
+                            str7 = g0.h(inParcel, readInt10);
                             break;
                         case 14:
-                            resultReceiver = (ResultReceiver) bf.g(inParcel, readInt11, ResultReceiver.CREATOR);
+                            resultReceiver = (ResultReceiver) g0.g(inParcel, readInt10, ResultReceiver.CREATOR);
                             break;
                         default:
-                            bf.y(inParcel, readInt11);
+                            g0.y(inParcel, readInt10);
                             break;
                     }
                 }
-                bf.m(inParcel, z23);
+                g0.m(inParcel, z22);
                 return new v(yVar, b0Var, bArr5, arrayList, d, arrayList2, mVar, num, h0Var, str6, fVar, str7, resultReceiver);
-            case 26:
-                int z24 = bf.z(inParcel);
+            case 25:
+                int z23 = g0.z(inParcel);
                 String str8 = null;
                 String str9 = null;
                 byte[] bArr6 = null;
                 j jVar = null;
-                d7.i iVar = null;
+                c7.i iVar = null;
                 k kVar = null;
-                d7.g gVar = null;
+                c7.g gVar = null;
                 String str10 = null;
-                while (inParcel.dataPosition() < z24) {
-                    int readInt12 = inParcel.readInt();
-                    switch ((char) readInt12) {
+                while (inParcel.dataPosition() < z23) {
+                    int readInt11 = inParcel.readInt();
+                    switch ((char) readInt11) {
                         case 1:
-                            str8 = bf.h(inParcel, readInt12);
+                            str8 = g0.h(inParcel, readInt11);
                             break;
                         case 2:
-                            str9 = bf.h(inParcel, readInt12);
+                            str9 = g0.h(inParcel, readInt11);
                             break;
                         case 3:
-                            bArr6 = bf.b(inParcel, readInt12);
+                            bArr6 = g0.b(inParcel, readInt11);
                             break;
                         case 4:
-                            jVar = (j) bf.g(inParcel, readInt12, j.CREATOR);
+                            jVar = (j) g0.g(inParcel, readInt11, j.CREATOR);
                             break;
                         case 5:
-                            iVar = (d7.i) bf.g(inParcel, readInt12, d7.i.CREATOR);
+                            iVar = (c7.i) g0.g(inParcel, readInt11, c7.i.CREATOR);
                             break;
                         case 6:
-                            kVar = (k) bf.g(inParcel, readInt12, k.CREATOR);
+                            kVar = (k) g0.g(inParcel, readInt11, k.CREATOR);
                             break;
                         case 7:
-                            gVar = (d7.g) bf.g(inParcel, readInt12, d7.g.CREATOR);
+                            gVar = (c7.g) g0.g(inParcel, readInt11, c7.g.CREATOR);
                             break;
                         case '\b':
-                            str10 = bf.h(inParcel, readInt12);
+                            str10 = g0.h(inParcel, readInt11);
                             break;
                         case '\t':
-                            bf.h(inParcel, readInt12);
+                            g0.h(inParcel, readInt11);
                             break;
                         default:
-                            bf.y(inParcel, readInt12);
+                            g0.y(inParcel, readInt11);
                             break;
                     }
                 }
-                bf.m(inParcel, z24);
+                g0.m(inParcel, z23);
                 return new u(str8, str9, bArr6, jVar, iVar, kVar, gVar, str10);
-            case 27:
-                int z25 = bf.z(inParcel);
+            case 26:
+                int z24 = g0.z(inParcel);
                 byte[] bArr7 = null;
                 ArrayList arrayList3 = null;
-                while (inParcel.dataPosition() < z25) {
-                    int readInt13 = inParcel.readInt();
-                    char c13 = (char) readInt13;
+                while (inParcel.dataPosition() < z24) {
+                    int readInt12 = inParcel.readInt();
+                    char c13 = (char) readInt12;
                     if (c13 != 2) {
                         if (c13 != 3) {
                             if (c13 != 4) {
-                                bf.y(inParcel, readInt13);
+                                g0.y(inParcel, readInt12);
                             } else {
-                                arrayList3 = bf.l(inParcel, readInt13, Transport.CREATOR);
+                                arrayList3 = g0.l(inParcel, readInt12, Transport.CREATOR);
                             }
                         } else {
-                            bArr7 = bf.b(inParcel, readInt13);
+                            bArr7 = g0.b(inParcel, readInt12);
                         }
                     } else {
-                        str3 = bf.h(inParcel, readInt13);
+                        str3 = g0.h(inParcel, readInt12);
                     }
                 }
-                bf.m(inParcel, z25);
+                g0.m(inParcel, z24);
                 return new w(str3, bArr7, arrayList3);
-            case 28:
-                int z26 = bf.z(inParcel);
+            case 27:
+                int z25 = g0.z(inParcel);
                 Integer num2 = null;
-                while (inParcel.dataPosition() < z26) {
-                    int readInt14 = inParcel.readInt();
-                    char c14 = (char) readInt14;
+                while (inParcel.dataPosition() < z25) {
+                    int readInt13 = inParcel.readInt();
+                    char c14 = (char) readInt13;
                     if (c14 != 2) {
                         if (c14 != 3) {
-                            bf.y(inParcel, readInt14);
+                            g0.y(inParcel, readInt13);
                         } else {
-                            num2 = bf.v(inParcel, readInt14);
+                            num2 = g0.v(inParcel, readInt13);
                         }
                     } else {
-                        str2 = bf.h(inParcel, readInt14);
+                        str2 = g0.h(inParcel, readInt13);
                     }
                 }
-                bf.m(inParcel, z26);
+                g0.m(inParcel, z25);
                 return new x(str2, num2.intValue());
-            default:
-                int z27 = bf.z(inParcel);
+            case 28:
+                int z26 = g0.z(inParcel);
                 String str11 = null;
                 String str12 = null;
-                while (inParcel.dataPosition() < z27) {
-                    int readInt15 = inParcel.readInt();
-                    char c15 = (char) readInt15;
+                while (inParcel.dataPosition() < z26) {
+                    int readInt14 = inParcel.readInt();
+                    char c15 = (char) readInt14;
                     if (c15 != 2) {
                         if (c15 != 3) {
                             if (c15 != 4) {
-                                bf.y(inParcel, readInt15);
+                                g0.y(inParcel, readInt14);
                             } else {
-                                str12 = bf.h(inParcel, readInt15);
+                                str12 = g0.h(inParcel, readInt14);
                             }
                         } else {
-                            str11 = bf.h(inParcel, readInt15);
+                            str11 = g0.h(inParcel, readInt14);
                         }
                     } else {
-                        str = bf.h(inParcel, readInt15);
+                        str = g0.h(inParcel, readInt14);
                     }
                 }
-                bf.m(inParcel, z27);
+                g0.m(inParcel, z26);
                 return new y(str, str11, str12);
+            default:
+                try {
+                    return a0.a(inParcel.readString());
+                } catch (z e10) {
+                    throw new RuntimeException(e10);
+                }
         }
     }
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f50696a) {
+        switch (this.f52317a) {
             case 0:
                 return new b[i10];
             case 1:
-                return new MediaBrowserCompat$MediaItem[i10];
+                return new a6.a[i10];
             case 2:
-                return new MediaDescriptionCompat[i10];
-            case 3:
-                return new MediaMetadataCompat[i10];
-            case 4:
-                return new RatingCompat[i10];
-            case 5:
-                return new androidx.activity.result.a[i10];
-            case 6:
-                return new androidx.activity.result.g[i10];
-            case 7:
-                return new androidx.fragment.app.b[i10];
-            case 8:
-                return new androidx.fragment.app.c[i10];
-            case 9:
-                return new e0[i10];
-            case 10:
-                return new k0[i10];
-            case 11:
-                return new n0[i10];
-            case 12:
-                return new b6.a[i10];
-            case 13:
                 return new SignInConfiguration[i10];
-            case 14:
+            case 3:
                 return new Transport[i10];
+            case 4:
+                return new MediaBrowserCompat$MediaItem[i10];
+            case 5:
+                return new MediaDescriptionCompat[i10];
+            case 6:
+                return new MediaMetadataCompat[i10];
+            case 7:
+                return new RatingCompat[i10];
+            case 8:
+                return new androidx.activity.result.a[i10];
+            case 9:
+                return new androidx.activity.result.g[i10];
+            case 10:
+                return new androidx.fragment.app.b[i10];
+            case 11:
+                return new androidx.fragment.app.c[i10];
+            case 12:
+                return new f0[i10];
+            case 13:
+                return new l0[i10];
+            case 14:
+                return new o0[i10];
             case 15:
                 return new c.d[i10];
             case 16:
-                return new o[i10];
+                return new c7.c[i10];
             case 17:
-                return new d7.c[i10];
-            case 18:
                 return new z0[i10];
-            case 19:
+            case 18:
                 return new m0[i10];
+            case 19:
+                return new n0[i10];
             case 20:
-                return new d7.n0[i10];
-            case 21:
                 return new t[i10];
+            case 21:
+                return new c7.o0[i10];
             case 22:
-                return new o0[i10];
-            case 23:
                 return new p0[i10];
-            case 24:
+            case 23:
                 return new q0[i10];
-            case 25:
+            case 24:
                 return new v[i10];
-            case 26:
+            case 25:
                 return new u[i10];
-            case 27:
+            case 26:
                 return new w[i10];
-            case 28:
+            case 27:
                 return new x[i10];
-            default:
+            case 28:
                 return new y[i10];
+            default:
+                return new a0[i10];
         }
     }
 }

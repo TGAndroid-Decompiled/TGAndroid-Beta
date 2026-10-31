@@ -1,44 +1,72 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class qi implements Runnable {
-    public final int f42714a;
-    public final ri f42715b;
-    public final int f42716c;
-    public final boolean d;
-    public final org.telegram.ui.Components.gl0 e;
-    public final float f42717f;
-    public final float h;
-    public final bh.x0 f42718n;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
+public final class qi implements View.OnTouchListener {
+    public final int f40989a;
+    public final int[] f40990b;
+    public final Rect f40991c;
+    public final Object d;
 
-    public qi(ri riVar, int i10, boolean z10, org.telegram.ui.Components.gl0 gl0Var, float f7, float f10, bh.x0 x0Var, int i11) {
-        this.f42714a = i11;
-        this.f42715b = riVar;
-        this.f42716c = i10;
-        this.d = z10;
-        this.e = gl0Var;
-        this.f42717f = f7;
-        this.h = f10;
-        this.f42718n = x0Var;
+    public qi(b50 b50Var, Rect rect) {
+        this.f40989a = 1;
+        this.d = b50Var;
+        this.f40991c = rect;
+        this.f40990b = new int[2];
     }
 
     @Override
-    public final void run() {
-        int i10;
-        switch (this.f42714a) {
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        c40 c40Var;
+        switch (this.f40989a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new qi(this.f42715b, this.f42716c, this.d, this.e, this.f42717f, this.h, this.f42718n, 1), 50L);
-                return;
-            default:
-                wn wnVar = this.f42715b.f43053s;
-                org.telegram.ui.Cells.z A8 = wnVar.A8(this.f42716c, true);
-                if (this.d) {
-                    i10 = ((org.telegram.ui.ActionBar.r2) wnVar).currentAccount;
-                    bh.s0.d(wnVar, this.e, A8, null, this.f42717f, this.h, this.f42718n, i10, 1);
-                    bh.s0.f();
-                    return;
+                un unVar = (un) this.d;
+                if (motionEvent.getActionMasked() == 0) {
+                    org.telegram.ui.ActionBar.k1 k1Var = unVar.f42240e9;
+                    if (k1Var != null && k1Var.isShowing()) {
+                        View contentView = unVar.f42240e9.getContentView();
+                        int[] iArr = this.f40990b;
+                        contentView.getLocationInWindow(iArr);
+                        int i10 = iArr[0];
+                        int measuredHeight = contentView.getMeasuredHeight() + iArr[1];
+                        Rect rect = this.f40991c;
+                        rect.set(i10, iArr[1], contentView.getMeasuredWidth() + i10, measuredHeight);
+                        if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                            unVar.I7(true);
+                        }
+                    }
+                } else if (motionEvent.getActionMasked() == 4) {
+                    unVar.I7(true);
                 }
-                return;
+                return false;
+            default:
+                b50 b50Var = (b50) this.d;
+                if (motionEvent.getActionMasked() == 0) {
+                    c40 c40Var2 = b50Var.W4;
+                    if (c40Var2 != null && c40Var2.isShowing()) {
+                        View contentView2 = b50Var.W4.getContentView();
+                        int[] iArr2 = this.f40990b;
+                        contentView2.getLocationInWindow(iArr2);
+                        int i11 = iArr2[0];
+                        int measuredHeight2 = contentView2.getMeasuredHeight() + iArr2[1];
+                        Rect rect2 = this.f40991c;
+                        rect2.set(i11, iArr2[1], contentView2.getMeasuredWidth() + i11, measuredHeight2);
+                        if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                            b50Var.W4.dismiss();
+                        }
+                    }
+                } else if (motionEvent.getActionMasked() == 4 && (c40Var = b50Var.W4) != null && c40Var.isShowing()) {
+                    b50Var.W4.dismiss();
+                }
+                return false;
         }
+    }
+
+    public qi(un unVar, Rect rect) {
+        this.f40989a = 0;
+        this.d = unVar;
+        this.f40991c = rect;
+        this.f40990b = new int[2];
     }
 }

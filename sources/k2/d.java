@@ -1,25 +1,23 @@
 package k2;
 
-import android.media.AudioDeviceCallback;
-import android.media.AudioDeviceInfo;
-public final class d extends AudioDeviceCallback {
-    public final f f16137a;
+import android.content.ContentResolver;
+import android.database.ContentObserver;
+import android.net.Uri;
+import android.os.Handler;
+public final class d extends ContentObserver {
+    public final ContentResolver f10626a;
+    public final Uri f10627b;
+    public final e f10628c;
 
-    public d(f fVar) {
-        this.f16137a = fVar;
+    public d(e eVar, Handler handler, ContentResolver contentResolver, Uri uri) {
+        super(handler);
+        this.f10628c = eVar;
+        this.f10626a = contentResolver;
+        this.f10627b = uri;
     }
 
     @Override
-    public final void onAudioDevicesAdded(AudioDeviceInfo[] audioDeviceInfoArr) {
-        this.f16137a.c();
-    }
-
-    @Override
-    public final void onAudioDevicesRemoved(AudioDeviceInfo[] audioDeviceInfoArr) {
-        f fVar = this.f16137a;
-        if (e2.n0.l(audioDeviceInfoArr, fVar.f16157i)) {
-            fVar.f16157i = null;
-        }
-        fVar.c();
+    public final void onChange(boolean z10) {
+        this.f10628c.c();
     }
 }

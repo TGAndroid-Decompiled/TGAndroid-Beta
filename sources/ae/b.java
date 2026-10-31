@@ -1,68 +1,35 @@
 package ae;
 
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-public final class b implements Iterator {
-    public final String f1239a;
-    public int f1240b;
-    public int f1241c;
-    public int d;
-    public int e;
+import v7.g7;
+public final class b {
+    public static final b f408a;
+    public static final b f409b;
+    public static final b f410c;
+    public static final b d;
+    public static final b e;
+    public static final b[] f411f;
 
-    public b(String str) {
-        this.f1239a = str;
+    static {
+        ?? r02 = new Enum("CPU_ACQUIRED", 0);
+        f408a = r02;
+        ?? r12 = new Enum("BLOCKING", 1);
+        f409b = r12;
+        ?? r32 = new Enum("PARKING", 2);
+        f410c = r32;
+        ?? r52 = new Enum("DORMANT", 3);
+        d = r52;
+        ?? r72 = new Enum("TERMINATED", 4);
+        e = r72;
+        b[] bVarArr = {r02, r12, r32, r52, r72};
+        f411f = bVarArr;
+        g7.a(bVarArr);
     }
 
-    @Override
-    public final boolean hasNext() {
-        int i10;
-        int i11 = this.f1240b;
-        if (i11 != 0) {
-            if (i11 != 1) {
-                return false;
-            }
-            return true;
-        }
-        int i12 = 2;
-        if (this.e < 0) {
-            this.f1240b = 2;
-            return false;
-        }
-        String str = this.f1239a;
-        int length = str.length();
-        int length2 = str.length();
-        for (int i13 = this.f1241c; i13 < length2; i13++) {
-            char charAt = str.charAt(i13);
-            if (charAt == '\n' || charAt == '\r') {
-                i12 = (charAt == '\r' && (i10 = i13 + 1) < str.length() && str.charAt(i10) == '\n') ? 1 : 1;
-                length = i13;
-                this.f1240b = 1;
-                this.e = i12;
-                this.d = length;
-                return true;
-            }
-        }
-        i12 = -1;
-        this.f1240b = 1;
-        this.e = i12;
-        this.d = length;
-        return true;
+    public static b valueOf(String str) {
+        return (b) Enum.valueOf(b.class, str);
     }
 
-    @Override
-    public final Object next() {
-        if (hasNext()) {
-            this.f1240b = 0;
-            int i10 = this.d;
-            int i11 = this.f1241c;
-            this.f1241c = this.e + i10;
-            return this.f1239a.subSequence(i11, i10).toString();
-        }
-        throw new NoSuchElementException();
-    }
-
-    @Override
-    public final void remove() {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    public static b[] values() {
+        return (b[]) f411f.clone();
     }
 }

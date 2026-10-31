@@ -1,10 +1,42 @@
 package vg;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.nd0;
-public final class h extends nd0 {
+import android.graphics.Bitmap;
+import android.util.LruCache;
+import vh.h2;
+public final class h extends LruCache {
+    public final int f50854a;
+
+    public h(int i10, int i11) {
+        super(i10);
+        this.f50854a = i11;
+    }
+
     @Override
-    public final CharSequence d(int i10) {
-        return LocaleController.formatPluralString("Hours", i10, new Object[0]);
+    public void entryRemoved(boolean z10, Object obj, Object obj2, Object obj3) {
+        switch (this.f50854a) {
+            case 1:
+                String str = (String) obj;
+                Bitmap bitmap = (Bitmap) obj2;
+                Bitmap bitmap2 = (Bitmap) obj3;
+                if (!bitmap.isRecycled() && !h2.f51228e0.containsKey(str)) {
+                    bitmap.recycle();
+                    return;
+                }
+                return;
+            default:
+                super.entryRemoved(z10, obj, obj2, obj3);
+                return;
+        }
+    }
+
+    @Override
+    public int sizeOf(Object obj, Object obj2) {
+        switch (this.f50854a) {
+            case 0:
+                Long l4 = (Long) obj;
+                return ((i) obj2).f50857c;
+            default:
+                return super.sizeOf(obj, obj2);
+        }
     }
 }

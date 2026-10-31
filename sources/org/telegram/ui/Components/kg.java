@@ -1,56 +1,51 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class kg implements Runnable {
-    public final int f29953a;
-    public final Object f29954b;
-    public final Object f29955c;
-    public final Object d;
+import android.animation.ValueAnimator;
+public final class kg implements ValueAnimator.AnimatorUpdateListener {
+    public final int f27746a;
+    public final bi f27747b;
 
-    public kg(Object obj, Object obj2, Object obj3, int i10) {
-        this.f29953a = i10;
-        this.f29954b = obj;
-        this.d = obj2;
-        this.f29955c = obj3;
-    }
-
-    private final void a() {
-        dz0 dz0Var = (dz0) this.f29954b;
-        String str = (String) this.d;
-        SendMessagesHelper.ImportingSticker importingSticker = (SendMessagesHelper.ImportingSticker) this.f29955c;
-        if (!dz0Var.isDismissed()) {
-            dz0Var.Z.remove(str);
-            if (!"application/x-tgsticker".equals(importingSticker.mimeType)) {
-                dz0Var.w0(importingSticker);
-            } else {
-                importingSticker.validated = true;
-                int indexOf = dz0Var.Y.indexOf(importingSticker);
-                if (indexOf >= 0) {
-                    s4.e1 K = dz0Var.f27581c.K(indexOf);
-                    if (K != null) {
-                        ((org.telegram.ui.Cells.i8) K.f47773a).setSticker(importingSticker);
-                    }
-                } else {
-                    dz0Var.d.l();
-                }
-            }
-            if (dz0Var.Z.isEmpty()) {
-                dz0Var.D0();
-            }
-        }
+    public kg(bi biVar, int i10) {
+        this.f27746a = i10;
+        this.f27747b = biVar;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.kg.run():void");
-    }
-
-    public kg(ue0 ue0Var, TLRPC.TL_error tL_error, TLObject tLObject, boolean z10) {
-        this.f29953a = 16;
-        this.f29954b = ue0Var;
-        this.d = tL_error;
-        this.f29955c = tLObject;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f27746a) {
+            case 0:
+                this.f27747b.P1();
+                return;
+            case 1:
+                this.f27747b.f24741x2.invalidate();
+                return;
+            case 2:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                bi biVar = this.f27747b;
+                biVar.C0 = floatValue;
+                org.telegram.ui.ActionBar.p2 p2Var = biVar.f21589c;
+                if (p2Var != null) {
+                    p2Var.invalidate();
+                    return;
+                }
+                return;
+            case 3:
+                bi biVar2 = this.f27747b;
+                biVar2.getClass();
+                biVar2.y1(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 4:
+                bi biVar3 = this.f27747b;
+                uh uhVar = biVar3.f24721s2;
+                kk kkVar = biVar3.f24701n2;
+                if (uhVar == kkVar && kkVar != null) {
+                    kkVar.invalidate();
+                    return;
+                }
+                return;
+            default:
+                this.f27747b.P1();
+                return;
+        }
     }
 }

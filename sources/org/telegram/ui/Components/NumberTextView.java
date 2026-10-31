@@ -8,26 +8,25 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
 public class NumberTextView extends View {
-    public final ArrayList f26188a;
-    public final ArrayList f26189b;
-    public final TextPaint f26190c;
+    public final ArrayList f24066a;
+    public final ArrayList f24067b;
+    public final TextPaint f24068c;
     public ObjectAnimator d;
     public float e;
-    public int f26191f;
+    public int f24069f;
     public boolean h;
-    public boolean f26192n;
-    public float f26193r;
-    public float f26194s;
+    public boolean f24070n;
+    public float f24071r;
+    public float f24072s;
 
     public NumberTextView(Context context) {
         super(context);
-        this.f26188a = new ArrayList();
-        this.f26189b = new ArrayList();
-        this.f26190c = new TextPaint(1);
+        this.f24066a = new ArrayList();
+        this.f24067b = new ArrayList();
+        this.f24068c = new TextPaint(1);
         this.e = 0.0f;
-        this.f26191f = 1;
+        this.f24069f = 1;
     }
 
     public final void a(int r22, boolean r23) {
@@ -35,7 +34,7 @@ public class NumberTextView extends View {
     }
 
     public float getOldTextWidth() {
-        return this.f26194s;
+        return this.f24072s;
     }
 
     public float getProgress() {
@@ -43,7 +42,7 @@ public class NumberTextView extends View {
     }
 
     public float getTextWidth() {
-        return this.f26193r;
+        return this.f24071r;
     }
 
     @Override
@@ -53,19 +52,19 @@ public class NumberTextView extends View {
         float f11;
         StaticLayout staticLayout;
         float lineWidth;
-        ArrayList arrayList = this.f26188a;
+        ArrayList arrayList = this.f24066a;
         if (arrayList.isEmpty()) {
             return;
         }
         float height = ((StaticLayout) arrayList.get(0)).getHeight();
         if (this.h) {
-            f7 = AndroidUtilities.dp(4.0f);
+            f7 = org.telegram.messenger.i0.L(4.0f);
         } else {
             f7 = height;
         }
-        if (this.f26192n) {
-            f10 = (getMeasuredWidth() - this.f26193r) / 2.0f;
-            f11 = ((getMeasuredWidth() - this.f26194s) / 2.0f) - f10;
+        if (this.f24070n) {
+            f10 = (getMeasuredWidth() - this.f24071r) / 2.0f;
+            f11 = ((getMeasuredWidth() - this.f24072s) / 2.0f) - f10;
         } else {
             f10 = 0.0f;
             f11 = 0.0f;
@@ -73,7 +72,7 @@ public class NumberTextView extends View {
         canvas.save();
         canvas.translate(getPaddingLeft() + f10, (getMeasuredHeight() - height) / 2.0f);
         int size = arrayList.size();
-        ArrayList arrayList2 = this.f26189b;
+        ArrayList arrayList2 = this.f24067b;
         int max = Math.max(size, arrayList2.size());
         for (int i10 = 0; i10 < max; i10++) {
             canvas.save();
@@ -88,7 +87,7 @@ public class NumberTextView extends View {
             }
             float f12 = this.e;
             int i11 = (f12 > 0.0f ? 1 : (f12 == 0.0f ? 0 : -1));
-            TextPaint textPaint = this.f26190c;
+            TextPaint textPaint = this.f24068c;
             if (i11 > 0) {
                 if (staticLayout != null) {
                     textPaint.setAlpha((int) (f12 * 255.0f));
@@ -129,7 +128,7 @@ public class NumberTextView extends View {
             if (staticLayout2 != null) {
                 lineWidth = staticLayout2.getLineWidth(0);
             } else {
-                lineWidth = staticLayout.getLineWidth(0) + AndroidUtilities.dp(1.0f);
+                lineWidth = staticLayout.getLineWidth(0) + org.telegram.messenger.i0.L(1.0f);
             }
             canvas.translate(lineWidth, 0.0f);
             if (staticLayout2 != null && staticLayout != null) {
@@ -140,7 +139,7 @@ public class NumberTextView extends View {
     }
 
     public void setCenterAlign(boolean z10) {
-        this.f26192n = z10;
+        this.f24070n = z10;
     }
 
     public void setProgress(float f7) {
@@ -152,24 +151,24 @@ public class NumberTextView extends View {
     }
 
     public void setTextColor(int i10) {
-        this.f26190c.setColor(i10);
+        this.f24068c.setColor(i10);
         invalidate();
     }
 
     public void setTextSize(int i10) {
-        this.f26190c.setTextSize(AndroidUtilities.dp(i10));
-        this.f26189b.clear();
-        this.f26188a.clear();
-        a(this.f26191f, false);
+        this.f24068c.setTextSize(org.telegram.messenger.i0.L(i10));
+        this.f24067b.clear();
+        this.f24066a.clear();
+        a(this.f24069f, false);
     }
 
     public void setTypeface(Typeface typeface) {
-        this.f26190c.setTypeface(typeface);
-        this.f26189b.clear();
-        this.f26188a.clear();
-        a(this.f26191f, false);
+        this.f24068c.setTypeface(typeface);
+        this.f24067b.clear();
+        this.f24066a.clear();
+        a(this.f24069f, false);
     }
 
-    public void setOnTextWidthProgressChangedListener(od0 od0Var) {
+    public void setOnTextWidthProgressChangedListener(bc0 bc0Var) {
     }
 }

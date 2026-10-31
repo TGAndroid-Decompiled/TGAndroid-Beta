@@ -1,26 +1,16 @@
 package sb;
 
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.util.Log;
-public abstract class c {
-    public static final d5.a f48082a = new d5.a("CommonUtils", "");
+import x7.ga;
+import x7.ia;
+public final class c {
+    public final d f48133a;
+    public final jb.d f48134b;
+    public final ga f48135c;
 
-    public static String a(Context context) {
-        try {
-            return String.valueOf(context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode);
-        } catch (PackageManager.NameNotFoundException e) {
-            String concat = "Exception thrown when trying to get app version ".concat(e.toString());
-            d5.a aVar = f48082a;
-            if (Log.isLoggable(aVar.f7928a, 6)) {
-                String str = aVar.f7929b;
-                if (str != null) {
-                    concat = str.concat(concat);
-                }
-                Log.e("CommonUtils", concat);
-                return "";
-            }
-            return "";
-        }
+    public c(d dVar, jb.d dVar2) {
+        ga b10 = ia.b();
+        this.f48133a = dVar;
+        this.f48134b = dVar2;
+        this.f48135c = b10;
     }
 }

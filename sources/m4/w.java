@@ -3,16 +3,16 @@ package m4;
 import android.os.Bundle;
 import j$.util.Objects;
 public final class w {
-    public final n4.t f18285a;
-    public final int f18286b;
-    public final int f18287c;
+    public final n4.r f12981a;
+    public final int f12982b;
+    public final int f12983c;
     public final v d;
     public final Bundle e;
 
-    public w(n4.t tVar, int i10, int i11, boolean z10, v vVar, Bundle bundle) {
-        this.f18285a = tVar;
-        this.f18286b = i10;
-        this.f18287c = i11;
+    public w(n4.r rVar, int i10, int i11, boolean z10, v vVar, Bundle bundle) {
+        this.f12981a = rVar;
+        this.f12982b = i10;
+        this.f12983c = i11;
         this.d = vVar;
         this.e = bundle;
     }
@@ -28,20 +28,20 @@ public final class w {
         v vVar = wVar.d;
         v vVar2 = this.d;
         if (vVar2 == null && vVar == null) {
-            return this.f18285a.equals(wVar.f18285a);
+            return this.f12981a.equals(wVar.f12981a);
         }
         return Objects.equals(vVar2, vVar);
     }
 
     public final int hashCode() {
-        return Objects.hash(this.d, this.f18285a);
+        return Objects.hash(this.d, this.f12981a);
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("ControllerInfo {pkg=");
-        n4.t tVar = this.f18285a;
-        sb2.append(tVar.f18697a.f18698a);
+        n4.r rVar = this.f12981a;
+        sb2.append(rVar.f13528a.f13529a);
         sb2.append(", uid=");
-        return a1.g.n(tVar.f18697a.f18700c, "}", sb2);
+        return a1.g.p(sb2, rVar.f13528a.f13531c, "}");
     }
 }

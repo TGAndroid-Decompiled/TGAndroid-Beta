@@ -1,32 +1,28 @@
 package org.telegram.messenger.voip;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.x50;
-public final class k0 implements RequestDelegate {
-    public final int f21646a;
-    public final int f21647b;
-    public final boolean f21648c;
-    public final NotificationCenter.NotificationCenterDelegate d;
+public final class k0 implements Runnable {
+    public final int f18671a;
+    public final VoIPService f18672b;
+    public final TLRPC.TL_error f18673c;
 
-    public k0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10, boolean z10, int i11) {
-        this.f21646a = i11;
-        this.d = notificationCenterDelegate;
-        this.f21647b = i10;
-        this.f21648c = z10;
+    public k0(VoIPService voIPService, TLRPC.TL_error tL_error, int i10) {
+        this.f18671a = i10;
+        this.f18672b = voIPService;
+        this.f18673c = tL_error;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f21646a) {
+    public final void run() {
+        switch (this.f18671a) {
             case 0:
-                ((VoIPService) this.d).lambda$startGroupCall$29(this.f21647b, this.f21648c, tLObject, tL_error);
+                this.f18672b.lambda$startGroupCall$28(this.f18673c);
+                return;
+            case 1:
+                this.f18672b.lambda$startGroupCall$22(this.f18673c);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new j0(this.f21647b, 6, (x50) this.d, tLObject, this.f21648c));
+                this.f18672b.lambda$startScreenCapture$59(this.f18673c);
                 return;
         }
     }

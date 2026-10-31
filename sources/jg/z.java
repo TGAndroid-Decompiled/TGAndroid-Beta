@@ -1,131 +1,55 @@
 package jg;
 
-import android.text.TextUtils;
-import bi.h2;
-import bi.u7;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.sd;
-import org.telegram.ui.Components.wc;
-public final class z {
-    public static volatile z[] e = new z[4];
-    public static final Object[] f15906f = new Object[4];
-    public final int f15907a;
-    public final ArrayList f15908b = new ArrayList();
-    public boolean f15909c = false;
-    public boolean d = false;
-
-    static {
-        for (int i10 = 0; i10 < 4; i10++) {
-            f15906f[i10] = new Object();
-        }
-    }
+import android.content.DialogInterface;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.d6;
+import org.telegram.ui.Components.i01;
+import org.telegram.ui.b50;
+public final class z implements DialogInterface.OnDismissListener {
+    public final int f10380a;
 
     public z(int i10) {
-        this.f15907a = i10;
+        this.f10380a = i10;
     }
 
-    public static z d(int i10) {
-        z zVar;
-        z zVar2 = e[i10];
-        if (zVar2 == null) {
-            synchronized (f15906f[i10]) {
-                try {
-                    zVar = e[i10];
-                    if (zVar == null) {
-                        z[] zVarArr = e;
-                        z zVar3 = new z(i10);
-                        zVarArr[i10] = zVar3;
-                        zVar = zVar3;
-                    }
-                } catch (Throwable th2) {
-                    throw th2;
-                }
-            }
-            return zVar;
-        }
-        return zVar2;
-    }
-
-    public final void a(w wVar, String str) {
-        TL_account.TL_businessChatLink c10 = c(str);
-        if (c10 != null) {
-            ArrayList arrayList = this.f15908b;
-            int indexOf = arrayList.indexOf(c10);
-            arrayList.remove(c10);
-            NotificationCenter.getInstance(this.f15907a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
-            wc.b0(wVar).V(LocaleController.getString(R.string.BusinessLinkDeleted), true, new ai.h0(this, indexOf, c10, 19), new e2.m0(this, str, c10, 27)).j();
+    @Override
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f10380a) {
+            case 0:
+                MediaController.f14436f2 = false;
+                return;
+            case 1:
+                org.telegram.ui.b.f35913a = false;
+                return;
+            case 2:
+                return;
+            case 3:
+                d6.f15189i.edit().putInt("dismissed_count", d6.f15189i.getInt("dismissed_count", 0) + 1).apply();
+                return;
+            case 4:
+                int i10 = i01.e;
+                return;
+            case 5:
+                b50 b50Var = b50.f35989u5;
+                return;
+            case 6:
+                return;
+            case 7:
+                org.telegram.utils.twidget.p.f44435i = false;
+                return;
+            default:
+                int i11 = vh.u1.f51993y1;
+                return;
         }
     }
 
-    public final void b(TL_account.TL_businessChatLink tL_businessChatLink, TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink, sd sdVar) {
-        TL_account.editBusinessChatLink editbusinesschatlink = new TL_account.editBusinessChatLink();
-        editbusinesschatlink.slug = tL_businessChatLink.link;
-        if (!tL_inputBusinessChatLink.entities.isEmpty()) {
-            tL_inputBusinessChatLink.flags |= 1;
-        }
-        if (!TextUtils.isEmpty(tL_inputBusinessChatLink.title)) {
-            tL_inputBusinessChatLink.flags |= 2;
-        }
-        editbusinesschatlink.link = tL_inputBusinessChatLink;
-        ConnectionsManager.getInstance(this.f15907a).sendRequest(editbusinesschatlink, new h2(this, tL_businessChatLink, sdVar, 9));
+    public z(boolean[] zArr) {
+        this.f10380a = 2;
     }
 
-    public final TL_account.TL_businessChatLink c(String str) {
-        TL_account.TL_businessChatLink tL_businessChatLink;
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.f15908b;
-            if (i10 < arrayList.size()) {
-                tL_businessChatLink = (TL_account.TL_businessChatLink) arrayList.get(i10);
-                if (!TextUtils.equals(tL_businessChatLink.link, str)) {
-                    String str2 = tL_businessChatLink.link;
-                    if (!TextUtils.equals(str2, "https://" + str)) {
-                        String str3 = tL_businessChatLink.link;
-                        if (TextUtils.equals(str3, "https://t.me/m/" + str)) {
-                            break;
-                        }
-                        String str4 = tL_businessChatLink.link;
-                        if (TextUtils.equals(str4, "tg://message?slug=" + str)) {
-                            break;
-                        }
-                        i10++;
-                    } else {
-                        break;
-                    }
-                } else {
-                    break;
-                }
-            } else {
-                return null;
-            }
-        }
-        return tL_businessChatLink;
+    private final void a(DialogInterface dialogInterface) {
     }
 
-    public final void e(boolean z10, boolean z11) {
-        if (!this.f15909c) {
-            if (!this.d || (z11 && !z10)) {
-                this.f15909c = true;
-                int i10 = this.f15907a;
-                if (z10) {
-                    MessagesStorage messagesStorage = MessagesStorage.getInstance(i10);
-                    messagesStorage.getStorageQueue().postRunnable(new u7(this, messagesStorage, z11, 5));
-                    return;
-                }
-                ConnectionsManager.getInstance(i10).sendRequest(new TL_account.getBusinessChatLinks(), new y(this, 0));
-            }
-        }
-    }
-
-    public final void f() {
-        ArrayList arrayList = new ArrayList(this.f15908b);
-        MessagesStorage messagesStorage = MessagesStorage.getInstance(this.f15907a);
-        messagesStorage.getStorageQueue().postRunnable(new fi.w0(1, arrayList, messagesStorage));
+    private final void b(DialogInterface dialogInterface) {
     }
 }

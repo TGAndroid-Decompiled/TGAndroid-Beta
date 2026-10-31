@@ -1,62 +1,59 @@
 package w7;
-public enum l6 implements f {
-    NO_ERROR(0),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(1),
-    INCOMPATIBLE_OUTPUT(2),
-    INCOMPATIBLE_TFLITE_VERSION(3),
-    MISSING_OP(4),
-    DATA_TYPE_ERROR(6),
-    TFLITE_INTERNAL_ERROR(7),
-    TFLITE_UNKNOWN_ERROR(8),
-    REMOTE_MODEL_INVALID(9),
-    TIME_OUT_FETCHING_MODEL_METADATA(5),
-    MODEL_NOT_DOWNLOADED(100),
-    URI_EXPIRED(101),
-    NO_NETWORK_CONNECTION(102),
-    METERED_NETWORK(103),
-    DOWNLOAD_FAILED(104),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(105),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(106),
-    REMOTE_MODEL_INVALID(107),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(108),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(109),
-    REMOTE_MODEL_INVALID(110),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(111),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(112),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(113),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(114),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(115),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(116),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(201),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(202),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(203),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(204),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(205),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(206),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(207),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(301),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(302),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(303),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(304),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(305),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(400),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(401),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(402),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(403),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(404),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(405),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(406),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(407),
-    UNKNOWN_ERROR(9999);
-    
-    public final int f50979a;
 
-    l6(int i10) {
-        this.f50979a = i10;
+import java.nio.ByteBuffer;
+public abstract class l6 {
+    public static boolean a(int i10, byte[] bArr) {
+        if (((bArr[i10 / 8] >> (7 - (i10 % 8))) & 1) != 0) {
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public final int zza() {
-        return this.f50979a;
+    public static int b(byte[] bArr, int[] iArr) {
+        int i10 = 0;
+        if (a(0, bArr) && !a(1, bArr) && !a(2, bArr) && !a(3, bArr) && a(4, bArr) && !a(5, bArr) && !a(6, bArr)) {
+            int i11 = 271;
+            int i12 = 0;
+            while (i10 < 4) {
+                i12 = (i12 << 1) | (a(i11, bArr) ? 1 : 0);
+                i10++;
+                i11++;
+            }
+            int i13 = (i12 * 8) + i11;
+            int i14 = i13 + 1;
+            if (a(i13, bArr)) {
+                int i15 = i13 + 2;
+                if (!a(i14, bArr)) {
+                    int i16 = i13 + 3;
+                    if (a(i15, bArr)) {
+                        i16 = i13 + 8;
+                    }
+                    int i17 = i16 + 1;
+                    if (a(i16, bArr)) {
+                        i17 = i16 + 3;
+                    }
+                    i14 = i17 + 3;
+                } else {
+                    i14 = i15;
+                }
+            }
+            if (a(i14, bArr) && iArr.length > 0) {
+                return iArr[iArr.length - 1];
+            }
+        }
+        return -1;
+    }
+
+    public static void c(int i10, byte[] bArr) {
+        int i11 = i10 / 8;
+        bArr[i11] = (byte) (((byte) (1 << (7 - (i10 % 8)))) | bArr[i11]);
+    }
+
+    public static long d(int i10, ByteBuffer byteBuffer) {
+        long j10 = 0;
+        for (int i11 = 0; i11 < i10; i11++) {
+            j10 = (j10 << 8) | (byteBuffer.get() & 255);
+        }
+        return j10;
     }
 }

@@ -7,14 +7,14 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
 public final class l2 {
-    public final int f17763a;
+    public final int f12457a;
 
     public l2(int i10) {
-        this.f17763a = i10;
+        this.f12457a = i10;
     }
 
     public final Drawable a(Context context, XmlResourceParser xmlResourceParser, AttributeSet attributeSet, Resources.Theme theme) {
-        switch (this.f17763a) {
+        switch (this.f12457a) {
             case 0:
                 String classAttribute = attributeSet.getClassAttribute();
                 if (classAttribute == null) {
@@ -31,28 +31,28 @@ public final class l2 {
             case 1:
                 try {
                     return i.e.c(context, context.getResources(), xmlResourceParser, attributeSet, theme);
-                } catch (Exception e10) {
-                    Log.e("AsldcInflateDelegate", "Exception while inflating <animated-selector>", e10);
+                } catch (Exception e7) {
+                    Log.e("AsldcInflateDelegate", "Exception while inflating <animated-selector>", e7);
                     return null;
                 }
             case 2:
                 try {
                     Resources resources = context.getResources();
-                    y4.d dVar = new y4.d(context);
+                    x4.d dVar = new x4.d(context);
                     dVar.inflate(resources, xmlResourceParser, attributeSet, theme);
                     return dVar;
-                } catch (Exception e11) {
-                    Log.e("AvdcInflateDelegate", "Exception while inflating <animated-vector>", e11);
+                } catch (Exception e10) {
+                    Log.e("AvdcInflateDelegate", "Exception while inflating <animated-vector>", e10);
                     return null;
                 }
             default:
                 try {
                     Resources resources2 = context.getResources();
-                    y4.o oVar = new y4.o();
+                    x4.o oVar = new x4.o();
                     oVar.inflate(resources2, xmlResourceParser, attributeSet, theme);
                     return oVar;
-                } catch (Exception e12) {
-                    Log.e("VdcInflateDelegate", "Exception while inflating <vector>", e12);
+                } catch (Exception e11) {
+                    Log.e("VdcInflateDelegate", "Exception while inflating <vector>", e11);
                     return null;
                 }
         }

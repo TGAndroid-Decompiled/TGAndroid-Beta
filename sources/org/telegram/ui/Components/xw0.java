@@ -1,75 +1,18 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Point;
-import android.graphics.Rect;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public abstract class xw0 extends ww0 {
-    public Activity f34861l0;
-    public final Rect m0;
-    public int f34862n0;
-    public boolean f34863o0;
+public final class xw0 extends org.telegram.ui.Cells.d8 {
+    public final yw0 O;
 
-    public xw0(Context context, Activity activity) {
-        super(context, null);
-        this.m0 = new Rect();
-        setActivity(activity);
+    public xw0(yw0 yw0Var, Context context, org.telegram.ui.ActionBar.p6 p6Var) {
+        super(context, p6Var, false);
+        this.O = yw0Var;
     }
 
     @Override
-    public int Q() {
-        View rootView = getRootView();
-        Rect rect = this.m0;
-        getWindowVisibleDisplayFrame(rect);
-        int i10 = 0;
-        if (this.f34863o0) {
-            int height = rootView.getHeight();
-            if (rect.top != 0) {
-                i10 = AndroidUtilities.statusBarHeight;
-            }
-            return ((height - i10) - AndroidUtilities.getViewInset(rootView)) - (rect.bottom - rect.top);
-        }
-        int height2 = (this.f34861l0.getWindow().getDecorView().getHeight() - AndroidUtilities.getViewInset(rootView)) - rootView.getBottom();
-        if (height2 <= Math.max(AndroidUtilities.dp(10.0f), AndroidUtilities.statusBarHeight)) {
-            return 0;
-        }
-        return height2;
-    }
-
-    @Override
-    public void R() {
-        boolean z10;
-        if (this.f34594n == null && this.f34595r.isEmpty()) {
-            return;
-        }
-        this.f34862n0 = Q();
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        post(new d60(7, this, z10));
-    }
-
-    @Override
-    public int getKeyboardHeight() {
-        return this.f34862n0;
-    }
-
-    @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        R();
-    }
-
-    public void setActivity(Activity activity) {
-        this.f34861l0 = activity;
-    }
-
-    public void setWithoutWindow(boolean z10) {
-        this.f34863o0 = z10;
+    public final void onMeasure(int i10, int i11) {
+        yw0 yw0Var = this.O;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(yw0Var.f32816r.F1, 1073741824), View.MeasureSpec.makeMeasureSpec(yw0Var.f32816r.F1, 1073741824));
     }
 }

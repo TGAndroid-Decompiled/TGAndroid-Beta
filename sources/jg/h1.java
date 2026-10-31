@@ -1,449 +1,232 @@
 package jg;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import j$.time.DayOfWeek;
-import j$.time.format.TextStyle;
+import android.text.TextUtils;
 import java.util.ArrayList;
-import java.util.Calendar;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.messenger.wh;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.r2;
-import org.telegram.ui.ActionBar.u5;
-import org.telegram.ui.Cells.n5;
-import org.telegram.ui.Cells.v8;
-import org.telegram.ui.Components.b10;
-import org.telegram.ui.Components.k71;
-import org.telegram.ui.Components.kb1;
-import org.telegram.ui.Components.nm0;
-import org.telegram.ui.Components.s71;
-import org.telegram.ui.Components.u61;
-import org.telegram.ui.Components.wc;
-public final class h1 extends r2 implements NotificationCenter.NotificationCenterDelegate {
-    public s71 f15720a;
-    public u5 f15721b;
-    public boolean f15722c;
-    public boolean d;
-    public ArrayList[] e;
-    public ArrayList[] f15723f;
-    public String h;
-    public String f15724n;
+import org.telegram.messenger.bj;
+import org.telegram.messenger.ej;
+import org.telegram.messenger.jj;
+import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
+import org.telegram.ui.Components.a51;
+import org.telegram.ui.Components.ay;
+import org.telegram.ui.Components.cx0;
+import org.telegram.ui.Components.p51;
+import org.telegram.ui.Components.qi;
+import org.telegram.ui.Components.ua0;
+import org.telegram.ui.Components.vy;
+import org.telegram.ui.Components.yy;
+import org.telegram.ui.Components.zx;
+import org.telegram.ui.fm;
+import org.telegram.ui.kh0;
+import org.telegram.ui.lo0;
+import org.telegram.ui.nn0;
+import org.telegram.ui.t31;
+import org.telegram.ui.un;
+import ph.q3;
+import ph.t3;
+import vh.s3;
+public final class h1 extends g.o {
+    public final int f9995c;
+    public final Object d;
 
-    public h1() {
-        super(null);
-        this.e = null;
-        this.f15723f = new ArrayList[]{new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList()};
+    public h1(Object obj, int i10) {
+        this.f9995c = i10;
+        this.d = obj;
     }
 
-    public static void V(h1 h1Var, TLRPC.TL_error tL_error, TLObject tLObject) {
-        if (tL_error != null) {
-            h1Var.f15721b.b(false);
-            wc.e0(tL_error);
-        } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-            if (h1Var.getParentActivity() != null) {
-                h1Var.f15721b.b(false);
-                wh.n(R.string.UnknownError, wc.b0(h1Var), null);
-            }
-        } else if (!h1Var.isFinished && !h1Var.finishing) {
-            h1Var.finishFragment();
-        }
-    }
-
-    public static void W(h1 h1Var, ArrayList arrayList) {
-        String string = LocaleController.getString(R.string.BusinessHours);
-        String string2 = LocaleController.getString(R.string.BusinessHoursInfo);
-        int i10 = R.raw.biz_clock;
-        u61 u61Var = new u61(2);
-        u61Var.f33249l = string;
-        u61Var.f33252o = string2;
-        u61Var.f33248k = i10;
-        arrayList.add(u61Var);
-        u61 i11 = u61.i(-1, LocaleController.getString(R.string.BusinessHoursShow));
-        i11.L(h1Var.d);
-        arrayList.add(i11);
-        arrayList.add(u61.B(-100, null));
-        if (h1Var.d) {
-            ic.a.p(R.string.BusinessHours, arrayList);
-            int i12 = 0;
-            while (true) {
-                ArrayList[] arrayListArr = h1Var.f15723f;
-                if (i12 < arrayListArr.length) {
-                    if (arrayListArr[i12] == null) {
-                        arrayListArr[i12] = new ArrayList();
-                    }
-                    String displayName = DayOfWeek.values()[i12].getDisplayName(TextStyle.FULL, LocaleController.getInstance().getCurrentLocale());
-                    String b02 = b0(h1Var.f15723f[i12]);
-                    u61 u61Var2 = new u61(5);
-                    u61Var2.d = i12;
-                    u61Var2.f33249l = displayName.substring(0, 1).toUpperCase() + displayName.substring(1);
-                    u61Var2.f33250m = b02;
-                    u61Var2.L(!h1Var.f15723f[i12].isEmpty());
-                    arrayList.add(u61Var2);
-                    i12++;
-                } else {
-                    arrayList.add(u61.B(-101, null));
-                    arrayList.add(u61.f(LocaleController.getString(R.string.BusinessHoursTimezone), g2.b(h1Var.currentAccount).d(h1Var.f15724n, false), -2));
-                    arrayList.add(u61.B(-102, null));
-                    return;
-                }
-            }
-        }
-    }
-
-    public static void X(h1 h1Var, View view, String str) {
-        g2 b10 = g2.b(h1Var.currentAccount);
-        h1Var.f15724n = str;
-        ((v8) view).w(b10.d(str, false), true);
-        h1Var.Z(true);
-    }
-
-    public static ArrayList[] a0(ArrayList arrayList) {
-        int i10;
-        ArrayList[] arrayListArr = new ArrayList[7];
-        for (int i11 = 0; i11 < 7; i11++) {
-            arrayListArr[i11] = new ArrayList();
-        }
-        for (int i12 = 0; i12 < arrayList.size(); i12++) {
-            TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen = (TL_account.TL_businessWeeklyOpen) arrayList.get(i12);
-            int i13 = tL_businessWeeklyOpen.start_minute;
-            int i14 = i13 % 1440;
-            arrayListArr[(i13 / 1440) % 7].add(new g1(i14, (tL_businessWeeklyOpen.end_minute - i13) + i14));
-        }
-        int i15 = 0;
-        while (i15 < 7) {
-            int i16 = i15 * 1440;
-            int i17 = i15 + 1;
-            int i18 = i17 * 1440;
-            int i19 = i16;
-            for (int i20 = 0; i20 < arrayList.size(); i20++) {
-                TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen2 = (TL_account.TL_businessWeeklyOpen) arrayList.get(i20);
-                if (tL_businessWeeklyOpen2.start_minute <= i19 && (i10 = tL_businessWeeklyOpen2.end_minute) >= i19) {
-                    i19 = i10 + 1;
-                }
-            }
-            if (i19 >= i18) {
-                int i21 = (i15 + 6) % 7;
-                if (!arrayListArr[i21].isEmpty() && ((g1) ic.a.g(1, arrayListArr[i21])).f15713b >= 1440) {
-                    ((g1) ic.a.g(1, arrayListArr[i21])).f15713b = 1439;
-                }
-                int min = Math.min((i19 - i16) - 1, 2879);
-                ArrayList arrayList2 = arrayListArr[(i15 + 8) % 7];
-                if (min >= 1440 && !arrayList2.isEmpty() && ((g1) arrayList2.get(0)).f15712a < min - 1440) {
-                    min = ((g1) arrayList2.get(0)).f15712a + 1439;
-                }
-                arrayListArr[i15].clear();
-                arrayListArr[i15].add(new g1(0, min));
-            } else {
-                int i22 = i17 % 7;
-                if (!arrayListArr[i15].isEmpty() && !arrayListArr[i22].isEmpty()) {
-                    g1 g1Var = (g1) ic.a.g(1, arrayListArr[i15]);
-                    g1 g1Var2 = (g1) arrayListArr[i22].get(0);
-                    int i23 = g1Var.f15713b;
-                    if (i23 > 1440 && i23 - 1439 == g1Var2.f15712a) {
-                        g1Var.f15713b = 1439;
-                        g1Var2.f15712a = 0;
-                    }
-                }
-            }
-            i15 = i17;
-        }
-        return arrayListArr;
-    }
-
-    public static String b0(ArrayList arrayList) {
-        if (arrayList.isEmpty()) {
-            return LocaleController.getString(R.string.BusinessHoursDayClosed);
-        }
-        if (d0(arrayList)) {
-            return LocaleController.getString(R.string.BusinessHoursDayFullOpened);
-        }
-        String str = "";
-        for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            g1 g1Var = (g1) arrayList.get(i10);
-            if (i10 > 0) {
-                str = b10.u(str, "\n");
-            }
-            StringBuilder u10 = a1.g.u(str);
-            u10.append(g1.a(g1Var.f15712a));
-            u10.append(" - ");
-            u10.append(g1.a(g1Var.f15713b));
-            str = u10.toString();
-        }
-        return str;
-    }
-
-    public static boolean d0(ArrayList arrayList) {
-        if (arrayList == null || arrayList.isEmpty()) {
-            return false;
-        }
-        int i10 = 0;
-        for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            g1 g1Var = (g1) arrayList.get(i11);
-            if (i10 < g1Var.f15712a) {
-                return false;
-            }
-            i10 = g1Var.f15713b;
-        }
-        if (i10 != 1439 && i10 != 1440) {
-            return false;
-        }
-        return true;
-    }
-
-    public static String g0(int i10, TLRPC.User user, TL_account.TL_businessWorkHours tL_businessWorkHours) {
+    @Override
+    public final int i(int i10) {
+        s3 s3Var;
+        bj d;
         int i11;
-        if (tL_businessWorkHours == null) {
-            return null;
-        }
-        ArrayList[] a02 = a0(tL_businessWorkHours.weekly_open);
-        StringBuilder sb2 = new StringBuilder();
-        if (user != null) {
-            sb2.append(LocaleController.formatString(R.string.BusinessHoursCopyHeader, UserObject.getUserName(user)));
-            sb2.append("\n");
-        }
-        for (int i12 = 0; i12 < 7; i12++) {
-            ArrayList arrayList = a02[i12];
-            String displayName = DayOfWeek.values()[i12].getDisplayName(TextStyle.FULL, LocaleController.getInstance().getCurrentLocale());
-            sb2.append(displayName.substring(0, 1).toUpperCase() + displayName.substring(1));
-            sb2.append(": ");
-            if (d0(arrayList)) {
-                sb2.append(LocaleController.getString(R.string.BusinessHoursProfileOpen));
-            } else if (arrayList.isEmpty()) {
-                sb2.append(LocaleController.getString(R.string.BusinessHoursProfileClose));
-            } else {
-                for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                    if (i13 > 0) {
-                        sb2.append(", ");
-                    }
-                    g1 g1Var = (g1) arrayList.get(i13);
-                    sb2.append(g1.a(g1Var.f15712a));
-                    sb2.append(" - ");
-                    sb2.append(g1.a(g1Var.f15713b));
+        jj jjVar;
+        ej k92;
+        int i12;
+        int i13;
+        jj jjVar2;
+        ej a2;
+        ArrayList arrayList;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        int i18;
+        int i19;
+        switch (this.f9995c) {
+            case 0:
+                int size = (s3Var.f10057s0.size() - 1) - i10;
+                ej ejVar = ((s3) this.d).f10058t0;
+                if (ejVar != null && size >= 0 && size < ejVar.d.size() && (d = ejVar.d((jj) ejVar.d.get(size))) != null) {
+                    return d.f14780i;
                 }
-            }
-            sb2.append("\n");
-        }
-        TLRPC.TL_timezone a2 = g2.b(i10).a(tL_businessWorkHours.timezone_id);
-        int rawOffset = Calendar.getInstance().getTimeZone().getRawOffset() / 1000;
-        if (a2 == null) {
-            i11 = 0;
-        } else {
-            i11 = a2.utc_offset;
-        }
-        if ((rawOffset - i11) / 60 != 0 && a2 != null) {
-            int i14 = R.string.BusinessHoursCopyFooter;
-            g2.b(i10);
-            sb2.append(LocaleController.formatString(i14, g2.e(a2, true)));
-        }
-        return sb2.toString();
-    }
-
-    public final void Y(int i10) {
-        g1 g1Var;
-        g1 g1Var2 = null;
-        if (this.f15723f[i10].isEmpty()) {
-            g1Var = null;
-        } else {
-            g1Var = (g1) ic.a.g(1, this.f15723f[i10]);
-        }
-        if (g1Var != null) {
-            int i11 = (i10 + 6) % 7;
-            if (!this.f15723f[i11].isEmpty()) {
-                g1Var2 = (g1) ic.a.g(1, this.f15723f[i11]);
-            }
-            if (g1Var2 != null && g1Var2.f15713b > 1439) {
-                g1Var2.f15713b = 1439;
-                if (g1Var2.f15712a >= 1439) {
-                    this.f15723f[i11].remove(g1Var2);
+                return 1000;
+            case 1:
+                un unVar = (un) this.d;
+                fm fmVar = unVar.C0;
+                int i20 = fmVar.J;
+                if (i10 >= i20 && i10 < fmVar.K && (i11 = i10 - i20) >= 0 && i11 < fmVar.L().size() && (k92 = unVar.k9((jjVar = (jj) unVar.C0.L().get(i11)))) != null) {
+                    return k92.d(jjVar).f14780i;
                 }
-                View E1 = this.f15720a.E1(i11);
-                if (E1 instanceof n5) {
-                    ((n5) E1).setValue(b0(this.f15723f[i11]));
+                return 1000;
+            case 2:
+                qi qiVar = (qi) this.d;
+                int i21 = qiVar.f29660r;
+                int i22 = qiVar.f29663x;
+                if (i10 % i22 != i22 - 1) {
+                    i12 = org.telegram.messenger.i0.L(5.0f);
                 } else {
-                    this.f15720a.f32504g3.O(true);
+                    i12 = 0;
                 }
-            }
-        }
-    }
-
-    public final void Z(boolean z10) {
-        if (this.f15721b == null) {
-            return;
-        }
-        this.f15721b.a(c0(), z10);
-    }
-
-    public final boolean c0() {
-        throw new UnsupportedOperationException("Method not decompiled: jg.h1.c0():boolean");
-    }
-
-    @Override
-    public final View createView(Context context) {
-        setHasOwnBackground(true);
-        this.simpleActionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.simpleActionBar.setTitle(LocaleController.getString(R.string.BusinessHours));
-        this.simpleActionBar.setActionBarMenuOnItemClick(new bh.m(this, 16));
-        this.f15721b = this.simpleActionBar.i(LocaleController.getString(R.string.Save));
-        Z(false);
-        FrameLayout frameLayout = new FrameLayout(context);
-        s71 s71Var = new s71(this, new hi.e2(this, 11), new e1(this, 0), null);
-        this.f15720a = s71Var;
-        s71Var.u1();
-        s71 s71Var2 = this.f15720a;
-        s71Var2.f32504g3.f29878r = false;
-        s71Var2.setSectionsDrawBackground(true);
-        frameLayout.addView(this.f15720a, kb1.g(-1.0f, -1));
-        f0();
-        this.fragmentView = frameLayout;
-        return frameLayout;
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        k71 k71Var;
-        if (i10 == NotificationCenter.userInfoDidLoad) {
-            f0();
-        } else if (i10 == NotificationCenter.timezonesUpdated) {
-            if (this.e == null) {
-                this.f15724n = g2.b(this.currentAccount).c();
-            }
-            s71 s71Var = this.f15720a;
-            if (s71Var != null && (k71Var = s71Var.f32504g3) != null) {
-                k71Var.O(true);
-            }
-        }
-    }
-
-    public final void e0() {
-        if (this.f15721b.f23140x.f19326f) {
-            return;
-        }
-        if (!c0()) {
-            finishFragment();
-            return;
-        }
-        this.f15721b.b(true);
-        TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
-        TL_account.updateBusinessWorkHours updatebusinessworkhours = new TL_account.updateBusinessWorkHours();
-        ArrayList[] arrayListArr = this.f15723f;
-        ArrayList arrayList = new ArrayList();
-        if (arrayListArr != null) {
-            for (int i10 = 0; i10 < arrayListArr.length; i10++) {
-                if (arrayListArr[i10] != null) {
-                    for (int i11 = 0; i11 < arrayListArr[i10].size(); i11++) {
-                        g1 g1Var = (g1) arrayListArr[i10].get(i11);
-                        TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen = new TL_account.TL_businessWeeklyOpen();
-                        int i12 = i10 * 1440;
-                        tL_businessWeeklyOpen.start_minute = g1Var.f15712a + i12;
-                        tL_businessWeeklyOpen.end_minute = i12 + g1Var.f15713b;
-                        arrayList.add(tL_businessWeeklyOpen);
+                return i21 + i12;
+            case 3:
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.d;
+                if (i10 != chatAttachAlertPhotoLayout.G.f24834n - 1 && ((!chatAttachAlertPhotoLayout.P0 && !chatAttachAlertPhotoLayout.O0) || i10 != 0)) {
+                    if (chatAttachAlertPhotoLayout.O0) {
+                        i10--;
                     }
+                    int i23 = chatAttachAlertPhotoLayout.K0;
+                    int i24 = chatAttachAlertPhotoLayout.M0;
+                    if (i10 % i24 != i24 - 1) {
+                        i13 = org.telegram.messenger.i0.L(2.0f);
+                    } else {
+                        i13 = 0;
+                    }
+                    return i23 + i13;
                 }
-            }
-        }
-        if (this.d && !arrayList.isEmpty()) {
-            TL_account.TL_businessWorkHours tL_businessWorkHours = new TL_account.TL_businessWorkHours();
-            tL_businessWorkHours.timezone_id = this.f15724n;
-            tL_businessWorkHours.weekly_open.addAll(arrayList);
-            updatebusinessworkhours.flags |= 1;
-            updatebusinessworkhours.business_work_hours = tL_businessWorkHours;
-            if (userFull != null) {
-                userFull.flags2 = 1 | userFull.flags2;
-                userFull.business_work_hours = tL_businessWorkHours;
-            }
-        } else if (userFull != null) {
-            userFull.flags2 &= -2;
-            userFull.business_work_hours = null;
-        }
-        getConnectionsManager().sendRequest(updatebusinessworkhours, new bi.i0(this, 19));
-        getMessagesStorage().updateUserInfo(userFull, false);
-    }
-
-    public final void f0() {
-        boolean z10;
-        k71 k71Var;
-        if (this.f15722c) {
-            return;
-        }
-        TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
-        if (userFull == null) {
-            getMessagesController().loadUserInfo(getUserConfig().getCurrentUser(), true, getClassGuid());
-            return;
-        }
-        TL_account.TL_businessWorkHours tL_businessWorkHours = userFull.business_work_hours;
-        if (tL_businessWorkHours != null) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.d = z10;
-        if (z10) {
-            String str = tL_businessWorkHours.timezone_id;
-            this.f15724n = str;
-            this.h = str;
-            this.e = a0(tL_businessWorkHours.weekly_open);
-            this.f15723f = a0(userFull.business_work_hours.weekly_open);
-        } else {
-            String c10 = g2.b(this.currentAccount).c();
-            this.f15724n = c10;
-            this.h = c10;
-            this.e = null;
-            this.f15723f = new ArrayList[7];
-            int i10 = 0;
-            while (true) {
-                ArrayList[] arrayListArr = this.f15723f;
-                if (i10 >= arrayListArr.length) {
-                    break;
+                return chatAttachAlertPhotoLayout.F.J;
+            case 4:
+                ay ayVar = (ay) this.d;
+                vy vyVar = ayVar.Y;
+                if (i10 == 0) {
+                    vyVar.f31897n0.getClass();
                 }
-                arrayListArr[i10] = new ArrayList();
-                if (i10 >= 0 && i10 < 5) {
-                    this.f15723f[i10].add(new g1(0, 1439));
+                s4.g0 adapter = vyVar.f31880h0.getAdapter();
+                zx zxVar = vyVar.f31886j0;
+                if (adapter == zxVar && zxVar.f33258y.isEmpty()) {
+                    return ayVar.J;
                 }
-                i10++;
-            }
+                vyVar.f31897n0.getClass();
+                ayVar.B1();
+                return ayVar.R.get(i10);
+            case 5:
+                ua0 ua0Var = (ua0) this.d;
+                if (i10 >= 0 && i10 < ua0Var.f30884r.f16749f.size() && (a2 = ua0.a(ua0Var, (jjVar2 = (jj) ua0Var.f30884r.f16749f.get(i10)))) != null) {
+                    return a2.d(jjVar2).f14780i;
+                }
+                return 1000;
+            case 6:
+                cx0 cx0Var = (cx0) this.d;
+                if ((cx0Var.N1 != null && (cx0Var.f25208k1.e.get(i10) instanceof Integer)) || i10 == cx0Var.f25208k1.h) {
+                    return cx0Var.f25208k1.d;
+                }
+                return 1;
+            case 7:
+                kh0 kh0Var = (kh0) this.d;
+                jj jjVar3 = (jj) kh0Var.M.get((arrayList.size() - 1) - i10);
+                ej k10 = kh0Var.k(jjVar3);
+                if (k10 != null) {
+                    return k10.d(jjVar3).f14780i;
+                }
+                return 1000;
+            case 8:
+                nn0 nn0Var = (nn0) this.d;
+                if (i10 >= nn0Var.f39985b0 && i10 < nn0Var.f39987c0) {
+                    return 1;
+                }
+                if (i10 >= nn0Var.f39988d0 && i10 < nn0Var.f39989e0) {
+                    return 1;
+                }
+                return 3;
+            case 9:
+                lo0 lo0Var = (lo0) this.d;
+                if (lo0Var.L.d(i10) != 1 && !lo0Var.Y && (lo0Var.J != null || !TextUtils.isEmpty(lo0Var.f39355w))) {
+                    int i25 = lo0Var.R;
+                    int i26 = lo0Var.f39337g0;
+                    if (i10 % i26 != i26 - 1) {
+                        i14 = org.telegram.messenger.i0.L(2.0f);
+                    } else {
+                        i14 = 0;
+                    }
+                    return i25 + i14;
+                }
+                return lo0Var.M.J;
+            case 10:
+                t31 t31Var = (t31) this.d;
+                yy yyVar = t31Var.P1;
+                p51 p51Var = t31Var.V1;
+                if (p51Var == null) {
+                    return yyVar.J;
+                }
+                a51 G = p51Var.G(i10 - 1);
+                if (G == null || (i15 = G.f24301u) == -1) {
+                    return yyVar.J;
+                }
+                return i15;
+            case 11:
+                ph.l1 l1Var = (ph.l1) this.d;
+                yy yyVar2 = l1Var.a2;
+                p51 p51Var2 = l1Var.Q1;
+                if (p51Var2 != null && i10 != 0) {
+                    a51 G2 = p51Var2.G(i10 - 1);
+                    if (G2 == null || (i16 = G2.f24301u) == -1) {
+                        return yyVar2.J;
+                    }
+                    return i16;
+                }
+                return yyVar2.J;
+            case 12:
+                a51 G3 = ((q3) this.d).a2.G(i10 - 1);
+                if (G3 == null || (i17 = G3.f24301u) == -1) {
+                    return 3;
+                }
+                return i17;
+            case 13:
+                t3 t3Var = (t3) this.d;
+                yy yyVar3 = t3Var.S1;
+                p51 p51Var3 = t3Var.Y1;
+                if (p51Var3 == null) {
+                    return yyVar3.J;
+                }
+                a51 G4 = p51Var3.G(i10 - 1);
+                if (G4 == null || (i18 = G4.f24301u) == -1) {
+                    return yyVar3.J;
+                }
+                return i18;
+            case 14:
+                qh.g0 g0Var = (qh.g0) this.d;
+                if (g0Var.e.d(i10) == 0) {
+                    return g0Var.f45724r;
+                }
+                return 1;
+            case 15:
+                rh.t0 t0Var = (rh.t0) this.d;
+                yy yyVar4 = t0Var.Z1;
+                rh.n0 n0Var = t0Var.f47472c2;
+                if (n0Var != null && i10 != 0) {
+                    a51 G5 = n0Var.G(i10 - 1);
+                    if (G5 == null || (i19 = G5.f24301u) == -1) {
+                        return yyVar4.J;
+                    }
+                    return i19;
+                }
+                return yyVar4.J;
+            case 16:
+                vh.f1 f1Var = (vh.f1) this.d;
+                if (f1Var.Y.f51185c.F(i10) == null) {
+                    return f1Var.J;
+                }
+                f1Var.B1();
+                return f1Var.R.get(i10);
+            case 17:
+                vh.l1 l1Var2 = (vh.l1) this.d;
+                if (l1Var2.f51446c.d(i10) != 2) {
+                    return l1Var2.h;
+                }
+                return 1;
+            default:
+                if (i10 != 0 && i10 != 1 && i10 != ((vh.k2) this.d).f51388f.b() - 1) {
+                    return 1;
+                }
+                return 3;
         }
-        s71 s71Var = this.f15720a;
-        if (s71Var != null && (k71Var = s71Var.f32504g3) != null) {
-            k71Var.O(true);
-        }
-        Z(false);
-        this.f15722c = true;
-    }
-
-    @Override
-    public final nm0 getListViewForSimpleGlass() {
-        return this.f15720a;
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
-    }
-
-    @Override
-    public final boolean onFragmentCreate() {
-        g2.b(this.currentAccount).g();
-        this.f15724n = g2.b(this.currentAccount).c();
-        getNotificationCenter().addWeakObserver(this, NotificationCenter.userInfoDidLoad);
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        getNotificationCenter().removeObserver(this, NotificationCenter.userInfoDidLoad);
-        super.onFragmentDestroy();
-        e0();
-    }
-
-    @Override
-    public final boolean useSimpleActionBar() {
-        return true;
     }
 }

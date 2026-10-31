@@ -1,71 +1,21 @@
 package org.telegram.ui.Components;
+public final class bs implements Runnable {
+    public final int f24872a;
+    public final gs f24873b;
 
-import android.graphics.drawable.Drawable;
-public final class bs implements Drawable.Callback {
-    public final int f26901a;
-    public final cs f26902b;
-
-    public bs(cs csVar, int i10) {
-        this.f26901a = i10;
-        this.f26902b = csVar;
+    public bs(gs gsVar, int i10) {
+        this.f24872a = i10;
+        this.f24873b = gsVar;
     }
 
     @Override
-    public final void invalidateDrawable(Drawable drawable) {
-        switch (this.f26901a) {
+    public final void run() {
+        switch (this.f24872a) {
             case 0:
-                cs csVar = this.f26902b;
-                if (csVar.f27241c < 1.0f) {
-                    csVar.invalidateSelf();
-                    return;
-                }
+                this.f24873b.X(false);
                 return;
             default:
-                cs csVar2 = this.f26902b;
-                if (csVar2.f27241c > 0.0f) {
-                    csVar2.invalidateSelf();
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j10) {
-        switch (this.f26901a) {
-            case 0:
-                cs csVar = this.f26902b;
-                if (csVar.f27241c < 1.0f) {
-                    csVar.scheduleSelf(runnable, j10);
-                    return;
-                }
-                return;
-            default:
-                cs csVar2 = this.f26902b;
-                if (csVar2.f27241c > 0.0f) {
-                    csVar2.scheduleSelf(runnable, j10);
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        switch (this.f26901a) {
-            case 0:
-                cs csVar = this.f26902b;
-                if (csVar.f27241c < 1.0f) {
-                    csVar.unscheduleSelf(runnable);
-                    return;
-                }
-                return;
-            default:
-                cs csVar2 = this.f26902b;
-                if (csVar2.f27241c > 0.0f) {
-                    csVar2.unscheduleSelf(runnable);
-                    return;
-                }
+                this.f24873b.O(true);
                 return;
         }
     }

@@ -1,12 +1,12 @@
 package j4;
 public interface i {
-    void a(e2.x xVar);
+    void c(e2.x xVar);
 
-    void c();
+    void e();
 
-    void d(c3.q qVar, f0 f0Var);
+    void f(c3.q qVar, g0 g0Var);
 
-    void e(boolean z10);
+    void g(boolean z10);
 
-    void f(int i10, long j10);
+    void h(int i10, long j10);
 }

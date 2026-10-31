@@ -1,160 +1,25 @@
 package p4;
 
-import android.media.MediaRouter;
 import android.os.Bundle;
-import android.view.Display;
-import java.util.ArrayList;
-import java.util.HashSet;
-public final class a0 extends MediaRouter.Callback {
-    public final j0 f46685a;
+public final class a0 {
+    public final int f44699a;
+    public final boolean f44700b;
+    public final boolean f44701c;
+    public final boolean d;
+    public final Bundle e;
 
-    public a0(j0 j0Var) {
-        this.f46685a = j0Var;
-    }
-
-    @Override
-    public final void onRouteAdded(MediaRouter mediaRouter, MediaRouter.RouteInfo routeInfo) {
-        j0 j0Var = this.f46685a;
-        if (j0Var.n(routeInfo)) {
-            j0Var.y();
+    public a0(z zVar) {
+        Bundle bundle;
+        this.f44699a = zVar.f44845a;
+        this.f44700b = zVar.f44846b;
+        this.f44701c = zVar.f44847c;
+        this.d = zVar.d;
+        Bundle bundle2 = zVar.e;
+        if (bundle2 == null) {
+            bundle = Bundle.EMPTY;
+        } else {
+            bundle = new Bundle(bundle2);
         }
-    }
-
-    @Override
-    public final void onRouteChanged(MediaRouter mediaRouter, MediaRouter.RouteInfo routeInfo) {
-        int o10;
-        String str;
-        j0 j0Var = this.f46685a;
-        j0Var.getClass();
-        if (j0.s(routeInfo) == null && (o10 = j0Var.o(routeInfo)) >= 0) {
-            h0 h0Var = (h0) j0Var.G.get(o10);
-            String str2 = h0Var.f46732b;
-            CharSequence name = h0Var.f46731a.getName(j0Var.f7389a);
-            if (name != null) {
-                str = name.toString();
-            } else {
-                str = "";
-            }
-            l lVar = new l(str2, str);
-            j0Var.u(h0Var, lVar);
-            h0Var.f46733c = lVar.b();
-            j0Var.y();
-        }
-    }
-
-    @Override
-    public final void onRouteGrouped(MediaRouter mediaRouter, MediaRouter.RouteInfo routeInfo, MediaRouter.RouteGroup routeGroup, int i10) {
-        this.f46685a.getClass();
-    }
-
-    @Override
-    public final void onRoutePresentationDisplayChanged(MediaRouter mediaRouter, MediaRouter.RouteInfo routeInfo) {
-        int i10;
-        j0 j0Var = this.f46685a;
-        int o10 = j0Var.o(routeInfo);
-        if (o10 >= 0) {
-            h0 h0Var = (h0) j0Var.G.get(o10);
-            Display presentationDisplay = routeInfo.getPresentationDisplay();
-            if (presentationDisplay != null) {
-                i10 = presentationDisplay.getDisplayId();
-            } else {
-                i10 = -1;
-            }
-            if (i10 != h0Var.f46733c.f46754a.getInt("presentationDisplayId", -1)) {
-                m mVar = h0Var.f46733c;
-                new ArrayList();
-                new ArrayList();
-                new HashSet();
-                if (mVar != null) {
-                    Bundle bundle = new Bundle(mVar.f46754a);
-                    ArrayList c10 = mVar.c();
-                    ArrayList b10 = mVar.b();
-                    HashSet a2 = mVar.a();
-                    bundle.putInt("presentationDisplayId", i10);
-                    bundle.putParcelableArrayList("controlFilters", new ArrayList<>(b10));
-                    bundle.putStringArrayList("groupMemberIds", new ArrayList<>(c10));
-                    bundle.putStringArrayList("allowedPackages", new ArrayList<>(a2));
-                    h0Var.f46733c = new m(bundle);
-                    j0Var.y();
-                    return;
-                }
-                throw new IllegalArgumentException("descriptor must not be null");
-            }
-        }
-    }
-
-    @Override
-    public final void onRouteRemoved(MediaRouter mediaRouter, MediaRouter.RouteInfo routeInfo) {
-        int o10;
-        j0 j0Var = this.f46685a;
-        j0Var.getClass();
-        if (j0.s(routeInfo) == null && (o10 = j0Var.o(routeInfo)) >= 0) {
-            j0Var.G.remove(o10);
-            j0Var.y();
-        }
-    }
-
-    @Override
-    public final void onRouteSelected(MediaRouter mediaRouter, int i10, MediaRouter.RouteInfo routeInfo) {
-        v a2;
-        j0 j0Var = this.f46685a;
-        if (routeInfo == j0Var.f46740s.getSelectedRoute(8388611)) {
-            i0 s10 = j0.s(routeInfo);
-            if (s10 != null) {
-                s10.f46736a.l();
-                return;
-            }
-            int o10 = j0Var.o(routeInfo);
-            if (o10 >= 0) {
-                e eVar = j0Var.f46739r;
-                String str = ((h0) j0Var.G.get(o10)).f46732b;
-                eVar.f46693a.removeMessages(262);
-                u d = eVar.d(eVar.f46708s);
-                if (d != null && (a2 = d.a(str)) != null) {
-                    a2.l();
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void onRouteUngrouped(MediaRouter mediaRouter, MediaRouter.RouteInfo routeInfo, MediaRouter.RouteGroup routeGroup) {
-        this.f46685a.getClass();
-    }
-
-    @Override
-    public final void onRouteUnselected(MediaRouter mediaRouter, int i10, MediaRouter.RouteInfo routeInfo) {
-        this.f46685a.getClass();
-    }
-
-    @Override
-    public final void onRouteVolumeChanged(MediaRouter mediaRouter, MediaRouter.RouteInfo routeInfo) {
-        int o10;
-        j0 j0Var = this.f46685a;
-        j0Var.getClass();
-        if (j0.s(routeInfo) == null && (o10 = j0Var.o(routeInfo)) >= 0) {
-            h0 h0Var = (h0) j0Var.G.get(o10);
-            int volume = routeInfo.getVolume();
-            if (volume != h0Var.f46733c.f46754a.getInt("volume")) {
-                m mVar = h0Var.f46733c;
-                new ArrayList();
-                new ArrayList();
-                new HashSet();
-                if (mVar != null) {
-                    Bundle bundle = new Bundle(mVar.f46754a);
-                    ArrayList c10 = mVar.c();
-                    ArrayList b10 = mVar.b();
-                    HashSet a2 = mVar.a();
-                    bundle.putInt("volume", volume);
-                    bundle.putParcelableArrayList("controlFilters", new ArrayList<>(b10));
-                    bundle.putStringArrayList("groupMemberIds", new ArrayList<>(c10));
-                    bundle.putStringArrayList("allowedPackages", new ArrayList<>(a2));
-                    h0Var.f46733c = new m(bundle);
-                    j0Var.y();
-                    return;
-                }
-                throw new IllegalArgumentException("descriptor must not be null");
-            }
-        }
+        this.e = bundle;
     }
 }

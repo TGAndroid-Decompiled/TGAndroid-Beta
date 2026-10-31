@@ -1,48 +1,60 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public final class wr implements View.OnClickListener {
-    public final int f34565a;
-    public final long f34566b;
-    public final Object f34567c;
-    public final Object d;
-    public final Object e;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.text.SpannableStringBuilder;
+public final class wr {
+    public int f32231a;
+    public int f32232b;
+    public qz0 f32233c;
+    public int d;
+    public boolean e;
+    public int f32234f;
+    public int f32235g;
 
-    public wr(Object obj, Object obj2, Object obj3, long j10, int i10) {
-        this.f34565a = i10;
-        this.f34567c = obj;
-        this.d = obj2;
-        this.e = obj3;
-        this.f34566b = j10;
-    }
-
-    @Override
-    public final void onClick(View view) {
-        switch (this.f34565a) {
-            case 0:
-                zr.S((zr) this.f34567c, (Context) this.d, (fi.d) this.e, this.f34566b);
-                return;
-            case 1:
-                org.telegram.ui.ey eyVar = (org.telegram.ui.ey) this.f34567c;
-                eyVar.finishPreviewFragment();
-                AndroidUtilities.runOnUIThread(new bi.y2(eyVar, (MessagesController.DialogFilter) this.d, (TLRPC.Dialog) this.e, this.f34566b, 19), 100L);
-                return;
-            default:
-                vg.a0.P((vg.a0) this.f34567c, (TL_stories.PrepaidGiveaway) this.d, this.f34566b, (org.telegram.ui.ActionBar.r2) this.e);
-                return;
+    public static wr b(org.telegram.ui.Cells.v2 v2Var, org.telegram.messenger.ap apVar) {
+        ?? obj = new Object();
+        obj.f32231a = apVar.f14645a;
+        obj.f32232b = apVar.f14654m;
+        String str = apVar.f14646b;
+        if (str == null) {
+            str = "";
         }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str.toUpperCase());
+        qz0 qz0Var = new qz0(spannableStringBuilder, 10.0f, org.telegram.messenger.i0.o());
+        qz0Var.r(v2Var);
+        obj.f32233c = qz0Var;
+        obj.f32233c.q(org.telegram.messenger.jj.A5(org.telegram.messenger.k6.m(spannableStringBuilder, qz0Var.f29772a.getFontMetricsInt(), false, null, 0), apVar.f14647c, obj.f32233c.f29772a.getFontMetricsInt(), false));
+        obj.f32233c.o(26);
+        int L = org.telegram.messenger.i0.L(9.32f);
+        qz0 qz0Var2 = obj.f32233c;
+        obj.f32235g = L + ((int) qz0Var2.f29774c);
+        qz0Var2.i();
+        int[] iArr = org.telegram.ui.ActionBar.t6.f21188r8;
+        int i10 = iArr[apVar.f14654m % iArr.length];
+        obj.f32234f = i10;
+        obj.e = true;
+        obj.d = org.telegram.ui.ActionBar.t6.x0(null, i10, false);
+        return obj;
     }
 
-    public wr(vg.a0 a0Var, TL_stories.PrepaidGiveaway prepaidGiveaway, long j10, org.telegram.ui.ActionBar.r2 r2Var) {
-        this.f34565a = 2;
-        this.f34567c = a0Var;
-        this.d = prepaidGiveaway;
-        this.f34566b = j10;
-        this.e = r2Var;
+    public final void a(Canvas canvas) {
+        float f7;
+        if (this.e) {
+            this.d = org.telegram.ui.ActionBar.t6.x0(null, this.f32234f, false);
+        }
+        Paint paint = org.telegram.ui.ActionBar.t6.A0;
+        int i10 = this.d;
+        if (org.telegram.ui.ActionBar.t6.I.q()) {
+            f7 = 0.2f;
+        } else {
+            f7 = 0.1f;
+        }
+        paint.setColor(org.telegram.ui.ActionBar.t6.r1(f7, i10));
+        RectF rectF = org.telegram.messenger.i0.P;
+        rectF.set(0.0f, 0.0f, this.f32235g, org.telegram.messenger.i0.L(14.66f));
+        canvas.drawRoundRect(rectF, org.telegram.messenger.i0.L(4.0f), org.telegram.messenger.i0.L(4.0f), org.telegram.ui.ActionBar.t6.A0);
+        this.f32233c.c(org.telegram.messenger.i0.L(4.66f), org.telegram.messenger.i0.L(14.66f) / 2.0f, 1.0f, this.d, canvas);
     }
 }

@@ -1,7 +1,7 @@
 package o2;
 
 import android.net.Uri;
-import g2.c0;
+import g2.d0;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -12,56 +12,56 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 public final class a implements g2.h {
-    public final g2.h f18976a;
-    public final byte[] f18977b;
-    public final byte[] f18978c;
+    public final g2.h f13966a;
+    public final byte[] f13967b;
+    public final byte[] f13968c;
     public CipherInputStream d;
 
     public a(g2.h hVar, byte[] bArr, byte[] bArr2) {
-        this.f18976a = hVar;
-        this.f18977b = bArr;
-        this.f18978c = bArr2;
+        this.f13966a = hVar;
+        this.f13967b = bArr;
+        this.f13968c = bArr2;
     }
 
     @Override
-    public final void addTransferListener(c0 c0Var) {
-        c0Var.getClass();
-        this.f18976a.addTransferListener(c0Var);
+    public final void addTransferListener(d0 d0Var) {
+        d0Var.getClass();
+        this.f13966a.addTransferListener(d0Var);
     }
 
     @Override
     public final void close() {
         if (this.d != null) {
             this.d = null;
-            this.f18976a.close();
+            this.f13966a.close();
         }
     }
 
     @Override
     public final Map getResponseHeaders() {
-        return this.f18976a.getResponseHeaders();
+        return this.f13966a.getResponseHeaders();
     }
 
     @Override
     public final Uri getUri() {
-        return this.f18976a.getUri();
+        return this.f13966a.getUri();
     }
 
     @Override
-    public final long open(g2.m mVar) {
+    public final long open(g2.n nVar) {
         try {
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
             try {
-                cipher.init(2, new SecretKeySpec(this.f18977b, "AES"), new IvParameterSpec(this.f18978c));
-                g2.k kVar = new g2.k(this.f18976a, mVar);
-                this.d = new CipherInputStream(kVar, cipher);
-                kVar.a();
+                cipher.init(2, new SecretKeySpec(this.f13967b, "AES"), new IvParameterSpec(this.f13968c));
+                g2.l lVar = new g2.l(this.f13966a, nVar);
+                this.d = new CipherInputStream(lVar, cipher);
+                lVar.a();
                 return -1L;
             } catch (InvalidAlgorithmParameterException | InvalidKeyException e) {
                 throw new RuntimeException(e);
             }
-        } catch (NoSuchAlgorithmException | NoSuchPaddingException e10) {
-            throw new RuntimeException(e10);
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException e7) {
+            throw new RuntimeException(e7);
         }
     }
 

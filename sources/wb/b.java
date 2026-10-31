@@ -1,29 +1,111 @@
 package wb;
 
-import a8.me;
-import android.content.Context;
-import java.util.ArrayList;
-import java.util.Collections;
-import o6.l;
-public final class b implements s9.d {
-    public static final b f51207b = new b(0);
-    public static final b f51208c = new b(1);
-    public final int f51209a;
+import java.util.Arrays;
+public final class b implements Cloneable {
+    public int f52775a;
+    public int f52776b;
+    public int f52777c;
+    public int[] d;
 
-    public b(int i10) {
-        this.f51209a = i10;
+    public b(int i10, int i11) {
+        if (i10 >= 1 && i11 >= 1) {
+            this.f52775a = i10;
+            this.f52776b = i11;
+            int i12 = (i10 + 31) / 32;
+            this.f52777c = i12;
+            this.d = new int[i12 * i11];
+            return;
+        }
+        throw new IllegalArgumentException("Both dimensions must be greater than 0");
     }
 
-    @Override
-    public final Object d1(me meVar) {
-        switch (this.f51209a) {
-            case 0:
-                ArrayList arrayList = new ArrayList(meVar.x(vb.a.class));
-                l.j("No delegate creator registered.", !arrayList.isEmpty());
-                Collections.sort(arrayList, c.f51210a);
-                return new e((Context) meVar.a(Context.class), (vb.a) arrayList.get(0));
-            default:
-                return new a((e) meVar.a(e.class), (sb.d) meVar.a(sb.d.class));
+    public final void a(int i10, int i11) {
+        int i12 = (i10 / 32) + (i11 * this.f52777c);
+        int[] iArr = this.d;
+        iArr[i12] = (1 << (i10 & 31)) ^ iArr[i12];
+    }
+
+    public final boolean b(int i10, int i11) {
+        if (((this.d[(i10 / 32) + (i11 * this.f52777c)] >>> (i10 & 31)) & 1) != 0) {
+            return true;
         }
+        return false;
+    }
+
+    public final void c(int i10, int i11) {
+        int i12 = (i10 / 32) + (i11 * this.f52777c);
+        int[] iArr = this.d;
+        iArr[i12] = (1 << (i10 & 31)) | iArr[i12];
+    }
+
+    public final Object clone() {
+        int i10 = this.f52775a;
+        int i11 = this.f52776b;
+        int i12 = this.f52777c;
+        ?? obj = new Object();
+        obj.f52775a = i10;
+        obj.f52776b = i11;
+        obj.f52777c = i12;
+        obj.d = (int[]) this.d.clone();
+        return obj;
+    }
+
+    public final void d(int i10, int i11, int i12, int i13) {
+        if (i11 >= 0 && i10 >= 0) {
+            if (i13 >= 1 && i12 >= 1) {
+                int i14 = i12 + i10;
+                int i15 = i13 + i11;
+                if (i15 <= this.f52776b && i14 <= this.f52775a) {
+                    while (i11 < i15) {
+                        int i16 = this.f52777c * i11;
+                        for (int i17 = i10; i17 < i14; i17++) {
+                            int[] iArr = this.d;
+                            int i18 = (i17 / 32) + i16;
+                            iArr[i18] = iArr[i18] | (1 << (i17 & 31));
+                        }
+                        i11++;
+                    }
+                    return;
+                }
+                throw new IllegalArgumentException("The region must fit inside the matrix");
+            }
+            throw new IllegalArgumentException("Height and width must be at least 1");
+        }
+        throw new IllegalArgumentException("Left and top must be nonnegative");
+    }
+
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof b)) {
+            return false;
+        }
+        b bVar = (b) obj;
+        if (this.f52775a != bVar.f52775a || this.f52776b != bVar.f52776b || this.f52777c != bVar.f52777c || !Arrays.equals(this.d, bVar.d)) {
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        int i10 = this.f52775a;
+        return Arrays.hashCode(this.d) + (((((((i10 * 31) + i10) * 31) + this.f52776b) * 31) + this.f52777c) * 31);
+    }
+
+    public final String toString() {
+        String str;
+        int i10 = this.f52776b;
+        int i11 = this.f52775a;
+        StringBuilder sb2 = new StringBuilder((i11 + 1) * i10);
+        for (int i12 = 0; i12 < i10; i12++) {
+            for (int i13 = 0; i13 < i11; i13++) {
+                if (b(i13, i12)) {
+                    str = "X ";
+                } else {
+                    str = "  ";
+                }
+                sb2.append(str);
+            }
+            sb2.append("\n");
+        }
+        return sb2.toString();
     }
 }

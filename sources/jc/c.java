@@ -1,20 +1,19 @@
 package jc;
-public enum c {
-    L(1),
-    M(0),
-    Q(3),
-    H(2);
-    
-    public static final c[] e;
-    public final int f15552a;
 
-    static {
-        c cVar;
-        c cVar2 = L;
-        e = new c[]{M, cVar2, H, cVar};
+import java.util.logging.Logger;
+public abstract class c {
+    public static c a(Class cls) {
+        if (System.getProperty("java.vm.name").equalsIgnoreCase("Dalvik")) {
+            String simpleName = cls.getSimpleName();
+            a aVar = new a(0);
+            aVar.f9813b = simpleName;
+            return aVar;
+        }
+        String simpleName2 = cls.getSimpleName();
+        a aVar2 = new a(1);
+        aVar2.f9813b = Logger.getLogger(simpleName2);
+        return aVar2;
     }
 
-    c(int i10) {
-        this.f15552a = i10;
-    }
+    public abstract void b(String str);
 }

@@ -1,41 +1,24 @@
 package org.telegram.ui.Components;
-public final class ya extends s4.j0 {
-    public final s4.j0 f35019a;
-    public final za f35020b;
+public final class ya implements o1.g {
+    public final int f32674a;
+    public final bb f32675b;
+    public final q0.a f32676c;
 
-    public ya(za zaVar, s4.j0 j0Var) {
-        this.f35020b = zaVar;
-        this.f35019a = j0Var;
+    public ya(q0.a aVar, bb bbVar, int i10) {
+        this.f32674a = i10;
+        this.f32676c = aVar;
+        this.f32675b = bbVar;
     }
 
     @Override
-    public final void a() {
-        this.f35019a.a();
-    }
-
-    @Override
-    public final void b(int i10, int i11) {
-        this.f35019a.b(i10 + (!((bb) this.f35020b.f35304f).P ? 1 : 0), i11);
-    }
-
-    @Override
-    public final void c(int i10, int i11, Object obj) {
-        this.f35019a.c(i10 + (!((bb) this.f35020b.f35304f).P ? 1 : 0), i11, obj);
-    }
-
-    @Override
-    public final void d(int i10, int i11) {
-        this.f35019a.d(i10 + (!((bb) this.f35020b.f35304f).P ? 1 : 0), i11);
-    }
-
-    @Override
-    public final void e(int i10, int i11) {
-        int i12 = !((bb) this.f35020b.f35304f).P ? 1 : 0;
-        this.f35019a.e(i10 + i12, i11 + i12);
-    }
-
-    @Override
-    public final void f(int i10, int i11) {
-        this.f35019a.f(i10 + (!((bb) this.f35020b.f35304f).P ? 1 : 0), i11);
+    public final void a(o1.j jVar, float f7, float f10) {
+        switch (this.f32674a) {
+            case 0:
+                ((ma) this.f32676c).accept(Float.valueOf(this.f32675b.getTranslationY()));
+                return;
+            default:
+                ((gl) this.f32676c).accept(Float.valueOf(this.f32675b.getTranslationY()));
+                return;
+        }
     }
 }

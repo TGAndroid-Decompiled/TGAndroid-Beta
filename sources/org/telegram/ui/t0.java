@@ -3,47 +3,46 @@ package org.telegram.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
 public final class t0 extends AnimatorListenerAdapter {
-    public final int f43439a;
-    public final int f43440b;
-    public final Object f43441c;
+    public final int f41676a;
+    public final int f41677b;
+    public final Object f41678c;
 
     public t0(Object obj, int i10, int i11) {
-        this.f43439a = i11;
-        this.f43441c = obj;
-        this.f43440b = i10;
+        this.f41676a = i11;
+        this.f41678c = obj;
+        this.f41677b = i10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f43439a) {
+        switch (this.f41676a) {
             case 0:
-                j4 j4Var = (j4) this.f43441c;
-                j4Var.f40414u0[1].b();
-                j4Var.f40414u0[1].setVisibility(8);
-                j4Var.P0.S(j4Var.f40414u0[0].f41312b);
-                org.telegram.ui.Cells.s9 s9Var = j4Var.P0;
-                m3[] m3VarArr = j4Var.f40414u0;
-                s9Var.f25422z0 = m3VarArr[0].d;
-                int i10 = this.f43440b;
-                m3VarArr[i10].setBackgroundDrawable(null);
-                j4Var.f40414u0[i10].setLayerType(0, null);
-                j4Var.f40415v0 = null;
-                j4Var.f40400f0.f23816f = false;
+                h4 h4Var = (h4) this.f41678c;
+                h4Var.f37746u0[1].b();
+                h4Var.f37746u0[1].setVisibility(8);
+                h4Var.P0.S(h4Var.f37746u0[0].f39038b);
+                org.telegram.ui.Cells.k9 k9Var = h4Var.P0;
+                l3[] l3VarArr = h4Var.f37746u0;
+                k9Var.f22196z0 = l3VarArr[0].d;
+                int i10 = this.f41677b;
+                l3VarArr[i10].setBackgroundDrawable(null);
+                h4Var.f37746u0[i10].setLayerType(0, null);
+                h4Var.f37747v0 = null;
+                h4Var.f37732f0.f21633f = false;
                 return;
             case 1:
-                Activity activity = (Activity) this.f43441c;
-                int i11 = this.f43440b;
+                Activity activity = (Activity) this.f41678c;
+                int i11 = this.f41677b;
                 boolean z10 = false;
-                AndroidUtilities.setNavigationBarColor(activity, i11, false);
-                if (AndroidUtilities.computePerceivedBrightness(i11) >= 0.721f) {
+                org.telegram.messenger.i0.s3(activity, i11, false);
+                if (org.telegram.messenger.i0.B(i11) >= 0.721f) {
                     z10 = true;
                 }
-                AndroidUtilities.setLightNavigationBar(activity, z10);
+                org.telegram.messenger.i0.l3(activity, z10);
                 return;
             default:
-                ((LaunchActivity) this.f43441c).E0(this.f43440b);
+                ((LaunchActivity) this.f41678c).D0(this.f41677b);
                 return;
         }
     }

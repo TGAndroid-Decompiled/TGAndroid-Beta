@@ -1,88 +1,37 @@
 package org.telegram.ui.web;
 
-import android.text.TextUtils;
-import android.widget.EditText;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.wh;
-import org.telegram.ui.Components.m71;
-public final class e1 extends org.telegram.ui.ActionBar.s0 {
-    public final k2.c f44734a = new k2.c(this, 29);
-    public final f1 f44735b;
+import android.util.Base64InputStream;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FilterInputStream;
+import java.util.HashMap;
+public final class e1 {
+    public final HashMap f43024a = new HashMap();
+    public File f43025b;
+    public long f43026c;
+    public long d;
 
-    public e1(f1 f1Var) {
-        this.f44735b = f1Var;
-    }
-
-    public static boolean n(String str, String str2) {
-        if (str != null && str2 != null) {
-            String lowerCase = str.toLowerCase();
-            String lowerCase2 = str2.toLowerCase();
-            if (!lowerCase.startsWith(lowerCase2) && !wh.u(" ", lowerCase2, lowerCase) && !wh.u(".", lowerCase2, lowerCase)) {
-                String translitSafe = AndroidUtilities.translitSafe(lowerCase);
-                String translitSafe2 = AndroidUtilities.translitSafe(lowerCase2);
-                if (translitSafe.startsWith(translitSafe2) || wh.u(" ", translitSafe2, translitSafe) || wh.u(".", translitSafe2, translitSafe)) {
-                    return true;
-                }
-                return false;
-            }
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void h() {
-        int i10;
-        f1 f1Var = this.f44735b;
-        f1Var.f44743r = null;
-        f1Var.f44742n = false;
-        AndroidUtilities.cancelRunOnUIThread(this.f44734a);
-        m71 m71Var = f1Var.f30764a;
-        if (m71Var != null) {
-            m71Var.f32504g3.O(true);
-            f1Var.f30764a.f32503f3.h1(0, 0);
-        }
-        xh.n nVar = f1Var.f44746x.d;
-        if (TextUtils.isEmpty(f1Var.f44743r)) {
-            i10 = R.string.WebNoHistory;
+    public final FilterInputStream a() {
+        String str;
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(new d1(this.f43026c, this.d, this.f43025b));
+        HashMap hashMap = this.f43024a;
+        f1 f1Var = (f1) hashMap.get("content-transfer-encoding");
+        String str2 = null;
+        if (f1Var == null) {
+            str = null;
         } else {
-            i10 = R.string.WebNoSearchedHistory;
+            str = f1Var.f43031a;
         }
-        nVar.setText(LocaleController.getString(i10));
-    }
-
-    @Override
-    public final void l(EditText editText) {
-        int i10;
-        f1 f1Var = this.f44735b;
-        boolean z10 = !TextUtils.isEmpty(f1Var.f44743r);
-        String obj = editText.getText().toString();
-        if (!TextUtils.equals(f1Var.f44743r, obj)) {
-            f1Var.f44743r = obj;
-            f1Var.f44742n = true;
-            k2.c cVar = this.f44734a;
-            AndroidUtilities.cancelRunOnUIThread(cVar);
-            AndroidUtilities.runOnUIThread(cVar, 500L);
-            xh.n nVar = f1Var.f44746x.d;
-            if (TextUtils.isEmpty(obj)) {
-                i10 = R.string.WebNoHistory;
-            } else {
-                i10 = R.string.WebNoSearchedHistory;
-            }
-            nVar.setText(LocaleController.getString(i10));
+        if ("base64".equals(str)) {
+            return new Base64InputStream(bufferedInputStream, 0);
         }
-        m71 m71Var = f1Var.f30764a;
-        if (m71Var != null) {
-            m71Var.f32504g3.O(true);
-            if (z10 != (!TextUtils.isEmpty(obj))) {
-                f1Var.f30764a.f32503f3.h1(0, 0);
-            }
+        f1 f1Var2 = (f1) hashMap.get("content-transfer-encoding");
+        if (f1Var2 != null) {
+            str2 = f1Var2.f43031a;
         }
-    }
-
-    @Override
-    public final void i() {
+        if ("quoted-printable".equalsIgnoreCase(str2)) {
+            return new lc.z(bufferedInputStream, 1);
+        }
+        return bufferedInputStream;
     }
 }

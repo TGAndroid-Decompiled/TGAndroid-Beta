@@ -1,46 +1,26 @@
 package org.telegram.ui;
+public final class p1 implements Runnable {
+    public final int f40412a;
+    public final Object f40413b;
+    public final Object f40414c;
+    public final Object d;
 
-import android.webkit.RenderProcessGoneDetail;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class p1 extends WebViewClient {
-    public final s1 f42272a;
-
-    public p1(s1 s1Var) {
-        this.f42272a = s1Var;
+    public p1(Object obj, Object obj2, Object obj3, int i10) {
+        this.f40412a = i10;
+        this.d = obj;
+        this.f40413b = obj2;
+        this.f40414c = obj3;
     }
 
     @Override
-    public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-        try {
-            LaunchActivity launchActivity = LaunchActivity.I1;
-            if (launchActivity != null && launchActivity.isFinishing()) {
-                return true;
-            }
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f42272a.getContext(), 0, null);
-            alertDialog$Builder.f22369a.R = LocaleController.getString(R.string.ChromeCrashTitle);
-            alertDialog$Builder.f22369a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new bu0(this, 8));
-            alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-            alertDialog$Builder.p();
-            return true;
-        } catch (Exception e) {
-            FileLog.e(e);
-            return false;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.p1.run():void");
     }
 
-    @Override
-    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        s1 s1Var = this.f42272a;
-        if (s1Var.f43215s) {
-            qf.d.r(s1Var.f43217x.L, str);
-            return true;
-        }
-        return false;
+    public p1(un unVar, org.telegram.ui.Components.z60 z60Var, String str) {
+        this.f40412a = 18;
+        this.d = unVar;
+        this.f40414c = z60Var;
+        this.f40413b = str;
     }
 }

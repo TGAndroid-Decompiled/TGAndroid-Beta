@@ -1,46 +1,42 @@
 package org.telegram.ui.Components;
+public final class uf implements Runnable {
+    public final int f30913a;
+    public final wf f30914b;
+    public final vh.p2 f30915c;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.SharedConfig;
-public final class uf extends AnimatorListenerAdapter {
-    public final boolean f33384a;
-    public final ChatActivityEnterView f33385b;
-
-    public uf(ChatActivityEnterView chatActivityEnterView, boolean z10) {
-        this.f33385b = chatActivityEnterView;
-        this.f33384a = z10;
+    public uf(wf wfVar, vh.p2 p2Var, int i10) {
+        this.f30913a = i10;
+        this.f30914b = wfVar;
+        this.f30915c = p2Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        ChatActivityEnterView chatActivityEnterView = this.f33385b;
-        if (animator.equals(chatActivityEnterView.f25962t2)) {
-            chatActivityEnterView.f25962t2 = null;
-        }
-        chatActivityEnterView.t0();
-        chatActivityEnterView.f25910k1.setAlpha(1.0f);
-        chatActivityEnterView.f25910k1.setTranslationX(0.0f);
-        sg sgVar = chatActivityEnterView.O1;
-        if (sgVar != null && SharedConfig.lockRecordAudioVideoHint < 3) {
-            ChatActivityEnterView chatActivityEnterView2 = sgVar.f32583b0;
-            chatActivityEnterView2.f25876e4 = true;
-            chatActivityEnterView2.f25883f4 = System.currentTimeMillis();
-        }
-        pf pfVar = chatActivityEnterView.E0;
-        if (pfVar != null) {
-            pfVar.setAlpha(0.0f);
-        }
-        if (this.f33384a) {
-            hl0 hl0Var = chatActivityEnterView.f25892h1;
-            if (hl0Var != null) {
-                hl0Var.setVisibility(8);
-            }
-            ke keVar = chatActivityEnterView.f25873e1;
-            if (keVar != null) {
-                keVar.setVisibility(8);
-            }
-            chatActivityEnterView.t0();
+    public final void run() {
+        switch (this.f30913a) {
+            case 0:
+                wf wfVar = this.f30914b;
+                vh.p2 p2Var = this.f30915c;
+                wfVar.removeView(p2Var);
+                if (wfVar.f32161b == p2Var) {
+                    wfVar.f32161b = null;
+                    return;
+                }
+                return;
+            case 1:
+                this.f30914b.removeView(this.f30915c);
+                return;
+            case 2:
+                this.f30914b.removeView(this.f30915c);
+                return;
+            default:
+                wf wfVar2 = this.f30914b;
+                vh.p2 p2Var2 = this.f30915c;
+                wfVar2.removeView(p2Var2);
+                if (wfVar2.f32159a == p2Var2) {
+                    wfVar2.f32159a = null;
+                    return;
+                }
+                return;
         }
     }
 }

@@ -1,29 +1,73 @@
 package yb;
+public final class a {
+    public static final a h;
+    public final int[] f54365a;
+    public final int[] f54366b;
+    public final b f54367c;
+    public final b d;
+    public final int e;
+    public final int f54368f;
+    public final int f54369g;
 
-import a8.me;
-import android.util.Log;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.mlkit.vision.common.internal.MobileVisionBase;
-public final class a implements OnFailureListener, s9.d {
-    public static final a f52569a = new Object();
-    public static final a f52570b = new Object();
-    public static final a f52571c = new Object();
-
-    @Override
-    public Object d1(me meVar) {
-        return new c(meVar.x(b.class));
+    static {
+        new a(4201, 4096, 1);
+        new a(1033, 1024, 1);
+        new a(67, 64, 1);
+        new a(19, 16, 1);
+        h = new a(285, 256, 0);
+        new a(301, 256, 1);
     }
 
-    @Override
-    public void onFailure(Exception exc) {
-        d5.a aVar = MobileVisionBase.e;
-        if (Log.isLoggable(aVar.f7928a, 6)) {
-            String str = aVar.f7929b;
-            String str2 = "Error preloading model resource";
-            if (str != null) {
-                str2 = str.concat("Error preloading model resource");
+    public a(int i10, int i11, int i12) {
+        this.f54368f = i10;
+        this.e = i11;
+        this.f54369g = i12;
+        this.f54365a = new int[i11];
+        this.f54366b = new int[i11];
+        int i13 = 1;
+        for (int i14 = 0; i14 < i11; i14++) {
+            this.f54365a[i14] = i13;
+            i13 *= 2;
+            if (i13 >= i11) {
+                i13 = (i13 ^ i10) & (i11 - 1);
             }
-            Log.e("MobileVisionBase", str2, exc);
         }
+        for (int i15 = 0; i15 < i11 - 1; i15++) {
+            this.f54366b[this.f54365a[i15]] = i15;
+        }
+        this.f54367c = new b(this, new int[]{0});
+        this.d = new b(this, new int[]{1});
+    }
+
+    public final b a(int i10, int i11) {
+        if (i10 >= 0) {
+            if (i11 == 0) {
+                return this.f54367c;
+            }
+            int[] iArr = new int[i10 + 1];
+            iArr[0] = i11;
+            return new b(this, iArr);
+        }
+        throw new IllegalArgumentException();
+    }
+
+    public final int b(int i10) {
+        if (i10 != 0) {
+            int i11 = this.f54366b[i10];
+            return this.f54365a[(this.e - i11) - 1];
+        }
+        throw new ArithmeticException();
+    }
+
+    public final int c(int i10, int i11) {
+        if (i10 != 0 && i11 != 0) {
+            int[] iArr = this.f54366b;
+            return this.f54365a[(iArr[i10] + iArr[i11]) % (this.e - 1)];
+        }
+        return 0;
+    }
+
+    public final String toString() {
+        return "GF(0x" + Integer.toHexString(this.f54368f) + ',' + this.e + ')';
     }
 }

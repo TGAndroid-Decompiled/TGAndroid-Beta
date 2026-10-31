@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
-import org.telegram.messenger.FileLog;
+import org.telegram.messenger.f8;
 import org.webrtc.EglBase14;
 import org.webrtc.EncodedImage;
 import org.webrtc.ThreadUtils;
@@ -173,12 +173,12 @@ public class HardwareVideoEncoder implements VideoEncoder {
                     Logging.e("HardwareVideoEncoder", "queueInputBuffer failed", e);
                     return VideoCodecStatus.ERROR;
                 }
-            } catch (IllegalStateException e10) {
-                Logging.e("HardwareVideoEncoder", "getInputBuffer with index=" + dequeueInputBuffer + " failed", e10);
+            } catch (IllegalStateException e7) {
+                Logging.e("HardwareVideoEncoder", "getInputBuffer with index=" + dequeueInputBuffer + " failed", e7);
                 return VideoCodecStatus.ERROR;
             }
-        } catch (IllegalStateException e11) {
-            Logging.e("HardwareVideoEncoder", "dequeueInputBuffer failed", e11);
+        } catch (IllegalStateException e10) {
+            Logging.e("HardwareVideoEncoder", "dequeueInputBuffer failed", e10);
             return VideoCodecStatus.ERROR;
         }
     }
@@ -265,8 +265,8 @@ public class HardwareVideoEncoder implements VideoEncoder {
                 Logging.e("HardwareVideoEncoder", "initEncodeInternal failed", e);
                 release();
                 return VideoCodecStatus.FALLBACK_SOFTWARE;
-            } catch (IllegalStateException e10) {
-                e = e10;
+            } catch (IllegalStateException e7) {
+                e = e7;
                 Logging.e("HardwareVideoEncoder", "initEncodeInternal failed", e);
                 release();
                 return VideoCodecStatus.FALLBACK_SOFTWARE;
@@ -297,9 +297,9 @@ public class HardwareVideoEncoder implements VideoEncoder {
         }
         try {
             this.codec.release();
-        } catch (Exception e10) {
-            Logging.e("HardwareVideoEncoder", "Media encoder release failed", e10);
-            this.shutdownException = e10;
+        } catch (Exception e7) {
+            Logging.e("HardwareVideoEncoder", "Media encoder release failed", e7);
+            this.shutdownException = e7;
         }
         this.configBuffer = null;
         Logging.d("HardwareVideoEncoder", "Release on output thread done");
@@ -318,7 +318,7 @@ public class HardwareVideoEncoder implements VideoEncoder {
     }
 
     private VideoCodecStatus resetCodec(int i10, int i11, boolean z10) {
-        FileLog.d("resetCodec " + i10 + "x" + i11);
+        f8.b("resetCodec " + i10 + "x" + i11);
         this.encodeThreadChecker.checkIsOnValidThread();
         VideoCodecStatus release = release();
         if (release != VideoCodecStatus.OK) {
@@ -592,7 +592,7 @@ public class HardwareVideoEncoder implements VideoEncoder {
     public boolean isSemiPlanar(int i10) {
         if (i10 != 19) {
             if (i10 != 21 && i10 != 2141391872 && i10 != 2141391876) {
-                throw new IllegalArgumentException(ic.a.i(i10, "Unsupported colorFormat: "));
+                throw new IllegalArgumentException(i0.a.i(i10, "Unsupported colorFormat: "));
             }
             return true;
         }

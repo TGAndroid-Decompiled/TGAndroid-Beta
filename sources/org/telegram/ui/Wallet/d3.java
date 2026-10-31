@@ -1,77 +1,65 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
 import android.view.View;
-import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.k71;
-import org.telegram.ui.Components.nm0;
-import org.telegram.ui.Components.s71;
-import org.telegram.ui.Components.t61;
-import org.telegram.ui.Components.u61;
-public final class d3 extends t61 {
-    public static final int f36482a = 0;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.mc;
+import org.telegram.ui.tc1;
+public final class d3 implements org.telegram.ui.ActionBar.u1, r0.m, mc {
+    public final int f34375a;
+    public final Object f34376b;
 
-    static {
-        t61.setup(new t61());
-    }
-
-    public static boolean a(TL_wallet.walletTransaction wallettransaction, TL_wallet.walletTransaction wallettransaction2) {
-        TL_wallet.walletTransaction wallettransaction3;
-        TL_wallet.walletTransaction wallettransaction4;
-        if (wallettransaction instanceof c3) {
-            wallettransaction3 = ((c3) wallettransaction).f36450a;
-        } else {
-            wallettransaction3 = wallettransaction;
-        }
-        if (wallettransaction2 instanceof c3) {
-            wallettransaction4 = ((c3) wallettransaction2).f36450a;
-        } else {
-            wallettransaction4 = wallettransaction2;
-        }
-        if (wallettransaction3 != wallettransaction4 && !l0.i0(wallettransaction, wallettransaction2) && !l0.i0(wallettransaction3, wallettransaction4)) {
-            return false;
-        }
-        return true;
+    public d3(Object obj, int i10) {
+        this.f34375a = i10;
+        this.f34376b = obj;
     }
 
     @Override
-    public final void bindView(View view, u61 u61Var, boolean z10, k71 k71Var, s71 s71Var) {
-        ((f3) view).g((TL_wallet.walletTransaction) u61Var.G, (e3) u61Var.H, z10);
+    public r0.j1 R0(View view, r0.j1 j1Var) {
+        p3 p3Var = (p3) this.f34376b;
+        p3Var.H = j1Var.f46132a.f(647);
+        p3Var.h.requestLayout();
+        return r0.j1.f46131b;
     }
 
-    @Override
-    public final boolean contentsEquals(u61 u61Var, u61 u61Var2) {
-        Object obj = u61Var.G;
-        if (obj instanceof TL_wallet.walletTransaction) {
-            Object obj2 = u61Var2.G;
-            if (obj2 instanceof TL_wallet.walletTransaction) {
-                return ((TL_wallet.walletTransaction) obj).equals((TL_wallet.walletTransaction) obj2);
-            }
-            return false;
+    public void a(float f7, float f10, int i10) {
+        switch (this.f34375a) {
+            case 2:
+                ((l6) this.f34376b).I.setShadowLayer(f7 * 2.0f, f10, -0.0f, i0.b.o(i10, Math.round(Color.alpha(i10) * 0.5f)));
+                return;
+            case 3:
+                ((TextPaint) this.f34376b).setShadowLayer(f7, 0.0f, f10, i10);
+                return;
+            default:
+                ((org.telegram.ui.Components.e6) this.f34376b).s(f7, f10, i10);
+                return;
         }
-        return false;
     }
 
     @Override
-    public final View createView(Context context, nm0 nm0Var, int i10, int i11, org.telegram.ui.ActionBar.u6 u6Var) {
-        return new f3(context, i10, u6Var);
-    }
-
-    @Override
-    public final boolean equals(u61 u61Var, u61 u61Var2) {
-        Object obj = u61Var.G;
-        if (obj instanceof TL_wallet.walletTransaction) {
-            Object obj2 = u61Var2.G;
-            if (obj2 instanceof TL_wallet.walletTransaction) {
-                return a((TL_wallet.walletTransaction) obj, (TL_wallet.walletTransaction) obj2);
-            }
-            return false;
+    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
+        switch (this.f34375a) {
+            case 0:
+                ((org.telegram.ui.ActionBar.k2) this.f34376b).presentFragment(new tc1(6, null));
+                return;
+            default:
+                t8.d0((t8) this.f34376b, x1Var, i10);
+                return;
         }
-        return false;
     }
 
     @Override
-    public final boolean isClickable() {
-        return true;
+    public void o(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
+        ((g8) this.f34376b).f34582d0.f0();
+    }
+
+    @Override
+    public void j(ImageReceiver imageReceiver) {
+    }
+
+    @Override
+    public void q(int i10, Drawable drawable) {
     }
 }

@@ -1,53 +1,30 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.FileLoader;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_bots;
-public final class i3 implements Runnable {
-    public final int f20297a = 0;
-    public final String f20298b;
-    public final boolean f20299c;
-    public final boolean d;
-    public final Object e;
-    public final Object f20300f;
-    public final Object h;
-    public final Object f20301n;
-    public final Object f20302r;
-    public final Object f20303s;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_stories;
+public final class i3 {
+    public final vp f16046a;
+    public final ConnectionsManager f16047b;
 
-    public i3(FileLoader.AnonymousClass1 anonymousClass1, boolean z10, String str, boolean z11, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2, FileUploadOperation fileUploadOperation) {
-        this.e = anonymousClass1;
-        this.f20299c = z10;
-        this.f20298b = str;
-        this.d = z11;
-        this.f20300f = inputFile;
-        this.h = inputEncryptedFile;
-        this.f20301n = bArr;
-        this.f20302r = bArr2;
-        this.f20303s = fileUploadOperation;
+    public i3(int i10) {
+        this.f16046a = vp.r1(i10);
+        this.f16047b = ConnectionsManager.getInstance(i10);
     }
 
-    @Override
-    public final void run() {
-        switch (this.f20297a) {
-            case 0:
-                ((FileLoader.AnonymousClass1) this.e).lambda$didFinishUploadingFile$0(this.f20299c, this.f20298b, this.d, (TLRPC.InputFile) this.f20300f, (TLRPC.InputEncryptedFile) this.h, (byte[]) this.f20301n, (byte[]) this.f20302r, (FileUploadOperation) this.f20303s);
-                return;
-            default:
-                ((MessagesController) this.e).lambda$openApp$504((org.telegram.ui.ActionBar.r2) this.f20300f, (qf.c) this.h, (boolean[]) this.f20301n, (TLRPC.User) this.f20302r, this.f20298b, this.f20299c, this.d, (TL_bots.BotInfo[]) this.f20303s);
-                return;
-        }
+    public final void a(long j10, q20 q20Var) {
+        TL_stories.TL_premium_getBoostsStatus tL_premium_getBoostsStatus = new TL_stories.TL_premium_getBoostsStatus();
+        tL_premium_getBoostsStatus.peer = this.f16046a.i1(j10);
+        this.f16047b.sendRequest(tL_premium_getBoostsStatus, new f3(q20Var, 0));
     }
 
-    public i3(MessagesController messagesController, org.telegram.ui.ActionBar.r2 r2Var, qf.c cVar, boolean[] zArr, TLRPC.User user, String str, boolean z10, boolean z11, TL_bots.BotInfo[] botInfoArr) {
-        this.e = messagesController;
-        this.f20300f = r2Var;
-        this.h = cVar;
-        this.f20301n = zArr;
-        this.f20302r = user;
-        this.f20298b = str;
-        this.f20299c = z10;
-        this.d = z11;
-        this.f20303s = botInfoArr;
+    public final void b(long j10, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, q20 q20Var) {
+        h3 h3Var = new h3();
+        vp vpVar = this.f16046a;
+        vpVar.y1(j10);
+        h3Var.f15825j = j10;
+        h3Var.f15826k = vpVar.L0(Long.valueOf(-j10));
+        g3 g3Var = new g3(h3Var, tL_premium_boostsStatus, q20Var, 0);
+        j1 j1Var = new j1(1, h3Var, q20Var);
+        ConnectionsManager.getInstance(d20.f15147s0).sendRequest(new TL_stories.TL_premium_getMyBoosts(), new ag.p0(j1Var, vp.r1(d20.f15147s0), g3Var, 6));
     }
 }

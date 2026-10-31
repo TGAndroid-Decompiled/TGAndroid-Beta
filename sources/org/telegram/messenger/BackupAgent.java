@@ -4,17 +4,17 @@ import android.app.backup.BackupAgentHelper;
 import android.app.backup.BackupManager;
 import android.app.backup.SharedPreferencesBackupHelper;
 public class BackupAgent extends BackupAgentHelper {
-    private static BackupManager backupManager;
+    public static BackupManager f14357a;
 
-    public static void requestBackup() {
-        if (backupManager == null) {
-            backupManager = new BackupManager(ApplicationLoader.applicationContext);
+    public static void a() {
+        if (f14357a == null) {
+            f14357a = new BackupManager(w0.f19025b);
         }
-        backupManager.dataChanged();
+        f14357a.dataChanged();
     }
 
     @Override
-    public void onCreate() {
+    public final void onCreate() {
         addHelper("prefs", new SharedPreferencesBackupHelper(this, "saved_tokens", "saved_tokens_login"));
     }
 }

@@ -1,36 +1,51 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-public final class h8 extends ImageReceiver {
-    public final org.telegram.ui.ActionBar.u6 f24210a;
-    public final i8 f24211b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class h8 extends AnimatorListenerAdapter {
+    public final int f22001a;
+    public final boolean f22002b;
+    public final k8 f22003c;
 
-    public h8(i8 i8Var, org.telegram.ui.ActionBar.u6 u6Var) {
-        this.f24211b = i8Var;
-        this.f24210a = u6Var;
+    public h8(k8 k8Var, boolean z10, int i10) {
+        this.f22001a = i10;
+        this.f22003c = k8Var;
+        this.f22002b = z10;
     }
 
     @Override
-    public final boolean setImageBitmapByKey(Drawable drawable, String str, int i10, boolean z10, int i11) {
-        if (drawable instanceof BitmapDrawable) {
-            i8 i8Var = this.f24211b;
-            if (i8Var.K == 0) {
-                i8Var.K = AndroidUtilities.getDominantColor(((BitmapDrawable) drawable).getBitmap());
-                int i12 = i8Var.K;
-                if (i12 != -1 && i12 != 0) {
-                    i8Var.J.setBackground(org.telegram.ui.ActionBar.y6.c0(AndroidUtilities.dp(12.0f), i8Var.K));
-                } else {
-                    int i13 = org.telegram.ui.ActionBar.y6.q5;
-                    org.telegram.ui.ActionBar.u6 u6Var = this.f24210a;
-                    i8Var.K = org.telegram.ui.ActionBar.y6.w0(i13, u6Var);
-                    org.telegram.ui.ActionBar.f7.C(i8Var.J, org.telegram.ui.ActionBar.y6.c0(AndroidUtilities.dp(12.0f), i8Var.K), org.telegram.ui.ActionBar.f7.N(i13), u6Var);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f22001a) {
+            case 0:
+                if (!this.f22002b) {
+                    this.f22003c.h.setVisibility(4);
+                    return;
                 }
-                invalidate();
-            }
+                return;
+            default:
+                if (!this.f22002b) {
+                    this.f22003c.f22185y.setVisibility(4);
+                    return;
+                }
+                return;
         }
-        return super.setImageBitmapByKey(drawable, str, i10, z10, i11);
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        switch (this.f22001a) {
+            case 0:
+                if (this.f22002b) {
+                    this.f22003c.h.setVisibility(0);
+                    return;
+                }
+                return;
+            default:
+                if (this.f22002b) {
+                    this.f22003c.f22185y.setVisibility(0);
+                    return;
+                }
+                return;
+        }
     }
 }

@@ -1,19 +1,19 @@
 package r0;
-public class y0 extends x0 {
+public final class y0 extends x0 {
     public y0() {
     }
 
     @Override
-    public void c(int i10, i0.b bVar) {
-        this.f47182c.setInsets(i1.a(i10), bVar.d());
+    public void c(int i10, i0.c cVar) {
+        this.f46161c.setInsets(i1.a(i10), cVar.d());
     }
 
     @Override
     public void i(int i10, boolean z10) {
-        this.f47182c.setVisible(i1.a(i10), z10);
+        this.f46161c.setVisible(i1.a(i10), z10);
     }
 
-    public y0(k1 k1Var) {
-        super(k1Var);
+    public y0(j1 j1Var) {
+        super(j1Var);
     }
 }

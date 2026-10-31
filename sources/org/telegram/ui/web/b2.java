@@ -1,28 +1,33 @@
 package org.telegram.ui.web;
 
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class b2 extends FrameLayout {
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.OutputSerializedData;
+import org.telegram.tgnet.TLObject;
+public final class b2 extends TLObject {
+    public final ArrayList f43002a = new ArrayList();
+
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        return false;
+    public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
+        int readInt32 = inputSerializedData.readInt32(z10);
+        for (int i10 = 0; i10 < readInt32; i10++) {
+            c2 c2Var = new c2();
+            c2Var.readParams(inputSerializedData, z10);
+            if (!TextUtils.isEmpty(c2Var.f43008b)) {
+                this.f43002a.add(c2Var);
+            } else {
+                return;
+            }
+        }
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        return false;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(500.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(500.0f), 1073741824));
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return false;
+    public final void serializeToStream(OutputSerializedData outputSerializedData) {
+        ArrayList arrayList = this.f43002a;
+        outputSerializedData.writeInt32(arrayList.size());
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            ((c2) arrayList.get(i10)).serializeToStream(outputSerializedData);
+        }
     }
 }

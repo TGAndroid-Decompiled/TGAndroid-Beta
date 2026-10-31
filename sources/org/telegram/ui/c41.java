@@ -1,45 +1,34 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class c41 implements r0.n, org.telegram.ui.ActionBar.b2 {
-    public final int f38169a;
-    public final f41 f38170b;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class c41 extends org.telegram.ui.ActionBar.z2 {
+    public static final int l1 = 0;
+    public TLRPC.TL_authorization f36384i1;
+    public SessionsActivity f36385j1;
+    public org.telegram.ui.Components.ei0 f36386k1;
 
-    public c41(f41 f41Var, int i10) {
-        this.f38169a = i10;
-        this.f38170b = f41Var;
+    public static void I0(c41 c41Var, String str) {
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(c41Var.getContext());
+        alertDialog$Builder.f(new CharSequence[]{org.telegram.messenger.cd.L0(2131751767, null)}, new eg.j(13, c41Var, str));
+        alertDialog$Builder.p();
+    }
+
+    public static void J0(c41 c41Var) {
+        TL_account.changeAuthorizationSettings changeauthorizationsettings = new TL_account.changeAuthorizationSettings();
+        TLRPC.TL_authorization tL_authorization = c41Var.f36384i1;
+        changeauthorizationsettings.encrypted_requests_disabled = tL_authorization.encrypted_requests_disabled;
+        changeauthorizationsettings.call_requests_disabled = tL_authorization.call_requests_disabled;
+        changeauthorizationsettings.flags = 3;
+        changeauthorizationsettings.hash = tL_authorization.hash;
+        ConnectionsManager.getInstance(c41Var.f21583a).sendRequest(changeauthorizationsettings, new ag.c3(23));
     }
 
     @Override
-    public r0.k1 P0(View view, r0.k1 k1Var) {
-        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
-        f41 f41Var = this.f38170b;
-        f41Var.e = defaultWindowInsets;
-        f41Var.f39155c.setPadding(defaultWindowInsets.f13449a, defaultWindowInsets.f13450b, defaultWindowInsets.f13451c, defaultWindowInsets.d);
-        f41Var.f39153b.requestLayout();
-        return r0.k1.f47152b;
-    }
-
-    @Override
-    public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        switch (this.f38169a) {
-            case 1:
-                org.telegram.ui.ActionBar.e2 e2Var2 = this.f38170b.f39156c0;
-                if (e2Var2 != null) {
-                    e2Var2.dismiss();
-                    return;
-                }
-                return;
-            default:
-                f41 f41Var = this.f38170b;
-                org.telegram.ui.ActionBar.e2 e2Var3 = f41Var.f39156c0;
-                if (e2Var3 != null) {
-                    e2Var3.dismiss();
-                    f41Var.f39156c0 = null;
-                }
-                f41Var.dismiss();
-                return;
-        }
+    public final void show() {
+        super.show();
+        this.f36386k1.d();
     }
 }

@@ -1,50 +1,35 @@
 package s4;
-
-import android.util.Log;
-import android.view.animation.Interpolator;
-import androidx.recyclerview.widget.RecyclerView;
 public final class z0 {
-    public int f47906a;
-    public int f47907b;
-    public int f47908c;
+    public int f48053a;
+    public int f48054b;
+    public int f48055c;
     public int d;
-    public Interpolator e;
-    public boolean f47909f;
-    public int f47910g;
+    public int e;
+    public boolean f48056f;
+    public boolean f48057g;
+    public boolean h;
+    public boolean f48058i;
+    public boolean f48059j;
+    public boolean f48060k;
+    public int f48061l;
+    public long f48062m;
+    public int f48063n;
 
-    public final void a(RecyclerView recyclerView) {
-        int i10 = this.d;
-        if (i10 >= 0) {
-            this.d = -1;
-            recyclerView.d0(i10);
-            this.f47909f = false;
-        } else if (this.f47909f) {
-            Interpolator interpolator = this.e;
-            if (interpolator != null && this.f47908c < 1) {
-                throw new IllegalStateException("If you provide an interpolator, you must set a positive duration");
-            }
-            int i11 = this.f47908c;
-            if (i11 >= 1) {
-                recyclerView.f3076r0.b(this.f47906a, this.f47907b, i11, interpolator);
-                int i12 = this.f47910g + 1;
-                this.f47910g = i12;
-                if (i12 > 10) {
-                    Log.e("RecyclerView", "Smooth Scroll action is being updated too frequently. Make sure you are not changing it unless necessary");
-                }
-                this.f47909f = false;
-                return;
-            }
-            throw new IllegalStateException("Scroll duration must be a positive number");
-        } else {
-            this.f47910g = 0;
+    public final void a(int i10) {
+        if ((this.d & i10) != 0) {
+            return;
         }
+        throw new IllegalStateException("Layout state should be one of " + Integer.toBinaryString(i10) + " but it is " + Integer.toBinaryString(this.d));
     }
 
-    public final void b(int i10, int i11, int i12, Interpolator interpolator) {
-        this.f47906a = i10;
-        this.f47907b = i11;
-        this.f47908c = i12;
-        this.e = interpolator;
-        this.f47909f = true;
+    public final int b() {
+        if (this.f48057g) {
+            return this.f48054b - this.f48055c;
+        }
+        return this.e;
+    }
+
+    public final String toString() {
+        return "State{mTargetPosition=" + this.f48053a + ", mData=null, mItemCount=" + this.e + ", mIsMeasuring=" + this.f48058i + ", mPreviousLayoutItemCount=" + this.f48054b + ", mDeletedInvisibleItemCountSincePreviousLayout=" + this.f48055c + ", mStructureChanged=" + this.f48056f + ", mInPreLayout=" + this.f48057g + ", mRunSimpleAnimations=" + this.f48059j + ", mRunPredictiveAnimations=" + this.f48060k + '}';
     }
 }

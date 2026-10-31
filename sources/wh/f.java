@@ -1,51 +1,125 @@
 package wh;
 
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.LinearInterpolator;
-import org.telegram.ui.Components.ds;
-public abstract class f {
-    public static final DecelerateInterpolator f51287a = new DecelerateInterpolator();
-    public static final LinearInterpolator f51288b;
-    public static final e f51289c;
-    public static final e d;
-    public static final e e;
-    public static final e f51290f;
-    public static final e f51291g;
-    public static final e h;
-    public static final e f51292i;
-    public static final e f51293j;
-    public static final e f51294k;
-    public static final e f51295l;
-    public static final e f51296m;
-    public static final e f51297n;
-    public static final e f51298o;
-    public static final e f51299p;
-    public static final e f51300q;
-    public static final e f51301r;
-    public static final e f51302s;
-    public static final e f51303t;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.cd;
+import org.telegram.messenger.f8;
+import org.telegram.messenger.us;
+import org.telegram.messenger.zs;
+import org.telegram.ui.ActionBar.k2;
+import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.Components.da;
+import org.telegram.ui.Components.ha;
+import org.telegram.ui.Components.p51;
+import org.telegram.ui.Components.sk0;
+import org.telegram.ui.Components.tk0;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.Wallet.a7;
+import org.telegram.ui.mk;
+import org.telegram.ui.un;
+import rh.e6;
+public final class f extends ha implements us {
+    public final sf.a P1;
+    public final ai.b Q1;
+    public final FrameLayout R1;
+    public Runnable S1;
+    public int T1;
+    public p51 U1;
 
-    static {
-        LinearInterpolator linearInterpolator = new LinearInterpolator();
-        f51288b = linearInterpolator;
-        f51289c = h.i(new DecelerateInterpolator(), 0, 240, 240, false);
-        d = h.i(linearInterpolator, 0, 240, 240, false);
-        e = h.i(new DecelerateInterpolator(), 220, 240, 240, false);
-        f51290f = h.i(new ds(0.7f, -0.6f, 0.4f, 1.0f), 0, 200, 560, false);
-        f51291g = h.i(new ds(0.7f, -0.6f, 0.4f, 1.0f), 200, 400, 560, true);
-        h = h.i(new DecelerateInterpolator(), 0, 150, 560, false);
-        f51292i = h.i(new DecelerateInterpolator(), 210, 425, 560, false);
-        ds dsVar = ds.h;
-        f51293j = h.i(dsVar, 0, 320, 560, false);
-        f51294k = h.i(dsVar, 40, 320, 560, false);
-        f51295l = h.i(new DecelerateInterpolator(), 0, 250, 560, false);
-        f51296m = h.i(dsVar, 0, 460, 560, false);
-        f51297n = h.i(dsVar, 0, 325, 560, false);
-        f51298o = h.i(new DecelerateInterpolator(), 150, 250, 560, false);
-        f51299p = h.i(new DecelerateInterpolator(), 200, 480, 560, false);
-        f51300q = h.i(dsVar, 60, 320, 560, false);
-        f51301r = h.i(dsVar, 90, 380, 560, false);
-        f51302s = h.i(dsVar, 110, 440, 560, false);
-        f51303t = h.i(new DecelerateInterpolator(), 200, 460, 560, false);
+    public f(android.content.Context r16, org.telegram.ui.ActionBar.p6 r17, sf.a r18, boolean r19, java.lang.Runnable r20) {
+        throw new UnsupportedOperationException("Method not decompiled: wh.f.<init>(android.content.Context, org.telegram.ui.ActionBar.p6, sf.a, boolean, java.lang.Runnable):void");
+    }
+
+    @Override
+    public final void L() {
+        super.L();
+        zs.f(this.f21583a).n(this, zs.f19707v3);
+        zs.f(this.f21583a).n(this, zs.y3);
+    }
+
+    @Override
+    public final sk0 L0(tk0 tk0Var) {
+        p51 p51Var = new p51(this.f26666k1, getContext(), this.f21583a, 0, true, new qh.d(this, 25), this.I0);
+        this.U1 = p51Var;
+        return p51Var;
+    }
+
+    @Override
+    public final CharSequence O0() {
+        ai.b bVar = this.Q1;
+        if (bVar == null) {
+            return null;
+        }
+        return ((TextView) bVar.f834c).getText();
+    }
+
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        Runnable runnable;
+        if (i10 == zs.f19707v3 || i10 == zs.y3) {
+            p51 p51Var = this.U1;
+            if (p51Var != null) {
+                p51Var.O(true);
+            }
+            sf.a s10 = e6.y(this.f21583a, true).s();
+            sf.a aVar = this.P1;
+            ((TextView) this.Q1.f834c).setText(cd.a0(null, null, 2131744070, sf.a.i(aVar.f48255b - s10.f48255b, sf.b.f48257b).d()));
+            da daVar = this.l1;
+            if (daVar != null) {
+                daVar.setTitle(O0());
+            }
+            if (s10.f48255b >= aVar.f48255b && (runnable = this.S1) != null) {
+                runnable.run();
+                this.S1 = null;
+                dismiss();
+            }
+        }
+    }
+
+    @Override
+    public final void dismiss() {
+        super.dismiss();
+        ai.b bVar = this.Q1;
+        if (bVar != null) {
+            ((a7) bVar.f833b).setPaused(true);
+        }
+    }
+
+    @Override
+    public final void s0() {
+        super.s0();
+        try {
+            int w02 = t6.w0(t6.f21001h5, this.I0);
+            if (w02 != this.T1) {
+                this.T1 = w02;
+                v0(w02);
+            }
+        } catch (Exception e) {
+            f8.g(e, true);
+        }
+    }
+
+    @Override
+    public final void show() {
+        mk mkVar;
+        if (e6.y(this.f21583a, true).s().f48255b >= this.P1.f48255b) {
+            Runnable runnable = this.S1;
+            if (runnable != null) {
+                runnable.run();
+                this.S1 = null;
+                return;
+            }
+            return;
+        }
+        k2 Q = LaunchActivity.Q();
+        if (Q instanceof un) {
+            un unVar = (un) Q;
+            if (unVar.J9() && (mkVar = unVar.Z) != null) {
+                mkVar.L();
+            }
+        }
+        super.show();
+        zs.f(this.f21583a).c(this, zs.f19707v3);
+        zs.f(this.f21583a).c(this, zs.y3);
     }
 }

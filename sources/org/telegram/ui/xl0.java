@@ -1,85 +1,77 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import android.net.Uri;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class xl0 implements org.telegram.ui.ActionBar.b2, pt, ym0 {
-    public final int f45735a;
-    public final kn0 f45736b;
+import android.content.Context;
+import android.view.View;
+import android.widget.LinearLayout;
+public final class xl0 extends LinearLayout {
+    public boolean f43597a;
+    public final int f43598b;
+    public final int[] f43599c;
+    public final int[] d;
 
-    public xl0(kn0 kn0Var, int i10) {
-        this.f45735a = i10;
-        this.f45736b = kn0Var;
+    public xl0(Context context, int i10, int[] iArr, int[] iArr2) {
+        super(context);
+        this.f43598b = i10;
+        this.f43599c = iArr;
+        this.d = iArr2;
     }
 
     @Override
-    public void Y0(lt ltVar) {
-        String str;
-        switch (this.f45735a) {
-            case 2:
-                kn0 kn0Var = this.f45736b;
-                kn0Var.Y[5].setText(ltVar.f41258a);
-                kn0Var.f40875s = ltVar.d;
-                return;
-            default:
-                kn0 kn0Var2 = this.f45736b;
-                kn0Var2.Y[0].setText(ltVar.f41258a);
-                if (kn0Var2.U0.indexOf(ltVar.f41258a) != -1) {
-                    kn0Var2.Z0 = true;
-                    String str2 = (String) kn0Var2.V0.get(ltVar.f41258a);
-                    kn0Var2.Y[1].setText(str2);
-                    String str3 = (String) kn0Var2.X0.get(str2);
-                    EditTextBoldCursor editTextBoldCursor = kn0Var2.Y[2];
-                    if (str3 != null) {
-                        str = str3.replace('X', (char) 8211);
-                    } else {
-                        str = null;
+    public final void onMeasure(int i10, int i11) {
+        View childAt;
+        int size = View.MeasureSpec.getSize(i10);
+        this.f43597a = true;
+        int L = org.telegram.messenger.i0.L(9.0f);
+        int i12 = this.f43598b;
+        int i13 = (i12 - 1) * L;
+        int[] iArr = this.f43599c;
+        float f7 = 1.0f;
+        if ((iArr[0] * i12) + i13 <= size) {
+            setWeightSum(1.0f);
+            int childCount = getChildCount();
+            for (int i14 = 0; i14 < childCount; i14++) {
+                getChildAt(i14).getLayoutParams().width = 0;
+                ((LinearLayout.LayoutParams) getChildAt(i14).getLayoutParams()).weight = 1.0f / childCount;
+            }
+        } else if (this.d[0] + i13 <= size) {
+            setWeightSum(1.0f);
+            int i15 = size - i13;
+            int childCount2 = getChildCount();
+            for (int i16 = 0; i16 < childCount2; i16++) {
+                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) getChildAt(i16).getLayoutParams();
+                layoutParams.width = 0;
+                float intValue = ((Integer) childAt.getTag(2131296739)).intValue() / i15;
+                layoutParams.weight = intValue;
+                f7 -= intValue;
+            }
+            float f10 = f7 / (i12 - 1);
+            if (f10 > 0.0f) {
+                int childCount3 = getChildCount();
+                for (int i17 = 0; i17 < childCount3; i17++) {
+                    View childAt2 = getChildAt(i17);
+                    LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) childAt2.getLayoutParams();
+                    if (((Integer) childAt2.getTag(2131296739)).intValue() != iArr[0]) {
+                        layoutParams2.weight += f10;
                     }
-                    editTextBoldCursor.setHintText(str);
-                    kn0Var2.Z0 = false;
                 }
-                AndroidUtilities.runOnUIThread(new ul0(kn0Var2, 3), 300L);
-                kn0Var2.Y[2].requestFocus();
-                EditTextBoldCursor editTextBoldCursor2 = kn0Var2.Y[2];
-                editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
-                return;
+            }
+        } else {
+            setWeightSum(0.0f);
+            int childCount4 = getChildCount();
+            for (int i18 = 0; i18 < childCount4; i18++) {
+                getChildAt(i18).getLayoutParams().width = -2;
+                ((LinearLayout.LayoutParams) getChildAt(i18).getLayoutParams()).weight = 0.0f;
+            }
         }
+        this.f43597a = false;
+        super.onMeasure(i10, i11);
     }
 
     @Override
-    public void d(String str, String str2) {
-        this.f45736b.x1();
-    }
-
-    @Override
-    public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        switch (this.f45735a) {
-            case 0:
-                kn0 kn0Var = this.f45736b;
-                kn0Var.getClass();
-                try {
-                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    kn0Var.getParentActivity().startActivity(intent);
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
-            case 1:
-                this.f45736b.finishFragment();
-                return;
-            case 2:
-            case 3:
-            default:
-                kn0.b0(this.f45736b);
-                return;
-            case 4:
-                kn0.e0(this.f45736b);
-                return;
+    public final void requestLayout() {
+        if (this.f43597a) {
+            return;
         }
+        super.requestLayout();
     }
 }

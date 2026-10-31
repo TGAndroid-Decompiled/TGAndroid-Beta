@@ -1,96 +1,46 @@
 package org.telegram.ui.Components.voip;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.RectF;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.vc0;
-import org.telegram.ui.kh1;
-public final class z0 extends TextView {
-    public final Paint f34332a;
-    public final Paint[] f34333b;
-    public final kh1 f34334c;
+import android.animation.ValueAnimator;
+import android.view.ViewTreeObserver;
+import org.telegram.ui.Components.gr;
+import org.telegram.ui.s9;
+public final class z0 implements ViewTreeObserver.OnPreDrawListener {
+    public final float f31793a;
+    public final float f31794b;
+    public final b1 f31795c;
 
-    public z0(kh1 kh1Var, Context context) {
-        super(context);
-        this.f34334c = kh1Var;
-        Paint paint = new Paint();
-        this.f34332a = paint;
-        this.f34333b = new Paint[kh1Var.e.length];
-        vc0 vc0Var = kh1Var.R;
-        vc0Var.setBounds(0, 0, 80, 80);
-        vc0 vc0Var2 = kh1Var.S;
-        vc0Var2.setBounds(0, 0, 80, 80);
-        aa.m0 m0Var = kh1Var.P;
-        m0Var.w(0.0f, 0.0f, 80.0f, 80.0f);
-        aa.m0 m0Var2 = kh1Var.Q;
-        m0Var2.w(0.0f, 0.0f, 80.0f, 80.0f);
-        vc0Var.setAlpha(255);
-        vc0Var2.setAlpha(255);
-        PorterDuff.Mode mode = PorterDuff.Mode.CLEAR;
-        ((Canvas) m0Var.f1151b).drawColor(0, mode);
-        ((Canvas) m0Var2.f1151b).drawColor(0, mode);
-        vc0Var.draw((Canvas) m0Var.f1151b);
-        vc0Var2.draw((Canvas) m0Var2.f1151b);
-        paint.setColor(-1);
+    public z0(b1 b1Var, float f7, float f10) {
+        this.f31795c = b1Var;
+        this.f31793a = f7;
+        this.f31794b = f10;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int i10;
-        kh1 kh1Var = this.f34334c;
-        z0 z0Var = kh1Var.f33841c;
-        kh1Var.P.w(-getX(), -getY(), kh1Var.getWidth() - getX(), kh1Var.getHeight() - getY());
-        kh1Var.Q.w(-getX(), -getY(), kh1Var.getWidth() - getX(), kh1Var.getHeight() - getY());
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        int i11 = kh1Var.v;
-        Paint[] paintArr = this.f34333b;
-        paintArr[i11].setAlpha(255);
-        float dp = AndroidUtilities.dp(8.0f) + ((int) ((1.0f - kh1Var.f33848y) * (AndroidUtilities.dp(26.0f) - AndroidUtilities.dp(8.0f))));
-        canvas.drawRoundRect(rectF, dp, dp, paintArr[kh1Var.v]);
-        float f7 = kh1Var.f33845s;
-        if (f7 > 0.0f && (i10 = kh1Var.v + 1) < paintArr.length) {
-            paintArr[i10].setAlpha((int) (f7 * 255.0f));
-            canvas.drawRoundRect(rectF, dp, dp, paintArr[kh1Var.v + 1]);
-        }
-        float f10 = kh1Var.f33848y;
-        if (f10 < 1.0f) {
-            Paint paint = this.f34332a;
-            paint.setAlpha((int) ((1.0f - f10) * 255.0f));
-            canvas.drawRoundRect(rectF, dp, dp, paint);
-        }
-        super.onDraw(canvas);
-        if (kh1Var.O) {
-            canvas.drawText(LocaleController.getString(R.string.VoipShareVideo), getWidth() / 2, (int) ((getHeight() / 2) - ((z0Var.getPaint().ascent() + z0Var.getPaint().descent()) / 2.0f)), z0Var.getPaint());
-        }
-    }
-
-    @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        kh1 kh1Var = this.f34334c;
-        aa.m0 m0Var = kh1Var.P;
-        super.onSizeChanged(i10, i11, i12, i13);
-        int i14 = 0;
-        while (true) {
-            Paint[] paintArr = this.f34333b;
-            if (i14 < paintArr.length) {
-                if (i14 == 0) {
-                    paintArr[i14] = (Paint) m0Var.f1150a;
-                } else if (i14 == 1) {
-                    paintArr[i14] = (Paint) kh1Var.Q.f1150a;
-                } else {
-                    paintArr[i14] = (Paint) m0Var.f1150a;
-                }
-                i14++;
-            } else {
-                return;
+    public final boolean onPreDraw() {
+        b1 b1Var = this.f31795c;
+        if (!b1Var.P) {
+            ValueAnimator valueAnimator = b1Var.f31328d0;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
             }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(b1Var.J, 0.0f);
+            b1Var.f31328d0 = ofFloat;
+            ofFloat.addUpdateListener(b1Var.f31329e0);
+            b1Var.f31328d0.setDuration(300L);
+            b1Var.f31328d0.start();
+            float measuredWidth = this.f31793a - ((b1Var.getMeasuredWidth() - (b1Var.getMeasuredWidth() * 0.23f)) / 2.0f);
+            float measuredHeight = this.f31794b - ((b1Var.getMeasuredHeight() - (b1Var.getMeasuredHeight() * 0.23f)) / 2.0f);
+            b1Var.getViewTreeObserver().removeOnPreDrawListener(this);
+            b1Var.setTranslationX(measuredWidth);
+            b1Var.setTranslationY(measuredHeight);
+            b1Var.setScaleX(0.23f);
+            b1Var.setScaleY(0.23f);
+            b1Var.animate().setListener(null).cancel();
+            b1Var.animate().setListener(new s9(this, 26)).scaleX(1.0f).scaleY(1.0f).translationX(0.0f).translationY(0.0f).alpha(1.0f).setDuration(300L).setStartDelay(0L).setInterpolator(gr.f26495f).start();
+            return false;
         }
+        b1Var.M = false;
+        b1Var.requestLayout();
+        return false;
     }
 }

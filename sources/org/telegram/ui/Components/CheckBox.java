@@ -12,34 +12,33 @@ import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.messenger.AndroidUtilities;
 public class CheckBox extends View {
     public static Paint H;
     public static Paint I;
     public static Paint J;
     public static Paint K;
+    public int D;
     public int E;
     public int F;
     public String G;
-    public final Drawable f26068a;
-    public final TextPaint f26069b;
-    public Bitmap f26070c;
+    public final Drawable f23896a;
+    public final TextPaint f23897b;
+    public Bitmap f23898c;
     public Bitmap d;
     public Canvas e;
-    public Canvas f26071f;
+    public Canvas f23899f;
     public boolean h;
-    public boolean f26072n;
-    public float f26073r;
-    public ObjectAnimator f26074s;
-    public boolean v;
-    public boolean f26075w;
-    public boolean f26076x;
-    public int f26077y;
+    public boolean f23900n;
+    public float f23901r;
+    public ObjectAnimator f23902s;
+    public boolean f23903w;
+    public boolean f23904x;
+    public boolean f23905y;
 
     public CheckBox(Context context, int i10) {
         super(context);
-        this.v = true;
-        this.f26077y = 22;
+        this.f23903w = true;
+        this.D = 22;
         if (H == null) {
             H = new Paint(1);
             Paint paint = new Paint(1);
@@ -60,13 +59,13 @@ public class CheckBox extends View {
             paint5.setColor(-1);
             K.setStyle(style);
         }
-        J.setStrokeWidth(AndroidUtilities.dp(28.0f));
-        K.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        J.setStrokeWidth(org.telegram.messenger.i0.L(28.0f));
+        K.setStrokeWidth(org.telegram.messenger.i0.L(2.0f));
         TextPaint textPaint = new TextPaint(1);
-        this.f26069b = textPaint;
-        textPaint.setTextSize(AndroidUtilities.dp(18.0f));
-        textPaint.setTypeface(AndroidUtilities.bold());
-        this.f26068a = context.getResources().getDrawable(i10).mutate();
+        this.f23897b = textPaint;
+        textPaint.setTextSize(org.telegram.messenger.i0.L(18.0f));
+        textPaint.setTypeface(org.telegram.messenger.i0.o());
+        this.f23896a = context.getResources().getDrawable(i10).mutate();
     }
 
     public final void a(boolean z10) {
@@ -74,27 +73,27 @@ public class CheckBox extends View {
     }
 
     public final void b(boolean z10, boolean z11) {
-        if (z10 == this.f26076x) {
+        if (z10 == this.f23905y) {
             return;
         }
-        this.f26076x = z10;
+        this.f23905y = z10;
         float f7 = 0.0f;
-        if (this.f26075w && z11) {
-            this.v = z10;
+        if (this.f23904x && z11) {
+            this.f23903w = z10;
             if (z10) {
                 f7 = 1.0f;
             }
             ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", f7);
-            this.f26074s = ofFloat;
-            ofFloat.addListener(new org.telegram.ui.sp(this, 19));
-            this.f26074s.setDuration(300L);
-            this.f26074s.start();
+            this.f23902s = ofFloat;
+            ofFloat.addListener(new w5(this, 18));
+            this.f23902s.setDuration(300L);
+            this.f23902s.start();
             return;
         }
-        ObjectAnimator objectAnimator = this.f26074s;
+        ObjectAnimator objectAnimator = this.f23902s;
         if (objectAnimator != null) {
             objectAnimator.cancel();
-            this.f26074s = null;
+            this.f23902s = null;
         }
         if (z10) {
             f7 = 1.0f;
@@ -104,25 +103,25 @@ public class CheckBox extends View {
 
     public final void c(int i10, int i11) {
         this.F = i10;
-        this.f26068a.setColorFilter(new PorterDuffColorFilter(i11, PorterDuff.Mode.MULTIPLY));
-        this.f26069b.setColor(i11);
+        this.f23896a.setColorFilter(new PorterDuffColorFilter(i11, PorterDuff.Mode.MULTIPLY));
+        this.f23897b.setColor(i11);
         invalidate();
     }
 
     public float getProgress() {
-        return this.f26073r;
+        return this.f23901r;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f26075w = true;
+        this.f23904x = true;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f26075w = false;
+        this.f23904x = false;
     }
 
     @Override
@@ -135,7 +134,7 @@ public class CheckBox extends View {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.CheckBox");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f26076x);
+        accessibilityNodeInfo.setChecked(this.f23905y);
     }
 
     @Override
@@ -150,8 +149,8 @@ public class CheckBox extends View {
     }
 
     public void setCheckColor(int i10) {
-        this.f26068a.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
-        this.f26069b.setColor(i10);
+        this.f23896a.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
+        this.f23897b.setColor(i10);
         invalidate();
     }
 
@@ -164,30 +163,30 @@ public class CheckBox extends View {
     }
 
     public void setHasBorder(boolean z10) {
-        this.f26072n = z10;
+        this.f23900n = z10;
     }
 
     public void setNum(int i10) {
         if (i10 >= 0) {
             this.G = "" + (i10 + 1);
-        } else if (this.f26074s == null) {
+        } else if (this.f23902s == null) {
             this.G = null;
         }
         invalidate();
     }
 
     public void setProgress(float f7) {
-        if (this.f26073r == f7) {
+        if (this.f23901r == f7) {
             return;
         }
-        this.f26073r = f7;
+        this.f23901r = f7;
         invalidate();
     }
 
     public void setSize(int i10) {
-        this.f26077y = i10;
+        this.D = i10;
         if (i10 == 40) {
-            this.f26069b.setTextSize(AndroidUtilities.dp(24.0f));
+            this.f23897b.setTextSize(org.telegram.messenger.i0.L(24.0f));
         }
     }
 
@@ -198,15 +197,15 @@ public class CheckBox extends View {
     @Override
     public void setVisibility(int i10) {
         super.setVisibility(i10);
-        if (i10 == 0 && this.f26070c == null) {
+        if (i10 == 0 && this.f23898c == null) {
             try {
-                int dp = AndroidUtilities.dp(this.f26077y);
-                int dp2 = AndroidUtilities.dp(this.f26077y);
+                int L = org.telegram.messenger.i0.L(this.D);
+                int L2 = org.telegram.messenger.i0.L(this.D);
                 Bitmap.Config config = Bitmap.Config.ARGB_4444;
-                this.f26070c = Bitmap.createBitmap(dp, dp2, config);
-                this.e = new Canvas(this.f26070c);
-                this.d = Bitmap.createBitmap(AndroidUtilities.dp(this.f26077y), AndroidUtilities.dp(this.f26077y), config);
-                this.f26071f = new Canvas(this.d);
+                this.f23898c = Bitmap.createBitmap(L, L2, config);
+                this.e = new Canvas(this.f23898c);
+                this.d = Bitmap.createBitmap(org.telegram.messenger.i0.L(this.D), org.telegram.messenger.i0.L(this.D), config);
+                this.f23899f = new Canvas(this.d);
             } catch (Throwable unused) {
             }
         }

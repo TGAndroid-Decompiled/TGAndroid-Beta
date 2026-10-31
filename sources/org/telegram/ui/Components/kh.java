@@ -1,74 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-public final class kh implements dh.a {
-    public final int f29958a;
-    public final Object f29959b;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class kh implements vi {
+    public final bi f27760a;
 
-    public kh(Object obj, int i10) {
-        this.f29958a = i10;
-        this.f29959b = obj;
+    public kh(bi biVar) {
+        this.f27760a = biVar;
     }
 
     @Override
-    public final void b(ch.a aVar, RectF rectF) {
-        switch (this.f29958a) {
-            case 0:
-            case 1:
-            default:
-                aVar.f6296a = true;
-                return;
+    public final void a(TLRPC.User user, boolean z10, int i10, long j10) {
+        org.telegram.ui.un unVar = (org.telegram.ui.un) this.f27760a.W1;
+        if (unVar.n7()) {
+            org.telegram.messenger.oz g10 = org.telegram.messenger.oz.g(user, unVar.f42297j6, unVar.D5, unVar.l4, null, null, z10, i10, 0);
+            g10.K = unVar.P8();
+            g10.O = 0L;
+            g10.L = false;
+            g10.Q = j10;
+            g10.R = unVar.a9();
+            g10.T = unVar.f42459w5;
+            unVar.getSendMessagesHelper().r0(g10);
+            unVar.F6();
         }
     }
 
     @Override
-    public final void f(Canvas canvas, RectF rectF) {
-        li liVar;
-        Canvas canvas2;
-        RectF rectF2;
-        float alpha;
-        li liVar2;
-        switch (this.f29958a) {
-            case 0:
-                ti tiVar = (ti) this.f29959b;
-                int i10 = 0;
-                while (i10 < 2) {
-                    if (i10 == 0) {
-                        liVar = tiVar.B0;
-                    } else {
-                        liVar = tiVar.C0;
-                    }
-                    if (liVar != null && liVar.f30255c != null && liVar.getVisibility() == 0) {
-                        if (i10 == 0 && (liVar2 = tiVar.C0) != null && liVar2.getVisibility() == 0) {
-                            alpha = (1.0f - tiVar.C0.getAlpha()) * liVar.getAlpha();
-                        } else {
-                            alpha = liVar.getAlpha();
-                        }
-                        canvas2 = canvas;
-                        rectF2 = rectF;
-                        ih.d.b(liVar.f30255c, canvas2, rectF2, liVar.d, tiVar.getContainerView(), (int) (alpha * 255.0f));
-                    } else {
-                        canvas2 = canvas;
-                        rectF2 = rectF;
-                    }
-                    i10++;
-                    canvas = canvas2;
-                    rectF = rectF2;
-                }
-                return;
-            case 1:
-                sz szVar = (sz) this.f29959b;
-                dy dyVar = szVar.P;
-                ih.d.a(dyVar, canvas, rectF, dyVar, szVar);
-                uw uwVar = szVar.f32728h0;
-                ih.d.a(uwVar, canvas, rectF, uwVar, szVar);
-                zw zwVar = szVar.D0;
-                ih.d.a(zwVar, canvas, rectF, zwVar, szVar);
-                return;
-            default:
-                nr0.n((nr0) this.f29959b, canvas, rectF);
-                return;
-        }
+    public final void b(ArrayList arrayList, String str, boolean z10, int i10, long j10, boolean z11) {
+        ((org.telegram.ui.un) this.f27760a.W1).vb(arrayList, str, z10, i10, j10, z11);
     }
 }

@@ -1,21 +1,58 @@
 package org.telegram.ui.web;
 
 import android.content.Context;
-import org.telegram.ui.ActionBar.h5;
-import org.telegram.ui.Components.s71;
-public final class d extends s71 {
-    public final l f44725n3;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import w7.b6;
+public final class d extends FrameLayout {
+    public final ImageView f43013a;
+    public final TextView f43014b;
+    public final ImageView f43015c;
+    public final Paint d;
+    public boolean e;
 
-    public d(l lVar, Context context, int i10, hi.e2 e2Var, a aVar, h5 h5Var) {
-        super(context, i10, 0, false, e2Var, aVar, null, h5Var);
-        this.f44725n3 = lVar;
+    public d(Context context) {
+        super(context);
+        this.d = new Paint(1);
+        ImageView imageView = new ImageView(context);
+        this.f43013a = imageView;
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        imageView.setImageResource(2131231776);
+        addView(imageView, b6.d(32, 32.0f, 19, 10.0f, 8.0f, 8.0f, 8.0f));
+        TextView textView = new TextView(context);
+        this.f43014b = textView;
+        textView.setTextSize(1, 16.0f);
+        addView(textView, b6.d(-1, -2.0f, 19, 64.0f, 8.0f, 64.0f, 8.0f));
+        ImageView imageView2 = new ImageView(context);
+        this.f43015c = imageView2;
+        imageView2.setScaleType(scaleType);
+        imageView2.setImageResource(2131231767);
+        addView(imageView2, b6.d(32, 32.0f, 21, 8.0f, 8.0f, 10.0f, 8.0f));
     }
 
     @Override
-    public final void l0(int i10) {
-        j jVar;
-        if (!canScrollVertically(1) && (jVar = this.f44725n3.f44819y) != null && jVar.h) {
-            jVar.d();
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (this.e) {
+            canvas.drawRect(org.telegram.messenger.i0.L(64.0f), getHeight() - Math.max(org.telegram.messenger.i0.L(0.66f), 1), getWidth(), getHeight(), this.d);
         }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    }
+
+    public void setAsShowMore(j jVar) {
+        ImageView imageView = this.f43013a;
+        imageView.setImageResource(2131230871);
+        imageView.setColorFilter(new PorterDuffColorFilter(jVar.H, PorterDuff.Mode.SRC_IN));
     }
 }

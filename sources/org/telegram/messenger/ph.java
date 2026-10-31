@@ -1,31 +1,17 @@
 package org.telegram.messenger;
+public final class ph implements Runnable {
+    public final int f17438a;
+    public final ui f17439b;
+    public final boolean f17440c;
 
-import org.telegram.messenger.PasskeysController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_payments;
-public final class ph implements Utilities.Callback2 {
-    public final int f20973a;
-    public final long f20974b;
-    public final Object f20975c;
-    public final Object d;
-
-    public ph(Object obj, Object obj2, long j10, int i10) {
-        this.f20973a = i10;
-        this.f20975c = obj;
-        this.d = obj2;
-        this.f20974b = j10;
+    public ph(ui uiVar, boolean z10, int i10) {
+        this.f17438a = i10;
+        this.f17439b = uiVar;
+        this.f17440c = z10;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f20973a) {
-            case 0:
-                PasskeysController.AnonymousClass1.lambda$onResult$0((org.telegram.ui.ActionBar.e2) this.f20975c, (Utilities.Callback3) this.d, this.f20974b, (TLRPC.auth_Authorization) obj, (TLRPC.TL_error) obj2);
-                return;
-            default:
-                ((GiftAuctionController) this.f20975c).lambda$getOrRequestAuction$12((Utilities.Callback2) this.d, this.f20974b, (TL_payments.TL_StarGiftAuctionState) obj, (TLRPC.TL_error) obj2);
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ph.run():void");
     }
 }

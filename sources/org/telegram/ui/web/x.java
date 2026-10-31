@@ -1,57 +1,64 @@
 package org.telegram.ui.web;
 
-import di.x7;
-import org.json.JSONObject;
-import org.telegram.messenger.FileLog;
+import android.webkit.WebView;
+import java.io.Serializable;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 public final class x implements Runnable {
-    public final int f44950a;
-    public final String[] f44951b;
-    public final int f44952c;
-    public final x0 d;
-    public final x7 e;
+    public final int f43237a;
+    public final Object f43238b;
+    public final Object f43239c;
+    public final Serializable d;
+    public final Object e;
+    public final Object f43240f;
 
-    public x(String[] strArr, int i10, x0 x0Var, x7 x7Var, int i11) {
-        this.f44950a = i11;
-        this.f44951b = strArr;
-        this.f44952c = i10;
-        this.d = x0Var;
-        this.e = x7Var;
+    public x(Object obj, WebView webView, Object obj2, String str, Object obj3, int i10) {
+        this.f43237a = i10;
+        this.f43238b = obj;
+        this.e = webView;
+        this.f43240f = obj2;
+        this.d = str;
+        this.f43239c = obj3;
     }
 
     @Override
     public final void run() {
-        switch (this.f44950a) {
-            case 0:
-                int i10 = this.f44952c;
-                x0 x0Var = this.d;
-                x7 x7Var = this.e;
-                String[] strArr = this.f44951b;
-                if (strArr[0] != null) {
-                    try {
-                        JSONObject jSONObject = new JSONObject();
-                        jSONObject.put("status", strArr[0]);
-                        a1.w(i10, x0Var, x7Var, "phone_requested", jSONObject);
-                        return;
-                    } catch (Exception e) {
-                        FileLog.e(e);
-                        return;
-                    }
-                }
-                return;
-            default:
-                String[] strArr2 = this.f44951b;
-                int i11 = this.f44952c;
-                x0 x0Var2 = this.d;
-                x7 x7Var2 = this.e;
-                try {
-                    JSONObject jSONObject2 = new JSONObject();
-                    jSONObject2.put("status", strArr2[0]);
-                    a1.w(i11, x0Var2, x7Var2, "write_access_requested", jSONObject2);
-                    return;
-                } catch (Exception e10) {
-                    FileLog.e(e10);
-                    return;
-                }
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.x.run():void");
+    }
+
+    public x(Object obj, String str, Serializable serializable, String str2, String str3, int i10) {
+        this.f43237a = i10;
+        this.f43238b = obj;
+        this.d = str;
+        this.e = serializable;
+        this.f43240f = str2;
+        this.f43239c = str3;
+    }
+
+    public x(z0 z0Var, TLObject tLObject, x0 x0Var, String str, String str2) {
+        this.f43237a = 1;
+        this.f43238b = z0Var;
+        this.f43239c = tLObject;
+        this.e = x0Var;
+        this.d = str;
+        this.f43240f = str2;
+    }
+
+    public x(z0 z0Var, TLObject tLObject, String[] strArr, TLRPC.TL_error tL_error, org.telegram.ui.ActionBar.x1 x1Var) {
+        this.f43237a = 3;
+        this.f43238b = z0Var;
+        this.f43239c = tLObject;
+        this.d = strArr;
+        this.e = tL_error;
+        this.f43240f = x1Var;
+    }
+
+    public x(z0 z0Var, TLRPC.TL_error tL_error, String str, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, TLObject tLObject) {
+        this.f43237a = 0;
+        this.f43238b = z0Var;
+        this.e = tL_error;
+        this.d = str;
+        this.f43240f = tL_inputInvoiceSlug;
+        this.f43239c = tLObject;
     }
 }

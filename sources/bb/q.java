@@ -1,14 +1,14 @@
 package bb;
 public final class q {
-    public final String f3812a;
-    public final int f3813b;
-    public final int f3814c;
+    public final String f2613a;
+    public final int f2614b;
+    public final int f2615c;
     public final boolean d;
 
-    public q(String str, int i10, int i11, boolean z10) {
-        this.f3812a = str;
-        this.f3813b = i10;
-        this.f3814c = i11;
+    public q(int i10, int i11, String str, boolean z10) {
+        this.f2613a = str;
+        this.f2614b = i10;
+        this.f2615c = i11;
         this.d = z10;
     }
 
@@ -20,14 +20,14 @@ public final class q {
             return false;
         }
         q qVar = (q) obj;
-        if (kotlin.jvm.internal.i.a(this.f3812a, qVar.f3812a) && this.f3813b == qVar.f3813b && this.f3814c == qVar.f3814c && this.d == qVar.d) {
+        if (kotlin.jvm.internal.i.a(this.f2613a, qVar.f2613a) && this.f2614b == qVar.f2614b && this.f2615c == qVar.f2615c && this.d == qVar.d) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        int hashCode = ((((this.f3812a.hashCode() * 31) + this.f3813b) * 31) + this.f3814c) * 31;
+        int hashCode = ((((this.f2613a.hashCode() * 31) + this.f2614b) * 31) + this.f2615c) * 31;
         boolean z10 = this.d;
         int i10 = z10;
         if (z10 != 0) {
@@ -37,6 +37,6 @@ public final class q {
     }
 
     public final String toString() {
-        return "ProcessDetails(processName=" + this.f3812a + ", pid=" + this.f3813b + ", importance=" + this.f3814c + ", isDefaultProcess=" + this.d + ')';
+        return "ProcessDetails(processName=" + this.f2613a + ", pid=" + this.f2614b + ", importance=" + this.f2615c + ", isDefaultProcess=" + this.d + ')';
     }
 }

@@ -1,26 +1,51 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.tl.TL_update;
+import java.util.ArrayList;
 public final class ob implements Runnable {
-    public final int f20852a;
-    public final MessagesController f20853b;
-    public final TL_update.TL_updatePeerBlocked f20854c;
+    public final int f17248a = 0;
+    public final String f17249b;
+    public final int f17250c;
+    public final boolean d;
 
-    public ob(MessagesController messagesController, TL_update.TL_updatePeerBlocked tL_updatePeerBlocked, int i10) {
-        this.f20852a = i10;
-        this.f20853b = messagesController;
-        this.f20854c = tL_updatePeerBlocked;
+    public ob(int i10, String str, boolean z10) {
+        this.f17250c = i10;
+        this.f17249b = str;
+        this.d = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f20852a) {
+        int i10 = this.f17248a;
+        boolean z10 = this.d;
+        int i11 = this.f17250c;
+        String str = this.f17249b;
+        switch (i10) {
             case 0:
-                this.f20853b.lambda$processUpdateArray$395(this.f20854c);
+                zs.f(i11).k(139, str, Boolean.valueOf(z10));
                 return;
             default:
-                this.f20853b.lambda$processUpdateArray$396(this.f20854c);
+                org.telegram.utils.twidget.m mVar = (org.telegram.utils.twidget.m) org.telegram.utils.twidget.p.f44430a.get(str);
+                if (mVar != null && mVar.f44412u != null) {
+                    if (org.telegram.utils.twidget.p.f44434g.contains(mVar)) {
+                        mVar.F = i11;
+                        mVar.f44412u.n(i11);
+                        return;
+                    }
+                    mVar.F = i11;
+                    mVar.G = z10;
+                    ArrayList arrayList = org.telegram.utils.twidget.p.f44433f;
+                    arrayList.remove(mVar);
+                    arrayList.add(mVar);
+                    org.telegram.utils.twidget.p.o();
+                    return;
+                }
                 return;
         }
+    }
+
+    public ob(String str, int i10, boolean z10) {
+        this.f17249b = str;
+        this.f17250c = i10;
+        this.d = z10;
     }
 }

@@ -1,42 +1,72 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-public final class th implements Runnable {
-    public final int f43643a = 1;
-    public final wn f43644b;
-    public final int f43645c;
-    public final MessageObject d;
+import android.content.Intent;
+import android.net.Uri;
+import android.view.View;
+public final class th implements org.telegram.messenger.j9, ps0, r0.m, org.telegram.ui.ActionBar.u1 {
+    public final un f41843a;
 
-    public th(wn wnVar, int i10, MessageObject messageObject) {
-        this.f43644b = wnVar;
-        this.f43645c = i10;
-        this.d = messageObject;
+    public th(un unVar) {
+        this.f41843a = unVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f43643a) {
-            case 0:
-                this.f43644b.f45368z4 = null;
-                this.d.messageOwner.replies.read_max_id = this.f43645c;
-                return;
-            default:
-                wn wnVar = this.f43644b;
-                org.telegram.ui.Components.wc.b0(wnVar).c(LocaleController.getString(R.string.AdHidden)).j();
-                MessagesController.getInstance(this.f43645c).disableAds(false);
-                MessageObject messageObject = this.d;
-                wnVar.Ra(messageObject);
-                wnVar.Ta(messageObject);
-                return;
+    public r0.j1 R0(View view, r0.j1 j1Var) {
+        un unVar = this.f41843a;
+        r0.j1 G8 = unVar.G8(j1Var);
+        i0.c I0 = org.telegram.messenger.i0.I0(G8, false);
+        int i10 = I0.f7765a;
+        int i11 = I0.f7767c;
+        if (unVar.f42352nb != i10 || unVar.f42365ob != i11) {
+            unVar.f42352nb = i10;
+            unVar.f42365ob = i11;
+            unVar.l1.requestLayout();
+        }
+        unVar.f42453w.j(G8);
+        org.telegram.ui.Components.voip.i0 i0Var = unVar.Y3;
+        if (i0Var != null) {
+            i0Var.setPadding(i10, 0, i11, 0);
+        }
+        unVar.v7();
+        unVar.z7();
+        unVar.B9();
+        boolean p5 = G8.f46132a.p(8);
+        if (unVar.f42338mb != p5) {
+            unVar.f42338mb = p5;
+            unVar.l1.R();
+        }
+        hk hkVar = unVar.E1;
+        if (hkVar != null) {
+            r0.h0.b(hkVar, G8);
+        }
+        return r0.j1.f46131b;
+    }
+
+    @Override
+    public void a(float[] fArr) {
+        un unVar = this.f41843a;
+        fArr[1] = unVar.f42492z0.getBottom() - unVar.Ua;
+        fArr[0] = (unVar.f42492z0.getTop() + unVar.L9) - org.telegram.messenger.i0.L(4.0f);
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
+        un unVar = this.f41843a;
+        try {
+            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+            intent.setData(Uri.parse("package:" + org.telegram.messenger.w0.f19025b.getPackageName()));
+            unVar.getParentActivity().startActivity(intent);
+        } catch (Exception e) {
+            org.telegram.messenger.f8.g(e, true);
         }
     }
 
-    public th(wn wnVar, MessageObject messageObject, int i10) {
-        this.f43644b = wnVar;
-        this.d = messageObject;
-        this.f43645c = i10;
+    @Override
+    public boolean run() {
+        un unVar = this.f41843a;
+        if (unVar.h == null && !unVar.K9()) {
+            return false;
+        }
+        return true;
     }
 }

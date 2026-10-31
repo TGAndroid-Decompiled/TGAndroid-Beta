@@ -1,93 +1,44 @@
 package c3;
 
 import b2.q0;
-import e2.n0;
 import java.io.EOFException;
 import java.io.InterruptedIOException;
 import java.util.Arrays;
 public final class l implements p {
-    public final b2.p f6079b;
-    public final long f6080c;
+    public final b2.p f3670b;
+    public final long f3671c;
     public long d;
-    public int f6081f;
+    public int f3672f;
     public int h;
     public byte[] e = new byte[65536];
-    public final byte[] f6078a = new byte[4096];
+    public final byte[] f3669a = new byte[4096];
 
     static {
         q0.a("media3.extractor");
     }
 
     public l(b2.p pVar, long j10, long j11) {
-        this.f6079b = pVar;
+        this.f3670b = pVar;
         this.d = j10;
-        this.f6080c = j11;
+        this.f3671c = j11;
     }
 
     public final void a(int i10) {
-        int i11 = this.f6081f + i10;
+        int i11 = this.f3672f + i10;
         byte[] bArr = this.e;
         if (i11 > bArr.length) {
-            this.e = Arrays.copyOf(this.e, n0.i(bArr.length * 2, 65536 + i11, i11 + 524288));
+            this.e = Arrays.copyOf(this.e, e2.l0.i(bArr.length * 2, 65536 + i11, i11 + 524288));
         }
     }
 
     @Override
     public final void b(int i10, int i11, byte[] bArr) {
-        h(bArr, i10, i11, false);
+        j(bArr, i10, i11, false);
     }
 
-    @Override
-    public final boolean c(byte[] bArr, int i10, int i11, boolean z10) {
-        int min;
-        int i12 = this.h;
-        if (i12 == 0) {
-            min = 0;
-        } else {
-            min = Math.min(i12, i11);
-            System.arraycopy(this.e, 0, bArr, i10, min);
-            g(min);
-        }
-        int i13 = min;
-        while (i13 < i11 && i13 != -1) {
-            i13 = e(bArr, i10, i11, i13, z10);
-        }
-        if (i13 != -1) {
-            this.d += i13;
-        }
-        if (i13 == -1) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final int d(int i10, int i11, byte[] bArr) {
-        l lVar;
-        int min;
-        a(i11);
-        int i12 = this.h;
-        int i13 = this.f6081f;
-        int i14 = i12 - i13;
-        if (i14 == 0) {
-            lVar = this;
-            min = lVar.e(this.e, i13, i11, 0, true);
-            if (min == -1) {
-                return -1;
-            }
-            lVar.h += min;
-        } else {
-            lVar = this;
-            min = Math.min(i11, i14);
-        }
-        System.arraycopy(lVar.e, lVar.f6081f, bArr, i10, min);
-        lVar.f6081f += min;
-        return min;
-    }
-
-    public final int e(byte[] bArr, int i10, int i11, int i12, boolean z10) {
+    public final int c(byte[] bArr, int i10, int i11, int i12, boolean z10) {
         if (!Thread.interrupted()) {
-            int read = this.f6079b.read(bArr, i10 + i12, i11 - i12);
+            int read = this.f3670b.read(bArr, i10 + i12, i11 - i12);
             if (read == -1) {
                 if (i12 == 0 && z10) {
                     return -1;
@@ -100,28 +51,34 @@ public final class l implements p {
     }
 
     @Override
-    public final boolean f(int i10, boolean z10) {
-        int min = Math.min(this.h, i10);
-        g(min);
-        int i11 = min;
-        while (i11 < i10 && i11 != -1) {
-            byte[] bArr = this.f6078a;
-            i11 = e(bArr, -i11, Math.min(i10, bArr.length + i11), i11, z10);
+    public final boolean d(byte[] bArr, int i10, int i11, boolean z10) {
+        int min;
+        int i12 = this.h;
+        if (i12 == 0) {
+            min = 0;
+        } else {
+            min = Math.min(i12, i11);
+            System.arraycopy(this.e, 0, bArr, i10, min);
+            e(min);
         }
-        if (i11 != -1) {
-            this.d += i11;
+        int i13 = min;
+        while (i13 < i11 && i13 != -1) {
+            i13 = c(bArr, i10, i11, i13, z10);
         }
-        if (i11 != -1) {
-            return true;
+        if (i13 != -1) {
+            this.d += i13;
         }
-        return false;
+        if (i13 == -1) {
+            return false;
+        }
+        return true;
     }
 
-    public final void g(int i10) {
+    public final void e(int i10) {
         byte[] bArr;
         int i11 = this.h - i10;
         this.h = i11;
-        this.f6081f = 0;
+        this.f3672f = 0;
         byte[] bArr2 = this.e;
         if (i11 < bArr2.length - 524288) {
             bArr = new byte[65536 + i11];
@@ -134,7 +91,7 @@ public final class l implements p {
 
     @Override
     public final long getLength() {
-        return this.f6080c;
+        return this.f3671c;
     }
 
     @Override
@@ -143,32 +100,93 @@ public final class l implements p {
     }
 
     @Override
-    public final boolean h(byte[] bArr, int i10, int i11, boolean z10) {
-        if (!u(i11, z10)) {
+    public final int h(int i10, int i11, byte[] bArr) {
+        l lVar;
+        int min;
+        a(i11);
+        int i12 = this.h;
+        int i13 = this.f3672f;
+        int i14 = i12 - i13;
+        if (i14 == 0) {
+            lVar = this;
+            min = lVar.c(this.e, i13, i11, 0, true);
+            if (min == -1) {
+                return -1;
+            }
+            lVar.h += min;
+        } else {
+            lVar = this;
+            min = Math.min(i11, i14);
+        }
+        System.arraycopy(lVar.e, lVar.f3672f, bArr, i10, min);
+        lVar.f3672f += min;
+        return min;
+    }
+
+    @Override
+    public final boolean i(int i10, boolean z10) {
+        int min = Math.min(this.h, i10);
+        e(min);
+        int i11 = min;
+        while (i11 < i10 && i11 != -1) {
+            byte[] bArr = this.f3669a;
+            i11 = c(bArr, -i11, Math.min(i10, bArr.length + i11), i11, z10);
+        }
+        if (i11 != -1) {
+            this.d += i11;
+        }
+        if (i11 != -1) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean j(byte[] bArr, int i10, int i11, boolean z10) {
+        if (!r(i11, z10)) {
             return false;
         }
-        System.arraycopy(this.e, this.f6081f - i11, bArr, i10, i11);
+        System.arraycopy(this.e, this.f3672f - i11, bArr, i10, i11);
         return true;
     }
 
     @Override
-    public final long i() {
-        return this.d + this.f6081f;
+    public final long k() {
+        return this.d + this.f3672f;
     }
 
     @Override
-    public final void j(int i10) {
-        u(i10, false);
+    public final void l(int i10) {
+        r(i10, false);
     }
 
     @Override
-    public final void p() {
-        this.f6081f = 0;
+    public final void m() {
+        this.f3672f = 0;
     }
 
     @Override
-    public final void r(int i10) {
-        f(i10, false);
+    public final void q(int i10) {
+        i(i10, false);
+    }
+
+    @Override
+    public final boolean r(int i10, boolean z10) {
+        a(i10);
+        int i11 = this.h - this.f3672f;
+        while (i11 < i10) {
+            int i12 = i10;
+            boolean z11 = z10;
+            i11 = c(this.e, this.f3672f, i12, i11, z11);
+            if (i11 == -1) {
+                return false;
+            }
+            this.h = this.f3672f + i11;
+            i10 = i12;
+            z10 = z11;
+        }
+        this.f3672f += i10;
+        return true;
     }
 
     @Override
@@ -179,12 +197,12 @@ public final class l implements p {
         if (i12 != 0) {
             int min = Math.min(i12, i11);
             System.arraycopy(this.e, 0, bArr, i10, min);
-            g(min);
+            e(min);
             i13 = min;
         }
         if (i13 == 0) {
             lVar = this;
-            i13 = lVar.e(bArr, i10, i11, 0, true);
+            i13 = lVar.c(bArr, i10, i11, 0, true);
         } else {
             lVar = this;
         }
@@ -196,18 +214,18 @@ public final class l implements p {
 
     @Override
     public final void readFully(byte[] bArr, int i10, int i11) {
-        c(bArr, i10, i11, false);
+        d(bArr, i10, i11, false);
     }
 
     @Override
     public final int skip(int i10) {
         l lVar;
         int min = Math.min(this.h, i10);
-        g(min);
+        e(min);
         if (min == 0) {
-            byte[] bArr = this.f6078a;
+            byte[] bArr = this.f3669a;
             lVar = this;
-            min = lVar.e(bArr, 0, Math.min(i10, bArr.length), 0, true);
+            min = lVar.c(bArr, 0, Math.min(i10, bArr.length), 0, true);
         } else {
             lVar = this;
         }
@@ -215,24 +233,5 @@ public final class l implements p {
             lVar.d += min;
         }
         return min;
-    }
-
-    @Override
-    public final boolean u(int i10, boolean z10) {
-        a(i10);
-        int i11 = this.h - this.f6081f;
-        while (i11 < i10) {
-            int i12 = i10;
-            boolean z11 = z10;
-            i11 = e(this.e, this.f6081f, i12, i11, z11);
-            if (i11 == -1) {
-                return false;
-            }
-            this.h = this.f6081f + i11;
-            i10 = i12;
-            z10 = z11;
-        }
-        this.f6081f += i10;
-        return true;
     }
 }

@@ -2,33 +2,32 @@ package i2;
 
 import j$.time.LocalDate;
 import j$.time.ZoneOffset;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.jd0;
-import org.telegram.ui.Components.xl0;
-public final class w implements e2.o, e9.k, e2.j, xl0, jd0 {
-    public final int f13780a;
-    public final int f13781b;
+import org.telegram.messenger.cd;
+import org.telegram.ui.Components.dk0;
+import org.telegram.ui.Components.wb0;
+public final class w implements e2.o, d9.k, e2.j, dk0, wb0 {
+    public final int f8105a;
+    public final int f8106b;
 
     public w(int i10, int i11) {
-        this.f13780a = i11;
-        this.f13781b = i10;
+        this.f8105a = i11;
+        this.f8106b = i10;
     }
 
     @Override
     public void accept(Object obj) {
-        switch (this.f13780a) {
+        switch (this.f8105a) {
             case 3:
-                ((m4.n1) obj).g0(this.f13781b);
+                ((m4.n1) obj).f0(this.f8106b);
                 return;
             case 4:
-                ((m4.n1) obj).M(this.f13781b);
+                ((m4.n1) obj).M(this.f8106b);
                 return;
             case 5:
-                ((m4.n1) obj).j(this.f13781b);
+                ((m4.n1) obj).k(this.f8106b);
                 return;
             default:
-                ((m4.n1) obj).G0(this.f13781b);
+                ((m4.n1) obj).G0(this.f8106b);
                 return;
         }
     }
@@ -36,25 +35,25 @@ public final class w implements e2.o, e9.k, e2.j, xl0, jd0 {
     @Override
     public Object apply(Object obj) {
         Integer num = (Integer) obj;
-        return Integer.valueOf(this.f13781b);
+        return Integer.valueOf(this.f8106b);
     }
 
     @Override
-    public String f(int i10) {
-        int i11 = this.f13780a;
-        int i12 = this.f13781b;
+    public String e(int i10) {
+        int i11 = this.f8105a;
+        int i12 = this.f8106b;
         switch (i11) {
             case 8:
                 if (i10 == 0) {
-                    return LocaleController.getString(R.string.MessageScheduleToday);
+                    return cd.L0(2131748546, null);
                 }
                 LocalDate plusDays = LocalDate.now().plusDays(i10);
                 int year = plusDays.getYear();
                 long epochMilli = plusDays.atStartOfDay().toInstant(ZoneOffset.UTC).toEpochMilli();
                 if (year == i12) {
-                    return LocaleController.getInstance().getFormatterWeek().format(epochMilli) + ", " + LocaleController.getInstance().getFormatterScheduleDay().format(epochMilli);
+                    return cd.D0().z0().format(epochMilli) + ", " + cd.D0().v0().format(epochMilli);
                 }
-                return LocaleController.getInstance().getFormatterScheduleYear().format(epochMilli);
+                return cd.D0().x0().format(epochMilli);
             default:
                 if (i10 == i12) {
                     return "—";
@@ -65,18 +64,18 @@ public final class w implements e2.o, e9.k, e2.j, xl0, jd0 {
 
     @Override
     public void invoke(Object obj) {
-        switch (this.f13780a) {
+        switch (this.f8105a) {
             case 0:
-                ((b2.e1) obj).onRepeatModeChanged(this.f13781b);
+                ((b2.d1) obj).c(this.f8106b);
                 return;
             default:
-                ((b2.e1) obj).onAudioSessionIdChanged(this.f13781b);
+                ((b2.d1) obj).a(this.f8106b);
                 return;
         }
     }
 
     @Override
     public int run() {
-        return this.f13781b;
+        return this.f8106b;
     }
 }

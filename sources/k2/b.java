@@ -1,55 +1,54 @@
 package k2;
 
-import a8.ng;
 import android.util.SparseArray;
-import f9.s1;
+import e9.x1;
 import j$.util.Objects;
 import java.util.List;
 public final class b {
-    public static final s1 e;
-    public static final b f16117f;
-    public static final s1 f16118g;
-    public static final f9.l0 h;
-    public final SparseArray f16119a = new SparseArray();
-    public final int f16120b;
-    public final f9.i0 f16121c;
-    public final f9.i0 d;
+    public static final x1 e;
+    public static final b f10601f;
+    public static final x1 f10602g;
+    public static final e9.q0 h;
+    public final SparseArray f10603a = new SparseArray();
+    public final int f10604b;
+    public final e9.n0 f10605c;
+    public final e9.n0 d;
 
     static {
-        s1 y3 = f9.i0.y(12);
+        x1 y3 = e9.n0.y(12);
         e = y3;
-        f16117f = new b(f9.i0.y(a.d), y3, s1.e);
+        f10601f = new b(e9.n0.y(a.d), y3, x1.e);
         Object[] objArr = {2, 5, 6};
-        f9.o.d(3, objArr);
-        f16118g = f9.i0.s(3, objArr);
-        ng ngVar = new ng(4, 7);
-        ngVar.w(5, 6);
-        ngVar.w(17, 6);
-        ngVar.w(7, 6);
-        ngVar.w(30, 10);
-        ngVar.w(18, 6);
-        ngVar.w(6, 8);
-        ngVar.w(8, 8);
-        ngVar.w(14, 8);
-        h = ngVar.c(true);
+        e9.s.d(3, objArr);
+        f10602g = e9.n0.s(3, objArr);
+        a5.a aVar = new a5.a(4, 6);
+        aVar.w(5, 6);
+        aVar.w(17, 6);
+        aVar.w(7, 6);
+        aVar.w(30, 10);
+        aVar.w(18, 6);
+        aVar.w(6, 8);
+        aVar.w(8, 8);
+        aVar.w(14, 8);
+        h = aVar.d(true);
     }
 
-    public b(s1 s1Var, List list, List list2) {
-        for (int i10 = 0; i10 < s1Var.d; i10++) {
-            a aVar = (a) s1Var.get(i10);
-            this.f16119a.put(aVar.f16113a, aVar);
+    public b(x1 x1Var, List list, List list2) {
+        for (int i10 = 0; i10 < x1Var.d; i10++) {
+            a aVar = (a) x1Var.get(i10);
+            this.f10603a.put(aVar.f10592a, aVar);
         }
         int i11 = 0;
-        for (int i12 = 0; i12 < this.f16119a.size(); i12++) {
-            i11 = Math.max(i11, ((a) this.f16119a.valueAt(i12)).f16114b);
+        for (int i12 = 0; i12 < this.f10603a.size(); i12++) {
+            i11 = Math.max(i11, ((a) this.f10603a.valueAt(i12)).f10593b);
         }
-        this.f16120b = i11;
-        this.f16121c = f9.i0.u(list);
-        this.d = f9.i0.u(list2);
+        this.f10604b = i11;
+        this.f10605c = e9.n0.u(list);
+        this.d = e9.n0.u(list2);
     }
 
-    public static s1 a(int i10, int[] iArr) {
-        f9.f0 t10 = f9.i0.t();
+    public static x1 a(int[] iArr, int i10) {
+        e9.k0 t10 = e9.n0.t();
         if (iArr == null) {
             iArr = new int[0];
         }
@@ -71,7 +70,7 @@ public final class b {
         if (this != obj) {
             if (obj instanceof b) {
                 b bVar = (b) obj;
-                if (e2.n0.m(this.f16119a, bVar.f16119a) && this.f16120b == bVar.f16120b && Objects.equals(this.f16121c, bVar.f16121c) && Objects.equals(this.d, bVar.d)) {
+                if (e2.l0.m(this.f10603a, bVar.f10603a) && this.f10604b == bVar.f10604b && Objects.equals(this.f10605c, bVar.f10605c) && Objects.equals(this.d, bVar.d)) {
                     return true;
                 }
                 return false;
@@ -82,12 +81,12 @@ public final class b {
     }
 
     public final int hashCode() {
-        int n10 = e2.n0.n(this.f16119a);
-        int hashCode = Objects.hashCode(this.f16121c);
-        return Objects.hashCode(this.d) + ((hashCode + ((n10 + (this.f16120b * 31)) * 31)) * 31);
+        int n10 = e2.l0.n(this.f10603a);
+        int hashCode = Objects.hashCode(this.f10605c);
+        return Objects.hashCode(this.d) + ((hashCode + ((n10 + (this.f10604b * 31)) * 31)) * 31);
     }
 
     public final String toString() {
-        return "AudioCapabilities[maxChannelCount=" + this.f16120b + ", audioProfiles=" + this.f16119a + ", speakerLayoutChannelMasks=" + this.f16121c + ", spatializerChannelMasks=" + this.d + "]";
+        return "AudioCapabilities[maxChannelCount=" + this.f10604b + ", audioProfiles=" + this.f10603a + ", speakerLayoutChannelMasks=" + this.f10605c + ", spatializerChannelMasks=" + this.d + "]";
     }
 }

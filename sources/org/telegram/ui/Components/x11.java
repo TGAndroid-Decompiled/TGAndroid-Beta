@@ -1,52 +1,32 @@
 package org.telegram.ui.Components;
+public final class x11 implements Runnable {
+    public final int f32300a;
+    public final o21 f32301b;
 
-import android.animation.ValueAnimator;
-public final class x11 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f34637a;
-    public final y11 f34638b;
-
-    public x11(y11 y11Var, int i10) {
-        this.f34637a = i10;
-        this.f34638b = y11Var;
+    public x11(o21 o21Var, int i10) {
+        this.f32300a = i10;
+        this.f32301b = o21Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f34637a) {
+    public final void run() {
+        switch (this.f32300a) {
             case 0:
-                y11 y11Var = this.f34638b;
-                y11Var.getClass();
-                y11Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                y11Var.invalidate();
-                return;
-            case 1:
-                y11 y11Var2 = this.f34638b;
-                y11Var2.getClass();
-                y11Var2.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                y11Var2.invalidate();
-                return;
-            case 2:
-                y11 y11Var3 = this.f34638b;
-                y11Var3.getClass();
-                y11Var3.f34940f = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                y11Var3.invalidate();
-                return;
-            case 3:
-                y11 y11Var4 = this.f34638b;
-                y11Var4.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                y11Var4.f34943s = floatValue;
-                y11Var4.f34944w = (int) ((y11Var4.h * floatValue) + 0);
-                y11Var4.invalidate();
+                o21 o21Var = this.f32301b;
+                if (o21Var.l()) {
+                    o21Var.m();
+                    return;
+                }
                 return;
             default:
-                y11 y11Var5 = this.f34638b;
-                y11Var5.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                y11Var5.v = floatValue2;
-                int i10 = y11Var5.f34942r;
-                y11Var5.f34945x = i10 + ((int) Math.ceil((y11Var5.f34941n - i10) * floatValue2));
-                y11Var5.invalidate();
+                o21 o21Var2 = this.f32301b;
+                e21 e21Var = o21Var2.M;
+                e21Var.z1(true);
+                c21 c21Var = o21Var2.F;
+                c21Var.z1(true);
+                o21Var2.P.a(true, true);
+                org.telegram.messenger.i0.a4(c21Var);
+                org.telegram.messenger.i0.a4(e21Var);
                 return;
         }
     }

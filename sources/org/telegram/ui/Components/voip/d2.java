@@ -1,32 +1,51 @@
 package org.telegram.ui.Components.voip;
 
-import android.content.DialogInterface;
-public final class d2 implements DialogInterface.OnDismissListener {
-    public final int f33866a;
-    public final Runnable f33867b;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.TextPaint;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.w5;
+public final class d2 extends View {
+    public final TextPaint f31380a;
+    public final Paint f31381b;
+    public final float f31382c;
+    public final String d;
+    public volatile Bitmap e;
 
-    public d2(int i10, Runnable runnable) {
-        this.f33866a = i10;
-        this.f33867b = runnable;
+    public d2(Context context, String str) {
+        super(context);
+        TextPaint textPaint = new TextPaint(1);
+        this.f31380a = textPaint;
+        this.f31381b = new Paint(1);
+        textPaint.setTextAlign(Paint.Align.CENTER);
+        textPaint.setTextSize(org.telegram.messenger.i0.L(13.0f));
+        textPaint.setColor(-1);
+        textPaint.setTypeface(org.telegram.messenger.i0.o());
+        this.f31382c = textPaint.measureText(str);
+        this.d = str;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f33866a) {
-            case 0:
-                Runnable runnable = this.f33867b;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            default:
-                Runnable runnable2 = this.f33867b;
-                if (runnable2 != null) {
-                    runnable2.run();
-                    return;
-                }
-                return;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (this.e != null) {
+            canvas.drawBitmap(this.e, 0.0f, 0.0f, this.f31381b);
         }
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        if (z10) {
+            Utilities.e.c(new w5(this, 11));
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + ((int) this.f31382c), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
     }
 }

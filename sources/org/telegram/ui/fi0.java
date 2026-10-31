@@ -1,194 +1,79 @@
 package org.telegram.ui;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-public final class fi0 implements org.telegram.ui.Components.fl0 {
-    public final org.telegram.ui.ActionBar.r2 f39386a;
-    public final pi0 f39387b;
+import android.graphics.Rect;
+import android.view.KeyEvent;
+import org.telegram.ui.Components.AnimatedPhoneNumberEditText;
+public final class fi0 extends AnimatedPhoneNumberEditText {
+    public final int V1;
+    public final gi0 W1;
 
-    public fi0(pi0 pi0Var, org.telegram.ui.ActionBar.r2 r2Var) {
-        this.f39387b = pi0Var;
-        this.f39386a = r2Var;
+    public fi0(gi0 gi0Var, Context context, int i10) {
+        super(context);
+        this.V1 = i10;
+        this.W1 = gi0Var;
     }
 
     @Override
-    public final boolean f() {
-        return true;
-    }
-
-    @Override
-    public final boolean i() {
-        return false;
-    }
-
-    @Override
-    public final boolean o() {
-        return false;
-    }
-
-    @Override
-    public final void p(View view, bh.x0 x0Var, boolean z10, boolean z11) {
-        boolean z12;
-        boolean z13;
-        TLRPC.TL_availableEffect effect;
-        bh.x0 x0Var2;
-        org.telegram.ui.ActionBar.r2 r2Var;
-        boolean z14;
-        long j10;
-        boolean z15;
-        bh.x0 x0Var3;
-        bh.x0 x0Var4 = x0Var;
-        if (x0Var4 != null) {
-            pi0 pi0Var = this.f39387b;
-            di0 di0Var = pi0Var.f42413d0;
-            bi0 bi0Var = pi0Var.Z;
-            int i10 = pi0Var.f42411c;
-            if (di0Var != null) {
-                if (!UserConfig.getInstance(i10).isPremium() && x0Var4.d) {
-                    z12 = true;
-                } else {
-                    z12 = false;
-                }
-                org.telegram.ui.Cells.s1 s1Var = pi0Var.P;
-                if (s1Var != null) {
-                    MessageObject messageObject = s1Var.getMessageObject();
-                    if (messageObject != null) {
-                        TLRPC.Message message = messageObject.messageOwner;
-                        long j11 = message.effect;
-                        long j12 = x0Var4.f4207c;
-                        if (j12 == j11) {
-                            message.flags2 &= -5;
-                            message.effect = 0L;
-                            z14 = true;
-                        } else {
-                            message.flags2 |= 4;
-                            message.effect = j12;
-                            z14 = false;
-                        }
-                        if (!z12) {
-                            org.telegram.ui.Cells.s1 s1Var2 = pi0Var.P;
-                            j10 = j11;
-                            MessageObject.GroupedMessages k10 = pi0Var.k(messageObject);
-                            if (pi0Var.M.size() > 1) {
-                                z15 = true;
-                            } else {
-                                z15 = false;
-                            }
-                            s1Var2.Z3(messageObject, k10, z15, false, false, false);
-                            di0 di0Var2 = pi0Var.f42413d0;
-                            if (z14) {
-                                x0Var3 = null;
-                            } else {
-                                x0Var3 = x0Var4;
-                            }
-                            di0Var2.setSelectedReactionAnimated(x0Var3);
-                            if (pi0Var.f42413d0.getReactionsWindow() != null && pi0Var.f42413d0.getReactionsWindow().f4056m != null) {
-                                bh.d0 d0Var = pi0Var.f42413d0.getReactionsWindow().f4056m;
-                                if (z14) {
-                                    x0Var4 = null;
-                                }
-                                d0Var.setSelectedReaction(x0Var4);
-                                pi0Var.f42413d0.getReactionsWindow().f4047a.invalidate();
-                            }
-                        } else {
-                            j10 = j11;
-                        }
-                        bi0Var.c();
-                        if (!z14) {
-                            bi0Var.n(pi0Var.P, 0, false, false);
-                        }
-                        if (z12) {
-                            TLRPC.Message message2 = messageObject.messageOwner;
-                            message2.effect = j10;
-                            if (j10 == 0) {
-                                message2.flags2 &= -5;
-                            }
-                        }
-                        ci0 ci0Var = pi0Var.W;
-                        if (ci0Var != null) {
-                            ci0Var.setEffect(messageObject.messageOwner.effect);
-                        }
-                        pi0Var.l(messageObject.messageOwner.effect);
-                    } else {
-                        return;
-                    }
-                } else if (pi0Var.f42421k0 != null) {
-                    long j13 = x0Var4.f4207c;
-                    if (j13 == pi0Var.H) {
-                        pi0Var.H = 0L;
-                        z13 = true;
-                    } else {
-                        pi0Var.H = j13;
-                        z13 = false;
-                    }
-                    ci0 ci0Var2 = pi0Var.W;
-                    if (ci0Var2 != null) {
-                        ci0Var2.setEffect(pi0Var.H);
-                    }
-                    pi0Var.l(pi0Var.H);
-                    if (!z12) {
-                        if (pi0Var.H == 0) {
-                            effect = null;
-                        } else {
-                            effect = MessagesController.getInstance(i10).getEffect(pi0Var.H);
-                        }
-                        org.telegram.ui.Components.r5 r5Var = pi0Var.I;
-                        if (r5Var != null) {
-                            if (pi0Var.H != 0 && effect != null) {
-                                r5Var.g(Emoji.getEmojiDrawable(effect.emoticon), true);
-                            } else {
-                                r5Var.g(null, true);
-                            }
-                        }
-                        di0 di0Var3 = pi0Var.f42413d0;
-                        if (z13) {
-                            x0Var2 = null;
-                        } else {
-                            x0Var2 = x0Var4;
-                        }
-                        di0Var3.setSelectedReactionAnimated(x0Var2);
-                        if (pi0Var.f42413d0.getReactionsWindow() != null && pi0Var.f42413d0.getReactionsWindow().f4056m != null) {
-                            bh.d0 d0Var2 = pi0Var.f42413d0.getReactionsWindow().f4056m;
-                            if (z13) {
-                                x0Var4 = null;
-                            }
-                            d0Var2.setSelectedReaction(x0Var4);
-                            pi0Var.f42413d0.getReactionsWindow().f4047a.invalidate();
-                        }
-                    }
-                    bi0Var.c();
-                    if (!z13) {
-                        TLRPC.TL_message tL_message = new TLRPC.TL_message();
-                        long j14 = pi0Var.H;
-                        tL_message.effect = j14;
-                        if (j14 != 0) {
-                            tL_message.flags2 |= 4;
-                        }
-                        pi0Var.Z.d(null, 0, null, new MessageObject(i10, tL_message, false, false), 0, false, false, 0.0f, 0.0f, true);
-                    }
-                }
-                if (z12 && (r2Var = this.f39386a) != null) {
-                    new org.telegram.ui.Components.wc(pi0Var.F, pi0Var.f42409b).R(R.raw.star_premium_2, 36, AndroidUtilities.premiumText(LocaleController.getString(R.string.AnimatedEffectPremium), new ei0(0, r2Var))).j();
-                }
-                pi0Var.G.invalidate();
-            }
+    public void onDraw(Canvas canvas) {
+        switch (this.V1) {
+            case 1:
+                this.G1.setColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.H6, false));
+                super.onDraw(canvas);
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
         }
     }
 
     @Override
-    public final void m() {
+    public final void onFocusChanged(boolean z10, int i10, Rect rect) {
+        float f7;
+        float f10;
+        switch (this.V1) {
+            case 0:
+                super.onFocusChanged(z10, i10, rect);
+                gi0 gi0Var = this.W1;
+                org.telegram.ui.Components.ec0 ec0Var = gi0Var.f37565p1;
+                if (!z10 && !gi0Var.G1.isFocused()) {
+                    f7 = 0.0f;
+                } else {
+                    f7 = 1.0f;
+                }
+                ec0Var.b(f7, f7, true);
+                return;
+            default:
+                super.onFocusChanged(z10, i10, rect);
+                gi0 gi0Var2 = this.W1;
+                org.telegram.ui.Components.ec0 ec0Var2 = gi0Var2.f37565p1;
+                if (!z10 && !gi0Var2.E1.isFocused()) {
+                    f10 = 0.0f;
+                } else {
+                    f10 = 1.0f;
+                }
+                ec0Var2.b(f10, f10, true);
+                return;
+        }
     }
 
     @Override
-    public final void l(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
+    public boolean onKeyDown(int i10, KeyEvent keyEvent) {
+        switch (this.V1) {
+            case 1:
+                if (i10 == 67) {
+                    gi0 gi0Var = this.W1;
+                    if (gi0Var.G1.length() == 0) {
+                        gi0Var.E1.requestFocus();
+                        fi0 fi0Var = gi0Var.E1;
+                        fi0Var.setSelection(fi0Var.length());
+                        gi0Var.E1.dispatchKeyEvent(keyEvent);
+                    }
+                }
+                return super.onKeyDown(i10, keyEvent);
+            default:
+                return super.onKeyDown(i10, keyEvent);
+        }
     }
 }

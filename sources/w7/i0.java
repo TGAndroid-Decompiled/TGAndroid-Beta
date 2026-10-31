@@ -1,20 +1,15 @@
 package w7;
 
-import android.net.Uri;
+import android.os.Parcel;
+import android.os.Parcelable;
 public abstract class i0 {
-    public static Uri a(Uri uri) {
-        if (uri.isHierarchical() && uri.getQueryParameter("CMCD") != null) {
-            Uri.Builder buildUpon = uri.buildUpon();
-            buildUpon.clearQuery();
-            for (String str : uri.getQueryParameterNames()) {
-                if (!str.equals("CMCD")) {
-                    for (String str2 : uri.getQueryParameters(str)) {
-                        buildUpon.appendQueryParameter(str, str2);
-                    }
-                }
-            }
-            return buildUpon.build();
-        }
-        return uri;
+    public static o6.b a(byte[] bArr, Parcelable.Creator creator) {
+        n6.l.g(creator);
+        Parcel obtain = Parcel.obtain();
+        obtain.unmarshall(bArr, 0, bArr.length);
+        obtain.setDataPosition(0);
+        o6.b bVar = (o6.b) creator.createFromParcel(obtain);
+        obtain.recycle();
+        return bVar;
     }
 }

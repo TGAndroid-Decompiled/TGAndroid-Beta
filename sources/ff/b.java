@@ -1,6 +1,43 @@
 package ff;
 
-import n4.s;
-public interface b {
-    a B(s sVar);
+import java.io.InputStream;
+public final class b extends a {
+    public final long d;
+
+    public b(InputStream inputStream, long j10, long j11) {
+        super(inputStream, j10);
+        this.d = j10 + j11;
+    }
+
+    public final long e() {
+        return this.d - this.f7055b;
+    }
+
+    @Override
+    public final int read() {
+        if (this.f7055b == this.d) {
+            return -1;
+        }
+        return super.read();
+    }
+
+    @Override
+    public final long skip(long j10) {
+        long j11 = this.f7055b;
+        long j12 = this.d;
+        if (j11 + j10 > j12) {
+            j10 = (int) (j12 - j11);
+        }
+        return super.skip(j10);
+    }
+
+    @Override
+    public final int read(byte[] bArr, int i10, int i11) {
+        long j10 = this.f7055b;
+        long j11 = this.d;
+        if (i11 + j10 <= j11 || (i11 = (int) (j11 - j10)) != 0) {
+            return super.read(bArr, i10, i11);
+        }
+        return -1;
+    }
 }

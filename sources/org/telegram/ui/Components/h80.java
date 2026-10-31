@@ -1,37 +1,24 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.PopupWindow;
-public final class h80 implements PopupWindow.OnDismissListener {
-    public final ViewGroup f28912a;
-    public final l80 f28913b;
+public final class h80 extends u8 {
+    public final jg.a3 e;
 
-    public h80(l80 l80Var, ViewGroup viewGroup) {
-        this.f28913b = l80Var;
-        this.f28912a = viewGroup;
+    public h80(jg.a3 a3Var, Context context) {
+        super(context, false);
+        this.e = a3Var;
     }
 
     @Override
-    public final void onDismiss() {
-        View view;
-        l80 l80Var = this.f28913b;
-        l80Var.f30158m = null;
-        l80.a(l80Var, this.f28912a);
-        View view2 = l80Var.f30164p0;
-        if (view2 != null) {
-            view2.setPressed(false);
-            l80Var.f30164p0 = null;
+    public final void onMeasure(int i10, int i11) {
+        int e;
+        int min = Math.min(3, ((j80) this.e.f9890b).f27264x);
+        if (min == 0) {
+            e = 0;
+        } else {
+            e = i0.a.e(min, 1, 20, 32);
         }
-        if (l80Var.f30162o0 != null && (view = l80Var.f30145f) != null) {
-            view.setOnTouchListener(null);
-        }
-        l80Var.f30162o0 = null;
-        l80Var.N();
-        Runnable runnable = l80Var.f30163p;
-        if (runnable != null) {
-            runnable.run();
-            l80Var.f30163p = null;
-        }
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(e), 1073741824), i11);
     }
 }

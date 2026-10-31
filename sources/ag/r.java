@@ -1,132 +1,120 @@
 package ag;
 
-import android.os.Build;
-import android.text.Html;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.TextUtils;
-import android.text.style.StrikethroughSpan;
-import android.text.style.StyleSpan;
-import android.text.style.URLSpan;
-import android.text.style.UnderlineSpan;
-import java.util.ArrayList;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.a71;
-import org.telegram.ui.Components.c6;
-import org.telegram.ui.Components.tj0;
-public abstract class r {
-    public static SpannableStringBuilder a(String str) {
-        Spanned fromHtml;
-        boolean z10;
-        try {
-            if (Build.VERSION.SDK_INT >= 24) {
-                fromHtml = Html.fromHtml("<inject>" + str + "</inject>", 63, null, new p(new qb.a(1)));
-            } else {
-                fromHtml = Html.fromHtml("<inject>" + str + "</inject>", null, new p(new qb.a(1)));
-            }
-            if (fromHtml == null) {
-                return null;
-            }
-            Object[] spans = fromHtml.getSpans(0, fromHtml.length(), Object.class);
-            ArrayList arrayList = new ArrayList(spans.length);
-            ArrayList arrayList2 = new ArrayList();
-            ArrayList arrayList3 = new ArrayList();
-            for (Object obj : spans) {
-                int spanStart = fromHtml.getSpanStart(obj);
-                int spanEnd = fromHtml.getSpanEnd(obj);
-                if (obj instanceof StyleSpan) {
-                    int style = ((StyleSpan) obj).getStyle();
-                    if ((style & 1) > 0) {
-                        TLRPC.TL_messageEntityBold tL_messageEntityBold = new TLRPC.TL_messageEntityBold();
-                        tL_messageEntityBold.offset = spanStart;
-                        tL_messageEntityBold.length = spanEnd - spanStart;
-                        arrayList.add(tL_messageEntityBold);
-                    }
-                    if ((style & 2) > 0) {
-                        TLRPC.TL_messageEntityItalic tL_messageEntityItalic = new TLRPC.TL_messageEntityItalic();
-                        tL_messageEntityItalic.offset = spanStart;
-                        tL_messageEntityItalic.length = spanEnd - spanStart;
-                        arrayList.add(tL_messageEntityItalic);
-                    }
-                } else if (obj instanceof UnderlineSpan) {
-                    TLRPC.TL_messageEntityUnderline tL_messageEntityUnderline = new TLRPC.TL_messageEntityUnderline();
-                    tL_messageEntityUnderline.offset = spanStart;
-                    tL_messageEntityUnderline.length = spanEnd - spanStart;
-                    arrayList.add(tL_messageEntityUnderline);
-                } else if (obj instanceof StrikethroughSpan) {
-                    TLRPC.TL_messageEntityStrike tL_messageEntityStrike = new TLRPC.TL_messageEntityStrike();
-                    tL_messageEntityStrike.offset = spanStart;
-                    tL_messageEntityStrike.length = spanEnd - spanStart;
-                    arrayList.add(tL_messageEntityStrike);
-                } else if (obj instanceof q) {
-                    q qVar = (q) obj;
-                    int i10 = qVar.f1368a;
-                    if (i10 == 0) {
-                        TLRPC.TL_messageEntitySpoiler tL_messageEntitySpoiler = new TLRPC.TL_messageEntitySpoiler();
-                        tL_messageEntitySpoiler.offset = spanStart;
-                        tL_messageEntitySpoiler.length = spanEnd - spanStart;
-                        arrayList.add(tL_messageEntitySpoiler);
-                    } else if (i10 == 1) {
-                        if (!TextUtils.isEmpty(qVar.f1369b)) {
-                            arrayList2.add(qVar);
-                        } else {
-                            TLRPC.TL_messageEntityPre tL_messageEntityPre = new TLRPC.TL_messageEntityPre();
-                            tL_messageEntityPre.offset = spanStart;
-                            tL_messageEntityPre.length = spanEnd - spanStart;
-                            arrayList.add(tL_messageEntityPre);
-                        }
-                    } else if (i10 == 2 || i10 == 3) {
-                        arrayList3.add(qVar);
-                    }
-                } else if (obj instanceof c6) {
-                    TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityCustomEmoji();
-                    c6 c6Var = (c6) obj;
-                    tL_messageEntityCustomEmoji.document_id = c6Var.documentId;
-                    tL_messageEntityCustomEmoji.document = c6Var.document;
-                    tL_messageEntityCustomEmoji.offset = spanStart;
-                    tL_messageEntityCustomEmoji.length = spanEnd - spanStart;
-                    arrayList.add(tL_messageEntityCustomEmoji);
-                }
-            }
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(fromHtml.toString());
-            MediaDataController.addTextStyleRuns(arrayList, spannableStringBuilder, spannableStringBuilder);
-            for (Object obj2 : spans) {
-                if (obj2 instanceof URLSpan) {
-                    int spanStart2 = fromHtml.getSpanStart(obj2);
-                    int spanEnd2 = fromHtml.getSpanEnd(obj2);
-                    String charSequence = fromHtml.subSequence(spanStart2, spanEnd2).toString();
-                    String url = ((URLSpan) obj2).getURL();
-                    if (charSequence.equals(url)) {
-                        spannableStringBuilder.setSpan(new URLSpan(url), spanStart2, spanEnd2, 33);
-                    } else {
-                        spannableStringBuilder.setSpan(new a71(url, null), spanStart2, spanEnd2, 33);
-                    }
-                }
-            }
-            MediaDataController.addAnimatedEmojiSpans(arrayList, spannableStringBuilder, null);
-            for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-                q qVar2 = (q) arrayList2.get(i11);
-                int spanStart3 = fromHtml.getSpanStart(qVar2);
-                int spanEnd3 = fromHtml.getSpanEnd(qVar2);
-                spannableStringBuilder.setSpan(new ni.h(true, qVar2.f1369b, spannableStringBuilder.subSequence(spanStart3, spanEnd3).toString()), spanStart3, spanEnd3, 33);
-            }
-            for (int i12 = 0; i12 < arrayList3.size(); i12++) {
-                q qVar3 = (q) arrayList3.get(i12);
-                int spanStart4 = fromHtml.getSpanStart(qVar3);
-                int spanEnd4 = fromHtml.getSpanEnd(qVar3);
-                if (qVar3.f1368a == 3) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                tj0.c(spannableStringBuilder, spanStart4, spanEnd4, z10);
-            }
-            return spannableStringBuilder;
-        } catch (Exception e) {
-            FileLog.e("Html.fromHtml", e);
-            return null;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.ImageView;
+import android.widget.ToggleButton;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.ui.Components.wt;
+public final class r extends ImageView {
+    public final int f692a;
+
+    public r(Context context, int i10) {
+        super(context);
+        this.f692a = i10;
+    }
+
+    @Override
+    public void dispatchDraw(Canvas canvas) {
+        switch (this.f692a) {
+            case 2:
+                super.dispatchDraw(canvas);
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
         }
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.f692a) {
+            case 1:
+                if (getAlpha() < 0.5f) {
+                    return false;
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            default:
+                return super.dispatchTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        switch (this.f692a) {
+            case 5:
+                super.onDraw(canvas);
+                invalidate();
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        switch (this.f692a) {
+            case 6:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setClassName(ToggleButton.class.getName());
+                accessibilityNodeInfo.setCheckable(true);
+                VoIPService sharedInstance = VoIPService.getSharedInstance();
+                if (sharedInstance != null) {
+                    accessibilityNodeInfo.setChecked(sharedInstance.isSpeakerphoneOn());
+                    return;
+                }
+                return;
+            default:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                return;
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        float f7;
+        float f10;
+        switch (this.f692a) {
+            case 0:
+                super.onMeasure(i10, i11);
+                Matrix imageMatrix = getImageMatrix();
+                int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
+                int measuredHeight = (getMeasuredHeight() - getPaddingTop()) - getPaddingBottom();
+                int intrinsicWidth = getDrawable().getIntrinsicWidth();
+                int intrinsicHeight = getDrawable().getIntrinsicHeight();
+                if (intrinsicWidth * measuredHeight > intrinsicHeight * measuredWidth) {
+                    f7 = measuredHeight;
+                    f10 = intrinsicHeight;
+                } else {
+                    f7 = measuredWidth;
+                    f10 = intrinsicWidth;
+                }
+                float f11 = f7 / f10;
+                imageMatrix.setScale(f11, f11);
+                setImageMatrix(imageMatrix);
+                return;
+            case 1:
+            case 2:
+            default:
+                super.onMeasure(i10, i11);
+                return;
+            case 3:
+                int size = View.MeasureSpec.getSize(i10);
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size, 1073741824));
+                return;
+            case 4:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.ui.ActionBar.l.getCurrentActionBarHeight(), 1073741824));
+                return;
+        }
+    }
+
+    public r(wt wtVar, Context context) {
+        super(context);
+        this.f692a = 2;
     }
 }

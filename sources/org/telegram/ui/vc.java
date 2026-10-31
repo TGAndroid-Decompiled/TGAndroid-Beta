@@ -1,42 +1,57 @@
 package org.telegram.ui;
 
 import android.view.View;
-import org.telegram.messenger.Utilities;
+import android.view.ViewGroup;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class vc implements Utilities.Callback {
-    public final int f44242a;
-    public final zc f44243b;
+public final class vc extends org.telegram.ui.Components.sk0 {
+    public final int f42700c;
+    public final org.telegram.ui.ActionBar.p6 d;
+    public final xc e;
 
-    public vc(zc zcVar, int i10) {
-        this.f44242a = i10;
-        this.f44243b = zcVar;
+    public vc(xc xcVar, int i10, org.telegram.ui.ActionBar.p6 p6Var) {
+        this.e = xcVar;
+        this.f42700c = i10;
+        this.d = p6Var;
     }
 
     @Override
-    public final void run(Object obj) {
+    public final boolean D(s4.c1 c1Var) {
+        return true;
+    }
+
+    @Override
+    public final int b() {
+        return this.e.f43537c.size();
+    }
+
+    @Override
+    public final void t(s4.c1 r21, int r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.vc.t(s4.c1, int):void");
+    }
+
+    @Override
+    public final s4.c1 w(ViewGroup viewGroup, int i10) {
+        return new s4.c1(new org.telegram.ui.Components.e11(this.f42700c, 3, viewGroup.getContext(), this.d));
+    }
+
+    @Override
+    public final void y(s4.c1 c1Var) {
         TLRPC.WallPaper wallPaper;
-        View view = (View) obj;
-        switch (this.f44242a) {
-            case 0:
-                zc zcVar = this.f44243b;
-                zcVar.getClass();
-                if (view instanceof org.telegram.ui.Components.e31) {
-                    view.setBackgroundColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23448i5, zcVar.f46219b));
-                    return;
-                }
-                return;
-            default:
-                if (view instanceof org.telegram.ui.Components.e31) {
-                    org.telegram.ui.Components.e31 e31Var = (org.telegram.ui.Components.e31) view;
-                    if (e31Var.G.f35124a.f22684b) {
-                        wallPaper = null;
-                    } else {
-                        wallPaper = this.f44243b.v;
-                    }
-                    e31Var.setFallbackWallpaper(wallPaper);
-                    return;
-                }
-                return;
+        xc xcVar = this.e;
+        ArrayList arrayList = xcVar.f43537c;
+        int b10 = c1Var.b();
+        View view = c1Var.f47898a;
+        if (b10 >= 0 && b10 < arrayList.size()) {
+            org.telegram.ui.Components.cp cpVar = (org.telegram.ui.Components.cp) arrayList.get(b10);
+            org.telegram.ui.Components.e11 e11Var = (org.telegram.ui.Components.e11) view;
+            e11Var.g(cpVar.d, false);
+            if (cpVar.f25123a.f21559b) {
+                wallPaper = null;
+            } else {
+                wallPaper = xcVar.f43542w;
+            }
+            e11Var.setFallbackWallpaper(wallPaper);
         }
     }
 }

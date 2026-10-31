@@ -1,17 +1,50 @@
 package u7;
-public final class e {
-    public final Object f49633a;
-    public final Object f49634b;
-    public final Object f49635c;
 
-    public e(Object obj, Object obj2, Object obj3) {
-        this.f49633a = obj;
-        this.f49634b = obj2;
-        this.f49635c = obj3;
+import j$.util.Objects;
+import w7.z7;
+public final class e extends d {
+    public static final e e = new e(0, new Object[0]);
+    public final transient Object[] f50182c;
+    public final transient int d;
+
+    public e(int i10, Object[] objArr) {
+        this.f50182c = objArr;
+        this.d = i10;
     }
 
-    public final IllegalArgumentException a() {
-        Object obj = this.f49633a;
-        return new IllegalArgumentException(a1.g.q(String.valueOf(obj), "=", String.valueOf(this.f49635c), a1.g.w("Multiple entries with same key: ", String.valueOf(obj), "=", String.valueOf(this.f49634b), " and ")));
+    @Override
+    public final Object get(int i10) {
+        z7.a(i10, this.d);
+        Object obj = this.f50182c[i10];
+        Objects.requireNonNull(obj);
+        return obj;
+    }
+
+    @Override
+    public final int l(Object[] objArr) {
+        Object[] objArr2 = this.f50182c;
+        int i10 = this.d;
+        System.arraycopy(objArr2, 0, objArr, 0, i10);
+        return i10;
+    }
+
+    @Override
+    public final int m() {
+        return this.d;
+    }
+
+    @Override
+    public final int n() {
+        return 0;
+    }
+
+    @Override
+    public final Object[] o() {
+        return this.f50182c;
+    }
+
+    @Override
+    public final int size() {
+        return this.d;
     }
 }

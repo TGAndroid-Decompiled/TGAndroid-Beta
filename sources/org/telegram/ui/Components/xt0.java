@@ -1,20 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class xt0 implements View.OnLayoutChangeListener {
-    public final bw0 f34846a;
+import android.content.Context;
+public final class xt0 extends wt0 {
+    public final yt0 G;
 
-    public xt0(bw0 bw0Var) {
-        this.f34846a = bw0Var;
+    public xt0(yt0 yt0Var, Context context, int i10) {
+        super(yt0Var.e, context, i10, false);
+        this.G = yt0Var;
     }
 
     @Override
-    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        bw0 bw0Var = this.f34846a;
-        org.telegram.ui.ActionBar.w0 w0Var = bw0Var.f26971p0;
-        if (w0Var == null) {
-            return;
+    public final void f() {
+        boolean z10;
+        super.f();
+        yt0 yt0Var = this.G;
+        zt0 zt0Var = yt0Var.e;
+        int i10 = yt0Var.f32788a;
+        int[] iArr = zt0.f33165s2;
+        ss0 e02 = zt0Var.e0(i10);
+        if (e02 != null && e02.f30352n.getVisibility() == 0) {
+            yt0Var.d.f();
         }
-        bw0Var.f26971p0.setTranslationX(((View) w0Var.getParent()).getMeasuredWidth() - bw0Var.f26971p0.getRight());
+        if (e02 != null) {
+            or0 or0Var = e02.f30355w;
+            th.x4 x4Var = this.f32251s;
+            if (x4Var != null && (x4Var.k() || (zt0Var.r0() && this.f32251s.g() > 0))) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            or0Var.e(z10, true);
+        }
     }
 }

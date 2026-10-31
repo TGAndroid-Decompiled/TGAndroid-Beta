@@ -1,68 +1,16 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class fc implements Utilities.Callback3 {
-    public final bd f39325a;
-    public final int f39326b;
-    public final View f39327c;
+import android.app.Activity;
+public final class fc extends kg.q0 {
+    public final int P2;
 
-    public fc(bd bdVar, int i10, View view) {
-        this.f39325a = bdVar;
-        this.f39326b = i10;
-        this.f39327c = view;
+    public fc(zc zcVar, Activity activity, int i10, int i11, org.telegram.ui.ActionBar.p6 p6Var, int i12) {
+        super(i10, i11, activity, zcVar, p6Var);
+        this.P2 = i12;
     }
 
     @Override
-    public final void run(Object obj, Object obj2, Object obj3) {
-        boolean z10;
-        Long l4 = (Long) obj;
-        Integer num = (Integer) obj2;
-        TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) obj3;
-        bd bdVar = this.f39325a;
-        int i10 = bdVar.U;
-        int i11 = this.f39326b;
-        if (i11 == i10) {
-            bdVar.f37993n = l4.longValue();
-            bdVar.d1(true);
-        } else if (i11 == bdVar.f37982c0) {
-            bdVar.f38005w = l4.longValue();
-            bdVar.e1();
-        } else if (i11 == bdVar.f37986f0) {
-            if (l4.longValue() == 0) {
-                bdVar.f38009y = null;
-            } else if (tL_starGiftUnique != null) {
-                TLRPC.TL_emojiStatusCollectible emojiStatusCollectibleFromGift = MessagesController.emojiStatusCollectibleFromGift(tL_starGiftUnique);
-                if (num != null) {
-                    emojiStatusCollectibleFromGift.flags |= 1;
-                    emojiStatusCollectibleFromGift.until = num.intValue();
-                }
-                bdVar.f38009y = emojiStatusCollectibleFromGift;
-                bdVar.f38000s = -1;
-                bdVar.f38005w = 0L;
-            } else {
-                TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
-                tL_emojiStatus.document_id = l4.longValue();
-                if (num != null) {
-                    tL_emojiStatus.flags |= 1;
-                    tL_emojiStatus.until = num.intValue();
-                }
-                bdVar.f38009y = tL_emojiStatus;
-            }
-            bdVar.e1();
-        }
-        bdVar.a1(true);
-        pc pcVar = (pc) this.f39327c;
-        long longValue = l4.longValue();
-        if (tL_starGiftUnique != null) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        pcVar.c(longValue, z10, true);
-        bdVar.c1(true);
+    public final int j1() {
+        return this.P2;
     }
 }

@@ -1,36 +1,45 @@
 package org.telegram.ui.Components.voip;
 
-import android.app.Activity;
-import android.content.Context;
-import org.telegram.messenger.AccountInstance;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.w80;
-public final class e2 extends w80 {
-    public final TLRPC.User f33892c;
-    public final TLRPC.Chat d;
-    public final String e;
-    public final TLRPC.InputPeer f33893f;
-    public final boolean h;
-    public final boolean f33894n;
-    public final Activity f33895r;
-    public final org.telegram.ui.ActionBar.r2 f33896s;
-    public final AccountInstance v;
+import android.animation.ValueAnimator;
+public final class e2 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f31411a;
+    public final f2 f31412b;
 
-    public e2(Context context, TLRPC.Chat chat, TLRPC.User user, TLRPC.Chat chat2, String str, TLRPC.InputPeer inputPeer, boolean z10, boolean z11, Activity activity, org.telegram.ui.ActionBar.r2 r2Var, AccountInstance accountInstance) {
-        super(context, chat);
-        this.f33892c = user;
-        this.d = chat2;
-        this.e = str;
-        this.f33893f = inputPeer;
-        this.h = z10;
-        this.f33894n = z11;
-        this.f33895r = activity;
-        this.f33896s = r2Var;
-        this.v = accountInstance;
+    public e2(f2 f2Var, int i10) {
+        this.f31411a = i10;
+        this.f31412b = f2Var;
     }
 
     @Override
-    public final void m() {
-        g2.b(this.f33892c, this.d, this.e, this.f33893f, true, this.h, this.f33894n, false, this.f33895r, this.f33896s, this.v, false, false, false);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f31411a) {
+            case 0:
+                f2 f2Var = this.f31412b;
+                f2Var.getClass();
+                int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                f2Var.d = intValue;
+                f2Var.e = intValue;
+                f2Var.f31426f = intValue;
+                f2Var.h = intValue;
+                f2Var.f31427n = intValue;
+                f2Var.invalidate();
+                return;
+            default:
+                f2 f2Var2 = this.f31412b;
+                f2Var2.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                f2Var2.d = org.telegram.messenger.i0.W1(floatValue, f2Var2.F, org.telegram.messenger.i0.L(56.0f));
+                f2Var2.e = org.telegram.messenger.i0.W1(floatValue, f2Var2.F, org.telegram.messenger.i0.L(36.0f));
+                f2Var2.f31426f = org.telegram.messenger.i0.W1(floatValue, f2Var2.F, org.telegram.messenger.i0.L(60.0f));
+                f2Var2.h = org.telegram.messenger.i0.W1(floatValue, f2Var2.F, org.telegram.messenger.i0.L(36.0f));
+                f2Var2.f31427n = org.telegram.messenger.i0.W1(floatValue, f2Var2.F, org.telegram.messenger.i0.L(64.0f));
+                f2Var2.f31428r = org.telegram.messenger.i0.W1(floatValue, 0, org.telegram.messenger.i0.L(50.0f));
+                f2Var2.f31429s = org.telegram.messenger.i0.W1(floatValue, 0, org.telegram.messenger.i0.L(20.0f));
+                f2Var2.f31430w = org.telegram.messenger.i0.W1(floatValue, 0, 0);
+                f2Var2.f31431x = org.telegram.messenger.i0.W1(floatValue, 0, org.telegram.messenger.i0.L(-20.0f));
+                f2Var2.f31432y = org.telegram.messenger.i0.W1(floatValue, 0, org.telegram.messenger.i0.L(-40.0f));
+                f2Var2.invalidate();
+                return;
+        }
     }
 }

@@ -1,138 +1,76 @@
 package da;
 
-import a1.g;
-import a4.d;
-import aa.b0;
-import aa.c2;
+import android.os.SystemClock;
 import android.util.Log;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-import java.util.NavigableSet;
-import java.util.TreeSet;
-import java.util.concurrent.atomic.AtomicInteger;
-import y9.j;
+import bi.o4;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import ea.c;
+import i5.d;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import l5.r;
+import x7.g8;
 public final class b {
-    public static final Charset e = Charset.forName("UTF-8");
-    public static final int f8267f = 15;
-    public static final ba.a f8268g = new Object();
-    public static final d h = new d(7);
-    public static final a f8269i = new a(0);
-    public final AtomicInteger f8270a = new AtomicInteger(0);
-    public final c f8271b;
-    public final b0 f8272c;
-    public final j d;
+    public final double f5822a;
+    public final double f5823b;
+    public final long f5824c;
+    public final long d;
+    public final int e;
+    public final ArrayBlockingQueue f5825f;
+    public final ThreadPoolExecutor f5826g;
+    public final r h;
+    public final g8 f5827i;
+    public int f5828j;
+    public long f5829k;
 
-    public b(c cVar, b0 b0Var, j jVar) {
-        this.f8271b = cVar;
-        this.f8272c = b0Var;
-        this.d = jVar;
+    public b(r rVar, c cVar, g8 g8Var) {
+        double d = cVar.d;
+        double d10 = cVar.e;
+        this.f5822a = d;
+        this.f5823b = d10;
+        this.f5824c = cVar.f6465f * 1000;
+        this.h = rVar;
+        this.f5827i = g8Var;
+        this.d = SystemClock.elapsedRealtime();
+        int i10 = (int) d;
+        this.e = i10;
+        ArrayBlockingQueue arrayBlockingQueue = new ArrayBlockingQueue(i10);
+        this.f5825f = arrayBlockingQueue;
+        this.f5826g = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, arrayBlockingQueue);
+        this.f5828j = 0;
+        this.f5829k = 0L;
     }
 
-    public static void a(List list) {
-        Iterator it = list.iterator();
-        while (it.hasNext()) {
-            ((File) it.next()).delete();
+    public final int a() {
+        int max;
+        if (this.f5829k == 0) {
+            this.f5829k = System.currentTimeMillis();
         }
-    }
-
-    public static String e(File file) {
-        byte[] bArr = new byte[8192];
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        FileInputStream fileInputStream = new FileInputStream(file);
-        while (true) {
-            try {
-                int read = fileInputStream.read(bArr);
-                if (read > 0) {
-                    byteArrayOutputStream.write(bArr, 0, read);
-                } else {
-                    String str = new String(byteArrayOutputStream.toByteArray(), e);
-                    fileInputStream.close();
-                    return str;
-                }
-            } catch (Throwable th2) {
-                try {
-                    fileInputStream.close();
-                } catch (Throwable th3) {
-                    th2.addSuppressed(th3);
-                }
-                throw th2;
-            }
-        }
-    }
-
-    public static void f(File file, String str) {
-        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(file), e);
-        try {
-            outputStreamWriter.write(str);
-            outputStreamWriter.close();
-        } catch (Throwable th2) {
-            try {
-                outputStreamWriter.close();
-            } catch (Throwable th3) {
-                th2.addSuppressed(th3);
-            }
-            throw th2;
-        }
-    }
-
-    public final ArrayList b() {
-        ArrayList arrayList = new ArrayList();
-        c cVar = this.f8271b;
-        arrayList.addAll(c.e(cVar.e.listFiles()));
-        arrayList.addAll(c.e(cVar.f8276f.listFiles()));
-        d dVar = h;
-        Collections.sort(arrayList, dVar);
-        List e10 = c.e(cVar.d.listFiles());
-        Collections.sort(e10, dVar);
-        arrayList.addAll(e10);
-        return arrayList;
-    }
-
-    public final NavigableSet c() {
-        return new TreeSet(c.e(this.f8271b.f8275c.list())).descendingSet();
-    }
-
-    public final void d(c2 c2Var, String str, boolean z10) {
-        String str2;
-        c cVar = this.f8271b;
-        int i10 = this.f8272c.d().f10369a.f1303a;
-        f8268g.getClass();
-        String c10 = ba.a.f3719a.c(c2Var);
-        String format = String.format(Locale.US, "%010d", Integer.valueOf(this.f8270a.getAndIncrement()));
-        if (z10) {
-            str2 = "_";
+        int currentTimeMillis = (int) ((System.currentTimeMillis() - this.f5829k) / this.f5824c);
+        if (this.f5825f.size() == this.e) {
+            max = Math.min(100, this.f5828j + currentTimeMillis);
         } else {
-            str2 = "";
+            max = Math.max(0, this.f5828j - currentTimeMillis);
         }
-        try {
-            f(cVar.b(str, g.p("event", format, str2)), c10);
-        } catch (IOException e10) {
-            Log.w("FirebaseCrashlytics", "Could not persist event for session " + str, e10);
+        if (this.f5828j != max) {
+            this.f5828j = max;
+            this.f5829k = System.currentTimeMillis();
         }
-        a aVar = new a(1);
-        cVar.getClass();
-        File file = new File(cVar.f8275c, str);
-        file.mkdirs();
-        List<File> e11 = c.e(file.listFiles(aVar));
-        Collections.sort(e11, new d(8));
-        int size = e11.size();
-        for (File file2 : e11) {
-            if (size > i10) {
-                c.d(file2);
-                size--;
-            } else {
-                return;
-            }
+        return max;
+    }
+
+    public final void b(x9.b bVar, TaskCompletionSource taskCompletionSource) {
+        boolean z10;
+        String str = "Sending report through Google DataTransport: " + bVar.f53441b;
+        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+            Log.d("FirebaseCrashlytics", str, null);
         }
+        if (SystemClock.elapsedRealtime() - this.d < 2000) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.h.a(new i5.a(null, bVar.f53440a, d.f8208c, null), new o4(this, taskCompletionSource, z10, bVar, 1));
     }
 }

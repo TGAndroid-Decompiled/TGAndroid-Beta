@@ -1,34 +1,24 @@
 package m;
 
-import androidx.appcompat.widget.Toolbar;
-public final class f3 implements Runnable {
-    public final int f17711a;
-    public final Toolbar f17712b;
-
-    public f3(Toolbar toolbar, int i10) {
-        this.f17711a = i10;
-        this.f17712b = toolbar;
+import android.view.View;
+import android.window.OnBackInvokedCallback;
+import android.window.OnBackInvokedDispatcher;
+import j$.util.Objects;
+public abstract class f3 {
+    public static OnBackInvokedDispatcher a(View view) {
+        return view.findOnBackInvokedDispatcher();
     }
 
-    @Override
-    public final void run() {
-        l.m mVar;
-        switch (this.f17711a) {
-            case 0:
-                i3 i3Var = this.f17712b.f2247e0;
-                if (i3Var == null) {
-                    mVar = null;
-                } else {
-                    mVar = i3Var.f17744b;
-                }
-                if (mVar != null) {
-                    mVar.collapseActionView();
-                    return;
-                }
-                return;
-            default:
-                this.f17712b.m();
-                return;
-        }
+    public static OnBackInvokedCallback b(Runnable runnable) {
+        Objects.requireNonNull(runnable);
+        return new androidx.activity.r(runnable, 2);
+    }
+
+    public static void c(Object obj, Object obj2) {
+        ((OnBackInvokedDispatcher) obj).registerOnBackInvokedCallback(1000000, (OnBackInvokedCallback) obj2);
+    }
+
+    public static void d(Object obj, Object obj2) {
+        ((OnBackInvokedDispatcher) obj).unregisterOnBackInvokedCallback((OnBackInvokedCallback) obj2);
     }
 }

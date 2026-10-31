@@ -1,42 +1,34 @@
 package org.telegram.ui;
+public final class dn0 implements Runnable {
+    public final int f36804a;
+    public final nn0 f36805b;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class dn0 extends TextView {
-    public final int f38646a;
-
-    public dn0(Context context, int i10) {
-        super(context);
-        this.f38646a = i10;
+    public dn0(nn0 nn0Var, int i10) {
+        this.f36804a = i10;
+        this.f36805b = nn0Var;
     }
 
     @Override
-    public CharSequence getAccessibilityClassName() {
-        switch (this.f38646a) {
-            case 3:
-                return Button.class.getName();
-            default:
-                return super.getAccessibilityClassName();
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f38646a) {
+    public final void run() {
+        int i10 = this.f36804a;
+        nn0 nn0Var = this.f36805b;
+        switch (i10) {
             case 0:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
+                if (nn0Var.G) {
+                    nn0Var.f39984b.invalidate();
+                    return;
+                }
                 return;
             case 1:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
+                nn0Var.h();
                 return;
             case 2:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(AndroidUtilities.dp(26.0f)), 1073741824));
+                int i11 = nn0.f39981q0;
+                nn0Var.h();
                 return;
             default:
-                super.onMeasure(i10, i11);
+                int i12 = nn0.f39981q0;
+                nn0Var.h();
                 return;
         }
     }

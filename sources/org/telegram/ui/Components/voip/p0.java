@@ -1,38 +1,23 @@
 package org.telegram.ui.Components.voip;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.View;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class p0 extends TextView {
-    public final RectF f34104a;
-    public final r1 f34105b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class p0 extends AnimatorListenerAdapter {
+    public final s0 f31573a;
 
-    public p0(Activity activity, r1 r1Var) {
-        super(activity);
-        this.f34104a = new RectF();
-        this.f34105b = r1Var;
-        r1Var.a(this);
-        setText(LocaleController.getString(R.string.VoipHideEmoji));
-        setContentDescription(LocaleController.getString(R.string.VoipHideEmoji));
-        setTextColor(-1);
-        setTypeface(AndroidUtilities.bold());
-        setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(4.0f));
+    public p0(s0 s0Var) {
+        this.f31573a = s0Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        RectF rectF = this.f34104a;
-        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        float x9 = ((View) getParent()).getX() + getX();
-        float y3 = ((View) getParent()).getY() + getY();
-        r1 r1Var = this.f34105b;
-        r1Var.d(x9, y3);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), r1Var.b());
-        super.onDraw(canvas);
+    public final void onAnimationEnd(Animator animator) {
+        s0 s0Var = this.f31573a;
+        s0Var.f31648b.removeViewImmediate(s0Var.d);
+        s0Var.f31650f.d.release();
+        s0Var.f31654w = null;
+        s0Var.f31655x = true;
+        s0Var.f31656y = false;
+        s0Var.J = null;
+        s0Var.H = false;
     }
 }

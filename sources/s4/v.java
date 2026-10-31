@@ -1,86 +1,51 @@
 package s4;
 
-import android.animation.Animator;
-import android.animation.ValueAnimator;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
-import di.u4;
-public final class v implements Animator.AnimatorListener {
-    public final e1 E;
-    public final z F;
-    public final float f47875a;
-    public final float f47876b;
-    public final float f47877c;
-    public final float d;
-    public final e1 e;
-    public final int f47878f;
-    public final ValueAnimator h;
-    public boolean f47879n;
-    public float f47880r;
-    public float f47881s;
-    public boolean v = false;
-    public boolean f47882w = false;
-    public float f47883x;
-    public final int f47884y;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.WeakHashMap;
+public final class v extends GestureDetector.SimpleOnGestureListener {
+    public boolean f48018a = true;
+    public final x f48019b;
 
-    public v(z zVar, e1 e1Var, int i10, float f7, float f10, float f11, float f12, int i11, e1 e1Var2) {
-        this.F = zVar;
-        this.f47884y = i11;
-        this.E = e1Var2;
-        this.f47878f = i10;
-        this.e = e1Var;
-        this.f47875a = f7;
-        this.f47876b = f10;
-        this.f47877c = f11;
-        this.d = f12;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.h = ofFloat;
-        ofFloat.addUpdateListener(new u4(this, 11));
-        ofFloat.setTarget(e1Var.f47773a);
-        ofFloat.addListener(this);
-        this.f47883x = 0.0f;
-    }
-
-    public final void a(Animator animator) {
-        if (!this.f47882w) {
-            this.e.q(true);
-        }
-        this.f47882w = true;
+    public v(x xVar) {
+        this.f48019b = xVar;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        this.f47883x = 1.0f;
+    public final boolean onDown(MotionEvent motionEvent) {
+        return true;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        a(animator);
-        if (!this.v) {
-            int i10 = this.f47884y;
-            e1 e1Var = this.E;
-            z zVar = this.F;
-            if (i10 <= 0) {
-                zVar.f47904x.a(zVar.H, e1Var);
-            } else {
-                zVar.f47896a.add(e1Var.f47773a);
-                this.f47879n = true;
-                if (i10 > 0) {
-                    zVar.H.post(new k9.u(zVar, this, i10));
+    public final void onLongPress(MotionEvent motionEvent) {
+        c1 T;
+        if (this.f48018a) {
+            x xVar = this.f48019b;
+            View m10 = xVar.m(motionEvent);
+            u uVar = xVar.f48030y;
+            if (m10 != null && (T = xVar.H.T(m10)) != null) {
+                RecyclerView recyclerView = xVar.H;
+                int e = uVar.e(recyclerView, T);
+                WeakHashMap weakHashMap = r0.h0.f46123a;
+                if ((uVar.b(e, recyclerView.getLayoutDirection()) & 16711680) != 0) {
+                    int pointerId = motionEvent.getPointerId(0);
+                    int i10 = xVar.f48029x;
+                    if (pointerId == i10) {
+                        int findPointerIndex = motionEvent.findPointerIndex(i10);
+                        float x10 = motionEvent.getX(findPointerIndex);
+                        float y3 = motionEvent.getY(findPointerIndex);
+                        xVar.d = x10;
+                        xVar.e = y3;
+                        xVar.f48026r = 0.0f;
+                        xVar.f48025n = 0.0f;
+                        if (uVar.k()) {
+                            xVar.r(T, 2);
+                        }
+                    }
                 }
             }
-            View view = zVar.M;
-            View view2 = e1Var.f47773a;
-            if (view == view2) {
-                zVar.q(view2);
-            }
         }
-    }
-
-    @Override
-    public final void onAnimationRepeat(Animator animator) {
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
     }
 }

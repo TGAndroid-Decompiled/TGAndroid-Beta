@@ -1,24 +1,13 @@
 package org.telegram.ui.Components;
+public final class n extends s4.j {
+    public final g0 F;
 
-import android.view.View;
-public final class n implements View.OnClickListener {
-    public final int f30686a;
-    public final q f30687b;
-
-    public n(q qVar, int i10) {
-        this.f30686a = i10;
-        this.f30687b = qVar;
+    public n(g0 g0Var) {
+        this.F = g0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f30686a) {
-            case 0:
-                this.f30687b.dismiss();
-                return;
-            default:
-                q.Q(this.f30687b);
-                return;
-        }
+    public final void P(s4.c1 c1Var) {
+        this.F.f21586b.invalidate();
     }
 }

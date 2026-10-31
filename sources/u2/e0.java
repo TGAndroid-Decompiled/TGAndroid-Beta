@@ -1,18 +1,20 @@
 package u2;
+
+import i2.v1;
 public interface e0 extends f1 {
-    void g();
+    void f();
 
-    long h(long j10);
+    long g(long j10);
 
-    void i(long j10);
+    void h(long j10);
 
-    void k(d0 d0Var, long j10);
+    void j(d0 d0Var, long j10);
 
-    long l();
+    long k();
 
-    long o(x2.q[] qVarArr, boolean[] zArr, d1[] d1VarArr, boolean[] zArr2, long j10);
+    long p(x2.q[] qVarArr, boolean[] zArr, d1[] d1VarArr, boolean[] zArr2, long j10);
 
-    r1 p();
+    r1 q();
 
-    long r(long j10, i2.t1 t1Var);
+    long t(long j10, v1 v1Var);
 }

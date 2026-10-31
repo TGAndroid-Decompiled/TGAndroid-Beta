@@ -1,22 +1,31 @@
 package org.telegram.messenger;
 
-import java.util.function.IntFunction;
-public final class ge implements IntFunction {
-    public final int f20168a;
+import android.net.Uri;
+public final class ge implements Runnable {
+    public final int f15698a;
+    public final q20 f15699b;
+    public final Uri f15700c;
 
-    public ge(int i10) {
-        this.f20168a = i10;
+    public ge(q20 q20Var, Uri uri, int i10) {
+        this.f15698a = i10;
+        this.f15699b = q20Var;
+        this.f15700c = uri;
     }
 
     @Override
-    public final Object apply(int i10) {
-        int[][] lambda$new$16;
-        switch (this.f20168a) {
+    public final void run() {
+        int i10 = this.f15698a;
+        Uri uri = this.f15700c;
+        q20 q20Var = this.f15699b;
+        switch (i10) {
             case 0:
-                return String.valueOf(i10);
+                String[] strArr = MediaController.U1;
+                q20Var.a(uri);
+                return;
             default:
-                lambda$new$16 = MessagesController.lambda$new$16(i10);
-                return lambda$new$16;
+                String[] strArr2 = MediaController.U1;
+                q20Var.a(uri);
+                return;
         }
     }
 }

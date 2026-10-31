@@ -1,48 +1,266 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-public final class pe implements DialogInterface.OnDismissListener {
-    public final int f42384a;
-    public final wn f42385b;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class pe implements RequestDelegate {
+    public final int f40646a;
+    public final un f40647b;
 
-    public pe(wn wnVar, int i10) {
-        this.f42384a = i10;
-        this.f42385b = wnVar;
+    public pe(un unVar, int i10) {
+        this.f40646a = i10;
+        this.f40647b = unVar;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f42384a) {
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f40646a) {
             case 0:
-                dk dkVar = this.f42385b.f45164j2;
-                if (dkVar != null) {
-                    dkVar.c(false);
-                    return;
-                }
+                final un unVar = this.f40647b;
+                org.telegram.messenger.i0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        boolean z10 = false;
+                        switch (r3) {
+                            case 0:
+                                un.X0(unVar, tLObject);
+                                return;
+                            case 1:
+                                un.n0(unVar, tLObject);
+                                return;
+                            case 2:
+                                un unVar2 = unVar;
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 != null) {
+                                    TLRPC.TL_exportedMessageLink tL_exportedMessageLink = (TLRPC.TL_exportedMessageLink) tLObject2;
+                                    try {
+                                        ((ClipboardManager) org.telegram.messenger.w0.f19025b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", tL_exportedMessageLink.link));
+                                        if (org.telegram.ui.Components.cc.a(unVar2)) {
+                                            org.telegram.ui.Components.cc a02 = org.telegram.ui.Components.cc.a0(unVar2);
+                                            if (!unVar2.T9() && tL_exportedMessageLink.link.contains("/c/")) {
+                                                z10 = true;
+                                            }
+                                            a02.k(z10).j();
+                                            return;
+                                        }
+                                        return;
+                                    } catch (Exception e) {
+                                        org.telegram.messenger.f8.g(e, true);
+                                        return;
+                                    }
+                                }
+                                return;
+                            default:
+                                un unVar3 = unVar;
+                                TLObject tLObject3 = tLObject;
+                                unVar3.E5 = 0;
+                                if (tLObject3 == null && unVar3.getParentActivity() != null) {
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, unVar3.getParentActivity(), unVar3.f42477xa);
+                                    alertDialog$Builder.f20134a.R = org.telegram.messenger.cd.L0(2131689472, null);
+                                    alertDialog$Builder.f20134a.T = org.telegram.messenger.cd.L0(2131751272, null);
+                                    alertDialog$Builder.k(org.telegram.messenger.cd.L0(2131747847, null), null);
+                                    unVar3.showDialog(alertDialog$Builder.f20134a);
+                                    mk mkVar = unVar3.Z;
+                                    if (mkVar != null) {
+                                        mkVar.a1(null, null, false);
+                                        unVar3.r9(true);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
                 return;
             case 1:
-                wn.D0(this.f42385b);
+                final un unVar2 = this.f40647b;
+                org.telegram.messenger.i0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        boolean z10 = false;
+                        switch (r3) {
+                            case 0:
+                                un.X0(unVar2, tLObject);
+                                return;
+                            case 1:
+                                un.n0(unVar2, tLObject);
+                                return;
+                            case 2:
+                                un unVar22 = unVar2;
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 != null) {
+                                    TLRPC.TL_exportedMessageLink tL_exportedMessageLink = (TLRPC.TL_exportedMessageLink) tLObject2;
+                                    try {
+                                        ((ClipboardManager) org.telegram.messenger.w0.f19025b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", tL_exportedMessageLink.link));
+                                        if (org.telegram.ui.Components.cc.a(unVar22)) {
+                                            org.telegram.ui.Components.cc a02 = org.telegram.ui.Components.cc.a0(unVar22);
+                                            if (!unVar22.T9() && tL_exportedMessageLink.link.contains("/c/")) {
+                                                z10 = true;
+                                            }
+                                            a02.k(z10).j();
+                                            return;
+                                        }
+                                        return;
+                                    } catch (Exception e) {
+                                        org.telegram.messenger.f8.g(e, true);
+                                        return;
+                                    }
+                                }
+                                return;
+                            default:
+                                un unVar3 = unVar2;
+                                TLObject tLObject3 = tLObject;
+                                unVar3.E5 = 0;
+                                if (tLObject3 == null && unVar3.getParentActivity() != null) {
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, unVar3.getParentActivity(), unVar3.f42477xa);
+                                    alertDialog$Builder.f20134a.R = org.telegram.messenger.cd.L0(2131689472, null);
+                                    alertDialog$Builder.f20134a.T = org.telegram.messenger.cd.L0(2131751272, null);
+                                    alertDialog$Builder.k(org.telegram.messenger.cd.L0(2131747847, null), null);
+                                    unVar3.showDialog(alertDialog$Builder.f20134a);
+                                    mk mkVar = unVar3.Z;
+                                    if (mkVar != null) {
+                                        mkVar.a1(null, null, false);
+                                        unVar3.r9(true);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
                 return;
             case 2:
-                this.f42385b.p8(false, true, 0.0f);
+                final un unVar3 = this.f40647b;
+                org.telegram.messenger.i0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        boolean z10 = false;
+                        switch (r3) {
+                            case 0:
+                                un.X0(unVar3, tLObject);
+                                return;
+                            case 1:
+                                un.n0(unVar3, tLObject);
+                                return;
+                            case 2:
+                                un unVar22 = unVar3;
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 != null) {
+                                    TLRPC.TL_exportedMessageLink tL_exportedMessageLink = (TLRPC.TL_exportedMessageLink) tLObject2;
+                                    try {
+                                        ((ClipboardManager) org.telegram.messenger.w0.f19025b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", tL_exportedMessageLink.link));
+                                        if (org.telegram.ui.Components.cc.a(unVar22)) {
+                                            org.telegram.ui.Components.cc a02 = org.telegram.ui.Components.cc.a0(unVar22);
+                                            if (!unVar22.T9() && tL_exportedMessageLink.link.contains("/c/")) {
+                                                z10 = true;
+                                            }
+                                            a02.k(z10).j();
+                                            return;
+                                        }
+                                        return;
+                                    } catch (Exception e) {
+                                        org.telegram.messenger.f8.g(e, true);
+                                        return;
+                                    }
+                                }
+                                return;
+                            default:
+                                un unVar32 = unVar3;
+                                TLObject tLObject3 = tLObject;
+                                unVar32.E5 = 0;
+                                if (tLObject3 == null && unVar32.getParentActivity() != null) {
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, unVar32.getParentActivity(), unVar32.f42477xa);
+                                    alertDialog$Builder.f20134a.R = org.telegram.messenger.cd.L0(2131689472, null);
+                                    alertDialog$Builder.f20134a.T = org.telegram.messenger.cd.L0(2131751272, null);
+                                    alertDialog$Builder.k(org.telegram.messenger.cd.L0(2131747847, null), null);
+                                    unVar32.showDialog(alertDialog$Builder.f20134a);
+                                    mk mkVar = unVar32.Z;
+                                    if (mkVar != null) {
+                                        mkVar.a1(null, null, false);
+                                        unVar32.r9(true);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
                 return;
             case 3:
-                this.f42385b.p8(false, true, 0.0f);
+                final un unVar4 = this.f40647b;
+                org.telegram.messenger.i0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        boolean z10 = false;
+                        switch (r3) {
+                            case 0:
+                                un.X0(unVar4, tLObject);
+                                return;
+                            case 1:
+                                un.n0(unVar4, tLObject);
+                                return;
+                            case 2:
+                                un unVar22 = unVar4;
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 != null) {
+                                    TLRPC.TL_exportedMessageLink tL_exportedMessageLink = (TLRPC.TL_exportedMessageLink) tLObject2;
+                                    try {
+                                        ((ClipboardManager) org.telegram.messenger.w0.f19025b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", tL_exportedMessageLink.link));
+                                        if (org.telegram.ui.Components.cc.a(unVar22)) {
+                                            org.telegram.ui.Components.cc a02 = org.telegram.ui.Components.cc.a0(unVar22);
+                                            if (!unVar22.T9() && tL_exportedMessageLink.link.contains("/c/")) {
+                                                z10 = true;
+                                            }
+                                            a02.k(z10).j();
+                                            return;
+                                        }
+                                        return;
+                                    } catch (Exception e) {
+                                        org.telegram.messenger.f8.g(e, true);
+                                        return;
+                                    }
+                                }
+                                return;
+                            default:
+                                un unVar32 = unVar4;
+                                TLObject tLObject3 = tLObject;
+                                unVar32.E5 = 0;
+                                if (tLObject3 == null && unVar32.getParentActivity() != null) {
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, unVar32.getParentActivity(), unVar32.f42477xa);
+                                    alertDialog$Builder.f20134a.R = org.telegram.messenger.cd.L0(2131689472, null);
+                                    alertDialog$Builder.f20134a.T = org.telegram.messenger.cd.L0(2131751272, null);
+                                    alertDialog$Builder.k(org.telegram.messenger.cd.L0(2131747847, null), null);
+                                    unVar32.showDialog(alertDialog$Builder.f20134a);
+                                    mk mkVar = unVar32.Z;
+                                    if (mkVar != null) {
+                                        mkVar.a1(null, null, false);
+                                        unVar32.r9(true);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
                 return;
             case 4:
-                this.f42385b.p8(false, true, 0.0f);
-                return;
-            case 5:
-                this.f42385b.p8(false, true, 0.0f);
-                return;
-            case 6:
-                this.f42385b.p8(false, true, 0.0f);
-                return;
-            case 7:
-                this.f42385b.p8(false, true, 0.0f);
-                return;
+                un unVar5 = this.f40647b;
+                if (tL_error != null) {
+                    unVar5.getClass();
+                    return;
+                } else {
+                    unVar5.getMessagesController().L3((TLRPC.Updates) tLObject, false);
+                    return;
+                }
             default:
-                this.f42385b.gc = null;
+                un.h1(this.f40647b, tLObject);
                 return;
         }
     }

@@ -2,7 +2,6 @@ package org.telegram.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import org.telegram.messenger.AndroidUtilities;
 public class ContactsWidgetConfigActivity extends ExternalActionActivity {
     public static final int F = 0;
     public int E = 0;
@@ -17,21 +16,21 @@ public class ContactsWidgetConfigActivity extends ExternalActionActivity {
             this.E = extras.getInt("appWidgetId", 0);
         }
         if (this.E != 0) {
-            org.telegram.messenger.wh.c(10, "onlySelect", "dialogsType", true).putBoolean("allowSwitchAccount", true);
-            ny nyVar = new ny(1, this.E);
-            nyVar.f41925y = new y0(this, 29);
-            if (AndroidUtilities.isTablet()) {
+            org.telegram.ui.Cells.f1.j(10, "onlySelect", "dialogsType", true).putBoolean("allowSwitchAccount", true);
+            iy iyVar = new iy(1, this.E);
+            iyVar.D = new y0(this, 29);
+            if (org.telegram.messenger.i0.Q1()) {
                 if (this.d.getFragmentStack().isEmpty()) {
-                    this.d.c(-1, nyVar);
+                    this.d.c(-1, iyVar);
                 }
-            } else if (this.f35526c.getFragmentStack().isEmpty()) {
-                this.f35526c.c(-1, nyVar);
+            } else if (this.f33324c.getFragmentStack().isEmpty()) {
+                this.f33324c.c(-1, iyVar);
             }
-            if (!AndroidUtilities.isTablet()) {
+            if (!org.telegram.messenger.i0.Q1()) {
                 this.e.setVisibility(8);
             }
-            this.f35526c.e0();
-            if (AndroidUtilities.isTablet()) {
+            this.f33324c.e0();
+            if (org.telegram.messenger.i0.Q1()) {
                 this.d.e0();
             }
             intent.setAction(null);

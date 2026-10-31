@@ -1,55 +1,25 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class sw0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f43425a;
-    public final Object f43426b;
-    public final View f43427c;
-    public final Object d;
+import org.telegram.tgnet.TLRPC;
+public final class sw0 extends iq {
+    public final boolean[] f41659c1;
+    public final TLRPC.User f41660d1;
+    public final ProfileActivity f41661e1;
 
-    public sw0(Object obj, ViewGroup viewGroup, Object obj2, int i10) {
-        this.f43425a = i10;
-        this.f43426b = obj;
-        this.f43427c = viewGroup;
-        this.d = obj2;
+    public sw0(ProfileActivity profileActivity, long j10, long j11, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str, int i10, boolean[] zArr, TLRPC.User user) {
+        super(j10, j11, tL_chatAdminRights, tL_chatBannedRights, tL_chatBannedRights2, str, i10, true, false, null);
+        this.f41661e1 = profileActivity;
+        this.f41659c1 = zArr;
+        this.f41660d1 = user;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float dp;
-        switch (this.f43425a) {
-            case 0:
-                xw0 xw0Var = (xw0) this.f43426b;
-                PremiumPreviewFragment premiumPreviewFragment = xw0Var.f45792n;
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                View view = this.f43427c;
-                view.setAlpha(floatValue);
-                view.setScaleX(floatValue);
-                view.setScaleY(floatValue);
-                float animatedFraction = ((ValueAnimator) this.d).getAnimatedFraction();
-                for (int i10 = 0; i10 < premiumPreviewFragment.U.getChildCount(); i10++) {
-                    View childAt = premiumPreviewFragment.U.getChildAt(i10);
-                    if (childAt != xw0Var.e) {
-                        if (childAt == xw0Var.f45790c) {
-                            dp = 0.0f - (AndroidUtilities.dp(15.0f) * animatedFraction);
-                        } else {
-                            dp = 0.0f + (AndroidUtilities.dp(8.0f) * animatedFraction);
-                        }
-                        childAt.setTranslationY((view.getMeasuredHeight() * animatedFraction) + dp);
-                    }
-                }
-                return;
-            default:
-                ia1 ia1Var = (ia1) this.f43426b;
-                ia1Var.getClass();
-                ia1Var.f40080a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ((ChatActivityEnterView) this.f43427c).getEditField().setAlpha(ia1Var.f40080a);
-                ((org.telegram.ui.Components.si) this.d).invalidate();
-                return;
+    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
+        if (!z10 && z11 && this.f41659c1[0]) {
+            ProfileActivity profileActivity = this.f41661e1;
+            if (org.telegram.ui.Components.cc.a(profileActivity)) {
+                org.telegram.ui.Components.cc.C(this.f41660d1.first_name, profileActivity).j();
+            }
         }
     }
 }

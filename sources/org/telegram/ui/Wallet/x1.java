@@ -1,13 +1,13 @@
 package org.telegram.ui.Wallet;
-public final class x1 extends org.telegram.ui.ActionBar.m5 {
-    public final fi.d f37487r;
+public final class x1 extends org.telegram.ui.ActionBar.d5 {
+    public final vh.d f35378r;
 
-    public x1(fi.d dVar) {
-        this.f37487r = dVar;
+    public x1(vh.d dVar) {
+        this.f35378r = dVar;
     }
 
     @Override
-    public final boolean g() {
-        return !this.f37487r.Q;
+    public final boolean y() {
+        return !this.f35378r.Q;
     }
 }

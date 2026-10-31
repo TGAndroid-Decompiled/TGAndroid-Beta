@@ -1,132 +1,171 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.text.Layout;
-import android.text.SpannableString;
-import android.text.style.CharacterStyle;
-import android.text.style.ClickableSpan;
-import android.view.MotionEvent;
-import android.view.ViewConfiguration;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-public final class su extends xh.n {
-    public final x90 U;
-    public ba0 V;
-    public boolean W;
-    public boolean f32682a0;
-    public boolean f32683b0;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+import org.telegram.tgnet.TLRPC;
+public final class su extends sk0 {
+    public final cv f30358c;
 
-    public su(Context context) {
-        super(context, null, true);
-        this.U = new x90(this);
+    public su(cv cvVar) {
+        this.f30358c = cvVar;
     }
 
     @Override
-    public final ClickableSpan a(int i10, int i11) {
-        Layout layout = getLayout();
-        if (layout == null) {
-            return null;
-        }
-        int paddingLeft = i10 - getPaddingLeft();
-        int paddingTop = i11 - getPaddingTop();
-        int lineForVertical = layout.getLineForVertical(paddingTop);
-        float f7 = paddingLeft;
-        int offsetForHorizontal = layout.getOffsetForHorizontal(lineForVertical, f7);
-        float lineLeft = getLayout().getLineLeft(lineForVertical);
-        if (lineLeft <= f7 && layout.getLineWidth(lineForVertical) + lineLeft >= f7 && paddingTop >= 0 && paddingTop <= layout.getHeight()) {
-            ClickableSpan[] clickableSpanArr = (ClickableSpan[]) new SpannableString(layout.getText()).getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
-            if (clickableSpanArr.length != 0 && !AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
-                return clickableSpanArr[0];
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float paddingLeft;
-        canvas.save();
-        if (!this.W) {
-            float f7 = 0.0f;
-            if (this.f32682a0) {
-                paddingLeft = 0.0f;
-            } else {
-                paddingLeft = getPaddingLeft();
-            }
-            if (!this.f32683b0) {
-                f7 = getPaddingTop();
-            }
-            canvas.translate(paddingLeft, f7);
-        }
-        if (this.U.f(canvas)) {
-            invalidate();
-        }
-        canvas.restore();
-        super.onDraw(canvas);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        CharacterStyle characterStyle;
-        x90 x90Var = this.U;
-        if (x90Var != null) {
-            Layout layout = getLayout();
-            ClickableSpan a2 = a((int) motionEvent.getX(), (int) motionEvent.getY());
-            if (a2 != null && motionEvent.getAction() == 0) {
-                ba0 ba0Var = new ba0(a2, null, motionEvent.getX(), motionEvent.getY(), 0);
-                this.V = ba0Var;
-                x90Var.a(ba0Var, null);
-                SpannableString spannableString = new SpannableString(layout.getText());
-                int spanStart = spannableString.getSpanStart(this.V.f26780i);
-                int spanEnd = spannableString.getSpanEnd(this.V.f26780i);
-                t90 b10 = this.V.b();
-                b10.d(layout, spanStart, getPaddingTop());
-                layout.getSelectionPath(spanStart, spanEnd, b10);
-                AndroidUtilities.runOnUIThread(new cp(this, ba0Var, a2), ViewConfiguration.getLongPressTimeout());
-                return true;
-            }
-            if (motionEvent.getAction() == 1) {
-                x90Var.d(true);
-                ba0 ba0Var2 = this.V;
-                if (ba0Var2 != null && (characterStyle = ba0Var2.f26780i) == a2) {
-                    if (characterStyle != null) {
-                        ((ClickableSpan) characterStyle).onClick(this);
-                    }
-                    this.V = null;
-                    return true;
-                }
-                this.V = null;
-            }
-            if (motionEvent.getAction() == 3) {
-                x90Var.d(true);
-                this.V = null;
-            }
-        }
-        if (this.V != null || super.onTouchEvent(motionEvent)) {
+    public final boolean D(s4.c1 c1Var) {
+        if (c1Var.f47901f == 1) {
             return true;
         }
         return false;
     }
 
-    @Override
-    public void setDisablePaddingsOffset(boolean z10) {
-        this.W = z10;
+    public final int E(int i10) {
+        int i11;
+        cv cvVar = this.f30358c;
+        ou ouVar = cvVar.l1;
+        if (cvVar.f25177z1) {
+            i11 = 2;
+        } else {
+            i11 = 1;
+        }
+        int i12 = 0;
+        while (true) {
+            ArrayList[] arrayListArr = ouVar.f24466c;
+            if (i12 >= arrayListArr.length || i12 == i10) {
+                break;
+            }
+            int size = arrayListArr[i12].size();
+            if (ouVar.f24466c.length > 1) {
+                size = Math.min(cvVar.f25172u1.J * 2, size);
+            }
+            i11 += size + 2;
+            i12++;
+        }
+        return i11;
     }
 
     @Override
-    public void setDisablePaddingsOffsetX(boolean z10) {
-        this.f32682a0 = z10;
+    public final int b() {
+        ?? r22;
+        int i10;
+        int min;
+        ArrayList arrayList;
+        cv cvVar = this.f30358c;
+        ou ouVar = cvVar.l1;
+        if (!org.telegram.messenger.d20.i(cvVar.f21583a).q() && (arrayList = ouVar.f24465b) != null && arrayList.size() == 1 && org.telegram.messenger.jj.V3((TLRPC.TL_messages_stickerSet) ouVar.f24465b.get(0))) {
+            r22 = 1;
+        } else {
+            r22 = 0;
+        }
+        cvVar.f25177z1 = r22;
+        int i11 = r22 + 1;
+        if (ouVar.f24466c == null) {
+            i10 = 0;
+        } else {
+            int i12 = 0;
+            i10 = 0;
+            while (true) {
+                ArrayList[] arrayListArr = ouVar.f24466c;
+                if (i12 >= arrayListArr.length) {
+                    break;
+                }
+                ArrayList arrayList2 = arrayListArr[i12];
+                if (arrayList2 != null) {
+                    if (arrayListArr.length == 1) {
+                        min = arrayList2.size();
+                    } else {
+                        min = Math.min(ouVar.f24467f.f25172u1.J * 2, arrayList2.size());
+                    }
+                    i10 = min + i10 + 1;
+                }
+                i12++;
+            }
+        }
+        return Math.max(0, ouVar.f24466c.length - 1) + i11 + i10;
     }
 
     @Override
-    public void setDisablePaddingsOffsetY(boolean z10) {
-        this.f32683b0 = z10;
+    public final int d(int i10) {
+        cv cvVar = this.f30358c;
+        ou ouVar = cvVar.l1;
+        int i11 = 0;
+        if (i10 == 0) {
+            return 0;
+        }
+        int i12 = i10 - 1;
+        if (cvVar.f25177z1) {
+            if (i12 == 1) {
+                return 3;
+            }
+            if (i12 > 0) {
+                i12 = i10 - 2;
+            }
+        }
+        int i13 = 0;
+        while (true) {
+            ArrayList[] arrayListArr = ouVar.f24466c;
+            if (i11 >= arrayListArr.length) {
+                return 1;
+            }
+            if (i12 == i13) {
+                return 2;
+            }
+            int size = arrayListArr[i11].size();
+            if (ouVar.f24466c.length > 1) {
+                size = Math.min(cvVar.f25172u1.J * 2, size);
+            }
+            int i14 = size + 1 + i13;
+            if (i12 == i14) {
+                return 4;
+            }
+            i13 = i14 + 1;
+            i11++;
+        }
     }
 
     @Override
-    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+    public final void t(s4.c1 r17, int r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.su.t(s4.c1, int):void");
+    }
+
+    @Override
+    public final s4.c1 w(ViewGroup viewGroup, int i10) {
+        View view;
+        View view2;
+        cv cvVar = this.f30358c;
+        if (i10 == 0) {
+            view = cvVar.f25163k1;
+        } else {
+            boolean z10 = true;
+            if (i10 == 1) {
+                ?? view3 = new View(cvVar.getContext());
+                view3.f31842a = new org.telegram.messenger.jc[2];
+                view2 = view3;
+            } else if (i10 == 2) {
+                Context context = cvVar.getContext();
+                if (cvVar.l1.f24466c.length > 1) {
+                    z10 = false;
+                }
+                view2 = new yu(cvVar, context, z10);
+            } else if (i10 == 3) {
+                view2 = new TextView(cvVar.getContext());
+            } else if (i10 == 4) {
+                View view4 = new View(cvVar.getContext());
+                int i11 = org.telegram.ui.ActionBar.t6.f21337zf;
+                Pattern pattern = cv.M1;
+                org.telegram.ui.ActionBar.a7.i(i11, view4, cvVar.I0);
+                s4.o0 o0Var = new s4.o0(-1, org.telegram.messenger.i0.f1());
+                ((ViewGroup.MarginLayoutParams) o0Var).topMargin = org.telegram.messenger.i0.L(14.0f);
+                view4.setLayoutParams(o0Var);
+                view2 = view4;
+            } else {
+                view = null;
+            }
+            view = view2;
+        }
+        return new s4.c1(view);
     }
 }

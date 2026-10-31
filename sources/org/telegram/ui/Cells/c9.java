@@ -1,132 +1,103 @@
 package org.telegram.ui.Cells;
 
-import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.util.Property;
+import android.graphics.Typeface;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.wh;
-import org.telegram.ui.Components.kb1;
+import org.telegram.messenger.cd;
+import org.telegram.messenger.z20;
 public final class c9 extends FrameLayout {
-    public static Paint d;
-    public static final int[] e = {-1031100, -29183, -12769, -8792480, -12521994, -12140801, -2984711, -45162, -4473925};
-    public static final int[] f23945f = {-65536, -29183, -256, -16711936, -16711681, -16776961, -2984711, -65281, -1};
-    public final TextView f23946a;
-    public boolean f23947b;
-    public int f23948c;
+    public final TextView f21796a;
+    public final TextView f21797b;
 
-    public c9(Context context, org.telegram.ui.ActionBar.u6 u6Var) {
+    public c9(Context context) {
         super(context);
         int i10;
-        if (d == null) {
-            d = new Paint(1);
-        }
+        int i11;
+        int i12;
+        setWillNotDraw(false);
         TextView textView = new TextView(context);
-        this.f23946a = textView;
-        org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.G6, u6Var);
-        wh.r(textView, 1, 16.0f, 1, 1);
+        this.f21796a = textView;
+        z20.o(textView, 1, 16.0f, 1, 1);
         textView.setSingleLine(true);
-        if (LocaleController.isRTL) {
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView.setEllipsize(truncateAt);
+        if (cd.X) {
             i10 = 5;
         } else {
             i10 = 3;
         }
         textView.setGravity(i10 | 16);
-        addView(textView, kb1.h(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, 21.0f, 0.0f, 21.0f, 0.0f));
+        if (cd.X) {
+            i11 = 5;
+        } else {
+            i11 = 3;
+        }
+        addView(textView, w7.b6.d(-2, -1.0f, i11 | 48, 21.0f, 0.0f, 21.0f, 0.0f));
+        TextView textView2 = new TextView(context);
+        this.f21797b = textView2;
+        textView2.setTextSize(1, 16.0f);
+        textView2.setTypeface(org.telegram.messenger.i0.o());
+        textView2.setLines(1);
+        textView2.setMaxLines(1);
+        textView2.setSingleLine(true);
+        textView2.setEllipsize(truncateAt);
+        if (cd.X) {
+            i12 = 3;
+        } else {
+            i12 = 5;
+        }
+        textView2.setGravity(i12 | 16);
+        addView(textView2, w7.b6.d(-2, -1.0f, (cd.X ? 3 : 5) | 48, 21.0f, 0.0f, 21.0f, 0.0f));
     }
 
-    public final void a(ArrayList arrayList, boolean z10) {
-        float f7;
-        float f10;
-        setEnabled(z10);
-        TextView textView = this.f23946a;
-        float f11 = 0.5f;
-        if (arrayList != null) {
-            if (z10) {
-                f10 = 1.0f;
-            } else {
-                f10 = 0.5f;
-            }
-            float[] fArr = {f10};
-            Property property = View.ALPHA;
-            arrayList.add(ObjectAnimator.ofFloat(textView, property, fArr));
-            if (z10) {
-                f11 = 1.0f;
-            }
-            arrayList.add(ObjectAnimator.ofFloat(this, property, f11));
-            return;
+    public final void a(String str, String str2, boolean z10) {
+        TextView textView = this.f21796a;
+        textView.setText(str);
+        TextView textView2 = this.f21797b;
+        if (str2 != null) {
+            textView2.setText(str2);
+            textView2.setVisibility(0);
+        } else {
+            textView2.setVisibility(4);
         }
         if (z10) {
-            f7 = 1.0f;
+            int i10 = org.telegram.ui.ActionBar.t6.G6;
+            setTag(Integer.valueOf(i10));
+            org.telegram.ui.ActionBar.a7.V(textView, i10, null);
+            org.telegram.ui.ActionBar.a7.V(textView2, i10, null);
+            textView.setTypeface(org.telegram.messenger.i0.o());
+            textView2.setTypeface(org.telegram.messenger.i0.o());
         } else {
-            f7 = 0.5f;
+            int i11 = org.telegram.ui.ActionBar.t6.f21330z6;
+            setTag(Integer.valueOf(i11));
+            org.telegram.ui.ActionBar.a7.V(textView, i11, null);
+            org.telegram.ui.ActionBar.a7.V(textView2, i11, null);
+            Typeface typeface = Typeface.DEFAULT;
+            textView.setTypeface(typeface);
+            textView2.setTypeface(typeface);
         }
-        textView.setAlpha(f7);
-        if (z10) {
-            f11 = 1.0f;
-        }
-        setAlpha(f11);
-    }
-
-    public final void b(int i10, String str, boolean z10) {
-        boolean z11;
-        this.f23946a.setText(str);
-        this.f23947b = z10;
-        this.f23948c = i10;
-        if (!z10 && i10 == 0) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        setWillNotDraw(z11);
-        invalidate();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        int measuredWidth;
-        float dp;
-        int i10;
-        if (this.f23947b) {
-            if (LocaleController.isRTL) {
-                dp = 0.0f;
-            } else {
-                dp = AndroidUtilities.dp(20.0f);
-            }
-            float f7 = dp;
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth2 = getMeasuredWidth();
-            if (LocaleController.isRTL) {
-                i10 = AndroidUtilities.dp(20.0f);
-            } else {
-                i10 = 0;
-            }
-            canvas2 = canvas;
-            canvas2.drawLine(f7, measuredHeight, measuredWidth2 - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.y6.f23479k0);
-        } else {
-            canvas2 = canvas;
-        }
-        int i11 = this.f23948c;
-        if (i11 != 0) {
-            d.setColor(i11);
-            if (LocaleController.isRTL) {
-                measuredWidth = AndroidUtilities.dp(33.0f);
-            } else {
-                measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(33.0f);
-            }
-            canvas2.drawCircle(measuredWidth, getMeasuredHeight() / 2, AndroidUtilities.dp(10.0f), d);
-        }
+        requestLayout();
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.f23947b ? 1 : 0), 1073741824));
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), org.telegram.messenger.i0.L(40.0f));
+        int measuredWidth = ((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - org.telegram.messenger.i0.L(34.0f);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(measuredWidth / 2, Integer.MIN_VALUE);
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824);
+        TextView textView = this.f21797b;
+        textView.measure(makeMeasureSpec, makeMeasureSpec2);
+        this.f21796a.measure(View.MeasureSpec.makeMeasureSpec((measuredWidth - textView.getMeasuredWidth()) - org.telegram.messenger.i0.L(8.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+    }
+
+    public void setTextColor(int i10) {
+        this.f21796a.setTextColor(i10);
+    }
+
+    public void setTextValueColor(int i10) {
+        this.f21797b.setTextColor(i10);
     }
 }

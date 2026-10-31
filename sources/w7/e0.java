@@ -1,10 +1,19 @@
 package w7;
+
+import android.os.Parcel;
+import android.os.Parcelable;
 public abstract class e0 {
-    public static xd.e a(int i10, int i11) {
-        if (i11 <= Integer.MIN_VALUE) {
-            xd.e eVar = xd.e.d;
-            return xd.e.d;
+    public static Parcelable a(Parcelable parcelable, Parcelable.Creator creator) {
+        if (parcelable == null) {
+            return null;
         }
-        return new xd.d(i10, i11 - 1, 1);
+        Parcel obtain = Parcel.obtain();
+        try {
+            parcelable.writeToParcel(obtain, 0);
+            obtain.setDataPosition(0);
+            return (Parcelable) creator.createFromParcel(obtain);
+        } finally {
+            obtain.recycle();
+        }
     }
 }

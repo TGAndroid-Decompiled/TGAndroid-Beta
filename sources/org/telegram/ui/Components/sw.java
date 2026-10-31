@@ -1,22 +1,26 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaDataController;
-public final class sw implements View.OnFocusChangeListener {
-    public final sz f32693a;
+import android.content.Context;
+public final class sw extends s4.b0 {
+    public final int f30364r;
 
-    public sw(sz szVar) {
-        this.f32693a = szVar;
+    public sw(Context context, int i10) {
+        super(context);
+        this.f30364r = i10;
     }
 
     @Override
-    public final void onFocusChange(View view, boolean z10) {
-        if (z10) {
-            String[] currentKeyboardLanguage = AndroidUtilities.getCurrentKeyboardLanguage();
-            sz szVar = this.f32693a;
-            szVar.W0 = currentKeyboardLanguage;
-            MediaDataController.getInstance(szVar.f32713c1).fetchNewEmojiKeywords(szVar.W0);
-        }
+    public final int i(int i10, int i11, int i12, int i13, int i14) {
+        return super.i(i10, i11, i12, i13, i14) + this.f30364r;
+    }
+
+    @Override
+    public final int m(int i10) {
+        return super.m(i10) * 16;
+    }
+
+    @Override
+    public final int p() {
+        return -1;
     }
 }

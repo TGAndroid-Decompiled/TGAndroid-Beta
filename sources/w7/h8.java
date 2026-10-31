@@ -1,30 +1,45 @@
 package w7;
+public abstract class h8 {
+    public static void a(int i10, int i11) {
+        String a2;
+        if (i10 >= 0 && i10 < i11) {
+            return;
+        }
+        if (i10 >= 0) {
+            if (i11 < 0) {
+                throw new IllegalArgumentException(i0.a.i(i11, "negative size: "));
+            }
+            a2 = i8.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i10), Integer.valueOf(i11));
+        } else {
+            a2 = i8.a("%s (%s) must not be negative", "index", Integer.valueOf(i10));
+        }
+        throw new IndexOutOfBoundsException(a2);
+    }
 
-import a8.ff;
-public final class h8 {
-    public final String f50929a;
-    public final String f50930b;
-    public final String f50931c;
-    public final String d;
-    public final m9 e;
-    public final String f50932f;
-    public final Boolean f50933g;
-    public final Boolean h;
-    public final Boolean f50934i;
-    public final Integer f50935j;
-    public final Integer f50936k;
+    public static void b(int i10, int i11, int i12) {
+        String c10;
+        if (i10 >= 0 && i11 >= i10 && i11 <= i12) {
+            return;
+        }
+        if (i10 >= 0 && i10 <= i12) {
+            if (i11 >= 0 && i11 <= i12) {
+                c10 = i8.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i11), Integer.valueOf(i10));
+            } else {
+                c10 = c(i11, i12, "end index");
+            }
+        } else {
+            c10 = c(i10, i12, "start index");
+        }
+        throw new IndexOutOfBoundsException(c10);
+    }
 
-    public h8(ff ffVar) {
-        this.f50929a = ffVar.f455a;
-        this.f50930b = ffVar.f456b;
-        this.f50931c = ffVar.d;
-        this.d = ffVar.e;
-        this.e = (m9) ffVar.f459g;
-        this.f50932f = ffVar.f458f;
-        this.f50933g = (Boolean) ffVar.h;
-        this.h = (Boolean) ffVar.f460i;
-        this.f50934i = (Boolean) ffVar.f461j;
-        this.f50935j = ffVar.f457c;
-        this.f50936k = (Integer) ffVar.f462k;
+    public static String c(int i10, int i11, String str) {
+        if (i10 < 0) {
+            return i8.a("%s (%s) must not be negative", str, Integer.valueOf(i10));
+        }
+        if (i11 >= 0) {
+            return i8.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i10), Integer.valueOf(i11));
+        }
+        throw new IllegalArgumentException(i0.a.i(i11, "negative size: "));
     }
 }

@@ -1,4 +1,5 @@
 package x7;
-public interface b {
-    int zza();
+
+import java.util.RandomAccess;
+public final class b extends e9.m implements RandomAccess {
 }

@@ -1,9 +1,7 @@
 package org.telegram.ui.Components;
-
-import org.telegram.messenger.MessageObject;
-public final class xv0 extends MessageObject {
-    @Override
-    public final float getProgress() {
-        return this.uploadingStory.h;
-    }
+public final class xv0 {
+    public String f32548a;
+    public boolean f32549b;
+    public long f32550c;
+    public String d;
 }

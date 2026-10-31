@@ -1,42 +1,74 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.text.TextUtils;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class zo0 extends et {
-    public final org.telegram.ui.ey f35405f0;
-    public final org.telegram.ui.mx f35406g0;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.widget.FrameLayout;
+public final class zo0 extends AnimatorListenerAdapter {
+    public final int f33137a;
+    public final boolean f33138b;
+    public final op0 f33139c;
 
-    public zo0(org.telegram.ui.mx mxVar, nm0 nm0Var, Context context, int i10, int i11, org.telegram.ui.ey eyVar) {
-        super(nm0Var, context, i10, i11);
-        this.f35406g0 = mxVar;
-        this.f35405f0 = eyVar;
+    public zo0(op0 op0Var, boolean z10, int i10) {
+        this.f33137a = i10;
+        this.f33139c = op0Var;
+        this.f33138b = z10;
     }
 
     @Override
-    public final void O(boolean z10) {
-        boolean z11;
-        ArrayList arrayList;
-        ArrayList arrayList2;
-        ArrayList arrayList3;
-        ArrayList arrayList4;
-        super.O(z10);
-        ro0 ro0Var = this.f35406g0.f28249i0;
-        if (!this.Y && !this.Z && (arrayList = this.R) != null && arrayList.isEmpty() && (arrayList2 = this.S) != null && arrayList2.isEmpty() && (arrayList3 = this.U) != null && arrayList3.isEmpty() && (arrayList4 = this.T) != null && arrayList4.isEmpty()) {
-            z11 = false;
-        } else {
-            z11 = true;
+    public final void onAnimationCancel(Animator animator) {
+        switch (this.f33137a) {
+            case 0:
+                AnimatorSet[] animatorSetArr = this.f33139c.L1;
+                AnimatorSet animatorSet = animatorSetArr[0];
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    animatorSetArr[0] = null;
+                    return;
+                }
+                return;
+            default:
+                op0 op0Var = this.f33139c;
+                if (animator.equals(op0Var.f29145v1)) {
+                    op0Var.f29145v1 = null;
+                    return;
+                }
+                return;
         }
-        ro0Var.e(z11, z10);
-        if (TextUtils.isEmpty(this.f27925d0)) {
-            ro0Var.d.setText(LocaleController.getString(R.string.NoChannelsTitle));
-            ro0Var.e.setVisibility(0);
-            ro0Var.e.setText(LocaleController.getString(R.string.NoChannelsMessage));
-            return;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f33137a) {
+            case 0:
+                op0 op0Var = this.f33139c;
+                AnimatorSet[] animatorSetArr = op0Var.L1;
+                AnimatorSet animatorSet = animatorSetArr[0];
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    if (!this.f33138b) {
+                        op0Var.K1[0].setVisibility(4);
+                    }
+                    animatorSetArr[0] = null;
+                    return;
+                }
+                return;
+            default:
+                op0 op0Var2 = this.f33139c;
+                FrameLayout frameLayout = op0Var2.f29129n1;
+                if (animator.equals(op0Var2.f29145v1)) {
+                    if (!this.f33138b) {
+                        op0Var2.f29122j1.setVisibility(4);
+                        FrameLayout frameLayout2 = op0Var2.U1;
+                        if (frameLayout2 != null && frameLayout == null) {
+                            frameLayout2.setVisibility(4);
+                        }
+                        op0Var2.f29127m1.setVisibility(4);
+                    } else if (frameLayout != null) {
+                        frameLayout.setVisibility(4);
+                    }
+                    op0Var2.f29145v1 = null;
+                    return;
+                }
+                return;
         }
-        ro0Var.d.setText(LocaleController.getString(R.string.NoResult));
-        ro0Var.e.setVisibility(8);
     }
 }

@@ -1,25 +1,30 @@
 package org.telegram.messenger;
-public final class fh implements Runnable {
-    public final int f20101a;
-    public final NotificationsController f20102b;
-    public final long f20103c;
-    public final int d;
 
-    public fh(NotificationsController notificationsController, long j10, int i10, int i11) {
-        this.f20101a = i11;
-        this.f20102b = notificationsController;
-        this.f20103c = j10;
-        this.d = i10;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class fh implements q20 {
+    public final int f15565a;
+    public final ui f15566b;
+    public final TLRPC.StickerSet f15567c;
+
+    public fh(ui uiVar, TLRPC.StickerSet stickerSet, int i10) {
+        this.f15565a = i10;
+        this.f15566b = uiVar;
+        this.f15567c = stickerSet;
     }
 
     @Override
-    public final void run() {
-        switch (this.f20101a) {
+    public final void a(Object obj) {
+        int i10 = this.f15565a;
+        ArrayList arrayList = (ArrayList) obj;
+        ui uiVar = this.f15566b;
+        uiVar.getClass();
+        switch (i10) {
             case 0:
-                this.f20102b.lambda$processDeleteStory$16(this.f20103c, this.d);
+                uiVar.f1(this.f15567c.f19820id, false);
                 return;
             default:
-                this.f20102b.lambda$processReadStories$17(this.f20103c, this.d);
+                uiVar.g1(this.f15567c.f19820id, false);
                 return;
         }
     }

@@ -1,16 +1,34 @@
 package m7;
 
-import android.os.Build;
+import android.os.BadParcelableException;
+import android.os.IInterface;
+import android.os.Parcel;
+import android.os.Parcelable;
 public abstract class a {
-    public static final int f18360a;
-
     static {
-        int i10;
-        if (Build.VERSION.SDK_INT >= 31) {
-            i10 = 33554432;
-        } else {
-            i10 = 0;
+        a.class.getClassLoader();
+    }
+
+    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() == 0) {
+            return null;
         }
-        f18360a = i10;
+        return (Parcelable) creator.createFromParcel(parcel);
+    }
+
+    public static void b(Parcel parcel) {
+        int dataAvail = parcel.dataAvail();
+        if (dataAvail <= 0) {
+            return;
+        }
+        throw new BadParcelableException(i0.a.i(dataAvail, "Parcel data not fully consumed, unread size: "));
+    }
+
+    public static void c(Parcel parcel, IInterface iInterface) {
+        if (iInterface == null) {
+            parcel.writeStrongBinder(null);
+        } else {
+            parcel.writeStrongBinder(iInterface.asBinder());
+        }
     }
 }

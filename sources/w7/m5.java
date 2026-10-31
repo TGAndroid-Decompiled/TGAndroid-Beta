@@ -1,110 +1,38 @@
 package w7;
-public abstract class m5 {
-    public static final w0.d a(CharSequence charSequence, String str) {
-        String str2;
-        switch (str.hashCode()) {
-            case -2055374133:
-                if (str.equals("android.credentials.CreateCredentialException.TYPE_USER_CANCELED")) {
-                    return new w0.b(charSequence);
-                }
-                break;
-            case -1166690414:
-                if (str.equals("androidx.credentials.TYPE_CREATE_CREDENTIAL_UNSUPPORTED_EXCEPTION")) {
-                    return new w0.c(charSequence, 3);
-                }
-                break;
-            case -580283253:
-                if (str.equals("androidx.credentials.TYPE_CREATE_CREDENTIAL_PROVIDER_CONFIGURATION_EXCEPTION")) {
-                    return new w0.c(charSequence, 1);
-                }
-                break;
-            case 1316905704:
-                if (str.equals("android.credentials.CreateCredentialException.TYPE_UNKNOWN")) {
-                    return new w0.c(charSequence, 2);
-                }
-                break;
-            case 2092588512:
-                if (str.equals("android.credentials.CreateCredentialException.TYPE_INTERRUPTED")) {
-                    return new w0.e(charSequence);
-                }
-                break;
-            case 2131915191:
-                if (str.equals("android.credentials.CreateCredentialException.TYPE_NO_CREATE_OPTIONS")) {
-                    return new w0.f(charSequence);
-                }
-                break;
-        }
-        if (ae.k.h(str, "androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION")) {
-            int i10 = y0.a.f51977c;
-            if (charSequence != null) {
-                str2 = charSequence.toString();
-            } else {
-                str2 = null;
-            }
-            try {
-                if (ae.k.b(str, "androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION")) {
-                    int i11 = y0.a.f51977c;
-                    return f0.a(str, str2);
-                }
-                throw new Exception();
-            } catch (z0.a unused) {
-                return new w0.c(str2, str);
-            }
-        }
-        return new w0.c(charSequence, str);
-    }
+public final class m5 implements ja.d {
+    public static final m5 f52634a = new Object();
+    public static final ja.c f52635b = new ja.c("appId", i0.a.o(sc.e.l(d.class, new a(1))));
+    public static final ja.c f52636c = new ja.c("appVersion", i0.a.o(sc.e.l(d.class, new a(2))));
+    public static final ja.c d = new ja.c("firebaseProjectId", i0.a.o(sc.e.l(d.class, new a(3))));
+    public static final ja.c e = new ja.c("mlSdkVersion", i0.a.o(sc.e.l(d.class, new a(4))));
+    public static final ja.c f52637f = new ja.c("tfliteSchemaVersion", i0.a.o(sc.e.l(d.class, new a(5))));
+    public static final ja.c f52638g = new ja.c("gcmSenderId", i0.a.o(sc.e.l(d.class, new a(6))));
+    public static final ja.c h = new ja.c("apiKey", i0.a.o(sc.e.l(d.class, new a(7))));
+    public static final ja.c f52639i = new ja.c("languages", i0.a.o(sc.e.l(d.class, new a(8))));
+    public static final ja.c f52640j = new ja.c("mlSdkInstanceId", i0.a.o(sc.e.l(d.class, new a(9))));
+    public static final ja.c f52641k = new ja.c("isClearcutClient", i0.a.o(sc.e.l(d.class, new a(10))));
+    public static final ja.c f52642l = new ja.c("isStandaloneMlkit", i0.a.o(sc.e.l(d.class, new a(11))));
+    public static final ja.c f52643m = new ja.c("isJsonLogging", i0.a.o(sc.e.l(d.class, new a(12))));
+    public static final ja.c f52644n = new ja.c("buildLevel", i0.a.o(sc.e.l(d.class, new a(13))));
+    public static final ja.c f52645o = new ja.c("optionalModuleVersion", i0.a.o(sc.e.l(d.class, new a(14))));
 
-    public static final w0.i b(CharSequence charSequence, String str) {
-        String str2;
-        switch (str.hashCode()) {
-            case -781118336:
-                if (str.equals("android.credentials.GetCredentialException.TYPE_UNKNOWN")) {
-                    return new w0.h(charSequence, 2);
-                }
-                break;
-            case -408155724:
-                if (str.equals("androidx.credentials.TYPE_GET_CREDENTIAL_UNSUPPORTED_EXCEPTION")) {
-                    return new w0.h(charSequence, 3);
-                }
-                break;
-            case -45448328:
-                if (str.equals("android.credentials.GetCredentialException.TYPE_INTERRUPTED")) {
-                    return new w0.j(charSequence);
-                }
-                break;
-            case 580557411:
-                if (str.equals("android.credentials.GetCredentialException.TYPE_USER_CANCELED")) {
-                    return new w0.g(charSequence);
-                }
-                break;
-            case 627896683:
-                if (str.equals("android.credentials.GetCredentialException.TYPE_NO_CREDENTIAL")) {
-                    return new w0.k(charSequence);
-                }
-                break;
-            case 1594095913:
-                if (str.equals("androidx.credentials.TYPE_GET_CREDENTIAL_PROVIDER_CONFIGURATION_EXCEPTION")) {
-                    return new w0.h(charSequence, 1);
-                }
-                break;
-        }
-        if (ae.k.h(str, "androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION")) {
-            int i10 = y0.b.f51979c;
-            if (charSequence != null) {
-                str2 = charSequence.toString();
-            } else {
-                str2 = null;
-            }
-            try {
-                if (ae.k.h(str, "androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION")) {
-                    int i11 = y0.b.f51979c;
-                    return h0.a(str, str2);
-                }
-                throw new Exception();
-            } catch (z0.a unused) {
-                return new w0.h(str2, str);
-            }
-        }
-        return new w0.h(charSequence, str);
+    @Override
+    public final void a(Object obj, Object obj2) {
+        j9 j9Var = (j9) obj;
+        ja.e eVar = (ja.e) obj2;
+        eVar.d(f52635b, j9Var.f52595a);
+        eVar.d(f52636c, j9Var.f52596b);
+        eVar.d(d, null);
+        eVar.d(e, j9Var.f52597c);
+        eVar.d(f52637f, j9Var.d);
+        eVar.d(f52638g, null);
+        eVar.d(h, null);
+        eVar.d(f52639i, j9Var.e);
+        eVar.d(f52640j, j9Var.f52598f);
+        eVar.d(f52641k, j9Var.f52599g);
+        eVar.d(f52642l, j9Var.h);
+        eVar.d(f52643m, j9Var.f52600i);
+        eVar.d(f52644n, j9Var.f52601j);
+        eVar.d(f52645o, j9Var.f52602k);
     }
 }

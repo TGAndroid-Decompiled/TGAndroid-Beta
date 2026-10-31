@@ -1,60 +1,52 @@
 package org.telegram.ui.web;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import java.io.BufferedInputStream;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import org.telegram.messenger.SvgHelper;
-public final class g1 extends AsyncTask {
-    public final HashMap f44760a = new HashMap();
-    public final org.telegram.ui.Wallet.s f44761b;
-    public Exception f44762c;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.cd;
+import org.telegram.messenger.tz;
+public final class g1 {
+    public static ArrayList d;
+    public final String f43045a;
+    public final String f43046b;
+    public final String f43047c;
 
-    public g1(org.telegram.ui.Wallet.s sVar) {
-        this.f44761b = sVar;
+    public g1(String str, String str2, String str3) {
+        this.f43045a = str;
+        this.f43046b = str2;
+        this.f43047c = str3;
     }
 
-    @Override
-    public final Object doInBackground(Object[] objArr) {
-        try {
-            HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(((String[]) objArr)[0]).openConnection();
-            for (Map.Entry entry : this.f44760a.entrySet()) {
-                if (entry.getKey() != null && entry.getValue() != null) {
-                    httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
-                }
-            }
-            httpURLConnection.setRequestMethod("GET");
-            httpURLConnection.setDoInput(true);
-            int responseCode = httpURLConnection.getResponseCode();
-            if (responseCode >= 200 && responseCode < 300) {
-                if (httpURLConnection.getContentType() != null && httpURLConnection.getContentType().contains("svg")) {
-                    return SvgHelper.getBitmap((InputStream) new BufferedInputStream(httpURLConnection.getInputStream()), 64, 64, false);
-                }
-                return BitmapFactory.decodeStream(new BufferedInputStream(httpURLConnection.getInputStream()));
-            }
-            httpURLConnection.disconnect();
-            return null;
-        } catch (Exception e) {
-            this.f44762c = e;
-            return null;
+    public static g1 a() {
+        ArrayList b10 = b();
+        if (b10.isEmpty()) {
+            return new g1("Google", "https://www.google.com/search?q=", "https://suggestqueries.google.com/complete/search?client=chrome&amp;q=");
         }
+        return (g1) b10.get(Utilities.j(tz.f18172p0, b10.size() - 1, 0));
     }
 
-    @Override
-    public final void onPostExecute(Object obj) {
-        Bitmap bitmap = (Bitmap) obj;
-        org.telegram.ui.Wallet.s sVar = this.f44761b;
-        if (sVar != null) {
-            if (this.f44762c == null) {
-                sVar.run(bitmap);
-            } else {
-                sVar.run(null);
+    public static ArrayList b() {
+        if (d == null) {
+            d = new ArrayList();
+            int i10 = 1;
+            while (true) {
+                String c10 = c(cd.M0("SearchEngine" + i10 + "Name"));
+                if (c10 == null) {
+                    break;
+                }
+                String c11 = c(cd.M0("SearchEngine" + i10 + "SearchURL"));
+                String c12 = c(cd.M0("SearchEngine" + i10 + "AutocompleteURL"));
+                c(cd.M0("SearchEngine" + i10 + "PrivacyPolicyURL"));
+                d.add(new g1(c10, c11, c12));
+                i10++;
             }
         }
+        return d;
+    }
+
+    public static String c(String str) {
+        if (str != null && !str.startsWith("LOC_ERR") && !"reserved".equals(str)) {
+            return str;
+        }
+        return null;
     }
 }

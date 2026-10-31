@@ -1,60 +1,44 @@
 package ig;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.sz;
+import android.graphics.RectF;
 public final class f1 {
-    public final int f14053a;
-    public final long f14054b;
-    public final long f14055c;
-    public boolean e;
-    public final int f14057g;
-    public final NotificationCenter.NotificationCenterDelegate h;
-    public boolean d = false;
-    public long f14056f = -1;
+    public final g f8299a;
+    public float f8300b;
+    public float f8301c;
+    public float d;
+    public float e;
+    public float f8302f;
+    public float f8303g;
+    public float h;
+    public float f8304i;
+    public float f8305j;
+    public float f8306k;
+    public boolean f8307l;
 
-    public f1(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10, long j10, long j11, int i11) {
-        this.f14057g = i11;
-        this.h = notificationCenterDelegate;
-        this.f14053a = i10;
-        this.f14054b = j10;
-        this.f14055c = j11;
+    public f1(g gVar) {
+        this.f8299a = gVar;
     }
 
-    public final void a() {
-        boolean N;
-        switch (this.f14057g) {
-            case 0:
-                N = ((j1) this.h).N();
-                break;
-            default:
-                sz szVar = (sz) this.h;
-                if (szVar.f32766t1 != null && szVar.getVisibility() == 0 && szVar.K0) {
-                    N = true;
-                    break;
-                } else {
-                    N = false;
-                    break;
-                }
-        }
-        this.d = N;
-        if (!N) {
-            if (this.e) {
-                MessagesController.getInstance(this.f14053a).sendTyping(this.f14054b, this.f14055c, 2, 0);
-            }
-            this.f14056f = -1L;
-        }
-    }
-
-    public final void b() {
-        if (this.d) {
-            if (this.f14056f == -1) {
-                this.f14056f = System.currentTimeMillis();
-            } else if (System.currentTimeMillis() - this.f14056f > 2000) {
-                this.e = true;
-                this.f14056f = System.currentTimeMillis();
-                MessagesController.getInstance(this.f14053a).sendTyping(this.f14054b, this.f14055c, 10, 0);
+    public final void a(RectF rectF) {
+        g gVar = this.f8299a;
+        if (gVar.o() == 4) {
+            float f7 = this.f8300b;
+            float f10 = this.f8306k;
+            float f11 = this.f8301c;
+            rectF.set(f7 - f10, f11 - f10, f7 + f10, f11 + f10);
+            rectF.union(this.d, this.e);
+            rectF.union(this.f8304i, this.f8305j);
+        } else {
+            float max = Math.max(Math.abs(this.d), Math.abs(this.e));
+            float f12 = this.f8300b;
+            float f13 = max * 1.42f;
+            float f14 = this.f8301c;
+            rectF.set(f12 - f13, f14 - f13, f12 + f13, f14 + f13);
+            if (gVar.o() == 3) {
+                rectF.union(this.f8304i, this.f8305j);
             }
         }
+        float f15 = (-this.f8302f) - 3.0f;
+        rectF.inset(f15, f15);
     }
 }

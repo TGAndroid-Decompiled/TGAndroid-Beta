@@ -1,38 +1,44 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChannelBoostsController;
-import org.telegram.messenger.Utilities;
+import android.app.Activity;
+import android.view.View;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public final class gc implements Utilities.Callback {
-    public final int f39583a;
-    public final bd f39584b;
+import org.telegram.tgnet.tl.TL_stars;
+public final class gc extends i31 {
+    public final bc f37504e2;
+    public final z21[] f37505f2;
+    public final zc f37506g2;
 
-    public gc(bd bdVar, int i10) {
-        this.f39583a = i10;
-        this.f39584b = bdVar;
+    public gc(zc zcVar, zc zcVar2, Activity activity, Integer num, int i10, org.telegram.ui.ActionBar.p6 p6Var, int i11, int i12, bc bcVar, z21[] z21VarArr) {
+        super(zcVar2, activity, true, num, i10, true, p6Var, i11, i12);
+        this.f37506g2 = zcVar;
+        this.f37504e2 = bcVar;
+        this.f37505f2 = z21VarArr;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f39583a) {
-            case 0:
-                TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) obj;
-                bd bdVar = this.f39584b;
-                bdVar.E = wallPaper;
-                bdVar.F = wallPaper;
-                bdVar.G = wallPaper;
-                bdVar.a1(false);
-                bdVar.d1(false);
-                AndroidUtilities.runOnUIThread(new hc(bdVar, 1), 350L);
-                return;
-            case 1:
-                bd.W(this.f39584b, (ChannelBoostsController.CanApplyBoost) obj);
-                return;
-            default:
-                this.f39584b.Z0((TL_stories.TL_premium_boostsStatus) obj);
-                return;
+    public final long getDialogId() {
+        return this.f37506g2.f44086a;
+    }
+
+    @Override
+    public final float getScrimDrawableTranslationY() {
+        return 0.0f;
+    }
+
+    @Override
+    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        long longValue;
+        if (l4 == null) {
+            longValue = 0;
+        } else {
+            longValue = l4.longValue();
+        }
+        this.f37504e2.a(Long.valueOf(longValue), num, tL_starGiftUnique);
+        z21 z21Var = this.f37505f2[0];
+        if (z21Var != null) {
+            this.f37506g2.Q = null;
+            z21Var.dismiss();
         }
     }
 }

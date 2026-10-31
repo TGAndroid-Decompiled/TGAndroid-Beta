@@ -1,78 +1,40 @@
 package w7;
-
-import java.io.Serializable;
-import java.lang.reflect.Array;
-import java.util.AbstractCollection;
-import java.util.Arrays;
-import java.util.Collection;
-public abstract class h9 extends AbstractCollection implements Serializable {
-    public static final Object[] f50937a = new Object[0];
-
-    @Override
-    public final boolean add(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean addAll(Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final void clear() {
-        throw new UnsupportedOperationException();
-    }
-
-    public abstract int h(Object[] objArr);
-
-    public int m() {
-        throw new UnsupportedOperationException();
-    }
-
-    public int n() {
-        throw new UnsupportedOperationException();
-    }
-
-    public Object[] o() {
-        return null;
-    }
-
-    @Override
-    public final boolean remove(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean removeAll(Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean retainAll(Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final Object[] toArray() {
-        return toArray(f50937a);
-    }
-
-    @Override
-    public final Object[] toArray(Object[] objArr) {
-        objArr.getClass();
-        int size = size();
-        int length = objArr.length;
-        if (length < size) {
-            Object[] o10 = o();
-            if (o10 == null) {
-                objArr = (Object[]) Array.newInstance(objArr.getClass().getComponentType(), size);
-            } else {
-                return Arrays.copyOfRange(o10, n(), m(), objArr.getClass());
+public abstract class h9 {
+    public static void a(ve.r rVar, ve.r rVar2, int i10) {
+        if (rVar != null && rVar2 != null && rVar != rVar2) {
+            StringBuilder sb2 = new StringBuilder(i10);
+            sb2.append(rVar.f50811g);
+            df.c cVar = (df.c) rVar2.f5879f;
+            for (df.c cVar2 = (df.c) rVar.f5879f; cVar2 != cVar; cVar2 = (df.c) cVar2.f5879f) {
+                sb2.append(((ve.r) cVar2).f50811g);
+                cVar2.g();
             }
-        } else if (length > size) {
-            objArr[size] = null;
+            rVar.f50811g = sb2.toString();
         }
-        h(objArr);
-        return objArr;
+    }
+
+    public static void b(df.c cVar, df.c cVar2) {
+        ve.r rVar = null;
+        ve.r rVar2 = null;
+        int i10 = 0;
+        while (cVar != null) {
+            if (cVar instanceof ve.r) {
+                rVar2 = (ve.r) cVar;
+                if (rVar == null) {
+                    rVar = rVar2;
+                }
+                i10 = rVar2.f50811g.length() + i10;
+            } else {
+                a(rVar, rVar2, i10);
+                rVar = null;
+                rVar2 = null;
+                i10 = 0;
+            }
+            if (cVar == cVar2) {
+                break;
+            }
+            cVar = (df.c) cVar.f5879f;
+        }
+        a(rVar, rVar2, i10);
     }
 }

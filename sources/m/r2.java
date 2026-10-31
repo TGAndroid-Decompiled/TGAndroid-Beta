@@ -1,43 +1,55 @@
 package m;
 
+import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import androidx.appcompat.widget.SearchView;
+import vh.f5;
 public final class r2 implements View.OnFocusChangeListener {
-    public final int f17841a;
-    public final ViewGroup f17842b;
+    public final int f12539a;
+    public final KeyEvent.Callback f12540b;
 
-    public r2(ViewGroup viewGroup, int i10) {
-        this.f17841a = i10;
-        this.f17842b = viewGroup;
+    public r2(KeyEvent.Callback callback, int i10) {
+        this.f12539a = i10;
+        this.f12540b = callback;
     }
 
     @Override
     public final void onFocusChange(View view, boolean z10) {
-        switch (this.f17841a) {
+        switch (this.f12539a) {
             case 0:
-                SearchView searchView = (SearchView) this.f17842b;
-                View.OnFocusChangeListener onFocusChangeListener = searchView.f2220d0;
+                SearchView searchView = (SearchView) this.f12540b;
+                View.OnFocusChangeListener onFocusChangeListener = searchView.f1052d0;
                 if (onFocusChangeListener != null) {
                     onFocusChangeListener.onFocusChange(searchView, z10);
                     return;
                 }
                 return;
             case 1:
-                org.telegram.ui.Cells.d3 d3Var = (org.telegram.ui.Cells.d3) this.f17842b;
-                d3Var.f24006n = z10;
-                if (d3Var.h) {
-                    d3Var.c();
+                org.telegram.ui.Cells.j3 j3Var = (org.telegram.ui.Cells.j3) this.f12540b;
+                j3Var.f22068n = z10;
+                if (j3Var.h) {
+                    j3Var.c();
                     return;
                 }
                 return;
-            default:
-                org.telegram.ui.Cells.g3 g3Var = (org.telegram.ui.Cells.g3) this.f17842b;
-                g3Var.f24153s = z10;
-                if (g3Var.f24151n) {
-                    g3Var.c();
+            case 2:
+                org.telegram.ui.Cells.m3 m3Var = (org.telegram.ui.Cells.m3) this.f12540b;
+                m3Var.f22296s = z10;
+                if (m3Var.f22294n) {
+                    m3Var.c();
                 }
-                g3Var.a(z10);
+                m3Var.a(z10);
+                return;
+            default:
+                if (z10) {
+                    f5 f5Var = (f5) this.f12540b;
+                    f5Var.a2 = true;
+                    ci.p pVar = new ci.p(f5Var.getContext(), 2);
+                    pVar.f48045a = 1;
+                    pVar.f4253p = (org.telegram.ui.ActionBar.l.getCurrentActionBarHeight() + org.telegram.messenger.i0.f16020m) - org.telegram.messenger.i0.L(1.0f);
+                    ((s4.a0) f5Var.f26666k1.getLayoutManager()).w0(pVar);
+                    return;
+                }
                 return;
         }
     }

@@ -1,29 +1,28 @@
 package i2;
-
-import j$.util.Objects;
 public final class s1 {
-    public static final s1 f13758b;
-    public final f9.t0 f13759a;
+    public static final s1 f8078c = new s1(0, false);
+    public final int f8079a;
+    public final boolean f8080b;
 
-    static {
-        rb.c cVar = new rb.c(27);
-        cVar.f47358b = f9.t0.t(2, 1, 5);
-        f13758b = new s1(cVar);
-    }
-
-    public s1(rb.c cVar) {
-        this.f13759a = (f9.t0) cVar.f47358b;
+    public s1(int i10, boolean z10) {
+        this.f8079a = i10;
+        this.f8080b = z10;
     }
 
     public final boolean equals(Object obj) {
-        if ((obj instanceof s1) && this.f13759a.equals(((s1) obj).f13759a)) {
+        if (this == obj) {
             return true;
+        }
+        if (obj != null && s1.class == obj.getClass()) {
+            s1 s1Var = (s1) obj;
+            if (this.f8079a == s1Var.f8079a && this.f8080b == s1Var.f8080b) {
+                return true;
+            }
         }
         return false;
     }
 
     public final int hashCode() {
-        Boolean bool = Boolean.TRUE;
-        return Objects.hash(this.f13759a, null, null, bool, bool, bool, bool, bool);
+        return (this.f8079a << 1) + (this.f8080b ? 1 : 0);
     }
 }

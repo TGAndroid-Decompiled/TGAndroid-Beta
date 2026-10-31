@@ -1,53 +1,50 @@
 package org.telegram.ui.Components.voip;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.as;
-import org.telegram.ui.o30;
-public final class f0 extends View {
-    public final org.telegram.ui.Cells.y f33898a;
-    public final o30 f33899b;
+import android.animation.ValueAnimator;
+public final class f0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f31414a;
+    public final l0 f31415b;
 
-    public f0(o30 o30Var, Context context, org.telegram.ui.Cells.y yVar) {
-        super(context);
-        this.f33899b = o30Var;
-        this.f33898a = yVar;
+    public f0(l0 l0Var, int i10) {
+        this.f31414a = i10;
+        this.f31415b = l0Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        o30 o30Var = this.f33899b;
-        as asVar = o30Var.f34011c0;
-        float measuredWidth = (1.0f - asVar.f26653g) * o30Var.f34012d0.getMeasuredWidth();
-        canvas.save();
-        int dp = AndroidUtilities.dp(50.0f) + ((int) ((o30Var.f34013e0.getMeasuredWidth() * asVar.f26653g) + measuredWidth));
-        int measuredHeight = getMeasuredHeight();
-        org.telegram.ui.Cells.y yVar = this.f33898a;
-        yVar.setBounds(0, 0, dp, measuredHeight);
-        yVar.draw(canvas);
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void drawableStateChanged() {
-        super.drawableStateChanged();
-        this.f33898a.setState(getDrawableState());
-    }
-
-    @Override
-    public final void jumpDrawablesToCurrentState() {
-        super.jumpDrawablesToCurrentState();
-        this.f33898a.jumpToCurrentState();
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f33898a != drawable && !super.verifyDrawable(drawable)) {
-            return false;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f31414a) {
+            case 0:
+                l0 l0Var = this.f31415b;
+                l0Var.getClass();
+                l0Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                l0Var.invalidate();
+                return;
+            case 1:
+                l0 l0Var2 = this.f31415b;
+                l0Var2.getClass();
+                l0Var2.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float L = l0Var2.I + org.telegram.messenger.i0.L(28.0f);
+                float L2 = l0Var2.J + org.telegram.messenger.i0.L(52.0f);
+                float f7 = l0Var2.D;
+                l0Var2.G = L - (L * f7);
+                l0Var2.H = L2 - (f7 * L2);
+                l0Var2.invalidate();
+                return;
+            case 2:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                l0 l0Var3 = this.f31415b;
+                l0Var3.E = floatValue;
+                int L3 = (org.telegram.messenger.i0.f16026q.x - org.telegram.messenger.i0.L(36.0f)) - org.telegram.messenger.i0.L(52.0f);
+                j0 j0Var = l0Var3.f31514c;
+                j0Var.getLayoutParams().width = org.telegram.messenger.i0.L(52.0f) + ((int) (L3 * l0Var3.E));
+                j0Var.requestLayout();
+                return;
+            default:
+                l0 l0Var4 = this.f31415b;
+                l0Var4.getClass();
+                l0Var4.f31518s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                l0Var4.e();
+                return;
         }
-        return true;
     }
 }

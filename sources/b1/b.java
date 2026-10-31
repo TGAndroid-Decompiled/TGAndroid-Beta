@@ -1,35 +1,35 @@
 package b1;
 
+import ad.j;
 import com.google.android.gms.common.api.r;
-import di.b4;
 import java.util.concurrent.Executor;
-import v0.i;
-import v0.o;
-public final class b implements ud.a {
-    public final int f3103a;
-    public final Executor f3104b;
-    public final i f3105c;
+import v0.n;
+import w0.i;
+public final class b implements ld.a {
+    public final int f1941a;
+    public final Executor f1942b;
+    public final v0.h f1943c;
     public final Object d;
 
-    public b(e1.e eVar, Exception exc, Executor executor, i iVar) {
-        this.f3103a = 3;
+    public b(e1.d dVar, Exception exc, Executor executor, v0.h hVar) {
+        this.f1941a = 3;
         this.d = exc;
-        this.f3104b = executor;
-        this.f3105c = iVar;
+        this.f1942b = executor;
+        this.f1943c = hVar;
     }
 
     @Override
     public final Object invoke() {
         Object cVar;
-        switch (this.f3103a) {
+        switch (this.f1941a) {
             case 0:
-                this.f3104b.execute(new a1.f(19, this.f3105c, this.d));
+                this.f1942b.execute(new a1.f(15, this.f1943c, this.d));
                 break;
             case 1:
-                this.f3104b.execute(new a1.f(20, this.f3105c, (o) this.d));
+                this.f1942b.execute(new a1.f(16, this.f1943c, (n) this.d));
                 break;
             case 2:
-                this.f3104b.execute(new h(this.f3105c, (w0.i) this.d, 0));
+                this.f1942b.execute(new h(this.f1943c, (i) this.d, 0));
                 break;
             default:
                 Exception exc = (Exception) this.d;
@@ -38,29 +38,29 @@ public final class b implements ud.a {
                     if (statusCode == 16) {
                         cVar = new w0.b(exc.getMessage());
                     } else if (statusCode == 17) {
-                        cVar = new w0.c("API is not supported: " + exc.getMessage(), 3);
+                        cVar = new w0.c(3, "API is not supported: " + exc.getMessage());
                     } else if (statusCode == 8) {
                         cVar = new w0.f(exc.getMessage());
-                    } else if (d.f3110b.contains(Integer.valueOf(statusCode))) {
+                    } else if (d.f1948b.contains(Integer.valueOf(statusCode))) {
                         cVar = new w0.e(exc.getMessage());
                     } else {
-                        cVar = new w0.c("Conditional create failed, failure: " + exc.getMessage(), 2);
+                        cVar = new w0.c(2, "Conditional create failed, failure: " + exc.getMessage());
                     }
                 } else if (exc instanceof r) {
-                    cVar = new w0.c("API is unsupported", 3);
+                    cVar = new w0.c(3, "API is unsupported");
                 } else {
-                    cVar = new w0.c("Conditional create failed, failure: " + exc, 2);
+                    cVar = new w0.c(2, "Conditional create failed, failure: " + exc);
                 }
-                this.f3104b.execute(new b4(22, this.f3105c, cVar));
+                this.f1942b.execute(new d1.e(4, this.f1943c, cVar));
                 break;
         }
-        return jd.i.f15579a;
+        return j.f401a;
     }
 
-    public b(Executor executor, i iVar, Object obj, int i10) {
-        this.f3103a = i10;
-        this.f3104b = executor;
-        this.f3105c = iVar;
+    public b(Executor executor, v0.h hVar, Object obj, int i10) {
+        this.f1941a = i10;
+        this.f1942b = executor;
+        this.f1943c = hVar;
         this.d = obj;
     }
 }

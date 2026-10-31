@@ -1,201 +1,135 @@
 package bg;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.math.MathContext;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.tl.TL_stars;
-public final class a {
-    public final b f3978a;
-    public final long f3979b;
-
-    public a(long j10, b bVar) {
-        this.f3978a = bVar;
-        this.f3979b = j10;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import java.util.ArrayList;
+import org.telegram.messenger.z20;
+public final class a extends i {
+    @Override
+    public float getMinDistance() {
+        return 0.1f;
     }
 
-    public static a g(long j10, b bVar) {
-        if (bVar == null) {
-            return null;
-        }
-        return new a(j10 * 1000000000, bVar);
+    @Override
+    public final dg.g h(cg.a aVar) {
+        return new dg.a(aVar, this.W0);
     }
 
-    public static a h(String str, b bVar) {
-        try {
-            BigDecimal multiply = new BigDecimal(str).multiply(BigDecimal.valueOf(1000000000L));
-            if (multiply.compareTo(BigDecimal.valueOf(Long.MAX_VALUE)) > 0) {
-                return null;
-            }
-            return i(multiply.longValue(), bVar);
-        } catch (NumberFormatException unused) {
-            return null;
-        }
+    @Override
+    public final void k(android.graphics.Canvas r29) {
+        throw new UnsupportedOperationException("Method not decompiled: bg.a.k(android.graphics.Canvas):void");
     }
 
-    public static a i(long j10, b bVar) {
-        if (bVar == null) {
-            return null;
-        }
-        return new a(j10, bVar);
-    }
-
-    public static a j(double d, b bVar) {
-        b bVar2 = b.f3981b;
-        if (bVar == bVar2) {
-            return new a((long) ((d / MessagesController.getInstance(UserConfig.selectedAccount).config.tonUsdRate.get()) * 1000000000), bVar2).n(2);
-        }
-        b bVar3 = b.f3980a;
-        if (bVar == bVar3) {
-            return new a((long) (((d * 100000.0d) / MessagesController.getInstance(UserConfig.selectedAccount).starsUsdSellRate1000) * 1000000000), bVar3).n(0);
-        }
-        return g(0L, bVar);
-    }
-
-    public static a l(TL_stars.StarsAmount starsAmount) {
-        if (starsAmount instanceof TL_stars.TL_starsAmount) {
-            return i((starsAmount.amount * 1000000000) + starsAmount.nanos, b.f3980a);
-        }
-        if (starsAmount instanceof TL_stars.TL_starsTonAmount) {
-            return i(starsAmount.amount, b.f3981b);
-        }
-        return null;
-    }
-
-    public static a m(TL_stars.StarsAmount starsAmount) {
-        a l4 = l(starsAmount);
-        if (l4 != null) {
-            return l4;
-        }
-        return i(0L, b.f3980a);
-    }
-
-    public final long a() {
-        return this.f3979b / 1000000000;
-    }
-
-    public final String b() {
-        BigDecimal stripTrailingZeros;
-        BigDecimal divide = new BigDecimal(this.f3979b).divide(BigDecimal.valueOf(1000000000L), MathContext.UNLIMITED);
-        if (divide.signum() == 0) {
-            stripTrailingZeros = new BigDecimal(BigInteger.ZERO, 0);
-        } else {
-            stripTrailingZeros = divide.stripTrailingZeros();
-        }
-        return stripTrailingZeros.toPlainString();
-    }
-
-    public final double c() {
-        return this.f3979b / 1000000000;
-    }
-
-    public final String d() {
-        StringBuilder sb2 = new StringBuilder(LocaleController.formatNumber(a(), ','));
-        long j10 = this.f3979b % 1000000000;
-        if (j10 == 0) {
-            return sb2.toString();
-        }
-        sb2.append('.');
-        String l4 = Long.toString(j10);
-        int length = 9 - l4.length();
-        for (int i10 = 0; i10 < length; i10++) {
-            sb2.append('0');
-        }
-        int length2 = l4.length();
-        while (length2 > 0 && l4.charAt(length2 - 1) == '0') {
-            length2--;
-        }
-        sb2.append((CharSequence) l4, 0, length2);
-        return sb2.toString();
-    }
-
-    public final a e(b bVar) {
-        double d;
-        b bVar2 = this.f3978a;
-        if (bVar2 == bVar) {
-            return this;
-        }
-        if (bVar2 == b.f3980a) {
-            d = ((c() / 1000.0d) * MessagesController.getInstance(UserConfig.selectedAccount).starsUsdSellRate1000) / 100.0d;
-        } else if (bVar2 == b.f3981b) {
-            d = c() * MessagesController.getInstance(UserConfig.selectedAccount).config.tonUsdRate.get();
-        } else {
-            d = 0.0d;
-        }
-        return j(d, bVar);
-    }
-
-    public final boolean equals(Object obj) {
-        a aVar;
-        if (this == obj) {
-            return true;
-        }
-        if ((obj instanceof a) && (this == (aVar = (a) obj) || (this.f3978a == aVar.f3978a && this.f3979b == aVar.f3979b))) {
-            return true;
-        }
-        return false;
-    }
-
-    public final String f() {
-        int i10 = ((this.f3979b % 1000000000) > 0L ? 1 : ((this.f3979b % 1000000000) == 0L ? 0 : -1));
-        b bVar = this.f3978a;
-        if (i10 == 0) {
-            int ordinal = bVar.ordinal();
-            if (ordinal != 0) {
-                if (ordinal == 1) {
-                    return LocaleController.formatPluralStringSpaced("TonCount", (int) a());
+    @Override
+    public final void n(Canvas canvas) {
+        float f7;
+        int i10;
+        ArrayList arrayList;
+        int i11;
+        int i12;
+        float f10;
+        ArrayList arrayList2;
+        float f11;
+        int measuredHeight = getMeasuredHeight();
+        int i13 = i.f2694q1;
+        int i14 = measuredHeight - i13;
+        int measuredHeight2 = (getMeasuredHeight() - this.B0) - i13;
+        ArrayList arrayList3 = this.d;
+        int size = arrayList3.size();
+        if (this.f2722h0 != null) {
+            int i15 = 0;
+            while (i15 < size) {
+                dg.a aVar = (dg.a) arrayList3.get(i15);
+                boolean z10 = aVar.f5919n;
+                Paint paint = aVar.f5911c;
+                float[] fArr = aVar.f5916k;
+                if (!z10 && aVar.f5920o == 0.0f) {
+                    i10 = i14;
+                    arrayList = arrayList3;
+                    i11 = i15;
+                } else {
+                    aVar.e.reset();
+                    float[] fArr2 = this.f2722h0.f4165b;
+                    int length = fArr2.length;
+                    if (fArr2.length < 2) {
+                        f7 = 1.0f;
+                    } else {
+                        f7 = fArr2[1] * this.C0;
+                    }
+                    long[] jArr = aVar.f5909a.f4158a;
+                    float f12 = aVar.f5920o;
+                    int i16 = 0;
+                    int i17 = 0;
+                    while (i16 < length) {
+                        int i18 = i15;
+                        long j10 = jArr[i16];
+                        if (j10 < 0) {
+                            i12 = i14;
+                            arrayList2 = arrayList3;
+                        } else {
+                            cg.b bVar = this.f2722h0;
+                            i12 = i14;
+                            float f13 = this.C0 * bVar.f4165b[i16];
+                            if (i.B1) {
+                                f11 = this.f2726j0;
+                                f10 = f13;
+                                arrayList2 = arrayList3;
+                            } else {
+                                f10 = f13;
+                                arrayList2 = arrayList3;
+                                f11 = (float) bVar.e;
+                            }
+                            float v = z20.v((float) j10, f11, f12, 1.0f) * (i12 - measuredHeight2);
+                            fArr[i17] = f10;
+                            fArr[i17 + 1] = v;
+                            int i19 = i17 + 3;
+                            fArr[i17 + 2] = f10;
+                            i17 += 4;
+                            fArr[i19] = getMeasuredHeight() - this.f2737s;
+                        }
+                        i16++;
+                        i15 = i18;
+                        i14 = i12;
+                        arrayList3 = arrayList2;
+                    }
+                    i10 = i14;
+                    arrayList = arrayList3;
+                    i11 = i15;
+                    paint.setStrokeWidth(f7 + 2.0f);
+                    canvas.drawLines(fArr, 0, i17, paint);
                 }
-                return "";
+                i15 = i11 + 1;
+                i14 = i10;
+                arrayList3 = arrayList;
             }
-            return LocaleController.formatPluralStringSpaced("StarsCount", (int) a());
         }
-        int ordinal2 = bVar.ordinal();
-        if (ordinal2 != 0) {
-            if (ordinal2 != 1) {
-                return "";
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        F();
+        k(canvas);
+        i(canvas);
+        ArrayList arrayList = this.f2707b;
+        this.m0 = arrayList.size();
+        int i10 = 0;
+        while (true) {
+            this.f2731n0 = i10;
+            int i11 = this.f2731n0;
+            if (i11 < this.m0) {
+                l(canvas, (dg.e) arrayList.get(i11));
+                p(canvas, (dg.e) arrayList.get(this.f2731n0));
+                i10 = this.f2731n0 + 1;
+            } else {
+                j(canvas);
+                m(canvas);
+                super.onDraw(canvas);
+                return;
             }
-            return LocaleController.formatString(R.string.TonCountX, b());
         }
-        return LocaleController.formatString(R.string.StarsCountX, b());
     }
 
-    public final boolean k() {
-        if (this.f3979b == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final a n(int i10) {
-        long j10 = 9 - i10;
-        if (j10 <= 0) {
-            return this;
-        }
-        long j11 = 1;
-        for (int i11 = 0; i11 < j10; i11++) {
-            j11 *= 10;
-        }
-        return i((this.f3979b / j11) * j11, this.f3978a);
-    }
-
-    public final TL_stars.StarsAmount o() {
-        b bVar = b.f3980a;
-        long j10 = this.f3979b;
-        b bVar2 = this.f3978a;
-        if (bVar2 == bVar) {
-            TL_stars.TL_starsAmount tL_starsAmount = new TL_stars.TL_starsAmount();
-            tL_starsAmount.amount = j10 / 1000000000;
-            tL_starsAmount.nanos = (int) (j10 % 1000000000);
-            return tL_starsAmount;
-        } else if (bVar2 == b.f3981b) {
-            TL_stars.TL_starsTonAmount tL_starsTonAmount = new TL_stars.TL_starsTonAmount();
-            tL_starsTonAmount.amount = j10;
-            return tL_starsTonAmount;
-        } else {
-            return null;
-        }
+    @Override
+    public final void o(Canvas canvas) {
     }
 }

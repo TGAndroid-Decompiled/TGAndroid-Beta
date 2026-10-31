@@ -1,31 +1,42 @@
 package le;
+public final class b {
+    public static final b e;
+    public boolean f11808a;
+    public boolean f11809b;
+    public boolean f11810c;
+    public boolean d;
 
-import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
-import ud.l;
-public final class b extends kotlin.jvm.internal.j implements l {
-    public final int f16988b;
-    public final d f16989c;
-
-    public b(d dVar, c cVar, int i10) {
-        super(1);
-        this.f16988b = i10;
-        this.f16989c = dVar;
+    static {
+        ?? obj = new Object();
+        obj.f11808a = true;
+        obj.f11809b = true;
+        obj.f11810c = false;
+        obj.d = false;
+        e = obj;
+        obj.f11808a = true;
+        obj.f11809b = true;
+        obj.f11810c = false;
+        obj.d = false;
     }
 
-    @Override
-    public final Object invoke(Object obj) {
-        switch (this.f16988b) {
-            case 0:
-                Throwable th2 = (Throwable) obj;
-                this.f16989c.e(null);
-                return jd.i.f15579a;
-            default:
-                Throwable th3 = (Throwable) obj;
-                AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = d.f16992g;
-                d dVar = this.f16989c;
-                atomicReferenceFieldUpdater.set(dVar, null);
-                dVar.e(null);
-                return jd.i.f15579a;
+    public static String a(String str, Class cls, boolean z10) {
+        if (cls == null) {
+            return "ANONYMOUS";
+        }
+        if (cls.isArray()) {
+            Class<?> componentType = cls.getComponentType();
+            StringBuffer stringBuffer = new StringBuffer();
+            stringBuffer.append(a(componentType.getName(), componentType, z10));
+            stringBuffer.append("[]");
+            return stringBuffer.toString();
+        } else if (z10) {
+            int lastIndexOf = str.lastIndexOf(46);
+            if (lastIndexOf != -1) {
+                str = str.substring(lastIndexOf + 1);
+            }
+            return str.replace('$', '.');
+        } else {
+            return str.replace('$', '.');
         }
     }
 }

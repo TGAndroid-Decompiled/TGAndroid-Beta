@@ -1,27 +1,23 @@
 package org.telegram.messenger;
-
-import org.telegram.messenger.ChatObject;
 public final class a1 implements Runnable {
-    public final int f19580a;
-    public final ChatObject.Call f19581b;
+    public final int f14552a;
+    public final int f14553b;
+    public final Object f14554c;
 
-    public a1(ChatObject.Call call, int i10) {
-        this.f19580a = i10;
-        this.f19581b = call;
+    public a1(int i10, Object obj, int i11) {
+        this.f14552a = i11;
+        this.f14553b = i10;
+        this.f14554c = obj;
     }
 
     @Override
     public final void run() {
-        switch (this.f19580a) {
-            case 0:
-                ChatObject.Call.j(this.f19581b);
-                return;
-            case 1:
-                ChatObject.Call.a(this.f19581b);
-                return;
-            default:
-                ChatObject.Call.c(this.f19581b);
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.a1.run():void");
+    }
+
+    public a1(Object obj, int i10, int i11) {
+        this.f14552a = i11;
+        this.f14554c = obj;
+        this.f14553b = i10;
     }
 }

@@ -1,37 +1,34 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-import j$.util.Objects;
-import org.telegram.messenger.AndroidUtilities;
-public final class tx extends rz {
-    public final sz d;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+public final class tx implements jy {
+    public final ux f30694a;
 
-    public tx(sz szVar) {
-        super(szVar, 1);
-        this.d = szVar;
+    public tx(ux uxVar) {
+        this.f30694a = uxVar;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        if (i10 == 0) {
-            this.d.f32722f0 = false;
+    public final void e() {
+        ux uxVar = this.f30694a;
+        if (uxVar.F.V.F) {
+            return;
         }
-        super.a(recyclerView, i10);
+        ArrayList arrayList = new ArrayList();
+        uxVar.F.V.e(true);
+        ux.E(uxVar, new at(7, this, arrayList), arrayList, true);
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        sz szVar = this.d;
-        qx qxVar = szVar.Q;
-        szVar.V(qxVar.I0());
-        super.b(recyclerView, i10, i11);
-        sy syVar = szVar.S;
-        if (syVar != null && szVar.P.getAdapter() == syVar && !syVar.f32701x.a() && !syVar.f32701x.f32398a.E) {
-            if (qxVar.N0() + 20 > syVar.h()) {
-                ry ryVar = syVar.f32701x;
-                Objects.requireNonNull(ryVar);
-                AndroidUtilities.runOnUIThread(new yw(ryVar, 1));
-            }
+    public final void run() {
+        LinkedHashSet linkedHashSet = new LinkedHashSet();
+        String str = this.f30694a.f31075w;
+        at atVar = new at(6, this, str);
+        if (org.telegram.messenger.k6.d(str)) {
+            bw0.F3.c(org.telegram.messenger.d20.f15147s0, str, new vg(6, linkedHashSet, atVar));
+        } else {
+            atVar.run();
         }
     }
 }

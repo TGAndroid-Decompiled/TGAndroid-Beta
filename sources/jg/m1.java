@@ -1,36 +1,37 @@
 package jg;
 
+import android.content.Context;
+import android.graphics.Canvas;
 import android.view.View;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.u61;
-public final class m1 implements Utilities.Callback5, Utilities.Callback5Return {
-    public final z1 f15778a;
+public final class m1 extends View {
+    public int f10093a;
+    public float f10094b;
+    public final n1 f10095c;
 
-    @Override
-    public void mo5run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        z1.X(this.f15778a, (u61) obj, (View) obj2);
+    public m1(n1 n1Var, Context context) {
+        super(context);
+        this.f10095c = n1Var;
+        setPadding(org.telegram.messenger.i0.L(4.0f), org.telegram.messenger.i0.L(4.0f), org.telegram.messenger.i0.L(4.0f), org.telegram.messenger.i0.L(4.0f));
+        setLayoutParams(new s4.o0(-2, 0));
     }
 
     @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        boolean z10;
-        u61 u61Var = (u61) obj;
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        if (u61Var.f47075a == 16) {
-            Object obj6 = u61Var.G;
-            if (!(obj6 instanceof b2) || !((b2) obj6).f15643g) {
-                this.f15778a.f0(u61Var, view);
-                z10 = true;
-                return Boolean.valueOf(z10);
-            }
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        n1 n1Var = this.f10095c;
+        n1Var.f10109e3.setColor(this.f10093a);
+        float min = Math.min((getWidth() - getPaddingLeft()) - getPaddingRight(), (getHeight() - getPaddingTop()) - getPaddingBottom()) / 2.0f;
+        if (this.f10094b != 0.0f) {
+            min -= (n1Var.f10110f3.getStrokeWidth() + org.telegram.messenger.i0.L(3.0f)) * this.f10094b;
         }
-        z10 = false;
-        return Boolean.valueOf(z10);
+        float width = ((getWidth() / 2.0f) + getPaddingLeft()) - getPaddingRight();
+        float height = ((getHeight() / 2.0f) + getPaddingTop()) - getPaddingBottom();
+        n1.A1(width, height, min, this.f10093a, canvas);
+        if (this.f10094b != 0.0f) {
+            float min2 = (Math.min((getWidth() - getPaddingLeft()) - getPaddingRight(), (getHeight() - getPaddingTop()) - getPaddingBottom()) / 2.0f) - org.telegram.messenger.i0.L(2.0f);
+            n1Var.f10110f3.setColor(this.f10093a);
+            n1Var.f10110f3.setAlpha(255);
+            canvas.drawCircle(width, height, min2, n1Var.f10110f3);
+        }
     }
 }

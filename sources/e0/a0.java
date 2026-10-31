@@ -1,10 +1,18 @@
 package e0;
 
 import android.app.Notification;
-import android.app.PendingIntent;
-import android.graphics.drawable.Icon;
+import android.app.RemoteInput;
+import android.os.Bundle;
 public abstract class a0 {
-    public static Notification.Action.Builder a(Icon icon, CharSequence charSequence, PendingIntent pendingIntent) {
-        return new Notification.Action.Builder(icon, charSequence, pendingIntent);
+    public static Notification.Action.Builder a(Notification.Action.Builder builder, Bundle bundle) {
+        return builder.addExtras(bundle);
+    }
+
+    public static Notification.Action.Builder b(Notification.Action.Builder builder, RemoteInput remoteInput) {
+        return builder.addRemoteInput(remoteInput);
+    }
+
+    public static Notification.Action c(Notification.Action.Builder builder) {
+        return builder.build();
     }
 }

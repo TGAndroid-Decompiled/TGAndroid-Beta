@@ -1,34 +1,13 @@
 package org.telegram.ui;
-public final class ax0 implements Runnable {
-    public final int f37839a;
-    public final PrivacyControlActivity f37840b;
 
-    public ax0(PrivacyControlActivity privacyControlActivity, int i10) {
-        this.f37839a = i10;
-        this.f37840b = privacyControlActivity;
-    }
-
+import android.graphics.Canvas;
+import android.graphics.Paint;
+public final class ax0 extends g00 {
     @Override
-    public final void run() {
-        switch (this.f37839a) {
-            case 0:
-                PrivacyControlActivity privacyControlActivity = this.f37840b;
-                privacyControlActivity.getClass();
-                privacyControlActivity.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
-                return;
-            case 1:
-                PrivacyControlActivity.V(this.f37840b);
-                return;
-            case 2:
-                PrivacyControlActivity privacyControlActivity2 = this.f37840b;
-                privacyControlActivity2.getClass();
-                privacyControlActivity2.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
-                return;
-            default:
-                PrivacyControlActivity privacyControlActivity3 = this.f37840b;
-                privacyControlActivity3.getClass();
-                privacyControlActivity3.presentFragment(new PremiumPreviewFragment(0, "settings"));
-                return;
-        }
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        canvas.save();
+        canvas.translate(org.telegram.messenger.i0.L(2.0f), 0.0f);
+        super.draw(canvas, charSequence, i10, i11, f7, i12, i13, i14, paint);
+        canvas.restore();
     }
 }

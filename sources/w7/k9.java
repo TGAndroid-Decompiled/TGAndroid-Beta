@@ -1,155 +1,58 @@
 package w7;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.RandomAccess;
-public abstract class k9 extends h9 implements List, RandomAccess {
-    public static final i9 f50971b = new i9(m9.e, 0);
-
-    @Override
-    public final void add(int i10, Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean addAll(int i10, Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        if (indexOf(obj) >= 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        Object next;
-        Object next2;
-        if (obj != this) {
-            if (obj instanceof List) {
-                List list = (List) obj;
-                int size = size();
-                if (size == list.size()) {
-                    if (list instanceof RandomAccess) {
-                        for (int i10 = 0; i10 < size; i10++) {
-                            Object obj2 = get(i10);
-                            Object obj3 = list.get(i10);
-                            if (obj2 == obj3 || (obj2 != null && obj2.equals(obj3))) {
-                            }
-                        }
-                        return true;
-                    }
-                    i9 listIterator = listIterator(0);
-                    Iterator it = list.iterator();
-                    while (true) {
-                        if (listIterator.hasNext()) {
-                            if (!it.hasNext() || ((next = listIterator.next()) != (next2 = it.next()) && (next == null || !next.equals(next2)))) {
-                                break;
-                            }
-                        } else if (!it.hasNext()) {
-                            return true;
-                        }
-                    }
+import android.graphics.Bitmap;
+import android.graphics.Rect;
+import android.graphics.drawable.NinePatchDrawable;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+public abstract class k9 {
+    public static NinePatchDrawable a(Bitmap bitmap, Rect rect, int i10, int i11) {
+        if (bitmap != null) {
+            if (!bitmap.isRecycled()) {
+                if (i10 >= 0 && i10 < bitmap.getWidth() && i11 >= 0 && i11 < bitmap.getHeight()) {
+                    return new NinePatchDrawable(org.telegram.messenger.w0.f19025b.getResources(), bitmap, c(i10, i10 + 1, i11, i11 + 1, rect.left, rect.top, rect.right, rect.bottom, bitmap.getPixel(i10, i11)).array(), rect, null);
                 }
+                StringBuilder m10 = i0.a.m("center pixel is outside bitmap: (", i10, ", ", i11, ") for ");
+                m10.append(bitmap.getWidth());
+                m10.append("x");
+                m10.append(bitmap.getHeight());
+                throw new IllegalArgumentException(m10.toString());
             }
-            return false;
+            throw new IllegalArgumentException("bitmap is recycled");
         }
-        return true;
+        throw new IllegalArgumentException("bitmap == null");
     }
 
-    @Override
-    public int h(Object[] objArr) {
-        int size = size();
-        for (int i10 = 0; i10 < size; i10++) {
-            objArr[i10] = get(i10);
-        }
-        return size;
+    public static android.graphics.drawable.NinePatchDrawable b(android.graphics.Bitmap[] r38, int r39, float[] r40, float r41, int r42, float r43, int r44) {
+        throw new UnsupportedOperationException("Method not decompiled: w7.k9.b(android.graphics.Bitmap[], int, float[], float, int, float, int):android.graphics.drawable.NinePatchDrawable");
     }
 
-    @Override
-    public final int hashCode() {
-        int size = size();
-        int i10 = 1;
-        for (int i11 = 0; i11 < size; i11++) {
-            i10 = (i10 * 31) + get(i11).hashCode();
-        }
-        return i10;
-    }
-
-    @Override
-    public final int indexOf(Object obj) {
-        if (obj == null) {
-            return -1;
-        }
-        int size = size();
-        for (int i10 = 0; i10 < size; i10++) {
-            if (obj.equals(get(i10))) {
-                return i10;
-            }
-        }
-        return -1;
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return listIterator(0);
-    }
-
-    @Override
-    public final int lastIndexOf(Object obj) {
-        if (obj == null) {
-            return -1;
-        }
-        for (int size = size() - 1; size >= 0; size--) {
-            if (obj.equals(get(size))) {
-                return size;
-            }
-        }
-        return -1;
-    }
-
-    @Override
-    public final ListIterator listIterator() {
-        return listIterator(0);
-    }
-
-    @Override
-    public k9 subList(int i10, int i11) {
-        z.b(i10, i11, size());
-        int i12 = i11 - i10;
-        if (i12 == size()) {
-            return this;
-        }
-        if (i12 == 0) {
-            return m9.e;
-        }
-        return new j9(this, i10, i12);
-    }
-
-    @Override
-    public final i9 listIterator(int i10) {
-        int size = size();
-        if (i10 >= 0 && i10 <= size) {
-            if (isEmpty()) {
-                return f50971b;
-            }
-            return new i9(this, i10);
-        }
-        throw new IndexOutOfBoundsException(z.c(i10, size, "index"));
-    }
-
-    @Override
-    public final Object remove(int i10) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final Object set(int i10, Object obj) {
-        throw new UnsupportedOperationException();
+    public static ByteBuffer c(int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18) {
+        ByteBuffer order = ByteBuffer.allocate(84).order(ByteOrder.nativeOrder());
+        order.put((byte) 1);
+        order.put((byte) 2);
+        order.put((byte) 2);
+        order.put((byte) 9);
+        order.putInt(0);
+        order.putInt(0);
+        order.putInt(i14);
+        order.putInt(i16);
+        order.putInt(i15);
+        order.putInt(i17);
+        order.putInt(0);
+        order.putInt(i10);
+        order.putInt(i11);
+        order.putInt(i12);
+        order.putInt(i13);
+        order.putInt(1);
+        order.putInt(1);
+        order.putInt(1);
+        order.putInt(1);
+        order.putInt(i18);
+        order.putInt(1);
+        order.putInt(1);
+        order.putInt(1);
+        order.putInt(1);
+        return order;
     }
 }

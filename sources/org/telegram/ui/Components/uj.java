@@ -1,31 +1,33 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class uj implements Runnable {
-    public final int f33415a;
-    public final wj f33416b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+public final class uj extends AnimatorListenerAdapter {
+    public final int f30952a = 0;
+    public final org.telegram.ui.uq f30953b;
 
-    public uj(wj wjVar, int i10) {
-        this.f33415a = i10;
-        this.f33416b = wjVar;
+    public uj(org.telegram.ui.uq uqVar) {
+        this.f30953b = uqVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f33415a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f30952a) {
             case 0:
-                wj wjVar = this.f33416b;
-                if (wjVar.f34527f != null) {
-                    wjVar.v = org.telegram.messenger.wh.g(new StringBuilder("+"), wjVar.f34527f.phone, kf.b.c());
-                    wjVar.f34530s = wjVar.f34527f;
-                    AndroidUtilities.runOnUIThread(new uj(wjVar, 1));
-                    return;
-                }
+                ((wj) this.f30953b.d).U.e();
                 return;
             default:
-                wj wjVar2 = this.f33416b;
-                wjVar2.f34526c.l(wjVar2.v, false);
+                org.telegram.ui.uq uqVar = this.f30953b;
+                View view = uqVar.f42515b;
+                view.setAlpha(1.0f);
+                s4.n0.x0(view);
+                ((wj) uqVar.d).X.f32487r.removeView(view);
                 return;
         }
+    }
+
+    public uj(org.telegram.ui.uq uqVar, s4.n0 n0Var) {
+        this.f30953b = uqVar;
     }
 }

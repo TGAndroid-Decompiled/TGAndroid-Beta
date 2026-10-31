@@ -1,30 +1,42 @@
 package org.telegram.messenger;
-public final class r2 implements Runnable {
-    public final int f21079a;
-    public final FileLoadOperation f21080b;
-    public final int f21081c;
 
-    public r2(FileLoadOperation fileLoadOperation, int i10, int i11) {
-        this.f21079a = i11;
-        this.f21080b = fileLoadOperation;
-        this.f21081c = i10;
+import org.telegram.tgnet.tl.TL_keyboard;
+public final class r2 extends q2 {
+    public final TL_keyboard.KeyboardInlineButton f17683a;
+
+    public r2(TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+        this.f17683a = keyboardInlineButton;
     }
 
     @Override
-    public final void run() {
-        switch (this.f21079a) {
-            case 0:
-                FileLoadOperation.F(this.f21080b, this.f21081c);
-                return;
-            case 1:
-                FileLoadOperation.j(this.f21080b, this.f21081c);
-                return;
-            case 2:
-                FileLoadOperation.y(this.f21080b, this.f21081c);
-                return;
-            default:
-                FileLoadOperation.o(this.f21080b, this.f21081c);
-                return;
+    public final int a() {
+        TL_keyboard.KeyboardButtonStyle keyboardButtonStyle = this.f17683a.style;
+        if (keyboardButtonStyle != null) {
+            if (keyboardButtonStyle.bg_success) {
+                return 3;
+            }
+            if (keyboardButtonStyle.bg_danger) {
+                return 4;
+            }
+            if (keyboardButtonStyle.bg_primary) {
+                return 2;
+            }
+            return 1;
         }
+        return 1;
+    }
+
+    @Override
+    public final long b() {
+        TL_keyboard.KeyboardButtonStyle keyboardButtonStyle = this.f17683a.style;
+        if (keyboardButtonStyle != null) {
+            return keyboardButtonStyle.icon;
+        }
+        return 0L;
+    }
+
+    @Override
+    public final String d() {
+        return this.f17683a.text;
     }
 }

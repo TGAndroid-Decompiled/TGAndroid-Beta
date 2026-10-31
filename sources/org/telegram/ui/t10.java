@@ -1,95 +1,90 @@
 package org.telegram.ui;
 
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-public final class t10 extends FrameLayout implements org.telegram.ui.ActionBar.p6 {
-    public org.telegram.ui.ActionBar.b6 f43461a;
-    public ImageView f43462b;
-    public org.telegram.ui.Components.ar f43463c;
-    public int d;
-    public int e;
+import android.graphics.Typeface;
+import android.provider.Settings;
+import org.telegram.messenger.voip.VoIPService;
+public final class t10 implements Runnable {
+    public final int f41686a;
+    public final b50 f41687b;
 
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.N6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.f23486k7));
+    public t10(b50 b50Var, int i10) {
+        this.f41686a = i10;
+        this.f41687b = b50Var;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int dp;
-        int measuredWidth;
-        ImageView imageView = this.f43462b;
-        int i14 = i12 - i10;
-        org.telegram.ui.ActionBar.b6 b6Var = this.f43461a;
-        int textHeight = ((i13 - i11) - b6Var.getTextHeight()) / 2;
-        float f7 = 23.0f;
-        if (LocaleController.isRTL) {
-            int measuredWidth2 = getMeasuredWidth() - b6Var.getMeasuredWidth();
-            if (imageView.getVisibility() == 0) {
-                f7 = 64.0f;
-            }
-            dp = measuredWidth2 - AndroidUtilities.dp(f7);
-        } else {
-            if (imageView.getVisibility() == 0) {
-                f7 = 64.0f;
-            }
-            dp = AndroidUtilities.dp(f7);
-        }
-        b6Var.layout(dp, textHeight, b6Var.getMeasuredWidth() + dp, b6Var.getMeasuredHeight() + textHeight);
-        if (!LocaleController.isRTL) {
-            measuredWidth = AndroidUtilities.dp(20.0f);
-        } else {
-            measuredWidth = (i14 - imageView.getMeasuredWidth()) - AndroidUtilities.dp(20.0f);
-        }
-        imageView.layout(measuredWidth, 0, imageView.getMeasuredWidth() + measuredWidth, imageView.getMeasuredHeight());
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        AndroidUtilities.dp(48.0f);
-        this.f43461a.measure(org.telegram.messenger.wh.x(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-        this.f43462b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
-        setMeasuredDimension(size, AndroidUtilities.dp(50.0f));
-    }
-
-    @Override
-    public final void updateColors() {
-        ImageView imageView = this.f43462b;
-        if (imageView != null) {
-            try {
-                if (imageView.getDrawable() instanceof org.telegram.ui.Components.ar) {
-                    org.telegram.ui.Components.ar arVar = (org.telegram.ui.Components.ar) imageView.getDrawable();
-                    int x02 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.N6, false);
-                    int x03 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23486k7, false);
-                    if (arVar == this.f43463c && x02 == this.d && x03 == this.e) {
+    public final void run() {
+        int i10 = this.f41686a;
+        b50 b50Var = this.f41687b;
+        switch (i10) {
+            case 0:
+                if (b50Var.t1()) {
+                    LaunchActivity launchActivity = b50Var.Z1;
+                    Typeface typeface = org.telegram.messenger.i0.f15999a;
+                    if (Settings.canDrawOverlays(launchActivity) && !org.telegram.ui.Components.voip.s0.f31645d0.V) {
+                        b50Var.dismiss();
+                        org.telegram.messenger.i0.h3(new t10(b50Var, 4), 100L);
                         return;
                     }
-                    this.f43463c = arVar;
-                    this.d = x02;
-                    this.e = x03;
-                    Drawable drawable = arVar.f26639a;
-                    if (drawable != null) {
-                        drawable.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.MULTIPLY));
-                    }
-                    Drawable drawable2 = arVar.f26640b;
-                    if (drawable2 != null) {
-                        drawable2.setColorFilter(new PorterDuffColorFilter(x03, PorterDuff.Mode.MULTIPLY));
-                    }
-                    imageView.invalidate();
+                    return;
                 }
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
+                return;
+            case 1:
+                if (b50Var.R2 != null && b50Var.I3 && VoIPService.getSharedInstance() != null) {
+                    try {
+                        b50Var.f36073s1.performHapticFeedback(3, 2);
+                    } catch (Exception unused) {
+                    }
+                    b50Var.M1(1, true);
+                    org.telegram.messenger.i0.h3(b50Var.f36057o4, 80L);
+                    b50Var.I3 = false;
+                    b50Var.J3 = true;
+                    return;
+                }
+                return;
+            case 2:
+                int i11 = b50Var.K3;
+                if (i11 == 1 || i11 == 2 || i11 == 6 || i11 == 5) {
+                    b50Var.Q1(true, false);
+                    return;
+                }
+                return;
+            case 3:
+                b50Var.x1();
+                return;
+            case 4:
+                org.telegram.ui.Components.voip.s0.h(b50Var.Z1);
+                return;
+            case 5:
+                b50Var.dismiss();
+                return;
+            case 6:
+                b50Var.N1();
+                org.telegram.messenger.i0.h3(b50Var.f36085u3, 1000L);
+                return;
+            case 7:
+                x30 x30Var = b50Var.f36027i2;
+                if (x30Var != null) {
+                    x30Var.show();
+                    return;
+                }
+                return;
+            case 8:
+                b50Var.a1();
+                b50Var.X0();
+                b50Var.W0();
+                b50Var.f36091w1.setTranslationY((-b50Var.f36080t3.d()) + b50Var.f21586b.getPaddingBottom());
+                b50Var.f36095x1.invalidate();
+                b50Var.b1();
+                b50Var.f21586b.invalidate();
+                return;
+            case 9:
+                org.telegram.messenger.vp.r1(b50Var.f36036k1.f14863a).l0(null);
+                return;
+            default:
+                b50Var.f36058o5 = null;
+                b50Var.K1(true);
+                return;
         }
     }
 }

@@ -1,433 +1,118 @@
 package j4;
 
-import a8.cd;
-import a8.ng;
-import a8.yb;
-import android.util.SparseArray;
-import android.util.SparseBooleanArray;
-import android.util.SparseIntArray;
-import b2.x0;
-import e2.k0;
-import f9.i0;
-import f9.s1;
-import java.util.ArrayList;
-import java.util.Collections;
+import b2.v0;
+import c3.k0;
 import java.util.List;
-public final class d0 implements c3.o {
-    public final int f15271a;
-    public final int f15272b;
-    public final List f15273c;
-    public final e2.x d;
-    public final SparseIntArray e;
-    public final f f15274f;
-    public final z3.k f15275g;
-    public final SparseArray h;
-    public final SparseBooleanArray f15276i;
-    public final SparseBooleanArray f15277j;
-    public final x f15278k;
-    public h3.a f15279l;
-    public c3.q f15280m;
-    public int f15281n;
-    public boolean f15282o;
-    public boolean f15283p;
-    public boolean f15284q;
-    public g0 f15285r;
-    public int f15286s;
-    public int f15287t;
+import v7.t6;
+public final class d0 {
+    public final int f9431a;
+    public final List f9432b;
+    public final k0[] f9433c;
+    public final e2.c d;
 
-    public d0(int i10, int i11, z3.k kVar, k0 k0Var, f fVar) {
-        this.f15274f = fVar;
-        this.f15271a = i10;
-        this.f15272b = i11;
-        this.f15275g = kVar;
-        if (i10 != 1 && i10 != 2) {
-            ArrayList arrayList = new ArrayList();
-            this.f15273c = arrayList;
-            arrayList.add(k0Var);
-        } else {
-            this.f15273c = Collections.singletonList(k0Var);
-        }
-        this.d = new e2.x(new byte[9400], 0);
-        SparseBooleanArray sparseBooleanArray = new SparseBooleanArray();
-        this.f15276i = sparseBooleanArray;
-        this.f15277j = new SparseBooleanArray();
-        SparseArray sparseArray = new SparseArray();
-        this.h = sparseArray;
-        this.e = new SparseIntArray();
-        this.f15278k = new x(1);
-        this.f15280m = c3.q.f6091i;
-        this.f15287t = -1;
-        sparseBooleanArray.clear();
-        sparseArray.clear();
-        SparseArray sparseArray2 = new SparseArray();
-        int size = sparseArray2.size();
-        for (int i12 = 0; i12 < size; i12++) {
-            sparseArray.put(sparseArray2.keyAt(i12), (g0) sparseArray2.valueAt(i12));
-        }
-        sparseArray.put(0, new b0(new n4.s(this)));
-        this.f15285r = null;
-    }
-
-    @Override
-    public final boolean a(c3.p r7) {
-        throw new UnsupportedOperationException("Method not decompiled: j4.d0.a(c3.p):boolean");
-    }
-
-    @Override
-    public final void c(c3.q qVar) {
-        if ((this.f15272b & 1) == 0) {
-            qVar = new c2.b(qVar, this.f15275g);
-        }
-        this.f15280m = qVar;
-    }
-
-    @Override
-    public final void d(long j10, long j11) {
-        boolean z10;
-        h3.a aVar;
-        boolean z11;
-        if (this.f15271a != 2) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        yb.p(z10);
-        List list = this.f15273c;
-        int size = list.size();
-        for (int i10 = 0; i10 < size; i10++) {
-            k0 k0Var = (k0) list.get(i10);
-            if (k0Var.e() == -9223372036854775807L) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            if (!z11) {
-                long d = k0Var.d();
-                if (d != -9223372036854775807L && d != 0 && d != j11) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-            }
-            if (z11) {
-                k0Var.g(j11);
-            }
-        }
-        if (j11 != 0 && (aVar = this.f15279l) != null) {
-            aVar.d(j11);
-        }
-        this.d.K(0);
-        this.e.clear();
-        int i11 = 0;
-        while (true) {
-            SparseArray sparseArray = this.h;
-            if (i11 < sparseArray.size()) {
-                ((g0) sparseArray.valueAt(i11)).c();
-                i11++;
-            } else {
-                this.f15286s = 0;
+    public d0(int i10, List list) {
+        this.f9431a = i10;
+        switch (i10) {
+            case 1:
+                this.f9432b = list;
+                this.f9433c = new k0[list.size()];
+                e2.c cVar = new e2.c(new ig.c0(this, 7));
+                this.d = cVar;
+                cVar.p(3);
                 return;
+            default:
+                this.f9432b = list;
+                this.f9433c = new k0[list.size()];
+                this.d = new e2.c(new ig.c0(this, 6));
+                return;
+        }
+    }
+
+    public void a(long j10, e2.x xVar) {
+        if (xVar.a() >= 9) {
+            int m10 = xVar.m();
+            int m11 = xVar.m();
+            int A = xVar.A();
+            if (m10 == 434 && m11 == 1195456820 && A == 3) {
+                this.d.a(j10, xVar);
             }
         }
     }
 
-    @Override
-    public final List e() {
-        f9.g0 g0Var = i0.f10286b;
-        return s1.e;
-    }
-
-    @Override
-    public final int f(c3.p pVar, c3.s sVar) {
+    public final void b(c3.q qVar, g0 g0Var) {
         boolean z10;
-        c3.p pVar2;
-        ?? r12;
-        int i10;
-        int i11;
-        int i12;
-        int i13;
-        int i14;
         boolean z11;
-        int i15;
-        int i16;
-        boolean z12;
-        long length = pVar.getLength();
-        int i17 = this.f15271a;
-        if (i17 == 2) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (this.f15282o) {
-            int i18 = (length > (-1L) ? 1 : (length == (-1L) ? 0 : -1));
-            long j10 = -9223372036854775807L;
-            x xVar = this.f15278k;
-            if (i18 != 0 && !z10 && !xVar.d) {
-                int i19 = this.f15287t;
-                k0 k0Var = xVar.f15489b;
-                e2.x xVar2 = xVar.f15490c;
-                if (i19 <= 0) {
-                    xVar.a(pVar);
-                    return 0;
-                } else if (!xVar.f15491f) {
-                    long length2 = pVar.getLength();
-                    int min = (int) Math.min(112800, length2);
-                    long j11 = length2 - min;
-                    if (pVar.getPosition() != j11) {
-                        sVar.f6092a = j11;
-                        return 1;
-                    }
-                    xVar2.K(min);
-                    pVar.p();
-                    pVar.b(0, min, xVar2.f9731a);
-                    int i20 = xVar2.f9732b;
-                    int i21 = xVar2.f9733c;
-                    int i22 = i21 - 188;
-                    while (true) {
-                        if (i22 < i20) {
-                            break;
+        switch (this.f9431a) {
+            case 0:
+                int i10 = 0;
+                while (true) {
+                    k0[] k0VarArr = this.f9433c;
+                    if (i10 < k0VarArr.length) {
+                        g0Var.b();
+                        g0Var.c();
+                        k0 I1 = qVar.I1(g0Var.f9491c, 3);
+                        b2.x xVar = (b2.x) this.f9432b.get(i10);
+                        String str = xVar.f2423s;
+                        if (!"application/cea-608".equals(str) && !"application/cea-708".equals(str)) {
+                            z10 = false;
+                        } else {
+                            z10 = true;
                         }
-                        byte[] bArr = xVar2.f9731a;
-                        int i23 = -4;
-                        int i24 = 0;
-                        while (true) {
-                            if (i23 > 4) {
-                                break;
-                            }
-                            int i25 = (i23 * 188) + i22;
-                            if (i25 >= i20 && i25 < i21 && bArr[i25] == 71) {
-                                i24++;
-                                if (i24 == 5) {
-                                    long a2 = cd.a(xVar2, i22, i19);
-                                    if (a2 != -9223372036854775807L) {
-                                        j10 = a2;
-                                        break;
-                                    }
-                                }
-                            } else {
-                                i24 = 0;
-                            }
-                            i23++;
+                        t6.h(z10, "Invalid closed caption MIME type provided: %s", str);
+                        String str2 = xVar.f2408a;
+                        if (str2 == null) {
+                            g0Var.c();
+                            str2 = (String) g0Var.e;
                         }
-                        i22--;
-                    }
-                    xVar.h = j10;
-                    xVar.f15491f = true;
-                    return 0;
-                } else if (xVar.h == -9223372036854775807L) {
-                    xVar.a(pVar);
-                    return 0;
-                } else if (!xVar.e) {
-                    int min2 = (int) Math.min(112800, pVar.getLength());
-                    long j12 = 0;
-                    if (pVar.getPosition() != j12) {
-                        sVar.f6092a = j12;
-                        return 1;
-                    }
-                    xVar2.K(min2);
-                    pVar.p();
-                    pVar.b(0, min2, xVar2.f9731a);
-                    int i26 = xVar2.f9732b;
-                    int i27 = xVar2.f9733c;
-                    while (true) {
-                        if (i26 >= i27) {
-                            break;
-                        }
-                        if (xVar2.f9731a[i26] == 71) {
-                            long a10 = cd.a(xVar2, i26, i19);
-                            if (a10 != -9223372036854775807L) {
-                                j10 = a10;
-                                break;
-                            }
-                        }
-                        i26++;
-                    }
-                    xVar.f15492g = j10;
-                    xVar.e = true;
-                    return 0;
-                } else {
-                    long j13 = xVar.f15492g;
-                    if (j13 == -9223372036854775807L) {
-                        xVar.a(pVar);
-                        return 0;
-                    }
-                    xVar.f15493i = k0Var.c(xVar.h) - k0Var.b(j13);
-                    xVar.a(pVar);
-                    return 0;
-                }
-            }
-            if (!this.f15283p) {
-                this.f15283p = true;
-                long j14 = xVar.f15493i;
-                if (j14 != -9223372036854775807L) {
-                    i10 = 1;
-                    z12 = false;
-                    i11 = i17;
-                    h3.a aVar = new h3.a(new u7.s(3), new ng(this.f15287t, xVar.f15489b), j14, 1 + j14, 0L, length, 188L, 940);
-                    this.f15279l = aVar;
-                    this.f15280m.D1(aVar.f12584a);
-                } else {
-                    i10 = 1;
-                    z12 = false;
-                    i11 = i17;
-                    this.f15280m.D1(new c3.t(j14));
-                }
-            } else {
-                i10 = 1;
-                z12 = false;
-                i11 = i17;
-            }
-            if (this.f15284q) {
-                this.f15284q = z12;
-                d(0L, 0L);
-                if (pVar.getPosition() != 0) {
-                    sVar.f6092a = 0L;
-                    return i10;
-                }
-            }
-            h3.a aVar2 = this.f15279l;
-            if (aVar2 != null && aVar2.f12586c != null) {
-                return aVar2.b(pVar, sVar);
-            }
-            pVar2 = pVar;
-            r12 = z12;
-        } else {
-            pVar2 = pVar;
-            r12 = 0;
-            i10 = 1;
-            i11 = i17;
-        }
-        e2.x xVar3 = this.d;
-        byte[] bArr2 = xVar3.f9731a;
-        if (9400 - xVar3.f9732b < 188) {
-            int a11 = xVar3.a();
-            if (a11 > 0) {
-                System.arraycopy(bArr2, xVar3.f9732b, bArr2, r12, a11);
-            }
-            xVar3.L(a11, bArr2);
-        }
-        while (true) {
-            int a12 = xVar3.a();
-            SparseArray sparseArray = this.h;
-            if (a12 < 188) {
-                int i28 = xVar3.f9733c;
-                int read = pVar2.read(bArr2, i28, 9400 - i28);
-                if (read == -1) {
-                    int i29 = r12;
-                    while (i29 < sparseArray.size()) {
-                        g0 g0Var = (g0) sparseArray.valueAt(i29);
-                        if (g0Var instanceof w) {
-                            w wVar = (w) g0Var;
-                            if (z10 && !wVar.e()) {
-                                i16 = r12;
-                            } else {
-                                i16 = i10;
-                            }
-                            if (wVar.f15481c == 3 && wVar.f15485j == -1 && ((!z10 || !(wVar.f15479a instanceof k)) && i16 != 0)) {
-                                wVar.a(i10, new e2.x());
-                            }
-                        }
-                        i29++;
-                        i10 = 1;
-                    }
-                    return -1;
-                }
-                xVar3.M(i28 + read);
-                i10 = 1;
-            } else {
-                int i30 = xVar3.f9732b;
-                int i31 = xVar3.f9733c;
-                byte[] bArr3 = xVar3.f9731a;
-                int i32 = i30;
-                while (i32 < i31 && bArr3[i32] != 71) {
-                    i32++;
-                }
-                xVar3.N(i32);
-                int i33 = i32 + 188;
-                g0 g0Var2 = null;
-                if (i33 > i31) {
-                    int i34 = (i32 - i30) + this.f15286s;
-                    this.f15286s = i34;
-                    i12 = i11;
-                    i13 = 2;
-                    if (i12 == 2 && i34 > 376) {
-                        throw x0.a(null, "Cannot find sync byte. Most likely not a Transport Stream.");
-                    }
-                } else {
-                    i12 = i11;
-                    i13 = 2;
-                    this.f15286s = r12;
-                }
-                int i35 = xVar3.f9733c;
-                if (i33 > i35) {
-                    return r12;
-                }
-                int m10 = xVar3.m();
-                if ((8388608 & m10) != 0) {
-                    xVar3.N(i33);
-                    return r12;
-                }
-                if ((4194304 & m10) != 0) {
-                    i14 = 1;
-                } else {
-                    i14 = r12;
-                }
-                int i36 = (2096896 & m10) >> 8;
-                if ((m10 & 32) != 0) {
-                    z11 = true;
-                } else {
-                    z11 = r12;
-                }
-                if ((m10 & 16) != 0) {
-                    g0Var2 = (g0) sparseArray.get(i36);
-                }
-                if (g0Var2 == null) {
-                    xVar3.N(i33);
-                    return r12;
-                }
-                if (i12 != i13) {
-                    int i37 = m10 & 15;
-                    SparseIntArray sparseIntArray = this.e;
-                    int i38 = sparseIntArray.get(i36, i37 - 1);
-                    sparseIntArray.put(i36, i37);
-                    if (i38 == i37) {
-                        xVar3.N(i33);
-                        return r12;
-                    } else if (i37 != ((i38 + 1) & 15)) {
-                        g0Var2.c();
-                    }
-                }
-                if (z11) {
-                    int A = xVar3.A();
-                    if ((xVar3.A() & 64) != 0) {
-                        i15 = i13;
+                        b2.w wVar = new b2.w();
+                        wVar.f2356a = str2;
+                        wVar.f2369q = v0.n("video/mp2t");
+                        wVar.f2370r = v0.n(str);
+                        wVar.e = xVar.e;
+                        wVar.d = xVar.d;
+                        wVar.O = xVar.P;
+                        wVar.f2373u = xVar.v;
+                        i0.a.r(wVar, I1);
+                        k0VarArr[i10] = I1;
+                        i10++;
                     } else {
-                        i15 = r12;
+                        return;
                     }
-                    i14 |= i15;
-                    xVar3.O(A - 1);
                 }
-                boolean z13 = this.f15282o;
-                if (i12 == i13 || z13 || !this.f15277j.get(i36, r12)) {
-                    xVar3.M(i33);
-                    g0Var2.a(i14, xVar3);
-                    xVar3.M(i35);
+                break;
+            default:
+                int i11 = 0;
+                while (true) {
+                    k0[] k0VarArr2 = this.f9433c;
+                    if (i11 < k0VarArr2.length) {
+                        g0Var.b();
+                        g0Var.c();
+                        k0 I12 = qVar.I1(g0Var.f9491c, 3);
+                        b2.x xVar2 = (b2.x) this.f9432b.get(i11);
+                        String str3 = xVar2.f2423s;
+                        if (!"application/cea-608".equals(str3) && !"application/cea-708".equals(str3)) {
+                            z11 = false;
+                        } else {
+                            z11 = true;
+                        }
+                        t6.h(z11, "Invalid closed caption MIME type provided: %s", str3);
+                        b2.w wVar2 = new b2.w();
+                        g0Var.c();
+                        wVar2.f2356a = (String) g0Var.e;
+                        wVar2.f2369q = v0.n("video/mp2t");
+                        wVar2.f2370r = v0.n(str3);
+                        wVar2.e = xVar2.e;
+                        wVar2.d = xVar2.d;
+                        wVar2.O = xVar2.P;
+                        wVar2.f2373u = xVar2.v;
+                        i0.a.r(wVar2, I12);
+                        k0VarArr2[i11] = I12;
+                        i11++;
+                    } else {
+                        return;
+                    }
                 }
-                if (i12 != i13 && !z13 && this.f15282o && length != -1) {
-                    this.f15284q = true;
-                }
-                xVar3.N(i33);
-                return r12;
-            }
+                break;
         }
-    }
-
-    @Override
-    public final c3.o b() {
-        return this;
-    }
-
-    @Override
-    public final void release() {
     }
 }

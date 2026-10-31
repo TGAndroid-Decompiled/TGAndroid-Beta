@@ -1,89 +1,32 @@
 package z9;
+public final class d implements ja.d {
+    public static final d f55250a = new Object();
+    public static final ja.c f55251b = ja.c.c("sdkVersion");
+    public static final ja.c f55252c = ja.c.c("gmpAppId");
+    public static final ja.c d = ja.c.c("platform");
+    public static final ja.c e = ja.c.c("installationUuid");
+    public static final ja.c f55253f = ja.c.c("firebaseInstallationId");
+    public static final ja.c f55254g = ja.c.c("appQualitySessionId");
+    public static final ja.c h = ja.c.c("buildVersion");
+    public static final ja.c f55255i = ja.c.c("displayVersion");
+    public static final ja.c f55256j = ja.c.c("session");
+    public static final ja.c f55257k = ja.c.c("ndkPayload");
+    public static final ja.c f55258l = ja.c.c("appExitInfo");
 
-import android.util.Log;
-import j$.util.DesugarCollections;
-import java.util.HashMap;
-import java.util.Map;
-public final class d {
-    public final HashMap f52874a = new HashMap();
-    public final int f52875b = 64;
-    public final int f52876c;
-
-    public d(int i10) {
-        this.f52876c = i10;
-    }
-
-    public static String b(int i10, String str) {
-        if (str != null) {
-            str = str.trim();
-            if (str.length() > i10) {
-                return str.substring(0, i10);
-            }
-        }
-        return str;
-    }
-
-    public final synchronized Map a() {
-        return DesugarCollections.unmodifiableMap(new HashMap(this.f52874a));
-    }
-
-    public final synchronized boolean c(String str, String str2) {
-        boolean equals;
-        String b10 = b(this.f52876c, str);
-        if (this.f52874a.size() >= this.f52875b && !this.f52874a.containsKey(b10)) {
-            Log.w("FirebaseCrashlytics", "Ignored entry \"" + str + "\" when adding custom keys. Maximum allowable: " + this.f52875b, null);
-            return false;
-        }
-        String b11 = b(this.f52876c, str2);
-        String str3 = (String) this.f52874a.get(b10);
-        if (str3 == null) {
-            if (b11 == null) {
-                equals = true;
-            } else {
-                equals = false;
-            }
-        } else {
-            equals = str3.equals(b11);
-        }
-        if (equals) {
-            return false;
-        }
-        HashMap hashMap = this.f52874a;
-        if (str2 == null) {
-            b11 = "";
-        }
-        hashMap.put(b10, b11);
-        return true;
-    }
-
-    public final synchronized void d(Map map) {
-        String b10;
-        try {
-            int i10 = 0;
-            for (Map.Entry entry : map.entrySet()) {
-                String str = (String) entry.getKey();
-                if (str != null) {
-                    String b11 = b(this.f52876c, str);
-                    if (this.f52874a.size() >= this.f52875b && !this.f52874a.containsKey(b11)) {
-                        i10++;
-                    }
-                    String str2 = (String) entry.getValue();
-                    HashMap hashMap = this.f52874a;
-                    if (str2 == null) {
-                        b10 = "";
-                    } else {
-                        b10 = b(this.f52876c, str2);
-                    }
-                    hashMap.put(b11, b10);
-                } else {
-                    throw new IllegalArgumentException("Custom attribute key must not be null.");
-                }
-            }
-            if (i10 > 0) {
-                Log.w("FirebaseCrashlytics", "Ignored " + i10 + " entries when adding custom keys. Maximum allowable: " + this.f52875b, null);
-            }
-        } catch (Throwable th2) {
-            throw th2;
-        }
+    @Override
+    public final void a(Object obj, Object obj2) {
+        ja.e eVar = (ja.e) obj2;
+        a0 a0Var = (a0) ((e2) obj);
+        eVar.d(f55251b, a0Var.f55215b);
+        eVar.d(f55252c, a0Var.f55216c);
+        eVar.g(d, a0Var.d);
+        eVar.d(e, a0Var.e);
+        eVar.d(f55253f, a0Var.f55217f);
+        eVar.d(f55254g, a0Var.f55218g);
+        eVar.d(h, a0Var.h);
+        eVar.d(f55255i, a0Var.f55219i);
+        eVar.d(f55256j, a0Var.f55220j);
+        eVar.d(f55257k, a0Var.f55221k);
+        eVar.d(f55258l, a0Var.f55222l);
     }
 }

@@ -2,14 +2,14 @@ package i2;
 
 import j$.util.Objects;
 public final class w0 {
-    public final long f13782a;
-    public final float f13783b;
-    public final long f13784c;
+    public final long f8107a;
+    public final float f8108b;
+    public final long f8109c;
 
     public w0(v0 v0Var) {
-        this.f13782a = v0Var.f13777a;
-        this.f13783b = v0Var.f13778b;
-        this.f13784c = v0Var.f13779c;
+        this.f8107a = v0Var.f8098a;
+        this.f8108b = v0Var.f8099b;
+        this.f8109c = v0Var.f8100c;
     }
 
     public final boolean equals(Object obj) {
@@ -20,13 +20,13 @@ public final class w0 {
             return false;
         }
         w0 w0Var = (w0) obj;
-        if (this.f13782a == w0Var.f13782a && this.f13783b == w0Var.f13783b && this.f13784c == w0Var.f13784c) {
+        if (this.f8107a == w0Var.f8107a && this.f8108b == w0Var.f8108b && this.f8109c == w0Var.f8109c) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(Long.valueOf(this.f13782a), Float.valueOf(this.f13783b), Long.valueOf(this.f13784c));
+        return Objects.hash(Long.valueOf(this.f8107a), Float.valueOf(this.f8108b), Long.valueOf(this.f8109c));
     }
 }

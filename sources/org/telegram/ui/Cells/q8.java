@@ -1,29 +1,66 @@
 package org.telegram.ui.Cells;
 
+import android.graphics.Canvas;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
 import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class q8 extends LinearLayout {
-    public TextView f24837a;
-    public boolean f24838b;
+import org.telegram.messenger.cd;
+import org.telegram.ui.Components.CheckBoxSquare;
+public final class q8 extends FrameLayout {
+    public TextView f22850a;
+    public CheckBoxSquare f22851b;
+    public boolean f22852c;
+
+    public final void a(String str, boolean z10, boolean z11) {
+        this.f22850a.setText(str);
+        this.f22851b.a(z10, false);
+        this.f22852c = z11;
+        setWillNotDraw(!z11);
+    }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        View view;
-        int measuredHeight;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
-        if (this.f24838b && (view = (View) getParent()) != null && getMeasuredHeight() < (measuredHeight = ((view.getMeasuredHeight() - view.getPaddingBottom()) - view.getPaddingTop()) - AndroidUtilities.dp(24.0f))) {
-            setMeasuredDimension(getMeasuredWidth(), measuredHeight);
+    public final void invalidate() {
+        super.invalidate();
+        this.f22851b.invalidate();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float L;
+        int i10;
+        if (this.f22852c) {
+            if (cd.X) {
+                L = 0.0f;
+            } else {
+                L = org.telegram.messenger.i0.L(20.0f);
+            }
+            float f7 = L;
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (cd.X) {
+                i10 = org.telegram.messenger.i0.L(20.0f);
+            } else {
+                i10 = 0;
+            }
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.t6.f21052k0);
         }
     }
 
-    public void setAddOnClickListener(View.OnClickListener onClickListener) {
-        this.f24837a.setOnClickListener(onClickListener);
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.CheckBox");
+        accessibilityNodeInfo.setCheckable(true);
+        accessibilityNodeInfo.setChecked(this.f22851b.h);
     }
 
-    public void setIsLast(boolean z10) {
-        this.f24838b = z10;
-        requestLayout();
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(50.0f) + (this.f22852c ? 1 : 0), 1073741824));
+    }
+
+    public void setChecked(boolean z10) {
+        this.f22851b.a(z10, true);
     }
 }

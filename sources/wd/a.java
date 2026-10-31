@@ -1,13 +1,21 @@
 package wd;
 
-import j$.util.concurrent.ThreadLocalRandom;
-import java.util.Random;
-import kotlin.jvm.internal.i;
-public final class a extends vd.a {
+import r2.y;
+public final class a extends ed.c {
+    public xd.g f52803a;
+    public Object f52804b;
+    public final y f52805c;
+    public int d;
+
+    public a(y yVar, ed.c cVar) {
+        super(cVar);
+        this.f52805c = yVar;
+    }
+
     @Override
-    public final Random a() {
-        ThreadLocalRandom current = ThreadLocalRandom.current();
-        i.d(current, "current(...)");
-        return current;
+    public final Object invokeSuspend(Object obj) {
+        this.f52804b = obj;
+        this.d |= Integer.MIN_VALUE;
+        return this.f52805c.p(null, this);
     }
 }

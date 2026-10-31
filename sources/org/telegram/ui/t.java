@@ -1,17 +1,24 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class t implements View.OnLongClickListener {
-    public final int f43437a;
-    public final Object f43438b;
+import android.content.DialogInterface;
+public final class t implements DialogInterface.OnDismissListener {
+    public final int f41674a;
+    public final h4 f41675b;
 
-    public t(Object obj, int i10) {
-        this.f43437a = i10;
-        this.f43438b = obj;
+    public t(h4 h4Var, int i10) {
+        this.f41674a = i10;
+        this.f41675b = h4Var;
     }
 
     @Override
-    public final boolean onLongClick(android.view.View r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.t.onLongClick(android.view.View):boolean");
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f41674a) {
+            case 0:
+                this.f41675b.f39482c.f(true);
+                return;
+            default:
+                this.f41675b.f37737k0 = null;
+                return;
+        }
     }
 }

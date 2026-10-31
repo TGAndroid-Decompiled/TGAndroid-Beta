@@ -1,10 +1,58 @@
 package m5;
-public final class b implements ka.d {
-    public static final b f18313a = new Object();
-    public static final ka.c f18314b = new ka.c("storageMetrics", ic.a.m(ic.a.l(na.d.class, new na.a(1))));
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        ((ka.e) obj2).a(f18314b, ((p5.b) obj).f46835a);
+import a1.g;
+import android.content.Context;
+public final class b extends c {
+    public final Context f13006a;
+    public final u5.a f13007b;
+    public final u5.a f13008c;
+    public final String d;
+
+    public b(Context context, u5.a aVar, u5.a aVar2, String str) {
+        if (context != null) {
+            this.f13006a = context;
+            if (aVar != null) {
+                this.f13007b = aVar;
+                if (aVar2 != null) {
+                    this.f13008c = aVar2;
+                    if (str != null) {
+                        this.d = str;
+                        return;
+                    }
+                    throw new NullPointerException("Null backendName");
+                }
+                throw new NullPointerException("Null monotonicClock");
+            }
+            throw new NullPointerException("Null wallClock");
+        }
+        throw new NullPointerException("Null applicationContext");
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof c) {
+            b bVar = (b) ((c) obj);
+            if (this.f13006a.equals(bVar.f13006a) && this.f13007b.equals(bVar.f13007b) && this.f13008c.equals(bVar.f13008c) && this.d.equals(bVar.d)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return ((((((this.f13006a.hashCode() ^ 1000003) * 1000003) ^ this.f13007b.hashCode()) * 1000003) ^ this.f13008c.hashCode()) * 1000003) ^ this.d.hashCode();
+    }
+
+    public final String toString() {
+        StringBuilder sb2 = new StringBuilder("CreationContext{applicationContext=");
+        sb2.append(this.f13006a);
+        sb2.append(", wallClock=");
+        sb2.append(this.f13007b);
+        sb2.append(", monotonicClock=");
+        sb2.append(this.f13008c);
+        sb2.append(", backendName=");
+        return g.r(sb2, this.d, "}");
     }
 }

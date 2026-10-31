@@ -1,44 +1,31 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class rs extends s4.u0 {
-    public boolean f43160a;
-    public boolean f43161b;
-    public final ContactsActivity f43162c;
+import android.content.Context;
+import java.util.ArrayList;
+public final class rs extends zf.f1 {
+    public final ContactsActivity K;
 
-    public rs(ContactsActivity contactsActivity) {
-        this.f43162c = contactsActivity;
+    public rs(ContactsActivity contactsActivity, Context context, a0.h hVar, boolean z10, boolean z11, boolean z12) {
+        this.K = contactsActivity;
+        this.d = new ArrayList();
+        this.e = new ArrayList();
+        this.H = new ArrayList();
+        this.f55484c = context;
+        this.h = hVar;
+        this.f55487r = z10;
+        this.f55488s = z11;
+        this.f55491y = 0;
+        this.f55489w = z12;
+        this.f55490x = true;
+        zf.m1 m1Var = new zf.m1(true);
+        this.f55485f = m1Var;
+        m1Var.f55575a = new zf.d1(this);
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        if (i10 == 1) {
-            ContactsActivity contactsActivity = this.f43162c;
-            if (contactsActivity.f35501y && contactsActivity.f35500x) {
-                AndroidUtilities.hideKeyboard(contactsActivity.getParentActivity().getCurrentFocus());
-            }
-            this.f43161b = true;
-            return;
-        }
-        this.f43161b = false;
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        boolean z10;
-        ContactsActivity contactsActivity = this.f43162c;
-        if (contactsActivity.f35498s != null && !contactsActivity.f35501y) {
-            if (i11 > 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            if (i11 != 0 && this.f43160a && (z10 || this.f43161b)) {
-                contactsActivity.v = !z10;
-                ContactsActivity.c0(contactsActivity);
-            }
-            this.f43160a = true;
+    public final void F() {
+        if (!this.D && !this.f55485f.e() && b() == 0) {
+            this.K.f33282c.e(false, true);
         }
     }
 }

@@ -1,22 +1,21 @@
 package org.telegram.ui.web;
 
 import android.webkit.JavascriptInterface;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.ui.Components.oy0;
+import org.telegram.messenger.f8;
+import org.telegram.ui.Components.u41;
 public class BotWebViewContainer$BotWebViewProxy {
-    public a1 f44654a;
+    public z0 f42975a;
 
     @JavascriptInterface
     public void postEvent(String str, String str2) {
         try {
-            if (this.f44654a == null) {
-                FileLog.d("webviewproxy.postEvent: no container");
+            if (this.f42975a == null) {
+                f8.b("webviewproxy.postEvent: no container");
             } else {
-                AndroidUtilities.runOnUIThread(new oy0(this, str, str2, 8));
+                org.telegram.messenger.i0.g3(new u41(this, str, str2, 6));
             }
         } catch (Exception e) {
-            FileLog.e(e);
+            f8.g(e, true);
         }
     }
 }

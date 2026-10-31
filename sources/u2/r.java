@@ -6,17 +6,17 @@ public final class r implements d1 {
     }
 
     @Override
-    public final int f(n4.s sVar, h2.h hVar, int i10) {
+    public final int i(long j10) {
+        return 0;
+    }
+
+    @Override
+    public final int r(hf.b bVar, h2.h hVar, int i10) {
         hVar.setFlags(4);
         return -4;
     }
 
     @Override
-    public final int j(long j10) {
-        return 0;
-    }
-
-    @Override
-    public final void d() {
+    public final void a() {
     }
 }

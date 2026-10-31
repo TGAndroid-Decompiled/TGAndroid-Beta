@@ -1,34 +1,34 @@
 package sg;
 
-import android.content.Context;
-import android.graphics.PointF;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.rw0;
-import org.telegram.ui.Components.t81;
-import org.telegram.ui.Components.yj0;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.pt0;
-public final class z extends p2 {
-    public final m0 f48635y0;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.mj0;
+public final class z extends AnimatorListenerAdapter {
+    public final int f48490a;
+    public final b0 f48491b;
 
-    public z(m0 m0Var, Context context, PointF pointF, float f7, float f10, rw0 rw0Var, TLRPC.Document document, Object obj) {
-        super(context, pointF, f7, f10, rw0Var, document, obj);
-        this.f48635y0 = m0Var;
+    public z(b0 b0Var, int i10) {
+        this.f48490a = i10;
+        this.f48491b = b0Var;
     }
 
     @Override
-    public final void q(yj0 yj0Var) {
-        PhotoViewer photoViewer = ((pt0) this.f48635y0).f42502d2;
-        t81 t81Var = photoViewer.F2;
-        if (t81Var == null) {
-            return;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f48490a) {
+            case 0:
+                this.f48491b.f();
+                return;
+            default:
+                b0 b0Var = this.f48491b;
+                b0.a(b0Var, false);
+                b0Var.f48281j = 0.0f;
+                mj0 mj0Var = b0Var.f48285n;
+                mj0Var.setCustomEmojiEnterProgress(Utilities.i(0.0f, 1.0f, 0.0f));
+                mj0Var.setSkipDraw(false);
+                b0Var.f48277c.setVisibility(8);
+                b0Var.f();
+                return;
         }
-        long n10 = t81Var.n();
-        long j10 = photoViewer.f35746m8;
-        long j11 = 0;
-        if (j10 > 0) {
-            j11 = j10 / 1000;
-        }
-        yj0Var.U(n10 - j11);
     }
 }

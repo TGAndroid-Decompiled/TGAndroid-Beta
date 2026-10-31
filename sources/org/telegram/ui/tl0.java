@@ -1,115 +1,63 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class tl0 implements TextView.OnEditorActionListener {
-    public final int f43668a;
-    public final kn0 f43669b;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class tl0 implements Runnable {
+    public final int f41859a;
+    public final sm0 f41860b;
+    public final TLRPC.TL_error f41861c;
+    public final TLObject d;
 
-    public tl0(kn0 kn0Var, int i10) {
-        this.f43668a = i10;
-        this.f43669b = kn0Var;
+    public tl0(sm0 sm0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i10) {
+        this.f41859a = i10;
+        this.f41860b = sm0Var;
+        this.f41861c = tL_error;
+        this.d = tLObject;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        switch (this.f43668a) {
+    public final void run() {
+        int i10 = this.f41859a;
+        TLObject tLObject = this.d;
+        TLRPC.TL_error tL_error = this.f41861c;
+        sm0 sm0Var = this.f41860b;
+        switch (i10) {
             case 0:
-                kn0 kn0Var = this.f43669b;
-                if (i10 == 5) {
-                    kn0Var.Y[2].requestFocus();
-                    return true;
-                } else if (i10 == 6) {
-                    kn0Var.L.callOnClick();
-                    return true;
-                } else {
-                    kn0Var.getClass();
-                    return false;
+                sm0Var.f41557e0 = false;
+                if (tL_error == null) {
+                    TL_account.Password password = (TL_account.Password) tLObject;
+                    sm0Var.f41547a0 = password;
+                    if (!TwoStepVerificationActivity.m0(password, false)) {
+                        org.telegram.ui.Components.s4.w0(sm0Var.getParentActivity(), org.telegram.messenger.cd.L0(2131743846, null), true);
+                        return;
+                    }
+                    TLRPC.PaymentForm paymentForm = sm0Var.C0;
+                    if (paymentForm != null && sm0Var.f41547a0.has_password) {
+                        paymentForm.password_missing = false;
+                        paymentForm.can_save_credentials = true;
+                        sm0Var.P0();
+                    }
+                    TwoStepVerificationActivity.q0(sm0Var.f41547a0);
+                    sm0 sm0Var2 = sm0Var.f41560f0;
+                    if (sm0Var2 != null) {
+                        sm0Var2.H0(sm0Var.f41547a0);
+                    }
+                    if (!sm0Var.f41547a0.has_password && sm0Var.f41555d0 == null) {
+                        rl0 rl0Var = new rl0(sm0Var, 2);
+                        sm0Var.f41555d0 = rl0Var;
+                        org.telegram.messenger.i0.h3(rl0Var, 5000L);
+                        return;
+                    }
+                    return;
                 }
+                return;
             case 1:
-                kn0 kn0Var2 = this.f43669b;
-                kn0Var2.getClass();
-                if (i10 == 5) {
-                    int intValue = ((Integer) textView.getTag()).intValue() + 1;
-                    EditTextBoldCursor[] editTextBoldCursorArr = kn0Var2.Y;
-                    if (intValue >= editTextBoldCursorArr.length) {
-                        return true;
-                    }
-                    if (editTextBoldCursorArr[intValue].isFocusable()) {
-                        kn0Var2.Y[intValue].requestFocus();
-                        return true;
-                    }
-                    kn0Var2.Y[intValue].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
-                    textView.clearFocus();
-                    AndroidUtilities.hideKeyboard(textView);
-                    return true;
-                }
-                return false;
-            case 2:
-                kn0 kn0Var3 = this.f43669b;
-                kn0Var3.getClass();
-                if (i10 == 5) {
-                    int intValue2 = ((Integer) textView.getTag()).intValue() + 1;
-                    EditTextBoldCursor[] editTextBoldCursorArr2 = kn0Var3.f40836a0;
-                    if (intValue2 >= editTextBoldCursorArr2.length) {
-                        return true;
-                    }
-                    if (editTextBoldCursorArr2[intValue2].isFocusable()) {
-                        kn0Var3.f40836a0[intValue2].requestFocus();
-                        return true;
-                    }
-                    kn0Var3.f40836a0[intValue2].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
-                    textView.clearFocus();
-                    AndroidUtilities.hideKeyboard(textView);
-                    return true;
-                }
-                return false;
-            case 3:
-                kn0 kn0Var4 = this.f43669b;
-                kn0Var4.getClass();
-                if (i10 != 6 && i10 != 5) {
-                    return false;
-                }
-                kn0Var4.L.callOnClick();
-                return true;
-            case 4:
-                kn0 kn0Var5 = this.f43669b;
-                kn0Var5.getClass();
-                if (i10 == 5) {
-                    int intValue3 = ((Integer) textView.getTag()).intValue() + 1;
-                    EditTextBoldCursor[] editTextBoldCursorArr3 = kn0Var5.Y;
-                    if (intValue3 >= editTextBoldCursorArr3.length) {
-                        return true;
-                    }
-                    if (editTextBoldCursorArr3[intValue3].isFocusable()) {
-                        kn0Var5.Y[intValue3].requestFocus();
-                        return true;
-                    }
-                    kn0Var5.Y[intValue3].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
-                    textView.clearFocus();
-                    AndroidUtilities.hideKeyboard(textView);
-                    return true;
-                }
-                return false;
-            case 5:
-                kn0 kn0Var6 = this.f43669b;
-                kn0Var6.getClass();
-                if (i10 != 5 && i10 != 6) {
-                    return false;
-                }
-                kn0Var6.L.callOnClick();
-                return true;
+                sm0.Z(sm0Var, tL_error, tLObject);
+                return;
             default:
-                kn0 kn0Var7 = this.f43669b;
-                kn0Var7.getClass();
-                if (i10 != 6 && i10 != 5) {
-                    return false;
-                }
-                kn0Var7.L.callOnClick();
-                return true;
+                sm0.b0(sm0Var, tL_error, tLObject);
+                return;
         }
     }
 }

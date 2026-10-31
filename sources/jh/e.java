@@ -1,187 +1,113 @@
 package jh;
 
-import a8.ee;
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.TextPaint;
-import android.util.Log;
-import android.util.LongSparseArray;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.i0;
+import org.telegram.messenger.w0;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.rj;
-public final class e extends View implements ViewTreeObserver.OnPreDrawListener, ViewTreeObserver.OnScrollChangedListener, ViewTreeObserver.OnGlobalLayoutListener {
-    public static final RectF H = new RectF();
-    public ViewTreeObserver E;
-    public boolean F;
-    public TextPaint G;
-    public final boolean f15932a;
-    public final RectF f15933b;
-    public final RectF f15934c;
-    public long d;
-    public int e;
-    public ViewGroup f15935f;
-    public ViewGroup h;
-    public long f15936n;
-    public c f15937r;
-    public long f15938s;
-    public final ArrayList v;
-    public final LongSparseArray f15939w;
-    public final LongSparseArray f15940x;
-    public final c f15941y;
+import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.Components.gr;
+import org.telegram.ui.Components.kp;
+import rf.o;
+public final class e extends ih.f implements Drawable.Callback, fe.e {
+    public final String f10405b;
+    public final Drawable d;
+    public final kp f10407f;
+    public ih.e h;
+    public TLRPC.WebPage f10408n;
+    public final fe.b f10409r;
+    public final fe.b f10410s;
+    public final a5.a f10406c = new a5.a((char) 0, 16);
+    public final Paint e = new Paint(1);
 
-    public e(Context context) {
-        super(context);
-        this.f15933b = new RectF();
-        this.f15934c = new RectF();
-        this.v = new ArrayList();
-        this.f15939w = new LongSparseArray();
-        this.f15940x = new LongSparseArray();
-        this.f15941y = new c(this, 1);
-        this.f15932a = SharedConfig.debugViewMetrics;
-    }
-
-    public final void a() {
-        c cVar = this.f15937r;
-        if (cVar != null) {
-            AndroidUtilities.cancelRunOnUIThread(cVar);
-            this.f15937r = null;
-        }
-        ArrayList arrayList = this.v;
-        if (!arrayList.isEmpty()) {
-            TLRPC.TL_messages_reportReadMetrics tL_messages_reportReadMetrics = new TLRPC.TL_messages_reportReadMetrics();
-            tL_messages_reportReadMetrics.peer = MessagesController.getInstance(this.e).getInputPeer(this.d);
-            tL_messages_reportReadMetrics.metrics = new ArrayList<>(arrayList);
-            ConnectionsManager.getInstance(this.e).sendRequestTyped(tL_messages_reportReadMetrics, null, new b(0));
-            arrayList.clear();
-        }
-    }
-
-    public final void b(int i10, long j10, ViewGroup viewGroup, rj rjVar) {
-        this.d = j10;
-        this.e = i10;
-        this.f15935f = viewGroup;
-        this.h = rjVar;
-    }
-
-    public final void c() {
-        throw new UnsupportedOperationException("Method not decompiled: jh.e.c():void");
+    public e(String str) {
+        kp kpVar = new kp(-1);
+        this.f10407f = kpVar;
+        gr grVar = gr.h;
+        this.f10409r = new fe.b(0, this, grVar, 320L, false);
+        this.f10410s = new fe.b(0, this, grVar, 320L, false);
+        this.f10405b = str;
+        this.f8536a.J0(i0.L(7.0f));
+        this.d = i0.a.f(w0.f19025b, 2131231744);
+        kpVar.setCallback(this);
+        kpVar.b(t6.x0(null, t6.f21135o7, false));
+        kpVar.f27861a = i0.L(15.0f);
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f15938s = 0L;
-        ViewTreeObserver viewTreeObserver = getViewTreeObserver();
-        this.E = viewTreeObserver;
-        viewTreeObserver.addOnPreDrawListener(this);
-        this.E.addOnGlobalLayoutListener(this);
-        this.E.addOnScrollChangedListener(this);
-        AndroidUtilities.runOnUIThread(this.f15941y, 400L);
-        if (BuildVars.LOGS_ENABLED) {
-            Log.d("ViewMetrics", "attach");
-        }
+    public final void a(View view) {
+        super.a(view);
+        this.h = (ih.e) view;
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        ViewTreeObserver viewTreeObserver = this.E;
-        if (viewTreeObserver != null && viewTreeObserver.isAlive()) {
-            this.E.removeOnPreDrawListener(this);
-            this.E.removeOnGlobalLayoutListener(this);
-            this.E.removeOnScrollChangedListener(this);
-        }
-        this.E = null;
-        this.f15938s = 0L;
-        AndroidUtilities.cancelRunOnUIThread(this.f15941y);
-        if (BuildVars.LOGS_ENABLED) {
-            Log.d("ViewMetrics", "detach");
-        }
-        super.onDetachedFromWindow();
+    public final void b() {
+        super.b();
+        this.h = null;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int round;
-        if (this.f15932a) {
-            if (this.G == null) {
-                TextPaint textPaint = new TextPaint(1);
-                this.G = textPaint;
-                textPaint.setColor(-16776961);
-                this.G.setTextSize(AndroidUtilities.dp(10.0f));
-            }
-            super.onDraw(canvas);
-            Paint paint = y6.Ql;
-            RectF rectF = this.f15934c;
-            canvas.drawRect(rectF, paint);
-            LongSparseArray longSparseArray = this.f15939w;
-            int size = longSparseArray.size();
-            for (int i10 = 0; i10 < size; i10++) {
-                d dVar = (d) longSparseArray.valueAt(i10);
-                RectF rectF2 = dVar.f15924c;
-                canvas.drawRect(rectF2, y6.Rl);
-                canvas.save();
-                canvas.translate(rectF2.left, ee.a(ee.a(rectF2.centerY() - AndroidUtilities.dp(20.0f), rectF.top - AndroidUtilities.dp(40.0f), rectF.bottom), rectF2.top, rectF2.bottom - AndroidUtilities.dp(40.0f)));
-                canvas.drawRect(0.0f, 0.0f, rectF2.width(), AndroidUtilities.dp(40.0f), y6.Pl);
-                canvas.translate(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(16.0f));
-                canvas.save();
-                canvas.drawText("time_in_view_ms: " + dVar.f15926g, 0.0f, 0.0f, this.G);
-                canvas.translate(0.0f, (float) AndroidUtilities.dp(16.0f));
-                canvas.drawText("active_time_in_view_ms: " + dVar.h, 0.0f, 0.0f, this.G);
-                canvas.restore();
-                canvas.save();
-                canvas.translate(getWidth() / 2.0f, 0.0f);
-                StringBuilder sb2 = new StringBuilder("height_to_viewport_ratio_permille: ");
-                float f7 = dVar.f15929k;
-                if (f7 == 0.0f) {
-                    round = 1000;
-                } else {
-                    round = Math.round((dVar.f15928j / f7) * 1000.0f);
-                }
-                sb2.append(round);
-                canvas.drawText(sb2.toString(), 0.0f, 0.0f, this.G);
-                canvas.translate(0.0f, AndroidUtilities.dp(16.0f));
-                canvas.drawText("seen_range_ratio_permille: " + dVar.b(), 0.0f, 0.0f, this.G);
-                canvas.restore();
-                canvas.restore();
-            }
+    public final void c(Canvas canvas, int i10, int i11) {
+        float f7 = i10;
+        float f10 = i11;
+        ImageReceiver imageReceiver = this.f8536a;
+        imageReceiver.y0(0.0f, 0.0f, f7, f10);
+        imageReceiver.h(canvas, null);
+        kp kpVar = this.f10407f;
+        kpVar.setBounds(0, 0, i10, i11);
+        int x02 = t6.x0(null, t6.f20872a7, false);
+        fe.b bVar = this.f10410s;
+        int f11 = i0.b.f(bVar.e, x02, 1073741824);
+        Paint paint = this.e;
+        paint.setColor(f11);
+        canvas.drawRoundRect(0.0f, 0.0f, f7, f10, i0.L(7.0f), i0.L(7.0f), paint);
+        int f12 = i0.b.f(bVar.e, t6.x0(null, t6.f21135o7, false), -1);
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        a5.a aVar = this.f10406c;
+        aVar.getClass();
+        if (((PorterDuffColorFilter) aVar.f282c) == null || aVar.f281b != f12 || ((PorterDuff.Mode) aVar.d) != mode) {
+            aVar.f282c = new PorterDuffColorFilter(f12, mode);
+            aVar.f281b = f12;
+            aVar.d = mode;
+        }
+        Drawable drawable = this.d;
+        drawable.setColorFilter((PorterDuffColorFilter) aVar.f282c);
+        o.e(this.d, f7 / 2.0f, f10 / 2.0f, i0.L(24.0f), i0.L(24.0f), 17);
+        fe.b bVar2 = this.f10409r;
+        o.b(canvas, drawable, 1.0f - bVar2.e);
+        o.b(canvas, kpVar, bVar2.e);
+    }
+
+    @Override
+    public final void invalidateDrawable(Drawable drawable) {
+        ih.e eVar = this.h;
+        if (eVar != null) {
+            eVar.invalidate();
         }
     }
 
     @Override
-    public final void onGlobalLayout() {
-        this.F = true;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        RectF rectF = this.f15933b;
-        this.f15934c.set(rectF.left, rectF.top, getMeasuredWidth() - rectF.right, getMeasuredHeight() - rectF.bottom);
-    }
-
-    @Override
-    public final boolean onPreDraw() {
-        if (this.F) {
-            c();
-            this.F = false;
-            return true;
+    public final void v(int i10, float f7, float f10, fe.f fVar) {
+        ih.e eVar = this.h;
+        if (eVar != null) {
+            eVar.invalidate();
         }
-        return true;
     }
 
     @Override
-    public final void onScrollChanged() {
-        this.F = true;
+    public final void E(float f7, int i10) {
+    }
+
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+    }
+
+    @Override
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j10) {
     }
 }

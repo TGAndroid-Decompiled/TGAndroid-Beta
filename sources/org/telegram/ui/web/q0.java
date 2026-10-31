@@ -1,44 +1,60 @@
 package org.telegram.ui.web;
 
-import android.webkit.JsResult;
-public final class q0 implements org.telegram.ui.ActionBar.b2 {
-    public final int f44869a;
-    public final boolean[] f44870b;
-    public final JsResult f44871c;
+import android.view.KeyEvent;
+import android.view.View;
+import android.webkit.JsPromptResult;
+import android.widget.TextView;
+import org.telegram.messenger.q20;
+import org.telegram.ui.Components.mt;
+public final class q0 implements TextView.OnEditorActionListener {
+    public final int f43169a;
+    public final Object f43170b;
+    public final Object f43171c;
+    public final Object d;
+    public final Object e;
 
-    public q0(boolean[] zArr, JsResult jsResult, int i10) {
-        this.f44869a = i10;
-        this.f44870b = zArr;
-        this.f44871c = jsResult;
+    public q0(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
+        this.f43169a = i10;
+        this.f43170b = obj;
+        this.f43171c = obj2;
+        this.d = obj3;
+        this.e = obj4;
     }
 
     @Override
-    public final void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        switch (this.f44869a) {
+    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
+        switch (this.f43169a) {
             case 0:
-                boolean[] zArr = this.f44870b;
+                if (i10 != 6) {
+                    return false;
+                }
+                boolean[] zArr = (boolean[]) this.f43170b;
                 if (!zArr[0]) {
                     zArr[0] = true;
-                    this.f44871c.cancel();
-                    return;
+                    ((JsPromptResult) this.f43171c).confirm(((mt) this.d).getText().toString());
+                    ((org.telegram.ui.ActionBar.x1) this.e).dismiss();
                 }
-                return;
-            case 1:
-                boolean[] zArr2 = this.f44870b;
-                if (!zArr2[0]) {
-                    zArr2[0] = true;
-                    this.f44871c.confirm();
-                    return;
-                }
-                return;
+                return true;
             default:
-                boolean[] zArr3 = this.f44870b;
-                if (!zArr3[0]) {
-                    zArr3[0] = true;
-                    this.f44871c.confirm();
-                    return;
+                ph.t1 t1Var = (ph.t1) this.f43170b;
+                if (i10 != 6) {
+                    return false;
                 }
-                return;
+                String obj = t1Var.getText().toString();
+                if (obj.length() > 0 && obj.length() <= 12) {
+                    ((q20) this.f43171c).a(obj);
+                    org.telegram.ui.ActionBar.x1 x1Var = ((org.telegram.ui.ActionBar.x1[]) this.d)[0];
+                    if (x1Var != null) {
+                        x1Var.dismiss();
+                    }
+                    View view = (View) this.e;
+                    if (view != null) {
+                        view.requestFocus();
+                    }
+                } else {
+                    org.telegram.messenger.i0.E3(t1Var);
+                }
+                return true;
         }
     }
 }

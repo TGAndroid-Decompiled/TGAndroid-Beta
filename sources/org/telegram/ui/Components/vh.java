@@ -1,71 +1,66 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class vh extends View {
-    public final int f33741a;
-    public final ti f33742b;
+import android.widget.TextView;
+import org.telegram.tgnet.TLRPC;
+public final class vh extends xh {
+    public TLRPC.User f31256b;
+    public TLRPC.TL_attachMenuBot f31257c;
+    public final bi d;
 
-    public vh(ti tiVar, Context context, int i10) {
+    public vh(bi biVar, Context context) {
         super(context);
-        this.f33741a = i10;
-        this.f33742b = tiVar;
+        this.d = biVar;
+        setWillNotDraw(false);
+        setFocusable(true);
+        setFocusableInTouchMode(true);
+        int i10 = bi.E4;
+        org.telegram.ui.ActionBar.p6 p6Var = biVar.I0;
+        gh.b bVar = new gh.b(context);
+        bVar.d = p6Var;
+        bVar.Q = true;
+        TextView textView = bVar.f7518a;
+        textView.setTextSize(1, 11.0f);
+        textView.setPadding(org.telegram.messenger.i0.L(8.0f), 0, org.telegram.messenger.i0.L(8.0f), 0);
+        bVar.f7519b.setVisibility(8);
+        bVar.b(false);
+        g9 g9Var = new g9(context);
+        bVar.f7520c = g9Var;
+        bVar.addView(g9Var, w7.b6.d(24, 24.0f, 49, 0.0f, 4.0f, 0.0f, 0.0f));
+        bVar.f7526x = org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.Ql, p6Var);
+        bVar.f7524s = org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.Ol, p6Var);
+        bVar.f7525w = org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.Pl, p6Var);
+        bVar.a();
+        this.f32471a = bVar;
+        bVar.getBackupImageView().f26292a.f14382g1 = new v1(27);
+        addView(this.f32471a, w7.b6.c(-1.0f, -1));
     }
 
-    @Override
-    public void draw(Canvas canvas) {
-        switch (this.f33741a) {
-            case 0:
-                super.draw(canvas);
-                this.f33742b.f32976b0.draw(canvas);
-                return;
-            default:
-                super.draw(canvas);
-                return;
+    public final void a(boolean z10) {
+        boolean z11;
+        if (this.f31257c != null && (-this.f31256b.f19942id) == this.d.Q2) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        this.f32471a.f(z11, z10);
+        bi0 B = this.f32471a.getBackupImageView().getImageReceiver().B();
+        if (z10) {
+            if (z11 && B != null) {
+                B.K(0);
+                B.P(-1);
+                B.T(false, 0.0f);
+                B.start();
+            }
+        } else if (B != null) {
+            B.stop();
+            B.T(false, 0.0f);
         }
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f33741a) {
-            case 1:
-                ti tiVar = this.f33742b;
-                String format = String.format("%d", Integer.valueOf(Math.max(1, tiVar.B0.getSelectedItemsCount())));
-                int ceil = (int) Math.ceil(tiVar.M0.measureText(format));
-                int max = Math.max(AndroidUtilities.dp(16.0f) + ceil, AndroidUtilities.dp(24.0f));
-                int measuredWidth = getMeasuredWidth() / 2;
-                int themedColor = tiVar.getThemedColor(org.telegram.ui.ActionBar.y6.C5);
-                tiVar.M0.setColor(i0.a.o(themedColor, (int) (((tiVar.Y0 * 0.42d) + 0.58d) * Color.alpha(themedColor))));
-                tiVar.O0.setColor(tiVar.getThemedColor(org.telegram.ui.ActionBar.y6.f23428h5));
-                int i10 = max / 2;
-                int i11 = measuredWidth - i10;
-                int i12 = i10 + measuredWidth;
-                tiVar.N0.set(i11, 0.0f, i12, getMeasuredHeight());
-                canvas.drawRoundRect(tiVar.N0, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), tiVar.O0);
-                tiVar.O0.setColor(tiVar.getThemedColor(org.telegram.ui.ActionBar.y6.W9));
-                tiVar.N0.set(AndroidUtilities.dp(2.0f) + i11, AndroidUtilities.dp(2.0f), i12 - AndroidUtilities.dp(2.0f), getMeasuredHeight() - AndroidUtilities.dp(2.0f));
-                canvas.drawRoundRect(tiVar.N0, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), tiVar.O0);
-                canvas.drawText(format, measuredWidth - (ceil / 2), AndroidUtilities.dp(16.2f), tiVar.M0);
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f33741a) {
-            case 0:
-                super.onSizeChanged(i10, i11, i12, i13);
-                this.f33742b.f32976b0.setBounds(0, (i11 - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(48.0f), i10, i11);
-                return;
-            default:
-                super.onSizeChanged(i10, i11, i12, i13);
-                return;
-        }
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        a(false);
     }
 }

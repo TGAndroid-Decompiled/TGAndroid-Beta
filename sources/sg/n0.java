@@ -1,89 +1,52 @@
 package sg;
 
-import android.text.TextUtils;
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.OutputSerializedData;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
-public final class n0 extends TLObject {
-    public static final int f48419j = 0;
-    public int f48420a;
-    public String f48421b;
-    public String f48422c;
-    public TLRPC.WebPage d;
-    public boolean e;
-    public boolean f48423f = true;
-    public int f48424i;
+public final class n0 extends m0 {
+    public final p0 f48420g0;
 
-    @Override
-    public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
-        boolean z11;
-        int readInt32 = inputSerializedData.readInt32(z10);
-        this.f48420a = readInt32;
-        boolean z12 = false;
-        if ((readInt32 & 8) != 0) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        this.e = z11;
-        if ((readInt32 & 16) != 0) {
-            z12 = true;
-        }
-        this.f48423f = z12;
-        this.f48422c = inputSerializedData.readString(z10);
-        if ((this.f48420a & 1) != 0) {
-            this.d = TLRPC.WebPage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-        }
-        if ((this.f48420a & 2) != 0) {
-            this.f48421b = inputSerializedData.readString(z10);
-        }
-        if ((this.f48420a & 4) != 0) {
-            this.f48424i = inputSerializedData.readInt32(z10);
-        }
+    public n0(p0 p0Var, m0 m0Var, TLRPC.ReactionCount reactionCount, boolean z10) {
+        super(m0Var, p0Var.f48446l, p0Var.f48456w, reactionCount, z10, p0Var.f48458y);
+        this.f48420g0 = p0Var;
     }
 
     @Override
-    public final void serializeToStream(OutputSerializedData outputSerializedData) {
-        int i10;
-        int i11;
-        int i12;
-        int i13;
-        outputSerializedData.writeInt32(-625858389);
-        if (this.d != null) {
-            i10 = this.f48420a | 1;
-        } else {
-            i10 = this.f48420a & (-2);
+    public final float j() {
+        return this.f48420g0.f48438a;
+    }
+
+    @Override
+    public final ImageReceiver k() {
+        return (ImageReceiver) this.f48420g0.E.get(this.f48411r);
+    }
+
+    @Override
+    public final boolean l() {
+        return this.f48420g0.f48457x.P3();
+    }
+
+    @Override
+    public final boolean m() {
+        p0 p0Var = this.f48420g0;
+        int f12 = p0Var.f48457x.f1();
+        long d12 = p0Var.f48457x.d1();
+        k0 k0Var = k0.B;
+        if (k0Var != null) {
+            int i10 = k0Var.f48365a;
+            if (i10 == 2 || i10 == 0) {
+                long j10 = k0Var.f48376o;
+                if (((j10 != 0 && d12 == j10) || f12 == k0Var.f48375n) && k0Var.f48377p.equals(this.f48411r)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
-        this.f48420a = i10;
-        if (!TextUtils.isEmpty(this.f48421b)) {
-            i11 = this.f48420a | 2;
-        } else {
-            i11 = this.f48420a & (-3);
-        }
-        this.f48420a = i11;
-        if (this.e) {
-            i12 = i11 | 8;
-        } else {
-            i12 = i11 & (-9);
-        }
-        this.f48420a = i12;
-        if (this.f48423f) {
-            i13 = i12 | 16;
-        } else {
-            i13 = i12 & (-17);
-        }
-        this.f48420a = i13;
-        outputSerializedData.writeInt32(i13);
-        outputSerializedData.writeString(this.f48422c);
-        if ((this.f48420a & 1) != 0) {
-            this.d.serializeToStream(outputSerializedData);
-        }
-        if ((this.f48420a & 2) != 0) {
-            outputSerializedData.writeString(this.f48421b);
-        }
-        if ((this.f48420a & 4) != 0) {
-            outputSerializedData.writeInt32(this.f48424i);
-        }
+        return false;
+    }
+
+    @Override
+    public final void n() {
+        this.f48420g0.E.remove(this.f48411r);
     }
 }

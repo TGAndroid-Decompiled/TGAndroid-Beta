@@ -1,36 +1,20 @@
 package org.telegram.ui;
 
-import java.util.regex.Pattern;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class v90 implements RequestDelegate {
-    public final int f44214a;
-    public final LaunchActivity f44215b;
-
-    public v90(LaunchActivity launchActivity, int i10) {
-        this.f44214a = i10;
-        this.f44215b = launchActivity;
-    }
+import android.view.View;
+public final class v90 implements View.OnLayoutChangeListener {
+    public boolean f42684a;
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f44214a;
-        LaunchActivity launchActivity = this.f44215b;
-        switch (i10) {
-            case 0:
-                Pattern pattern = LaunchActivity.D1;
-                if (tLObject != null) {
-                    AndroidUtilities.runOnUIThread(new kz(23, launchActivity, (TL_account.Password) tLObject));
-                    return;
-                }
-                return;
-            default:
-                Pattern pattern2 = LaunchActivity.D1;
-                AndroidUtilities.runOnUIThread(new kz(19, launchActivity, tLObject));
-                return;
+    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
+        boolean z10;
+        if (i13 - i11 > i12 - i10) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (z10 != this.f42684a) {
+            org.telegram.messenger.i0.g3(new org.telegram.ui.Components.voip.m0(this, 8));
+            this.f42684a = z10;
         }
     }
 }

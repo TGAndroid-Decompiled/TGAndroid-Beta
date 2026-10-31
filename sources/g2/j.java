@@ -1,25 +1,40 @@
 package g2;
 
-import java.io.IOException;
-public class j extends IOException {
-    public final int f12247a;
+import android.content.Context;
+import android.net.Uri;
+import b2.s0;
+import v7.v6;
+public final class j implements e2.d {
+    public static final d9.t e = v6.a(new a3.s(2));
+    public final j9.z f7301a;
+    public final hf.b f7302b;
+    public final int f7303c;
+    public final boolean d;
 
-    public j(int i10) {
-        this.f12247a = i10;
+    public j(c5.e eVar) {
+        this.f7302b = new hf.b((Context) eVar.f3777c);
+        j9.z zVar = (j9.z) e.get();
+        zVar.getClass();
+        this.f7301a = zVar;
+        this.f7303c = eVar.f3775a;
+        this.d = eVar.f3776b;
     }
 
-    public j(Exception exc, int i10) {
-        super(exc);
-        this.f12247a = i10;
+    @Override
+    public final j9.y a(s0 s0Var) {
+        byte[] bArr = s0Var.f2254k;
+        if (bArr != null) {
+            return w(bArr);
+        }
+        Uri uri = s0Var.f2257n;
+        if (uri != null) {
+            return ((j9.a0) this.f7301a).a(new i(1, this, uri));
+        }
+        return null;
     }
 
-    public j(String str, int i10) {
-        super(str);
-        this.f12247a = i10;
-    }
-
-    public j(String str, Exception exc, int i10) {
-        super(str, exc);
-        this.f12247a = i10;
+    @Override
+    public final j9.y w(byte[] bArr) {
+        return ((j9.a0) this.f7301a).a(new i(0, this, bArr));
     }
 }

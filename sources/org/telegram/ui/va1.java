@@ -1,56 +1,22 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.Button;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class va1 extends View {
-    public static final int f44223c = 0;
-    public final Paint f44224a;
-    public int[] f44225b;
+public final class va1 implements View.OnClickListener {
+    public final pb1 f42692a;
 
-    public va1(Context context) {
-        super(context);
-        this.f44224a = new Paint(1);
-        this.f44225b = new int[7];
+    public va1(pb1 pb1Var) {
+        this.f42692a = pb1Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float measuredWidth = getMeasuredWidth() * 0.5f;
-        float measuredHeight = getMeasuredHeight() * 0.5f;
-        float dp = AndroidUtilities.dp(5.0f);
-        float dp2 = AndroidUtilities.dp(20.0f) - dp;
-        Paint.Style style = Paint.Style.FILL;
-        Paint paint = this.f44224a;
-        paint.setStyle(style);
-        int i10 = 0;
-        paint.setColor(this.f44225b[0]);
-        canvas.drawCircle(measuredWidth, measuredHeight, dp, paint);
-        double d = 0.0d;
-        while (i10 < 6) {
-            i10++;
-            paint.setColor(this.f44225b[i10]);
-            canvas.drawCircle((((float) Math.sin(d)) * dp2) + measuredWidth, measuredHeight - (((float) Math.cos(d)) * dp2), dp, paint);
-            d += 1.0471975511965976d;
+    public final void onClick(View view) {
+        pb1 pb1Var = this.f42692a;
+        if (pb1Var.M == 1) {
+            org.telegram.ui.Components.s4.i0(pb1Var, -pb1Var.f40566a, null, pb1Var.g(), null, false, pb1Var.J, new ra(this, 5), pb1Var.getResourceProvider());
+            return;
         }
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setText(LocaleController.getString("ColorPickerMainColor", R.string.ColorPickerMainColor));
-        accessibilityNodeInfo.setClassName(Button.class.getName());
-        accessibilityNodeInfo.setEnabled(true);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(62.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(62.0f), 1073741824));
+        pb1Var.getMessagesController().m(pb1Var.f40566a, pb1Var.getUserConfig().f(), 0, null, pb1Var, false, new na1(pb1Var, 2), new oa1(pb1Var), null);
+        org.telegram.messenger.zs.e().k(org.telegram.messenger.zs.I4, new Object[0]);
+        pb1Var.R0(false);
     }
 }

@@ -1,52 +1,57 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
-import android.graphics.SurfaceTexture;
-import android.view.MotionEvent;
-public final class k6 extends ug.n {
-    public final m6 f36816i0;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.widget.FrameLayout;
+import org.telegram.ui.Components.dq;
+public final class k6 extends dq {
+    public final l6 L;
 
-    public k6(m6 m6Var, Context context) {
-        super(context, 1, 4);
-        this.f36816i0 = m6Var;
+    public k6(l6 l6Var) {
+        super(2131232815, 0);
+        this.L = l6Var;
     }
 
     @Override
-    public final void i() {
-        m6 m6Var = this.f36816i0;
-        if (m6Var.e == this) {
-            m6.c(m6Var);
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        l6 l6Var = this.L;
+        FrameLayout.LayoutParams layoutParams = l6Var.P;
+        if (!l6Var.f34856i0) {
+            this.f25511x = 1.0f;
+            if (l6Var.f34844a) {
+                float max = Math.max(0.0f, Math.min(1.0f, l6Var.T));
+                int i15 = (max > 0.0f ? 1 : (max == 0.0f ? 0 : -1));
+                if (i15 == 0) {
+                    float intrinsicWidth = this.f25505c.getIntrinsicWidth() * l6Var.f34846b;
+                    float f10 = l6Var.f34846b;
+                    float intrinsicHeight = this.f25505c.getIntrinsicHeight() * f10;
+                    float f11 = (f10 * f7) + layoutParams.leftMargin;
+                    float height = ((l6Var.N.getHeight() / 2.0f) - (intrinsicHeight / 2.0f)) + layoutParams.topMargin;
+                    l6Var.f34852f.set(f11, height, intrinsicWidth + f11, intrinsicHeight + height);
+                }
+                if (max < 1.0f) {
+                    if (l6Var.f34855h0 == null) {
+                        l6Var.f34855h0 = new t6(this.f25505c.getIntrinsicWidth(), this.f25505c.getIntrinsicHeight());
+                        l6Var.m();
+                    }
+                    Drawable drawable = this.f25505c;
+                    l6Var.f34855h0.setBounds(drawable.getBounds());
+                    t6 t6Var = l6Var.f34855h0;
+                    t6Var.f35249i = l6Var.f34853f0.f30445c;
+                    this.f25505c = t6Var;
+                    this.d = false;
+                    this.f25511x = 1.0f - max;
+                    super.draw(canvas, charSequence, i10, i11, f7, i12, i13, i14, paint);
+                    this.f25505c = drawable;
+                    this.d = true;
+                }
+                this.f25511x = max;
+                if (i15 == 0) {
+                    return;
+                }
+            }
+            super.draw(canvas, charSequence, i10, i11, f7, i12, i13, i14, paint);
         }
-    }
-
-    @Override
-    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
-        int round = Math.round(Math.min(i10, i11) * 3.5f);
-        surfaceTexture.setDefaultBufferSize(round, round);
-        super.onSurfaceTextureAvailable(surfaceTexture, round, round);
-    }
-
-    @Override
-    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
-        int round = Math.round(Math.min(i10, i11) * 3.5f);
-        surfaceTexture.setDefaultBufferSize(round, round);
-        this.f49866y = round;
-        this.f49865x = round;
-    }
-
-    @Override
-    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        int round = Math.round(Math.min(getWidth(), getHeight()) * 3.5f);
-        if (round > 0) {
-            surfaceTexture.setDefaultBufferSize(round, round);
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f36816i0.f36993x && super.onTouchEvent(motionEvent)) {
-            return true;
-        }
-        return false;
     }
 }

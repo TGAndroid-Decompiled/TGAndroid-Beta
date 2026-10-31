@@ -1,65 +1,85 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Typeface;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class kc extends nb {
-    public final bk0 f29925a;
-    public final s6 f29926b;
-    public final s6 f29927c;
-    public final int d;
+import android.graphics.Paint;
+import java.util.Random;
+public final class kc {
+    public float f27708a;
+    public float f27709b;
+    public float f27710c;
+    public float d;
+    public float e;
+    public float f27711f;
+    public int f27712g;
+    public float[] f27715k;
+    public float[] f27716l;
+    public float[] f27717m;
+    public float[] f27718n;
+    public float[] f27719o;
+    public float[] f27720p;
+    public float[] f27721q;
+    public float[] f27722r;
+    public float[] f27723s;
+    public float[] f27724t;
+    public float[] f27725u;
+    public float[] v;
+    public float[] f27726w;
+    public int f27727x;
+    public int h = -11318601;
+    public final Paint f27713i = new Paint(1);
+    public final Random f27714j = new Random();
+    public int f27728y = 255;
 
-    public kc(Context context, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(context, u6Var);
-        int i10 = org.telegram.ui.ActionBar.y6.Hi;
-        this.d = getThemedColor(i10);
-        setBackground(getThemedColor(org.telegram.ui.ActionBar.y6.Fi));
-        ?? imageView = new ImageView(context);
-        this.f29925a = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView((View) imageView, kb1.l(56.0f, 48.0f, 8388627));
-        getThemedColor(i10);
-        getThemedColor(org.telegram.ui.ActionBar.y6.Gi);
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        addView(linearLayout, kb1.m(-1.0f, -2.0f, 8388627, 52.0f, 8.0f, 8.0f, 8.0f));
-        s6 s6Var = new s6(context, true, true, true);
-        this.f29926b = s6Var;
-        s6Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-        org.telegram.ui.ActionBar.f7.Z(s6Var, i10, u6Var);
-        s6Var.setTextSize(AndroidUtilities.dp(14.0f));
-        s6Var.setTypeface(AndroidUtilities.bold());
-        s6Var.setEllipsizeByGradient(true);
-        linearLayout.addView(s6Var, kb1.r(-1, 20));
-        s6 s6Var2 = new s6(context, true, true, true);
-        this.f29927c = s6Var2;
-        s6Var2.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-        org.telegram.ui.ActionBar.f7.Z(s6Var2, i10, u6Var);
-        s6Var2.setTypeface(Typeface.SANS_SERIF);
-        s6Var2.setTextSize(AndroidUtilities.dp(13.0f));
-        s6Var2.setEllipsizeByGradient(true);
-        linearLayout.addView(s6Var2, kb1.r(-1, 18));
+    public final void a() {
+        int i10 = this.h;
+        Paint paint = this.f27713i;
+        paint.setColor(i10);
+        paint.setAlpha((this.f27712g * this.f27728y) / 255);
     }
 
-    public final void c(int i10, String... strArr) {
-        bk0 bk0Var = this.f29925a;
-        bk0Var.f(i10, 32, 32, null);
-        for (String str : strArr) {
-            bk0Var.h(this.d, str);
+    public final void b(int r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.kc.b(int):void");
+    }
+
+    public final void c(int i10) {
+        this.f27727x = i10;
+        this.f27715k = new float[i10];
+        this.f27716l = new float[i10];
+        this.f27717m = new float[i10];
+        this.f27718n = new float[i10];
+        this.f27719o = new float[i10];
+        this.f27720p = new float[i10];
+        this.f27721q = new float[i10];
+        this.f27722r = new float[i10];
+        this.f27723s = new float[i10];
+        this.f27724t = new float[i10];
+        this.f27725u = new float[i10];
+        this.v = new float[i10];
+        this.f27726w = new float[i10];
+        for (int i11 = 0; i11 < this.f27727x; i11++) {
+            float[] fArr = this.f27715k;
+            Random random = this.f27714j;
+            fArr[i11] = random.nextFloat();
+            this.f27717m[i11] = (((random.nextFloat() - 0.5f) * 2.0f) * 0.18f) / this.f27727x;
+            b(i11);
+            this.f27719o[i11] = random.nextFloat();
         }
+        a();
     }
 
-    @Override
-    public CharSequence getAccessibilityText() {
-        return ((Object) this.f29926b.getText()) + ".\n" + ((Object) this.f29927c.getText());
-    }
-
-    @Override
-    public final void onShow() {
-        super.onShow();
-        this.f29925a.d();
+    public final void d(float f7) {
+        for (int i10 = 0; i10 < this.f27727x; i10++) {
+            float[] fArr = this.f27719o;
+            float f10 = fArr[i10];
+            float f11 = this.f27720p[i10];
+            nh.a aVar = lc.H;
+            float f12 = (f11 * f7 * 8.2f) + (0.8f * f11) + f10;
+            fArr[i10] = f12;
+            if (f12 >= 1.0f) {
+                fArr[i10] = 0.0f;
+                this.f27715k[i10] = this.f27716l[i10];
+                this.f27717m[i10] = this.f27718n[i10];
+                b(i10);
+            }
+        }
     }
 }

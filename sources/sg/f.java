@@ -1,63 +1,61 @@
 package sg;
 
-import android.animation.ValueAnimator;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class f implements ValueAnimator.AnimatorUpdateListener {
-    public final int f48235a;
-    public final j f48236b;
+import android.app.Activity;
+import android.graphics.PorterDuff;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import org.telegram.messenger.cd;
+import org.telegram.messenger.q20;
+import org.telegram.ui.ActionBar.a7;
+import org.telegram.ui.ActionBar.p6;
+import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.ActionBar.w6;
+import w7.b6;
+public final class f extends FrameLayout {
+    public static final int e = 0;
+    public final e f48324a;
+    public boolean f48325b;
+    public boolean f48326c;
+    public q20 d;
 
-    public f(j jVar, int i10) {
-        this.f48235a = i10;
-        this.f48236b = jVar;
+    public f(Activity activity, p6 p6Var) {
+        super(activity);
+        int x02;
+        e eVar = new e(this, activity);
+        this.f48324a = eVar;
+        eVar.setHapticFeedbackEnabled(true);
+        eVar.setImageResource(2131232736);
+        a7.t(eVar, t6.Gf, p6Var, PorterDuff.Mode.MULTIPLY);
+        eVar.setScaleType(ImageView.ScaleType.CENTER);
+        eVar.setContentDescription(cd.L0(2131754920, null));
+        eVar.setFocusable(true);
+        eVar.setOnClickListener(new bh.c(24));
+        addView(eVar, b6.e(36, 36, 17));
+        int x03 = t6.x0(null, t6.f21020i6, false);
+        int L = org.telegram.messenger.i0.L(36.0f);
+        int i10 = t6.f20929d6;
+        if (p6Var != null) {
+            x02 = p6Var.h(i10);
+        } else {
+            x02 = t6.x0(null, i10, false);
+        }
+        org.telegram.ui.Cells.y j02 = t6.j0(L, x02, x03);
+        w6 N = a7.N(i10);
+        eVar.setBackground(j02);
+        a7.k(eVar, j02, N, null, p6Var);
+        eVar.setOutlineProvider(new rf.b0(18));
+        eVar.setElevation(org.telegram.messenger.i0.L(1.0f));
+        eVar.setClipToOutline(true);
+        setClickable(true);
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f48235a) {
-            case 0:
-                j jVar = this.f48236b;
-                jVar.g(AndroidUtilities.lerpAngle(jVar.L, jVar.f48290i0, jVar.Q.getAnimatedFraction()));
-                return;
-            case 1:
-                j jVar2 = this.f48236b;
-                jVar2.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                jVar2.f48295n0 = floatValue;
-                jVar2.setAlpha(floatValue);
-                i iVar = jVar2.H;
-                if (iVar != null) {
-                    iVar.setScaleX(Utilities.clamp(jVar2.f48295n0 * 1.25f, 1.0f, 0.0f) * AndroidUtilities.lerp(0.9f, 1.0f, jVar2.f48291j0));
-                    jVar2.H.setScaleY(Utilities.clamp(jVar2.f48295n0 * 1.25f, 1.0f, 0.0f) * AndroidUtilities.lerp(0.9f, 1.0f, jVar2.f48291j0));
-                    jVar2.H.setAlpha(Math.max(0.0f, jVar2.f48295n0 - 0.8f) * jVar2.f48291j0 * 5.0f);
-                }
-                jVar2.invalidate();
-                return;
-            case 2:
-                j jVar3 = this.f48236b;
-                jVar3.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                jVar3.f48291j0 = floatValue2;
-                i iVar2 = jVar3.H;
-                if (iVar2 != null) {
-                    iVar2.setScaleX(Utilities.clamp(jVar3.f48295n0 * 1.25f, 1.0f, 0.0f) * AndroidUtilities.lerp(0.9f, 1.0f, floatValue2));
-                    jVar3.H.setScaleY(Utilities.clamp(jVar3.f48295n0 * 1.25f, 1.0f, 0.0f) * AndroidUtilities.lerp(0.9f, 1.0f, jVar3.f48291j0));
-                    jVar3.H.setAlpha(Math.max(0.0f, jVar3.f48295n0 - 0.8f) * jVar3.f48291j0 * 5.0f);
-                    return;
-                }
-                return;
-            case 3:
-                this.f48236b.k();
-                return;
-            case 4:
-                this.f48236b.k();
-                return;
-            default:
-                j jVar4 = this.f48236b;
-                float lerpAngle = AndroidUtilities.lerpAngle(jVar4.f48290i0, jVar4.L, valueAnimator.getAnimatedFraction());
-                jVar4.O = lerpAngle;
-                jVar4.g(lerpAngle);
-                return;
-        }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(42.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(42.0f), 1073741824));
+    }
+
+    public void setOnBackspace(q20 q20Var) {
+        this.d = q20Var;
     }
 }

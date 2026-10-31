@@ -1,55 +1,55 @@
 package p2;
 
-import a8.yb;
 import android.net.Uri;
-import b2.x0;
-import f9.i0;
+import b2.w0;
+import e9.n0;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import v7.t6;
 public final class w {
-    public final v f46672a;
-    public final HashMap f46673b;
-    public final ArrayList f46674c;
+    public final v f44686a;
+    public final HashMap f44687b;
+    public final ArrayList f44688c;
     public String d;
 
     public w(v vVar, String str, Uri uri, int i10) {
-        this.f46672a = vVar;
+        this.f44686a = vVar;
         HashMap hashMap = new HashMap();
-        this.f46673b = hashMap;
+        this.f44687b = hashMap;
         hashMap.put(str, uri);
         this.d = str;
         ArrayList arrayList = new ArrayList();
-        this.f46674c = arrayList;
+        this.f44688c = arrayList;
         if (i10 != -1) {
             arrayList.add(Integer.valueOf(i10));
         }
     }
 
-    public static i0 a(List list) {
+    public static n0 a(List list) {
         ArrayList arrayList = new ArrayList();
         HashMap hashMap = new HashMap();
         HashMap hashMap2 = new HashMap();
         for (int i10 = 0; i10 < list.size(); i10++) {
             n nVar = (n) list.get(i10);
-            Uri uri = nVar.f46615a;
+            Uri uri = nVar.f44629a;
             try {
-                d(nVar.f46615a, null, i10, arrayList, new v(nVar.f46616b, nVar.d, nVar.f46617c), hashMap, hashMap2);
-            } catch (x0 unused) {
+                d(nVar.f44629a, null, i10, arrayList, new v(nVar.f44630b, nVar.d, nVar.f44631c), hashMap, hashMap2);
+            } catch (w0 unused) {
             }
         }
-        return i0.u(arrayList);
+        return n0.u(arrayList);
     }
 
-    public static i0 b(List list) {
+    public static n0 b(List list) {
         ArrayList arrayList = new ArrayList();
         HashMap hashMap = new HashMap();
         HashMap hashMap2 = new HashMap();
         for (int i10 = 0; i10 < list.size(); i10++) {
             o oVar = (o) list.get(i10);
-            d(oVar.f46618a, oVar.f46622g, i10, arrayList, new v(oVar.f46619b, oVar.h, null), hashMap, hashMap2);
+            d(oVar.f44632a, oVar.f44636g, i10, arrayList, new v(oVar.f44633b, oVar.h, null), hashMap, hashMap2);
         }
-        return i0.u(arrayList);
+        return n0.u(arrayList);
     }
 
     public static void d(Uri uri, String str, int i10, ArrayList arrayList, v vVar, HashMap hashMap, HashMap hashMap2) {
@@ -77,7 +77,7 @@ public final class w {
                 if (intValue >= 0) {
                     z10 = true;
                 }
-                yb.b(intValue, "invalid count: %s", z10);
+                t6.c(intValue, "invalid count: %s", z10);
                 if (intValue != 0) {
                     str2 = ".";
                 } else {
@@ -100,25 +100,25 @@ public final class w {
                     System.arraycopy(cArr, 0, cArr, i12, i11);
                     str2 = new String(cArr);
                 } else {
-                    throw new ArrayIndexOutOfBoundsException(a1.g.o(j10, "Required array size too large: "));
+                    throw new ArrayIndexOutOfBoundsException(a1.g.l(j10, "Required array size too large: "));
                 }
             }
             hashMap2.put(vVar, Integer.valueOf(intValue));
             str = str2;
         }
         w wVar2 = (w) arrayList.get(num.intValue());
-        Uri uri2 = (Uri) wVar2.f46673b.get(str);
+        Uri uri2 = (Uri) wVar2.f44687b.get(str);
         if (uri2 != null && !uri.equals(uri2)) {
-            throw x0.b("Different playlist URLs are found for pathway ID " + str + " within the HlsRedundantGroup", null);
+            throw w0.b("Different playlist URLs are found for pathway ID " + str + " within the HlsRedundantGroup", null);
         }
-        wVar2.f46673b.put(str, uri);
+        wVar2.f44687b.put(str, uri);
         if (i10 != -1) {
-            wVar2.f46674c.add(Integer.valueOf(i10));
+            wVar2.f44688c.add(Integer.valueOf(i10));
         }
     }
 
     public final Uri c() {
-        Uri uri = (Uri) this.f46673b.get(this.d);
+        Uri uri = (Uri) this.f44687b.get(this.d);
         uri.getClass();
         return uri;
     }

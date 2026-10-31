@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.view.KeyEvent;
 public class MusicPlayerReceiver extends BroadcastReceiver {
     @Override
-    public void onReceive(Context context, Intent intent) {
+    public final void onReceive(Context context, Intent intent) {
         KeyEvent keyEvent;
         if (intent.getAction().equals("android.intent.action.MEDIA_BUTTON")) {
             if (intent.getExtras() != null && (keyEvent = (KeyEvent) intent.getExtras().get("android.intent.extra.KEY_EVENT")) != null && keyEvent.getAction() == 0) {
@@ -16,24 +16,24 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
                         if (keyCode != 88) {
                             if (keyCode != 126) {
                                 if (keyCode == 127) {
-                                    MediaController.getInstance().lambda$startAudioAgain$7(MediaController.getInstance().getPlayingMessageObject());
+                                    MediaController.B().R(MediaController.B().f14482u0, true);
                                     return;
                                 }
                                 return;
                             }
-                            MediaController.getInstance().playMessage(MediaController.getInstance().getPlayingMessageObject());
+                            MediaController.B().S(MediaController.B().f14482u0);
                             return;
                         }
-                        MediaController.getInstance().playPreviousMessage();
+                        MediaController.B().V();
                         return;
                     }
-                    MediaController.getInstance().playNextMessage();
+                    MediaController.B().U(false);
                     return;
-                } else if (MediaController.getInstance().isMessagePaused()) {
-                    MediaController.getInstance().playMessage(MediaController.getInstance().getPlayingMessageObject());
+                } else if (MediaController.B().H()) {
+                    MediaController.B().S(MediaController.B().f14482u0);
                     return;
                 } else {
-                    MediaController.getInstance().lambda$startAudioAgain$7(MediaController.getInstance().getPlayingMessageObject());
+                    MediaController.B().R(MediaController.B().f14482u0, true);
                     return;
                 }
             }
@@ -94,30 +94,30 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
         }
         switch (c10) {
             case 0:
-                SharedConfig.setRepeatMode((SharedConfig.repeatMode + 1) % 3);
+                tz.E((tz.S0 + 1) % 3);
                 return;
             case 1:
-                MediaController.getInstance().cleanupPlayer(true, true);
+                MediaController.B().q(true, true, false, false);
                 return;
             case 2:
             case 5:
-                MediaController.getInstance().lambda$startAudioAgain$7(MediaController.getInstance().getPlayingMessageObject());
+                MediaController.B().R(MediaController.B().f14482u0, true);
                 return;
             case 3:
-                MediaController.getInstance().playNextMessage();
+                MediaController.B().U(false);
                 return;
             case 4:
-                MediaController.getInstance().playMessage(MediaController.getInstance().getPlayingMessageObject());
+                MediaController.B().S(MediaController.B().f14482u0);
                 return;
             case 6:
-                MediaController.getInstance().playPreviousMessage();
+                MediaController.B().V();
                 return;
             case 7:
-                if (SharedConfig.shuffleMusic) {
-                    MediaController.getInstance().setPlaybackOrderType(0);
+                if (tz.N0) {
+                    MediaController.B().l0(0);
                     return;
                 } else {
-                    MediaController.getInstance().setPlaybackOrderType(2);
+                    MediaController.B().l0(2);
                     return;
                 }
             default:

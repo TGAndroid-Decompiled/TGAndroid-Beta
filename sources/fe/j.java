@@ -1,17 +1,33 @@
 package fe;
+public final class j {
+    public final g f7038a;
+    public final n f7039b = new n(0.0f);
+    public final n f7040c = new n(0.0f);
+    public final n d = new n(0.0f);
+    public final n e = new n(0.0f);
+    public final n f7041f = new n(0.0f);
+    public final n f7042g = new n(0.0f);
 
-import bb.u;
-import kotlin.jvm.internal.p;
-public final class j extends nd.c {
-    public p f10455a;
-    public u f10456b;
-    public Object f10457c;
-    public int d;
+    public j(k kVar, g gVar) {
+        this.f7038a = gVar;
+    }
 
-    @Override
-    public final Object invokeSuspend(Object obj) {
-        this.f10457c = obj;
-        this.d |= Integer.MIN_VALUE;
-        return n.b(null, this);
+    public static void a(j jVar, int i10, boolean z10) {
+        n nVar = jVar.f7040c;
+        n nVar2 = jVar.f7039b;
+        float f7 = 0.0f;
+        if (z10) {
+            nVar2.f7050c = i10;
+            if (i10 > 0) {
+                f7 = 1.0f;
+            }
+            nVar.f7050c = f7;
+            return;
+        }
+        nVar2.d(i10);
+        if (i10 > 0) {
+            f7 = 1.0f;
+        }
+        nVar.d(f7);
     }
 }

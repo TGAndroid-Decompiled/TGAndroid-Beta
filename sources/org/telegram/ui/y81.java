@@ -1,7 +1,16 @@
 package org.telegram.ui;
-public final class y81 extends s4.l {
+
+import android.widget.EditText;
+public final class y81 extends org.telegram.ui.ActionBar.p0 {
     @Override
-    public final long K(long j10, long j11, long j12) {
-        return j10;
+    public final void l(EditText editText) {
+    }
+
+    @Override
+    public final void h() {
+    }
+
+    @Override
+    public final void i() {
     }
 }

@@ -1,12 +1,12 @@
 package i2;
 public final class r0 {
-    public final b2.p1 f13718a;
-    public final int f13719b;
-    public final long f13720c;
+    public final b2.o1 f8035a;
+    public final int f8036b;
+    public final long f8037c;
 
-    public r0(b2.p1 p1Var, int i10, long j10) {
-        this.f13718a = p1Var;
-        this.f13719b = i10;
-        this.f13720c = j10;
+    public r0(b2.o1 o1Var, int i10, long j10) {
+        this.f8035a = o1Var;
+        this.f8036b = i10;
+        this.f8037c = j10;
     }
 }

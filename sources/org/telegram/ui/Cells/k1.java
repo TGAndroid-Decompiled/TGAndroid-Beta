@@ -1,14 +1,27 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.RectF;
-import android.text.StaticLayout;
-import org.telegram.ui.Components.xc;
-public final class k1 {
-    public int f24309a;
-    public float f24310b;
-    public float f24311c;
-    public StaticLayout d;
-    public final RectF e = new RectF();
-    public xc f24312f;
-    public y f24313g;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class k1 extends AnimatorListenerAdapter {
+    public final int f22115a;
+    public final q1 f22116b;
+
+    public k1(q1 q1Var, int i10) {
+        this.f22115a = i10;
+        this.f22116b = q1Var;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f22115a) {
+            case 0:
+                q1 q1Var = this.f22116b;
+                q1Var.O5.M0 = true;
+                q1Var.invalidate();
+                return;
+            default:
+                this.f22116b.setSelectedBackgroundProgress(0.0f);
+                return;
+        }
+    }
 }

@@ -1,19 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class ym0 extends FrameLayout {
-    public View f35111a;
-    public TextView f35112b;
+import androidx.recyclerview.widget.RecyclerView;
+public final class ym0 extends s4.s0 {
+    public final int f32761a;
+    public final org.telegram.ui.kx f32762b;
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
+    public ym0(org.telegram.ui.kx kxVar, int i10) {
+        this.f32761a = i10;
+        this.f32762b = kxVar;
     }
 
-    public void setText(CharSequence charSequence) {
-        this.f35112b.setText(charSequence);
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        switch (this.f32761a) {
+            case 0:
+                this.f32762b.T();
+                return;
+            default:
+                this.f32762b.T();
+                return;
+        }
     }
 }

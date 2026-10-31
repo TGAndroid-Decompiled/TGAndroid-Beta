@@ -1,34 +1,34 @@
 package org.telegram.ui.Cells;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class y8 extends AnimatorListenerAdapter {
-    public final int f25769a;
-    public final int f25770b;
-    public final a9 f25771c;
+import android.content.Context;
+import org.telegram.ui.Components.p80;
+public final class y8 extends p80 {
+    public final int L;
+    public final z8 M;
 
-    public y8(a9 a9Var, int i10, int i11) {
-        this.f25769a = i11;
-        this.f25771c = a9Var;
-        this.f25770b = i10;
+    public y8(z8 z8Var, Context context, org.telegram.ui.ActionBar.p6 p6Var, int i10) {
+        super(context, p6Var);
+        this.L = i10;
+        this.M = z8Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f25769a) {
+    public final int c() {
+        switch (this.L) {
             case 0:
-                a9 a9Var = this.f25771c;
-                a9Var.f23868r = 0;
-                a9Var.setBackgroundColor(this.f25770b);
-                a9Var.invalidate();
-                return;
+                return this.M.a(super.c());
             default:
-                int i10 = this.f25770b;
-                a9 a9Var2 = this.f25771c;
-                a9Var2.setBackgroundColor(i10);
-                a9Var2.f23868r = 0;
-                a9Var2.invalidate();
-                return;
+                return this.M.a(super.c());
+        }
+    }
+
+    @Override
+    public final int d(int i10) {
+        switch (this.L) {
+            case 0:
+                return this.M.a(i10);
+            default:
+                return this.M.a(i10);
         }
     }
 }

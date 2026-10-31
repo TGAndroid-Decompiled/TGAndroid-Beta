@@ -1,25 +1,20 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-import org.telegram.messenger.MessagesController;
-public final class uv extends y61 {
-    public final vv e;
+public final class uv implements View.OnFocusChangeListener {
+    public final vy f31063a;
 
-    public uv(vv vvVar, String str) {
-        super(str, (z11) null);
-        this.e = vvVar;
+    public uv(vy vyVar) {
+        this.f31063a = vyVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10;
-        vv vvVar = this.e;
-        i10 = ((org.telegram.ui.ActionBar.k3) vvVar.f34381x).currentAccount;
-        MessagesController messagesController = MessagesController.getInstance(i10);
-        String url = getURL();
-        aw awVar = vvVar.f34381x;
-        messagesController.openByUserName(url, awVar.f26674c, 1);
-        awVar.i0();
-        awVar.dismiss();
+    public final void onFocusChange(View view, boolean z10) {
+        if (z10) {
+            String[] G0 = org.telegram.messenger.i0.G0();
+            vy vyVar = this.f31063a;
+            vyVar.W0 = G0;
+            org.telegram.messenger.ui.b0(vyVar.f31865c1).M(vyVar.W0, false);
+        }
     }
 }

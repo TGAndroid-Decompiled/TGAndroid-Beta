@@ -1,31 +1,281 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class x6 implements View.OnClickListener {
-    public final int f34682a;
-    public final Runnable f34683b;
+import android.view.KeyEvent;
+import android.widget.FrameLayout;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class x6 implements RequestDelegate {
+    public final int f32378a = 1;
+    public final boolean f32379b;
+    public final boolean f32380c;
+    public final long d;
+    public final KeyEvent.Callback e;
+    public final Object f32381f;
+    public final Object f32382g;
+    public final Object h;
 
-    public x6(int i10, Runnable runnable) {
-        this.f34682a = i10;
-        this.f34683b = runnable;
+    public x6(w7 w7Var, boolean z10, org.telegram.messenger.jj jjVar, boolean z11, Runnable runnable, long j10, TLRPC.Document document) {
+        this.e = w7Var;
+        this.f32379b = z10;
+        this.f32381f = jjVar;
+        this.f32380c = z11;
+        this.f32382g = runnable;
+        this.d = j10;
+        this.h = document;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f34682a) {
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f32378a) {
             case 0:
-                this.f34683b.run();
-                return;
-            case 1:
-                Runnable runnable = this.f34683b;
-                if (runnable != null) {
-                    runnable.run();
+                final w7 w7Var = (w7) this.e;
+                org.telegram.messenger.jj jjVar = (org.telegram.messenger.jj) this.f32381f;
+                final Runnable runnable = (Runnable) this.f32382g;
+                TLRPC.Document document = (TLRPC.Document) this.h;
+                final boolean z10 = this.f32380c;
+                if (tL_error != null && org.telegram.messenger.w8.r(tL_error.text)) {
+                    if (!this.f32379b && jjVar.f1() >= 0) {
+                        if (org.telegram.messenger.jj.B0(jjVar.f16337k) >= 0) {
+                            final int f12 = jjVar.f1();
+                            TLRPC.TL_messages_getMessages tL_messages_getMessages = new TLRPC.TL_messages_getMessages();
+                            tL_messages_getMessages.f19889id.add(Integer.valueOf(f12));
+                            ConnectionsManager.getInstance(w7Var.f21583a).sendRequest(tL_messages_getMessages, new RequestDelegate() {
+                                @Override
+                                public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
+                                    TLRPC.Message message;
+                                    TLRPC.Message message2;
+                                    switch (r5) {
+                                        case 0:
+                                            boolean z11 = tLObject2 instanceof TLRPC.messages_Messages;
+                                            final w7 w7Var2 = w7Var;
+                                            if (z11) {
+                                                TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject2;
+                                                int i10 = 0;
+                                                while (true) {
+                                                    if (i10 < messages_messages.messages.size()) {
+                                                        if (messages_messages.messages.get(i10).f19814id == f12) {
+                                                            message = messages_messages.messages.get(i10);
+                                                        } else {
+                                                            i10++;
+                                                        }
+                                                    } else {
+                                                        message = null;
+                                                    }
+                                                }
+                                                if (message != null) {
+                                                    w7Var2.R0(new org.telegram.messenger.jj(w7Var2.f21583a, message, false, true), z10, runnable, true);
+                                                    return;
+                                                } else {
+                                                    org.telegram.messenger.i0.g3(new Runnable() {
+                                                        @Override
+                                                        public final void run() {
+                                                            int i11 = r2;
+                                                            w7 w7Var3 = w7Var2;
+                                                            switch (i11) {
+                                                                case 0:
+                                                                    new cc((FrameLayout) w7Var3.f21586b, w7Var3.I0).t(org.telegram.messenger.cd.a0(null, null, 2131743903, "CLIENT_MESSAGE_NOT_FOUND"), null).j();
+                                                                    return;
+                                                                default:
+                                                                    new cc((FrameLayout) w7Var3.f21586b, w7Var3.I0).t(org.telegram.messenger.cd.a0(null, null, 2131743903, "CLIENT_MESSAGE_NOT_FOUND"), null).j();
+                                                                    return;
+                                                            }
+                                                        }
+                                                    });
+                                                    return;
+                                                }
+                                            } else if (tL_error2 != null) {
+                                                org.telegram.messenger.i0.g3(new y6(w7Var2, tL_error2, 3));
+                                                return;
+                                            } else {
+                                                return;
+                                            }
+                                        default:
+                                            boolean z12 = tLObject2 instanceof TLRPC.messages_Messages;
+                                            final w7 w7Var3 = w7Var;
+                                            if (z12) {
+                                                TLRPC.messages_Messages messages_messages2 = (TLRPC.messages_Messages) tLObject2;
+                                                int i11 = 0;
+                                                while (true) {
+                                                    if (i11 < messages_messages2.messages.size()) {
+                                                        if (messages_messages2.messages.get(i11).f19814id == f12) {
+                                                            message2 = messages_messages2.messages.get(i11);
+                                                        } else {
+                                                            i11++;
+                                                        }
+                                                    } else {
+                                                        message2 = null;
+                                                    }
+                                                }
+                                                if (message2 != null) {
+                                                    w7Var3.R0(new org.telegram.messenger.jj(w7Var3.f21583a, message2, false, true), z10, runnable, true);
+                                                    return;
+                                                } else {
+                                                    org.telegram.messenger.i0.g3(new Runnable() {
+                                                        @Override
+                                                        public final void run() {
+                                                            int i112 = r2;
+                                                            w7 w7Var32 = w7Var3;
+                                                            switch (i112) {
+                                                                case 0:
+                                                                    new cc((FrameLayout) w7Var32.f21586b, w7Var32.I0).t(org.telegram.messenger.cd.a0(null, null, 2131743903, "CLIENT_MESSAGE_NOT_FOUND"), null).j();
+                                                                    return;
+                                                                default:
+                                                                    new cc((FrameLayout) w7Var32.f21586b, w7Var32.I0).t(org.telegram.messenger.cd.a0(null, null, 2131743903, "CLIENT_MESSAGE_NOT_FOUND"), null).j();
+                                                                    return;
+                                                            }
+                                                        }
+                                                    });
+                                                    return;
+                                                }
+                                            } else if (tL_error2 != null) {
+                                                org.telegram.messenger.i0.g3(new y6(w7Var3, tL_error2, 2));
+                                                return;
+                                            } else {
+                                                return;
+                                            }
+                                    }
+                                }
+                            });
+                            return;
+                        }
+                        final int f13 = jjVar.f1();
+                        TLRPC.TL_channels_getMessages tL_channels_getMessages = new TLRPC.TL_channels_getMessages();
+                        tL_channels_getMessages.channel = org.telegram.messenger.vp.r1(w7Var.f21583a).g1(-org.telegram.messenger.jj.B0(jjVar.f16337k));
+                        tL_channels_getMessages.f19831id.add(Integer.valueOf(f13));
+                        ConnectionsManager.getInstance(w7Var.f21583a).sendRequest(tL_channels_getMessages, new RequestDelegate() {
+                            @Override
+                            public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
+                                TLRPC.Message message;
+                                TLRPC.Message message2;
+                                switch (r5) {
+                                    case 0:
+                                        boolean z11 = tLObject2 instanceof TLRPC.messages_Messages;
+                                        final w7 w7Var2 = w7Var;
+                                        if (z11) {
+                                            TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject2;
+                                            int i10 = 0;
+                                            while (true) {
+                                                if (i10 < messages_messages.messages.size()) {
+                                                    if (messages_messages.messages.get(i10).f19814id == f13) {
+                                                        message = messages_messages.messages.get(i10);
+                                                    } else {
+                                                        i10++;
+                                                    }
+                                                } else {
+                                                    message = null;
+                                                }
+                                            }
+                                            if (message != null) {
+                                                w7Var2.R0(new org.telegram.messenger.jj(w7Var2.f21583a, message, false, true), z10, runnable, true);
+                                                return;
+                                            } else {
+                                                org.telegram.messenger.i0.g3(new Runnable() {
+                                                    @Override
+                                                    public final void run() {
+                                                        int i112 = r2;
+                                                        w7 w7Var32 = w7Var2;
+                                                        switch (i112) {
+                                                            case 0:
+                                                                new cc((FrameLayout) w7Var32.f21586b, w7Var32.I0).t(org.telegram.messenger.cd.a0(null, null, 2131743903, "CLIENT_MESSAGE_NOT_FOUND"), null).j();
+                                                                return;
+                                                            default:
+                                                                new cc((FrameLayout) w7Var32.f21586b, w7Var32.I0).t(org.telegram.messenger.cd.a0(null, null, 2131743903, "CLIENT_MESSAGE_NOT_FOUND"), null).j();
+                                                                return;
+                                                        }
+                                                    }
+                                                });
+                                                return;
+                                            }
+                                        } else if (tL_error2 != null) {
+                                            org.telegram.messenger.i0.g3(new y6(w7Var2, tL_error2, 3));
+                                            return;
+                                        } else {
+                                            return;
+                                        }
+                                    default:
+                                        boolean z12 = tLObject2 instanceof TLRPC.messages_Messages;
+                                        final w7 w7Var3 = w7Var;
+                                        if (z12) {
+                                            TLRPC.messages_Messages messages_messages2 = (TLRPC.messages_Messages) tLObject2;
+                                            int i11 = 0;
+                                            while (true) {
+                                                if (i11 < messages_messages2.messages.size()) {
+                                                    if (messages_messages2.messages.get(i11).f19814id == f13) {
+                                                        message2 = messages_messages2.messages.get(i11);
+                                                    } else {
+                                                        i11++;
+                                                    }
+                                                } else {
+                                                    message2 = null;
+                                                }
+                                            }
+                                            if (message2 != null) {
+                                                w7Var3.R0(new org.telegram.messenger.jj(w7Var3.f21583a, message2, false, true), z10, runnable, true);
+                                                return;
+                                            } else {
+                                                org.telegram.messenger.i0.g3(new Runnable() {
+                                                    @Override
+                                                    public final void run() {
+                                                        int i112 = r2;
+                                                        w7 w7Var32 = w7Var3;
+                                                        switch (i112) {
+                                                            case 0:
+                                                                new cc((FrameLayout) w7Var32.f21586b, w7Var32.I0).t(org.telegram.messenger.cd.a0(null, null, 2131743903, "CLIENT_MESSAGE_NOT_FOUND"), null).j();
+                                                                return;
+                                                            default:
+                                                                new cc((FrameLayout) w7Var32.f21586b, w7Var32.I0).t(org.telegram.messenger.cd.a0(null, null, 2131743903, "CLIENT_MESSAGE_NOT_FOUND"), null).j();
+                                                                return;
+                                                        }
+                                                    }
+                                                });
+                                                return;
+                                            }
+                                        } else if (tL_error2 != null) {
+                                            org.telegram.messenger.i0.g3(new y6(w7Var3, tL_error2, 2));
+                                            return;
+                                        } else {
+                                            return;
+                                        }
+                                }
+                            }
+                        });
+                        return;
+                    }
+                    org.telegram.messenger.i0.g3(new y6(w7Var, tL_error, 0));
                     return;
                 }
+                if (tL_error != null) {
+                    org.telegram.messenger.i0.g3(new y6(w7Var, tL_error, 1));
+                }
+                org.telegram.messenger.i0.g3(new k2(w7Var, this.d, z10, document, runnable));
                 return;
             default:
-                this.f34683b.run();
+                final cg0 cg0Var = (cg0) this.e;
+                final org.telegram.messenger.vp vpVar = (org.telegram.messenger.vp) this.f32381f;
+                final TLRPC.TL_channels_searchPosts tL_channels_searchPosts = (TLRPC.TL_channels_searchPosts) this.f32382g;
+                final ConnectionsManager connectionsManager = (ConnectionsManager) this.h;
+                final boolean z11 = this.f32379b;
+                final boolean z12 = this.f32380c;
+                final long j10 = this.d;
+                org.telegram.messenger.i0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.bg0.run():void");
+                    }
+                });
                 return;
         }
+    }
+
+    public x6(cg0 cg0Var, org.telegram.messenger.vp vpVar, boolean z10, TLRPC.TL_channels_searchPosts tL_channels_searchPosts, boolean z11, long j10, ConnectionsManager connectionsManager) {
+        this.e = cg0Var;
+        this.f32381f = vpVar;
+        this.f32379b = z10;
+        this.f32382g = tL_channels_searchPosts;
+        this.f32380c = z11;
+        this.d = j10;
+        this.h = connectionsManager;
     }
 }

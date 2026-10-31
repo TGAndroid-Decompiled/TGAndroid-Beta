@@ -1,124 +1,180 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.Layout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class zh0 {
-    public int f35342a;
-    public final xc f35343b;
-    public final h6 e;
-    public Drawable f35347i;
-    public Drawable f35348j;
-    public yj0 f35349k;
-    public r11 f35350l;
-    public ea0 f35356r;
-    public boolean f35357s;
-    public boolean f35358t;
-    public int f35359u;
-    public long f35360w;
-    public int f35361x;
-    public final ci0 f35362y;
-    public final RectF f35344c = new RectF();
-    public final RectF d = new RectF();
-    public final RectF f35345f = new RectF();
-    public final RectF f35346g = new RectF();
-    public final Rect h = new Rect();
-    public float f35351m = 1.0f;
-    public boolean f35352n = false;
-    public boolean f35353o = false;
-    public boolean f35354p = false;
-    public final float f35355q = 1.0f;
-    public int v = 0;
+import android.graphics.Bitmap;
+import android.text.TextUtils;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import org.telegram.messenger.Utilities;
+public class zh0 extends bi0 {
+    public volatile RLottieNative U0;
+    public boolean V0;
+    public boolean W0;
+    public volatile boolean X0;
+    public boolean Y0;
+    public final int Z0;
+    public int f33068a1;
 
-    public zh0(ci0 ci0Var) {
-        this.f35362y = ci0Var;
-        this.f35343b = new xc(ci0Var);
-        this.e = new h6(ci0Var, 0L, 250L, ds.f27530f);
-    }
-
-    public final void a() {
-        float d = this.e.d(1.0f, false);
-        if (d != 1.0f) {
-            RectF rectF = this.f35346g;
-            float f7 = rectF.left;
-            RectF rectF2 = this.f35345f;
-            float lerp = AndroidUtilities.lerp(f7, rectF2.left, d);
-            RectF rectF3 = this.d;
-            rectF3.left = lerp;
-            rectF3.right = AndroidUtilities.lerp(rectF.right, rectF2.right, d);
+    public zh0(String str, int i10, int i11) {
+        super(i10, i11);
+        String str2;
+        this.Z0 = -1;
+        this.J = 1;
+        if ("🎲".equals(str)) {
+            str2 = org.telegram.messenger.i0.y2(null, 2131623998);
+            this.Z0 = 60;
+        } else if ("🎯".equals(str)) {
+            str2 = org.telegram.messenger.i0.y2(null, 2131623995);
+        } else {
+            str2 = null;
+        }
+        getPaint().setFlags(2);
+        if (TextUtils.isEmpty(str2)) {
             return;
         }
-        this.f35352n = false;
-        if (this.f35353o) {
-            this.f35354p = true;
-        }
+        this.m0 = RLottieNative.b(str2, this.e, null, null);
     }
 
-    public final float b() {
-        boolean z10 = this.f35353o;
-        h6 h6Var = this.e;
+    @Override
+    public int B(Bitmap bitmap, boolean z10) {
+        RLottieNative rLottieNative;
+        int i10 = this.J;
+        if (i10 == 1) {
+            rLottieNative = this.m0;
+        } else if (i10 == 2) {
+            rLottieNative = this.U0;
+            if (this.X0) {
+                this.f24752a0 = this.f33068a1 - 1;
+            }
+        } else {
+            rLottieNative = this.m0;
+        }
+        if (rLottieNative.c(this.f24752a0, bitmap, z10) < 0) {
+            return 2;
+        }
+        return 1;
+    }
+
+    @Override
+    public void C(boolean z10) {
+        this.f24765k0 = false;
+        this.f24766l0 = true;
+        n();
+        l();
+        if (!this.Y0 && !this.V0) {
+            if (this.P == null && !this.f24782x0) {
+                D(z10);
+                rf.e eVar = this.B0;
+                if (eVar != null) {
+                    RandomAccessFile randomAccessFile = eVar.f46523s;
+                    if (randomAccessFile != null) {
+                        try {
+                            randomAccessFile.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        eVar.f46523s = null;
+                    }
+                    eVar.f46522r = true;
+                    this.B0 = null;
+                }
+                E();
+                return;
+            }
+            this.V = true;
+            return;
+        }
+        this.W0 = true;
+    }
+
+    @Override
+    public final void D(boolean z10) {
+        RLottieNative rLottieNative = this.m0;
+        RLottieNative rLottieNative2 = this.U0;
+        this.m0 = null;
+        this.U0 = null;
+        if (rLottieNative == null && rLottieNative2 == null) {
+            return;
+        }
+        at atVar = new at(29, rLottieNative, rLottieNative2);
         if (z10) {
-            return 1.0f - h6Var.d(1.0f, false);
-        }
-        if (!this.f35352n) {
-            return 1.0f;
-        }
-        return h6Var.d(1.0f, false);
-    }
-
-    public final void c(String str) {
-        r11 r11Var = new r11(str, 11.0f, AndroidUtilities.bold());
-        r11Var.n(3);
-        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
-        r11Var.a();
-        this.f35350l = r11Var;
-    }
-
-    public final void d(int i10, int i11, int i12) {
-        Drawable drawable;
-        Drawable drawable2 = null;
-        ci0 ci0Var = this.f35362y;
-        if (i10 != 0) {
-            yj0 yj0Var = new yj0(i10, AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f), false, null);
-            yj0Var.R(ci0Var);
-            yj0Var.start();
-            this.f35349k = yj0Var;
+            org.telegram.messenger.t5.a(atVar);
         } else {
-            this.f35349k = null;
-        }
-        if (i11 != 0) {
-            drawable = ci0Var.getResources().getDrawable(i11).mutate();
-        } else {
-            drawable = null;
-        }
-        this.f35347i = drawable;
-        if (i12 != 0) {
-            drawable2 = ci0Var.getResources().getDrawable(i12).mutate();
-        }
-        this.f35348j = drawable2;
-        yj0 yj0Var2 = this.f35349k;
-        Rect rect = this.h;
-        if (yj0Var2 != null) {
-            yj0Var2.setBounds(rect);
-        }
-        Drawable drawable3 = this.f35347i;
-        if (drawable3 != null) {
-            drawable3.setBounds(rect);
-        }
-        Drawable drawable4 = this.f35348j;
-        if (drawable4 != null) {
-            drawable4.setBounds(rect);
+            Utilities.e.c(atVar);
         }
     }
 
-    public zh0(ci0 ci0Var, ai0 ai0Var) {
-        this.f35362y = ci0Var;
-        this.f35343b = new xc(ci0Var);
-        this.e = new h6(ci0Var, 0L, 250L, ds.f27530f);
-        d(0, ai0Var.f26569b, ai0Var.f26570c);
-        c(LocaleController.getString(ai0Var.f26568a));
+    @Override
+    public void i() {
+        int i10 = this.J;
+        if (i10 == 1) {
+            int i11 = this.f24752a0 + 1;
+            int i12 = this.Z0;
+            if (i12 == -1) {
+                i12 = this.e[0];
+            }
+            if (i11 < i12) {
+                this.f24752a0 = i11;
+                return;
+            }
+            this.f24752a0 = 0;
+            this.N = false;
+            if (this.U0 != null) {
+                this.J = 2;
+            }
+            if (this.D) {
+                this.f24783y = null;
+                this.D = false;
+            }
+        } else if (i10 == 2) {
+            int i13 = this.f24752a0 + 1;
+            if (i13 < this.f33068a1) {
+                this.f24752a0 = i13;
+                return;
+            }
+            this.N = true;
+            this.M++;
+        }
+    }
+
+    @Override
+    public int j() {
+        if (this.f24766l0) {
+            return 3;
+        }
+        if (this.m0 == null || (this.J == 2 && this.U0 == null)) {
+            return 2;
+        }
+        return 1;
+    }
+
+    @Override
+    public void p() {
+        if (this.V) {
+            n();
+            if (this.P == null && this.m0 != null) {
+                D(true);
+            }
+        }
+        if (this.m0 == null && this.U0 == null && this.B0 == null) {
+            E();
+            return;
+        }
+        this.T = true;
+        if (!v()) {
+            stop();
+        }
+        if (this.f24765k0) {
+            I();
+        }
+    }
+
+    @Override
+    public final boolean w() {
+        return this.Y0;
+    }
+
+    @Override
+    public final boolean z() {
+        return false;
     }
 }

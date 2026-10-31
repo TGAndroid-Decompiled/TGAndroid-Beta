@@ -14,9 +14,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
-import org.telegram.messenger.FileLog;
-import org.telegram.ui.Components.oy0;
-import org.telegram.ui.f80;
+import org.telegram.messenger.f8;
+import org.telegram.ui.Components.u41;
+import org.telegram.ui.bk0;
 import org.webrtc.EglBase;
 import org.webrtc.GlGenericDrawer;
 import org.webrtc.GlUtil;
@@ -147,7 +147,7 @@ public class EglRenderer implements VideoSink {
                     if (handler != null) {
                         handler.post(this.eglSurfaceBackgroundCreationRunnable);
                     } else {
-                        FileLog.d("can't create background surface. render thread is null");
+                        f8.b("can't create background surface. render thread is null");
                     }
                 } catch (Throwable th2) {
                     throw th2;
@@ -465,7 +465,7 @@ public class EglRenderer implements VideoSink {
                     handler.post(new s(1, this, textureCallback));
                 }
             } catch (Exception e) {
-                FileLog.e(e);
+                f8.g(e, true);
             }
         }
     }
@@ -493,7 +493,7 @@ public class EglRenderer implements VideoSink {
                         }
                     });
                     this.renderThreadHandler = handlerWithExceptionCallback;
-                    handlerWithExceptionCallback.post(new oy0(this, context, iArr, 12));
+                    handlerWithExceptionCallback.post(new u41(this, context, iArr, 10));
                     this.renderThreadHandler.post(this.eglSurfaceCreationRunnable);
                 } else {
                     throw new IllegalStateException(this.name + "Already initialized");
@@ -592,7 +592,7 @@ public class EglRenderer implements VideoSink {
                 Handler handler = this.renderThreadHandler;
                 if (handler != null) {
                     handler.removeCallbacks(this.eglSurfaceCreationRunnable);
-                    this.renderThreadHandler.postAtFrontOfQueue(new f80(this, z10, runnable, 16));
+                    this.renderThreadHandler.postAtFrontOfQueue(new bk0(this, z10, runnable, 13));
                 } else if (runnable != null) {
                     runnable.run();
                 }
@@ -610,7 +610,7 @@ public class EglRenderer implements VideoSink {
                     return;
                 }
                 if (Thread.currentThread() != this.renderThreadHandler.getLooper().getThread()) {
-                    postToRenderThread(new oy0(this, countDownLatch, frameListener, 13));
+                    postToRenderThread(new u41(this, countDownLatch, frameListener, 11));
                     ThreadUtils.awaitUninterruptibly(countDownLatch);
                     return;
                 }

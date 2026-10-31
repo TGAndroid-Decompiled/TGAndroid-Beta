@@ -1,23 +1,22 @@
 package bb;
 
-import a8.fe;
 import android.content.Context;
 import java.util.concurrent.atomic.AtomicReference;
 public final class c0 implements t {
     public static final w e = new Object();
-    public static final m1.c f3735f = fe.a(s.f3816a);
-    public final Context f3736a;
-    public final ld.h f3737b;
-    public final AtomicReference f3738c;
-    public final rf.b d;
+    public static final m1.c f2535f = w7.v.a(s.f2617a);
+    public final Context f2536a;
+    public final cd.h f2537b;
+    public final AtomicReference f2538c;
+    public final hf.b d;
 
-    public c0(Context context, ld.h hVar) {
+    public c0(Context context, cd.h hVar) {
         kotlin.jvm.internal.i.e(context, "context");
-        this.f3736a = context;
-        this.f3737b = hVar;
-        this.f3738c = new AtomicReference();
+        this.f2536a = context;
+        this.f2537b = hVar;
+        this.f2538c = new AtomicReference();
         e.getClass();
-        this.d = new rf.b(8, new rf.b(18, ((k1.z) f3735f.a(context, w.f3827a[0]).f15827b).f16110c, new nd.i(3, null)), this);
-        ce.f0.q(ce.f0.b(hVar), new v(this, null, 0));
+        this.d = new hf.b(6, new u9.b(4, ((k1.z) f2535f.a(context, w.f2628a[0]).f10700a).f10589c, new ed.j(3, null)), this);
+        td.e0.q(td.e0.b(hVar), new v(this, null, 0));
     }
 }

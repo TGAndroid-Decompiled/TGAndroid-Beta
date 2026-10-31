@@ -1,6 +1,10 @@
 package y7;
 
-import a8.dh;
-import java.util.RandomAccess;
-public final class b extends dh implements RandomAccess {
+import java.util.logging.Logger;
+public abstract class b {
+    public static final int f54201a = 0;
+
+    static {
+        Logger.getLogger(b.class.getName());
+    }
 }

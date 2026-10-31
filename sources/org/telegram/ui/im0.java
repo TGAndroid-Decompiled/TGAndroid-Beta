@@ -1,54 +1,29 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class im0 implements TextWatcher {
-    public final EditTextBoldCursor f40207a;
-    public final String f40208b;
-    public final kn0 f40209c;
-
-    public im0(kn0 kn0Var, EditTextBoldCursor editTextBoldCursor, String str) {
-        this.f40209c = kn0Var;
-        this.f40207a = editTextBoldCursor;
-        this.f40208b = str;
-    }
-
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z10;
-        EditTextBoldCursor editTextBoldCursor = this.f40207a;
-        int intValue = ((Integer) editTextBoldCursor.getTag()).intValue();
-        int i10 = 0;
-        while (true) {
-            if (i10 < editable.length()) {
-                char charAt = editable.charAt(i10);
-                if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'z') && ((charAt < 'A' || charAt > 'Z') && charAt != ' ' && charAt != '\'' && charAt != ',' && charAt != '.' && charAt != '&' && charAt != '-' && charAt != '/'))) {
-                    z10 = true;
-                    break;
+import org.json.JSONObject;
+public final class im0 extends JSONObject {
+    public im0(sm0 sm0Var, int i10) {
+        switch (i10) {
+            case 3:
+                put("type", "PAYMENT_GATEWAY");
+                Object obj = sm0Var.M0;
+                if (obj != null) {
+                    put("parameters", obj);
+                    return;
                 }
-                i10++;
-            } else {
-                z10 = false;
-                break;
-            }
+                JSONObject jSONObject = new JSONObject();
+                jSONObject.put("gateway", "stripe");
+                jSONObject.put("stripe:publishableKey", sm0Var.f41565j0);
+                jSONObject.put("stripe:version", "3.5.0");
+                put("parameters", jSONObject);
+                return;
+            default:
+                put("type", "DIRECT");
+                JSONObject jSONObject2 = new JSONObject();
+                jSONObject2.put("protocolVersion", "ECv2");
+                jSONObject2.put("publicKey", sm0Var.K0);
+                put("parameters", jSONObject2);
+                return;
         }
-        kn0 kn0Var = this.f40209c;
-        if (z10 && !kn0Var.f40880u0) {
-            editTextBoldCursor.setErrorText(LocaleController.getString(R.string.PassportUseLatinOnly));
-            return;
-        }
-        kn0Var.f40878t0[intValue] = z10;
-        kn0.J0(kn0Var, editTextBoldCursor, this.f40208b, editable, false);
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

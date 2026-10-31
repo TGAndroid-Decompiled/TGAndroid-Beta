@@ -1,53 +1,31 @@
 package org.telegram.ui;
+public final class gb0 implements Runnable {
+    public final int f37501a;
+    public final yb0 f37502b;
+    public final boolean f37503c;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class gb0 implements Utilities.Callback2 {
-    public final int f39580a;
-    public final ob0 f39581b;
-    public final String f39582c;
-
-    public gb0(ob0 ob0Var, String str, int i10) {
-        this.f39580a = i10;
-        this.f39581b = ob0Var;
-        this.f39582c = str;
+    public gb0(yb0 yb0Var, boolean z10, int i10) {
+        this.f37501a = i10;
+        this.f37502b = yb0Var;
+        this.f37503c = z10;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f39580a) {
+    public final void run() {
+        switch (this.f37501a) {
             case 0:
-                TL_account.Passkeys passkeys = (TL_account.Passkeys) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                ob0 ob0Var = this.f39581b;
-                ob0Var.c();
-                if (passkeys != null) {
-                    ob0Var.u(new PasskeysActivity(passkeys.passkeys), false);
-                    if ("create".equalsIgnoreCase(this.f39582c)) {
-                        ob0Var.x("addPasskeyRow");
-                        return;
-                    }
+                boolean z10 = this.f37503c;
+                yb0 yb0Var = this.f37502b;
+                if (!z10) {
+                    yb0Var.f43782b.setVisibility(8);
+                    return;
+                } else {
+                    yb0Var.getClass();
                     return;
                 }
-                return;
             default:
-                org.telegram.ui.Wallet.z1 z1Var = (org.telegram.ui.Wallet.z1) obj;
-                String str = (String) obj2;
-                ob0 ob0Var2 = this.f39581b;
-                ob0Var2.c();
-                if (z1Var == null) {
-                    if (str == null) {
-                        str = LocaleController.getString(R.string.WalletTonConnectSessionResponseEmpty);
-                    }
-                    org.telegram.ui.Components.wc.c0(str);
-                    return;
-                }
-                org.telegram.ui.ActionBar.r2 U = LaunchActivity.U();
-                if (U != null && U.getContext() != null) {
-                    org.telegram.ui.Wallet.e2.B(U.getContext(), ob0Var2.f42051b, z1Var, null, U.getResourceProvider(), null, new jb0(ob0Var2, this.f39582c, 1));
+                if (!this.f37503c) {
+                    this.f37502b.e.setVisibility(4);
                     return;
                 }
                 return;

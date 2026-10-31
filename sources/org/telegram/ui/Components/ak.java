@@ -1,57 +1,32 @@
 package org.telegram.ui.Components;
 
-import java.io.File;
-import java.util.Comparator;
-public final class ak implements Comparator {
-    public final int f26571a;
-    public final nk f26572b;
+import android.text.InputFilter;
+import android.text.Spanned;
+import android.text.TextUtils;
+import android.view.View;
+public final class ak implements InputFilter {
+    public final int f24423a;
+    public final View f24424b;
 
-    public ak(nk nkVar, int i10) {
-        this.f26571a = i10;
-        this.f26572b = nkVar;
+    public ak(int i10, View view) {
+        this.f24423a = i10;
+        this.f24424b = view;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        hk hkVar = (hk) obj;
-        hk hkVar2 = (hk) obj2;
-        switch (this.f26571a) {
+    public final CharSequence filter(CharSequence charSequence, int i10, int i11, Spanned spanned, int i12, int i13) {
+        switch (this.f24423a) {
             case 0:
-                nk nkVar = this.f26572b;
-                nkVar.getClass();
-                File file = hkVar.f29007f;
-                if (file != null) {
-                    if (hkVar2.f29007f != null) {
-                        boolean isDirectory = file.isDirectory();
-                        if (isDirectory != hkVar2.f29007f.isDirectory()) {
-                            if (isDirectory) {
-                            }
-                        } else if (!isDirectory && !nkVar.f30942c0) {
-                            int i10 = (hkVar.f29007f.lastModified() > hkVar2.f29007f.lastModified() ? 1 : (hkVar.f29007f.lastModified() == hkVar2.f29007f.lastModified() ? 0 : -1));
-                            if (i10 == 0) {
-                                return 0;
-                            }
-                            if (i10 > 0) {
-                            }
-                        } else {
-                            return hkVar.f29007f.getName().compareToIgnoreCase(hkVar2.f29007f.getName());
-                        }
-                    }
-                    return 1;
-                }
-                return -1;
+                return kk.Q((kk) this.f24424b, charSequence, i10, i11, spanned, i12, i13);
             default:
-                if (this.f26572b.f30942c0) {
-                    return hkVar.f29007f.getName().compareToIgnoreCase(hkVar2.f29007f.getName());
+                fx0 fx0Var = (fx0) this.f24424b;
+                if (charSequence.length() > 0 && Character.isWhitespace(charSequence.charAt(0))) {
+                    if (TextUtils.isEmpty(fx0Var.getText()) || i12 == 0) {
+                        return "";
+                    }
+                    return charSequence;
                 }
-                int i11 = (hkVar.f29007f.lastModified() > hkVar2.f29007f.lastModified() ? 1 : (hkVar.f29007f.lastModified() == hkVar2.f29007f.lastModified() ? 0 : -1));
-                if (i11 == 0) {
-                    return 0;
-                }
-                if (i11 > 0) {
-                    return -1;
-                }
-                return 1;
+                return charSequence;
         }
     }
 }

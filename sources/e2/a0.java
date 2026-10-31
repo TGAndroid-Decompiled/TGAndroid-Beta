@@ -1,74 +1,75 @@
 package e2;
 
 import android.os.SystemClock;
-import b2.p1;
+import b2.o1;
 import j$.util.Objects;
 public final class a0 {
-    public final int f9622a;
-    public Object f9623b;
-    public int f9624c;
+    public long f6102a;
+    public long f6103b;
+    public long f6104c;
     public int d;
-    public long e;
-    public long f9625f;
-    public boolean f9626g;
-    public long h;
-    public final e0 f9627i;
+    public boolean e;
+    public int f6105f;
+    public int f6106g;
+    public Object h;
+    public final Object f6107i;
 
     public a0(e0 e0Var, int i10) {
-        this.f9627i = e0Var;
-        this.f9622a = i10;
+        this.f6107i = e0Var;
+        this.d = i10;
     }
 
-    public final void a() {
+    public void a() {
         Object l4;
-        Object obj;
-        e0 e0Var = this.f9627i;
-        i0 i0Var = e0Var.f9651f;
-        i2.j0 j0Var = e0Var.f9648a;
-        if (j0Var.d() == 2 && j0Var.t() && j0Var.w0() == 0) {
-            p1 y02 = j0Var.y0();
+        int i10 = this.d;
+        e0 e0Var = (e0) this.f6107i;
+        i0 i0Var = e0Var.f6131f;
+        i2.i0 i0Var2 = e0Var.f6128a;
+        if (i0Var2.h() == 2 && i0Var2.t() && i0Var2.w0() == 0) {
+            o1 y02 = i0Var2.y0();
             if (y02.p()) {
                 l4 = null;
             } else {
-                l4 = y02.l(j0Var.A());
+                l4 = y02.l(i0Var2.A());
             }
-            int m0 = j0Var.m0();
-            int N = j0Var.N();
-            long d02 = j0Var.d0();
-            long max = Math.max(0L, j0Var.q() - Math.max(0L, d02 - j0Var.M0()));
-            if (l4 != null && m0 == -1) {
-                d02 -= n0.h0(y02.g(l4, e0Var.e).e);
+            int l02 = i0Var2.l0();
+            int N = i0Var2.N();
+            long c02 = i0Var2.c0();
+            long max = Math.max(0L, i0Var2.q() - Math.max(0L, c02 - i0Var2.M0()));
+            if (l4 != null && l02 == -1) {
+                c02 -= l0.h0(y02.g(l4, e0Var.e).e);
             }
             e0Var.d.getClass();
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            boolean z10 = this.f9626g;
-            int i10 = this.f9622a;
-            if (z10 && Objects.equals(l4, this.f9623b) && m0 == this.f9624c && N == this.d) {
-                obj = l4;
-                if (d02 == this.e && max == this.f9625f) {
-                    if (elapsedRealtime - this.h >= i10) {
-                        e0Var.f9650c.f13508a.A1(new i2.m(2, new f0(1, i10), 1003));
-                        return;
-                    }
+            if (this.e && Objects.equals(l4, this.h) && l02 == this.f6105f && N == this.f6106g && c02 == this.f6102a && max == this.f6103b) {
+                if (elapsedRealtime - this.f6104c >= i10) {
+                    e0Var.f6130c.f7821a.A1(new i2.l(2, new f0(1, i10), 1003));
                     return;
                 }
-            } else {
-                obj = l4;
+                return;
             }
-            this.f9626g = true;
-            this.h = elapsedRealtime;
-            this.f9623b = obj;
-            this.f9624c = m0;
-            this.d = N;
-            this.e = d02;
-            this.f9625f = max;
+            this.e = true;
+            this.f6104c = elapsedRealtime;
+            this.h = l4;
+            this.f6105f = l02;
+            this.f6106g = N;
+            this.f6102a = c02;
+            this.f6103b = max;
             i0Var.e(1);
-            i0Var.f9671a.sendEmptyMessageDelayed(1, i10);
+            i0Var.f6151a.sendEmptyMessageDelayed(1, i10);
             return;
         }
-        if (this.f9626g) {
+        if (this.e) {
             i0Var.e(1);
         }
-        this.f9626g = false;
+        this.e = false;
+    }
+
+    public a0(String str, long j10, long j11, long j12, zf.e0 e0Var) {
+        this.f6107i = e0Var;
+        this.h = str;
+        this.f6102a = j10;
+        this.f6103b = j11;
+        this.f6104c = j12;
     }
 }

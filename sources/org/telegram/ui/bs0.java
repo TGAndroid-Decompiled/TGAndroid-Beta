@@ -1,28 +1,32 @@
 package org.telegram.ui;
 
-import android.net.Uri;
-import org.telegram.messenger.Utilities;
-public final class bs0 implements Utilities.Callback {
-    public final int f38096a;
-    public final hs0 f38097b;
-    public final boolean f38098c;
+import java.io.File;
+import java.util.List;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public interface bs0 {
+    boolean a(int i10);
 
-    public bs0(hs0 hs0Var, boolean z10, int i10) {
-        this.f38096a = i10;
-        this.f38097b = hs0Var;
-        this.f38098c = z10;
-    }
+    File b(int i10);
 
-    @Override
-    public final void run(Object obj) {
-        Uri uri = (Uri) obj;
-        switch (this.f38096a) {
-            case 0:
-                org.telegram.ui.Components.wc.F(this.f38097b.f39958b.f35670e0, this.f38098c).j();
-                return;
-            default:
-                org.telegram.ui.Components.wc.F(this.f38097b.f39958b.f35670e0, this.f38098c).j();
-                return;
-        }
-    }
+    String c(int i10);
+
+    TLObject d(int i10);
+
+    boolean e(int i10);
+
+    TLRPC.PhotoSize f(TLObject tLObject, int[] iArr);
+
+    Object g();
+
+    TL_iv.PageBlock get(int i10);
+
+    List getAll();
+
+    void h(TL_iv.PageBlock pageBlock);
+
+    CharSequence i(int i10);
+
+    int j();
 }

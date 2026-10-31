@@ -1,43 +1,63 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.RectF;
 import android.view.View;
-public final class t71 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f32876a;
-    public final View f32877b;
+import android.view.accessibility.AccessibilityNodeInfo;
+public final class t71 extends View {
+    public s71 f30473a;
+    public int f30474b;
+    public final RectF f30475c;
+    public CharSequence d;
+    public qz0 e;
+    public boolean f30476f;
+    public fo0 h;
+    public final t5 f30477n;
+    public final v71 f30478r;
 
-    public t71(int i10, View view) {
-        this.f32876a = i10;
-        this.f32877b = view;
+    public t71(v71 v71Var, Context context) {
+        super(context);
+        this.f30478r = v71Var;
+        this.f30475c = new RectF();
+        this.f30477n = new t5(this, 360L, gr.h);
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f32876a) {
-            case 0:
-                u71 u71Var = (u71) this.f32877b;
-                u71Var.getClass();
-                u71Var.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                u71Var.invalidate();
-                return;
-            case 1:
-                a81 a81Var = (a81) this.f32877b;
-                a81Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                a81Var.f26458b = floatValue;
-                a81Var.setTranslationY(floatValue);
-                return;
-            default:
-                u91 u91Var = (u91) this.f32877b;
-                u91Var.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                u91Var.setAnimationIdicatorProgress(floatValue2);
-                t91 t91Var = u91Var.f33322y;
-                if (t91Var != null) {
-                    ((jg.i) t91Var).e0(floatValue2);
-                    return;
-                }
-                return;
+    public int getId() {
+        return this.f30473a.f30173a;
+    }
+
+    @Override
+    public final void onDraw(android.graphics.Canvas r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.t71.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        boolean z10;
+        int i10;
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        s71 s71Var = this.f30473a;
+        if (s71Var != null && (i10 = this.f30478r.G) != -1 && s71Var.f30173a == i10) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        accessibilityNodeInfo.setSelected(z10);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        s71 s71Var = this.f30473a;
+        v71 v71Var = this.f30478r;
+        setMeasuredDimension(org.telegram.messenger.i0.L(v71Var.f31181r * 2) + s71Var.a(v71Var.f31164c) + v71Var.I, View.MeasureSpec.getSize(i11));
+    }
+
+    public void setReordering(boolean z10) {
+        if (this.f30476f == z10) {
+            return;
+        }
+        this.f30476f = z10;
+        invalidate();
     }
 }

@@ -1,47 +1,24 @@
 package v7;
-
-import w7.v;
-public final class c extends d {
-    public final transient int f50122c;
+public final class c extends g9 {
+    public final transient Object[] f50410c;
     public final transient int d;
-    public final d e;
+    public final transient int e = 1;
 
-    public c(d dVar, int i10, int i11) {
-        this.e = dVar;
-        this.f50122c = i10;
-        this.d = i11;
+    public c(int i10, Object[] objArr) {
+        this.f50410c = objArr;
+        this.d = i10;
     }
 
     @Override
     public final Object get(int i10) {
-        v.a(i10, this.d);
-        return this.e.get(i10 + this.f50122c);
-    }
-
-    @Override
-    public final int m() {
-        return this.e.n() + this.f50122c + this.d;
-    }
-
-    @Override
-    public final int n() {
-        return this.e.n() + this.f50122c;
-    }
-
-    @Override
-    public final Object[] o() {
-        return this.e.o();
-    }
-
-    @Override
-    public final d subList(int i10, int i11) {
-        v.b(i10, i11, this.d);
-        int i12 = this.f50122c;
-        return this.e.subList(i10 + i12, i11 + i12);
+        w7.h8.a(i10, this.e);
+        Object obj = this.f50410c[i10 + i10 + this.d];
+        obj.getClass();
+        return obj;
     }
 
     @Override
     public final int size() {
-        return this.d;
+        return this.e;
     }
 }

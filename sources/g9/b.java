@@ -1,35 +1,43 @@
 package g9;
 
-import a8.yb;
-public final class b extends d {
-    public final char[] e;
+import java.math.RoundingMode;
+public abstract class b {
+    public static final int[] f7465a;
 
-    public b(a aVar) {
-        super(aVar, (Character) null);
-        boolean z10;
-        this.e = new char[512];
-        char[] cArr = aVar.f12398b;
-        if (cArr.length == 16) {
-            z10 = true;
-        } else {
-            z10 = false;
+    static {
+        int[] iArr = new int[RoundingMode.values().length];
+        f7465a = iArr;
+        try {
+            iArr[RoundingMode.UNNECESSARY.ordinal()] = 1;
+        } catch (NoSuchFieldError unused) {
         }
-        yb.g(z10);
-        for (int i10 = 0; i10 < 256; i10++) {
-            char[] cArr2 = this.e;
-            cArr2[i10] = cArr[i10 >>> 4];
-            cArr2[i10 | 256] = cArr[i10 & 15];
+        try {
+            f7465a[RoundingMode.FLOOR.ordinal()] = 2;
+        } catch (NoSuchFieldError unused2) {
         }
-    }
-
-    @Override
-    public final void b(StringBuilder sb2, byte[] bArr, int i10) {
-        yb.n(0, i10, bArr.length);
-        for (int i11 = 0; i11 < i10; i11++) {
-            int i12 = bArr[i11] & 255;
-            char[] cArr = this.e;
-            sb2.append(cArr[i12]);
-            sb2.append(cArr[i12 | 256]);
+        try {
+            f7465a[RoundingMode.CEILING.ordinal()] = 3;
+        } catch (NoSuchFieldError unused3) {
+        }
+        try {
+            f7465a[RoundingMode.DOWN.ordinal()] = 4;
+        } catch (NoSuchFieldError unused4) {
+        }
+        try {
+            f7465a[RoundingMode.UP.ordinal()] = 5;
+        } catch (NoSuchFieldError unused5) {
+        }
+        try {
+            f7465a[RoundingMode.HALF_EVEN.ordinal()] = 6;
+        } catch (NoSuchFieldError unused6) {
+        }
+        try {
+            f7465a[RoundingMode.HALF_UP.ordinal()] = 7;
+        } catch (NoSuchFieldError unused7) {
+        }
+        try {
+            f7465a[RoundingMode.HALF_DOWN.ordinal()] = 8;
+        } catch (NoSuchFieldError unused8) {
         }
     }
 }

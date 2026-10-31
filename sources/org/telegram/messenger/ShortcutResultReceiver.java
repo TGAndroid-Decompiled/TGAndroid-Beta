@@ -3,18 +3,15 @@ package org.telegram.messenger;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import org.telegram.messenger.Utilities;
 public class ShortcutResultReceiver extends BroadcastReceiver {
-    public static void lambda$onReceive$0(Utilities.Callback callback) {
-        callback.run(Boolean.TRUE);
-    }
+    public static final int f14516a = 0;
 
     @Override
-    public void onReceive(Context context, Intent intent) {
-        int intExtra = intent.getIntExtra("account", UserConfig.selectedAccount);
-        Utilities.Callback<Boolean> remove = MediaDataController.getInstance(intExtra).shortcutCallbacks.remove(intent.getStringExtra("req_id"));
-        if (remove != null) {
-            AndroidUtilities.runOnUIThread(new x7(10, remove));
+    public final void onReceive(Context context, Intent intent) {
+        int intExtra = intent.getIntExtra("account", d20.f15147s0);
+        q20 q20Var = (q20) ui.b0(intExtra).f18336o1.remove(intent.getStringExtra("req_id"));
+        if (q20Var != null) {
+            i0.g3(new pf(q20Var, 9));
         }
     }
 }

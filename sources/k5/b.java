@@ -1,53 +1,34 @@
 package k5;
+public final class b implements ja.d {
+    public static final b f10866a = new Object();
+    public static final ja.c f10867b = ja.c.c("sdkVersion");
+    public static final ja.c f10868c = ja.c.c("model");
+    public static final ja.c d = ja.c.c("hardware");
+    public static final ja.c e = ja.c.c("device");
+    public static final ja.c f10869f = ja.c.c("product");
+    public static final ja.c f10870g = ja.c.c("osBuild");
+    public static final ja.c h = ja.c.c("manufacturer");
+    public static final ja.c f10871i = ja.c.c("fingerprint");
+    public static final ja.c f10872j = ja.c.c("locale");
+    public static final ja.c f10873k = ja.c.c("country");
+    public static final ja.c f10874l = ja.c.c("mccMnc");
+    public static final ja.c f10875m = ja.c.c("applicationBuild");
 
-import a8.zd;
-import android.animation.ValueAnimator;
-import bh.b0;
-import java.net.URL;
-import jg.e1;
-import org.telegram.ui.Components.ds;
-public final class b {
-    public long f16387a;
-    public int f16388b;
-    public Object f16389c;
-
-    public b(int i10, URL url, long j10) {
-        this.f16388b = i10;
-        this.f16389c = url;
-        this.f16387a = j10;
-    }
-
-    public void a(li.a aVar, e1 e1Var) {
-        long j10;
-        boolean z10;
-        int i10;
-        int b10 = zd.b(aVar);
-        if (aVar != null) {
-            j10 = aVar.f17052a;
-        } else {
-            j10 = Long.MIN_VALUE;
-        }
-        if (j10 == this.f16387a && this.f16388b >= 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.f16387a = j10;
-        ValueAnimator valueAnimator = (ValueAnimator) this.f16389c;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.f16389c = null;
-        }
-        if (z10 && (i10 = this.f16388b) != b10) {
-            ValueAnimator ofInt = ValueAnimator.ofInt(i10, b10);
-            ofInt.addUpdateListener(new b0(8, this, e1Var));
-            ofInt.setInterpolator(ds.f27530f);
-            ofInt.setDuration(200L);
-            this.f16389c = ofInt;
-            ofInt.start();
-            return;
-        }
-        this.f16388b = b10;
-        e1Var.i(b10);
+    @Override
+    public final void a(Object obj, Object obj2) {
+        ja.e eVar = (ja.e) obj2;
+        h hVar = (h) ((a) obj);
+        eVar.d(f10867b, hVar.f10894a);
+        eVar.d(f10868c, hVar.f10895b);
+        eVar.d(d, hVar.f10896c);
+        eVar.d(e, hVar.d);
+        eVar.d(f10869f, hVar.e);
+        eVar.d(f10870g, hVar.f10897f);
+        eVar.d(h, hVar.f10898g);
+        eVar.d(f10871i, hVar.h);
+        eVar.d(f10872j, hVar.f10899i);
+        eVar.d(f10873k, hVar.f10900j);
+        eVar.d(f10874l, hVar.f10901k);
+        eVar.d(f10875m, hVar.f10902l);
     }
 }

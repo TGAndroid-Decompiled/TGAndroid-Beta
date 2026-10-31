@@ -1,10 +1,10 @@
 package e2;
 
-import a8.yb;
+import v7.t6;
 public final class y {
-    public static final y f9734c = new y(-1, -1);
-    public final int f9735a;
-    public final int f9736b;
+    public static final y f6210c = new y(-1, -1);
+    public final int f6211a;
+    public final int f6212b;
 
     static {
         new y(0, 0);
@@ -19,9 +19,9 @@ public final class y {
         } else {
             z10 = true;
         }
-        yb.g(z10);
-        this.f9735a = i10;
-        this.f9736b = i11;
+        t6.f(z10);
+        this.f6211a = i10;
+        this.f6212b = i11;
     }
 
     public final boolean equals(Object obj) {
@@ -33,7 +33,7 @@ public final class y {
         }
         if (obj instanceof y) {
             y yVar = (y) obj;
-            if (this.f9735a == yVar.f9735a && this.f9736b == yVar.f9736b) {
+            if (this.f6211a == yVar.f6211a && this.f6212b == yVar.f6212b) {
                 return true;
             }
         }
@@ -41,11 +41,11 @@ public final class y {
     }
 
     public final int hashCode() {
-        int i10 = this.f9735a;
-        return ((i10 >>> 16) | (i10 << 16)) ^ this.f9736b;
+        int i10 = this.f6211a;
+        return ((i10 >>> 16) | (i10 << 16)) ^ this.f6212b;
     }
 
     public final String toString() {
-        return this.f9735a + "x" + this.f9736b;
+        return this.f6211a + "x" + this.f6212b;
     }
 }

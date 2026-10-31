@@ -2,11 +2,12 @@ package x2;
 
 import android.text.TextUtils;
 import b2.x;
-import f9.n1;
-import f9.q1;
-import f9.w;
+import e9.b0;
+import e9.s1;
+import e9.v1;
 import j$.util.Objects;
 public final class f extends m implements Comparable {
+    public final boolean D;
     public final boolean E;
     public final int F;
     public final int G;
@@ -19,18 +20,17 @@ public final class f extends m implements Comparable {
     public final boolean N;
     public final boolean O;
     public final int e;
-    public final boolean f51373f;
+    public final boolean f52910f;
     public final String h;
-    public final j f51374n;
-    public final boolean f51375r;
-    public final int f51376s;
-    public final int v;
-    public final int f51377w;
-    public final int f51378x;
-    public final boolean f51379y;
+    public final j f52911n;
+    public final boolean f52912r;
+    public final int f52913s;
+    public final int f52914w;
+    public final int f52915x;
+    public final int f52916y;
 
-    public f(int r8, b2.q1 r9, int r10, x2.j r11, int r12, boolean r13, x2.d r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: x2.f.<init>(int, b2.q1, int, x2.j, int, boolean, x2.d, int):void");
+    public f(int r8, b2.p1 r9, int r10, x2.j r11, int r12, boolean r13, x2.d r14, int r15) {
+        throw new UnsupportedOperationException("Method not decompiled: x2.f.<init>(int, b2.p1, int, x2.j, int, boolean, x2.d, int):void");
     }
 
     @Override
@@ -44,11 +44,11 @@ public final class f extends m implements Comparable {
         String str;
         f fVar = (f) mVar;
         x xVar = fVar.d;
-        this.f51374n.getClass();
+        this.f52911n.getClass();
         x xVar2 = this.d;
         int i11 = xVar2.K;
         if (i11 != -1 && i11 == xVar.K) {
-            if ((this.f51379y || ((str = xVar2.f3586s) != null && TextUtils.equals(str, xVar.f3586s))) && (i10 = xVar2.L) != -1 && i10 == xVar.L && this.M == fVar.M && this.N == fVar.N) {
+            if ((this.D || ((str = xVar2.f2423s) != null && TextUtils.equals(str, xVar.f2423s))) && (i10 = xVar2.L) != -1 && i10 == xVar.L && this.M == fVar.M && this.N == fVar.N) {
                 return true;
             }
             return false;
@@ -58,27 +58,27 @@ public final class f extends m implements Comparable {
 
     @Override
     public final int compareTo(f fVar) {
-        q1 a2;
-        boolean z10 = this.f51375r;
-        boolean z11 = this.f51373f;
+        v1 a2;
+        boolean z10 = this.f52912r;
+        boolean z11 = this.f52910f;
         if (z11 && z10) {
-            a2 = o.f51404l;
+            a2 = o.f52941l;
         } else {
-            a2 = o.f51404l.a();
+            a2 = o.f52941l.a();
         }
-        boolean z12 = fVar.f51375r;
+        boolean z12 = fVar.f52912r;
         int i10 = fVar.K;
-        w c10 = w.f10351a.c(z10, z12);
-        Integer valueOf = Integer.valueOf(this.v);
-        Integer valueOf2 = Integer.valueOf(fVar.v);
-        n1 n1Var = n1.f10307c;
-        w b10 = c10.b(valueOf, valueOf2, n1Var).a(this.f51376s, fVar.f51376s).a(this.f51377w, fVar.f51377w).b(Integer.valueOf(this.f51378x), Integer.valueOf(fVar.f51378x), n1Var).c(this.H, fVar.H).c(this.E, fVar.E).b(Integer.valueOf(this.F), Integer.valueOf(fVar.F), n1Var).a(this.G, fVar.G).c(z11, fVar.f51373f).b(Integer.valueOf(this.L), Integer.valueOf(fVar.L), n1Var);
-        boolean z13 = this.f51374n.F;
+        b0 c10 = b0.f6331a.c(z10, z12);
+        Integer valueOf = Integer.valueOf(this.f52914w);
+        Integer valueOf2 = Integer.valueOf(fVar.f52914w);
+        s1 s1Var = s1.f6414c;
+        b0 b10 = c10.b(valueOf, valueOf2, s1Var).a(this.f52913s, fVar.f52913s).a(this.f52915x, fVar.f52915x).b(Integer.valueOf(this.f52916y), Integer.valueOf(fVar.f52916y), s1Var).c(this.H, fVar.H).c(this.E, fVar.E).b(Integer.valueOf(this.F), Integer.valueOf(fVar.F), s1Var).a(this.G, fVar.G).c(z11, fVar.f52910f).b(Integer.valueOf(this.L), Integer.valueOf(fVar.L), s1Var);
+        boolean z13 = this.f52911n.F;
         int i11 = this.K;
         if (z13) {
-            b10 = b10.b(Integer.valueOf(i11), Integer.valueOf(i10), o.f51404l.a());
+            b10 = b10.b(Integer.valueOf(i11), Integer.valueOf(i10), o.f52941l.a());
         }
-        w b11 = b10.c(this.M, fVar.M).c(this.N, fVar.N).c(this.O, fVar.O).b(Integer.valueOf(this.I), Integer.valueOf(fVar.I), a2).b(Integer.valueOf(this.J), Integer.valueOf(fVar.J), a2);
+        b0 b11 = b10.c(this.M, fVar.M).c(this.N, fVar.N).c(this.O, fVar.O).b(Integer.valueOf(this.I), Integer.valueOf(fVar.I), a2).b(Integer.valueOf(this.J), Integer.valueOf(fVar.J), a2);
         if (Objects.equals(this.h, fVar.h)) {
             b11 = b11.b(Integer.valueOf(i11), Integer.valueOf(i10), a2);
         }

@@ -1,116 +1,70 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.util.StateSet;
-import android.view.MotionEvent;
-public final class pq extends s6 {
-    public final Rect f31702s;
-    public Drawable v;
-    public boolean f31703w;
+import android.content.DialogInterface;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class pq implements DialogInterface.OnDismissListener {
+    public final int f29400a = 0;
+    public final boolean[] f29401b;
+    public final boolean[] f29402c;
+    public final int d;
+    public final Object e;
+    public final Object f29403f;
+    public final Object h;
 
-    public pq(Context context) {
-        super(context, false, false, false);
-        this.f31702s = new Rect();
-    }
-
-    public Rect getClickBounds() {
-        return this.f31702s;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.v != null) {
-            Rect bounds = getDrawable().getBounds();
-            Rect rect = this.f31702s;
-            rect.set(bounds);
-            int ceil = (int) Math.ceil(getDrawable().c());
-            if (getDrawable().f32142b == 3) {
-                rect.right = rect.left + ceil;
-            } else if (getDrawable().f32142b == 5) {
-                rect.left = rect.right - ceil;
-            } else if (getDrawable().f32142b == 17) {
-                int i10 = (rect.left + rect.right) / 2;
-                int i11 = ceil / 2;
-                rect.left = i10 - i11;
-                rect.right = i10 + i11;
-            }
-            rect.left -= getPaddingLeft();
-            rect.top -= getPaddingTop();
-            rect.right = getPaddingRight() + rect.right;
-            rect.bottom = getPaddingBottom() + rect.bottom;
-            this.v.setBounds(rect);
-            this.v.draw(canvas);
-        }
-        super.onDraw(canvas);
+    public pq(boolean[] zArr, ag.g3 g3Var, boolean[] zArr2, org.telegram.messenger.q20 q20Var, int[] iArr, int i10) {
+        this.f29401b = zArr;
+        this.e = g3Var;
+        this.f29402c = zArr2;
+        this.f29403f = q20Var;
+        this.h = iArr;
+        this.d = i10;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean contains = getClickBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY());
-        if (motionEvent.getAction() == 0 && contains) {
-            this.f31703w = true;
-            Drawable drawable = this.v;
-            if (drawable != null) {
-                drawable.setHotspot(motionEvent.getX(), motionEvent.getY());
-                this.v.setState(new int[]{16842919, 16842910});
-            }
-            invalidate();
-            return contains;
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f29400a) {
+            case 0:
+                org.telegram.messenger.q20 q20Var = (org.telegram.messenger.q20) this.f29403f;
+                int[] iArr = (int[]) this.h;
+                this.f29401b[0] = true;
+                ((ag.g3) this.e).run();
+                boolean[] zArr = this.f29402c;
+                if (!zArr[0]) {
+                    zArr[0] = true;
+                    q20Var.a(null);
+                }
+                if (iArr[0] >= 0) {
+                    ConnectionsManager.getInstance(this.d).cancelRequest(iArr[0], true);
+                    iArr[0] = -1;
+                    return;
+                }
+                return;
+            default:
+                Context context = (Context) this.e;
+                TLRPC.User user = (TLRPC.User) this.f29403f;
+                org.telegram.ui.web.o oVar = (org.telegram.ui.web.o) this.h;
+                if (!this.f29401b[0]) {
+                    boolean[] zArr2 = this.f29402c;
+                    if (!zArr2[0]) {
+                        zArr2[0] = true;
+                        xh.q3.e(context, this.d, user.f19942id);
+                        oVar.a(Boolean.TRUE, "cancelled");
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-        if (motionEvent.getAction() == 1) {
-            if (this.f31703w && contains) {
-                callOnClick();
-            }
-            this.f31703w = false;
-            Drawable drawable2 = this.v;
-            if (drawable2 != null) {
-                drawable2.setState(StateSet.NOTHING);
-                return contains;
-            }
-        } else if (motionEvent.getAction() == 3) {
-            this.f31703w = false;
-            Drawable drawable3 = this.v;
-            if (drawable3 != null) {
-                drawable3.setState(StateSet.NOTHING);
-            }
-        }
-        return contains;
     }
 
-    @Override
-    public void setBackground(Drawable drawable) {
-        Drawable drawable2 = this.v;
-        if (drawable2 != null) {
-            drawable2.setCallback(null);
-        }
-        this.v = drawable;
-        if (drawable != null) {
-            drawable.setCallback(this);
-        }
-        invalidate();
-    }
-
-    @Override
-    public void setBackgroundDrawable(Drawable drawable) {
-        Drawable drawable2 = this.v;
-        if (drawable2 != null) {
-            drawable2.setCallback(null);
-        }
-        this.v = drawable;
-        if (drawable != null) {
-            drawable.setCallback(this);
-        }
-        invalidate();
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.v && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
+    public pq(boolean[] zArr, boolean[] zArr2, Context context, int i10, TLRPC.User user, org.telegram.ui.web.o oVar) {
+        this.f29401b = zArr;
+        this.f29402c = zArr2;
+        this.e = context;
+        this.d = i10;
+        this.f29403f = user;
+        this.h = oVar;
     }
 }

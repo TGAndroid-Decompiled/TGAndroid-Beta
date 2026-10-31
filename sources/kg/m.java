@@ -1,173 +1,144 @@
 package kg;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import java.util.ArrayList;
-public final class m extends h {
-    @Override
-    public final mg.f h(lg.a aVar) {
-        return new mg.f(aVar, true, null);
+import org.telegram.messenger.v2;
+import org.telegram.tgnet.TLRPC;
+public final class m {
+    public final TLRPC.TL_premiumGiftOption f11178a;
+    public final TLRPC.TL_premiumGiftCodeOption f11179b;
+    public final TLRPC.TL_premiumGiftOption f11180c;
+    public final TLRPC.TL_premiumGiftCodeOption d;
+    public int e;
+    public long f11181f;
+    public long f11182g;
+    public c5.m h;
+
+    public m(TLRPC.TL_premiumGiftOption tL_premiumGiftOption) {
+        this.f11178a = tL_premiumGiftOption;
+        this.f11179b = null;
+        this.f11180c = null;
+        this.d = null;
     }
 
-    @Override
-    public final void k(android.graphics.Canvas r26) {
-        throw new UnsupportedOperationException("Method not decompiled: kg.m.k(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final void n(Canvas canvas) {
-        float f7;
-        boolean z10;
-        ArrayList arrayList;
-        int i10;
-        ArrayList arrayList2;
-        int i11;
-        float f10;
-        float f11;
-        float f12;
-        getMeasuredHeight();
-        getMeasuredHeight();
-        ArrayList arrayList3 = this.d;
-        int size = arrayList3.size();
-        lg.b bVar = this.f16600h0;
-        if (bVar != null) {
-            float[] fArr = bVar.f17011b;
-            if (fArr.length < 2) {
-                f7 = 1.0f;
-            } else {
-                f7 = fArr[1] * this.C0;
+    public final String a() {
+        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f11178a;
+        if (tL_premiumGiftOption != null) {
+            if (v2.b() || tL_premiumGiftOption.store_product == null) {
+                return tL_premiumGiftOption.currency;
             }
-            int i12 = 0;
-            while (i12 < size) {
-                mg.f fVar = (mg.f) arrayList3.get(i12);
-                boolean z11 = fVar.f18474n;
-                Paint paint = fVar.f18465b;
-                float[] fArr2 = fVar.f18472l;
-                Path path = fVar.e;
-                float f13 = 0.0f;
-                if (!z11 && fVar.f18475o == 0.0f) {
-                    arrayList = arrayList3;
-                    i10 = size;
-                } else {
-                    path.reset();
-                    int length = this.f16600h0.f17011b.length;
-                    long[] jArr = fVar.f18464a.f17004a;
-                    fVar.f18467f.reset();
-                    int i13 = 0;
-                    int i14 = 0;
-                    while (true) {
-                        z10 = h.A1;
-                        if (i14 >= length) {
-                            break;
-                        }
-                        float f14 = f13;
-                        long[] jArr2 = jArr;
-                        long j10 = jArr2[i14];
-                        if (j10 < 0) {
-                            arrayList2 = arrayList3;
-                            i11 = size;
-                        } else {
-                            lg.b bVar2 = this.f16600h0;
-                            arrayList2 = arrayList3;
-                            float f15 = this.C0 * bVar2.f17011b[i14];
-                            boolean z12 = h.B1;
-                            if (z12) {
-                                f10 = this.f16604j0;
-                                i11 = size;
-                            } else {
-                                i11 = size;
-                                f10 = (float) bVar2.e;
-                            }
-                            if (z12) {
-                                f12 = this.f16606k0;
-                                f11 = f10;
-                            } else {
-                                f11 = f10;
-                                f12 = (float) bVar2.f17013f;
-                            }
-                            float f16 = (1.0f - ((((float) j10) - f12) / (f11 - f12))) * this.B0;
-                            if (z10) {
-                                if (i13 == 0) {
-                                    float f17 = f7 / 2.0f;
-                                    fArr2[i13] = f15 - f17;
-                                    fArr2[i13 + 1] = f16;
-                                    float f18 = f15 + f17;
-                                    fArr2[i13 + 2] = f18;
-                                    fArr2[i13 + 3] = f16;
-                                    int i15 = i13 + 5;
-                                    fArr2[i13 + 4] = f18;
-                                    i13 += 6;
-                                    fArr2[i15] = f16;
-                                } else if (i14 == length - 1) {
-                                    float f19 = f7 / 2.0f;
-                                    float f20 = f15 - f19;
-                                    fArr2[i13] = f20;
-                                    fArr2[i13 + 1] = f16;
-                                    fArr2[i13 + 2] = f20;
-                                    fArr2[i13 + 3] = f16;
-                                    float f21 = f15 + f19;
-                                    fArr2[i13 + 4] = f21;
-                                    fArr2[i13 + 5] = f16;
-                                    fArr2[i13 + 6] = f21;
-                                    fArr2[i13 + 7] = f16;
-                                    int i16 = i13 + 9;
-                                    fArr2[i13 + 8] = f21;
-                                    i13 += 10;
-                                    fArr2[i16] = f14;
-                                } else {
-                                    float f22 = f7 / 2.0f;
-                                    float f23 = f15 - f22;
-                                    fArr2[i13] = f23;
-                                    fArr2[i13 + 1] = f16;
-                                    fArr2[i13 + 2] = f23;
-                                    fArr2[i13 + 3] = f16;
-                                    float f24 = f15 + f22;
-                                    fArr2[i13 + 4] = f24;
-                                    fArr2[i13 + 5] = f16;
-                                    int i17 = i13 + 7;
-                                    fArr2[i13 + 6] = f24;
-                                    i13 += 8;
-                                    fArr2[i17] = f16;
-                                }
-                            } else {
-                                if (i14 == 0) {
-                                    path.moveTo(f15 - (f7 / 2.0f), f16);
-                                } else {
-                                    path.lineTo(f15 - (f7 / 2.0f), f16);
-                                }
-                                path.lineTo((f7 / 2.0f) + f15, f16);
-                            }
-                        }
-                        i14++;
-                        f13 = f14;
-                        jArr = jArr2;
-                        arrayList3 = arrayList2;
-                        size = i11;
-                    }
-                    arrayList = arrayList3;
-                    i10 = size;
-                    float f25 = f13;
-                    fVar.f18470j = i13;
-                    if (fVar.f18474n || fVar.f18475o != f25) {
-                        paint.setAlpha((int) (fVar.f18475o * 255.0f));
-                        if (z10) {
-                            canvas.drawLines(fArr2, 0, fVar.f18470j, paint);
-                        } else {
-                            canvas.drawPath(path, paint);
-                        }
-                    }
-                }
-                i12++;
-                arrayList3 = arrayList;
-                size = i10;
+        } else {
+            TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.f11179b;
+            if (tL_premiumGiftCodeOption != null && (v2.b() || tL_premiumGiftCodeOption.store_product == null)) {
+                return tL_premiumGiftCodeOption.currency;
             }
         }
+        c5.m mVar = this.h;
+        if (mVar == null) {
+            return "";
+        }
+        return mVar.a().f3790c;
     }
 
-    @Override
-    public final void t() {
-        this.P0 = true;
-        super.t();
+    public final int b() {
+        if (this.e == 0) {
+            if (f() == 0) {
+                return 0;
+            }
+            if (this.f11182g != 0) {
+                int f7 = (int) ((1.0d - (f() / this.f11182g)) * 100.0d);
+                this.e = f7;
+                if (f7 == 0) {
+                    this.e = -1;
+                }
+            }
+        }
+        return this.e;
+    }
+
+    public final String c() {
+        TLRPC.TL_premiumGiftOption tL_premiumGiftOption;
+        TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption;
+        if (!v2.b() && (((tL_premiumGiftOption = this.f11178a) == null || tL_premiumGiftOption.store_product != null) && ((tL_premiumGiftCodeOption = this.f11179b) == null || tL_premiumGiftCodeOption.store_product != null))) {
+            if (this.h == null) {
+                return "";
+            }
+            org.telegram.messenger.u1 i10 = org.telegram.messenger.u1.i();
+            long e = e();
+            String a2 = a();
+            i10.getClass();
+            return org.telegram.messenger.u1.g(a2, 6, e, false);
+        }
+        return org.telegram.messenger.u1.i().f(e(), a());
+    }
+
+    public final int d() {
+        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f11178a;
+        if (tL_premiumGiftOption != null) {
+            return tL_premiumGiftOption.months;
+        }
+        TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.f11179b;
+        if (tL_premiumGiftCodeOption != null) {
+            return tL_premiumGiftCodeOption.months;
+        }
+        return 1;
+    }
+
+    public final long e() {
+        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f11178a;
+        if (tL_premiumGiftOption != null) {
+            if (v2.b() || tL_premiumGiftOption.store_product == null) {
+                return tL_premiumGiftOption.amount;
+            }
+        } else {
+            TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.f11179b;
+            if (tL_premiumGiftCodeOption != null && (v2.b() || tL_premiumGiftCodeOption.store_product == null)) {
+                return tL_premiumGiftCodeOption.amount;
+            }
+        }
+        c5.m mVar = this.h;
+        if (mVar == null) {
+            return 0L;
+        }
+        return mVar.a().f3789b;
+    }
+
+    public final long f() {
+        if (this.f11181f == 0) {
+            long e = e();
+            if (e != 0) {
+                this.f11181f = e / d();
+            }
+        }
+        return this.f11181f;
+    }
+
+    public final long g() {
+        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f11180c;
+        if (tL_premiumGiftOption != null) {
+            return tL_premiumGiftOption.amount;
+        }
+        TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.d;
+        if (tL_premiumGiftCodeOption != null) {
+            return tL_premiumGiftCodeOption.amount;
+        }
+        return 0L;
+    }
+
+    public final String h() {
+        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f11178a;
+        if (tL_premiumGiftOption != null) {
+            return tL_premiumGiftOption.store_product;
+        }
+        TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.f11179b;
+        if (tL_premiumGiftCodeOption != null) {
+            return tL_premiumGiftCodeOption.store_product;
+        }
+        return null;
+    }
+
+    public m(TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption2) {
+        this.f11178a = null;
+        this.f11179b = tL_premiumGiftCodeOption;
+        this.f11180c = null;
+        this.d = c3.i0.t(tL_premiumGiftCodeOption2) ? tL_premiumGiftCodeOption2 : null;
     }
 }

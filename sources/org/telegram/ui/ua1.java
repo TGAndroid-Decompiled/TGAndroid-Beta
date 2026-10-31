@@ -1,39 +1,17 @@
 package org.telegram.ui;
+public final class ua1 extends s4.x {
+    public final pb1 S;
 
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Bundle;
-import org.telegram.messenger.ApplicationLoader;
-public final class ua1 implements LocationListener {
-    public final ThemeActivity f43960a;
-
-    public ua1(ThemeActivity themeActivity) {
-        this.f43960a = themeActivity;
+    public ua1(pb1 pb1Var, ob1 ob1Var) {
+        super(ob1Var);
+        this.S = pb1Var;
     }
 
     @Override
-    public final void onLocationChanged(Location location) {
-        ThemeActivity themeActivity = this.f43960a;
-        if (location == null) {
-            return;
+    public final boolean s() {
+        if (this.S.f40613y > 0) {
+            return true;
         }
-        themeActivity.K0 = false;
-        LocationManager locationManager = (LocationManager) ApplicationLoader.applicationContext.getSystemService("location");
-        locationManager.removeUpdates(themeActivity.Q0);
-        locationManager.removeUpdates(themeActivity.R0);
-        themeActivity.C0(location, false);
-    }
-
-    @Override
-    public final void onProviderDisabled(String str) {
-    }
-
-    @Override
-    public final void onProviderEnabled(String str) {
-    }
-
-    @Override
-    public final void onStatusChanged(String str, int i10, Bundle bundle) {
+        return false;
     }
 }

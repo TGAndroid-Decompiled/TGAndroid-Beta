@@ -1,73 +1,29 @@
 package c5;
 
-import java.util.Map;
-import java.util.concurrent.Callable;
-import java.util.concurrent.atomic.AtomicMarkableReference;
-import java.util.concurrent.atomic.AtomicReference;
-import m.r3;
-import org.chromium.support_lib_boundary.JsReplyProxyBoundaryInterface;
-public final class g implements Callable {
-    public final int f6143a;
-    public final Object f6144b;
+import c3.i0;
+public final class g {
+    public int f3785a;
+    public int f3786b;
+    public String f3787c;
 
-    public g(Object obj, int i10) {
-        this.f6143a = i10;
-        this.f6144b = obj;
+    public static c3.a a() {
+        ?? obj = new Object();
+        obj.f3594c = 0;
+        obj.f3592a = "";
+        return obj;
     }
 
-    private final Object a() {
-        boolean z10;
-        String str;
-        r3 r3Var = (r3) this.f6144b;
-        synchronized (((AtomicMarkableReference) r3Var.h)) {
-            try {
-                z10 = false;
-                if (((AtomicMarkableReference) r3Var.h).isMarked()) {
-                    str = (String) ((AtomicMarkableReference) r3Var.h).getReference();
-                    ((AtomicMarkableReference) r3Var.h).set(str, false);
-                    z10 = true;
-                } else {
-                    str = null;
-                }
-            } catch (Throwable th2) {
-                throw th2;
-            }
+    public final String toString() {
+        com.google.android.gms.internal.play_billing.j jVar;
+        int i10 = this.f3785a;
+        int i11 = com.google.android.gms.internal.play_billing.u.f5211a;
+        com.google.android.gms.internal.play_billing.a0 a0Var = com.google.android.gms.internal.play_billing.j.f5125c;
+        Integer valueOf = Integer.valueOf(i10);
+        if (!a0Var.containsKey(valueOf)) {
+            jVar = com.google.android.gms.internal.play_billing.j.RESPONSE_CODE_UNSPECIFIED;
+        } else {
+            jVar = (com.google.android.gms.internal.play_billing.j) a0Var.get(valueOf);
         }
-        if (z10) {
-            ((z9.f) r3Var.f17843a).i((String) r3Var.f17845c, str);
-        }
-        return null;
-    }
-
-    @Override
-    public final Object call() {
-        Map map;
-        switch (this.f6143a) {
-            case 0:
-                return new h((JsReplyProxyBoundaryInterface) this.f6144b);
-            case 1:
-                return a();
-            default:
-                c2.b bVar = (c2.b) this.f6144b;
-                ((AtomicReference) bVar.f5931c).set(null);
-                synchronized (bVar) {
-                    try {
-                        if (((AtomicMarkableReference) bVar.f5930b).isMarked()) {
-                            map = ((z9.d) ((AtomicMarkableReference) bVar.f5930b).getReference()).a();
-                            AtomicMarkableReference atomicMarkableReference = (AtomicMarkableReference) bVar.f5930b;
-                            atomicMarkableReference.set((z9.d) atomicMarkableReference.getReference(), false);
-                        } else {
-                            map = null;
-                        }
-                    } catch (Throwable th2) {
-                        throw th2;
-                    }
-                }
-                if (map != null) {
-                    r3 r3Var = (r3) bVar.d;
-                    ((z9.f) r3Var.f17843a).g((String) r3Var.f17845c, map, bVar.f5929a);
-                }
-                return null;
-        }
+        return i0.n("Response Code: ", jVar.toString(), ", Debug Message: ", this.f3787c);
     }
 }

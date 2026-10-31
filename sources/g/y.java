@@ -1,50 +1,25 @@
 package g;
 
-import android.view.View;
-import androidx.appcompat.widget.ActionBarOverlayLayout;
-import java.util.WeakHashMap;
-import r0.i0;
-import r0.n0;
-public final class y extends n0 {
-    public final int f12203a;
-    public final a0 f12204b;
+import org.telegram.messenger.ui;
+public final class y {
+    public long f7257a;
+    public boolean f7258b;
 
-    public y(a0 a0Var, int i10) {
-        this.f12203a = i10;
-        this.f12204b = a0Var;
+    public void a(long j10) {
+        this.f7257a = ui.p(this.f7257a, j10);
     }
 
-    @Override
-    public final void c() {
-        View view;
-        int i10 = this.f12203a;
-        a0 a0Var = this.f12204b;
-        switch (i10) {
-            case 0:
-                if (a0Var.f12096o && (view = a0Var.f12089g) != null) {
-                    view.setTranslationY(0.0f);
-                    a0Var.d.setTranslationY(0.0f);
-                }
-                a0Var.d.setVisibility(8);
-                a0Var.d.setTransitioning(false);
-                a0Var.f12100s = null;
-                n4.s sVar = a0Var.f12092k;
-                if (sVar != null) {
-                    sVar.A(a0Var.f12091j);
-                    a0Var.f12091j = null;
-                    a0Var.f12092k = null;
-                }
-                ActionBarOverlayLayout actionBarOverlayLayout = a0Var.f12087c;
-                if (actionBarOverlayLayout != null) {
-                    WeakHashMap weakHashMap = i0.f47143a;
-                    r0.y.c(actionBarOverlayLayout);
-                    return;
-                }
-                return;
-            default:
-                a0Var.f12100s = null;
-                a0Var.d.requestLayout();
-                return;
+    public void b(boolean z10) {
+        long j10;
+        if (z10) {
+            j10 = 1;
+        } else {
+            j10 = 0;
         }
+        a(j10);
+    }
+
+    public void c(float f7) {
+        a(Float.floatToIntBits(f7));
     }
 }

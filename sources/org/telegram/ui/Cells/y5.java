@@ -1,94 +1,165 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.text.TextUtils;
+import android.view.MotionEvent;
+import android.view.TextureView;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.RadioButton;
-import org.telegram.ui.Components.kb1;
+import org.telegram.messenger.z20;
+import org.telegram.ui.Components.gr;
+import org.telegram.ui.ps0;
+import org.telegram.ui.qs0;
 public final class y5 extends FrameLayout {
-    public final TextView f25760a;
-    public final LinearLayout f25761b;
-    public View.OnClickListener f25762c;
-    public int d;
-    public final int[] e;
+    public final int f23619a = 0;
+    public final org.telegram.ui.Components.g9 f23620b;
+    public final View f23621c;
+    public final View d;
+    public final View e;
+    public final Object f23622f;
 
-    public y5(Context context) {
+    public y5(a6 a6Var, Context context) {
         super(context);
-        this.e = new int[]{0, -45747, -753630, -13056, -8269183, -9321002, -16747844, -10080879};
-        TextView textView = new TextView(context);
-        this.f25760a = textView;
-        textView.setGravity(5);
-        textView.setTextColor(-1);
-        textView.setTextSize(1, 12.0f);
-        textView.setMaxLines(1);
-        textView.setSingleLine(true);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        addView(textView, kb1.h(80, -2.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
+        this.f23622f = a6Var;
+        org.telegram.ui.Components.g9 g9Var = new org.telegram.ui.Components.g9(context);
+        this.f23620b = g9Var;
+        addView(g9Var, w7.b6.c(-1.0f, -1));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f25761b = linearLayout;
         linearLayout.setOrientation(0);
-        for (int i10 = 0; i10 < this.e.length; i10++) {
-            RadioButton radioButton = new RadioButton(context);
-            radioButton.setSize(AndroidUtilities.dp(20.0f));
-            radioButton.setTag(Integer.valueOf(i10));
-            this.f25761b.addView(radioButton, kb1.p(1.0f / this.e.length, 0, -1));
-            radioButton.setOnClickListener(new a(this, 8));
-        }
-        addView(this.f25761b, kb1.h(-1, 40.0f, 51, 96.0f, 0.0f, 24.0f, 0.0f));
+        linearLayout.setBackgroundResource(2131230867);
+        addView(linearLayout, w7.b6.e(-1, 60, 83));
+        TextView textView = new TextView(context);
+        this.f23621c = textView;
+        textView.setTextSize(1, 13.0f);
+        textView.setTextColor(-1);
+        textView.setSingleLine(true);
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView.setEllipsize(truncateAt);
+        textView.setMaxLines(1);
+        textView.setGravity(80);
+        TextView f7 = z20.f(linearLayout, textView, w7.b6.m(1.0f, 0, -1, 8, 0, 5), context);
+        this.d = f7;
+        f7.setTextSize(1, 13.0f);
+        f7.setTextColor(-1);
+        f7.setSingleLine(true);
+        f7.setEllipsize(truncateAt);
+        f7.setMaxLines(1);
+        f7.setGravity(80);
+        linearLayout.addView(f7, w7.b6.k(4.0f, 0.0f, 7.0f, 5.0f, -2, -1));
+        View view = new View(context);
+        this.e = view;
+        view.setBackgroundDrawable(org.telegram.ui.ActionBar.t6.N0(false));
+        addView(view, w7.b6.c(-1.0f, -1));
     }
 
-    public final void a(int i10, String str) {
-        this.d = i10;
-        this.f25760a.setText(str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase());
-        b(false);
-    }
-
-    public final void b(boolean z10) {
-        boolean z11;
-        int i10;
-        LinearLayout linearLayout = this.f25761b;
-        int childCount = linearLayout.getChildCount();
-        for (int i11 = 0; i11 < childCount; i11++) {
-            View childAt = linearLayout.getChildAt(i11);
-            if (childAt instanceof RadioButton) {
-                RadioButton radioButton = (RadioButton) childAt;
-                int intValue = ((Integer) radioButton.getTag()).intValue();
-                int[] iArr = this.e;
-                if (this.d == iArr[intValue]) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-                radioButton.a(z11, z10);
-                int i12 = -1;
-                if (intValue == 0) {
-                    i10 = -1;
-                } else {
-                    i10 = iArr[intValue];
-                }
-                if (intValue != 0) {
-                    i12 = iArr[intValue];
-                }
-                radioButton.b(i10, i12);
-            }
-        }
-    }
-
-    public int getCurrentColor() {
-        return this.d;
+    public void a(android.graphics.Canvas r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.y5.a(android.graphics.Canvas):void");
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824));
+    public void dispatchDraw(Canvas canvas) {
+        float f7;
+        ps0 ps0Var;
+        switch (this.f23619a) {
+            case 1:
+                qs0 qs0Var = (qs0) this.f23622f;
+                float[] fArr = qs0Var.Q;
+                if (qs0Var.C == null) {
+                    float f10 = qs0Var.P;
+                    if (f10 != 1.0f) {
+                        float f11 = f10 + 0.07272727f;
+                        qs0Var.P = f11;
+                        if (f11 > 1.0f) {
+                            qs0Var.P = 1.0f;
+                        } else {
+                            qs0Var.e();
+                        }
+                    }
+                }
+                float interpolation = gr.f26495f.getInterpolation(qs0Var.P) * qs0Var.A;
+                float measuredHeight = getMeasuredHeight();
+                float f12 = 0.0f;
+                if (interpolation != 1.0f && (ps0Var = qs0Var.F) != null) {
+                    ps0Var.a(fArr);
+                    canvas.save();
+                    float f13 = 1.0f - interpolation;
+                    float f14 = fArr[0] * f13;
+                    float measuredHeight2 = (fArr[1] * f13) + (getMeasuredHeight() * interpolation);
+                    canvas.clipRect(0.0f, f14, getMeasuredWidth(), measuredHeight2);
+                    a(canvas);
+                    super.dispatchDraw(canvas);
+                    canvas.restore();
+                    f7 = measuredHeight2;
+                    f12 = f14;
+                } else {
+                    a(canvas);
+                    super.dispatchDraw(canvas);
+                    f7 = measuredHeight;
+                }
+                qs0Var.c(canvas, 1.0f - interpolation, qs0Var.f41054o - getLeft(), qs0Var.f41055p - getTop(), f12, f7);
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
+        }
     }
 
     @Override
-    public void setOnClickListener(View.OnClickListener onClickListener) {
-        this.f25762c = onClickListener;
+    public void onDraw(Canvas canvas) {
+        switch (this.f23619a) {
+            case 0:
+                a6 a6Var = (a6) this.f23622f;
+                org.telegram.ui.Components.g9 g9Var = this.f23620b;
+                if (!g9Var.getImageReceiver().L() || g9Var.getImageReceiver().f14384h1 != 1.0f) {
+                    a6Var.e.setColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.X9, false));
+                    canvas.drawRect(0.0f, 0.0f, g9Var.getMeasuredWidth(), g9Var.getMeasuredHeight(), a6Var.e);
+                    return;
+                }
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f23619a) {
+            case 0:
+                this.e.drawableHotspotChanged(motionEvent.getX(), motionEvent.getY());
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    public y5(qs0 qs0Var, Context context) {
+        super(context);
+        this.f23622f = qs0Var;
+        new Path();
+        new Paint(1);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.f23621c = frameLayout;
+        frameLayout.setOutlineProvider(new bi.d2(21));
+        frameLayout.setClipToOutline(true);
+        org.telegram.ui.Components.g9 g9Var = new org.telegram.ui.Components.g9(context);
+        this.f23620b = g9Var;
+        frameLayout.addView(g9Var);
+        frameLayout.setWillNotDraw(false);
+        org.telegram.ui.k4 k4Var = new org.telegram.ui.k4(context);
+        this.e = k4Var;
+        k4Var.setBackgroundColor(0);
+        frameLayout.addView(k4Var, w7.b6.e(-1, -1, 17));
+        TextureView textureView = new TextureView(context);
+        this.d = textureView;
+        textureView.setOpaque(false);
+        k4Var.addView(textureView, w7.b6.c(-1.0f, -1));
+        addView(frameLayout, w7.b6.c(-2.0f, -2));
+        setWillNotDraw(false);
     }
 }

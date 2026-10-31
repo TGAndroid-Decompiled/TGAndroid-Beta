@@ -1,25 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.text.InputFilter;
-import android.text.Spanned;
-public final class vd implements InputFilter {
+import android.view.View;
+public final class vd implements q4, ik0 {
+    public final ChatActivityEnterView f31215a;
+
+    public vd(ChatActivityEnterView chatActivityEnterView) {
+        this.f31215a = chatActivityEnterView;
+    }
+
     @Override
-    public final CharSequence filter(CharSequence charSequence, int i10, int i11, Spanned spanned, int i12, int i13) {
-        int i14 = ChatActivityEnterView.f25845r5;
-        for (int i15 = i10; i15 < i11; i15++) {
-            char charAt = charSequence.charAt(i15);
-            if (charAt == '\n' || charAt == '\r') {
-                StringBuilder sb2 = new StringBuilder(i11 - i10);
-                while (i10 < i11) {
-                    char charAt2 = charSequence.charAt(i10);
-                    if (charAt2 != '\n' && charAt2 != '\r') {
-                        sb2.append(charAt2);
-                    }
-                    i10++;
-                }
-                return sb2;
-            }
+    public void K(int i10, int i11, boolean z10) {
+        ChatActivityEnterView chatActivityEnterView = this.f31215a;
+        boolean R0 = chatActivityEnterView.R0(z10, i10, i11, 0L, true);
+        pe peVar = chatActivityEnterView.L0;
+        if (peVar != null) {
+            peVar.g(!R0);
+            chatActivityEnterView.L0 = null;
         }
-        return null;
+    }
+
+    @Override
+    public boolean f(int i10, View view) {
+        if (view instanceof xh.u) {
+            ChatActivityEnterView chatActivityEnterView = this.f31215a;
+            chatActivityEnterView.setFieldText(((xh.u) view).getCommand() + " ");
+            chatActivityEnterView.m0.c();
+            return true;
+        }
+        return false;
     }
 }

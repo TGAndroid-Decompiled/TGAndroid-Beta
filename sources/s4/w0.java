@@ -1,31 +1,19 @@
 package s4;
 
-import android.util.SparseArray;
-public final class w0 {
-    public final SparseArray f47891a = new SparseArray();
-    public int f47892b = 0;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class w0 extends i1.c {
+    public static final Parcelable.Creator<w0> CREATOR = new i1.b(3);
+    public Parcelable f48020c;
 
-    public final void a() {
-        int i10 = 0;
-        while (true) {
-            SparseArray sparseArray = this.f47891a;
-            if (i10 < sparseArray.size()) {
-                ((v0) sparseArray.valueAt(i10)).f47885a.clear();
-                i10++;
-            } else {
-                return;
-            }
-        }
+    public w0(Parcel parcel, ClassLoader classLoader) {
+        super(parcel, classLoader);
+        this.f48020c = parcel.readParcelable(classLoader == null ? n0.class.getClassLoader() : classLoader);
     }
 
-    public final v0 b(int i10) {
-        SparseArray sparseArray = this.f47891a;
-        v0 v0Var = (v0) sparseArray.get(i10);
-        if (v0Var == null) {
-            v0 v0Var2 = new v0();
-            sparseArray.put(i10, v0Var2);
-            return v0Var2;
-        }
-        return v0Var;
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        super.writeToParcel(parcel, i10);
+        parcel.writeParcelable(this.f48020c, 0);
     }
 }

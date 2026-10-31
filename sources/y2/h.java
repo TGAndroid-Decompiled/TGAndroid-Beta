@@ -1,38 +1,38 @@
 package y2;
 
-import a8.yb;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.os.SystemClock;
 import android.os.Trace;
 import java.io.IOException;
+import v7.t6;
 public final class h extends Handler implements Runnable {
-    public final int f52014a;
-    public final i f52015b;
-    public final long f52016c;
+    public final int f54156a;
+    public final i f54157b;
+    public final long f54158c;
     public g d;
     public IOException e;
-    public int f52017f;
+    public int f54159f;
     public Thread h;
-    public boolean f52018n;
-    public volatile boolean f52019r;
-    public final l f52020s;
+    public boolean f54160n;
+    public volatile boolean f54161r;
+    public final l f54162s;
 
     public h(l lVar, Looper looper, i iVar, g gVar, int i10, long j10) {
         super(looper);
-        this.f52020s = lVar;
-        this.f52015b = iVar;
+        this.f54162s = lVar;
+        this.f54157b = iVar;
         this.d = gVar;
-        this.f52014a = i10;
-        this.f52016c = j10;
+        this.f54156a = i10;
+        this.f54158c = j10;
     }
 
     public final void a(boolean z10) {
-        this.f52019r = z10;
+        this.f54161r = z10;
         this.e = null;
         if (hasMessages(1)) {
-            this.f52018n = true;
+            this.f54160n = true;
             removeMessages(1);
             if (!z10) {
                 sendEmptyMessage(2);
@@ -40,8 +40,8 @@ public final class h extends Handler implements Runnable {
         } else {
             synchronized (this) {
                 try {
-                    this.f52018n = true;
-                    this.f52015b.f0();
+                    this.f54160n = true;
+                    this.f54157b.R1();
                     Thread thread = this.h;
                     if (thread != null) {
                         thread.interrupt();
@@ -52,25 +52,25 @@ public final class h extends Handler implements Runnable {
             }
         }
         if (z10) {
-            this.f52020s.f52023b = null;
+            this.f54162s.f54165b = null;
             long elapsedRealtime = SystemClock.elapsedRealtime();
             g gVar = this.d;
             gVar.getClass();
-            gVar.l0(this.f52015b, elapsedRealtime, elapsedRealtime - this.f52016c, true);
+            gVar.M(this.f54157b, elapsedRealtime, elapsedRealtime - this.f54158c, true);
             this.d = null;
         }
     }
 
     public final void b() {
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j10 = elapsedRealtime - this.f52016c;
+        long j10 = elapsedRealtime - this.f54158c;
         g gVar = this.d;
         gVar.getClass();
-        gVar.z(this.f52015b, elapsedRealtime, j10, this.f52017f);
+        gVar.n(this.f54157b, elapsedRealtime, j10, this.f54159f);
         this.e = null;
-        l lVar = this.f52020s;
-        z2.a aVar = lVar.f52022a;
-        h hVar = lVar.f52023b;
+        l lVar = this.f54162s;
+        z2.a aVar = lVar.f54164a;
+        h hVar = lVar.f54165b;
         hVar.getClass();
         aVar.execute(hVar);
     }
@@ -78,18 +78,18 @@ public final class h extends Handler implements Runnable {
     @Override
     public final void handleMessage(Message message) {
         boolean z10;
-        if (!this.f52019r) {
+        if (!this.f54161r) {
             int i10 = message.what;
             if (i10 == 1) {
                 b();
             } else if (i10 != 4) {
-                this.f52020s.f52023b = null;
+                this.f54162s.f54165b = null;
                 long elapsedRealtime = SystemClock.elapsedRealtime();
-                long j10 = elapsedRealtime - this.f52016c;
+                long j10 = elapsedRealtime - this.f54158c;
                 g gVar = this.d;
                 gVar.getClass();
-                if (this.f52018n) {
-                    gVar.l0(this.f52015b, elapsedRealtime, j10, false);
+                if (this.f54160n) {
+                    gVar.M(this.f54157b, elapsedRealtime, j10, false);
                     return;
                 }
                 int i11 = message.what;
@@ -97,29 +97,29 @@ public final class h extends Handler implements Runnable {
                     if (i11 == 3) {
                         IOException iOException = (IOException) message.obj;
                         this.e = iOException;
-                        int i12 = this.f52017f + 1;
-                        this.f52017f = i12;
-                        k4.d w10 = gVar.w(this.f52015b, elapsedRealtime, j10, iOException, i12);
-                        int i13 = w10.f16376a;
+                        int i12 = this.f54159f + 1;
+                        this.f54159f = i12;
+                        k4.d l4 = gVar.l(this.f54157b, elapsedRealtime, j10, iOException, i12);
+                        int i13 = l4.f10859a;
                         if (i13 == 3) {
-                            this.f52020s.f52024c = this.e;
+                            this.f54162s.f54166c = this.e;
                             return;
                         } else if (i13 != 2) {
                             if (i13 == 1) {
-                                this.f52017f = 1;
+                                this.f54159f = 1;
                             }
-                            long j11 = w10.f16377b;
+                            long j11 = l4.f10860b;
                             if (j11 == -9223372036854775807L) {
-                                j11 = Math.min((this.f52017f - 1) * 1000, 5000);
+                                j11 = Math.min((this.f54159f - 1) * 1000, 5000);
                             }
-                            l lVar = this.f52020s;
-                            if (lVar.f52023b == null) {
+                            l lVar = this.f54162s;
+                            if (lVar.f54165b == null) {
                                 z10 = true;
                             } else {
                                 z10 = false;
                             }
-                            yb.p(z10);
-                            lVar.f52023b = this;
+                            t6.p(z10);
+                            lVar.f54165b = this;
                             if (j11 > 0) {
                                 sendEmptyMessageDelayed(1, j11);
                                 return;
@@ -134,10 +134,10 @@ public final class h extends Handler implements Runnable {
                     return;
                 }
                 try {
-                    gVar.B(this.f52015b, elapsedRealtime, j10);
+                    gVar.o(this.f54157b, elapsedRealtime, j10);
                 } catch (RuntimeException e) {
                     e2.a.d("LoadTask", "Unexpected exception handling load completed", e);
-                    this.f52020s.f52024c = new k(e);
+                    this.f54162s.f54166c = new k(e);
                 }
             } else {
                 throw ((Error) message.obj);
@@ -150,13 +150,13 @@ public final class h extends Handler implements Runnable {
         boolean z10;
         try {
             synchronized (this) {
-                z10 = this.f52018n;
+                z10 = this.f54160n;
                 this.h = Thread.currentThread();
             }
             if (!z10) {
-                Trace.beginSection("load:".concat(this.f52015b.getClass().getSimpleName()));
+                Trace.beginSection("load:".concat(this.f54157b.getClass().getSimpleName()));
                 try {
-                    this.f52015b.b();
+                    this.f54157b.b();
                     Trace.endSection();
                 } catch (Throwable th2) {
                     Trace.endSection();
@@ -167,29 +167,29 @@ public final class h extends Handler implements Runnable {
                 this.h = null;
                 Thread.interrupted();
             }
-            if (!this.f52019r) {
+            if (!this.f54161r) {
                 sendEmptyMessage(2);
             }
         } catch (IOException e) {
-            if (!this.f52019r) {
+            if (!this.f54161r) {
                 obtainMessage(3, e).sendToTarget();
             }
-        } catch (Exception e10) {
-            if (!this.f52019r) {
-                e2.a.d("LoadTask", "Unexpected exception loading stream", e10);
+        } catch (Exception e7) {
+            if (!this.f54161r) {
+                e2.a.d("LoadTask", "Unexpected exception loading stream", e7);
+                obtainMessage(3, new k(e7)).sendToTarget();
+            }
+        } catch (OutOfMemoryError e10) {
+            if (!this.f54161r) {
+                e2.a.d("LoadTask", "OutOfMemory error loading stream", e10);
                 obtainMessage(3, new k(e10)).sendToTarget();
             }
-        } catch (OutOfMemoryError e11) {
-            if (!this.f52019r) {
-                e2.a.d("LoadTask", "OutOfMemory error loading stream", e11);
-                obtainMessage(3, new k(e11)).sendToTarget();
+        } catch (Error e11) {
+            if (!this.f54161r) {
+                e2.a.d("LoadTask", "Unexpected error loading stream", e11);
+                obtainMessage(4, e11).sendToTarget();
             }
-        } catch (Error e12) {
-            if (!this.f52019r) {
-                e2.a.d("LoadTask", "Unexpected error loading stream", e12);
-                obtainMessage(4, e12).sendToTarget();
-            }
-            throw e12;
+            throw e11;
         }
     }
 }

@@ -1,55 +1,45 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class f1 implements jd0 {
-    public final int f27976a;
-    public final int[] f27977b;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PrivacyControlActivity;
+public final class f1 implements Runnable {
+    public final int f25925a;
+    public final ArrayList f25926b;
 
-    public f1(int i10, int[] iArr) {
-        this.f27976a = i10;
-        this.f27977b = iArr;
+    public f1(int i10, ArrayList arrayList) {
+        this.f25925a = i10;
+        this.f25926b = arrayList;
     }
 
     @Override
-    public final String f(int i10) {
-        switch (this.f27976a) {
+    public final void run() {
+        org.telegram.ui.ActionBar.k2 Q;
+        switch (this.f25925a) {
             case 0:
-                int i11 = this.f27977b[i10];
-                if (i11 == 0) {
-                    return LocaleController.getString(R.string.MuteNever);
+                if (this.f25926b != null && (Q = LaunchActivity.Q()) != 0) {
+                    ?? obj = new Object();
+                    obj.f20389a = true;
+                    Q.showAsSheet(new PrivacyControlActivity(11, false), obj);
+                    return;
                 }
-                if (i11 < 60) {
-                    return LocaleController.formatPluralString("Minutes", i11, new Object[0]);
-                }
-                if (i11 < 1440) {
-                    return LocaleController.formatPluralString("Hours", i11 / 60, new Object[0]);
-                }
-                if (i11 < 10080) {
-                    return LocaleController.formatPluralString("Days", i11 / 1440, new Object[0]);
-                }
-                if (i11 < 44640) {
-                    return LocaleController.formatPluralString("Weeks", i11 / 10080, new Object[0]);
-                }
-                if (i11 < 525600) {
-                    return LocaleController.formatPluralString("Months", i11 / 44640, new Object[0]);
-                }
-                return LocaleController.formatPluralString("Years", i11 / 525600, new Object[0]);
+                return;
             default:
-                int i12 = this.f27977b[i10];
-                if (i12 == 0) {
-                    return LocaleController.getString(R.string.AutoDeleteNever);
+                int i10 = 0;
+                while (true) {
+                    ArrayList arrayList = this.f25926b;
+                    if (i10 < arrayList.size()) {
+                        ((View) arrayList.get(i10)).setVisibility(8);
+                        if (arrayList.get(i10) instanceof org.telegram.ui.Cells.q1) {
+                            ((org.telegram.ui.Cells.q1) arrayList.get(i10)).f3(false, false);
+                            ((org.telegram.ui.Cells.q1) arrayList.get(i10)).h3(false, false, false);
+                        }
+                        i10++;
+                    } else {
+                        return;
+                    }
                 }
-                if (i12 < 10080) {
-                    return LocaleController.formatPluralString("Days", i12 / 1440, new Object[0]);
-                }
-                if (i12 < 44640) {
-                    return LocaleController.formatPluralString("Weeks", i12 / 10080, new Object[0]);
-                }
-                if (i12 < 525600) {
-                    return LocaleController.formatPluralString("Months", i12 / 44640, new Object[0]);
-                }
-                return LocaleController.formatPluralString("Years", i12 / 525600, new Object[0]);
         }
     }
 }

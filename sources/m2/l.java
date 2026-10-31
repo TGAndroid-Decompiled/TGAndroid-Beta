@@ -2,26 +2,25 @@ package m2;
 
 import android.net.Uri;
 import b2.x;
-import f9.i0;
+import e9.n0;
 import java.util.ArrayList;
 import java.util.List;
-import jg.s0;
 public final class l extends m {
-    public final j f17969n;
-    public final s0 f17970r;
+    public final j f12665n;
+    public final t f12666r;
 
-    public l(x xVar, i0 i0Var, r rVar, ArrayList arrayList, List list, List list2) {
-        super(xVar, i0Var, rVar, arrayList, list, list2);
+    public l(x xVar, n0 n0Var, r rVar, ArrayList arrayList, List list, List list2) {
+        super(xVar, n0Var, rVar, arrayList, list, list2);
         j jVar;
-        Uri.parse(((b) i0Var.get(0)).f17931a);
+        Uri.parse(((b) n0Var.get(0)).f12627a);
         long j10 = rVar.e;
         if (j10 <= 0) {
             jVar = null;
         } else {
-            jVar = new j(rVar.d, j10, null);
+            jVar = new j(rVar.d, null, j10);
         }
-        this.f17969n = jVar;
-        this.f17970r = jVar == null ? new s0(new j(0L, -1L, null), 9) : null;
+        this.f12665n = jVar;
+        this.f12666r = jVar == null ? new t(new j(0L, null, -1L), 0) : null;
     }
 
     @Override
@@ -30,12 +29,12 @@ public final class l extends m {
     }
 
     @Override
-    public final l2.h c() {
-        return this.f17970r;
+    public final l2.i d() {
+        return this.f12666r;
     }
 
     @Override
-    public final j d() {
-        return this.f17969n;
+    public final j h() {
+        return this.f12665n;
     }
 }

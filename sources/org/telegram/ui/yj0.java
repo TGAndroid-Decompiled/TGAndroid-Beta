@@ -1,95 +1,101 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class yj0 extends FrameLayout {
-    public final Paint f46031a;
-    public final RectF f46032b;
-    public final TextView[] f46033c;
-    public final zj0 d;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class yj0 implements View.OnClickListener {
+    public final int f43856a;
+    public final ll0 f43857b;
 
-    public yj0(zj0 zj0Var, Context context) {
-        super(context);
-        int i10;
-        this.d = zj0Var;
-        this.f46031a = new Paint(1);
-        this.f46032b = new RectF();
-        this.f46033c = new TextView[2];
-        setWillNotDraw(false);
-        for (int i11 = 0; i11 < 2; i11++) {
-            TextView[] textViewArr = this.f46033c;
-            TextView textView = new TextView(context);
-            textViewArr[i11] = textView;
-            if (i11 == 0) {
-                i10 = R.string.NewsForYou;
-            } else {
-                i10 = R.string.Added;
-            }
-            textView.setText(LocaleController.getString(i10));
-            textView.setTextSize(14.0f);
-            textView.setTypeface(AndroidUtilities.bold());
-            textView.setGravity(17);
-            textView.setIncludeFontPadding(false);
-            textView.setOnClickListener(new ai.w(this, i11, 26));
-            addView(textView);
-        }
+    public yj0(ll0 ll0Var, int i10) {
+        this.f43856a = i10;
+        this.f43857b = ll0Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        boolean z10;
-        Paint.Style style = Paint.Style.STROKE;
-        Paint paint = this.f46031a;
-        paint.setStyle(style);
-        paint.setStrokeWidth(AndroidUtilities.dpf2(0.6f));
-        int i10 = org.telegram.ui.ActionBar.y6.f23358d7;
-        zj0 zj0Var = this.d;
-        paint.setColor(zj0Var.getThemedColor(i10));
-        float height = getHeight() - AndroidUtilities.dp(0.5f);
-        RectF rectF = this.f46032b;
-        rectF.set(AndroidUtilities.dp(0.5f), AndroidUtilities.dp(0.5f), getWidth() - AndroidUtilities.dp(0.5f), height);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), paint);
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(zj0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23300a7));
-        float width = (getWidth() - AndroidUtilities.dp(6.0f)) / 2.0f;
-        float positionAnimated = (zj0Var.v.getPositionAnimated() * width) + AndroidUtilities.dp(3.0f);
-        rectF.set(positionAnimated, AndroidUtilities.dp(3.0f), width + positionAnimated, AndroidUtilities.dp(33.0f));
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), paint);
-        for (int i11 = 0; i11 < 2; i11++) {
-            TextView[] textViewArr = this.f46033c;
-            TextView textView = textViewArr[i11];
-            if (zj0Var.v.getCurrentPosition() == i11) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            textView.setSelected(z10);
-            textViewArr[i11].setTextColor(i0.a.f(Math.max(0.0f, 1.0f - Math.abs(zj0Var.v.getPositionAnimated() - i11)), zj0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23749y6), zj0Var.getThemedColor(org.telegram.ui.ActionBar.y6.G6)));
-        }
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        for (int i14 = 0; i14 < 2; i14++) {
-            int width = (((getWidth() - AndroidUtilities.dp(6.0f)) * i14) / 2) + AndroidUtilities.dp(3.0f);
-            TextView[] textViewArr = this.f46033c;
-            textViewArr[i14].layout(width, AndroidUtilities.dp(3.0f), textViewArr[i14].getMeasuredWidth() + width, AndroidUtilities.dp(33.0f));
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        for (TextView textView : this.f46033c) {
-            textView.measure(View.MeasureSpec.makeMeasureSpec((getMeasuredWidth() - AndroidUtilities.dp(6.0f)) / 2, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
+    public final void onClick(View view) {
+        int i10 = this.f43856a;
+        ll0 ll0Var = this.f43857b;
+        switch (i10) {
+            case 0:
+                ll0Var.S0 = 2;
+                ll0Var.G1();
+                return;
+            case 1:
+                ll0Var.g1();
+                return;
+            case 2:
+                ll0Var.S0 = 3;
+                ll0Var.G1();
+                return;
+            case 3:
+                ll0Var.S0 = 1;
+                ll0Var.G1();
+                return;
+            case 4:
+                ll0Var.S0 = 4;
+                ll0Var.G1();
+                return;
+            case 5:
+                if (ll0Var.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
+                    ll0Var.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 22);
+                    return;
+                }
+                u9 u9Var = new u9(0);
+                u9Var.M = new kk0(ll0Var);
+                ll0Var.presentFragment(u9Var);
+                return;
+            case 6:
+                ll0Var.f39270f = true;
+                ll0Var.L.callOnClick();
+                ll0Var.f39270f = false;
+                return;
+            case 7:
+                ll0Var.S0 = 0;
+                ll0Var.G1();
+                return;
+            case 8:
+                ll0Var.S0 = 4;
+                ll0Var.G1();
+                return;
+            case 9:
+                ll0Var.g1();
+                return;
+            case 10:
+                ll0.f0(ll0Var);
+                return;
+            case 11:
+                ll0.g0(ll0Var);
+                return;
+            case 12:
+                ll0Var.F1();
+                return;
+            case 13:
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ll0Var.getParentActivity());
+                String L0 = org.telegram.messenger.cd.L0(2131744257, null);
+                org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20134a;
+                x1Var.R = L0;
+                x1Var.T = org.telegram.messenger.cd.L0(2131744258, null);
+                alertDialog$Builder.k(org.telegram.messenger.cd.L0(2131751599, null), new ak0(ll0Var, 5));
+                alertDialog$Builder.h(org.telegram.messenger.cd.L0(2131752589, null), null);
+                ll0Var.showDialog(x1Var);
+                TextView textView = (TextView) x1Var.d(-1);
+                if (textView != null) {
+                    org.telegram.ui.ActionBar.a7.V(textView, org.telegram.ui.ActionBar.t6.f21170q7, null);
+                    return;
+                }
+                return;
+            case 14:
+                ll0Var.F1();
+                return;
+            case 15:
+                ll0.Z(ll0Var);
+                return;
+            default:
+                ll0Var.f39270f = true;
+                ll0Var.L.callOnClick();
+                ll0Var.f39270f = false;
+                return;
         }
     }
 }

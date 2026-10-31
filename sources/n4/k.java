@@ -1,451 +1,192 @@
 package n4;
 
-import a8.ue;
-import android.content.Intent;
-import android.media.Rating;
-import android.media.session.MediaSession;
-import android.net.Uri;
-import android.os.BadParcelableException;
-import android.os.Build;
+import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.os.ResultReceiver;
-import android.text.TextUtils;
-import androidx.versionedparcelable.ParcelImpl;
-import e2.n0;
-import java.util.List;
-public final class k extends MediaSession.Callback {
-    public final l f18672a;
+import android.os.IInterface;
+import android.os.Parcel;
+import android.os.SystemClock;
+import java.lang.ref.WeakReference;
+import java.util.AbstractCollection;
+import java.util.ArrayList;
+public final class k extends Binder implements d {
+    public static final int f13508b = 0;
+    public final WeakReference f13509a;
 
     public k(l lVar) {
-        this.f18672a = lVar;
+        attachInterface(this, "android.support.v4.media.session.IMediaSession");
+        this.f13509a = new WeakReference(lVar);
     }
 
-    public static void b(n nVar) {
-        int i10 = Build.VERSION.SDK_INT;
-        if (i10 >= 28) {
-            return;
-        }
-        MediaSession mediaSession = nVar.f18678a;
-        String str = null;
-        if (i10 >= 24) {
-            try {
-                str = (String) mediaSession.getClass().getMethod("getCallingPackage", null).invoke(mediaSession, null);
-            } catch (Exception e) {
-                e2.a.d("MediaSessionCompat", "Cannot execute MediaSession.getCallingPackage()", e);
+    public final void H0(b bVar) {
+        l lVar = (l) this.f13509a.get();
+        if (lVar != null && bVar != null) {
+            lVar.f13513f.register(bVar, new r("android.media.session.MediaController", Binder.getCallingPid(), Binder.getCallingUid()));
+            synchronized (lVar.d) {
             }
         }
-        if (TextUtils.isEmpty(str)) {
-            str = "android.media.session.MediaController";
-        }
-        nVar.d(new t(str, -1, -1));
-    }
-
-    public final n a() {
-        n nVar;
-        synchronized (this.f18672a.f18673a) {
-            nVar = (n) this.f18672a.d.get();
-        }
-        if (nVar != null && this.f18672a == nVar.b()) {
-            return nVar;
-        }
-        return null;
     }
 
     @Override
-    public final void onCommand(String str, Bundle bundle, ResultReceiver resultReceiver) {
-        q qVar;
-        IBinder asBinder;
-        z4.d dVar;
-        n a2 = a();
-        if (a2 == null) {
-            return;
-        }
-        Bundle o10 = n0.o(bundle);
-        b(a2);
-        try {
-            if (str.equals("android.support.v4.media.session.command.GET_EXTRA_BINDER")) {
-                if (resultReceiver != null) {
-                    Bundle bundle2 = new Bundle();
-                    r rVar = a2.f18680c;
-                    d a10 = rVar.a();
-                    if (a10 == null) {
-                        asBinder = null;
-                    } else {
-                        asBinder = a10.asBinder();
+    public final boolean onTransact(int i10, Parcel parcel, Parcel parcel2, int i11) {
+        long j10;
+        Bundle bundle;
+        b bVar = null;
+        r5 = null;
+        Bundle bundle2 = null;
+        w wVar = null;
+        b bVar2 = null;
+        if (i10 != 3) {
+            if (i10 != 4) {
+                if (i10 != 28) {
+                    int i12 = -1;
+                    if (i10 != 37) {
+                        if (i10 != 45) {
+                            if (i10 != 47) {
+                                if (i10 != 50) {
+                                    if (i10 != 1598968902) {
+                                        return super.onTransact(i10, parcel, parcel2, i11);
+                                    }
+                                    parcel2.getClass();
+                                    parcel2.writeString("android.support.v4.media.session.IMediaSession");
+                                    return true;
+                                }
+                                parcel.enforceInterface("android.support.v4.media.session.IMediaSession");
+                                l lVar = (l) this.f13509a.get();
+                                if (lVar != null && (bundle = lVar.e) != null) {
+                                    bundle2 = new Bundle(bundle);
+                                }
+                                parcel2.getClass();
+                                parcel2.writeNoException();
+                                if (bundle2 != null) {
+                                    parcel2.writeInt(1);
+                                    bundle2.writeToParcel(parcel2, 1);
+                                    return true;
+                                }
+                                parcel2.writeInt(0);
+                                return true;
+                            }
+                            parcel.enforceInterface("android.support.v4.media.session.IMediaSession");
+                            l lVar2 = (l) this.f13509a.get();
+                            if (lVar2 != null) {
+                                i12 = lVar2.f13517k;
+                            }
+                            parcel2.getClass();
+                            parcel2.writeNoException();
+                            parcel2.writeInt(i12);
+                            return true;
+                        }
+                        parcel.enforceInterface("android.support.v4.media.session.IMediaSession");
+                        l lVar3 = (l) this.f13509a.get();
+                        parcel2.getClass();
+                        parcel2.writeNoException();
+                        parcel2.writeInt(0);
+                        return true;
                     }
-                    bundle2.putBinder("android.support.v4.media.session.EXTRA_BINDER", asBinder);
-                    synchronized (rVar.f18691a) {
-                        dVar = rVar.d;
+                    parcel.enforceInterface("android.support.v4.media.session.IMediaSession");
+                    l lVar4 = (l) this.f13509a.get();
+                    if (lVar4 != null) {
+                        i12 = lVar4.f13516j;
                     }
-                    if (dVar != null) {
-                        Bundle bundle3 = new Bundle();
-                        bundle3.putParcelable("a", new ParcelImpl(dVar));
-                        bundle2.putParcelable("android.support.v4.media.session.SESSION_TOKEN2", bundle3);
+                    parcel2.getClass();
+                    parcel2.writeNoException();
+                    parcel2.writeInt(i12);
+                    return true;
+                }
+                parcel.enforceInterface("android.support.v4.media.session.IMediaSession");
+                l lVar5 = (l) this.f13509a.get();
+                if (lVar5 != null) {
+                    wVar = lVar5.f13514g;
+                    i iVar = lVar5.f13515i;
+                    if (wVar != null) {
+                        float f7 = wVar.d;
+                        long j11 = wVar.f13542n;
+                        int i13 = wVar.f13538a;
+                        long j12 = wVar.f13539b;
+                        long j13 = -1;
+                        if (j12 != -1 && ((i13 == 3 || i13 == 4 || i13 == 5) && j11 > 0)) {
+                            long elapsedRealtime = SystemClock.elapsedRealtime();
+                            long j14 = (f7 * ((float) (elapsedRealtime - j11))) + j12;
+                            if (iVar != null) {
+                                Bundle bundle3 = iVar.f13506a;
+                                if (bundle3.containsKey("android.media.metadata.DURATION")) {
+                                    j13 = bundle3.getLong("android.media.metadata.DURATION", 0L);
+                                }
+                            }
+                            if (j13 >= 0 && j14 > j13) {
+                                j10 = j13;
+                            } else if (j14 < 0) {
+                                j10 = 0;
+                            } else {
+                                j10 = j14;
+                            }
+                            ArrayList arrayList = new ArrayList();
+                            long j15 = wVar.f13540c;
+                            long j16 = wVar.e;
+                            int i14 = wVar.f13541f;
+                            CharSequence charSequence = wVar.h;
+                            AbstractCollection abstractCollection = wVar.f13543r;
+                            if (abstractCollection != null) {
+                                arrayList.addAll(abstractCollection);
+                            }
+                            wVar = new w(wVar.f13538a, j10, j15, wVar.d, j16, i14, charSequence, elapsedRealtime, arrayList, wVar.f13544s, wVar.f13545w);
+                        }
                     }
-                    resultReceiver.send(0, bundle2);
                 }
-            } else if (str.equals("android.support.v4.media.session.command.ADD_QUEUE_ITEM")) {
-                if (o10 != null) {
-                    this.f18672a.b((h) ue.a(o10.getParcelable("android.support.v4.media.session.command.ARGUMENT_MEDIA_DESCRIPTION"), h.CREATOR));
+                parcel2.getClass();
+                parcel2.writeNoException();
+                if (wVar != null) {
+                    parcel2.writeInt(1);
+                    wVar.writeToParcel(parcel2, 1);
+                    return true;
                 }
-            } else if (str.equals("android.support.v4.media.session.command.ADD_QUEUE_ITEM_AT")) {
-                if (o10 != null) {
-                    this.f18672a.c((h) ue.a(o10.getParcelable("android.support.v4.media.session.command.ARGUMENT_MEDIA_DESCRIPTION"), h.CREATOR), o10.getInt("android.support.v4.media.session.command.ARGUMENT_INDEX"));
-                }
-            } else if (str.equals("android.support.v4.media.session.command.REMOVE_QUEUE_ITEM")) {
-                if (o10 != null) {
-                    this.f18672a.q((h) ue.a(o10.getParcelable("android.support.v4.media.session.command.ARGUMENT_MEDIA_DESCRIPTION"), h.CREATOR));
-                }
-            } else if (str.equals("android.support.v4.media.session.command.REMOVE_QUEUE_ITEM_AT")) {
-                List list = a2.h;
-                if (list != null && o10 != null) {
-                    int i10 = o10.getInt("android.support.v4.media.session.command.ARGUMENT_INDEX", -1);
-                    if (i10 >= 0 && i10 < list.size()) {
-                        qVar = (q) list.get(i10);
-                    } else {
-                        qVar = null;
-                    }
-                    if (qVar != null) {
-                        this.f18672a.q(qVar.f18688a);
-                    }
-                }
-            } else {
-                this.f18672a.d(str, o10, resultReceiver);
+                parcel2.writeInt(0);
+                return true;
             }
-        } catch (BadParcelableException unused) {
-            e2.a.c("MediaSessionCompat", "Could not unparcel the extra data.");
-        }
-        a2.d(null);
-    }
-
-    @Override
-    public final void onCustomAction(String str, Bundle bundle) {
-        n a2 = a();
-        if (a2 == null) {
-            return;
-        }
-        Bundle o10 = n0.o(bundle);
-        b(a2);
-        try {
-            boolean equals = str.equals("android.support.v4.media.session.action.PLAY_FROM_URI");
-            l lVar = this.f18672a;
-            if (equals) {
-                if (o10 != null) {
-                    lVar.l((Uri) o10.getParcelable("android.support.v4.media.session.action.ARGUMENT_URI"), n0.o(o10.getBundle("android.support.v4.media.session.action.ARGUMENT_EXTRAS")));
+            parcel.enforceInterface("android.support.v4.media.session.IMediaSession");
+            IBinder readStrongBinder = parcel.readStrongBinder();
+            if (readStrongBinder != null) {
+                IInterface queryLocalInterface = readStrongBinder.queryLocalInterface("android.support.v4.media.session.IMediaControllerCallback");
+                if (queryLocalInterface != null && (queryLocalInterface instanceof b)) {
+                    bVar2 = (b) queryLocalInterface;
+                } else {
+                    ?? obj = new Object();
+                    obj.f13491a = readStrongBinder;
+                    bVar2 = obj;
                 }
-            } else if (str.equals("android.support.v4.media.session.action.PREPARE")) {
-                lVar.m();
-            } else if (str.equals("android.support.v4.media.session.action.PREPARE_FROM_MEDIA_ID")) {
-                if (o10 != null) {
-                    lVar.n(o10.getString("android.support.v4.media.session.action.ARGUMENT_MEDIA_ID"), n0.o(o10.getBundle("android.support.v4.media.session.action.ARGUMENT_EXTRAS")));
-                }
-            } else if (str.equals("android.support.v4.media.session.action.PREPARE_FROM_SEARCH")) {
-                if (o10 != null) {
-                    lVar.o(o10.getString("android.support.v4.media.session.action.ARGUMENT_QUERY"), n0.o(o10.getBundle("android.support.v4.media.session.action.ARGUMENT_EXTRAS")));
-                }
-            } else if (str.equals("android.support.v4.media.session.action.PREPARE_FROM_URI")) {
-                if (o10 != null) {
-                    lVar.p((Uri) o10.getParcelable("android.support.v4.media.session.action.ARGUMENT_URI"), n0.o(o10.getBundle("android.support.v4.media.session.action.ARGUMENT_EXTRAS")));
-                }
-            } else if (str.equals("android.support.v4.media.session.action.SET_CAPTIONING_ENABLED")) {
-                if (o10 != null) {
-                    o10.getBoolean("android.support.v4.media.session.action.ARGUMENT_CAPTIONING_ENABLED");
-                }
-            } else if (str.equals("android.support.v4.media.session.action.SET_REPEAT_MODE")) {
-                if (o10 != null) {
-                    lVar.w(o10.getInt("android.support.v4.media.session.action.ARGUMENT_REPEAT_MODE"));
-                }
-            } else if (str.equals("android.support.v4.media.session.action.SET_SHUFFLE_MODE")) {
-                if (o10 != null) {
-                    lVar.x(o10.getInt("android.support.v4.media.session.action.ARGUMENT_SHUFFLE_MODE"));
-                }
-            } else if (str.equals("android.support.v4.media.session.action.SET_RATING")) {
-                if (o10 != null) {
-                    n0.o(o10.getBundle("android.support.v4.media.session.action.ARGUMENT_EXTRAS"));
-                    lVar.v((a0) ue.a(o10.getParcelable("android.support.v4.media.session.action.ARGUMENT_RATING"), a0.CREATOR));
-                }
-            } else if (str.equals("android.support.v4.media.session.action.SET_PLAYBACK_SPEED")) {
-                if (o10 != null) {
-                    lVar.t(o10.getFloat("android.support.v4.media.session.action.ARGUMENT_PLAYBACK_SPEED", 1.0f));
-                }
-            } else {
-                lVar.e(str, o10);
             }
-        } catch (BadParcelableException unused) {
-            e2.a.c("MediaSessionCompat", "Could not unparcel the data.");
-        }
-        a2.d(null);
-    }
-
-    @Override
-    public final void onFastForward() {
-        n a2 = a();
-        if (a2 == null) {
-            return;
-        }
-        b(a2);
-        this.f18672a.f();
-        a2.d(null);
-    }
-
-    @Override
-    public final boolean onMediaButtonEvent(Intent intent) {
-        n a2 = a();
-        if (a2 != null) {
-            b(a2);
-            boolean g7 = this.f18672a.g(intent);
-            a2.d(null);
-            if (!g7 && !super.onMediaButtonEvent(intent)) {
-                return false;
+            l lVar6 = (l) this.f13509a.get();
+            if (lVar6 != null && bVar2 != null) {
+                lVar6.f13513f.unregister(bVar2);
+                Binder.getCallingPid();
+                Binder.getCallingUid();
+                synchronized (lVar6.d) {
+                }
             }
+            parcel2.getClass();
+            parcel2.writeNoException();
             return true;
         }
-        return false;
-    }
-
-    @Override
-    public final void onPause() {
-        n a2 = a();
-        if (a2 == null) {
-            return;
-        }
-        b(a2);
-        this.f18672a.h();
-        a2.d(null);
-    }
-
-    @Override
-    public final void onPlay() {
-        n a2 = a();
-        if (a2 == null) {
-            return;
-        }
-        b(a2);
-        this.f18672a.i();
-        a2.d(null);
-    }
-
-    @Override
-    public final void onPlayFromMediaId(String str, Bundle bundle) {
-        n a2 = a();
-        if (a2 == null) {
-            return;
-        }
-        Bundle o10 = n0.o(bundle);
-        b(a2);
-        this.f18672a.j(str, o10);
-        a2.d(null);
-    }
-
-    @Override
-    public final void onPlayFromSearch(String str, Bundle bundle) {
-        n a2 = a();
-        if (a2 == null) {
-            return;
-        }
-        Bundle o10 = n0.o(bundle);
-        b(a2);
-        this.f18672a.k(str, o10);
-        a2.d(null);
-    }
-
-    @Override
-    public final void onPlayFromUri(Uri uri, Bundle bundle) {
-        n a2 = a();
-        if (a2 == null) {
-            return;
-        }
-        Bundle o10 = n0.o(bundle);
-        b(a2);
-        this.f18672a.l(uri, o10);
-        a2.d(null);
-    }
-
-    @Override
-    public final void onPrepare() {
-        n a2 = a();
-        if (a2 == null) {
-            return;
-        }
-        b(a2);
-        this.f18672a.m();
-        a2.d(null);
-    }
-
-    @Override
-    public final void onPrepareFromMediaId(String str, Bundle bundle) {
-        n a2 = a();
-        if (a2 == null) {
-            return;
-        }
-        Bundle o10 = n0.o(bundle);
-        b(a2);
-        this.f18672a.n(str, o10);
-        a2.d(null);
-    }
-
-    @Override
-    public final void onPrepareFromSearch(String str, Bundle bundle) {
-        n a2 = a();
-        if (a2 == null) {
-            return;
-        }
-        Bundle o10 = n0.o(bundle);
-        b(a2);
-        this.f18672a.o(str, o10);
-        a2.d(null);
-    }
-
-    @Override
-    public final void onPrepareFromUri(Uri uri, Bundle bundle) {
-        n a2 = a();
-        if (a2 == null) {
-            return;
-        }
-        Bundle o10 = n0.o(bundle);
-        b(a2);
-        this.f18672a.p(uri, o10);
-        a2.d(null);
-    }
-
-    @Override
-    public final void onRewind() {
-        n a2 = a();
-        if (a2 == null) {
-            return;
-        }
-        b(a2);
-        this.f18672a.r();
-        a2.d(null);
-    }
-
-    @Override
-    public final void onSeekTo(long j10) {
-        n a2 = a();
-        if (a2 == null) {
-            return;
-        }
-        b(a2);
-        this.f18672a.s(j10);
-        a2.d(null);
-    }
-
-    @Override
-    public final void onSetPlaybackSpeed(float f7) {
-        n a2 = a();
-        if (a2 == null) {
-            return;
-        }
-        b(a2);
-        this.f18672a.t(f7);
-        a2.d(null);
-    }
-
-    @Override
-    public final void onSetRating(Rating rating) {
-        a0 a0Var;
-        a0 a0Var2;
-        n a2 = a();
-        if (a2 == null) {
-            return;
-        }
-        b(a2);
-        if (rating != null) {
-            int ratingStyle = rating.getRatingStyle();
-            if (rating.isRated()) {
-                float f7 = 0.0f;
-                switch (ratingStyle) {
-                    case 1:
-                        if (rating.hasHeart()) {
-                            f7 = 1.0f;
-                        }
-                        a0Var2 = new a0(1, f7);
-                        a0Var = a0Var2;
-                        break;
-                    case 2:
-                        if (rating.isThumbUp()) {
-                            f7 = 1.0f;
-                        }
-                        a0Var2 = new a0(2, f7);
-                        a0Var = a0Var2;
-                        break;
-                    case 3:
-                    case 4:
-                    case 5:
-                        a0Var = a0.d(rating.getStarRating(), ratingStyle);
-                        break;
-                    case 6:
-                        a0Var = a0.c(rating.getPercentRating());
-                        break;
-                }
-                this.f18672a.u(a0Var);
-                a2.d(null);
+        parcel.enforceInterface("android.support.v4.media.session.IMediaSession");
+        IBinder readStrongBinder2 = parcel.readStrongBinder();
+        if (readStrongBinder2 != null) {
+            IInterface queryLocalInterface2 = readStrongBinder2.queryLocalInterface("android.support.v4.media.session.IMediaControllerCallback");
+            if (queryLocalInterface2 != null && (queryLocalInterface2 instanceof b)) {
+                bVar = (b) queryLocalInterface2;
+            } else {
+                ?? obj2 = new Object();
+                obj2.f13491a = readStrongBinder2;
+                bVar = obj2;
             }
-            switch (ratingStyle) {
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                    a0Var = new a0(ratingStyle, -1.0f);
-                    break;
-                default:
-                    a0Var = null;
-                    break;
-            }
-            a0Var.getClass();
-            a0Var.f18655c = rating;
-            this.f18672a.u(a0Var);
-            a2.d(null);
         }
-        a0Var = null;
-        this.f18672a.u(a0Var);
-        a2.d(null);
+        H0(bVar);
+        parcel2.getClass();
+        parcel2.writeNoException();
+        return true;
     }
 
     @Override
-    public final void onSkipToNext() {
-        n a2 = a();
-        if (a2 == null) {
-            return;
-        }
-        b(a2);
-        this.f18672a.y();
-        a2.d(null);
-    }
-
-    @Override
-    public final void onSkipToPrevious() {
-        n a2 = a();
-        if (a2 == null) {
-            return;
-        }
-        b(a2);
-        this.f18672a.z();
-        a2.d(null);
-    }
-
-    @Override
-    public final void onSkipToQueueItem(long j10) {
-        n a2 = a();
-        if (a2 == null) {
-            return;
-        }
-        b(a2);
-        this.f18672a.A(j10);
-        a2.d(null);
-    }
-
-    @Override
-    public final void onStop() {
-        n a2 = a();
-        if (a2 == null) {
-            return;
-        }
-        b(a2);
-        this.f18672a.B();
-        a2.d(null);
+    public final IBinder asBinder() {
+        return this;
     }
 }

@@ -1,21 +1,22 @@
 package org.telegram.ui.ActionBar;
+public final class w4 {
+    public final k2 f21445a;
+    public boolean f21446b;
+    public boolean f21447c;
+    public boolean d = true;
+    public boolean e;
+    public ActionBarPopupWindow$ActionBarPopupWindowLayout f21448f;
+    public boolean f21449g;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.widget.ImageButton;
-public final class w4 extends ImageButton {
-    public final a5 f23212a;
-
-    public w4(a5 a5Var, Context context) {
-        super(context);
-        this.f23212a = a5Var;
+    public w4(k2 k2Var) {
+        this.f21445a = k2Var;
     }
 
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.f23212a.N) {
-            return false;
-        }
-        return super.dispatchTouchEvent(motionEvent);
+    public final void a() {
+        this.f21447c = true;
+    }
+
+    public final void b(boolean z10) {
+        this.f21446b = z10;
     }
 }

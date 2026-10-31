@@ -1,10 +1,12 @@
 package v2;
+
+import t7.u;
 public interface m {
-    public static final tb.a B = new tb.a(24);
+    public static final u v = new u(23);
+
+    long C();
 
     long k();
 
     boolean next();
-
-    long y();
 }

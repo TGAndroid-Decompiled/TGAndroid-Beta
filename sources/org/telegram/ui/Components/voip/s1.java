@@ -1,90 +1,51 @@
 package org.telegram.ui.Components.voip;
 
 import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
+import android.graphics.Canvas;
+import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
 public final class s1 extends FrameLayout {
-    public int f34175a;
-    public int f34176b;
-    public int f34177c;
-    public int d;
-    public boolean e;
+    public static final int h = 0;
+    public final float f31657a;
+    public float f31658b;
+    public float f31659c;
+    public float d;
+    public float e;
+    public final t1 f31660f;
 
-    public s1(Context context) {
+    public s1(t1 t1Var, Context context) {
         super(context);
-        this.d = 68;
-        this.e = true;
+        this.f31660f = t1Var;
+        this.f31657a = ViewConfiguration.get(context).getScaledTouchSlop();
+        setOutlineProvider(new bi.d2(18));
+        setClipToOutline(true);
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (!isEnabled()) {
-            return false;
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int i14;
-        if (this.e) {
-            int childCount = (int) (((getChildCount() - this.f34175a) / 2.0f) * ((this.f34177c * 2) + this.f34176b));
-            for (int i15 = 0; i15 < getChildCount(); i15++) {
-                View childAt = getChildAt(i15);
-                if (childAt.getVisibility() != 8) {
-                    int i16 = this.f34177c;
-                    childAt.layout(childCount + i16, 0, childAt.getMeasuredWidth() + i16 + childCount, childAt.getMeasuredHeight());
-                    childCount = childAt.getMeasuredWidth() + (this.f34177c * 2) + childCount;
-                }
-            }
-            return;
-        }
-        if (this.f34175a > 0) {
-            i14 = (getMeasuredWidth() - this.f34176b) / (this.f34175a - 1);
-        } else {
-            i14 = 0;
-        }
-        int i17 = 0;
-        for (int i18 = 0; i18 < getChildCount(); i18++) {
-            View childAt2 = getChildAt(i18);
-            if (childAt2.getVisibility() != 8) {
-                int i19 = i17 * i14;
-                childAt2.layout(i19, 0, childAt2.getMeasuredWidth() + i19, childAt2.getMeasuredHeight());
-                i17++;
-            }
-        }
+    public final void dispatchDraw(Canvas canvas) {
+        t1 t1Var = this.f31660f;
+        t1Var.f31671r.setPivotX(t1Var.f31672s.getMeasuredWidth());
+        t1Var.f31671r.setPivotY(t1Var.f31672s.getMeasuredHeight());
+        t1Var.f31671r.setTranslationX((1.0f / getScaleX()) * (-org.telegram.messenger.i0.L(4.0f)) * t1Var.f31673w);
+        t1Var.f31671r.setTranslationY((1.0f / getScaleY()) * (-org.telegram.messenger.i0.L(4.0f)) * t1Var.f31673w);
+        t1Var.f31671r.setRoundCorners((1.0f / getScaleY()) * org.telegram.messenger.i0.L(8.0f) * t1Var.f31673w);
+        t1Var.f31671r.setScaleX(((1.0f - t1Var.f31673w) * 0.6f) + 0.4f);
+        t1Var.f31671r.setScaleY(((1.0f - t1Var.f31673w) * 0.6f) + 0.4f);
+        t1Var.f31671r.setAlpha(Math.min(1.0f, 1.0f - t1Var.f31673w));
+        super.dispatchDraw(canvas);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        this.f34175a = 0;
-        for (int i12 = 0; i12 < getChildCount(); i12++) {
-            if (getChildAt(i12).getVisibility() != 8) {
-                this.f34175a++;
-            }
-        }
-        this.f34176b = AndroidUtilities.dp(this.d);
-        this.f34177c = ((size / getChildCount()) - this.f34176b) / 2;
-        int i13 = 0;
-        for (int i14 = 0; i14 < getChildCount(); i14++) {
-            if (getChildAt(i14).getVisibility() != 8) {
-                getChildAt(i14).measure(View.MeasureSpec.makeMeasureSpec(this.f34176b, 1073741824), i11);
-                if (getChildAt(i14).getMeasuredHeight() > i13) {
-                    i13 = getChildAt(i14).getMeasuredHeight();
-                }
-            }
-        }
-        setMeasuredDimension(size, Math.max(i13, AndroidUtilities.dp(80.0f)));
+        super.onMeasure(i10, i11);
+        this.f31658b = org.telegram.messenger.i0.L(16.0f);
+        this.f31659c = org.telegram.messenger.i0.L(16.0f);
+        this.d = org.telegram.messenger.i0.L(60.0f);
+        this.e = org.telegram.messenger.i0.L(16.0f);
     }
 
-    public void setChildSize(int i10) {
-        this.d = i10;
-    }
-
-    public void setUseStartPadding(boolean z10) {
-        this.e = z10;
+    @Override
+    public final boolean onTouchEvent(android.view.MotionEvent r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.voip.s1.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

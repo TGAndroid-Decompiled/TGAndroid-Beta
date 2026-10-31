@@ -1,43 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.MediaController;
-public final class mm implements qm0 {
-    public final ChatAttachAlertPhotoLayout f30560a;
+import org.telegram.tgnet.TLRPC;
+public final class mm implements wk, org.telegram.ui.ActionBar.u1 {
+    public final org.telegram.messenger.q20 f28556a;
 
-    public mm(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
-        this.f30560a = chatAttachAlertPhotoLayout;
+    public mm(org.telegram.messenger.q20 q20Var) {
+        this.f28556a = q20Var;
     }
 
     @Override
-    public final void a(boolean z10) {
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f30560a;
-        chatAttachAlertPhotoLayout.L = z10 ? 1 : 0;
-        chatAttachAlertPhotoLayout.E.d1(true);
+    public void d(TLRPC.MessageMedia messageMedia, int i10, boolean z10, int i11, long j10) {
+        this.f28556a.a(new jh.h(messageMedia));
     }
 
     @Override
-    public final boolean b(int i10) {
-        if (this.f30560a.G.j(i10) == 0) {
-            return true;
+    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
+        org.telegram.messenger.q20 q20Var = this.f28556a;
+        if (q20Var != null) {
+            q20Var.a(Boolean.FALSE);
         }
-        return false;
-    }
-
-    @Override
-    public final void c(View view, boolean z10) {
-        if (z10 == this.f30560a.K && (view instanceof org.telegram.ui.Cells.x5)) {
-            org.telegram.ui.Cells.x5 x5Var = (org.telegram.ui.Cells.x5) view;
-            x5Var.f25708w.b(x5Var);
-        }
-    }
-
-    @Override
-    public final boolean d(int i10) {
-        MediaController.PhotoEntry M = this.f30560a.G.M(i10);
-        if (M != null && ChatAttachAlertPhotoLayout.f26019s1.containsKey(Integer.valueOf(M.imageId))) {
-            return true;
-        }
-        return false;
     }
 }

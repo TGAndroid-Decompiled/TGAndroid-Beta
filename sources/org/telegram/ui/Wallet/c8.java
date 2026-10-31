@@ -1,64 +1,13 @@
 package org.telegram.ui.Wallet;
+public final class c8 implements Runnable {
+    public final h8 f34358a;
 
-import org.telegram.messenger.Utilities;
-public final class c8 implements Utilities.Callback {
-    public final int f36456a = 0;
-    public final h8 f36457b;
-    public final Utilities.Callback f36458c;
-    public final p0 d;
-    public final l0 e;
-
-    public c8(h8 h8Var, Utilities.Callback callback, l0 l0Var, p0 p0Var) {
-        this.f36457b = h8Var;
-        this.f36458c = callback;
-        this.e = l0Var;
-        this.d = p0Var;
+    public c8(h8 h8Var) {
+        this.f34358a = h8Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        String o10;
-        switch (this.f36456a) {
-            case 0:
-                h8.Z(this.f36457b, this.f36458c, this.e, this.d, (i0) obj);
-                return;
-            default:
-                c0 c0Var = (c0) obj;
-                Utilities.Callback callback = this.f36458c;
-                if (c0Var == null) {
-                    callback.run("ADDRESS_NO_INFO");
-                    return;
-                }
-                byte[] bArr = c0Var.f36441c;
-                p0 p0Var = this.d;
-                if (bArr == null) {
-                    byte[][] m10 = p0Var.m();
-                    if (m10.length <= 0) {
-                        callback.run("STORAGE_NO_PUBLIC_KEY");
-                        return;
-                    }
-                    bArr = m10[0];
-                }
-                if (!p0Var.f(bArr)) {
-                    callback.run("STORAGE_OLD_PUBLIC_KEY");
-                    return;
-                }
-                c8 c8Var = new c8(this.f36457b, callback, this.e, p0Var);
-                if (bArr == null) {
-                    o10 = "";
-                } else {
-                    o10 = p0.o(bArr);
-                }
-                String str = o10;
-                p0.h.execute(new org.telegram.ui.Components.s2(p0Var, p0Var.l(), str, false, (Utilities.Callback) c8Var));
-                return;
-        }
-    }
-
-    public c8(h8 h8Var, Utilities.Callback callback, p0 p0Var, l0 l0Var) {
-        this.f36457b = h8Var;
-        this.f36458c = callback;
-        this.d = p0Var;
-        this.e = l0Var;
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.c8.run():void");
     }
 }

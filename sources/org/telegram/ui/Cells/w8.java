@@ -1,67 +1,79 @@
 package org.telegram.ui.Cells;
 
+import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.CheckBoxSquare;
+import org.telegram.messenger.cd;
 public final class w8 extends FrameLayout {
-    public TextView f25671a;
-    public CheckBoxSquare f25672b;
-    public boolean f25673c;
+    public static Paint d;
+    public final TextView f23409a;
+    public int f23410b;
+    public float f23411c;
 
-    public final void a(String str, boolean z10, boolean z11) {
-        this.f25671a.setText(str);
-        this.f25672b.a(z10, false);
-        this.f25673c = z11;
-        setWillNotDraw(!z11);
+    public w8(Context context) {
+        super(context);
+        int i10;
+        int i11;
+        this.f23411c = 1.0f;
+        if (d == null) {
+            d = new Paint(1);
+        }
+        TextView textView = new TextView(context);
+        this.f23409a = textView;
+        textView.setTextColor(-14606047);
+        textView.setTextSize(1, 16.0f);
+        textView.setLines(1);
+        textView.setMaxLines(1);
+        textView.setSingleLine(true);
+        if (cd.X) {
+            i10 = 5;
+        } else {
+            i10 = 3;
+        }
+        textView.setGravity(i10 | 16);
+        textView.setPadding(0, 0, 0, org.telegram.messenger.i0.L(3.0f));
+        boolean z10 = cd.X;
+        int i12 = (z10 ? 5 : 3) | 48;
+        if (z10) {
+            i11 = 21;
+        } else {
+            i11 = 57;
+        }
+        addView(textView, w7.b6.d(-1, -1.0f, i12, i11, 0.0f, z10 ? 57 : 21, 0.0f));
     }
 
     @Override
-    public final void invalidate() {
-        super.invalidate();
-        this.f25672b.invalidate();
+    public float getAlpha() {
+        return this.f23411c;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        float dp;
-        int i10;
-        if (this.f25673c) {
-            if (LocaleController.isRTL) {
-                dp = 0.0f;
+        int measuredWidth;
+        int i10 = this.f23410b;
+        if (i10 != 0) {
+            d.setColor(i10);
+            d.setAlpha((int) (this.f23411c * 255.0f));
+            if (!cd.X) {
+                measuredWidth = org.telegram.messenger.i0.L(28.0f);
             } else {
-                dp = AndroidUtilities.dp(20.0f);
+                measuredWidth = getMeasuredWidth() - org.telegram.messenger.i0.L(28.0f);
             }
-            float f7 = dp;
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (LocaleController.isRTL) {
-                i10 = AndroidUtilities.dp(20.0f);
-            } else {
-                i10 = 0;
-            }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.y6.f23479k0);
+            canvas.drawCircle(measuredWidth, getMeasuredHeight() / 2, org.telegram.messenger.i0.L(10.0f), d);
         }
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.CheckBox");
-        accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f25672b.h);
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(50.0f), 1073741824));
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.f25673c ? 1 : 0), 1073741824));
-    }
-
-    public void setChecked(boolean z10) {
-        this.f25672b.a(z10, true);
+    public void setAlpha(float f7) {
+        this.f23411c = f7;
+        invalidate();
     }
 }

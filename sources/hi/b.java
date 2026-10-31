@@ -1,57 +1,87 @@
 package hi;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class b implements RequestDelegate {
-    public final int f12867a;
-    public final k f12868b;
-    public final org.telegram.ui.ActionBar.e2 f12869c;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Shader;
+public final class b implements a {
+    public final Paint f7705a;
+    public final Matrix f7706b;
+    public BitmapShader f7707c;
+    public Bitmap d;
+    public final Matrix e;
+    public Bitmap f7708f;
+    public int h;
+    public int f7709n;
 
-    public b(k kVar, org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        this.f12867a = i10;
-        this.f12868b = kVar;
-        this.f12869c = e2Var;
+    public b() {
+        Paint paint = new Paint(3);
+        this.f7705a = paint;
+        this.f7706b = new Matrix();
+        this.e = new Matrix();
+        paint.setFilterBitmap(true);
+    }
+
+    public final void a(Bitmap bitmap) {
+        if (this.d != bitmap) {
+            this.d = bitmap;
+            Paint paint = this.f7705a;
+            paint.setShader(null);
+            this.f7707c = null;
+            if (bitmap != null) {
+                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
+                this.f7707c = bitmapShader;
+                paint.setShader(bitmapShader);
+                c();
+            }
+        }
+    }
+
+    public final void b(int i10, int i11) {
+        if (this.h == i10 && this.f7709n == i11) {
+            return;
+        }
+        this.h = i10;
+        this.f7709n = i11;
+        c();
+    }
+
+    public final void c() {
+        Bitmap bitmap = this.d;
+        Matrix matrix = this.f7706b;
+        if (bitmap == null) {
+            matrix.reset();
+            return;
+        }
+        int width = bitmap.getWidth();
+        int height = this.d.getHeight();
+        int i10 = this.h;
+        int i11 = this.f7709n;
+        matrix.reset();
+        if (width > 0 && height > 0 && i10 > 0 && i11 > 0) {
+            float f7 = i10;
+            float f10 = width;
+            float f11 = i11;
+            float f12 = height;
+            float max = Math.max(f7 / f10, f11 / f12);
+            matrix.setScale(max, max);
+            matrix.postTranslate((f7 - (f10 * max)) * 0.5f, ((f11 - (f12 * max)) * 0.5f) + 0);
+        }
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f12867a) {
-            case 0:
-                final k kVar = this.f12868b;
-                final org.telegram.ui.ActionBar.e2 e2Var = this.f12869c;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r5) {
-                            case 0:
-                                k.x0(kVar, e2Var, tLObject, tL_error);
-                                return;
-                            default:
-                                k.y0(kVar, e2Var, tLObject, tL_error);
-                                return;
-                        }
-                    }
-                });
-                return;
-            default:
-                final k kVar2 = this.f12868b;
-                final org.telegram.ui.ActionBar.e2 e2Var2 = this.f12869c;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r5) {
-                            case 0:
-                                k.x0(kVar2, e2Var2, tLObject, tL_error);
-                                return;
-                            default:
-                                k.y0(kVar2, e2Var2, tLObject, tL_error);
-                                return;
-                        }
-                    }
-                });
-                return;
+    public final void e(Canvas canvas, float f7, float f10, float f11, float f12) {
+        Bitmap bitmap = this.d;
+        if (bitmap != null && !bitmap.isRecycled() && this.f7707c != null) {
+            Matrix matrix = this.e;
+            Matrix matrix2 = this.f7706b;
+            matrix.set(matrix2);
+            matrix.postTranslate(f7, f10);
+            this.f7707c.setLocalMatrix(matrix2);
+            canvas.drawRect(f7, f10, f11, f12, this.f7705a);
         }
     }
 }

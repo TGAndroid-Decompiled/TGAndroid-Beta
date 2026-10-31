@@ -1,12 +1,11 @@
 package w1;
 
 import a0.m;
+import a6.d;
 import androidx.lifecycle.p0;
 import b2.u;
-import b6.d;
-import u7.s;
 public class b extends p0 {
-    public static final s f50709f = new s(25);
+    public static final jb.b f52330f = new jb.b(25);
     public final m d = new m();
     public boolean e = false;
 
@@ -16,23 +15,23 @@ public class b extends p0 {
         int i10 = mVar.f30c;
         for (int i11 = 0; i11 < i10; i11++) {
             a aVar = (a) mVar.f29b[i11];
-            d dVar = aVar.f50706l;
+            d dVar = aVar.f52327l;
             dVar.a();
-            dVar.f3659c = true;
-            u uVar = aVar.f50708n;
+            dVar.f296c = true;
+            u uVar = aVar.f52329n;
             if (uVar != null) {
                 aVar.i(uVar);
             }
-            a aVar2 = dVar.f3657a;
+            a aVar2 = dVar.f294a;
             if (aVar2 != null) {
                 if (aVar2 == aVar) {
-                    dVar.f3657a = null;
+                    dVar.f294a = null;
                     if (uVar != null) {
-                        boolean z10 = uVar.f3463b;
+                        boolean z10 = uVar.f2300b;
                     }
                     dVar.d = true;
-                    dVar.f3658b = false;
-                    dVar.f3659c = false;
+                    dVar.f295b = false;
+                    dVar.f296c = false;
                     dVar.e = false;
                 } else {
                     throw new IllegalArgumentException("Attempting to unregister the wrong listener");

@@ -1,21 +1,22 @@
 package org.telegram.messenger.car;
 
-import androidx.car.app.m;
+import androidx.car.app.l;
 import androidx.lifecycle.e;
 import androidx.lifecycle.t;
-import org.telegram.messenger.NotificationCenter;
-public class HomeScreen extends m implements e, NotificationCenter.NotificationCenterDelegate {
+import org.telegram.messenger.us;
+import org.telegram.messenger.zs;
+public class HomeScreen extends l implements e, us {
     @Override
     public final void a(t tVar) {
-        NotificationCenter.getGlobalInstance().addWeakObserver(this, NotificationCenter.pushMessagesUpdated);
-        NotificationCenter.getGlobalInstance().addWeakObserver(this, NotificationCenter.notificationsCountUpdated);
-        NotificationCenter.getGlobalInstance().addWeakObserver(this, NotificationCenter.activeAccountChanged);
+        zs.e().c(this, zs.f19600d4);
+        zs.e().c(this, zs.G4);
+        zs.e().c(this, zs.f19594c4);
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 != NotificationCenter.activeAccountChanged) {
-            if ((i10 != NotificationCenter.pushMessagesUpdated && i10 != NotificationCenter.notificationsCountUpdated) || !"tab_notifications".equals(null)) {
+        if (i10 != zs.f19594c4) {
+            if ((i10 != zs.f19600d4 && i10 != zs.G4) || !"tab_notifications".equals(null)) {
                 return;
             }
             throw null;
@@ -25,9 +26,9 @@ public class HomeScreen extends m implements e, NotificationCenter.NotificationC
 
     @Override
     public final void e(t tVar) {
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.pushMessagesUpdated);
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.notificationsCountUpdated);
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.activeAccountChanged);
+        zs.e().n(this, zs.f19600d4);
+        zs.e().n(this, zs.G4);
+        zs.e().n(this, zs.f19594c4);
     }
 
     @Override

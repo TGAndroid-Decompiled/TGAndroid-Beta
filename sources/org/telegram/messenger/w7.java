@@ -1,30 +1,35 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class w7 implements Utilities.Callback2 {
-    public final int f21725a;
-    public final MediaDataController f21726b;
-    public final String f21727c;
-    public final Utilities.Callback d;
+import java.util.ArrayList;
+public final class w7 implements Runnable {
+    public final int f19068a;
+    public final b8 f19069b;
 
-    public w7(MediaDataController mediaDataController, String str, Utilities.Callback callback, int i10) {
-        this.f21725a = i10;
-        this.f21726b = mediaDataController;
-        this.f21727c = str;
-        this.d = callback;
+    public w7(b8 b8Var, int i10) {
+        this.f19068a = i10;
+        this.f19069b = b8Var;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        Boolean bool = (Boolean) obj;
-        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj2;
-        switch (this.f21725a) {
+    public final void run() {
+        switch (this.f19068a) {
             case 0:
-                this.f21726b.lambda$getStickerSet$32(this.f21727c, this.d, bool, tL_messages_stickerSet);
+                b8 b8Var = this.f19069b;
+                bg.h[] hVarArr = b8Var.f14741c;
+                bg.h[] hVarArr2 = b8Var.f14740b;
+                for (int i10 = 0; i10 < hVarArr2.length; i10++) {
+                    if (((ArrayList) hVarArr2[i10].d).size() > 0 || ((ArrayList) hVarArr[i10].d).size() > 0) {
+                        f8.b("download queue: dc" + (i10 + 1) + " account=" + b8Var.currentAccount + " small_operations=" + ((ArrayList) hVarArr2[i10].d).size() + " large_operations=" + ((ArrayList) hVarArr[i10].d).size());
+                    }
+                }
+                if (v2.f18448a) {
+                    b8.J.a(b8Var.H);
+                    b8.J.d(b8Var.H, 10000L);
+                    return;
+                }
                 return;
             default:
-                this.f21726b.lambda$getStickerSet$35(this.f21727c, this.d, bool, tL_messages_stickerSet);
+                this.f19069b.getNotificationCenter().k(304, new Object[0]);
                 return;
         }
     }

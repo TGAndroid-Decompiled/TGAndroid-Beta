@@ -1,73 +1,203 @@
 package w7;
+
+import android.os.Bundle;
+import android.os.IBinder;
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.List;
 public abstract class h0 {
-    public static w0.i a(String str, String str2) {
-        Exception a2;
-        try {
-            y0.b bVar = new y0.b(new x0.a(26), null);
-            if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_ABORT_ERROR")) {
-                a2 = g0.a(new x0.a(0), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_CONSTRAINT_ERROR")) {
-                a2 = g0.a(new x0.a(1), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_DATA_CLONE_ERROR")) {
-                a2 = g0.a(new x0.a(2), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_DATA_ERROR")) {
-                a2 = g0.a(new x0.a(3), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_ENCODING_ERROR")) {
-                a2 = g0.a(new x0.a(4), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_HIERARCHY_REQUEST_ERROR")) {
-                a2 = g0.a(new x0.a(5), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_IN_USE_ATTRIBUTE_ERROR")) {
-                a2 = g0.a(new x0.a(6), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_INVALID_CHARACTER_ERROR")) {
-                a2 = g0.a(new x0.a(7), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_INVALID_MODIFICATION_ERROR")) {
-                a2 = g0.a(new x0.a(8), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_INVALID_NODE_TYPE_ERROR")) {
-                a2 = g0.a(new x0.a(9), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_INVALID_STATE_ERROR")) {
-                a2 = g0.a(new x0.a(10), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_NAMESPACE_ERROR")) {
-                a2 = g0.a(new x0.a(11), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_NETWORK_ERROR")) {
-                a2 = g0.a(new x0.a(12), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_NO_MODIFICATION_ALLOWED_ERROR")) {
-                a2 = g0.a(new x0.a(13), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_NOT_ALLOWED_ERROR")) {
-                a2 = g0.a(new x0.a(14), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_NOT_FOUND_ERROR")) {
-                a2 = g0.a(new x0.a(15), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_NOT_READABLE_ERROR")) {
-                a2 = g0.a(new x0.a(16), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_NOT_SUPPORTED_ERROR")) {
-                a2 = g0.a(new x0.a(17), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_OPERATION_ERROR")) {
-                a2 = g0.a(new x0.a(18), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_OPT_OUT_ERROR")) {
-                a2 = g0.a(new x0.a(19), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_QUOTA_EXCEEDED_ERROR")) {
-                a2 = g0.a(new x0.a(20), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_READ_ONLY_ERROR")) {
-                a2 = g0.a(new x0.a(21), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_SECURITY_ERROR")) {
-                a2 = g0.a(new x0.a(22), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_SYNTAX_ERROR")) {
-                a2 = g0.a(new x0.a(23), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_TIMEOUT_ERROR")) {
-                a2 = g0.a(new x0.a(24), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_TRANSACTION_INACTIVE_ERROR")) {
-                a2 = g0.a(new x0.a(25), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_UNKNOWN_ERROR")) {
-                a2 = g0.a(new x0.a(26), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_VERSION_ERROR")) {
-                a2 = g0.a(new x0.a(27), str2, bVar);
-            } else if (str.equals("androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_WRONG_DOCUMENT_ERROR")) {
-                a2 = g0.a(new x0.a(28), str2, bVar);
-            } else {
-                throw new Exception();
-            }
-            return (w0.i) a2;
-        } catch (z0.a unused) {
-            return new w0.h(str2, str);
+    public static void a(Parcel parcel, int i10, Boolean bool) {
+        if (bool == null) {
+            return;
         }
+        s(parcel, i10, 4);
+        parcel.writeInt(bool.booleanValue() ? 1 : 0);
+    }
+
+    public static void b(Parcel parcel, int i10, Bundle bundle) {
+        if (bundle == null) {
+            return;
+        }
+        int q6 = q(parcel, i10);
+        parcel.writeBundle(bundle);
+        r(parcel, q6);
+    }
+
+    public static void c(Parcel parcel, int i10, byte[] bArr) {
+        if (bArr == null) {
+            return;
+        }
+        int q6 = q(parcel, i10);
+        parcel.writeByteArray(bArr);
+        r(parcel, q6);
+    }
+
+    public static void d(Parcel parcel, int i10, byte[][] bArr) {
+        if (bArr == null) {
+            return;
+        }
+        int q6 = q(parcel, i10);
+        parcel.writeInt(bArr.length);
+        for (byte[] bArr2 : bArr) {
+            parcel.writeByteArray(bArr2);
+        }
+        r(parcel, q6);
+    }
+
+    public static void e(Parcel parcel, int i10, Float f7) {
+        if (f7 == null) {
+            return;
+        }
+        s(parcel, i10, 4);
+        parcel.writeFloat(f7.floatValue());
+    }
+
+    public static void f(Parcel parcel, int i10, IBinder iBinder) {
+        if (iBinder == null) {
+            return;
+        }
+        int q6 = q(parcel, i10);
+        parcel.writeStrongBinder(iBinder);
+        r(parcel, q6);
+    }
+
+    public static void g(Parcel parcel, int i10, int[] iArr) {
+        if (iArr == null) {
+            return;
+        }
+        int q6 = q(parcel, i10);
+        parcel.writeIntArray(iArr);
+        r(parcel, q6);
+    }
+
+    public static void h(Parcel parcel, int i10, List list) {
+        if (list == null) {
+            return;
+        }
+        int q6 = q(parcel, i10);
+        int size = list.size();
+        parcel.writeInt(size);
+        for (int i11 = 0; i11 < size; i11++) {
+            parcel.writeInt(((Integer) list.get(i11)).intValue());
+        }
+        r(parcel, q6);
+    }
+
+    public static void i(Parcel parcel, int i10, Integer num) {
+        if (num == null) {
+            return;
+        }
+        s(parcel, i10, 4);
+        parcel.writeInt(num.intValue());
+    }
+
+    public static void j(Parcel parcel, int i10, long[] jArr) {
+        if (jArr == null) {
+            return;
+        }
+        int q6 = q(parcel, i10);
+        parcel.writeLongArray(jArr);
+        r(parcel, q6);
+    }
+
+    public static void k(Parcel parcel, int i10, Parcelable parcelable, int i11) {
+        if (parcelable == null) {
+            return;
+        }
+        int q6 = q(parcel, i10);
+        parcelable.writeToParcel(parcel, i11);
+        r(parcel, q6);
+    }
+
+    public static void l(Parcel parcel, int i10, String str) {
+        if (str == null) {
+            return;
+        }
+        int q6 = q(parcel, i10);
+        parcel.writeString(str);
+        r(parcel, q6);
+    }
+
+    public static void m(Parcel parcel, int i10, String[] strArr) {
+        if (strArr == null) {
+            return;
+        }
+        int q6 = q(parcel, i10);
+        parcel.writeStringArray(strArr);
+        r(parcel, q6);
+    }
+
+    public static void n(Parcel parcel, int i10, List list) {
+        if (list == null) {
+            return;
+        }
+        int q6 = q(parcel, i10);
+        parcel.writeStringList(list);
+        r(parcel, q6);
+    }
+
+    public static void o(Parcel parcel, int i10, Parcelable[] parcelableArr, int i11) {
+        if (parcelableArr == null) {
+            return;
+        }
+        int q6 = q(parcel, i10);
+        parcel.writeInt(parcelableArr.length);
+        for (Parcelable parcelable : parcelableArr) {
+            if (parcelable == null) {
+                parcel.writeInt(0);
+            } else {
+                int dataPosition = parcel.dataPosition();
+                parcel.writeInt(1);
+                int dataPosition2 = parcel.dataPosition();
+                parcelable.writeToParcel(parcel, i11);
+                int dataPosition3 = parcel.dataPosition();
+                parcel.setDataPosition(dataPosition);
+                parcel.writeInt(dataPosition3 - dataPosition2);
+                parcel.setDataPosition(dataPosition3);
+            }
+        }
+        r(parcel, q6);
+    }
+
+    public static void p(Parcel parcel, int i10, List list) {
+        if (list == null) {
+            return;
+        }
+        int q6 = q(parcel, i10);
+        int size = list.size();
+        parcel.writeInt(size);
+        for (int i11 = 0; i11 < size; i11++) {
+            Parcelable parcelable = (Parcelable) list.get(i11);
+            if (parcelable == null) {
+                parcel.writeInt(0);
+            } else {
+                int dataPosition = parcel.dataPosition();
+                parcel.writeInt(1);
+                int dataPosition2 = parcel.dataPosition();
+                parcelable.writeToParcel(parcel, 0);
+                int dataPosition3 = parcel.dataPosition();
+                parcel.setDataPosition(dataPosition);
+                parcel.writeInt(dataPosition3 - dataPosition2);
+                parcel.setDataPosition(dataPosition3);
+            }
+        }
+        r(parcel, q6);
+    }
+
+    public static int q(Parcel parcel, int i10) {
+        parcel.writeInt(i10 | (-65536));
+        parcel.writeInt(0);
+        return parcel.dataPosition();
+    }
+
+    public static void r(Parcel parcel, int i10) {
+        int dataPosition = parcel.dataPosition();
+        parcel.setDataPosition(i10 - 4);
+        parcel.writeInt(dataPosition - i10);
+        parcel.setDataPosition(dataPosition);
+    }
+
+    public static void s(Parcel parcel, int i10, int i11) {
+        parcel.writeInt(i10 | (i11 << 16));
     }
 }

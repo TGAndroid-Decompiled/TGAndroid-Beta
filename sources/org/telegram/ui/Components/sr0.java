@@ -1,102 +1,60 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
-import java.util.HashSet;
-import java.util.Random;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-public final class sr0 extends View implements org.telegram.ui.ActionBar.p6 {
-    public Random f32660a;
-    public Paint f32661b;
-    public Paint f32662c;
-    public Paint d;
-    public Paint e;
-    public float f32663f;
-    public float h;
-    public float f32664n;
+import android.view.ViewGroup;
+public final class sr0 extends g.o {
+    public final int f30345c;
+    public final Object d;
+    public final ViewGroup e;
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f7;
-        Paint paint = this.f32662c;
-        Paint paint2 = this.f32661b;
-        super.onDraw(canvas);
-        canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31);
-        float f10 = 3.0f;
-        int measuredWidth = (getMeasuredWidth() / 2) - AndroidUtilities.dp(3.0f);
-        int dp = AndroidUtilities.dp(1.0f) + ((AndroidUtilities.dp(1.0f) + measuredWidth) * 7);
-        ds dsVar = ds.f27531g;
-        float f11 = this.f32663f;
-        if (f11 > 0.4f) {
-            f7 = (f11 - 0.4f) / 0.6f;
-        } else {
-            f7 = 0.0f;
-        }
-        float interpolation = dsVar.getInterpolation(f7);
-        float f12 = (this.f32664n * interpolation) + ((1.0f - interpolation) * this.h);
-        canvas.save();
-        canvas.translate(0.0f, (-org.telegram.messenger.t.B(4.0f, getMeasuredHeight(), dp)) * f12);
-        int i10 = 0;
-        for (int i11 = 7; i10 < i11; i11 = 7) {
-            int dp2 = ((AndroidUtilities.dp(1.0f) + measuredWidth) * i10) + AndroidUtilities.dp(f10);
-            RectF rectF = AndroidUtilities.rectTmp;
-            float f13 = dp2;
-            float f14 = dp2 + measuredWidth;
-            rectF.set(0.0f, f13, measuredWidth, f14);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), paint2);
-            rectF.set(AndroidUtilities.dp(1.0f) + measuredWidth, f13, org.telegram.messenger.t.D(1.0f, measuredWidth, measuredWidth), f14);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), paint2);
-            i10++;
-            f10 = f10;
-        }
-        float f15 = f10;
-        canvas.restore();
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.dp(4.0f), this.d);
-        canvas.translate(0.0f, getMeasuredHeight() - AndroidUtilities.dp(4.0f));
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.dp(4.0f), this.e);
-        canvas.restore();
-        float measuredHeight = ((getMeasuredHeight() - AndroidUtilities.dp(21.0f)) * f12) + AndroidUtilities.dp(f15);
-        RectF rectF2 = AndroidUtilities.rectTmp;
-        rectF2.set(getMeasuredWidth() - AndroidUtilities.dp(f15), measuredHeight, getMeasuredWidth(), AndroidUtilities.dp(15.0f) + measuredHeight);
-        canvas.drawRoundRect(rectF2, AndroidUtilities.dp(1.5f), AndroidUtilities.dp(1.5f), paint);
-        float centerY = rectF2.centerY();
-        float dp3 = AndroidUtilities.dp(0.5f) + measuredWidth;
-        rectF2.set(dp3 - AndroidUtilities.dp(8.0f), centerY - AndroidUtilities.dp(f15), dp3 + AndroidUtilities.dp(8.0f), centerY + AndroidUtilities.dp(f15));
-        canvas.drawRoundRect(rectF2, AndroidUtilities.dp(f15), AndroidUtilities.dp(f15), paint);
-        float f16 = this.f32663f + 0.016f;
-        this.f32663f = f16;
-        if (f16 > 1.0f) {
-            this.h = this.f32664n;
-            float j10 = org.telegram.ui.d3.j(this.f32660a, 1001) / 1000.0f;
-            this.f32664n = j10;
-            if (j10 > this.h) {
-                this.f32664n = j10 + 0.3f;
-            } else {
-                this.f32664n = j10 - 0.3f;
-            }
-            this.f32664n = Math.max(0.0f, Math.min(1.0f, this.f32664n));
-            this.f32663f = 0.0f;
-        }
-        invalidate();
+    public sr0(ViewGroup viewGroup, Object obj, int i10) {
+        this.f30345c = i10;
+        this.e = viewGroup;
+        this.d = obj;
     }
 
     @Override
-    public final void updateColors() {
-        try {
-            Paint paint = this.f32661b;
-            int i10 = org.telegram.ui.ActionBar.y6.f23588pf;
-            paint.setColor(i0.a.o(org.telegram.ui.ActionBar.y6.x0(null, i10, false), 76));
-            this.f32662c.setColor(org.telegram.ui.ActionBar.y6.x0(null, i10, false));
-            invalidate();
-        } catch (Exception e) {
-            FileLog.e(e);
+    public final int i(int i10) {
+        int i11;
+        int i12;
+        switch (this.f30345c) {
+            case 0:
+                ss0 ss0Var = (ss0) this.d;
+                s4.g0 adapter = ss0Var.f30352n.getAdapter();
+                zt0 zt0Var = (zt0) this.e;
+                tt0 tt0Var = zt0Var.K;
+                if (adapter == tt0Var) {
+                    if (tt0Var.d(i10) != 2) {
+                        return 1;
+                    }
+                    return ss0Var.f30353r.J;
+                } else if (zt0.w(zt0Var, adapter) == -1) {
+                    return 1;
+                } else {
+                    ((wt0) adapter).getClass();
+                    return 1;
+                }
+            case 1:
+                s51 s51Var = (s51) this.d;
+                p51 p51Var = ((u51) this.e).f30819f3;
+                if (p51Var == null) {
+                    return s51Var.J;
+                }
+                a51 G = p51Var.G(i10);
+                if (G == null || (i11 = G.f24301u) == -1) {
+                    return s51Var.J;
+                }
+                return i11;
+            default:
+                s51 s51Var2 = (s51) this.d;
+                p51 p51Var2 = ((u51) this.e).f30819f3;
+                if (p51Var2 == null) {
+                    return s51Var2.J;
+                }
+                a51 G2 = p51Var2.G(i10);
+                if (G2 == null || (i12 = G2.f24301u) == -1) {
+                    return s51Var2.J;
+                }
+                return i12;
         }
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
     }
 }

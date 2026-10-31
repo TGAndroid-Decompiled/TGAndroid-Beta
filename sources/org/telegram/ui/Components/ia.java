@@ -1,70 +1,44 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.Utilities;
-public final class ia implements Runnable {
-    public boolean f29275a;
-    public int f29276b;
-    public int f29277c;
-    public final ja d;
+import android.text.Layout;
+import android.text.Spanned;
+import android.text.style.LeadingMarginSpan;
+public final class ia implements LeadingMarginSpan {
+    public final int f26942a;
+    public final int f26943b;
 
-    public ia(ja jaVar) {
-        this.d = jaVar;
+    public ia(int i10, int i11) {
+        this.f26942a = i10;
+        this.f26943b = i11;
     }
 
     @Override
-    public final void run() {
-        int i10;
-        Bitmap bitmap;
-        ja jaVar = this.d;
-        Paint paint = jaVar.f29596w;
-        if (jaVar.f29581f == null) {
-            jaVar.f29581f = new Bitmap[2];
-            jaVar.f29583i = new Canvas[2];
-        }
-        int i11 = (int) (this.f29276b / 15.0f);
-        for (int i12 = 0; i12 < 2; i12++) {
-            if (i12 == 0) {
-                i10 = jaVar.f29593s;
-            } else {
-                i10 = this.f29277c;
-            }
-            int i13 = (int) (i10 / 15.0f);
-            Bitmap bitmap2 = jaVar.f29581f[i12];
-            if (bitmap2 != null && ((bitmap2.getHeight() != i13 || jaVar.f29581f[i12].getWidth() != i11) && (bitmap = jaVar.f29581f[i12]) != null)) {
-                bitmap.recycle();
-                jaVar.f29581f[i12] = null;
-            }
-            System.currentTimeMillis();
-            Bitmap[] bitmapArr = jaVar.f29581f;
-            if (bitmapArr[i12] == null) {
-                try {
-                    bitmapArr[i12] = Bitmap.createBitmap(i11, i13, Bitmap.Config.ARGB_8888);
-                    jaVar.f29583i[i12] = new Canvas(jaVar.f29581f[i12]);
-                    jaVar.f29583i[i12].scale(i11 / jaVar.e[i12].getWidth(), i13 / jaVar.e[i12].getHeight());
-                } catch (Throwable th2) {
-                    FileLog.e(th2);
+    public final void drawLeadingMargin(Canvas canvas, Paint paint, int i10, int i11, int i12, int i13, int i14, CharSequence charSequence, int i15, int i16, boolean z10, Layout layout) {
+        int i17;
+        if (((Spanned) charSequence).getSpanStart(this) == i15) {
+            Paint.Style style = paint.getStyle();
+            int color = paint.getColor();
+            paint.setColor(-11491093);
+            paint.setStyle(Paint.Style.FILL);
+            if (layout != null) {
+                if (layout.getLineForOffset(i15) != layout.getLineCount() - 1) {
+                    i17 = (int) layout.getSpacingAdd();
+                } else {
+                    i17 = 0;
                 }
+                i14 -= i17;
             }
-            if (i12 == 1) {
-                jaVar.f29581f[i12].eraseColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23357d6, jaVar.f29598y));
-            } else {
-                jaVar.f29581f[i12].eraseColor(0);
-            }
-            paint.setAlpha(255);
-            Utilities.stackBlurBitmap(jaVar.e[i12], 15);
-            Canvas canvas = jaVar.f29583i[i12];
-            if (canvas != null) {
-                canvas.drawBitmap(jaVar.e[i12], 0.0f, 0.0f, paint);
-            }
-            if (this.f29275a) {
-                return;
-            }
+            int i18 = this.f26943b;
+            canvas.drawCircle((i11 * i18) + i10, (i12 + i14) / 2.0f, i18, paint);
+            paint.setColor(color);
+            paint.setStyle(style);
         }
-        AndroidUtilities.runOnUIThread(new pg(this, 13));
+    }
+
+    @Override
+    public final int getLeadingMargin(boolean z10) {
+        return (this.f26943b * 2) + this.f26942a;
     }
 }

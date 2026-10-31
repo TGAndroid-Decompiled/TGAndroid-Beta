@@ -1,30 +1,44 @@
 package org.telegram.messenger;
-public final class f4 implements Runnable {
-    public final int f20046a;
-    public final boolean f20047b;
 
-    public f4(int i10, boolean z10) {
-        this.f20046a = i10;
-        this.f20047b = z10;
+import java.util.Iterator;
+import java.util.List;
+import org.telegram.tgnet.ResultCallback;
+import org.telegram.tgnet.TLRPC;
+public final class f4 implements ResultCallback {
+    public final yf.b f15506a;
+    public final org.telegram.ui.re f15507b;
+
+    public f4(yf.b bVar, org.telegram.ui.re reVar) {
+        this.f15506a = bVar;
+        this.f15507b = reVar;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f20046a;
-        boolean z10 = this.f20047b;
-        switch (i10) {
-            case 0:
-                FingerprintController.b(z10);
+    public final void onComplete(Object obj) {
+        org.telegram.ui.re reVar;
+        org.telegram.ui.ActionBar.y3 y3Var;
+        Iterator it = ((List) obj).iterator();
+        do {
+            boolean hasNext = it.hasNext();
+            reVar = this.f15507b;
+            if (hasNext) {
+                y3Var = (org.telegram.ui.ActionBar.y3) it.next();
+            } else {
+                reVar.onComplete(null);
                 return;
-            case 1:
-                FingerprintController.a(z10);
-                return;
-            case 2:
-                LiteMode.lambda$onPowerSaverApplied$1(z10);
-                return;
-            default:
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetNewTheme, Boolean.FALSE, Boolean.valueOf(z10));
-                return;
-        }
+            }
+        } while (!this.f15506a.equals(y3Var.f21560c));
+        y3Var.k();
+        reVar.onComplete(y3Var);
+    }
+
+    @Override
+    public final void onError(Throwable th2) {
+        org.telegram.tgnet.l.a(this, th2);
+    }
+
+    @Override
+    public final void onError(TLRPC.TL_error tL_error) {
+        this.f15507b.onComplete(null);
     }
 }

@@ -1,43 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class fb0 extends s4.n0 {
-    public final gb0 f28093a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+public final class fb0 extends org.telegram.ui.ActionBar.u5 {
+    public final Paint M0;
+    public final org.telegram.ui.ActionBar.p6 N0;
 
-    public fb0(gb0 gb0Var) {
-        this.f28093a = gb0Var;
+    public fb0(Context context, org.telegram.ui.ActionBar.p6 p6Var) {
+        super(context);
+        this.N0 = p6Var;
+        this.M0 = new Paint(1);
     }
 
     @Override
-    public final void d(Rect rect, View view, RecyclerView recyclerView, s4.b1 b1Var) {
-        int R;
-        int i10 = 0;
-        rect.left = 0;
-        rect.right = 0;
-        rect.top = 0;
-        rect.bottom = 0;
-        s4.p0 layoutManager = recyclerView.getLayoutManager();
-        hb0 hb0Var = this.f28093a.f28510j3;
-        if (layoutManager == hb0Var.d && (R = RecyclerView.R(view)) != 0 && !hb0Var.f28943f.N()) {
-            if (hb0Var.f28943f.I() == null && hb0Var.f28943f.U == null) {
-                rect.top = AndroidUtilities.dp(2.0f);
-            } else if (R != 0) {
-                R--;
-                ab0 ab0Var = hb0Var.d;
-                ab0Var.C1();
-                if (R > ab0Var.U) {
-                    rect.top = AndroidUtilities.dp(2.0f);
-                }
-            } else {
-                return;
-            }
-            if (!hb0Var.d.F1(R)) {
-                i10 = AndroidUtilities.dp(2.0f);
-            }
-            rect.right = i10;
-        }
+    public final void dispatchDraw(Canvas canvas) {
+        int w02 = org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.K5, this.N0);
+        Paint paint = this.M0;
+        paint.setColor(w02);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(1.0f);
+        float height = getHeight() / 2.0f;
+        canvas.drawLine(0.0f, height, ((getWidth() / 2.0f) - (getTextWidth() / 2.0f)) - org.telegram.messenger.i0.L(8.0f), height, paint);
+        canvas.drawLine((getTextWidth() / 2.0f) + (getWidth() / 2.0f) + org.telegram.messenger.i0.L(8.0f), height, getWidth(), height, paint);
+        super.dispatchDraw(canvas);
     }
 }

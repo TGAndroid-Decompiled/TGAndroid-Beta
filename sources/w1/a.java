@@ -1,19 +1,19 @@
 package w1;
 
+import a6.d;
 import androidx.lifecycle.a0;
 import androidx.lifecycle.t;
 import androidx.lifecycle.z;
 import b2.u;
-import b6.d;
 public final class a extends z {
-    public final d f50706l;
-    public t f50707m;
-    public u f50708n;
+    public final d f52327l;
+    public t f52328m;
+    public u f52329n;
 
     public a(d dVar) {
-        this.f50706l = dVar;
-        if (dVar.f3657a == null) {
-            dVar.f3657a = this;
+        this.f52327l = dVar;
+        if (dVar.f294a == null) {
+            dVar.f294a = this;
             return;
         }
         throw new IllegalStateException("There is already a listener registered");
@@ -21,29 +21,29 @@ public final class a extends z {
 
     @Override
     public final void f() {
-        d dVar = this.f50706l;
-        dVar.f3658b = true;
+        d dVar = this.f52327l;
+        dVar.f295b = true;
         dVar.d = false;
-        dVar.f3659c = false;
-        dVar.f3662i.drainPermits();
+        dVar.f296c = false;
+        dVar.f299i.drainPermits();
         dVar.c();
     }
 
     @Override
     public final void g() {
-        this.f50706l.f3658b = false;
+        this.f52327l.f295b = false;
     }
 
     @Override
     public final void i(a0 a0Var) {
         super.i(a0Var);
-        this.f50707m = null;
-        this.f50708n = null;
+        this.f52328m = null;
+        this.f52329n = null;
     }
 
     public final void k() {
-        t tVar = this.f50707m;
-        u uVar = this.f50708n;
+        t tVar = this.f52328m;
+        u uVar = this.f52329n;
         if (tVar != null && uVar != null) {
             super.i(uVar);
             d(tVar, uVar);
@@ -55,7 +55,7 @@ public final class a extends z {
         sb2.append("LoaderInfo{");
         sb2.append(Integer.toHexString(System.identityHashCode(this)));
         sb2.append(" #0 : ");
-        Class<?> cls = this.f50706l.getClass();
+        Class<?> cls = this.f52327l.getClass();
         sb2.append(cls.getSimpleName());
         sb2.append("{");
         sb2.append(Integer.toHexString(System.identityHashCode(cls)));

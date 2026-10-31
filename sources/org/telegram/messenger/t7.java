@@ -1,73 +1,58 @@
 package org.telegram.messenger;
-public final class t7 implements Runnable {
-    public final int f21279a;
-    public final MediaDataController f21280b;
 
-    public t7(MediaDataController mediaDataController, int i10) {
-        this.f21279a = i10;
-        this.f21280b = mediaDataController;
+import java.util.concurrent.CountDownLatch;
+import org.telegram.tgnet.TLRPC;
+public final class t7 implements Runnable {
+    public final b8 f18023a;
+    public final m7[] f18024b;
+    public final TLRPC.Document f18025c;
+    public final ic d;
+    public final Object e;
+    public final int f18026f;
+    public final n7 h;
+    public final long f18027n;
+    public final boolean f18028r;
+    public final int f18029s;
+    public final CountDownLatch f18030w;
+
+    public t7(b8 b8Var, m7[] m7VarArr, TLRPC.Document document, ic icVar, Object obj, int i10, n7 n7Var, long j10, boolean z10, int i11, CountDownLatch countDownLatch) {
+        this.f18023a = b8Var;
+        this.f18024b = m7VarArr;
+        this.f18025c = document;
+        this.d = icVar;
+        this.e = obj;
+        this.f18026f = i10;
+        this.h = n7Var;
+        this.f18027n = j10;
+        this.f18028r = z10;
+        this.f18029s = i11;
+        this.f18030w = countDownLatch;
     }
 
     @Override
     public final void run() {
-        switch (this.f21279a) {
-            case 0:
-                this.f21280b.lambda$processLoadedMenuBots$5();
-                return;
-            case 1:
-                this.f21280b.lambda$addRecentSticker$20();
-                return;
-            case 2:
-                this.f21280b.lambda$processLoadedReactions$15();
-                return;
-            case 3:
-                this.f21280b.lambda$fetchNewEmojiKeywords$211();
-                return;
-            case 4:
-                this.f21280b.lambda$clearRecentEmojiStatuses$230();
-                return;
-            case 5:
-                this.f21280b.lambda$clearRecentStickers$17();
-                return;
-            case 6:
-                this.f21280b.lambda$loadReactions$12();
-                return;
-            case 7:
-                this.f21280b.lambda$loadPremiumPromo$7();
-                return;
-            case 8:
-                this.f21280b.lambda$processLoadedPremiumPromo$9();
-                return;
-            case 9:
-                this.f21280b.lambda$cleanupStickerSetCache$39();
-                return;
-            case 10:
-                this.f21280b.lambda$cleanup$2();
-                return;
-            case 11:
-                this.f21280b.lambda$fetchEmojiStatuses$231();
-                return;
-            case 12:
-                this.f21280b.lambda$loadDraftsIfNeed$186();
-                return;
-            case 13:
-                this.f21280b.lambda$loadHints$145();
-                return;
-            case 14:
-                this.f21280b.lambda$loadDraftsIfNeed$187();
-                return;
-            case 15:
-                this.f21280b.lambda$loadAttachMenuBots$3();
-                return;
-            case 16:
-                this.f21280b.lambda$loadHints$146();
-                return;
-            case 17:
-                this.f21280b.lambda$clearTopPeers$149();
-                return;
-            default:
-                this.f21280b.lambda$fetchEmojiStatuses$233();
-                return;
+        TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated;
+        long j10;
+        b8 b8Var = this.f18023a;
+        b8Var.getClass();
+        TLRPC.Document document = this.f18025c;
+        ic icVar = this.d;
+        String str = null;
+        if (document == null && icVar != null) {
+            tL_fileLocationToBeDeprecated = icVar.f16100f;
+        } else {
+            tL_fileLocationToBeDeprecated = null;
         }
+        if (document == null && icVar != null) {
+            str = "mp4";
+        }
+        String str2 = str;
+        if (document == null && icVar != null) {
+            j10 = icVar.f16111r;
+        } else {
+            j10 = 0;
+        }
+        this.f18024b[0] = b8Var.Z(document, null, null, tL_fileLocationToBeDeprecated, icVar, this.e, str2, j10, this.f18026f, this.h, this.f18027n, this.f18028r, this.f18029s);
+        this.f18030w.countDown();
     }
 }

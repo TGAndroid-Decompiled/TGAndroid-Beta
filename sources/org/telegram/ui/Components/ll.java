@@ -1,30 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class ll extends ig.t0 {
-    public final sl N;
+import java.io.File;
+public final class ll implements org.telegram.messenger.q20 {
+    public final int f28134a;
+    public final boolean f28135b;
+    public final Object f28136c;
+    public final Object d;
 
-    public ll(sl slVar, Context context, org.telegram.ui.ActionBar.u6 u6Var, boolean z10) {
-        super(context, u6Var, z10, false);
-        this.N = slVar;
+    public ll(Object obj, boolean z10, Object obj2, int i10) {
+        this.f28134a = i10;
+        this.f28136c = obj;
+        this.f28135b = z10;
+        this.d = obj2;
     }
 
     @Override
-    public final void l() {
-        sl slVar = this.N;
-        ll llVar = slVar.P;
-        org.telegram.ui.ActionBar.w0 w0Var = slVar.f32640x;
-        if (w0Var != null) {
-            w0Var.setShowSearchProgress(llVar.J);
-        }
-        TextView textView = slVar.f32638w;
-        if (textView != null) {
-            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, llVar.f14013x)));
-        }
-        super.l();
+    public final void a(java.lang.Object r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ll.a(java.lang.Object):void");
+    }
+
+    public ll(nl nlVar, File file, boolean z10) {
+        this.f28134a = 0;
+        this.f28136c = nlVar;
+        this.d = file;
+        this.f28135b = z10;
+    }
+
+    public ll(boolean z10, Object obj, Object obj2, int i10) {
+        this.f28134a = i10;
+        this.f28135b = z10;
+        this.f28136c = obj;
+        this.d = obj2;
     }
 }

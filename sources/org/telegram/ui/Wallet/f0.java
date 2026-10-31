@@ -1,21 +1,16 @@
 package org.telegram.ui.Wallet;
-public final class f0 {
-    public String f36559a;
-    public i0 f36560b;
-    public byte[] f36561c;
-    public final l0 d;
 
-    public f0(l0 l0Var) {
-        this.d = l0Var;
-    }
+import org.telegram.tgnet.tl.TL_wallet;
+public final class f0 implements AutoCloseable {
+    public TL_wallet.sendTransfer f34479a;
+    public h0 f34480b;
+    public byte[] f34481c;
 
-    public final void a() {
-        i0 i0Var = this.f36560b;
-        this.f36560b = null;
-        try {
-            this.d.U(i0Var, false, new e0(this, 0));
-        } finally {
-            i0Var.close();
+    @Override
+    public final void close() {
+        h0 h0Var = this.f34480b;
+        if (h0Var != null) {
+            h0Var.close();
         }
     }
 }

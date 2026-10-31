@@ -1,162 +1,174 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.graphics.Paint;
-import androidx.recyclerview.widget.RecyclerView;
-public final class al0 extends s4.u0 {
-    public boolean f26607a;
-    public boolean f26608b;
-    public ValueAnimator f26609c;
-    public ValueAnimator d;
-    public final gl0 e;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public final class al0 extends Drawable {
+    public final lv e;
+    public final lv f24431f;
+    public float h;
+    public float f24433i;
+    public final Rect f24428a = new Rect();
+    public final gr f24429b = vs.f31837b;
+    public final int f24430c = org.telegram.messenger.i0.L(24.0f);
+    public final int d = org.telegram.messenger.i0.L(24.0f);
+    public long f24432g = -1;
 
-    public al0(gl0 gl0Var) {
-        this.e = gl0Var;
+    public al0() {
+        lv lvVar = new lv(1, (byte) 0);
+        this.e = lvVar;
+        lvVar.f28203c.setColor(-2130706433);
+        lv lvVar2 = new lv(1, (byte) 0);
+        this.f24431f = lvVar2;
+        lvVar2.f28203c.setColor(-2130706433);
     }
 
-    public static ValueAnimator c(float f7, float f10, q0.a aVar, Runnable runnable) {
-        ValueAnimator duration = ValueAnimator.ofFloat(f7, f10).setDuration(Math.abs(f10 - f7) * 150.0f);
-        duration.addUpdateListener(new f80(aVar, 9));
-        duration.addListener(new org.telegram.ui.q0(1, runnable));
-        duration.start();
-        return duration;
+    public final void a(Canvas canvas, float f7) {
+        Rect bounds = getBounds();
+        float interpolation = this.f24429b.getInterpolation(f7);
+        Rect rect = this.f24428a;
+        rect.left = (int) (org.telegram.messenger.i0.L(2.0f) * this.h);
+        int L = bounds.bottom - ((int) (org.telegram.messenger.i0.L(6.0f) * this.f24433i));
+        rect.bottom = L;
+        rect.right = bounds.right - rect.left;
+        rect.top = L - ((int) (org.telegram.messenger.i0.L(4.0f) * this.f24433i));
+        lv lvVar = this.f24431f;
+        lvVar.setBounds(rect);
+        lvVar.draw(canvas);
+        int L2 = org.telegram.messenger.i0.L(12.0f);
+        rect.right = L2;
+        rect.left = L2;
+        int L3 = org.telegram.messenger.i0.L(8.0f);
+        rect.bottom = L3;
+        rect.top = L3;
+        rect.inset(-org.telegram.messenger.i0.L(org.telegram.messenger.i0.W1(interpolation, 10, 11)), -org.telegram.messenger.i0.L(org.telegram.messenger.i0.W1(interpolation, 2, 3)));
+        lv lvVar2 = this.e;
+        lvVar2.setBounds(rect);
+        lvVar2.setAlpha(org.telegram.messenger.i0.W1(interpolation, 128, 255));
+        lvVar2.draw(canvas);
+    }
+
+    public final void b(Canvas canvas, float f7) {
+        Rect bounds = getBounds();
+        float interpolation = this.f24429b.getInterpolation(f7);
+        Rect rect = this.f24428a;
+        rect.left = (int) (org.telegram.messenger.i0.L(2.0f) * this.h);
+        int L = bounds.bottom - ((int) (org.telegram.messenger.i0.L(6.0f) * this.f24433i));
+        rect.bottom = L;
+        rect.right = bounds.right - rect.left;
+        rect.top = L - ((int) (org.telegram.messenger.i0.L(4.0f) * this.f24433i));
+        rect.offset(0, org.telegram.messenger.i0.L(org.telegram.messenger.i0.W1(interpolation, 0, -8)));
+        lv lvVar = this.f24431f;
+        lvVar.setBounds(rect);
+        lvVar.draw(canvas);
+        rect.left = (int) (org.telegram.messenger.i0.N(org.telegram.messenger.i0.W1(interpolation, 1, 2)) * this.h);
+        int N = (int) (org.telegram.messenger.i0.N(org.telegram.messenger.i0.W1(interpolation, 5, 6)) * this.f24433i);
+        rect.top = N;
+        rect.right = bounds.right - rect.left;
+        rect.bottom = N + ((int) (org.telegram.messenger.i0.N(org.telegram.messenger.i0.W1(interpolation, 6, 4)) * this.f24433i));
+        rect.offset(0, org.telegram.messenger.i0.L(org.telegram.messenger.i0.W1(interpolation, 0, 8)));
+        lv lvVar2 = this.e;
+        lvVar2.setBounds(rect);
+        lvVar2.setAlpha(255);
+        lvVar2.draw(canvas);
+    }
+
+    public final void c(Canvas canvas, float f7) {
+        Rect bounds = getBounds();
+        float interpolation = this.f24429b.getInterpolation(f7);
+        Rect rect = this.f24428a;
+        rect.left = (int) (org.telegram.messenger.i0.L(2.0f) * this.h);
+        int L = bounds.bottom - ((int) (org.telegram.messenger.i0.L(6.0f) * this.f24433i));
+        rect.bottom = L;
+        rect.right = bounds.right - rect.left;
+        rect.top = L - ((int) (org.telegram.messenger.i0.L(4.0f) * this.f24433i));
+        rect.offset(0, org.telegram.messenger.i0.L(-8.0f));
+        lv lvVar = this.f24431f;
+        lvVar.setBounds(rect);
+        lvVar.draw(canvas);
+        rect.left = (int) (org.telegram.messenger.i0.N(2.0f) * this.h);
+        int N = (int) (org.telegram.messenger.i0.N(6.0f) * this.f24433i);
+        rect.top = N;
+        rect.right = bounds.right - rect.left;
+        rect.bottom = N + ((int) (org.telegram.messenger.i0.N(4.0f) * this.f24433i));
+        rect.offset(0, org.telegram.messenger.i0.L(8.0f));
+        lv lvVar2 = this.e;
+        lvVar2.setBounds(rect);
+        lvVar2.setAlpha(org.telegram.messenger.i0.W1(interpolation, 255, 128));
+        lvVar2.draw(canvas);
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        boolean z10;
-        float f7;
-        gl0 gl0Var = this.e;
-        ig.j0 j0Var = gl0Var.W;
-        boolean z11 = false;
-        if (j0Var.L0() != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        float f10 = 0.0f;
-        if (z10 != this.f26607a) {
-            ValueAnimator valueAnimator = this.f26609c;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            float f11 = gl0Var.f28638r;
-            if (z10) {
-                f7 = 1.0f;
+    public final void draw(Canvas canvas) {
+        if (this.f24432g > 0) {
+            int currentTimeMillis = (int) (System.currentTimeMillis() - this.f24432g);
+            int i10 = currentTimeMillis - 300;
+            if (i10 >= 0) {
+                if (i10 < 150) {
+                    a(canvas, i10 / 150.0f);
+                } else {
+                    int i11 = currentTimeMillis - 750;
+                    if (i11 >= 0) {
+                        if (i11 < 200) {
+                            b(canvas, i11 / 200.0f);
+                        } else {
+                            int i12 = currentTimeMillis - 1250;
+                            if (i12 >= 0) {
+                                if (i12 < 150) {
+                                    c(canvas, i12 / 150.0f);
+                                } else {
+                                    c(canvas, 1.0f);
+                                    if (currentTimeMillis - 1400 >= 100) {
+                                        this.f24432g = System.currentTimeMillis();
+                                    }
+                                }
+                            } else {
+                                b(canvas, 1.0f);
+                            }
+                        }
+                    } else {
+                        a(canvas, 1.0f);
+                    }
+                }
             } else {
-                f7 = 0.0f;
+                a(canvas, 0.0f);
             }
-            this.f26609c = c(f11, f7, new q0.a(this) {
-                public final al0 f35103b;
-
-                {
-                    this.f35103b = this;
-                }
-
-                @Override
-                public final void accept(Object obj) {
-                    Float f12 = (Float) obj;
-                    switch (r2) {
-                        case 0:
-                            gl0 gl0Var2 = this.f35103b.e;
-                            Paint paint = gl0Var2.h;
-                            float floatValue = f12.floatValue();
-                            gl0Var2.f28638r = floatValue;
-                            paint.setAlpha((int) (floatValue * 255.0f));
-                            gl0Var2.invalidate();
-                            return;
-                        default:
-                            gl0 gl0Var3 = this.f35103b.e;
-                            Paint paint2 = gl0Var3.f28633n;
-                            float floatValue2 = f12.floatValue();
-                            gl0Var3.f28640s = floatValue2;
-                            paint2.setAlpha((int) (floatValue2 * 255.0f));
-                            gl0Var3.invalidate();
-                            return;
-                    }
-                }
-            }, new Runnable(this) {
-                public final al0 f35373b;
-
-                {
-                    this.f35373b = this;
-                }
-
-                @Override
-                public final void run() {
-                    switch (r2) {
-                        case 0:
-                            this.f35373b.f26609c = null;
-                            return;
-                        default:
-                            this.f35373b.d = null;
-                            return;
-                    }
-                }
-            });
-            this.f26607a = z10;
+            invalidateSelf();
+            return;
         }
-        if (j0Var.N0() != gl0Var.f28607a0.h() - 1) {
-            z11 = true;
-        }
-        if (z11 != this.f26608b) {
-            ValueAnimator valueAnimator2 = this.d;
-            if (valueAnimator2 != null) {
-                valueAnimator2.cancel();
-            }
-            float f12 = gl0Var.f28640s;
-            if (z11) {
-                f10 = 1.0f;
-            }
-            this.d = c(f12, f10, new q0.a(this) {
-                public final al0 f35103b;
+        a(canvas, 0.0f);
+    }
 
-                {
-                    this.f35103b = this;
-                }
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.d;
+    }
 
-                @Override
-                public final void accept(Object obj) {
-                    Float f122 = (Float) obj;
-                    switch (r2) {
-                        case 0:
-                            gl0 gl0Var2 = this.f35103b.e;
-                            Paint paint = gl0Var2.h;
-                            float floatValue = f122.floatValue();
-                            gl0Var2.f28638r = floatValue;
-                            paint.setAlpha((int) (floatValue * 255.0f));
-                            gl0Var2.invalidate();
-                            return;
-                        default:
-                            gl0 gl0Var3 = this.f35103b.e;
-                            Paint paint2 = gl0Var3.f28633n;
-                            float floatValue2 = f122.floatValue();
-                            gl0Var3.f28640s = floatValue2;
-                            paint2.setAlpha((int) (floatValue2 * 255.0f));
-                            gl0Var3.invalidate();
-                            return;
-                    }
-                }
-            }, new Runnable(this) {
-                public final al0 f35373b;
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f24430c;
+    }
 
-                {
-                    this.f35373b = this;
-                }
+    @Override
+    public final int getOpacity() {
+        return -3;
+    }
 
-                @Override
-                public final void run() {
-                    switch (r2) {
-                        case 0:
-                            this.f35373b.f26609c = null;
-                            return;
-                        default:
-                            this.f35373b.d = null;
-                            return;
-                    }
-                }
-            });
-            this.f26608b = z11;
-        }
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        this.h = rect.width() / this.f24430c;
+        this.f24433i = rect.height() / this.d;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.e.setColorFilter(colorFilter);
+        this.f24431f.setColorFilter(colorFilter);
+        invalidateSelf();
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
     }
 }

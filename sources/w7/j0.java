@@ -1,9 +1,15 @@
 package w7;
 
-import android.content.Context;
+import android.os.StrictMode;
+import java.util.concurrent.Callable;
 public abstract class j0 {
-    public static j7.b a(Context context) {
-        o6.l.h(context);
-        return new j7.b(context, new Object());
+    public static Object a(Callable callable) {
+        StrictMode.ThreadPolicy threadPolicy = StrictMode.getThreadPolicy();
+        try {
+            StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.LAX);
+            return callable.call();
+        } finally {
+            StrictMode.setThreadPolicy(threadPolicy);
+        }
     }
 }

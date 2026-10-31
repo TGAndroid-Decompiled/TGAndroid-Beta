@@ -1,26 +1,31 @@
 package lg;
-public final class c extends b {
-    public float[] f17018l;
+public final class c implements Runnable {
+    public final int f11855a;
+    public final g f11856b;
+    public final int f11857c;
+
+    public c(g gVar, int i10, int i11) {
+        this.f11855a = i11;
+        this.f11856b = gVar;
+        this.f11857c = i10;
+    }
 
     @Override
-    public final void e() {
-        super.e();
-        int size = this.d.size();
-        long j10 = 0;
-        for (int i10 = 0; i10 < size; i10++) {
-            long j11 = ((a) this.d.get(i10)).e;
-            if (j11 > j10) {
-                j10 = j11;
-            }
-        }
-        this.f17018l = new float[size];
-        for (int i11 = 0; i11 < size; i11++) {
-            long j12 = ((a) this.d.get(i11)).e;
-            if (j10 == j12) {
-                this.f17018l[i11] = 1.0f;
-            } else {
-                this.f17018l[i11] = (float) (j10 / j12);
-            }
+    public final void run() {
+        switch (this.f11855a) {
+            case 0:
+                g gVar = this.f11856b;
+                gVar.postOnAnimation(new c(gVar, this.f11857c, 1));
+                return;
+            default:
+                g gVar2 = this.f11856b;
+                int i10 = this.f11857c;
+                if (gVar2.e && !gVar2.f11871r && i10 == gVar2.E) {
+                    gVar2.f11875y = true;
+                    gVar2.requestRender();
+                    return;
+                }
+                return;
         }
     }
 }

@@ -1,97 +1,47 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Point;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ei1;
-public final class rp implements ri {
-    public final zp f32297a;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+public final class rp extends FrameLayout {
+    public final View f29992a;
+    public final TextView f29993b;
 
-    public rp(zp zpVar) {
-        this.f32297a = zpVar;
+    public rp(Context context) {
+        super(context);
+        View view = new View(context);
+        this.f29992a = view;
+        int L = org.telegram.messenger.i0.L(4.0f);
+        int i10 = org.telegram.ui.ActionBar.t6.Ci;
+        int v02 = org.telegram.ui.ActionBar.t6.v0(i10);
+        int i11 = org.telegram.ui.ActionBar.t6.Ei;
+        int v03 = org.telegram.ui.ActionBar.t6.v0(i11);
+        Drawable k02 = org.telegram.ui.ActionBar.t6.k0(L, L, L, L, v02, v03, v03);
+        org.telegram.ui.ActionBar.w6 N = org.telegram.ui.ActionBar.a7.N(i10);
+        org.telegram.ui.ActionBar.w6 N2 = org.telegram.ui.ActionBar.a7.N(i11);
+        view.setBackground(k02);
+        org.telegram.ui.ActionBar.a7.k(view, k02, N, N2, null);
+        addView(view, w7.b6.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
+        TextView textView = new TextView(context);
+        this.f29993b = textView;
+        textView.setLines(1);
+        textView.setSingleLine(true);
+        textView.setGravity(1);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setGravity(17);
+        org.telegram.messenger.m5.m(textView, org.telegram.ui.ActionBar.t6.Gi, null, 1, 14.0f);
+        addView(textView, w7.b6.e(-2, -2, 17));
     }
 
     @Override
-    public final void A(gh ghVar) {
-        ghVar.run();
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(80.0f), 1073741824));
     }
 
-    @Override
-    public final boolean E() {
-        return false;
-    }
-
-    @Override
-    public final void T(Object obj) {
-        op opVar = new op(obj, null, true, 3);
-        zp zpVar = this.f32297a;
-        opVar.W1 = zpVar.f35414e0;
-        opVar.d1(zpVar.v.a());
-        opVar.J1 = new qp(this, 1);
-        zp.q(zpVar, opVar);
-    }
-
-    @Override
-    public final void p0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
-        zp zpVar = this.f32297a;
-        try {
-            HashMap<Object, Object> selectedPhotos = zpVar.X.f33002j0.getSelectedPhotos();
-            if (!selectedPhotos.isEmpty()) {
-                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
-                String str = photoEntry.imagePath;
-                if (str == null) {
-                    str = photoEntry.path;
-                }
-                if (str != null) {
-                    File directory = FileLoader.getDirectory(4);
-                    File file = new File(directory, Utilities.random.nextInt() + ".jpg");
-                    Point realScreenSize = AndroidUtilities.getRealScreenSize();
-                    Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
-                    loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
-                    op opVar = new op(new ei1(file, file, ""), loadBitmap, false, 2);
-                    opVar.W1 = zpVar.f35414e0;
-                    opVar.G1 = false;
-                    opVar.F1 = false;
-                    opVar.f44288o1 = 0.2f;
-                    opVar.d1(zpVar.v.a());
-                    opVar.J1 = new qp(this, 0);
-                    zp.q(zpVar, opVar);
-                }
-            }
-        } catch (Throwable th2) {
-            FileLog.e(th2);
-        }
-    }
-
-    @Override
-    public final boolean x0() {
-        System.currentTimeMillis();
-        return true;
-    }
-
-    @Override
-    public final void H() {
-    }
-
-    @Override
-    public final void R() {
-    }
-
-    @Override
-    public final void Y(TLRPC.User user) {
-    }
-
-    @Override
-    public final void z0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11) {
+    public void setText(CharSequence charSequence) {
+        this.f29993b.setText(charSequence);
     }
 }

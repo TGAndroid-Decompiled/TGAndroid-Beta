@@ -1,19 +1,14 @@
 package zh;
-public final class f implements oe.d, ag.s {
-    public final m f53025a;
 
-    @Override
-    public void E(int i10, float f7, float f10, oe.e eVar) {
-        this.f53025a.a0();
-    }
+import org.telegram.tgnet.TLRPC;
+public final class f {
+    public final long f55774a;
+    public final TLRPC.User f55775b;
+    public final boolean f55776c;
 
-    @Override
-    public void f(long j10) {
-        m mVar = this.f53025a;
-        mVar.b0(j10, mVar.f53191w0);
-    }
-
-    @Override
-    public void z(float f7, int i10) {
+    public f(long j10, TLRPC.User user, boolean z10) {
+        this.f55774a = j10;
+        this.f55775b = user;
+        this.f55776c = z10;
     }
 }

@@ -1,38 +1,38 @@
 package m4;
 public final class a0 implements e0, o0 {
-    public final boolean f17995a;
-    public final boolean f17996b;
-    public final Object f17997c;
+    public final boolean f12690a;
+    public final boolean f12691b;
+    public final Object f12692c;
     public final Object d;
 
     public a0(p0 p0Var, b2.p0 p0Var2, boolean z10, boolean z11) {
-        this.f17997c = p0Var;
+        this.f12692c = p0Var;
         this.d = p0Var2;
-        this.f17995a = z10;
-        this.f17996b = z11;
+        this.f12690a = z10;
+        this.f12691b = z11;
     }
 
     @Override
-    public void d(v vVar, int i10) {
-        vVar.f(i10, (s1) this.f17997c, this.f17995a, this.f17996b, ((w) this.d).f18287c);
-    }
-
-    @Override
-    public void i(w wVar) {
-        p0 p0Var = (p0) this.f17997c;
-        k9.e0 q5 = p0Var.f18180g.q(wVar, f9.i0.y((b2.p0) this.d), -1, -9223372036854775807L);
+    public void b(w wVar) {
+        p0 p0Var = (p0) this.f12692c;
+        j9.e0 q6 = p0Var.h.q(wVar, e9.n0.y((b2.p0) this.d), -1, -9223372036854775807L);
         ?? obj = new Object();
         obj.d = p0Var;
-        obj.f17706c = wVar;
-        obj.f17704a = this.f17995a;
-        obj.f17705b = this.f17996b;
-        q5.a(new k9.u(0, q5, (Object) obj), k9.r.f16490a);
+        obj.f12383c = wVar;
+        obj.f12381a = this.f12690a;
+        obj.f12382b = this.f12691b;
+        q6.a(new j9.u(0, q6, (Object) obj), j9.r.f9763a);
+    }
+
+    @Override
+    public void e(v vVar, int i10) {
+        vVar.f(i10, (s1) this.f12692c, this.f12690a, this.f12691b, ((w) this.d).f12983c);
     }
 
     public a0(s1 s1Var, boolean z10, boolean z11, w wVar) {
-        this.f17997c = s1Var;
-        this.f17995a = z10;
-        this.f17996b = z11;
+        this.f12692c = s1Var;
+        this.f12690a = z10;
+        this.f12691b = z11;
         this.d = wVar;
     }
 }

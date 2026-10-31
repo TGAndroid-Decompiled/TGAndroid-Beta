@@ -1,12 +1,72 @@
 package org.telegram.ui.Components;
+public final class ek implements Runnable {
+    public final int f25820a;
+    public final kk f25821b;
 
-import java.util.ArrayList;
-public interface ek {
-    void P();
+    public ek(kk kkVar, int i10) {
+        this.f25820a = i10;
+        this.f25821b = kkVar;
+    }
 
-    void l(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j10, boolean z11, long j11);
-
-    void m(long j10, ArrayList arrayList, boolean z10, int i10);
-
-    void x();
+    @Override
+    public final void run() {
+        switch (this.f25820a) {
+            case 0:
+                this.f25821b.Z();
+                return;
+            case 1:
+                kk kkVar = this.f25821b;
+                EditTextBoldCursor editTextBoldCursor = kkVar.S;
+                if (!kkVar.K && !kkVar.N0 && !kkVar.f30947b.I && kkVar.L0 && kkVar.T0 == null && editTextBoldCursor.hasFocus() && kkVar.isShown()) {
+                    org.telegram.messenger.i0.J3(editTextBoldCursor);
+                    return;
+                }
+                return;
+            case 2:
+                kk kkVar2 = this.f25821b;
+                if (!kkVar2.K && kkVar2.L0 && kkVar2.isShown()) {
+                    kkVar2.c0();
+                    return;
+                }
+                return;
+            case 3:
+                kk kkVar3 = this.f25821b;
+                if (!kkVar3.K) {
+                    float f7 = kkVar3.m0;
+                    if (f7 < 1.0f && kkVar3.f27792l0 == null) {
+                        o1.j jVar = new o1.j(new o1.i(f7));
+                        kkVar3.f27792l0 = jVar;
+                        o1.k kVar = new o1.k(1.0f);
+                        kVar.a(0.55f);
+                        kVar.b(65.0f);
+                        jVar.f13957m = kVar;
+                        kkVar3.f27792l0.f(0.001f);
+                        kkVar3.f27792l0.b(new a7(kkVar3, 4));
+                        kkVar3.f27792l0.a(new na(kkVar3, 2));
+                        kkVar3.f27792l0.h();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 4:
+                kk kkVar4 = this.f25821b;
+                if (kkVar4.L0 && !kkVar4.K) {
+                    kkVar4.b0();
+                    if (kkVar4.M0) {
+                        kkVar4.c0();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                kk kkVar5 = this.f25821b;
+                if (!kkVar5.f27796p0) {
+                    kkVar5.f27795o0.setVisibility(4);
+                    return;
+                }
+                return;
+        }
+    }
 }

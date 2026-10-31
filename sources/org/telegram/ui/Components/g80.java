@@ -1,27 +1,17 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewGroup;
-public final class g80 extends org.telegram.ui.ActionBar.o1 {
-    public final ViewGroup f28462o;
-    public final l80 f28463p;
+import android.content.Context;
+public final class g80 extends nh0 {
+    public final j80 f26288q1;
 
-    public g80(l80 l80Var, View view, ViewGroup viewGroup) {
-        super(view, -2, -2);
-        this.f28463p = l80Var;
-        this.f28462o = viewGroup;
+    public g80(j80 j80Var, Context context, String str, String str2, String str3) {
+        super(context, str, str2, str3, false);
+        this.f26288q1 = j80Var;
     }
 
     @Override
     public final void dismiss() {
-        d(true);
-        ViewGroup viewGroup = this.f28462o;
-        l80 l80Var = this.f28463p;
-        l80.a(l80Var, viewGroup);
-        Runnable runnable = l80Var.f30163p;
-        if (runnable != null) {
-            runnable.run();
-            l80Var.f30163p = null;
-        }
+        super.dismiss();
+        this.f26288q1.E = null;
     }
 }

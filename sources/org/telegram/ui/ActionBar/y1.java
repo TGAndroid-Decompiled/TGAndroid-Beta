@@ -1,86 +1,58 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.os.Build;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.kb1;
-public final class y1 extends FrameLayout {
-    public final TextView f23286a;
-    public final ImageView f23287b;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.ui.Components.ju0;
+import org.telegram.ui.Components.tk0;
+public final class y1 implements r0.m, ju0 {
+    public final int f21553a;
+    public final FrameLayout f21554b;
 
-    public y1(Context context, u6 u6Var) {
-        super(context);
-        int i10;
-        int i11 = y6.I5;
-        Drawable g02 = y6.g0(y6.w0(i11, u6Var), 2, -1);
-        b7 N = f7.N(i11);
-        setBackground(g02);
-        f7.k(this, g02, null, N, u6Var);
-        setPadding(AndroidUtilities.dp(23.0f), 0, AndroidUtilities.dp(23.0f), 0);
-        ImageView imageView = new ImageView(context);
-        this.f23287b = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        f7.t(imageView, y6.J5, u6Var, PorterDuff.Mode.MULTIPLY);
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        addView(imageView, kb1.i(-2, 40, i10 | 16));
-        TextView textView = new TextView(context);
-        this.f23286a = textView;
-        textView.setLines(1);
-        textView.setSingleLine(true);
-        textView.setGravity(1);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        f7.V(textView, y6.f23465j5, u6Var);
-        textView.setTextSize(1, 16.0f);
-        addView(textView, kb1.i(-2, -2, (LocaleController.isRTL ? 5 : 3) | 16));
-    }
-
-    public final void a(int i10, CharSequence charSequence) {
-        int dp;
-        int i11;
-        TextView textView = this.f23286a;
-        textView.setText(charSequence);
-        ImageView imageView = this.f23287b;
-        if (i10 != 0) {
-            imageView.setImageResource(i10);
-            imageView.setVisibility(0);
-            if (LocaleController.isRTL) {
-                dp = 0;
-            } else {
-                dp = AndroidUtilities.dp(56.0f);
-            }
-            if (LocaleController.isRTL) {
-                i11 = AndroidUtilities.dp(56.0f);
-            } else {
-                i11 = 0;
-            }
-            textView.setPadding(dp, 0, i11, 0);
-            return;
-        }
-        imageView.setVisibility(4);
-        textView.setPadding(0, 0, 0, 0);
+    public y1(int i10, FrameLayout frameLayout) {
+        this.f21553a = i10;
+        this.f21554b = frameLayout;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+    public r0.j1 R0(View view, r0.j1 j1Var) {
+        r0.g1 g1Var = j1Var.f46132a;
+        Rect rect = new Rect();
+        if (Build.VERSION.SDK_INT >= 30) {
+            i0.c f7 = g1Var.f(527);
+            rect.set(f7.f7765a, f7.f7766b, f7.f7767c, f7.d);
+        } else {
+            rect.set(g1Var.i().f7765a, g1Var.i().f7766b, g1Var.i().f7767c, g1Var.i().d);
+        }
+        int i10 = rect.left;
+        int i11 = rect.top;
+        int i12 = rect.right;
+        int i13 = rect.bottom + org.telegram.messenger.i0.f16021n;
+        FrameLayout frameLayout = this.f21554b;
+        frameLayout.setPadding(i10, i11, i12, i13);
+        frameLayout.requestLayout();
+        return j1Var;
     }
 
-    public void setGravity(int i10) {
-        this.f23286a.setGravity(i10);
-    }
-
-    public void setTextColor(int i10) {
-        this.f23286a.setTextColor(i10);
+    @Override
+    public void a(Canvas canvas, RectF rectF, RecyclerView recyclerView) {
+        switch (this.f21553a) {
+            case 1:
+                tk0 tk0Var = (tk0) recyclerView;
+                yg.d.a(tk0Var, canvas, rectF, tk0Var, this.f21554b);
+                return;
+            case 2:
+                tk0 tk0Var2 = (tk0) recyclerView;
+                yg.d.a(tk0Var2, canvas, rectF, tk0Var2, this.f21554b);
+                return;
+            default:
+                tk0 tk0Var3 = (tk0) recyclerView;
+                yg.d.a(tk0Var3, canvas, rectF, tk0Var3, this.f21554b);
+                return;
+        }
     }
 }

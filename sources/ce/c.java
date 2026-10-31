@@ -1,46 +1,46 @@
 package ce;
 
-import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
-import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
-public final class c extends l1 {
-    public static final AtomicReferenceFieldUpdater f6206n = AtomicReferenceFieldUpdater.newUpdater(c.class, Object.class, "_disposer$volatile");
-    private volatile Object _disposer$volatile;
-    public final m e;
-    public p0 f6207f;
-    public final e h;
+import td.j2;
+import td.l;
+import td.m;
+import yd.t;
+public final class c implements l, j2 {
+    public final m f4126a;
+    public final d f4127b;
 
-    public c(e eVar, m mVar) {
-        this.h = eVar;
-        this.e = mVar;
+    public c(d dVar, m mVar) {
+        this.f4127b = dVar;
+        this.f4126a = mVar;
     }
 
     @Override
-    public final void a(Throwable th2) {
-        m mVar = this.e;
-        if (th2 != null) {
-            mVar.getClass();
-            he.v F = mVar.F(null, new v(th2, false));
-            if (F != null) {
-                mVar.f(F);
-                d dVar = (d) f6206n.get(this);
-                if (dVar != null) {
-                    dVar.b();
-                    return;
-                }
-                return;
-            }
-            return;
+    public final void a(t tVar, int i10) {
+        this.f4126a.a(tVar, i10);
+    }
+
+    @Override
+    public final ea.a d(ld.l lVar, Object obj) {
+        d dVar = this.f4127b;
+        b bVar = new b(dVar, this, 1);
+        ea.a F = this.f4126a.F(bVar, (ad.j) obj);
+        if (F != null) {
+            d.f4128g.set(dVar, null);
         }
-        AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = e.f6214b;
-        e eVar = this.h;
-        if (atomicIntegerFieldUpdater.decrementAndGet(eVar) == 0) {
-            i0[] i0VarArr = eVar.f6215a;
-            ArrayList arrayList = new ArrayList(i0VarArr.length);
-            for (i0 i0Var : i0VarArr) {
-                arrayList.add(i0Var.getCompleted());
-            }
-            mVar.resumeWith(arrayList);
-        }
+        return F;
+    }
+
+    @Override
+    public final void f(Object obj) {
+        this.f4126a.f(obj);
+    }
+
+    @Override
+    public final cd.h getContext() {
+        return this.f4126a.e;
+    }
+
+    @Override
+    public final void resumeWith(Object obj) {
+        this.f4126a.resumeWith(obj);
     }
 }

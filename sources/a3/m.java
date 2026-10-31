@@ -11,17 +11,17 @@ public final class m implements Handler.Callback {
 
     public m(n nVar, r2.l lVar) {
         this.f146b = nVar;
-        Handler q5 = e2.n0.q(this);
-        this.f145a = q5;
-        lVar.g(this, q5);
+        Handler q6 = e2.l0.q(this);
+        this.f145a = q6;
+        lVar.d(this, q6);
     }
 
     public final void a(long j10) {
         boolean z10;
         Surface surface;
         n nVar = this.f146b;
-        n4.s sVar = nVar.f148b1;
-        if (this == nVar.M1 && nVar.f47279d0 != null) {
+        hf.b bVar = nVar.f148b1;
+        if (this == nVar.M1 && nVar.f46261d0 != null) {
             if (j10 == Long.MAX_VALUE) {
                 nVar.M0 = true;
                 return;
@@ -31,7 +31,7 @@ public final class m implements Handler.Callback {
                 b2 b2Var = nVar.H1;
                 if (!b2Var.equals(b2.d) && !b2Var.equals(nVar.I1)) {
                     nVar.I1 = b2Var;
-                    sVar.J(b2Var);
+                    bVar.r0(b2Var);
                 }
                 nVar.O0.e++;
                 a0 a0Var = nVar.f151e1;
@@ -42,13 +42,13 @@ public final class m implements Handler.Callback {
                 }
                 a0Var.e = 3;
                 a0Var.f64l.getClass();
-                a0Var.f60g = e2.n0.S(SystemClock.elapsedRealtime());
+                a0Var.f60g = e2.l0.S(SystemClock.elapsedRealtime());
                 if (z10 && (surface = nVar.f163r1) != null) {
-                    sVar.E(surface);
+                    bVar.k0(surface);
                     nVar.f166u1 = true;
                 }
                 nVar.h0(j10);
-            } catch (i2.m e) {
+            } catch (i2.l e) {
                 nVar.N0 = e;
             }
         }
@@ -61,7 +61,7 @@ public final class m implements Handler.Callback {
         }
         int i10 = message.arg1;
         int i11 = message.arg2;
-        String str = e2.n0.f9691a;
+        String str = e2.l0.f6165a;
         a(((i10 & 4294967295L) << 32) | (4294967295L & i11));
         return true;
     }

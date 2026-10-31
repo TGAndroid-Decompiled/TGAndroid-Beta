@@ -1,53 +1,24 @@
 package org.telegram.ui.ActionBar;
-
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-public final class l6 extends Drawable {
-    public final RectF f22855a = new RectF();
-    public final View f22856b;
-    public final View f22857c;
+public enum l6 {
+    DEFAULT(t6.f21144og, t6.f21161pg, t6.f21177qg, t6.Dg, t6.Eg, t6.Fg),
+    PRIMARY(t6.f21195rg, t6.f21214sg, t6.f21233tg, t6.Gg, t6.Hg, t6.Ig),
+    DANGER(t6.f21251ug, t6.f21268vg, t6.f21286wg, t6.Jg, t6.Kg, t6.Lg),
+    SUCCESS(t6.f21303xg, t6.f21321yg, t6.f21338zg, t6.Mg, t6.Ng, t6.Og),
+    DEFAULT_IN_TEXT(t6.Ag, t6.Bg, t6.Cg, t6.Pg, t6.Qg, t6.Rg);
+    
+    public final int f20553a;
+    public final int f20554b;
+    public final int f20555c;
     public final int d;
-    public final Paint e;
+    public final int e;
+    public final int f20556f;
 
-    public l6(View view, View view2, int i10, Paint paint) {
-        this.f22856b = view;
-        this.f22857c = view2;
-        this.d = i10;
-        this.e = paint;
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        RectF rectF = this.f22855a;
-        rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
-        y6.s(this.f22856b, this.f22857c, null);
-        float f7 = this.d;
-        Paint paint = this.e;
-        if (paint == null) {
-            paint = y6.U0("paintChatActionBackground");
-        }
-        canvas.drawRoundRect(rectF, f7, f7, paint);
-        if (y6.c1()) {
-            canvas.drawRoundRect(rectF, f7, f7, y6.U0("paintChatActionBackgroundDarken"));
-        }
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    l6(int i10, int i11, int i12, int i13, int i14, int i15) {
+        this.f20553a = i10;
+        this.f20554b = i11;
+        this.f20555c = i12;
+        this.d = i13;
+        this.e = i14;
+        this.f20556f = i15;
     }
 }

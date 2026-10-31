@@ -5,39 +5,39 @@ import android.widget.TextView;
 import androidx.appcompat.widget.SearchView;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class s2 implements TextView.OnEditorActionListener {
-    public final int f17851a;
-    public final Object f17852b;
+    public final int f12545a;
+    public final Object f12546b;
 
     public s2(Object obj, int i10) {
-        this.f17851a = i10;
-        this.f17852b = obj;
+        this.f12545a = i10;
+        this.f12546b = obj;
     }
 
     @Override
     public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        switch (this.f17851a) {
+        switch (this.f12545a) {
             case 0:
-                ((SearchView) this.f17852b).p();
+                ((SearchView) this.f12546b).p();
                 return true;
             case 1:
                 if (i10 == 6) {
-                    ((org.telegram.ui.Cells.g) this.f17852b).run();
+                    ((org.telegram.ui.Cells.f) this.f12546b).run();
                     return true;
                 }
                 return false;
             case 2:
                 if (i10 == 6) {
-                    ((Runnable) this.f17852b).run();
+                    ((Runnable) this.f12546b).run();
                     return true;
                 }
                 return false;
             default:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f17852b;
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f12546b;
                 if (i10 == 4) {
-                    chatActivityEnterView.P0();
+                    chatActivityEnterView.Q0();
                     return true;
                 } else if (keyEvent != null && i10 == 0 && !keyEvent.isShiftPressed() && (!chatActivityEnterView.B2 ? keyEvent.isCtrlPressed() : !keyEvent.isCtrlPressed()) && keyEvent.getAction() == 0 && chatActivityEnterView.Z1 == null) {
-                    chatActivityEnterView.P0();
+                    chatActivityEnterView.Q0();
                     return true;
                 } else {
                     return false;

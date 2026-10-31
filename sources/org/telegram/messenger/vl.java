@@ -1,33 +1,25 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.UnconfirmedAuthController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class vl implements RequestDelegate {
-    public final int f21593a;
-    public final UnconfirmedAuthController.UnconfirmedAuth f21594b;
-    public final Utilities.Callback f21595c;
+import j$.util.function.Consumer$CC;
+import java.util.ArrayList;
+import java.util.function.Consumer;
+public final class vl implements Consumer {
+    public final vp f18597a;
+    public final long f18598b;
 
-    public vl(UnconfirmedAuthController.UnconfirmedAuth unconfirmedAuth, Utilities.Callback callback, int i10) {
-        this.f21593a = i10;
-        this.f21594b = unconfirmedAuth;
-        this.f21595c = callback;
+    public vl(vp vpVar, long j10) {
+        this.f18597a = vpVar;
+        this.f18598b = j10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f21593a) {
-            case 0:
-                this.f21594b.lambda$deny$4(this.f21595c, tLObject, tL_error);
-                return;
-            case 1:
-                this.f21594b.lambda$deny$6(this.f21595c, tLObject, tL_error);
-                return;
-            default:
-                this.f21594b.lambda$confirm$2(this.f21595c, tLObject, tL_error);
-                return;
-        }
+    public final void accept(Object obj) {
+        vp vpVar = this.f18597a;
+        vpVar.getClass();
+        i0.g3(new ok(vpVar, (ArrayList) obj, this.f18598b, 2));
+    }
+
+    public Consumer andThen(Consumer consumer) {
+        return Consumer$CC.$default$andThen(this, consumer);
     }
 }

@@ -1,81 +1,34 @@
 package se;
+public final class a extends xe.a {
+    public final ve.b f48187a = new df.c();
 
-import java.lang.ref.Reference;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.concurrent.Semaphore;
-public final class a implements Iterator {
-    public int f48130a;
-    public Object f48131b;
-    public final b f48132c;
-
-    public a(b bVar) {
-        this.f48132c = bVar;
-        this.f48130a = bVar.f48134b.size();
+    public static boolean i(d dVar, int i10) {
+        CharSequence charSequence = dVar.f48197a;
+        if (dVar.f48201g < 4 && i10 < charSequence.length() && charSequence.charAt(i10) == '>') {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final boolean hasNext() {
-        int i10;
-        synchronized (this.f48132c.f48134b) {
-            try {
-                this.f48131b = null;
-                while (true) {
-                    if (this.f48131b != null || (i10 = this.f48130a) <= 0) {
-                        break;
-                    }
-                    ArrayList arrayList = this.f48132c.f48134b;
-                    int i11 = i10 - 1;
-                    this.f48130a = i11;
-                    Reference reference = (Reference) arrayList.get(i11);
-                    Object obj = reference.get();
-                    if (obj != null && !this.f48132c.f48135c.contains(reference)) {
-                        this.f48131b = obj;
-                        break;
-                    }
-                }
-                if (this.f48131b == null) {
-                    b bVar = this.f48132c;
-                    if (bVar.f48133a) {
-                        ArrayList arrayList2 = bVar.f48134b;
-                        ArrayList arrayList3 = bVar.d;
-                        ArrayList arrayList4 = bVar.f48135c;
-                        if (bVar.e) {
-                            bVar.e = false;
-                            if (!arrayList4.isEmpty()) {
-                                arrayList2.removeAll(arrayList4);
-                                arrayList4.clear();
-                            }
-                            if (!arrayList3.isEmpty()) {
-                                arrayList2.addAll(arrayList3);
-                                arrayList3.clear();
-                            }
-                        } else {
-                            throw new IllegalStateException();
-                        }
-                    }
-                }
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-        if (this.f48131b == null) {
-            Semaphore semaphore = this.f48132c.f48136f;
-            if (semaphore != null) {
-                semaphore.release();
-            }
-            return false;
-        }
-        return true;
+    public final ve.a e() {
+        return this.f48187a;
     }
 
     @Override
-    public final Object next() {
-        Object obj = this.f48131b;
-        if (obj != null) {
-            return obj;
+    public final q3.h h(d dVar) {
+        char charAt;
+        int i10 = dVar.e;
+        if (i(dVar, i10)) {
+            int i11 = dVar.f48199c + dVar.f48201g;
+            int i12 = i11 + 1;
+            CharSequence charSequence = dVar.f48197a;
+            int i13 = i10 + 1;
+            if (i13 < charSequence.length() && ((charAt = charSequence.charAt(i13)) == '\t' || charAt == ' ')) {
+                i12 = i11 + 2;
+            }
+            return new q3.h(-1, i12, false);
         }
-        throw new NoSuchElementException();
+        return null;
     }
 }

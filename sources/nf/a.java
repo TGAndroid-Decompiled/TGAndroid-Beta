@@ -1,12 +1,39 @@
 package nf;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-public final class a extends mf.a {
-    public static final Logger f18779s = Logger.getLogger(a.class.getName());
-    public final Level f18780r;
+import android.os.Trace;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import ei.i;
+import java.util.Iterator;
+import rf.v;
+public final class a implements ViewTreeObserver.OnDrawListener {
+    public final int f13748a;
+    public final View f13749b;
 
-    public a(java.io.BufferedInputStream r24) {
-        throw new UnsupportedOperationException("Method not decompiled: nf.a.<init>(java.io.BufferedInputStream):void");
+    public a(int i10, View view) {
+        this.f13748a = i10;
+        this.f13749b = view;
+    }
+
+    @Override
+    public final void onDraw() {
+        switch (this.f13748a) {
+            case 0:
+                ih.c cVar = (ih.c) this.f13749b;
+                Trace.beginSection("OnDraw");
+                try {
+                    Iterator it = ((je.b) cVar.f8521b).iterator();
+                    while (it.hasNext()) {
+                        ((i) it.next()).a();
+                    }
+                    return;
+                } finally {
+                    Trace.endSection();
+                    cVar.forceLayout();
+                }
+            default:
+                ((v) this.f13749b).e.incrementAndGet();
+                return;
+        }
     }
 }

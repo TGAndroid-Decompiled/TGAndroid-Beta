@@ -1,41 +1,8 @@
 package org.telegram.ui.Components;
-
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Shader;
-import android.view.View;
-public final class vs extends View {
-    public final Paint f34361a;
-    public final Matrix f34362b;
-    public LinearGradient f34363c;
-    public int d;
-    public float e;
-    public float f34364f;
-
-    public vs(Context context) {
-        super(context);
-        this.f34361a = new Paint(1);
-        this.f34362b = new Matrix();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), this.e + this.f34364f, this.f34361a);
-    }
-
-    public void setColor(int i10) {
-        if (this.d != i10) {
-            this.d = i10;
-            int alpha = Color.alpha(i10);
-            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, new int[]{i0.a.o(i10, (alpha * 232) / 255), i0.a.o(i10, (alpha * 192) / 255), i0.a.o(i10, (alpha * 144) / 255), i0.a.o(i10, 0)}, (float[]) null, Shader.TileMode.CLAMP);
-            this.f34363c = linearGradient;
-            this.f34361a.setShader(linearGradient);
-            this.f34363c.setLocalMatrix(this.f34362b);
-            invalidate();
-        }
-    }
+public abstract class vs {
+    public static final gr f31836a = new gr(0.39d, 0.575d, 0.565d, 1.0d);
+    public static final gr f31837b = new gr(0.445d, 0.05d, 0.55d, 0.95d);
+    public static final gr f31838c = new gr(0.55d, 0.085d, 0.68d, 0.53d);
+    public static final gr d = new gr(0.25d, 0.46d, 0.45d, 0.94d);
+    public static final gr e = new gr(0.455d, 0.03d, 0.515d, 0.955d);
 }

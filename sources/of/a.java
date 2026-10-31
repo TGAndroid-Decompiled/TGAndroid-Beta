@@ -1,34 +1,24 @@
 package of;
 
-import java.io.FilterInputStream;
-public abstract class a extends mf.a {
-    public static String b(int i10, int i11, byte[] bArr) {
-        try {
-            String str = new String(bArr, i10, i11, "ISO-8859-1");
-            int indexOf = str.indexOf(0);
-            if (indexOf < 0) {
-                return str;
-            }
-            return str.substring(0, indexOf);
-        } catch (Exception unused) {
-            return "";
-        }
+import org.telegram.messenger.zs;
+public final class a implements Runnable {
+    public final int f14151a;
+    public final c f14152b;
+
+    public a(c cVar, int i10) {
+        this.f14151a = i10;
+        this.f14152b = cVar;
     }
 
-    public static boolean c(FilterInputStream filterInputStream) {
-        boolean z10;
-        filterInputStream.mark(3);
-        try {
-            if (filterInputStream.read() == 84 && filterInputStream.read() == 65) {
-                if (filterInputStream.read() == 71) {
-                    z10 = true;
-                    return z10;
-                }
-            }
-            z10 = false;
-            return z10;
-        } finally {
-            filterInputStream.reset();
+    @Override
+    public final void run() {
+        switch (this.f14151a) {
+            case 0:
+                this.f14152b.g(false);
+                return;
+            default:
+                zs.f(this.f14152b.f14160c).k(307, new Object[0]);
+                return;
         }
     }
 }

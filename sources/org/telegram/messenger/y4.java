@@ -2,109 +2,63 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.LocationController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
 public final class y4 implements Runnable {
-    public final int f21880a;
-    public final int f21881b;
-    public final Object f21882c;
-    public final Object d;
+    public final int f19334a;
+    public final i5 f19335b;
+    public final HashMap f19336c;
+    public final ArrayList d;
+    public final HashMap e;
 
-    public y4(Object obj, int i10, Object obj2, int i11) {
-        this.f21880a = i11;
-        this.f21882c = obj;
-        this.f21881b = i10;
-        this.d = obj2;
+    public y4(i5 i5Var, ArrayList arrayList, HashMap hashMap, HashMap hashMap2) {
+        this.f19334a = 4;
+        this.f19335b = i5Var;
+        this.d = arrayList;
+        this.f19336c = hashMap;
+        this.e = hashMap2;
     }
 
     @Override
     public final void run() {
-        switch (this.f21880a) {
+        switch (this.f19334a) {
             case 0:
-                ((ImageLoader) this.f21882c).lambda$runHttpFileLoadTasks$14((ImageLoader.HttpFileTask) this.d, this.f21881b);
+                HashMap hashMap = this.e;
+                i5 i5Var = this.f19335b;
+                i5Var.E(this.f19336c, this.d, hashMap, true);
+                i5Var.N();
+                i5Var.getNotificationCenter().k(25, new Object[0]);
+                i5Var.getNotificationCenter().k(26, new Object[0]);
                 return;
             case 1:
-                ((MediaDataController.AnonymousClass1) this.f21882c).lambda$run$0((Runnable) this.d, this.f21881b);
+                HashMap hashMap2 = this.e;
+                i5 i5Var2 = this.f19335b;
+                i5Var2.E(this.f19336c, this.d, hashMap2, true);
+                i5Var2.N();
+                i5Var2.getNotificationCenter().k(25, new Object[0]);
+                i5Var2.getNotificationCenter().k(26, new Object[0]);
                 return;
             case 2:
-                ((DownloadController) this.f21882c).lambda$onDownloadFail$8((MessageObject) this.d, this.f21881b);
+                this.f19335b.E(this.f19336c, this.d, this.e, true);
                 return;
             case 3:
-                ((FileLoader) this.f21882c).lambda$changePriority$11((String) this.d, this.f21881b);
-                return;
-            case 4:
-                ((ImageLoader) this.f21882c).lambda$changeFileLoadingPriorityForImageReceiver$3((ImageReceiver) this.d, this.f21881b);
-                return;
-            case 5:
-                ((LocationController) this.f21882c).lambda$saveSharingLocation$18(this.f21881b, (LocationController.SharingLocationInfo) this.d);
-                return;
-            case 6:
-                ((MediaDataController) this.f21882c).lambda$putPremiumPromoToCache$10((TLRPC.TL_help_premiumPromo) this.d, this.f21881b);
-                return;
-            case 7:
-                ((MediaDataController) this.f21882c).lambda$addRecentSticker$23(this.f21881b, (TLRPC.Document) this.d);
-                return;
-            case 8:
-                ((MediaDataController) this.f21882c).lambda$updateEmojiStatuses$235(this.f21881b, (TL_account.TL_emojiStatuses) this.d);
-                return;
-            case 9:
-                ((MediaDataController) this.f21882c).lambda$toggleStickerSetInternal$116((TLRPC.StickerSet) this.d, this.f21881b);
-                return;
-            case 10:
-                ((MediaDataController) this.f21882c).lambda$loadStickers$93(this.f21881b, (Utilities.Callback) this.d);
-                return;
-            case 11:
-                ((MessagesController) this.f21882c).lambda$checkCanOpenChat$460(this.f21881b, (org.telegram.ui.ActionBar.r2) this.d);
-                return;
-            case 12:
-                ((MessagesController) this.f21882c).lambda$migrateDialogs$213((TLRPC.messages_Dialogs) this.d, this.f21881b);
-                return;
-            case 13:
-                ((MessagesController) this.f21882c).lambda$toggleChatNoForwards$275((Utilities.Callback2) this.d, this.f21881b);
-                return;
-            case 14:
-                ((MessagesController) this.f21882c).lambda$loadGlobalNotificationsSettings$199((TLObject) this.d, this.f21881b);
-                return;
-            case 15:
-                ((MessagesController.DialogPhotos) this.f21882c).lambda$loadCache$4(this.f21881b, (HashMap) this.d);
-                return;
-            case 16:
-                ((MessagesStorage) this.f21882c).lambda$markMessageAsSendError$213(this.f21881b, (TLRPC.Message) this.d);
-                return;
-            case 17:
-                ((MessagesStorage) this.f21882c).lambda$broadcastScheduledMessagesChange$226((Long) this.d, this.f21881b);
-                return;
-            case 18:
-                ((MessagesStorage) this.f21882c).lambda$putDialogs$257((TLRPC.messages_Dialogs) this.d, this.f21881b);
-                return;
-            case 19:
-                ((NotificationCenter) this.f21882c).lambda$postNotificationNameOnUIThread$1(this.f21881b, (Object[]) this.d);
-                return;
-            case 20:
-                ((NotificationsController) this.f21882c).lambda$processNewMessages$26((ArrayList) this.d, this.f21881b);
-                return;
-            case 21:
-                ((SecretChatHelper) this.f21882c).lambda$performSendEncryptedRequest$4((TLRPC.Message) this.d, this.f21881b);
-                return;
-            case 22:
-                ((TelegramMediaSession) this.f21882c).lambda$loadChats$5((MessagesStorage) this.d, this.f21881b);
+                HashMap hashMap3 = this.e;
+                i5 i5Var3 = this.f19335b;
+                i5Var3.E(this.f19336c, this.d, hashMap3, true);
+                i5Var3.getNotificationCenter().k(26, new Object[0]);
                 return;
             default:
-                UserNameResolver.c((UserNameResolver) this.f21882c, (String) this.d, this.f21881b);
+                i5 i5Var4 = this.f19335b;
+                i5Var4.f16063c0 = this.d;
+                i5Var4.f16064d0 = this.f19336c;
+                i5Var4.f16061b0 = this.e;
                 return;
         }
     }
 
-    public y4(Object obj, Object obj2, int i10, int i11) {
-        this.f21880a = i11;
-        this.f21882c = obj;
-        this.d = obj2;
-        this.f21881b = i10;
+    public y4(i5 i5Var, HashMap hashMap, ArrayList arrayList, HashMap hashMap2, int i10) {
+        this.f19334a = i10;
+        this.f19335b = i5Var;
+        this.f19336c = hashMap;
+        this.d = arrayList;
+        this.e = hashMap2;
     }
 }

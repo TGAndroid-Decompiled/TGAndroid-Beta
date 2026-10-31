@@ -3,11 +3,9 @@ package org.telegram.messenger.voip;
 import android.graphics.Point;
 import java.nio.ByteBuffer;
 import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.f8;
+import org.telegram.messenger.tz;
+import org.telegram.messenger.v2;
 import org.telegram.messenger.voip.Instance;
 import org.telegram.messenger.voip.VoIPService;
 import org.webrtc.ContextUtils;
@@ -82,20 +80,19 @@ public class NativeInstance {
     }
 
     public static NativeInstance make(String str, Instance.Config config, String str2, Instance.Endpoint[] endpointArr, Instance.Proxy proxy, int i10, Instance.EncryptionKey encryptionKey, VideoSink videoSink, long j10, AudioLevelsCallback audioLevelsCallback) {
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("create new tgvoip instance, version " + str);
+        if (v2.f18448a) {
+            f8.b("create new tgvoip instance, version " + str);
         }
         NativeInstance nativeInstance = new NativeInstance();
         nativeInstance.persistentStateFilePath = str2;
         nativeInstance.audioLevelsCallback = audioLevelsCallback;
-        Point point = AndroidUtilities.displaySize;
-        Point point2 = AndroidUtilities.displaySize;
-        nativeInstance.nativePtr = makeNativeInstance(str, nativeInstance, config, str2, endpointArr, proxy, i10, encryptionKey, videoSink, j10, Math.min(point.x, point.y) / Math.max(point2.x, point2.y));
+        Point point = org.telegram.messenger.i0.f16026q;
+        nativeInstance.nativePtr = makeNativeInstance(str, nativeInstance, config, str2, endpointArr, proxy, i10, encryptionKey, videoSink, j10, Math.min(point.x, point.y) / Math.max(point.x, point.y));
         return nativeInstance;
     }
 
     public static NativeInstance makeGroup(String str, long j10, boolean z10, boolean z11, PayloadCallback payloadCallback, AudioLevelsCallback audioLevelsCallback, VideoSourcesCallback videoSourcesCallback, RequestBroadcastPartCallback requestBroadcastPartCallback, RequestBroadcastPartCallback requestBroadcastPartCallback2, RequestCurrentTimeCallback requestCurrentTimeCallback, boolean z12) {
-        ContextUtils.initialize(ApplicationLoader.applicationContext);
+        ContextUtils.initialize(org.telegram.messenger.w0.f19025b);
         NativeInstance nativeInstance = new NativeInstance();
         nativeInstance.payloadCallback = payloadCallback;
         nativeInstance.audioLevelsCallback = audioLevelsCallback;
@@ -104,7 +101,7 @@ public class NativeInstance {
         nativeInstance.cancelRequestBroadcastPartCallback = requestBroadcastPartCallback2;
         nativeInstance.requestCurrentTimeCallback = requestCurrentTimeCallback;
         nativeInstance.isGroup = true;
-        nativeInstance.nativePtr = makeGroupNativeInstance(nativeInstance, str, SharedConfig.disableVoiceAudioEffects, j10, z10, z11, z12);
+        nativeInstance.nativePtr = makeGroupNativeInstance(nativeInstance, str, tz.V, j10, z10, z11, z12);
         return nativeInstance;
     }
 
@@ -116,7 +113,7 @@ public class NativeInstance {
         if (this.isGroup && iArr != null && iArr.length == 0) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new k(this, iArr, fArr, zArr, 1));
+        org.telegram.messenger.i0.g3(new n(this, iArr, fArr, zArr, 1));
     }
 
     private void onCancelRequestBroadcastPart(long j10, int i10, int i11) {
@@ -125,15 +122,15 @@ public class NativeInstance {
 
     private void onEmitJoinPayload(String str, int i10) {
         try {
-            AndroidUtilities.runOnUIThread(new ai.h0(this, i10, str, 24));
+            org.telegram.messenger.i0.g3(new ag.o0(this, i10, str, 10));
         } catch (Exception e) {
-            FileLog.e(e);
+            f8.g(e, true);
         }
     }
 
     private void onNetworkStateUpdated(boolean z10, boolean z11) {
         if (this.onStateUpdatedListener != null) {
-            AndroidUtilities.runOnUIThread(new e2.o0(this, z10, z11, 2));
+            org.telegram.messenger.i0.g3(new e2.m0(this, z10, z11, 2));
         }
     }
 
@@ -141,7 +138,7 @@ public class NativeInstance {
         if (this.unknownParticipantsCallback == null) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new a3.i0(this, j10, iArr, 13));
+        org.telegram.messenger.i0.g3(new a3.i0(this, j10, iArr, 4));
     }
 
     private void onRemoteMediaStateUpdated(int i10, int i11) {
@@ -286,7 +283,7 @@ public class NativeInstance {
         try {
             this.stopBarrier.await();
         } catch (Exception e) {
-            FileLog.e(e);
+            f8.g(e, true);
         }
         return this.finalState;
     }

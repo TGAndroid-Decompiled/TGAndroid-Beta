@@ -1,153 +1,130 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.view.animation.OvershootInterpolator;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
-import java.util.Random;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
+import android.graphics.Bitmap;
+import android.os.Build;
+import android.view.Surface;
+import android.view.TextureView;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.List;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.video.VideoPlayerHolderBase;
 import org.telegram.tgnet.TLRPC;
-public abstract class d3 {
-    public static float A(float f7, float f10, float f11, float f12) {
-        return f12 - ((f7 * f10) * f11);
+import org.telegram.tgnet.tl.TL_iv;
+public final class d3 extends yr0 {
+    public final int[] f36601a = new int[2];
+    public final List f36602b;
+    public final h4 f36603c;
+
+    public d3(h4 h4Var, List list) {
+        this.f36603c = h4Var;
+        this.f36602b = list;
     }
 
-    public static int B(int i10, int i11, Drawable drawable) {
-        return (drawable.getIntrinsicHeight() / i10) + i11;
+    @Override
+    public final void D() {
+        this.f36603c.l();
     }
 
-    public static int C(int i10, int i11, Drawable drawable) {
-        return (drawable.getIntrinsicWidth() / i10) + i11;
-    }
-
-    public static boolean a(MessageObject messageObject) {
-        if (messageObject != null && messageObject.getDialogId() == 1271266957) {
-            return true;
+    @Override
+    public final gs0 E(org.telegram.messenger.jj jjVar, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        if (i10 >= 0) {
+            List list = this.f36602b;
+            if (i10 < list.size()) {
+                h4 h4Var = this.f36603c;
+                int[] iArr = this.f36601a;
+                ImageReceiver d02 = d0(h4Var.f37746u0[0].f39038b, (TL_iv.PageBlock) list.get(i10), iArr);
+                if (d02 != null) {
+                    gs0 gs0Var = new gs0();
+                    gs0Var.f37628b = iArr[0];
+                    gs0Var.f37629c = iArr[1];
+                    gs0Var.d = h4Var.f37746u0[0].f39038b;
+                    gs0Var.f37627a = d02;
+                    gs0Var.e = d02.p();
+                    gs0Var.h = d02.E();
+                    gs0Var.f37633j = h4Var.J0;
+                    return gs0Var;
+                }
+                return null;
+            }
+            return null;
         }
-        return false;
+        return null;
     }
 
-    public static int b(e3 e3Var) {
-        int boundLeft = e3Var.getBoundLeft();
-        int boundRight = e3Var.getBoundRight();
-        if (boundLeft >= 0 && boundRight >= 0 && boundRight >= boundLeft) {
-            return boundRight - boundLeft;
+    @Override
+    public final void Y(int r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.d3.Y(int):void");
+    }
+
+    public final ImageReceiver d0(ViewGroup viewGroup, TL_iv.PageBlock pageBlock, int[] iArr) {
+        int childCount = viewGroup.getChildCount();
+        for (int i10 = 0; i10 < childCount; i10++) {
+            ImageReceiver e02 = e0(viewGroup.getChildAt(i10), pageBlock, iArr);
+            if (e02 != null) {
+                return e02;
+            }
         }
-        return -1;
+        return null;
     }
 
-    public static float c(float f7, float f10, float f11) {
-        return (AndroidUtilities.dpf2(f7) * f10) + f11;
-    }
-
-    public static float d(float f7, float f10, float f11, float f12) {
-        return Math.min(f12, (f7 / f10) + f11);
-    }
-
-    public static float e(float f7, float f10, float f11, float f12, float f13) {
-        return (((f7 * f10) + f11) * f12) + f13;
-    }
-
-    public static float f(Random random, float f7, float f10) {
-        return (random.nextFloat() * f7) + f10;
-    }
-
-    public static int g(float f7, int i10, int i11) {
-        return Math.min(i11, i10 - AndroidUtilities.dp(f7));
-    }
-
-    public static int h(float f7, int i10, TextView textView) {
-        textView.setText(LocaleController.getString(i10));
-        return AndroidUtilities.dp(f7);
-    }
-
-    public static int i(int i10, int i11, Drawable drawable) {
-        return i11 - (drawable.getIntrinsicHeight() / i10);
-    }
-
-    public static int j(Random random, int i10) {
-        return Math.abs(random.nextInt() % i10);
-    }
-
-    public static TextView k(FrameLayout frameLayout, TextView textView, FrameLayout.LayoutParams layoutParams, Context context) {
-        frameLayout.addView(textView, layoutParams);
-        return new TextView(context);
-    }
-
-    public static o1.k l(float f7, float f10, float f11) {
-        o1.k kVar = new o1.k(f7);
-        kVar.b(f10);
-        kVar.a(f11);
-        return kVar;
-    }
-
-    public static void m(float f7, ValueAnimator valueAnimator) {
-        valueAnimator.setInterpolator(new OvershootInterpolator(f7));
-    }
-
-    public static void n(int i10, int i11, ArrayList arrayList, ArrayList arrayList2) {
-        arrayList.add(Integer.valueOf(i10));
-        arrayList2.add(Integer.valueOf(i11));
-    }
-
-    public static void o(int i10, TextView textView, int i11, float f7) {
-        textView.setText(LocaleController.getString(i10));
-        textView.setTextSize(i11, f7);
-    }
-
-    public static void p(int i10, String str, StringBuilder sb2) {
-        sb2.append(LocaleController.getString(i10));
-        sb2.append(str);
-    }
-
-    public static void q(int i10, String str, ArrayList arrayList) {
-        arrayList.add(new org.telegram.ui.Cells.w6(str, i10));
-    }
-
-    public static void r(int i10, ArrayList arrayList, ArrayList arrayList2, Integer num) {
-        arrayList.add(Integer.valueOf(i10));
-        arrayList2.add(num);
-    }
-
-    public static void s(int i10, org.telegram.ui.Components.aa0 aa0Var) {
-        aa0Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
-    }
-
-    public static void t(FrameLayout frameLayout, org.telegram.ui.ActionBar.u6 u6Var, TLRPC.TL_error tL_error, boolean z10) {
-        new org.telegram.ui.Components.wc(frameLayout, u6Var).g0(tL_error, z10);
-    }
-
-    public static boolean u(TLRPC.TL_game tL_game) {
-        if (tL_game != null) {
-            return true;
+    public final ImageReceiver e0(View view, TL_iv.PageBlock pageBlock, int[] iArr) {
+        org.telegram.ui.Components.ck0 ck0Var;
+        ImageReceiver e02;
+        ImageReceiver e03;
+        VideoPlayerHolderBase videoPlayerHolderBase;
+        if (view instanceof b2) {
+            b2 b2Var = (b2) view;
+            if (b2Var.N == pageBlock) {
+                view.getLocationInWindow(iArr);
+                return b2Var.e;
+            }
+            return null;
+        } else if (view instanceof v2) {
+            v2 v2Var = (v2) view;
+            ImageReceiver imageReceiver = v2Var.e;
+            TextureView textureView = v2Var.f42576n;
+            if (v2Var.L == pageBlock) {
+                view.getLocationInWindow(iArr);
+                h4 h4Var = this.f36603c;
+                if (v2Var == h4Var.f39489y && (videoPlayerHolderBase = h4Var.f39488x) != null && videoPlayerHolderBase.firstFrameRendered && textureView.getSurfaceTexture() != null) {
+                    if (Build.VERSION.SDK_INT >= 24) {
+                        Surface surface = new Surface(textureView.getSurfaceTexture());
+                        Bitmap createBitmap = Bitmap.createBitmap(textureView.getMeasuredWidth(), textureView.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+                        org.telegram.messenger.i0.y0(surface, createBitmap);
+                        surface.release();
+                        imageReceiver.v0(createBitmap);
+                    } else {
+                        imageReceiver.v0(textureView.getBitmap());
+                    }
+                    int i10 = v2.V;
+                    textureView.setAlpha(0.0f);
+                }
+                return imageReceiver;
+            }
+            return null;
+        } else if (view instanceof j1) {
+            ImageReceiver d02 = d0(((j1) view).f38404a, pageBlock, iArr);
+            if (d02 != null) {
+                return d02;
+            }
+            return null;
+        } else if (view instanceof o2) {
+            ImageReceiver d03 = d0(((o2) view).f40108b, pageBlock, iArr);
+            if (d03 != null) {
+                return d03;
+            }
+            return null;
+        } else if (view instanceof w1) {
+            org.telegram.ui.Components.ck0 ck0Var2 = ((w1) view).d;
+            if (ck0Var2 != null && (e03 = e0(ck0Var2.f47898a, pageBlock, iArr)) != null) {
+                return e03;
+            }
+            return null;
+        } else if ((view instanceof z1) && (ck0Var = ((z1) view).d) != null && (e02 = e0(ck0Var.f47898a, pageBlock, iArr)) != null) {
+            return e02;
+        } else {
+            return null;
         }
-        return false;
-    }
-
-    public static float v(float f7, float f10, float f11, float f12) {
-        return Math.max(f12, f11 - (f7 / f10));
-    }
-
-    public static int w(float f7, int i10, int i11) {
-        return (i10 - AndroidUtilities.dp(f7)) + i11;
-    }
-
-    public static int x(int i10, int i11, Drawable drawable) {
-        return i11 - (drawable.getIntrinsicWidth() / i10);
-    }
-
-    public static void y(int i10, int i11, ArrayList arrayList, ArrayList arrayList2) {
-        arrayList.add(LocaleController.getString(i10));
-        arrayList2.add(Integer.valueOf(i11));
-    }
-
-    public static void z(int i10, ArrayList arrayList, ArrayList arrayList2, Integer num) {
-        arrayList.add(LocaleController.getString(i10));
-        arrayList2.add(num);
     }
 }

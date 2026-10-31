@@ -1,95 +1,173 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
+import android.util.SparseArray;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.R;
-public final class zy extends FrameLayout implements org.telegram.ui.ActionBar.p6 {
-    public final ImageView f35464a;
-    public final TextView f35465b;
-    public final RadialProgressView f35466c;
-    public boolean d;
-    public final sz e;
+import android.view.ViewGroup;
+import androidx.recyclerview.widget.RecyclerView;
+public class zy extends s4.r {
+    public final SparseArray Q;
+    public int R;
+    public int S;
+    public int T;
+    public final int U;
+    public final tk0 V;
+    public boolean W;
+    public boolean X;
 
-    public zy(sz szVar, Context context) {
-        super(context);
-        this.e = szVar;
-        org.telegram.ui.ActionBar.e7 e7Var = org.telegram.ui.ActionBar.f7.f22628a;
-        ImageView imageView = new ImageView(getContext());
-        this.f35464a = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(R.drawable.gif_empty);
-        int i10 = org.telegram.ui.ActionBar.y6.Le;
-        org.telegram.ui.ActionBar.u6 u6Var = szVar.Z1;
-        org.telegram.ui.ActionBar.f7.t(imageView, i10, u6Var, PorterDuff.Mode.MULTIPLY);
-        addView(imageView, kb1.h(-2, -2.0f, 17, 0.0f, 8.0f, 0.0f, 0.0f));
-        TextView textView = new TextView(getContext());
-        this.f35465b = textView;
-        org.telegram.ui.d3.o(R.string.NoGIFsFound, textView, 1, 16.0f);
-        org.telegram.ui.ActionBar.f7.V(textView, i10, u6Var);
-        addView(textView, kb1.h(-2, -2.0f, 17, 0.0f, 42.0f, 0.0f, 0.0f));
-        RadialProgressView radialProgressView = new RadialProgressView(context, u6Var);
-        this.f35466c = radialProgressView;
-        radialProgressView.setVisibility(8);
-        radialProgressView.setProgressColor(szVar.A(org.telegram.ui.ActionBar.y6.f23429h6));
-        addView(radialProgressView, kb1.i(-2, -2, 17));
+    public zy(int i10, int i11, tk0 tk0Var) {
+        super(i10);
+        this.Q = new SparseArray();
+        this.R = -1;
+        this.W = true;
+        this.X = true;
+        this.V = tk0Var;
+        this.U = i11;
     }
 
-    public final void a(boolean z10) {
+    public final void B1() {
+        tk0 tk0Var;
+        s4.g0 adapter;
         int i10;
-        int i11;
-        if (this.d != z10) {
-            this.d = z10;
+        tk0 tk0Var2;
+        if (this.S > 0 && D1() && (adapter = (tk0Var = this.V).getAdapter()) != null) {
+            int i11 = this.J;
+            boolean z10 = true;
+            int b10 = adapter.b() - 1;
+            g.o oVar = this.O;
+            boolean z11 = true;
             int i12 = 0;
-            if (z10) {
-                i10 = 8;
-            } else {
-                i10 = 0;
+            int i13 = 0;
+            int i14 = 0;
+            while (true) {
+                i10 = this.U;
+                if (i12 < b10) {
+                    int i15 = oVar.i(i12);
+                    i13 += i15;
+                    if (i15 == i11 || i13 > i11) {
+                        z11 = z10;
+                        i13 = i15;
+                    }
+                    if (!z11) {
+                        tk0Var2 = tk0Var;
+                    } else {
+                        int d = adapter.d(i12);
+                        SparseArray sparseArray = this.Q;
+                        s4.c1 c1Var = (s4.c1) sparseArray.get(d, null);
+                        if (c1Var == null) {
+                            c1Var = adapter.a(tk0Var, d);
+                            View view = c1Var.f47898a;
+                            sparseArray.put(d, c1Var);
+                            if (view.getLayoutParams() == null) {
+                                view.setLayoutParams(n());
+                            }
+                        }
+                        View view2 = c1Var.f47898a;
+                        if (this.W) {
+                            adapter.t(c1Var, i12);
+                        }
+                        s4.o0 o0Var = (s4.o0) view2.getLayoutParams();
+                        tk0Var2 = tk0Var;
+                        view2.measure(s4.n0.s(d(), this.T, this.f47985k, E() + D() + ((ViewGroup.MarginLayoutParams) o0Var).leftMargin + ((ViewGroup.MarginLayoutParams) o0Var).rightMargin, ((ViewGroup.MarginLayoutParams) o0Var).width), s4.n0.s(this.X, this.S, this.f47986l, C() + F() + ((ViewGroup.MarginLayoutParams) o0Var).topMargin + ((ViewGroup.MarginLayoutParams) o0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) o0Var).height));
+                        i14 += view2.getMeasuredHeight();
+                        if (i14 >= (this.S - i10) - tk0Var2.getPaddingBottom()) {
+                            break;
+                        }
+                        z11 = false;
+                    }
+                    i12++;
+                    tk0Var = tk0Var2;
+                    z10 = true;
+                } else {
+                    tk0Var2 = tk0Var;
+                    break;
+                }
             }
-            this.f35464a.setVisibility(i10);
-            if (z10) {
-                i11 = 8;
-            } else {
-                i11 = 0;
-            }
-            this.f35465b.setVisibility(i11);
-            if (!z10) {
-                i12 = 8;
-            }
-            this.f35466c.setVisibility(i12);
+            this.R = Math.max(0, ((this.S - i14) - i10) - tk0Var2.getPaddingBottom());
         }
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int dp;
-        sz szVar = this.e;
-        int measuredHeight = szVar.f32728h0.getMeasuredHeight();
-        if (!this.d) {
-            dp = (int) (org.telegram.messenger.wh.B(8.0f, measuredHeight - szVar.f32709b1, 3) * 1.7f);
-        } else {
-            dp = measuredHeight - AndroidUtilities.dp(80.0f);
-        }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(dp, 1073741824));
+    public final void C1() {
+        this.W = false;
+    }
+
+    public boolean D1() {
+        return true;
     }
 
     @Override
-    public final void updateColors() {
-        try {
-            this.f35466c.setProgressColor(this.e.A(org.telegram.ui.ActionBar.y6.f23429h6));
-            invalidate();
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
+    public final void Q() {
+        this.Q.clear();
+        B1();
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final void V(RecyclerView recyclerView, int i10, int i11) {
+        super.V(recyclerView, i10, i11);
+        B1();
+    }
+
+    @Override
+    public final void W(RecyclerView recyclerView) {
+        this.Q.clear();
+        B1();
+        super.W(recyclerView);
+    }
+
+    @Override
+    public final void X(RecyclerView recyclerView, int i10, int i11) {
+        super.X(recyclerView, i10, i11);
+        B1();
+    }
+
+    @Override
+    public final void Y(RecyclerView recyclerView, int i10, int i11) {
+        super.Y(recyclerView, i10, i11);
+        B1();
+    }
+
+    @Override
+    public final void Z() {
+        B1();
+    }
+
+    @Override
+    public final void a0(RecyclerView recyclerView, int i10, int i11, Object obj) {
+        super.a0(recyclerView, i10, i11, obj);
+        B1();
+    }
+
+    @Override
+    public final void d0(hf.e eVar, s4.z0 z0Var, int i10, int i11) {
+        int i12 = this.S;
+        this.T = View.MeasureSpec.getSize(i10);
+        int size = View.MeasureSpec.getSize(i11);
+        this.S = size;
+        if (i12 != size) {
+            B1();
+        }
+        super.d0(eVar, z0Var, i10, i11);
+    }
+
+    @Override
+    public final boolean e() {
+        return this.X;
+    }
+
+    @Override
+    public final void w1(int i10, View view, boolean z10) {
+        if (this.V.G(view).b() == B() - 1) {
+            ((ViewGroup.MarginLayoutParams) ((s4.o0) view.getLayoutParams())).height = Math.max(this.R, 0);
+        }
+        super.w1(i10, view, z10);
+    }
+
+    public zy(int i10, org.telegram.ui.i40 i40Var) {
+        super(i10, false);
+        this.Q = new SparseArray();
+        this.R = -1;
+        this.W = true;
+        this.X = true;
+        this.V = i40Var;
+        this.U = 0;
     }
 }

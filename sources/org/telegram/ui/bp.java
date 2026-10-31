@@ -6,32 +6,62 @@ import android.graphics.Paint;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
-public final class bp extends org.telegram.ui.Components.nm0 {
-    public static final int f38079j3 = 0;
-    public final ap f38080f3;
-    public boolean f38081g3;
-    public final Paint f38082h3;
-    public final cp f38083i3;
+public final class bp extends org.telegram.ui.Components.tk0 {
+    public static final int f36287i3 = 0;
+    public final ap f36288e3;
+    public boolean f36289f3;
+    public final Paint f36290g3;
+    public final cp f36291h3;
 
     public bp(cp cpVar, Context context) {
         super(context, null);
-        this.f38083i3 = cpVar;
-        this.f38081g3 = false;
-        this.f38082h3 = new Paint(1);
+        this.f36291h3 = cpVar;
+        this.f36289f3 = false;
+        this.f36290g3 = new Paint(1);
         ap apVar = new ap(this);
-        this.f38080f3 = apVar;
+        this.f36288e3 = apVar;
         setAdapter(apVar);
-        setLayoutManager(new s4.c0());
+        setLayoutManager(new s4.a0());
         setOnItemClickListener(new zo(this));
-        new s4.z(new ei.f(this, 1)).h(this);
+        new s4.x(new ja(this, 1)).h(this);
     }
 
-    public final void C1(TLRPC.TL_username tL_username, boolean z10, boolean z11) {
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
+        int R;
+        int size = this.f36291h3.N.size();
+        int i10 = Integer.MAX_VALUE;
+        int i11 = Integer.MIN_VALUE;
+        for (int i12 = 0; i12 < getChildCount(); i12++) {
+            View childAt = getChildAt(i12);
+            if (childAt != null && (R = RecyclerView.R(childAt)) >= 1 && R <= size) {
+                i10 = Math.min(childAt.getTop(), i10);
+                i11 = Math.max(childAt.getBottom(), i11);
+            }
+        }
+        if (i10 < i11) {
+            int w02 = org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f20929d6, this.f30625n2);
+            Paint paint = this.f36290g3;
+            paint.setColor(w02);
+            canvas2 = canvas;
+            canvas2.drawRect(0.0f, i10, getWidth(), i11, paint);
+        } else {
+            canvas2 = canvas;
+        }
+        super.dispatchDraw(canvas2);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(9999999, Integer.MIN_VALUE));
+    }
+
+    public final void z1(TLRPC.TL_username tL_username, boolean z10, boolean z11) {
         TLRPC.TL_username tL_username2;
         int min;
-        cp cpVar = this.f38083i3;
+        cp cpVar = this.f36291h3;
         ArrayList arrayList = cpVar.N;
         int i10 = 0;
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
@@ -79,14 +109,14 @@ public final class bp extends org.telegram.ui.Components.nm0 {
                         View childAt = getChildAt(i17);
                         if (RecyclerView.R(childAt) == i12) {
                             if (z11) {
-                                AndroidUtilities.shakeView(childAt);
+                                org.telegram.messenger.i0.E3(childAt);
                             }
-                            if (childAt instanceof qa) {
-                                qa qaVar = (qa) childAt;
-                                qaVar.setLoading(cpVar.P.contains(tL_username2.username));
-                                TLRPC.TL_username tL_username3 = qaVar.v;
+                            if (childAt instanceof la) {
+                                la laVar = (la) childAt;
+                                laVar.setLoading(cpVar.P.contains(tL_username2.username));
+                                TLRPC.TL_username tL_username3 = laVar.f39132w;
                                 if (tL_username3 != null) {
-                                    qaVar.a(tL_username3, qaVar.f42656w, true, qaVar.f42657x);
+                                    laVar.a(tL_username3, laVar.f39133x, true, laVar.f39134y);
                                 }
                             }
                         } else {
@@ -95,14 +125,14 @@ public final class bp extends org.telegram.ui.Components.nm0 {
                     }
                     if (i13 >= 0 && i12 != i13) {
                         int i18 = i13 - 1;
-                        ap apVar = this.f38080f3;
-                        ArrayList arrayList2 = apVar.f37805c.f38083i3.N;
+                        ap apVar = this.f36288e3;
+                        ArrayList arrayList2 = apVar.f35689c.f36291h3.N;
                         if (i11 < arrayList2.size() && i18 < arrayList2.size()) {
                             arrayList2.add(i18, (TLRPC.TL_username) arrayList2.remove(i11));
-                            apVar.p(i12, i13);
+                            apVar.j(i12, i13);
                             while (i10 < arrayList2.size()) {
                                 i10++;
-                                apVar.m(i10);
+                                apVar.g(i10);
                             }
                             return;
                         }
@@ -113,36 +143,5 @@ public final class bp extends org.telegram.ui.Components.nm0 {
                 return;
             }
         }
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        int R;
-        int size = this.f38083i3.N.size();
-        int i10 = Integer.MAX_VALUE;
-        int i11 = Integer.MIN_VALUE;
-        for (int i12 = 0; i12 < getChildCount(); i12++) {
-            View childAt = getChildAt(i12);
-            if (childAt != null && (R = RecyclerView.R(childAt)) >= 1 && R <= size) {
-                i10 = Math.min(childAt.getTop(), i10);
-                i11 = Math.max(childAt.getBottom(), i11);
-            }
-        }
-        if (i10 < i11) {
-            int w02 = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23357d6, this.f30988n2);
-            Paint paint = this.f38082h3;
-            paint.setColor(w02);
-            canvas2 = canvas;
-            canvas2.drawRect(0.0f, i10, getWidth(), i11, paint);
-        } else {
-            canvas2 = canvas;
-        }
-        super.dispatchDraw(canvas2);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(9999999, Integer.MIN_VALUE));
     }
 }

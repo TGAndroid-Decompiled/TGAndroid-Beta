@@ -1,90 +1,48 @@
 package mg;
 
-import android.graphics.Canvas;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import bi.dd;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.util.Locale;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BillingController;
-import org.telegram.messenger.t;
-import org.telegram.ui.ke;
-public final class d {
-    public final long[] f18449a;
-    public final CharSequence[] f18450b;
-    public final CharSequence[] f18451c;
-    public final StaticLayout[] d;
-    public final StaticLayout[] e;
-    public int f18452f;
-    public int f18453g;
-    public DecimalFormat h;
+import java.util.Calendar;
+import org.telegram.messenger.cd;
+import org.telegram.ui.Components.wb0;
+public final class d implements wb0 {
+    public final int f13087a;
+    public final long f13088b;
+    public final Calendar f13089c;
+    public final int d;
 
-    public d(long r24, long r26, boolean r28, float r29, int r30, android.text.TextPaint r31, android.text.TextPaint r32) {
-        throw new UnsupportedOperationException("Method not decompiled: mg.d.<init>(long, long, boolean, float, int, android.text.TextPaint, android.text.TextPaint):void");
+    public d(long j10, Calendar calendar, int i10, int i11) {
+        this.f13087a = i11;
+        this.f13088b = j10;
+        this.f13089c = calendar;
+        this.d = i10;
     }
 
-    public final void a(Canvas canvas, int i10, int i11, float f7, float f10, TextPaint textPaint) {
-        StaticLayout[] staticLayoutArr;
-        CharSequence[] charSequenceArr;
-        StaticLayout[] staticLayoutArr2 = this.e;
-        StaticLayout[] staticLayoutArr3 = this.d;
-        if (i10 == 0) {
-            staticLayoutArr = staticLayoutArr3;
-        } else {
-            staticLayoutArr = staticLayoutArr2;
-        }
-        StaticLayout staticLayout = staticLayoutArr[i11];
-        if (staticLayout == null) {
-            if (i10 == 0) {
-                charSequenceArr = this.f18450b;
-            } else {
-                charSequenceArr = this.f18451c;
-            }
-            CharSequence charSequence = charSequenceArr[i11];
-            if (i10 == 0) {
-                staticLayoutArr2 = staticLayoutArr3;
-            }
-            StaticLayout staticLayout2 = new StaticLayout(charSequence, textPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            staticLayoutArr2[i11] = staticLayout2;
-            staticLayout = staticLayout2;
-        }
-        canvas.save();
-        canvas.translate(f7, textPaint.ascent() + f10);
-        staticLayout.draw(canvas);
-        canvas.restore();
-    }
-
-    public final CharSequence b(int i10, TextPaint textPaint, long j10, int i11) {
-        int i12 = 2;
-        if (i11 == 1) {
-            if (i10 == 1) {
-                return "≈" + BillingController.getInstance().formatCurrency(j10, "USD");
-            }
-            if (this.h == null) {
-                DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
-                decimalFormatSymbols.setDecimalSeparator('.');
-                DecimalFormat decimalFormat = new DecimalFormat("#.##", decimalFormatSymbols);
-                this.h = decimalFormat;
-                decimalFormat.setMinimumFractionDigits(2);
-                this.h.setMaximumFractionDigits(6);
-                this.h.setGroupingUsed(false);
-            }
-            DecimalFormat decimalFormat2 = this.h;
-            if (j10 <= 1000000000) {
-                i12 = 6;
-            }
-            decimalFormat2.setMaximumFractionDigits(i12);
-            return ke.K("TON " + this.h.format(j10 / 1.0E9d), textPaint, 0.8f, -AndroidUtilities.dp(0.66f), false);
-        } else if (i11 == 2) {
-            if (i10 == 1) {
-                return "≈" + BillingController.getInstance().formatCurrency(j10, "USD");
-            }
-            return dd.W0(false, t.i(j10, ' ', new StringBuilder("XTR ")), 0.65f, null);
-        } else {
-            return AndroidUtilities.formatWholeNumber((int) j10, 0);
+    @Override
+    public final String e(int i10) {
+        int i11 = this.f13087a;
+        int i12 = this.d;
+        Calendar calendar = this.f13089c;
+        long j10 = this.f13088b;
+        switch (i11) {
+            case 0:
+                if (i10 == 0) {
+                    return cd.L0(2131748546, "MessageScheduleToday");
+                }
+                long j11 = (i10 * 86400000) + j10;
+                calendar.setTimeInMillis(j11);
+                if (calendar.get(1) == i12) {
+                    return cd.D0().v0().format(j11);
+                }
+                return cd.D0().x0().format(j11);
+            default:
+                if (i10 == 0) {
+                    return cd.L0(2131748546, null);
+                }
+                long j12 = (i10 * 86400000) + j10;
+                calendar.setTimeInMillis(j12);
+                if (calendar.get(1) == i12) {
+                    return cd.D0().z0().format(j12) + " " + cd.D0().v0().format(j12);
+                }
+                return cd.D0().x0().format(j12);
         }
     }
 }

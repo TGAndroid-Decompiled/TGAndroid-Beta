@@ -1,49 +1,93 @@
 package uh;
 
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Cells.y;
-public abstract class c extends Drawable {
-    public final y f49947a;
-    public int f49948b;
-    public int f49949c = 255;
+import android.content.Context;
+import android.graphics.Canvas;
+import org.telegram.messenger.i0;
+import org.telegram.ui.Components.ak0;
+import org.telegram.ui.Components.pt0;
+import org.telegram.ui.Components.rs0;
+import org.telegram.ui.m10;
+public final class c extends pt0 {
+    public final i f50235u3;
 
-    public c(u6 u6Var) {
-        int w02 = y6.w0(y6.f23449i6, u6Var);
-        this.f49948b = w02;
-        this.f49947a = y6.Z(w02, 0, 0);
-    }
-
-    public abstract void a(int i10);
-
-    @Override
-    public final int getAlpha() {
-        return this.f49949c;
+    public c(i iVar, Context context) {
+        super(context);
+        this.f50235u3 = iVar;
     }
 
     @Override
-    public final int getOpacity() {
-        return 0;
+    public final boolean A1() {
+        return this.f50235u3.f50246b;
     }
 
     @Override
-    public void onBoundsChange(Rect rect) {
-        super.onBoundsChange(rect);
-        this.f49947a.setBounds(rect);
+    public final boolean B1() {
+        return true;
     }
 
     @Override
-    public final void setAlpha(int i10) {
-        if (this.f49949c != i10) {
-            this.f49949c = i10;
-            a(i10);
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        int i10 = 0;
+        int i11 = 0;
+        for (int i12 = 0; i12 < getChildCount(); i12++) {
+            int bottom = getChildAt(i12).getBottom() - getPaddingTop();
+            if (bottom > i11) {
+                i11 = bottom;
+            }
         }
+        float f7 = i11;
+        i iVar = this.f50235u3;
+        m10 m10Var = iVar.J;
+        if (iVar.f50246b) {
+            rs0 rs0Var = iVar.f50250r;
+            int i13 = 0;
+            for (int i14 = 0; i14 < rs0Var.getChildCount(); i14++) {
+                int bottom2 = rs0Var.getChildAt(i14).getBottom() - rs0Var.getPaddingTop();
+                if (bottom2 > i13) {
+                    i13 = bottom2;
+                }
+            }
+            f7 = i0.T1(f7, i13, iVar.f50247c);
+        }
+        if (iVar.f50252w.b() <= 0) {
+            i10 = 8;
+        }
+        m10Var.setVisibility(i10);
+        m10Var.setTranslationY(f7);
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final int getAnimateToColumnsCount() {
+        return this.f50235u3.e;
+    }
+
+    @Override
+    public final float getChangeColumnsProgress() {
+        return this.f50235u3.f50247c;
+    }
+
+    @Override
+    public final int getColumnsCount() {
+        return this.f50235u3.d;
+    }
+
+    @Override
+    public final ak0 getMovingAdapter() {
+        i iVar = this.f50235u3;
+        if (iVar.G.D == 0 && !iVar.W.G.E1) {
+            return iVar.f50252w;
+        }
+        return null;
+    }
+
+    @Override
+    public final ak0 getSupportingAdapter() {
+        return this.f50235u3.f50253x;
+    }
+
+    @Override
+    public final rs0 getSupportingListView() {
+        return this.f50235u3.f50250r;
     }
 }

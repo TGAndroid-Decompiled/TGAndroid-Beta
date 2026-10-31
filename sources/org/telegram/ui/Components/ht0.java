@@ -1,52 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.View;
+import android.content.Context;
 import androidx.recyclerview.widget.RecyclerView;
-public final class ht0 extends s4.n0 {
-    public final bt0 f29075a;
+import java.util.ArrayList;
+public final class ht0 extends org.telegram.ui.Cells.v2 {
+    public final it0 f26810a5;
 
-    public ht0(bt0 bt0Var) {
-        this.f29075a = bt0Var;
+    public ht0(it0 it0Var, Context context) {
+        super(context, true);
+        this.f26810a5 = it0Var;
     }
 
     @Override
-    public final void d(Rect rect, View view, RecyclerView recyclerView, s4.b1 b1Var) {
-        boolean z10;
-        boolean z11;
-        if (view instanceof org.telegram.ui.Cells.w7) {
-            org.telegram.ui.Cells.w7 w7Var = (org.telegram.ui.Cells.w7) view;
-            bt0 bt0Var = this.f29075a;
-            bt0Var.f33468n.getClass();
-            int R = RecyclerView.R(w7Var);
-            int i10 = bt0Var.f33469r.J;
-            boolean z12 = true;
-            if (R < i10) {
-                z10 = true;
-            } else {
-                z10 = false;
+    public final boolean X() {
+        return false;
+    }
+
+    @Override
+    public final boolean getIsPinned() {
+        it0 it0Var = this.f26810a5;
+        ArrayList arrayList = it0Var.f27078f;
+        rs0 rs0Var = it0Var.f27081s;
+        if (rs0Var != null && rs0Var.getAdapter() == it0Var) {
+            it0Var.f27081s.getClass();
+            int R = RecyclerView.R(this);
+            if (R >= 0 && R < arrayList.size()) {
+                return ((org.telegram.messenger.fw) arrayList.get(R)).f15625b;
             }
-            w7Var.f25637a0 = z10;
-            int i11 = R % i10;
-            if (i11 == 0) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            w7Var.V = z11;
-            if (i11 != i10 - 1) {
-                z12 = false;
-            }
-            w7Var.W = z12;
-            rect.left = 0;
-            rect.top = 0;
-            rect.bottom = 0;
-            rect.right = 0;
-            return;
+            return false;
         }
-        rect.left = 0;
-        rect.top = 0;
-        rect.bottom = 0;
-        rect.right = 0;
+        return false;
     }
 }

@@ -1,65 +1,38 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.IMapsProvider;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class zb0 implements Runnable {
-    public final int f46215a;
-    public final rc0 f46216b;
+    public final int f44081a;
+    public final hf0 f44082b;
 
-    public zb0(rc0 rc0Var, int i10) {
-        this.f46215a = i10;
-        this.f46216b = rc0Var;
+    public zb0(hf0 hf0Var, int i10) {
+        this.f44081a = i10;
+        this.f44082b = hf0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f46215a) {
+        int i10 = this.f44081a;
+        hf0 hf0Var = this.f44082b;
+        switch (i10) {
             case 0:
-                rc0 rc0Var = this.f46216b;
-                IMapsProvider.ICameraUpdate iCameraUpdate = rc0Var.J;
-                if (iCameraUpdate != null) {
-                    rc0Var.I.moveCamera(iCameraUpdate);
-                    rc0Var.J = null;
-                    return;
-                }
+                hf0Var.f37923c0 = false;
                 return;
             case 1:
-                rc0 rc0Var2 = this.f46216b;
-                rc0Var2.getLocationController().setProximityLocation(rc0Var2.f42928e0, 0, true);
-                rc0Var2.G = false;
-                return;
-            case 2:
-                rc0 rc0Var3 = this.f46216b;
-                IMapsProvider.IMap iMap = rc0Var3.I;
-                if (iMap != null) {
-                    iMap.setPadding(AndroidUtilities.dp(70.0f), 0, AndroidUtilities.dp(70.0f), AndroidUtilities.dp(10.0f));
-                }
-                if (!rc0Var3.R.getRadiusSet()) {
-                    double d = rc0Var3.P;
-                    if (d > 0.0d) {
-                        rc0Var3.O.setRadius(d);
-                    } else {
-                        IMapsProvider.ICircle iCircle = rc0Var3.O;
-                        if (iCircle != null) {
-                            iCircle.remove();
-                            rc0Var3.O = null;
-                        }
-                    }
-                }
-                rc0Var3.R = null;
-                return;
-            case 3:
-                oc0 oc0Var = this.f46216b.f42951x;
-                if (oc0Var != null) {
-                    oc0Var.a();
-                    return;
-                }
-                return;
-            case 4:
-                rc0.W(this.f46216b);
+                hf0Var.f37947w0 = false;
+                hf0Var.F1(true, true);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new zb0(this.f46216b, 0));
+                if (hf0Var.getParentActivity() != null && !hf0Var.getParentActivity().isFinishing() && hf0Var.getParentActivity() != null) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(hf0Var.getParentActivity());
+                    String L0 = org.telegram.messenger.cd.L0(2131746088, null);
+                    org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20134a;
+                    x1Var.R = L0;
+                    x1Var.T = org.telegram.messenger.cd.L0(2131745966, null);
+                    alertDialog$Builder.k(org.telegram.messenger.cd.L0(2131747847, null), new cc0(hf0Var, 1));
+                    alertDialog$Builder.p();
+                    return;
+                }
                 return;
         }
     }

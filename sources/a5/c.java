@@ -1,35 +1,48 @@
 package a5;
 
-import android.view.animation.Interpolator;
-import org.telegram.messenger.wh;
-public final class c implements Interpolator {
-    public final int f283a;
+import android.content.pm.PackageInfo;
+import android.net.Uri;
+import android.webkit.WebView;
+import b5.m;
+import b5.n;
+import b5.o;
+import java.util.Set;
+import java.util.WeakHashMap;
+import k6.h;
+public abstract class c {
+    public static final boolean f283a;
+    public static final WeakHashMap f284b;
 
-    public c(int i10) {
-        this.f283a = i10;
+    static {
+        Uri.parse("*");
+        Uri.parse("");
+        f283a = true;
+        f284b = new WeakHashMap();
     }
 
-    @Override
-    public final float getInterpolation(float f7) {
-        switch (this.f283a) {
-            case 0:
-            case 4:
-            default:
-                float f10 = f7 - 1.0f;
-                return (f10 * f10 * f10 * f10 * f10) + 1.0f;
-            case 1:
-                return (float) Math.pow(f7, 2.0d);
-            case 2:
-                if (f7 < 0.33f) {
-                    return (f7 / 0.33f) * 0.1f;
-                }
-                float f11 = f7 - 0.33f;
-                if (f11 < 0.33f) {
-                    return wh.w(f11, 0.34f, 0.15f, 0.1f);
-                }
-                return (((f11 - 0.34f) / 0.33f) * 0.05f) - 0.05f;
-            case 3:
-                return f7 * f7 * f7 * f7 * f7;
+    public static void a(WebView webView, String str, Set set, b bVar) {
+        if (m.f2499c.b()) {
+            c(webView).f2501a.addWebMessageListener(str, (String[]) set.toArray(new String[0]), new me.a(new h(bVar, 8)));
+            return;
         }
+        throw new UnsupportedOperationException("This method is not supported by the current version of the framework and the current WebView APK");
+    }
+
+    public static PackageInfo b() {
+        return (PackageInfo) Class.forName("android.webkit.WebViewFactory").getMethod("getLoadedPackageInfo", null).invoke(null, null);
+    }
+
+    public static o c(WebView webView) {
+        if (m.e.b() && f283a) {
+            WeakHashMap weakHashMap = f284b;
+            o oVar = (o) weakHashMap.get(webView);
+            if (oVar == null) {
+                o oVar2 = new o(n.f2500a.createWebView(webView));
+                weakHashMap.put(webView, oVar2);
+                return oVar2;
+            }
+            return oVar;
+        }
+        return new o(n.f2500a.createWebView(webView));
     }
 }

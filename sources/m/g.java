@@ -1,6 +1,5 @@
 package m;
 
-import a8.de;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 public final class g extends v implements i {
@@ -13,7 +12,7 @@ public final class g extends v implements i {
         setFocusable(true);
         setVisibility(0);
         setEnabled(true);
-        de.a(this, getContentDescription());
+        w7.t.a(this, getContentDescription());
         setOnTouchListener(new l.b(this, this));
     }
 

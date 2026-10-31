@@ -1,3 +1,22 @@
 package wc;
-public class c extends g {
+
+import java.lang.reflect.Field;
+import java.util.Collections;
+import java.util.Map;
+public abstract class c {
+    public static final Map f52802a;
+
+    static {
+        Map map;
+        try {
+            Field declaredField = ue.b.class.getDeclaredField("a");
+            declaredField.setAccessible(true);
+            map = (Map) declaredField.get(null);
+        } catch (Throwable th2) {
+            Map map2 = Collections.EMPTY_MAP;
+            th2.printStackTrace();
+            map = map2;
+        }
+        f52802a = map;
+    }
 }

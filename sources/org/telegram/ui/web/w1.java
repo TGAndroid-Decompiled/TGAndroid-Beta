@@ -1,85 +1,82 @@
 package org.telegram.ui.web;
 
-import android.content.Context;
-import android.graphics.drawable.ShapeDrawable;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.ImageView;
-import fi.u3;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.UserConfig;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.ar;
-import org.telegram.ui.Components.k71;
-import org.telegram.ui.Components.nm0;
-import org.telegram.ui.Components.s71;
-import org.telegram.ui.Components.t5;
-import org.telegram.ui.Components.t61;
-import org.telegram.ui.Components.u61;
-import org.telegram.ui.ok;
-public final class w1 extends t61 {
-    public static final int f44949a = 0;
+import java.util.ArrayList;
+import org.telegram.messenger.tz;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.w5;
+public final class w1 {
+    public final int f43227a;
+    public boolean f43228b;
+    public boolean f43229c;
+    public String d;
+    public float e;
+    public boolean f43230f;
+    public boolean f43231g;
+    public TLRPC.WebPage h;
+    public boolean f43232i;
+    public TLRPC.TL_webPage f43233j;
+    public int f43234k;
+    public w5 f43235l;
+    public final ArrayList f43236m = new ArrayList();
 
-    static {
-        t61.setup(new t61());
+    public w1(int i10) {
+        this.f43227a = i10;
     }
 
-    @Override
-    public final void bindView(View view, u61 u61Var, boolean z10, k71 k71Var, s71 s71Var) {
-        x1 x1Var = (x1) view;
-        CharSequence charSequence = u61Var.f33251n;
-        String str = (String) u61Var.f33249l;
-        long j10 = u61Var.B;
-        ImageView imageView = x1Var.f44963a;
-        x1Var.f44964b.setText(charSequence);
-        ok okVar = x1Var.f44965c;
-        okVar.setText(str);
-        if (TextUtils.isEmpty(charSequence)) {
-            okVar.setTranslationY(-AndroidUtilities.dp(14.0f));
-            okVar.setScaleX(1.3f);
-            okVar.setScaleY(1.3f);
-        } else {
-            okVar.setTranslationY(0.0f);
-            okVar.setScaleX(1.0f);
-            okVar.setScaleY(1.0f);
-        }
-        x1Var.e = str;
-        if (TextUtils.isEmpty(charSequence)) {
-            if (!str.isEmpty() && !TextUtils.isEmpty(str)) {
-                charSequence = str;
-            } else {
-                charSequence = "";
+    public final void a() {
+        w5 w5Var;
+        if (!this.f43229c) {
+            this.f43229c = true;
+            if (!this.f43231g) {
+                ConnectionsManager.getInstance(this.f43227a).cancelRequest(this.f43234k, true);
+            }
+            if (!this.f43232i && (w5Var = this.f43235l) != null) {
+                w5Var.run();
             }
         }
-        String charSequence2 = charSequence.toString();
-        t5 t5Var = x1Var.d;
-        if (t5Var != null) {
-            t5Var.o(imageView);
-            x1Var.d = null;
-        }
-        x1Var.h = null;
-        if (j10 != 0) {
-            t5 n10 = t5.n(UserConfig.selectedAccount, j10, null, 1);
-            x1Var.d = n10;
-            n10.a(imageView);
-            imageView.setImageDrawable(x1Var.d);
-        } else {
-            ShapeDrawable c02 = y6.c0(AndroidUtilities.dp(6.0f), y6.o1(0.1f, y6.x0(null, y6.G6, false)));
-            x1Var.h = c02;
-            ar arVar = new ar(c02, new u3(charSequence2));
-            int dp = AndroidUtilities.dp(28.0f);
-            int dp2 = AndroidUtilities.dp(28.0f);
-            arVar.h = dp;
-            arVar.f26643n = dp2;
-            imageView.setImageDrawable(arVar);
-        }
-        x1Var.f44966f = z10;
-        x1Var.invalidate();
     }
 
-    @Override
-    public final View createView(Context context, nm0 nm0Var, int i10, int i11, u6 u6Var) {
-        return new x1(context);
+    public final TLRPC.WebPage b() {
+        TLRPC.WebPage webPage;
+        if (!tz.f18192w0 && (webPage = this.h) != null) {
+            return webPage;
+        }
+        TLRPC.TL_webPage tL_webPage = this.f43233j;
+        if (tL_webPage != null) {
+            return tL_webPage;
+        }
+        return null;
+    }
+
+    public final void c() {
+        ArrayList arrayList = this.f43236m;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            ((Runnable) obj).run();
+        }
+    }
+
+    public final void d(v0 v0Var) {
+        if (this.f43229c) {
+            return;
+        }
+        TLRPC.TL_webPage tL_webPage = this.f43233j;
+        if (tL_webPage != null) {
+            y1.o(tL_webPage);
+            this.f43233j = null;
+        }
+        this.f43232i = false;
+        this.d = v0Var.getUrl();
+        this.e = v0Var.getProgress();
+        this.f43230f = v0Var.f43209b;
+        w5 w5Var = this.f43235l;
+        if (w5Var != null) {
+            w5Var.run();
+        }
+        this.f43235l = y1.e(v0Var, new u1(this, 1));
     }
 }

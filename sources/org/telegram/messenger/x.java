@@ -1,21 +1,28 @@
 package org.telegram.messenger;
-public final class x implements Runnable {
-    public final int f21798a;
-    public final BetaUpdaterController f21799b;
 
-    public x(BetaUpdaterController betaUpdaterController, int i10) {
-        this.f21798a = i10;
-        this.f21799b = betaUpdaterController;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+public final class x extends AnimatorListenerAdapter {
+    public final int f19165a;
+    public final View f19166b;
+
+    public x(int i10, View view) {
+        this.f19165a = i10;
+        this.f19166b = view;
     }
 
     @Override
-    public final void run() {
-        switch (this.f21798a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f19165a) {
             case 0:
-                BetaUpdaterController.b(this.f21799b);
+                this.f19166b.setTranslationX(0.0f);
+                return;
+            case 1:
+                i0.E2(this.f19166b);
                 return;
             default:
-                BetaUpdaterController.c(this.f21799b);
+                i0.E2(this.f19166b);
                 return;
         }
     }

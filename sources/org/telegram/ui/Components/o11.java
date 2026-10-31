@@ -1,42 +1,44 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class o11 implements org.telegram.ui.ActionBar.b2 {
-    public final int f31131a;
-    public final q11 f31132b;
+import android.widget.EditText;
+import androidx.recyclerview.widget.RecyclerView;
+public final class o11 extends s4.s0 {
+    public final int f28933a;
+    public final long f28934b;
+    public final t11 f28935c;
 
-    public o11(q11 q11Var, int i10) {
-        this.f31131a = i10;
-        this.f31132b = q11Var;
+    public o11(t11 t11Var, int i10, long j10) {
+        this.f28935c = t11Var;
+        this.f28933a = i10;
+        this.f28934b = j10;
     }
 
     @Override
-    public final void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        switch (this.f31131a) {
-            case 0:
-                this.f31132b.a();
+    public final void a(RecyclerView recyclerView, int i10) {
+        EditText editText = this.f28935c.f30418x;
+        if (i10 == 1 && editText.hasFocus()) {
+            org.telegram.messenger.i0.v1(editText);
+            editText.clearFocus();
+        }
+    }
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        t11 t11Var = this.f28935c;
+        t11Var.g();
+        s4.a0 a0Var = (s4.a0) recyclerView.getLayoutManager();
+        if (a0Var != null && a0Var.N0() >= t11Var.f30417w.f29508c.size() - 3) {
+            boolean z10 = t11Var.d;
+            int i12 = this.f28933a;
+            if (z10) {
+                org.telegram.messenger.vp.r1(i12).F1().g(false);
                 return;
-            case 1:
-                q11 q11Var = this.f31132b;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(q11Var.getContext());
-                alertDialog$Builder.f22369a.T = LocaleController.getString(R.string.TosDeclineDeleteAccount);
-                alertDialog$Builder.f22369a.R = LocaleController.getString(R.string.AppName);
-                alertDialog$Builder.k(LocaleController.getString(R.string.Deactivate), new o11(q11Var, 2));
-                ic.a.r(R.string.Cancel, alertDialog$Builder, null);
-                return;
-            default:
-                q11 q11Var2 = this.f31132b;
-                org.telegram.ui.ActionBar.e2 e2Var2 = new org.telegram.ui.ActionBar.e2(q11Var2.getContext(), 3, null);
-                e2Var2.f22576i0 = false;
-                TL_account.deleteAccount deleteaccount = new TL_account.deleteAccount();
-                deleteaccount.reason = "Decline ToS update";
-                ConnectionsManager.getInstance(q11Var2.d).sendRequest(deleteaccount, new org.telegram.ui.z7(24, q11Var2, e2Var2));
-                e2Var2.show();
-                return;
+            }
+            org.telegram.messenger.x00 x00Var = org.telegram.messenger.vp.r1(i12).f18891r7;
+            long j10 = -this.f28934b;
+            if (!x00Var.e(j10)) {
+                x00Var.o(j10);
+            }
         }
     }
 }

@@ -1,100 +1,117 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class v01 extends FrameLayout {
-    public final x01 f33510a;
-    public boolean f33511b;
-    public boolean f33512c;
-    public boolean d;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.ui.Components.ThemeEditorView;
+public final class v01 extends sk0 {
+    public final Context f31108c;
+    public int d;
+    public ArrayList e = new ArrayList();
+    public ArrayList f31109f = new ArrayList();
+    public ji0 h;
+    public String f31110n;
+    public final ThemeEditorView.EditorAlert f31111r;
 
-    public v01(x01 x01Var, View view, boolean z10) {
-        super(x01Var.getContext());
-        this.f33510a = x01Var;
-        setWillNotDraw(false);
-        if (!z10) {
-            setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f));
+    public v01(ThemeEditorView.EditorAlert editorAlert, Context context) {
+        this.f31111r = editorAlert;
+        this.f31108c = context;
+    }
+
+    public static CharSequence E(String str, String str2) {
+        if (TextUtils.isEmpty(str)) {
+            return "";
         }
-        addView(view, kb1.g(-1.0f, -1));
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        String trim = str.trim();
+        String lowerCase = trim.toLowerCase();
+        int i10 = 0;
+        while (true) {
+            int indexOf = lowerCase.indexOf(str2, i10);
+            if (indexOf == -1) {
+                break;
+            }
+            int length = str2.length() + indexOf;
+            if (i10 != 0 && i10 != indexOf + 1) {
+                spannableStringBuilder.append((CharSequence) trim.substring(i10, indexOf));
+            } else if (i10 == 0 && indexOf != 0) {
+                spannableStringBuilder.append((CharSequence) trim.substring(0, indexOf));
+            }
+            String substring = trim.substring(indexOf, Math.min(trim.length(), length));
+            if (substring.startsWith(" ")) {
+                spannableStringBuilder.append((CharSequence) " ");
+            }
+            String trim2 = substring.trim();
+            int length2 = spannableStringBuilder.length();
+            spannableStringBuilder.append((CharSequence) trim2);
+            spannableStringBuilder.setSpan(new ForegroundColorSpan(-11697229), length2, trim2.length() + length2, 33);
+            i10 = length;
+        }
+        if (i10 != -1 && i10 < trim.length()) {
+            spannableStringBuilder.append((CharSequence) trim.substring(i10));
+        }
+        return spannableStringBuilder;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        float f7;
-        float f10;
-        float f11;
-        float f12;
-        boolean z10 = this.f33512c;
-        x01 x01Var = this.f33510a;
-        if (z10 || this.d) {
-            canvas2 = canvas;
-            float dp = AndroidUtilities.dp(10.0f);
-            float[] fArr = x01Var.f34629c;
-            boolean z11 = this.f33512c;
-            if (z11) {
-                f7 = dp;
-            } else {
-                f7 = 0.0f;
-            }
-            fArr[1] = f7;
-            fArr[0] = f7;
-            if (z11) {
-                f10 = dp;
-            } else {
-                f10 = 0.0f;
-            }
-            fArr[3] = f10;
-            fArr[2] = f10;
-            boolean z12 = this.d;
-            if (z12) {
-                f11 = dp;
-            } else {
-                f11 = 0.0f;
-            }
-            fArr[5] = f11;
-            fArr[4] = f11;
-            if (!z12) {
-                dp = 0.0f;
-            }
-            fArr[7] = dp;
-            fArr[6] = dp;
-            x01Var.f34628b.rewind();
-            RectF rectF = AndroidUtilities.rectTmp;
-            float f13 = x01Var.h;
-            float width = getWidth() - x01Var.h;
-            float height = getHeight();
-            float f14 = x01Var.h;
-            if (this.d) {
-                f12 = -1.0f;
-            } else {
-                f12 = 1.0f;
-            }
-            rectF.set(f13, f13, width, (f14 * f12) + height);
-            x01Var.f34628b.addRoundRect(rectF, x01Var.f34629c, Path.Direction.CW);
-            if (this.f33511b) {
-                canvas2.drawPath(x01Var.f34628b, x01Var.d);
-            }
-            canvas2.drawPath(x01Var.f34628b, x01Var.e);
-        } else {
-            if (this.f33511b) {
-                float f15 = x01Var.h;
-                canvas2 = canvas;
-                canvas2.drawRect(f15, f15, getWidth() + x01Var.h, getHeight() + x01Var.h, x01Var.d);
-            } else {
-                canvas2 = canvas;
-            }
-            float f16 = x01Var.h;
-            canvas2.drawRect(f16, f16, getWidth() - x01Var.h, getHeight() + x01Var.h, x01Var.e);
-        }
-        super.onDraw(canvas2);
+    public final boolean D(s4.c1 c1Var) {
+        return true;
     }
 
-    public void setFilled(boolean z10) {
-        this.f33511b = z10;
+    @Override
+    public final int b() {
+        if (this.e.isEmpty()) {
+            return 0;
+        }
+        return this.e.size() + 1;
+    }
+
+    @Override
+    public final int d(int i10) {
+        if (i10 == 0) {
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void t(s4.c1 c1Var, int i10) {
+        int c10;
+        if (c1Var.f47901f == 0) {
+            boolean z10 = true;
+            int i11 = i10 - 1;
+            org.telegram.ui.ActionBar.c7 c7Var = (org.telegram.ui.ActionBar.c7) ((ArrayList) this.e.get(i11)).get(0);
+            if (c7Var.e == org.telegram.ui.ActionBar.t6.Be) {
+                c10 = 0;
+            } else {
+                c10 = c7Var.c();
+            }
+            org.telegram.ui.Cells.w8 w8Var = (org.telegram.ui.Cells.w8) c1Var.f47898a;
+            w8Var.f23409a.setText((CharSequence) this.f31109f.get(i11));
+            w8Var.f23410b = c10;
+            if (c10 != 0) {
+                z10 = false;
+            }
+            w8Var.setWillNotDraw(z10);
+            w8Var.invalidate();
+        }
+    }
+
+    @Override
+    public final s4.c1 w(ViewGroup viewGroup, int i10) {
+        View w8Var;
+        Context context = this.f31108c;
+        if (i10 != 0) {
+            w8Var = new View(context);
+            w8Var.setLayoutParams(new s4.o0(-1, org.telegram.messenger.i0.L(56.0f)));
+        } else {
+            w8Var = new org.telegram.ui.Cells.w8(context);
+            w8Var.setLayoutParams(new s4.o0(-1, -2));
+        }
+        return new s4.c1(w8Var);
     }
 }

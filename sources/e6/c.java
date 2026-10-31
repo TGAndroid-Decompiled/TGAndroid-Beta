@@ -1,176 +1,199 @@
 package e6;
 
-import a8.me;
-import android.content.Context;
-import android.os.Bundle;
-import android.os.Parcel;
-import android.os.RemoteException;
-import android.support.v4.media.MediaMetadataCompat;
-import com.google.android.gms.cast.CastDevice;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.internal.cast.l4;
-import com.google.android.gms.tasks.Task;
-import d6.e0;
+import android.os.Looper;
+import android.util.SparseIntArray;
+import com.google.android.gms.cast.MediaInfo;
+import com.google.android.gms.common.api.internal.BasePendingResult;
+import com.google.android.gms.internal.cast.z;
+import d6.c0;
+import j$.util.DesugarCollections;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.HashSet;
-public final class c extends f {
-    public static final h6.b f9802m = new h6.b("CastSession", null);
-    public final Context f9803c;
-    public final HashSet d;
-    public final q e;
-    public final b f9804f;
-    public final com.google.android.gms.internal.cast.p f9805g;
-    public final g6.h h;
-    public e0 f9806i;
-    public f6.h f9807j;
-    public CastDevice f9808k;
-    public l4 f9809l;
+import java.util.Iterator;
+import java.util.Set;
+public final class c {
+    public long f6262b;
+    public final h f6263c;
+    public ArrayList d;
+    public final SparseIntArray e;
+    public final s f6264f;
+    public final ArrayList f6265g;
+    public final ArrayDeque h;
+    public final z f6266i;
+    public final r f6267j;
+    public BasePendingResult f6268k;
+    public BasePendingResult f6269l;
+    public final Set f6270m = DesugarCollections.synchronizedSet(new HashSet());
+    public final g6.b f6261a = new g6.b("MediaQueue", null);
 
-    public c(Context context, String str, String str2, b bVar, com.google.android.gms.internal.cast.p pVar, g6.h hVar) {
-        super(context, str, str2);
-        this.d = new HashSet();
-        this.f9803c = context.getApplicationContext();
-        this.f9804f = bVar;
-        this.f9805g = pVar;
-        this.h = hVar;
-        y6.a f7 = f();
-        j jVar = new j(this);
-        h6.b bVar2 = com.google.android.gms.internal.cast.d.f6761a;
-        q qVar = null;
-        if (f7 != null) {
+    public c(h hVar) {
+        this.f6263c = hVar;
+        Math.max(20, 1);
+        this.d = new ArrayList();
+        this.e = new SparseIntArray();
+        this.f6265g = new ArrayList();
+        this.h = new ArrayDeque(20);
+        this.f6266i = new z(Looper.getMainLooper(), 0);
+        this.f6267j = new r(this, 0);
+        hVar.p(new c0(this, 1));
+        this.f6264f = new s(this);
+        this.f6262b = e();
+        d();
+    }
+
+    public static void a(c cVar) {
+        synchronized (cVar.f6270m) {
             try {
-                qVar = com.google.android.gms.internal.cast.d.b(context).V0(bVar, f7, jVar);
-            } catch (RemoteException | d e) {
-                com.google.android.gms.internal.cast.d.f6761a.a(e, "Unable to call %s on %s.", "newCastSessionImpl", com.google.android.gms.internal.cast.f.class.getSimpleName());
+                Iterator it = cVar.f6270m.iterator();
+                if (it.hasNext()) {
+                    if (it.next() == null) {
+                        throw null;
+                    }
+                    throw new ClassCastException();
+                }
+            } catch (Throwable th2) {
+                throw th2;
             }
         }
-        this.e = qVar;
     }
 
-    public static void g(c cVar, int i10) {
-        g6.h hVar = cVar.h;
-        if (hVar.f12389q) {
-            hVar.f12389q = false;
-            f6.h hVar2 = hVar.f12386n;
-            if (hVar2 != null) {
-                c0 c0Var = hVar.f12385m;
-                o6.l.e("Must be called from the main thread.");
-                if (c0Var != null) {
-                    hVar2.f10218i.remove(c0Var);
+    public static void b(c cVar) {
+        SparseIntArray sparseIntArray = cVar.e;
+        sparseIntArray.clear();
+        for (int i10 = 0; i10 < cVar.d.size(); i10++) {
+            sparseIntArray.put(((Integer) cVar.d.get(i10)).intValue(), i10);
+        }
+    }
+
+    public final void c() {
+        h();
+        this.d.clear();
+        this.e.clear();
+        this.f6264f.evictAll();
+        this.f6265g.clear();
+        this.f6266i.removeCallbacks(this.f6267j);
+        this.h.clear();
+        BasePendingResult basePendingResult = this.f6269l;
+        if (basePendingResult != null) {
+            basePendingResult.c();
+            this.f6269l = null;
+        }
+        BasePendingResult basePendingResult2 = this.f6268k;
+        if (basePendingResult2 != null) {
+            basePendingResult2.c();
+            this.f6268k = null;
+        }
+        g();
+        f();
+    }
+
+    public final void d() {
+        BasePendingResult basePendingResult;
+        BasePendingResult basePendingResult2;
+        n6.l.d("Must be called from the main thread.");
+        if (this.f6262b != 0 && (basePendingResult = this.f6269l) == null) {
+            if (basePendingResult != null) {
+                basePendingResult.c();
+                this.f6269l = null;
+            }
+            BasePendingResult basePendingResult3 = this.f6268k;
+            if (basePendingResult3 != null) {
+                basePendingResult3.c();
+                this.f6268k = null;
+            }
+            h hVar = this.f6263c;
+            hVar.getClass();
+            n6.l.d("Must be called from the main thread.");
+            if (!hVar.w()) {
+                basePendingResult2 = h.t();
+            } else {
+                i iVar = new i(hVar);
+                h.x(iVar);
+                basePendingResult2 = iVar;
+            }
+            this.f6269l = basePendingResult2;
+            basePendingResult2.i(new q(this, 0));
+        }
+    }
+
+    public final long e() {
+        int i10;
+        c6.q e = this.f6263c.e();
+        if (e != null) {
+            MediaInfo mediaInfo = e.f3921a;
+            if (mediaInfo == null) {
+                i10 = -1;
+            } else {
+                i10 = mediaInfo.f4303b;
+            }
+            int i11 = e.e;
+            int i12 = e.f3924f;
+            int i13 = e.f3929x;
+            if (i11 == 1) {
+                if (i12 != 1) {
+                    if (i12 != 2) {
+                        if (i12 != 3) {
+                            return 0L;
+                        }
+                    } else if (i10 != 2) {
+                        return 0L;
+                    }
+                }
+                if (i13 == 0) {
+                    return 0L;
                 }
             }
-            hVar.f12378c.K0(null);
-            me meVar = hVar.h;
-            if (meVar != null) {
-                meVar.C();
-                meVar.e = null;
-            }
-            me meVar2 = hVar.f12381i;
-            if (meVar2 != null) {
-                meVar2.C();
-                meVar2.e = null;
-            }
-            android.support.v4.media.session.b0 b0Var = hVar.f12388p;
-            if (b0Var != null) {
-                b0Var.d(null, null);
-                hVar.f12388p.e(new MediaMetadataCompat(new Bundle()));
-                hVar.j(0, null);
-            }
-            android.support.v4.media.session.b0 b0Var2 = hVar.f12388p;
-            if (b0Var2 != null) {
-                b0Var2.c(false);
-                hVar.f12388p.b();
-                hVar.f12388p = null;
-            }
-            hVar.f12386n = null;
-            hVar.f12387o = null;
-            hVar.h();
-            if (i10 == 0) {
-                hVar.i();
-            }
+            return e.f3922b;
         }
-        e0 e0Var = cVar.f9806i;
-        if (e0Var != null) {
-            com.google.android.gms.common.api.internal.u b10 = com.google.android.gms.common.api.internal.v.b();
-            b10.f6622c = d6.z.f8154b;
-            b10.f6620a = 8403;
-            e0Var.e(1, b10.a());
-            e0Var.h();
-            com.google.android.gms.common.api.internal.n nVar = za.c.l(e0Var.f6655f, e0Var.f8064k, "castDeviceControllerListenerKey").f6599c;
-            o6.l.i(nVar, "Key must not be null");
-            e0Var.c(nVar, 8415);
-            cVar.f9806i = null;
-        }
-        cVar.f9808k = null;
-        f6.h hVar3 = cVar.f9807j;
-        if (hVar3 != null) {
-            hVar3.v(null);
-            cVar.f9807j = null;
-        }
+        return 0L;
     }
 
-    public static void h(c cVar, String str, Task task) {
-        h6.b bVar = f9802m;
-        q qVar = cVar.e;
-        if (qVar == null) {
-            return;
-        }
-        try {
-            if (task.isSuccessful()) {
-                h6.t tVar = (h6.t) task.getResult();
-                Status status = tVar.f12656a;
-                if (status.b()) {
-                    bVar.b("%s() -> success result", str);
-                    f6.h hVar = new f6.h(new h6.m());
-                    cVar.f9807j = hVar;
-                    hVar.v(cVar.f9806i);
-                    cVar.f9807j.p(new c0(cVar, 0));
-                    cVar.f9807j.u();
-                    g6.h hVar2 = cVar.h;
-                    f6.h hVar3 = cVar.f9807j;
-                    o6.l.e("Must be called from the main thread.");
-                    hVar2.a(hVar3, cVar.f9808k);
-                    d6.d dVar = tVar.f12657b;
-                    o6.l.h(dVar);
-                    String str2 = tVar.f12658c;
-                    String str3 = tVar.d;
-                    o6.l.h(str3);
-                    boolean z10 = tVar.e;
-                    o oVar = (o) qVar;
-                    Parcel N0 = oVar.N0();
-                    com.google.android.gms.internal.cast.t.c(N0, dVar);
-                    N0.writeString(str2);
-                    N0.writeString(str3);
-                    N0.writeInt(z10 ? 1 : 0);
-                    oVar.R0(N0, 4);
-                    return;
+    public final void f() {
+        synchronized (this.f6270m) {
+            try {
+                Iterator it = this.f6270m.iterator();
+                if (it.hasNext()) {
+                    if (it.next() == null) {
+                        throw null;
+                    }
+                    throw new ClassCastException();
                 }
-                bVar.b("%s() -> failure result", str);
-                int i10 = status.f6466a;
-                o oVar2 = (o) qVar;
-                Parcel N02 = oVar2.N0();
-                N02.writeInt(i10);
-                oVar2.R0(N02, 5);
-                return;
+            } catch (Throwable th2) {
+                throw th2;
             }
-            Exception exception = task.getException();
-            if (exception instanceof com.google.android.gms.common.api.f) {
-                int statusCode = ((com.google.android.gms.common.api.f) exception).getStatusCode();
-                o oVar3 = (o) qVar;
-                Parcel N03 = oVar3.N0();
-                N03.writeInt(statusCode);
-                oVar3.R0(N03, 5);
-                return;
-            }
-            o oVar4 = (o) qVar;
-            Parcel N04 = oVar4.N0();
-            N04.writeInt(2476);
-            oVar4.R0(N04, 5);
-        } catch (RemoteException e) {
-            bVar.a(e, "Unable to call %s on %s.", "methods", q.class.getSimpleName());
         }
     }
 
-    public final void i(android.os.Bundle r11) {
-        throw new UnsupportedOperationException("Method not decompiled: e6.c.i(android.os.Bundle):void");
+    public final void g() {
+        synchronized (this.f6270m) {
+            try {
+                Iterator it = this.f6270m.iterator();
+                if (it.hasNext()) {
+                    if (it.next() == null) {
+                        throw null;
+                    }
+                    throw new ClassCastException();
+                }
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+    }
+
+    public final void h() {
+        synchronized (this.f6270m) {
+            try {
+                Iterator it = this.f6270m.iterator();
+                if (it.hasNext()) {
+                    if (it.next() == null) {
+                        throw null;
+                    }
+                    throw new ClassCastException();
+                }
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
     }
 }

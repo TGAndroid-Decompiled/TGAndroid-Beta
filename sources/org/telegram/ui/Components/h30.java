@@ -1,63 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.Point;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-public final class h30 extends FrameLayout {
-    public float f28842a;
-    public float f28843b;
-    public boolean f28844c;
-    public AnimatorSet d;
-    public final g30 e;
-    public final k5 f28845f;
-    public final float h;
-    public final k30 f28846n;
+import android.animation.ValueAnimator;
+public final class h30 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f26608a;
+    public final j30 f26609b;
 
-    public h30(k30 k30Var, Context context, float f7) {
-        super(context);
-        this.f28846n = k30Var;
-        this.h = f7;
-        this.e = new g30(this);
-        this.f28845f = new k5(13);
+    public h30(j30 j30Var, int i10) {
+        this.f26608a = i10;
+        this.f26609b = j30Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        Point point = AndroidUtilities.displaySize;
-        int i12 = point.x;
-        k30 k30Var = this.f28846n;
-        if (i12 != k30Var.I || k30Var.J != point.y) {
-            k30Var.I = i12;
-            k30Var.J = point.y;
-            if (k30Var.K < 0.0f) {
-                SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("groupcallpipconfig", 0);
-                this.f28846n.K = sharedPreferences.getFloat("relativeX", 1.0f);
-                this.f28846n.L = sharedPreferences.getFloat("relativeY", 0.4f);
-            }
-            k30 k30Var2 = k30.f29835d0;
-            if (k30Var2 != null) {
-                k30 k30Var3 = this.f28846n;
-                float f7 = k30Var3.K;
-                float f10 = k30Var3.L;
-                float f11 = -AndroidUtilities.dp(36.0f);
-                k30Var2.f29845r.x = (int) c3.h0.z(AndroidUtilities.displaySize.x - (2.0f * f11), AndroidUtilities.dp(105.0f), f7, f11);
-                k30Var2.f29845r.y = (int) ((AndroidUtilities.displaySize.y - AndroidUtilities.dp(105.0f)) * f10);
-                k30Var2.h();
-                h30 h30Var = k30Var2.f29837a;
-                if (h30Var.getParent() != null) {
-                    k30Var2.f29844n.updateViewLayout(h30Var, k30Var2.f29845r);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        org.telegram.ui.vn vnVar;
+        ag.b1 b1Var;
+        switch (this.f26608a) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                j30 j30Var = this.f26609b;
+                j30Var.f27217x = floatValue;
+                j30Var.e.setTranslationY(floatValue * org.telegram.messenger.i0.L(48.0f));
+                j30Var.e.setPadding(0, 0, 0, (int) (j30Var.f27217x * org.telegram.messenger.i0.L(48.0f)));
+                return;
+            default:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                j30 j30Var2 = this.f26609b;
+                j30Var2.E = floatValue2;
+                j30Var2.f27213n.setScaleX(org.telegram.messenger.i0.T1(0.95f, 1.0f, floatValue2));
+                j30Var2.f27213n.setScaleY(org.telegram.messenger.i0.T1(0.95f, 1.0f, j30Var2.E));
+                org.telegram.ui.ik ikVar = j30Var2.f27212f;
+                if (ikVar != null && (vnVar = ikVar.f43336a) != null && (b1Var = vnVar.Z3) != null) {
+                    b1Var.setScaleX(org.telegram.messenger.i0.T1(1.0f, 0.95f, j30Var2.E));
+                    j30Var2.f27212f.f43336a.Z3.setScaleY(org.telegram.messenger.i0.T1(1.0f, 0.95f, j30Var2.E));
                 }
-            }
+                j30Var2.h.setAlpha(j30Var2.E);
+                return;
         }
-    }
-
-    @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r28) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.h30.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

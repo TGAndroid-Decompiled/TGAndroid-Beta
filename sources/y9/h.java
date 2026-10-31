@@ -1,139 +1,64 @@
 package y9;
 
-import android.app.ActivityManager;
-import android.content.Context;
-import android.content.res.Resources;
-import android.os.Build;
-import android.os.Debug;
-import android.util.Log;
-import java.io.Closeable;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Scanner;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicLong;
-import org.telegram.ui.Components.b10;
-public abstract class h {
-    public static final char[] f52486a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+import java.io.InputStream;
+import java.io.RandomAccessFile;
+public final class h extends InputStream {
+    public int f54337a;
+    public int f54338b;
+    public final j f54339c;
 
-    public static ExecutorService a(String str) {
-        ExecutorService unconfigurableExecutorService = Executors.unconfigurableExecutorService(new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue(), new d5.v(str, new AtomicLong(1L)), new ThreadPoolExecutor.DiscardPolicy()));
-        TimeUnit timeUnit = TimeUnit.SECONDS;
-        Runtime.getRuntime().addShutdownHook(new Thread(new u(str, unconfigurableExecutorService), "Crashlytics Shutdown Hook for ".concat(str)));
-        return unconfigurableExecutorService;
+    public h(j jVar, g gVar) {
+        this.f54339c = jVar;
+        this.f54337a = jVar.d(gVar.f54335a + 4);
+        this.f54338b = gVar.f54336b;
     }
 
-    public static synchronized long b(Context context) {
-        long j10;
-        synchronized (h.class) {
-            ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
-            ((ActivityManager) context.getSystemService("activity")).getMemoryInfo(memoryInfo);
-            j10 = memoryInfo.totalMem;
-        }
-        return j10;
-    }
-
-    public static void c(Closeable closeable, String str) {
-        if (closeable != null) {
-            try {
-                closeable.close();
-            } catch (IOException e) {
-                Log.e("FirebaseCrashlytics", str, e);
-            }
-        }
-    }
-
-    public static int d() {
-        boolean g7 = g();
-        ?? r02 = g7;
-        if (h()) {
-            r02 = (g7 ? 1 : 0) | true;
-        }
-        if (!Debug.isDebuggerConnected() && !Debug.waitingForDebugger()) {
-            return r02;
-        }
-        return r02 | 4;
-    }
-
-    public static int e(Context context, String str, String str2) {
-        String packageName;
-        Resources resources = context.getResources();
-        int i10 = context.getApplicationContext().getApplicationInfo().icon;
-        if (i10 > 0) {
-            try {
-                packageName = context.getResources().getResourcePackageName(i10);
-                if ("android".equals(packageName)) {
-                    packageName = context.getPackageName();
+    @Override
+    public final int read(byte[] bArr, int i10, int i11) {
+        if (bArr != null) {
+            if ((i10 | i11) >= 0 && i11 <= bArr.length - i10) {
+                int i12 = this.f54338b;
+                if (i12 > 0) {
+                    if (i11 > i12) {
+                        i11 = i12;
+                    }
+                    int i13 = this.f54337a;
+                    j jVar = this.f54339c;
+                    RandomAccessFile randomAccessFile = jVar.f54340a;
+                    int d = jVar.d(i13);
+                    int i14 = d + i11;
+                    int i15 = jVar.f54341b;
+                    if (i14 <= i15) {
+                        randomAccessFile.seek(d);
+                        randomAccessFile.readFully(bArr, i10, i11);
+                    } else {
+                        int i16 = i15 - d;
+                        randomAccessFile.seek(d);
+                        randomAccessFile.readFully(bArr, i10, i16);
+                        randomAccessFile.seek(16L);
+                        randomAccessFile.readFully(bArr, i10 + i16, i11 - i16);
+                    }
+                    this.f54337a = jVar.d(this.f54337a + i11);
+                    this.f54338b -= i11;
+                    return i11;
                 }
-            } catch (Resources.NotFoundException unused) {
-                packageName = context.getPackageName();
+                return -1;
             }
-        } else {
-            packageName = context.getPackageName();
+            throw new ArrayIndexOutOfBoundsException();
         }
-        return resources.getIdentifier(str, str2, packageName);
+        throw new NullPointerException("buffer");
     }
 
-    public static String f(byte[] bArr) {
-        char[] cArr = new char[bArr.length * 2];
-        for (int i10 = 0; i10 < bArr.length; i10++) {
-            byte b10 = bArr[i10];
-            int i11 = i10 * 2;
-            char[] cArr2 = f52486a;
-            cArr[i11] = cArr2[(b10 & 255) >>> 4];
-            cArr[i11 + 1] = cArr2[b10 & 15];
+    @Override
+    public final int read() {
+        if (this.f54338b == 0) {
+            return -1;
         }
-        return new String(cArr);
-    }
-
-    public static boolean g() {
-        if (!Build.PRODUCT.contains("sdk")) {
-            String str = Build.HARDWARE;
-            if (!str.contains("goldfish") && !str.contains("ranchu")) {
-                return false;
-            }
-            return true;
-        }
-        return true;
-    }
-
-    public static boolean h() {
-        boolean g7 = g();
-        String str = Build.TAGS;
-        if ((!g7 && str != null && str.contains("test-keys")) || b10.t("/system/app/Superuser.apk")) {
-            return true;
-        }
-        File file = new File("/system/xbin/su");
-        if (!g7 && file.exists()) {
-            return true;
-        }
-        return false;
-    }
-
-    public static String i(String str) {
-        byte[] bytes = str.getBytes();
-        try {
-            MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
-            messageDigest.update(bytes);
-            return f(messageDigest.digest());
-        } catch (NoSuchAlgorithmException e) {
-            Log.e("FirebaseCrashlytics", "Could not create hashing algorithm: SHA-1, returning empty string.", e);
-            return "";
-        }
-    }
-
-    public static String j(FileInputStream fileInputStream) {
-        Scanner useDelimiter = new Scanner(fileInputStream).useDelimiter("\\A");
-        if (useDelimiter.hasNext()) {
-            return useDelimiter.next();
-        }
-        return "";
+        j jVar = this.f54339c;
+        jVar.f54340a.seek(this.f54337a);
+        int read = jVar.f54340a.read();
+        this.f54337a = jVar.d(this.f54337a + 1);
+        this.f54338b--;
+        return read;
     }
 }

@@ -1,24 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-public final class yk implements TextWatcher {
-    public final al f35101a;
+import android.content.Context;
+import android.graphics.Point;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.util.HashMap;
+import java.util.Map;
+public final class yk extends FrameLayout {
+    public final HashMap f32751a;
+    public final bl f32752b;
 
-    public yk(al alVar) {
-        this.f35101a = alVar;
+    public yk(bl blVar, Context context) {
+        super(context);
+        this.f32752b = blVar;
+        this.f32751a = new HashMap();
     }
 
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        this.f35101a.g0();
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void a() {
+        org.telegram.messenger.ga gaVar = this.f32752b.F;
+        if (gaVar != null) {
+            n2.u g10 = gaVar.g();
+            for (Map.Entry entry : this.f32751a.entrySet()) {
+                View view = (View) entry.getValue();
+                Point a02 = g10.a0(((org.telegram.messenger.fa) entry.getKey()).a());
+                view.setTranslationX(a02.x - (view.getMeasuredWidth() / 2));
+                view.setTranslationY(org.telegram.messenger.i0.L(22.0f) + (a02.y - view.getMeasuredHeight()));
+            }
+        }
     }
 }

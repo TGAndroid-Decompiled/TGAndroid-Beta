@@ -1,57 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class gt extends AnimatorListenerAdapter {
-    public final int f28752a;
-    public final s4.e1 f28753b;
-    public final org.telegram.ui.Cells.p2 f28754c;
-    public final mt d;
+import android.text.Editable;
+public final class gt implements org.telegram.messenger.q20 {
+    public final mt f26515a;
+    public final int f26516b;
+    public final int f26517c;
 
-    public gt(mt mtVar, s4.e1 e1Var, org.telegram.ui.Cells.p2 p2Var, int i10) {
-        this.f28752a = i10;
-        this.d = mtVar;
-        this.f28753b = e1Var;
-        this.f28754c = p2Var;
+    public gt(mt mtVar, int i10, int i11) {
+        this.f26515a = mtVar;
+        this.f26516b = i10;
+        this.f26517c = i11;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f28752a) {
-            case 0:
-                animator.removeAllListeners();
-                org.telegram.ui.Cells.p2 p2Var = this.f28754c;
-                p2Var.setClipProgress(0.0f);
-                p2Var.setElevation(0.0f);
-                mt mtVar = this.d;
-                s4.e1 e1Var = this.f28753b;
-                mtVar.d(e1Var);
-                mtVar.f30628x.remove(e1Var);
-                mtVar.A();
-                return;
-            default:
-                animator.removeAllListeners();
-                org.telegram.ui.Cells.p2 p2Var2 = this.f28754c;
-                p2Var2.setClipProgress(0.0f);
-                p2Var2.setElevation(0.0f);
-                mt mtVar2 = this.d;
-                s4.e1 e1Var2 = this.f28753b;
-                mtVar2.d(e1Var2);
-                mtVar2.f30628x.remove(e1Var2);
-                mtVar2.A();
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
-        switch (this.f28752a) {
-            case 0:
-                this.d.y();
-                return;
-            default:
-                this.d.y();
-                return;
-        }
+    public final void a(Object obj) {
+        CharSequence charSequence = (CharSequence) obj;
+        mt mtVar = this.f26515a;
+        Editable text = mtVar.getText();
+        int i10 = this.f26516b;
+        text.replace(i10, this.f26517c, charSequence);
+        mtVar.setSelection(i10, charSequence.length() + i10);
     }
 }

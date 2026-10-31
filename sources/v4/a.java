@@ -7,16 +7,16 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import w7.b0;
+import w7.m8;
 public final class a {
     public static volatile a d;
     public static final Object e = new Object();
-    public final Context f50107c;
-    public final HashSet f50106b = new HashSet();
-    public final HashMap f50105a = new HashMap();
+    public final Context f50372c;
+    public final HashSet f50371b = new HashSet();
+    public final HashMap f50370a = new HashMap();
 
     public a(Context context) {
-        this.f50107c = context.getApplicationContext();
+        this.f50372c = context.getApplicationContext();
     }
 
     public static a c(Context context) {
@@ -35,14 +35,14 @@ public final class a {
 
     public final void a(Bundle bundle) {
         HashSet hashSet;
-        String string = this.f50107c.getString(2131689503);
+        String string = this.f50372c.getString(2131689503);
         if (bundle != null) {
             try {
                 HashSet hashSet2 = new HashSet();
                 Iterator<String> it = bundle.keySet().iterator();
                 while (true) {
                     boolean hasNext = it.hasNext();
-                    hashSet = this.f50106b;
+                    hashSet = this.f50371b;
                     if (!hasNext) {
                         break;
                     }
@@ -58,18 +58,18 @@ public final class a {
                 while (it2.hasNext()) {
                     b((Class) it2.next(), hashSet2);
                 }
-            } catch (ClassNotFoundException e10) {
-                throw new RuntimeException(e10);
+            } catch (ClassNotFoundException e7) {
+                throw new RuntimeException(e7);
             }
         }
     }
 
     public final Object b(Class cls, HashSet hashSet) {
         Object obj;
-        HashMap hashMap = this.f50105a;
-        if (b0.b()) {
+        HashMap hashMap = this.f50370a;
+        if (m8.b()) {
             try {
-                b0.a(cls.getSimpleName());
+                m8.a(cls.getSimpleName());
             } catch (Throwable th2) {
                 Trace.endSection();
                 throw th2;
@@ -87,7 +87,7 @@ public final class a {
                         }
                     }
                 }
-                obj = bVar.b(this.f50107c);
+                obj = bVar.b(this.f50372c);
                 hashSet.remove(cls);
                 hashMap.put(cls, obj);
             } else {

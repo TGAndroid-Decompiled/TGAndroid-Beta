@@ -1,29 +1,29 @@
 package b1;
 
-import v0.i;
+import w0.i;
 public final class h implements Runnable {
-    public final int f3119a;
-    public final i f3120b;
-    public final w0.i f3121c;
+    public final int f1957a;
+    public final v0.h f1958b;
+    public final i f1959c;
 
-    public h(i iVar, w0.i iVar2, int i10) {
-        this.f3119a = i10;
-        this.f3120b = iVar;
-        this.f3121c = iVar2;
+    public h(v0.h hVar, i iVar, int i10) {
+        this.f1957a = i10;
+        this.f1958b = hVar;
+        this.f1959c = iVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f3119a) {
+        switch (this.f1957a) {
             case 0:
-                Object obj = this.f3121c;
+                Object obj = this.f1959c;
                 if (obj == null) {
-                    obj = new w0.h("No provider data returned", 2);
+                    obj = new w0.h(2, "No provider data returned");
                 }
-                this.f3120b.onError(obj);
+                this.f1958b.g(obj);
                 return;
             default:
-                this.f3120b.onError(this.f3121c);
+                this.f1958b.g(this.f1959c);
                 return;
         }
     }

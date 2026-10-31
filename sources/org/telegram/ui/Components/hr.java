@@ -1,51 +1,54 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
+import android.view.KeyEvent;
 import android.view.View;
-public final class hr extends View {
-    public final gr f29060a;
+import android.widget.EditText;
+public final class hr implements Runnable {
+    public final int f26801a;
+    public final lr f26802b;
 
-    public hr(Context context, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(context);
-        setVisibility(8);
-        gr grVar = new gr(this, true, u6Var);
-        this.f29060a = grVar;
-        grVar.G = true;
+    public hr(lr lrVar, int i10) {
+        this.f26801a = i10;
+        this.f26802b = lrVar;
     }
 
-    public float getEnterProgress() {
-        int i10;
-        gr grVar = this.f29060a;
-        float f7 = grVar.f28729l;
-        if (f7 != 1.0f && ((i10 = grVar.f28723c) == 0 || i10 == 1)) {
-            if (i10 == 0) {
-                return f7;
-            }
-            return 1.0f - f7;
-        } else if (grVar.h != 0) {
-            return 1.0f;
-        } else {
-            return 0.0f;
+    @Override
+    public final void run() {
+        View view;
+        switch (this.f26801a) {
+            case 0:
+                lr lrVar = this.f26802b;
+                if (lrVar.f28169b == null && (view = lrVar.d) != null) {
+                    View findFocus = view.findFocus();
+                    if (findFocus instanceof EditText) {
+                        lrVar.f28169b = (EditText) findFocus;
+                    }
+                }
+                EditText editText = lrVar.f28169b;
+                if (editText != null) {
+                    if (editText.length() != 0 || lrVar.e) {
+                        try {
+                            lrVar.performHapticFeedback(3, 2);
+                            lrVar.playSoundEffect(0);
+                        } catch (Exception unused) {
+                        }
+                        lrVar.f28169b.dispatchKeyEvent(new KeyEvent(0, 67));
+                        lrVar.f28169b.dispatchKeyEvent(new KeyEvent(1, 67));
+                        if (lrVar.f28171f) {
+                            lrVar.postDelayed(lrVar.h, 50L);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                lr lrVar2 = this.f26802b;
+                lrVar2.f28172n = false;
+                lrVar2.f28171f = true;
+                lrVar2.h.run();
+                return;
         }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        this.f29060a.a(canvas);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        this.f29060a.d(getMeasuredHeight(), getMeasuredWidth());
-    }
-
-    public void setGravity(int i10) {
-        this.f29060a.f28742z = i10;
-    }
-
-    public void setReverse(boolean z10) {
-        this.f29060a.D = z10;
     }
 }

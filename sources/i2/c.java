@@ -1,66 +1,71 @@
 package i2;
 
-import android.os.IBinder;
-import android.os.RemoteException;
-import android.util.Log;
+import android.media.MediaFormat;
+import j$.util.DesugarCollections;
+import java.nio.ByteBuffer;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
-import org.telegram.messenger.AndroidUtilities;
+import java.util.Set;
 public final class c {
-    public final HashMap f13502a;
+    public static final c f7819b = new c(new HashMap());
+    public final Map f7820a;
 
-    public c(int i10) {
-        switch (i10) {
-            case 1:
-                this.f13502a = new HashMap();
-                return;
-            case 2:
-                this.f13502a = new HashMap();
-                return;
-            default:
-                this.f13502a = new HashMap();
-                return;
-        }
+    public c(HashMap hashMap) {
+        this.f7820a = DesugarCollections.unmodifiableMap(hashMap);
     }
 
-    public void a(Runnable runnable) {
-        Runnable runnable2 = (Runnable) this.f13502a.remove(runnable);
-        if (runnable2 != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable2);
-        }
-    }
-
-    public void b() {
-        HashMap hashMap = this.f13502a;
-        for (Map.Entry entry : hashMap.entrySet()) {
-            AndroidUtilities.cancelRunOnUIThread((Runnable) entry.getValue());
-        }
-        hashMap.clear();
-    }
-
-    public void c(IBinder iBinder) {
-        synchronized (this.f13502a) {
-            if (iBinder != null) {
-                try {
-                    iBinder.queryLocalInterface("com.google.android.gms.wearable.internal.IWearableService");
-                } catch (Throwable th2) {
-                    throw th2;
-                }
-            }
-            new z8.b();
-            for (Map.Entry entry : this.f13502a.entrySet()) {
-                if (entry.getValue() == null) {
-                    try {
-                        throw null;
-                        break;
-                    } catch (RemoteException unused) {
-                        String valueOf = String.valueOf(entry.getKey());
-                        Log.w("WearableClient", "onPostInitHandler: Didn't add: " + valueOf + "/null");
+    public static a6.i a(MediaFormat mediaFormat, Set set) {
+        a6.i iVar = new a6.i(26);
+        HashMap hashMap = (HashMap) iVar.f307b;
+        Iterator it = set.iterator();
+        while (it.hasNext()) {
+            String str = (String) it.next();
+            if (mediaFormat.containsKey(str)) {
+                int valueTypeForKey = mediaFormat.getValueTypeForKey(str);
+                if (valueTypeForKey != 1) {
+                    if (valueTypeForKey != 2) {
+                        if (valueTypeForKey != 3) {
+                            if (valueTypeForKey != 4) {
+                                if (valueTypeForKey == 5) {
+                                    ByteBuffer byteBuffer = mediaFormat.getByteBuffer(str);
+                                    if (byteBuffer == null) {
+                                        hashMap.put(str, null);
+                                    } else {
+                                        ByteBuffer allocate = ByteBuffer.allocate(byteBuffer.remaining());
+                                        allocate.put(byteBuffer.duplicate());
+                                        allocate.flip();
+                                        hashMap.put(str, allocate);
+                                    }
+                                }
+                            } else {
+                                hashMap.put(str, mediaFormat.getString(str));
+                            }
+                        } else {
+                            hashMap.put(str, Float.valueOf(mediaFormat.getFloat(str)));
+                        }
+                    } else {
+                        hashMap.put(str, Long.valueOf(mediaFormat.getLong(str)));
                     }
                 } else {
-                    throw new ClassCastException();
+                    hashMap.put(str, Integer.valueOf(mediaFormat.getInteger(str)));
                 }
             }
         }
+        return iVar;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof c)) {
+            return false;
+        }
+        return this.f7820a.equals(((c) obj).f7820a);
+    }
+
+    public final int hashCode() {
+        return this.f7820a.hashCode();
     }
 }

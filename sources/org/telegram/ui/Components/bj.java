@@ -1,41 +1,29 @@
 package org.telegram.ui.Components;
+public final class bj implements Runnable {
+    public final int f24786a;
+    public final dj f24787b;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-public final class bj extends s71 {
-    public final fj f26835n3;
-
-    public bj(fj fjVar, Context context, int i10, d dVar, xi xiVar, xi xiVar2, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(context, i10, 0, false, dVar, xiVar, xiVar2, u6Var);
-        this.f26835n3 = fjVar;
+    public bj(dj djVar, int i10) {
+        this.f24786a = i10;
+        this.f24787b = djVar;
     }
 
     @Override
-    public final boolean E0(float f7) {
-        int i10;
-        ti tiVar = this.f26835n3.f30254b;
-        int dp = AndroidUtilities.dp(30.0f) + tiVar.f32988e2[0];
-        if (!tiVar.f32993g0) {
-            i10 = AndroidUtilities.statusBarHeight;
-        } else {
-            i10 = 0;
+    public final void run() {
+        switch (this.f24786a) {
+            case 0:
+                dj djVar = this.f24787b;
+                if (djVar.f25426f != null) {
+                    djVar.f25430w = org.telegram.messenger.m5.h(new StringBuilder("+"), djVar.f25426f.phone, af.b.c());
+                    djVar.f25429s = djVar.f25426f;
+                    org.telegram.messenger.i0.g3(new bj(djVar, 1));
+                    return;
+                }
+                return;
+            default:
+                dj djVar2 = this.f24787b;
+                djVar2.f25425c.l(djVar2.f25430w, false);
+                return;
         }
-        if (f7 < dp + i10) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final void I1() {
-        fj fjVar = this.f26835n3;
-        fjVar.f30254b.f2(fjVar, 0);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        fj fjVar = this.f26835n3;
-        fjVar.f30254b.f2(fjVar, 0);
     }
 }

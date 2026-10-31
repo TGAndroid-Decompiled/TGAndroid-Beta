@@ -1,62 +1,102 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class gv0 extends org.telegram.ui.iu0 {
-    public final hv0 f28762a;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.text.Layout;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
+public final class gv0 extends CharacterStyle {
+    public final Paint f26524a;
+    public final Path f26525b;
 
-    public gv0(hv0 hv0Var) {
-        this.f28762a = hv0Var;
+    public gv0() {
+        Paint paint = new Paint(1);
+        this.f26524a = paint;
+        this.f26525b = new Path();
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
     }
 
-    @Override
-    public final org.telegram.ui.su0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        ImageReceiver imageReceiver;
-        org.telegram.ui.Cells.s1 s1Var;
-        MessageObject messageObject2;
-        jv0 jv0Var = this.f28762a.f29085c;
-        tu0 tu0Var = jv0Var.f29773r;
-        if (tu0Var != null) {
-            int childCount = tu0Var.getChildCount();
-            for (int i11 = 0; i11 < childCount; i11++) {
-                View childAt = jv0Var.f29773r.getChildAt(i11);
-                if ((childAt instanceof org.telegram.ui.Cells.s1) && messageObject != null && (messageObject2 = (s1Var = (org.telegram.ui.Cells.s1) childAt).getMessageObject()) != null && messageObject2.getId() == messageObject.getId()) {
-                    ArrayList<Integer> arrayList = messageObject2.pollMediaMapping;
-                    if (arrayList != null && i10 >= 0 && i10 < arrayList.size()) {
-                        imageReceiver = s1Var.F2(messageObject2.pollMediaMapping.get(i10).intValue());
-                    } else {
-                        imageReceiver = s1Var.F2(i10);
+    public static void a(Canvas canvas, Layout layout) {
+        CharSequence text;
+        int lineStart;
+        int lineEnd;
+        Layout layout2 = layout;
+        if (layout2 != null && (text = layout2.getText()) != null && (text instanceof Spanned)) {
+            Spanned spanned = (Spanned) text;
+            gv0[] gv0VarArr = (gv0[]) spanned.getSpans(0, spanned.length(), gv0.class);
+            if (gv0VarArr != null && gv0VarArr.length != 0) {
+                int i10 = 0;
+                while (i10 < gv0VarArr.length) {
+                    gv0 gv0Var = gv0VarArr[i10];
+                    int spanStart = spanned.getSpanStart(gv0Var);
+                    int spanEnd = spanned.getSpanEnd(gv0Var);
+                    int lineForOffset = layout2.getLineForOffset(spanStart);
+                    int lineForOffset2 = layout2.getLineForOffset(spanEnd);
+                    int i11 = lineForOffset;
+                    while (i11 <= lineForOffset2) {
+                        float lineBottom = layout2.getLineBottom(i11) - org.telegram.messenger.i0.L(1.0f);
+                        if (i11 == lineForOffset) {
+                            lineStart = spanStart;
+                        } else {
+                            lineStart = layout2.getLineStart(i11);
+                        }
+                        float primaryHorizontal = layout2.getPrimaryHorizontal(lineStart);
+                        if (i11 == lineForOffset2) {
+                            lineEnd = spanEnd;
+                        } else {
+                            lineEnd = layout2.getLineEnd(i11) - 1;
+                        }
+                        float primaryHorizontal2 = layout2.getPrimaryHorizontal(lineEnd);
+                        gv0Var.getClass();
+                        float L = org.telegram.messenger.i0.L(1.33f);
+                        float L2 = org.telegram.messenger.i0.L(10.0f);
+                        float L3 = org.telegram.messenger.i0.L(2.0f);
+                        Paint paint = gv0Var.f26524a;
+                        Spanned spanned2 = spanned;
+                        gv0[] gv0VarArr2 = gv0VarArr;
+                        int i12 = i10;
+                        paint.setColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.Ci, false));
+                        paint.setStrokeWidth(L);
+                        Path path = gv0Var.f26525b;
+                        path.rewind();
+                        path.moveTo(primaryHorizontal, lineBottom);
+                        float f7 = primaryHorizontal;
+                        while (f7 < primaryHorizontal2) {
+                            float f10 = f7;
+                            float f11 = L2;
+                            path.quadTo((L2 / 4.0f) + f7, lineBottom - L3, (L2 / 2.0f) + f10, lineBottom);
+                            float f12 = f10 + f11;
+                            path.quadTo(((f11 * 3.0f) / 4.0f) + f10, lineBottom + L3, f12, lineBottom);
+                            f7 = f12;
+                            L2 = f11;
+                        }
+                        if (f7 > primaryHorizontal2) {
+                            canvas.save();
+                            float f13 = L / 2.0f;
+                            canvas.clipRect(primaryHorizontal - f13, (lineBottom - L3) - f13, primaryHorizontal2 + f13, lineBottom + L3 + f13);
+                            canvas.drawPath(path, paint);
+                            canvas.restore();
+                        } else {
+                            canvas.drawPath(path, paint);
+                        }
+                        i11++;
+                        layout2 = layout;
+                        spanned = spanned2;
+                        gv0VarArr = gv0VarArr2;
+                        i10 = i12;
                     }
-                } else {
-                    imageReceiver = null;
-                }
-                if (imageReceiver != null) {
-                    int[] iArr = new int[2];
-                    childAt.getLocationInWindow(iArr);
-                    org.telegram.ui.su0 su0Var = new org.telegram.ui.su0();
-                    su0Var.f43407b = iArr[0];
-                    su0Var.f43408c = childAt.getPaddingTop() + iArr[1];
-                    su0Var.d = jv0Var.f29773r;
-                    su0Var.f43415m = null;
-                    su0Var.f43406a = imageReceiver;
-                    if (z10) {
-                        su0Var.e = imageReceiver.getBitmapSafe();
-                    }
-                    su0Var.h = imageReceiver.getRoundRadius(true);
-                    su0Var.f43412j = 0;
-                    su0Var.f43411i = 0;
-                    return su0Var;
+                    i10++;
+                    layout2 = layout;
                 }
             }
         }
-        return null;
     }
 
     @Override
-    public final boolean L() {
-        return true;
+    public final void updateDrawState(TextPaint textPaint) {
     }
 }

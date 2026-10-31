@@ -1,24 +1,83 @@
 package s4;
 
-import android.animation.ValueAnimator;
-public final class e implements ValueAnimator.AnimatorUpdateListener {
-    public final int f47770a;
-    public final l f47771b;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import java.util.ArrayList;
+public final class e implements Runnable {
+    public final int f47918a;
+    public final ArrayList f47919b;
+    public final j f47920c;
 
-    public e(l lVar, e1 e1Var, int i10) {
-        this.f47770a = i10;
-        this.f47771b = lVar;
+    public e(j jVar, ArrayList arrayList, int i10) {
+        this.f47918a = i10;
+        this.f47920c = jVar;
+        this.f47919b = arrayList;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f47770a) {
+    public final void run() {
+        switch (this.f47918a) {
             case 0:
-                this.f47771b.Q();
-                return;
+                ArrayList arrayList = this.f47919b;
+                int size = arrayList.size();
+                int i10 = 0;
+                while (true) {
+                    j jVar = this.f47920c;
+                    if (i10 < size) {
+                        Object obj = arrayList.get(i10);
+                        i10++;
+                        i iVar = (i) obj;
+                        jVar.C(iVar.f47942a, iVar);
+                        jVar.f47952w.add(iVar);
+                    } else {
+                        arrayList.clear();
+                        jVar.f47951u.remove(arrayList);
+                        return;
+                    }
+                }
+            case 1:
+                ArrayList arrayList2 = this.f47919b;
+                int size2 = arrayList2.size();
+                int i11 = 0;
+                while (true) {
+                    j jVar2 = this.f47920c;
+                    if (i11 < size2) {
+                        Object obj2 = arrayList2.get(i11);
+                        i11++;
+                        h hVar = (h) obj2;
+                        jVar2.B(hVar);
+                        jVar2.f47953x.add(hVar);
+                    } else {
+                        arrayList2.clear();
+                        jVar2.v.remove(arrayList2);
+                        return;
+                    }
+                }
             default:
-                this.f47771b.M();
-                return;
+                ArrayList arrayList3 = this.f47919b;
+                int i12 = Integer.MAX_VALUE;
+                for (int size3 = arrayList3.size() - 1; size3 >= 0; size3--) {
+                    i12 = Math.min(i12, ((c1) arrayList3.get(size3)).b());
+                }
+                int size4 = arrayList3.size();
+                while (true) {
+                    size4--;
+                    j jVar3 = this.f47920c;
+                    if (size4 >= 0) {
+                        c1 c1Var = (c1) arrayList3.get(size4);
+                        long b10 = (c1Var.b() - i12) * jVar3.D;
+                        View view = c1Var.f47898a;
+                        ViewPropertyAnimator animate = view.animate();
+                        jVar3.f47954y.add(c1Var);
+                        animate.alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(jVar3.h()).setStartDelay(b10).setInterpolator(jVar3.h);
+                        animate.setUpdateListener(new c(jVar3, c1Var, 1));
+                        animate.setListener(new f(jVar3, c1Var, view, animate)).start();
+                    } else {
+                        arrayList3.clear();
+                        jVar3.f47950t.remove(arrayList3);
+                        return;
+                    }
+                }
         }
     }
 }

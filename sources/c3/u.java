@@ -1,41 +1,40 @@
 package c3;
 
 import b2.u0;
-import b2.w0;
-import e2.n0;
+import b2.v0;
 import java.nio.ByteOrder;
 import java.util.Collections;
 public final class u {
-    public final int f6096a;
-    public final int f6097b;
-    public final int f6098c;
+    public final int f3691a;
+    public final int f3692b;
+    public final int f3693c;
     public final int d;
     public final int e;
-    public final int f6099f;
-    public final int f6100g;
+    public final int f3694f;
+    public final int f3695g;
     public final int h;
-    public final int f6101i;
-    public final long f6102j;
-    public final rf.b f6103k;
-    public final u0 f6104l;
+    public final int f3696i;
+    public final long f3697j;
+    public final hf.b f3698k;
+    public final u0 f3699l;
 
     public u(byte[] bArr, int i10) {
         a4.g gVar = new a4.g(bArr, bArr.length);
-        gVar.m(i10 * 8);
-        this.f6096a = gVar.g(16);
-        this.f6097b = gVar.g(16);
-        this.f6098c = gVar.g(24);
-        this.d = gVar.g(24);
-        int g7 = gVar.g(20);
-        this.e = g7;
-        this.f6099f = d(g7);
-        this.f6100g = gVar.g(3) + 1;
-        int g10 = gVar.g(5) + 1;
-        this.h = g10;
-        this.f6101i = a(g10);
-        this.f6102j = gVar.i(36);
-        this.f6103k = null;
-        this.f6104l = null;
+        gVar.d0(i10 * 8);
+        this.f3691a = gVar.i(16);
+        this.f3692b = gVar.i(16);
+        this.f3693c = gVar.i(24);
+        this.d = gVar.i(24);
+        int i11 = gVar.i(20);
+        this.e = i11;
+        this.f3694f = d(i11);
+        this.f3695g = gVar.i(3) + 1;
+        int i12 = gVar.i(5) + 1;
+        this.h = i12;
+        this.f3696i = a(i12);
+        this.f3697j = gVar.k(36);
+        this.f3698k = null;
+        this.f3699l = null;
     }
 
     public static int a(int i10) {
@@ -90,7 +89,7 @@ public final class u {
     }
 
     public final long b() {
-        long j10 = this.f6102j;
+        long j10 = this.f3697j;
         if (j10 == 0) {
             return -9223372036854775807L;
         }
@@ -103,34 +102,34 @@ public final class u {
         if (i10 <= 0) {
             i10 = -1;
         }
-        u0 u0Var2 = this.f6104l;
+        u0 u0Var2 = this.f3699l;
         if (u0Var2 != null) {
             u0Var = u0Var2.b(u0Var);
         }
         b2.w wVar = new b2.w();
-        wVar.f3533r = w0.n("audio/flac");
-        wVar.f3534s = i10;
-        wVar.J = this.f6100g;
+        wVar.f2370r = v0.n("audio/flac");
+        wVar.f2371s = i10;
+        wVar.J = this.f3695g;
         wVar.K = this.e;
-        String str = n0.f9691a;
-        wVar.L = n0.D(this.h, ByteOrder.LITTLE_ENDIAN);
-        wVar.f3536u = Collections.singletonList(bArr);
-        wVar.f3526k = u0Var;
+        String str = e2.l0.f6165a;
+        wVar.L = e2.l0.D(this.h, ByteOrder.LITTLE_ENDIAN);
+        wVar.f2373u = Collections.singletonList(bArr);
+        wVar.f2363k = u0Var;
         return new b2.x(wVar);
     }
 
-    public u(int i10, int i11, int i12, int i13, int i14, int i15, int i16, long j10, rf.b bVar, u0 u0Var) {
-        this.f6096a = i10;
-        this.f6097b = i11;
-        this.f6098c = i12;
+    public u(int i10, int i11, int i12, int i13, int i14, int i15, int i16, long j10, hf.b bVar, u0 u0Var) {
+        this.f3691a = i10;
+        this.f3692b = i11;
+        this.f3693c = i12;
         this.d = i13;
         this.e = i14;
-        this.f6099f = d(i14);
-        this.f6100g = i15;
+        this.f3694f = d(i14);
+        this.f3695g = i15;
         this.h = i16;
-        this.f6101i = a(i16);
-        this.f6102j = j10;
-        this.f6103k = bVar;
-        this.f6104l = u0Var;
+        this.f3696i = a(i16);
+        this.f3697j = j10;
+        this.f3698k = bVar;
+        this.f3699l = u0Var;
     }
 }

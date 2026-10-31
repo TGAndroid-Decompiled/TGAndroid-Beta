@@ -1,24 +1,15 @@
 package w7;
-public final class c extends k9 {
-    public final transient Object[] f50880c;
-    public final transient int d;
-    public final transient int e = 1;
+public final class c {
+    public static final c f52477a;
+    public static final c[] f52478b;
 
-    public c(int i10, Object[] objArr) {
-        this.f50880c = objArr;
-        this.d = i10;
+    static {
+        ?? r02 = new Enum("DEFAULT", 0);
+        f52477a = r02;
+        f52478b = new c[]{r02, new Enum("SIGNED", 1), new Enum("FIXED", 2)};
     }
 
-    @Override
-    public final Object get(int i10) {
-        z.a(i10, this.e);
-        Object obj = this.f50880c[i10 + i10 + this.d];
-        obj.getClass();
-        return obj;
-    }
-
-    @Override
-    public final int size() {
-        return this.e;
+    public static c[] values() {
+        return (c[]) f52478b.clone();
     }
 }

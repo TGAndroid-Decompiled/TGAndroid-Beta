@@ -1,23 +1,21 @@
 package org.telegram.messenger;
 public final class vk implements Runnable {
-    public final int f21590a;
-    public final TopicsController f21591b;
-    public final long f21592c;
+    public final int f18595a;
+    public final boolean[] f18596b;
 
-    public vk(TopicsController topicsController, long j10, int i10) {
-        this.f21590a = i10;
-        this.f21591b = topicsController;
-        this.f21592c = j10;
+    public vk(int i10, boolean[] zArr) {
+        this.f18595a = i10;
+        this.f18596b = zArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f21590a) {
+        switch (this.f18595a) {
             case 0:
-                this.f21591b.lambda$loadTopics$6(this.f21592c);
+                this.f18596b[0] = true;
                 return;
             default:
-                this.f21591b.lambda$processTopics$8(this.f21592c);
+                this.f18596b[0] = true;
                 return;
         }
     }

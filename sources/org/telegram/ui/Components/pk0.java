@@ -1,6 +1,6 @@
 package org.telegram.ui.Components;
-
-import org.telegram.tgnet.TLRPC;
-public interface pk0 {
-    void f(long j10, TLRPC.MessagePeerReaction messagePeerReaction);
+public final class pk0 {
+    public float f29375a;
+    public float f29376b;
+    public float f29377c;
 }

@@ -1,135 +1,56 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLRPC;
-public final class b50 implements ri {
-    public final g50 f26734a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.widget.FrameLayout;
+import org.telegram.messenger.ImageReceiver;
+public final class b50 extends g50 {
+    public ImageReceiver f24543a;
+    public float f24544b;
+    public final d50 f24545c;
 
-    public b50(g50 g50Var) {
-        this.f26734a = g50Var;
+    public b50(d50 d50Var, Context context) {
+        super(context);
+        this.f24545c = d50Var;
+        setWillNotDraw(false);
     }
 
     @Override
-    public final void A(gh ghVar) {
-        ghVar.run();
-    }
-
-    @Override
-    public final boolean E() {
-        return false;
-    }
-
-    @Override
-    public final void H() {
-        this.f26734a.q();
-    }
-
-    @Override
-    public final void R() {
-        AndroidUtilities.hideKeyboard(this.f26734a.f28388a.getFragmentView().findFocus());
-    }
-
-    @Override
-    public final void p0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
-        ti tiVar;
-        g50 g50Var = this.f26734a;
-        org.telegram.ui.ActionBar.r2 r2Var = g50Var.f28388a;
-        if (r2Var != null && r2Var.getParentActivity() != null && (tiVar = g50Var.f28390c) != null) {
-            if (i10 != 8 && i10 != 7) {
-                tiVar.dismissWithButtonClick(i10);
-                if (i10 == 0) {
-                    g50Var.l();
-                    return;
-                }
-                return;
-            }
-            HashMap<Object, Object> selectedPhotos = tiVar.f33002j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = g50Var.f28390c.f33002j0.getSelectedPhotosOrder();
-            ArrayList arrayList = new ArrayList();
-            boolean z14 = false;
-            for (int i13 = 0; i13 < selectedPhotosOrder.size(); i13++) {
-                Object obj = selectedPhotos.get(selectedPhotosOrder.get(i13));
-                SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-                arrayList.add(sendingMediaInfo);
-                String str = null;
-                if (obj instanceof MediaController.PhotoEntry) {
-                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
-                    String str2 = photoEntry.imagePath;
-                    if (str2 != null) {
-                        sendingMediaInfo.path = str2;
-                    } else {
-                        sendingMediaInfo.path = photoEntry.path;
-                    }
-                    sendingMediaInfo.thumbPath = photoEntry.thumbPath;
-                    sendingMediaInfo.coverPath = photoEntry.coverPath;
-                    sendingMediaInfo.videoEditedInfo = photoEntry.editedInfo;
-                    sendingMediaInfo.isLivePhoto = photoEntry.isLivePhoto();
-                    sendingMediaInfo.isVideo = photoEntry.isVideo;
-                    sendingMediaInfo.livePhotoVideoOffset = photoEntry.livePhotoVideoOffset;
-                    sendingMediaInfo.discardLivePhoto = true;
-                    CharSequence charSequence = photoEntry.caption;
-                    if (charSequence != null) {
-                        str = charSequence.toString();
-                    }
-                    sendingMediaInfo.caption = str;
-                    sendingMediaInfo.entities = photoEntry.entities;
-                    sendingMediaInfo.masks = photoEntry.stickers;
-                    sendingMediaInfo.ttl = photoEntry.ttl;
-                    TLRPC.VideoSize videoSize = photoEntry.emojiMarkup;
-                    sendingMediaInfo.emojiMarkup = videoSize;
-                    z14 = videoSize instanceof TLRPC.TL_videoSizeEmojiMarkup;
-                } else if (obj instanceof MediaController.SearchImage) {
-                    MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
-                    String str3 = searchImage.imagePath;
-                    if (str3 != null) {
-                        sendingMediaInfo.path = str3;
-                    } else {
-                        sendingMediaInfo.searchImage = searchImage;
-                    }
-                    sendingMediaInfo.thumbPath = searchImage.thumbPath;
-                    sendingMediaInfo.coverPath = searchImage.coverPath;
-                    sendingMediaInfo.videoEditedInfo = searchImage.editedInfo;
-                    CharSequence charSequence2 = searchImage.caption;
-                    if (charSequence2 != null) {
-                        str = charSequence2.toString();
-                    }
-                    sendingMediaInfo.caption = str;
-                    sendingMediaInfo.entities = searchImage.entities;
-                    sendingMediaInfo.masks = searchImage.stickers;
-                    sendingMediaInfo.ttl = searchImage.ttl;
-                    TLRPC.BotInlineResult botInlineResult = searchImage.inlineResult;
-                    if (botInlineResult != null && searchImage.type == 1) {
-                        sendingMediaInfo.inlineResult = botInlineResult;
-                        sendingMediaInfo.params = searchImage.params;
-                    }
-                    searchImage.date = (int) (System.currentTimeMillis() / 1000);
-                }
-            }
-            g50.a(g50Var, z14, arrayList);
-            if (i10 != 8) {
-                g50Var.f28390c.dismiss(true);
-            }
+    public final void dispatchDraw(Canvas canvas) {
+        d50 d50Var = this.f24545c;
+        FrameLayout frameLayout = d50Var.f25335x;
+        jl0 jl0Var = d50Var.f25333w;
+        nh.f fVar = d50Var.f25337y;
+        super.dispatchDraw(canvas);
+        if (this.f24543a == null) {
+            return;
         }
+        float f7 = this.f24544b;
+        if (f7 < 1.0f) {
+            this.f24544b = Math.min(1.0f, f7 + 0.064f);
+            invalidate();
+        }
+        canvas.save();
+        canvas.translate(fVar.getLeft() + frameLayout.getLeft() + jl0Var.getLeft(), fVar.getTop() + frameLayout.getTop() + jl0Var.getTop());
+        if (this.f24543a.M0 != fVar.getWidth()) {
+            float width = fVar.getWidth() / this.f24543a.M0;
+            canvas.scale(width, width);
+        }
+        ImageReceiver imageReceiver = this.f24543a;
+        canvas.translate(-imageReceiver.K0, -imageReceiver.L0);
+        float alpha = this.f24543a.getAlpha();
+        this.f24543a.setAlpha(this.f24544b);
+        this.f24543a.h(canvas, null);
+        this.f24543a.setAlpha(alpha);
+        canvas.restore();
     }
 
     @Override
-    public final boolean x0() {
-        return false;
-    }
-
-    @Override
-    public final void T(Object obj) {
-    }
-
-    @Override
-    public final void Y(TLRPC.User user) {
-    }
-
-    @Override
-    public final void z0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11) {
+    public final void setImageReceiver(ImageReceiver imageReceiver) {
+        if (this.f24543a == null) {
+            this.f24544b = 0.0f;
+        }
+        this.f24543a = imageReceiver;
+        invalidate();
     }
 }

@@ -1,45 +1,58 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-import java.util.ArrayList;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PrivacyControlActivity;
-public final class m1 implements Runnable {
-    public final int f30331a;
-    public final ArrayList f30332b;
+import android.widget.LinearLayout;
+public final class m1 implements View.OnClickListener {
+    public final int f28236a = 1;
+    public final LinearLayout f28237b;
+    public final int[] f28238c;
 
-    public m1(ArrayList arrayList, int i10) {
-        this.f30331a = i10;
-        this.f30332b = arrayList;
+    public m1(LinearLayout linearLayout, int[] iArr) {
+        this.f28237b = linearLayout;
+        this.f28238c = iArr;
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.ActionBar.r2 R;
-        switch (this.f30331a) {
+    public final void onClick(View view) {
+        boolean z10;
+        boolean z11;
+        switch (this.f28236a) {
             case 0:
-                if (this.f30332b != null && (R = LaunchActivity.R()) != 0) {
-                    ?? obj = new Object();
-                    obj.f22929a = true;
-                    R.showAsSheet(new PrivacyControlActivity(11, false), obj);
-                    return;
+                this.f28238c[0] = ((Integer) view.getTag()).intValue();
+                LinearLayout linearLayout = this.f28237b;
+                int childCount = linearLayout.getChildCount();
+                for (int i10 = 0; i10 < childCount; i10++) {
+                    View childAt = linearLayout.getChildAt(i10);
+                    if (childAt instanceof org.telegram.ui.Cells.n6) {
+                        org.telegram.ui.Cells.n6 n6Var = (org.telegram.ui.Cells.n6) childAt;
+                        if (childAt == view) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        n6Var.f22361c.a(z10, true);
+                    }
                 }
                 return;
             default:
-                int i10 = 0;
-                while (true) {
-                    ArrayList arrayList = this.f30332b;
-                    if (i10 < arrayList.size()) {
-                        ((View) arrayList.get(i10)).setVisibility(8);
-                        if (arrayList.get(i10) instanceof org.telegram.ui.Cells.s1) {
-                            ((org.telegram.ui.Cells.s1) arrayList.get(i10)).L3(false, false);
-                            ((org.telegram.ui.Cells.s1) arrayList.get(i10)).N3(false, false, false);
-                        }
-                        i10++;
+                LinearLayout linearLayout2 = this.f28237b;
+                int childCount2 = linearLayout2.getChildCount();
+                for (int i11 = 0; i11 < childCount2; i11++) {
+                    org.telegram.ui.Cells.n6 n6Var2 = (org.telegram.ui.Cells.n6) linearLayout2.getChildAt(i11);
+                    if (n6Var2 == view) {
+                        z11 = true;
                     } else {
-                        return;
+                        z11 = false;
                     }
+                    n6Var2.f22361c.a(z11, true);
                 }
+                this.f28238c[0] = org.telegram.ui.Cells.v8.f23330f[((Integer) view.getTag()).intValue()];
+                return;
         }
+    }
+
+    public m1(int[] iArr, LinearLayout linearLayout) {
+        this.f28238c = iArr;
+        this.f28237b = linearLayout;
     }
 }

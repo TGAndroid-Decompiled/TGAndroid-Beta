@@ -2,20 +2,19 @@ package w3;
 
 import b2.t0;
 import b2.u0;
+import b2.v0;
 import b2.w;
-import b2.w0;
-import d5.z;
-import di.b7;
+import c3.f0;
 import e2.x;
-import f9.f0;
-import f9.g0;
-import f9.i0;
+import e9.k0;
+import e9.l0;
+import e9.n0;
 import j$.util.Objects;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.UUID;
 public abstract class p {
-    public static final int[] f50799a = {1769172845, 1769172786, 1769172787, 1769172788, 1769172789, 1769172790, 1769172793, 1635148593, 1752589105, 1751479857, 1635135537, 1836069937, 1836069938, 862401121, 862401122, 862417462, 862417718, 862414134, 862414646, 1295275552, 1295270176, 1714714144, 1801741417, 1295275600, 1903435808, 1297305174, 1684175153, 1769172332, 1885955686};
+    public static final int[] f52420a = {1769172845, 1769172786, 1769172787, 1769172788, 1769172789, 1769172790, 1769172793, 1635148593, 1752589105, 1751479857, 1635135537, 1836069937, 1836069938, 862401121, 862401122, 862417462, 862417718, 862414134, 862414646, 1295275552, 1295270176, 1714714144, 1801741417, 1295275600, 1903435808, 1297305174, 1684175153, 1769172332, 1885955686};
 
     public static byte[] a(UUID uuid, UUID[] uuidArr, byte[] bArr) {
         int i10;
@@ -64,13 +63,13 @@ public abstract class p {
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
-            String str2 = ((t) obj).f50826a.f50804g.f3586s;
-            if (w0.m(str2)) {
+            String str2 = ((t) obj).f52447a.f52425g.f2423s;
+            if (v0.m(str2)) {
                 return "video/mp4";
             }
-            if (w0.i(str2)) {
+            if (v0.i(str2)) {
                 z10 = true;
-            } else if (w0.k(str2)) {
+            } else if (v0.k(str2)) {
                 if (Objects.equals(str2, "image/heic")) {
                     str = "image/heif";
                 } else if (Objects.equals(str2, "image/avif")) {
@@ -95,7 +94,7 @@ public abstract class p {
             return true;
         }
         for (int i11 = 0; i11 < 29; i11++) {
-            if (f50799a[i11] == i10) {
+            if (f52420a[i11] == i10) {
                 return true;
             }
         }
@@ -106,8 +105,8 @@ public abstract class p {
         int m10 = xVar.m();
         if (xVar.m() == 1684108385) {
             xVar.O(8);
-            String w10 = xVar.w(m10 - 16);
-            return new q3.e("und", w10, w10);
+            String w9 = xVar.w(m10 - 16);
+            return new q3.e("und", w9, w9);
         }
         e2.a.l("MetadataUtil", "Failed to parse comment attribute: " + f2.f.a(i10));
         return null;
@@ -118,7 +117,7 @@ public abstract class p {
         int m10 = xVar.m();
         if (xVar.m() == 1684108385) {
             int m11 = xVar.m();
-            byte[] bArr = c.f50721a;
+            byte[] bArr = c.f52342a;
             int i10 = m11 & 16777215;
             if (i10 == 13) {
                 str = "image/jpeg";
@@ -128,7 +127,7 @@ public abstract class p {
                 str = null;
             }
             if (str == null) {
-                a1.g.z(i10, "Unrecognized cover art flags: ", "MetadataUtil");
+                a1.g.w(i10, "Unrecognized cover art flags: ", "MetadataUtil");
                 return null;
             }
             xVar.O(4);
@@ -141,18 +140,18 @@ public abstract class p {
         return null;
     }
 
-    public static q3.n f(int i10, x xVar, String str) {
+    public static q3.o f(int i10, x xVar, String str) {
         int m10 = xVar.m();
         if (xVar.m() == 1684108385 && m10 >= 22) {
             xVar.O(10);
             int H = xVar.H();
             if (H > 0) {
-                String i11 = ic.a.i(H, "");
+                String i11 = i0.a.i(H, "");
                 int H2 = xVar.H();
                 if (H2 > 0) {
                     i11 = i11 + "/" + H2;
                 }
-                return new q3.n(str, null, i0.y(i11));
+                return new q3.o(str, null, n0.y(i11));
             }
         }
         e2.a.l("MetadataUtil", "Failed to parse index/count attribute: " + f2.f.a(i10));
@@ -184,25 +183,25 @@ public abstract class p {
         return -1;
     }
 
-    public static q3.i h(int i10, String str, x xVar, boolean z10, boolean z11) {
-        int g7 = g(xVar);
+    public static q3.j h(int i10, String str, x xVar, boolean z10, boolean z11) {
+        int g10 = g(xVar);
         if (z11) {
-            g7 = Math.min(1, g7);
+            g10 = Math.min(1, g10);
         }
-        if (g7 >= 0) {
+        if (g10 >= 0) {
             if (z10) {
-                return new q3.n(str, null, i0.y(Integer.toString(g7)));
+                return new q3.o(str, null, n0.y(Integer.toString(g10)));
             }
-            return new q3.e("und", str, Integer.toString(g7));
+            return new q3.e("und", str, Integer.toString(g10));
         }
         e2.a.l("MetadataUtil", "Failed to parse uint8 attribute: " + f2.f.a(i10));
         return null;
     }
 
-    public static k6.m i(byte[] bArr) {
+    public static j6.m i(byte[] bArr) {
         UUID[] uuidArr;
         x xVar = new x(bArr);
-        if (xVar.f9733c < 32) {
+        if (xVar.f6209c < 32) {
             return null;
         }
         xVar.N(0);
@@ -214,12 +213,12 @@ public abstract class p {
         }
         int m11 = xVar.m();
         if (m11 != 1886614376) {
-            a1.g.z(m11, "Atom type is not pssh: ", "PsshAtomUtil");
+            a1.g.w(m11, "Atom type is not pssh: ", "PsshAtomUtil");
             return null;
         }
         int e = c.e(xVar.m());
         if (e > 1) {
-            a1.g.z(e, "Unsupported pssh version: ", "PsshAtomUtil");
+            a1.g.w(e, "Unsupported pssh version: ", "PsshAtomUtil");
             return null;
         }
         UUID uuid = new UUID(xVar.u(), xVar.u());
@@ -241,31 +240,31 @@ public abstract class p {
         byte[] bArr2 = new byte[E2];
         xVar.k(0, E2, bArr2);
         ?? obj = new Object();
-        obj.f16423b = uuid;
-        obj.f16422a = e;
-        obj.f16424c = bArr2;
+        obj.f9699b = uuid;
+        obj.f9698a = e;
+        obj.f9700c = bArr2;
         obj.d = uuidArr;
         return obj;
     }
 
     public static byte[] j(UUID uuid, byte[] bArr) {
-        k6.m i10 = i(bArr);
+        j6.m i10 = i(bArr);
         if (i10 == null) {
             return null;
         }
-        UUID uuid2 = (UUID) i10.f16423b;
+        UUID uuid2 = (UUID) i10.f9699b;
         if (!uuid.equals(uuid2)) {
             e2.a.l("PsshAtomUtil", "UUID mismatch. Expected: " + uuid + ", got: " + uuid2 + ".");
             return null;
         }
-        return (byte[]) i10.f16424c;
+        return (byte[]) i10.f9700c;
     }
 
-    public static q3.n k(int i10, x xVar, String str) {
+    public static q3.o k(int i10, x xVar, String str) {
         int m10 = xVar.m();
         if (xVar.m() == 1684108385) {
             xVar.O(8);
-            return new q3.n(str, null, i0.y(xVar.w(m10 - 16)));
+            return new q3.o(str, null, n0.y(xVar.w(m10 - 16)));
         }
         e2.a.l("MetadataUtil", "Failed to parse text attribute: " + f2.f.a(i10));
         return null;
@@ -277,16 +276,16 @@ public abstract class p {
             u0Var2 = new u0(new t0[0]);
         }
         if (u0Var != null) {
-            f0 t10 = i0.t();
-            for (t0 t0Var : u0Var.f3465a) {
+            k0 t10 = n0.t();
+            for (t0 t0Var : u0Var.f2302a) {
                 if (f2.b.class.isAssignableFrom(t0Var.getClass())) {
                     t10.c((t0) f2.b.class.cast(t0Var));
                 }
             }
-            g0 listIterator = t10.f().listIterator(0);
+            l0 listIterator = t10.f().listIterator(0);
             while (listIterator.hasNext()) {
                 f2.b bVar = (f2.b) listIterator.next();
-                if (!bVar.f10055a.equals("com.android.capture.fps") || i10 == 2) {
+                if (!bVar.f6728a.equals("com.android.capture.fps") || i10 == 2) {
                     u0Var2 = u0Var2.a(bVar);
                 }
             }
@@ -294,13 +293,13 @@ public abstract class p {
         for (u0 u0Var3 : u0VarArr) {
             u0Var2 = u0Var2.b(u0Var3);
         }
-        if (u0Var2.f3465a.length > 0) {
-            wVar.f3526k = u0Var2;
+        if (u0Var2.f2302a.length > 0) {
+            wVar.f2363k = u0Var2;
         }
     }
 
-    public static c3.f0 m(c3.p pVar, boolean z10, boolean z11) {
-        c3.f0 f0Var;
+    public static f0 m(c3.p pVar, boolean z10, boolean z11) {
+        f0 f0Var;
         int i10;
         long j10;
         int i11;
@@ -323,14 +322,14 @@ public abstract class p {
         boolean z12 = false;
         while (i18 < i16) {
             xVar.K(8);
-            if (!pVar.h(xVar.f9731a, i17, 8, true)) {
+            if (!pVar.j(xVar.f6207a, i17, 8, true)) {
                 break;
             }
             long C = xVar.C();
             int m10 = xVar.m();
             if (C == 1) {
                 j10 = j12;
-                pVar.b(8, 8, xVar.f9731a);
+                pVar.b(8, 8, xVar.f6207a);
                 i12 = 16;
                 xVar.M(16);
                 C = xVar.u();
@@ -341,7 +340,7 @@ public abstract class p {
                     long length2 = pVar.getLength();
                     if (length2 != j10) {
                         i11 = i18;
-                        C = (length2 - pVar.i()) + 8;
+                        C = (length2 - pVar.k()) + 8;
                         i12 = 8;
                     }
                 }
@@ -355,7 +354,7 @@ public abstract class p {
                 if (m10 == 1718773093 && i12 == 8) {
                     j14 = j15;
                 } else {
-                    return new b7(m10, j14, i12);
+                    return new j4.w(m10, j14, i12);
                 }
             } else {
                 f0Var = null;
@@ -391,11 +390,11 @@ public abstract class p {
                         i18 = i19 + i20;
                         if (m10 == 1718909296) {
                             if (i20 < 8) {
-                                return new b7(m10, i20, 8);
+                                return new j4.w(m10, i20, 8);
                             }
                             xVar.K(i20);
                             i14 = 0;
-                            pVar.b(0, i20, xVar.f9731a);
+                            pVar.b(0, i20, xVar.f6207a);
                             int m11 = xVar.m();
                             if (c(m11, z11)) {
                                 z12 = true;
@@ -421,12 +420,12 @@ public abstract class p {
                                 iArr = f0Var;
                             }
                             if (!z12) {
-                                return new z(m11, iArr);
+                                return new c5.x(iArr, m11);
                             }
                         } else {
                             i14 = 0;
                             if (i20 != 0) {
-                                pVar.j(i20);
+                                pVar.l(i20);
                             }
                         }
                     }
@@ -445,13 +444,13 @@ public abstract class p {
         f0Var = null;
         i10 = i17;
         if (!z12) {
-            return m.f50793a;
+            return m.f52414a;
         }
         if (z10 != i10) {
             if (i10 != 0) {
-                return i.f50761b;
+                return i.f52382b;
             }
-            return i.f50762c;
+            return i.f52383c;
         }
         return f0Var;
     }

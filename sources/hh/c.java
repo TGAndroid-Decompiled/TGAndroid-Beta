@@ -1,26 +1,25 @@
 package hh;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import eh.f;
-public final class c implements a, ri.a {
-    public final Paint f12835a = new Paint(1);
-    public int f12836b;
+import ag.l;
+import java.io.Serializable;
+import org.telegram.messenger.i0;
+public final class c {
+    public long f7687a;
+    public Object f7688b;
+    public Serializable f7689c;
+    public Object d;
 
-    public final void a(int i10) {
-        if (this.f12836b != i10) {
-            this.f12836b = i10;
-            this.f12835a.setColor(i10);
+    public void a(b bVar, boolean z10) {
+        gg.c cVar = (gg.c) this.d;
+        if (((b) this.f7689c) != bVar) {
+            i0.r(cVar);
+            this.f7689c = bVar;
+            if (z10) {
+                ((l) this.f7688b).a(bVar);
+            }
+            if (bVar == b.f7685b || bVar == b.f7686c) {
+                i0.h3(cVar, this.f7687a);
+            }
         }
-    }
-
-    @Override
-    public final eh.d f() {
-        return new f(this);
-    }
-
-    @Override
-    public final void w(Canvas canvas, float f7, float f10, float f11, float f12) {
-        canvas.drawRect(f7, f10, f11, f12, this.f12835a);
     }
 }

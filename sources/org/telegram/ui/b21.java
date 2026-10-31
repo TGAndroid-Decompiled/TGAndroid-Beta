@@ -1,89 +1,36 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class b21 implements TextWatcher {
-    public final int f37871a;
-    public final d21 f37872b;
+import android.content.Context;
+import android.view.View;
+public final class b21 extends View {
+    public final int f35963a;
+    public final Integer f35964b;
 
-    public b21(d21 d21Var, int i10) {
-        this.f37871a = i10;
-        this.f37872b = d21Var;
+    public b21(Context context, Integer num, int i10) {
+        super(context);
+        this.f35963a = i10;
+        this.f35964b = num;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        switch (this.f37871a) {
+    public final void onMeasure(int i10, int i11) {
+        switch (this.f35963a) {
             case 0:
-                this.f37872b.V(true);
-                return;
-            case 1:
-                d21 d21Var = this.f37872b;
-                if (!d21Var.K) {
-                    EditTextBoldCursor editTextBoldCursor = d21Var.f38498a[1];
-                    int selectionStart = editTextBoldCursor.getSelectionStart();
-                    String obj = editTextBoldCursor.getText().toString();
-                    StringBuilder sb2 = new StringBuilder(obj.length());
-                    int i10 = 0;
-                    while (i10 < obj.length()) {
-                        int i11 = i10 + 1;
-                        String substring = obj.substring(i10, i11);
-                        if ("0123456789".contains(substring)) {
-                            sb2.append(substring);
-                        }
-                        i10 = i11;
-                    }
-                    d21Var.K = true;
-                    int intValue = Utilities.parseInt((CharSequence) sb2.toString()).intValue();
-                    if (intValue >= 0 && intValue <= 65535 && obj.equals(sb2.toString())) {
-                        if (selectionStart >= 0) {
-                            editTextBoldCursor.setSelection(Math.min(selectionStart, editTextBoldCursor.length()));
-                        }
-                    } else if (intValue < 0) {
-                        editTextBoldCursor.setText("0");
-                    } else if (intValue > 65535) {
-                        editTextBoldCursor.setText("65535");
-                    } else {
-                        editTextBoldCursor.setText(sb2.toString());
-                    }
-                    d21Var.K = false;
-                    d21Var.V(true);
+                super.onMeasure(i10, i11);
+                Integer num = this.f35964b;
+                if (num != null) {
+                    setPivotX(num.intValue());
                     return;
                 }
                 return;
             default:
-                this.f37872b.V(true);
+                super.onMeasure(i10, i11);
+                Integer num2 = this.f35964b;
+                if (num2 != null) {
+                    setPivotX(num2.intValue());
+                    return;
+                }
                 return;
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f37871a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f37871a;
-    }
-
-    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void e(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void f(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

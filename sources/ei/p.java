@@ -1,9 +1,10 @@
 package ei;
+public final class p {
+    public final hi.c f6662a;
+    public final o f6663b;
 
-import org.telegram.messenger.MessageObject;
-public final class p extends MessageObject {
-    @Override
-    public final float getProgress() {
-        return this.uploadingStory.h;
+    public p(hi.c cVar, o oVar) {
+        this.f6662a = cVar;
+        this.f6663b = oVar;
     }
 }

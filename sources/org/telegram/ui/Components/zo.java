@@ -1,71 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class zo extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
-    public final int T;
-    public Object U;
+import android.widget.Toast;
+import java.util.ArrayList;
+import java.util.List;
+import org.telegram.tgnet.ResultCallback;
+import org.telegram.tgnet.TLRPC;
+public final class zo implements ResultCallback {
+    public final org.telegram.messenger.g4 f33135a;
+    public final dp f33136b;
 
-    public zo(Context context, int i10, int i11, org.telegram.ui.ActionBar.u6 u6Var, int i12) {
-        super(i10, i11, context, u6Var);
-        this.T = i12;
+    public zo(dp dpVar, org.telegram.messenger.g4 g4Var) {
+        this.f33136b = dpVar;
+        this.f33135a = g4Var;
     }
 
     @Override
-    public boolean drawChild(Canvas canvas, View view, long j10) {
-        switch (this.T) {
-            case 0:
-                canvas.save();
-                Path path = (Path) this.U;
-                path.rewind();
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
-                path.addRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Path.Direction.CW);
-                canvas.clipPath(path);
-                boolean drawChild = super.drawChild(canvas, view, j10);
-                canvas.restore();
-                return drawChild;
-            case 1:
-                canvas.save();
-                Path path2 = (Path) this.U;
-                path2.rewind();
-                RectF rectF2 = AndroidUtilities.rectTmp;
-                rectF2.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
-                path2.addRoundRect(rectF2, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Path.Direction.CW);
-                canvas.clipPath(path2);
-                boolean drawChild2 = super.drawChild(canvas, view, j10);
-                canvas.restore();
-                return drawChild2;
-            default:
-                return super.drawChild(canvas, view, j10);
-        }
+    public final void onComplete(Object obj) {
+        List list = (List) obj;
+        ArrayList e = this.f33135a.e(7);
+        dp dpVar = this.f33136b;
+        org.telegram.messenger.zs.f(dpVar.f21583a).d(new cd(22, this, e));
+        dpVar.R1 = false;
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        int i12;
-        switch (this.T) {
-            case 2:
-                l80 l80Var = (l80) this.U;
-                if (this == l80Var.A && (i12 = l80Var.X) > 0) {
-                    i11 = View.MeasureSpec.makeMeasureSpec(Math.min(i12, View.MeasureSpec.getSize(i11)), View.MeasureSpec.getMode(i11));
-                }
-                super.onMeasure(i10, i11);
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
-        }
+    public final void onError(Throwable th2) {
+        org.telegram.tgnet.l.a(this, th2);
     }
 
-    public zo(l80 l80Var, Context context, int i10, org.telegram.ui.ActionBar.u6 u6Var, int i11) {
-        super(i10, i11, context, u6Var);
-        this.T = 2;
-        this.U = l80Var;
+    @Override
+    public final void onError(TLRPC.TL_error tL_error) {
+        Toast.makeText(this.f33136b.getContext(), tL_error.text, 0).show();
     }
 }

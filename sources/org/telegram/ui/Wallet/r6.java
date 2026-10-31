@@ -1,29 +1,33 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.Utilities;
-public final class r6 implements Runnable {
-    public final int f37212a;
-    public final WalletEngine2 f37213b;
-    public final Utilities.Callback2 f37214c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.ui.Components.bi;
+public final class r6 extends AnimatorListenerAdapter {
+    public final bi f35118a;
+    public final a7 f35119b;
+    public final s6 f35120c;
 
-    public r6(WalletEngine2 walletEngine2, Utilities.Callback2 callback2, int i10) {
-        this.f37212a = i10;
-        this.f37213b = walletEngine2;
-        this.f37214c = callback2;
+    public r6(s6 s6Var, bi biVar, a7 a7Var) {
+        this.f35120c = s6Var;
+        this.f35118a = biVar;
+        this.f35119b = a7Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37212a) {
-            case 0:
-                this.f37213b.lambda$emulateRotateKey$30(this.f37214c);
-                return;
-            case 1:
-                this.f37213b.lambda$balance$14(this.f37214c);
-                return;
-            default:
-                this.f37213b.lambda$prepareSendNFT$24(this.f37214c);
-                return;
+    public final void onAnimationCancel(Animator animator) {
+        this.f35120c.a(false);
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        this.f35120c.a(true);
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        if (this.f35118a != null) {
+            org.telegram.messenger.i0.v1(this.f35119b);
         }
     }
 }

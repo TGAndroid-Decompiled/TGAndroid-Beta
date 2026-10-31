@@ -1,8 +1,16 @@
 package z5;
 
-import b8.d;
-import com.google.android.gms.common.api.e;
-import com.google.android.gms.common.api.j;
-public abstract class a extends j {
-    public static final e f52736k = new e("SmsRetriever.API", new d(19), new Object());
+import android.accounts.Account;
+import java.util.HashMap;
+import java.util.HashSet;
+public final class a {
+    public HashSet f54621a;
+    public boolean f54622b;
+    public boolean f54623c;
+    public boolean d;
+    public String e;
+    public Account f54624f;
+    public String f54625g;
+    public HashMap h;
+    public String f54626i;
 }

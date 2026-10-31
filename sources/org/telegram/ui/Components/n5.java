@@ -1,41 +1,85 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class n5 implements Runnable {
-    public final int f30735a;
-    public final p5 f30736b;
-    public final ArrayList f30737c;
-    public final HashSet d;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.widget.TextView;
+public class n5 extends TextView {
+    public int f28683a;
+    public PorterDuffColorFilter f28684b;
+    public k5 f28685c;
 
-    public n5(p5 p5Var, ArrayList arrayList, HashSet hashSet, int i10) {
-        this.f30735a = i10;
-        this.f30736b = p5Var;
-        this.f30737c = arrayList;
-        this.d = hashSet;
+    public n5(Context context) {
+        super(context);
+        this.f28683a = 0;
     }
 
     @Override
-    public final void run() {
-        switch (this.f30735a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new n5(this.f30736b, this.f30737c, this.d, 1));
-                return;
-            default:
-                p5 p5Var = this.f30736b;
-                p5Var.d(this.f30737c);
-                HashSet hashSet = this.d;
-                if (!hashSet.isEmpty()) {
-                    ArrayList<Long> arrayList = new ArrayList<>(hashSet);
-                    TLRPC.TL_messages_getCustomEmojiDocuments tL_messages_getCustomEmojiDocuments = new TLRPC.TL_messages_getCustomEmojiDocuments();
-                    tL_messages_getCustomEmojiDocuments.document_id = arrayList;
-                    ConnectionsManager.getInstance(p5Var.e).sendRequest(tL_messages_getCustomEmojiDocuments, new org.telegram.ui.z7(11, p5Var, arrayList));
-                    return;
-                }
-                return;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f28685c = o5.update(this.f28683a, this, this.f28685c, getLayout());
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        o5.release(this, this.f28685c);
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        float f7;
+        int paddingLeft;
+        Canvas canvas2;
+        super.onDraw(canvas);
+        if ((getGravity() & 16) != 0 && getLayout() != null) {
+            f7 = ((((getHeight() - getPaddingTop()) - getPaddingBottom()) - getLayout().getHeight()) / 2.0f) + getPaddingTop();
+        } else {
+            f7 = 0.0f;
         }
+        if (org.telegram.messenger.cd.X) {
+            paddingLeft = getPaddingRight();
+        } else {
+            paddingLeft = getPaddingLeft();
+        }
+        float f10 = paddingLeft;
+        int i10 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
+        if (i10 == 0 && f10 == 0.0f) {
+            canvas2 = canvas;
+        } else {
+            canvas.save();
+            canvas2 = canvas;
+            canvas2.translate(f10, f7);
+        }
+        o5.drawAnimatedEmojis(canvas2, getLayout(), this.f28685c, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, this.f28684b);
+        if (i10 == 0 && f10 == 0.0f) {
+            return;
+        }
+        canvas.restore();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        this.f28685c = o5.update(this.f28683a, this, this.f28685c, getLayout());
+    }
+
+    public void setCacheType(int i10) {
+        if (this.f28683a == i10) {
+            return;
+        }
+        this.f28683a = i10;
+        this.f28685c = o5.update(i10, this, this.f28685c, getLayout());
+    }
+
+    public void setEmojiColor(int i10) {
+        this.f28684b = new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN);
+    }
+
+    @Override
+    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        super.setText(charSequence, bufferType);
+        this.f28685c = o5.update(this.f28683a, this, this.f28685c, getLayout());
     }
 }

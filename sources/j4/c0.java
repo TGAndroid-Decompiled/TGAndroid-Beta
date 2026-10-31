@@ -1,118 +1,112 @@
 package j4;
 
-import a8.yb;
-import b2.w0;
-import c3.j0;
-import java.util.List;
-public final class c0 {
-    public final int f15259a;
-    public final List f15260b;
-    public final j0[] f15261c;
-    public final e2.c d;
+import e2.k0;
+import e2.l0;
+public final class c0 implements h0 {
+    public final b0 f9418a;
+    public final e2.x f9419b = new e2.x(32);
+    public int f9420c;
+    public int d;
+    public boolean e;
+    public boolean f9421f;
 
-    public c0(int i10, List list) {
-        this.f15259a = i10;
-        switch (i10) {
-            case 1:
-                this.f15260b = list;
-                this.f15261c = new j0[list.size()];
-                e2.c cVar = new e2.c(new e1.c(this, 29));
-                this.d = cVar;
-                cVar.k(3);
-                return;
-            default:
-                this.f15260b = list;
-                this.f15261c = new j0[list.size()];
-                this.d = new e2.c(new e1.c(this, 28));
-                return;
-        }
+    public c0(b0 b0Var) {
+        this.f9418a = b0Var;
     }
 
-    public void a(long j10, e2.x xVar) {
-        if (xVar.a() >= 9) {
-            int m10 = xVar.m();
-            int m11 = xVar.m();
-            int A = xVar.A();
-            if (m10 == 434 && m11 == 1195456820 && A == 3) {
-                this.d.a(j10, xVar);
+    @Override
+    public final void a(int i10, e2.x xVar) {
+        boolean z10;
+        int i11;
+        boolean z11;
+        if ((i10 & 1) != 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (z10) {
+            i11 = xVar.f6208b + xVar.A();
+        } else {
+            i11 = -1;
+        }
+        if (this.f9421f) {
+            if (z10) {
+                this.f9421f = false;
+                xVar.N(i11);
+                this.d = 0;
+            } else {
+                return;
+            }
+        }
+        while (xVar.a() > 0) {
+            int i12 = this.d;
+            e2.x xVar2 = this.f9419b;
+            if (i12 < 3) {
+                if (i12 == 0) {
+                    int A = xVar.A();
+                    xVar.N(xVar.f6208b - 1);
+                    if (A == 255) {
+                        this.f9421f = true;
+                        return;
+                    }
+                }
+                int min = Math.min(xVar.a(), 3 - this.d);
+                xVar.k(this.d, min, xVar2.f6207a);
+                int i13 = this.d + min;
+                this.d = i13;
+                if (i13 == 3) {
+                    xVar2.N(0);
+                    xVar2.M(3);
+                    xVar2.O(1);
+                    int A2 = xVar2.A();
+                    int A3 = xVar2.A();
+                    if ((A2 & 128) != 0) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    this.e = z11;
+                    int i14 = (((A2 & 15) << 8) | A3) + 3;
+                    this.f9420c = i14;
+                    byte[] bArr = xVar2.f6207a;
+                    if (bArr.length < i14) {
+                        xVar2.c(Math.min(4098, Math.max(i14, bArr.length * 2)));
+                    }
+                }
+            } else {
+                int min2 = Math.min(xVar.a(), this.f9420c - this.d);
+                xVar.k(this.d, min2, xVar2.f6207a);
+                int i15 = this.d + min2;
+                this.d = i15;
+                int i16 = this.f9420c;
+                if (i15 != i16) {
+                    continue;
+                } else {
+                    if (this.e) {
+                        if (l0.p(0, i16, -1, xVar2.f6207a) != 0) {
+                            this.f9421f = true;
+                            return;
+                        }
+                        xVar2.M(this.f9420c - 4);
+                    } else {
+                        xVar2.M(i16);
+                    }
+                    xVar2.N(0);
+                    this.f9418a.c(xVar2);
+                    this.d = 0;
+                }
             }
         }
     }
 
-    public final void b(c3.q qVar, f0 f0Var) {
-        boolean z10;
-        boolean z11;
-        switch (this.f15259a) {
-            case 0:
-                int i10 = 0;
-                while (true) {
-                    j0[] j0VarArr = this.f15261c;
-                    if (i10 < j0VarArr.length) {
-                        f0Var.b();
-                        f0Var.c();
-                        j0 F1 = qVar.F1(f0Var.f15314c, 3);
-                        b2.x xVar = (b2.x) this.f15260b.get(i10);
-                        String str = xVar.f3586s;
-                        if (!"application/cea-608".equals(str) && !"application/cea-708".equals(str)) {
-                            z10 = false;
-                        } else {
-                            z10 = true;
-                        }
-                        yb.h(z10, "Invalid closed caption MIME type provided: %s", str);
-                        String str2 = xVar.f3571a;
-                        if (str2 == null) {
-                            f0Var.c();
-                            str2 = (String) f0Var.e;
-                        }
-                        b2.w wVar = new b2.w();
-                        wVar.f3519a = str2;
-                        wVar.f3532q = w0.n("video/mp2t");
-                        wVar.f3533r = w0.n(str);
-                        wVar.e = xVar.e;
-                        wVar.d = xVar.d;
-                        wVar.O = xVar.P;
-                        wVar.f3536u = xVar.v;
-                        ic.a.u(wVar, F1);
-                        j0VarArr[i10] = F1;
-                        i10++;
-                    } else {
-                        return;
-                    }
-                }
-                break;
-            default:
-                int i11 = 0;
-                while (true) {
-                    j0[] j0VarArr2 = this.f15261c;
-                    if (i11 < j0VarArr2.length) {
-                        f0Var.b();
-                        f0Var.c();
-                        j0 F12 = qVar.F1(f0Var.f15314c, 3);
-                        b2.x xVar2 = (b2.x) this.f15260b.get(i11);
-                        String str3 = xVar2.f3586s;
-                        if (!"application/cea-608".equals(str3) && !"application/cea-708".equals(str3)) {
-                            z11 = false;
-                        } else {
-                            z11 = true;
-                        }
-                        yb.h(z11, "Invalid closed caption MIME type provided: %s", str3);
-                        b2.w wVar2 = new b2.w();
-                        f0Var.c();
-                        wVar2.f3519a = (String) f0Var.e;
-                        wVar2.f3532q = w0.n("video/mp2t");
-                        wVar2.f3533r = w0.n(str3);
-                        wVar2.e = xVar2.e;
-                        wVar2.d = xVar2.d;
-                        wVar2.O = xVar2.P;
-                        wVar2.f3536u = xVar2.v;
-                        ic.a.u(wVar2, F12);
-                        j0VarArr2[i11] = F12;
-                        i11++;
-                    } else {
-                        return;
-                    }
-                }
-                break;
-        }
+    @Override
+    public final void d(k0 k0Var, c3.q qVar, g0 g0Var) {
+        this.f9418a.d(k0Var, qVar, g0Var);
+        this.f9421f = true;
+    }
+
+    @Override
+    public final void e() {
+        this.f9421f = true;
     }
 }

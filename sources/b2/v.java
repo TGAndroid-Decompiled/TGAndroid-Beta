@@ -1,18 +1,18 @@
 package b2;
 
-import a8.yb;
 import android.os.Build;
 import android.util.SparseBooleanArray;
+import v7.t6;
 public final class v {
-    public final SparseBooleanArray f3510a;
+    public final SparseBooleanArray f2347a;
 
     public v(SparseBooleanArray sparseBooleanArray) {
-        this.f3510a = sparseBooleanArray;
+        this.f2347a = sparseBooleanArray;
     }
 
     public final int a(int i10) {
-        SparseBooleanArray sparseBooleanArray = this.f3510a;
-        yb.j(i10, sparseBooleanArray.size());
+        SparseBooleanArray sparseBooleanArray = this.f2347a;
+        t6.j(i10, sparseBooleanArray.size());
         return sparseBooleanArray.keyAt(i10);
     }
 
@@ -24,9 +24,9 @@ public final class v {
             return false;
         }
         v vVar = (v) obj;
-        SparseBooleanArray sparseBooleanArray = vVar.f3510a;
+        SparseBooleanArray sparseBooleanArray = vVar.f2347a;
         int i10 = Build.VERSION.SDK_INT;
-        SparseBooleanArray sparseBooleanArray2 = this.f3510a;
+        SparseBooleanArray sparseBooleanArray2 = this.f2347a;
         if (i10 < 24) {
             if (sparseBooleanArray2.size() != sparseBooleanArray.size()) {
                 return false;
@@ -43,7 +43,7 @@ public final class v {
 
     public final int hashCode() {
         int i10 = Build.VERSION.SDK_INT;
-        SparseBooleanArray sparseBooleanArray = this.f3510a;
+        SparseBooleanArray sparseBooleanArray = this.f2347a;
         if (i10 < 24) {
             int size = sparseBooleanArray.size();
             for (int i11 = 0; i11 < sparseBooleanArray.size(); i11++) {

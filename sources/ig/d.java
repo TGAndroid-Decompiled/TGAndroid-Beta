@@ -1,20 +1,36 @@
 package ig;
-
-import java.util.Comparator;
-import org.telegram.messenger.MessagesController;
-public final class d implements Comparator {
-    public final int f14020a;
-    public final MessagesController f14021b;
-    public final int f14022c;
-
-    public d(MessagesController messagesController, int i10, int i11) {
-        this.f14020a = i11;
-        this.f14021b = messagesController;
-        this.f14022c = i10;
+public final class d extends h {
+    @Override
+    public final float a() {
+        return 1.0f;
     }
 
     @Override
-    public final int compare(java.lang.Object r6, java.lang.Object r7) {
-        throw new UnsupportedOperationException("Method not decompiled: ig.d.compare(java.lang.Object, java.lang.Object):int");
+    public final float d() {
+        return 1.0f;
+    }
+
+    @Override
+    public final int e() {
+        return 2131624125;
+    }
+
+    @Override
+    public final float g() {
+        return 0.35f;
+    }
+
+    @Override
+    public final String i(int i10) {
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    return null;
+                }
+                return "brush";
+            }
+            return "compositeWithMaskEraser";
+        }
+        return "blitWithMaskEraser";
     }
 }

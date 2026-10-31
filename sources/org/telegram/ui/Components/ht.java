@@ -1,79 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-public final class ht extends AnimatorListenerAdapter {
-    public final int f29072a = 1;
-    public final s4.e1 f29073b;
-    public final View f29074c;
-    public final ViewPropertyAnimator d;
-    public final mt e;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_payments;
+public final class ht implements org.telegram.ui.ActionBar.u1 {
+    public final int f26807a;
+    public final int f26808b;
+    public final Object f26809c;
 
-    public ht(mt mtVar, s4.e1 e1Var, ViewPropertyAnimator viewPropertyAnimator, View view) {
-        this.e = mtVar;
-        this.f29073b = e1Var;
-        this.d = viewPropertyAnimator;
-        this.f29074c = view;
+    public ht(int i10, int i11, org.telegram.ui.ActionBar.k2 k2Var) {
+        this.f26807a = i10;
+        this.f26808b = i11;
+        this.f26809c = k2Var;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f29072a) {
-            case 1:
-                this.f29074c.setAlpha(1.0f);
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
-        }
+    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
+        gf.e h = x1Var.h(-1, true, true);
+        h.d();
+        TL_payments.TL_resolveStarGiftOffer tL_resolveStarGiftOffer = new TL_payments.TL_resolveStarGiftOffer();
+        tL_resolveStarGiftOffer.offer_msg_id = this.f26807a;
+        int i11 = this.f26808b;
+        ConnectionsManager.getInstance(i11).sendRequestTyped(tL_resolveStarGiftOffer, new org.telegram.ui.f0(i11, (org.telegram.ui.ActionBar.k2) this.f26809c, h, x1Var));
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f29072a) {
-            case 0:
-                this.d.setListener(null);
-                this.f29074c.setAlpha(1.0f);
-                mt mtVar = this.e;
-                s4.e1 e1Var = this.f29073b;
-                mtVar.d(e1Var);
-                mtVar.f30628x.remove(e1Var);
-                mtVar.A();
-                return;
-            default:
-                this.d.setListener(null);
-                mt mtVar2 = this.e;
-                s4.e1 e1Var2 = this.f29073b;
-                mtVar2.u(e1Var2);
-                mtVar2.v.remove(e1Var2);
-                mtVar2.A();
-                View view = e1Var2.f47773a;
-                if (view instanceof org.telegram.ui.Cells.p2) {
-                    ((org.telegram.ui.Cells.p2) view).setMoving(false);
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
-        switch (this.f29072a) {
-            case 0:
-                this.e.y();
-                return;
-            default:
-                this.e.getClass();
-                return;
-        }
-    }
-
-    public ht(mt mtVar, s4.e1 e1Var, View view, ViewPropertyAnimator viewPropertyAnimator) {
-        this.e = mtVar;
-        this.f29073b = e1Var;
-        this.f29074c = view;
-        this.d = viewPropertyAnimator;
+    public ht(mt mtVar, int i10, int i11) {
+        this.f26809c = mtVar;
+        this.f26807a = i10;
+        this.f26808b = i11;
     }
 }

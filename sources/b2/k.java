@@ -5,10 +5,10 @@ import android.os.SharedMemory;
 import android.system.OsConstants;
 import java.nio.ByteBuffer;
 public final class k {
-    public final SharedMemory f3246a;
+    public final SharedMemory f2082a;
 
     public k(SharedMemory sharedMemory) {
-        this.f3246a = sharedMemory;
+        this.f2082a = sharedMemory;
     }
 
     public static k a(byte[] bArr) {
@@ -25,8 +25,8 @@ public final class k {
             SharedMemory.unmap(mapReadWrite);
             sharedMemory.setProtect(OsConstants.PROT_READ);
             return new k(sharedMemory);
-        } catch (Exception e10) {
-            e = e10;
+        } catch (Exception e7) {
+            e = e7;
             e2.a.m("BundleableByteArray", "Failed to allocate shared memory for byte array, size=" + bArr.length, e);
             if (sharedMemory != null) {
                 sharedMemory.close();
@@ -37,7 +37,7 @@ public final class k {
 
     public static byte[] b(Bundle bundle) {
         ByteBuffer byteBuffer;
-        SharedMemory sharedMemory = (SharedMemory) bundle.getParcelable(m.f3269f);
+        SharedMemory sharedMemory = (SharedMemory) bundle.getParcelable(m.f2112f);
         try {
             if (sharedMemory == null) {
                 return null;
@@ -59,8 +59,8 @@ public final class k {
                     sharedMemory.close();
                     return null;
                 }
-            } catch (Exception e10) {
-                e = e10;
+            } catch (Exception e7) {
+                e = e7;
                 byteBuffer = null;
             } catch (Throwable th2) {
                 th = th2;

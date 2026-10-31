@@ -1,24 +1,18 @@
 package org.telegram.messenger;
-
-import org.telegram.messenger.MessagesController;
 public final class re implements Runnable {
-    public final int f21124a;
-    public final MessagesController.DialogPhotos f21125b;
+    public final MediaController f17723a;
 
-    public re(MessagesController.DialogPhotos dialogPhotos, int i10) {
-        this.f21124a = i10;
-        this.f21125b = dialogPhotos;
+    public re(MediaController mediaController) {
+        this.f17723a = mediaController;
     }
 
     @Override
     public final void run() {
-        switch (this.f21124a) {
-            case 0:
-                this.f21125b.lambda$loadCache$5();
-                return;
-            default:
-                this.f21125b.lambda$saveCache$6();
-                return;
+        MediaController mediaController = this.f17723a;
+        jj jjVar = mediaController.f14482u0;
+        if (jjVar == null) {
+            return;
         }
+        b8.G(jjVar.I1).c0(mediaController.f14482u0.F0(), true, false);
     }
 }

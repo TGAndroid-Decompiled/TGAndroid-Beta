@@ -1,56 +1,6 @@
 package org.telegram.ui.ActionBar;
+public interface t2 {
+    void w();
 
-import android.animation.ValueAnimator;
-public final class t2 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f23096a;
-    public final k3 f23097b;
-
-    public t2(k3 k3Var, int i10) {
-        this.f23096a = i10;
-        this.f23097b = k3Var;
-    }
-
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f23096a) {
-            case 0:
-                k3 k3Var = this.f23097b;
-                k3Var.getClass();
-                k3Var.navigationBarAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                h3 h3Var = k3Var.container;
-                if (h3Var != null) {
-                    h3Var.invalidate();
-                    return;
-                }
-                return;
-            case 1:
-                k3 k3Var2 = this.f23097b;
-                k3Var2.getClass();
-                k3Var2.navigationBarAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                h3 h3Var2 = k3Var2.container;
-                if (h3Var2 != null) {
-                    h3Var2.invalidate();
-                    return;
-                }
-                return;
-            case 2:
-                this.f23097b.onContainerViewTranslation();
-                return;
-            case 3:
-                this.f23097b.onContainerViewTranslation();
-                return;
-            case 4:
-                this.f23097b.onContainerViewTranslation();
-                return;
-            case 5:
-                k3.j(this.f23097b, valueAnimator);
-                return;
-            case 6:
-                this.f23097b.onContainerViewTranslation();
-                return;
-            default:
-                k3.i(this.f23097b, valueAnimator);
-                return;
-        }
-    }
+    boolean y();
 }

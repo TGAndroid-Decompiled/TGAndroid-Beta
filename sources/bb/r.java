@@ -24,9 +24,9 @@ public abstract class r {
             list = activityManager.getRunningAppProcesses();
         }
         if (list == null) {
-            list = kd.o.f16524a;
+            list = bd.q.f2660a;
         }
-        ArrayList f7 = kd.g.f(list);
+        ArrayList f7 = bd.i.f(list);
         ArrayList arrayList = new ArrayList();
         int size = f7.size();
         int i11 = 0;
@@ -38,7 +38,7 @@ public abstract class r {
                 arrayList.add(obj);
             }
         }
-        ArrayList arrayList2 = new ArrayList(kd.i.d(arrayList));
+        ArrayList arrayList2 = new ArrayList(bd.k.d(arrayList));
         int size2 = arrayList.size();
         while (i11 < size2) {
             Object obj2 = arrayList.get(i11);
@@ -46,7 +46,7 @@ public abstract class r {
             ActivityManager.RunningAppProcessInfo runningAppProcessInfo = (ActivityManager.RunningAppProcessInfo) obj2;
             String str2 = runningAppProcessInfo.processName;
             kotlin.jvm.internal.i.d(str2, "runningAppProcessInfo.processName");
-            arrayList2.add(new q(str2, runningAppProcessInfo.pid, runningAppProcessInfo.importance, kotlin.jvm.internal.i.a(runningAppProcessInfo.processName, str)));
+            arrayList2.add(new q(runningAppProcessInfo.pid, runningAppProcessInfo.importance, str2, kotlin.jvm.internal.i.a(runningAppProcessInfo.processName, str)));
         }
         return arrayList2;
     }
@@ -62,7 +62,7 @@ public abstract class r {
             if (i10 < size) {
                 obj = a2.get(i10);
                 i10++;
-                if (((q) obj).f3813b == myPid) {
+                if (((q) obj).f2614b == myPid) {
                     break;
                 }
             } else {
@@ -72,7 +72,7 @@ public abstract class r {
         }
         q qVar = (q) obj;
         if (qVar == null) {
-            return new q(c(), myPid, 0, false);
+            return new q(myPid, 0, c(), false);
         }
         return qVar;
     }
@@ -87,7 +87,7 @@ public abstract class r {
         } else if (i10 >= 28 && (processName = Application.getProcessName()) != null) {
             return processName;
         } else {
-            String a2 = v6.d.a();
+            String a2 = u6.d.a();
             if (a2 != null) {
                 return a2;
             }

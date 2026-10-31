@@ -9,18 +9,17 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import org.telegram.ui.Components.b10;
 import org.xmlpull.v1.XmlPullParser;
 public abstract class a {
-    public static ExecutorService f9620a;
-    public static final Object f9621b = new Object();
+    public static ExecutorService f6100a;
+    public static final Object f6101b = new Object();
 
     public static String a(String str, Throwable th2) {
         String replace;
         if (th2 == null) {
             replace = null;
         } else {
-            synchronized (f9621b) {
+            synchronized (f6101b) {
                 Throwable th3 = th2;
                 while (true) {
                     if (th3 != null) {
@@ -40,28 +39,28 @@ public abstract class a {
             }
         }
         if (!TextUtils.isEmpty(replace)) {
-            StringBuilder l4 = b10.l(str, "\n  ");
-            l4.append(replace.replace("\n", "\n  "));
-            l4.append('\n');
-            return l4.toString();
+            StringBuilder i10 = sc.e.i(str, "\n  ");
+            i10.append(replace.replace("\n", "\n  "));
+            i10.append('\n');
+            return i10.toString();
         }
         return str;
     }
 
     public static void b(String str, String str2) {
-        synchronized (f9621b) {
+        synchronized (f6101b) {
             Log.d(str, a(str2, null));
         }
     }
 
     public static void c(String str, String str2) {
-        synchronized (f9621b) {
+        synchronized (f6101b) {
             Log.e(str, a(str2, null));
         }
     }
 
     public static void d(String str, String str2, Throwable th2) {
-        synchronized (f9621b) {
+        synchronized (f6101b) {
             Log.e(str, a(str2, th2));
         }
     }
@@ -70,11 +69,11 @@ public abstract class a {
         ExecutorService executorService;
         synchronized (a.class) {
             try {
-                if (f9620a == null) {
-                    String str = n0.f9691a;
-                    f9620a = Executors.newSingleThreadExecutor(new androidx.emoji2.text.a("ExoPlayer:BackgroundExecutor", 1));
+                if (f6100a == null) {
+                    String str = l0.f6165a;
+                    f6100a = Executors.newSingleThreadExecutor(new androidx.emoji2.text.a("ExoPlayer:BackgroundExecutor", 1));
                 }
-                executorService = f9620a;
+                executorService = f6100a;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -93,7 +92,7 @@ public abstract class a {
     }
 
     public static void g(String str, String str2) {
-        synchronized (f9621b) {
+        synchronized (f6101b) {
             Log.i(str, a(str2, null));
         }
     }
@@ -120,18 +119,18 @@ public abstract class a {
 
     public static void k(MediaFormat mediaFormat, List list) {
         for (int i10 = 0; i10 < list.size(); i10++) {
-            mediaFormat.setByteBuffer(ic.a.i(i10, "csd-"), ByteBuffer.wrap((byte[]) list.get(i10)));
+            mediaFormat.setByteBuffer(i0.a.i(i10, "csd-"), ByteBuffer.wrap((byte[]) list.get(i10)));
         }
     }
 
     public static void l(String str, String str2) {
-        synchronized (f9621b) {
+        synchronized (f6101b) {
             Log.w(str, a(str2, null));
         }
     }
 
     public static void m(String str, String str2, Throwable th2) {
-        synchronized (f9621b) {
+        synchronized (f6101b) {
             Log.w(str, a(str2, th2));
         }
     }

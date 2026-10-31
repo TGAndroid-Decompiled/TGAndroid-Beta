@@ -1,38 +1,22 @@
 package org.telegram.ui;
 
-import android.os.Build;
-import java.util.ArrayList;
-import org.telegram.messenger.FileLog;
-public final class gl0 {
-    public final LaunchActivity f39643a;
-    public final ArrayList f39644b = new ArrayList();
-    public int f39645c = Integer.MIN_VALUE;
+import java.util.TimerTask;
+public final class gl0 extends TimerTask {
+    public final hl0 f37594a;
 
-    public gl0(LaunchActivity launchActivity) {
-        this.f39643a = launchActivity;
+    public gl0(hl0 hl0Var) {
+        this.f37594a = hl0Var;
     }
 
-    public final void a() {
-        boolean isEmpty = this.f39644b.isEmpty();
-        LaunchActivity launchActivity = this.f39643a;
-        try {
-            if (!isEmpty && launchActivity.getResources().getConfiguration().smallestScreenWidthDp < 600 && (Build.VERSION.SDK_INT < 24 || !launchActivity.isInMultiWindowMode())) {
-                if (this.f39645c == Integer.MIN_VALUE) {
-                    this.f39645c = launchActivity.getRequestedOrientation();
-                }
-                if (launchActivity.getRequestedOrientation() != 1) {
-                    launchActivity.setRequestedOrientation(1);
-                    return;
-                }
-                return;
-            }
-            int i10 = this.f39645c;
-            if (i10 != Integer.MIN_VALUE) {
-                launchActivity.setRequestedOrientation(i10);
-                this.f39645c = Integer.MIN_VALUE;
-            }
-        } catch (Exception e) {
-            FileLog.e(e);
+    @Override
+    public final void run() {
+        hl0 hl0Var = this.f37594a;
+        if (hl0Var.f37992w == null) {
+            return;
         }
+        double currentTimeMillis = System.currentTimeMillis();
+        hl0Var.D = (int) (hl0Var.D - (currentTimeMillis - hl0Var.F));
+        hl0Var.F = currentTimeMillis;
+        org.telegram.messenger.i0.g3(new mg0(this, 9));
     }
 }

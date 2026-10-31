@@ -1,127 +1,165 @@
 package tg;
 
-import android.content.Context;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.wh;
-import org.telegram.ui.ActionBar.f7;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Cells.x3;
-import org.telegram.ui.Components.Premium.LimitPreviewView;
-import org.telegram.ui.Components.kb1;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.r41;
-public final class d extends mm0 {
-    public final u6 f48875c;
-    public final int d;
-    public final int e;
-    public final ArrayList f48876f;
-    public final a1 h;
-    public int f48877n;
-    public c f48878r;
-    public final boolean f48879s;
+import android.graphics.RecordingCanvas;
+import android.graphics.RenderEffect;
+import android.graphics.RenderNode;
+import android.graphics.Shader;
+import android.support.v4.media.session.w;
+import org.telegram.messenger.ui;
+public final class d {
+    public final RenderNode f48713a = w.n();
+    public final RenderNode[] f48714b;
+    public final RenderNode[] f48715c;
+    public final boolean d;
+    public int e;
+    public int f48716f;
+    public float f48717g;
+    public float h;
+    public long f48718i;
+    public final f f48719j;
 
-    public d(int i10, u6 u6Var) {
-        ArrayList arrayList = new ArrayList();
-        this.f48876f = arrayList;
-        this.f48879s = true;
-        this.f48875c = u6Var;
-        a1 a1Var = new a1(y6.Lj, y6.Mj, y6.Nj, y6.Oj, u6Var);
-        this.h = a1Var;
-        a1Var.f48840o = 0.0f;
-        a1Var.f48841p = 0.0f;
-        a1Var.f48842q = 1.0f;
-        MessagesController messagesController = MessagesController.getInstance(i10);
-        arrayList.add(new e(messagesController.channelsLimitDefault, messagesController.channelsLimitPremium, LocaleController.getString(R.string.GroupsAndChannelsLimitTitle), LocaleController.formatString(R.string.GroupsAndChannelsLimitSubtitle, Integer.valueOf(messagesController.channelsLimitPremium))));
-        arrayList.add(new e(messagesController.dialogFiltersPinnedLimitDefault, messagesController.dialogFiltersPinnedLimitPremium, LocaleController.getString(R.string.PinChatsLimitTitle), LocaleController.formatString(R.string.PinChatsLimitSubtitle, Integer.valueOf(messagesController.dialogFiltersPinnedLimitPremium))));
-        arrayList.add(new e(messagesController.publicLinksLimitDefault, messagesController.publicLinksLimitPremium, LocaleController.getString(R.string.PublicLinksLimitTitle), LocaleController.formatString(R.string.PublicLinksLimitSubtitle, Integer.valueOf(messagesController.publicLinksLimitPremium))));
-        arrayList.add(new e(messagesController.savedGifsLimitDefault, messagesController.savedGifsLimitPremium, LocaleController.getString(R.string.SavedGifsLimitTitle), LocaleController.formatString(R.string.SavedGifsLimitSubtitle, Integer.valueOf(messagesController.savedGifsLimitPremium))));
-        arrayList.add(new e(messagesController.stickersFavedLimitDefault, messagesController.stickersFavedLimitPremium, LocaleController.getString(R.string.FavoriteStickersLimitTitle), LocaleController.formatString(R.string.FavoriteStickersLimitSubtitle, Integer.valueOf(messagesController.stickersFavedLimitPremium))));
-        arrayList.add(new e(messagesController.aboutLengthLimitDefault, messagesController.aboutLengthLimitPremium, LocaleController.getString(R.string.BioLimitTitle), LocaleController.formatString(R.string.BioLimitSubtitle, Integer.valueOf(messagesController.stickersFavedLimitPremium))));
-        arrayList.add(new e(messagesController.captionLengthLimitDefault, messagesController.captionLengthLimitPremium, LocaleController.getString(R.string.CaptionsLimitTitle), LocaleController.formatString(R.string.CaptionsLimitSubtitle, Integer.valueOf(messagesController.stickersFavedLimitPremium))));
-        arrayList.add(new e(messagesController.dialogFiltersLimitDefault, messagesController.dialogFiltersLimitPremium, LocaleController.getString(R.string.FoldersLimitTitle), LocaleController.formatString(R.string.FoldersLimitSubtitle, Integer.valueOf(messagesController.dialogFiltersLimitPremium))));
-        arrayList.add(new e(messagesController.dialogFiltersChatsLimitDefault, messagesController.dialogFiltersChatsLimitPremium, LocaleController.getString(R.string.ChatPerFolderLimitTitle), LocaleController.formatString(R.string.ChatPerFolderLimitSubtitle, Integer.valueOf(messagesController.dialogFiltersChatsLimitPremium))));
-        arrayList.add(new e(3, 4, LocaleController.getString(R.string.ConnectedAccountsLimitTitle), LocaleController.formatString(R.string.ConnectedAccountsLimitSubtitle, 4)));
-        arrayList.add(new e(messagesController.recommendedChannelsLimitDefault, messagesController.recommendedChannelsLimitPremium, LocaleController.getString(R.string.SimilarChannelsLimitTitle), LocaleController.formatString(R.string.SimilarChannelsLimitSubtitle, Integer.valueOf(messagesController.recommendedChannelsLimitPremium))));
-        this.d = 1;
-        this.e = 1;
-        this.d = arrayList.size() + 1;
-    }
-
-    @Override
-    public final boolean D(s4.e1 e1Var) {
-        return false;
-    }
-
-    @Override
-    public final int h() {
-        return this.d;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == 0) {
-            return 1;
+    public d(f fVar, String str, int i10, boolean z10) {
+        this.f48719j = fVar;
+        int i11 = i10 + 1;
+        this.f48714b = new RenderNode[i11];
+        for (int i12 = 0; i12 < i11; i12++) {
+            RenderNode[] renderNodeArr = this.f48714b;
+            w.l();
+            renderNodeArr[i12] = w.d(str + "_down_" + i10);
         }
-        if (i10 == 0) {
-            return 2;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.e1 e1Var, int i10) {
-        if (e1Var.f47776f == 0) {
-            f fVar = (f) e1Var.f47773a;
-            int i11 = i10 - this.e;
-            ArrayList arrayList = this.f48876f;
-            fVar.a((e) arrayList.get(i11));
-            LimitPreviewView limitPreviewView = fVar.f48892c;
-            limitPreviewView.F = ((e) arrayList.get(i11)).e;
-            limitPreviewView.f26223c = this.f48877n;
-        }
-    }
-
-    @Override
-    public final s4.e1 x(ViewGroup viewGroup, int i10) {
-        x3 x3Var;
-        Context context = viewGroup.getContext();
-        u6 u6Var = this.f48875c;
-        if (i10 != 1) {
-            if (i10 != 2) {
-                ?? fVar = new f(context, u6Var);
-                fVar.f48892c.setParentViewForGradien(this.f48878r);
-                fVar.f48892c.setStaticGradinet(this.h);
-                x3Var = fVar;
-            } else {
-                x3Var = new x3(context, 16);
-            }
-        } else if (this.f48879s) {
-            ?? r41Var = new r41(context, 10);
-            LinearLayout d = wh.d(context, 0);
-            ImageView imageView = new ImageView(context);
-            imageView.setImageDrawable(b1.c(context.getDrawable(R.drawable.other_2x_large), b1.d().f48858a));
-            d.addView(imageView, kb1.h(40, 28.0f, 16, 0.0f, 0.0f, 8.0f, 0.0f));
-            TextView textView = new TextView(context);
-            textView.setText(LocaleController.getString(R.string.DoubledLimits));
-            textView.setGravity(17);
-            textView.setTextSize(1, 20.0f);
-            f7.V(textView, y6.G6, u6Var);
-            textView.setTypeface(AndroidUtilities.bold());
-            d.addView(textView, kb1.i(-2, -2, 16));
-            r41Var.addView(d, kb1.i(-2, -2, 17));
-            x3Var = r41Var;
+        if (i10 <= 0 && !z10) {
+            this.f48715c = this.f48714b;
         } else {
-            x3Var = new x3(context, 64);
+            this.f48715c = new RenderNode[i11];
+            for (int i13 = 0; i13 < i11; i13++) {
+                this.f48715c[i13] = w.n();
+            }
         }
-        return ic.a.n(x3Var, x3Var, -1, -2);
+        this.d = this.f48715c == this.f48714b;
+        this.f48716f = 1;
+        this.e = 1;
+    }
+
+    public final void a(RenderNode renderNode) {
+        boolean z10;
+        RenderNode[] renderNodeArr;
+        boolean z11;
+        int i10;
+        int width = renderNode.getWidth();
+        int height = renderNode.getHeight();
+        float f7 = width;
+        f fVar = this.f48719j;
+        int round = Math.round((fVar.d * f7) / this.e);
+        float f10 = height;
+        int round2 = Math.round((fVar.d * f10) / this.f48716f);
+        float f11 = round;
+        float f12 = f11 / f7;
+        float f13 = round2;
+        float f14 = f13 / f10;
+        int i11 = fVar.d;
+        float f15 = (f7 * i11) / f11;
+        float f16 = (f10 * i11) / f13;
+        long p5 = ui.p(ui.p(ui.p(ui.p(ui.p(0L, renderNode.getUniqueId()), round), round2), width), height);
+        if (this.f48713a.hasDisplayList() && this.f48714b[0].hasDisplayList()) {
+            z10 = false;
+        } else {
+            z10 = true;
+        }
+        int i12 = 0;
+        while (true) {
+            int length = this.f48714b.length;
+            z11 = this.d;
+            if (i12 >= length) {
+                break;
+            }
+            z10 |= !renderNodeArr[i12].hasDisplayList();
+            if (!z11) {
+                z10 |= !this.f48715c[i12].hasDisplayList();
+            }
+            i12++;
+        }
+        if (this.f48718i != p5 || z10) {
+            this.f48718i = p5;
+            int i13 = 0;
+            this.f48713a.setPosition(0, 0, width, height);
+            this.f48713a.beginRecording(width, height).drawRenderNode(renderNode);
+            this.f48713a.endRecording();
+            this.f48714b[0].setPosition(0, 0, round, round2);
+            RecordingCanvas beginRecording = this.f48714b[0].beginRecording(round, round2);
+            beginRecording.scale(f12, f14);
+            beginRecording.drawRenderNode(this.f48713a);
+            this.f48714b[0].endRecording();
+            int i14 = 0;
+            while (true) {
+                RenderNode[] renderNodeArr2 = this.f48714b;
+                if (i14 < renderNodeArr2.length) {
+                    renderNodeArr2[i14].setPosition(i13, i13, round, round2);
+                    RecordingCanvas beginRecording2 = this.f48714b[i14].beginRecording(round, round2);
+                    if (i14 > 0) {
+                        beginRecording2.drawRenderNode(this.f48714b[i13]);
+                    } else {
+                        beginRecording2.scale(f12, f14);
+                        beginRecording2.drawRenderNode(this.f48713a);
+                    }
+                    this.f48714b[i14].endRecording();
+                    if (z11) {
+                        this.f48714b[i14].setScaleX(f15);
+                        this.f48714b[i14].setScaleY(f16);
+                        this.f48714b[i14].setPivotX(0.0f);
+                        this.f48714b[i14].setPivotY(0.0f);
+                        i10 = 0;
+                    } else {
+                        i10 = 0;
+                        this.f48715c[i14].setPosition(0, 0, width, height);
+                        RecordingCanvas beginRecording3 = this.f48715c[i14].beginRecording(width, height);
+                        beginRecording3.scale(f15, f16);
+                        beginRecording3.drawRenderNode(this.f48714b[i14]);
+                        this.f48715c[i14].endRecording();
+                    }
+                    i14++;
+                    i13 = i10;
+                } else {
+                    return;
+                }
+            }
+        }
+    }
+
+    public final void b(float f7, float f10) {
+        float f11;
+        RenderNode[] renderNodeArr;
+        int i10 = this.e;
+        float f12 = 0.0f;
+        if (i10 >= 2) {
+            f11 = (this.f48717g + f7) % i10;
+        } else {
+            f11 = 0.0f;
+        }
+        this.f48717g = f11;
+        int i11 = this.f48716f;
+        if (i11 >= 2) {
+            f12 = (this.h + f10) % i11;
+        }
+        this.h = f12;
+        if (this.f48719j.f48724b) {
+            this.f48713a.setTranslationX(f11);
+            this.f48713a.setTranslationY(this.h);
+            for (RenderNode renderNode : this.f48715c) {
+                renderNode.setTranslationX(-this.f48717g);
+                renderNode.setTranslationY(-this.h);
+            }
+        }
+    }
+
+    public final void c(float f7) {
+        this.f48714b[0].setRenderEffect(RenderEffect.createBlurEffect(f.a(f7, this.e), f.a(f7, this.f48716f), Shader.TileMode.CLAMP));
+    }
+
+    public final void d(float f7, RenderEffect renderEffect) {
+        this.f48714b[0].setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(f.a(f7, this.e), f.a(f7, this.f48716f), Shader.TileMode.CLAMP), renderEffect));
+    }
+
+    public final void e(RenderEffect renderEffect) {
+        this.f48714b[1].setRenderEffect(renderEffect);
     }
 }

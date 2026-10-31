@@ -1,32 +1,24 @@
 package org.telegram.messenger.voip;
-
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.webrtc.VideoSink;
 public final class s0 implements Runnable {
-    public final int f21679a;
-    public final boolean f21680b;
-    public final Object f21681c;
-    public final Object d;
-    public final Object e;
+    public final int f18701a;
+    public final VoIPService f18702b;
 
-    public s0(Object obj, Object obj2, Object obj3, boolean z10, int i10) {
-        this.f21679a = i10;
-        this.f21681c = obj;
-        this.d = obj2;
-        this.e = obj3;
-        this.f21680b = z10;
+    public s0(VoIPService voIPService, int i10) {
+        this.f18701a = i10;
+        this.f18702b = voIPService;
     }
 
     @Override
     public final void run() {
-        switch (this.f21679a) {
+        switch (this.f18701a) {
             case 0:
-                ((VoIPService.AnonymousClass5) this.f21681c).lambda$onFrame$0((String) this.d, (VideoSink) this.e, this.f21680b);
+                VoIPService.k0(this.f18702b);
+                return;
+            case 1:
+                VoIPService.L(this.f18702b);
                 return;
             default:
-                ((VoIPService) this.f21681c).lambda$acknowledgeCall$12((TLObject) this.d, (TLRPC.TL_error) this.e, this.f21680b);
+                VoIPService.o1(this.f18702b);
                 return;
         }
     }

@@ -1,82 +1,35 @@
 package org.telegram.ui;
 
-import android.view.MotionEvent;
-import android.widget.Scroller;
-import org.telegram.messenger.Utilities;
-public final class wb1 implements org.telegram.ui.Components.lp0, org.telegram.ui.Components.t20 {
-    public final vc1 f44628a;
+import org.telegram.tgnet.tl.TL_account;
+public final class wb1 implements org.telegram.ui.ActionBar.u1 {
+    public final int f42923a;
+    public final TwoStepVerificationActivity f42924b;
 
-    public wb1(vc1 vc1Var) {
-        this.f44628a = vc1Var;
+    public wb1(TwoStepVerificationActivity twoStepVerificationActivity, int i10) {
+        this.f42923a = i10;
+        this.f42924b = twoStepVerificationActivity;
     }
 
     @Override
-    public void U(float f7, boolean z10) {
-        vc1 vc1Var = this.f44628a;
-        vc1Var.f44283m1 = f7;
-        vc1Var.l1();
-    }
-
-    @Override
-    public CharSequence getContentDescription() {
-        return null;
-    }
-
-    @Override
-    public int k0() {
-        return 0;
-    }
-
-    @Override
-    public boolean onDown(MotionEvent motionEvent) {
-        Scroller scroller = this.f44628a.f44253c;
-        if (scroller != null) {
-            scroller.abortAnimation();
-            return true;
+    public final void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
+        switch (this.f42923a) {
+            case 0:
+                this.f42924b.finishFragment();
+                return;
+            case 1:
+                TL_account.declinePasswordReset declinepasswordreset = new TL_account.declinePasswordReset();
+                TwoStepVerificationActivity twoStepVerificationActivity = this.f42924b;
+                twoStepVerificationActivity.getConnectionsManager().sendRequest(declinepasswordreset, new xb1(twoStepVerificationActivity, 2));
+                return;
+            case 2:
+                this.f42924b.o0();
+                return;
+            case 3:
+                this.f42924b.y0();
+                return;
+            default:
+                this.f42924b.y0();
+                return;
         }
-        return true;
-    }
-
-    @Override
-    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        vc1 vc1Var = this.f44628a;
-        Scroller scroller = vc1Var.f44253c;
-        if (scroller != null) {
-            scroller.abortAnimation();
-            vc1Var.f44253c.fling((int) vc1Var.Y1, 0, Math.round(-f7), Math.round(f10), 0, (int) vc1Var.X1, 0, Integer.MAX_VALUE);
-            vc1Var.f44312y0.postInvalidate();
-            return true;
-        }
-        return true;
-    }
-
-    @Override
-    public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        vc1 vc1Var = this.f44628a;
-        Scroller scroller = vc1Var.f44253c;
-        if (scroller != null) {
-            scroller.abortAnimation();
-        }
-        vc1Var.Y1 = Utilities.clamp(vc1Var.Y1 + f7, vc1Var.X1, 0.0f);
-        vc1Var.W0();
-        vc1Var.f44312y0.invalidate();
-        return true;
-    }
-
-    @Override
-    public boolean onSingleTapUp(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public void a1() {
-    }
-
-    @Override
-    public void y() {
-    }
-
-    @Override
-    public void onLongPress(MotionEvent motionEvent) {
     }
 }

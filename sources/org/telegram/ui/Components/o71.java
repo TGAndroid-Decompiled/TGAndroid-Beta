@@ -1,19 +1,30 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class o71 extends s4.c0 {
-    public final s71 I;
+import android.view.View;
+import java.util.ArrayList;
+public abstract class o71 {
+    public abstract void b(View view, int i10, int i11);
 
-    public o71(s71 s71Var, int i10) {
-        super(i10, false);
-        this.I = s71Var;
+    public boolean c(int i10) {
+        return false;
     }
 
-    @Override
-    public final int W0(s4.b1 b1Var) {
-        if (this.I.f32506i3) {
-            return AndroidUtilities.displaySize.y;
-        }
-        return super.W0(b1Var);
+    public abstract View d(int i10);
+
+    public abstract int e();
+
+    public CharSequence g(int i10) {
+        return "";
+    }
+
+    public int h(int i10) {
+        return 0;
+    }
+
+    public void a(ArrayList arrayList) {
+    }
+
+    public int f(int i10) {
+        return i10;
     }
 }

@@ -1,53 +1,21 @@
 package org.telegram.ui.Components;
+public final class ou0 extends o1.h {
+    public final mu0 f29197a;
+    public final nu0 f29198b;
+    public float f29199c = 1.0f;
 
-import android.content.Context;
-import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-public final class ou0 extends LinearLayout {
-    public final TextView f31387a;
-    public final ImageView f31388b;
-    public boolean f31389c;
-
-    public ou0(Context context, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(context);
-        TextView textView = new TextView(context);
-        this.f31387a = textView;
-        ImageView imageView = new ImageView(context);
-        this.f31388b = imageView;
-        setOrientation(1);
-        setGravity(17);
-        addView(imageView, kb1.r(-2, -2));
-        org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23768z6, u6Var);
-        textView.setGravity(17);
-        textView.setTextSize(1, 17.0f);
-        textView.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
-        addView(textView, kb1.x(-2, -2, 17, 0, 24, 0, 0));
+    public ou0(mu0 mu0Var, nu0 nu0Var) {
+        this.f29197a = mu0Var;
+        this.f29198b = nu0Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int rotation = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
-        this.f31389c = true;
-        if (AndroidUtilities.isTablet()) {
-            this.f31387a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
-        } else if (rotation != 3 && rotation != 1) {
-            this.f31387a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
-        } else {
-            this.f31387a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), 0);
-        }
-        this.f31389c = false;
-        super.onMeasure(i10, i11);
+    public final float a(Object obj) {
+        return this.f29197a.get(obj) * this.f29199c;
     }
 
     @Override
-    public final void requestLayout() {
-        if (this.f31389c) {
-            return;
-        }
-        super.requestLayout();
+    public final void b(Object obj, float f7) {
+        this.f29198b.b(obj, f7 / this.f29199c);
     }
 }

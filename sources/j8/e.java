@@ -1,64 +1,60 @@
 package j8;
 
-import android.os.IBinder;
-import android.os.IInterface;
 import android.os.Parcel;
-public final class e extends a8.a {
-    public final a V0() {
-        a aVar;
-        Parcel M0 = M0(N0(), 4);
-        IBinder readStrongBinder = M0.readStrongBinder();
-        if (readStrongBinder == null) {
-            aVar = 0;
-        } else {
-            IInterface queryLocalInterface = readStrongBinder.queryLocalInterface("com.google.android.gms.maps.internal.ICameraUpdateFactoryDelegate");
-            if (queryLocalInterface instanceof a) {
-                aVar = (a) queryLocalInterface;
-            } else {
-                aVar = new a8.a(readStrongBinder, "com.google.android.gms.maps.internal.ICameraUpdateFactoryDelegate", 10);
-            }
-        }
-        M0.recycle();
-        return aVar;
+import android.os.RemoteException;
+import k6.h;
+import n6.l;
+import s7.i;
+public final class e {
+    public final s7.a f9715a;
+
+    public e(s7.a aVar) {
+        l.g(aVar);
+        this.f9715a = aVar;
     }
 
-    public final g W0(y6.b bVar) {
-        g aVar;
-        Parcel N0 = N0();
-        t7.b.c(N0, bVar);
-        N0.writeInt(0);
-        Parcel M0 = M0(N0, 3);
-        IBinder readStrongBinder = M0.readStrongBinder();
-        if (readStrongBinder == null) {
-            aVar = 0;
-        } else {
-            IInterface queryLocalInterface = readStrongBinder.queryLocalInterface("com.google.android.gms.maps.internal.IMapViewDelegate");
-            if (queryLocalInterface instanceof g) {
-                aVar = (g) queryLocalInterface;
-            } else {
-                aVar = new a8.a(readStrongBinder, "com.google.android.gms.maps.internal.IMapViewDelegate", 10);
-            }
+    public final void a(h hVar) {
+        try {
+            i iVar = (i) this.f9715a;
+            Parcel P0 = iVar.P0();
+            s7.b.c(P0, (x6.a) hVar.f10943b);
+            iVar.T0(P0, 18);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
         }
-        M0.recycle();
-        return aVar;
     }
 
-    public final t7.e X0() {
-        t7.e aVar;
-        Parcel M0 = M0(N0(), 5);
-        IBinder readStrongBinder = M0.readStrongBinder();
-        int i10 = t7.d.f48758b;
-        if (readStrongBinder == null) {
-            aVar = 0;
-        } else {
-            IInterface queryLocalInterface = readStrongBinder.queryLocalInterface("com.google.android.gms.maps.model.internal.IBitmapDescriptorFactoryDelegate");
-            if (queryLocalInterface instanceof t7.e) {
-                aVar = (t7.e) queryLocalInterface;
-            } else {
-                aVar = new a8.a(readStrongBinder, "com.google.android.gms.maps.model.internal.IBitmapDescriptorFactoryDelegate", 10);
-            }
+    public final boolean equals(Object obj) {
+        boolean z10 = false;
+        if (!(obj instanceof e)) {
+            return false;
         }
-        M0.recycle();
-        return aVar;
+        try {
+            s7.a aVar = this.f9715a;
+            s7.a aVar2 = ((e) obj).f9715a;
+            i iVar = (i) aVar;
+            Parcel P0 = iVar.P0();
+            s7.b.c(P0, aVar2);
+            Parcel O0 = iVar.O0(P0, 16);
+            if (O0.readInt() != 0) {
+                z10 = true;
+            }
+            O0.recycle();
+            return z10;
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public final int hashCode() {
+        try {
+            i iVar = (i) this.f9715a;
+            Parcel O0 = iVar.O0(iVar.P0(), 17);
+            int readInt = O0.readInt();
+            O0.recycle();
+            return readInt;
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

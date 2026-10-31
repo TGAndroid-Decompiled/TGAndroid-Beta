@@ -1,10 +1,41 @@
 package s4;
-public interface e0 {
-    void A(int i10, int i11);
 
-    void N0(int i10, int i11);
+import androidx.recyclerview.widget.RecyclerView;
+public final class e0 implements Runnable {
+    public final int f47921a;
+    public final RecyclerView f47922b;
 
-    void g1(int i10, int i11);
+    public e0(RecyclerView recyclerView, int i10) {
+        this.f47921a = i10;
+        this.f47922b = recyclerView;
+    }
 
-    void i0(int i10, int i11);
+    @Override
+    public final void run() {
+        switch (this.f47921a) {
+            case 0:
+                RecyclerView recyclerView = this.f47922b;
+                if (recyclerView.I && !recyclerView.isLayoutRequested()) {
+                    if (!recyclerView.G) {
+                        recyclerView.requestLayout();
+                        return;
+                    } else if (recyclerView.L) {
+                        recyclerView.K = true;
+                        return;
+                    } else {
+                        recyclerView.p();
+                        return;
+                    }
+                }
+                return;
+            default:
+                RecyclerView recyclerView2 = this.f47922b;
+                l0 l0Var = recyclerView2.f1897c0;
+                if (l0Var != null) {
+                    l0Var.m();
+                }
+                recyclerView2.A0 = false;
+                return;
+        }
+    }
 }

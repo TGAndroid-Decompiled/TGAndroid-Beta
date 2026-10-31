@@ -2,55 +2,54 @@ package org.telegram.ui;
 
 import android.view.View;
 import android.widget.ScrollView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class zo implements org.telegram.ui.Components.am0 {
-    public final bp f46322a;
+public final class zo implements org.telegram.ui.Components.gk0 {
+    public final bp f44204a;
 
     public zo(bp bpVar) {
-        this.f46322a = bpVar;
+        this.f44204a = bpVar;
     }
 
     @Override
-    public final void c(int i10, View view) {
+    public final void f(int i10, View view) {
         TLRPC.TL_username tL_username;
         int i11;
         int i12;
         int i13;
-        bp bpVar = this.f46322a;
-        cp cpVar = bpVar.f38083i3;
-        if ((view instanceof qa) && (tL_username = ((qa) view).v) != null) {
+        bp bpVar = this.f44204a;
+        cp cpVar = bpVar.f36291h3;
+        if ((view instanceof la) && (tL_username = ((la) view).f39132w) != null) {
             if (tL_username.editable) {
                 if (cpVar.fragmentView instanceof ScrollView) {
-                    cpVar.f38401a.smoothScrollTo(0, cpVar.f38428y.getTop() - AndroidUtilities.dp(128.0f));
+                    cpVar.f36496a.smoothScrollTo(0, cpVar.D.getTop() - org.telegram.messenger.i0.L(128.0f));
                 }
-                cpVar.f38403b.requestFocus();
-                AndroidUtilities.showKeyboard(cpVar.f38403b);
+                cpVar.f36498b.requestFocus();
+                org.telegram.messenger.i0.J3(cpVar.f36498b);
                 return;
             }
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(bpVar.getContext(), 0, cpVar.getResourceProvider());
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, bpVar.getContext(), cpVar.getResourceProvider());
             if (tL_username.active) {
-                i11 = R.string.UsernameDeactivateLink;
+                i11 = 2131743690;
             } else {
-                i11 = R.string.UsernameActivateLink;
+                i11 = 2131743697;
             }
-            alertDialog$Builder.f22369a.R = LocaleController.getString(i11);
+            String L0 = org.telegram.messenger.cd.L0(i11, null);
+            org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20134a;
+            x1Var.R = L0;
             if (tL_username.active) {
-                i12 = R.string.UsernameDeactivateLinkChannelMessage;
+                i12 = 2131743689;
             } else {
-                i12 = R.string.UsernameActivateLinkChannelMessage;
+                i12 = 2131743696;
             }
-            alertDialog$Builder.f22369a.T = LocaleController.getString(i12);
+            x1Var.T = org.telegram.messenger.cd.L0(i12, null);
             if (tL_username.active) {
-                i13 = R.string.Hide;
+                i13 = 2131749334;
             } else {
-                i13 = R.string.Show;
+                i13 = 2131745371;
             }
-            alertDialog$Builder.k(LocaleController.getString(i13), new e7(this, tL_username, view, 8));
-            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new cg(2));
+            alertDialog$Builder.k(org.telegram.messenger.cd.L0(i13, null), new a7(this, tL_username, view, 8));
+            alertDialog$Builder.h(org.telegram.messenger.cd.L0(2131752589, null), new org.telegram.ui.Cells.m5(7));
             alertDialog$Builder.p();
         }
     }

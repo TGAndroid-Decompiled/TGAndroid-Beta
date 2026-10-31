@@ -1,129 +1,194 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.view.MotionEvent;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class bk extends org.telegram.ui.Components.hb0 {
-    public boolean V;
-    public final wn W;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+public final class bk implements org.telegram.ui.ActionBar.p6 {
+    public final int f36271a;
+    public final Object f36272b;
 
-    public bk(wn wnVar, Context context, long j10, long j11, wn wnVar2, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(context, j10, j11, wnVar2, u6Var);
-        this.W = wnVar;
-        this.V = true;
+    public bk(Object obj, int i10) {
+        this.f36271a = i10;
+        this.f36272b = obj;
     }
 
     @Override
     public final boolean a() {
-        wn wnVar = this.W;
-        if (wnVar.R.getVisibility() == 0 && !wnVar.f45367z3) {
-            return false;
+        switch (this.f36271a) {
+            case 0:
+                return org.telegram.ui.ActionBar.t6.I.q();
+            case 1:
+                return ((tn0) this.f36272b).S;
+            default:
+                return ((i91) this.f36272b).f38217f.f39537a.a();
         }
-        return true;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (getAlpha() <= 0.0f) {
-            return false;
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void j() {
-        this.W.Jc();
-    }
-
-    @Override
-    public final void k(TLRPC.BotInlineResult botInlineResult) {
-        wn wnVar = this.W;
-        if (wnVar.getParentActivity() != null && botInlineResult.content != null) {
-            if (!botInlineResult.type.equals("video") && !botInlineResult.type.equals("web_player_video")) {
-                wnVar.Ja(0, botInlineResult.content.url, null, null, false);
+    public final void b(float f7, float f10, int i10, int i11) {
+        switch (this.f36271a) {
+            case 0:
+                org.telegram.ui.ActionBar.t6.r(f7, f10, i10, i11);
                 return;
-            }
-            int[] inlineResultWidthAndHeight = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-            fi fiVar = wnVar.Za;
-            String str = botInlineResult.title;
-            if (str == null) {
-                str = "";
-            }
-            String str2 = botInlineResult.description;
-            String str3 = botInlineResult.content.url;
-            org.telegram.ui.Components.dv.I(wnVar, null, fiVar, str, str2, str3, str3, inlineResultWidthAndHeight[0], inlineResultWidthAndHeight[1], -1, wnVar.I9());
-        }
-    }
-
-    @Override
-    public final void l(boolean z10) {
-        String str;
-        wn wnVar = this.W;
-        jk jkVar = wnVar.Y;
-        if (jkVar != null) {
-            ig.j1 adapter = getAdapter();
-            TLRPC.User user = adapter.f14136w0;
-            if (user != null) {
-                str = user.bot_inline_placeholder;
-            } else {
-                String str2 = adapter.f14127q0;
-                if (str2 != null && str2.equals("gif")) {
-                    str = LocaleController.getString(R.string.SearchGifsTitle);
+            case 1:
+                org.telegram.ui.ActionBar.t6.r(f7, f10, i10, i11);
+                return;
+            default:
+                n81 n81Var = ((i91) this.f36272b).f38217f.f39537a;
+                if (n81Var != null) {
+                    n81Var.b(f7, f10, i10, i11);
+                    return;
                 } else {
-                    str = null;
-                }
-            }
-            jkVar.setCaption(str);
-            org.telegram.ui.Components.we weVar = wnVar.Y.P1;
-            if (weVar != null) {
-                if (z10) {
-                    weVar.e = true;
-                    weVar.f32319b = System.currentTimeMillis();
-                    weVar.invalidateSelf();
+                    org.telegram.ui.ActionBar.t6.r(f7, f10, i10, i11);
                     return;
                 }
-                weVar.e = false;
-            }
         }
     }
 
     @Override
-    public final void m() {
-        wn wnVar = this.W;
-        if (wnVar.f45242p5 && ((getAdapter().R == null || wnVar.q5 || wnVar.f45265r5) && wnVar.h != null && getAdapter().R != null)) {
-            SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-            if (!globalMainSettings.getBoolean("secretbot", false)) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(wnVar.getParentActivity(), 0, wnVar.f45309ua);
-                alertDialog$Builder.f22369a.R = LocaleController.getString(R.string.AppName);
-                alertDialog$Builder.f22369a.T = LocaleController.getString(R.string.SecretChatContextBotAlert);
-                alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                wnVar.showDialog(alertDialog$Builder.f22369a);
-                globalMainSettings.edit().putBoolean("secretbot", true).commit();
-            }
+    public final ColorFilter c() {
+        switch (this.f36271a) {
+            case 0:
+                return org.telegram.ui.ActionBar.t6.f21256v3;
+            case 1:
+                return org.telegram.ui.ActionBar.t6.f21256v3;
+            default:
+                return org.telegram.ui.ActionBar.t6.f21256v3;
         }
-        wnVar.Jc();
     }
 
     @Override
-    public final void n(boolean z10) {
-        boolean z11;
-        if (this.V != z10) {
-            wn wnVar = this.W;
-            org.telegram.ui.Components.uz0 uz0Var = wnVar.f45238p1;
-            if (!wnVar.isInPreviewMode() && z10) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            AndroidUtilities.updateViewShow(uz0Var, z11, false, true);
-            this.V = z10;
+    public final Paint d(String str) {
+        switch (this.f36271a) {
+            case 0:
+                return org.telegram.ui.ActionBar.t6.V0(str);
+            case 1:
+                return org.telegram.ui.ActionBar.t6.V0(str);
+            default:
+                return ((i91) this.f36272b).f38217f.f39537a.d(str);
         }
+    }
+
+    @Override
+    public final boolean e() {
+        switch (this.f36271a) {
+            case 0:
+                return org.telegram.messenger.tz.H0;
+            case 1:
+                return org.telegram.messenger.tz.H0;
+            default:
+                return org.telegram.messenger.tz.H0;
+        }
+    }
+
+    @Override
+    public final int f(int i10) {
+        switch (this.f36271a) {
+            case 0:
+                return h(i10);
+            case 1:
+                return h(i10);
+            default:
+                return ((i91) this.f36272b).f38217f.f39537a.h(i10);
+        }
+    }
+
+    @Override
+    public final boolean g() {
+        switch (this.f36271a) {
+            case 0:
+                return false;
+            case 1:
+                return false;
+            default:
+                return ((i91) this.f36272b).f38217f.f39537a.g();
+        }
+    }
+
+    @Override
+    public final Drawable getDrawable(String str) {
+        switch (this.f36271a) {
+            case 0:
+                return null;
+            case 1:
+                tn0 tn0Var = (tn0) this.f36272b;
+                if (str.equals("drawableMsgIn")) {
+                    return tn0Var.f41880x;
+                }
+                if (str.equals("drawableMsgInSelected")) {
+                    return tn0Var.f41881y;
+                }
+                org.telegram.ui.ActionBar.p6 p6Var = tn0Var.f41878s;
+                if (p6Var != null) {
+                    return p6Var.getDrawable(str);
+                }
+                return org.telegram.ui.ActionBar.t6.R0(str);
+            default:
+                m91 m91Var = ((i91) this.f36272b).f38217f;
+                if (str.equals("drawableMsgOut")) {
+                    return m91Var.S;
+                }
+                if (str.equals("drawableMsgOutSelected")) {
+                    return m91Var.T;
+                }
+                if (str.equals("drawableMsgOutMedia")) {
+                    return m91Var.U;
+                }
+                if (str.equals("drawableMsgOutMediaSelected")) {
+                    return m91Var.V;
+                }
+                n81 n81Var = m91Var.f39537a;
+                if (n81Var != null) {
+                    return n81Var.getDrawable(str);
+                }
+                return org.telegram.ui.ActionBar.t6.R0(str);
+        }
+    }
+
+    @Override
+    public final int h(int i10) {
+        switch (this.f36271a) {
+            case 0:
+                return ((un) this.f36272b).getThemedColor(i10);
+            case 1:
+                tn0 tn0Var = (tn0) this.f36272b;
+                int indexOfKey = tn0Var.f41879w.indexOfKey(i10);
+                if (indexOfKey >= 0) {
+                    return tn0Var.f41879w.valueAt(indexOfKey);
+                }
+                org.telegram.ui.ActionBar.p6 p6Var = tn0Var.f41878s;
+                if (p6Var != null) {
+                    return p6Var.h(i10);
+                }
+                return org.telegram.ui.ActionBar.t6.v0(i10);
+            default:
+                return ((i91) this.f36272b).f38217f.f39537a.h(i10);
+        }
+    }
+
+    @Override
+    public final void i(int i10, int i11) {
+        int i12 = this.f36271a;
+    }
+
+    @Override
+    public final int j(int i10) {
+        switch (this.f36271a) {
+            case 0:
+                return h(i10);
+            case 1:
+                return h(i10);
+            default:
+                return ((i91) this.f36272b).f38217f.f39537a.j(i10);
+        }
+    }
+
+    private final void k(int i10, int i11) {
+    }
+
+    private final void l(int i10, int i11) {
+    }
+
+    private final void m(int i10, int i11) {
     }
 }

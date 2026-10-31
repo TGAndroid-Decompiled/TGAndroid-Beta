@@ -2,34 +2,34 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class c0 implements Runnable {
-    public final int f38131a = 0;
-    public final a3 f38132b;
-    public final View f38133c;
+    public final int f36337a = 0;
+    public final z2 f36338b;
+    public final View f36339c;
 
-    public c0(View view, a3 a3Var) {
-        this.f38133c = view;
-        this.f38132b = a3Var;
+    public c0(View view, z2 z2Var) {
+        this.f36339c = view;
+        this.f36338b = z2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f38131a) {
+        switch (this.f36337a) {
             case 0:
-                a3 a3Var = this.f38132b;
-                View view = this.f38133c;
-                view.post(new c0(a3Var, view));
+                z2 z2Var = this.f36338b;
+                View view = this.f36339c;
+                view.post(new c0(z2Var, view));
                 return;
             default:
-                a3 a3Var2 = this.f38132b;
-                a3Var2.I.clear();
-                a3Var2.K.set(null);
-                this.f38133c.invalidate();
+                z2 z2Var2 = this.f36338b;
+                z2Var2.I.clear();
+                z2Var2.K.set(null);
+                this.f36339c.invalidate();
                 return;
         }
     }
 
-    public c0(a3 a3Var, View view) {
-        this.f38132b = a3Var;
-        this.f38133c = view;
+    public c0(z2 z2Var, View view) {
+        this.f36338b = z2Var;
+        this.f36339c = view;
     }
 }

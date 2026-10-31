@@ -1,79 +1,86 @@
 package od;
 
-import a1.g;
-import java.io.Serializable;
-import kd.c;
-import kotlin.jvm.internal.i;
-public final class b extends c implements a, Serializable {
-    public final Enum[] f19321a;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+public final class b implements Iterator {
+    public final int f14144a = 0;
+    public final int f14145b;
+    public final int f14146c;
+    public boolean d;
+    public int e;
 
-    public b(Enum[] entries) {
-        i.e(entries, "entries");
-        this.f19321a = entries;
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        Enum r02;
-        if (obj instanceof Enum) {
-            Enum r42 = (Enum) obj;
-            int ordinal = r42.ordinal();
-            Enum[] enumArr = this.f19321a;
-            i.e(enumArr, "<this>");
-            if (ordinal >= 0 && ordinal < enumArr.length) {
-                r02 = enumArr[ordinal];
-            } else {
-                r02 = null;
-            }
-            if (r02 == r42) {
-                return true;
-            }
-            return false;
+    public b(char c10, char c11, int i10) {
+        boolean z10 = false;
+        this.f14145b = i10;
+        this.f14146c = c11;
+        if (i10 <= 0 ? c10 >= c11 : c10 < c11 || c10 == c11) {
+            z10 = true;
         }
-        return false;
+        this.d = z10;
+        this.e = z10 ? c10 : c11;
     }
 
     @Override
-    public final Object get(int i10) {
-        Enum[] enumArr = this.f19321a;
-        int length = enumArr.length;
-        if (i10 >= 0 && i10 < length) {
-            return enumArr[i10];
+    public final boolean hasNext() {
+        switch (this.f14144a) {
+            case 0:
+                return this.d;
+            default:
+                return this.d;
         }
-        throw new IndexOutOfBoundsException(g.l(i10, length, "index: ", ", size: "));
     }
 
     @Override
-    public final int h() {
-        return this.f19321a.length;
+    public final Object next() {
+        switch (this.f14144a) {
+            case 0:
+                int i10 = this.e;
+                if (i10 == this.f14146c) {
+                    if (this.d) {
+                        this.d = false;
+                    } else {
+                        throw new NoSuchElementException();
+                    }
+                } else {
+                    this.e = this.f14145b + i10;
+                }
+                return Character.valueOf((char) i10);
+            default:
+                return Integer.valueOf(nextInt());
+        }
     }
 
-    @Override
-    public final int indexOf(Object obj) {
-        Enum r12;
-        if (obj instanceof Enum) {
-            Enum r42 = (Enum) obj;
-            int ordinal = r42.ordinal();
-            Enum[] enumArr = this.f19321a;
-            i.e(enumArr, "<this>");
-            if (ordinal >= 0 && ordinal < enumArr.length) {
-                r12 = enumArr[ordinal];
-            } else {
-                r12 = null;
+    public int nextInt() {
+        int i10 = this.e;
+        if (i10 == this.f14146c) {
+            if (this.d) {
+                this.d = false;
+                return i10;
             }
-            if (r12 == r42) {
-                return ordinal;
-            }
-            return -1;
+            throw new NoSuchElementException();
         }
-        return -1;
+        this.e = this.f14145b + i10;
+        return i10;
     }
 
     @Override
-    public final int lastIndexOf(Object obj) {
-        if (!(obj instanceof Enum)) {
-            return -1;
+    public final void remove() {
+        switch (this.f14144a) {
+            case 0:
+                throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+            default:
+                throw new UnsupportedOperationException("Operation is not supported for read-only collection");
         }
-        return indexOf((Enum) obj);
+    }
+
+    public b(int i10, int i11, int i12) {
+        this.f14145b = i12;
+        this.f14146c = i11;
+        boolean z10 = false;
+        if (i12 <= 0 ? i10 >= i11 : i10 <= i11) {
+            z10 = true;
+        }
+        this.d = z10;
+        this.e = z10 ? i10 : i11;
     }
 }

@@ -1,23 +1,42 @@
 package org.telegram.ui.Components;
 
+import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public interface ri {
-    void A(gh ghVar);
+public final class ri implements ik0, vi {
+    public final ej f29933a;
 
-    boolean E();
+    public ri(ej ejVar) {
+        this.f29933a = ejVar;
+    }
 
-    void H();
+    @Override
+    public void a(TLRPC.User user, boolean z10, int i10, long j10) {
+        ej ejVar = this.f29933a;
+        ejVar.f30947b.a(true);
+        ejVar.J.a(user, z10, i10, j10);
+    }
 
-    void R();
+    @Override
+    public boolean f(int i10, View view) {
+        Object O;
+        ej ejVar = this.f29933a;
+        s4.g0 adapter = ejVar.f25814s.getAdapter();
+        aj ajVar = ejVar.F;
+        if (adapter == ajVar) {
+            O = ajVar.E(i10);
+        } else {
+            yi yiVar = ejVar.E;
+            O = yiVar.O(yiVar.S(i10), yiVar.Q(i10));
+        }
+        if (O != null) {
+            ejVar.O((dj) view, O);
+            return true;
+        }
+        return false;
+    }
 
-    void T(Object obj);
-
-    void Y(TLRPC.User user);
-
-    void p0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11);
-
-    boolean x0();
-
-    void z0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11);
+    @Override
+    public void b(ArrayList arrayList, String str, boolean z10, int i10, long j10, boolean z11) {
+    }
 }

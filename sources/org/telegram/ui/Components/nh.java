@@ -1,69 +1,127 @@
 package org.telegram.ui.Components;
+public final class nh extends org.telegram.ui.ActionBar.m1 {
+    public final ph f28791x;
 
-import android.view.KeyEvent;
-import android.widget.LinearLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class nh implements o1.g {
-    public final int f30916a = 1;
-    public final boolean f30917b;
-    public final float f30918c;
-    public final float d;
-    public final KeyEvent.Callback e;
-
-    public nh(ti tiVar, float f7, float f10, boolean z10) {
-        this.e = tiVar;
-        this.f30918c = f7;
-        this.d = f10;
-        this.f30917b = z10;
+    public nh(ph phVar, ph phVar2) {
+        super(phVar2);
+        this.f28791x = phVar;
     }
 
     @Override
-    public final void a(o1.h hVar, float f7, float f10) {
-        switch (this.f30916a) {
-            case 0:
-                ti tiVar = (ti) this.e;
-                LinearLayout linearLayout = tiVar.f33017o1;
-                LinearLayout linearLayout2 = tiVar.f33023q1;
-                float f11 = f7 / 500.0f;
-                ei eiVar = tiVar.f32986e0;
-                li liVar = tiVar.B0;
-                Float valueOf = Float.valueOf(f11);
-                eiVar.getClass();
-                eiVar.a(liVar, valueOf);
-                tiVar.f32974a1.setAlpha(AndroidUtilities.lerp(this.f30918c, this.d, f11));
-                tiVar.f2(tiVar.B0, 0);
-                tiVar.f2(tiVar.C0, 0);
-                if (!(tiVar.C0 instanceof cn) || this.f30917b) {
-                    f11 = 1.0f - f11;
-                }
-                float clamp = Utilities.clamp(f11, 1.0f, 0.0f);
-                linearLayout2.setAlpha(clamp);
-                float f12 = 1.0f - clamp;
-                linearLayout.setAlpha(f12);
-                linearLayout.setTranslationX(clamp * (-AndroidUtilities.dp(16.0f)));
-                linearLayout2.setTranslationX(f12 * AndroidUtilities.dp(16.0f));
-                return;
-            default:
-                dq0 dq0Var = (dq0) this.e;
-                boolean z10 = this.f30917b;
-                if (z10) {
-                    if (f7 > this.f30918c / 2.0f || !dq0Var.f27528s) {
-                        return;
+    public final boolean b() {
+        vy vyVar;
+        bi biVar = this.f28791x.f29362k0;
+        if ((!biVar.I || biVar.f24705o2) && biVar.f24698m3) {
+            uh uhVar = biVar.f24721s2;
+            if (uhVar == biVar.f24667d2 || uhVar == biVar.f24670e2 || biVar.Z0().m()) {
+                uh uhVar2 = biVar.f24721s2;
+                jn jnVar = biVar.f24667d2;
+                if (uhVar2 != jnVar || ((vyVar = jnVar.E) != null && vyVar.getVisibility() == 0)) {
+                    uh uhVar3 = biVar.f24721s2;
+                    jn jnVar2 = biVar.f24670e2;
+                    if (uhVar3 == jnVar2) {
+                        vy vyVar2 = jnVar2.E;
+                        if (vyVar2 != null && vyVar2.getVisibility() == 0) {
+                            return false;
+                        }
+                        return true;
                     }
-                } else if (f7 < this.d / 2.0f || !dq0Var.f27527r) {
-                    return;
+                } else {
+                    return true;
                 }
-                dq0Var.f27528s = !z10;
-                dq0Var.f27527r = z10;
-                return;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final void e(float f7, float f10, boolean z10) {
+        float f11;
+        ph phVar = this.f28791x;
+        bi biVar = phVar.f29362k0;
+        biVar.f24675f4 = f7;
+        float f12 = biVar.X3;
+        float f13 = 0.0f;
+        if (f12 > 0.0f) {
+            if (biVar.f24721s2 == biVar.f24701n2 && !z10) {
+                f11 = f10;
+            } else {
+                f11 = 1.0f - f10;
+            }
+            biVar.f24675f4 = c3.i0.z(f12, biVar.Y3, f11, f7);
+        }
+        biVar.R2.setTranslationY(biVar.f24675f4);
+        biVar.U2.setTranslationY(biVar.f24675f4);
+        org.telegram.ui.ActionBar.t0 t0Var = biVar.Y2;
+        if (t0Var != null) {
+            t0Var.setTranslationY(biVar.f24675f4);
+        }
+        org.telegram.ui.ActionBar.t0 t0Var2 = biVar.W2;
+        if (t0Var2 != null) {
+            t0Var2.setTranslationY(biVar.U2.getTranslationY());
+        }
+        vh.p2 p2Var = biVar.X2;
+        if (p2Var != null) {
+            p2Var.setTranslationY(biVar.U2.getTranslationY());
+        }
+        biVar.Z2.setTranslationY(biVar.f24675f4);
+        biVar.O1(0);
+        if (biVar.f24721s2 != biVar.f24701n2) {
+            f13 = biVar.f24675f4;
+        }
+        biVar.E0 = f13;
+        biVar.f21589c.invalidate();
+        phVar.invalidate();
+        biVar.f24741x2.invalidate();
+        biVar.I1();
+        uh uhVar = biVar.f24721s2;
+        if (uhVar != null) {
+            uhVar.m(biVar.f24675f4, f10);
         }
     }
 
-    public nh(dq0 dq0Var, boolean z10, float f7, float f10) {
-        this.e = dq0Var;
-        this.f30917b = z10;
-        this.f30918c = f7;
-        this.d = f10;
+    @Override
+    public final void f() {
+        int i10;
+        bi biVar = this.f28791x.f29362k0;
+        biVar.L1(biVar.f24721s2, 0);
+        biVar.W3 = biVar.V3[0];
+        biVar.f24721s2.y();
+        if ((biVar.f24721s2 instanceof xh.i3) && !biVar.f24742x3) {
+            if (biVar.d) {
+                i10 = org.telegram.messenger.i0.L(84.0f);
+            } else {
+                i10 = 0;
+            }
+            for (int i11 = 0; i11 < biVar.f24717r2.size(); i11++) {
+                ((xh.i3) biVar.f24717r2.valueAt(i11)).setMeasureOffsetY(i10);
+            }
+        }
+    }
+
+    @Override
+    public final void g(int i10, boolean z10) {
+        int i11;
+        ph phVar = this.f28791x;
+        bi biVar = phVar.f29362k0;
+        int i12 = biVar.W3;
+        if (i12 > 0 && i12 != (i11 = biVar.V3[0]) && (z10 || biVar.f24721s2 == biVar.f24701n2)) {
+            biVar.X3 = i12;
+            biVar.Y3 = i11;
+        } else {
+            biVar.X3 = -1.0f;
+        }
+        phVar.invalidate();
+        ah ahVar = biVar.f24718r3;
+        if ((biVar.f24721s2 instanceof xh.i3) && !biVar.f24742x3) {
+            if (z10) {
+                ahVar.setVisibility(8);
+            } else {
+                ahVar.setVisibility(0);
+            }
+        }
+        biVar.f24721s2.z(i10, z10);
     }
 }

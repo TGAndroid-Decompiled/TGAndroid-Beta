@@ -1,29 +1,22 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_chatlists;
-public final class rz implements Utilities.Callback {
-    public final int f43192a;
-    public final q00 f43193b;
-
-    public rz(q00 q00Var, int i10) {
-        this.f43192a = i10;
-        this.f43193b = q00Var;
-    }
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.text.style.ImageSpan;
+public final class rz extends ImageSpan {
+    public int f41315a;
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f43192a) {
-            case 0:
-                Boolean bool = (Boolean) obj;
-                this.f43193b.finishFragment();
-                return;
-            case 1:
-                this.f43193b.o0((TL_chatlists.TL_exportedChatlistInvite) obj);
-                return;
-            default:
-                this.f43193b.n0((TL_chatlists.TL_exportedChatlistInvite) obj);
-                return;
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        if (paint.getColor() != this.f41315a && getDrawable() != null) {
+            Drawable drawable = getDrawable();
+            int color = paint.getColor();
+            this.f41315a = color;
+            drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
         }
+        super.draw(canvas, charSequence, i10, i11, f7, i12, i13, i14, paint);
     }
 }

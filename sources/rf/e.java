@@ -1,201 +1,235 @@
 package rf;
 
-import android.net.Uri;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import j$.util.DesugarCollections;
-import java.io.Serializable;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import b2.r1;
+import j$.util.concurrent.ConcurrentHashMap;
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
-import java.util.Arrays;
-import r0.i0;
-import s4.e1;
-import s4.h0;
-import s4.m0;
-import s4.p0;
-import s4.v0;
-import s4.w0;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.b8;
+import org.telegram.messenger.i0;
+import org.telegram.messenger.tz;
+import org.telegram.ui.Components.bi0;
+import org.telegram.ui.Components.ew;
 public final class e {
-    public int f47382a;
-    public int f47383b;
-    public final Serializable f47384c;
-    public Serializable d;
-    public Serializable e;
-    public Object f47385f;
-    public Object f47386g;
-    public Object h;
+    public static int A;
+    public static a5.a B;
+    public static boolean v;
+    public static volatile boolean f46505x;
+    public static ThreadPoolExecutor f46507z;
+    public final BitmapDrawable f46508a;
+    public final int f46509b;
+    public final int f46510c;
+    public final AtomicInteger d = new AtomicInteger(0);
+    public final ArrayList e;
+    public final boolean f46511f;
+    public byte[] f46512g;
+    public final Object h;
+    public int f46513i;
+    public boolean f46514j;
+    public volatile boolean f46515k;
+    public final int f46516l;
+    public final File f46517m;
+    public int f46518n;
+    public final AtomicBoolean f46519o;
+    public final ew f46520p;
+    public volatile boolean f46521q;
+    public volatile boolean f46522r;
+    public RandomAccessFile f46523s;
+    public BitmapFactory.Options f46524t;
+    public Bitmap f46525u;
+    public static final ConcurrentHashMap f46504w = new ConcurrentHashMap();
+    public static final int f46506y = Utilities.j(Runtime.getRuntime().availableProcessors() - 2, 6, 1);
 
-    public e(Uri uri, String str, String str2) {
-        this.f47384c = str;
-        this.f47386g = uri;
-        this.d = str2;
+    public e(File file, c cVar, r1 r1Var, int i10, int i11, boolean z10, int i12) {
+        String str;
+        String str2;
+        RandomAccessFile randomAccessFile;
+        ArrayList arrayList = new ArrayList();
+        this.e = arrayList;
+        this.h = new Object();
+        this.f46519o = new AtomicBoolean(false);
+        this.f46520p = new ew(this, 24);
+        this.f46508a = (BitmapDrawable) cVar;
+        this.f46509b = i10;
+        this.f46510c = i11;
+        this.f46516l = r1Var.f2221a;
+        String name = file.getName();
+        if (f46507z == null) {
+            int i13 = f46506y;
+            f46507z = new ThreadPoolExecutor(i13, i13, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue());
+        }
+        File file2 = new File(b8.j(4), "acache");
+        boolean z11 = true;
+        if (!v) {
+            file2.mkdir();
+            v = true;
+        }
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(name);
+        sb2.append("_");
+        sb2.append(i10);
+        sb2.append("_");
+        sb2.append(i11);
+        if (z10) {
+            str = "_nolimit";
+        } else {
+            str = " ";
+        }
+        sb2.append(str);
+        if (i12 != 0) {
+            str2 = i0.a.i(i12, "_fitz");
+        } else {
+            str2 = "";
+        }
+        File file3 = new File(file2, a1.g.r(sb2, str2, ".pcache2"));
+        this.f46517m = file3;
+        this.f46511f = (i10 >= i0.L(60.0f) || i11 >= i0.L(60.0f)) ? false : z11;
+        if (tz.o() >= 2) {
+            this.f46515k = file3.exists();
+            try {
+                if (this.f46515k) {
+                    try {
+                        randomAccessFile = new RandomAccessFile(file3, "r");
+                        try {
+                            this.f46521q = randomAccessFile.readBoolean();
+                            if (this.f46521q && arrayList.isEmpty()) {
+                                randomAccessFile.seek(randomAccessFile.readInt());
+                                int readInt = randomAccessFile.readInt();
+                                d(randomAccessFile, readInt > 10000 ? 0 : readInt);
+                                if (arrayList.size() == 0) {
+                                    this.f46521q = false;
+                                    this.f46515k = false;
+                                    file3.delete();
+                                } else {
+                                    if (this.f46523s != randomAccessFile) {
+                                        a();
+                                    }
+                                    this.f46523s = randomAccessFile;
+                                }
+                            }
+                            if (this.f46523s != randomAccessFile) {
+                                randomAccessFile.close();
+                            }
+                        } catch (Throwable th2) {
+                            th = th2;
+                            try {
+                                th.printStackTrace();
+                                this.f46517m.delete();
+                                this.f46515k = false;
+                                if (this.f46523s != randomAccessFile && randomAccessFile != null) {
+                                    randomAccessFile.close();
+                                }
+                            } catch (Throwable th3) {
+                                try {
+                                    if (this.f46523s != randomAccessFile && randomAccessFile != null) {
+                                        randomAccessFile.close();
+                                    }
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                throw th3;
+                            }
+                        }
+                    } catch (Throwable th4) {
+                        th = th4;
+                        randomAccessFile = null;
+                    }
+                }
+            } catch (IOException e7) {
+                e7.printStackTrace();
+            }
+        } else {
+            this.f46515k = false;
+            this.f46521q = false;
+        }
     }
 
-    public void a(e1 e1Var, boolean z10) {
-        RecyclerView.m(e1Var);
-        if (e1Var.e(16384)) {
-            e1Var.p(0, 16384);
-            i0.k(e1Var.f47773a, null);
+    public static void c() {
+        int i10 = A - 1;
+        A = i10;
+        if (i10 <= 0) {
+            A = 0;
+            bi0.T0.postRunnable(new r5.a(1));
+        }
+    }
+
+    public final void a() {
+        RandomAccessFile randomAccessFile = this.f46523s;
+        if (randomAccessFile != null) {
+            try {
+                randomAccessFile.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public final void b() {
+        throw new UnsupportedOperationException("Method not decompiled: rf.e.b():void");
+    }
+
+    public final void d(RandomAccessFile randomAccessFile, int i10) {
+        if (i10 != 0) {
+            byte[] bArr = new byte[i10 * 8];
+            randomAccessFile.read(bArr);
+            ByteBuffer wrap = ByteBuffer.wrap(bArr);
+            for (int i11 = 0; i11 < i10; i11++) {
+                d dVar = new d(i11);
+                dVar.f46500c = wrap.getInt();
+                dVar.f46499b = wrap.getInt();
+                this.e.add(dVar);
+            }
+        }
+    }
+
+    public final byte[] e(d dVar) {
+        boolean z10;
+        byte[] bArr;
+        if (this.f46511f && Thread.currentThread().getName().startsWith("DispatchQueuePoolThreadSafety_")) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
         if (z10) {
-            RecyclerView recyclerView = (RecyclerView) this.h;
-            h0 h0Var = recyclerView.f3082w;
-            if (h0Var != null) {
-                h0Var.A(e1Var);
-            }
-            if (recyclerView.f3080u0 != null) {
-                recyclerView.f3062f.z0(e1Var);
-            }
-        }
-        e1Var.f47789t = null;
-        w0 c10 = c();
-        c10.getClass();
-        int i10 = e1Var.f47776f;
-        ArrayList arrayList = c10.b(i10).f47885a;
-        if (((v0) c10.f47891a.get(i10)).f47886b <= arrayList.size()) {
-            return;
-        }
-        e1Var.o();
-        arrayList.add(e1Var);
-    }
-
-    public int b(int i10) {
-        RecyclerView recyclerView = (RecyclerView) this.h;
-        if (i10 >= 0 && i10 < recyclerView.f3080u0.b()) {
-            if (!recyclerView.f3080u0.f47733g) {
-                return i10;
-            }
-            return recyclerView.d.g(i10, 0);
-        }
-        StringBuilder k10 = ic.a.k(i10, "invalid position ", ". State item count is ");
-        k10.append(recyclerView.f3080u0.b());
-        k10.append(recyclerView.C());
-        throw new IndexOutOfBoundsException(k10.toString());
-    }
-
-    public w0 c() {
-        if (((w0) this.f47386g) == null) {
-            this.f47386g = new w0();
-        }
-        return (w0) this.f47386g;
-    }
-
-    public void d(h0 h0Var, h0 h0Var2) {
-        ((ArrayList) this.f47384c).clear();
-        e();
-        w0 c10 = c();
-        if (h0Var != null) {
-            c10.f47892b--;
-        }
-        if (c10.f47892b == 0) {
-            c10.a();
-        }
-        if (h0Var2 != null) {
-            c10.f47892b++;
+            bArr = (byte[]) f46504w.get(Thread.currentThread());
         } else {
-            c10.getClass();
+            bArr = this.f46512g;
         }
-    }
-
-    public void e() {
-        ArrayList arrayList = (ArrayList) this.e;
-        for (int size = arrayList.size() - 1; size >= 0; size--) {
-            f(size);
+        if (bArr != null && bArr.length >= dVar.f46499b) {
+            return bArr;
         }
-        arrayList.clear();
-        int[] iArr = RecyclerView.Q0;
-        e2.f fVar = ((RecyclerView) this.h).f3079t0;
-        int[] iArr2 = (int[]) fVar.f9657c;
-        if (iArr2 != null) {
-            Arrays.fill(iArr2, -1);
-        }
-        fVar.d = 0;
-    }
-
-    public void f(int i10) {
-        ArrayList arrayList = (ArrayList) this.e;
-        a((e1) arrayList.get(i10), true);
-        arrayList.remove(i10);
-    }
-
-    public void g(View view) {
-        RecyclerView recyclerView = (RecyclerView) this.h;
-        e1 U = RecyclerView.U(view);
-        if (U.l()) {
-            recyclerView.removeDetachedView(view, false);
-        }
-        if (U.k()) {
-            U.f47785p.k(U);
-        } else if (U.s()) {
-            U.f47781l &= -33;
-        }
-        h(U);
-        if (recyclerView.f3059c0 != null && !U.i()) {
-            recyclerView.f3059c0.f(U);
-        }
-    }
-
-    public void h(s4.e1 r12) {
-        throw new UnsupportedOperationException("Method not decompiled: rf.e.h(s4.e1):void");
-    }
-
-    public void i(View view) {
-        m0 m0Var;
-        RecyclerView recyclerView = (RecyclerView) this.h;
-        e1 U = RecyclerView.U(view);
-        if (!U.e(12) && U.m() && (m0Var = recyclerView.f3059c0) != null && !m0Var.c(U, U.d())) {
-            if (((ArrayList) this.d) == null) {
-                this.d = new ArrayList();
+        byte[] bArr2 = new byte[(int) (dVar.f46499b * 1.3f)];
+        if (z10) {
+            f46504w.put(Thread.currentThread(), bArr2);
+            if (!f46505x) {
+                f46505x = true;
+                i0.h3(this.f46520p, 5000L);
             }
-            U.f47785p = this;
-            U.f47786q = true;
-            ((ArrayList) this.d).add(U);
-        } else if (U.h() && !U.j() && !recyclerView.f3082w.f47804b) {
-            throw new IllegalArgumentException("Called scrap view with an invalid view. Invalid views cannot be reused from scrap, they should rebound from recycler pool." + recyclerView.C());
-        } else {
-            U.f47785p = this;
-            U.f47786q = false;
-            ((ArrayList) this.f47384c).add(U);
+            return bArr2;
         }
+        this.f46512g = bArr2;
+        return bArr2;
     }
 
-    public s4.e1 j(int r29, long r30) {
-        throw new UnsupportedOperationException("Method not decompiled: rf.e.j(int, long):s4.e1");
+    public final int f(android.graphics.Bitmap r11, int r12) {
+        throw new UnsupportedOperationException("Method not decompiled: rf.e.f(android.graphics.Bitmap, int):int");
     }
 
-    public void k(e1 e1Var) {
-        if (e1Var.f47786q) {
-            ((ArrayList) this.d).remove(e1Var);
-        } else {
-            ((ArrayList) this.f47384c).remove(e1Var);
+    public final boolean g() {
+        if (this.f46521q && this.f46515k) {
+            return false;
         }
-        e1Var.f47785p = null;
-        e1Var.f47786q = false;
-        e1Var.f47781l &= -33;
-    }
-
-    public void l() {
-        int i10;
-        ArrayList arrayList = (ArrayList) this.e;
-        p0 p0Var = ((RecyclerView) this.h).f3084x;
-        if (p0Var != null) {
-            i10 = p0Var.f47858i;
-        } else {
-            i10 = 0;
-        }
-        this.f47383b = this.f47382a + i10;
-        for (int size = arrayList.size() - 1; size >= 0 && arrayList.size() > this.f47383b; size--) {
-            f(size);
-        }
-    }
-
-    public e(RecyclerView recyclerView) {
-        this.h = recyclerView;
-        ArrayList arrayList = new ArrayList();
-        this.f47384c = arrayList;
-        this.d = null;
-        this.e = new ArrayList();
-        this.f47385f = DesugarCollections.unmodifiableList(arrayList);
-        this.f47382a = 2;
-        this.f47383b = 2;
+        return true;
     }
 }

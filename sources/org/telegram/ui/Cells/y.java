@@ -2,7 +2,6 @@ package org.telegram.ui.Cells;
 
 import android.graphics.Canvas;
 import android.graphics.drawable.RippleDrawable;
-import org.telegram.messenger.FileLog;
 public final class y extends RippleDrawable {
     @Override
     public final void draw(Canvas canvas) {
@@ -10,7 +9,7 @@ public final class y extends RippleDrawable {
         try {
             super.draw(canvas);
         } catch (Exception e) {
-            FileLog.e("probably forgot to put setCallback", e);
+            org.telegram.messenger.f8.e("probably forgot to put setCallback", e);
         } finally {
             canvas.restoreToCount(save);
         }

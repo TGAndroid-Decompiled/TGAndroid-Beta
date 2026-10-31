@@ -1,60 +1,74 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.os.SystemClock;
-import org.telegram.messenger.AndroidUtilities;
-public final class ih0 extends nm0 {
-    public final ag.h0 f29334f3;
-    public long f29335g3;
-    public final oh0 f29336h3;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+public final class ih0 extends AnimatorListenerAdapter {
+    public final int f26979a;
+    public final jh0 f26980b;
 
-    public ih0(oh0 oh0Var, Context context) {
-        super(context, null);
-        this.f29336h3 = oh0Var;
-        this.f29334f3 = new ag.h0(8);
+    public ih0(jh0 jh0Var, int i10) {
+        this.f26979a = i10;
+        this.f26980b = jh0Var;
     }
 
     @Override
-    public final boolean E0(float f7) {
-        if (f7 >= this.f29336h3.E + AndroidUtilities.statusBarHeight) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f7;
-        oh0 oh0Var = this.f29336h3;
-        if (oh0Var.L) {
-            long elapsedRealtime = SystemClock.elapsedRealtime();
-            long abs = Math.abs(this.f29335g3 - elapsedRealtime);
-            if (abs > 17) {
-                abs = 16;
-            }
-            this.f29335g3 = elapsedRealtime;
-            oh0Var.J += (((float) abs) * oh0Var.K) / 1800.0f;
-            while (true) {
-                f7 = oh0Var.J;
-                float f10 = oh0Var.K * 2.0f;
-                if (f7 < f10) {
-                    break;
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f26979a) {
+            case 1:
+                jh0 jh0Var = this.f26980b;
+                AnimatorSet animatorSet = jh0Var.f27384s;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    jh0Var.f27384s = null;
+                    jh0Var.getClass();
+                    return;
                 }
-                oh0Var.J = f7 - f10;
-            }
-            oh0Var.I.setTranslate(f7, 0.0f);
-            oh0Var.H.setLocalMatrix(oh0Var.I);
-            g1();
-            invalidate();
+                return;
+            case 2:
+                jh0 jh0Var2 = this.f26980b;
+                AnimatorSet animatorSet2 = jh0Var2.f27384s;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    jh0Var2.f27384s = null;
+                    jh0Var2.getClass();
+                    return;
+                }
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
         }
-        super.dispatchDraw(canvas);
-        int measuredHeight = getMeasuredHeight() - AndroidUtilities.navigationBarHeight;
-        int measuredWidth = getMeasuredWidth();
-        int measuredHeight2 = getMeasuredHeight();
-        ag.h0 h0Var = this.f29334f3;
-        h0Var.setBounds(0, measuredHeight, measuredWidth, measuredHeight2);
-        h0Var.b(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23448i5, this.f30988n2));
-        h0Var.draw(canvas);
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        int i10 = this.f26979a;
+        jh0 jh0Var = this.f26980b;
+        switch (i10) {
+            case 0:
+                AnimatorSet animatorSet = jh0Var.h;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    jh0Var.h = null;
+                }
+                org.telegram.messenger.zs.e().k(99, 512);
+                return;
+            case 1:
+                AnimatorSet animatorSet2 = jh0Var.f27384s;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    jh0Var.f27384s = null;
+                    if (jh0Var.f27386x) {
+                        jh0Var.setLayerType(0, null);
+                    }
+                }
+                org.telegram.messenger.zs.e().k(99, 512);
+                return;
+            default:
+                AnimatorSet animatorSet3 = jh0Var.f27384s;
+                if (animatorSet3 != null && animatorSet3.equals(animator)) {
+                    jh0Var.f27384s = null;
+                    org.telegram.messenger.i0.g3(new eb0(this, 14));
+                }
+                org.telegram.messenger.zs.e().k(99, 512);
+                return;
+        }
     }
 }

@@ -1,83 +1,77 @@
 package s4;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
-import java.util.ArrayList;
-public final class g implements Runnable {
-    public final int f47793a;
-    public final ArrayList f47794b;
-    public final l f47795c;
+public final class g extends AnimatorListenerAdapter {
+    public final int f47929a;
+    public final h f47930b;
+    public final ViewPropertyAnimator f47931c;
+    public final View d;
+    public final j e;
 
-    public g(l lVar, ArrayList arrayList, int i10) {
-        this.f47793a = i10;
-        this.f47795c = lVar;
-        this.f47794b = arrayList;
+    public g(j jVar, h hVar, ViewPropertyAnimator viewPropertyAnimator, View view, int i10) {
+        this.f47929a = i10;
+        this.e = jVar;
+        this.f47930b = hVar;
+        this.f47931c = viewPropertyAnimator;
+        this.d = view;
     }
 
     @Override
-    public final void run() {
-        switch (this.f47793a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f47929a) {
             case 0:
-                ArrayList arrayList = this.f47794b;
-                int size = arrayList.size();
-                int i10 = 0;
-                while (true) {
-                    l lVar = this.f47795c;
-                    if (i10 < size) {
-                        Object obj = arrayList.get(i10);
-                        i10++;
-                        k kVar = (k) obj;
-                        lVar.C(kVar.f47816a, kVar);
-                        lVar.f47829w.add(kVar);
-                    } else {
-                        arrayList.clear();
-                        lVar.f47828u.remove(arrayList);
-                        return;
-                    }
+                this.f47931c.setListener(null);
+                View view = this.d;
+                view.setAlpha(1.0f);
+                j jVar = this.e;
+                if (jVar.A(view) > 0.0f) {
+                    view.setScaleX(1.0f);
+                    view.setScaleY(1.0f);
                 }
-            case 1:
-                ArrayList arrayList2 = this.f47794b;
-                int size2 = arrayList2.size();
-                int i11 = 0;
-                while (true) {
-                    l lVar2 = this.f47795c;
-                    if (i11 < size2) {
-                        Object obj2 = arrayList2.get(i11);
-                        i11++;
-                        j jVar = (j) obj2;
-                        lVar2.B(jVar);
-                        lVar2.f47830x.add(jVar);
-                    } else {
-                        arrayList2.clear();
-                        lVar2.v.remove(arrayList2);
-                        return;
-                    }
-                }
+                view.setTranslationX(0.0f);
+                view.setTranslationY(0.0f);
+                h hVar = this.f47930b;
+                c1 c1Var = hVar.f47935a;
+                jVar.O();
+                jVar.d(hVar.f47935a);
+                jVar.B.remove(hVar.f47935a);
+                jVar.G();
+                return;
             default:
-                ArrayList arrayList3 = this.f47794b;
-                int i12 = Integer.MAX_VALUE;
-                for (int size3 = arrayList3.size() - 1; size3 >= 0; size3--) {
-                    i12 = Math.min(i12, ((e1) arrayList3.get(size3)).b());
+                this.f47931c.setListener(null);
+                View view2 = this.d;
+                view2.setAlpha(1.0f);
+                j jVar2 = this.e;
+                if (jVar2.A(view2) > 0.0f) {
+                    view2.setScaleX(1.0f);
+                    view2.setScaleY(1.0f);
                 }
-                int size4 = arrayList3.size();
-                while (true) {
-                    size4--;
-                    l lVar3 = this.f47795c;
-                    if (size4 >= 0) {
-                        e1 e1Var = (e1) arrayList3.get(size4);
-                        long b10 = (e1Var.b() - i12) * lVar3.D;
-                        View view = e1Var.f47773a;
-                        ViewPropertyAnimator animate = view.animate();
-                        lVar3.f47831y.add(e1Var);
-                        animate.alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(lVar3.h()).setStartDelay(b10).setInterpolator(lVar3.h);
-                        animate.setUpdateListener(new e(lVar3, e1Var, 1));
-                        animate.setListener(new h(lVar3, e1Var, view, animate)).start();
-                    } else {
-                        arrayList3.clear();
-                        lVar3.f47827t.remove(arrayList3);
-                        return;
-                    }
-                }
+                view2.setTranslationX(0.0f);
+                view2.setTranslationY(0.0f);
+                h hVar2 = this.f47930b;
+                c1 c1Var2 = hVar2.f47936b;
+                jVar2.O();
+                jVar2.d(hVar2.f47936b);
+                jVar2.B.remove(hVar2.f47936b);
+                jVar2.G();
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        switch (this.f47929a) {
+            case 0:
+                c1 c1Var = this.f47930b.f47935a;
+                this.e.getClass();
+                return;
+            default:
+                c1 c1Var2 = this.f47930b.f47936b;
+                this.e.getClass();
+                return;
         }
     }
 }

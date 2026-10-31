@@ -1,24 +1,22 @@
 package org.telegram.messenger;
+public final class s2 extends q2 {
+    public final int f17867a;
+    public final int f17868b;
+    public final int f17869c;
 
-import org.telegram.messenger.FileLoadOperation;
-public final class s2 implements Runnable {
-    public final int f21166a;
-    public final FileLoadOperation.RequestInfo f21167b;
-
-    public s2(FileLoadOperation.RequestInfo requestInfo, int i10) {
-        this.f21166a = i10;
-        this.f21167b = requestInfo;
+    public s2(int i10, int i11, int i12) {
+        this.f17867a = i10;
+        this.f17869c = i11;
+        this.f17868b = i12;
     }
 
     @Override
-    public final void run() {
-        switch (this.f21166a) {
-            case 0:
-                FileLoadOperation.lambda$clearOperation$26(this.f21167b);
-                return;
-            default:
-                FileLoadOperation.lambda$cancelRequests$17(this.f21167b);
-                return;
-        }
+    public final int c() {
+        return this.f17868b;
+    }
+
+    @Override
+    public final String d() {
+        return cd.L0(this.f17869c, null);
     }
 }

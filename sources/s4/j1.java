@@ -1,14 +1,15 @@
 package s4;
+public final class j1 {
+    public static final c5.x d = new c5.x(20, 14);
+    public int f47956a;
+    public ac.g f47957b;
+    public ac.g f47958c;
 
-import android.view.View;
-public interface j1 {
-    int J();
-
-    View W(int i10);
-
-    int X(View view);
-
-    int m(View view);
-
-    int s();
+    public static j1 a() {
+        j1 j1Var = (j1) d.b();
+        if (j1Var == null) {
+            return new Object();
+        }
+        return j1Var;
+    }
 }

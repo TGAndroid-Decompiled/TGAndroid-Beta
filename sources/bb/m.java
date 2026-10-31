@@ -4,18 +4,18 @@ import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 public final class m {
-    public final m9.h f3796a;
-    public final db.h f3797b;
+    public final l9.h f2597a;
+    public final db.h f2598b;
 
-    public m(m9.h hVar, db.h hVar2, ld.h hVar3) {
-        this.f3796a = hVar;
-        this.f3797b = hVar2;
+    public m(l9.h hVar, db.h hVar2, cd.h hVar3) {
+        this.f2597a = hVar;
+        this.f2598b = hVar2;
         Log.d("FirebaseSessions", "Initializing Firebase Sessions SDK.");
         hVar.a();
-        Context applicationContext = hVar.f18379a.getApplicationContext();
+        Context applicationContext = hVar.f11707a.getApplicationContext();
         if (applicationContext instanceof Application) {
-            ((Application) applicationContext).registerActivityLifecycleCallbacks(s0.f3818a);
-            ce.f0.q(ce.f0.b(hVar3), new l(this, hVar3, null, 0));
+            ((Application) applicationContext).registerActivityLifecycleCallbacks(s0.f2619a);
+            td.e0.q(td.e0.b(hVar3), new l(this, hVar3, null, 0));
             return;
         }
         Log.e("FirebaseSessions", "Failed to register lifecycle callbacks, unexpected context " + applicationContext.getClass() + '.');

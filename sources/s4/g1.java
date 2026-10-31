@@ -1,64 +1,36 @@
 package s4;
 
-import java.util.ArrayList;
-public abstract class g1 extends m0 {
-    public boolean f47798m;
-    public boolean f47799n;
+import android.content.Context;
+import android.util.DisplayMetrics;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.ui.Wallet.x5;
+public final class g1 extends b0 {
+    public final x5 f47934r;
 
-    public g1() {
-        this.f47836a = null;
-        this.f47837b = new ArrayList();
-        this.f47838c = 120L;
-        this.d = 120L;
-        this.e = 250L;
-        this.f47839f = 250L;
-        this.f47840g = 250L;
-        this.f47844l = 0L;
-        this.f47798m = true;
+    public g1(x5 x5Var, Context context) {
+        super(context);
+        this.f47934r = x5Var;
     }
 
     @Override
-    public boolean a(e1 e1Var, b2.v0 v0Var, b2.v0 v0Var2) {
-        int i10;
-        int i11;
-        if (v0Var != null && ((i10 = v0Var.f3511a) != (i11 = v0Var2.f3511a) || v0Var.f3512b != v0Var2.f3512b || this.f47799n)) {
-            return r(e1Var, v0Var, i10, v0Var.f3512b, i11, v0Var2.f3512b);
+    public final void g(View view, x0 x0Var) {
+        RecyclerView recyclerView = this.f47934r.f35382a;
+        if (recyclerView != null) {
+            n0 layoutManager = recyclerView.getLayoutManager();
+            layoutManager.getClass();
+            int[] iArr = {0, n0.z(view) - layoutManager.F()};
+            int i10 = iArr[0];
+            int i11 = iArr[1];
+            int m10 = m(Math.max(Math.abs(i10), Math.abs(i11)));
+            if (m10 > 0) {
+                x0Var.b(i10, i11, m10, this.f47884j);
+            }
         }
-        p(e1Var);
-        return true;
     }
 
-    public abstract void p(e1 e1Var);
-
-    public abstract boolean q(e1 e1Var, e1 e1Var2, b2.v0 v0Var, int i10, int i11, int i12, int i13);
-
-    public abstract boolean r(e1 e1Var, b2.v0 v0Var, int i10, int i11, int i12, int i13);
-
-    public abstract void s(e1 e1Var, b2.v0 v0Var);
-
-    public boolean t(e1 e1Var) {
-        if (this.f47798m && !e1Var.h()) {
-            return false;
-        }
-        return true;
-    }
-
-    public final void u(e1 e1Var) {
-        w(e1Var);
-        d(e1Var);
-    }
-
-    public final void v(e1 e1Var) {
-        x(e1Var);
-        d(e1Var);
-    }
-
-    public void y() {
-    }
-
-    public void w(e1 e1Var) {
-    }
-
-    public void x(e1 e1Var) {
+    @Override
+    public final float l(DisplayMetrics displayMetrics) {
+        return 100.0f / displayMetrics.densityDpi;
     }
 }

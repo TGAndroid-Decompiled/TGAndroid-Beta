@@ -5,92 +5,88 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.view.Choreographer;
 import java.util.ArrayList;
-import jg.s0;
-import org.telegram.ui.Components.f21;
-import org.telegram.ui.Components.h21;
+import m2.t;
+import org.telegram.ui.Components.f01;
+import org.telegram.ui.Components.h01;
 public final class a implements Choreographer.FrameCallback {
-    public final int f18940a;
-    public final Object f18941b;
+    public final int f13929a;
+    public final Object f13930b;
 
     public a(Object obj, int i10) {
-        this.f18940a = i10;
-        this.f18941b = obj;
+        this.f13929a = i10;
+        this.f13930b = obj;
     }
 
     @Override
     public final void doFrame(long j10) {
-        int i10;
         boolean z10;
-        j jVar;
         float min;
+        int i10;
         boolean z11;
-        switch (this.f18940a) {
+        switch (this.f13929a) {
             case 0:
-                b bVar = (b) ((s0) ((k6.c) this.f18941b).f16405b).f15827b;
+                b bVar = (b) ((t) ((li.k) this.f13930b).f12100b).f12684b;
                 long uptimeMillis = SystemClock.uptimeMillis();
-                ArrayList arrayList = bVar.f18944b;
+                ArrayList arrayList = bVar.f13933b;
                 long uptimeMillis2 = SystemClock.uptimeMillis();
                 int i11 = 0;
                 while (i11 < arrayList.size()) {
-                    h hVar = (h) arrayList.get(i11);
-                    if (hVar != null) {
-                        l lVar = bVar.f18943a;
-                        Long l4 = (Long) lVar.get(hVar);
+                    j jVar = (j) arrayList.get(i11);
+                    if (jVar != null) {
+                        l lVar = bVar.f13932a;
+                        Long l4 = (Long) lVar.get(jVar);
                         if (l4 != null) {
                             if (l4.longValue() < uptimeMillis2) {
-                                lVar.remove(hVar);
+                                lVar.remove(jVar);
                             }
                         }
-                        long j11 = hVar.f18964i;
+                        long j11 = jVar.f13953i;
                         if (j11 == 0) {
-                            hVar.f18964i = uptimeMillis;
-                            hVar.f(hVar.f18960b);
+                            jVar.f13953i = uptimeMillis;
+                            jVar.g(jVar.f13949b);
                         } else {
                             long j12 = uptimeMillis - j11;
-                            hVar.f18964i = uptimeMillis;
-                            j jVar2 = (j) hVar;
-                            if (jVar2.v != Float.MAX_VALUE) {
-                                k kVar = jVar2.f18968u;
-                                double d = kVar.f18974i;
+                            jVar.f13953i = uptimeMillis;
+                            if (jVar.f13958n != Float.MAX_VALUE) {
+                                k kVar = jVar.f13957m;
+                                double d = kVar.f13964i;
                                 z10 = true;
-                                i10 = i11;
                                 long j13 = j12 / 2;
-                                e c10 = kVar.c(jVar2.f18960b, jVar2.f18959a, j13);
-                                k kVar2 = jVar2.f18968u;
-                                kVar2.f18974i = jVar2.v;
-                                jVar2.v = Float.MAX_VALUE;
-                                e c11 = kVar2.c(c10.f18949a, c10.f18950b, j13);
-                                jVar2.f18960b = c11.f18949a;
-                                jVar2.f18959a = c11.f18950b;
-                                jVar = jVar2;
+                                e c10 = kVar.c(jVar.f13949b, jVar.f13948a, j13);
+                                k kVar2 = jVar.f13957m;
+                                kVar2.f13964i = jVar.f13958n;
+                                jVar.f13958n = Float.MAX_VALUE;
+                                e c11 = kVar2.c(c10.f13938a, c10.f13939b, j13);
+                                jVar.f13949b = c11.f13938a;
+                                jVar.f13948a = c11.f13939b;
                             } else {
-                                i10 = i11;
                                 z10 = true;
-                                jVar = jVar2;
-                                e c12 = jVar2.f18968u.c(jVar2.f18960b, jVar2.f18959a, j12);
-                                jVar.f18960b = c12.f18949a;
-                                jVar.f18959a = c12.f18950b;
+                                e c12 = jVar.f13957m.c(jVar.f13949b, jVar.f13948a, j12);
+                                jVar.f13949b = c12.f13938a;
+                                jVar.f13948a = c12.f13939b;
                             }
-                            float max = Math.max(jVar.f18960b, jVar.h);
-                            jVar.f18960b = max;
-                            jVar.f18960b = Math.min(max, jVar.f18963g);
-                            float f7 = jVar.f18959a;
-                            k kVar3 = jVar.f18968u;
+                            float max = Math.max(jVar.f13949b, jVar.h);
+                            jVar.f13949b = max;
+                            jVar.f13949b = Math.min(max, jVar.f13952g);
+                            float f7 = jVar.f13948a;
+                            k kVar3 = jVar.f13957m;
                             kVar3.getClass();
-                            if (Math.abs(f7) < kVar3.e && Math.abs(min - ((float) kVar3.f18974i)) < kVar3.d) {
-                                jVar.f18960b = (float) jVar.f18968u.f18974i;
-                                jVar.f18959a = 0.0f;
+                            double abs = Math.abs(f7);
+                            i10 = i11;
+                            if (abs < kVar3.e && Math.abs(min - ((float) kVar3.f13964i)) < kVar3.d) {
+                                jVar.f13949b = (float) jVar.f13957m.f13964i;
+                                jVar.f13948a = 0.0f;
                                 z11 = z10;
                             } else {
                                 z11 = false;
                             }
-                            float min2 = Math.min(hVar.f18960b, hVar.f18963g);
-                            hVar.f18960b = min2;
-                            float max2 = Math.max(min2, hVar.h);
-                            hVar.f18960b = max2;
-                            hVar.f(max2);
+                            float min2 = Math.min(jVar.f13949b, jVar.f13952g);
+                            jVar.f13949b = min2;
+                            float max2 = Math.max(min2, jVar.h);
+                            jVar.f13949b = max2;
+                            jVar.g(max2);
                             if (z11) {
-                                hVar.d(false);
+                                jVar.e(false);
                             }
                             i11 = i10 + 1;
                         }
@@ -108,21 +104,21 @@ public final class a implements Choreographer.FrameCallback {
                 }
                 if (arrayList.size() > 0) {
                     if (bVar.d == null) {
-                        bVar.d = new k6.c(bVar.f18945c);
+                        bVar.d = new li.k(bVar.f13934c);
                     }
-                    k6.c cVar = bVar.d;
-                    ((Choreographer) cVar.f16406c).postFrameCallback((a) cVar.d);
+                    li.k kVar4 = bVar.d;
+                    ((Choreographer) kVar4.f12101c).postFrameCallback((a) kVar4.d);
                     return;
                 }
                 return;
             default:
-                f21 f21Var = ((h21) this.f18941b).f28835a;
-                if (f21Var != null) {
-                    Handler handler = f21Var.getHandler();
-                    if (handler != null && f21Var.f27985b.get()) {
+                f01 f01Var = ((h01) this.f13930b).f26574a;
+                if (f01Var != null) {
+                    Handler handler = f01Var.getHandler();
+                    if (handler != null && f01Var.f25916b.get()) {
                         handler.sendMessage(handler.obtainMessage(0));
                     }
-                    if (((h21) this.f18941b).f28835a.S) {
+                    if (((h01) this.f13930b).f26574a.S) {
                         Choreographer.getInstance().postFrameCallback(this);
                         return;
                     }

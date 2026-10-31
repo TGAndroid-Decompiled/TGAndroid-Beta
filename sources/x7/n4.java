@@ -1,19 +1,20 @@
 package x7;
-
-import org.telegram.ui.Components.b10;
-public final class n4 implements ka.d {
-    public static final n4 f51651a = new Object();
-
-    static {
-        b10.s(b10.n(d.class, b10.q(2, b10.n(d.class, new a(1)))));
-    }
+public final class n4 implements ja.d {
+    public static final n4 f53255a = new Object();
+    public static final ja.c f53256b = new ja.c("inferenceCommonLogEvent", i0.a.o(sc.e.m(c0.class, new z(1))));
+    public static final ja.c f53257c = new ja.c("options", i0.a.o(sc.e.m(c0.class, new z(2))));
+    public static final ja.c d = new ja.c("imageInfo", i0.a.o(sc.e.m(c0.class, new z(3))));
+    public static final ja.c e = new ja.c("labelCount", i0.a.o(sc.e.m(c0.class, new z(4))));
+    public static final ja.c f53258f = new ja.c("highestConfidence", i0.a.o(sc.e.m(c0.class, new z(5))));
 
     @Override
     public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ka.e eVar = (ka.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+        f8 f8Var = (f8) obj;
+        ja.e eVar = (ja.e) obj2;
+        eVar.d(f53256b, f8Var.f53151a);
+        eVar.d(f53257c, f8Var.f53152b);
+        eVar.d(d, f8Var.f53153c);
+        eVar.d(e, null);
+        eVar.d(f53258f, null);
     }
 }

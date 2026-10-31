@@ -1,204 +1,95 @@
 package org.telegram.ui.Cells;
 
-import android.text.style.CharacterStyle;
-import java.util.ArrayList;
-import org.telegram.messenger.BotInlineKeyboard;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.ev0;
-public interface j1 {
-    void A0(s1 s1Var);
-
-    void A1(s1 s1Var, TLRPC.MessageExtendedMedia messageExtendedMedia);
-
-    void B1(s1 s1Var, TLRPC.User user, TLRPC.Document document, String str);
-
-    void C(s1 s1Var, BotInlineKeyboard.ButtonCustom buttonCustom);
-
-    boolean C0(long j10);
-
-    boolean C1(s1 s1Var, TLRPC.PollAnswer pollAnswer);
-
-    void D(s1 s1Var);
-
-    void D0(s1 s1Var);
-
-    void E0(int i10, s1 s1Var);
-
-    ev0 E1();
-
-    void F(MessageObject.TextLayoutBlock textLayoutBlock);
-
-    void F0(s1 s1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton);
-
-    boolean G1(long j10);
-
-    void H1(s1 s1Var, int i10, float f7, float f10, boolean z10);
-
-    void I(s1 s1Var);
-
-    void I0(s1 s1Var, CharacterStyle characterStyle, boolean z10);
-
-    boolean I1(s1 s1Var, TLRPC.TodoItem todoItem);
-
-    void J(int i10, s1 s1Var);
-
-    boolean J0(s1 s1Var, boolean z10);
-
-    void K(MessageObject messageObject);
-
-    void K0(s1 s1Var);
-
-    void K1(s1 s1Var);
-
-    boolean L(s1 s1Var, TLRPC.TodoItem todoItem, boolean z10);
-
-    void L0(s1 s1Var);
-
-    boolean M();
-
-    void M1(s1 s1Var, long j10);
-
-    boolean N(s1 s1Var);
-
-    boolean O();
-
-    boolean O0(int i10, s1 s1Var);
-
-    void P(s1 s1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10);
-
-    void Q(s1 s1Var);
-
-    boolean Q1(s1 s1Var, TL_iv.PageBlock pageBlock);
-
-    void R1(s1 s1Var);
-
-    int S();
-
-    boolean S0(MessageObject messageObject);
-
-    void U0();
-
-    jh.a V();
-
-    void V1();
-
-    boolean W(s1 s1Var);
-
-    void W0(s1 s1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto);
-
-    void W1(s1 s1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10);
-
-    boolean X(s1 s1Var, TLRPC.User user);
-
-    boolean X1(int i10);
-
-    void Z(int i10);
-
-    void Z0(s1 s1Var, TLRPC.Document document);
-
-    void Z1();
-
-    boolean a0();
-
-    void a2(s1 s1Var, int i10, int i11);
-
-    void b0(s1 s1Var, float f7, float f10);
-
-    t9 b2();
-
-    boolean c();
-
-    int c0(s1 s1Var);
-
-    boolean d();
-
-    void d0(s1 s1Var);
-
-    boolean e0();
-
-    void f1(s1 s1Var, float f7, float f10);
-
-    void g0(String str);
-
-    String h(s1 s1Var);
-
-    boolean h0(org.telegram.ui.Components.c6 c6Var);
-
-    void i(s1 s1Var, ArrayList arrayList, int i10, int i11, int i12);
-
-    void j();
-
-    void j0(s1 s1Var, float f7, float f10);
-
-    boolean k1();
-
-    void l(s1 s1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i10);
-
-    void l1(s1 s1Var, boolean z10, boolean z11);
-
-    void m(s1 s1Var);
-
-    void m0(s1 s1Var, TLRPC.User user, float f7, float f10);
-
-    void m1(s1 s1Var);
-
-    void n();
-
-    void n0(s1 s1Var, bh.n nVar);
-
-    void n1(s1 s1Var, boolean z10);
-
-    void o0(s1 s1Var, float f7, float f10, boolean z10);
-
-    void p(s1 s1Var);
-
-    boolean p1(s1 s1Var, TLRPC.Chat chat);
-
-    void q();
-
-    boolean q0(MessageObject messageObject);
-
-    void q1(s1 s1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto);
-
-    void r(s1 s1Var);
-
-    void r0(s1 s1Var);
-
-    boolean r1();
-
-    void s(s1 s1Var);
-
-    void s0();
-
-    void s1(s1 s1Var);
-
-    void t0(s1 s1Var, TLObject tLObject, boolean z10);
-
-    String u(long j10);
-
-    void u0(s1 s1Var, float f7, float f10);
-
-    void u1(MessageObject messageObject);
-
-    void v(s1 s1Var);
-
-    void v1(s1 s1Var, TLRPC.WebPage webPage, String str, boolean z10);
-
-    void w0(s1 s1Var);
-
-    CharacterStyle w1(s1 s1Var);
-
-    void x(s1 s1Var);
-
-    void x1(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11);
-
-    void y0(s1 s1Var, boolean z10, boolean z11);
-
-    boolean y1(s1 s1Var, MessageObject messageObject);
-
-    void z1();
+import android.view.MotionEvent;
+import org.telegram.messenger.video.OldVideoPlayerRewinder;
+import org.telegram.ui.Components.if0;
+import org.telegram.ui.Components.jf0;
+import org.telegram.ui.Components.m61;
+import org.telegram.ui.PhotoViewer;
+public final class j1 extends OldVideoPlayerRewinder {
+    public final int f22060a;
+    public final Object f22061b;
+
+    public j1(Object obj, int i10) {
+        this.f22060a = i10;
+        this.f22061b = obj;
+    }
+
+    @Override
+    public final void onRewindCanceled() {
+        switch (this.f22060a) {
+            case 0:
+                q1 q1Var = (q1) this.f22061b;
+                q1Var.onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
+                q1Var.Mb.f(false);
+                return;
+            default:
+                PhotoViewer photoViewer = (PhotoViewer) this.f22061b;
+                PhotoViewer.d(photoViewer, MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
+                photoViewer.f33659z1.f(false);
+                jf0.f27345p0.Q.f(false);
+                return;
+        }
+    }
+
+    @Override
+    public final void onRewindStart(boolean z10) {
+        switch (this.f22060a) {
+            case 0:
+                q1 q1Var = (q1) this.f22061b;
+                m61 m61Var = q1Var.Mb;
+                m61Var.f28324n = new m2.t(this, 7);
+                m61Var.e(false);
+                q1Var.Mb.d(!z10);
+                q1Var.Mb.f(true);
+                q1Var.invalidate();
+                return;
+            default:
+                PhotoViewer photoViewer = (PhotoViewer) this.f22061b;
+                photoViewer.f33659z1.e(false);
+                photoViewer.f33659z1.d(!z10);
+                photoViewer.f33659z1.f(true);
+                photoViewer.f33470e0.invalidate();
+                jf0.v(z10);
+                return;
+        }
+    }
+
+    @Override
+    public final void updateRewindProgressUi(long j10, float f7, boolean z10) {
+        switch (this.f22060a) {
+            case 0:
+                q1 q1Var = (q1) this.f22061b;
+                q1Var.Mb.g(Math.abs(j10));
+                if (z10) {
+                    q1Var.O5.f16299b0 = f7;
+                    q1Var.O3();
+                    return;
+                }
+                return;
+            default:
+                PhotoViewer photoViewer = (PhotoViewer) this.f22061b;
+                photoViewer.f33659z1.g(Math.abs(j10));
+                if (z10) {
+                    photoViewer.f33577q3.h(false, f7);
+                    photoViewer.f33586r3.invalidate();
+                }
+                jf0 jf0Var = jf0.f27345p0;
+                jf0Var.Q.g(0L);
+                if (z10) {
+                    jf0Var.Z = f7;
+                    ih.c cVar = jf0Var.f27349b0;
+                    if (cVar != null) {
+                        cVar.invalidate();
+                    }
+                    if0 if0Var = jf0Var.h;
+                    if (if0Var != null) {
+                        if0Var.invalidate();
+                        return;
+                    }
+                    return;
+                }
+                return;
+        }
+    }
 }

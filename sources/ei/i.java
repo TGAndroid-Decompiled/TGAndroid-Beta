@@ -1,92 +1,75 @@
 package ei;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.rv0;
-import org.telegram.ui.Components.tu0;
-import org.telegram.ui.Components.ul0;
-public final class i extends rv0 {
-    public final r f9985v3;
+import j$.util.Objects;
+import java.util.ArrayList;
+import java.util.Iterator;
+import org.telegram.ui.ActionBar.a7;
+import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.Components.tk0;
+import v7.u7;
+public final class i {
+    public final r f6652a;
 
-    public i(r rVar, Context context) {
-        super(context);
-        this.f9985v3 = rVar;
+    public i(r rVar) {
+        this.f6652a = rVar;
     }
 
-    @Override
-    public final boolean D1() {
-        return this.f9985v3.f10001b;
-    }
-
-    @Override
-    public final boolean E1() {
-        return true;
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        int i10 = 0;
-        int i11 = 0;
-        for (int i12 = 0; i12 < getChildCount(); i12++) {
-            int bottom = getChildAt(i12).getBottom() - getPaddingTop();
-            if (bottom > i11) {
-                i11 = bottom;
+    public final void a() {
+        int i10;
+        r rVar = this.f6652a;
+        ArrayList arrayList = rVar.f6672c;
+        ArrayList arrayList2 = rVar.E;
+        long j10 = rVar.f6686t;
+        long j11 = r.G;
+        if (j10 != j11) {
+            rVar.f6686t = j11;
+            i10 = 32;
+        } else {
+            i10 = 0;
+        }
+        long j12 = t6.Am + a7.f20158b;
+        if (rVar.f6685s != j12) {
+            rVar.f6685s = j12;
+            i10 |= 16;
+        }
+        Iterator it = rVar.f6680n.iterator();
+        while (it.hasNext()) {
+            if (((tk0) it.next()).b0()) {
+                rVar.f6675i++;
             }
         }
-        float f7 = i11;
-        r rVar = this.f9985v3;
-        o oVar = rVar.J;
-        if (rVar.f10001b) {
-            tu0 tu0Var = rVar.f10005r;
-            int i13 = 0;
-            for (int i14 = 0; i14 < tu0Var.getChildCount(); i14++) {
-                int bottom2 = tu0Var.getChildAt(i14).getBottom() - tu0Var.getPaddingTop();
-                if (bottom2 > i13) {
-                    i13 = bottom2;
+        if (i10 == 0) {
+            return;
+        }
+        if (u7.a(i10, 16)) {
+            int size = arrayList2.size();
+            for (int i11 = 0; i11 < size; i11++) {
+                p pVar = (p) arrayList2.get(i11);
+                pVar.f6662a.a(pVar.f6663b.c());
+            }
+        }
+        int size2 = arrayList.size();
+        for (int i12 = 0; i12 < size2; i12++) {
+            q qVar = (q) arrayList.get(i12);
+            if (u7.a(i10, 32)) {
+                f fVar = qVar.f6665b;
+                s sVar = r.F;
+                if (!Objects.equals(fVar.f6648b, sVar)) {
+                    fVar.f6648b = sVar;
+                    fVar.g(sVar);
                 }
             }
-            f7 = AndroidUtilities.lerp(f7, i13, rVar.f10002c);
+            if (u7.a(i10, 16)) {
+                qVar.f6665b.updateColors();
+            }
+            qVar.f6665b.invalidateSelf();
+            qVar.f6664a.invalidate();
+            qVar.h = true;
         }
-        if (rVar.v.h() <= 0) {
-            i10 = 8;
-        }
-        oVar.setVisibility(i10);
-        oVar.setTranslationY(f7);
+        rVar.f6687u |= i10;
     }
 
-    @Override
-    public final int getAnimateToColumnsCount() {
-        return this.f9985v3.e;
-    }
-
-    @Override
-    public final float getChangeColumnsProgress() {
-        return this.f9985v3.f10002c;
-    }
-
-    @Override
-    public final int getColumnsCount() {
-        return this.f9985v3.d;
-    }
-
-    @Override
-    public final ul0 getMovingAdapter() {
-        r rVar = this.f9985v3;
-        if (rVar.G.f47905y == 0 && !rVar.W.G.E1) {
-            return rVar.v;
-        }
-        return null;
-    }
-
-    @Override
-    public final ul0 getSupportingAdapter() {
-        return this.f9985v3.f10007w;
-    }
-
-    @Override
-    public final tu0 getSupportingListView() {
-        return this.f9985v3.f10005r;
+    public final void b() {
+        throw new UnsupportedOperationException("Method not decompiled: ei.i.b():void");
     }
 }

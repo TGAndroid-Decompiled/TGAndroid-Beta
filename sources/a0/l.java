@@ -12,13 +12,13 @@ public class l {
         int[] iArr;
         Object[] objArr;
         if (i10 == 0) {
-            iArr = b0.a.f3100a;
+            iArr = b0.a.f1938a;
         } else {
             iArr = new int[i10];
         }
         this.f25a = iArr;
         if (i10 == 0) {
-            objArr = b0.a.f3102c;
+            objArr = b0.a.f1940c;
         } else {
             objArr = new Object[i10 << 1];
         }
@@ -77,8 +77,8 @@ public class l {
 
     public final void clear() {
         if (this.f27c > 0) {
-            this.f25a = b0.a.f3100a;
-            this.f26b = b0.a.f3102c;
+            this.f25a = b0.a.f1938a;
+            this.f26b = b0.a.f1940c;
             this.f27c = 0;
         }
         if (this.f27c <= 0) {
@@ -129,7 +129,7 @@ public class l {
         if (i10 >= 0 && i10 < this.f27c) {
             return this.f26b[i10 << 1];
         }
-        throw new IllegalArgumentException(ic.a.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(i0.a.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public final boolean equals(Object obj) {
@@ -161,11 +161,11 @@ public class l {
             } else {
                 int i12 = this.f27c;
                 for (int i13 = 0; i13 < i12; i13++) {
-                    Object e10 = e(i13);
+                    Object e7 = e(i13);
                     Object h10 = h(i13);
-                    Object obj3 = ((Map) obj).get(e10);
+                    Object obj3 = ((Map) obj).get(e7);
                     if (h10 == null) {
-                        if (obj3 != null || !((Map) obj).containsKey(e10)) {
+                        if (obj3 != null || !((Map) obj).containsKey(e7)) {
                             return false;
                         }
                     } else if (!h10.equals(obj3)) {
@@ -204,13 +204,13 @@ public class l {
                 this.f26b = copyOf2;
                 if (i11 == this.f27c) {
                     if (i10 > 0) {
-                        kd.f.b(0, 0, i10, iArr, this.f25a);
-                        kd.f.c(0, 0, i12, objArr, this.f26b);
+                        bd.h.b(0, 0, i10, iArr, this.f25a);
+                        bd.h.c(0, 0, i12, objArr, this.f26b);
                     }
                     if (i10 < i13) {
                         int i15 = i10 + 1;
-                        kd.f.b(i10, i15, i11, iArr, this.f25a);
-                        kd.f.c(i12, i15 << 1, i11 << 1, objArr, this.f26b);
+                        bd.h.b(i10, i15, i11, iArr, this.f25a);
+                        bd.h.c(i12, i15 << 1, i11 << 1, objArr, this.f26b);
                     }
                 } else {
                     throw new ConcurrentModificationException();
@@ -218,9 +218,9 @@ public class l {
             } else {
                 if (i10 < i13) {
                     int i16 = i10 + 1;
-                    kd.f.b(i10, i16, i11, iArr, iArr);
+                    bd.h.b(i10, i16, i11, iArr, iArr);
                     Object[] objArr2 = this.f26b;
-                    kd.f.c(i12, i16 << 1, i11 << 1, objArr2, objArr2);
+                    bd.h.c(i12, i16 << 1, i11 << 1, objArr2, objArr2);
                 }
                 Object[] objArr3 = this.f26b;
                 int i17 = i13 << 1;
@@ -233,7 +233,7 @@ public class l {
             }
             throw new ConcurrentModificationException();
         }
-        throw new IllegalArgumentException(ic.a.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(i0.a.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public final Object g(int i10, Object obj) {
@@ -244,7 +244,7 @@ public class l {
             objArr[i11] = obj;
             return obj2;
         }
-        throw new IllegalArgumentException(ic.a.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(i0.a.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public Object get(Object obj) {
@@ -267,7 +267,7 @@ public class l {
         if (i10 >= 0 && i10 < this.f27c) {
             return this.f26b[(i10 << 1) + 1];
         }
-        throw new IllegalArgumentException(ic.a.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(i0.a.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public final int hashCode() {
@@ -343,9 +343,9 @@ public class l {
         if (i13 < i11) {
             int[] iArr2 = this.f25a;
             int i15 = i13 + 1;
-            kd.f.b(i15, i13, i11, iArr2, iArr2);
+            bd.h.b(i15, i13, i11, iArr2, iArr2);
             Object[] objArr2 = this.f26b;
-            kd.f.c(i15 << 1, i13 << 1, this.f27c << 1, objArr2, objArr2);
+            bd.h.c(i15 << 1, i13 << 1, this.f27c << 1, objArr2, objArr2);
         }
         int i16 = this.f27c;
         if (i11 == i16) {

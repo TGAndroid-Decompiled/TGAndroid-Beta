@@ -1,67 +1,44 @@
 package org.telegram.ui.Components;
+public final class yn implements org.telegram.messenger.q20 {
+    public final z60 f32763a;
+    public final int f32764b;
+    public final long f32765c;
+    public final long d;
+    public final org.telegram.ui.ActionBar.k2 e;
+    public final org.telegram.ui.ActionBar.p6 f32766f;
 
-import android.content.Context;
-import android.view.ActionMode;
-import android.view.Menu;
-import java.util.ArrayList;
-public final class yn extends org.telegram.ui.Cells.h6 {
-    public final int F;
-    public final eo G;
-
-    public yn(eo eoVar, Context context, int i10, org.telegram.ui.ActionBar.u6 u6Var, int i11) {
-        super(context, i10, null, u6Var);
-        this.G = eoVar;
-        this.F = i11;
+    public yn(z60 z60Var, int i10, long j10, long j11, org.telegram.ui.un unVar, org.telegram.ui.ActionBar.p6 p6Var) {
+        this.f32763a = z60Var;
+        this.f32764b = i10;
+        this.f32765c = j10;
+        this.d = j11;
+        this.e = unVar;
+        this.f32766f = p6Var;
     }
 
     @Override
-    public final void g(org.telegram.ui.Cells.g6 g6Var, ActionMode actionMode) {
-        go goVar = this.G.d;
-        if (!goVar.f28685n && this.F == 11 && g6Var.isFocused() && g6Var.hasSelection()) {
-            Menu menu = actionMode.getMenu();
-            if (menu.findItem(16908321) != null) {
-                org.telegram.ui.wn.t8(menu, ((org.telegram.ui.wn) goVar.f30254b.f32990f0).h, false, true, true, true);
+    public final void a(Object obj) {
+        Integer num = (Integer) obj;
+        this.f32763a.u();
+        int intValue = num.intValue();
+        int i10 = this.f32764b;
+        long j10 = this.f32765c;
+        long j11 = this.d;
+        org.telegram.ui.ActionBar.k2 k2Var = this.e;
+        org.telegram.ui.ActionBar.p6 p6Var = this.f32766f;
+        if (intValue == 0) {
+            if (org.telegram.messenger.vp.r1(i10).q2(j10, j11, null)) {
+                org.telegram.messenger.ot.t(i10).G(j10, j11, false);
             }
-        }
-    }
-
-    @Override
-    public final void i(boolean z10) {
-        go.P(this.G.d, this, z10);
-    }
-
-    @Override
-    public final void j(org.telegram.ui.Cells.h6 h6Var) {
-        go.Q(this.G.d, h6Var);
-    }
-
-    @Override
-    public final void k(org.telegram.ui.Cells.g6 g6Var) {
-        this.G.d.f30254b.z1(g6Var, true);
-    }
-
-    @Override
-    public final boolean l(ArrayList arrayList) {
-        go goVar = this.G.d;
-        if (arrayList.isEmpty()) {
-            return false;
-        }
-        org.telegram.ui.Cells.g6 g6Var = this.d;
-        g6Var.getText().replace(g6Var.getSelectionStart(), g6Var.getSelectionEnd(), (CharSequence) arrayList.remove(0));
-        int i10 = 0;
-        while (!arrayList.isEmpty() && i10 < goVar.J) {
-            for (int length = goVar.K.length - 1; length > i10; length--) {
-                CharSequence[] charSequenceArr = goVar.K;
-                charSequenceArr[length] = charSequenceArr[length - 1];
+            if (cc.a(k2Var)) {
+                cc.z(k2Var, 4, num.intValue(), p6Var).j();
+                return;
             }
-            goVar.K[i10] = (CharSequence) arrayList.remove(0);
-            goVar.M++;
-            i10++;
+            return;
         }
-        goVar.l0();
-        goVar.f28681k0 = (goVar.f28698t0 + i10) - 1;
-        goVar.f28696s.setItemAnimator(goVar.v);
-        goVar.f28694r.l();
-        return true;
+        org.telegram.messenger.ot.t(i10).H(j10, num.intValue(), j11);
+        if (cc.a(k2Var)) {
+            cc.z(k2Var, 5, num.intValue(), p6Var).j();
+        }
     }
 }

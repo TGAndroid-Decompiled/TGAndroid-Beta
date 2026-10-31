@@ -1,128 +1,274 @@
 package ji;
 
-import ag.v;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
+import android.content.SharedPreferences;
 import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.p6;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.j9;
-import org.telegram.ui.Components.kb1;
-import org.telegram.ui.Components.y9;
-public final class b extends FrameLayout implements p6 {
-    public final u6 f15971a;
-    public final y9 f15972b;
-    public final TextView f15973c;
-    public final TextView d;
-    public final ImageView e;
+import android.util.Base64;
+import j$.util.Objects;
+import java.net.IDN;
+import java.util.Locale;
+import java.util.regex.Pattern;
+public final class b {
+    public static final Pattern f10425g = Pattern.compile("[A-Za-z0-9][A-Za-z0-9_-]*(/[A-Za-z0-9][A-Za-z0-9_-]*)*");
+    public static final Pattern h = Pattern.compile("[A-Za-z0-9_-]+");
+    public static final b f10426i = a().d();
+    public final int f10427a;
+    public final String f10428b;
+    public final int f10429c;
+    public final String d;
+    public final String e;
+    public final String f10430f;
 
-    public b(Context context, u6 u6Var) {
-        super(context);
-        this.f15971a = u6Var;
-        y9 y9Var = new y9(context);
-        this.f15972b = y9Var;
-        y9Var.setRoundRadius(AndroidUtilities.dp(7.3125f));
-        addView(y9Var, kb1.h(26, 26.0f, 19, 16.0f, 0.0f, 0.0f, 0.0f));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        linearLayout.setGravity(16);
-        TextView textView = new TextView(context);
-        this.f15973c = textView;
-        textView.setTextSize(1, 16.0f);
-        textView.setSingleLine(true);
-        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        textView.setEllipsize(truncateAt);
-        linearLayout.addView(textView, kb1.r(-1, -2));
-        TextView textView2 = new TextView(context);
-        this.d = textView2;
-        textView2.setTextSize(1, 13.0f);
-        textView2.setSingleLine(true);
-        textView2.setEllipsize(truncateAt);
-        linearLayout.addView(textView2, kb1.o(0.0f, 2.0f, 0.0f, 0.0f, -1, -2));
-        addView(linearLayout, kb1.h(-1, -2.0f, 19, 58.0f, 0.0f, 48.0f, 1.0f));
-        ImageView imageView = new ImageView(context);
-        this.e = imageView;
-        imageView.setImageResource(R.drawable.msg_inputarrow);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView(imageView, kb1.h(24, 24.0f, 21, 0.0f, 0.0f, 11.0f, 0.0f));
-        updateColors();
+    public b(a aVar) {
+        int i10 = aVar.f10421a;
+        this.f10427a = i10;
+        this.f10428b = (String) aVar.f10423c;
+        if (i10 == 3) {
+            this.f10430f = (String) aVar.f10424f;
+            this.f10429c = 0;
+            this.d = "";
+            this.e = "";
+        } else if (i10 == 2) {
+            this.f10430f = (String) aVar.f10424f;
+            this.f10429c = aVar.f10422b;
+            this.d = "";
+            this.e = "";
+        } else if (i10 == 1) {
+            this.f10430f = "";
+            this.f10429c = aVar.f10422b;
+            this.d = (String) aVar.d;
+            this.e = (String) aVar.e;
+        } else {
+            throw new IllegalArgumentException();
+        }
     }
 
-    public final void a(int i10, TLRPC.Chat chat) {
-        int i11;
-        if (chat == null) {
+    public static a a() {
+        ?? obj = new Object();
+        obj.f10421a = 1;
+        obj.f10423c = "";
+        obj.d = "";
+        obj.e = "";
+        obj.f10424f = "";
+        return obj;
+    }
+
+    public static String b(String str) {
+        if (!TextUtils.isEmpty(str) && h.matcher(str).matches()) {
+            try {
+                byte[] decode = Base64.decode(str, 11);
+                if (decode.length >= 17 && (decode[0] & 255) == 112) {
+                    char[] cArr = new char[(decode.length - 1) * 2];
+                    char[] charArray = "0123456789abcdef".toCharArray();
+                    for (int i10 = 1; i10 < decode.length; i10++) {
+                        byte b10 = decode[i10];
+                        int i11 = (i10 - 1) * 2;
+                        cArr[i11] = charArray[(b10 & 255) >>> 4];
+                        cArr[i11 + 1] = charArray[b10 & 15];
+                    }
+                    String str2 = new String(cArr);
+                    if (!g(str2)) {
+                        return null;
+                    }
+                    if (Base64.encodeToString(decode, 11).equals(str)) {
+                        return str2;
+                    }
+                }
+            } catch (IllegalArgumentException unused) {
+            }
+        }
+        return null;
+    }
+
+    public static b c(SharedPreferences sharedPreferences) {
+        int i10;
+        String str = "";
+        String string = sharedPreferences.getString("proxy_ip", "");
+        String string2 = sharedPreferences.getString("proxy_user", "");
+        String string3 = sharedPreferences.getString("proxy_pass", "");
+        String string4 = sharedPreferences.getString("proxy_secret", "");
+        int i11 = sharedPreferences.getInt("proxy_port", 1080);
+        int i12 = 2;
+        int i13 = 1;
+        if (TextUtils.isEmpty(string4)) {
+            i10 = 1;
+        } else {
+            i10 = 2;
+        }
+        int c10 = m1.j.c(i10);
+        if (c10 != 1) {
+            if (c10 != 2) {
+                i12 = 0;
+            }
+        } else {
+            i12 = 1;
+        }
+        int e = e(sharedPreferences.getInt("proxy_type", i12));
+        a a2 = a();
+        if (string == null) {
+            string = "";
+        }
+        a2.f10423c = string;
+        if (string2 == null) {
+            string2 = "";
+        }
+        a2.d = string2;
+        if (string3 == null) {
+            string3 = "";
+        }
+        a2.e = string3;
+        if (string4 != null) {
+            str = string4;
+        }
+        a2.f10424f = str;
+        a2.f10422b = i11;
+        if (e != 0) {
+            i13 = e;
+        }
+        a2.f10421a = i13;
+        return a2.d();
+    }
+
+    public static ji.b d(android.net.Uri r9) {
+        throw new UnsupportedOperationException("Method not decompiled: ji.b.d(android.net.Uri):ji.b");
+    }
+
+    public static int e(int i10) {
+        if (i10 != 0) {
+            if (i10 == 1) {
+                return 2;
+            }
+            if (i10 == 2) {
+                return 3;
+            }
+        }
+        return 1;
+    }
+
+    public static boolean g(String str) {
+        if (str != null) {
+            if (str.length() == 32) {
+                for (int i10 = 0; i10 < str.length(); i10++) {
+                    if (Character.digit(str.charAt(i10), 16) < 0) {
+                        return false;
+                    }
+                }
+                return true;
+            } else if (str.length() == 34 && str.regionMatches(true, 0, "dd", 0, 2)) {
+                for (int i11 = 2; i11 < str.length(); i11++) {
+                    if (Character.digit(str.charAt(i11), 16) < 0) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof b) {
+                b bVar = (b) obj;
+                if (this.f10429c == bVar.f10429c && this.f10427a == bVar.f10427a && Objects.equals(this.f10428b, bVar.f10428b) && Objects.equals(this.d, bVar.d) && Objects.equals(this.e, bVar.e) && Objects.equals(this.f10430f, bVar.f10430f)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final boolean f() {
+        String str;
+        String str2;
+        boolean equals;
+        String str3 = this.f10428b;
+        if (!TextUtils.isEmpty(str3)) {
+            if (this.f10427a == 3) {
+                if (!TextUtils.isEmpty(str3)) {
+                    int indexOf = str3.indexOf(47);
+                    if (indexOf >= 0) {
+                        str = str3.substring(0, indexOf);
+                    } else {
+                        str = str3;
+                    }
+                    if (indexOf >= 0) {
+                        str2 = str3.substring(indexOf + 1);
+                    } else {
+                        str2 = null;
+                    }
+                    if (!TextUtils.isEmpty(str) && str.indexOf(58) < 0 && str.indexOf(63) < 0 && str.indexOf(35) < 0 && (str2 == null || (str2.length() <= 128 && f10425g.matcher(str2).matches()))) {
+                        try {
+                            equals = str.equals(IDN.toASCII(str, 3).toLowerCase(Locale.US));
+                        } catch (IllegalArgumentException unused) {
+                        }
+                        if (!equals && g(this.f10430f)) {
+                            return true;
+                        }
+                    }
+                }
+                equals = false;
+                return !equals ? false : false;
+            } else if (this.f10429c > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final void h(SharedPreferences.Editor editor) {
+        int i10;
+        int i11 = this.f10427a;
+        int c10 = m1.j.c(i11);
+        if (c10 != 1) {
+            if (c10 != 2) {
+                i10 = 0;
+            } else {
+                i10 = 2;
+            }
+        } else {
+            i10 = 1;
+        }
+        editor.putInt("proxy_type", i10);
+        editor.putString("proxy_ip", this.f10428b);
+        int c11 = m1.j.c(i11);
+        int i12 = this.f10429c;
+        if (c11 != 0) {
+            String str = this.f10430f;
+            if (c11 != 1) {
+                if (c11 != 2) {
+                    return;
+                }
+                editor.putString("proxy_secret", str);
+                editor.remove("proxy_port");
+                editor.remove("proxy_pass");
+                editor.remove("proxy_user");
+                return;
+            }
+            editor.putString("proxy_secret", str);
+            editor.putInt("proxy_port", i12);
+            editor.remove("proxy_pass");
+            editor.remove("proxy_user");
             return;
         }
-        TLRPC.ChatFull chatFull = MessagesController.getInstance(i10).getChatFull(chat.f22028id);
-        setTitle(DialogObject.getShortName(chat));
-        if (chatFull != null) {
-            i11 = chatFull.linked_peers.size();
+        editor.putInt("proxy_port", i12);
+        editor.remove("proxy_secret");
+        String str2 = this.e;
+        if (TextUtils.isEmpty(str2)) {
+            editor.remove("proxy_pass");
         } else {
-            i11 = 0;
+            editor.putString("proxy_pass", str2);
         }
-        setSubtitle(LocaleController.formatPluralString("CommunityWithChats", i11, new Object[0]));
-        this.f15972b.f(chat, new j9(chat));
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(y6.f23768z6));
-        hashSet.add(Integer.valueOf(y6.G6));
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Paint paint;
-        Drawable drawable = y6.S0;
-        y9 y9Var = this.f15972b;
-        v.a(canvas, drawable, (y9Var.getWidth() / 2.0f) + y9Var.getLeft(), (y9Var.getHeight() / 2.0f) + y9Var.getTop(), y9Var.getHeight());
-        super.dispatchDraw(canvas);
-        u6 u6Var = this.f15971a;
-        if (u6Var != null) {
-            paint = u6Var.d("paintDivider");
+        String str3 = this.d;
+        if (TextUtils.isEmpty(str3)) {
+            editor.remove("proxy_user");
         } else {
-            paint = null;
+            editor.putString("proxy_user", str3);
         }
-        if (paint == null) {
-            paint = y6.f23479k0;
-        }
-        canvas.drawLine(AndroidUtilities.dp(58.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, paint);
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
-    }
-
-    public void setSubtitle(CharSequence charSequence) {
-        this.d.setText(charSequence);
-    }
-
-    public void setTitle(CharSequence charSequence) {
-        this.f15973c.setText(charSequence);
-    }
-
-    @Override
-    public final void updateColors() {
-        int i10 = y6.f23768z6;
-        u6 u6Var = this.f15971a;
-        this.e.setColorFilter(y6.w0(i10, u6Var));
-        this.f15973c.setTextColor(y6.w0(y6.G6, u6Var));
-        this.d.setTextColor(y6.w0(i10, u6Var));
+    public final int hashCode() {
+        return Objects.hash(m1.j.a(this.f10427a), this.f10428b, Integer.valueOf(this.f10429c), this.d, this.e, this.f10430f);
     }
 }

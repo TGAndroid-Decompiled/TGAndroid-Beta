@@ -1,29 +1,30 @@
 package e0;
 
 import android.app.Notification;
+import android.app.PendingIntent;
 public abstract class n {
-    public static Notification.BubbleMetadata a(o oVar) {
+    public static Notification.BubbleMetadata a(p pVar) {
+        PendingIntent pendingIntent;
         boolean z10;
-        if (oVar == null) {
+        if (pVar == null || (pendingIntent = pVar.f6054a) == null) {
             return null;
         }
-        Notification.BubbleMetadata.Builder builder = new Notification.BubbleMetadata.Builder(oVar.f9572a, oVar.f9573b.m(null));
-        Notification.BubbleMetadata.Builder deleteIntent = builder.setDeleteIntent(null);
+        Notification.BubbleMetadata.Builder deleteIntent = new Notification.BubbleMetadata.Builder().setIcon(pVar.f6055b.m(null)).setIntent(pendingIntent).setDeleteIntent(null);
         boolean z11 = true;
-        if ((oVar.d & 1) != 0) {
+        if ((pVar.d & 1) != 0) {
             z10 = true;
         } else {
             z10 = false;
         }
         Notification.BubbleMetadata.Builder autoExpandBubble = deleteIntent.setAutoExpandBubble(z10);
-        if ((oVar.d & 2) == 0) {
+        if ((pVar.d & 2) == 0) {
             z11 = false;
         }
-        autoExpandBubble.setSuppressNotification(z11);
-        int i10 = oVar.f9574c;
+        Notification.BubbleMetadata.Builder suppressNotification = autoExpandBubble.setSuppressNotification(z11);
+        int i10 = pVar.f6056c;
         if (i10 != 0) {
-            builder.setDesiredHeight(i10);
+            suppressNotification.setDesiredHeight(i10);
         }
-        return builder.build();
+        return suppressNotification.build();
     }
 }

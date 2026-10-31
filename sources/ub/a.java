@@ -1,21 +1,22 @@
 package ub;
 
-import java.util.Arrays;
-import o6.l;
-public final class a {
-    public static final a f49676a = new Object();
+import jb.g;
+public final class a implements r9.d {
+    public static final a f50198b = new a(0);
+    public static final a f50199c = new a(1);
+    public final int f50200a;
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if ((obj instanceof a) && l.l(null, null) && l.l(null, null)) {
-                return true;
-            }
-            return false;
-        }
-        return true;
+    public a(int i10) {
+        this.f50200a = i10;
     }
 
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{null, null});
+    @Override
+    public final Object K(bh.d dVar) {
+        switch (this.f50200a) {
+            case 0:
+                return new c((g) dVar.b(g.class));
+            default:
+                return new b((c) dVar.b(c.class), (jb.d) dVar.b(jb.d.class));
+        }
     }
 }

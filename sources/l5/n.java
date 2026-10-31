@@ -1,48 +1,26 @@
 package l5;
-public final class n extends v {
-    public final u f16910a;
-    public final t f16911b;
 
-    public n(u uVar, t tVar) {
-        this.f16910a = uVar;
-        this.f16911b = tVar;
-    }
+import java.util.HashMap;
+public abstract class n {
+    public static final li.k f11674a;
 
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj instanceof v) {
-            v vVar = (v) obj;
-            u uVar = this.f16910a;
-            if (uVar != null ? uVar.equals(((n) vVar).f16910a) : ((n) vVar).f16910a == null) {
-                t tVar = this.f16911b;
-                if (tVar != null ? tVar.equals(((n) vVar).f16911b) : ((n) vVar).f16911b == null) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        int hashCode;
-        int i10 = 0;
-        u uVar = this.f16910a;
-        if (uVar == null) {
-            hashCode = 0;
-        } else {
-            hashCode = uVar.hashCode();
-        }
-        int i11 = (hashCode ^ 1000003) * 1000003;
-        t tVar = this.f16911b;
-        if (tVar != null) {
-            i10 = tVar.hashCode();
-        }
-        return i10 ^ i11;
-    }
-
-    public final String toString() {
-        return "NetworkConnectionInfo{networkType=" + this.f16910a + ", mobileSubtype=" + this.f16911b + "}";
+    static {
+        HashMap hashMap = new HashMap();
+        HashMap hashMap2 = new HashMap();
+        hashMap.put(n.class, e.f11653a);
+        hashMap2.remove(n.class);
+        hashMap.put(o5.a.class, a.f11642a);
+        hashMap2.remove(o5.a.class);
+        hashMap.put(o5.g.class, g.f11657a);
+        hashMap2.remove(o5.g.class);
+        hashMap.put(o5.e.class, d.f11650a);
+        hashMap2.remove(o5.e.class);
+        hashMap.put(o5.d.class, c.f11647a);
+        hashMap2.remove(o5.d.class);
+        hashMap.put(o5.b.class, b.f11645a);
+        hashMap2.remove(o5.b.class);
+        hashMap.put(o5.f.class, f.f11654a);
+        hashMap2.remove(o5.f.class);
+        f11674a = new li.k(new HashMap(hashMap), new HashMap(hashMap2), ma.g.f13044a, 6);
     }
 }

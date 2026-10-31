@@ -1,38 +1,20 @@
 package y9;
-
-import java.util.HashMap;
 public final class g {
-    public static final g f52483a;
-    public static final HashMap f52484b;
-    public static final g[] f52485c;
-    g EF0;
+    public static final g f54334c = new g(0, 0);
+    public final int f54335a;
+    public final int f54336b;
 
-    static {
-        Enum r02 = new Enum("X86_32", 0);
-        Enum r12 = new Enum("X86_64", 1);
-        Enum r32 = new Enum("ARM_UNKNOWN", 2);
-        Enum r52 = new Enum("PPC", 3);
-        Enum r72 = new Enum("PPC64", 4);
-        Enum r92 = new Enum("ARMV6", 5);
-        Enum r11 = new Enum("ARMV7", 6);
-        ?? r13 = new Enum("UNKNOWN", 7);
-        f52483a = r13;
-        Enum r15 = new Enum("ARMV7S", 8);
-        Enum r22 = new Enum("ARM64", 9);
-        f52485c = new g[]{r02, r12, r32, r52, r72, r92, r11, r13, r15, r22};
-        HashMap hashMap = new HashMap(4);
-        f52484b = hashMap;
-        hashMap.put("armeabi-v7a", r11);
-        hashMap.put("armeabi", r92);
-        hashMap.put("arm64-v8a", r22);
-        hashMap.put("x86", r02);
+    public g(int i10, int i11) {
+        this.f54335a = i10;
+        this.f54336b = i11;
     }
 
-    public static g valueOf(String str) {
-        return (g) Enum.valueOf(g.class, str);
-    }
-
-    public static g[] values() {
-        return (g[]) f52485c.clone();
+    public final String toString() {
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(g.class.getSimpleName());
+        sb2.append("[position = ");
+        sb2.append(this.f54335a);
+        sb2.append(", length = ");
+        return a1.g.p(sb2, this.f54336b, "]");
     }
 }

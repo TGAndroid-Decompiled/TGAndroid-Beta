@@ -1,0 +1,153 @@
+package gg;
+
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+import android.util.SparseArray;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.c00;
+import org.telegram.messenger.d00;
+import org.telegram.messenger.i0;
+import org.telegram.ui.ActionBar.t6;
+public final class a extends Drawable {
+    public static c00 f7491j;
+    public static final int[] f7492k = {7322096, 16766590, 13338331, 9367192, 16749490, 16478047};
+    public static final SparseArray f7493l;
+    public final c00 f7494a;
+    public LinearGradient f7495b;
+    public int e;
+    public final Paint f7497f;
+    public final Paint f7498g;
+    public int[] h;
+    public final Matrix f7496c = new Matrix();
+    public final ArrayList d = new ArrayList();
+    public int f7499i = -1;
+
+    static {
+        SparseArray sparseArray = new SparseArray();
+        f7493l = sparseArray;
+        sparseArray.put(7322096, new int[]{-16687423, -11814913});
+        sparseArray.put(16766590, new int[]{-1419264, -9380});
+        sparseArray.put(13338331, new int[]{-6014789, -1737985});
+        sparseArray.put(9367192, new int[]{-15617007, -6823116});
+        sparseArray.put(16749490, new int[]{-1826470, -34407});
+        sparseArray.put(16478047, new int[]{-3795707, -36532});
+    }
+
+    public a(int i10) {
+        if (f7491j == null) {
+            f7491j = d00.h(2131624291, -1);
+        }
+        c00 clone = f7491j.clone();
+        SparseArray sparseArray = clone.f14886r;
+        this.f7494a = clone;
+        ArrayList arrayList = clone.f14872a;
+        arrayList.add(arrayList.get(0));
+        Paint paint = new Paint(1);
+        this.f7498g = paint;
+        Paint paint2 = new Paint(1);
+        this.f7497f = paint2;
+        paint2.setStrokeWidth(i0.L(1.0f));
+        paint2.setStyle(Paint.Style.STROKE);
+        sparseArray.put(1, paint);
+        sparseArray.put(2, paint2);
+        b(i10);
+    }
+
+    public static int a(int i10, int i11) {
+        int abs = Math.abs(Color.red(i10) - Color.red(i11));
+        return Math.abs(Color.blue(i10) - Color.blue(i11)) + Math.abs(Color.green(i10) - Color.green(i11)) + abs;
+    }
+
+    public final void b(int i10) {
+        int[] iArr;
+        int i11 = this.f7499i;
+        if (i11 == i10 && i11 == -1) {
+            return;
+        }
+        this.f7499i = i10;
+        int[] iArr2 = f7492k;
+        int a2 = a(iArr2[0], i10);
+        this.e = 0;
+        for (int i12 = 0; i12 < 6; i12++) {
+            int a10 = a(iArr2[i12], i10);
+            if (a10 < a2) {
+                this.e = i12;
+                a2 = a10;
+            }
+        }
+        int[] iArr3 = (int[]) f7493l.get(iArr2[this.e]);
+        if (t6.I.q()) {
+            iArr = new int[]{i0.b.f(0.2f, iArr3[0], -1), i0.b.f(0.2f, iArr3[1], -1)};
+        } else {
+            iArr = iArr3;
+        }
+        this.h = iArr;
+        Paint paint = new Paint(1);
+        LinearGradient linearGradient = new LinearGradient(0.0f, 100.0f, 0.0f, 0.0f, iArr, (float[]) null, Shader.TileMode.CLAMP);
+        this.f7495b = linearGradient;
+        linearGradient.setLocalMatrix(this.f7496c);
+        paint.setShader(this.f7495b);
+        this.f7494a.f14886r.put(0, paint);
+        this.f7498g.setColor(i0.b.f(0.1f, iArr[1], -1));
+        this.f7497f.setColor(i0.b.f(0.1f, iArr[0], -16777216));
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        Matrix matrix = this.f7496c;
+        matrix.reset();
+        matrix.setScale(1.0f, getBounds().height() / 100.0f);
+        this.f7495b.setLocalMatrix(matrix);
+        Rect bounds = getBounds();
+        c00 c00Var = this.f7494a;
+        c00Var.setBounds(bounds);
+        c00Var.draw(canvas);
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return i0.L(24.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return i0.L(24.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void invalidateSelf() {
+        super.invalidateSelf();
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList = this.d;
+            if (i10 < arrayList.size()) {
+                ((View) arrayList.get(i10)).invalidate();
+                i10++;
+            } else {
+                return;
+            }
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f7494a.setAlpha(i10);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+    }
+}

@@ -1,57 +1,26 @@
 package org.telegram.ui;
-
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
 public final class fe0 implements Runnable {
-    public final int f39342a;
-    public final ie0 f39343b;
+    public final int f37244a;
+    public final me0 f37245b;
+    public final int f37246c;
 
-    public fe0(ie0 ie0Var, int i10) {
-        this.f39342a = i10;
-        this.f39343b = ie0Var;
+    public fe0(me0 me0Var, int i10, int i11) {
+        this.f37244a = i11;
+        this.f37245b = me0Var;
+        this.f37246c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f39342a) {
+        switch (this.f37244a) {
             case 0:
-                ie0 ie0Var = this.f39343b;
-                fi.c2 c2Var = ie0Var.f40123c;
-                c2Var.requestFocus();
-                String str = ie0Var.K;
-                if (str != null) {
-                    int i10 = 1;
-                    if (str.length() > 1) {
-                        String obj = c2Var.getText().toString();
-                        int length = obj.length();
-                        int i11 = 0;
-                        while (i11 < length && obj.charAt(i11) <= ' ') {
-                            i11++;
-                        }
-                        int length2 = ie0Var.K.length() + i11;
-                        if (length2 < 0 || length2 >= obj.length() || obj.charAt(length2) != ' ') {
-                            i10 = 0;
-                        }
-                        c2Var.setSelection(Utilities.clamp(length2 + i10, obj.length(), 0), c2Var.getText().length());
-                        return;
-                    }
-                }
-                c2Var.setSelection(0, c2Var.getText().length());
+                org.telegram.messenger.i0.g3(new fe0(this.f37245b, this.f37246c, 1));
                 return;
             case 1:
-                this.f39343b.p(true);
-                return;
-            case 2:
-                this.f39343b.n(false);
+                this.f37245b.z(this.f37246c);
                 return;
             default:
-                fi.c2 c2Var2 = this.f39343b.f40123c;
-                if (c2Var2 != null) {
-                    c2Var2.requestFocus();
-                    c2Var2.setSelection(c2Var2.length());
-                    AndroidUtilities.showKeyboard(c2Var2);
-                    return;
-                }
+                this.f37245b.f39664f.f44219f[this.f37246c].C(1.0f);
                 return;
         }
     }

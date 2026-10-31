@@ -1,116 +1,69 @@
 package org.telegram.ui.Components;
+public final class na implements o1.f {
+    public final int f28732a;
+    public final Object f28733b;
 
-import android.graphics.Paint;
-import android.view.View;
-import java.util.ArrayList;
-import java.util.WeakHashMap;
-import org.telegram.messenger.NotificationCenter;
-public final class na implements View.OnAttachStateChangeListener {
-    public final int f30789a;
-    public final Object f30790b;
-    public final Object f30791c;
-
-    public na(int i10, Object obj, Object obj2) {
-        this.f30789a = i10;
-        this.f30791c = obj;
-        this.f30790b = obj2;
+    public na(Object obj, int i10) {
+        this.f28732a = i10;
+        this.f28733b = obj;
     }
 
     @Override
-    public final void onViewAttachedToWindow(View view) {
-        int i10 = this.f30789a;
-        Object obj = this.f30790b;
-        Object obj2 = this.f30791c;
-        switch (i10) {
+    public final void a(o1.j jVar, boolean z10, float f7, float f10) {
+        switch (this.f28732a) {
             case 0:
-                la laVar = (la) obj;
-                if (laVar != null) {
-                    laVar.d.add((pa) obj2);
+                wb wbVar = (wb) this.f28733b;
+                if (wbVar.d == jVar) {
+                    wbVar.d = null;
                     return;
                 }
                 return;
             case 1:
-                r11 r11Var = (r11) obj2;
-                r11Var.f32095k = c6.update(r11Var.f32096l, (View) obj, r11Var.f32095k, r11Var.f32089b);
-                return;
-            default:
-                org.telegram.ui.Wallet.m3 m3Var = (org.telegram.ui.Wallet.m3) obj2;
-                org.telegram.ui.Wallet.l3 l3Var = m3Var.f36913m;
-                if (l3Var != null) {
-                    l3Var.setPaused(!m3Var.f36914n);
-                }
-                m3Var.f36892a.isAttachedToWindow();
-                int i11 = m3Var.f36930v0;
-                if (-1 != i11) {
-                    if (i11 >= 0) {
-                        NotificationCenter.getInstance(i11).removeObserver(m3Var.f36934x0, NotificationCenter.userInfoDidLoad);
-                    }
-                    m3Var.f36930v0 = -1;
+                ja jaVar = (ja) this.f28733b;
+                if (!z10) {
+                    jaVar.run();
                     return;
                 }
                 return;
-        }
-    }
-
-    @Override
-    public final void onViewDetachedFromWindow(View view) {
-        switch (this.f30789a) {
-            case 0:
-                pa paVar = (pa) this.f30791c;
-                la laVar = (la) this.f30790b;
-                if (laVar != null) {
-                    ArrayList arrayList = laVar.d;
-                    arrayList.remove(paVar);
-                    if (laVar.e.isEmpty() && arrayList.isEmpty()) {
-                        laVar.f30211n.a();
-                    }
-                }
-                paVar.f31544n = null;
-                Paint paint = paVar.h;
-                paVar.f31545o = null;
-                paint.setShader(null);
+            case 2:
+                kk kkVar = (kk) this.f28733b;
+                kkVar.f27792l0 = null;
+                kkVar.m0 = 1.0f;
+                kkVar.k0();
                 return;
-            case 1:
-                c6.release((View) this.f30790b, ((r11) this.f30791c).f32095k);
+            case 3:
+                co0 co0Var = (co0) this.f28733b;
+                co0Var.f25114q = false;
+                co0Var.dismiss();
+                return;
+            case 4:
+                do0 do0Var = (do0) this.f28733b;
+                do0Var.f25479s = false;
+                do0Var.f25478r = false;
+                if (!z10) {
+                    jVar.d();
+                }
+                if (jVar == do0Var.f25476f) {
+                    do0Var.f25476f = null;
+                    return;
+                }
+                return;
+            case 5:
+                op0 op0Var = (op0) this.f28733b;
+                op0Var.f29147w1.setVisibility(8);
+                op0Var.f29138r2.setVisibility(8);
+                mp0 mp0Var = op0Var.D1;
+                mp0Var.f28569f = null;
+                mp0Var.f();
+                op0Var.f29142t2 = null;
+                op0Var.E2 = false;
                 return;
             default:
-                org.telegram.ui.Wallet.m3 m3Var = (org.telegram.ui.Wallet.m3) this.f30791c;
-                org.telegram.ui.Cells.v0 v0Var = m3Var.f36892a;
-                m3Var.f();
-                m3Var.M = false;
-                m3Var.N = 0L;
-                m3Var.k();
-                o1.j jVar = m3Var.Z;
-                if (jVar != null) {
-                    jVar.c();
-                    m3Var.Z = null;
-                }
-                m3Var.f36893a0 = 1.0f;
-                v0Var.invalidate();
-                if (v0Var.getParent() instanceof View) {
-                    ((View) v0Var.getParent()).invalidate();
-                }
-                m3Var.l();
-                org.telegram.ui.Wallet.x5 x5Var = m3Var.f36909k;
-                WeakHashMap weakHashMap = x5Var.e;
-                weakHashMap.remove((org.telegram.ui.Cells.v0) this.f30790b);
-                if (weakHashMap.isEmpty()) {
-                    x5Var.a();
-                }
-                v0Var.isAttachedToWindow();
-                int i10 = m3Var.f36930v0;
-                if (-1 != i10) {
-                    if (i10 >= 0) {
-                        NotificationCenter.getInstance(i10).removeObserver(m3Var.f36934x0, NotificationCenter.userInfoDidLoad);
-                    }
-                    m3Var.f36930v0 = -1;
-                }
-                org.telegram.ui.Wallet.l3 l3Var = m3Var.f36913m;
-                if (l3Var != null) {
-                    l3Var.setPaused(true);
-                }
-                m3Var.f36911l.stop();
-                m3Var.H = false;
+                op0 op0Var2 = ((xo0) this.f28733b).d;
+                op0Var2.f29149x1.setVisibility(8);
+                op0Var2.f29151y1.setVisibility(8);
+                op0Var2.f29136q2.setVisibility(8);
+                op0Var2.f29142t2 = null;
                 return;
         }
     }

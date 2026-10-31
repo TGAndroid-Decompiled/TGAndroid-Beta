@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 public class CopyCodeReceiver extends BroadcastReceiver {
     @Override
-    public void onReceive(Context context, Intent intent) {
-        AndroidUtilities.addToClipboard(intent.getStringExtra("text"));
+    public final void onReceive(Context context, Intent intent) {
+        i0.g(intent.getStringExtra("text"));
     }
 }

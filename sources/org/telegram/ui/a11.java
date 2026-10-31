@@ -1,113 +1,113 @@
 package org.telegram.ui;
 
-import j$.time.LocalDate;
-import j$.time.Period;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.BirthdayController;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.Utilities;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.widget.FrameLayout;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class a11 {
-    public final int f37643a;
-    public boolean f37644b;
-    public c11 f37645c;
-    public final boolean[] f37647g;
-    public boolean f37648i;
-    public final ArrayList d = new ArrayList();
-    public final ArrayList e = new ArrayList();
-    public final ArrayList f37646f = new ArrayList();
-    public final ArrayList h = new ArrayList();
-    public final ArrayList f37649j = new ArrayList();
+public final class a11 extends FrameLayout {
+    public final Paint f35511a;
+    public final Paint f35512b;
+    public final RectF f35513c;
+    public final org.telegram.ui.Components.h11 d;
+    public boolean e;
+    public long f35514f;
+    public long h;
+    public final org.telegram.ui.Components.bi0 f35515n;
+    public final TextPaint f35516r;
+    public StaticLayout f35517s;
+    public float f35518w;
+    public float f35519x;
+    public final SecretMediaViewer f35520y;
 
-    public a11(int i10, int i11) {
-        boolean[] zArr = new boolean[2];
-        this.f37647g = zArr;
-        this.f37643a = i11;
-        if (i11 <= 0) {
-            zArr[0] = true;
-        } else {
-            ArrayList arrayList = new ArrayList();
-            HashSet hashSet = new HashSet();
-            String i12 = ic.a.i(i11, "");
-            for (int i13 = 0; i13 < i12.length(); i13++) {
-                int charAt = i12.charAt(i13) - '0';
-                if (charAt >= 0 && charAt <= 9) {
-                    arrayList.add(Integer.valueOf(charAt));
-                    hashSet.add(Integer.valueOf(charAt));
-                }
-            }
-            TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
-            String[] strArr = d11.f38490s;
-            tL_inputStickerSetShortName.short_name = "FestiveFontEmoji";
-            MediaDataController.getInstance(i10).getStickerSet(tL_inputStickerSetShortName, 0, false, new y(this, hashSet, arrayList, 11));
-        }
-        String str = d11.f38490s[Utilities.random.nextInt(3)];
-        TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName2 = new TLRPC.TL_inputStickerSetShortName();
-        tL_inputStickerSetShortName2.short_name = "EmojiAnimations";
-        MediaDataController.getInstance(i10).getStickerSet(tL_inputStickerSetShortName2, 0, false, new org.telegram.ui.Components.oy(22, this, str));
+    public a11(SecretMediaViewer secretMediaViewer, Activity activity) {
+        super(activity);
+        this.f35520y = secretMediaViewer;
+        this.f35513c = new RectF();
+        this.d = new org.telegram.ui.Components.h11();
+        this.f35516r = new TextPaint(1);
+        setWillNotDraw(false);
+        Paint paint = new Paint(1);
+        this.f35512b = paint;
+        paint.setStrokeWidth(org.telegram.messenger.i0.L(1.5f));
+        paint.setColor(-1644826);
+        Paint.Cap cap = Paint.Cap.ROUND;
+        paint.setStrokeCap(cap);
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        Paint paint2 = new Paint(1);
+        this.f35511a = paint2;
+        paint2.setStyle(style);
+        paint2.setStrokeCap(cap);
+        paint2.setColor(-1644826);
+        paint2.setStrokeWidth(org.telegram.messenger.i0.L(2.0f));
+        new Paint(1).setColor(2130706432);
+        org.telegram.ui.Components.bi0 bi0Var = new org.telegram.ui.Components.bi0(2131624020, org.telegram.messenger.i0.L(16.0f), org.telegram.messenger.i0.L(16.0f));
+        this.f35515n = bi0Var;
+        bi0Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+        bi0Var.R(this);
+        bi0Var.start();
     }
 
-    public static a11 c(int i10, TLRPC.UserFull userFull, a11 a11Var) {
-        int i11;
-        TL_account.TL_birthday tL_birthday;
-        if (LiteMode.isEnabled(2) && BirthdayController.isToday(userFull)) {
-            if (userFull != null && (tL_birthday = userFull.birthday) != null && (tL_birthday.flags & 1) != 0) {
-                i11 = Period.between(LocalDate.of(tL_birthday.year, tL_birthday.month, tL_birthday.day), LocalDate.now()).getYears();
-            } else {
-                i11 = 0;
-            }
-            if (a11Var != null) {
-                if (a11Var.f37643a == i11) {
-                    return a11Var;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        SecretMediaViewer secretMediaViewer;
+        float max;
+        org.telegram.messenger.jj jjVar = this.f35520y.f33990f0;
+        if (jjVar != null) {
+            TLRPC.Message message = jjVar.f16337k;
+            if (message.destroyTime != 0 || message.ttl == Integer.MAX_VALUE) {
+                if (this.f35514f == 0) {
+                    max = 1.0f;
+                } else {
+                    max = ((float) Math.max(0L, this.f35514f - (System.currentTimeMillis() + (ConnectionsManager.getInstance(secretMediaViewer.f33976a).getTimeDifference() * 1000)))) / (((float) this.h) * 1000.0f);
                 }
-                a11Var.b(false);
+                boolean z10 = this.e;
+                Paint paint = this.f35512b;
+                Paint paint2 = this.f35511a;
+                RectF rectF = this.f35513c;
+                if (z10) {
+                    canvas.save();
+                    canvas.translate(rectF.centerX() - (this.f35518w / 2.0f), rectF.centerY() - (this.f35519x / 2.0f));
+                    this.f35517s.draw(canvas);
+                    canvas.restore();
+                    canvas.drawArc(rectF, 90.0f, 180.0f, false, paint2);
+                    float f7 = 19.285715f;
+                    for (int i10 = 0; i10 < 5; i10++) {
+                        canvas.drawArc(rectF, f7 + 270.0f, 12.857143f, false, paint2);
+                        f7 += 32.14286f;
+                    }
+                    this.d.a(0.0f, 1.0f, canvas, paint, rectF);
+                } else {
+                    float centerX = rectF.centerX();
+                    float centerY = rectF.centerY() - org.telegram.messenger.i0.L(1.0f);
+                    float L = org.telegram.messenger.i0.L(8.0f);
+                    org.telegram.ui.Components.bi0 bi0Var = this.f35515n;
+                    bi0Var.setBounds((int) (centerX - L), (int) (centerY - L), (int) (centerX + L), (int) (centerY + L));
+                    bi0Var.draw(canvas);
+                    float f10 = max * (-360.0f);
+                    canvas.drawArc(rectF, -90.0f, f10, false, paint2);
+                    this.d.a(f10, 1.0f, canvas, paint, rectF);
+                }
+                invalidate();
             }
-            return new a11(i10, i11);
-        } else if (a11Var != null) {
-            a11Var.b(false);
-            return null;
-        } else {
-            return null;
         }
     }
 
-    public final void a() {
-        if (!this.f37644b && this.f37646f.size() >= this.e.size()) {
-            boolean[] zArr = this.f37647g;
-            int i10 = 0;
-            if (zArr[0] && zArr[1]) {
-                this.f37644b = true;
-                ArrayList arrayList = this.h;
-                int size = arrayList.size();
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    ((Runnable) obj).run();
-                }
-                arrayList.clear();
-            }
-        }
-    }
-
-    public final void b(boolean z10) {
-        if (!z10 && !this.f37649j.isEmpty()) {
-            this.f37648i = true;
-            return;
-        }
-        this.h.clear();
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.e;
-            if (i10 < arrayList.size()) {
-                ((c11) arrayList.get(i10)).onDetachedFromWindow();
-                i10++;
-            } else {
-                arrayList.clear();
-                return;
-            }
-        }
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        float measuredWidth = getMeasuredWidth() - org.telegram.messenger.i0.L(35.0f);
+        float measuredHeight = getMeasuredHeight() / 2.0f;
+        float N = org.telegram.messenger.i0.N(10.5f);
+        this.f35513c.set(measuredWidth - N, measuredHeight - N, measuredWidth + N, N + measuredHeight);
+        setPivotX(measuredWidth);
+        setPivotY(measuredHeight);
     }
 }

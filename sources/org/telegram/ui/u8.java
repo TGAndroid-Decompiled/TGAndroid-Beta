@@ -1,61 +1,33 @@
 package org.telegram.ui;
 
 import android.view.View;
-import j$.util.function.Predicate$CC;
-import java.util.Map;
-import java.util.function.Predicate;
-import org.telegram.tgnet.TLRPC;
-public final class u8 implements Predicate {
-    public final int f43900a;
-    public final long f43901b;
+import java.io.Serializable;
+public final class u8 implements org.telegram.messenger.o20, org.telegram.messenger.p20, r0.m {
+    public final j9 f42065a;
 
-    public u8(long j10, int i10) {
-        this.f43900a = i10;
-        this.f43901b = j10;
-    }
-
-    public Predicate and(Predicate predicate) {
-        int i10 = this.f43900a;
-        return Predicate$CC.$default$and(this, predicate);
-    }
-
-    public Predicate negate() {
-        switch (this.f43900a) {
-            case 0:
-                return Predicate$CC.$default$negate(this);
-            case 1:
-                return Predicate$CC.$default$negate(this);
-            default:
-                return Predicate$CC.$default$negate(this);
-        }
-    }
-
-    public Predicate or(Predicate predicate) {
-        int i10 = this.f43900a;
-        return Predicate$CC.$default$or(this, predicate);
+    @Override
+    public r0.j1 R0(View view, r0.j1 j1Var) {
+        return this.f42065a.onInsetsInternal(view, j1Var);
     }
 
     @Override
-    public final boolean test(Object obj) {
-        switch (this.f43900a) {
-            case 0:
-                if (((TLRPC.User) obj).f22177id == this.f43901b) {
-                    return true;
-                }
-                return false;
-            case 1:
-                if (((TLRPC.User) obj).f22177id == this.f43901b) {
-                    return true;
-                }
-                return false;
-            default:
-                Map.Entry entry = (Map.Entry) obj;
-                if (((View) entry.getKey()).isAttachedToWindow() && ((View) entry.getKey()).isShown() && ((View) entry.getKey()).getWindowVisibility() == 0) {
-                    if (this.f43901b - ((Long) entry.getValue()).longValue() <= 300) {
-                        return false;
-                    }
-                }
-                return true;
+    public Boolean a(org.telegram.ui.Components.a51 a51Var, View view, Integer num, Float f7, Float f10) {
+        boolean z10;
+        Object obj = a51Var.G;
+        if (obj instanceof g9) {
+            this.f42065a.e0(((g9) obj).f37491c, (f9) view);
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        return Boolean.valueOf(z10);
+    }
+
+    @Override
+    public void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        Integer num = (Integer) number;
+        Float f7 = (Float) serializable;
+        Float f10 = (Float) serializable2;
+        j9.Z(this.f42065a, (org.telegram.ui.Components.a51) obj, (View) obj2);
     }
 }

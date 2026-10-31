@@ -1,64 +1,53 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.ContextThemeWrapper;
-import org.telegram.ui.Components.RadialProgressView;
-public final class ld extends RadialProgressView {
-    public final int N;
-    public final Object O;
+import android.view.View;
+import java.io.Serializable;
+public final class ld implements org.telegram.ui.Components.gu0, org.telegram.ui.ActionBar.u1, org.telegram.messenger.o20 {
+    public final le f39175a;
 
-    public ld(org.telegram.ui.Components.f50 f50Var, Context context, int i10) {
-        super(context, null);
-        this.N = i10;
-        this.O = f50Var;
+    public ld(le leVar) {
+        this.f39175a = leVar;
     }
 
     @Override
-    public void invalidate() {
-        switch (this.N) {
-            case 3:
-                super.invalidate();
-                ku0 ku0Var = ((PhotoViewer) this.O).f35670e0;
-                if (ku0Var != null) {
-                    ku0Var.invalidate();
-                    return;
-                }
-                return;
-            default:
-                super.invalidate();
-                return;
-        }
+    public int c() {
+        return this.f39175a.R0;
     }
 
     @Override
-    public final void setAlpha(float f7) {
-        switch (this.N) {
-            case 0:
-                super.setAlpha(f7);
-                ((nd) this.O).h.invalidate();
-                return;
-            case 1:
-                super.setAlpha(f7);
-                ((z60) this.O).e.invalidate();
-                return;
-            case 2:
-                super.setAlpha(f7);
-                ((te0) this.O).h.invalidate();
-                return;
-            default:
-                super.setAlpha(f7);
-                ku0 ku0Var = ((PhotoViewer) this.O).f35670e0;
-                if (ku0Var != null) {
-                    ku0Var.invalidate();
+    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
+        this.f39175a.m0.presentFragment(new tc1(6, null));
+    }
+
+    @Override
+    public void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        View view = (View) obj2;
+        Integer num = (Integer) number;
+        Float f7 = (Float) serializable;
+        Float f10 = (Float) serializable2;
+        le leVar = this.f39175a;
+        md mdVar = leVar.f39215s1;
+        int i10 = leVar.f39206o0;
+        long j10 = leVar.f39208p0;
+        int i11 = ((org.telegram.ui.Components.a51) obj).d;
+        if (i11 == 1) {
+            if (leVar.f39212r0 < org.telegram.messenger.vp.r1(i10).A4) {
+                if (leVar.f39210q0 != null) {
+                    u61 u61Var = leVar.m0;
+                    kg.q0 q0Var = new kg.q0(30, leVar.f39206o0, leVar.getContext(), u61Var, leVar.f39204n0);
+                    q0Var.B1(j10);
+                    q0Var.z1(leVar.f39210q0, true);
+                    org.telegram.messenger.vp.r1(i10).G0().b(j10, leVar.f39210q0, new ag.e0(15, leVar, q0Var));
                     return;
                 }
                 return;
+            }
+            leVar.f39201j1 = !leVar.f39201j1;
+            org.telegram.messenger.i0.r(mdVar);
+            org.telegram.messenger.i0.h3(mdVar, 1000L);
+            leVar.X0.f30819f3.O(true);
+        } else if (i11 == 4) {
+            leVar.m0.presentFragment(new xh.z2(j10));
         }
-    }
-
-    public ld(PhotoViewer photoViewer, ContextThemeWrapper contextThemeWrapper, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(contextThemeWrapper, u6Var);
-        this.N = 3;
-        this.O = photoViewer;
     }
 }

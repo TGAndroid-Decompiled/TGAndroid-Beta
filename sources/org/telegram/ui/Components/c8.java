@@ -1,30 +1,89 @@
 package org.telegram.ui.Components;
+public final class c8 implements org.telegram.ui.ActionBar.u1, bq {
+    public final int f25020a;
+    public final o8 f25021b;
 
-import android.content.Context;
-import android.os.SystemClock;
-import android.view.MotionEvent;
-public final class c8 extends h8 {
-    public long d;
-    public final m8 e;
-
-    public c8(m8 m8Var, Context context) {
-        super(context);
-        this.e = m8Var;
+    public c8(o8 o8Var, int i10) {
+        this.f25020a = i10;
+        this.f25021b = o8Var;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int action = motionEvent.getAction();
-        m8 m8Var = this.e;
-        if (action == 0) {
-            if (this.f28909a[this.f28910b].getImageReceiver().hasBitmapImage()) {
-                m8Var.H0(true, true);
-                this.d = SystemClock.elapsedRealtime();
-                return true;
+    public void c(int i10, int i11, boolean z10) {
+        o8 o8Var = this.f25021b;
+        if (i11 != 0) {
+            if (i11 != 1) {
+                if (i11 != 2) {
+                    if (i11 == 3) {
+                        k8 k8Var = o8Var.Y;
+                        int i12 = k8Var.f27677f;
+                        if (i12 != i10 && (i12 == 0 || i10 == 0)) {
+                            k8 a2 = k8Var.a();
+                            o8Var.Y = a2;
+                            o8Var.f28987a.b(a2, true);
+                            o8Var.r0();
+                        }
+                        o8Var.Y.f27677f = i10;
+                    }
+                } else {
+                    k8 k8Var2 = o8Var.Y;
+                    int i13 = k8Var2.e;
+                    if (i13 != i10 && (i13 == 0 || i10 == 0)) {
+                        k8 a10 = k8Var2.a();
+                        o8Var.Y = a10;
+                        o8Var.f28987a.b(a10, true);
+                        o8Var.r0();
+                    }
+                    o8Var.Y.e = i10;
+                }
+            } else {
+                k8 k8Var3 = o8Var.Y;
+                int i14 = k8Var3.d;
+                if (i14 != i10 && (i14 == 0 || i10 == 0)) {
+                    k8 a11 = k8Var3.a();
+                    o8Var.Y = a11;
+                    o8Var.f28987a.b(a11, true);
+                    o8Var.r0();
+                }
+                o8Var.Y.d = i10;
             }
-        } else if (action != 2 && SystemClock.elapsedRealtime() - this.d >= 400) {
-            m8Var.H0(false, true);
+        } else {
+            k8 k8Var4 = o8Var.Y;
+            int i15 = k8Var4.f27676c;
+            if (i15 != i10 && (i15 == 0 || i10 == 0)) {
+                k8 a12 = k8Var4.a();
+                o8Var.Y = a12;
+                o8Var.f28987a.b(a12, true);
+                o8Var.r0();
+            }
+            o8Var.Y.f27676c = i10;
         }
-        return true;
+        org.telegram.messenger.zs.e().k(org.telegram.messenger.zs.f19681r4, new Object[0]);
+        o8Var.f28987a.invalidate();
+    }
+
+    @Override
+    public int d(int i10) {
+        return 0;
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
+        switch (this.f25020a) {
+            case 0:
+                this.f25021b.finishFragment();
+                return;
+            default:
+                this.f25021b.finishFragment();
+                return;
+        }
+    }
+
+    @Override
+    public void a(boolean z10) {
+    }
+
+    @Override
+    public void b() {
     }
 }

@@ -1,43 +1,38 @@
 package org.telegram.ui.Components;
+public final class mc implements Runnable {
+    public final int f28412a;
+    public final nc f28413b;
+    public final boolean f28414c;
 
-import android.content.Context;
-import android.graphics.Typeface;
-import android.text.method.LinkMovementMethod;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-public class mc extends nb {
-    public final y9 f30492a;
-    public final TextView f30493b;
-    public final TextView f30494c;
-
-    public mc(Context context, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(context, u6Var);
-        int i10 = org.telegram.ui.ActionBar.y6.Hi;
-        getThemedColor(i10);
-        y9 y9Var = new y9(context);
-        this.f30492a = y9Var;
-        addView(y9Var, kb1.m(29.0f, 29.0f, 8388627, 12.0f, 12.0f, 12.0f, 12.0f));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        addView(linearLayout, kb1.m(-2.0f, -2.0f, 8388627, 54.0f, 8.0f, 12.0f, 8.0f));
-        TextView textView = new TextView(context);
-        this.f30493b = textView;
-        textView.setSingleLine();
-        org.telegram.messenger.t.r(textView, i10, u6Var, 1, 14.0f);
-        linearLayout.addView(textView);
-        TextView textView2 = new TextView(context);
-        this.f30494c = textView2;
-        textView2.setMaxLines(2);
-        org.telegram.ui.ActionBar.f7.V(textView2, i10, u6Var);
-        org.telegram.ui.ActionBar.f7.H(textView2, org.telegram.ui.ActionBar.y6.Gi, u6Var);
-        textView2.setMovementMethod(new LinkMovementMethod());
-        textView2.setTypeface(Typeface.SANS_SERIF);
-        textView2.setTextSize(1, 13.0f);
-        linearLayout.addView(textView2);
+    public mc(nc ncVar, boolean z10, int i10) {
+        this.f28412a = i10;
+        this.f28413b = ncVar;
+        this.f28414c = z10;
     }
 
     @Override
-    public CharSequence getAccessibilityText() {
-        return ((Object) this.f30493b.getText()) + ".\n" + ((Object) this.f30494c.getText());
+    public final void run() {
+        switch (this.f28412a) {
+            case 0:
+                boolean z10 = this.f28414c;
+                nc ncVar = this.f28413b;
+                if (!z10) {
+                    ncVar.Y0.setVisibility(8);
+                    return;
+                } else {
+                    ncVar.getClass();
+                    return;
+                }
+            default:
+                boolean z11 = this.f28414c;
+                nc ncVar2 = this.f28413b;
+                if (!z11) {
+                    ncVar2.U0.setVisibility(8);
+                    return;
+                } else {
+                    ncVar2.getClass();
+                    return;
+                }
+        }
     }
 }

@@ -1,27 +1,27 @@
 package org.telegram.ui.Components;
+public final class lm implements Runnable {
+    public final int f28139a;
+    public final jn f28140b;
+    public final int f28141c;
 
-import android.content.Context;
-import android.view.View;
-public final class lm extends s4.d0 {
-    public final ei.k f30268r;
-
-    public lm(ei.k kVar, Context context) {
-        super(context);
-        this.f30268r = kVar;
+    public lm(jn jnVar, int i10, int i11) {
+        this.f28139a = i11;
+        this.f28140b = jnVar;
+        this.f28141c = i10;
     }
 
     @Override
-    public final int k(int i10, View view) {
-        int topScrollOffset;
-        int k10 = super.k(i10, view);
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.f30268r.R;
-        int paddingTop = chatAttachAlertPhotoLayout.E.getPaddingTop();
-        topScrollOffset = chatAttachAlertPhotoLayout.getTopScrollOffset();
-        return k10 - (paddingTop - topScrollOffset);
-    }
-
-    @Override
-    public final int m(int i10) {
-        return super.m(i10) * 2;
+    public final void run() {
+        switch (this.f28139a) {
+            case 0:
+                this.f28140b.h0(this.f28141c, null);
+                return;
+            case 1:
+                this.f28140b.e0(this.f28141c);
+                return;
+            default:
+                this.f28140b.h0(this.f28141c, null);
+                return;
+        }
     }
 }

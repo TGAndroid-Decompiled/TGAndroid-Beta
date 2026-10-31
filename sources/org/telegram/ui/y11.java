@@ -1,96 +1,23 @@
 package org.telegram.ui;
 
-import android.content.SharedPreferences;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-public final class y11 extends org.telegram.ui.ActionBar.j {
-    public final d21 f45825a;
+import android.content.Context;
+import android.view.View;
+import org.telegram.tgnet.tl.TL_stars;
+public final class y11 extends e31 {
+    public final View Q;
+    public final TL_stars.TL_starGiftUnique R;
+    public final z11 S;
 
-    public y11(d21 d21Var) {
-        this.f45825a = d21Var;
+    public y11(z11 z11Var, Context context, Runnable runnable, View view, s21 s21Var, org.telegram.ui.ActionBar.p6 p6Var, View view2, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
+        super(z11Var.e, context, runnable, view, s21Var, p6Var);
+        this.S = z11Var;
+        this.Q = view2;
+        this.R = tL_starGiftUnique;
     }
 
     @Override
-    public final void b(int i10) {
-        int intValue;
-        String str;
-        String str2;
-        String str3;
-        d21 d21Var = this.f45825a;
-        boolean z10 = d21Var.I;
-        SharedConfig.ProxyInfo proxyInfo = d21Var.J;
-        if (i10 == -1) {
-            d21Var.finishFragment();
-            return;
-        }
-        boolean z11 = true;
-        if (i10 == 1 && d21Var.getParentActivity() != null) {
-            k2.r0 a2 = ti.a.a();
-            int i11 = d21Var.v;
-            if (i11 == 0) {
-                i11 = 1;
-            }
-            a2.f16262a = i11;
-            String obj = d21Var.f38498a[0].getText().toString();
-            String str4 = "";
-            if (obj == null) {
-                obj = "";
-            }
-            a2.f16264c = obj;
-            if (d21Var.v == 3) {
-                intValue = 0;
-            } else {
-                intValue = Utilities.parseInt((CharSequence) d21Var.f38498a[1].getText().toString()).intValue();
-            }
-            a2.f16263b = intValue;
-            if (d21Var.v != 1) {
-                str = "";
-            } else {
-                str = d21Var.f38498a[2].getText().toString();
-            }
-            if (str == null) {
-                str = "";
-            }
-            a2.d = str;
-            if (d21Var.v != 1) {
-                str2 = "";
-            } else {
-                str2 = d21Var.f38498a[3].getText().toString();
-            }
-            if (str2 == null) {
-                str2 = "";
-            }
-            a2.e = str2;
-            if (d21Var.v == 1) {
-                str3 = "";
-            } else {
-                str3 = d21Var.f38498a[4].getText().toString();
-            }
-            if (str3 != null) {
-                str4 = str3;
-            }
-            a2.f16265f = str4;
-            proxyInfo.settings = a2.b();
-            SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-            SharedPreferences.Editor edit = globalMainSettings.edit();
-            if (z10) {
-                SharedConfig.addProxy(proxyInfo);
-                SharedConfig.currentProxy = proxyInfo;
-                edit.putBoolean("proxy_enabled", true);
-            } else {
-                z11 = globalMainSettings.getBoolean("proxy_enabled", false);
-                SharedConfig.saveProxyList();
-            }
-            if (z10 || SharedConfig.currentProxy == proxyInfo) {
-                proxyInfo.settings.h(edit);
-                ConnectionsManager.setProxySettings(z11, proxyInfo.settings);
-            }
-            edit.commit();
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxySettingsChanged, new Object[0]);
-            d21Var.finishFragment();
-        }
+    public final void dismiss() {
+        super.dismiss();
+        this.S.e.X0 = null;
     }
 }

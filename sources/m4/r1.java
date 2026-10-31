@@ -1,21 +1,21 @@
 package m4;
 
-import a8.yb;
 import android.os.Bundle;
 import j$.util.Objects;
+import v7.t6;
 public final class r1 {
     public static final String d;
     public static final String e;
-    public static final String f18212f;
-    public final int f18213a;
-    public final String f18214b;
-    public final Bundle f18215c;
+    public static final String f12910f;
+    public final int f12911a;
+    public final String f12912b;
+    public final Bundle f12913c;
 
     static {
-        String str = e2.n0.f9691a;
+        String str = e2.l0.f6165a;
         d = Integer.toString(0, 36);
         e = Integer.toString(1, 36);
-        f18212f = Integer.toString(2, 36);
+        f12910f = Integer.toString(2, 36);
     }
 
     public r1(int i10) {
@@ -24,11 +24,11 @@ public final class r1 {
 
     public final Bundle a() {
         Bundle bundle = new Bundle();
-        bundle.putInt(d, this.f18213a);
-        bundle.putString(e, this.f18214b);
-        Bundle bundle2 = this.f18215c;
+        bundle.putInt(d, this.f12911a);
+        bundle.putString(e, this.f12912b);
+        Bundle bundle2 = this.f12913c;
         if (!bundle2.isEmpty()) {
-            bundle.putBundle(f18212f, bundle2);
+            bundle.putBundle(f12910f, bundle2);
         }
         return bundle;
     }
@@ -41,14 +41,14 @@ public final class r1 {
             return false;
         }
         r1 r1Var = (r1) obj;
-        if (this.f18213a == r1Var.f18213a && Objects.equals(this.f18214b, r1Var.f18214b)) {
+        if (this.f12911a == r1Var.f12911a && Objects.equals(this.f12912b, r1Var.f12912b)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f18213a), this.f18214b);
+        return Objects.hash(Integer.valueOf(this.f12911a), this.f12912b);
     }
 
     public r1(String str, int i10, Bundle bundle) {
@@ -56,9 +56,9 @@ public final class r1 {
         if (i10 >= 0 && i10 != 1) {
             z10 = false;
         }
-        yb.g(z10);
-        this.f18213a = i10;
-        this.f18214b = str;
-        this.f18215c = bundle;
+        t6.f(z10);
+        this.f12911a = i10;
+        this.f12912b = str;
+        this.f12913c = bundle;
     }
 }

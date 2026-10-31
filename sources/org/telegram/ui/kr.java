@@ -1,54 +1,56 @@
 package org.telegram.ui;
+public final class kr implements org.telegram.ui.Cells.d5, org.telegram.ui.Components.xu0 {
+    public final int f38928a;
+    public final lr f38929b;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class kr implements org.telegram.ui.Cells.e5, ig.z1 {
-    public final lr f40908a;
-
-    @Override
-    public a0.h U() {
-        return null;
+    public kr(lr lrVar, int i10) {
+        this.f38928a = i10;
+        this.f38929b = lrVar;
     }
 
     @Override
-    public boolean b(org.telegram.ui.Cells.f5 f5Var, boolean z10) {
-        int intValue = ((Integer) f5Var.getTag()).intValue();
-        lr lrVar = this.f40908a;
-        TLObject E = lrVar.E(intValue);
-        if (E instanceof TLRPC.ChannelParticipant) {
-            return lrVar.f41244y.i0((TLRPC.ChannelParticipant) E, !z10, f5Var);
+    public boolean c(org.telegram.ui.Cells.e5 e5Var, boolean z10) {
+        pr prVar = this.f38929b.d;
+        return prVar.l0(prVar.f40718a.E(((Integer) e5Var.getTag()).intValue()), !z10, e5Var);
+    }
+
+    @Override
+    public void m(int i10) {
+        boolean z10;
+        switch (this.f38928a) {
+            case 1:
+                pr prVar = this.f38929b.d;
+                if (prVar.f40755r != null) {
+                    int i11 = prVar.f40750o1;
+                    if ((i11 > 0 && i10 == 0) || (i11 == 0 && i10 > 0)) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    prVar.f40750o1 = i10;
+                    if (z10) {
+                        jr A0 = prVar.A0();
+                        prVar.F0();
+                        prVar.E0(A0);
+                    }
+                    prVar.f40718a.g(prVar.O0);
+                    return;
+                }
+                return;
+            default:
+                this.f38929b.d.f40757r1 = i10 + 1;
+                return;
         }
-        return false;
     }
 
     @Override
-    public void f(int i10) {
-        lr lrVar = this.f40908a;
-        mr mrVar = lrVar.f41244y;
-        if (!lrVar.h.e()) {
-            int i11 = lrVar.f41240r;
-            lrVar.l();
-            if (lrVar.f41240r > i11) {
-                mrVar.z0(i11);
-            }
-            if (!lrVar.f41241s && lrVar.f41240r == 0 && i10 != 0) {
-                mrVar.f41505b.e(false, true);
-            }
-        }
+    public void s() {
+        int i10 = this.f38928a;
     }
 
-    @Override
-    public boolean k0(int i10) {
-        return true;
+    private final void a() {
     }
 
-    @Override
-    public a0.h y() {
-        return null;
-    }
-
-    @Override
-    public void p0(ArrayList arrayList) {
+    private final void b() {
     }
 }

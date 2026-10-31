@@ -1,25 +1,22 @@
 package org.telegram.SQLite;
 
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-import org.telegram.ui.Components.b10;
+import org.telegram.messenger.f8;
+import org.telegram.messenger.v2;
+import org.telegram.messenger.w0;
+import sc.e;
 public class SQLiteDatabase {
     private boolean inTransaction;
     private boolean isOpen = true;
     private final long sqliteHandle;
 
     public SQLiteDatabase(String str) {
-        this.sqliteHandle = opendb(str, ApplicationLoader.getFilesDirFixed().getPath());
+        this.sqliteHandle = opendb(str, w0.h().getPath());
     }
 
     public void beginTransaction() {
         if (this.inTransaction) {
-            if (!BuildVars.DEBUG_PRIVATE_VERSION) {
-                commitTransaction();
-            } else {
-                throw new SQLiteException("database already in transaction");
-            }
+            boolean z10 = v2.f18448a;
+            commitTransaction();
         }
         this.inTransaction = true;
         beginTransaction(this.sqliteHandle);
@@ -40,8 +37,8 @@ public class SQLiteDatabase {
                 commitTransaction();
                 closedb(this.sqliteHandle);
             } catch (SQLiteException e) {
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.e(e.getMessage(), e);
+                if (v2.f18448a) {
+                    f8.e(e.getMessage(), e);
                 }
             }
             this.isOpen = false;
@@ -79,7 +76,7 @@ public class SQLiteDatabase {
 
     public void explainQuery(String str, Object... objArr) {
         checkOpened();
-        SQLiteCursor query = new SQLitePreparedStatement(this, b10.j("EXPLAIN QUERY PLAN ", str)).query(objArr);
+        SQLiteCursor query = new SQLitePreparedStatement(this, e.h("EXPLAIN QUERY PLAN ", str)).query(objArr);
         while (query.next()) {
             int columnCount = query.getColumnCount();
             StringBuilder sb2 = new StringBuilder();
@@ -87,7 +84,7 @@ public class SQLiteDatabase {
                 sb2.append(query.stringValue(i10));
                 sb2.append(", ");
             }
-            FileLog.d("EXPLAIN QUERY PLAN " + sb2.toString());
+            f8.b("EXPLAIN QUERY PLAN " + sb2.toString());
         }
         query.dispose();
     }

@@ -1,35 +1,23 @@
 package mi;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.ui.Cells.s1;
-import org.telegram.ui.Components.vo;
-public final class e extends AnimatorListenerAdapter {
-    public final s1 f18513a;
-    public final float f18514b;
-    public final float f18515c;
-    public final float d;
-    public final float e;
-    public final m f18516f;
-
-    public e(m mVar, s1 s1Var, float f7, float f10, float f11, float f12) {
-        this.f18516f = mVar;
-        this.f18513a = s1Var;
-        this.f18514b = f7;
-        this.f18515c = f10;
-        this.d = f11;
-        this.e = f12;
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        s1 s1Var = this.f18513a;
-        s1Var.getTransitionParams().j();
-        s1Var.getPhotoImage().setImageCoords(this.f18514b, this.f18515c, this.d, this.e);
-        vo voVar = this.f18516f.P;
-        if (voVar != null) {
-            voVar.h.setAlpha(1.0f);
-        }
-        s1Var.invalidate();
-    }
+import ki.i;
+import li.q0;
+import li.r0;
+import li.s0;
+import li.v0;
+import org.telegram.ui.ActionBar.j5;
+import org.telegram.ui.ActionBar.k5;
+public abstract class e {
+    public static final a f13384a = new a("experimental_settings_allowed");
+    public static final a f13385b = new a("audio_recorder_v2_enabled");
+    public static final b f13386c = new b("audio_recorder_noise_suppression", i.f11406a);
+    public static final a d = new a("round_video_camera2_enabled");
+    public static final b e = new b("round_video_output_resolution", v0.P480);
+    public static final b f13387f = new b("round_video_camera_resolution", r0.f12236a);
+    public static final b f13388g = new b("round_video_frame_rate", s0.FPS_30);
+    public static final c h = new Object();
+    public static final a f13389i = new a("round_video_composition");
+    public static final b f13390j = new b("round_video_last_camera", q0.f12229a);
+    public static final b f13391k = new b("header_done_button_style", k5.f20465a);
+    public static final b f13392l = new b("header_done_button_shape", j5.f20444b);
 }

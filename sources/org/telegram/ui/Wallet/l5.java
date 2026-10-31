@@ -1,51 +1,31 @@
 package org.telegram.ui.Wallet;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-public final class l5 extends Drawable {
-    public final Paint f36870a = new Paint(1);
-    public final Path f36871b = new Path();
-    public final RectF f36872c = new RectF();
-    public final float[] d = {AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), 0.0f, 0.0f, 0.0f, 0.0f};
+import android.content.Context;
+import android.view.View;
+public final class l5 extends View {
+    public final int f34840a;
+    public final b6 f34841b;
 
-    @Override
-    public final void draw(Canvas canvas) {
-        canvas.drawPath(this.f36871b, this.f36870a);
+    public l5(b6 b6Var, Context context, int i10) {
+        super(context);
+        this.f34840a = i10;
+        this.f34841b = b6Var;
     }
 
     @Override
-    public final int getOpacity() {
-        return -3;
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        super.onBoundsChange(rect);
-        RectF rectF = this.f36872c;
-        rectF.set(rect);
-        Path path = this.f36871b;
-        path.reset();
-        path.addRoundRect(rectF, this.d, Path.Direction.CW);
-        this.f36870a.setShader(new LinearGradient(0.0f, rect.top, 0.0f, rect.bottom, new int[]{-16216082, -12207881}, new float[]{0.15f, 0.53f}, Shader.TileMode.CLAMP));
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f36870a.setAlpha(i10);
-        invalidateSelf();
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f36870a.setColorFilter(colorFilter);
-        invalidateSelf();
+    public final void onMeasure(int i10, int i11) {
+        switch (this.f34840a) {
+            case 0:
+                int size = View.MeasureSpec.getSize(i10);
+                b6 b6Var = this.f34841b;
+                b6Var.Z.measure(View.MeasureSpec.makeMeasureSpec(Math.max(0, size - org.telegram.messenger.i0.L(24.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
+                setMeasuredDimension(size, org.telegram.messenger.i0.L(36.0f) + b6Var.Z.getMeasuredHeight());
+                return;
+            default:
+                b6 b6Var2 = this.f34841b;
+                b6Var2.e.measure(i10, View.MeasureSpec.makeMeasureSpec(0, 0));
+                setMeasuredDimension(View.MeasureSpec.getSize(i10), b6Var2.e.getMeasuredHeight());
+                return;
+        }
     }
 }

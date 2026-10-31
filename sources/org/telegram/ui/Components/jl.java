@@ -1,24 +1,47 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-public final class jl extends s4.d0 {
-    public final jg.e0 f29693r;
+import java.util.ArrayList;
+import java.util.Comparator;
+import org.telegram.tgnet.TLRPC;
+public final class jl implements Comparator {
+    public final int f27396a;
+    public final Object f27397b;
 
-    public jl(jg.e0 e0Var, Context context) {
-        super(context);
-        this.f29693r = e0Var;
+    public jl(Object obj, int i10) {
+        this.f27396a = i10;
+        this.f27397b = obj;
     }
 
     @Override
-    public final int k(int i10, View view) {
-        int k10 = super.k(i10, view);
-        sl slVar = (sl) this.f29693r.V;
-        return k10 - (slVar.N.getPaddingTop() - (slVar.f32641x0 - slVar.f32639w0));
-    }
-
-    @Override
-    public final int m(int i10) {
-        return super.m(i10) * 4;
+    public final int compare(Object obj, Object obj2) {
+        int indexOf;
+        int indexOf2;
+        int i10 = this.f27396a;
+        Object obj3 = this.f27397b;
+        switch (i10) {
+            case 0:
+                ArrayList arrayList = (ArrayList) obj3;
+                org.telegram.messenger.we weVar = (org.telegram.messenger.we) obj;
+                org.telegram.messenger.we weVar2 = (org.telegram.messenger.we) obj2;
+                boolean z10 = ChatAttachAlertPhotoLayout.f23845q1;
+                int i11 = weVar.f19085a;
+                if (i11 != 0 || weVar2.f19085a == 0) {
+                    if ((i11 != 0 && weVar2.f19085a == 0) || (indexOf = arrayList.indexOf(weVar)) > (indexOf2 = arrayList.indexOf(weVar2))) {
+                        return 1;
+                    }
+                    if (indexOf >= indexOf2) {
+                        return 0;
+                    }
+                }
+                return -1;
+            default:
+                vy vyVar = ((gw) obj3).G0;
+                int indexOf3 = vyVar.f31868d1.indexOf((TLRPC.TL_messages_stickerSet) obj);
+                int indexOf4 = vyVar.f31868d1.indexOf((TLRPC.TL_messages_stickerSet) obj2);
+                if (indexOf3 < 0 || indexOf4 < 0) {
+                    return 0;
+                }
+                return indexOf3 - indexOf4;
+        }
     }
 }

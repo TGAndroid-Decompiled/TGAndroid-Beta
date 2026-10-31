@@ -1,36 +1,42 @@
 package org.telegram.ui;
+public final class yi implements Runnable {
+    public final boolean f43839a;
+    public final boolean f43840b;
+    public final int f43841c;
+    public final boolean d;
+    public final org.telegram.ui.Components.mj0 e;
+    public final float f43842f;
+    public final float h;
+    public final sg.o0 f43843n;
+    public final org.telegram.messenger.jj f43844r;
+    public final un f43845s;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-public final class yi implements ValueAnimator.AnimatorUpdateListener {
-    public final int f46027a;
-    public final org.telegram.ui.ActionBar.r2 f46028b;
-
-    public yi(int i10, org.telegram.ui.ActionBar.r2 r2Var) {
-        this.f46027a = i10;
-        this.f46028b = r2Var;
+    public yi(un unVar, boolean z10, boolean z11, int i10, boolean z12, org.telegram.ui.Components.mj0 mj0Var, float f7, float f10, sg.o0 o0Var, org.telegram.messenger.jj jjVar) {
+        this.f43845s = unVar;
+        this.f43839a = z10;
+        this.f43840b = z11;
+        this.f43841c = i10;
+        this.d = z12;
+        this.e = mj0Var;
+        this.f43842f = f7;
+        this.h = f10;
+        this.f43843n = o0Var;
+        this.f43844r = jjVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f46027a) {
-            case 0:
-                wn wnVar = (wn) this.f46028b;
-                wnVar.Ba = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                wnVar.f45163j1.invalidate();
-                return;
-            case 1:
-                ey eyVar = (ey) this.f46028b;
-                eyVar.H0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                View view = eyVar.fragmentView;
-                if (view != null) {
-                    view.invalidate();
-                    return;
+    public final void run() {
+        if (!this.f43839a) {
+            un unVar = this.f43845s;
+            if (unVar.f42478xc != null) {
+                unVar.f42478xc = null;
+                if (this.f43840b) {
+                    unVar.p8(new xi(this, this.f43841c, this.d, this.e, this.f43842f, this.h, this.f43843n, 0));
+                } else {
+                    unVar.p8(new zg(9, this, this.f43844r));
                 }
-                return;
-            default:
-                ((vc1) this.f46028b).f44312y0.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
+                unVar.I7(true);
+            }
         }
     }
 }

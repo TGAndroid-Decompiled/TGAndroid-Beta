@@ -1,31 +1,91 @@
 package org.telegram.messenger;
-public final class q7 implements Runnable {
-    public final int f21023a;
-    public final MediaDataController f21024b;
-    public final long f21025c;
-    public final long d;
-    public final int[] e;
 
-    public q7(MediaDataController mediaDataController, long j10, long j11, int[] iArr, int i10) {
-        this.f21023a = i10;
-        this.f21024b = mediaDataController;
-        this.f21025c = j10;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.tl.TL_stories;
+public final class q7 implements Runnable {
+    public final int f17562a = 0;
+    public final long f17563b;
+    public final boolean f17564c;
+    public final long d;
+    public final Object e;
+    public final Object f17565f;
+    public final Object h;
+
+    public q7(b8 b8Var, boolean z10, String str, long j10, long j11, Float f7) {
+        this.e = b8Var;
+        this.f17564c = z10;
+        this.f17565f = str;
+        this.f17563b = j10;
         this.d = j11;
-        this.e = iArr;
+        this.h = f7;
     }
 
     @Override
     public final void run() {
-        switch (this.f21023a) {
+        d9 d9Var;
+        switch (this.f17562a) {
             case 0:
-                this.f21024b.lambda$getMediaCounts$128(this.f21025c, this.d, this.e);
-                return;
-            case 1:
-                this.f21024b.lambda$getMediaCounts$127(this.f21025c, this.d, this.e);
-                return;
+                b8 b8Var = (b8) this.e;
+                boolean z10 = this.f17564c;
+                String str = (String) this.f17565f;
+                long j10 = this.f17563b;
+                long j11 = this.d;
+                Float f7 = (Float) this.h;
+                if (z10) {
+                    d9Var = (d9) b8Var.f14743n.get(str);
+                } else {
+                    d9Var = (d9) b8Var.h.get(str);
+                }
+                d9 d9Var2 = d9Var;
+                if (d9Var2 != null) {
+                    Utilities.d.c(new y8(d9Var2, f7, j11, j10));
+                    return;
+                } else if (j11 != 0) {
+                    b8Var.f14748y.put(str, Long.valueOf(j11));
+                    return;
+                } else {
+                    return;
+                }
             default:
-                this.f21024b.lambda$getMediaCounts$130(this.f21025c, this.d, this.e);
+                th.e5 e5Var = (th.e5) this.e;
+                long j12 = this.f17563b;
+                boolean z11 = this.f17564c;
+                TL_stories.PeerStories peerStories = (TL_stories.PeerStories) this.f17565f;
+                long j13 = this.d;
+                TLObject tLObject = (TLObject) this.h;
+                e5Var.D.remove(Long.valueOf(j12));
+                if (!z11) {
+                    peerStories = e5Var.y(j13);
+                }
+                if (peerStories != null) {
+                    if (tLObject instanceof TL_stories.TL_stories_stories) {
+                        TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject;
+                        for (int i10 = 0; i10 < tL_stories_stories.stories.size(); i10++) {
+                            for (int i11 = 0; i11 < peerStories.stories.size(); i11++) {
+                                if (peerStories.stories.get(i11).f20031id == tL_stories_stories.stories.get(i10).f20031id) {
+                                    peerStories.stories.set(i11, tL_stories_stories.stories.get(i10));
+                                    e5Var.Z(j13, tL_stories_stories.stories.get(i10));
+                                }
+                            }
+                        }
+                        if (!z11) {
+                            th.r5 r5Var = e5Var.f48911k;
+                            r5Var.f49412b.f15938a.c(new th.q5(r5Var, peerStories, 0));
+                        }
+                    }
+                    zs.f(e5Var.f48904a).k(324, new Object[0]);
+                    return;
+                }
                 return;
         }
+    }
+
+    public q7(th.e5 e5Var, long j10, boolean z10, TL_stories.PeerStories peerStories, long j11, TLObject tLObject) {
+        this.e = e5Var;
+        this.f17563b = j10;
+        this.f17564c = z10;
+        this.f17565f = peerStories;
+        this.d = j11;
+        this.h = tLObject;
     }
 }

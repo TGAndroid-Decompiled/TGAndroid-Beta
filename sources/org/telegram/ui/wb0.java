@@ -1,271 +1,279 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.os.Build;
+import android.os.SystemClock;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class wb0 extends org.telegram.ui.ActionBar.r2 {
-    public FrameLayout f44621a;
-    public org.telegram.ui.Components.nm0 f44622b;
-    public s4.c0 f44623c;
-    public hu d;
-    public org.telegram.ui.Components.qc e;
-    public int f44624f;
-    public final t3 h;
-    public final boolean[] f44625n;
-    public final ArrayList f44626r;
-    public final ArrayList f44627s;
+public final class wb0 extends org.telegram.ui.Components.uu0 implements r0.l {
+    public final int f42919f0 = 1;
+    public final ac.g f42920g0;
+    public boolean f42921h0;
+    public final org.telegram.ui.ActionBar.k2 f42922i0;
 
-    public wb0() {
-        super(null);
-        this.h = new t3(this, 9);
-        this.f44625n = new boolean[3];
-        this.f44626r = new ArrayList();
-        this.f44627s = new ArrayList();
+    public wb0(org.telegram.ui.Wallet.b6 b6Var, Context context) {
+        super(context, null);
+        this.f42922i0 = b6Var;
+        this.f42920g0 = new Object();
     }
 
-    public final int V(int i10) {
-        if (i10 == 3) {
-            return 0;
+    public void X() {
+        long uptimeMillis = SystemClock.uptimeMillis();
+        MotionEvent obtain = MotionEvent.obtain(uptimeMillis, uptimeMillis, 3, 0.0f, 0.0f, 0);
+        org.telegram.ui.Wallet.x5 x5Var = ((org.telegram.ui.Wallet.b6) this.f42922i0).f34258q0;
+        if (x5Var != null) {
+            x5Var.e(obtain);
         }
-        if (i10 == 28700) {
-            return 1;
-        }
-        if (i10 == this.f44624f) {
-            return 2;
-        }
-        return -1;
+        super.dispatchTouchEvent(obtain);
+        obtain.recycle();
     }
 
-    public final void W(int i10) {
-        int i11 = 0;
-        while (true) {
-            ArrayList arrayList = this.f44627s;
-            if (i11 < arrayList.size()) {
-                if (((qb0) arrayList.get(i11)).e == i10) {
-                    this.f44622b.e1(new i2.r(this, i11, 13), 700, true);
+    public boolean Y() {
+        org.telegram.ui.Wallet.b6 b6Var = (org.telegram.ui.Wallet.b6) this.f42922i0;
+        jg.z2 z2Var = b6Var.f34255n0;
+        if (z2Var != null && (z2Var.getParent() instanceof View) && ((View) b6Var.f34255n0.getParent()).getTop() <= b6Var.f29837a.getPaddingTop()) {
+            return true;
+        }
+        return false;
+    }
+
+    public int b0(org.telegram.ui.Components.u51 u51Var, int i10) {
+        int[] iArr = {0};
+        org.telegram.ui.Components.bu0 bu0Var = new org.telegram.ui.Components.bu0(iArr, 7);
+        this.f42921h0 = true;
+        u51Var.j(bu0Var);
+        try {
+            u51Var.scrollBy(0, i10);
+            ArrayList arrayList = u51Var.f1921w0;
+            if (arrayList != null) {
+                arrayList.remove(bu0Var);
+            }
+            this.f42921h0 = false;
+            return iArr[0];
+        } catch (Throwable th2) {
+            ArrayList arrayList2 = u51Var.f1921w0;
+            if (arrayList2 != null) {
+                arrayList2.remove(bu0Var);
+            }
+            this.f42921h0 = false;
+            throw th2;
+        }
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(android.view.MotionEvent r24) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.wb0.dispatchTouchEvent(android.view.MotionEvent):boolean");
+    }
+
+    @Override
+    public int getNestedScrollAxes() {
+        switch (this.f42919f0) {
+            case 1:
+                return this.f42920g0.b();
+            default:
+                return super.getNestedScrollAxes();
+        }
+    }
+
+    @Override
+    public final void k(int i10, View view) {
+        switch (this.f42919f0) {
+            case 0:
+                this.f42920g0.f385a = 0;
+                return;
+            default:
+                ac.g gVar = this.f42920g0;
+                if (i10 == 1) {
+                    gVar.f386b = 0;
+                } else {
+                    gVar.f385a = 0;
+                }
+                org.telegram.ui.Wallet.x5 x5Var = ((org.telegram.ui.Wallet.b6) this.f42922i0).f34258q0;
+                if (x5Var != null) {
+                    org.telegram.ui.Wallet.l lVar = x5Var.f35387i;
+                    org.telegram.ui.Components.ii iiVar = x5Var.f35384c;
+                    if (iiVar != null) {
+                        iiVar.removeCallbacks(lVar);
+                        x5Var.f35384c.post(lVar);
+                        return;
+                    }
                     return;
                 }
-                i11++;
-            } else {
                 return;
-            }
         }
     }
 
-    public final void X(int i10) {
-        int V = V(i10);
-        if (V == -1) {
-            return;
-        }
-        this.f44625n[V] = true;
-        Z();
-        Y();
-    }
-
-    public final void Y() {
-        String formatString;
-        ArrayList arrayList = this.f44626r;
-        arrayList.clear();
-        ArrayList arrayList2 = this.f44627s;
-        arrayList.addAll(arrayList2);
-        arrayList2.clear();
-        int i10 = Build.VERSION.SDK_INT;
-        arrayList2.add(new qb0(1, 0, null, 0, 0));
-        if (LiteMode.getPowerSaverLevel() <= 0) {
-            formatString = LocaleController.getString(R.string.LiteBatteryInfoDisabled);
-        } else if (LiteMode.getPowerSaverLevel() >= 100) {
-            formatString = LocaleController.getString(R.string.LiteBatteryInfoEnabled);
-        } else {
-            formatString = LocaleController.formatString(R.string.LiteBatteryInfoBelow, String.format("%d%%", Integer.valueOf(LiteMode.getPowerSaverLevel())));
-        }
-        arrayList2.add(new qb0(2, 0, formatString, 0, 0));
-        arrayList2.add(new qb0(0, 0, LocaleController.getString(R.string.LiteOptionsTitle), 0, 0));
-        arrayList2.add(qb0.c(R.drawable.msg2_sticker, 3, LocaleController.getString(R.string.LiteOptionsStickers)));
-        boolean[] zArr = this.f44625n;
-        if (zArr[0]) {
-            arrayList2.add(qb0.b(1, LocaleController.getString(R.string.LiteOptionsAutoplayKeyboard)));
-            arrayList2.add(qb0.b(2, LocaleController.getString(R.string.LiteOptionsAutoplayChat)));
-        }
-        arrayList2.add(qb0.c(R.drawable.msg2_smile_status, 28700, LocaleController.getString(R.string.LiteOptionsEmoji)));
-        if (zArr[1]) {
-            arrayList2.add(qb0.b(16388, LocaleController.getString(R.string.LiteOptionsAutoplayKeyboard)));
-            arrayList2.add(qb0.b(8200, LocaleController.getString(R.string.LiteOptionsAutoplayReactions)));
-            arrayList2.add(qb0.b(4112, LocaleController.getString(R.string.LiteOptionsAutoplayChat)));
-        }
-        arrayList2.add(qb0.c(R.drawable.msg2_ask_question, this.f44624f, LocaleController.getString(R.string.LiteOptionsChat)));
-        if (zArr[2]) {
-            arrayList2.add(qb0.b(32, LocaleController.getString("LiteOptionsBackground")));
-            if (!AndroidUtilities.isTablet()) {
-                arrayList2.add(qb0.b(64, LocaleController.getString("LiteOptionsTopics")));
-            }
-            arrayList2.add(qb0.b(128, LocaleController.getString("LiteOptionsSpoiler")));
-            if (SharedConfig.getDevicePerformanceClass() >= 1 || BuildVars.DEBUG_PRIVATE_VERSION) {
-                arrayList2.add(qb0.b(256, LocaleController.getString("LiteOptionsBlur2")));
-            }
-            if (i10 >= 33 && (SharedConfig.getDevicePerformanceClass() >= 1 || BuildVars.DEBUG_PRIVATE_VERSION)) {
-                arrayList2.add(qb0.b(262144, LocaleController.getString("LiteOptionsLiquidGlass")));
-            }
-            arrayList2.add(qb0.b(32768, LocaleController.getString("LiteOptionsScale")));
-            if (org.telegram.ui.Components.h21.c()) {
-                arrayList2.add(qb0.b(65536, LocaleController.getString("LiteOptionsThanos")));
-            }
-        }
-        arrayList2.add(qb0.c(R.drawable.msg2_call_earpiece, 512, LocaleController.getString(R.string.LiteOptionsCalls)));
-        arrayList2.add(qb0.c(R.drawable.msg2_videocall, 1024, LocaleController.getString(R.string.LiteOptionsAutoplayVideo)));
-        arrayList2.add(qb0.c(R.drawable.msg2_gif, 2048, LocaleController.getString(R.string.LiteOptionsAutoplayGifs)));
-        arrayList2.add(qb0.c(R.drawable.photo_star, 131072, LocaleController.getString(R.string.LiteOptionsParticles)));
-        arrayList2.add(new qb0(2, 0, "", 0, 0));
-        arrayList2.add(new qb0(5, 0, LocaleController.getString(R.string.LiteSmoothTransitions), 0, 1));
-        arrayList2.add(new qb0(2, 0, LocaleController.getString("LiteSmoothTransitionsInfo"), 0, 0));
-        this.d.E(arrayList, arrayList2);
-    }
-
-    public final void Z() {
-        boolean z10;
-        float f7;
-        if (this.f44622b != null) {
-            for (int i10 = 0; i10 < this.f44622b.getChildCount(); i10++) {
-                View childAt = this.f44622b.getChildAt(i10);
-                if (childAt != null) {
-                    this.f44622b.getClass();
-                    int R = RecyclerView.R(childAt);
-                    if (R >= 0) {
-                        ArrayList arrayList = this.f44627s;
-                        if (R < arrayList.size()) {
-                            qb0 qb0Var = (qb0) arrayList.get(R);
-                            int i11 = qb0Var.f47075a;
-                            if (i11 != 3 && i11 != 4) {
-                                if (i11 == 1) {
-                                    ((ub0) childAt).a();
-                                }
-                            } else {
-                                vb0 vb0Var = (vb0) childAt;
-                                ImageView imageView = vb0Var.e;
-                                wb0 wb0Var = vb0Var.f44238y;
-                                int i12 = qb0Var.e;
-                                if (i11 == 3) {
-                                    if (Integer.bitCount(i12) > 1) {
-                                        z10 = true;
-                                    } else {
-                                        z10 = false;
-                                    }
-                                    vb0Var.v = z10;
-                                    if (z10) {
-                                        vb0Var.c(qb0Var, true);
-                                        int V = wb0Var.V(i12);
-                                        imageView.clearAnimation();
-                                        ViewPropertyAnimator animate = imageView.animate();
-                                        if (V >= 0 && wb0Var.f44625n[V]) {
-                                            f7 = 180.0f;
-                                        } else {
-                                            f7 = 0.0f;
-                                        }
-                                        org.telegram.messenger.wh.q(animate.rotation(f7), org.telegram.ui.Components.ds.h, 240L);
-                                    }
-                                    vb0Var.f44232f.c(LiteMode.isEnabled(i12), true);
-                                } else {
-                                    vb0Var.h.a(LiteMode.isEnabled(i12), true);
-                                }
-                                vb0Var.b(LiteMode.isPowerSaverApplied(), true);
-                            }
+    @Override
+    public final void l(View view, int i10, int i11, int i12, int i13, int i14, int[] iArr) {
+        qb0 qb0Var;
+        org.telegram.ui.Components.u51 x02;
+        switch (this.f42919f0) {
+            case 0:
+                yb0 yb0Var = (yb0) this.f42922i0;
+                try {
+                    if (view == yb0Var.S && (qb0Var = yb0Var.S0) != null && qb0Var.isAttachedToWindow()) {
+                        org.telegram.ui.Components.tk0 currentListView = yb0Var.S0.getCurrentListView();
+                        int top = yb0Var.S0.getTop();
+                        if (currentListView != null && top == 0) {
+                            iArr[1] = i13;
+                            currentListView.scrollBy(0, i13);
+                            return;
                         }
+                        return;
+                    }
+                    return;
+                } catch (Throwable th2) {
+                    org.telegram.messenger.f8.g(th2, true);
+                    org.telegram.messenger.i0.g3(new zy(this, 20));
+                    return;
+                }
+            default:
+                org.telegram.ui.Wallet.b6 b6Var = (org.telegram.ui.Wallet.b6) this.f42922i0;
+                if (!this.f42921h0 && i13 != 0 && (x02 = b6Var.x0()) != null) {
+                    if (view == b6Var.f29837a && Y()) {
+                        iArr[1] = b0(x02, i13) + iArr[1];
+                        return;
+                    } else if (view == x02 && i13 < 0) {
+                        iArr[1] = b0(b6Var.f29837a, i13) + iArr[1];
+                        return;
+                    } else {
+                        return;
                     }
                 }
-            }
-            if (this.e != null && !LiteMode.isPowerSaverApplied()) {
-                this.e.b();
-                this.e = null;
-            }
+                return;
         }
     }
 
     @Override
-    public final View createView(Context context) {
-        int i10;
-        setHasOwnBackground(true);
-        this.simpleActionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.simpleActionBar.setTitle(LocaleController.getString(R.string.PowerUsage));
-        this.simpleActionBar.setActionBarMenuOnItemClick(new c20(this, 9));
-        org.telegram.ui.ActionBar.j5 j5Var = this.parentLayout;
-        if (j5Var != null && ((ActionBarLayout) j5Var).T0) {
-            this.simpleActionBar.setBackButtonImage(R.drawable.ic_ab_close);
+    public final void m(View view, int i10, int i11, int i12, int i13, int i14) {
+        switch (this.f42919f0) {
+            case 0:
+                return;
+            default:
+                l(view, i10, i11, i12, i13, i14, new int[2]);
+                return;
         }
-        this.f44621a = new FrameLayout(context);
-        org.telegram.ui.Components.nm0 nm0Var = new org.telegram.ui.Components.nm0(context, null);
-        this.f44622b = nm0Var;
-        nm0Var.u1();
-        org.telegram.ui.Components.nm0 nm0Var2 = this.f44622b;
-        s4.c0 c0Var = new s4.c0();
-        this.f44623c = c0Var;
-        nm0Var2.setLayoutManager(c0Var);
-        org.telegram.ui.Components.nm0 nm0Var3 = this.f44622b;
-        hu huVar = new hu(this, 1);
-        this.d = huVar;
-        nm0Var3.setAdapter(huVar);
-        this.f44622b.setSectionsDrawBackground(true);
-        s4.l lVar = new s4.l();
-        lVar.n(350L);
-        lVar.o(org.telegram.ui.Components.ds.h);
-        lVar.C = false;
-        lVar.f47798m = false;
-        this.f44622b.setItemAnimator(lVar);
-        this.f44621a.addView(this.f44622b, org.telegram.ui.Components.kb1.g(-1.0f, -1));
-        this.f44622b.setOnItemClickListener(new st(this, 17));
-        this.fragmentView = this.f44621a;
-        if (AndroidUtilities.isTablet()) {
-            i10 = 360864;
-        } else {
-            i10 = 360928;
+    }
+
+    @Override
+    public final boolean n(View view, View view2, int i10, int i11) {
+        switch (this.f42919f0) {
+            case 0:
+                if (((yb0) this.f42922i0).S0 != null && i10 == 2) {
+                    return true;
+                }
+                return false;
+            default:
+                if ((i10 & 2) != 0) {
+                    return true;
+                }
+                return false;
         }
-        this.f44624f = i10;
-        Y();
-        return this.fragmentView;
     }
 
     @Override
-    public final org.telegram.ui.Components.nm0 getListViewForSimpleGlass() {
-        return this.f44622b;
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        switch (this.f42919f0) {
+            case 0:
+                yb0 yb0Var = (yb0) this.f42922i0;
+                super.onLayout(z10, i10, i11, i12, i13);
+                if (z10) {
+                    yb0Var.t0(this.f42921h0);
+                    this.f42921h0 = false;
+                    return;
+                }
+                yb0Var.O0(true);
+                return;
+            default:
+                super.onLayout(z10, i10, i11, i12, i13);
+                return;
+        }
     }
 
     @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
+    public void onMeasure(int i10, int i11) {
+        switch (this.f42919f0) {
+            case 1:
+                int size = (int) (View.MeasureSpec.getSize(i11) * 0.75f);
+                org.telegram.ui.Wallet.b6 b6Var = (org.telegram.ui.Wallet.b6) this.f42922i0;
+                if (b6Var.f34259r != size) {
+                    b6Var.f34259r = size;
+                    org.telegram.ui.Wallet.o5 o5Var = b6Var.e;
+                    if (o5Var != null) {
+                        o5Var.requestLayout();
+                    }
+                    org.telegram.ui.Wallet.l5 l5Var = b6Var.f34246f;
+                    if (l5Var != null) {
+                        l5Var.requestLayout();
+                    }
+                }
+                super.onMeasure(i10, i11);
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
     }
 
     @Override
-    public final void onBecomeFullyHidden() {
-        super.onBecomeFullyHidden();
-        LiteMode.removeOnPowerSaverAppliedListener(this.h);
+    public boolean onNestedPreFling(View view, float f7, float f10) {
+        org.telegram.ui.Wallet.x5 x5Var;
+        switch (this.f42919f0) {
+            case 1:
+                org.telegram.ui.Wallet.b6 b6Var = (org.telegram.ui.Wallet.b6) this.f42922i0;
+                if (view == b6Var.x0() && (x5Var = b6Var.f34258q0) != null) {
+                    return x5Var.a((int) f7, (int) f10);
+                }
+                return false;
+            default:
+                return super.onNestedPreFling(view, f7, f10);
+        }
     }
 
     @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        LiteMode.addOnPowerSaverAppliedListener(this.h);
+    public void onStopNestedScroll(View view) {
+        switch (this.f42919f0) {
+            case 0:
+                return;
+            default:
+                super.onStopNestedScroll(view);
+                return;
+        }
     }
 
     @Override
-    public final void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        LiteMode.savePreference();
-        org.telegram.ui.Components.t5.u();
-        org.telegram.ui.ActionBar.y6.r1(true);
+    public final void q(View view, View view2, int i10, int i11) {
+        switch (this.f42919f0) {
+            case 0:
+                this.f42920g0.f385a = i10;
+                return;
+            default:
+                ac.g gVar = this.f42920g0;
+                if (i11 == 1) {
+                    gVar.f386b = i10;
+                    return;
+                } else {
+                    gVar.f385a = i10;
+                    return;
+                }
+        }
     }
 
     @Override
-    public final boolean useSimpleActionBar() {
-        return true;
+    public final void s(android.view.View r6, int r7, int r8, int[] r9, int r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.wb0.s(android.view.View, int, int, int[], int):void");
+    }
+
+    public wb0(yb0 yb0Var, Context context) {
+        super(context, null);
+        this.f42922i0 = yb0Var;
+        this.f42921h0 = true;
+        this.f42920g0 = new Object();
+    }
+
+    private final void a0(View view) {
+    }
+
+    private final void Z(View view, int i10, int i11, int i12, int i13, int i14) {
     }
 }

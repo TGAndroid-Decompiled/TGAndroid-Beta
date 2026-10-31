@@ -1,78 +1,74 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Point;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-public final class a00 implements Runnable {
-    public final int f26374a;
-    public final e00 f26375b;
-    public final int f26376c;
-    public final int d;
+import android.os.Bundle;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+public abstract class a00 extends ln0 {
+    public final boolean d;
 
-    public a00(e00 e00Var, int i10, int i11, int i12) {
-        this.f26374a = i12;
-        this.f26375b = e00Var;
-        this.f26376c = i10;
-        this.d = i11;
+    public a00(boolean z10) {
+        this.d = z10;
     }
 
     @Override
-    public final void run() {
-        int i10;
-        switch (this.f26374a) {
-            case 0:
-                e00 e00Var = this.f26375b;
-                int i11 = this.f26376c;
-                int i12 = this.d;
-                if (e00Var.W != i11 || e00Var.X != i12) {
-                    e00Var.W = i11;
-                    e00Var.X = i12;
-                    int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
-                    int i13 = 1920;
-                    if (devicePerformanceClass != 1) {
-                        if (devicePerformanceClass != 2) {
-                            i13 = 720;
-                        } else {
-                            Point point = AndroidUtilities.displaySize;
-                            i13 = Math.min(1920, Math.max(point.x, point.y));
-                        }
-                    }
-                    if (SharedConfig.getDevicePerformanceClass() == 0 && ((i10 = e00Var.W) > 1280 || e00Var.X > 1280)) {
-                        e00Var.W = i10 / 2;
-                        e00Var.X /= 2;
-                    }
-                    int i14 = e00Var.W;
-                    if (i14 > i13 || e00Var.X > i13) {
-                        int i15 = e00Var.X;
-                        if (i14 > i15) {
-                            e00Var.X = (int) (i15 / (i13 / i14));
-                            e00Var.W = i13;
-                        } else {
-                            e00Var.W = (int) (i14 / (i13 / i15));
-                            e00Var.X = i13;
-                        }
-                    }
-                    e00Var.Z = false;
-                    e00Var.g();
-                    e00Var.f27641d0.run();
-                    return;
-                }
-                return;
-            case 1:
-                e00 e00Var2 = this.f26375b;
-                int i16 = this.f26376c;
-                int i17 = this.d;
-                e00Var2.f27643n = i16;
-                e00Var2.f27644r = i17;
-                return;
-            default:
-                e00 e00Var3 = this.f26375b;
-                int i18 = this.f26376c;
-                int i19 = this.d;
-                ra raVar = e00Var3.I;
-                raVar.f32197l = i18;
-                raVar.f32198m = i19;
-                return;
+    public final boolean a() {
+        if (k() > j()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean b() {
+        if (k() < i()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void c(boolean z10) {
+        float h = h();
+        if (z10) {
+            h *= -1.0f;
+        }
+        l(Math.min(i(), Math.max(j(), k() + h)));
+    }
+
+    @Override
+    public final void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.e(view, accessibilityNodeInfo);
+        if (this.d) {
+            accessibilityNodeInfo.addAction((AccessibilityNodeInfo.AccessibilityAction) s0.b.h.f47847a);
+            accessibilityNodeInfo.setRangeInfo(AccessibilityNodeInfo.RangeInfo.obtain(1, j(), i(), k()));
         }
     }
+
+    @Override
+    public final boolean g(View view, int i10, Bundle bundle) {
+        if (super.g(view, i10, bundle)) {
+            return true;
+        }
+        if (i10 == ((AccessibilityNodeInfo.AccessibilityAction) s0.b.h.f47847a).getId()) {
+            l(bundle.getFloat("android.view.accessibility.action.ARGUMENT_PROGRESS_VALUE"));
+            return true;
+        }
+        return false;
+    }
+
+    public float h() {
+        return 0.05f;
+    }
+
+    public float i() {
+        return 1.0f;
+    }
+
+    public float j() {
+        return 0.0f;
+    }
+
+    public abstract float k();
+
+    public abstract void l(float f7);
 }

@@ -1,35 +1,37 @@
 package sc;
 
-import java.nio.ByteBuffer;
-import java.nio.channels.ByteChannel;
-public final class b implements ByteChannel {
-    public ByteBuffer f48119a;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+public final class b {
+    public static final Pattern d = Pattern.compile("[ |\t]*([^/^ ^;^,]+/[^ ^;^,]+)", 2);
+    public static final Pattern e = Pattern.compile("[ |\t]*(charset)[ |\t]*=[ |\t]*['|\"]?([^\"^'^;^,]*)['|\"]?", 2);
+    public static final Pattern f48145f = Pattern.compile("[ |\t]*(boundary)[ |\t]*=[ |\t]*['|\"]?([^\"^'^;^,]*)['|\"]?", 2);
+    public final String f48146a;
+    public final String f48147b;
+    public final String f48148c;
 
-    @Override
-    public final boolean isOpen() {
-        return true;
-    }
-
-    @Override
-    public final int read(ByteBuffer byteBuffer) {
-        int remaining = byteBuffer.remaining();
-        ByteBuffer byteBuffer2 = this.f48119a;
-        if (byteBuffer2.remaining() <= 0) {
-            return -1;
+    public b(String str) {
+        String str2;
+        this.f48146a = str;
+        if (str != null) {
+            Matcher matcher = d.matcher(str);
+            this.f48147b = matcher.find() ? matcher.group(1) : "";
+            Matcher matcher2 = e.matcher(str);
+            if (matcher2.find()) {
+                str2 = matcher2.group(2);
+            } else {
+                str2 = null;
+            }
+            this.f48148c = str2;
+        } else {
+            this.f48147b = "";
+            this.f48148c = "UTF-8";
         }
-        byteBuffer.put((ByteBuffer) byteBuffer2.duplicate().limit(byteBuffer.remaining() + byteBuffer2.position()));
-        byteBuffer2.position(byteBuffer2.position() + remaining);
-        return remaining;
-    }
-
-    @Override
-    public final int write(ByteBuffer byteBuffer) {
-        int remaining = byteBuffer.remaining();
-        this.f48119a.put(byteBuffer);
-        return remaining;
-    }
-
-    @Override
-    public final void close() {
+        if ("multipart/form-data".equalsIgnoreCase(this.f48147b)) {
+            Matcher matcher3 = f48145f.matcher(str);
+            if (matcher3.find()) {
+                matcher3.group(2);
+            }
+        }
     }
 }

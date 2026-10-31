@@ -1,147 +1,115 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.os.SystemClock;
-import android.view.animation.OvershootInterpolator;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.SharedConfig;
-public final class ay extends st {
-    public int M;
-    public int N;
-    public ArrayList O;
-    public final ArrayList P = new ArrayList();
-    public final OvershootInterpolator Q = new OvershootInterpolator(3.0f);
-    public final dy R;
+import java.util.List;
+import org.telegram.tgnet.TLRPC;
+public final class ay extends yy {
+    public final pu0 X;
+    public final vy Y;
 
-    public ay(dy dyVar) {
-        this.R = dyVar;
+    public ay(vy vyVar) {
+        super(100, true);
+        this.Y = vyVar;
+        this.X = new Object();
+        this.O = new jg.h1(this, 4);
     }
 
     @Override
-    public final void a(Canvas canvas, long j10, int i10, int i11, float f7) {
-        boolean z10;
-        boolean z11;
-        int i12;
-        dy dyVar = this.R;
-        sz szVar = dyVar.f27572n3;
-        ArrayList arrayList = this.O;
-        if (arrayList == null) {
-            return;
+    public final int A() {
+        vy vyVar = this.Y;
+        s4.g0 adapter = vyVar.f31880h0.getAdapter();
+        zx zxVar = vyVar.f31886j0;
+        if (adapter == zxVar && zxVar.f33258y.isEmpty()) {
+            return 0;
         }
-        boolean z12 = true;
-        if (arrayList.size() > 4 && SharedConfig.getDevicePerformanceClass() != 0 && LiteMode.isEnabled(16388)) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        if (!z10) {
-            if (szVar.f32773v2 > 0 && SystemClock.elapsedRealtime() - szVar.f32773v2 < dyVar.C1()) {
-                z11 = true;
+        return B() - 1;
+    }
+
+    @Override
+    public final pu0 D1(int i10) {
+        ArrayList<TLRPC.DocumentAttribute> arrayList;
+        TLRPC.Document document;
+        vy vyVar = this.Y;
+        zx zxVar = vyVar.f31886j0;
+        s4.g0 adapter = vyVar.f31880h0.getAdapter();
+        zx zxVar2 = vyVar.f31897n0;
+        TLRPC.Document document2 = null;
+        r4 = null;
+        ArrayList<TLRPC.DocumentAttribute> arrayList2 = null;
+        if (adapter == zxVar2) {
+            int i11 = zxVar2.H;
+            if (i10 > i11) {
+                TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) zxVar2.f33258y.get((i10 - i11) - 1);
+                document = botInlineResult.document;
+                if (document != null) {
+                    arrayList2 = document.attributes;
+                } else {
+                    TLRPC.WebDocument webDocument = botInlineResult.content;
+                    if (webDocument != null) {
+                        arrayList2 = webDocument.attributes;
+                    } else {
+                        TLRPC.WebDocument webDocument2 = botInlineResult.thumb;
+                        if (webDocument2 != null) {
+                            arrayList2 = webDocument2.attributes;
+                        }
+                    }
+                }
+                arrayList = arrayList2;
+                document2 = document;
+                return F1(document2, arrayList);
+            } else if (i10 == i11) {
+                return null;
             } else {
-                z11 = false;
+                document2 = (TLRPC.Document) vyVar.f31884i1.get(i10);
+                arrayList = document2.attributes;
+                return F1(document2, arrayList);
             }
-            for (int i13 = 0; i13 < this.O.size(); i13++) {
-                bz bzVar = (bz) this.O.get(i13);
-                if (bzVar.h != 0.0f || bzVar.f27003n != null || ((i12 = bzVar.f26999a) > szVar.f32767t2 && i12 < szVar.f32770u2 && z11)) {
+        } else if (!zxVar.f33258y.isEmpty()) {
+            TLRPC.BotInlineResult botInlineResult2 = (TLRPC.BotInlineResult) zxVar.f33258y.get(i10);
+            document = botInlineResult2.document;
+            if (document != null) {
+                arrayList2 = document.attributes;
+            } else {
+                TLRPC.WebDocument webDocument3 = botInlineResult2.content;
+                if (webDocument3 != null) {
+                    arrayList2 = webDocument3.attributes;
+                } else {
+                    TLRPC.WebDocument webDocument4 = botInlineResult2.thumb;
+                    if (webDocument4 != null) {
+                        arrayList2 = webDocument4.attributes;
+                    }
+                }
+            }
+            arrayList = arrayList2;
+            document2 = document;
+            return F1(document2, arrayList);
+        } else {
+            arrayList = null;
+            return F1(document2, arrayList);
+        }
+    }
+
+    public final pu0 F1(TLRPC.Document document, List list) {
+        TLRPC.PhotoSize w9;
+        int i10;
+        int i11;
+        pu0 pu0Var = this.X;
+        pu0Var.f29436b = 100.0f;
+        pu0Var.f29435a = 100.0f;
+        if (document != null && (w9 = org.telegram.messenger.b8.w(document.thumbs, 90, false, null, false)) != null && (i10 = w9.f19818w) != 0 && (i11 = w9.h) != 0) {
+            pu0Var.f29435a = i10;
+            pu0Var.f29436b = i11;
+        }
+        if (list != null) {
+            for (int i12 = 0; i12 < list.size(); i12++) {
+                TLRPC.DocumentAttribute documentAttribute = (TLRPC.DocumentAttribute) list.get(i12);
+                if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
+                    pu0Var.f29435a = documentAttribute.f19800w;
+                    pu0Var.f29436b = documentAttribute.h;
                     break;
                 }
             }
         }
-        z12 = z10;
-        if (z12) {
-            i(System.currentTimeMillis());
-            d(canvas, 1.0f);
-            k();
-            return;
-        }
-        super.a(canvas, j10, i10, i11, 1.0f);
-    }
-
-    @Override
-    public final void c(Canvas canvas) {
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.P;
-            if (i10 < arrayList.size()) {
-                bz bzVar = (bz) arrayList.get(i10);
-                t5 t5Var = bzVar.f27000b;
-                if (t5Var != null) {
-                    ImageReceiver.BackgroundThreadDrawHolder backgroundThreadDrawHolder = bzVar.f27002f[this.K];
-                    di.f3 f3Var = t5Var.f32860k;
-                    if (f3Var != null) {
-                        f3Var.setAlpha(t5Var.f32861l);
-                        t5Var.f32860k.draw(canvas, backgroundThreadDrawHolder);
-                    }
-                }
-                i10++;
-            } else {
-                return;
-            }
-        }
-    }
-
-    @Override
-    public final void d(android.graphics.Canvas r20, float r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ay.d(android.graphics.Canvas, float):void");
-    }
-
-    @Override
-    public final void g() {
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.P;
-            if (i10 < arrayList.size()) {
-                ImageReceiver.BackgroundThreadDrawHolder[] backgroundThreadDrawHolderArr = ((bz) arrayList.get(i10)).f27002f;
-                if (backgroundThreadDrawHolderArr != null) {
-                    backgroundThreadDrawHolderArr[this.K].release();
-                }
-                i10++;
-            } else {
-                this.R.f27572n3.P.invalidate();
-                return;
-            }
-        }
-    }
-
-    @Override
-    public final void i(long j10) {
-        t5 t5Var;
-        PorterDuffColorFilter porterDuffColorFilter;
-        sz szVar = this.R.f27572n3;
-        ArrayList arrayList = this.P;
-        arrayList.clear();
-        for (int i10 = 0; i10 < this.O.size(); i10++) {
-            bz bzVar = (bz) this.O.get(i10);
-            c6 span = bzVar.getSpan();
-            ImageReceiver.BackgroundThreadDrawHolder[] backgroundThreadDrawHolderArr = bzVar.f27002f;
-            if (span != null && (t5Var = (t5) szVar.f32717d2.get(bzVar.d.getDocumentId())) != null && t5Var.f32860k != null) {
-                t5Var.t(j10);
-                di.f3 f3Var = t5Var.f32860k;
-                int i11 = this.K;
-                ImageReceiver.BackgroundThreadDrawHolder drawInBackgroundThread = f3Var.setDrawInBackgroundThread(backgroundThreadDrawHolderArr[i11], i11);
-                backgroundThreadDrawHolderArr[i11] = drawInBackgroundThread;
-                drawInBackgroundThread.time = j10;
-                drawInBackgroundThread.overrideAlpha = 1.0f;
-                t5Var.setAlpha(255);
-                int height = (int) (bzVar.getHeight() * 0.03f);
-                Rect rect = AndroidUtilities.rectTmp2;
-                rect.set((bzVar.getPaddingLeft() + bzVar.getLeft()) - this.N, height, (bzVar.getRight() - bzVar.getPaddingRight()) - this.N, ((bzVar.getMeasuredHeight() + height) - bzVar.getPaddingTop()) - bzVar.getPaddingBottom());
-                backgroundThreadDrawHolderArr[i11].setBounds(rect);
-                bzVar.f27000b = t5Var;
-                ImageReceiver.BackgroundThreadDrawHolder backgroundThreadDrawHolder = backgroundThreadDrawHolderArr[i11];
-                if (t5Var.c()) {
-                    porterDuffColorFilter = szVar.f32720e2;
-                } else {
-                    porterDuffColorFilter = null;
-                }
-                backgroundThreadDrawHolder.colorFilter = porterDuffColorFilter;
-                arrayList.add(bzVar);
-            }
-        }
+        return pu0Var;
     }
 }

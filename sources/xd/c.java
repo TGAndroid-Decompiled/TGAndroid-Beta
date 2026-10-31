@@ -1,38 +1,32 @@
 package xd;
-public final class c extends a {
-    static {
-        new a((char) 1, (char) 0);
+
+import ld.p;
+public final class c implements cd.h {
+    public final Throwable f53662a;
+    public final cd.h f53663b;
+
+    public c(cd.h hVar, Throwable th2) {
+        this.f53662a = th2;
+        this.f53663b = hVar;
     }
 
-    public final boolean equals(Object obj) {
-        c cVar;
-        char c10;
-        char c11;
-        if (obj instanceof c) {
-            char c12 = this.f51785a;
-            char c13 = this.f51786b;
-            if (c12 < c13 || c12 == c13 || (c10 = (cVar = (c) obj).f51785a) < (c11 = cVar.f51786b) || c10 == c11) {
-                c cVar2 = (c) obj;
-                if (c12 == cVar2.f51785a && c13 == cVar2.f51786b) {
-                    return true;
-                }
-                return false;
-            }
-            return true;
-        }
-        return false;
+    @Override
+    public final Object fold(Object obj, p pVar) {
+        return this.f53663b.fold(obj, pVar);
     }
 
-    public final int hashCode() {
-        char c10 = this.f51785a;
-        char c11 = this.f51786b;
-        if (c10 < c11 || c10 == c11) {
-            return (c10 * 31) + c11;
-        }
-        return -1;
+    @Override
+    public final cd.f get(cd.g gVar) {
+        return this.f53663b.get(gVar);
     }
 
-    public final String toString() {
-        return this.f51785a + ".." + this.f51786b;
+    @Override
+    public final cd.h minusKey(cd.g gVar) {
+        return this.f53663b.minusKey(gVar);
+    }
+
+    @Override
+    public final cd.h plus(cd.h hVar) {
+        return this.f53663b.plus(hVar);
     }
 }

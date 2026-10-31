@@ -5,17 +5,16 @@ import android.graphics.Path;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewOutlineProvider;
-import org.telegram.messenger.AndroidUtilities;
 public final class u extends ViewOutlineProvider {
-    public final Path f23109a = new Path();
+    public final Path f21340a = new Path();
 
     @Override
     public final void getOutline(View view, Outline outline) {
-        float dp = AndroidUtilities.dp(29.0f);
-        float dp2 = AndroidUtilities.dp(12.0f);
-        Path path = this.f23109a;
+        float L = org.telegram.messenger.i0.L(29.0f);
+        float L2 = org.telegram.messenger.i0.L(12.0f);
+        Path path = this.f21340a;
         path.rewind();
-        path.addRoundRect(0.0f, 0.0f, view.getWidth(), view.getHeight(), new float[]{dp, dp, dp, dp, dp2, dp2, dp2, dp2}, Path.Direction.CW);
+        path.addRoundRect(0.0f, 0.0f, view.getWidth(), view.getHeight(), new float[]{L, L, L, L, L2, L2, L2, L2}, Path.Direction.CW);
         if (Build.VERSION.SDK_INT >= 30) {
             outline.setPath(path);
         } else {

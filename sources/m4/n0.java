@@ -1,6 +1,6 @@
 package m4;
 
-import a8.qd;
+import ag.d3;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,44 +8,49 @@ import android.os.Handler;
 import android.os.RemoteException;
 import android.text.TextUtils;
 import j$.util.Objects;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
-public final class n0 implements k9.t, v {
-    public b2.s0 f18165a;
-    public String f18166b;
-    public Uri f18167c;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.jf;
+import org.telegram.messenger.kf;
+import org.telegram.messenger.x20;
+import org.telegram.messenger.yd;
+import org.telegram.ui.Components.a8;
+import v7.p8;
+public final class n0 implements j9.t, v, kf {
+    public Object f12863a;
+    public Object f12864b;
+    public Object f12865c;
     public long d;
     public final Object e;
 
-    public n0(p0 p0Var) {
-        this.e = p0Var;
-        this.f18165a = b2.s0.L;
-        this.f18166b = "";
-        this.d = -9223372036854775807L;
+    public n0(android.content.Context r23, org.telegram.ui.Components.yf0 r24, final org.telegram.ui.Components.a8 r25, boolean r26, int r27, org.telegram.ui.ActionBar.p6 r28) {
+        throw new UnsupportedOperationException("Method not decompiled: m4.n0.<init>(android.content.Context, org.telegram.ui.Components.yf0, org.telegram.ui.Components.a8, boolean, int, org.telegram.ui.ActionBar.p6):void");
     }
 
     @Override
-    public void c(int i10, b2.c1 c1Var) {
+    public void c(int i10, b2.b1 b1Var) {
         int i11;
         p0 p0Var = (p0) this.e;
-        n1 n1Var = p0Var.f18180g.f18056t;
-        if (n1Var.o0(20)) {
+        n1 n1Var = p0Var.h.f12754t;
+        if (n1Var.n0(20)) {
             i11 = 4;
         } else {
             i11 = 0;
         }
-        if (p0Var.f18191s != i11) {
-            p0Var.f18191s = i11;
-            ((n4.n) p0Var.f18185m.f18695b).f18678a.setFlags(i11 | 3);
+        if (p0Var.f12889t != i11) {
+            p0Var.f12889t = i11;
+            ((n4.l) p0Var.f12883n.f13526a).f13510a.setFlags(i11 | 3);
         }
-        p0Var.O(n1Var);
+        p0Var.p0(n1Var);
     }
 
     @Override
     public void e(int i10, p1 p1Var) {
-        Bundle bundle = p1Var.f18200c;
+        Bundle bundle = p1Var.f12898c;
         Bundle bundle2 = Bundle.EMPTY;
         if (!bundle2.isEmpty()) {
             if (bundle.isEmpty()) {
@@ -56,11 +61,11 @@ public final class n0 implements k9.t, v {
                 bundle = bundle3;
             }
         }
-        n4.s sVar = ((p0) this.e).f18185m;
-        String str = p1Var.f18199b;
-        sVar.getClass();
+        n4.q qVar = ((p0) this.e).f12883n;
+        String str = p1Var.f12897b;
+        qVar.getClass();
         if (!TextUtils.isEmpty(str)) {
-            ((n4.n) sVar.f18695b).f18678a.sendSessionEvent(str, bundle);
+            ((n4.l) qVar.f13526a).f13510a.sendSessionEvent(str, bundle);
             return;
         }
         throw new IllegalArgumentException("event cannot be null or empty");
@@ -69,58 +74,99 @@ public final class n0 implements k9.t, v {
     @Override
     public void f(int i10, s1 s1Var, boolean z10, boolean z11, int i11) {
         p0 p0Var = (p0) this.e;
-        p0Var.O(p0Var.f18180g.f18056t);
+        p0Var.p0(p0Var.h.f12754t);
     }
 
     @Override
     public void i(Throwable th2) {
-        if (this != ((p0) ((n0) this.e).e).f18190r) {
+        if (this != ((p0) ((n0) this.e).e).f12888s) {
             return;
         }
         e2.a.l("MediaSessionLegacyStub", "Failed to load bitmap: " + th2.getMessage());
     }
 
-    public void k() {
+    public void k(long j10, float f7) {
+        File file = (File) this.f12864b;
+        x20 x20Var = (x20) this.f12863a;
+        if (!x20Var.W) {
+            if (j10 < 0) {
+                j10 = file.length();
+            }
+            long j11 = j10;
+            if (!x20Var.Y && this.d == j11) {
+                return;
+            }
+            this.d = j11;
+            MediaController mediaController = (MediaController) this.e;
+            jf jfVar = (jf) this.f12865c;
+            String[] strArr = MediaController.U1;
+            x20 x20Var2 = jfVar.f16271b;
+            boolean z10 = x20Var2.X;
+            if (z10) {
+                x20Var2.X = false;
+            }
+            org.telegram.messenger.i0.g3(new yd(mediaController, false, false, jfVar, file, f7, 0L, z10, j11));
+        }
+    }
+
+    public void l() {
+        ((a8) this.f12865c).dismiss();
+        this.d = System.currentTimeMillis();
+    }
+
+    public void m() {
         b2.f fVar;
         p0 p0Var = (p0) this.e;
-        n1 n1Var = p0Var.f18180g.f18056t;
+        n1 n1Var = p0Var.h.f12754t;
         n1Var.J().getClass();
-        n4.s sVar = p0Var.f18185m;
-        if (n1Var.o0(21)) {
+        n4.q qVar = p0Var.f12883n;
+        if (n1Var.n0(21)) {
             fVar = n1Var.H();
         } else {
-            fVar = b2.f.f3180i;
+            fVar = b2.f.f2027i;
         }
-        ((n4.n) sVar.f18695b).f18678a.setPlaybackToLocal(fVar.b());
+        ((n4.l) qVar.f13526a).f13510a.setPlaybackToLocal(fVar.b());
     }
 
-    public void l(b2.p0 p0Var) {
+    public void n(b2.p0 p0Var) {
         p0 p0Var2 = (p0) this.e;
-        n4.s sVar = p0Var2.f18185m;
-        r();
+        n4.q qVar = p0Var2.f12883n;
+        u();
         if (p0Var == null) {
-            ((n4.n) sVar.f18695b).f18678a.setRatingType(0);
+            ((n4.l) qVar.f13526a).f13510a.setRatingType(0);
         } else {
-            ((n4.n) sVar.f18695b).f18678a.setRatingType(o.e(p0Var.d.f3415i));
+            ((n4.l) qVar.f13526a).f13510a.setRatingType(o.e(p0Var.d.f2252i));
         }
-        p0Var2.O(p0Var2.f18180g.f18056t);
+        p0Var2.p0(p0Var2.h.f12754t);
     }
 
-    public void m(int r3, m4.n1 r4, m4.n1 r5) {
-        throw new UnsupportedOperationException("Method not decompiled: m4.n0.m(int, m4.n1, m4.n1):void");
+    public void o(int r3, m4.n1 r4, m4.n1 r5) {
+        throw new UnsupportedOperationException("Method not decompiled: m4.n0.o(int, m4.n1, m4.n1):void");
     }
 
-    public void n(b2.s0 s0Var) {
+    @Override
+    public void onSuccess(Object obj) {
+        Bitmap bitmap = (Bitmap) obj;
+        p0 p0Var = (p0) ((n0) this.e).e;
+        if (this != p0Var.f12888s) {
+            return;
+        }
+        p0.f0(p0Var.f12883n, o.b((b2.s0) this.f12863a, (String) this.f12864b, (Uri) this.f12865c, this.d, bitmap));
+        f0 f0Var = p0Var.h;
+        e2.l0.W(f0Var.f12749o, new z(f0Var, 1));
+    }
+
+    public void p(b2.s0 s0Var) {
         p0 p0Var = (p0) this.e;
-        n4.s sVar = p0Var.f18185m;
-        if (!TextUtils.equals(((n4.f) ((n4.w) sVar.f18696c).f18703a).f18659a.getQueueTitle(), s0Var.f3410a)) {
-            ((n4.n) sVar.f18695b).f18678a.setQueueTitle((p0Var.f18195x.a(17) && p0Var.f18180g.f18056t.s().a(17)) ? null : null);
+        n4.q qVar = p0Var.f12883n;
+        if (!TextUtils.equals(((n4.f) ((n4.u) qVar.f13527b).f13534a).f13495a.getQueueTitle(), s0Var.f2247a)) {
+            ((n4.l) qVar.f13526a).f13510a.setQueueTitle((p0Var.f12893y.a(17) && p0Var.h.f12754t.s().a(17)) ? null : null);
         }
     }
 
-    public void o(int i10) {
-        n4.s sVar = ((p0) this.e).f18185m;
-        int i11 = o.f18170a;
+    public void q(int i10) {
+        n4.q qVar = ((p0) this.e).f12883n;
+        int i11 = o.f12868a;
         int i12 = 0;
         if (i10 != 0) {
             if (i10 != 1) {
@@ -133,59 +179,58 @@ public final class n0 implements k9.t, v {
                 i12 = 1;
             }
         }
-        n4.n nVar = (n4.n) sVar.f18695b;
-        if (nVar.f18684j != i12) {
-            nVar.f18684j = i12;
-            synchronized (nVar.d) {
-                for (int beginBroadcast = nVar.f18681f.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
+        n4.l lVar = (n4.l) qVar.f13526a;
+        if (lVar.f13516j != i12) {
+            lVar.f13516j = i12;
+            synchronized (lVar.d) {
+                for (int beginBroadcast = lVar.f13513f.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
                     try {
-                        ((n4.b) nVar.f18681f.getBroadcastItem(beginBroadcast)).onRepeatModeChanged(i12);
+                        ((n4.b) lVar.f13513f.getBroadcastItem(beginBroadcast)).c(i12);
                     } catch (RemoteException | SecurityException e) {
                         e2.a.d("MediaSessionCompat", "Dead object in setRepeatMode.", e);
                     }
                 }
-                nVar.f18681f.finishBroadcast();
+                lVar.f13513f.finishBroadcast();
             }
         }
     }
 
-    @Override
-    public void onSuccess(Object obj) {
-        Bitmap bitmap = (Bitmap) obj;
-        p0 p0Var = (p0) ((n0) this.e).e;
-        if (this != p0Var.f18190r) {
-            return;
-        }
-        p0.E(p0Var.f18185m, o.b(this.f18165a, this.f18166b, this.f18167c, this.d, bitmap));
-        f0 f0Var = p0Var.f18180g;
-        e2.n0.W(f0Var.f18051o, new z(f0Var, 1));
-    }
-
-    public void p(boolean z10) {
-        n4.s sVar = ((p0) this.e).f18185m;
-        int i10 = o.f18170a;
-        n4.n nVar = (n4.n) sVar.f18695b;
-        if (nVar.f18685k != z10) {
-            nVar.f18685k = z10 ? 1 : 0;
-            synchronized (nVar.d) {
-                for (int beginBroadcast = nVar.f18681f.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
+    public void r(boolean z10) {
+        n4.q qVar = ((p0) this.e).f12883n;
+        int i10 = o.f12868a;
+        n4.l lVar = (n4.l) qVar.f13526a;
+        if (lVar.f13517k != z10) {
+            lVar.f13517k = z10 ? 1 : 0;
+            synchronized (lVar.d) {
+                for (int beginBroadcast = lVar.f13513f.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
                     try {
-                        ((n4.b) nVar.f18681f.getBroadcastItem(beginBroadcast)).h(z10 ? 1 : 0);
+                        ((n4.b) lVar.f13513f.getBroadcastItem(beginBroadcast)).i(z10 ? 1 : 0);
                     } catch (RemoteException | SecurityException e) {
                         e2.a.d("MediaSessionCompat", "Dead object in setShuffleMode.", e);
                     }
                 }
-                nVar.f18681f.finishBroadcast();
+                lVar.f13513f.finishBroadcast();
             }
         }
     }
 
-    public void q(b2.p1 p1Var) {
-        s(p1Var);
-        r();
+    public void s(b2.o1 o1Var) {
+        v(o1Var);
+        u();
     }
 
-    public void r() {
+    public void t(int i10) {
+        org.telegram.ui.ActionBar.b1 b1Var = (org.telegram.ui.ActionBar.b1) this.f12864b;
+        if (System.currentTimeMillis() - this.d < 200) {
+            org.telegram.messenger.i0.g3(new d3(this, i10, 26));
+        } else if (i10 == 0) {
+            b1Var.setVisibility(8);
+        } else {
+            b1Var.setVisibility(0);
+        }
+    }
+
+    public void u() {
         String str;
         Uri uri;
         long j10;
@@ -193,39 +238,39 @@ public final class n0 implements k9.t, v {
         b2.s0 s0Var;
         Uri uri3;
         p0 p0Var = (p0) this.e;
-        f0 f0Var = p0Var.f18180g;
-        n1 n1Var = f0Var.f18056t;
+        f0 f0Var = p0Var.h;
+        n1 n1Var = f0Var.f12754t;
         b2.p0 S0 = n1Var.S0();
         b2.s0 U0 = n1Var.U0();
         long j11 = -9223372036854775807L;
-        if ((!n1Var.o0(16) || !n1Var.P0()) && n1Var.o0(16)) {
+        if ((!n1Var.n0(16) || !n1Var.P0()) && n1Var.n0(16)) {
             j11 = n1Var.getDuration();
         }
         if (S0 != null) {
-            str = S0.f3344a;
+            str = S0.f2181a;
         } else {
             str = "";
         }
         String str2 = str;
         Bitmap bitmap = null;
-        if (S0 != null && (uri3 = S0.f3347f.f3266a) != null) {
+        if (S0 != null && (uri3 = S0.f2184f.f2100a) != null) {
             uri = uri3;
         } else {
             uri = null;
         }
-        if (Objects.equals(this.f18165a, U0) && Objects.equals(this.f18166b, str2) && Objects.equals(this.f18167c, uri) && this.d == j11) {
+        if (Objects.equals((b2.s0) this.f12863a, U0) && Objects.equals((String) this.f12864b, str2) && Objects.equals((Uri) this.f12865c, uri) && this.d == j11) {
             return;
         }
-        this.f18166b = str2;
-        this.f18167c = uri;
-        this.f18165a = U0;
+        this.f12864b = str2;
+        this.f12865c = uri;
+        this.f12863a = U0;
         this.d = j11;
-        k9.y t10 = f0Var.f18049m.t(U0);
-        if (t10 != null) {
-            p0Var.f18190r = null;
-            if (t10.isDone()) {
+        j9.y a2 = f0Var.f12747m.a(U0);
+        if (a2 != null) {
+            p0Var.f12888s = null;
+            if (a2.isDone()) {
                 try {
-                    bitmap = (Bitmap) qd.a(t10);
+                    bitmap = (Bitmap) p8.a(a2);
                 } catch (CancellationException | ExecutionException e) {
                     e2.a.l("MediaSessionLegacyStub", "Failed to load bitmap: " + e.getMessage());
                 }
@@ -235,56 +280,48 @@ public final class n0 implements k9.t, v {
                 s0Var = U0;
                 n0 n0Var = new n0(this, s0Var, str2, uri2, j10);
                 str2 = str2;
-                p0Var.f18190r = n0Var;
-                Handler handler = f0Var.f18048l;
+                p0Var.f12888s = n0Var;
+                Handler handler = f0Var.f12746l;
                 Objects.requireNonNull(handler);
-                t10.a(new k9.u(0, t10, n0Var), new i2.h0(handler, 1));
-                p0.E(p0Var.f18185m, o.b(s0Var, str2, uri2, j10, bitmap));
+                a2.a(new j9.u(0, a2, n0Var), new i2.g0(handler, 1));
+                p0.f0(p0Var.f12883n, o.b(s0Var, str2, uri2, j10, bitmap));
             }
         }
         j10 = j11;
         uri2 = uri;
         s0Var = U0;
-        p0.E(p0Var.f18185m, o.b(s0Var, str2, uri2, j10, bitmap));
+        p0.f0(p0Var.f12883n, o.b(s0Var, str2, uri2, j10, bitmap));
     }
 
-    public void s(b2.p1 p1Var) {
+    public void v(b2.o1 o1Var) {
         p0 p0Var = (p0) this.e;
-        f0 f0Var = p0Var.f18180g;
-        n1 n1Var = f0Var.f18056t;
-        if (p0Var.f18195x.a(17) && n1Var.s().a(17) && !p1Var.p()) {
-            int i10 = o.f18170a;
+        f0 f0Var = p0Var.h;
+        n1 n1Var = f0Var.f12754t;
+        if (p0Var.f12893y.a(17) && n1Var.s().a(17) && !o1Var.p()) {
+            int i10 = o.f12868a;
             ArrayList arrayList = new ArrayList();
-            b2.o1 o1Var = new b2.o1();
-            for (int i11 = 0; i11 < p1Var.o(); i11++) {
-                arrayList.add(p1Var.m(i11, o1Var, 0L).f3327c);
+            b2.n1 n1Var2 = new b2.n1();
+            for (int i11 = 0; i11 < o1Var.o(); i11++) {
+                arrayList.add(o1Var.m(i11, n1Var2, 0L).f2139c);
             }
             ArrayList arrayList2 = new ArrayList();
-            ai.e0 e0Var = new ai.e0(this, new AtomicInteger(0), arrayList, arrayList2, 29);
+            ag.q0 q0Var = new ag.q0(this, new AtomicInteger(0), arrayList, arrayList2, 10);
             for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                byte[] bArr = ((b2.p0) arrayList.get(i12)).d.f3417k;
+                byte[] bArr = ((b2.p0) arrayList.get(i12)).d.f2254k;
                 if (bArr == null) {
                     arrayList2.add(null);
-                    e0Var.run();
+                    q0Var.run();
                 } else {
-                    k9.y H = f0Var.f18049m.H(bArr);
-                    arrayList2.add(H);
-                    Handler handler = f0Var.f18048l;
+                    j9.y w9 = f0Var.f12747m.w(bArr);
+                    arrayList2.add(w9);
+                    Handler handler = f0Var.f12746l;
                     Objects.requireNonNull(handler);
-                    H.a(e0Var, new i2.h0(handler, 1));
+                    w9.a(q0Var, new i2.g0(handler, 1));
                 }
             }
             return;
         }
-        p0.D(p0Var.f18185m, null);
-    }
-
-    public n0(n0 n0Var, b2.s0 s0Var, String str, Uri uri, long j10) {
-        this.e = n0Var;
-        this.f18165a = s0Var;
-        this.f18166b = str;
-        this.f18167c = uri;
-        this.d = j10;
+        p0.e0(p0Var.f12883n, null);
     }
 
     @Override
@@ -303,11 +340,34 @@ public final class n0 implements k9.t, v {
     public void j(int i10, t1 t1Var) {
     }
 
+    public n0(p0 p0Var) {
+        this.e = p0Var;
+        this.f12863a = b2.s0.L;
+        this.f12864b = "";
+        this.d = -9223372036854775807L;
+    }
+
+    public n0(n0 n0Var, b2.s0 s0Var, String str, Uri uri, long j10) {
+        this.e = n0Var;
+        this.f12863a = s0Var;
+        this.f12864b = str;
+        this.f12865c = uri;
+        this.d = j10;
+    }
+
+    public n0(MediaController mediaController, x20 x20Var, File file, jf jfVar) {
+        this.e = mediaController;
+        this.f12863a = x20Var;
+        this.f12864b = file;
+        this.f12865c = jfVar;
+        this.d = 0L;
+    }
+
     @Override
     public void d(int i10, int i11, int i12) {
     }
 
     @Override
-    public void h(int i10, l1 l1Var, b2.c1 c1Var, boolean z10, boolean z11) {
+    public void h(int i10, l1 l1Var, b2.b1 b1Var, boolean z10, boolean z11) {
     }
 }

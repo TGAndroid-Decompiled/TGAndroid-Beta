@@ -1,5 +1,5 @@
 package kotlin.jvm.internal;
-public abstract class g extends b implements f, yd.e {
+public abstract class g extends b implements f, pd.e {
     private final int arity;
     private final int flags;
 
@@ -8,8 +8,8 @@ public abstract class g extends b implements f, yd.e {
     }
 
     @Override
-    public yd.b computeReflected() {
-        q.f16669a.getClass();
+    public pd.b computeReflected() {
+        q.f11445a.getClass();
         return this;
     }
 
@@ -23,7 +23,7 @@ public abstract class g extends b implements f, yd.e {
                 return true;
             }
             return false;
-        } else if (!(obj instanceof yd.e)) {
+        } else if (!(obj instanceof pd.e)) {
             return false;
         } else {
             return obj.equals(compute());
@@ -71,7 +71,7 @@ public abstract class g extends b implements f, yd.e {
     }
 
     public String toString() {
-        yd.b compute = compute();
+        pd.b compute = compute();
         if (compute != this) {
             return compute.toString();
         }
@@ -82,10 +82,10 @@ public abstract class g extends b implements f, yd.e {
     }
 
     @Override
-    public yd.e getReflected() {
-        yd.b compute = compute();
+    public pd.e getReflected() {
+        pd.b compute = compute();
         if (compute != this) {
-            return (yd.e) compute;
+            return (pd.e) compute;
         }
         throw new Error("Kotlin reflection implementation is not found at runtime. Make sure you have kotlin-reflect.jar in the classpath");
     }

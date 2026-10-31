@@ -1,7 +1,5 @@
 package m;
 
-import a8.ce;
-import a8.kc;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
@@ -13,30 +11,31 @@ import android.util.AttributeSet;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.widget.MultiAutoCompleteTextView;
-public final class w extends MultiAutoCompleteTextView implements u0.k {
+import v7.r7;
+public final class w extends MultiAutoCompleteTextView implements u0.l {
     public static final int[] d = {16843126};
-    public final e2.c f17872a;
-    public final w0 f17873b;
-    public final y f17874c;
+    public final e2.c f12565a;
+    public final w0 f12566b;
+    public final y f12567c;
 
     public w(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 2130968624);
-        c3.a(context);
-        b3.a(this, getContext());
-        k6.c D = k6.c.D(getContext(), attributeSet, d, 2130968624);
-        if (((TypedArray) D.f16406c).hasValue(0)) {
-            setDropDownBackgroundDrawable(D.w(0));
+        b3.a(context);
+        a3.a(this, getContext());
+        li.k G = li.k.G(getContext(), attributeSet, d, 2130968624);
+        if (((TypedArray) G.f12101c).hasValue(0)) {
+            setDropDownBackgroundDrawable(G.w(0));
         }
-        D.E();
+        G.I();
         e2.c cVar = new e2.c(this);
-        this.f17872a = cVar;
-        cVar.f(attributeSet, 2130968624);
+        this.f12565a = cVar;
+        cVar.k(attributeSet, 2130968624);
         w0 w0Var = new w0(this);
-        this.f17873b = w0Var;
+        this.f12566b = w0Var;
         w0Var.f(attributeSet, 2130968624);
         w0Var.b();
         y yVar = new y(this);
-        this.f17874c = yVar;
+        this.f12567c = yVar;
         yVar.b(attributeSet, 2130968624);
         KeyListener keyListener = getKeyListener();
         if (!(keyListener instanceof NumberKeyListener)) {
@@ -58,69 +57,69 @@ public final class w extends MultiAutoCompleteTextView implements u0.k {
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        e2.c cVar = this.f17872a;
+        e2.c cVar = this.f12565a;
         if (cVar != null) {
             cVar.b();
         }
-        w0 w0Var = this.f17873b;
+        w0 w0Var = this.f12566b;
         if (w0Var != null) {
             w0Var.b();
         }
     }
 
     public ColorStateList getSupportBackgroundTintList() {
-        e2.c cVar = this.f17872a;
+        e2.c cVar = this.f12565a;
         if (cVar != null) {
-            return cVar.d();
+            return cVar.i();
         }
         return null;
     }
 
     public PorterDuff.Mode getSupportBackgroundTintMode() {
-        e2.c cVar = this.f17872a;
+        e2.c cVar = this.f12565a;
         if (cVar != null) {
-            return cVar.e();
+            return cVar.j();
         }
         return null;
     }
 
     public ColorStateList getSupportCompoundDrawablesTintList() {
-        return this.f17873b.d();
+        return this.f12566b.d();
     }
 
     public PorterDuff.Mode getSupportCompoundDrawablesTintMode() {
-        return this.f17873b.e();
+        return this.f12566b.e();
     }
 
     @Override
     public final InputConnection onCreateInputConnection(EditorInfo editorInfo) {
         InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
-        ce.a(editorInfo, onCreateInputConnection, this);
-        return this.f17874c.c(onCreateInputConnection, editorInfo);
+        w7.s.a(editorInfo, onCreateInputConnection, this);
+        return this.f12567c.c(onCreateInputConnection, editorInfo);
     }
 
     @Override
     public void setBackgroundDrawable(Drawable drawable) {
         super.setBackgroundDrawable(drawable);
-        e2.c cVar = this.f17872a;
+        e2.c cVar = this.f12565a;
         if (cVar != null) {
-            cVar.g();
+            cVar.l();
         }
     }
 
     @Override
     public void setBackgroundResource(int i10) {
         super.setBackgroundResource(i10);
-        e2.c cVar = this.f17872a;
+        e2.c cVar = this.f12565a;
         if (cVar != null) {
-            cVar.h(i10);
+            cVar.m(i10);
         }
     }
 
     @Override
     public final void setCompoundDrawables(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
         super.setCompoundDrawables(drawable, drawable2, drawable3, drawable4);
-        w0 w0Var = this.f17873b;
+        w0 w0Var = this.f12566b;
         if (w0Var != null) {
             w0Var.b();
         }
@@ -129,7 +128,7 @@ public final class w extends MultiAutoCompleteTextView implements u0.k {
     @Override
     public final void setCompoundDrawablesRelative(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
         super.setCompoundDrawablesRelative(drawable, drawable2, drawable3, drawable4);
-        w0 w0Var = this.f17873b;
+        w0 w0Var = this.f12566b;
         if (w0Var != null) {
             w0Var.b();
         }
@@ -137,42 +136,42 @@ public final class w extends MultiAutoCompleteTextView implements u0.k {
 
     @Override
     public void setDropDownBackgroundResource(int i10) {
-        setDropDownBackgroundDrawable(kc.b(getContext(), i10));
+        setDropDownBackgroundDrawable(r7.b(getContext(), i10));
     }
 
     public void setEmojiCompatEnabled(boolean z10) {
-        this.f17874c.d(z10);
+        this.f12567c.d(z10);
     }
 
     @Override
     public void setKeyListener(KeyListener keyListener) {
-        super.setKeyListener(this.f17874c.a(keyListener));
+        super.setKeyListener(this.f12567c.a(keyListener));
     }
 
     public void setSupportBackgroundTintList(ColorStateList colorStateList) {
-        e2.c cVar = this.f17872a;
+        e2.c cVar = this.f12565a;
         if (cVar != null) {
-            cVar.l(colorStateList);
+            cVar.q(colorStateList);
         }
     }
 
     public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
-        e2.c cVar = this.f17872a;
+        e2.c cVar = this.f12565a;
         if (cVar != null) {
-            cVar.m(mode);
+            cVar.r(mode);
         }
     }
 
     @Override
     public void setSupportCompoundDrawablesTintList(ColorStateList colorStateList) {
-        w0 w0Var = this.f17873b;
+        w0 w0Var = this.f12566b;
         w0Var.l(colorStateList);
         w0Var.b();
     }
 
     @Override
     public void setSupportCompoundDrawablesTintMode(PorterDuff.Mode mode) {
-        w0 w0Var = this.f17873b;
+        w0 w0Var = this.f12566b;
         w0Var.m(mode);
         w0Var.b();
     }
@@ -180,7 +179,7 @@ public final class w extends MultiAutoCompleteTextView implements u0.k {
     @Override
     public final void setTextAppearance(Context context, int i10) {
         super.setTextAppearance(context, i10);
-        w0 w0Var = this.f17873b;
+        w0 w0Var = this.f12566b;
         if (w0Var != null) {
             w0Var.g(context, i10);
         }

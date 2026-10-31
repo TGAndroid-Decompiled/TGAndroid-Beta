@@ -1,26 +1,21 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
-public final class ja implements Runnable {
-    public final int f20422a;
-    public final MessagesController f20423b;
-    public final TLRPC.User f20424c;
+import android.view.MotionEvent;
+public final class ja {
+    public final int f16230a;
+    public final fg.i f16231b;
 
-    public ja(MessagesController messagesController, TLRPC.User user, int i10) {
-        this.f20422a = i10;
-        this.f20423b = messagesController;
-        this.f20424c = user;
+    public ja(fg.i iVar, int i10) {
+        this.f16230a = i10;
+        this.f16231b = iVar;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f20422a) {
+    public final Boolean a(Object obj) {
+        switch (this.f16230a) {
             case 0:
-                this.f20423b.lambda$processUpdateArray$414(this.f20424c);
-                return;
+                return fg.i.a(this.f16231b, (MotionEvent) obj);
             default:
-                this.f20423b.lambda$loadFullUser$70(this.f20424c);
-                return;
+                return fg.i.b(this.f16231b, (MotionEvent) obj);
         }
     }
 }

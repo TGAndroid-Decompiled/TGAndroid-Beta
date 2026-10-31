@@ -1,31 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.widget.LinearLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class x4 extends LinearLayout {
-    public boolean f34659a;
-    public final nd0 f34660b;
+import org.telegram.tgnet.TLRPC;
+public final class x4 implements c5 {
+    public final int f32311a;
+    public final f5 f32312b;
 
-    public x4(Context context, nd0 nd0Var) {
-        super(context);
-        this.f34660b = nd0Var;
-        this.f34659a = false;
+    public x4(f5 f5Var, int i10) {
+        this.f32311a = i10;
+        this.f32312b = f5Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        this.f34659a = true;
-        this.f34660b.getLayoutParams().height = AndroidUtilities.dp(42.0f) * 8;
-        this.f34659a = false;
-        super.onMeasure(i10, i11);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f34659a) {
-            return;
+    public final void a(TLRPC.Document document) {
+        switch (this.f32311a) {
+            case 0:
+                f5 f5Var = this.f32312b;
+                f5Var.e = document;
+                f5Var.i(false);
+                return;
+            default:
+                f5 f5Var2 = this.f32312b;
+                f5Var2.e = document;
+                f5Var2.i(false);
+                return;
         }
-        super.requestLayout();
     }
 }

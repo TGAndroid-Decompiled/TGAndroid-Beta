@@ -1,53 +1,92 @@
 package bi;
 
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.TopicsController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class x2 implements RequestDelegate {
-    public final int f5667a;
-    public final long f5668b;
-    public final long f5669c;
-    public final Object d;
-    public final Object e;
+import android.view.View;
+public final class x2 implements Runnable {
+    public final int f3447a;
+    public final d4 f3448b;
+    public final a f3449c;
+    public final int d;
 
-    public x2(Object obj, Object obj2, long j10, long j11, int i10) {
-        this.f5667a = i10;
-        this.d = obj;
-        this.e = obj2;
-        this.f5668b = j10;
-        this.f5669c = j11;
+    public x2(d4 d4Var, a aVar, int i10, int i11) {
+        this.f3447a = i11;
+        this.f3448b = d4Var;
+        this.f3449c = aVar;
+        this.d = i10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f5667a) {
+    public final void run() {
+        View C1;
+        View C12;
+        switch (this.f3447a) {
             case 0:
-                h7.F0(this.f5668b, this.f5669c, (h7) this.d, (Utilities.Callback) this.e, tLObject, tL_error);
+                d4 d4Var = this.f3448b;
+                a aVar = this.f3449c;
+                if (aVar == null) {
+                    d4Var.getClass();
+                    C1 = null;
+                } else {
+                    C1 = d4Var.C1(aVar);
+                }
+                if (C1 instanceof q6) {
+                    q6 q6Var = (q6) C1;
+                    q6Var.B();
+                    q6Var.getEditText().setSelection(Math.min(this.d, q6Var.getEditText().length()));
+                    return;
+                }
                 return;
             case 1:
-                ((MediaDataController) this.d).lambda$getMediaCounts$129((int[]) this.e, this.f5668b, this.f5669c, tLObject, tL_error);
+                d4 d4Var2 = this.f3448b;
+                a aVar2 = this.f3449c;
+                if (aVar2 == null) {
+                    d4Var2.getClass();
+                    C12 = null;
+                } else {
+                    C12 = d4Var2.C1(aVar2);
+                }
+                if (C12 instanceof q6) {
+                    q6 q6Var2 = (q6) C12;
+                    q6Var2.B();
+                    q6Var2.getEditText().setSelection(Math.min(this.d, q6Var2.getEditText().length()));
+                    return;
+                }
                 return;
             case 2:
-                ((MediaDataController) this.d).lambda$loadPinnedMessageInternal$164(this.f5668b, this.f5669c, (TLRPC.TL_channels_getMessages) this.e, tLObject, tL_error);
+                View C13 = this.f3448b.C1(this.f3449c);
+                if (C13 instanceof q6) {
+                    q6 q6Var3 = (q6) C13;
+                    q6Var3.B();
+                    q6Var3.getEditText().setSelection(Math.max(0, Math.min(this.d, q6Var3.getEditText().length())));
+                    return;
+                }
                 return;
             case 3:
-                ((MessagesController) this.d).lambda$requestContactToken$482((Utilities.Callback) this.e, this.f5668b, this.f5669c, tLObject, tL_error);
+                View C14 = this.f3448b.C1(this.f3449c);
+                if (C14 instanceof q6) {
+                    q6 q6Var4 = (q6) C14;
+                    q6Var4.B();
+                    q6Var4.getEditText().setSelection(Math.max(0, Math.min(this.d, q6Var4.getEditText().length())));
+                    return;
+                }
+                return;
+            case 4:
+                View C15 = this.f3448b.C1(this.f3449c);
+                if (C15 instanceof q6) {
+                    q6 q6Var5 = (q6) C15;
+                    q6Var5.B();
+                    q6Var5.getEditText().setSelection(Math.max(0, Math.min(this.d, q6Var5.getEditText().length())));
+                    return;
+                }
                 return;
             default:
-                ((TopicsController) this.d).lambda$getTopicRepliesCount$30((TLRPC.TL_forumTopic) this.e, this.f5668b, this.f5669c, tLObject, tL_error);
+                View C16 = this.f3448b.C1(this.f3449c);
+                if (C16 instanceof q6) {
+                    q6 q6Var6 = (q6) C16;
+                    q6Var6.B();
+                    q6Var6.getEditText().setSelection(Math.max(0, Math.min(this.d, q6Var6.getEditText().length())));
+                    return;
+                }
                 return;
         }
-    }
-
-    public x2(MediaDataController mediaDataController, long j10, long j11, TLRPC.TL_channels_getMessages tL_channels_getMessages) {
-        this.f5667a = 2;
-        this.d = mediaDataController;
-        this.f5668b = j10;
-        this.f5669c = j11;
-        this.e = tL_channels_getMessages;
     }
 }

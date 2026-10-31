@@ -1,16 +1,11 @@
 package rf;
-
-import android.net.Uri;
-import d6.l;
 public final class f {
-    public final String f47387a;
-    public final l f47388b;
-    public final Uri f47389c;
-    public final String d;
-    public final int e;
-    public final int f47390f;
+    public final long f46529a;
+    public final je.b f46530b = new je.b();
+    public final je.b f46531c = new je.b();
+    public je.b d;
 
-    public f(rf.e r8) {
-        throw new UnsupportedOperationException("Method not decompiled: rf.f.<init>(rf.e):void");
+    public f(long j10) {
+        this.f46529a = j10;
     }
 }

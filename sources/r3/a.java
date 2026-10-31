@@ -1,26 +1,26 @@
 package r3;
 
 import a1.g;
-import a8.yb;
-import e2.n0;
+import e2.l0;
 import j$.util.Objects;
 import java.util.Locale;
+import v7.t6;
 public final class a {
-    public final long f47307a;
-    public final long f47308b;
-    public final int f47309c;
+    public final long f46291a;
+    public final long f46292b;
+    public final int f46293c;
 
-    public a(long j10, long j11, int i10) {
+    public a(long j10, int i10, long j11) {
         boolean z10;
         if (j10 < j11) {
             z10 = true;
         } else {
             z10 = false;
         }
-        yb.g(z10);
-        this.f47307a = j10;
-        this.f47308b = j11;
-        this.f47309c = i10;
+        t6.f(z10);
+        this.f46291a = j10;
+        this.f46292b = j11;
+        this.f46293c = i10;
     }
 
     public final boolean equals(Object obj) {
@@ -29,7 +29,7 @@ public final class a {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f47307a == aVar.f47307a && this.f47308b == aVar.f47308b && this.f47309c == aVar.f47309c) {
+            if (this.f46291a == aVar.f46291a && this.f46292b == aVar.f46292b && this.f46293c == aVar.f46293c) {
                 return true;
             }
         }
@@ -37,16 +37,16 @@ public final class a {
     }
 
     public final int hashCode() {
-        return Objects.hash(Long.valueOf(this.f47307a), Long.valueOf(this.f47308b), Integer.valueOf(this.f47309c));
+        return Objects.hash(Long.valueOf(this.f46291a), Long.valueOf(this.f46292b), Integer.valueOf(this.f46293c));
     }
 
     public final String toString() {
-        String str = n0.f9691a;
+        String str = l0.f6165a;
         Locale locale = Locale.US;
-        StringBuilder t10 = g.t(this.f47307a, "Segment: startTimeMs=", ", endTimeMs=");
-        t10.append(this.f47308b);
-        t10.append(", speedDivisor=");
-        t10.append(this.f47309c);
-        return t10.toString();
+        StringBuilder s10 = g.s(this.f46291a, "Segment: startTimeMs=", ", endTimeMs=");
+        s10.append(this.f46292b);
+        s10.append(", speedDivisor=");
+        s10.append(this.f46293c);
+        return s10.toString();
     }
 }

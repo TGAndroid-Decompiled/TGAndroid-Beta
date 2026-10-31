@@ -1,45 +1,66 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.util.SparseArray;
-public final class j8 extends AnimatorListenerAdapter {
-    public final m8 f40460a;
-    public final float f40461b;
-    public final float f40462c;
-    public final float d;
-    public final int e;
-    public final boolean f40463f;
-    public final k8 h;
+import android.view.View;
+public final class j8 implements View.OnClickListener {
+    public final int f38454a;
+    public final boolean[] f38455b;
 
-    public j8(k8 k8Var, m8 m8Var, float f7, float f10, float f11, int i10, boolean z10) {
-        this.h = k8Var;
-        this.f40460a = m8Var;
-        this.f40461b = f7;
-        this.f40462c = f10;
-        this.d = f11;
-        this.e = i10;
-        this.f40463f = z10;
+    public j8(int i10, boolean[] zArr) {
+        this.f38454a = i10;
+        this.f38455b = zArr;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        float f7 = this.f40461b;
-        m8 m8Var = this.f40460a;
-        m8Var.f41349a = f7;
-        m8Var.f41350b = this.f40462c;
-        m8Var.f41351c = this.d;
-        this.h.invalidate();
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        k8 k8Var = this.h;
-        SparseArray sparseArray = k8Var.v;
-        int i10 = this.e;
-        sparseArray.remove(i10);
-        if (!this.f40463f) {
-            k8Var.f40684w.remove(i10);
+    public final void onClick(View view) {
+        switch (this.f38454a) {
+            case 0:
+                boolean[] zArr = this.f38455b;
+                boolean z10 = !zArr[0];
+                zArr[0] = z10;
+                ((org.telegram.ui.Cells.c2) view).c(z10, true);
+                return;
+            case 1:
+                boolean[] zArr2 = this.f38455b;
+                boolean z11 = !zArr2[1];
+                zArr2[1] = z11;
+                ((org.telegram.ui.Cells.c2) view).c(z11, true);
+                return;
+            case 2:
+                boolean[] zArr3 = this.f38455b;
+                boolean z12 = !zArr3[0];
+                zArr3[0] = z12;
+                ((org.telegram.ui.Cells.c2) view).c(z12, true);
+                return;
+            case 3:
+                boolean[] zArr4 = this.f38455b;
+                boolean z13 = !zArr4[0];
+                zArr4[0] = z13;
+                ((org.telegram.ui.Cells.c2) view).c(z13, true);
+                return;
+            case 4:
+                if (view.isEnabled()) {
+                    boolean[] zArr5 = this.f38455b;
+                    boolean z14 = !zArr5[0];
+                    zArr5[0] = z14;
+                    ((org.telegram.ui.Cells.c2) view).c(z14, true);
+                    return;
+                }
+                return;
+            case 5:
+                boolean[] zArr6 = this.f38455b;
+                boolean z15 = !zArr6[0];
+                zArr6[0] = z15;
+                ((org.telegram.ui.Cells.c2) view).c(z15, true);
+                return;
+            default:
+                if (view.isEnabled()) {
+                    boolean[] zArr7 = this.f38455b;
+                    boolean z16 = !zArr7[0];
+                    zArr7[0] = z16;
+                    ((org.telegram.ui.Cells.c2) view).c(z16, true);
+                    return;
+                }
+                return;
         }
     }
 }

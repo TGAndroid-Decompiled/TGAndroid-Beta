@@ -1,18 +1,28 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
-public final class zf0 implements Utilities.Callback3 {
-    public final int f46258a;
-    public final NotificationCenter.NotificationCenterDelegate f46259b;
+import android.view.View;
+public final class zf0 implements Runnable {
+    public final kg0 f44146a;
 
-    public zf0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f46258a = i10;
-        this.f46259b = notificationCenterDelegate;
+    public zf0(kg0 kg0Var) {
+        this.f44146a = kg0Var;
     }
 
     @Override
-    public final void run(java.lang.Object r18, java.lang.Object r19, java.lang.Object r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.zf0.run(java.lang.Object, java.lang.Object, java.lang.Object):void");
+    public final void run() {
+        kg0 kg0Var = this.f44146a;
+        if (kg0Var.f38796b == null) {
+            return;
+        }
+        for (int i10 = 0; i10 < kg0Var.f38796b.getChildCount(); i10++) {
+            View childAt = kg0Var.f38796b.getChildAt(i10);
+            if (childAt instanceof hg0) {
+                hg0 hg0Var = (hg0) childAt;
+                if (hg0Var.I) {
+                    hg0Var.b(hg0Var.f37958n, hg0Var.f37959r);
+                }
+            }
+        }
+        org.telegram.messenger.i0.h3(this, 500L);
     }
 }

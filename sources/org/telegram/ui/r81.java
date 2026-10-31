@@ -1,78 +1,60 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-public final class r81 implements Runnable {
-    public final int f42889a;
-    public final y91 f42890b;
-    public final ArrayList f42891c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.ViewGroup;
+public final class r81 extends AnimatorListenerAdapter {
+    public final int f41174a;
+    public final m91 f41175b;
 
-    public r81(y91 y91Var, ArrayList arrayList, int i10) {
-        this.f42889a = i10;
-        this.f42890b = y91Var;
-        this.f42891c = arrayList;
+    public r81(m91 m91Var, int i10) {
+        this.f41174a = i10;
+        this.f41175b = m91Var;
     }
 
     @Override
-    public final void run() {
-        boolean z10;
-        switch (this.f42889a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f41174a) {
             case 0:
-                y91 y91Var = this.f42890b;
-                di.z6 z6Var = y91Var.C0;
-                z6Var.getClass();
-                ArrayList arrayList = this.f42891c;
-                int size = arrayList.size();
-                int i10 = 0;
-                while (true) {
-                    if (i10 < size) {
-                        Object obj = arrayList.get(i10);
-                        i10++;
-                        if (!z6Var.f9493j.containsKey((Integer) obj)) {
-                            z10 = true;
-                        }
-                    } else {
-                        z10 = false;
+                super.onAnimationEnd(animator);
+                m91 m91Var = this.f41175b;
+                m91Var.f39603y0.invalidate();
+                m91Var.f39600x0[1].setVisibility(8);
+                m91Var.f39550d2 = null;
+                return;
+            case 1:
+                this.f41175b.C0 = null;
+                return;
+            case 2:
+                m91 m91Var2 = this.f41175b;
+                if (m91Var2.E0.getTag() == null) {
+                    m91Var2.E0.setVisibility(4);
+                }
+                m91Var2.I0 = null;
+                return;
+            case 3:
+                m91 m91Var3 = this.f41175b;
+                if (m91Var3.F0.getTag() == null) {
+                    m91Var3.F0.setVisibility(4);
+                }
+                m91Var3.J0 = null;
+                return;
+            case 4:
+                m91 m91Var4 = this.f41175b;
+                ic icVar = m91Var4.f39566i2;
+                if (icVar != null) {
+                    if (icVar.getParent() != null) {
+                        ((ViewGroup) m91Var4.f39566i2.getParent()).removeView(m91Var4.f39566i2);
                     }
+                    m91Var4.f39566i2 = null;
                 }
-                if (!z6Var.q(0, arrayList, z10)) {
-                    y91Var.i0();
-                    y91Var.n0();
-                    return;
-                }
+                m91Var4.f39572k2 = null;
+                super.onAnimationEnd(animator);
                 return;
             default:
-                y91 y91Var2 = this.f42890b;
-                ArrayList arrayList2 = y91Var2.f45935v0;
-                ArrayList arrayList3 = y91Var2.f45934u0;
-                int i11 = 0;
-                y91Var2.f45942z0 = false;
-                ArrayList arrayList4 = this.f42891c;
-                if (!arrayList4.isEmpty()) {
-                    int size2 = arrayList4.size();
-                    for (int i12 = 0; i12 < size2; i12++) {
-                        MessageObject messageObject = (MessageObject) arrayList4.get(i12);
-                        int i13 = y91Var2.f45932s0.get(messageObject.getId(), -1);
-                        if (i13 >= 0 && ((v91) arrayList3.get(i13)).b() == messageObject.getId()) {
-                            ((v91) arrayList3.get(i13)).f44217b = messageObject;
-                        }
-                    }
-                    arrayList2.clear();
-                    int size3 = arrayList3.size();
-                    while (true) {
-                        if (i11 < size3) {
-                            v91 v91Var = (v91) arrayList3.get(i11);
-                            if (v91Var.f44217b == null) {
-                                y91Var2.f45930r0 = v91Var.b();
-                            } else {
-                                arrayList2.add(v91Var);
-                                i11++;
-                            }
-                        }
-                    }
-                    y91Var2.n0();
-                    y91Var2.S.setItemAnimator(null);
-                    y91Var2.B0.f();
+                m91 m91Var5 = this.f41175b;
+                if (!m91Var5.f39583q1.a()) {
+                    m91Var5.S1.setVisibility(8);
                     return;
                 }
                 return;

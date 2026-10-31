@@ -1,16 +1,10 @@
 package bc;
 
-import y7.ca;
-import y7.ea;
-public final class d {
-    public final e f3841a;
-    public final sb.d f3842b;
-    public final ca f3843c;
-
-    public d(e eVar, sb.d dVar) {
-        ca b10 = ea.b();
-        this.f3841a = eVar;
-        this.f3842b = dVar;
-        this.f3843c = b10;
+import java.io.Serializable;
+import java.util.Comparator;
+public final class d implements Comparator, Serializable {
+    @Override
+    public final int compare(Object obj, Object obj2) {
+        return Float.compare(((c) obj).f2642c, ((c) obj2).f2642c);
     }
 }

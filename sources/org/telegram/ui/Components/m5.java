@@ -1,19 +1,17 @@
 package org.telegram.ui.Components;
 
+import android.text.Layout;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-public final class m5 implements Runnable {
-    public final int f30407a;
-    public final p5 f30408b;
-    public final ArrayList f30409c;
+public final class m5 {
+    public Layout f28286a;
+    public final ArrayList f28287b = new ArrayList();
 
-    public m5(p5 p5Var, ArrayList arrayList, int i10) {
-        this.f30407a = i10;
-        this.f30408b = p5Var;
-        this.f30409c = arrayList;
+    public m5(WeakReference weakReference, Layout layout) {
+        this.f28286a = layout;
     }
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.m5.run():void");
+    public final void a() {
+        this.f28287b.size();
     }
 }

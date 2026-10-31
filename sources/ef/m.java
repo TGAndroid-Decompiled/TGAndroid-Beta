@@ -1,13 +1,8 @@
 package ef;
+public final class m extends ff.a {
+    public int d;
 
-import a8.bc;
-public final class m extends p {
-    public String f9933g;
-    public String h;
-    public String f9934i;
-
-    @Override
-    public final void a(bc bcVar) {
-        bcVar.v(this);
+    public final String toString() {
+        return a1.g.q(new StringBuilder("mp3[pos="), this.f7055b, "]");
     }
 }

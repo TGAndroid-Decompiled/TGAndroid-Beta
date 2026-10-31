@@ -1,0 +1,27 @@
+package v7;
+
+import java.util.Map;
+public final class i implements ja.d {
+    public static final i f50467b = new i(0);
+    public static final i f50468c = new i(1);
+    public final int f50469a;
+
+    public i(int i10) {
+        this.f50469a = i10;
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        switch (this.f50469a) {
+            case 0:
+                Map.Entry entry = (Map.Entry) obj;
+                ja.e eVar = (ja.e) obj2;
+                eVar.d(j.f50477g, entry.getKey());
+                eVar.d(j.h, entry.getValue());
+                return;
+            default:
+                ja.e eVar2 = (ja.e) obj2;
+                throw new RuntimeException("Couldn't find encoder for type ".concat(String.valueOf(obj.getClass().getCanonicalName())));
+        }
+    }
+}

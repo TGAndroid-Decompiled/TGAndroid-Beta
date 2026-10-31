@@ -1,56 +1,87 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.TimeInterpolator;
-import android.app.Activity;
-import android.transition.TransitionManager;
-import android.transition.TransitionSet;
+import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.d71;
-import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.kb1;
-public final class k extends FrameLayout {
-    public final j f33983a;
-    public final TransitionSet f33984b;
-    public boolean f33985c;
+import org.telegram.messenger.v3;
+import org.telegram.messenger.z20;
+import org.telegram.ui.b50;
+import org.telegram.ui.e50;
+public abstract class k extends FrameLayout {
+    public int f31498a;
+    public e50 f31499b;
+    public r f31500c;
+    public v3 d;
+    public boolean e;
+    public final boolean f31501f;
 
-    public k(Activity activity) {
-        super(activity);
-        this.f33985c = false;
-        setWillNotDraw(false);
-        j jVar = new j(activity);
-        this.f33983a = jVar;
-        addView(jVar, kb1.i(52, 52, 5));
-        TransitionSet transitionSet = new TransitionSet();
-        this.f33984b = transitionSet;
-        transitionSet.setOrdering(0);
-        transitionSet.addTransition(new org.telegram.ui.ActionBar.i(1));
-        transitionSet.setDuration(500L);
-        transitionSet.setInterpolator((TimeInterpolator) ds.f27530f);
+    public k(Context context, boolean z10) {
+        super(context);
+        this.f31501f = z10;
     }
 
-    public final void a(View.OnClickListener onClickListener, boolean z10) {
-        if (this.f33985c) {
+    public float getItemHeight() {
+        int measuredHeight;
+        e50 e50Var = this.f31499b;
+        if (e50Var != null) {
+            measuredHeight = e50Var.F();
+        } else {
+            measuredHeight = getMeasuredHeight();
+        }
+        return measuredHeight;
+    }
+
+    public v3 getParticipant() {
+        return this.d;
+    }
+
+    public r getRenderer() {
+        return this.f31500c;
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.e = true;
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.e = false;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        float f7;
+        int i12;
+        float f10;
+        if (this.f31501f) {
+            ((View) getParent()).getMeasuredWidth();
+            super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(this.f31499b.F(), 1073741824));
             return;
         }
-        this.f33985c = true;
-        if (z10) {
-            TransitionManager.beginDelayedTransition(this, this.f33984b);
+        if (b50.f35991w5) {
+            f7 = 3.0f;
+        } else {
+            f7 = 2.0f;
         }
-        j jVar = this.f33983a;
-        jVar.v = 255;
-        jVar.f33973n = -1;
-        jVar.f33975s = 0;
-        jVar.f33974r = AndroidUtilities.dp(8.0f);
-        ViewGroup.LayoutParams layoutParams = jVar.getLayoutParams();
-        layoutParams.width = -1;
-        jVar.setLayoutParams(layoutParams);
-        AndroidUtilities.runOnUIThread(new d71(14, this, onClickListener), 500L);
+        int A = z20.A(14.0f, 2, org.telegram.messenger.i0.f16026q.x);
+        if (b50.f35991w5) {
+            i12 = -org.telegram.messenger.i0.L(90.0f);
+        } else {
+            i12 = 0;
+        }
+        float f11 = A + i12;
+        if (b50.f35992x5) {
+            f10 = f11 / 2.0f;
+        } else {
+            f10 = f11 / f7;
+        }
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((int) (f10 + org.telegram.messenger.i0.L(4.0f)), 1073741824));
     }
 
-    public j getEndCloseView() {
-        return this.f33983a;
+    public void setRenderer(r rVar) {
+        this.f31500c = rVar;
     }
 }

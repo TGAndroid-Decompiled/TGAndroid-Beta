@@ -1,112 +1,116 @@
 package bi;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ds;
-public final class o5 extends Drawable {
-    public final Paint f5173a;
-    public final LinearGradient[] f5174b;
-    public final Matrix f5175c;
-    public final org.telegram.ui.Components.h6 d;
-    public final Path e;
-    public final td f5176f;
-    public int f5177g;
-    public int h;
+import android.graphics.Rect;
+import android.text.Layout;
+import org.telegram.ui.Cells.u9;
+public final class o5 implements u9 {
+    public final int f3267a;
+    public final Object f3268b;
+    public final int f3269c;
+    public final int d;
 
-    public o5() {
-        Paint paint = new Paint(1);
-        Paint paint2 = new Paint(1);
-        this.f5173a = new Paint(1);
-        this.f5174b = new LinearGradient[2];
-        this.f5175c = new Matrix();
-        this.d = new org.telegram.ui.Components.h6(1.0f, new a3.d(this, 26), 0L, 420L, ds.h);
-        this.e = new Path();
-        this.f5176f = new td(1, 45);
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint.setColor(117440511);
-        paint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
-        paint2.setStyle(style);
-        paint2.setColor(301989887);
-        paint2.setStrokeWidth(AndroidUtilities.dpf2(0.6666667f));
-    }
-
-    public final void a(int i10, int i11) {
-        if (this.f5177g == i10 && this.h == i11) {
-            return;
-        }
-        LinearGradient[] linearGradientArr = this.f5174b;
-        linearGradientArr[0] = linearGradientArr[1];
-        this.f5177g = i10;
-        this.h = i11;
-        linearGradientArr[1] = new LinearGradient(0.0f, 0.0f, 100.0f, 0.0f, new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        this.d.d(0.0f, true);
-        invalidateSelf();
+    public o5(Object obj, int i10, int i11, int i12) {
+        this.f3267a = i12;
+        this.f3268b = obj;
+        this.f3269c = i10;
+        this.d = i11;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        AndroidUtilities.rectTmp.set(getBounds());
-        float dp = AndroidUtilities.dp(24.0f);
-        int i10 = 0;
-        float d = this.d.d(1.0f, false);
-        while (true) {
-            LinearGradient[] linearGradientArr = this.f5174b;
-            if (i10 < linearGradientArr.length) {
-                if (linearGradientArr[i10] != null) {
-                    float pow = (float) Math.pow(1.0f - Math.abs(i10 - d), 0.5d);
-                    if (pow > 0.0f) {
-                        Matrix matrix = this.f5175c;
-                        matrix.reset();
-                        RectF rectF = AndroidUtilities.rectTmp;
-                        matrix.postScale(rectF.width() / 100.0f, 1.0f);
-                        linearGradientArr[i10].setLocalMatrix(matrix);
-                        LinearGradient linearGradient = linearGradientArr[i10];
-                        Paint paint = this.f5173a;
-                        paint.setShader(linearGradient);
-                        paint.setAlpha((int) (pow * 255.0f));
-                        canvas.drawRoundRect(rectF, dp, dp, paint);
-                    }
-                }
-                i10++;
-            } else {
-                Path path = this.e;
-                path.rewind();
-                RectF rectF2 = AndroidUtilities.rectTmp;
-                path.addRoundRect(rectF2, dp, dp, Path.Direction.CW);
-                canvas.save();
-                canvas.clipPath(path);
-                td tdVar = this.f5176f;
-                tdVar.g(rectF2);
-                tdVar.h = 30.0f;
-                tdVar.d();
-                tdVar.a(canvas, org.telegram.ui.ActionBar.y6.o1(0.6f, -1));
-                invalidateSelf();
-                canvas.restore();
-                AndroidUtilities.drawStroke(canvas, rectF2, dp);
-                return;
-            }
+    public final Layout a() {
+        switch (this.f3267a) {
+            case 0:
+                return (Layout) this.f3268b;
+            case 1:
+                return (Layout) this.f3268b;
+            case 2:
+                return (Layout) this.f3268b;
+            default:
+                return ((u9) this.f3268b).a();
         }
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
+    public final Rect c() {
+        switch (this.f3267a) {
+            case 0:
+                return null;
+            case 1:
+                return null;
+            case 2:
+                return null;
+            default:
+                return null;
+        }
     }
 
     @Override
-    public final void setAlpha(int i10) {
+    public final CharSequence getPrefix() {
+        switch (this.f3267a) {
+            case 0:
+                return null;
+            case 1:
+                return null;
+            case 2:
+                return null;
+            default:
+                return ((u9) this.f3268b).getPrefix();
+        }
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final int getRow() {
+        switch (this.f3267a) {
+            case 0:
+                return 0;
+            case 1:
+                return 0;
+            case 2:
+                return 1;
+            default:
+                return ((u9) this.f3268b).getRow();
+        }
+    }
+
+    @Override
+    public final CharSequence getText() {
+        switch (this.f3267a) {
+            case 0:
+                return ((Layout) this.f3268b).getText();
+            case 1:
+                return ((Layout) this.f3268b).getText();
+            case 2:
+                return ((Layout) this.f3268b).getText();
+            default:
+                return ((u9) this.f3268b).getText();
+        }
+    }
+
+    @Override
+    public final int getX() {
+        switch (this.f3267a) {
+            case 0:
+                return this.f3269c;
+            case 1:
+                return this.f3269c;
+            case 2:
+                return this.f3269c;
+            default:
+                return ((u9) this.f3268b).getX() + this.f3269c;
+        }
+    }
+
+    @Override
+    public final int getY() {
+        switch (this.f3267a) {
+            case 0:
+                return this.d;
+            case 1:
+                return this.d;
+            case 2:
+                return this.d;
+            default:
+                return ((u9) this.f3268b).getY() + this.d;
+        }
     }
 }

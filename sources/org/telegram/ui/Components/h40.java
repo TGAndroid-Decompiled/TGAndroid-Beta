@@ -1,99 +1,211 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class h40 extends bb {
-    public final LinearLayout X;
-    public k71 Y;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.opengl.GLES20;
+import android.opengl.GLUtils;
+import java.nio.ByteBuffer;
+import java.nio.FloatBuffer;
+public final class h40 {
+    public final int f26613a;
+    public final int f26614b;
+    public final FloatBuffer f26617g;
+    public final FloatBuffer h;
+    public final int[] f26620k;
+    public final b4.b f26615c = new b4.b(2131624178);
+    public final b4.b d = new b4.b(2131624181);
+    public final f40 e = new f40();
+    public final g40 f26616f = new g40();
+    public int f26618i = 0;
+    public final int[] f26619j = new int[1];
 
-    public h40(Activity activity, org.telegram.ui.ActionBar.u6 u6Var, TLRPC.User user, TLObject tLObject, org.telegram.ui.zp zpVar) {
-        super(activity, null, false, false, 1, u6Var);
-        fixNavigationBar();
-        LinearLayout linearLayout = new LinearLayout(activity);
-        this.X = linearLayout;
-        linearLayout.setOrientation(1);
-        linearLayout.setClipChildren(false);
-        linearLayout.setClipToPadding(false);
-        FrameLayout frameLayout = new FrameLayout(activity);
-        org.telegram.ui.yz0 P = P(activity, AndroidUtilities.dp(60.0f), user);
-        org.telegram.ui.yz0 P2 = P(activity, AndroidUtilities.dp(60.0f), tLObject);
-        ImageView imageView = new ImageView(activity);
-        imageView.setImageResource(R.drawable.msg_arrow_avatar);
-        org.telegram.ui.ActionBar.f7.t(imageView, org.telegram.ui.ActionBar.y6.f23768z6, u6Var, PorterDuff.Mode.SRC_ATOP);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        LinearLayout linearLayout2 = new LinearLayout(activity);
-        linearLayout2.setOrientation(0);
-        linearLayout2.setGravity(16);
-        linearLayout2.setClipChildren(false);
-        linearLayout2.addView(P, kb1.r(60, 60));
-        linearLayout2.addView(imageView, kb1.x(24, 24, 16, 7, 0, 7, 0));
-        linearLayout2.addView(P2, kb1.r(60, 60));
-        frameLayout.addView(linearLayout2, kb1.i(-2, -2, 17));
-        linearLayout.addView(frameLayout, kb1.x(-1, -2, 1, 0, 23, 0, 19));
-        TextView textView = new TextView(activity);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setGravity(17);
-        org.telegram.ui.d3.o(R.string.GuardBotReplaceTitle, textView, 1, 20.0f);
-        int i10 = org.telegram.ui.ActionBar.y6.G6;
-        org.telegram.ui.ActionBar.f7.V(textView, i10, u6Var);
-        linearLayout.addView(textView, kb1.x(-1, -2, 17, 20, 0, 20, 6));
-        String shortName = DialogObject.getShortName(user);
-        String shortName2 = DialogObject.getShortName(tLObject);
-        TextView textView2 = new TextView(activity);
-        textView2.setGravity(17);
-        textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GuardBotReplaceMessage, shortName, shortName2)));
-        textView2.setTextSize(1, 14.0f);
-        org.telegram.ui.ActionBar.f7.V(textView2, i10, u6Var);
-        textView2.setLineSpacing(AndroidUtilities.dp(2.66f), 1.0f);
-        linearLayout.addView(textView2, kb1.x(-1, -2, 17, 24, 0, 24, 29));
-        fi.d dVar = new fi.d(activity, u6Var, true);
-        dVar.f();
-        dVar.i(LocaleController.formatString(R.string.GuardBotReplaceUseNew, shortName2), false, true);
-        dVar.setOnClickListener(new ga(18, this, zpVar));
-        linearLayout.addView(dVar, kb1.o(14.0f, 0.0f, 14.0f, 10.0f, -1, 48));
-        fi.d dVar2 = new fi.d(activity, u6Var, true);
-        dVar2.f();
-        dVar2.e();
-        dVar2.i(LocaleController.formatString(R.string.GuardBotReplaceKeepCurrent, shortName), false, true);
-        dVar2.setOnClickListener(new f0(this, 23));
-        linearLayout.addView(dVar2, kb1.o(14.0f, 0.0f, 14.0f, 14.0f, -1, 48));
-        nm0 nm0Var = this.d;
-        int i11 = this.backgroundPaddingLeft;
-        nm0Var.setPadding(i11, 0, i11, 0);
-        this.Y.O(false);
+    public h40(int i10, int i11) {
+        int i12;
+        float f7;
+        char c10;
+        int i13;
+        int i14;
+        RLottieNative rLottieNative;
+        int i15;
+        Bitmap bitmap;
+        int i16;
+        int i17;
+        Object obj;
+        int i18 = 0;
+        int[] iArr = new int[5];
+        this.f26620k = iArr;
+        this.f26613a = i10;
+        this.f26614b = i11;
+        float[] fArr = new float[232];
+        c(fArr, 0, 0.0f, 1.0f, 1.0f, 0.0f);
+        c(fArr, 8, 0.0f, 0.0f, 1.0f, 1.0f);
+        float[] fArr2 = new float[36];
+        float f10 = 1.0f;
+        d(fArr2, 0, -1.0f, 1.0f, 1.0f);
+        GLES20.glGenTextures(5, iArr, 0);
+        int i19 = 0;
+        for (int i20 = 5; i19 < i20; i20 = 5) {
+            GLES20.glBindTexture(3553, this.f26620k[i19]);
+            if (i19 < 2) {
+                i12 = 9729;
+            } else {
+                i12 = 9728;
+            }
+            GLES20.glTexParameteri(3553, 10241, i12);
+            GLES20.glTexParameteri(3553, 10240, i19 < 2 ? 9729 : 9728);
+            GLES20.glTexParameteri(3553, 10242, 33071);
+            GLES20.glTexParameteri(3553, 10243, 33071);
+            int i21 = 4;
+            if (i19 == 4) {
+                int round = Math.round(i10 * 0.2f);
+                int round2 = Math.round((i10 * 28) / 1536.0f);
+                int i22 = (round - round2) - round2;
+                Object obj2 = null;
+                RLottieNative b10 = RLottieNative.b(org.telegram.messenger.i0.y2(null, 2131624134), null, null, null);
+                Bitmap createBitmap = Bitmap.createBitmap(round, round, Bitmap.Config.ARGB_8888);
+                float f11 = f10;
+                Bitmap createBitmap2 = Bitmap.createBitmap(i22 * 8, i22 * 4, Bitmap.Config.ALPHA_8);
+                Canvas canvas = new Canvas(createBitmap2);
+                int i23 = 0;
+                while (i23 < 8) {
+                    int i24 = 0;
+                    while (i24 < i21) {
+                        int i25 = (i24 * 8) + i23;
+                        if (i25 >= 27) {
+                            obj = obj2;
+                            bitmap = createBitmap;
+                            i14 = i22;
+                            i15 = i23;
+                            rLottieNative = b10;
+                            i16 = i24;
+                            i17 = 4;
+                        } else {
+                            int i26 = (i25 * 8) + 16;
+                            i14 = i22;
+                            rLottieNative = b10;
+                            i15 = i23;
+                            bitmap = createBitmap;
+                            i16 = i24;
+                            i17 = 4;
+                            c(fArr, i26, i23 / 8.0f, i24 / 4.0f, (i23 + 1) / 8.0f, (i24 + 1) / 4.0f);
+                            rLottieNative.c(i25 * 2, bitmap, true);
+                            obj = null;
+                            canvas.drawBitmap(bitmap, (i14 * i15) - round2, (i14 * i16) - round2, (Paint) null);
+                        }
+                        i22 = i14;
+                        b10 = rLottieNative;
+                        i24 = i16 + 1;
+                        obj2 = obj;
+                        createBitmap = bitmap;
+                        i23 = i15;
+                        i21 = i17;
+                    }
+                    i23++;
+                    obj2 = obj2;
+                    i21 = i21;
+                }
+                float c11 = a1.g.c(i22, this.f26613a, 2.0f, -1.0f);
+                d(fArr2, 24, -1.0f, c11, c11);
+                GLUtils.texImage2D(3553, 0, createBitmap2, 0);
+                createBitmap2.recycle();
+                createBitmap.recycle();
+                b10.d();
+                f7 = f11;
+                c10 = 0;
+            } else {
+                float f12 = f10;
+                if (i19 == 3) {
+                    int round3 = Math.round((i10 * 372.0f) / 1536.0f);
+                    float f13 = (round3 / this.f26613a) * 2.0f;
+                    c10 = 0;
+                    f7 = f12;
+                    d(fArr2, 12, f12 - f13, f13 - 1.0f, f7);
+                    Bitmap x02 = org.telegram.messenger.i0.x0();
+                    if (x02 != null) {
+                        Bitmap createScaledBitmap = Bitmap.createScaledBitmap(x02, round3, round3, true);
+                        Bitmap extractAlpha = createScaledBitmap.extractAlpha();
+                        GLUtils.texImage2D(3553, 0, extractAlpha, 0);
+                        extractAlpha.recycle();
+                        createScaledBitmap.recycle();
+                        x02.recycle();
+                    }
+                } else {
+                    f7 = f12;
+                    c10 = 0;
+                    if (i19 == 0) {
+                        i13 = this.f26613a;
+                    } else {
+                        i13 = 48;
+                    }
+                    GLES20.glTexImage2D(3553, 0, 6408, i13, i19 == 0 ? this.f26614b : 48, 0, 6408, 5121, null);
+                }
+            }
+            i19++;
+            f10 = f7;
+            i18 = 0;
+        }
+        int i27 = i18;
+        GLES20.glBindTexture(3553, i27);
+        GLES20.glGenFramebuffers(1, this.f26619j, i27);
+        FloatBuffer g10 = org.telegram.messenger.z20.g(ByteBuffer.allocateDirect(144));
+        this.f26617g = g10;
+        g10.put(fArr2).position(i27);
+        FloatBuffer g11 = org.telegram.messenger.z20.g(ByteBuffer.allocateDirect(928));
+        this.h = g11;
+        g11.put(fArr).position(i27);
     }
 
-    public static org.telegram.ui.yz0 P(Context context, int i10, TLObject tLObject) {
-        org.telegram.ui.yz0 yz0Var = new org.telegram.ui.yz0(context);
-        yz0Var.setRoundRadius(i10 / 2);
-        j9 j9Var = new j9((org.telegram.ui.ActionBar.u6) null);
-        j9Var.p(tLObject);
-        yz0Var.setImageDrawable(j9Var);
-        yz0Var.setLayoutParams(new FrameLayout.LayoutParams(i10, i10));
-        return yz0Var;
+    public static int a(int i10, int i11) {
+        int glCreateShader = GLES20.glCreateShader(i10);
+        if (glCreateShader == 0) {
+            return 0;
+        }
+        GLES20.glShaderSource(glCreateShader, org.telegram.messenger.i0.y2(null, i11));
+        GLES20.glCompileShader(glCreateShader);
+        int[] iArr = new int[1];
+        GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
+        if (iArr[0] == 0) {
+            String glGetShaderInfoLog = GLES20.glGetShaderInfoLog(glCreateShader);
+            org.telegram.messenger.f8.d("GlUtils: compile shader error: " + glGetShaderInfoLog);
+            GLES20.glDeleteShader(glCreateShader);
+            return 0;
+        }
+        return glCreateShader;
     }
 
-    @Override
-    public final mm0 v(nm0 nm0Var) {
-        k71 k71Var = new k71(this.d, getContext(), this.currentAccount, 0, true, new d(this, 14), this.resourcesProvider);
-        this.Y = k71Var;
-        k71Var.f29878r = false;
-        return k71Var;
+    public static void c(float[] fArr, int i10, float f7, float f10, float f11, float f12) {
+        fArr[i10] = f7;
+        fArr[i10 + 1] = f12;
+        fArr[i10 + 2] = f11;
+        fArr[i10 + 3] = f12;
+        fArr[i10 + 4] = f7;
+        fArr[i10 + 5] = f10;
+        fArr[i10 + 6] = f11;
+        fArr[i10 + 7] = f10;
     }
 
-    @Override
-    public final CharSequence y() {
-        return "";
+    public static void d(float[] fArr, int i10, float f7, float f10, float f11) {
+        fArr[i10] = f7;
+        fArr[i10 + 1] = -1.0f;
+        fArr[i10 + 2] = 0.0f;
+        fArr[i10 + 3] = f11;
+        fArr[i10 + 4] = -1.0f;
+        fArr[i10 + 5] = 0.0f;
+        fArr[i10 + 6] = f7;
+        fArr[i10 + 7] = f10;
+        fArr[i10 + 8] = 0.0f;
+        fArr[i10 + 9] = f11;
+        fArr[i10 + 10] = f10;
+        fArr[i10 + 11] = 0.0f;
+    }
+
+    public final void b() {
+        this.f26615c.a();
+        this.e.a();
+        this.f26616f.a();
+        this.d.a();
+        GLES20.glDeleteTextures(5, this.f26620k, 0);
+        GLES20.glDeleteFramebuffers(1, this.f26619j, 0);
     }
 }

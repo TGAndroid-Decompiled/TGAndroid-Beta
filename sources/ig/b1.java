@@ -1,61 +1,14 @@
 package ig;
+public interface b1 {
+    void d();
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class b1 implements Comparator {
-    public final ArrayList f14005a;
-    public final ArrayList f14006b;
+    void g();
 
-    public b1(ArrayList arrayList, ArrayList arrayList2) {
-        this.f14005a = arrayList;
-        this.f14006b = arrayList2;
-    }
+    void j();
 
-    public final int a(i1 i1Var) {
-        int i10 = 0;
-        int i11 = 0;
-        while (true) {
-            ArrayList arrayList = this.f14005a;
-            if (i11 >= arrayList.size()) {
-                while (true) {
-                    ArrayList arrayList2 = this.f14006b;
-                    if (i10 < Math.min(20, arrayList2.size())) {
-                        if (((TLRPC.Document) arrayList2.get(i10)).f22034id == i1Var.f14104a.f22034id) {
-                            return (arrayList2.size() - i10) + 1000000;
-                        }
-                        i10++;
-                    } else {
-                        return -1;
-                    }
-                }
-            } else if (((TLRPC.Document) arrayList.get(i11)).f22034id == i1Var.f14104a.f22034id) {
-                return i11 + 2000000;
-            } else {
-                i11++;
-            }
-        }
-    }
+    boolean k();
 
-    @Override
-    public final int compare(Object obj, Object obj2) {
-        i1 i1Var = (i1) obj;
-        i1 i1Var2 = (i1) obj2;
-        boolean isAnimatedStickerDocument = MessageObject.isAnimatedStickerDocument(i1Var.f14104a, true);
-        if (isAnimatedStickerDocument == MessageObject.isAnimatedStickerDocument(i1Var2.f14104a, true)) {
-            int a2 = a(i1Var);
-            int a10 = a(i1Var2);
-            if (a2 <= a10) {
-                if (a2 >= a10) {
-                    return 0;
-                }
-            } else {
-                return -1;
-            }
-        } else if (isAnimatedStickerDocument) {
-            return -1;
-        }
-        return 1;
-    }
+    void n();
+
+    void t();
 }

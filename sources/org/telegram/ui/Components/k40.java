@@ -1,40 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import org.telegram.messenger.AndroidUtilities;
-public final class k40 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f29855a;
-    public final m40 f29856b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class k40 extends AnimatorListenerAdapter {
+    public final int f27633a;
+    public final e50 f27634b;
 
-    public k40(m40 m40Var, int i10) {
-        this.f29855a = i10;
-        this.f29856b = m40Var;
+    public k40(e50 e50Var, int i10) {
+        this.f27633a = i10;
+        this.f27634b = e50Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        org.telegram.ui.xn xnVar;
-        bi.r1 r1Var;
-        switch (this.f29855a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f27633a) {
             case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                m40 m40Var = this.f29856b;
-                m40Var.f30382w = floatValue;
-                m40Var.e.setTranslationY(floatValue * AndroidUtilities.dp(48.0f));
-                m40Var.e.setPadding(0, 0, 0, (int) (m40Var.f30382w * AndroidUtilities.dp(48.0f)));
+                e50 e50Var = this.f27634b;
+                if (animator.equals(e50Var.K)) {
+                    e50Var.K = null;
+                    return;
+                }
+                return;
+            case 1:
+                e50 e50Var2 = this.f27634b;
+                if (e50Var2.f25668k1 != null) {
+                    e50Var2.f25668k1 = null;
+                    return;
+                }
                 return;
             default:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                m40 m40Var2 = this.f29856b;
-                m40Var2.E = floatValue2;
-                m40Var2.f30379n.setScaleX(AndroidUtilities.lerp(0.95f, 1.0f, floatValue2));
-                m40Var2.f30379n.setScaleY(AndroidUtilities.lerp(0.95f, 1.0f, m40Var2.E));
-                org.telegram.ui.ek ekVar = m40Var2.f30378f;
-                if (ekVar != null && (xnVar = ekVar.f46049a) != null && (r1Var = xnVar.X3) != null) {
-                    r1Var.setScaleX(AndroidUtilities.lerp(1.0f, 0.95f, m40Var2.E));
-                    m40Var2.f30378f.f46049a.X3.setScaleY(AndroidUtilities.lerp(1.0f, 0.95f, m40Var2.E));
+                e50 e50Var3 = this.f27634b;
+                if (animator.equals(e50Var3.f25652d0)) {
+                    e50Var3.c(true);
+                    e50Var3.f25658f1 = false;
+                    e50Var3.setVisibility(4);
+                    return;
                 }
-                m40Var2.h.setAlpha(m40Var2.E);
                 return;
         }
     }

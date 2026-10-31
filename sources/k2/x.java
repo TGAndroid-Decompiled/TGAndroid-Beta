@@ -1,9 +1,14 @@
 package k2;
 public final class x extends Exception {
-    public final boolean f16309a;
-    public final b2.x f16310b;
+    public final b2.x f10808a;
 
-    public x(int r3, int r4, int r5, int r6, b2.x r7, boolean r8, k2.n r9) {
-        throw new UnsupportedOperationException("Method not decompiled: k2.x.<init>(int, int, int, int, b2.x, boolean, k2.n):void");
+    public x(Exception exc, b2.x xVar) {
+        super(exc);
+        this.f10808a = xVar;
+    }
+
+    public x(String str, b2.x xVar) {
+        super(str);
+        this.f10808a = xVar;
     }
 }

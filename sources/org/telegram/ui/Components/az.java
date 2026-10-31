@@ -1,47 +1,160 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class az {
-    public final ArrayList f26695a = new ArrayList();
-    public final sz f26696b;
+import android.util.SparseArray;
+import android.view.View;
+import android.view.ViewGroup;
+import androidx.recyclerview.widget.RecyclerView;
+public class az extends s4.a0 {
+    public final SparseArray I;
+    public int J;
+    public int K;
+    public int L;
+    public int M;
+    public final RecyclerView N;
+    public boolean O;
+    public boolean P;
+    public final boolean Q;
+    public boolean R;
+    public int S;
+    public final boolean T;
 
-    public az(sz szVar) {
-        this.f26696b = szVar;
+    public az(int i10, tk0 tk0Var) {
+        this.I = new SparseArray();
+        this.J = -1;
+        this.P = true;
+        this.Q = true;
+        this.T = true;
+        this.N = tk0Var;
+        this.M = i10;
     }
 
-    public final void a(String str, boolean z10) {
-        sz szVar = this.f26696b;
-        int i10 = szVar.f32713c1;
-        String p10 = a1.g.p("gif_search_", str, "_");
-        if (!z10 || !szVar.f32740l0.containsKey(p10)) {
-            String str2 = str;
-            bi.d4 d4Var = new bi.d4(this, str2, z10, p10, 5);
-            ArrayList arrayList = this.f26695a;
-            if (z10) {
-                arrayList.add(p10);
-                MessagesStorage.getInstance(i10).getBotCache(p10, d4Var);
-                return;
+    @Override
+    public final void P(View view) {
+        s4.c1 T;
+        if (this.T) {
+            RecyclerView recyclerView = this.N;
+            View F = recyclerView.F(view);
+            if (F == null) {
+                T = null;
+            } else {
+                T = recyclerView.T(F);
             }
-            MessagesController messagesController = MessagesController.getInstance(i10);
-            TLObject userOrChat = messagesController.getUserOrChat(messagesController.gifSearchBot);
-            if (!(userOrChat instanceof TLRPC.User)) {
-                return;
+            if (T.b() == B() - 1) {
+                ((ViewGroup.MarginLayoutParams) ((s4.o0) view.getLayoutParams())).height = Math.max(this.J, 0);
             }
-            arrayList.add(p10);
-            TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
-            if (str2 == null) {
-                str2 = "";
-            }
-            tL_messages_getInlineBotResults.query = str2;
-            tL_messages_getInlineBotResults.bot = messagesController.getInputUser((TLRPC.User) userOrChat);
-            tL_messages_getInlineBotResults.offset = "";
-            tL_messages_getInlineBotResults.peer = new TLRPC.TL_inputPeerEmpty();
-            ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getInlineBotResults, d4Var, 2);
         }
+        super.P(view);
+    }
+
+    @Override
+    public final void Q() {
+        this.I.clear();
+        p1();
+    }
+
+    @Override
+    public final void V(RecyclerView recyclerView, int i10, int i11) {
+        p1();
+    }
+
+    @Override
+    public final void W(RecyclerView recyclerView) {
+        this.I.clear();
+        p1();
+    }
+
+    @Override
+    public final void X(RecyclerView recyclerView, int i10, int i11) {
+        p1();
+    }
+
+    @Override
+    public final void Y(RecyclerView recyclerView, int i10, int i11) {
+        p1();
+    }
+
+    @Override
+    public final void Z() {
+        p1();
+    }
+
+    @Override
+    public final void a0(RecyclerView recyclerView, int i10, int i11, Object obj) {
+        p1();
+        p1();
+    }
+
+    @Override
+    public final void d0(hf.e eVar, s4.z0 z0Var, int i10, int i11) {
+        int i12 = this.K;
+        this.L = View.MeasureSpec.getSize(i10);
+        int size = View.MeasureSpec.getSize(i11);
+        this.K = size;
+        if (i12 != size) {
+            p1();
+        }
+        super.d0(eVar, z0Var, i10, i11);
+    }
+
+    @Override
+    public final boolean e() {
+        return this.Q;
+    }
+
+    public final void p1() {
+        RecyclerView recyclerView;
+        s4.g0 adapter;
+        if (this.K <= 0 || (adapter = (recyclerView = this.N).getAdapter()) == null) {
+            return;
+        }
+        int b10 = adapter.b() - 1;
+        int i10 = 0;
+        int i11 = 0;
+        for (int i12 = this.O; i12 < b10; i12++) {
+            int d = adapter.d(i12);
+            SparseArray sparseArray = this.I;
+            s4.c1 c1Var = (s4.c1) sparseArray.get(d, null);
+            if (c1Var == null) {
+                c1Var = adapter.a(recyclerView, d);
+                View view = c1Var.f47898a;
+                sparseArray.put(d, c1Var);
+                if (view.getLayoutParams() == null) {
+                    view.setLayoutParams(n());
+                }
+            }
+            View view2 = c1Var.f47898a;
+            if (this.P) {
+                adapter.t(c1Var, i12);
+            }
+            s4.o0 o0Var = (s4.o0) view2.getLayoutParams();
+            view2.measure(s4.n0.s(d(), this.L, this.f47985k, E() + D() + ((ViewGroup.MarginLayoutParams) o0Var).leftMargin + ((ViewGroup.MarginLayoutParams) o0Var).rightMargin, ((ViewGroup.MarginLayoutParams) o0Var).width), s4.n0.s(this.Q, this.K, this.f47986l, C() + F() + ((ViewGroup.MarginLayoutParams) o0Var).topMargin + ((ViewGroup.MarginLayoutParams) o0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) o0Var).height));
+            i10 += view2.getMeasuredHeight();
+            if (i12 == 0) {
+                i11 = view2.getMeasuredHeight();
+            }
+            if (this.R) {
+                if (i10 >= this.K + i11) {
+                    break;
+                }
+            } else if (i10 >= this.K) {
+                break;
+            }
+        }
+        if (this.R) {
+            this.J = Math.max(this.S, (((this.K - i10) - this.M) - recyclerView.getPaddingBottom()) + i11);
+        } else {
+            this.J = Math.max(this.S, ((this.K - i10) - this.M) - recyclerView.getPaddingBottom());
+        }
+    }
+
+    public az(int i10, int i11, tk0 tk0Var) {
+        super(1, false);
+        this.I = new SparseArray();
+        this.J = -1;
+        this.P = true;
+        this.Q = true;
+        this.T = true;
+        this.N = tk0Var;
+        this.M = i10;
     }
 }

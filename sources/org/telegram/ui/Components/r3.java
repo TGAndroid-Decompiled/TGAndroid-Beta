@@ -1,18 +1,7 @@
 package org.telegram.ui.Components;
-
-import android.view.View;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class r3 extends y61 {
-    public final AlertDialog$Builder e;
-
-    public r3(String str, AlertDialog$Builder alertDialog$Builder) {
-        super(str, (z11) null);
-        this.e = alertDialog$Builder;
-    }
-
+public final class r3 extends ac0 {
     @Override
-    public final void onClick(View view) {
-        this.e.f22369a.N0.run();
-        super.onClick(view);
+    public final CharSequence d(int i10) {
+        return org.telegram.messenger.cd.G(i10, "Minutes", new Object[0]);
     }
 }

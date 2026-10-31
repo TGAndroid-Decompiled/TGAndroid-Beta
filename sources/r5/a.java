@@ -1,23 +1,152 @@
 package r5;
 
-import java.util.concurrent.Executor;
-import java.util.logging.Logger;
-import m5.t;
-import s4.d;
-import u5.c;
-public final class a implements b {
-    public static final Logger f47335f = Logger.getLogger(t.class.getName());
-    public final d f47336a;
-    public final Executor f47337b;
-    public final n5.d f47338c;
-    public final t5.d d;
-    public final c e;
+import android.graphics.Bitmap;
+import android.os.Looper;
+import com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver;
+import ig.b0;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashSet;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.cd;
+import org.telegram.messenger.t2;
+import org.telegram.messenger.vp;
+import org.telegram.messenger.zs;
+import org.telegram.ui.ActionBar.k2;
+import org.telegram.ui.Components.cc;
+import org.telegram.ui.Components.wb;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.jd1;
+import rf.x;
+import rh.e6;
+import rh.h8;
+import th.e5;
+import th.h4;
+import th.w0;
+import xh.m2;
+import zh.h;
+public final class a implements Runnable {
+    public final int f46319a;
 
-    public a(Executor executor, n5.d dVar, d dVar2, t5.d dVar3, c cVar) {
-        this.f47337b = executor;
-        this.f47338c = dVar;
-        this.f47336a = dVar2;
-        this.d = dVar3;
-        this.e = cVar;
+    public a(int i10) {
+        this.f46319a = i10;
+    }
+
+    @Override
+    public final void run() {
+        cc X;
+        k2 b02;
+        switch (this.f46319a) {
+            case 0:
+                int i10 = AlarmManagerSchedulerBroadcastReceiver.f4261a;
+                return;
+            case 1:
+                a5.a aVar = rf.e.B;
+                if (aVar != null) {
+                    ArrayList arrayList = null;
+                    for (int i11 = 0; i11 < rf.e.f46506y; i11++) {
+                        if (((Bitmap[]) aVar.d)[i11] != null) {
+                            if (arrayList == null) {
+                                arrayList = new ArrayList();
+                            }
+                            arrayList.add(((Bitmap[]) aVar.d)[i11]);
+                        }
+                        ((Bitmap[]) aVar.d)[i11] = null;
+                        ((x[]) aVar.f282c)[i11] = null;
+                    }
+                    if (!arrayList.isEmpty()) {
+                        Utilities.e.c(new b0(1, arrayList));
+                    }
+                    rf.e.B = null;
+                    return;
+                }
+                return;
+            case 2:
+                k2 T = LaunchActivity.T();
+                if ((T instanceof jd1) && (b02 = ((jd1) T).b0()) != null) {
+                    T = b02;
+                }
+                if (T != null) {
+                    X = cc.a0(T);
+                } else {
+                    X = cc.X();
+                }
+                wb Q = X.Q(2131624050, 36, cd.L0(2131750225, null));
+                Q.f32145t = true;
+                Q.j();
+                return;
+            case 3:
+                t2.APP_ERROR.a();
+                return;
+            case 4:
+                k2 T2 = LaunchActivity.T();
+                if (T2 != null) {
+                    T2.presentFragment(new h8());
+                    return;
+                }
+                return;
+            case 5:
+                e6[][] e6VarArr = e6.S;
+                return;
+            case 6:
+                zs.e().k(99, 512);
+                return;
+            case 7:
+                return;
+            case 8:
+                zs.e().k(175, new Object[0]);
+                return;
+            case 9:
+                w0.b();
+                return;
+            case 10:
+                w0 w0Var = w0.Z;
+                w0Var.e.invalidate();
+                if (!w0Var.e.isInLayout()) {
+                    w0Var.e.requestLayout();
+                    w0Var.d.requestLayout();
+                    w0Var.f49552f.requestLayout();
+                    return;
+                }
+                return;
+            case 11:
+                int i12 = h4.f49020n1;
+                return;
+            case 12:
+                Comparator comparator = e5.X;
+                return;
+            case 13:
+                int i13 = vh.x.f52120x0;
+                return;
+            case 14:
+                Looper myLooper = Looper.myLooper();
+                if (myLooper != null) {
+                    myLooper.quit();
+                    return;
+                }
+                return;
+            case 15:
+                return;
+            case 16:
+                vp.d1().edit().putInt("storydualhint", vp.d1().getInt("storydualhint", 0) + 1).apply();
+                return;
+            case 17:
+                HashSet hashSet = m2.f53871a1;
+                return;
+            case 18:
+                return;
+            default:
+                int i14 = h.H;
+                return;
+        }
+    }
+
+    private final void a() {
+    }
+
+    private final void b() {
+    }
+
+    private final void c() {
     }
 }

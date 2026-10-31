@@ -1,44 +1,43 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class jd implements RequestDelegate {
-    public final int f20431a = 0;
-    public final long f20432b;
-    public final int f20433c;
-    public final Object d;
-    public final Object e;
-    public final Object f20434f;
+public final class jd implements Runnable {
+    public final int f16264a;
+    public final nd f16265b;
+    public final ArrayList f16266c;
 
-    public jd(MessagesController messagesController, long j10, Utilities.Callback callback, TLRPC.User user, int i10) {
-        this.d = messagesController;
-        this.f20432b = j10;
-        this.e = callback;
-        this.f20434f = user;
-        this.f20433c = i10;
+    public jd(nd ndVar, ArrayList arrayList, int i10) {
+        this.f16264a = i10;
+        this.f16265b = ndVar;
+        this.f16266c = arrayList;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f20431a) {
+    public final void run() {
+        switch (this.f16264a) {
             case 0:
-                int i10 = this.f20433c;
-                ((MessagesController) this.d).lambda$loadFullUser$71(this.f20432b, (Utilities.Callback) this.e, (TLRPC.User) this.f20434f, i10, tLObject, tL_error);
+                nd ndVar = this.f16265b;
+                ArrayList arrayList = ndVar.f17083b;
+                ArrayList arrayList2 = this.f16266c;
+                arrayList.addAll(arrayList2);
+                for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                    md mdVar = (md) arrayList.get(i10);
+                    ndVar.f17082a.k(mdVar, mdVar.f16940a);
+                }
+                i0.g3(new jd(ndVar, arrayList2, 1));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new bi.a9((org.telegram.ui.Cells.k6) this.d, tLObject, (MessagesStorage) this.e, this.f20432b, this.f20433c, (ArrayList) this.f20434f));
+                nd ndVar2 = this.f16265b;
+                ArrayList arrayList3 = ndVar2.I;
+                ArrayList arrayList4 = this.f16266c;
+                arrayList3.addAll(arrayList4);
+                for (int i11 = 0; i11 < arrayList4.size(); i11++) {
+                    md mdVar2 = (md) arrayList4.get(i11);
+                    ndVar2.J.k(mdVar2, mdVar2.f16940a);
+                }
+                nd.q();
+                zs.e().k(280, new Object[0]);
                 return;
         }
-    }
-
-    public jd(org.telegram.ui.Cells.k6 k6Var, MessagesStorage messagesStorage, long j10, int i10, ArrayList arrayList) {
-        this.d = k6Var;
-        this.e = messagesStorage;
-        this.f20432b = j10;
-        this.f20433c = i10;
-        this.f20434f = arrayList;
     }
 }

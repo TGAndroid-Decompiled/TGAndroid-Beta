@@ -1,134 +1,35 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-import fi.e4;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
-import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.kb1;
-import org.telegram.ui.Components.y9;
-public final class r0 extends FrameLayout {
-    public final q0 f34144a;
-    public final y9 f34145b;
-    public AnimatorSet f34146c;
-    public boolean d;
-    public boolean e;
-    public final boolean f34147f;
+import org.telegram.ui.ActionBar.w5;
+import org.webrtc.RendererCommon;
+public final class r0 implements RendererCommon.RendererEvents {
+    public final s0 f31635a;
 
-    public r0(Activity activity) {
-        super(activity);
-        q0 q0Var = new q0(AndroidUtilities.dp(104.0f), AndroidUtilities.dp(111.0f), AndroidUtilities.dp(12.0f), 8);
-        this.f34144a = q0Var;
-        q0Var.b(3.0d);
-        if (!q0Var.e) {
-            invalidate();
-        }
-        q0Var.e = true;
-        y9 y9Var = new y9(activity);
-        this.f34145b = y9Var;
-        addView(y9Var, kb1.i(135, 135, 17));
-        setWillNotDraw(false);
-        AnimatorSet animatorSet = new AnimatorSet();
-        this.f34146c = animatorSet;
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this, View.SCALE_X, 1.0f, 1.05f, 1.0f, 1.05f, 1.0f), ObjectAnimator.ofFloat(this, View.SCALE_Y, 1.0f, 1.05f, 1.0f, 1.05f, 1.0f));
-        this.f34146c.setInterpolator(ds.f27531g);
-        this.f34146c.setDuration(3000L);
-        boolean isEnabled = LiteMode.isEnabled(512);
-        this.f34147f = isEnabled;
-        if (isEnabled) {
-            this.f34146c.start();
-        }
-        setClipChildren(false);
-    }
-
-    public final void a() {
-        if (this.d) {
-            return;
-        }
-        AnimatorSet animatorSet = this.f34146c;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-        }
-        this.d = true;
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f34146c = animatorSet2;
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(this, View.SCALE_X, getScaleX(), 1.05f, 1.0f), ObjectAnimator.ofFloat(this, View.SCALE_Y, getScaleY(), 1.05f, 1.0f));
-        this.f34146c.setInterpolator(ds.f27531g);
-        this.f34146c.setDuration(400L);
-        this.f34146c.start();
-    }
-
-    public final void b(boolean z10, boolean z11) {
-        if (this.e != z10) {
-            this.e = z10;
-            q0 q0Var = this.f34144a;
-            if (z10) {
-                q0Var.b(3.0d);
-            }
-            if (q0Var.h != z10) {
-                q0Var.h = z10;
-                ValueAnimator valueAnimator = q0Var.f34133j;
-                if (valueAnimator != null) {
-                    valueAnimator.removeAllUpdateListeners();
-                    q0Var.f34133j.cancel();
-                }
-                if (z10) {
-                    q0Var.f34133j = ValueAnimator.ofFloat(q0Var.f34132i, 0.0f);
-                    q0Var.f34134k = (int) (2000.0f / AndroidUtilities.screenRefreshTime);
-                } else {
-                    q0Var.f34134k = 0;
-                    q0Var.f34133j = ValueAnimator.ofFloat(q0Var.f34132i, 1.0f);
-                }
-                q0Var.f34133j.addUpdateListener(new e4(q0Var, 11));
-                if (z11) {
-                    q0Var.f34133j.setDuration(150L);
-                } else {
-                    q0Var.f34133j.setDuration(1000L);
-                }
-                q0Var.f34133j.start();
-                invalidate();
-            }
-        }
+    public r0(s0 s0Var) {
+        this.f31635a = s0Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.f34147f) {
-            q0 q0Var = this.f34144a;
-            q0Var.c();
-            q0Var.a(canvas, getWidth() / 2, getHeight() / 2, this);
+    public final void onFirstFrameRendered() {
+        s0 s0Var = this.f31635a;
+        s0Var.f31656y = true;
+        com.google.android.gms.internal.cast.o oVar = s0Var.Y;
+        if (oVar != null) {
+            oVar.run();
+            s0Var.Y = null;
         }
-        super.onDraw(canvas);
+        org.telegram.messenger.i0.g3(new w5(this, 6));
     }
 
-    public void setAmplitude(double d) {
-        if (this.e) {
-            return;
-        }
-        int i10 = (d > 1.5d ? 1 : (d == 1.5d ? 0 : -1));
-        q0 q0Var = this.f34144a;
-        if (i10 > 0) {
-            q0Var.b(d);
+    @Override
+    public final void onFrameResolutionChanged(int i10, int i11, int i12) {
+        int i13 = (i12 / 90) % 2;
+        s0 s0Var = this.f31635a;
+        if (i13 == 0) {
+            s0Var.U = Float.valueOf(i11 / i10);
         } else {
-            q0Var.b(0.0d);
+            s0Var.U = Float.valueOf(i10 / i11);
         }
-    }
-
-    public void setRoundRadius(int i10) {
-        this.f34145b.setRoundRadius(i10);
-    }
-
-    public void setShowWaves(boolean z10) {
-        q0 q0Var = this.f34144a;
-        if (q0Var.e != z10) {
-            invalidate();
-        }
-        q0Var.e = z10;
+        org.telegram.messenger.i0.g3(new i2.u(this, i10, i11, 13));
     }
 }

@@ -1,47 +1,63 @@
 package org.telegram.messenger;
 
-import android.media.browse.MediaBrowser;
+import android.content.pm.PackageManager;
+import android.media.session.MediaSession;
 import android.os.Bundle;
 import android.os.Process;
 import android.service.media.MediaBrowserService;
 import android.widget.Toast;
-import java.util.List;
+import java.util.HashSet;
 public class MusicBrowserService extends MediaBrowserService {
-    private static final String MEDIA_ID_ROOT = "__ROOT__";
-
     @Override
-    public void onCreate() {
+    public final void onCreate() {
         super.onCreate();
-        ApplicationLoader.postInitApplication();
-        setSessionToken(TelegramMediaSession.getInstance(this).getFrameworkSessionToken());
+        w0.w();
+        setSessionToken((MediaSession.Token) ((android.support.v4.media.session.u) h00.a(this).f15801b.f875b).f904c.f855b);
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
-    public MediaBrowserService.BrowserRoot onGetRoot(String str, int i10, Bundle bundle) {
-        if (str == null) {
-            return null;
+    public final MediaBrowserService.BrowserRoot onGetRoot(String str, int i10, Bundle bundle) {
+        if (str != null) {
+            if (1000 != i10 && Process.myUid() != i10) {
+                HashSet hashSet = qt.f17620a;
+                if (i10 != 1000 && i10 != Process.myUid() && !qt.f17620a.contains(str)) {
+                    PackageManager packageManager = getPackageManager();
+                    try {
+                        if (packageManager.checkPermission("android.permission.MEDIA_CONTENT_CONTROL", str) != 0) {
+                            if (packageManager.checkPermission("android.permission.BIND_NOTIFICATION_LISTENER_SERVICE", str) != 0) {
+                                return null;
+                            }
+                        }
+                    } catch (Throwable unused) {
+                        return null;
+                    }
+                }
+            }
+            h00.a(this).getClass();
+            if (h00.b()) {
+                return null;
+            }
+            h00.a(this).getClass();
+            Bundle bundle2 = new Bundle();
+            bundle2.putBoolean("android.media.browse.CONTENT_STYLE_SUPPORTED", true);
+            bundle2.putInt("android.media.browse.CONTENT_STYLE_BROWSABLE_HINT", 2);
+            bundle2.putInt("android.media.browse.CONTENT_STYLE_PLAYABLE_HINT", 1);
+            return new MediaBrowserService.BrowserRoot("__ROOT__", bundle2);
         }
-        if ((1000 != i10 && Process.myUid() != i10 && !PackageValidator.isKnownCaller(this, str, i10)) || TelegramMediaSession.getInstance(this).isPasscodeLocked()) {
-            return null;
-        }
-        return new MediaBrowserService.BrowserRoot("__ROOT__", TelegramMediaSession.getInstance(this).buildRootHints());
+        return null;
     }
 
     @Override
-    public void onLoadChildren(String str, MediaBrowserService.Result<List<MediaBrowser.MediaItem>> result) {
-        TelegramMediaSession telegramMediaSession = TelegramMediaSession.getInstance(this);
-        if (telegramMediaSession.isPasscodeLocked()) {
-            Toast.makeText(getApplicationContext(), LocaleController.getString(R.string.EnterYourTelegramPasscode), 1).show();
+    public final void onLoadChildren(String str, MediaBrowserService.Result result) {
+        h00 a2 = h00.a(this);
+        a2.getClass();
+        if (h00.b()) {
+            Toast.makeText(getApplicationContext(), cd.L0(2131751111, null), 1).show();
             stopSelf();
             result.detach();
             return;
         }
         result.detach();
-        telegramMediaSession.loadBrowseChildren(str, new g0(result, 8));
+        a2.c(str, new s1(result, 11));
     }
 }

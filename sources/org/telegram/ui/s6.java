@@ -1,47 +1,38 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.messenger.FileLog;
-public final class s6 extends org.telegram.ui.ActionBar.k3 {
-    public final int f43243b = 1;
+import android.util.SparseArray;
+public final class s6 {
+    public long f41380a;
+    public int f41381b;
+    public long f41382c;
+    public final SparseArray d = new SparseArray();
 
-    public s6(int i10, Context context, org.telegram.ui.ActionBar.u6 u6Var, boolean z10) {
-        super(i10, context, u6Var, z10);
+    public s6(long j10) {
+        this.f41380a = j10;
     }
 
-    @Override
-    public boolean canDismissWithTouchOutside() {
-        switch (this.f43243b) {
-            case 0:
-                return false;
-            default:
-                return super.canDismissWithTouchOutside();
+    public final void a(sh.a aVar, int i10) {
+        SparseArray sparseArray = this.d;
+        t6 t6Var = (t6) sparseArray.get(i10, null);
+        if (t6Var == null) {
+            t6Var = new t6();
+            sparseArray.put(i10, t6Var);
         }
+        long j10 = aVar.f48494c;
+        t6Var.f41741a += j10;
+        this.f41382c += j10;
+        this.f41381b++;
+        t6Var.f41742b.add(aVar);
     }
 
-    @Override
-    public void onThemeColorsChanged() {
-        switch (this.f43243b) {
-            case 1:
-                super.onThemeColorsChanged();
-                try {
-                    int themedColor = getThemedColor(org.telegram.ui.ActionBar.y6.f23428h5);
-                    if (this.navBarColor != themedColor) {
-                        fixNavigationBar(themedColor);
-                        return;
-                    }
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
-            default:
-                super.onThemeColorsChanged();
-                return;
+    public final void b(sh.a aVar) {
+        t6 t6Var = (t6) this.d.get(aVar.d, null);
+        if (t6Var != null && t6Var.f41742b.remove(aVar)) {
+            long j10 = t6Var.f41741a;
+            long j11 = aVar.f48494c;
+            t6Var.f41741a = j10 - j11;
+            this.f41382c -= j11;
+            this.f41381b--;
         }
-    }
-
-    public s6(Context context, boolean z10) {
-        super(context, z10);
     }
 }

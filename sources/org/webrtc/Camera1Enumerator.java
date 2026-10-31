@@ -4,7 +4,6 @@ import android.hardware.Camera;
 import android.os.SystemClock;
 import java.util.ArrayList;
 import java.util.List;
-import org.telegram.ui.Components.b10;
 import org.webrtc.CameraEnumerationAndroid;
 import org.webrtc.CameraVideoCapturer;
 public class Camera1Enumerator implements CameraEnumerator {
@@ -61,13 +60,13 @@ public class Camera1Enumerator implements CameraEnumerator {
                     Logging.e("Camera1Enumerator", "getSupportedFormats() failed on camera index " + i10, e);
                 }
                 long elapsedRealtime2 = SystemClock.elapsedRealtime();
-                StringBuilder k10 = ic.a.k(i10, "Get supported formats for camera index ", " done. Time spent: ");
-                k10.append(elapsedRealtime2 - elapsedRealtime);
-                k10.append(" ms.");
-                Logging.d("Camera1Enumerator", k10.toString());
+                StringBuilder l4 = i0.a.l(i10, "Get supported formats for camera index ", " done. Time spent: ");
+                l4.append(elapsedRealtime2 - elapsedRealtime);
+                l4.append(" ms.");
+                Logging.d("Camera1Enumerator", l4.toString());
                 return arrayList;
-            } catch (RuntimeException e10) {
-                Logging.e("Camera1Enumerator", "Open camera failed on camera index " + i10, e10);
+            } catch (RuntimeException e7) {
+                Logging.e("Camera1Enumerator", "Open camera failed on camera index " + i10, e7);
                 ArrayList arrayList2 = new ArrayList();
                 if (camera != null) {
                     camera.release();
@@ -89,7 +88,7 @@ public class Camera1Enumerator implements CameraEnumerator {
                 return i10;
             }
         }
-        throw new IllegalArgumentException(b10.j("No such camera: ", str));
+        throw new IllegalArgumentException(sc.e.h("No such camera: ", str));
     }
 
     private static Camera.CameraInfo getCameraInfo(int i10) {

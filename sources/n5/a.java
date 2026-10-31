@@ -1,62 +1,43 @@
 package n5;
+public final class a implements zc.a {
+    public static final Object f13550c = new Object();
+    public volatile b f13551a;
+    public volatile Object f13552b;
 
-import a1.g;
-import m1.j;
-public final class a {
-    public final int f18716a;
-    public final long f18717b;
-
-    public a(int i10, long j10) {
-        if (i10 != 0) {
-            this.f18716a = i10;
-            this.f18717b = j10;
-            return;
+    public static zc.a a(b bVar) {
+        if (bVar instanceof a) {
+            return bVar;
         }
-        throw new NullPointerException("Null status");
+        ?? obj = new Object();
+        obj.f13552b = f13550c;
+        obj.f13551a = bVar;
+        return obj;
     }
 
-    public final boolean equals(Object obj) {
-        if (obj != this) {
-            if (obj instanceof a) {
-                a aVar = (a) obj;
-                if (j.b(this.f18716a, aVar.f18716a) && this.f18717b == aVar.f18717b) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        long j10 = this.f18717b;
-        return ((j.c(this.f18716a) ^ 1000003) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)));
-    }
-
-    public final String toString() {
-        String str;
-        StringBuilder sb2 = new StringBuilder("BackendResponse{status=");
-        int i10 = this.f18716a;
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 != 3) {
-                    if (i10 != 4) {
-                        str = "null";
-                    } else {
-                        str = "INVALID_PAYLOAD";
+    @Override
+    public final Object get() {
+        Object obj;
+        Object obj2 = this.f13552b;
+        Object obj3 = f13550c;
+        if (obj2 == obj3) {
+            synchronized (this) {
+                try {
+                    obj = this.f13552b;
+                    if (obj == obj3) {
+                        obj = this.f13551a.get();
+                        Object obj4 = this.f13552b;
+                        if (obj4 != obj3 && obj4 != obj) {
+                            throw new IllegalStateException("Scoped provider was invoked recursively returning different results: " + obj4 + " & " + obj + ". This is likely due to a circular dependency.");
+                        }
+                        this.f13552b = obj;
+                        this.f13551a = null;
                     }
-                } else {
-                    str = "FATAL_ERROR";
+                } catch (Throwable th2) {
+                    throw th2;
                 }
-            } else {
-                str = "TRANSIENT_ERROR";
             }
-        } else {
-            str = "OK";
+            return obj;
         }
-        sb2.append(str);
-        sb2.append(", nextRequestWaitMillis=");
-        return g.r(sb2, this.f18717b, "}");
+        return obj2;
     }
 }

@@ -1,138 +1,79 @@
 package vg;
 
-import bi.k3;
-import java.io.File;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.wc;
-public final class c implements Runnable {
-    public final int f50185a = 0;
-    public final boolean f50186b;
-    public final Object f50187c;
-    public final Object d;
-    public final Object e;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Rect;
+import android.graphics.drawable.NinePatchDrawable;
+import g.y;
+import w7.k8;
+import w7.k9;
+public final class c extends k8 {
+    public NinePatchDrawable f50822c;
+    public long d;
+    public final f f50823f;
+    public final y f50820a = new Object();
+    public final Rect f50821b = new Rect();
+    public final Bitmap[] e = new Bitmap[1];
 
-    public c(wc wcVar, boolean z10, TLRPC.Chat chat, u6 u6Var) {
-        this.f50187c = wcVar;
-        this.f50186b = z10;
-        this.d = chat;
-        this.e = u6Var;
+    public c(f fVar) {
+        this.f50823f = fVar;
     }
 
     @Override
-    public final void run() {
-        String string;
+    public final void b(Canvas canvas, hi.a aVar) {
         int i10;
-        String string2;
-        int i11;
-        boolean z10;
-        File file;
-        int i12;
-        switch (this.f50185a) {
-            case 0:
-                wc wcVar = (wc) this.f50187c;
-                boolean z11 = this.f50186b;
-                TLRPC.Chat chat = (TLRPC.Chat) this.d;
-                u6 u6Var = (u6) this.e;
-                int i13 = R.raw.star_premium_2;
-                if (z11) {
-                    string = LocaleController.getString("BoostingGiveawayCreated", R.string.BoostingGiveawayCreated);
-                } else {
-                    string = LocaleController.getString("BoostingAwardsCreated", R.string.BoostingAwardsCreated);
-                }
-                if (z11) {
-                    if (ChatObject.isChannelAndNotMegaGroup(chat)) {
-                        i11 = R.string.BoostingCheckStatistic;
-                    } else {
-                        i11 = R.string.BoostingCheckStatisticGroup;
-                    }
-                    string2 = LocaleController.getString(i11);
-                } else {
-                    if (ChatObject.isChannelAndNotMegaGroup(chat)) {
-                        i10 = R.string.BoostingCheckGiftsStatistic;
-                    } else {
-                        i10 = R.string.BoostingCheckGiftsStatisticGroup;
-                    }
-                    string2 = LocaleController.getString(i10);
-                }
-                qc M = wcVar.M(string, AndroidUtilities.replaceSingleTag(string2, y6.Gi, 0, new k3(chat), u6Var), i13);
-                M.f31861j = 5000;
-                M.j();
-                return;
-            default:
-                vi.u0 u0Var = (vi.u0) this.f50187c;
-                vi.w wVar = (vi.w) this.d;
-                boolean z12 = this.f50186b;
-                vi.q0 q0Var = (vi.q0) this.e;
-                long j10 = u0Var.f50647q;
-                long nanoTime = System.nanoTime();
-                try {
-                    wVar.g();
-                    long h = wVar.h();
-                    u0Var.f50643m.b("active output finalized: size=" + wVar.f50662a.length() + ", durationMs=" + h + ", elapsedMs=" + vi.u0.f(nanoTime));
-                    u0Var.g();
-                    int i14 = (h > j10 ? 1 : (h == j10 ? 0 : -1));
-                    int i15 = 1;
-                    if (i14 > 0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    if (z12 && !z10) {
-                        try {
-                            u0Var.f50641k.execute(new vi.g0(u0Var, q0Var, wVar.f50662a, h, true));
-                            return;
-                        } catch (Exception e) {
-                            e = e;
-                            u0Var = u0Var;
-                            u0Var.f50639i.post(new vi.e0(u0Var, e, 2));
-                            return;
-                        }
-                    }
-                    File file2 = wVar.f50662a;
-                    try {
-                        synchronized (wVar) {
-                            file = file2;
-                            try {
-                                i12 = wVar.f50677s;
-                            } catch (Throwable th2) {
-                                th = th2;
-                            }
-                        }
-                        long min = Math.min(j10, h);
-                        if (!z10) {
-                            i15 = 2;
-                        }
-                        try {
-                            u0Var.t(file, i12, 0L, min, z12, i15);
-                            w7.x.c(file);
-                            return;
-                        } catch (Throwable th3) {
-                            th = th3;
-                            file = file;
-                            w7.x.c(file);
-                            throw th;
-                        }
-                    } catch (Throwable th4) {
-                        th = th4;
-                        file = file2;
-                    }
-                } catch (Exception e10) {
-                    e = e10;
-                }
+        hi.a u10 = f.u(aVar);
+        f fVar = this.f50823f;
+        if (Color.alpha(fVar.f50846s) != 255 && (u10 instanceof hi.c)) {
+            i10 = ((hi.c) u10).f7711b;
+        } else {
+            i10 = 0;
         }
+        c(canvas, i0.b.k(fVar.f50846s, i10));
     }
 
-    public c(vi.u0 u0Var, vi.w wVar, boolean z10, vi.q0 q0Var) {
-        this.f50187c = u0Var;
-        this.d = wVar;
-        this.f50186b = z10;
-        this.e = q0Var;
+    public final void c(Canvas canvas, int i10) {
+        long j10;
+        int i11;
+        f fVar = this.f50823f;
+        e eVar = fVar.M;
+        if (Color.alpha(i10) == 0 && Color.alpha(fVar.f50845r) == 0) {
+            return;
+        }
+        y yVar = this.f50820a;
+        yVar.f7257a = 0L;
+        yVar.f7258b = false;
+        yVar.a(i10);
+        yVar.a(fVar.f50845r);
+        for (float f7 : eVar.f50831b) {
+            yVar.c(f7);
+        }
+        yVar.c(fVar.P);
+        yVar.c(0.0f);
+        yVar.c(fVar.Q);
+        if (yVar.f7258b) {
+            j10 = -1;
+        } else {
+            j10 = yVar.f7257a;
+        }
+        NinePatchDrawable ninePatchDrawable = this.f50822c;
+        Rect rect = this.f50821b;
+        if (ninePatchDrawable == null || this.d != j10) {
+            this.d = j10;
+            if (Color.alpha(i10) == 255) {
+                i11 = i10;
+            } else {
+                i11 = 1;
+            }
+            NinePatchDrawable b10 = k9.b(this.e, i10, eVar.f50831b, fVar.P, fVar.f50845r, fVar.Q, i11);
+            this.f50822c = b10;
+            b10.getPadding(rect);
+        }
+        NinePatchDrawable ninePatchDrawable2 = this.f50822c;
+        Rect rect2 = eVar.f50839m;
+        ninePatchDrawable2.setBounds(rect2.left - rect.left, rect2.top - rect.top, rect2.right + rect.right, rect2.bottom + rect.bottom);
+        ninePatchDrawable2.setAlpha(fVar.f6649c);
+        ninePatchDrawable2.draw(canvas);
     }
 }

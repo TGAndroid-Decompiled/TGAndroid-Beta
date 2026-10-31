@@ -1,16 +1,16 @@
 package bb;
-public enum k implements ma.f {
+public enum k implements la.f {
     EVENT_TYPE_UNKNOWN(0),
     SESSION_START(1);
     
-    public final int f3786a;
+    public final int f2587a;
 
     k(int i10) {
-        this.f3786a = i10;
+        this.f2587a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f3786a;
+        return this.f2587a;
     }
 }

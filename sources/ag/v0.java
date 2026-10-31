@@ -1,96 +1,244 @@
 package ag;
 
-import android.graphics.Outline;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.net.Uri;
+import android.os.Build;
 import android.view.View;
-import android.view.ViewOutlineProvider;
-import org.telegram.messenger.AndroidUtilities;
-public final class v0 extends ViewOutlineProvider {
-    public final int f1385a;
+import androidx.car.app.hardware.common.CarResultStub;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.Task;
+import java.util.ArrayList;
+import java.util.Locale;
+import java.util.regex.Pattern;
+import org.telegram.messenger.cd;
+import org.telegram.messenger.vp;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.Components.a51;
+import org.telegram.ui.Components.hk0;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.TwoStepVerificationActivity;
+import org.telegram.ui.a00;
+import org.telegram.ui.ak0;
+import org.telegram.ui.bp;
+import org.telegram.ui.ea;
+import org.telegram.ui.gc1;
+import org.telegram.ui.i00;
+import org.telegram.ui.j9;
+import org.telegram.ui.ll0;
+import org.telegram.ui.vs;
+import org.telegram.ui.xj0;
+import org.telegram.ui.zo;
+import rh.e4;
+public final class v0 implements org.telegram.ui.ActionBar.u1, hk0, vs, androidx.car.app.utils.b, gc1, Continuation {
+    public final int f745a;
+    public final boolean f746b;
+    public final Object f747c;
+    public final Object d;
 
-    public v0(int i10) {
-        this.f1385a = i10;
+    public v0(Object obj, Object obj2, boolean z10, int i10) {
+        this.f745a = i10;
+        this.f747c = obj;
+        this.d = obj2;
+        this.f746b = z10;
     }
 
     @Override
-    public final void getOutline(View view, Outline outline) {
-        switch (this.f1385a) {
+    public Object a() {
+        Object lambda$onCarHardwareResult$0;
+        lambda$onCarHardwareResult$0 = ((CarResultStub) this.f747c).lambda$onCarHardwareResult$0(this.f746b, (w.b) this.d);
+        return lambda$onCarHardwareResult$0;
+    }
+
+    @Override
+    public void b(float r21, float r22, int r23, android.view.View r24) {
+        throw new UnsupportedOperationException("Method not decompiled: ag.v0.b(float, float, int, android.view.View):void");
+    }
+
+    @Override
+    public void c(TLRPC.User user) {
+        boolean z10;
+        LaunchActivity launchActivity = (LaunchActivity) this.f747c;
+        int[] iArr = (int[]) this.d;
+        Pattern pattern = LaunchActivity.D1;
+        TLRPC.UserFull a2 = vp.r1(launchActivity.O).a2(user.f19942id);
+        if (a2 != null && a2.video_calls_available) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        org.telegram.ui.Components.voip.m1.m(user, this.f746b, z10, launchActivity, a2, org.telegram.messenger.c.a(iArr[0]));
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
+        ArrayList arrayList;
+        boolean z10;
+        ArrayList arrayList2;
+        String str;
+        switch (this.f745a) {
             case 0:
-                outline.setOval(0, 0, view.getWidth(), view.getHeight());
+                x0 x0Var = (x0) this.f747c;
+                boolean z11 = this.f746b;
+                a51 a51Var = (a51) this.d;
+                if (!z11) {
+                    arrayList = x0Var.f790k;
+                } else {
+                    arrayList = x0Var.f789j;
+                }
+                arrayList.remove(Long.valueOf(a51Var.f24303x));
+                x0Var.e.run();
                 return;
             case 1:
-                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), Math.min(view.getWidth(), view.getHeight()) / 2.0f);
+                j9 j9Var = (j9) this.f747c;
+                boolean z12 = this.f746b;
+                boolean[] zArr = (boolean[]) this.d;
+                if (z12) {
+                    boolean z13 = zArr[0];
+                    TLRPC.TL_messages_deletePhoneCallHistory tL_messages_deletePhoneCallHistory = new TLRPC.TL_messages_deletePhoneCallHistory();
+                    tL_messages_deletePhoneCallHistory.revoke = z13;
+                    j9Var.getConnectionsManager().sendRequest(tL_messages_deletePhoneCallHistory, new org.telegram.messenger.voip.u0(1, j9Var, z13));
+                    j9Var.f38475y.clear();
+                    j9Var.D = false;
+                    j9Var.F = true;
+                    j9Var.f38474x.setVisibility(8);
+                    j9Var.f38468c.f30819f3.O(true);
+                } else {
+                    j9Var.getMessagesController().Z(new ArrayList(j9Var.H), null, null, 0L, 0, zArr[0], 0);
+                }
+                j9Var.i0(false);
                 return;
             case 2:
-                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(10.0f));
+                ((ea) this.f747c).f36995a.n0((TLRPC.TL_username) this.d, this.f746b, true);
                 return;
             case 3:
-                outline.setRoundRect(0, 0, view.getWidth(), AndroidUtilities.dp(29.0f) + view.getHeight(), AndroidUtilities.dp(29.0f));
+                boolean z14 = this.f746b;
+                bp bpVar = ((zo) this.f747c).f44204a;
+                bpVar.z1((TLRPC.TL_username) this.d, z14, true);
+                bpVar.f36291h3.a0();
                 return;
             case 4:
-                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), AndroidUtilities.dp(18.0f));
+                org.telegram.ui.ActionBar.k2 k2Var = (org.telegram.ui.ActionBar.k2) this.f747c;
+                TLRPC.User user = (TLRPC.User) this.d;
+                boolean z15 = this.f746b;
+                TLRPC.UserFull a2 = k2Var.getMessagesController().a2(user.f19942id);
+                if (a2 != null && a2.video_calls_available) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                org.telegram.ui.Components.voip.m1.m(user, z15, z10, k2Var.getParentActivity(), a2, k2Var.getAccountInstance());
                 return;
             case 5:
-                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), AndroidUtilities.dp(22.0f));
+            case 7:
+            default:
+                ll0 ll0Var = (ll0) this.f747c;
+                boolean z16 = this.f746b;
+                ll0Var.B1();
+                ll0Var.m1((TLRPC.TL_secureRequiredType) this.d, null, null, true, new xj0(ll0Var, 4), new ak0(ll0Var, 6), z16);
                 return;
             case 6:
-                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), AndroidUtilities.dp(22.0f));
-                return;
-            case 7:
-                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), AndroidUtilities.dp(22.0f));
+                i00 i00Var = (i00) this.f747c;
+                a00 a00Var = (a00) this.d;
+                boolean z17 = this.f746b;
+                int i11 = a00Var.f35499j;
+                if (i11 > 0) {
+                    i00Var.D &= ~i11;
+                } else {
+                    if (z17) {
+                        arrayList2 = i00Var.F;
+                    } else {
+                        arrayList2 = i00Var.G;
+                    }
+                    arrayList2.remove(Long.valueOf(a00Var.h));
+                }
+                i00Var.o0();
+                i00Var.B0();
+                i00Var.n0(true);
+                if (z17) {
+                    i00Var.s0(1, false);
+                    return;
+                }
                 return;
             case 8:
-                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), AndroidUtilities.dp(22.0f));
-                return;
-            case 9:
-                outline.setRoundRect(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), view.getMeasuredWidth() - AndroidUtilities.dp(1.0f), view.getMeasuredHeight() - AndroidUtilities.dp(1.0f), AndroidUtilities.dp(6.0f));
-                return;
-            case 10:
-                int i10 = AndroidUtilities.roundMessageSize;
-                outline.setOval(0, 0, i10, i10);
-                return;
-            case 11:
-                outline.setRoundRect(0, 0, view.getMeasuredWidth(), AndroidUtilities.dp(6.0f) + view.getMeasuredHeight(), AndroidUtilities.dp(6.0f));
-                return;
-            case 12:
-                outline.setRoundRect(0, 0, view.getMeasuredWidth(), AndroidUtilities.dp(6.0f) + view.getMeasuredHeight(), AndroidUtilities.dpf2(6.0f));
-                return;
-            case 13:
-                outline.setRoundRect(0, 0, view.getMeasuredWidth(), AndroidUtilities.dp(6.0f) + view.getMeasuredHeight(), AndroidUtilities.dpf2(6.0f));
-                return;
-            case 14:
-                outline.setOval(0, 0, view.getWidth(), view.getHeight());
-                return;
-            case 15:
-                outline.setOval(0, 0, view.getWidth(), view.getHeight());
-                return;
-            case 16:
-                outline.setOval(0, 0, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f));
-                return;
-            case 17:
-                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(12.0f));
-                return;
-            case 18:
-                outline.setRoundRect(0, AndroidUtilities.dp(50.0f), view.getWidth(), AndroidUtilities.dp(24.0f) + view.getHeight(), AndroidUtilities.dp(24.0f));
-                return;
-            case 19:
-                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(10.0f));
-                return;
-            case 20:
-                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), (1.0f / view.getScaleX()) * AndroidUtilities.dp(4.0f));
-                return;
-            case 21:
-                outline.setOval(0, 0, AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
-                return;
-            case 22:
-                outline.setOval(0, 0, AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
-                return;
-            case 23:
-                float dp = AndroidUtilities.dp(12.0f);
-                outline.setRoundRect(0, 0, view.getWidth(), (int) (view.getHeight() + dp), dp);
-                return;
-            default:
-                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(6.0f));
-                return;
+                boolean z18 = this.f746b;
+                String str2 = (String) this.f747c;
+                org.telegram.ui.ActionBar.k2 k2Var2 = (org.telegram.ui.ActionBar.k2) this.d;
+                try {
+                    PackageInfo packageInfo = org.telegram.messenger.w0.f19025b.getPackageManager().getPackageInfo(org.telegram.messenger.w0.f19025b.getPackageName(), 0);
+                    Locale locale = Locale.US;
+                    String str3 = packageInfo.versionName + " (" + packageInfo.versionCode + ")";
+                    Intent intent = new Intent("android.intent.action.SENDTO");
+                    intent.setData(Uri.parse("mailto:"));
+                    if (z18) {
+                        str = "recover@telegram.org";
+                    } else {
+                        str = "login@stel.com";
+                    }
+                    intent.putExtra("android.intent.extra.EMAIL", new String[]{str});
+                    if (z18) {
+                        intent.putExtra("android.intent.extra.SUBJECT", "Banned phone number: " + str2);
+                        intent.putExtra("android.intent.extra.TEXT", "I'm trying to use my mobile phone number: " + str2 + "\nBut Telegram says it's banned. Please help.\n\nApp version: " + str3 + "\nOS version: SDK " + Build.VERSION.SDK_INT + "\nDevice Name: " + Build.MANUFACTURER + Build.MODEL + "\nLocale: " + Locale.getDefault());
+                    } else {
+                        intent.putExtra("android.intent.extra.SUBJECT", "Invalid phone number: " + str2);
+                        intent.putExtra("android.intent.extra.TEXT", "I'm trying to use my mobile phone number: " + str2 + "\nBut Telegram says it's invalid. Please help.\n\nApp version: " + str3 + "\nOS version: SDK " + Build.VERSION.SDK_INT + "\nDevice Name: " + Build.MANUFACTURER + Build.MODEL + "\nLocale: " + Locale.getDefault());
+                    }
+                    k2Var2.getParentActivity().startActivity(Intent.createChooser(intent, "Send email..."));
+                    return;
+                } catch (Exception unused) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(k2Var2.getParentActivity());
+                    alertDialog$Builder.f20134a.R = cd.L0(2131746088, null);
+                    alertDialog$Builder.f20134a.T = cd.L0(2131748216, "NoMailInstalled");
+                    alertDialog$Builder.k(cd.L0(2131747847, "OK"), null);
+                    k2Var2.showDialog(alertDialog$Builder.f20134a);
+                    return;
+                }
         }
+    }
+
+    @Override
+    public boolean h1(View view) {
+        return false;
+    }
+
+    @Override
+    public void m(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
+        e4 e4Var = (e4) this.f747c;
+        TL_account.getTmpPassword gettmppassword = new TL_account.getTmpPassword();
+        gettmppassword.password = tL_inputCheckPasswordSRP;
+        gettmppassword.period = 600;
+        ConnectionsManager.getInstance(e4Var.f21583a).sendRequest(gettmppassword, new rh.a2(e4Var, (TwoStepVerificationActivity) this.d, this.f746b, 0));
+    }
+
+    @Override
+    public Object then(Task task) {
+        Context context = (Context) this.f747c;
+        Intent intent = (Intent) this.d;
+        if (u6.b.d() && ((Integer) task.getResult()).intValue() == 402) {
+            return xa.g.a(context, intent, this.f746b).continueWith(new a3.b(3), new th.m1(23));
+        }
+        return task;
+    }
+
+    public v0(Object obj, boolean z10, Object obj2, int i10) {
+        this.f745a = i10;
+        this.f747c = obj;
+        this.f746b = z10;
+        this.d = obj2;
+    }
+
+    public v0(String str, org.telegram.ui.ActionBar.k2 k2Var, boolean z10) {
+        this.f745a = 8;
+        this.f746b = z10;
+        this.f747c = str;
+        this.d = k2Var;
+    }
+
+    @Override
+    public void q0(View view, float f7, float f10) {
     }
 }

@@ -1,41 +1,19 @@
 package org.telegram.ui;
 
-import android.util.SparseArray;
-import org.telegram.messenger.MessageObject;
-public final class wi {
-    public boolean f45011a;
-    public final boolean f45012b;
-    public final SparseArray f45013c;
-    public final wn d;
+import android.app.Activity;
+public final class wi extends org.telegram.ui.Cells.s0 {
+    public final un f43317t2;
 
-    public wi(wn wnVar, boolean z10, SparseArray sparseArray) {
-        this.d = wnVar;
-        this.f45012b = z10;
-        this.f45013c = sparseArray;
+    public wi(Activity activity, org.telegram.ui.ActionBar.p6 p6Var, un unVar) {
+        super(activity, p6Var, false);
+        this.f43317t2 = unVar;
     }
 
-    public final boolean a(int i10) {
-        wn wnVar = this.d;
-        int i11 = i10 - wnVar.A0.J;
-        if (i11 >= 0 && i11 < wnVar.K6.size()) {
-            MessageObject messageObject = (MessageObject) wnVar.K6.get(i11);
-            if (messageObject.contentType == 0) {
-                SparseArray sparseArray = this.f45013c;
-                boolean z10 = this.f45012b;
-                if (!z10 && sparseArray.get(messageObject.getId(), null) == null) {
-                    return true;
-                }
-                if (z10 && sparseArray.get(messageObject.getId(), null) != null) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final void b(int r8, boolean r9, float r10, float r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.wi.b(int, boolean, float, float):void");
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        float y3 = getY();
+        un unVar = this.f43317t2;
+        g0(unVar.f42245f1.getY() + y3, unVar.l1.getBackgroundSizeY());
     }
 }

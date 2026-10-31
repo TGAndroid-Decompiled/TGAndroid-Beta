@@ -1,0 +1,44 @@
+package jb;
+
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
+import com.google.android.gms.internal.cast.z;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import j9.u;
+import java.util.concurrent.Callable;
+public final class f {
+    public static final Object f9779b = new Object();
+    public static f f9780c;
+    public final z f9781a;
+
+    public f(Looper looper) {
+        ?? handler = new Handler(looper);
+        Looper.getMainLooper();
+        this.f9781a = handler;
+    }
+
+    public static f a() {
+        f fVar;
+        synchronized (f9779b) {
+            try {
+                if (f9780c == null) {
+                    HandlerThread handlerThread = new HandlerThread("MLHandler", 9);
+                    handlerThread.start();
+                    f9780c = new f(handlerThread.getLooper());
+                }
+                fVar = f9780c;
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+        return fVar;
+    }
+
+    public static Task b(Callable callable) {
+        TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
+        m.f9797a.execute(new u(19, callable, taskCompletionSource));
+        return taskCompletionSource.getTask();
+    }
+}

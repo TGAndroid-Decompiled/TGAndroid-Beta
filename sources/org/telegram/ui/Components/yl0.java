@@ -1,78 +1,132 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.RectF;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.view.MotionEvent;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class yl0 extends s4.n0 implements dh.a {
-    public final Utilities.CallbackReturn f35107a;
-    public final nm0 f35108b;
-    public final int f35109c;
-    public final boolean d;
+import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
+public abstract class yl0 extends HorizontalScrollView {
+    public boolean f32757a;
+    public LinearLayout f32758b;
+    public ValueAnimator f32759c;
+    public boolean d;
+    public int e;
+    public ValueAnimator f32760f;
 
-    public yl0(nm0 nm0Var, Utilities.CallbackReturn callbackReturn, int i10, boolean z10) {
-        this.f35108b = nm0Var;
-        this.f35107a = callbackReturn;
-        this.f35109c = i10;
-        this.d = z10;
+    public yl0(Context context) {
+        super(context);
+        this.e = -1;
     }
 
-    @Override
-    public final void b(ch.a aVar, RectF rectF) {
-        aVar.f6296a = true;
+    public final void a(int i10) {
+        if (this.e != i10) {
+            this.e = i10;
+            ValueAnimator valueAnimator = this.f32760f;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            if (getScrollX() == i10) {
+                return;
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(getScrollX(), i10);
+            this.f32760f = ofFloat;
+            ofFloat.addUpdateListener(new r60(this, 14));
+            this.f32760f.setInterpolator(gr.h);
+            this.f32760f.setDuration(250L);
+            this.f32760f.addListener(new t60(this, 16));
+            this.f32760f.start();
+        }
     }
 
-    @Override
-    public final void d(Rect rect, View view, RecyclerView recyclerView, s4.b1 b1Var) {
-        int b10;
+    public final void b(int i10, int i11) {
+        int measuredWidth;
+        if (getChildCount() > 0) {
+            int L = org.telegram.messenger.i0.L(50.0f);
+            if (i10 < getScrollX() + L) {
+                measuredWidth = i10 - L;
+            } else {
+                if (i11 > (getMeasuredWidth() - L) + getScrollX()) {
+                    measuredWidth = (i11 - getMeasuredWidth()) + L;
+                } else {
+                    return;
+                }
+            }
+            a(w7.u.b(measuredWidth, 0, getChildAt(0).getMeasuredWidth() - getMeasuredWidth()));
+        }
+    }
+
+    public final void c() {
         boolean z10;
-        int dp;
-        if (((Boolean) this.f35107a.run(view)).booleanValue()) {
-            int i10 = this.f35109c;
-            rect.right = i10;
-            rect.left = i10;
-            s4.e1 T = recyclerView.T(view);
-            s4.h0 adapter = recyclerView.getAdapter();
-            if (T != null && adapter != null && (b10 = T.b()) != -1) {
-                boolean z11 = false;
-                if (b10 == 0) {
+        boolean z11;
+        f5 f5Var;
+        ag.c2 c2Var;
+        bi0 bi0Var;
+        ValueAnimator valueAnimator;
+        int childCount = this.f32758b.getChildCount();
+        for (int i10 = 0; i10 < childCount; i10++) {
+            View childAt = this.f32758b.getChildAt(i10);
+            if (childAt instanceof iv) {
+                iv ivVar = (iv) childAt;
+                if (childAt.getRight() - getScrollX() > 0 && childAt.getLeft() - getScrollX() < getMeasuredWidth()) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                if (b10 == adapter.h() - 1) {
+                if (this.d && ((valueAnimator = this.f32759c) == null || !valueAnimator.isRunning())) {
                     z11 = true;
+                } else {
+                    z11 = false;
                 }
-                if (z10) {
-                    if (this.d) {
-                        dp = i10;
+                if (!ivVar.D && z10 && (bi0Var = ivVar.e) != null && !bi0Var.f24765k0 && !z11) {
+                    ivVar.e.T(true, 0.0f);
+                    ivVar.e.start();
+                }
+                if (ivVar.D != z10) {
+                    ivVar.D = z10;
+                    if (z10) {
+                        ivVar.invalidate();
+                        kg.l1 l1Var = ivVar.f27098f;
+                        if (l1Var != null) {
+                            l1Var.invalidate();
+                        }
+                        kg.l1 l1Var2 = ivVar.f27098f;
+                        if (l1Var2 != null && (f5Var = ivVar.f27103x) != null && (c2Var = f5Var.f25975k) != null) {
+                            l1Var2.setImageReceiver(c2Var);
+                        }
+                        g9 g9Var = ivVar.d;
+                        if (g9Var != null) {
+                            g9Var.invalidate();
+                        }
                     } else {
-                        dp = AndroidUtilities.dp(4.0f);
+                        ivVar.b();
                     }
-                    rect.top = dp;
-                }
-                if (z11) {
-                    rect.bottom = i10;
+                    ivVar.c();
                 }
             }
         }
     }
 
     @Override
-    public final void e(Canvas canvas, RecyclerView recyclerView) {
-        if (recyclerView instanceof nm0) {
-            ((nm0) recyclerView).Q0(canvas);
-        }
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        c();
     }
 
     @Override
-    public final void f(Canvas canvas, RectF rectF) {
-        canvas.save();
-        canvas.clipRect(rectF);
-        this.f35108b.Q0(canvas);
-        canvas.restore();
+    public final void onScrollChanged(int i10, int i11, int i12, int i13) {
+        super.onScrollChanged(i10, i11, i12, i13);
+        if ((Math.abs(i11 - i13) < 2 || i11 >= getMeasuredHeight() || i11 == 0) && !this.f32757a) {
+            requestDisallowInterceptTouchEvent(false);
+        }
+        c();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() != 0 && motionEvent.getAction() != 1) {
+            motionEvent.getAction();
+        }
+        return super.onTouchEvent(motionEvent);
     }
 }

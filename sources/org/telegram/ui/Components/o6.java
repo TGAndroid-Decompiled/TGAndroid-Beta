@@ -1,73 +1,79 @@
 package org.telegram.ui.Components;
+public final class o6 implements org.telegram.ui.ActionBar.b7 {
+    public final int f28978a;
+    public final Object f28979b;
 
-import android.graphics.Canvas;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.view.View;
-public final class o6 {
-    public final y5 f31166a;
-    public final StaticLayout f31167b;
-    public final float f31168c;
-    public final int d;
-    public final float e;
-    public final float f31169f;
-    public final float f31170g;
-    public final float h;
-    public final r6 f31171i;
+    public o6(Object obj, int i10) {
+        this.f28978a = i10;
+        this.f28979b = obj;
+    }
 
-    public o6(r6 r6Var, StaticLayout staticLayout, float f7, int i10) {
-        float f10;
-        float f11;
-        float f12;
-        this.f31171i = r6Var;
-        this.f31167b = staticLayout;
-        this.d = i10;
-        this.f31168c = f7;
-        if (staticLayout != null && staticLayout.getLineCount() > 0) {
-            f10 = staticLayout.getLineLeft(0);
-        } else {
-            f10 = 0.0f;
-        }
-        this.e = f10;
-        if (staticLayout != null && staticLayout.getLineCount() > 0) {
-            f11 = staticLayout.getLineWidth(0);
-        } else {
-            f11 = 0.0f;
-        }
-        this.f31169f = f11;
-        if (staticLayout != null && staticLayout.getLineCount() > 0) {
-            f12 = staticLayout.getLineBaseline(0);
-        } else {
-            f12 = 0.0f;
-        }
-        this.f31170g = f12;
-        this.h = staticLayout != null ? staticLayout.getHeight() - this.f31170g : 0.0f;
-        if (r6Var.getCallback() instanceof View) {
-            this.f31166a = c6.update(r6Var.f32154p, (View) r6Var.getCallback(), this.f31166a, staticLayout);
+    @Override
+    public final void a(float f7) {
+        int i10 = this.f28978a;
+    }
+
+    @Override
+    public final void b() {
+        switch (this.f28978a) {
+            case 0:
+                ((w7) this.f28979b).K0();
+                return;
+            case 1:
+                ((bl) this.f28979b).Y();
+                return;
+            case 2:
+                cq cqVar = (cq) this.f28979b;
+                org.telegram.ui.ActionBar.t0 t0Var = cqVar.I;
+                t0Var.setIconColor(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.G6, cqVar.f25140d0));
+                org.telegram.ui.ActionBar.t6.C1(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.I5, cqVar.f25140d0), t0Var.getBackground());
+                t0Var.O(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.E8, cqVar.f25140d0), false);
+                t0Var.O(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.F8, cqVar.f25140d0), true);
+                t0Var.H(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.G8, cqVar.f25140d0));
+                return;
+            case 3:
+                ((tf0) this.f28979b).M0();
+                return;
+            case 4:
+                dn0 dn0Var = ((gn0) this.f28979b).f26472z0;
+                if (dn0Var != null) {
+                    dn0Var.setTextColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f21313y8, false));
+                    return;
+                }
+                return;
+            case 5:
+                ((Runnable) this.f28979b).run();
+                return;
+            case 6:
+                ((cx0) this.f28979b).X0(false);
+                return;
+            default:
+                ((w41) this.f28979b).d();
+                return;
         }
     }
 
-    public final void a(Canvas canvas, float f7) {
-        int i10;
-        r6 r6Var = this.f31171i;
-        int i11 = r6Var.B;
-        TextPaint textPaint = r6Var.f32140a;
-        int max = Math.max(0, Math.min(255, (int) (i11 * f7)));
-        if (max != 0) {
-            textPaint.setAlpha(255);
-            if (r6Var.U) {
-                textPaint.setShadowLayer(r6Var.V, 0.0f, r6Var.W, r6Var.X);
-            }
-            if (max < 255) {
-                i10 = canvas.saveLayerAlpha(null, max, 31);
-            } else {
-                i10 = -1;
-            }
-            this.f31167b.draw(canvas);
-            c6.drawAnimatedEmojis(canvas, this.f31167b, this.f31166a, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, r6Var.f32141a0);
-            if (i10 != -1) {
-                canvas.restoreToCount(i10);
-            }
-        }
+    private final void c(float f7) {
+    }
+
+    private final void d(float f7) {
+    }
+
+    private final void e(float f7) {
+    }
+
+    private final void f(float f7) {
+    }
+
+    private final void g(float f7) {
+    }
+
+    private final void h(float f7) {
+    }
+
+    private final void i(float f7) {
+    }
+
+    private final void j(float f7) {
     }
 }

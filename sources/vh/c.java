@@ -1,57 +1,29 @@
 package vh;
 
-import android.content.Context;
-import android.view.View;
-import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.Components.am0;
-import org.telegram.ui.Components.q20;
-import org.telegram.ui.Components.wc;
-import org.telegram.ui.Components.x30;
-public final class c implements am0 {
-    public final u6 f50340a;
-    public final Context f50341b;
-    public final f f50342c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class c extends AnimatorListenerAdapter {
+    public final int f51021a;
+    public final d f51022b;
 
-    public c(Context context, u6 u6Var, f fVar) {
-        this.f50342c = fVar;
-        this.f50340a = u6Var;
-        this.f50341b = context;
+    public c(d dVar, int i10) {
+        this.f51021a = i10;
+        this.f51022b = dVar;
     }
 
     @Override
-    public final void c(int i10, View view) {
-        TLRPC.TL_help_country tL_help_country;
-        f fVar = this.f50342c;
-        q20 q20Var = fVar.f50355h0;
-        HashMap hashMap = fVar.f50357j0;
-        if (i10 == 0 || (tL_help_country = (TLRPC.TL_help_country) fVar.f50351d0.G(i10 - 1).G) == null) {
-            return;
-        }
-        boolean z10 = false;
-        if (hashMap.containsKey(tL_help_country.iso2)) {
-            q20Var.c((x30) hashMap.remove(tL_help_country.iso2));
-        } else {
-            int size = hashMap.size();
-            int i11 = fVar.m0;
-            if (size >= i11) {
-                new wc(fVar.f50360n0, this.f50340a).R(R.raw.info, 36, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.PollV2YouCanAddXCountriesOnly, Integer.valueOf(i11)))).j();
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f51021a) {
+            case 0:
+                d dVar = this.f51022b;
+                dVar.M = false;
+                dVar.e.t(null, false, true);
                 return;
-            }
-            x30 x30Var = new x30(this.f50341b, tL_help_country);
-            x30Var.setOnClickListener(new a(fVar, 4));
-            q20Var.a(x30Var);
-            hashMap.put(tL_help_country.iso2, x30Var);
-            z10 = true;
+            default:
+                d dVar2 = this.f51022b;
+                dVar2.S = 1.0f;
+                dVar2.invalidate();
+                return;
         }
-        if (view instanceof zg.b) {
-            ((zg.b) view).c(z10, true);
-        }
-        fVar.f50351d0.O(true);
-        fVar.f50352e0.b(hashMap.size(), true);
     }
 }

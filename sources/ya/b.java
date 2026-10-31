@@ -1,18 +1,18 @@
 package ya;
-public enum b implements na.b {
+public enum b implements ma.c {
     UNKNOWN(0),
     DATA_MESSAGE(1),
     TOPIC(2),
     DISPLAY_NOTIFICATION(3);
     
-    public final int f52557a;
+    public final int f54353a;
 
     b(int i10) {
-        this.f52557a = i10;
+        this.f54353a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f52557a;
+        return this.f54353a;
     }
 }

@@ -1,44 +1,6 @@
 package yg;
 
-import android.os.Bundle;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Cells.s1;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.wn;
-public final class b implements Runnable {
-    public final int f52612a;
-    public final c f52613b;
-    public final MessageObject f52614c;
-    public final TLRPC.TL_messageMediaGiveawayResults d;
-
-    public b(c cVar, MessageObject messageObject, TLRPC.TL_messageMediaGiveawayResults tL_messageMediaGiveawayResults, int i10) {
-        this.f52612a = i10;
-        this.f52613b = cVar;
-        this.f52614c = messageObject;
-        this.d = tL_messageMediaGiveawayResults;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f52612a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new b(this.f52613b, this.f52614c, this.d, 1));
-                return;
-            default:
-                s1 s1Var = this.f52613b.f52617c;
-                long dialogId = this.f52614c.getDialogId();
-                TLRPC.TL_messageMediaGiveawayResults tL_messageMediaGiveawayResults = this.d;
-                if (dialogId == (-tL_messageMediaGiveawayResults.channel_id)) {
-                    s1Var.getDelegate().H1(s1Var, tL_messageMediaGiveawayResults.launch_msg_id, 0.0f, 0.0f, false);
-                    return;
-                }
-                Bundle bundle = new Bundle();
-                bundle.putLong("chat_id", tL_messageMediaGiveawayResults.channel_id);
-                bundle.putInt("message_id", tL_messageMediaGiveawayResults.launch_msg_id);
-                LaunchActivity.R().presentFragment(new wn(bundle));
-                return;
-        }
-    }
+import android.graphics.Bitmap;
+public interface b {
+    Object a(Bitmap bitmap);
 }

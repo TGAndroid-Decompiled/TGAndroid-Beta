@@ -1,22 +1,31 @@
 package org.telegram.ui.Components;
-public final class hw0 {
-    public static final hw0 f29086a;
-    public static final hw0 f29087b;
-    public static final hw0[] f29088c;
 
-    static {
-        ?? r02 = new Enum("DEFAULT", 0);
-        f29086a = r02;
-        ?? r12 = new Enum("RECORDING", 1);
-        f29087b = r12;
-        f29088c = new hw0[]{r02, r12};
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class hw0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f26831a;
+    public final View f26832b;
+    public final FrameLayout f26833c;
+
+    public hw0(FrameLayout frameLayout, View view, int i10) {
+        this.f26831a = i10;
+        this.f26833c = frameLayout;
+        this.f26832b = view;
     }
 
-    public static hw0 valueOf(String str) {
-        return (hw0) Enum.valueOf(hw0.class, str);
-    }
-
-    public static hw0[] values() {
-        return (hw0[]) f29088c.clone();
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f26831a) {
+            case 0:
+                jw0 jw0Var = (jw0) this.f26833c;
+                jw0Var.f27498b = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                jw0Var.invalidate();
+                ((ul0) this.f26832b).invalidate();
+                return;
+            default:
+                ((w71) this.f26833c).F(this.f26832b, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+        }
     }
 }

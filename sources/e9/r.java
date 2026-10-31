@@ -1,55 +1,41 @@
 package e9;
-public abstract class r implements l {
-    public static final n f9846a;
-    public static final r[] f9847b;
 
-    static {
-        n nVar = new n();
-        f9846a = nVar;
-        f9847b = new r[]{nVar, new r() {
-            @Override
-            public final boolean apply(Object obj) {
-                return false;
-            }
+import java.io.Serializable;
+import java.util.Arrays;
+public final class r extends v1 implements Serializable {
+    public final d9.k f6406a;
+    public final v1 f6407b;
 
-            @Override
-            public final String toString() {
-                return "Predicates.alwaysFalse()";
-            }
-        }, new r() {
-            @Override
-            public final boolean apply(Object obj) {
-                if (obj == null) {
-                    return true;
-                }
-                return false;
-            }
-
-            @Override
-            public final String toString() {
-                return "Predicates.isNull()";
-            }
-        }, new r() {
-            @Override
-            public final boolean apply(Object obj) {
-                if (obj != null) {
-                    return true;
-                }
-                return false;
-            }
-
-            @Override
-            public final String toString() {
-                return "Predicates.notNull()";
-            }
-        }};
+    public r(d9.k kVar, v1 v1Var) {
+        this.f6406a = kVar;
+        this.f6407b = v1Var;
     }
 
-    public static r valueOf(String str) {
-        return (r) Enum.valueOf(r.class, str);
+    @Override
+    public final int compare(Object obj, Object obj2) {
+        d9.k kVar = this.f6406a;
+        return this.f6407b.compare(kVar.apply(obj), kVar.apply(obj2));
     }
 
-    public static r[] values() {
-        return (r[]) f9847b.clone();
+    @Override
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof r) {
+            r rVar = (r) obj;
+            if (this.f6406a.equals(rVar.f6406a) && this.f6407b.equals(rVar.f6407b)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.f6406a, this.f6407b});
+    }
+
+    public final String toString() {
+        return this.f6407b + ".onResultOf(" + this.f6406a + ")";
     }
 }

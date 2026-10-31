@@ -1,56 +1,21 @@
 package jh;
 
-import android.graphics.RectF;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class d {
-    public final int f15922a;
-    public final long f15923b;
-    public long e;
-    public long f15925f;
-    public long f15926g;
-    public long h;
-    public boolean f15927i;
-    public final RectF f15924c = new RectF();
-    public float f15928j = 0.0f;
-    public float f15929k = 0.0f;
-    public float f15930l = Float.MAX_VALUE;
-    public float f15931m = 0.0f;
-    public final long d = Utilities.random.nextLong();
+import android.graphics.Canvas;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.ef;
+import org.telegram.messenger.pz;
+public final class d extends ih.f {
+    public final ef f10403b;
+    public final pz f10404c;
 
-    public d(int i10, long j10) {
-        this.f15922a = i10;
-        this.f15923b = j10;
+    public d(org.telegram.messenger.pz r10) {
+        throw new UnsupportedOperationException("Method not decompiled: jh.d.<init>(org.telegram.messenger.pz):void");
     }
 
-    public final TLRPC.TL_inputMessageReadMetric a() {
-        int round;
-        TLRPC.TL_inputMessageReadMetric tL_inputMessageReadMetric = new TLRPC.TL_inputMessageReadMetric();
-        tL_inputMessageReadMetric.msg_id = this.f15922a;
-        tL_inputMessageReadMetric.view_id = this.d;
-        tL_inputMessageReadMetric.time_in_view_ms = (int) this.f15926g;
-        tL_inputMessageReadMetric.active_time_in_view_ms = (int) this.h;
-        float f7 = this.f15929k;
-        if (f7 == 0.0f) {
-            round = 1000;
-        } else {
-            round = Math.round((this.f15928j / f7) * 1000.0f);
-        }
-        tL_inputMessageReadMetric.height_to_viewport_ratio_permille = round;
-        tL_inputMessageReadMetric.seen_range_ratio_permille = b();
-        return tL_inputMessageReadMetric;
-    }
-
-    public final int b() {
-        float f7 = this.f15928j;
-        if (f7 != 0.0f) {
-            float f10 = this.f15930l;
-            float f11 = this.f15931m;
-            if (f10 <= f11) {
-                return Math.round(((f11 - f10) / f7) * 1000.0f);
-            }
-            return 0;
-        }
-        return 0;
+    @Override
+    public final void c(Canvas canvas, int i10, int i11) {
+        ImageReceiver imageReceiver = this.f8536a;
+        imageReceiver.y0(0.0f, 0.0f, i10, i11);
+        imageReceiver.h(canvas, null);
     }
 }

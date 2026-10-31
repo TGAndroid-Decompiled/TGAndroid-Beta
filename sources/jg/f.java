@@ -1,89 +1,62 @@
 package jg;
 
-import java.util.ArrayList;
-import org.telegram.messenger.NotificationCenter;
+import android.animation.ValueAnimator;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_account;
-public final class f {
-    public static volatile f[] f15692g = new f[4];
-    public static final Object[] h = new Object[4];
-    public final int f15693a;
-    public long f15694b;
-    public TL_account.connectedBots f15695c;
-    public final ArrayList d = new ArrayList();
-    public boolean e;
-    public boolean f15696f;
+public final class f implements ValueAnimator.AnimatorUpdateListener {
+    public final int f9960a;
+    public final j f9961b;
 
-    static {
-        for (int i10 = 0; i10 < 4; i10++) {
-            h[i10] = new Object();
-        }
+    public f(j jVar, int i10) {
+        this.f9960a = i10;
+        this.f9961b = jVar;
     }
 
-    public f(int i10) {
-        this.f15693a = i10;
-    }
-
-    public static f a(int i10) {
-        f fVar;
-        f fVar2 = f15692g[i10];
-        if (fVar2 == null) {
-            synchronized (h[i10]) {
-                try {
-                    fVar = f15692g[i10];
-                    if (fVar == null) {
-                        f[] fVarArr = f15692g;
-                        f fVar3 = new f(i10);
-                        fVarArr[i10] = fVar3;
-                        fVar = fVar3;
-                    }
-                } catch (Throwable th2) {
-                    throw th2;
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f9960a) {
+            case 0:
+                j jVar = this.f9961b;
+                jVar.g(org.telegram.messenger.i0.b2(jVar.L, jVar.f10043i0, jVar.Q.getAnimatedFraction()));
+                return;
+            case 1:
+                j jVar2 = this.f9961b;
+                jVar2.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                jVar2.f10048n0 = floatValue;
+                jVar2.setAlpha(floatValue);
+                i iVar = jVar2.H;
+                if (iVar != null) {
+                    iVar.setScaleX(Utilities.i(jVar2.f10048n0 * 1.25f, 1.0f, 0.0f) * org.telegram.messenger.i0.T1(0.9f, 1.0f, jVar2.f10044j0));
+                    jVar2.H.setScaleY(Utilities.i(jVar2.f10048n0 * 1.25f, 1.0f, 0.0f) * org.telegram.messenger.i0.T1(0.9f, 1.0f, jVar2.f10044j0));
+                    jVar2.H.setAlpha(Math.max(0.0f, jVar2.f10048n0 - 0.8f) * jVar2.f10044j0 * 5.0f);
                 }
-            }
-            return fVar;
-        }
-        return fVar2;
-    }
-
-    public final void b() {
-        this.f15696f = false;
-        c(null);
-    }
-
-    public final void c(Utilities.Callback callback) {
-        boolean z10;
-        if (callback != null) {
-            this.d.add(callback);
-        }
-        if (!this.e) {
-            if (System.currentTimeMillis() - this.f15694b <= 60000 && (z10 = this.f15696f)) {
-                if (z10) {
-                    d();
+                jVar2.invalidate();
+                return;
+            case 2:
+                j jVar3 = this.f9961b;
+                jVar3.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                jVar3.f10044j0 = floatValue2;
+                i iVar2 = jVar3.H;
+                if (iVar2 != null) {
+                    iVar2.setScaleX(Utilities.i(jVar3.f10048n0 * 1.25f, 1.0f, 0.0f) * org.telegram.messenger.i0.T1(0.9f, 1.0f, floatValue2));
+                    jVar3.H.setScaleY(Utilities.i(jVar3.f10048n0 * 1.25f, 1.0f, 0.0f) * org.telegram.messenger.i0.T1(0.9f, 1.0f, jVar3.f10044j0));
+                    jVar3.H.setAlpha(Math.max(0.0f, jVar3.f10048n0 - 0.8f) * jVar3.f10044j0 * 5.0f);
                     return;
                 }
                 return;
-            }
-            this.e = true;
-            ConnectionsManager.getInstance(this.f15693a).sendRequest(new TL_account.getConnectedBots(), new bi.i0(this, 16));
-        }
-    }
-
-    public final void d() {
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.d;
-            if (i10 < arrayList.size()) {
-                if (arrayList.get(i10) != null) {
-                    ((Utilities.Callback) arrayList.get(i10)).run(this.f15695c);
-                }
-                i10++;
-            } else {
-                arrayList.clear();
-                NotificationCenter.getInstance(this.f15693a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updatedChatbot, new Object[0]);
+            case 3:
+                this.f9961b.k();
                 return;
-            }
+            case 4:
+                this.f9961b.k();
+                return;
+            default:
+                j jVar4 = this.f9961b;
+                float b22 = org.telegram.messenger.i0.b2(jVar4.f10043i0, jVar4.L, valueAnimator.getAnimatedFraction());
+                jVar4.O = b22;
+                jVar4.g(b22);
+                return;
         }
     }
 }

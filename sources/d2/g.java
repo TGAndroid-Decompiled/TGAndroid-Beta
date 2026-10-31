@@ -1,24 +1,20 @@
 package d2;
 
-import e2.n0;
+import e2.l0;
 public final class g {
+    public static final String f5689c;
     public static final String d;
-    public static final String e;
-    public static final String f7882f;
-    public final int f7883a;
-    public final int f7884b;
-    public final int f7885c;
+    public final String f5690a;
+    public final int f5691b;
 
     static {
-        String str = n0.f9691a;
-        d = Integer.toString(0, 36);
-        e = Integer.toString(1, 36);
-        f7882f = Integer.toString(2, 36);
+        String str = l0.f6165a;
+        f5689c = Integer.toString(0, 36);
+        d = Integer.toString(1, 36);
     }
 
-    public g(int i10, int i11, int i12) {
-        this.f7883a = i10;
-        this.f7884b = i11;
-        this.f7885c = i12;
+    public g(String str, int i10) {
+        this.f5690a = str;
+        this.f5691b = i10;
     }
 }

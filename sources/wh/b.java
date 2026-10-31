@@ -1,122 +1,187 @@
 package wh;
 
-import a8.ee;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.Utilities;
-public final class b extends Drawable {
-    public final a f51264b;
-    public Bitmap f51265c;
-    public Canvas d;
-    public int e;
-    public float f51266f;
-    public int f51267g;
-    public int h;
-    public final Paint f51263a = new Paint(2);
-    public int f51268i = 255;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import b2.p1;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
+import e2.j;
+import e9.k0;
+import e9.n0;
+import e9.x1;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ScheduledFuture;
+import org.telegram.messenger.o20;
+import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.ui.ActionBar.u1;
+import org.telegram.ui.Cells.f1;
+import org.telegram.ui.Components.a51;
+import org.telegram.ui.Components.iu0;
+import rh.e8;
+import rh.g8;
+import x2.l;
+import xa.s;
+import xa.v;
+import xa.x;
+import xh.i;
+import xh.o;
+import xh.r3;
+import z3.h;
+public final class b implements iu0, l, Continuation, OnSuccessListener, OnCompleteListener, u1, o20, j {
+    public final int f52853a;
+    public final Object f52854b;
 
-    public b(a aVar) {
-        this.f51264b = aVar;
-    }
-
-    public final void a() {
-        Bitmap bitmap = this.f51265c;
-        if (bitmap != null) {
-            bitmap.recycle();
-            this.f51265c = null;
-        }
-    }
-
-    public final void b(int i10, int i11, float f7, int i12) {
-        int i13 = i12 * 2;
-        int i14 = (int) ((i10 + i13) / f7);
-        int i15 = (int) ((i11 + i13) / f7);
-        Bitmap bitmap = this.f51265c;
-        if (bitmap != null && bitmap.getWidth() == i14 && this.f51265c.getHeight() == i15) {
-            this.f51265c.eraseColor(0);
-        } else {
-            Bitmap bitmap2 = this.f51265c;
-            if (bitmap2 != null) {
-                bitmap2.recycle();
-            }
-            this.f51265c = Bitmap.createBitmap(i14, i15, Bitmap.Config.ARGB_8888);
-            this.d = new Canvas(this.f51265c);
-        }
-        this.f51266f = f7;
-        this.e = i12;
-        this.d.save();
-        float f10 = i12 / f7;
-        this.d.translate(f10, f10);
-        float f11 = 1.0f / f7;
-        this.d.scale(f11, f11);
-        this.f51264b.p(this.d, 255);
-        Utilities.stackBlurBitmap(this.f51265c, (int) f10);
-        this.d.restore();
+    public b(Object obj, int i10) {
+        this.f52853a = i10;
+        this.f52854b = obj;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int i10 = this.f51268i;
-        a aVar = this.f51264b;
-        if (i10 == 255) {
-            canvas.save();
-            canvas.translate(this.f51267g, this.h);
-            aVar.p(canvas, 255);
-            canvas.restore();
-        } else if (i10 != 0) {
-            double d = i10 / 255.0d;
-            double d10 = d / ((1.0d - d) * 6.0d);
-            double d11 = 1.0d + d10;
-            double sqrt = ((-d11) + Math.sqrt((d11 * d11) - (((-d10) * 4.0d) * (-d)))) / ((-2.0d) * d10);
-            int b10 = ee.b((int) (d10 * sqrt * 255.0d), 0, 255);
-            int b11 = ee.b((int) (sqrt * 255.0d), 0, 255);
-            if (b11 > 0 && this.f51265c != null) {
-                Paint paint = this.f51263a;
-                paint.setAlpha(b11);
-                canvas.save();
-                int i11 = this.f51267g;
-                int i12 = this.e;
-                canvas.translate(i11 - i12, this.h - i12);
-                float f7 = this.f51266f;
-                canvas.scale(f7, f7);
-                canvas.drawBitmap(this.f51265c, 0.0f, 0.0f, paint);
-                canvas.restore();
-            }
-            if (b10 > 0) {
-                canvas.save();
-                canvas.translate(this.f51267g, this.h);
-                aVar.p(canvas, b10);
-                canvas.restore();
-            }
+    public void accept(Object obj) {
+        switch (this.f52853a) {
+            case 12:
+                h hVar = (h) this.f52854b;
+                z3.a aVar = (z3.a) obj;
+                z3.g gVar = new z3.g(aVar.f54553b, oa.d.o4(aVar.f54552a, aVar.f54554c));
+                hVar.f54563c.add(gVar);
+                long j10 = hVar.f54567j;
+                if (j10 == -9223372036854775807L || aVar.d >= j10) {
+                    hVar.g(gVar);
+                    return;
+                }
+                return;
+            default:
+                ((k0) this.f52854b).c((z3.a) obj);
+                return;
         }
     }
 
     @Override
-    public final int getAlpha() {
-        return this.f51268i;
+    public x1 b(int i10, p1 p1Var, int[] iArr) {
+        x2.j jVar = (x2.j) this.f52854b;
+        k0 t10 = n0.t();
+        for (int i11 = 0; i11 < p1Var.f2187a; i11++) {
+            t10.c(new x2.g(i10, p1Var, i11, jVar, iArr[i11]));
+        }
+        return t10.f();
     }
 
     @Override
-    public final int getOpacity() {
-        return 0;
+    public float f(RecyclerView recyclerView) {
+        return f1.c(recyclerView);
     }
 
     @Override
-    public final void setAlpha(int i10) {
-        this.f51268i = i10;
+    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
+        switch (this.f52853a) {
+            case 8:
+                ((xh.d) this.f52854b).run();
+                return;
+            default:
+                i iVar = (i) this.f52854b;
+                TL_bots.updateStarRefProgram updatestarrefprogram = new TL_bots.updateStarRefProgram();
+                updatestarrefprogram.bot = iVar.getMessagesController().n1(iVar.R);
+                updatestarrefprogram.commission_permille = 0;
+                org.telegram.ui.ActionBar.x1 x1Var2 = new org.telegram.ui.ActionBar.x1(3, iVar.getParentActivity(), null);
+                x1Var2.r(150L);
+                iVar.getConnectionsManager().sendRequest(updatestarrefprogram, new xh.b(iVar, x1Var2, 0));
+                return;
+        }
     }
 
     @Override
-    public final void setBounds(int i10, int i11, int i12, int i13) {
-        this.f51267g = i10;
-        this.h = i11;
-        super.setBounds(i10, i11, i12, i13);
+    public RecyclerView j(View view) {
+        ((g8) this.f52854b).getClass();
+        return ((e8) view).f46874a;
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        switch (this.f52853a) {
+            case 10:
+                View view = (View) obj2;
+                Integer num = (Integer) number;
+                Float f7 = (Float) serializable;
+                Float f10 = (Float) serializable2;
+                o.Z((o) this.f52854b, (a51) obj);
+                return;
+            default:
+                View view2 = (View) obj2;
+                Integer num2 = (Integer) number;
+                Float f11 = (Float) serializable;
+                Float f12 = (Float) serializable2;
+                ((r3) this.f52854b).Z((a51) obj);
+                return;
+        }
+    }
+
+    @Override
+    public void onComplete(Task task) {
+        switch (this.f52853a) {
+            case 5:
+                v.b((Intent) this.f52854b);
+                return;
+            case 6:
+                ((x) this.f52854b).f53588b.trySetResult(null);
+                return;
+            default:
+                ((ScheduledFuture) this.f52854b).cancel(false);
+                return;
+        }
+    }
+
+    @Override
+    public void onSuccess(Object obj) {
+        boolean z10;
+        s sVar = (s) obj;
+        if (((FirebaseMessaging) this.f52854b).e.r() && sVar.h.a() != null) {
+            synchronized (sVar) {
+                z10 = sVar.f53575g;
+            }
+            if (!z10) {
+                sVar.h(0L);
+            }
+        }
+    }
+
+    @Override
+    public void p(RecyclerView recyclerView) {
+        f1.b(recyclerView);
+    }
+
+    @Override
+    public Object then(Task task) {
+        switch (this.f52853a) {
+            case 2:
+                ((CountDownLatch) this.f52854b).countDown();
+                return null;
+            default:
+                ((j2.f) this.f52854b).getClass();
+                Bundle bundle = (Bundle) task.getResult(IOException.class);
+                if (bundle != null) {
+                    String string = bundle.getString("registration_id");
+                    if (string != null || (string = bundle.getString("unregistered")) != null) {
+                        return string;
+                    }
+                    String string2 = bundle.getString("error");
+                    if (!"RST".equals(string2)) {
+                        if (string2 != null) {
+                            throw new IOException(string2);
+                        }
+                        Log.w("FirebaseMessaging", "Unexpected response: " + bundle, new Throwable());
+                        throw new IOException("SERVICE_NOT_AVAILABLE");
+                    }
+                    throw new IOException("INSTANCE_ID_RESET");
+                }
+                throw new IOException("SERVICE_NOT_AVAILABLE");
+        }
     }
 }

@@ -1,34 +1,139 @@
 package org.telegram.messenger;
-public final class y1 implements Runnable {
-    public final int f21871a;
-    public final String f21872b;
 
-    public y1(String str, int i10) {
-        this.f21871a = i10;
-        this.f21872b = str;
+import android.content.SharedPreferences;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
+import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class y1 {
+    public static volatile y1[] f19320f = new y1[4];
+    public static final Object[] f19321g = new Object[4];
+    public final int f19322a;
+    public long f19323b;
+    public w1 f19324c;
+    public final Set d;
+    public boolean e;
+
+    static {
+        for (int i10 = 0; i10 < 4; i10++) {
+            f19321g[i10] = new Object();
+        }
     }
 
-    @Override
-    public final void run() {
-        switch (this.f21871a) {
-            case 0:
-                ContactsController.lambda$markAsContacted$49(this.f21872b);
-                return;
-            case 1:
-                FileLog.lambda$w$8(this.f21872b);
-                return;
-            case 2:
-                FileLog.lambda$e$4(this.f21872b);
-                return;
-            case 3:
-                FileLog.lambda$d$7(this.f21872b);
-                return;
-            case 4:
-                GcmPushListenerService.c(this.f21872b);
-                return;
-            default:
-                SmsReceiver.a(this.f21872b);
-                return;
+    public y1(int i10) {
+        y1 y1Var;
+        Exception exc;
+        x1 x1Var;
+        this.f19322a = i10;
+        SharedPreferences sharedPreferences = vp.r1(i10).f7;
+        this.f19323b = sharedPreferences.getLong("bday_check", 0L);
+        x1 x1Var2 = null;
+        String string = sharedPreferences.getString("bday_contacts", null);
+        if (string != null) {
+            try {
+                SerializedData serializedData = new SerializedData(Utilities.v(string));
+                int readInt32 = serializedData.readInt32(true);
+                if (readInt32 != 290452237) {
+                    try {
+                        int i11 = x1.f19175b;
+                    } catch (Exception e) {
+                        exc = e;
+                        y1Var = this;
+                        f8.g(exc, true);
+                        y1Var.d = sharedPreferences.getStringSet("bday_hidden", new HashSet());
+                    }
+                } else {
+                    x1Var2 = new x1();
+                }
+                x1Var = (x1) TLObject.TLdeserialize(x1.class, x1Var2, serializedData, readInt32, true);
+            } catch (Exception e7) {
+                e = e7;
+                y1Var = this;
+            }
+            if (x1Var != null && !x1Var.f19176a.isEmpty()) {
+                ArrayList arrayList = new ArrayList();
+                for (int i12 = 0; i12 < x1Var.f19176a.size(); i12++) {
+                    arrayList.add(Long.valueOf(((TL_account.TL_contactBirthday) x1Var.f19176a.get(i12)).contact_id));
+                }
+                y1Var = this;
+                try {
+                    hs.a0(i10).f15938a.c(new cg(y1Var, i10, arrayList, x1Var, 2));
+                } catch (Exception e10) {
+                    e = e10;
+                    exc = e;
+                    f8.g(exc, true);
+                    y1Var.d = sharedPreferences.getStringSet("bday_hidden", new HashSet());
+                }
+                y1Var.d = sharedPreferences.getStringSet("bday_hidden", new HashSet());
+            }
         }
+        y1Var = this;
+        y1Var.d = sharedPreferences.getStringSet("bday_hidden", new HashSet());
+    }
+
+    public static y1 a(int i10) {
+        y1 y1Var;
+        y1 y1Var2 = f19320f[i10];
+        if (y1Var2 == null) {
+            synchronized (f19321g[i10]) {
+                try {
+                    y1Var = f19320f[i10];
+                    if (y1Var == null) {
+                        y1[] y1VarArr = f19320f;
+                        y1 y1Var3 = new y1(i10);
+                        y1VarArr[i10] = y1Var3;
+                        y1Var = y1Var3;
+                    }
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
+            return y1Var;
+        }
+        return y1Var2;
+    }
+
+    public static boolean d(TLRPC.UserFull userFull) {
+        if (userFull == null || !e(userFull.birthday) || h20.b(userFull)) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean e(TL_account.TL_birthday tL_birthday) {
+        if (tL_birthday == null) {
+            return false;
+        }
+        Calendar calendar = Calendar.getInstance();
+        int i10 = calendar.get(5);
+        int i11 = calendar.get(2) + 1;
+        if (tL_birthday.day != i10 || tL_birthday.month != i11) {
+            return false;
+        }
+        return true;
+    }
+
+    public final w1 b() {
+        w1 w1Var = this.f19324c;
+        if (w1Var == null || this.d.contains(w1Var.f19037a)) {
+            return null;
+        }
+        return this.f19324c;
+    }
+
+    public final boolean c(long j10) {
+        w1 w1Var = this.f19324c;
+        if (w1Var != null && w1Var.a(j10)) {
+            return true;
+        }
+        TLRPC.UserFull a2 = vp.r1(this.f19322a).a2(j10);
+        if (a2 != null && e(a2.birthday) && !h20.b(a2)) {
+            return true;
+        }
+        return false;
     }
 }

@@ -1,17 +1,15 @@
 package org.telegram.ui;
+public final class nz0 extends z21 {
+    public final pz0 e;
 
-import android.content.Context;
-public final class nz0 extends org.telegram.ui.ActionBar.r5 {
-    public final ProfileActivity m0;
-
-    public nz0(ProfileActivity profileActivity, Context context, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(context, u6Var);
-        this.m0 = profileActivity;
+    public nz0(pz0 pz0Var, mz0 mz0Var) {
+        super(mz0Var);
+        this.e = pz0Var;
     }
 
     @Override
-    public final void E(int i10, float f7, float f10, oe.e eVar) {
-        super.E(i10, f7, f10, eVar);
-        ProfileActivity.m1(this.m0);
+    public final void dismiss() {
+        super.dismiss();
+        this.e.f40830n = null;
     }
 }

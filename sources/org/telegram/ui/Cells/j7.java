@@ -1,78 +1,67 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.yj0;
-public final class j7 extends Drawable {
-    public final Paint f24294a;
-    public final yj0 f24295b;
-    public final Drawable f24296c;
-    public final org.telegram.ui.ActionBar.u6 d;
-    public int e;
-    public int f24297f;
-    public int f24298g;
+import org.telegram.messenger.jj;
+import org.telegram.messenger.r20;
+import org.telegram.messenger.xe;
+import org.telegram.ui.Components.a51;
+import org.telegram.ui.Components.p51;
+import org.telegram.ui.Components.tk0;
+import org.telegram.ui.Components.u51;
+import org.telegram.ui.Components.z41;
+public final class j7 extends z41 {
+    public static final int f22094b = 0;
 
-    public j7(Context context, org.telegram.ui.Components.y9 y9Var, boolean z10, org.telegram.ui.ActionBar.u6 u6Var) {
-        this(context, y9Var, z10, R.drawable.large_repost_story, u6Var);
+    static {
+        z41.h(new z41());
+    }
+
+    public static a51 i(xe xeVar, r20 r20Var) {
+        a51 K = a51.K(j7.class);
+        K.G = xeVar;
+        K.H = r20Var;
+        return K;
     }
 
     @Override
-    public final void draw(android.graphics.Canvas r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.j7.draw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(56.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(56.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f24298g = i10;
-    }
-
-    public j7(Context context, View view, boolean z10, int i10, org.telegram.ui.ActionBar.u6 u6Var) {
-        Paint paint = new Paint(1);
-        this.f24294a = paint;
-        this.f24298g = 255;
-        this.d = u6Var;
-        this.e = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.hk, u6Var);
-        this.f24297f = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.ik, u6Var);
-        paint.setShader(new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f), new int[]{this.e, this.f24297f}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
-        if (z10) {
-            yj0 yj0Var = new yj0(R.raw.story_repost, AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f), true, null);
-            this.f24295b = yj0Var;
-            yj0Var.R(view);
-            AndroidUtilities.runOnUIThread(new q0(yj0Var, 1), 450L);
-            this.f24296c = null;
-            return;
+    public final void b(View view, a51 a51Var, boolean z10, p51 p51Var, u51 u51Var) {
+        k7 k7Var = (k7) view;
+        Object obj = a51Var.G;
+        if (obj instanceof jj) {
+            k7Var.f((jj) obj, z10);
+        } else if (obj instanceof xe) {
+            xe xeVar = (xe) obj;
+            k7Var.setTag(xeVar);
+            k7Var.f(xeVar.e, z10);
         }
-        this.f24295b = null;
-        Drawable mutate = context.getResources().getDrawable(i10).mutate();
-        this.f24296c = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+        Object obj2 = a51Var.H;
+        if (obj2 instanceof r20) {
+            k7Var.setNeedPlayMessageListener((r20) obj2);
+        }
+        k7Var.e(a51Var.e, false);
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final boolean c(a51 a51Var, a51 a51Var2) {
+        if (a51Var.d == a51Var2.d && a51Var.G == a51Var2.G) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final View d(Context context, tk0 tk0Var, int i10, org.telegram.ui.ActionBar.p6 p6Var) {
+        k7 k7Var = new k7(0, context, p6Var);
+        k7Var.setCheckForButtonPress(true);
+        return k7Var;
+    }
+
+    @Override
+    public final boolean e(a51 a51Var, a51 a51Var2) {
+        if (a51Var.d == a51Var2.d && a51Var.G == a51Var2.G) {
+            return true;
+        }
+        return false;
     }
 }

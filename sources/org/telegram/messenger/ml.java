@@ -1,61 +1,83 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.TranslateController;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class ml implements RequestDelegate {
-    public final int f20710a = 1;
-    public final long f20711b;
-    public final String f20712c;
-    public final Runnable d;
-    public final BaseController e;
-    public final Object f20713f;
-    public final Object f20714g;
-    public final Object h;
+import org.telegram.tgnet.tl.TL_update;
+public final class ml implements j20 {
+    public final int f16972a;
+    public final vp f16973b;
+    public final j20 f16974c;
 
-    public ml(MessagesController messagesController, long j10, String str, Runnable runnable, org.telegram.ui.ActionBar.r2 r2Var, TLRPC.TL_channels_updateUsername tL_channels_updateUsername, Runnable runnable2) {
-        this.e = messagesController;
-        this.f20711b = j10;
-        this.f20712c = str;
-        this.d = runnable;
-        this.f20713f = r2Var;
-        this.f20714g = tL_channels_updateUsername;
-        this.h = runnable2;
+    public ml(vp vpVar, j20 j20Var, int i10) {
+        this.f16972a = i10;
+        this.f16973b = vpVar;
+        this.f16974c = j20Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f20710a) {
+    public final void a(Object obj, Object obj2) {
+        int i10;
+        switch (this.f16972a) {
             case 0:
-                ((TranslateController) this.e).lambda$translatePhoto$46((MessageObject) this.f20713f, this.f20712c, (TranslateController.MessageKey) this.f20714g, this.d, this.f20711b, (TLRPC.TL_textWithEntities) this.h, tLObject, tL_error);
-                return;
-            case 1:
-                ((MessagesController) this.e).lambda$updateChannelUserName$291(this.f20711b, this.f20712c, this.d, (org.telegram.ui.ActionBar.r2) this.f20713f, (TLRPC.TL_channels_updateUsername) this.f20714g, (Runnable) this.h, tLObject, tL_error);
+                TLRPC.messages_Chats messages_chats = (TLRPC.messages_Chats) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                vp vpVar = this.f16973b;
+                vpVar.getClass();
+                j20 j20Var = this.f16974c;
+                if (messages_chats != null) {
+                    ArrayList arrayList = new ArrayList(messages_chats.chats.size());
+                    vpVar.P3(messages_chats.chats, true);
+                    ArrayList<TLRPC.Chat> arrayList2 = messages_chats.chats;
+                    int size = arrayList2.size();
+                    int i11 = 0;
+                    while (i11 < size) {
+                        TLRPC.Chat chat = arrayList2.get(i11);
+                        i11++;
+                        TLRPC.Chat chat2 = chat;
+                        if (chat2.creator && !w3.p0(chat2) && !w3.Y(chat2)) {
+                            arrayList.add(chat2);
+                        }
+                    }
+                    j20Var.a(arrayList, null);
+                    return;
+                }
+                j20Var.a(null, tL_error);
                 return;
             default:
-                ((MessagesController) this.e).lambda$changeChatAvatar$320((TLRPC.TL_inputChatPhoto) this.f20713f, (TLRPC.FileLocation) this.f20714g, (TLRPC.FileLocation) this.h, this.f20712c, this.f20711b, this.d, tLObject, tL_error);
-                return;
+                TLRPC.Updates updates = (TLRPC.Updates) obj;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                j20 j20Var2 = this.f16974c;
+                if (updates != null) {
+                    ArrayList<TLRPC.Update> arrayList3 = updates.updates;
+                    int size2 = arrayList3.size();
+                    int i12 = 0;
+                    while (true) {
+                        if (i12 < size2) {
+                            TLRPC.Update update = arrayList3.get(i12);
+                            i12++;
+                            TLRPC.Update update2 = update;
+                            if (update2 instanceof TL_update.TL_updateNewMessage) {
+                                TLRPC.MessageAction messageAction = ((TL_update.TL_updateNewMessage) update2).message.action;
+                                if (messageAction instanceof TLRPC.TL_messageActionNoForwardsRequest) {
+                                    i10 = 2;
+                                } else if (messageAction instanceof TLRPC.TL_messageActionNoForwardsToggle) {
+                                    i10 = 1;
+                                }
+                            }
+                        } else {
+                            i10 = 0;
+                        }
+                    }
+                    vp vpVar2 = this.f16973b;
+                    vpVar2.L3(updates, false);
+                    i0.g3(new o7(vpVar2, j20Var2, i10, 13));
+                    return;
+                } else if (j20Var2 != null) {
+                    i0.g3(new oi(21, j20Var2, tL_error2));
+                    return;
+                } else {
+                    return;
+                }
         }
-    }
-
-    public ml(MessagesController messagesController, TLRPC.TL_inputChatPhoto tL_inputChatPhoto, TLRPC.FileLocation fileLocation, TLRPC.FileLocation fileLocation2, String str, long j10, Runnable runnable) {
-        this.e = messagesController;
-        this.f20713f = tL_inputChatPhoto;
-        this.f20714g = fileLocation;
-        this.h = fileLocation2;
-        this.f20712c = str;
-        this.f20711b = j10;
-        this.d = runnable;
-    }
-
-    public ml(TranslateController translateController, MessageObject messageObject, String str, TranslateController.MessageKey messageKey, Runnable runnable, long j10, TLRPC.TL_textWithEntities tL_textWithEntities) {
-        this.e = translateController;
-        this.f20713f = messageObject;
-        this.f20712c = str;
-        this.f20714g = messageKey;
-        this.d = runnable;
-        this.f20711b = j10;
-        this.h = tL_textWithEntities;
     }
 }

@@ -1,34 +1,22 @@
 package org.telegram.ui.Components;
+public final class wx0 implements wb0, yb0 {
+    public final yx0 f32270a;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class wx0 extends AnimatorListenerAdapter {
-    public final int f34600a;
-    public final xx0 f34601b;
-
-    public wx0(xx0 xx0Var, int i10) {
-        this.f34600a = i10;
-        this.f34601b = xx0Var;
+    @Override
+    public String e(int i10) {
+        return this.f32270a.f32826n[i10];
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f34600a) {
-            case 0:
-                xx0 xx0Var = this.f34601b;
-                xx0Var.f34874y = 1.0f;
-                xx0Var.invalidate();
-                xx0Var.G = null;
-                return;
-            case 1:
-                xx0 xx0Var2 = this.f34601b;
-                xx0Var2.m(((Float) xx0Var2.v.getAnimatedValue()).floatValue());
-                xx0Var2.v = null;
-                return;
-            default:
-                super.onAnimationEnd(animator);
-                this.f34601b.F = null;
-                return;
+    public void t(ac0 ac0Var, int i10) {
+        yx0 yx0Var = this.f32270a;
+        yx0Var.b();
+        org.telegram.messenger.tz.f18179r1 = i10;
+        org.telegram.messenger.w0.f19025b.getSharedPreferences("mainconfig", 0).edit().putInt("ChatSwipeAction", org.telegram.messenger.tz.f18179r1).apply();
+        yx0Var.invalidate();
+        try {
+            ac0Var.performHapticFeedback(3, 2);
+        } catch (Exception unused) {
         }
     }
 }

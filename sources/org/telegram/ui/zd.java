@@ -1,55 +1,80 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import org.telegram.messenger.AndroidUtilities;
-public final class zd implements TextWatcher {
-    public final ke f46231a;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class zd extends EditTextBoldCursor {
+    public final int G1;
 
-    public zd(ke keVar) {
-        this.f46231a = keVar;
+    public zd(Context context, int i10) {
+        super(context);
+        this.G1 = i10;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        long parseLong;
-        ke keVar = this.f46231a;
-        qd qdVar = keVar.f40760f1;
-        bi.t tVar = keVar.O0;
-        if (keVar.L0) {
-            return;
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.G1) {
+            case 5:
+                return false;
+            default:
+                return super.dispatchTouchEvent(motionEvent);
         }
-        if (TextUtils.isEmpty(editable)) {
-            parseLong = 0;
-        } else {
-            parseLong = Long.parseLong(editable.toString());
-        }
-        keVar.N0 = parseLong;
-        long j10 = keVar.D0.amount;
-        int i10 = (parseLong > j10 ? 1 : (parseLong == j10 ? 0 : -1));
-        boolean z10 = true;
-        if (i10 > 0) {
-            keVar.N0 = j10;
-            keVar.L0 = true;
-            tVar.setText(Long.toString(j10));
-            tVar.setSelection(tVar.getText().length());
-            keVar.L0 = false;
-        }
-        if (keVar.N0 != keVar.D0.amount) {
-            z10 = false;
-        }
-        keVar.M0 = z10;
-        AndroidUtilities.cancelRunOnUIThread(qdVar);
-        qdVar.run();
-        keVar.M0 = false;
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public void onDetachedFromWindow() {
+        switch (this.G1) {
+            case 0:
+                super.onDetachedFromWindow();
+                org.telegram.messenger.i0.v1(this);
+                return;
+            case 4:
+                super.onDetachedFromWindow();
+                org.telegram.messenger.i0.v1(this);
+                return;
+            default:
+                super.onDetachedFromWindow();
+                return;
+        }
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public void onMeasure(int i10, int i11) {
+        switch (this.G1) {
+            case 1:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(64.0f), 1073741824));
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.G1) {
+            case 2:
+                if (motionEvent.getAction() == 0 && !org.telegram.messenger.i0.J3(this)) {
+                    clearFocus();
+                    requestFocus();
+                }
+                return super.onTouchEvent(motionEvent);
+            case 3:
+                if (motionEvent.getAction() == 0 && !org.telegram.messenger.i0.J3(this)) {
+                    clearFocus();
+                    requestFocus();
+                }
+                return super.onTouchEvent(motionEvent);
+            case 4:
+            case 5:
+            default:
+                return super.onTouchEvent(motionEvent);
+            case 6:
+                if (!isEnabled()) {
+                    return false;
+                }
+                return super.onTouchEvent(motionEvent);
+        }
     }
 }

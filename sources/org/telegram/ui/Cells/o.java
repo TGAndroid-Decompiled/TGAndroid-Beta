@@ -1,176 +1,191 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
 import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.UserConfig;
+import android.view.ViewGroup;
+import org.telegram.messenger.cd;
+import org.telegram.messenger.d20;
+import org.telegram.messenger.jj;
+import org.telegram.messenger.q20;
+import org.telegram.messenger.zs;
 import org.telegram.tgnet.TLRPC;
-public final class o extends View {
-    public final int f24571a;
-    public final int f24572b;
-    public final int f24573c;
-    public int d;
-    public final ArrayList e;
-    public float f24574f;
-    public float h;
-    public Integer f24575n;
+import org.telegram.ui.Components.a51;
+import org.telegram.ui.Components.gk0;
+import org.telegram.ui.Components.z60;
+import org.telegram.ui.Components.za0;
+import org.telegram.ui.ba0;
+public final class o implements gk0 {
+    public final int f22371a;
+    public final Object f22372b;
+    public final Object f22373c;
+    public final Object d;
 
-    public o(Context context) {
-        super(context);
-        this.e = new ArrayList();
-        this.f24571a = 20;
-        this.f24572b = 60;
-        this.f24573c = 60;
-    }
-
-    public final void a(bh.x0 x0Var) {
-        TLRPC.TL_availableReaction tL_availableReaction;
-        TLRPC.TL_availableReaction tL_availableReaction2;
-        TLRPC.Document document;
-        org.telegram.ui.Components.t5 m10;
-        String findAnimatedEmojiEmoticon;
-        if (x0Var.f4208f != null) {
-            tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(x0Var.f4208f);
-        } else {
-            tL_availableReaction = null;
-        }
-        if (tL_availableReaction == null) {
-            document = org.telegram.ui.Components.t5.f(UserConfig.selectedAccount, x0Var.f4209g);
-            if (document != null && (findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(document, null)) != null) {
-                tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(findAnimatedEmojiEmoticon);
-            }
-            tL_availableReaction2 = tL_availableReaction;
-        } else {
-            tL_availableReaction2 = tL_availableReaction;
-            document = null;
-        }
-        ArrayList arrayList = this.e;
-        if (document == null && tL_availableReaction2 != null) {
-            ImageReceiver imageReceiver = new ImageReceiver();
-            imageReceiver.setParentView(this);
-            int i10 = this.d;
-            this.d = i10 + 1;
-            imageReceiver.setUniqKeyPrefix(Integer.toString(i10));
-            ImageLocation forDocument = ImageLocation.getForDocument(tL_availableReaction2.around_animation);
-            StringBuilder sb2 = new StringBuilder();
-            int i11 = this.f24572b;
-            sb2.append(i11);
-            sb2.append("_");
-            sb2.append(i11);
-            sb2.append("_nolimit");
-            imageReceiver.setImage(forDocument, sb2.toString(), null, "tgs", tL_availableReaction2, 1);
-            imageReceiver.setAutoRepeat(0);
-            imageReceiver.onAttachedToWindow();
-            arrayList.add(imageReceiver);
-            invalidate();
-            return;
-        }
-        if (document == null) {
-            m10 = org.telegram.ui.Components.t5.n(2, x0Var.f4209g, null, UserConfig.selectedAccount);
-        } else {
-            m10 = org.telegram.ui.Components.t5.m(2, UserConfig.selectedAccount, document);
-        }
-        if (this.f24575n != null) {
-            m10.setColorFilter(new PorterDuffColorFilter(this.f24575n.intValue(), PorterDuff.Mode.MULTIPLY));
-        }
-        bh.e a2 = bh.e.a(m10, false, !m10.c());
-        a2.f(this);
-        arrayList.add(a2);
-        invalidate();
-    }
-
-    public final void b(float f7, float f10) {
-        setTranslationX(f7 - (getMeasuredWidth() / 2.0f));
-        float measuredHeight = f10 - (getMeasuredHeight() / 2.0f);
-        this.f24574f = measuredHeight;
-        setTranslationY(measuredHeight + this.h);
+    public o(Object obj, Object obj2, Object obj3, int i10) {
+        this.f22371a = i10;
+        this.f22372b = obj;
+        this.f22373c = obj2;
+        this.d = obj3;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int dp = AndroidUtilities.dp(this.f24573c);
-        int dp2 = AndroidUtilities.dp(this.f24572b);
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.e;
-            if (i10 < arrayList.size()) {
-                Object obj = arrayList.get(i10);
-                if (obj instanceof ImageReceiver) {
-                    ImageReceiver imageReceiver = (ImageReceiver) obj;
-                    float f7 = dp2;
-                    imageReceiver.setImageCoords((getMeasuredWidth() - dp2) / 2.0f, (getMeasuredHeight() - dp2) / 2.0f, f7, f7);
-                    imageReceiver.draw(canvas);
-                } else if (obj instanceof bh.e) {
-                    bh.e eVar = (bh.e) obj;
-                    eVar.e((int) ((getMeasuredWidth() - dp) / 2.0f), (int) ((getMeasuredHeight() - dp) / 2.0f), (int) ((getMeasuredWidth() + dp) / 2.0f), (int) ((getMeasuredHeight() + dp) / 2.0f));
-                    eVar.b(canvas);
-                    if (eVar.c()) {
-                        eVar.d(this);
-                        arrayList.remove(eVar);
+    public final void f(int i10, View view) {
+        TLRPC.WebPage webPage;
+        int i11;
+        int i12 = this.f22371a;
+        String str = null;
+        Object obj = this.f22373c;
+        Object obj2 = this.d;
+        Object obj3 = this.f22372b;
+        boolean z10 = false;
+        switch (i12) {
+            case 0:
+                t tVar = (t) obj3;
+                org.telegram.ui.ActionBar.k2 k2Var = (org.telegram.ui.ActionBar.k2) obj;
+                Context context = (Context) obj2;
+                s sVar = (s) view;
+                ba0 ba0Var = (ba0) tVar.f23061e3.get(i10);
+                if (ba0Var.e && !d20.o()) {
+                    k2Var.showDialog(new kg.i1(k2Var, 10, true));
+                    return;
+                } else if (!w7.j6.a(ba0Var)) {
+                    s4.b0 b0Var = new s4.b0(context);
+                    b0Var.f48045a = i10;
+                    tVar.f23062f3.w0(b0Var);
+                    w7.j6.b(ba0Var);
+                    int i13 = s.h;
+                    sVar.b(true, true);
+                    for (int i14 = 0; i14 < tVar.getChildCount(); i14++) {
+                        s sVar2 = (s) tVar.getChildAt(i14);
+                        if (sVar2 != sVar) {
+                            sVar2.b(false, true);
+                        }
+                    }
+                    zs.e().k(292, 5, ba0Var);
+                    return;
+                } else {
+                    return;
+                }
+            case 1:
+                th.p1 p1Var = (th.p1) obj3;
+                th.c0 c0Var = (th.c0) view;
+                th.h0 h0Var = c0Var.K;
+                z60 F = z60.F((ViewGroup) obj, new th.b(), view);
+                F.p(15, -1, cd.a0(null, null, 2131748818, cd.x(h0Var.d, true)));
+                F.k();
+                F.c(2131232265, cd.L0(2131747802, null), new rh.o(26, (th.o7) obj2, h0Var), false);
+                F.l(2131232102, cd.L0(2131751767, null), new rh.o(27, p1Var, c0Var), !h0Var.e);
+                F.l(2131232107, cd.L0(2131751599, null), new rh.o(28, p1Var, h0Var), (p1Var.M == d20.i(p1Var.N).e() || p1Var.f()) ? true : true);
+                F.Z();
+                return;
+            case 2:
+                vh.f5 f5Var = (vh.f5) obj3;
+                q20 q20Var = (q20) obj;
+                org.telegram.ui.ActionBar.p6 p6Var = (org.telegram.ui.ActionBar.p6) obj2;
+                if (view instanceof k7) {
+                    jj message = ((k7) view).getMessage();
+                    if (message != null) {
+                        org.telegram.messenger.b6.q(f5Var.f21583a).v(f5Var);
+                        if (f5Var.Y1 != null) {
+                            org.telegram.messenger.b8.G(f5Var.f21583a).f(f5Var.Y1.F0());
+                            f5Var.Y1 = null;
+                        }
+                        if (!message.f16383w0 && !message.f16387x0) {
+                            String S0 = message.S0();
+                            if (!TextUtils.isEmpty(S0)) {
+                                f5Var.Y1 = message;
+                                org.telegram.messenger.b6.q(f5Var.f21583a).a(S0, message, f5Var);
+                                org.telegram.messenger.b8.G(f5Var.f21583a).X(message.F0(), message, 1, 0);
+                                return;
+                            }
+                            return;
+                        }
+                        f5Var.X1.a(message);
+                        vh.f5 f5Var2 = f5Var.S1;
+                        if (f5Var2 != null) {
+                            f5Var2.dismiss();
+                        }
+                        f5Var.dismiss();
+                        return;
+                    }
+                    return;
+                }
+                a51 G = f5Var.f51144h2.G(i10 - 1);
+                if (G != null && G.d == 1) {
+                    new vh.f5(f5Var.getContext(), true, f5Var, q20Var, p6Var).show();
+                    return;
+                } else if (G != null && G.d == 2) {
+                    f5Var.W1.b();
+                    return;
+                } else if (G != null && G.d == 3) {
+                    f5Var.h1();
+                    return;
+                } else if (G != null && G.d == 4) {
+                    f5Var.g1();
+                    return;
+                } else {
+                    return;
+                }
+            default:
+                vh.t5 t5Var = (vh.t5) obj3;
+                Context context2 = (Context) obj2;
+                vh.k4 k4Var = (vh.k4) obj;
+                m3 m3Var = t5Var.R1;
+                m3 m3Var2 = t5Var.Q1;
+                a51 G2 = t5Var.P1.G(i10 - 1);
+                if (G2 != null) {
+                    if (G2.H(vh.r5.class) && (webPage = t5Var.Y1) != null && !vh.t5.g1(webPage)) {
+                        jg.d3 d3Var = new jg.d3(context2, t5Var.f21583a);
+                        jg.s0 s0Var = new jg.s0();
+                        s0Var.f10208c = m3Var2.d.getText().toString();
+                        if (t5Var.f51968e2) {
+                            str = m3Var.d.getText().toString();
+                        }
+                        s0Var.f10207b = str;
+                        TLRPC.WebPage webPage2 = t5Var.Y1;
+                        s0Var.d = webPage2;
+                        s0Var.e = t5Var.f51970g2;
+                        s0Var.f10209f = t5Var.f51969f2;
+                        ph.h1 h1Var = new ph.h1(t5Var, 29);
+                        d3Var.G = s0Var;
+                        if (webPage2 != null && (webPage2.photo != null || jj.K4(webPage2.document))) {
+                            i11 = 0;
+                        } else {
+                            i11 = 8;
+                        }
+                        za0 za0Var = d3Var.f9940y;
+                        za0Var.setVisibility(i11);
+                        d3Var.f9934f.b(d3Var.f9931a, s0Var, false);
+                        d3Var.f9939x.a(!s0Var.f10209f, false);
+                        za0Var.a(!s0Var.e, false);
+                        d3Var.H = h1Var;
+                        d3Var.e.setImageDrawable(new jg.x0(k4Var, 1));
+                        d3Var.show();
+                        return;
+                    } else if (G2.d == 2 && (view instanceof t8)) {
+                        boolean z11 = !t5Var.f51968e2;
+                        t5Var.f51968e2 = z11;
+                        ((t8) view).setChecked(z11);
+                        t5Var.P1.O(true);
+                        if (t5Var.f51968e2) {
+                            m3Var.requestFocus();
+                            return;
+                        } else {
+                            m3Var2.requestFocus();
+                            return;
+                        }
+                    } else {
+                        return;
                     }
                 }
-                i10++;
-            } else {
                 return;
-            }
         }
     }
 
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        ArrayList arrayList = this.e;
-        if (!arrayList.isEmpty()) {
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                if (obj instanceof ImageReceiver) {
-                    ((ImageReceiver) obj).onDetachedFromWindow();
-                } else if (obj instanceof bh.e) {
-                    ((bh.e) obj).d(this);
-                }
-            }
-        }
-        arrayList.clear();
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12 = this.f24571a;
-        int i13 = this.f24572b;
-        int max = Math.max(i12, i13);
-        int i14 = this.f24573c;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(Math.max(i14, max)), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(Math.max(i14, Math.max(i12, i13))), 1073741824));
-    }
-
-    public void setColor(int i10) {
-        this.f24575n = Integer.valueOf(i10);
-        PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY);
-        PorterDuffColorFilter porterDuffColorFilter2 = new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN);
-        int i11 = 0;
-        while (true) {
-            ArrayList arrayList = this.e;
-            if (i11 < arrayList.size()) {
-                Object obj = arrayList.get(i11);
-                if (obj instanceof ImageReceiver) {
-                    ((ImageReceiver) obj).setColorFilter(porterDuffColorFilter);
-                } else if (obj instanceof bh.e) {
-                    ((bh.e) obj).f4014a.setColorFilter(porterDuffColorFilter2);
-                }
-                i11++;
-            } else {
-                return;
-            }
-        }
+    public o(vh.t5 t5Var, Context context, vh.k4 k4Var) {
+        this.f22371a = 3;
+        this.f22372b = t5Var;
+        this.d = context;
+        this.f22373c = k4Var;
     }
 }

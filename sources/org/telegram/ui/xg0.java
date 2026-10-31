@@ -1,41 +1,119 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class xg0 implements org.telegram.ui.Components.cm0, org.telegram.ui.ActionBar.b2 {
-    public final lh0 f45681a;
+import android.content.Context;
+import android.graphics.Point;
+import android.view.KeyEvent;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+public final class xg0 extends s4.g0 {
+    public final int f43578c;
+    public final Context d;
+    public final Object e;
+    public final KeyEvent.Callback f43579f;
 
-    public xg0(lh0 lh0Var) {
-        this.f45681a = lh0Var;
+    public xg0(KeyEvent.Callback callback, Context context, Object obj, int i10) {
+        this.f43578c = i10;
+        this.f43579f = callback;
+        this.d = context;
+        this.e = obj;
     }
 
     @Override
-    public boolean c(int i10, View view) {
-        lh0 lh0Var = this.f45681a;
-        if ((i10 < lh0Var.f41189y || i10 >= lh0Var.E) && (i10 < lh0Var.H || i10 >= lh0Var.I)) {
-            return false;
-        }
-        ((ih0) view).f40185x.callOnClick();
-        try {
-            view.performHapticFeedback(0, 2);
-            return true;
-        } catch (Exception unused) {
-            return true;
+    public final int b() {
+        switch (this.f43578c) {
+            case 0:
+                return ((kh0) this.f43579f).M.size();
+            default:
+                return vh.r.a().size();
         }
     }
 
     @Override
-    public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        TLRPC.TL_messages_deleteRevokedExportedChatInvites tL_messages_deleteRevokedExportedChatInvites = new TLRPC.TL_messages_deleteRevokedExportedChatInvites();
-        lh0 lh0Var = this.f45681a;
-        tL_messages_deleteRevokedExportedChatInvites.peer = lh0Var.getMessagesController().getInputPeer(-lh0Var.f41177n);
-        long j10 = lh0Var.f41169f;
-        if (j10 == lh0Var.getUserConfig().getClientUserId()) {
-            tL_messages_deleteRevokedExportedChatInvites.admin_id = lh0Var.getMessagesController().getInputUser(lh0Var.getUserConfig().getCurrentUser());
-        } else {
-            tL_messages_deleteRevokedExportedChatInvites.admin_id = lh0Var.getMessagesController().getInputUser(j10);
+    public final void t(s4.c1 c1Var, int i10) {
+        boolean z10;
+        switch (this.f43578c) {
+            case 0:
+                kh0 kh0Var = (kh0) this.f43579f;
+                ArrayList arrayList = kh0Var.M;
+                boolean z11 = true;
+                org.telegram.messenger.jj jjVar = (org.telegram.messenger.jj) arrayList.get((b() - 1) - i10);
+                org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) c1Var.f47898a;
+                org.telegram.messenger.ej k10 = kh0Var.k(jjVar);
+                int i11 = 0;
+                if (k10 == null) {
+                    z11 = false;
+                }
+                q1Var.setInvalidatesParent(z11);
+                q1Var.s3(jjVar, k10, false, false, false, false);
+                if (!kh0Var.O.i() && arrayList.size() >= 10) {
+                    i11 = arrayList.size() % 10;
+                }
+                if (i10 == i11 && !jjVar.n5()) {
+                    kh0Var.P = q1Var;
+                    Point point = org.telegram.messenger.i0.f16026q;
+                    q1Var.u3(point.x, point.y);
+                    kh0Var.Q = jjVar.f1();
+                    return;
+                }
+                return;
+            default:
+                vh.s sVar = (vh.s) c1Var.f47898a;
+                vh.r rVar = (vh.r) vh.r.a().get(i10);
+                if (i10 == sVar.f51900s) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                sVar.setDrawable(new org.telegram.ui.Components.ob0(rVar, false));
+                sVar.b(rVar.equals(((vh.t) this.f43579f).f51946b), z10);
+                sVar.f51900s = i10;
+                return;
         }
-        lh0Var.f41166c0 = true;
-        lh0Var.getConnectionsManager().sendRequest(tL_messages_deleteRevokedExportedChatInvites, new ug0(lh0Var, 1));
+    }
+
+    @Override
+    public final s4.c1 w(ViewGroup viewGroup, int i10) {
+        switch (this.f43578c) {
+            case 0:
+                kh0 kh0Var = (kh0) this.f43579f;
+                jh0 jh0Var = new jh0(kh0Var, this.d, kh0Var.f38832c, (org.telegram.ui.ActionBar.p6) this.e);
+                jh0Var.setDelegate(new jb.b(15));
+                return new s4.c1(jh0Var);
+            default:
+                vh.a9 a9Var = new vh.a9(this.d);
+                a9Var.setLayoutParams(new s4.o0(org.telegram.messenger.i0.L(46.0f), org.telegram.messenger.i0.L(56.0f)));
+                a9Var.setBackground(org.telegram.ui.ActionBar.t6.h0(553648127, 1, -1));
+                return new s4.c1(a9Var);
+        }
+    }
+
+    @Override
+    public void y(s4.c1 c1Var) {
+        switch (this.f43578c) {
+            case 1:
+                vh.s sVar = (vh.s) c1Var.f47898a;
+                ((vh.z1) this.e).a(sVar);
+                int i10 = sVar.f51900s;
+                if (i10 >= 0 && i10 < vh.r.a().size()) {
+                    vh.r rVar = (vh.r) vh.r.a().get(sVar.f51900s);
+                    sVar.setDrawable(new org.telegram.ui.Components.ob0(rVar, false));
+                    sVar.b(rVar.equals(((vh.t) this.f43579f).f51946b), false);
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public void z(s4.c1 c1Var) {
+        switch (this.f43578c) {
+            case 1:
+                ((vh.z1) this.e).d.remove((vh.s) c1Var.f47898a);
+                return;
+            default:
+                return;
+        }
     }
 }

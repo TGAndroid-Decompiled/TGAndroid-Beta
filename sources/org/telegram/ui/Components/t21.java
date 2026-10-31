@@ -1,284 +1,54 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.ComposeShader;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.RadialGradient;
-import android.graphics.Shader;
-import android.graphics.SweepGradient;
+import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
-import android.text.InputFilter;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.DecelerateInterpolator;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.ThemeEditorView;
-public final class t21 extends FrameLayout {
-    public boolean E;
-    public boolean F;
-    public boolean G;
-    public final DecelerateInterpolator H;
-    public final ThemeEditorView.EditorAlert I;
-    public final LinearLayout f32809a;
-    public final int f32810b;
-    public final Paint f32811c;
-    public final Paint d;
-    public final Paint e;
-    public final Drawable f32812f;
-    public Bitmap h;
-    public final EditTextBoldCursor[] f32813n;
-    public int f32814r;
-    public final float[] f32815s;
-    public float v;
-    public final float[] f32816w;
-    public LinearGradient f32817x;
-    public LinearGradient f32818y;
+import android.os.SystemClock;
+import android.text.TextPaint;
+public final class t21 extends Drawable {
+    public final bi0 f30426a;
+    public int f30427b;
+    public final TextPaint f30428c;
 
-    public t21(ThemeEditorView.EditorAlert editorAlert, Context context) {
-        super(context);
-        int i10;
-        float f7;
-        this.I = editorAlert;
-        this.f32810b = AndroidUtilities.dp(20.0f);
-        this.f32813n = new EditTextBoldCursor[4];
-        this.f32815s = new float[]{0.0f, 0.0f, 1.0f};
-        this.v = 1.0f;
-        this.f32816w = new float[3];
-        this.H = new DecelerateInterpolator();
-        setWillNotDraw(false);
-        this.e = new Paint(1);
-        this.f32812f = context.getResources().getDrawable(R.drawable.knob_shadow).mutate();
-        Paint paint = new Paint();
-        this.f32811c = paint;
-        paint.setAntiAlias(true);
-        paint.setDither(true);
-        Paint paint2 = new Paint();
-        this.d = paint2;
-        paint2.setAntiAlias(true);
-        paint2.setDither(true);
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.f32809a = linearLayout;
-        linearLayout.setOrientation(0);
-        addView(linearLayout, kb1.i(-2, -2, 49));
-        for (int i11 = 0; i11 < 4; i11++) {
-            this.f32813n[i11] = new EditTextBoldCursor(context);
-            this.f32813n[i11].setInputType(2);
-            this.f32813n[i11].setTextColor(-14606047);
-            this.f32813n[i11].setCursorColor(-14606047);
-            this.f32813n[i11].setCursorSize(AndroidUtilities.dp(20.0f));
-            this.f32813n[i11].setCursorWidth(1.5f);
-            this.f32813n[i11].setTextSize(1, 18.0f);
-            this.f32813n[i11].setBackground(null);
-            org.telegram.ui.ActionBar.f7.G(this.f32813n[i11], org.telegram.ui.ActionBar.y6.f23673u5, org.telegram.ui.ActionBar.y6.f23692v5, org.telegram.ui.ActionBar.y6.f23599q7, null);
-            this.f32813n[i11].setMaxLines(1);
-            this.f32813n[i11].setTag(Integer.valueOf(i11));
-            this.f32813n[i11].setGravity(17);
-            if (i11 == 0) {
-                this.f32813n[i11].setHint("red");
-            } else if (i11 == 1) {
-                this.f32813n[i11].setHint("green");
-            } else if (i11 == 2) {
-                this.f32813n[i11].setHint("blue");
-            } else if (i11 == 3) {
-                this.f32813n[i11].setHint("alpha");
-            }
-            EditTextBoldCursor editTextBoldCursor = this.f32813n[i11];
-            if (i11 == 3) {
-                i10 = 6;
-            } else {
-                i10 = 5;
-            }
-            editTextBoldCursor.setImeOptions(i10 | 268435456);
-            this.f32813n[i11].setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
-            LinearLayout linearLayout2 = this.f32809a;
-            EditTextBoldCursor editTextBoldCursor2 = this.f32813n[i11];
-            if (i11 != 3) {
-                f7 = 16.0f;
-            } else {
-                f7 = 0.0f;
-            }
-            linearLayout2.addView(editTextBoldCursor2, kb1.o(0.0f, 0.0f, f7, 0.0f, 55, 36));
-            this.f32813n[i11].addTextChangedListener(new s21(this, i11));
-            this.f32813n[i11].setOnEditorActionListener(new u2(2));
-        }
-    }
-
-    public final void a(Canvas canvas, int i10, int i11, int i12) {
-        int dp = AndroidUtilities.dp(13.0f);
-        Drawable drawable = this.f32812f;
-        drawable.setBounds(i10 - dp, i11 - dp, i10 + dp, dp + i11);
-        drawable.draw(canvas);
-        Paint paint = this.e;
-        paint.setColor(-1);
-        float f7 = i10;
-        float f10 = i11;
-        canvas.drawCircle(f7, f10, AndroidUtilities.dp(11.0f), paint);
-        paint.setColor(i12);
-        canvas.drawCircle(f7, f10, AndroidUtilities.dp(9.0f), paint);
-    }
-
-    public final int b() {
-        return (Color.HSVToColor(this.f32815s) & 16777215) | (((int) (this.v * 255.0f)) << 24);
-    }
-
-    public final void c(int i10) {
-        int red = Color.red(i10);
-        int green = Color.green(i10);
-        int blue = Color.blue(i10);
-        int alpha = Color.alpha(i10);
-        ThemeEditorView.EditorAlert editorAlert = this.I;
-        if (!editorAlert.K) {
-            editorAlert.K = true;
-            EditTextBoldCursor[] editTextBoldCursorArr = this.f32813n;
-            EditTextBoldCursor editTextBoldCursor = editTextBoldCursorArr[0];
-            editTextBoldCursor.setText("" + red);
-            EditTextBoldCursor editTextBoldCursor2 = editTextBoldCursorArr[1];
-            editTextBoldCursor2.setText("" + green);
-            EditTextBoldCursor editTextBoldCursor3 = editTextBoldCursorArr[2];
-            editTextBoldCursor3.setText("" + blue);
-            EditTextBoldCursor editTextBoldCursor4 = editTextBoldCursorArr[3];
-            editTextBoldCursor4.setText("" + alpha);
-            for (int i11 = 0; i11 < 4; i11++) {
-                EditTextBoldCursor editTextBoldCursor5 = editTextBoldCursorArr[i11];
-                editTextBoldCursor5.setSelection(editTextBoldCursor5.length());
-            }
-            editorAlert.K = false;
-        }
-        this.f32818y = null;
-        this.f32817x = null;
-        this.v = alpha / 255.0f;
-        Color.colorToHSV(i10, this.f32815s);
-        invalidate();
-    }
-
-    public final void d(boolean z10) {
-        org.telegram.ui.ActionBar.j3 j3Var;
-        int i10;
-        ViewGroup viewGroup;
-        float f7;
-        ThemeEditorView.EditorAlert editorAlert = this.I;
-        if (editorAlert.J == z10) {
-            return;
-        }
-        AnimatorSet animatorSet = editorAlert.I;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-        }
-        editorAlert.J = z10;
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        editorAlert.I = animatorSet2;
-        j3Var = ((org.telegram.ui.ActionBar.k3) editorAlert).backDrawable;
-        t6 t6Var = v6.d;
-        if (z10) {
-            i10 = 0;
-        } else {
-            i10 = 51;
-        }
-        ObjectAnimator ofInt = ObjectAnimator.ofInt(j3Var, t6Var, i10);
-        viewGroup = ((org.telegram.ui.ActionBar.k3) editorAlert).containerView;
-        if (z10) {
-            f7 = 0.2f;
-        } else {
-            f7 = 1.0f;
-        }
-        animatorSet2.playTogether(ofInt, ObjectAnimator.ofFloat(viewGroup, View.ALPHA, f7));
-        editorAlert.I.setDuration(150L);
-        editorAlert.I.setInterpolator(this.H);
-        editorAlert.I.start();
+    public t21(TextPaint textPaint) {
+        bi.s0 s0Var = new bi.s0(this, 5);
+        this.f30428c = textPaint;
+        float textSize = textPaint.getTextSize() * 0.89f;
+        bi0 bi0Var = new bi0(2131624000, (int) textSize, (int) (textSize * 1.25f));
+        this.f30426a = bi0Var;
+        bi0Var.setCallback(s0Var);
+        bi0Var.K(1);
+        bi0Var.M((int) ((((float) SystemClock.elapsedRealtime()) / 16.0f) % 60.0f));
+        bi0Var.J(true);
+        bi0Var.start();
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        char c10;
-        int i10 = this.f32810b;
-        int width = (getWidth() / 2) - (i10 * 2);
-        int height = (getHeight() / 2) - AndroidUtilities.dp(8.0f);
-        Bitmap bitmap = this.h;
-        int i11 = this.f32814r;
-        canvas.drawBitmap(bitmap, width - i11, height - i11, (Paint) null);
-        float[] fArr = this.f32815s;
-        double radians = (float) Math.toRadians(fArr[0]);
-        float f7 = fArr[1];
-        float f10 = fArr[0];
-        float[] fArr2 = this.f32816w;
-        fArr2[0] = f10;
-        fArr2[1] = f7;
-        fArr2[2] = 1.0f;
-        a(canvas, ((int) ((-Math.cos(radians)) * fArr[1] * this.f32814r)) + width, ((int) ((-Math.sin(radians)) * f7 * this.f32814r)) + height, Color.HSVToColor(fArr2));
-        int i12 = this.f32814r;
-        int i13 = width + i12 + i10;
-        int i14 = height - i12;
-        int dp = AndroidUtilities.dp(9.0f);
-        int i15 = this.f32814r * 2;
-        if (this.f32817x == null) {
-            c10 = 2;
-            this.f32817x = new LinearGradient(i13, i14, i13 + dp, i14 + i15, new int[]{-16777216, Color.HSVToColor(fArr2)}, (float[]) null, Shader.TileMode.CLAMP);
-        } else {
-            c10 = 2;
+    public final void draw(Canvas canvas) {
+        int color = this.f30428c.getColor();
+        int i10 = this.f30427b;
+        bi0 bi0Var = this.f30426a;
+        if (color != i10) {
+            bi0Var.Z = true;
+            bi0Var.Q(color, "Comp 1");
+            bi0Var.o();
+            bi0Var.J(true);
+            bi0Var.V(0L);
+            this.f30427b = color;
         }
-        LinearGradient linearGradient = this.f32817x;
-        Paint paint = this.d;
-        paint.setShader(linearGradient);
-        float f11 = i14;
-        float f12 = i14 + i15;
-        canvas.drawRect(i13, f11, i13 + dp, f12, paint);
-        int i16 = dp / 2;
-        float f13 = i15;
-        a(canvas, i13 + i16, (int) ((fArr[c10] * f13) + f11), Color.HSVToColor(fArr));
-        int i17 = (i10 * 2) + i13;
-        if (this.f32818y == null) {
-            int HSVToColor = Color.HSVToColor(fArr2);
-            this.f32818y = new LinearGradient(i17, f11, i17 + dp, f12, new int[]{HSVToColor, HSVToColor & 16777215}, (float[]) null, Shader.TileMode.CLAMP);
-        }
-        paint.setShader(this.f32818y);
-        canvas.drawRect(i17, f11, dp + i17, f12, paint);
-        a(canvas, i17 + i16, (int) c3.h0.z(1.0f, this.v, f13, f11), (Color.HSVToColor(fArr) & 16777215) | (((int) (this.v * 255.0f)) << 24));
+        bi0Var.draw(canvas);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int min = Math.min(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
-        measureChild(this.f32809a, i10, i11);
-        setMeasuredDimension(min, min);
+    public final int getOpacity() {
+        return -2;
     }
 
     @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        int c10 = org.telegram.messenger.t.c(20.0f, (i10 / 2) - (this.f32810b * 2), 1);
-        this.f32814r = c10;
-        int i14 = c10 * 2;
-        int i15 = c10 * 2;
-        Bitmap createBitmap = Bitmap.createBitmap(i14, i15, Bitmap.Config.ARGB_8888);
-        int[] iArr = new int[13];
-        float[] fArr = {0.0f, 1.0f, 1.0f};
-        for (int i16 = 0; i16 < 13; i16++) {
-            fArr[0] = ((i16 * 30) + 180) % 360;
-            iArr[i16] = Color.HSVToColor(fArr);
-        }
-        iArr[12] = iArr[0];
-        float f7 = i14 / 2;
-        float f10 = i15 / 2;
-        ComposeShader composeShader = new ComposeShader(new SweepGradient(f7, f10, iArr, (float[]) null), new RadialGradient(f7, f10, this.f32814r, -1, 16777215, Shader.TileMode.CLAMP), PorterDuff.Mode.SRC_OVER);
-        Paint paint = this.f32811c;
-        paint.setShader(composeShader);
-        new Canvas(createBitmap).drawCircle(f7, f10, this.f32814r, paint);
-        this.h = createBitmap;
-        this.f32817x = null;
-        this.f32818y = null;
+    public final void setAlpha(int i10) {
     }
 
     @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.t21.onTouchEvent(android.view.MotionEvent):boolean");
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

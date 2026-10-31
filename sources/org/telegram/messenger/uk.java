@@ -1,42 +1,35 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class uk implements Runnable {
-    public final int f21469a;
-    public final BaseController f21470b;
-    public final long f21471c;
-    public final Object d;
+import java.util.function.ToLongFunction;
+import org.telegram.ui.r61;
+public final class uk implements ToLongFunction {
+    public final int f18367a;
 
-    public uk(BaseController baseController, long j10, Object obj, int i10) {
-        this.f21469a = i10;
-        this.f21470b = baseController;
-        this.f21471c = j10;
-        this.d = obj;
+    public uk(int i10) {
+        this.f18367a = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f21469a) {
+    public final long applyAsLong(Object obj) {
+        switch (this.f18367a) {
             case 0:
-                ((TopicsController) this.f21470b).lambda$loadTopics$4(this.f21471c, (TLRPC.TL_messages_savedDialogsNotModified) this.d);
-                return;
+                return Long.parseLong((String) obj);
             case 1:
-                ((TopicsController) this.f21470b).lambda$updateTopicsWithDeletedMessages$10((ArrayList) this.d, this.f21471c);
-                return;
+                return ((nt) obj).e;
             case 2:
-                ((TranslateController) this.f21470b).lambda$setDialogTranslateTo$0(this.f21471c, (String) this.d);
-                return;
+                return ((nt) obj).e;
+            case 3:
+                return ((jj) obj).Z0();
+            case 4:
+                jj jjVar = ((r61) obj).f41150b;
+                if (jjVar == null) {
+                    return 0L;
+                }
+                return jjVar.f16337k.date;
+            case 5:
+                return ((org.telegram.ui.Wallet.g8) obj).I;
             default:
-                ((TranslateController) this.f21470b).lambda$invalidateTranslation$9((MessageObject) this.d, this.f21471c);
-                return;
+                return ((org.telegram.ui.Wallet.g8) obj).J;
         }
-    }
-
-    public uk(BaseController baseController, Object obj, long j10, int i10) {
-        this.f21469a = i10;
-        this.f21470b = baseController;
-        this.d = obj;
-        this.f21471c = j10;
     }
 }

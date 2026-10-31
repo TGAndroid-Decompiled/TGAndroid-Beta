@@ -1,41 +1,27 @@
 package w7;
-public final class e implements h {
-    public final int f50901a;
+
+import java.util.Map;
+public final class e implements ja.d {
+    public static final e f52498b = new e(0);
+    public static final e f52499c = new e(1);
+    public final int f52500a;
 
     public e(int i10) {
-        this.f50901a = i10;
+        this.f52500a = i10;
     }
 
     @Override
-    public final Class annotationType() {
-        return h.class;
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof h) {
-                if (this.f50901a == ((e) ((h) obj)).f50901a) {
-                    Object obj2 = g.f50913a;
-                    if (obj2.equals(obj2)) {
-                        return true;
-                    }
-                    return false;
-                }
-                return false;
-            }
-            return false;
+    public final void a(Object obj, Object obj2) {
+        switch (this.f52500a) {
+            case 0:
+                Map.Entry entry = (Map.Entry) obj;
+                ja.e eVar = (ja.e) obj2;
+                eVar.d(f.f52507g, entry.getKey());
+                eVar.d(f.h, entry.getValue());
+                return;
+            default:
+                ja.e eVar2 = (ja.e) obj2;
+                throw new RuntimeException("Couldn't find encoder for type ".concat(String.valueOf(obj.getClass().getCanonicalName())));
         }
-        return true;
-    }
-
-    @Override
-    public final int hashCode() {
-        return (this.f50901a ^ 14552422) + (g.f50913a.hashCode() ^ 2041407134);
-    }
-
-    @Override
-    public final String toString() {
-        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + this.f50901a + "intEncoding=" + g.f50913a + ')';
     }
 }

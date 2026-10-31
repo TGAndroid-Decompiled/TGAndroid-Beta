@@ -1,15 +1,47 @@
 package org.telegram.ui.Components;
+public final class by0 {
+    public final int f24912a;
 
-import org.telegram.messenger.CacheFetcher;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class by0 extends CacheFetcher {
-    @Override
-    public final void getRemote(int i10, Object obj, long j10, Utilities.Callback4 callback4) {
-        TLRPC.TL_messages_searchCustomEmoji tL_messages_searchCustomEmoji = new TLRPC.TL_messages_searchCustomEmoji();
-        tL_messages_searchCustomEmoji.emoticon = (String) obj;
-        tL_messages_searchCustomEmoji.hash = j10;
-        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_searchCustomEmoji, new zx0(callback4, 1));
+    public by0(int i10) {
+        this.f24912a = i10;
+    }
+
+    public final int a(iy0 iy0Var, int i10) {
+        switch (this.f24912a) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i10;
+            case 3:
+                return Integer.MIN_VALUE;
+            default:
+                return Integer.MIN_VALUE;
+        }
+    }
+
+    public final int b(iy0 iy0Var, int i10) {
+        switch (this.f24912a) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i10;
+            case 3:
+                return 0;
+            default:
+                return 0;
+        }
+    }
+
+    public int c(int i10, int i11) {
+        switch (this.f24912a) {
+            case 4:
+                return i11;
+            default:
+                return i10;
+        }
     }
 }

@@ -1,41 +1,25 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-public final class b9 extends s4.u0 {
-    public boolean f37923a;
-    public final o9 f37924b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import java.util.concurrent.atomic.AtomicBoolean;
+public final class b9 extends AnimatorListenerAdapter {
+    public final AtomicBoolean f36136a;
+    public final org.telegram.ui.Components.p80 f36137b;
+    public final String f36138c;
 
-    public b9(o9 o9Var) {
-        this.f37924b = o9Var;
+    public b9(AtomicBoolean atomicBoolean, org.telegram.ui.Components.p80 p80Var, String str) {
+        this.f36136a = atomicBoolean;
+        this.f36137b = p80Var;
+        this.f36138c = str;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        int abs;
-        o9 o9Var = this.f37924b;
-        ArrayList arrayList = o9Var.f42026w;
-        int L0 = o9Var.f42020b.L0();
-        boolean z10 = false;
-        if (L0 == -1) {
-            abs = 0;
-        } else {
-            abs = Math.abs(o9Var.f42020b.N0() - L0) + 1;
+    public final void onAnimationEnd(Animator animator) {
+        AtomicBoolean atomicBoolean = this.f36136a;
+        if (!atomicBoolean.get()) {
+            atomicBoolean.set(true);
+            this.f36137b.setText(this.f36138c);
         }
-        if (abs > 0) {
-            int size = o9Var.f42021c.f32504g3.f29882y.size();
-            if (!o9Var.E && !o9Var.f42027x && !arrayList.isEmpty() && L0 + abs >= size - 5) {
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.m0(18, this, (k9) ic.a.g(1, arrayList)));
-            }
-        }
-        if (i11 != 0 && this.f37923a) {
-            org.telegram.ui.Components.j20 j20Var = o9Var.f42022f;
-            if (i11 < 0) {
-                z10 = true;
-            }
-            j20Var.e(z10, true);
-        }
-        this.f37923a = true;
     }
 }

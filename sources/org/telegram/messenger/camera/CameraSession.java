@@ -11,9 +11,9 @@ import android.view.OrientationEventListener;
 import android.view.WindowManager;
 import java.util.ArrayList;
 import java.util.List;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
+import org.telegram.messenger.f8;
+import org.telegram.messenger.v2;
+import org.telegram.messenger.w0;
 public class CameraSession {
     public static final int ORIENTATION_HYSTERESIS = 5;
     public CameraInfo cameraInfo;
@@ -51,20 +51,20 @@ public class CameraSession {
         this.pictureFormat = i10;
         this.cameraInfo = cameraInfo;
         this.isRound = z10;
-        SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("camera", 0);
+        SharedPreferences sharedPreferences = w0.f19025b.getSharedPreferences("camera", 0);
         if (this.cameraInfo.frontCamera != 0) {
             str = "flashMode_front";
         } else {
             str = "flashMode";
         }
         this.currentFlashMode = sharedPreferences.getString(str, "off");
-        OrientationEventListener orientationEventListener = new OrientationEventListener(ApplicationLoader.applicationContext) {
+        OrientationEventListener orientationEventListener = new OrientationEventListener(w0.f19025b) {
             @Override
             public void onOrientationChanged(int i11) {
                 if (CameraSession.this.orientationEventListener != null && CameraSession.this.initied && i11 != -1) {
                     CameraSession cameraSession = CameraSession.this;
                     cameraSession.jpegOrientation = cameraSession.roundOrientation(i11, cameraSession.jpegOrientation);
-                    int rotation = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
+                    int rotation = ((WindowManager) w0.f19025b.getSystemService("window")).getDefaultDisplay().getRotation();
                     if (CameraSession.this.lastOrientation != CameraSession.this.jpegOrientation || rotation != CameraSession.this.lastDisplayOrientation) {
                         if (!CameraSession.this.isVideo) {
                             CameraSession.this.configurePhotoCamera();
@@ -86,7 +86,7 @@ public class CameraSession {
     }
 
     private int getDisplayOrientation(Camera.CameraInfo cameraInfo, boolean z10) {
-        int rotation = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
+        int rotation = ((WindowManager) w0.f19025b.getSystemService("window")).getDefaultDisplay().getRotation();
         int i10 = 0;
         if (rotation != 0) {
             if (rotation == 1) {
@@ -146,7 +146,7 @@ public class CameraSession {
             return;
         }
         configurePhotoCamera();
-        SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("camera", 0).edit();
+        SharedPreferences.Editor edit = w0.f19025b.getSharedPreferences("camera", 0).edit();
         if (this.cameraInfo.frontCamera != 0) {
             str2 = "flashMode_front";
         } else {
@@ -165,7 +165,7 @@ public class CameraSession {
                 try {
                     parameters = camera.getParameters();
                 } catch (Exception e) {
-                    FileLog.e(e);
+                    f8.g(e, true);
                     parameters = null;
                 }
                 updateCameraInfo();
@@ -235,7 +235,7 @@ public class CameraSession {
                 }
             }
         } catch (Throwable th2) {
-            FileLog.e(th2);
+            f8.g(th2, true);
         }
     }
 
@@ -279,18 +279,18 @@ public class CameraSession {
                 try {
                     parameters = camera.getParameters();
                 } catch (Exception e) {
-                    FileLog.e(e);
+                    f8.g(e, true);
                     parameters = null;
                 }
                 updateCameraInfo();
                 updateRotation();
                 if (parameters != null) {
-                    if (z10 && BuildVars.LOGS_ENABLED) {
-                        FileLog.d("set preview size = " + this.previewSize.getWidth() + " " + this.previewSize.getHeight());
+                    if (z10 && v2.f18448a) {
+                        f8.b("set preview size = " + this.previewSize.getWidth() + " " + this.previewSize.getHeight());
                     }
                     parameters.setPreviewSize(this.previewSize.getWidth(), this.previewSize.getHeight());
-                    if (z10 && BuildVars.LOGS_ENABLED) {
-                        FileLog.d("set picture size = " + this.pictureSize.getWidth() + " " + this.pictureSize.getHeight());
+                    if (z10 && v2.f18448a) {
+                        f8.b("set picture size = " + this.pictureSize.getWidth() + " " + this.pictureSize.getHeight());
                     }
                     parameters.setPictureSize(this.pictureSize.getWidth(), this.pictureSize.getHeight());
                     parameters.setPictureFormat(this.pictureFormat);
@@ -338,14 +338,14 @@ public class CameraSession {
                         if (parameters.getMaxNumMeteringAreas() > 0) {
                             this.meteringAreaSupported = true;
                         }
-                    } catch (Exception e10) {
-                        throw new RuntimeException(e10);
+                    } catch (Exception e7) {
+                        throw new RuntimeException(e7);
                     }
                 }
             }
             return true;
         } catch (Throwable th2) {
-            FileLog.e(th2);
+            f8.g(th2, true);
             return false;
         }
     }
@@ -369,7 +369,7 @@ public class CameraSession {
                 try {
                     parameters = camera.getParameters();
                 } catch (Exception e) {
-                    FileLog.e(e);
+                    f8.g(e, true);
                     parameters = null;
                 }
                 if (parameters != null) {
@@ -385,13 +385,13 @@ public class CameraSession {
                     try {
                         camera.setParameters(parameters);
                         camera.autoFocus(this.autoFocusCallback);
-                    } catch (Exception e10) {
-                        FileLog.e(e10);
+                    } catch (Exception e7) {
+                        f8.g(e7, true);
                     }
                 }
             }
-        } catch (Exception e11) {
-            FileLog.e(e11);
+        } catch (Exception e10) {
+            f8.g(e10, true);
         }
     }
 
@@ -456,7 +456,7 @@ public class CameraSession {
             return;
         }
         configurePhotoCamera();
-        SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("camera", 0).edit();
+        SharedPreferences.Editor edit = w0.f19025b.getSharedPreferences("camera", 0).edit();
         if (this.cameraInfo.frontCamera != 0) {
             str2 = "flashMode_front";
         } else {
@@ -511,7 +511,7 @@ public class CameraSession {
                 }
             }
         } catch (Exception e) {
-            FileLog.e(e);
+            f8.g(e, true);
         }
     }
 
@@ -542,7 +542,7 @@ public class CameraSession {
             updateCameraInfo();
             return getDisplayOrientation(this.info, true);
         } catch (Exception e) {
-            FileLog.e(e);
+            f8.g(e, true);
             return 0;
         }
     }

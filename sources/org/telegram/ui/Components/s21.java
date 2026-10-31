@@ -1,25 +1,33 @@
 package org.telegram.ui.Components;
+public final class s21 implements Runnable {
+    public final int f30110a;
+    public final org.telegram.messenger.jj f30111b;
+    public final long f30112c;
+    public final String d;
 
-import android.text.TextWatcher;
-public final class s21 implements TextWatcher {
-    public final int f32467a;
-    public final t21 f32468b;
-
-    public s21(t21 t21Var, int i10) {
-        this.f32468b = t21Var;
-        this.f32467a = i10;
+    public s21(org.telegram.messenger.jj jjVar, long j10, String str, int i10) {
+        this.f30110a = i10;
+        this.f30111b = jjVar;
+        this.f30112c = j10;
+        this.d = str;
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.s21.afterTextChanged(android.text.Editable):void");
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void run() {
+        int i10 = this.f30110a;
+        String str = this.d;
+        long j10 = this.f30112c;
+        org.telegram.messenger.jj jjVar = this.f30111b;
+        switch (i10) {
+            case 0:
+                u21.f(jjVar, j10, str);
+                return;
+            default:
+                org.telegram.messenger.zs f7 = org.telegram.messenger.zs.f(jjVar.I1);
+                Long valueOf = Long.valueOf(j10);
+                Boolean bool = Boolean.TRUE;
+                f7.k(115, jjVar, valueOf, str, bool, bool);
+                return;
+        }
     }
 }

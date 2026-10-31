@@ -1,28 +1,33 @@
 package org.telegram.ui.Components;
-public final class ub0 implements Runnable {
-    public final int f33333a;
-    public final ic0 f33334b;
+public final class ub0 extends ln0 {
+    public final ac0 d;
 
-    public ub0(ic0 ic0Var, int i10) {
-        this.f33333a = i10;
-        this.f33334b = ic0Var;
+    public ub0(ac0 ac0Var) {
+        this.d = ac0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f33333a) {
-            case 0:
-                ic0 ic0Var = this.f33334b;
-                bc0 bc0Var = ic0Var.f29307f;
-                if (ic0Var.f29306c0.d.webpageTop) {
-                    bc0Var.x0(-bc0Var.computeVerticalScrollOffset(), 250, mi.m.V);
-                    return;
-                }
-                bc0Var.x0(bc0Var.computeVerticalScrollRange() - (bc0Var.computeVerticalScrollExtent() + bc0Var.computeVerticalScrollOffset()), 250, mi.m.V);
-                return;
-            default:
-                this.f33334b.h(true, false);
-                return;
+    public final boolean a() {
+        return true;
+    }
+
+    @Override
+    public final boolean b() {
+        return true;
+    }
+
+    @Override
+    public final void c(boolean z10) {
+        this.d.a(!z10);
+    }
+
+    @Override
+    public final CharSequence d() {
+        ac0 ac0Var = this.d;
+        org.telegram.messenger.r20 r20Var = ac0Var.f24394u0;
+        if (r20Var != null) {
+            return (CharSequence) r20Var.a(Integer.valueOf(ac0Var.H));
         }
+        return ac0Var.d(ac0Var.H);
     }
 }

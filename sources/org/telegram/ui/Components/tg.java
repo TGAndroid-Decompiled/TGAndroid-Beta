@@ -1,93 +1,68 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.graphics.RectF;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class tg extends j1.b {
-    public final int[] f32957o;
-    public final ChatActivityEnterView.RecordCircle f32958p;
+import android.view.KeyEvent;
+import android.widget.LinearLayout;
+import org.telegram.messenger.Utilities;
+public final class tg implements o1.g {
+    public final int f30570a = 0;
+    public final boolean f30571b;
+    public final float f30572c;
+    public final float d;
+    public final KeyEvent.Callback e;
 
-    public tg(ChatActivityEnterView.RecordCircle recordCircle, ChatActivityEnterView.RecordCircle recordCircle2) {
-        super(recordCircle2);
-        this.f32958p = recordCircle;
-        this.f32957o = new int[2];
+    public tg(bi biVar, float f7, float f10, boolean z10) {
+        this.e = biVar;
+        this.f30572c = f7;
+        this.d = f10;
+        this.f30571b = z10;
     }
 
     @Override
-    public final int g(float f7, float f10) {
-        Rect rect;
-        ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
-        if (chatActivityEnterView.f25959s4 && chatActivityEnterView.N1 != null) {
-            if (chatActivityEnterView.T3.contains((int) f7, (int) f10)) {
-                return 1;
-            }
-            if (chatActivityEnterView.S3.contains(f7, f10)) {
-                return 2;
-            }
-            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f25910k1;
-            if (slideTextView != null && (rect = slideTextView.K) != null) {
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(rect);
-                ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.f25910k1;
-                int[] iArr = this.f32957o;
-                slideTextView2.getLocationOnScreen(iArr);
-                rectF.offset(iArr[0], iArr[1]);
-                chatActivityEnterView.N1.getLocationOnScreen(iArr);
-                rectF.offset(-iArr[0], -iArr[1]);
-                if (rectF.contains(f7, f10)) {
-                    return 3;
+    public final void a(o1.j jVar, float f7, float f10) {
+        switch (this.f30570a) {
+            case 0:
+                bi biVar = (bi) this.e;
+                LinearLayout linearLayout = biVar.f24674f3;
+                LinearLayout linearLayout2 = biVar.f24680h3;
+                float f11 = f7 / 500.0f;
+                mh mhVar = biVar.V1;
+                uh uhVar = biVar.f24721s2;
+                Float valueOf = Float.valueOf(f11);
+                mhVar.getClass();
+                mhVar.a(uhVar, valueOf);
+                biVar.R2.setAlpha(org.telegram.messenger.i0.T1(this.f30572c, this.d, f11));
+                biVar.L1(biVar.f24721s2, 0);
+                biVar.L1(biVar.f24725t2, 0);
+                if (!(biVar.f24725t2 instanceof jm) || this.f30571b) {
+                    f11 = 1.0f - f11;
                 }
-                return -1;
-            }
-            return -1;
+                float i10 = Utilities.i(f11, 1.0f, 0.0f);
+                linearLayout2.setAlpha(i10);
+                float f12 = 1.0f - i10;
+                linearLayout.setAlpha(f12);
+                linearLayout.setTranslationX(i10 * (-org.telegram.messenger.i0.L(16.0f)));
+                linearLayout2.setTranslationX(f12 * org.telegram.messenger.i0.L(16.0f));
+                return;
+            default:
+                do0 do0Var = (do0) this.e;
+                boolean z10 = this.f30571b;
+                if (z10) {
+                    if (f7 > this.f30572c / 2.0f || !do0Var.f25479s) {
+                        return;
+                    }
+                } else if (f7 < this.d / 2.0f || !do0Var.f25478r) {
+                    return;
+                }
+                do0Var.f25479s = !z10;
+                do0Var.f25478r = z10;
+                return;
         }
-        return -1;
     }
 
-    @Override
-    public final void h(ArrayList arrayList) {
-        if (ChatActivityEnterView.this.f25959s4) {
-            arrayList.add(1);
-            arrayList.add(3);
-        }
-    }
-
-    @Override
-    public final boolean k(int i10, int i11) {
-        return true;
-    }
-
-    @Override
-    public final void l(int i10, s0.d dVar) {
-        Rect rect;
-        ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
-        if (i10 == 1) {
-            dVar.h(chatActivityEnterView.T3);
-            dVar.o(LocaleController.getString("Send", R.string.Send));
-        } else if (i10 == 2) {
-            Rect rect2 = chatActivityEnterView.U3;
-            RectF rectF = chatActivityEnterView.S3;
-            rect2.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-            dVar.h(chatActivityEnterView.U3);
-            dVar.o(LocaleController.getString(R.string.Stop));
-        } else if (i10 == 3 && chatActivityEnterView.N1 != null) {
-            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f25910k1;
-            if (slideTextView != null && (rect = slideTextView.K) != null) {
-                Rect rect3 = AndroidUtilities.rectTmp2;
-                rect3.set(rect);
-                ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.f25910k1;
-                int[] iArr = this.f32957o;
-                slideTextView2.getLocationOnScreen(iArr);
-                rect3.offset(iArr[0], iArr[1]);
-                chatActivityEnterView.N1.getLocationOnScreen(iArr);
-                rect3.offset(-iArr[0], -iArr[1]);
-                dVar.h(rect3);
-            }
-            dVar.o(LocaleController.getString("Cancel", R.string.Cancel));
-        }
+    public tg(do0 do0Var, boolean z10, float f7, float f10) {
+        this.e = do0Var;
+        this.f30571b = z10;
+        this.f30572c = f7;
+        this.d = f10;
     }
 }

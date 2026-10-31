@@ -1,216 +1,156 @@
 package jg;
 
-import android.content.Context;
-import android.text.TextUtils;
+import android.animation.ValueAnimator;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.wh;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.f7;
-import org.telegram.ui.ActionBar.r2;
-import org.telegram.ui.ActionBar.y5;
-import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Cells.a9;
-import org.telegram.ui.Components.k71;
-import org.telegram.ui.Components.kb1;
-import org.telegram.ui.Components.nm0;
-import org.telegram.ui.Components.s71;
-import org.telegram.ui.Components.u61;
-import org.telegram.ui.Components.y9;
-public final class f2 extends r2 implements NotificationCenter.NotificationCenterDelegate {
-    public s71 f15703a;
-    public LinearLayout f15704b;
-    public ai.n1 f15705c;
-    public boolean d;
-    public String e;
-    public String f15706f;
-    public boolean h;
-    public String f15707n;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.gr;
+public abstract class f2 extends View {
+    public Bitmap f9965a;
+    public Paint f9966b;
+    public Paint f9967c;
+    public Paint d;
+    public float e;
+    public float f9968f;
+    public Path h;
+    public Rect f9969n;
+    public RectF f9970r;
+    public int f9971s;
+    public boolean f9972w;
+    public q0.a f9973x;
+    public float f9974y;
 
-    public static void V(f2 f2Var, u61 u61Var, View view) {
-        if (u61Var.d == -1) {
-            boolean z10 = f2Var.h;
-            f2Var.h = !z10;
-            if (!z10) {
-                String str = f2Var.f15706f;
-                f2Var.f15707n = str;
-                ai.n1 n1Var = f2Var.f15705c;
-                if (n1Var != null) {
-                    n1Var.run(str);
-                }
-            }
-            ((a9) view).setChecked(f2Var.h);
-            f2Var.f15703a.f32504g3.O(true);
-        } else if (view.isEnabled()) {
-            g2 b10 = g2.b(f2Var.currentAccount);
-            ArrayList arrayList = b10.d;
-            int i10 = u61Var.d;
-            if (i10 >= 0) {
-                b10.g();
-                if (i10 < arrayList.size()) {
-                    b10.g();
-                    f2Var.h = false;
-                    String str2 = ((TLRPC.TL_timezone) arrayList.get(u61Var.d)).f22168id;
-                    f2Var.f15707n = str2;
-                    ai.n1 n1Var2 = f2Var.f15705c;
-                    if (n1Var2 != null) {
-                        n1Var2.run(str2);
-                    }
-                    if (f2Var.d) {
-                        f2Var.simpleActionBar.f(true);
-                    }
-                    f2Var.f15703a.f32504g3.O(true);
-                }
-            }
+    public final void a(boolean z10) {
+        if (this.f9972w) {
+            return;
         }
+        this.f9972w = true;
+        ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(150L);
+        duration.setInterpolator(gr.f26495f);
+        duration.addUpdateListener(new bg.k(this, 5));
+        duration.addListener(new eg.m(1, this, z10));
+        duration.start();
     }
 
-    public static void W(f2 f2Var, ArrayList arrayList, k71 k71Var) {
-        boolean z10;
-        boolean z11;
-        if (f2Var.d && !TextUtils.isEmpty(f2Var.e)) {
-            z10 = true;
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        ((ig.j) this).D.f8478o1.c();
+        this.f9965a.recycle();
+        this.f9965a = null;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        Bitmap bitmap;
+        int i10;
+        float f7;
+        Rect rect = this.f9969n;
+        Paint paint = this.f9966b;
+        RectF rectF = this.f9970r;
+        Path path = this.h;
+        super.onDraw(canvas);
+        float min = Math.min(getWidth(), getHeight()) * 0.2f;
+        float width = this.e * getWidth();
+        float height = this.f9968f * getHeight();
+        int round = Math.round(this.e * this.f9965a.getWidth());
+        int round2 = Math.round(this.f9968f * this.f9965a.getHeight());
+        int pixel = this.f9965a.getPixel(Utilities.j(round, bitmap.getWidth() - 1, 0), Utilities.j(round2, this.f9965a.getHeight() - 1, 0));
+        this.f9971s = pixel;
+        Paint paint2 = this.d;
+        paint2.setColor(pixel);
+        float f10 = this.f9974y;
+        if (f10 != 0.0f && f10 != 1.0f) {
+            RectF rectF2 = org.telegram.messenger.i0.P;
+            f7 = 1.0f;
+            i10 = round;
+            rectF2.set(width - min, height - min, width + min, height + min);
+            canvas.saveLayerAlpha(rectF2, (int) (this.f9974y * 255.0f), 31);
         } else {
-            z10 = false;
+            i10 = round;
+            f7 = 1.0f;
+            canvas.save();
         }
-        g2 b10 = g2.b(f2Var.currentAccount);
-        ArrayList arrayList2 = b10.d;
-        if (!z10) {
-            k71Var.V();
-            String string = LocaleController.getString(R.string.TimezoneDetectAutomatically);
-            u61 u61Var = new u61(9);
-            u61Var.d = -1;
-            u61Var.f33249l = string;
-            u61Var.L(f2Var.h);
-            arrayList.add(u61Var);
-            k71Var.U();
-            arrayList.add(u61.C(LocaleController.formatString(R.string.TimezoneDetectAutomaticallyInfo, b10.d(f2Var.f15707n, true))));
+        float f11 = (this.f9974y * 0.5f) + 0.5f;
+        canvas.scale(f11, f11, width, height);
+        path.rewind();
+        Path.Direction direction = Path.Direction.CW;
+        path.addCircle(width, height, min, direction);
+        canvas.clipPath(path);
+        int round3 = Math.round(3.5f);
+        rect.set(i10 - round3, round2 - round3, i10 + round3, round2 + round3);
+        rectF.set(width - min, height - min, width + min, height + min);
+        canvas.drawBitmap(this.f9965a, rect, rectF, (Paint) null);
+        float strokeWidth = min - (paint2.getStrokeWidth() / 2.0f);
+        canvas.drawCircle(width, height, strokeWidth, paint2);
+        float strokeWidth2 = (strokeWidth - (paint2.getStrokeWidth() / 2.0f)) - (paint.getStrokeWidth() / 2.0f);
+        canvas.drawCircle(width, height, strokeWidth2, paint);
+        float strokeWidth3 = strokeWidth2 - (paint.getStrokeWidth() / 2.0f);
+        path.rewind();
+        path.addCircle(width, height, strokeWidth3, direction);
+        canvas.clipPath(path);
+        float f12 = (strokeWidth3 * 2.0f) / 8.0f;
+        path.rewind();
+        for (float f13 = -3.5f; f13 < 4.5f; f13 += f7) {
+            float f14 = (f13 * f12) + width;
+            path.moveTo(f14, height - strokeWidth3);
+            path.lineTo(f14, height + strokeWidth3);
         }
-        k71Var.V();
-        if (!z10) {
-            ic.a.p(R.string.TimezoneHeader, arrayList);
+        for (float f15 = -3.5f; f15 < 4.5f; f15 += f7) {
+            float f16 = (f15 * f12) + height;
+            path.moveTo(width - strokeWidth3, f16);
+            path.lineTo(width + strokeWidth3, f16);
         }
-        boolean z12 = true;
-        int i10 = 0;
-        while (true) {
-            b10.g();
-            if (i10 >= arrayList2.size()) {
-                break;
-            }
-            b10.g();
-            TLRPC.TL_timezone tL_timezone = (TLRPC.TL_timezone) arrayList2.get(i10);
-            CharSequence e = g2.e(tL_timezone, false);
-            if (z10) {
-                String replace = AndroidUtilities.translitSafe(tL_timezone.name).toLowerCase().replace("/", " ");
-                String lowerCase = AndroidUtilities.translitSafe(f2Var.e).toLowerCase();
-                if (wh.u(" ", lowerCase, replace) || replace.startsWith(lowerCase)) {
-                    e = AndroidUtilities.highlightText(e, f2Var.e, f2Var.resourceProvider);
-                } else {
-                    i10++;
+        canvas.drawPath(path, this.f9967c);
+        float f17 = f12 / 2.0f;
+        rectF.set(width - f17, height - f17, width + f17, height + f17);
+        canvas.drawRoundRect(rectF, org.telegram.messenger.i0.L(f7), org.telegram.messenger.i0.L(f7), paint);
+        canvas.restore();
+    }
+
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        if (i10 != 0 && i11 != 0 && i12 != 0 && i13 != 0 && isLaidOut()) {
+            this.e = (i12 * this.e) / i10;
+            this.f9968f = (i13 * this.f9968f) / i11;
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        int actionMasked = motionEvent.getActionMasked();
+        if (actionMasked != 0) {
+            if (actionMasked != 1) {
+                if (actionMasked != 2) {
+                    if (actionMasked != 3) {
+                        return true;
+                    }
+                    a(false);
+                    return true;
                 }
+                this.e = motionEvent.getX() / getWidth();
+                this.f9968f = motionEvent.getY() / getHeight();
+                invalidate();
+                return true;
             }
-            String f7 = g2.f(tL_timezone);
-            u61 u61Var2 = new u61(10);
-            u61Var2.d = i10;
-            u61Var2.f33249l = e;
-            u61Var2.f33251n = f7;
-            u61Var2.L(TextUtils.equals(tL_timezone.f22168id, f2Var.f15707n));
-            if (f2Var.h && !z10) {
-                z11 = false;
-            } else {
-                z11 = true;
-            }
-            u61Var2.f33245g = z11;
-            arrayList.add(u61Var2);
-            z12 = false;
-            i10++;
+            a(true);
+            return true;
         }
-        k71Var.U();
-        if (z12) {
-            arrayList.add(u61.m(f2Var.f15704b));
-        } else {
-            arrayList.add(u61.C(null));
-        }
-    }
-
-    @Override
-    public final View createView(Context context) {
-        setHasOwnBackground(true);
-        this.simpleActionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.simpleActionBar.setTitle(LocaleController.getString(R.string.TimezoneTitle));
-        this.simpleActionBar.setActionBarMenuOnItemClick(new bh.m(this, 18));
-        y5 a2 = this.simpleActionBar.j().a(1, R.drawable.outline_header_search);
-        a2.N();
-        a2.f23292z0 = new e2(this, 0);
-        a2.setSearchFieldHint(LocaleController.getString(R.string.Search));
-        FrameLayout frameLayout = new FrameLayout(context);
-        s71 s71Var = new s71(this, new hi.e2(this, 13), new e1(this, 3), null);
-        this.f15703a = s71Var;
-        s71Var.u1();
-        this.f15703a.setSectionsDrawBackground(true);
-        frameLayout.addView(this.f15703a, kb1.g(-1.0f, -1));
-        this.f15703a.setOnScrollListener(new ai.b(this, 19));
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.f15704b = linearLayout;
-        linearLayout.setOrientation(1);
-        this.f15704b.setMinimumHeight(AndroidUtilities.dp(500.0f));
-        y9 y9Var = new y9(context);
-        y9Var.getImageReceiver().setAllowLoadingOnAttachedOnly(false);
-        MediaDataController.getInstance(this.currentAccount).setPlaceholderImage(y9Var, "RestrictedEmoji", "🌖", "130_130");
-        this.f15704b.addView(y9Var, kb1.x(130, 130, 49, 0, 42, 0, 12));
-        TextView textView = new TextView(context);
-        textView.setText(LocaleController.getString(R.string.TimezoneNotFound));
-        f7.V(textView, y6.f23749y6, this.resourceProvider);
-        textView.setTextSize(1, 15.0f);
-        this.f15704b.addView(textView, kb1.x(-2, -2, 49, 0, 0, 0, 0));
-        this.fragmentView = frameLayout;
-        return frameLayout;
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        s71 s71Var;
-        k71 k71Var;
-        if (i10 == NotificationCenter.timezonesUpdated && (s71Var = this.f15703a) != null && (k71Var = s71Var.f32504g3) != null) {
-            k71Var.O(true);
-        }
-    }
-
-    @Override
-    public final nm0 getListViewForSimpleGlass() {
-        return this.f15703a;
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
+        this.e = motionEvent.getX() / getWidth();
+        this.f9968f = motionEvent.getY() / getHeight();
+        invalidate();
+        getParent().requestDisallowInterceptTouchEvent(true);
         return true;
     }
 
-    @Override
-    public final boolean onFragmentCreate() {
-        String c10 = g2.b(this.currentAccount).c();
-        this.f15706f = c10;
-        this.h = TextUtils.equals(c10, this.f15707n);
-        getNotificationCenter().addWeakObserver(this, NotificationCenter.timezonesUpdated);
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        getNotificationCenter().removeObserver(this, NotificationCenter.timezonesUpdated);
-        super.onFragmentDestroy();
-    }
-
-    @Override
-    public final boolean useSimpleActionBar() {
-        return true;
+    public void setColorListener(q0.a aVar) {
+        this.f9973x = aVar;
     }
 }

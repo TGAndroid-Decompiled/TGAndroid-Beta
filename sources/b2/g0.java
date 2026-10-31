@@ -1,19 +1,20 @@
 package b2;
 
 import android.net.Uri;
+import e9.c2;
 import java.util.UUID;
 public final class g0 {
-    public UUID f3207a;
-    public Uri f3208b;
+    public UUID f2041a;
+    public Uri f2042b;
     public boolean d;
-    public boolean f3210f;
-    public f9.i0 f3211g;
+    public boolean f2044f;
+    public e9.n0 f2045g;
     public byte[] h;
-    public f9.l0 f3209c = f9.x1.h;
+    public e9.q0 f2043c = c2.h;
     public boolean e = true;
 
     public g0() {
-        f9.g0 g0Var = f9.i0.f10286b;
-        this.f3211g = f9.s1.e;
+        e9.l0 l0Var = e9.n0.f6390b;
+        this.f2045g = e9.x1.e;
     }
 }

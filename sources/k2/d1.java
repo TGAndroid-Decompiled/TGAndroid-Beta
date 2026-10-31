@@ -1,108 +1,205 @@
 package k2;
 
+import android.os.Handler;
+import bi.r6;
 import java.nio.ByteBuffer;
-public final class d1 extends c2.p {
-    public int f16139i;
-    public int f16140j;
-    public boolean f16141k;
-    public int f16142l;
-    public byte[] f16143m;
-    public int f16144n;
-    public long f16145o;
+import org.telegram.messenger.k9;
+import org.telegram.ui.Components.gi0;
+import org.telegram.ui.Components.j51;
+import org.telegram.ui.Components.o61;
+import org.telegram.ui.Components.u61;
+public final class d1 extends c2.n {
+    public final r6 f10635i;
 
-    @Override
-    public final ByteBuffer a() {
-        int i10;
-        if (super.c() && (i10 = this.f16144n) > 0) {
-            l(i10).put(this.f16143m, 0, this.f16144n).flip();
-            this.f16144n = 0;
-        }
-        return super.a();
+    public d1(r6 r6Var) {
+        this.f10635i = r6Var;
     }
 
     @Override
     public final void b(ByteBuffer byteBuffer) {
-        int position = byteBuffer.position();
-        int limit = byteBuffer.limit();
-        int i10 = limit - position;
-        if (i10 != 0) {
-            int min = Math.min(i10, this.f16142l);
-            this.f16145o += min / this.f5960b.d;
-            this.f16142l -= min;
-            byteBuffer.position(position + min);
-            if (this.f16142l > 0) {
-                return;
+        float f7;
+        float f10;
+        float[] fArr;
+        int remaining = byteBuffer.remaining();
+        if (remaining == 0) {
+            return;
+        }
+        String str = e2.l0.f6165a;
+        ByteBuffer order = byteBuffer.asReadOnlyBuffer().order(byteBuffer.order());
+        r6 r6Var = this.f10635i;
+        float[] fArr2 = (float[]) r6Var.d;
+        k9 k9Var = (k9) r6Var.f3332c;
+        ByteBuffer byteBuffer2 = (ByteBuffer) r6Var.e;
+        u61 u61Var = (u61) r6Var.f3333f;
+        o61 o61Var = u61Var.K;
+        Handler handler = u61Var.f30834a0;
+        if (o61Var != null) {
+            if (order != c2.m.f3552a && u61Var.I) {
+                if (o61Var.k()) {
+                    int limit = order.limit();
+                    int i10 = 0;
+                    if (limit > 8192) {
+                        handler.removeCallbacksAndMessages(null);
+                        u61Var.K.B(false, null);
+                    } else {
+                        byteBuffer2.put(order);
+                        int i11 = r6Var.f3330a + limit;
+                        r6Var.f3330a = i11;
+                        if (i11 >= 1024) {
+                            byteBuffer2.position(0);
+                            for (int i12 = 0; i12 < 1024; i12++) {
+                                fArr2[i12] = byteBuffer2.getShort() / 32768.0f;
+                            }
+                            byteBuffer2.rewind();
+                            r6Var.f3330a = 0;
+                            k9Var.getClass();
+                            float f11 = 0.0f;
+                            if (fArr2.length != 1024) {
+                                f7 = 0.0f;
+                                f10 = 1.0f;
+                            } else {
+                                for (int i13 = 0; i13 < 1024; i13++) {
+                                    ((float[]) k9Var.f16552b)[i13] = fArr2[((int[]) k9Var.h)[i13]];
+                                    ((float[]) k9Var.f16553c)[i13] = 0.0f;
+                                }
+                                int i14 = 1;
+                                while (i14 < ((float[]) k9Var.f16552b).length) {
+                                    float f12 = ((float[]) k9Var.f16555g)[i14];
+                                    float f13 = ((float[]) k9Var.f16554f)[i14];
+                                    float f14 = f11;
+                                    int i15 = i10;
+                                    float f15 = 1.0f;
+                                    while (i15 < i14) {
+                                        float f16 = f11;
+                                        int i16 = i15;
+                                        while (true) {
+                                            float[] fArr3 = (float[]) k9Var.f16552b;
+                                            if (i16 < fArr3.length) {
+                                                int i17 = i16 + i14;
+                                                float f17 = fArr3[i17];
+                                                float[] fArr4 = (float[]) k9Var.f16553c;
+                                                float f18 = fArr4[i17];
+                                                float f19 = (f15 * f17) - (f14 * f18);
+                                                float f20 = (f17 * f14) + (f18 * f15);
+                                                fArr3[i17] = fArr3[i16] - f19;
+                                                fArr4[i17] = fArr4[i16] - f20;
+                                                fArr3[i16] = fArr3[i16] + f19;
+                                                fArr4[i16] = fArr4[i16] + f20;
+                                                i16 += i14 * 2;
+                                            }
+                                        }
+                                        f14 = (f14 * f12) + (f15 * f13);
+                                        i15++;
+                                        f15 = (f15 * f12) - (f14 * f13);
+                                        f11 = f16;
+                                    }
+                                    i14 *= 2;
+                                    i10 = 0;
+                                }
+                                f7 = f11;
+                                f10 = 1.0f;
+                                int i18 = 0;
+                                while (true) {
+                                    fArr = (float[]) k9Var.d;
+                                    if (i18 >= fArr.length) {
+                                        break;
+                                    }
+                                    float f21 = ((float[]) k9Var.f16552b)[i18];
+                                    float f22 = ((float[]) k9Var.f16553c)[i18];
+                                    fArr[i18] = (float) Math.sqrt((f22 * f22) + (f21 * f21));
+                                    i18++;
+                                }
+                                if (k9Var.f16551a == 1) {
+                                    int length = fArr.length / ((float[]) k9Var.e).length;
+                                    for (int i19 = 0; i19 < ((float[]) k9Var.e).length; i19++) {
+                                        float f23 = f7;
+                                        int i20 = 0;
+                                        while (i20 < length) {
+                                            int i21 = (i19 * length) + i20;
+                                            float[] fArr5 = (float[]) k9Var.d;
+                                            if (i21 < fArr5.length) {
+                                                f23 += fArr5[i21];
+                                                i20++;
+                                            }
+                                        }
+                                        ((float[]) k9Var.e)[i19] = f23 / (i20 + 1);
+                                    }
+                                }
+                            }
+                            float f24 = f7;
+                            for (int i22 = 0; i22 < 1024; i22++) {
+                                float f25 = ((float[]) k9Var.f16552b)[i22];
+                                float f26 = ((float[]) k9Var.f16553c)[i22];
+                                float sqrt = ((float) Math.sqrt((f26 * f26) + (f25 * f25))) / 30.0f;
+                                if (sqrt > f10) {
+                                    sqrt = f10;
+                                } else if (sqrt < f7) {
+                                    sqrt = f7;
+                                }
+                                f24 += sqrt * sqrt;
+                            }
+                            float sqrt2 = (float) Math.sqrt(f24 / 1024);
+                            float[] fArr6 = new float[7];
+                            fArr6[6] = sqrt2;
+                            if (sqrt2 < 0.4f) {
+                                for (int i23 = 0; i23 < 7; i23++) {
+                                    fArr6[i23] = f7;
+                                }
+                            } else {
+                                for (int i24 = 0; i24 < 6; i24++) {
+                                    int i25 = 170 * i24;
+                                    float f27 = ((float[]) k9Var.f16552b)[i25];
+                                    float f28 = ((float[]) k9Var.f16553c)[i25];
+                                    float sqrt3 = (float) (Math.sqrt((f28 * f28) + (f27 * f27)) / 30.0d);
+                                    fArr6[i24] = sqrt3;
+                                    if (sqrt3 > f10) {
+                                        fArr6[i24] = f10;
+                                    } else if (sqrt3 < f7) {
+                                        fArr6[i24] = f7;
+                                    }
+                                }
+                            }
+                            if (System.currentTimeMillis() - r6Var.f3331b >= 64) {
+                                r6Var.f3331b = System.currentTimeMillis();
+                                handler.postDelayed(new gi0(24, r6Var, fArr6), 130L);
+                            }
+                        }
+                    }
+                }
+            } else {
+                handler.postDelayed(new j51(r6Var, 4), 80L);
             }
-            int i11 = i10 - min;
-            int length = (this.f16144n + i11) - this.f16143m.length;
-            ByteBuffer l4 = l(length);
-            int i12 = e2.n0.i(length, 0, this.f16144n);
-            l4.put(this.f16143m, 0, i12);
-            int i13 = e2.n0.i(length - i12, 0, i11);
-            byteBuffer.limit(byteBuffer.position() + i13);
-            l4.put(byteBuffer);
-            byteBuffer.limit(limit);
-            int i14 = i11 - i13;
-            int i15 = this.f16144n - i12;
-            this.f16144n = i15;
-            byte[] bArr = this.f16143m;
-            System.arraycopy(bArr, i12, bArr, 0, i15);
-            byteBuffer.get(this.f16143m, this.f16144n, i14);
-            this.f16144n += i14;
-            l4.flip();
         }
-    }
-
-    @Override
-    public final boolean c() {
-        if (super.c() && this.f16144n == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final long g(long j10) {
-        return Math.max(0L, j10 - e2.n0.Y(this.f5960b.f5954a, this.f16140j + this.f16139i));
-    }
-
-    @Override
-    public final c2.l h(c2.l lVar) {
-        if (e2.n0.M(lVar.f5956c)) {
-            this.f16141k = true;
-            if (this.f16139i == 0 && this.f16140j == 0) {
-                return c2.l.e;
-            }
-            return lVar;
-        }
-        throw new c2.n(lVar);
+        l(remaining).put(byteBuffer).flip();
     }
 
     @Override
     public final void i() {
-        if (this.f16141k) {
-            this.f16141k = false;
-            int i10 = this.f16140j;
-            int i11 = this.f5960b.d;
-            this.f16143m = new byte[i10 * i11];
-            this.f16142l = this.f16139i * i11;
-        }
-        this.f16144n = 0;
+        m();
     }
 
     @Override
     public final void j() {
-        int i10;
-        if (this.f16141k) {
-            if (this.f16144n > 0) {
-                this.f16145o += i10 / this.f5960b.d;
-            }
-            this.f16144n = 0;
-        }
+        m();
     }
 
     @Override
     public final void k() {
-        this.f16143m = e2.n0.f9692b;
+        m();
+    }
+
+    public final void m() {
+        if (isActive()) {
+            c2.j jVar = this.f3553b;
+            int i10 = jVar.f3547a;
+            int i11 = jVar.f3548b;
+            int i12 = jVar.f3549c;
+            this.f10635i.getClass();
+        }
+    }
+
+    @Override
+    public final c2.j h(c2.j jVar) {
+        return jVar;
     }
 }

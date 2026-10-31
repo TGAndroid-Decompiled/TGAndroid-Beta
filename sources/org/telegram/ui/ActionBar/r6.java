@@ -1,74 +1,168 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.text.TextUtils;
+import android.util.SparseIntArray;
 import java.io.File;
-import java.util.ArrayList;
-import org.json.JSONObject;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
+import java.util.Locale;
+import org.telegram.messenger.z20;
 import org.telegram.tgnet.TLRPC;
 public final class r6 {
-    public String f23051a = "";
-    public String f23052b = "";
-    public String f23053c = "";
+    public int f20730a;
+    public s6 f20731b;
+    public int f20732c;
     public int d;
     public int e;
-    public int f23054f;
-    public int f23055g;
+    public int f20733f;
+    public int f20734g;
     public int h;
-    public boolean f23056i;
-    public boolean f23057j;
-    public float f23058k;
-    public long f23059l;
-    public long f23060m;
-    public long f23061n;
-    public boolean f23062o;
-    public x6 f23063p;
-    public w6 f23064q;
-    public float f23065r;
-    public ArrayList f23066s;
-    public TLRPC.WallPaper f23067t;
+    public boolean f20735i;
+    public long f20736j;
+    public long f20737k;
+    public long f20738l;
+    public long f20739m;
+    public float f20742p;
+    public boolean f20743q;
+    public TLRPC.TL_theme f20744r;
+    public TLRPC.TL_wallPaper f20745s;
+    public int f20746t;
+    public String f20747u;
+    public String v;
+    public TLRPC.InputFile f20748w;
+    public TLRPC.InputFile f20749x;
+    public m6 f20750y;
+    public boolean f20751z;
+    public int f20740n = 45;
+    public String f20741o = "";
+    public final float[] A = new float[3];
 
-    public static void a(r6 r6Var) {
-        ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0).edit().remove(r6Var.b()).commit();
-        new File(ApplicationLoader.getFilesDirFixed(), r6Var.f23051a).delete();
-        new File(ApplicationLoader.getFilesDirFixed(), r6Var.f23052b).delete();
-    }
-
-    public final String b() {
-        if (this.f23064q != null) {
-            StringBuilder sb2 = new StringBuilder();
-            sb2.append(this.f23063p.f23252a);
-            sb2.append("_");
-            return a1.g.n(this.f23064q.f23216a, "_owp", sb2);
-        }
-        return a1.g.s(new StringBuilder(), this.f23063p.f23252a, "_owp");
-    }
-
-    public final void c() {
-        try {
-            String b10 = b();
-            SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0).edit();
-            JSONObject jSONObject = new JSONObject();
-            jSONObject.put("wall", this.f23051a);
-            jSONObject.put("owall", this.f23052b);
-            jSONObject.put("pColor", this.d);
-            jSONObject.put("pGrColor", this.e);
-            jSONObject.put("pGrColor2", this.f23054f);
-            jSONObject.put("pGrColor3", this.f23055g);
-            jSONObject.put("pGrAngle", this.h);
-            String str = this.f23053c;
-            if (str == null) {
-                str = "";
+    public static int a(SparseIntArray sparseIntArray, int... iArr) {
+        int i10 = 0;
+        int i11 = 0;
+        int i12 = 0;
+        int i13 = 0;
+        for (int i14 = 0; i14 < iArr.length; i14++) {
+            if (sparseIntArray.indexOfKey(iArr[i14]) >= 0) {
+                try {
+                    int i15 = sparseIntArray.get(iArr[i14]);
+                    i11 += Color.red(i15);
+                    i12 += Color.green(i15);
+                    i13 += Color.blue(i15);
+                    i10++;
+                } catch (Exception unused) {
+                }
             }
-            jSONObject.put("wallSlug", str);
-            jSONObject.put("wBlur", this.f23056i);
-            jSONObject.put("wMotion", this.f23057j);
-            jSONObject.put("pIntensity", this.f23058k);
-            edit.putString(b10, jSONObject.toString());
-            edit.commit();
-        } catch (Throwable th2) {
-            FileLog.e(th2);
         }
+        if (i10 == 0) {
+            return 0;
+        }
+        return Color.argb(255, i11 / i10, i12 / i10, i13 / i10);
+    }
+
+    public static int c(SparseIntArray sparseIntArray, int i10) {
+        int i11;
+        int indexOfKey = sparseIntArray.indexOfKey(i10);
+        if (indexOfKey < 0 && (i11 = t6.fm.get(i10, -1)) >= 0) {
+            indexOfKey = sparseIntArray.indexOfKey(i11);
+        }
+        if (indexOfKey >= 0) {
+            return sparseIntArray.valueAt(indexOfKey);
+        }
+        return t6.em[i10];
+    }
+
+    public static void h(SparseIntArray sparseIntArray) {
+        for (int i10 = t6.f21120nb; i10 < t6.f21246ub; i10++) {
+            sparseIntArray.delete(i10);
+            sparseIntArray.put(i10, t6.em[i10]);
+        }
+        for (int i11 = t6.f21264vb; i11 < t6.Hc; i11++) {
+            sparseIntArray.delete(i11);
+            sparseIntArray.put(i11, t6.em[i11]);
+        }
+        for (int i12 = t6.Ic; i12 < t6.Qc; i12++) {
+            sparseIntArray.delete(i12);
+            sparseIntArray.put(i12, t6.em[i12]);
+        }
+    }
+
+    public final int b(int i10, int i11) {
+        float[] fArr = this.A;
+        Color.colorToHSV(i11, fArr);
+        float f7 = fArr[0];
+        Color.colorToHSV(i10, fArr);
+        float f10 = fArr[1];
+        if (f10 <= 0.0f) {
+            fArr[0] = f7;
+        }
+        fArr[1] = z20.z(f10, 0.6f, 1.0f, 0.0f);
+        fArr[2] = Math.max(0.0f, Math.min(1.0f, fArr[2] - 0.05f));
+        return Color.HSVToColor(30, fArr);
+    }
+
+    public final boolean d(android.util.SparseIntArray r21, android.util.SparseIntArray r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.r6.d(android.util.SparseIntArray, android.util.SparseIntArray):boolean");
+    }
+
+    public final File e() {
+        if (this.f20730a < 100) {
+            if (TextUtils.isEmpty(this.f20741o)) {
+                return null;
+            }
+            File h = org.telegram.messenger.w0.h();
+            Locale locale = Locale.US;
+            String m10 = this.f20731b.m();
+            int i10 = this.f20730a;
+            String str = this.f20741o;
+            return new File(h, m10 + "_" + i10 + "_" + str + "_v5.jpg");
+        } else if (TextUtils.isEmpty(this.f20741o)) {
+            return null;
+        } else {
+            File h10 = org.telegram.messenger.w0.h();
+            Locale locale2 = Locale.US;
+            String m11 = this.f20731b.m();
+            int i11 = this.f20730a;
+            String str2 = this.f20741o;
+            return new File(h10, m11 + "_" + i11 + "_" + str2 + "_v8_debug.jpg");
+        }
+    }
+
+    public final int f(int i10, int i11, boolean z10) {
+        int f7 = i0.b.f(0.25f, i10, i11);
+        float[] fArr = this.A;
+        Color.colorToHSV(f7, fArr);
+        float f10 = 0.1f;
+        fArr[1] = Math.max(0.0f, Math.min(1.0f, fArr[1] - 0.1f));
+        float f11 = fArr[2];
+        if (!z10) {
+            f10 = 0.0f;
+        }
+        fArr[2] = z20.z(f11, f10, 1.0f, 0.0f);
+        return Color.HSVToColor(51, fArr);
+    }
+
+    public final int g(int i10, float f7, boolean z10) {
+        if (z10) {
+            return 520093695;
+        }
+        float[] fArr = this.A;
+        Color.colorToHSV(i10, fArr);
+        if (fArr[1] > 0.0f) {
+            float f10 = fArr[2];
+            if (f10 < 1.0f && f10 > 0.0f) {
+                fArr[0] = w7.u.a(fArr[0] + 0.22f, 0.0f, 1.0f);
+                fArr[1] = w7.u.a(fArr[1] - 0.35f, 0.0f, 1.0f);
+                fArr[2] = w7.u.a(fArr[2] - 0.65f, 0.0f, 1.0f);
+                return Color.HSVToColor(90, fArr);
+            }
+        }
+        fArr[0] = f7;
+        fArr[1] = 0.2f;
+        fArr[2] = w7.u.a(fArr[2] - 0.65f, 0.0f, 1.0f);
+        return Color.HSVToColor(90, fArr);
+    }
+
+    public final int i(int r7, int r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.r6.i(int, int):int");
     }
 }

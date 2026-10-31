@@ -1,14 +1,14 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-public final class e4 extends org.telegram.ui.ActionBar.b6 {
+public final class e4 extends org.telegram.ui.ActionBar.u5 {
     public float M0;
     public final int N0;
-    public final i4 O0;
+    public final h4 O0;
 
-    public e4(i4 i4Var, Context context, int i10) {
+    public e4(h4 h4Var, Context context, int i10) {
         super(context);
-        this.O0 = i4Var;
+        this.O0 = h4Var;
         this.N0 = i10;
     }
 
@@ -20,11 +20,11 @@ public final class e4 extends org.telegram.ui.ActionBar.b6 {
     @Override
     public final void setAlpha(float f7) {
         this.M0 = f7;
-        i4 i4Var = this.O0;
+        h4 h4Var = this.O0;
         if (this.N0 == 4) {
-            float fullAlpha = i4Var.d[4].getFullAlpha();
-            if (i4Var.c()) {
-                float f10 = i4Var.f24230e0;
+            float fullAlpha = h4Var.d[4].getFullAlpha();
+            if (h4Var.c()) {
+                float f10 = h4Var.f21979e0;
                 if (f10 > 0.0f) {
                     super.setAlpha(1.0f - f10);
                     return;
@@ -38,7 +38,7 @@ public final class e4 extends org.telegram.ui.ActionBar.b6 {
                 return;
             }
         }
-        super.setAlpha((1.0f - i4Var.d[4].getFullAlpha()) * f7);
+        super.setAlpha((1.0f - h4Var.d[4].getFullAlpha()) * f7);
     }
 
     @Override
@@ -46,10 +46,10 @@ public final class e4 extends org.telegram.ui.ActionBar.b6 {
         super.setFullAlpha(f7);
         int i10 = 0;
         while (true) {
-            org.telegram.ui.ActionBar.b6[] b6VarArr = this.O0.d;
-            if (i10 < b6VarArr.length) {
-                org.telegram.ui.ActionBar.b6 b6Var = b6VarArr[i10];
-                b6Var.setAlpha(b6Var.getAlpha());
+            org.telegram.ui.ActionBar.u5[] u5VarArr = this.O0.d;
+            if (i10 < u5VarArr.length) {
+                org.telegram.ui.ActionBar.u5 u5Var = u5VarArr[i10];
+                u5Var.setAlpha(u5Var.getAlpha());
                 i10++;
             } else {
                 return;

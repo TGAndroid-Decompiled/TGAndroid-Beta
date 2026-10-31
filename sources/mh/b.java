@@ -1,139 +1,114 @@
 package mh;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import k2.c;
-import oe.e;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.wh;
-import org.telegram.ui.Components.voip.w2;
-public abstract class b extends ViewGroup {
-    public int f18492a;
-    public int f18493b;
-    public final LinkedHashMap f18494c;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.Utilities;
+import w7.u;
+public final class b extends Drawable {
+    public final a f13307b;
+    public Bitmap f13308c;
+    public Canvas d;
+    public int e;
+    public float f13309f;
+    public int f13310g;
+    public int h;
+    public final Paint f13306a = new Paint(2);
+    public int f13311i = 255;
 
-    public b(Context context) {
-        super(context);
-        this.f18494c = new LinkedHashMap(16);
+    public b(a aVar) {
+        this.f13307b = aVar;
     }
 
-    public final void a(w2 w2Var) {
-        addView(w2Var);
-        this.f18494c.put(w2Var, new a(w2Var, new c(this, 9)));
-    }
-
-    public final void b(boolean z10, boolean z11) {
-        boolean z12;
-        int min;
-        int i10;
-        boolean z13;
-        e eVar;
-        int measuredWidth;
-        int i11;
-        int measuredWidth2 = getMeasuredWidth();
-        int measuredHeight = getMeasuredHeight();
-        if (measuredWidth2 > measuredHeight) {
-            z12 = false;
+    public final void a(int i10, int i11, float f7, int i12) {
+        int i13 = i12 * 2;
+        int i14 = (int) ((i10 + i13) / f7);
+        int i15 = (int) ((i11 + i13) / f7);
+        Bitmap bitmap = this.f13308c;
+        if (bitmap != null && bitmap.getWidth() == i14 && this.f13308c.getHeight() == i15) {
+            this.f13308c.eraseColor(0);
         } else {
-            z12 = true;
+            Bitmap bitmap2 = this.f13308c;
+            if (bitmap2 != null) {
+                bitmap2.recycle();
+            }
+            this.f13308c = Bitmap.createBitmap(i14, i15, Bitmap.Config.ARGB_8888);
+            this.d = new Canvas(this.f13308c);
         }
-        if (measuredWidth2 > 0 && measuredHeight > 0) {
-            LinkedHashMap linkedHashMap = this.f18494c;
-            int i12 = 0;
-            for (a aVar : linkedHashMap.values()) {
-                if (aVar.h) {
-                    i12++;
-                }
-            }
-            if (i12 == 0) {
-                i12 = 1;
-            }
-            if (!z12) {
-                int min2 = Math.min(AndroidUtilities.dp(50.0f) + Math.max((int) (wh.C(50.0f, i12, measuredWidth2) / (i12 + 0.333f)), 0), measuredWidth2 / i12);
-                min = AndroidUtilities.dp(76.0f);
-                i10 = (measuredWidth2 - (i12 * min2)) / 2;
-                measuredWidth2 = min2;
-            } else {
-                min = Math.min(AndroidUtilities.dp(50.0f) + Math.max((int) (wh.C(50.0f, i12, measuredHeight) / (i12 + 0.333f)), 0), measuredHeight / i12);
-                i10 = (measuredHeight - (i12 * min)) / 2;
-            }
-            int i13 = 0;
-            for (Map.Entry entry : linkedHashMap.entrySet()) {
-                a aVar2 = (a) entry.getValue();
-                boolean z14 = aVar2.h;
-                w2 w2Var = aVar2.e;
-                e eVar2 = aVar2.f18489b;
-                oe.b bVar = aVar2.f18490c;
-                e eVar3 = aVar2.f18488a;
-                if (z14) {
-                    if (!z12) {
-                        measuredWidth = ((measuredWidth2 - w2Var.getMeasuredWidth()) / 2) + (measuredWidth2 * i13) + i10;
-                        i11 = getMeasuredHeight() - AndroidUtilities.dp(76.0f);
-                    } else {
-                        measuredWidth = ((measuredWidth2 - w2Var.getMeasuredWidth()) / 2) + (getMeasuredWidth() - measuredWidth2);
-                        i11 = (min * i13) + i10;
-                    }
-                    if (!z11 && ((z10 || eVar3.h) && bVar.f19326f)) {
-                        eVar3.a(measuredWidth);
-                    } else {
-                        eVar3.c(measuredWidth);
-                    }
-                    if (!z11 && ((z10 || eVar2.h) && bVar.f19326f)) {
-                        eVar2.a(i11);
-                    } else {
-                        eVar2.c(i11);
-                    }
-                    i13++;
-                }
-                boolean z15 = aVar2.h;
-                if (!z11 && (z10 || ((eVar = bVar.h) != null && eVar.h))) {
-                    z13 = true;
-                } else {
-                    z13 = false;
-                }
-                bVar.a(z15, z13);
-            }
-            invalidate();
-        }
+        this.f13309f = f7;
+        this.e = i12;
+        this.d.save();
+        float f10 = i12 / f7;
+        this.d.translate(f10, f10);
+        float f11 = 1.0f / f7;
+        this.d.scale(f11, f11);
+        this.f13307b.s(this.d, 255);
+        Utilities.stackBlurBitmap(this.f13308c, (int) f10);
+        this.d.restore();
     }
 
-    public final void c(w2 w2Var, boolean z10, boolean z11) {
-        a aVar = (a) this.f18494c.get(w2Var);
-        if (aVar != null && aVar.h != z10) {
-            aVar.h = z10;
-            b(z11, false);
+    @Override
+    public final void draw(Canvas canvas) {
+        int i10 = this.f13311i;
+        a aVar = this.f13307b;
+        if (i10 == 255) {
+            canvas.save();
+            canvas.translate(this.f13310g, this.h);
+            aVar.s(canvas, 255);
+            canvas.restore();
+        } else if (i10 != 0) {
+            double d = i10 / 255.0d;
+            double d10 = d / ((1.0d - d) * 6.0d);
+            double d11 = 1.0d + d10;
+            double sqrt = ((-d11) + Math.sqrt((d11 * d11) - (((-d10) * 4.0d) * (-d)))) / ((-2.0d) * d10);
+            int b10 = u.b((int) (d10 * sqrt * 255.0d), 0, 255);
+            int b11 = u.b((int) (sqrt * 255.0d), 0, 255);
+            if (b11 > 0 && this.f13308c != null) {
+                Paint paint = this.f13306a;
+                paint.setAlpha(b11);
+                canvas.save();
+                int i11 = this.f13310g;
+                int i12 = this.e;
+                canvas.translate(i11 - i12, this.h - i12);
+                float f7 = this.f13309f;
+                canvas.scale(f7, f7);
+                canvas.drawBitmap(this.f13308c, 0.0f, 0.0f, paint);
+                canvas.restore();
+            }
+            if (b10 > 0) {
+                canvas.save();
+                canvas.translate(this.f13310g, this.h);
+                aVar.s(canvas, b10);
+                canvas.restore();
+            }
         }
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int childCount = getChildCount();
-        for (int i14 = 0; i14 < childCount; i14++) {
-            View childAt = getChildAt(i14);
-            childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
-        }
+    public final int getAlpha() {
+        return this.f13311i;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        int size2 = View.MeasureSpec.getSize(i11);
-        setMeasuredDimension(size, size2);
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(76.0f), 1073741824);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(76.0f), 1073741824);
-        int childCount = getChildCount();
-        for (int i12 = 0; i12 < childCount; i12++) {
-            getChildAt(i12).measure(makeMeasureSpec, makeMeasureSpec2);
-        }
-        if (this.f18492a == size && this.f18493b == size2) {
-            b(true, false);
-            return;
-        }
-        b(false, true);
-        this.f18492a = size;
-        this.f18493b = size2;
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f13311i = i10;
+    }
+
+    @Override
+    public final void setBounds(int i10, int i11, int i12, int i13) {
+        this.f13310g = i10;
+        this.h = i11;
+        super.setBounds(i10, i11, i12, i13);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

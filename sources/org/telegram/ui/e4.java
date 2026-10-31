@@ -1,62 +1,109 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.text.TextPaint;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-public final class e4 extends FrameLayout {
-    public final org.telegram.ui.Components.mp0 f38749a;
-    public final int f38750b;
-    public final int f38751c;
-    public int d;
-    public final TextPaint e;
-    public final j4 f38752f;
-
-    public e4(j4 j4Var, Context context) {
-        super(context);
-        this.f38752f = j4Var;
-        this.f38750b = 12;
-        this.f38751c = 30;
-        setWillNotDraw(false);
-        TextPaint textPaint = new TextPaint(1);
-        this.e = textPaint;
-        textPaint.setTextSize(AndroidUtilities.dp(16.0f));
-        org.telegram.ui.Components.mp0 mp0Var = new org.telegram.ui.Components.mp0(context, null, false);
-        this.f38749a = mp0Var;
-        mp0Var.setReportChanges(true);
-        mp0Var.setSeparatorsCount(19);
-        mp0Var.setDelegate(new f(this, 3));
-        addView(mp0Var, org.telegram.ui.Components.kb1.h(-1, 38.0f, 51, 5.0f, 5.0f, 39.0f, 0.0f));
-    }
-
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        this.f38749a.invalidate();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        int i10 = org.telegram.ui.ActionBar.y6.I6;
-        this.f38752f.getClass();
-        int x02 = org.telegram.ui.ActionBar.y6.x0(null, i10, false);
-        TextPaint textPaint = this.e;
-        textPaint.setColor(x02);
-        canvas.drawText("" + SharedConfig.ivFontSize, getMeasuredWidth() - AndroidUtilities.dp(39.0f), AndroidUtilities.dp(28.0f), textPaint);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        int size = View.MeasureSpec.getSize(i10);
-        if (this.d != size) {
-            int i12 = SharedConfig.ivFontSize;
-            int i13 = this.f38750b;
-            this.f38749a.setProgress((i12 - i13) / (this.f38751c - i13));
-            this.d = size;
+import java.io.File;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public abstract class e4 {
+    public static TLRPC.Document a(TLRPC.WebPage webPage, long j10) {
+        if (webPage != null && webPage.cached_page != null) {
+            TLRPC.Document document = webPage.document;
+            if (document != null && document.f19799id == j10) {
+                return document;
+            }
+            for (int i10 = 0; i10 < webPage.cached_page.documents.size(); i10++) {
+                TLRPC.Document document2 = webPage.cached_page.documents.get(i10);
+                if (document2.f19799id == j10) {
+                    return document2;
+                }
+            }
         }
+        return null;
+    }
+
+    public static TLRPC.Document b(TL_iv.RichMessage richMessage, long j10) {
+        if (richMessage == null) {
+            return null;
+        }
+        for (int i10 = 0; i10 < richMessage.documents.size(); i10++) {
+            TLRPC.Document document = richMessage.documents.get(i10);
+            if (document.f19799id == j10) {
+                return document;
+            }
+        }
+        return null;
+    }
+
+    public static File c(TLObject tLObject) {
+        org.telegram.messenger.b8.G(org.telegram.messenger.d20.f15147s0);
+        File K = org.telegram.messenger.b8.K(tLObject, null, false, true);
+        if (K != null && K.exists()) {
+            return K;
+        }
+        File K2 = org.telegram.messenger.b8.K(tLObject, null, true, true);
+        if (K2 != null && K2.exists()) {
+            return K2;
+        }
+        if (K != null) {
+            return K;
+        }
+        return K2;
+    }
+
+    public static TLRPC.Photo d(long j10, TLObject tLObject) {
+        if (tLObject instanceof TL_iv.RichMessage) {
+            return f((TL_iv.RichMessage) tLObject, j10);
+        }
+        if (tLObject instanceof TL_iv.Page) {
+            TL_iv.Page page = (TL_iv.Page) tLObject;
+            for (int i10 = 0; i10 < page.photos.size(); i10++) {
+                TLRPC.Photo photo = page.photos.get(i10);
+                if (photo.f19817id == j10) {
+                    return photo;
+                }
+            }
+            return null;
+        } else if (!(tLObject instanceof TLRPC.WebPage)) {
+            return null;
+        } else {
+            return e((TLRPC.WebPage) tLObject, j10);
+        }
+    }
+
+    public static TLRPC.Photo e(TLRPC.WebPage webPage, long j10) {
+        if (webPage != null && webPage.cached_page != null) {
+            TLRPC.Photo photo = webPage.photo;
+            if (photo != null && photo.f19817id == j10) {
+                return photo;
+            }
+            for (int i10 = 0; i10 < webPage.cached_page.photos.size(); i10++) {
+                TLRPC.Photo photo2 = webPage.cached_page.photos.get(i10);
+                if (photo2.f19817id == j10) {
+                    return photo2;
+                }
+            }
+        }
+        return null;
+    }
+
+    public static TLRPC.Photo f(TL_iv.RichMessage richMessage, long j10) {
+        if (richMessage == null) {
+            return null;
+        }
+        for (int i10 = 0; i10 < richMessage.photos.size(); i10++) {
+            TLRPC.Photo photo = richMessage.photos.get(i10);
+            if (photo.f19817id == j10) {
+                return photo;
+            }
+        }
+        return null;
+    }
+
+    public static boolean g(TLRPC.WebPage webPage, TL_iv.PageBlock pageBlock) {
+        TLRPC.Document a2;
+        if ((pageBlock instanceof TL_iv.pageBlockVideo) && (a2 = a(webPage, ((TL_iv.pageBlockVideo) pageBlock).video_id)) != null) {
+            return org.telegram.messenger.jj.K4(a2);
+        }
+        return false;
     }
 }

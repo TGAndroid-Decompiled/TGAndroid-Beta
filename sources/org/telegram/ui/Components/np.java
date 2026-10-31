@@ -1,29 +1,29 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.uc1;
-public final class np implements uc1 {
-    public final int f31018a;
-    public final ti f31019b;
-    public final org.telegram.ui.gc f31020c;
+import android.content.Context;
+public abstract class np extends z4.g {
+    public mp f28859w0;
 
-    public np(ti tiVar, org.telegram.ui.gc gcVar, int i10) {
-        this.f31018a = i10;
-        this.f31019b = tiVar;
-        this.f31020c = gcVar;
+    public np(Context context) {
+        super(context);
+        b(new lp((ug0) this));
     }
 
     @Override
-    public final void a(TLRPC.TL_wallPaper tL_wallPaper) {
-        switch (this.f31018a) {
-            case 0:
-                this.f31019b.dismissInternal();
-                this.f31020c.run(tL_wallPaper);
-                return;
-            default:
-                this.f31019b.dismissInternal();
-                this.f31020c.run(tL_wallPaper);
-                return;
+    @Deprecated
+    public void setAdapter(z4.a aVar) {
+        if (aVar instanceof mp) {
+            setAdapter((mp) aVar);
+            return;
+        }
+        throw new IllegalArgumentException();
+    }
+
+    public void setAdapter(mp mpVar) {
+        this.f28859w0 = mpVar;
+        super.setAdapter((z4.a) mpVar);
+        if (mpVar != null) {
+            x(mpVar.j(), false);
         }
     }
 }

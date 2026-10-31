@@ -1,3 +1,3 @@
 package o9;
-public @interface b {
+public final class b extends a {
 }

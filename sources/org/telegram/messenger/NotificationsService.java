@@ -5,20 +5,20 @@ import android.content.Intent;
 import android.os.IBinder;
 public class NotificationsService extends Service {
     @Override
-    public IBinder onBind(Intent intent) {
+    public final IBinder onBind(Intent intent) {
         return null;
     }
 
     @Override
-    public void onCreate() {
+    public final void onCreate() {
         super.onCreate();
-        ApplicationLoader.postInitApplication();
+        w0.w();
     }
 
     @Override
-    public void onDestroy() {
+    public final void onDestroy() {
         super.onDestroy();
-        if (MessagesController.getGlobalNotificationsSettings().getBoolean("pushService", true)) {
+        if (vp.e1().getBoolean("pushService", true)) {
             Intent intent = new Intent("org.telegram.start");
             intent.setPackage(getPackageName());
             sendBroadcast(intent);
@@ -26,7 +26,7 @@ public class NotificationsService extends Service {
     }
 
     @Override
-    public int onStartCommand(Intent intent, int i10, int i11) {
+    public final int onStartCommand(Intent intent, int i10, int i11) {
         return 1;
     }
 }

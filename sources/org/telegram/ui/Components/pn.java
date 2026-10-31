@@ -1,127 +1,49 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class pn implements ri {
-    public final org.telegram.ui.ActionBar.r2 f31643a;
-    public final Utilities.Callback f31644b;
-    public final nn f31645c;
+public final class pn implements a8 {
+    public final org.telegram.ui.ActionBar.k1[] f29385a;
+    public final sn f29386b;
 
-    public pn(Utilities.Callback callback, org.telegram.ui.ActionBar.r2 r2Var, nn nnVar) {
-        this.f31643a = r2Var;
-        this.f31644b = callback;
-        this.f31645c = nnVar;
+    public pn(sn snVar, org.telegram.ui.ActionBar.k1[] k1VarArr) {
+        this.f29386b = snVar;
+        this.f29385a = k1VarArr;
     }
 
     @Override
-    public final void A(gh ghVar) {
-        NotificationCenter.getInstance(this.f31643a.getCurrentAccount()).doOnIdle(ghVar);
-    }
-
-    @Override
-    public final boolean E() {
-        return false;
-    }
-
-    @Override
-    public final void p0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
-        nn nnVar = this.f31645c;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = nnVar.f33002j0;
-        Utilities.Callback callback = this.f31644b;
-        if (i10 == 15) {
-            org.telegram.ui.ActionBar.r2 r2Var = this.f31643a;
-            g5.f0(r2Var.getContext(), r2Var.getResourceProvider(), null, null, new on(0, callback), null);
-        } else if (i10 == 7 || i10 == 8) {
-            HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
-            if (selectedPhotosOrder.size() > 0) {
-                Object obj = selectedPhotos.get(selectedPhotosOrder.get(0));
-                SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-                String str = null;
-                if (obj instanceof MediaController.PhotoEntry) {
-                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
-                    String str2 = photoEntry.imagePath;
-                    if (str2 != null) {
-                        sendingMediaInfo.path = str2;
+    public final void Y0(int i10, int i11) {
+        int i12;
+        org.telegram.ui.un unVar = this.f29386b.G;
+        if (unVar != null) {
+            unVar.getMessagesController().F4(i10, unVar.a());
+            TLRPC.ChatFull chatFull = unVar.f42374p8;
+            TLRPC.UserFull userFull = unVar.f42385q8;
+            if (userFull != null || chatFull != null) {
+                unVar.Y7();
+                UndoView undoView = unVar.M3;
+                if (undoView != null) {
+                    long a2 = unVar.a();
+                    TLRPC.User j10 = unVar.j();
+                    if (userFull != null) {
+                        i12 = userFull.ttl_period;
                     } else {
-                        sendingMediaInfo.path = photoEntry.path;
+                        i12 = chatFull.ttl_period;
                     }
-                    sendingMediaInfo.thumbPath = photoEntry.thumbPath;
-                    sendingMediaInfo.coverPath = photoEntry.coverPath;
-                    sendingMediaInfo.videoEditedInfo = photoEntry.editedInfo;
-                    sendingMediaInfo.isLivePhoto = photoEntry.isLivePhoto();
-                    sendingMediaInfo.livePhotoVideoOffset = photoEntry.livePhotoVideoOffset;
-                    sendingMediaInfo.discardLivePhoto = true;
-                    sendingMediaInfo.isVideo = photoEntry.isVideo;
-                    CharSequence charSequence = photoEntry.caption;
-                    if (charSequence != null) {
-                        str = charSequence.toString();
-                    }
-                    sendingMediaInfo.caption = str;
-                    sendingMediaInfo.entities = photoEntry.entities;
-                    sendingMediaInfo.masks = photoEntry.stickers;
-                    sendingMediaInfo.ttl = photoEntry.ttl;
-                    sendingMediaInfo.emojiMarkup = photoEntry.emojiMarkup;
-                    sendingMediaInfo.originalPhotoEntry = photoEntry;
-                } else if (obj instanceof MediaController.SearchImage) {
-                    MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
-                    String str3 = searchImage.imagePath;
-                    if (str3 != null) {
-                        sendingMediaInfo.path = str3;
-                    } else {
-                        sendingMediaInfo.searchImage = searchImage;
-                    }
-                    sendingMediaInfo.thumbPath = searchImage.thumbPath;
-                    sendingMediaInfo.coverPath = searchImage.coverPath;
-                    sendingMediaInfo.videoEditedInfo = searchImage.editedInfo;
-                    CharSequence charSequence2 = searchImage.caption;
-                    if (charSequence2 != null) {
-                        str = charSequence2.toString();
-                    }
-                    sendingMediaInfo.caption = str;
-                    sendingMediaInfo.entities = searchImage.entities;
-                    sendingMediaInfo.masks = searchImage.stickers;
-                    sendingMediaInfo.ttl = searchImage.ttl;
-                    TLRPC.BotInlineResult botInlineResult = searchImage.inlineResult;
-                    if (botInlineResult != null && searchImage.type == 1) {
-                        sendingMediaInfo.inlineResult = botInlineResult;
-                        sendingMediaInfo.params = searchImage.params;
-                    }
-                    searchImage.date = (int) (System.currentTimeMillis() / 1000);
+                    undoView.k(a2, i11, j10, Integer.valueOf(i12), null, null);
                 }
-                callback.run(new th.d(sendingMediaInfo));
             }
         }
-        nnVar.dismiss(true);
     }
 
     @Override
-    public final boolean x0() {
-        return false;
+    public final void dismiss() {
+        org.telegram.ui.ActionBar.k1 k1Var = this.f29385a[0];
+        if (k1Var != null) {
+            k1Var.dismiss();
+        }
     }
 
     @Override
-    public final void H() {
-    }
-
-    @Override
-    public final void R() {
-    }
-
-    @Override
-    public final void T(Object obj) {
-    }
-
-    @Override
-    public final void Y(TLRPC.User user) {
-    }
-
-    @Override
-    public final void z0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11) {
+    public final void t1() {
     }
 }

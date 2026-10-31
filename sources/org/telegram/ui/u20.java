@@ -1,63 +1,44 @@
 package org.telegram.ui;
 
+import android.graphics.Canvas;
 import android.view.View;
-import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-public final class u20 extends s4.u0 {
-    public final x50 f43840a;
+public final class u20 extends org.telegram.ui.Components.tk0 {
+    public final b50 f41992e3;
 
-    public u20(x50 x50Var) {
-        this.f43840a = x50Var;
+    public u20(b50 b50Var, LaunchActivity launchActivity) {
+        super(launchActivity, null);
+        this.f41992e3 = b50Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        int i11;
-        org.telegram.ui.Components.wl0 wl0Var;
-        x50 x50Var = this.f43840a;
-        d50 d50Var = x50Var.Q;
-        if (i10 == 0) {
-            int dp = AndroidUtilities.dp(74.0f);
-            d50Var.getChildAt(0);
-            i11 = ((org.telegram.ui.ActionBar.k3) x50Var).backgroundPaddingTop;
-            if ((x50Var.f45592y0 - dp) + i11 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && d50Var.canScrollVertically(1) && (wl0Var = (org.telegram.ui.Components.wl0) d50Var.K(0)) != null) {
-                View view = wl0Var.f47773a;
-                if (view.getTop() > 0) {
-                    d50Var.w0(0, view.getTop(), null);
-                    return;
-                }
-                return;
-            }
-            return;
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        org.telegram.ui.Components.y10 y10Var = (org.telegram.ui.Components.y10) view;
+        b50 b50Var = this.f41992e3;
+        i40 i40Var = b50Var.H1;
+        y20 y20Var = b50Var.R3;
+        if (y20Var.f31731r == null && !b50Var.E4.k()) {
+            y10Var.setAlpha(1.0f);
+            y10Var.setTranslationX(0.0f);
+            y10Var.setTranslationY(0.0f);
         }
-        org.telegram.ui.Components.t40 t40Var = x50Var.m0;
-        if (t40Var != null) {
-            t40Var.b(true);
+        u20 u20Var = b50Var.f36008d4;
+        y10Var.getClass();
+        u20Var.getClass();
+        if (RecyclerView.R(y10Var) == -1 && y10Var.getRenderer() != null) {
+            return true;
         }
-        org.telegram.ui.Components.t40 t40Var2 = x50Var.f45543n0;
-        if (t40Var2 != null) {
-            t40Var2.b(true);
+        if (y10Var.getTranslationY() != 0.0f && y10Var.getRenderer() != null && y10Var.getRenderer().f31604c != null) {
+            float top = i40Var.getTop() - getTop();
+            float measuredHeight = i40Var.getMeasuredHeight() + top;
+            float f7 = y20Var.f31714c;
+            canvas.save();
+            float f10 = 1.0f - f7;
+            canvas.clipRect(0.0f, top * f10, getMeasuredWidth(), (getMeasuredHeight() * f7) + (measuredHeight * f10));
+            boolean drawChild = super.drawChild(canvas, view, j10);
+            canvas.restore();
+            return drawChild;
         }
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ChatObject.Call call;
-        ViewGroup viewGroup;
-        x50 x50Var = this.f43840a;
-        if (x50Var.Q.getChildCount() > 0 && (call = x50Var.f45491a1) != null) {
-            if (!call.loadingMembers && !call.membersLoadEndReached && x50Var.Y.N0() > x50Var.P.F - 5) {
-                x50Var.f45491a1.loadMembers(false);
-            }
-            x50.J0(x50Var);
-            m50 m50Var = x50Var.U0;
-            if (m50Var != null) {
-                m50Var.invalidate();
-            }
-            viewGroup = ((org.telegram.ui.ActionBar.k3) x50Var).containerView;
-            viewGroup.invalidate();
-        }
+        return super.drawChild(canvas, view, j10);
     }
 }

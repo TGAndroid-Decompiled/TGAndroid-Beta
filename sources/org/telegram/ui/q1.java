@@ -1,26 +1,30 @@
 package org.telegram.ui;
-public final class q1 implements Runnable {
-    public final int f42569a;
-    public final Object f42570b;
-    public final Object f42571c;
-    public final Object d;
 
-    public q1(Object obj, Object obj2, Object obj3, int i10) {
-        this.f42569a = i10;
-        this.d = obj;
-        this.f42570b = obj2;
-        this.f42571c = obj3;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.webkit.WebView;
+import org.telegram.tgnet.tl.TL_iv;
+public final class q1 extends WebView {
+    public final r1 f40835a;
+
+    public q1(r1 r1Var, Context context) {
+        super(context);
+        this.f40835a = r1Var;
+        setFocusable(false);
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.q1.run():void");
-    }
-
-    public q1(wn wnVar, org.telegram.ui.Components.l80 l80Var, String str) {
-        this.f42569a = 19;
-        this.d = wnVar;
-        this.f42571c = l80Var;
-        this.f42570b = str;
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        r1 r1Var = this.f40835a;
+        r1Var.f41111s = true;
+        TL_iv.pageBlockEmbed pageblockembed = r1Var.f41112w;
+        if (pageblockembed != null) {
+            if (pageblockembed.allow_scrolling) {
+                requestDisallowInterceptTouchEvent(true);
+            } else {
+                r1Var.f41114y.f37732f0.requestDisallowInterceptTouchEvent(true);
+            }
+        }
+        return super.onTouchEvent(motionEvent);
     }
 }

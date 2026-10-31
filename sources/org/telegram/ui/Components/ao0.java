@@ -1,10 +1,28 @@
 package org.telegram.ui.Components;
+public final class ao0 implements xa {
+    public final wb f24440a;
+    public final ie f24441b;
 
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-public final class ao0 extends org.telegram.ui.Cells.n7 {
+    public ao0(ie ieVar, wb wbVar) {
+        this.f24441b = ieVar;
+        this.f24440a = wbVar;
+    }
+
     @Override
-    public final boolean d(MessageObject messageObject) {
-        return MediaController.getInstance().playMessage(messageObject);
+    public final void a() {
+        this.f24441b.G.add(this.f24440a);
+    }
+
+    @Override
+    public final void b() {
+        this.f24441b.G.remove(this.f24440a);
+    }
+
+    @Override
+    public final void c(wb wbVar) {
+    }
+
+    @Override
+    public final void d() {
     }
 }

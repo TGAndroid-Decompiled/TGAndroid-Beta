@@ -1,37 +1,46 @@
 package org.telegram.messenger;
-public final class t2 implements Runnable {
-    public final int f21263a;
-    public final FileLoadOperation f21264b;
 
-    public t2(FileLoadOperation fileLoadOperation, int i10) {
-        this.f21263a = i10;
-        this.f21264b = fileLoadOperation;
+import android.os.Build;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
+public enum t2 {
+    IMPACT_LIGHT(new long[]{7}, new int[]{65}, new long[]{60}),
+    IMPACT_MEDIUM(new long[]{7}, new int[]{145}, new long[]{70}),
+    IMPACT_HEAVY(new long[]{7}, new int[]{255}, new long[]{80}),
+    IMPACT_RIGID(new long[]{3}, new int[]{225}, new long[]{50}),
+    IMPACT_SOFT(new long[]{10}, new int[]{175}, new long[]{55}),
+    NOTIFICATION_ERROR(new long[]{14, 48, 14, 48, 14, 48, 20}, new int[]{200, 0, 200, 0, 255, 0, 145}, new long[]{40, 60, 40, 60, 65, 60, 40}),
+    NOTIFICATION_SUCCESS(new long[]{14, 65, 14}, new int[]{175, 0, 255}, new long[]{50, 60, 65}),
+    NOTIFICATION_WARNING(new long[]{14, 64, 14}, new int[]{225, 0, 175}, new long[]{65, 60, 40}),
+    SELECTION_CHANGE(new long[]{1}, new int[]{65}, new long[]{30}),
+    APP_ERROR(new long[]{30, 10, 150, 10}, new int[]{0, 100, 0, 100}, new long[]{40, 60, 40, 60, 65, 60, 40});
+    
+    public final long[] f18000a;
+    public final int[] f18001b;
+    public final long[] f18002c;
+    public Object d;
+
+    t2(long[] jArr, int[] iArr, long[] jArr2) {
+        this.f18000a = jArr;
+        this.f18001b = iArr;
+        this.f18002c = jArr2;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f21263a) {
-            case 0:
-                this.f21264b.lambda$clearOperation$27();
-                return;
-            case 1:
-                this.f21264b.lambda$onFinishLoadingFile$19();
-                return;
-            case 2:
-                this.f21264b.lambda$start$11();
-                return;
-            case 3:
-                this.f21264b.lambda$pause$8();
-                return;
-            case 4:
-                this.f21264b.lambda$cancelOnStage$15();
-                return;
-            case 5:
-                this.f21264b.lambda$new$0();
-                return;
-            default:
-                this.f21264b.lambda$new$7();
-                return;
+    public final void a() {
+        int i10 = Build.VERSION.SDK_INT;
+        long[] jArr = this.f18002c;
+        if (i10 >= 26) {
+            Vibrator p12 = i0.p1();
+            if (this.d == null) {
+                if (!i0.p1().hasAmplitudeControl()) {
+                    this.d = VibrationEffect.createWaveform(jArr, -1);
+                } else {
+                    this.d = VibrationEffect.createWaveform(this.f18000a, this.f18001b, -1);
+                }
+            }
+            p12.vibrate((VibrationEffect) this.d);
+            return;
         }
+        i0.p1().vibrate(jArr, -1);
     }
 }

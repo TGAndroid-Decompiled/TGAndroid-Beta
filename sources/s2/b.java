@@ -1,7 +1,6 @@
 package s2;
 
-import a8.wd;
-import a8.yb;
+import a1.c;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -10,39 +9,38 @@ import b2.s0;
 import b2.t0;
 import b2.u0;
 import b2.x;
-import c3.h0;
-import e1.c;
-import e2.n0;
+import e2.l0;
 import e2.r;
-import i2.d0;
-import i2.j0;
+import i2.c0;
+import i2.i0;
 import java.util.ArrayList;
-import n4.s;
 import u2.g0;
+import v7.t6;
+import w7.l;
 public final class b extends i2.b implements Handler.Callback {
     public final a I;
-    public final d0 J;
+    public final c0 J;
     public final Handler K;
     public final l3.a L;
-    public wd M;
+    public l M;
     public boolean N;
     public boolean O;
     public long P;
     public u0 Q;
     public long R;
 
-    public b(d0 d0Var, Looper looper) {
+    public b(c0 c0Var, Looper looper) {
         super(5);
         Handler handler;
-        this.J = d0Var;
+        this.J = c0Var;
         if (looper == null) {
             handler = null;
         } else {
-            String str = n0.f9691a;
+            String str = l0.f6165a;
             handler = new Handler(looper, this);
         }
         this.K = handler;
-        this.I = a.f47692a;
+        this.I = a.f47854a;
         this.L = new l3.a();
         this.R = -9223372036854775807L;
     }
@@ -56,27 +54,27 @@ public final class b extends i2.b implements Handler.Callback {
             } else {
                 i10 = 2;
             }
-            return h0.c(i10, 0, 0, 0);
+            return i0.a.a(i10, 0, 0, 0);
         }
-        return h0.c(0, 0, 0, 0);
+        return i0.a.a(0, 0, 0, 0);
     }
 
     public final void F(u0 u0Var, ArrayList arrayList) {
         int i10 = 0;
         while (true) {
-            t0[] t0VarArr = u0Var.f3465a;
+            t0[] t0VarArr = u0Var.f2302a;
             if (i10 < t0VarArr.length) {
                 x a2 = t0VarArr[i10].a();
                 if (a2 != null) {
                     a aVar = this.I;
                     if (aVar.b(a2)) {
-                        wd a10 = aVar.a(a2);
+                        l a10 = aVar.a(a2);
                         byte[] c10 = t0VarArr[i10].c();
                         c10.getClass();
                         l3.a aVar2 = this.L;
                         aVar2.clear();
-                        aVar2.b(c10.length);
-                        aVar2.f12569c.put(c10);
+                        aVar2.c(c10.length);
+                        aVar2.f7586c.put(c10);
                         aVar2.d();
                         u0 a11 = a10.a(aVar2);
                         if (a11 != null) {
@@ -101,36 +99,36 @@ public final class b extends i2.b implements Handler.Callback {
         } else {
             z10 = false;
         }
-        yb.p(z10);
+        t6.p(z10);
         if (this.R != -9223372036854775807L) {
             z11 = true;
         }
-        yb.p(z11);
+        t6.p(z11);
         return j10 - this.R;
     }
 
     public final void H(u0 u0Var) {
-        d0 d0Var = this.J;
-        j0 j0Var = d0Var.f13508a;
-        s0 s0Var = j0Var.f13606o0;
-        r rVar = j0Var.f13602m;
+        c0 c0Var = this.J;
+        i0 i0Var = c0Var.f7821a;
+        s0 s0Var = i0Var.f7920o0;
+        r rVar = i0Var.f7916m;
         r0 a2 = s0Var.a();
         int i10 = 0;
         while (true) {
-            t0[] t0VarArr = u0Var.f3465a;
+            t0[] t0VarArr = u0Var.f2302a;
             if (i10 >= t0VarArr.length) {
                 break;
             }
             t0VarArr[i10].b(a2);
             i10++;
         }
-        j0Var.f13606o0 = new s0(a2);
-        s0 f12 = j0Var.f1();
-        if (!f12.equals(j0Var.Q)) {
-            j0Var.Q = f12;
-            rVar.c(14, new c(d0Var, 21));
+        i0Var.f7920o0 = new s0(a2);
+        s0 f12 = i0Var.f1();
+        if (!f12.equals(i0Var.Q)) {
+            i0Var.Q = f12;
+            rVar.c(14, new c(c0Var, 27));
         }
-        rVar.c(28, new c(u0Var, 22));
+        rVar.c(28, new c(u0Var, 28));
         rVar.b();
     }
 
@@ -177,10 +175,10 @@ public final class b extends i2.b implements Handler.Callback {
         this.M = this.I.a(xVarArr[0]);
         u0 u0Var = this.Q;
         if (u0Var != null) {
-            long j12 = u0Var.f3466b;
+            long j12 = u0Var.f2303b;
             long j13 = (this.R + j12) - j11;
             if (j12 != j13) {
-                u0Var = new u0(j13, u0Var.f3465a);
+                u0Var = new u0(j13, u0Var.f2302a);
             }
             this.Q = u0Var;
         }
@@ -194,34 +192,34 @@ public final class b extends i2.b implements Handler.Callback {
             if (!this.N && this.Q == null) {
                 l3.a aVar = this.L;
                 aVar.clear();
-                s sVar = this.f13491c;
-                sVar.d();
-                int w10 = w(sVar, aVar, 0);
-                if (w10 == -4) {
+                hf.b bVar = this.f7809c;
+                bVar.L();
+                int w9 = w(bVar, aVar, 0);
+                if (w9 == -4) {
                     if (aVar.isEndOfStream()) {
                         this.N = true;
-                    } else if (aVar.e >= this.f13496w) {
-                        aVar.f16856r = this.P;
+                    } else if (aVar.e >= this.f7815x) {
+                        aVar.f11637r = this.P;
                         aVar.d();
-                        wd wdVar = this.M;
-                        String str = n0.f9691a;
-                        u0 a2 = wdVar.a(aVar);
+                        l lVar = this.M;
+                        String str = l0.f6165a;
+                        u0 a2 = lVar.a(aVar);
                         if (a2 != null) {
-                            ArrayList arrayList = new ArrayList(a2.f3465a.length);
+                            ArrayList arrayList = new ArrayList(a2.f2302a.length);
                             F(a2, arrayList);
                             if (!arrayList.isEmpty()) {
                                 this.Q = new u0(G(aVar.e), (t0[]) arrayList.toArray(new t0[0]));
                             }
                         }
                     }
-                } else if (w10 == -5) {
-                    x xVar = (x) sVar.f18696c;
+                } else if (w9 == -5) {
+                    x xVar = (x) bVar.f7658c;
                     xVar.getClass();
-                    this.P = xVar.f3590x;
+                    this.P = xVar.f2427x;
                 }
             }
             u0 u0Var = this.Q;
-            if (u0Var != null && u0Var.f3466b <= G(j10)) {
+            if (u0Var != null && u0Var.f2303b <= G(j10)) {
                 u0 u0Var2 = this.Q;
                 Handler handler = this.K;
                 if (handler != null) {

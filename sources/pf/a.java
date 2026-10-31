@@ -1,44 +1,40 @@
 package pf;
 
-import com.google.firebase.messaging.d;
-import java.io.InputStream;
-public final class a extends d {
-    public final long d;
+import android.os.Bundle;
+public final class a implements Runnable {
+    public final int f44912a;
+    public final b f44913b;
 
-    public a(InputStream inputStream, long j10, long j11) {
-        super(inputStream, j10);
-        this.d = j10 + j11;
-    }
-
-    public final long e() {
-        return this.d - this.f7735b;
+    public a(b bVar, String str, Bundle bundle, int i10) {
+        this.f44912a = i10;
+        this.f44913b = bVar;
     }
 
     @Override
-    public final int read() {
-        if (this.f7735b == this.d) {
-            return -1;
+    public final void run() {
+        switch (this.f44912a) {
+            case 0:
+                this.f44913b.f44915b.getClass();
+                return;
+            case 1:
+                this.f44913b.f44915b.getClass();
+                return;
+            case 2:
+                this.f44913b.f44915b.getClass();
+                return;
+            default:
+                this.f44913b.f44915b.getClass();
+                return;
         }
-        return super.read();
     }
 
-    @Override
-    public final long skip(long j10) {
-        long j11 = this.f7735b;
-        long j12 = this.d;
-        if (j11 + j10 > j12) {
-            j10 = (int) (j12 - j11);
-        }
-        return super.skip(j10);
+    public a(b bVar, int i10, Bundle bundle) {
+        this.f44912a = 0;
+        this.f44913b = bVar;
     }
 
-    @Override
-    public final int read(byte[] bArr, int i10, int i11) {
-        long j10 = this.f7735b;
-        long j11 = this.d;
-        if (i11 + j10 <= j11 || (i11 = (int) (j11 - j10)) != 0) {
-            return super.read(bArr, i10, i11);
-        }
-        return -1;
+    public a(b bVar, Bundle bundle) {
+        this.f44912a = 2;
+        this.f44913b = bVar;
     }
 }

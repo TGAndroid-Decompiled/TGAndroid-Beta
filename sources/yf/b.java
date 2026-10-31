@@ -1,74 +1,70 @@
 package yf;
 
-import android.os.Binder;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Looper;
-import android.os.Parcel;
-public final class b extends Binder implements IInterface {
-    public final Handler f52584a;
-    public final qb.a f52585b;
+import android.text.TextUtils;
+import org.telegram.tgnet.TLRPC;
+public final class b {
+    public final String f54428a;
+    public final String f54429b;
 
-    public b(qb.a aVar) {
-        this.f52585b = aVar;
-        attachInterface(this, "android.support.customtabs.ICustomTabsCallback");
-        this.f52584a = new Handler(Looper.getMainLooper());
+    public b(String str, String str2) {
+        this.f54428a = str;
+        this.f54429b = str2;
     }
 
-    @Override
-    public final boolean onTransact(int i10, Parcel parcel, Parcel parcel2, int i11) {
-        Handler handler = this.f52584a;
-        Bundle bundle = null;
-        if (i10 != 2) {
-            if (i10 != 3) {
-                if (i10 != 4) {
-                    if (i10 != 5) {
-                        if (i10 != 1598968902) {
-                            return super.onTransact(i10, parcel, parcel2, i11);
-                        }
-                        parcel2.writeString("android.support.customtabs.ICustomTabsCallback");
-                        return true;
-                    }
-                    parcel.enforceInterface("android.support.customtabs.ICustomTabsCallback");
-                    String readString = parcel.readString();
-                    if (parcel.readInt() != 0) {
-                        bundle = (Bundle) Bundle.CREATOR.createFromParcel(parcel);
-                    }
-                    handler.post(new a(this, readString, bundle, 3));
-                    parcel2.writeNoException();
-                    return true;
-                }
-                parcel.enforceInterface("android.support.customtabs.ICustomTabsCallback");
-                if (parcel.readInt() != 0) {
-                    bundle = (Bundle) Bundle.CREATOR.createFromParcel(parcel);
-                }
-                handler.post(new a(this, bundle));
-                parcel2.writeNoException();
-                return true;
-            }
-            parcel.enforceInterface("android.support.customtabs.ICustomTabsCallback");
-            String readString2 = parcel.readString();
-            if (parcel.readInt() != 0) {
-                bundle = (Bundle) Bundle.CREATOR.createFromParcel(parcel);
-            }
-            handler.post(new a(this, readString2, bundle, 1));
-            parcel2.writeNoException();
+    public static boolean a(b bVar, b bVar2) {
+        if (bVar == bVar2) {
             return true;
         }
-        parcel.enforceInterface("android.support.customtabs.ICustomTabsCallback");
-        int readInt = parcel.readInt();
-        if (parcel.readInt() != 0) {
-            bundle = (Bundle) Bundle.CREATOR.createFromParcel(parcel);
+        if (bVar != null && bVar2 != null) {
+            return bVar.equals(bVar2);
         }
-        handler.post(new a(this, readInt, bundle));
-        parcel2.writeNoException();
-        return true;
+        return false;
     }
 
-    @Override
-    public final IBinder asBinder() {
-        return this;
+    public static b c(TLRPC.ChatTheme chatTheme) {
+        if (chatTheme instanceof TLRPC.TL_chatTheme) {
+            return new b(((TLRPC.TL_chatTheme) chatTheme).emoticon, null);
+        }
+        if (!(chatTheme instanceof TLRPC.TL_chatThemeUniqueGift)) {
+            return null;
+        }
+        return new b(null, ((TLRPC.TL_chatThemeUniqueGift) chatTheme).gift.slug);
+    }
+
+    public static b d(String str) {
+        return new b(str, null);
+    }
+
+    public final boolean b() {
+        if (TextUtils.isEmpty(this.f54428a) && TextUtils.isEmpty(this.f54429b)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj instanceof b) {
+            b bVar = (b) obj;
+            if (TextUtils.equals(this.f54428a, bVar.f54428a) && TextUtils.equals(this.f54429b, bVar.f54429b)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        int i10;
+        int i11 = 0;
+        String str = this.f54428a;
+        if (str != null) {
+            i10 = str.hashCode();
+        } else {
+            i10 = 0;
+        }
+        String str2 = this.f54429b;
+        if (str2 != null) {
+            i11 = str2.hashCode();
+        }
+        return i11 ^ i10;
     }
 }

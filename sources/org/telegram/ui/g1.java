@@ -3,18 +3,17 @@ package org.telegram.ui;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.tl.TL_iv;
-public final class g1 extends s4.h0 {
-    public final j1 f39470c;
+public final class g1 extends s4.g0 {
+    public final j1 f37382c;
 
     public g1(j1 j1Var) {
-        this.f39470c = j1Var;
+        this.f37382c = j1Var;
     }
 
     @Override
-    public final int h() {
-        TL_iv.pageBlockCollage pageblockcollage = this.f39470c.f40316s;
+    public final int b() {
+        TL_iv.pageBlockCollage pageblockcollage = this.f37382c.f38410s;
         if (pageblockcollage == null) {
             return 0;
         }
@@ -22,8 +21,8 @@ public final class g1 extends s4.h0 {
     }
 
     @Override
-    public final int j(int i10) {
-        ArrayList<TL_iv.PageBlock> arrayList = this.f39470c.f40316s.items;
+    public final int d(int i10) {
+        ArrayList<TL_iv.PageBlock> arrayList = this.f37382c.f38410s.items;
         if (!(arrayList.get((arrayList.size() - i10) - 1) instanceof TL_iv.pageBlockPhoto)) {
             return 1;
         }
@@ -31,34 +30,34 @@ public final class g1 extends s4.h0 {
     }
 
     @Override
-    public final void v(s4.e1 e1Var, int i10) {
-        j1 j1Var = this.f39470c;
-        i1 i1Var = j1Var.v;
-        ArrayList<TL_iv.PageBlock> arrayList = j1Var.f40316s.items;
+    public final void t(s4.c1 c1Var, int i10) {
+        j1 j1Var = this.f37382c;
+        i1 i1Var = j1Var.f38411w;
+        ArrayList<TL_iv.PageBlock> arrayList = j1Var.f38410s.items;
         TL_iv.PageBlock pageBlock = arrayList.get((arrayList.size() - i10) - 1);
-        int i11 = e1Var.f47776f;
-        View view = e1Var.f47773a;
+        int i11 = c1Var.f47901f;
+        View view = c1Var.f47898a;
         if (i11 != 0) {
-            w2 w2Var = (w2) view;
-            w2Var.T = (MessageObject.GroupedMessagePosition) i1Var.f40020b.get(pageBlock);
+            v2 v2Var = (v2) view;
+            v2Var.T = (org.telegram.messenger.bj) i1Var.f38080b.get(pageBlock);
             TL_iv.pageBlockVideo pageblockvideo = (TL_iv.pageBlockVideo) pageBlock;
-            w2Var.b(pageblockvideo, (x2) j1Var.f40318x.f40457y.f(pageblockvideo.video_id), false, true);
+            v2Var.b(pageblockvideo, (w2) j1Var.f38413y.D.f(pageblockvideo.video_id), false, true);
             return;
         }
-        c2 c2Var = (c2) view;
-        c2Var.R = (MessageObject.GroupedMessagePosition) i1Var.f40020b.get(pageBlock);
-        c2Var.a((TL_iv.pageBlockPhoto) pageBlock, j1Var.f40317w.E.cached_page, false, true);
+        b2 b2Var = (b2) view;
+        b2Var.R = (org.telegram.messenger.bj) i1Var.f38080b.get(pageBlock);
+        b2Var.a((TL_iv.pageBlockPhoto) pageBlock, j1Var.f38412x.E.cached_page, false, true);
     }
 
     @Override
-    public final s4.e1 x(ViewGroup viewGroup, int i10) {
-        View c2Var;
-        j1 j1Var = this.f39470c;
+    public final s4.c1 w(ViewGroup viewGroup, int i10) {
+        View b2Var;
+        j1 j1Var = this.f37382c;
         if (i10 != 0) {
-            c2Var = new w2(j1Var.getContext(), j1Var.f40318x, j1Var.f40317w, 2);
+            b2Var = new v2(j1Var.getContext(), j1Var.f38413y, j1Var.f38412x, 2);
         } else {
-            c2Var = new c2(j1Var.getContext(), j1Var.f40318x, j1Var.f40317w, 2);
+            b2Var = new b2(j1Var.getContext(), j1Var.f38413y, j1Var.f38412x, 2);
         }
-        return new s4.e1(c2Var);
+        return new s4.c1(b2Var);
     }
 }

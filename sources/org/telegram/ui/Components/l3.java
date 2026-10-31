@@ -1,26 +1,18 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.Region;
-import org.telegram.messenger.AndroidUtilities;
-public final class l3 extends y9 {
-    public final Path G;
+import android.view.View;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class l3 extends e51 {
+    public final AlertDialog$Builder e;
 
-    public l3(Context context) {
-        super(context);
-        this.G = new Path();
+    public l3(String str, AlertDialog$Builder alertDialog$Builder) {
+        super(str, (yz0) null);
+        this.e = alertDialog$Builder;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        canvas.save();
-        Path path = this.G;
-        path.rewind();
-        path.addCircle(AndroidUtilities.dp(54.0f), AndroidUtilities.dp(53.0f), AndroidUtilities.dp(14.0f), Path.Direction.CW);
-        canvas.clipPath(path, Region.Op.DIFFERENCE);
-        super.onDraw(canvas);
-        canvas.restore();
+    public final void onClick(View view) {
+        this.e.f20134a.N0.run();
+        super.onClick(view);
     }
 }

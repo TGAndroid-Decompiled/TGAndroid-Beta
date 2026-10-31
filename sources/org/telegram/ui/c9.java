@@ -1,49 +1,39 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.FragmentContextView;
-public final class c9 extends FragmentContextView {
-    public final int X0 = 1;
-    public final org.telegram.ui.ActionBar.r2 Y0;
+import org.telegram.tgnet.TLRPC;
+public final class c9 extends org.telegram.ui.Components.op0 {
+    public final org.telegram.ui.ActionBar.z2 R2;
 
-    public c9(o9 o9Var, Context context, o9 o9Var2, a9 a9Var, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(context, o9Var2, a9Var, false, u6Var);
-        this.Y0 = o9Var;
+    public c9(Context context, String str, String str2, org.telegram.ui.ActionBar.p6 p6Var, org.telegram.ui.ActionBar.z2 z2Var) {
+        super(context, null, str, false, str2, false, p6Var);
+        this.R2 = z2Var;
     }
 
     @Override
-    public final void setVisibility(int i10) {
-        boolean z10;
-        boolean z11;
-        switch (this.X0) {
-            case 0:
-                o9 o9Var = (o9) this.Y0;
-                org.telegram.ui.Components.ws wsVar = o9Var.H;
-                FrameLayout frameLayout = o9Var.I;
-                if (i10 == 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                wsVar.i(frameLayout, z10, true);
-                return;
-            default:
-                cf1 cf1Var = (cf1) this.Y0;
-                org.telegram.ui.Components.ws wsVar2 = cf1Var.U0;
-                FrameLayout frameLayout2 = cf1Var.F0;
-                if (i10 == 0) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-                wsVar2.i(frameLayout2, z11, true);
-                return;
+    public final void R0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        int m10;
+        String a02;
+        if (!z10) {
+            return;
         }
-    }
-
-    public c9(cf1 cf1Var, Context context, cf1 cf1Var2) {
-        super(context, cf1Var2, null, false, null);
-        this.Y0 = cf1Var;
+        if (hVar != null && hVar.m() == 1) {
+            long j10 = ((TLRPC.Dialog) hVar.n(0)).f19797id;
+            if (j10 != 0 && j10 != org.telegram.messenger.d20.i(this.f21583a).e()) {
+                a02 = org.telegram.messenger.cd.a0(null, null, 2131749194, org.telegram.messenger.vp.r1(this.f21583a).A1(j10, true));
+            } else {
+                a02 = org.telegram.messenger.cd.L0(2131749195, null);
+            }
+        } else {
+            if (hVar == null) {
+                m10 = 1;
+            } else {
+                m10 = hVar.m();
+            }
+            a02 = org.telegram.messenger.cd.a0(null, null, 2131749197, org.telegram.messenger.cd.G(m10, "Chats", new Object[0]));
+        }
+        org.telegram.ui.Components.wb Q = new org.telegram.ui.Components.cc(this.R2.E, this.I0).Q(2131624027, 36, org.telegram.messenger.i0.W2(a02));
+        Q.f32143r = false;
+        Q.j();
     }
 }

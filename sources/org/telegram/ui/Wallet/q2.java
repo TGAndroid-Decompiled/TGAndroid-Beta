@@ -1,19 +1,18 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class q2 extends TwoStepVerificationActivity {
-    public final ag.b1 f37151d0;
+import android.content.Context;
+import android.view.View;
+import android.widget.ScrollView;
+public final class q2 extends ScrollView {
+    public final int f35061a;
 
-    public q2(ag.b1 b1Var) {
-        this.f37151d0 = b1Var;
+    public q2(Context context, int i10) {
+        super(context);
+        this.f35061a = i10;
     }
 
     @Override
-    public final void onFragmentDestroy() {
-        ag.b1 b1Var = this.f37151d0;
-        if (((Runnable) b1Var.d) != null && !b1Var.f1256c) {
-            b1Var.b();
-        }
-        super.onFragmentDestroy();
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i11), org.telegram.messenger.i0.L(this.f35061a)), Integer.MIN_VALUE));
     }
 }

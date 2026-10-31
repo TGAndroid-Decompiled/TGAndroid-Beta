@@ -1,22 +1,14 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-public final class f60 extends tg.j0 {
-    public final g60 X0;
+import org.telegram.tgnet.TLRPC;
+public final class f60 {
+    public final boolean f37184a;
+    public final TLRPC.TL_messages_stickerSet f37185b;
+    public final k60 f37186c;
 
-    public f60(g60 g60Var, g60 g60Var2, Activity activity, int i10, int i11, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(i10, i11, activity, g60Var2, u6Var);
-        this.X0 = g60Var;
-    }
-
-    @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.X0.B0 = false;
-    }
-
-    @Override
-    public final void onOpenAnimationEnd() {
-        this.X0.B0 = false;
+    public f60(k60 k60Var, boolean z10, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+        this.f37186c = k60Var;
+        this.f37184a = z10;
+        this.f37185b = tL_messages_stickerSet;
     }
 }

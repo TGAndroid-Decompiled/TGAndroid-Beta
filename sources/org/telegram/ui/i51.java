@@ -1,22 +1,36 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class i51 extends FrameLayout {
-    public FrameLayout f40047a;
-    public org.telegram.ui.Cells.y3 f40048b;
-    public tg.p0 f40049c;
-    public String d;
-    public ValueAnimator e;
-    public float f40050f;
-    public Boolean h;
-    public ValueAnimator f40051n;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class i51 implements View.OnFocusChangeListener {
+    public final int f38179a;
+    public final Object f38180b;
+    public final EditTextBoldCursor f38181c;
+
+    public i51(Object obj, EditTextBoldCursor editTextBoldCursor, int i10) {
+        this.f38179a = i10;
+        this.f38180b = obj;
+        this.f38181c = editTextBoldCursor;
+    }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        setPadding(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(8.0f));
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(getPaddingBottom() + getPaddingTop() + AndroidUtilities.dp(44.0f), 1073741824));
+    public final void onFocusChange(View view, boolean z10) {
+        switch (this.f38179a) {
+            case 0:
+                ((org.telegram.ui.Components.ec0) this.f38180b).c(z10, !TextUtils.isEmpty(this.f38181c.getText()));
+                return;
+            case 1:
+                ((org.telegram.ui.Components.ec0) this.f38180b).c(z10, !TextUtils.isEmpty(this.f38181c.getText()));
+                return;
+            case 2:
+                ((org.telegram.ui.Components.ec0) this.f38180b).c(z10, !TextUtils.isEmpty(this.f38181c.getText()));
+                return;
+            default:
+                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f38180b;
+                passcodeActivity.f33424w.setEditText((bs) this.f38181c);
+                passcodeActivity.f33424w.setDispatchBackWhenEmpty(true);
+                return;
+        }
     }
 }

@@ -1,171 +1,152 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-public final class pk0 extends org.telegram.ui.Components.mm0 {
-    public final Context f42451c;
-    public final NotificationsSettingsActivity d;
+import android.text.TextUtils;
+import java.io.File;
+import java.util.ArrayList;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class pk0 implements bl0 {
+    public final TLRPC.SecureValueType f40680a;
+    public final boolean f40681b;
+    public final int f40682c;
+    public final ll0 d;
 
-    public pk0(NotificationsSettingsActivity notificationsSettingsActivity, Context context) {
-        this.d = notificationsSettingsActivity;
-        this.f42451c = context;
+    public pk0(ll0 ll0Var, TLRPC.SecureValueType secureValueType, boolean z10, int i10) {
+        this.d = ll0Var;
+        this.f40680a = secureValueType;
+        this.f40681b = z10;
+        this.f40682c = i10;
     }
 
-    @Override
-    public final boolean D(s4.e1 e1Var) {
-        int b10 = e1Var.b();
-        NotificationsSettingsActivity notificationsSettingsActivity = this.d;
-        if (b10 != notificationsSettingsActivity.f35615x && b10 != notificationsSettingsActivity.f35616y && b10 != notificationsSettingsActivity.E && b10 != notificationsSettingsActivity.K && b10 != notificationsSettingsActivity.M && b10 != notificationsSettingsActivity.S && b10 != notificationsSettingsActivity.N && b10 != notificationsSettingsActivity.L && b10 != notificationsSettingsActivity.R && b10 != notificationsSettingsActivity.F && b10 != notificationsSettingsActivity.G && b10 != notificationsSettingsActivity.O && b10 != notificationsSettingsActivity.f35612r && b10 != notificationsSettingsActivity.f35613s && b10 != notificationsSettingsActivity.T && b10 != notificationsSettingsActivity.J) {
-            return true;
+    public static void a(pk0 pk0Var, org.telegram.messenger.pw pwVar, TLRPC.TL_secureFile tL_secureFile) {
+        pk0Var.getClass();
+        org.telegram.messenger.b8.G(org.telegram.messenger.d20.f15147s0);
+        File I = org.telegram.messenger.b8.I(pwVar);
+        org.telegram.messenger.b8.G(org.telegram.messenger.d20.f15147s0);
+        File I2 = org.telegram.messenger.b8.I(tL_secureFile);
+        I.renameTo(I2);
+        org.telegram.messenger.hc.D().S(pwVar.f17489b.dc_id + "_" + pwVar.f17489b.f19930id, tL_secureFile.dc_id + "_" + tL_secureFile.f19930id, null);
+    }
+
+    public static TLRPC.InputSecureFile b(org.telegram.messenger.pw pwVar) {
+        if (pwVar.d != null) {
+            TLRPC.TL_inputSecureFileUploaded tL_inputSecureFileUploaded = new TLRPC.TL_inputSecureFileUploaded();
+            TLRPC.TL_inputFile tL_inputFile = pwVar.d;
+            tL_inputSecureFileUploaded.f19861id = tL_inputFile.f19807id;
+            tL_inputSecureFileUploaded.parts = tL_inputFile.parts;
+            tL_inputSecureFileUploaded.md5_checksum = tL_inputFile.md5_checksum;
+            tL_inputSecureFileUploaded.file_hash = pwVar.f17491f;
+            tL_inputSecureFileUploaded.secret = pwVar.e;
+            return tL_inputSecureFileUploaded;
         }
-        return false;
+        TLRPC.TL_inputSecureFile tL_inputSecureFile = new TLRPC.TL_inputSecureFile();
+        TLRPC.TL_secureFile tL_secureFile = pwVar.f17489b;
+        tL_inputSecureFile.f19860id = tL_secureFile.f19930id;
+        tL_inputSecureFile.access_hash = tL_secureFile.access_hash;
+        return tL_inputSecureFile;
     }
 
-    @Override
-    public final int h() {
-        return this.d.U;
-    }
-
-    @Override
-    public final int j(int i10) {
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        int i16;
-        int i17;
-        int i18;
-        int i19;
-        int i20;
-        int i21;
-        int i22;
-        int i23;
-        int i24;
-        int i25;
-        int i26;
-        int i27;
-        NotificationsSettingsActivity notificationsSettingsActivity = this.d;
-        if (i10 != notificationsSettingsActivity.K && i10 != notificationsSettingsActivity.M && i10 != notificationsSettingsActivity.S && i10 != notificationsSettingsActivity.G && i10 != notificationsSettingsActivity.N && i10 != notificationsSettingsActivity.E && i10 != notificationsSettingsActivity.f35615x && i10 != notificationsSettingsActivity.f35612r) {
-            i11 = notificationsSettingsActivity.inappSoundRow;
-            if (i10 != i11) {
-                i12 = notificationsSettingsActivity.inappVibrateRow;
-                if (i10 != i12 && i10 != notificationsSettingsActivity.f35614w) {
-                    i13 = notificationsSettingsActivity.inappPreviewRow;
-                    if (i10 != i13) {
-                        i14 = notificationsSettingsActivity.contactJoinedRow;
-                        if (i10 != i14) {
-                            i15 = notificationsSettingsActivity.pinnedMessageRow;
-                            if (i10 != i15 && i10 != notificationsSettingsActivity.v) {
-                                i16 = notificationsSettingsActivity.badgeNumberMutedRow;
-                                if (i10 != i16) {
-                                    i17 = notificationsSettingsActivity.badgeNumberMessagesRow;
-                                    if (i10 != i17) {
-                                        i18 = notificationsSettingsActivity.badgeNumberShowRow;
-                                        if (i10 != i18) {
-                                            i19 = notificationsSettingsActivity.inappPriorityRow;
-                                            if (i10 != i19) {
-                                                i20 = notificationsSettingsActivity.inchatSoundRow;
-                                                if (i10 != i20 && i10 != notificationsSettingsActivity.P) {
-                                                    i21 = notificationsSettingsActivity.accountsAllRow;
-                                                    if (i10 != i21) {
-                                                        i22 = notificationsSettingsActivity.resetNotificationsRow;
-                                                        if (i10 != i22) {
-                                                            i23 = notificationsSettingsActivity.privateRow;
-                                                            if (i10 != i23) {
-                                                                i24 = notificationsSettingsActivity.groupRow;
-                                                                if (i10 != i24) {
-                                                                    i25 = notificationsSettingsActivity.channelsRow;
-                                                                    if (i10 != i25) {
-                                                                        i26 = notificationsSettingsActivity.storiesRow;
-                                                                        if (i10 != i26) {
-                                                                            i27 = notificationsSettingsActivity.reactionsRow;
-                                                                            if (i10 != i27) {
-                                                                                if (i10 != notificationsSettingsActivity.J && i10 != notificationsSettingsActivity.f35616y && i10 != notificationsSettingsActivity.L && i10 != notificationsSettingsActivity.R && i10 != notificationsSettingsActivity.F && i10 != notificationsSettingsActivity.O && i10 != notificationsSettingsActivity.T) {
-                                                                                    if (i10 == notificationsSettingsActivity.f35613s) {
-                                                                                        return 6;
-                                                                                    }
-                                                                                    return 5;
-                                                                                }
-                                                                                return 4;
-                                                                            }
-                                                                            return 3;
-                                                                        }
-                                                                        return 3;
-                                                                    }
-                                                                    return 3;
-                                                                }
-                                                                return 3;
-                                                            }
-                                                            return 3;
-                                                        }
-                                                        return 2;
-                                                    }
-                                                    return 1;
-                                                }
-                                                return 1;
-                                            }
-                                            return 1;
-                                        }
-                                        return 1;
-                                    }
-                                    return 1;
-                                }
-                                return 1;
-                            }
-                            return 1;
-                        }
-                        return 1;
-                    }
-                    return 1;
-                }
-                return 1;
-            }
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.e1 r23, int r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.pk0.v(s4.e1, int):void");
-    }
-
-    @Override
-    public final s4.e1 x(ViewGroup viewGroup, int i10) {
-        View q4Var;
-        org.telegram.ui.ActionBar.u6 u6Var;
-        org.telegram.ui.ActionBar.u6 u6Var2;
-        org.telegram.ui.ActionBar.u6 u6Var3;
-        org.telegram.ui.ActionBar.u6 u6Var4;
-        org.telegram.ui.ActionBar.u6 u6Var5;
-        NotificationsSettingsActivity notificationsSettingsActivity = this.d;
-        Context context = this.f42451c;
-        if (i10 == 0) {
-            u6Var = ((org.telegram.ui.ActionBar.r2) notificationsSettingsActivity).resourceProvider;
-            q4Var = new org.telegram.ui.Cells.q4(context, u6Var);
-        } else if (i10 == 1) {
-            u6Var2 = ((org.telegram.ui.ActionBar.r2) notificationsSettingsActivity).resourceProvider;
-            q4Var = new org.telegram.ui.Cells.a9(context, u6Var2);
-        } else if (i10 != 2) {
-            if (i10 == 3) {
-                u6Var3 = ((org.telegram.ui.ActionBar.r2) notificationsSettingsActivity).resourceProvider;
-                q4Var = new org.telegram.ui.Cells.n5(21, 64, this.f42451c, u6Var3, true);
-            } else if (i10 != 4) {
-                if (i10 != 5) {
-                    u6Var5 = ((org.telegram.ui.ActionBar.r2) notificationsSettingsActivity).resourceProvider;
-                    q4Var = new org.telegram.ui.Cells.i9(context, u6Var5);
-                } else {
-                    u6Var4 = ((org.telegram.ui.ActionBar.r2) notificationsSettingsActivity).resourceProvider;
-                    q4Var = new org.telegram.ui.Cells.ga(context, 0, u6Var4);
-                }
+    public final void c(TLRPC.TL_secureRequiredType tL_secureRequiredType, String str, String str2, TLRPC.TL_secureRequiredType tL_secureRequiredType2, String str3, ArrayList arrayList, org.telegram.messenger.pw pwVar, ArrayList arrayList2, org.telegram.messenger.pw pwVar2, org.telegram.messenger.pw pwVar3, Runnable runnable, m4.c cVar) {
+        TLRPC.TL_inputSecureValue tL_inputSecureValue;
+        TLRPC.TL_securePlainPhone tL_securePlainPhone;
+        TLRPC.TL_inputSecureValue tL_inputSecureValue2;
+        int i10;
+        boolean isEmpty = TextUtils.isEmpty(str2);
+        ll0 ll0Var = this.d;
+        if (!isEmpty) {
+            tL_inputSecureValue = new TLRPC.TL_inputSecureValue();
+            tL_inputSecureValue.type = tL_secureRequiredType.type;
+            tL_inputSecureValue.flags |= 1;
+            bh.d n12 = ll0Var.n1(org.telegram.messenger.i0.h1(str2));
+            TLRPC.TL_secureData tL_secureData = new TLRPC.TL_secureData();
+            tL_inputSecureValue.data = tL_secureData;
+            tL_secureData.data = (byte[]) n12.f2779c;
+            tL_secureData.data_hash = (byte[]) n12.d;
+            tL_secureData.secret = (byte[]) n12.f2777a;
+        } else if (!TextUtils.isEmpty(str)) {
+            TLRPC.SecureValueType secureValueType = this.f40680a;
+            if (secureValueType instanceof TLRPC.TL_secureValueTypeEmail) {
+                TLRPC.TL_securePlainEmail tL_securePlainEmail = new TLRPC.TL_securePlainEmail();
+                tL_securePlainEmail.email = str;
+                tL_securePlainPhone = tL_securePlainEmail;
+            } else if (secureValueType instanceof TLRPC.TL_secureValueTypePhone) {
+                TLRPC.TL_securePlainPhone tL_securePlainPhone2 = new TLRPC.TL_securePlainPhone();
+                tL_securePlainPhone2.phone = str;
+                tL_securePlainPhone = tL_securePlainPhone2;
             } else {
-                q4Var = new org.telegram.ui.Cells.f7(context, (d3) null);
+                return;
             }
+            TLRPC.TL_inputSecureValue tL_inputSecureValue3 = new TLRPC.TL_inputSecureValue();
+            tL_inputSecureValue3.type = tL_secureRequiredType.type;
+            tL_inputSecureValue3.flags |= 32;
+            tL_inputSecureValue3.plain_data = tL_securePlainPhone;
+            tL_inputSecureValue = tL_inputSecureValue3;
         } else {
-            q4Var = new org.telegram.ui.Cells.h9(context);
+            tL_inputSecureValue = null;
         }
-        return new s4.e1(q4Var);
+        boolean z10 = this.f40681b;
+        if (!z10 && tL_inputSecureValue == null) {
+            if (cVar != null) {
+                cVar.d(null, null);
+                return;
+            }
+            return;
+        }
+        if (tL_secureRequiredType2 != null) {
+            TLRPC.TL_inputSecureValue tL_inputSecureValue4 = new TLRPC.TL_inputSecureValue();
+            tL_inputSecureValue4.type = tL_secureRequiredType2.type;
+            if (!TextUtils.isEmpty(str3)) {
+                tL_inputSecureValue4.flags |= 1;
+                bh.d n13 = ll0Var.n1(org.telegram.messenger.i0.h1(str3));
+                TLRPC.TL_secureData tL_secureData2 = new TLRPC.TL_secureData();
+                tL_inputSecureValue4.data = tL_secureData2;
+                tL_secureData2.data = (byte[]) n13.f2779c;
+                tL_secureData2.data_hash = (byte[]) n13.d;
+                tL_secureData2.secret = (byte[]) n13.f2777a;
+            }
+            if (pwVar2 != null) {
+                tL_inputSecureValue4.front_side = b(pwVar2);
+                tL_inputSecureValue4.flags |= 2;
+            }
+            if (pwVar3 != null) {
+                tL_inputSecureValue4.reverse_side = b(pwVar3);
+                tL_inputSecureValue4.flags |= 4;
+            }
+            if (pwVar != null) {
+                tL_inputSecureValue4.selfie = b(pwVar);
+                tL_inputSecureValue4.flags |= 8;
+            }
+            if (arrayList2 != null && !arrayList2.isEmpty()) {
+                tL_inputSecureValue4.flags |= 64;
+                int size = arrayList2.size();
+                for (int i11 = 0; i11 < size; i11++) {
+                    tL_inputSecureValue4.translation.add(b((org.telegram.messenger.pw) arrayList2.get(i11)));
+                }
+            }
+            if (arrayList != null && !arrayList.isEmpty()) {
+                tL_inputSecureValue4.flags |= 16;
+                int size2 = arrayList.size();
+                for (int i12 = 0; i12 < size2; i12++) {
+                    tL_inputSecureValue4.files.add(b((org.telegram.messenger.pw) arrayList.get(i12)));
+                }
+            }
+            if (z10) {
+                tL_inputSecureValue = tL_inputSecureValue4;
+            } else {
+                tL_inputSecureValue2 = tL_inputSecureValue4;
+                TL_account.saveSecureValue savesecurevalue = new TL_account.saveSecureValue();
+                savesecurevalue.value = tL_inputSecureValue;
+                savesecurevalue.secure_secret_id = ll0Var.f39262b1;
+                i10 = ((org.telegram.ui.ActionBar.k2) ll0Var).currentAccount;
+                ConnectionsManager.getInstance(i10).sendRequest(savesecurevalue, new ok0(this, cVar, str, savesecurevalue, tL_secureRequiredType2, tL_secureRequiredType, arrayList, pwVar, pwVar2, pwVar3, arrayList2, str2, str3, runnable, this, tL_inputSecureValue2));
+            }
+        }
+        tL_inputSecureValue2 = null;
+        TL_account.saveSecureValue savesecurevalue2 = new TL_account.saveSecureValue();
+        savesecurevalue2.value = tL_inputSecureValue;
+        savesecurevalue2.secure_secret_id = ll0Var.f39262b1;
+        i10 = ((org.telegram.ui.ActionBar.k2) ll0Var).currentAccount;
+        ConnectionsManager.getInstance(i10).sendRequest(savesecurevalue2, new ok0(this, cVar, str, savesecurevalue2, tL_secureRequiredType2, tL_secureRequiredType, arrayList, pwVar, pwVar2, pwVar3, arrayList2, str2, str3, runnable, this, tL_inputSecureValue2));
     }
 }

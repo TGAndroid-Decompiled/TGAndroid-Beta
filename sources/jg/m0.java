@@ -1,72 +1,34 @@
 package jg;
 
-import android.text.TextUtils;
-import org.telegram.tgnet.tl.TL_account;
-public final class m0 implements Runnable {
-    public final int f15776a;
-    public final t0 f15777b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.ViewGroup;
+import org.telegram.ui.er0;
+public final class m0 extends n1 {
+    public final Path f10091n3;
+    public final er0 f10092o3;
 
-    public m0(t0 t0Var, int i10) {
-        this.f15776a = i10;
-        this.f15777b = t0Var;
+    public m0(er0 er0Var, Context context) {
+        super(context);
+        this.f10092o3 = er0Var;
+        this.f10091n3 = new Path();
     }
 
     @Override
-    public final void run() {
-        switch (this.f15776a) {
-            case 0:
-                t0 t0Var = this.f15777b;
-                TL_account.TL_businessBotRights tL_businessBotRights = t0Var.J;
-                tL_businessBotRights.manage_stories = !tL_businessBotRights.manage_stories;
-                t0Var.f15848c.f32504g3.O(true);
-                t0Var.Z(true);
-                return;
-            case 1:
-                t0 t0Var2 = this.f15777b;
-                TL_account.TL_businessBotRights tL_businessBotRights2 = t0Var2.J;
-                tL_businessBotRights2.transfer_stars = true;
-                tL_businessBotRights2.transfer_and_upgrade_gifts = true;
-                tL_businessBotRights2.change_gift_settings = true;
-                tL_businessBotRights2.sell_gifts = true;
-                tL_businessBotRights2.view_gifts = true;
-                t0Var2.f15848c.f32504g3.O(true);
-                t0Var2.Z(true);
-                return;
-            case 2:
-                t0 t0Var3 = this.f15777b;
-                TL_account.TL_businessBotRights tL_businessBotRights3 = t0Var3.J;
-                tL_businessBotRights3.edit_username = true;
-                tL_businessBotRights3.edit_profile_photo = true;
-                tL_businessBotRights3.edit_bio = true;
-                tL_businessBotRights3.edit_name = true;
-                t0Var3.f15848c.f32504g3.O(true);
-                t0Var3.Z(true);
-                return;
-            case 3:
-                t0 t0Var4 = this.f15777b;
-                t0Var4.f15848c.f32504g3.O(true);
-                t0Var4.Z(true);
-                return;
-            default:
-                t0 t0Var5 = this.f15777b;
-                String obj = t0Var5.f15849f.getText().toString();
-                String str = t0Var5.f15855y;
-                if (str == null || !TextUtils.equals(str, obj)) {
-                    t0Var5.f15854x = false;
-                    if (TextUtils.isEmpty(obj)) {
-                        t0Var5.f15855y = null;
-                        t0Var5.d.b();
-                        t0Var5.f15848c.f32504g3.O(true);
-                        return;
-                    }
-                    ig.a2 a2Var = t0Var5.d;
-                    t0Var5.f15855y = obj;
-                    int i10 = t0Var5.E;
-                    t0Var5.E = i10 + 1;
-                    a2Var.h(obj, true, false, true, false, false, 0L, false, 0, i10, 0L, null);
-                    return;
-                }
-                return;
-        }
+    public final void draw(Canvas canvas) {
+        ViewGroup barView;
+        er0 er0Var = this.f10092o3;
+        barView = er0Var.getBarView();
+        RectF rectF = org.telegram.messenger.i0.P;
+        rectF.set(org.telegram.messenger.i0.W1(er0Var.f10197w1, barView.getLeft() - getLeft(), 0), org.telegram.messenger.i0.W1(er0Var.f10197w1, barView.getTop() - getTop(), 0), org.telegram.messenger.i0.W1(er0Var.f10197w1, barView.getRight() - getLeft(), getWidth()), org.telegram.messenger.i0.W1(er0Var.f10197w1, barView.getBottom() - getTop(), getHeight()));
+        Path path = this.f10091n3;
+        path.rewind();
+        path.addRoundRect(rectF, org.telegram.messenger.i0.L(32.0f), org.telegram.messenger.i0.L(32.0f), Path.Direction.CW);
+        canvas.save();
+        canvas.clipPath(path);
+        super.draw(canvas);
+        canvas.restore();
     }
 }

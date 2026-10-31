@@ -1,10 +1,12 @@
 package org.telegram.ui.Components.voip;
 
-import android.view.View;
-import android.widget.ImageView;
-public final class d0 extends ImageView {
+import org.webrtc.RendererCommon;
+public final class d0 implements RendererCommon.RendererEvents {
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 1073741824));
+    public final void onFirstFrameRendered() {
+    }
+
+    @Override
+    public final void onFrameResolutionChanged(int i10, int i11, int i12) {
     }
 }

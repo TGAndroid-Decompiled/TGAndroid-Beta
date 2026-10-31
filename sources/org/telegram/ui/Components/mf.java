@@ -1,27 +1,63 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class mf extends org.telegram.ui.pi0 {
-    public final Object A0;
-    public final int f30531z0;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class mf extends AnimatorListenerAdapter {
+    public final int f28430a;
+    public final int f28431b;
+    public final ChatActivityEnterView f28432c;
 
-    public mf(Object obj, Context context, org.telegram.ui.ActionBar.u6 u6Var, int i10) {
-        super(context, u6Var);
-        this.f30531z0 = i10;
-        this.A0 = obj;
+    public mf(ChatActivityEnterView chatActivityEnterView, int i10, int i11) {
+        this.f28430a = i11;
+        this.f28432c = chatActivityEnterView;
+        this.f28431b = i10;
     }
 
     @Override
-    public final void l(long j10) {
-        switch (this.f30531z0) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f28430a) {
             case 0:
-                ((ChatActivityEnterView) this.A0).setEffectId(j10);
+                int i10 = this.f28431b;
+                ChatActivityEnterView chatActivityEnterView = this.f28432c;
+                if (i10 == 0) {
+                    chatActivityEnterView.A2 = 0;
+                }
+                chatActivityEnterView.V0 = null;
+                chatActivityEnterView.H1.setTranslationY(0.0f);
+                chatActivityEnterView.H1.setVisibility(8);
+                chatActivityEnterView.L3.e();
+                sf sfVar = chatActivityEnterView.Z2;
+                if (sfVar != null) {
+                    sfVar.y(0.0f);
+                }
+                chatActivityEnterView.requestLayout();
                 return;
             default:
-                ti tiVar = (ti) this.A0;
-                bi biVar = tiVar.L0;
-                tiVar.Q0 = j10;
-                biVar.setEffect(j10);
+                ChatActivityEnterView chatActivityEnterView2 = this.f28432c;
+                uu0 uu0Var = chatActivityEnterView2.f23746m1;
+                chatActivityEnterView2.A3 = false;
+                chatActivityEnterView2.B3 = null;
+                gf gfVar = chatActivityEnterView2.U0;
+                if (gfVar != null) {
+                    if (chatActivityEnterView2.f23723h5 == null) {
+                        gfVar.getLayoutParams().height = this.f28431b;
+                    }
+                    chatActivityEnterView2.U0.setLayerType(0, null);
+                }
+                if (uu0Var != null) {
+                    uu0Var.requestLayout();
+                    uu0Var.setForeground(null);
+                    uu0Var.setWillNotDraw(false);
+                }
+                if (chatActivityEnterView2.f23822z2 && chatActivityEnterView2.q0()) {
+                    chatActivityEnterView2.r1(0, chatActivityEnterView2.f23708f2, true, true);
+                }
+                ld ldVar = chatActivityEnterView2.f23776r0;
+                if (ldVar != null) {
+                    ldVar.run();
+                    chatActivityEnterView2.f23776r0 = null;
+                }
+                chatActivityEnterView2.L3.e();
                 return;
         }
     }

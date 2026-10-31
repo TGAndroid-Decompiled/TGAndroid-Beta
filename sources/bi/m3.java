@@ -1,84 +1,144 @@
 package bi;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.RequestDelegateTimestamp;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class m3 implements Runnable {
-    public final int f5075a;
-    public final long f5076b;
-    public final Object f5077c;
-    public final Object d;
-    public final Object e;
-    public final Object f5078f;
-    public final Object h;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_iv;
+public final class m3 implements n6 {
+    public final d4 f3203a;
 
-    public m3(h7 h7Var, TLObject tLObject, String str, TL_stars.InputSavedStarGift inputSavedStarGift, TLRPC.TL_error tL_error, long j10) {
-        this.f5075a = 0;
-        this.d = h7Var;
-        this.f5077c = tLObject;
-        this.e = str;
-        this.f5078f = inputSavedStarGift;
-        this.h = tL_error;
-        this.f5076b = j10;
+    public m3(d4 d4Var) {
+        this.f3203a = d4Var;
     }
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: bi.m3.run():void");
+    public final int a(a aVar) {
+        float f7;
+        int i10;
+        d4 d4Var = this.f3203a;
+        int indexOf = d4Var.f2946s3.indexOf(aVar);
+        if (indexOf >= 0 && (i10 = indexOf + 1) < d4Var.f2946s3.size() && ((a) d4Var.f2946s3.get(i10)).f2819c > 0) {
+            f7 = 5.0f;
+        } else {
+            f7 = 11.0f;
+        }
+        return org.telegram.messenger.i0.L(f7);
     }
 
-    public m3(ca caVar, boolean[] zArr, long j10, TLObject tLObject, TLRPC.TL_textWithEntities tL_textWithEntities, Utilities.Callback2 callback2) {
-        this.f5075a = 1;
-        this.d = caVar;
-        this.e = zArr;
-        this.f5076b = j10;
-        this.f5077c = tLObject;
-        this.f5078f = tL_textWithEntities;
-        this.h = callback2;
+    public final int b(a aVar) {
+        float f7;
+        d4 d4Var = this.f3203a;
+        int indexOf = d4Var.f2946s3.indexOf(aVar);
+        if (indexOf > 0 && ((a) d4Var.f2946s3.get(indexOf - 1)).f2819c > 0) {
+            f7 = 2.0f;
+        } else {
+            f7 = 8.0f;
+        }
+        return org.telegram.messenger.i0.L(f7);
     }
 
-    public m3(ca caVar, boolean[] zArr, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift, TL_stars.StarGift starGift, long j10, Utilities.Callback2 callback2) {
-        this.f5075a = 2;
-        this.d = caVar;
-        this.f5077c = zArr;
-        this.e = tL_payments_paymentFormStarGift;
-        this.f5078f = starGift;
-        this.f5076b = j10;
-        this.h = callback2;
+    public final void c(a aVar, int i10) {
+        d4 d4Var = this.f3203a;
+        b4 b4Var = d4Var.f2938o3;
+        if (i10 == 7) {
+            d4Var.U4(aVar, new TL_iv.pageBlockButtonRow(), 0, 0, false, false);
+            return;
+        }
+        d4Var.f2931i4 = null;
+        d4Var.f2932j4 = aVar;
+        o2 o2Var = d4Var.Q3;
+        if (o2Var != null) {
+            o2Var.d();
+        }
+        if (aVar != null) {
+            q6.e(aVar.f2818b, "");
+            View C1 = d4Var.C1(aVar);
+            if (C1 instanceof q6) {
+                ((q6) C1).getEditText().setTextSilently("");
+            }
+        }
+        o2 o2Var2 = d4Var.Q3;
+        if (o2Var2 != null) {
+            o2Var2.h();
+        }
+        switch (i10) {
+            case 1:
+                b4Var.p(3);
+                return;
+            case 2:
+                b4Var.p(6);
+                return;
+            case 3:
+                t.X(d4Var.getContext(), "", new ag.l(d4Var, 9), d4Var.f2936n3);
+                return;
+            case 4:
+            case 5:
+                b4Var.p(1);
+                return;
+            case 6:
+                d4Var.w3();
+                return;
+            default:
+                return;
+        }
     }
 
-    public m3(Object obj, Object obj2, long j10, Object obj3, Object obj4, Object obj5, int i10) {
-        this.f5075a = i10;
-        this.d = obj;
-        this.f5077c = obj2;
-        this.f5076b = j10;
-        this.e = obj3;
-        this.f5078f = obj4;
-        this.h = obj5;
-    }
-
-    public m3(ConnectionsManager connectionsManager, RequestDelegate requestDelegate, TLObject tLObject, TLRPC.TL_error tL_error, RequestDelegateTimestamp requestDelegateTimestamp, long j10) {
-        this.f5075a = 4;
-        this.d = connectionsManager;
-        this.e = requestDelegate;
-        this.f5077c = tLObject;
-        this.h = tL_error;
-        this.f5078f = requestDelegateTimestamp;
-        this.f5076b = j10;
-    }
-
-    public m3(org.telegram.ui.ActionBar.r2 r2Var, TLObject tLObject, MessagesController.DialogFilter dialogFilter, TLRPC.TL_error tL_error, Runnable runnable, long j10) {
-        this.f5075a = 6;
-        this.d = r2Var;
-        this.f5077c = tLObject;
-        this.e = dialogFilter;
-        this.h = tL_error;
-        this.f5078f = runnable;
-        this.f5076b = j10;
+    public final void d(a aVar, TL_iv.PageBlock pageBlock, int i10, int i11, boolean z10, boolean z11) {
+        boolean z12;
+        boolean z13 = pageBlock instanceof TL_iv.pageBlockBlockquote;
+        d4 d4Var = this.f3203a;
+        if (z13) {
+            if (aVar == null) {
+                aVar = d4Var.a5();
+            }
+            if (aVar != null) {
+                ArrayList arrayList = aVar.f2824k;
+                if (d4Var.f2946s3.indexOf(aVar) >= 0 && !d4.A3(aVar) && !aVar.f2822i) {
+                    o2 o2Var = d4Var.Q3;
+                    if (o2Var != null) {
+                        o2Var.d();
+                    }
+                    if (arrayList.isEmpty() && !q6.p(aVar.f2818b)) {
+                        z12 = true;
+                    } else {
+                        z12 = false;
+                    }
+                    if (z12) {
+                        TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
+                        pageblockblockquote.caption = new TL_iv.textEmpty();
+                        aVar.f2818b = pageblockblockquote;
+                    } else {
+                        if (q6.p(aVar.f2818b)) {
+                            long a2 = r0.a();
+                            TL_iv.RichText k10 = q6.k(aVar.f2818b);
+                            if (k10 != null && !(k10 instanceof TL_iv.textEmpty)) {
+                                d4Var.f2948t3.put(Long.valueOf(a2), k10);
+                            }
+                            arrayList.add(Long.valueOf(a2));
+                        }
+                        aVar.f2818b = new TL_iv.pageBlockParagraph();
+                        arrayList.add(Long.valueOf(r0.a()));
+                    }
+                    d4Var.v4();
+                    if (z12 && (d4Var.findFocus() instanceof n1)) {
+                        d4Var.a2();
+                        o2 o2Var2 = d4Var.Q3;
+                        if (o2Var2 != null) {
+                            o2Var2.h();
+                        }
+                        d4Var.g3(aVar);
+                        return;
+                    }
+                    d4Var.f30819f3.O(false);
+                    o2 o2Var3 = d4Var.Q3;
+                    if (o2Var3 != null) {
+                        o2Var3.h();
+                    }
+                    d4Var.post(new h3(d4Var, aVar, 5));
+                    return;
+                }
+                return;
+            }
+            return;
+        }
+        d4Var.U4(aVar, pageBlock, i10, i11, z10, z11);
     }
 }

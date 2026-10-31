@@ -2,13 +2,13 @@ package c4;
 
 import e2.x;
 public final class a {
-    public final x f6129a = new x();
-    public final int[] f6130b = new int[256];
-    public boolean f6131c;
+    public final x f3724a = new x();
+    public final int[] f3725b = new int[256];
+    public boolean f3726c;
     public int d;
     public int e;
-    public int f6132f;
-    public int f6133g;
+    public int f3727f;
+    public int f3728g;
     public int h;
-    public int f6134i;
+    public int f3729i;
 }

@@ -1,54 +1,31 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-public final class ej extends org.telegram.ui.Components.t40 {
-    public final int I;
+import android.app.Activity;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class ej extends FrameLayout {
+    public final un f37065a;
 
-    public ej(int i10, int i11, Context context, org.telegram.ui.ActionBar.u6 u6Var, boolean z10) {
-        super(i10, context, u6Var, z10);
-        this.I = i11;
+    public ej(un unVar, Activity activity) {
+        super(activity);
+        this.f37065a = unVar;
     }
 
     @Override
-    public int c() {
-        switch (this.I) {
-            case 0:
-                return AndroidUtilities.dp(56.0f) / 2;
-            default:
-                return super.c();
+    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0) {
+            this.f37065a.I7(true);
         }
+        return super.dispatchKeyEvent(keyEvent);
     }
 
     @Override
-    public void setVisibility(int i10) {
-        switch (this.I) {
-            case 1:
-                super.setVisibility(i10);
-                if (i10 != 0) {
-                    try {
-                        ((ViewGroup) getParent()).removeView(this);
-                        return;
-                    } catch (Exception unused) {
-                        return;
-                    }
-                }
-                return;
-            case 2:
-                super.setVisibility(i10);
-                if (i10 != 0) {
-                    try {
-                        ((ViewGroup) getParent()).removeView(this);
-                        return;
-                    } catch (Exception unused2) {
-                        return;
-                    }
-                }
-                return;
-            default:
-                super.setVisibility(i10);
-                return;
+    public final void onMeasure(int i10, int i11) {
+        int min = Math.min(View.MeasureSpec.getSize(i11), org.telegram.messenger.i0.L(300.0f));
+        if (min == 0) {
+            min = org.telegram.messenger.i0.L(300.0f);
         }
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(min, Integer.MIN_VALUE));
     }
 }

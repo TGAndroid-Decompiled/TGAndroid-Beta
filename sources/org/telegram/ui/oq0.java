@@ -1,52 +1,42 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.MediaController;
-public final class oq0 implements org.telegram.ui.Components.qm0 {
-    public final tq0 f42177a;
+import android.content.Context;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class oq0 extends org.telegram.ui.Components.op0 {
+    public final FrameLayout R2;
+    public final boolean S2;
+    public final PhotoViewer T2;
 
-    public oq0(tq0 tq0Var) {
-        this.f42177a = tq0Var;
+    public oq0(PhotoViewer photoViewer, Context context, un unVar, ArrayList arrayList, String str, Integer num, FrameLayout frameLayout, boolean z10) {
+        super(context, unVar, arrayList, null, null, false, str, null, false, true, false, num, null);
+        this.T2 = photoViewer;
+        this.R2 = frameLayout;
+        this.S2 = z10;
     }
 
     @Override
-    public final void a(boolean z10) {
-        org.telegram.ui.ActionBar.j5 j5Var;
-        tq0 tq0Var = this.f42177a;
-        tq0Var.W = z10 ? 1 : 0;
-        if (z10) {
-            j5Var = ((org.telegram.ui.ActionBar.r2) tq0Var).parentLayout;
-            j5Var.getView().requestDisallowInterceptTouchEvent(true);
+    public final void L() {
+        super.L();
+        if (this.S2) {
+            org.telegram.messenger.i0.h3(new mg0(this, 20), 50L);
         }
-        tq0Var.K.d1(true);
-    }
-
-    @Override
-    public final boolean b(int i10) {
-        if (this.f42177a.L.j(i10) == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void c(View view, boolean z10) {
-        if (z10 == this.f42177a.X && (view instanceof org.telegram.ui.Cells.x5)) {
-            org.telegram.ui.Cells.x5 x5Var = (org.telegram.ui.Cells.x5) view;
-            x5Var.f25708w.b(x5Var);
+        PhotoViewer photoViewer = this.T2;
+        photoViewer.f33461d0.softInputMode = 272;
+        try {
+            ((WindowManager) photoViewer.D.getSystemService("window")).updateViewLayout(photoViewer.f33487g0, photoViewer.f33461d0);
+        } catch (Exception e) {
+            org.telegram.messenger.f8.g(e, true);
         }
     }
 
     @Override
-    public final boolean d(int i10) {
-        Object obj;
-        tq0 tq0Var = this.f42177a;
-        MediaController.AlbumEntry albumEntry = tq0Var.J;
-        if (albumEntry != null) {
-            obj = Integer.valueOf(albumEntry.photos.get(i10).imageId);
-        } else {
-            obj = ((MediaController.SearchImage) tq0Var.f43736f.get(i10)).f19542id;
+    public final void R0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        if (!z10) {
+            return;
         }
-        return tq0Var.f43730b.containsKey(obj);
+        org.telegram.messenger.i0.h3(new org.telegram.ui.Components.c11(this, this.R2, hVar, i10, 9), 250L);
     }
 }

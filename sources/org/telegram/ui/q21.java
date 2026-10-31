@@ -1,34 +1,35 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-public final class q21 implements s21 {
-    public final org.telegram.messenger.video.a f42583a;
-    public final org.telegram.ui.Components.wc f42584b;
-    public final Context f42585c;
-    public final di.k0 d;
-    public final org.telegram.messenger.video.d e;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class q21 extends AnimatorListenerAdapter {
+    public final int f40845a;
+    public final s21 f40846b;
 
-    public q21(org.telegram.messenger.video.a aVar, org.telegram.ui.Components.wc wcVar, Context context, di.k0 k0Var, org.telegram.messenger.video.d dVar) {
-        this.f42583a = aVar;
-        this.f42584b = wcVar;
-        this.f42585c = context;
-        this.d = k0Var;
-        this.e = dVar;
+    public q21(s21 s21Var, int i10) {
+        this.f40845a = i10;
+        this.f40846b = s21Var;
     }
 
     @Override
-    public final void a() {
-        AndroidUtilities.runOnUIThread(new m21(this.f42583a, this.f42584b, this.f42585c, this.d, 2), 200L);
-    }
-
-    @Override
-    public final void b() {
-        AndroidUtilities.runOnUIThread(new by0(16, this.f42583a, this.f42584b), 200L);
-    }
-
-    @Override
-    public final void c() {
-        this.e.run();
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f40845a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                this.f40846b.I = null;
+                return;
+            case 1:
+                super.onAnimationEnd(animator);
+                this.f40846b.I = null;
+                return;
+            default:
+                super.onAnimationEnd(animator);
+                s21 s21Var = this.f40846b;
+                s21Var.N = 0.0f;
+                s21Var.I = null;
+                s21Var.M = false;
+                s21Var.d(true, false);
+                return;
+        }
     }
 }

@@ -1,39 +1,48 @@
 package x5;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import java.util.Arrays;
-import m4.w1;
-import o6.l;
-public final class b implements com.google.android.gms.common.api.b {
-    public static final b f51463c;
-    public final boolean f51464a;
-    public final String f51465b;
+import n6.l;
+import v8.s;
+import w7.h0;
+public final class b extends o6.a {
+    public static final Parcelable.Creator<b> CREATOR = new s(25);
+    public final boolean f53067a;
+    public final String f53068b;
 
-    static {
-        w1 w1Var = new w1(26, (byte) 0);
-        w1Var.f18292b = Boolean.FALSE;
-        f51463c = new b(w1Var);
-    }
-
-    public b(w1 w1Var) {
-        this.f51464a = ((Boolean) w1Var.f18292b).booleanValue();
-        this.f51465b = (String) w1Var.f18293c;
+    public b(String str, boolean z10) {
+        if (z10) {
+            l.g(str);
+        }
+        this.f53067a = z10;
+        this.f53068b = str;
     }
 
     public final boolean equals(Object obj) {
-        if (obj == this) {
+        if (this == obj) {
             return true;
         }
         if (!(obj instanceof b)) {
             return false;
         }
         b bVar = (b) obj;
-        if (l.l(null, null) && this.f51464a == bVar.f51464a && l.l(this.f51465b, bVar.f51465b)) {
+        if (this.f53067a == bVar.f53067a && l.k(this.f53068b, bVar.f53068b)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{null, Boolean.valueOf(this.f51464a), this.f51465b});
+        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f53067a), this.f53068b});
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q6 = h0.q(parcel, 20293);
+        h0.s(parcel, 1, 4);
+        parcel.writeInt(this.f53067a ? 1 : 0);
+        h0.l(parcel, 2, this.f53068b);
+        h0.r(parcel, q6);
     }
 }

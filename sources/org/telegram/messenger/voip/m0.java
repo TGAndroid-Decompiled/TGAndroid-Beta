@@ -1,17 +1,36 @@
 package org.telegram.messenger.voip;
-public final class m0 implements Runnable {
-    public final int f21656a;
-    public final Object f21657b;
-    public final Object f21658c;
 
-    public m0(int i10, Object obj, Object obj2) {
-        this.f21656a = i10;
-        this.f21657b = obj;
-        this.f21658c = obj2;
+import org.telegram.messenger.voip.Instance;
+import org.telegram.messenger.voip.NativeInstance;
+public final class m0 implements NativeInstance.AudioLevelsCallback, Instance.OnStateUpdatedListener, Instance.OnSignalBarsUpdatedListener, Instance.OnSignalingDataListener, Instance.OnRemoteMediaStateUpdatedListener {
+    public final VoIPService f18677a;
+
+    public m0(VoIPService voIPService) {
+        this.f18677a = voIPService;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.m0.run():void");
+    public void onMediaStateUpdated(int i10, int i11) {
+        this.f18677a.lambda$initiateActualEncryptedCall$87(i10, i11);
+    }
+
+    @Override
+    public void onSignalBarsUpdated(int i10) {
+        this.f18677a.onSignalBarCountChanged(i10);
+    }
+
+    @Override
+    public void onSignalingData(byte[] bArr) {
+        this.f18677a.onSignalingData(bArr);
+    }
+
+    @Override
+    public void onStateUpdated(int i10, boolean z10) {
+        this.f18677a.onConnectionStateChanged(i10, z10);
+    }
+
+    @Override
+    public void run(int[] iArr, float[] fArr, boolean[] zArr) {
+        this.f18677a.lambda$initiateActualEncryptedCall$85(iArr, fArr, zArr);
     }
 }

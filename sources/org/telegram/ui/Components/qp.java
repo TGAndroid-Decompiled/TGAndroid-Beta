@@ -1,29 +1,24 @@
 package org.telegram.ui.Components;
+public final class qp implements xu0 {
+    public final op f29714a;
+    public final sp f29715b;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.uc1;
-public final class qp implements uc1 {
-    public final int f31978a;
-    public final rp f31979b;
-
-    public qp(rp rpVar, int i10) {
-        this.f31978a = i10;
-        this.f31979b = rpVar;
+    public qp(sp spVar, op opVar) {
+        this.f29715b = spVar;
+        this.f29714a = opVar;
     }
 
     @Override
-    public final void a(TLRPC.TL_wallPaper tL_wallPaper) {
-        switch (this.f31978a) {
-            case 0:
-                zp zpVar = this.f31979b.f32297a;
-                zpVar.X.dismissInternal();
-                zpVar.dismiss();
-                return;
-            default:
-                zp zpVar2 = this.f31979b.f32297a;
-                zpVar2.X.dismissInternal();
-                zpVar2.dismiss();
-                return;
-        }
+    public final void m(int i10) {
+        sp spVar = this.f29715b;
+        spVar.f30314q1 = i10;
+        spVar.J0(true);
+    }
+
+    @Override
+    public final void s() {
+        int measuredHeight = this.f29715b.f30309k1.getMeasuredHeight();
+        op opVar = this.f29714a;
+        opVar.z(0 - opVar.getScrollX(), measuredHeight - opVar.getScrollY(), false);
     }
 }

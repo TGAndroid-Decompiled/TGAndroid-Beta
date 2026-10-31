@@ -1,11 +1,5 @@
 package s0;
 
-import android.os.Bundle;
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.ui.Components.yh0;
-public final class e extends yh0 {
-    @Override
-    public final void addExtraDataToAccessibilityNodeInfo(int i10, AccessibilityNodeInfo accessibilityNodeInfo, String str, Bundle bundle) {
-        ((jg.i) this.f35054b).getClass();
-    }
+import w7.p7;
+public abstract class e extends p7 {
 }

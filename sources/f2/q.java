@@ -1,6 +1,5 @@
 package f2;
 
-import a8.yb;
 import b2.x;
 import j$.util.Objects;
 import java.nio.BufferUnderflowException;
@@ -8,10 +7,11 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.Arrays;
+import v7.t6;
 public abstract class q {
-    public static final byte[] f10110a = {0, 0, 0, 1};
-    public static final float[] f10111b = {1.0f, 1.0f, 1.0909091f, 0.90909094f, 1.4545455f, 1.2121212f, 2.1818182f, 1.8181819f, 2.909091f, 2.4242425f, 1.6363636f, 1.3636364f, 1.939394f, 1.6161616f, 1.3333334f, 1.5f, 2.0f};
-    public static final Object f10112c = new Object();
+    public static final byte[] f6783a = {0, 0, 0, 1};
+    public static final float[] f6784b = {1.0f, 1.0f, 1.0909091f, 0.90909094f, 1.4545455f, 1.2121212f, 2.1818182f, 1.8181819f, 2.909091f, 2.4242425f, 1.6363636f, 1.3636364f, 1.939394f, 1.6161616f, 1.3333334f, 1.5f, 2.0f};
+    public static final Object f6785c = new Object();
     public static int[] d = new int[10];
 
     public static ArrayList a(byte[] bArr) {
@@ -39,7 +39,7 @@ public abstract class q {
         } else {
             z10 = false;
         }
-        yb.p(z10);
+        t6.p(z10);
         if (i12 == 0) {
             return i11;
         }
@@ -88,8 +88,8 @@ public abstract class q {
     }
 
     public static String d(x xVar) {
-        String str = xVar.f3586s;
-        String str2 = xVar.f3578k;
+        String str = xVar.f2423s;
+        String str2 = xVar.f2415k;
         if (Objects.equals(str, "video/dolby-vision") && str2 != null) {
             if (!str2.startsWith("dva1") && !str2.startsWith("dvav")) {
                 if (str2.startsWith("dvh1") || str2.startsWith("dvhe")) {
@@ -99,7 +99,7 @@ public abstract class q {
                 return "video/avc";
             }
         }
-        return xVar.f3586s;
+        return xVar.f2423s;
     }
 
     public static long e(byte b10, byte b11) {
@@ -131,12 +131,12 @@ public abstract class q {
 
     public static boolean f(byte[] bArr, int i10, x xVar) {
         int i11;
-        if (Objects.equals(xVar.f3586s, "video/avc")) {
+        if (Objects.equals(xVar.f2423s, "video/avc")) {
             byte b10 = bArr[4];
             if (((b10 & 96) >> 5) == 0 && ((i11 = b10 & 31) == 1 || i11 == 9 || i11 == 14)) {
                 return false;
             }
-        } else if (Objects.equals(xVar.f3586s, "video/hevc")) {
+        } else if (Objects.equals(xVar.f2423s, "video/hevc")) {
             a3.l h = h(new u(bArr, 4, i10 + 4));
             int i12 = h.f139a;
             if (i12 != 35) {
@@ -170,7 +170,7 @@ public abstract class q {
         throw new UnsupportedOperationException("Method not decompiled: f2.q.i(f2.u, boolean, int, f2.j):f2.j");
     }
 
-    public static ag.j j(int i10, int i11, byte[] bArr) {
+    public static ae.j j(int i10, int i11, byte[] bArr) {
         byte b10;
         int i12;
         int max;
@@ -193,13 +193,13 @@ public abstract class q {
                     e = uVar.e(8);
                 }
                 int i15 = i14 + e;
-                int e10 = uVar.e(8);
+                int e7 = uVar.e(8);
                 int i16 = 0;
-                while (e10 == 255) {
+                while (e7 == 255) {
                     i16 += 255;
-                    e10 = uVar.e(8);
+                    e7 = uVar.e(8);
                 }
-                int i17 = i16 + e10;
+                int i17 = i16 + e7;
                 if (i17 != 0 && uVar.b(i17)) {
                     if (i15 == 176) {
                         int f7 = uVar.f();
@@ -214,21 +214,21 @@ public abstract class q {
                         for (int i19 = 0; i19 <= f10; i19++) {
                             i18 = uVar.f();
                             uVar.f();
-                            int e11 = uVar.e(6);
-                            if (e11 != 63) {
-                                if (e11 == 0) {
+                            int e10 = uVar.e(6);
+                            if (e10 != 63) {
+                                if (e10 == 0) {
                                     max = Math.max(0, f7 - 30);
                                 } else {
-                                    max = Math.max(0, (e11 + f7) - 31);
+                                    max = Math.max(0, (e10 + f7) - 31);
                                 }
                                 uVar.e(max);
                                 if (d10) {
-                                    int e12 = uVar.e(6);
-                                    if (e12 != 63) {
-                                        if (e12 == 0) {
+                                    int e11 = uVar.e(6);
+                                    if (e11 != 63) {
+                                        if (e11 == 0) {
                                             max2 = Math.max(0, i12 - 30);
                                         } else {
-                                            max2 = Math.max(0, (e12 + i12) - 31);
+                                            max2 = Math.max(0, (e11 + i12) - 31);
                                         }
                                         uVar.e(max2);
                                     } else {
@@ -242,7 +242,7 @@ public abstract class q {
                                 return null;
                             }
                         }
-                        return new ag.j(i18);
+                        return new ae.j(i18);
                     }
                     uVar.j(i17 * 8);
                 } else {
@@ -254,12 +254,12 @@ public abstract class q {
         return null;
     }
 
-    public static f2.m k(byte[] r32, int r33, int r34, com.google.firebase.messaging.q r35) {
-        throw new UnsupportedOperationException("Method not decompiled: f2.q.k(byte[], int, int, com.google.firebase.messaging.q):f2.m");
+    public static f2.m k(byte[] r32, int r33, int r34, xa.n r35) {
+        throw new UnsupportedOperationException("Method not decompiled: f2.q.k(byte[], int, int, xa.n):f2.m");
     }
 
-    public static com.google.firebase.messaging.q l(int r40, int r41, byte[] r42) {
-        throw new UnsupportedOperationException("Method not decompiled: f2.q.l(int, int, byte[]):com.google.firebase.messaging.q");
+    public static xa.n l(int r40, int r41, byte[] r42) {
+        throw new UnsupportedOperationException("Method not decompiled: f2.q.l(int, int, byte[]):xa.n");
     }
 
     public static f2.p m(int r30, int r31, byte[] r32) {
@@ -315,7 +315,7 @@ public abstract class q {
 
     public static int p(int i10, byte[] bArr) {
         int i11;
-        synchronized (f10112c) {
+        synchronized (f6785c) {
             int i12 = 0;
             int i13 = 0;
             while (i12 < i10) {

@@ -1,17 +1,18 @@
 package x2;
 
-import a8.ed;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import b2.t1;
 import b2.u1;
-import e2.n0;
+import e2.l0;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Map;
+import th.m1;
 import u2.r1;
+import v7.c8;
 public final class j extends u1 {
     public static final j F0 = new j(new i());
     public static final String G0;
@@ -38,13 +39,13 @@ public final class j extends u1 {
     public final boolean C0;
     public final SparseArray D0;
     public final SparseBooleanArray E0;
-    public final boolean f51383w0;
-    public final boolean f51384x0;
-    public final boolean f51385y0;
-    public final boolean f51386z0;
+    public final boolean f52920w0;
+    public final boolean f52921x0;
+    public final boolean f52922y0;
+    public final boolean f52923z0;
 
     static {
-        String str = n0.f9691a;
+        String str = l0.f6165a;
         G0 = Integer.toString(1000, 36);
         H0 = Integer.toString(1001, 36);
         I0 = Integer.toString(1002, 36);
@@ -68,10 +69,10 @@ public final class j extends u1 {
 
     public j(i iVar) {
         super(iVar);
-        this.f51383w0 = iVar.J;
-        this.f51384x0 = iVar.K;
-        this.f51385y0 = iVar.L;
-        this.f51386z0 = iVar.M;
+        this.f52920w0 = iVar.J;
+        this.f52921x0 = iVar.K;
+        this.f52922y0 = iVar.L;
+        this.f52923z0 = iVar.M;
         this.A0 = iVar.N;
         this.B0 = iVar.O;
         this.C0 = iVar.P;
@@ -87,16 +88,16 @@ public final class j extends u1 {
     @Override
     public final Bundle c() {
         Bundle c10 = super.c();
-        c10.putBoolean(G0, this.f51383w0);
+        c10.putBoolean(G0, this.f52920w0);
         c10.putBoolean(H0, false);
-        c10.putBoolean(I0, this.f51384x0);
+        c10.putBoolean(I0, this.f52921x0);
         c10.putBoolean(U0, false);
-        c10.putBoolean(J0, this.f51385y0);
+        c10.putBoolean(J0, this.f52922y0);
         c10.putBoolean(K0, false);
         c10.putBoolean(L0, false);
         c10.putBoolean(M0, false);
         c10.putBoolean(V0, false);
-        c10.putBoolean(Y0, this.f51386z0);
+        c10.putBoolean(Y0, this.f52923z0);
         c10.putBoolean(W0, this.A0);
         c10.putBoolean(N0, this.B0);
         c10.putBoolean(O0, false);
@@ -118,15 +119,15 @@ public final class j extends u1 {
                         throw new ClassCastException();
                     }
                 }
-                c10.putIntArray(Q0, ed.f(arrayList));
-                c10.putParcelableArrayList(R0, e2.e.h(arrayList2, new vg.d(10)));
+                c10.putIntArray(Q0, c8.f(arrayList));
+                c10.putParcelableArrayList(R0, e2.e.h(arrayList2, new m1(19)));
                 SparseArray<? extends Parcelable> sparseArray3 = new SparseArray<>(sparseArray.size());
                 if (sparseArray.size() <= 0) {
                     c10.putSparseParcelableArray(S0, sparseArray3);
                     i10++;
                 } else {
                     sparseArray.keyAt(0);
-                    a1.g.B(sparseArray.valueAt(0));
+                    a1.g.y(sparseArray.valueAt(0));
                     throw null;
                 }
             } else {
@@ -146,7 +147,7 @@ public final class j extends u1 {
         if (this != obj) {
             if (obj != null && j.class == obj.getClass()) {
                 j jVar = (j) obj;
-                if (super.equals(jVar) && this.f51383w0 == jVar.f51383w0 && this.f51384x0 == jVar.f51384x0 && this.f51385y0 == jVar.f51385y0 && this.f51386z0 == jVar.f51386z0 && this.A0 == jVar.A0 && this.B0 == jVar.B0 && this.C0 == jVar.C0) {
+                if (super.equals(jVar) && this.f52920w0 == jVar.f52920w0 && this.f52921x0 == jVar.f52921x0 && this.f52922y0 == jVar.f52922y0 && this.f52923z0 == jVar.f52923z0 && this.A0 == jVar.A0 && this.B0 == jVar.B0 && this.C0 == jVar.C0) {
                     SparseBooleanArray sparseBooleanArray = jVar.E0;
                     SparseBooleanArray sparseBooleanArray2 = this.E0;
                     int size = sparseBooleanArray2.size();
@@ -193,6 +194,6 @@ public final class j extends u1 {
 
     @Override
     public final int hashCode() {
-        return (((((((((((((((super.hashCode() + 31) * 31) + (this.f51383w0 ? 1 : 0)) * 961) + (this.f51384x0 ? 1 : 0)) * 961) + (this.f51385y0 ? 1 : 0)) * 28629151) + (this.f51386z0 ? 1 : 0)) * 31) + (this.A0 ? 1 : 0)) * 31) + (this.B0 ? 1 : 0)) * 961) + (this.C0 ? 1 : 0)) * 31;
+        return (((((((((((((((super.hashCode() + 31) * 31) + (this.f52920w0 ? 1 : 0)) * 961) + (this.f52921x0 ? 1 : 0)) * 961) + (this.f52922y0 ? 1 : 0)) * 28629151) + (this.f52923z0 ? 1 : 0)) * 31) + (this.A0 ? 1 : 0)) * 31) + (this.B0 ? 1 : 0)) * 961) + (this.C0 ? 1 : 0)) * 31;
     }
 }

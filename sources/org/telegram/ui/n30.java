@@ -1,17 +1,42 @@
 package org.telegram.ui;
 
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class n30 extends s4.n0 {
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.widget.TextView;
+public final class n30 extends TextView {
+    public final RectF f39821a;
+    public final Paint f39822b;
+
+    public n30(LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.f39821a = new RectF();
+        Paint paint = new Paint(1);
+        this.f39822b = paint;
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(-16711936);
+    }
+
     @Override
-    public final void d(Rect rect, View view, RecyclerView recyclerView, s4.b1 b1Var) {
-        RecyclerView.R(view);
-        if (!x50.F3) {
-            rect.set(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-        } else {
-            rect.set(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
-        }
+    public final void dispatchDraw(Canvas canvas) {
+        RectF rectF = this.f39821a;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawRoundRect(rectF, org.telegram.messenger.i0.L(8.0f), org.telegram.messenger.i0.L(8.0f), this.f39822b);
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        Paint paint = this.f39822b;
+        paint.setColor(-16711936);
+        RectF rectF = this.f39821a;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawRoundRect(rectF, org.telegram.messenger.i0.L(8.0f), org.telegram.messenger.i0.L(8.0f), paint);
+        super.onDraw(canvas);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
     }
 }

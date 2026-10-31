@@ -1,324 +1,168 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Color;
+import android.graphics.ComposeShader;
+import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.PorterDuff;
-import android.graphics.Rect;
-import android.text.Layout;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.view.View;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class nb0 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate, org.telegram.ui.ActionBar.p6 {
-    public int E;
-    public int F;
-    public CharSequence G;
-    public int H;
-    public SpannableStringBuilder I;
-    public int J;
-    public boolean K;
-    public ValueAnimator L;
-    public float M;
-    public Rect N;
-    public Rect O;
-    public final int f30828a;
-    public TLRPC.InputStickerSet f30829b;
-    public final Rect f30830c;
-    public t5 d;
-    public boolean e;
-    public final ea0 f30831f;
-    public final TextPaint h;
-    public final CharSequence f30832n;
-    public StaticLayout f30833r;
-    public final String f30834s;
-    public SpannableStringBuilder v;
-    public StaticLayout f30835w;
-    public int f30836x;
-    public int f30837y;
+import android.graphics.RectF;
+import android.os.Build;
+import org.telegram.messenger.Utilities;
+public final class nb0 {
+    public static final float[] f28737k = new float[4];
+    public static final Matrix f28738l = new Matrix();
+    public final lb0 d;
+    public int e;
+    public int f28742f;
+    public int f28743g;
+    public int h;
+    public final q5.d f28739a = new q5.d(new au(2));
+    public final a5.a f28740b = new a5.a(15, (byte) 0);
+    public final org.telegram.messenger.k9 f28741c = new org.telegram.messenger.k9(2);
+    public final Matrix f28744i = new Matrix();
+    public final RectF f28745j = new RectF();
 
-    public nb0(int i10, int i11, Context context, ArrayList arrayList, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(context);
-        String string;
-        String str;
-        TLRPC.Document document;
-        TLRPC.TL_messages_stickerSet stickerSet;
-        TLRPC.StickerSet stickerSet2;
-        ArrayList<TLRPC.Document> arrayList2;
-        String formatPluralString;
-        this.f30830c = new Rect();
-        this.e = false;
-        this.J = -1;
-        this.K = true;
-        this.M = 0.0f;
-        this.f30828a = i10;
-        int i12 = org.telegram.ui.ActionBar.y6.f23449i6;
-        org.telegram.ui.Cells.y Z = org.telegram.ui.ActionBar.y6.Z(org.telegram.ui.ActionBar.y6.w0(i12, u6Var), 0, 16);
-        org.telegram.ui.ActionBar.b7 N = org.telegram.ui.ActionBar.f7.N(i12);
-        setBackground(Z);
-        org.telegram.ui.ActionBar.f7.k(this, Z, null, N, u6Var);
-        TextPaint textPaint = new TextPaint(1);
-        this.h = textPaint;
-        textPaint.setTextSize(AndroidUtilities.dp(13.0f));
-        textPaint.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.E8, u6Var));
-        if (arrayList.size() > 1) {
-            if (i11 == 0) {
-                formatPluralString = LocaleController.formatPluralString("MessageContainsEmojiPacks", arrayList.size(), new Object[0]);
-            } else {
-                formatPluralString = LocaleController.formatPluralString("MessageContainsReactionsPacks", arrayList.size(), new Object[0]);
-            }
-            SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(formatPluralString);
-            this.f30832n = replaceTags;
-            r61[] r61VarArr = (r61[]) replaceTags.getSpans(0, replaceTags.length(), r61.class);
-            for (int i13 = 0; r61VarArr != null && i13 < r61VarArr.length; i13++) {
-                int spanStart = replaceTags.getSpanStart(r61VarArr[i13]);
-                int spanEnd = replaceTags.getSpanEnd(r61VarArr[i13]);
-                replaceTags.removeSpan(r61VarArr[i13]);
-                replaceTags.setSpan(new li.z5(this, 1), spanStart, spanEnd, 33);
-            }
-        } else if (arrayList.size() == 1) {
-            if (i11 == 0) {
-                string = LocaleController.getString(R.string.MessageContainsEmojiPack);
-            } else if (i11 == 3) {
-                string = LocaleController.getString(R.string.MessageContainsReactionPack);
-            } else {
-                string = LocaleController.getString(R.string.MessageContainsReactionsPack);
-            }
-            String[] split = string.split("%s");
-            if (split.length <= 1) {
-                this.f30832n = string;
-                return;
-            }
-            TLRPC.InputStickerSet inputStickerSet = (TLRPC.InputStickerSet) arrayList.get(0);
-            this.f30829b = inputStickerSet;
-            if (inputStickerSet != null && (stickerSet = MediaDataController.getInstance(i10).getStickerSet(this.f30829b, false)) != null && (stickerSet2 = stickerSet.set) != null) {
-                str = stickerSet2.title;
-                int i14 = 0;
-                while (true) {
-                    ArrayList<TLRPC.Document> arrayList3 = stickerSet.documents;
-                    if (arrayList3 == null || i14 >= arrayList3.size()) {
-                        break;
-                    } else if (stickerSet.documents.get(i14).f22034id == stickerSet.set.thumb_document_id) {
-                        document = stickerSet.documents.get(i14);
-                        break;
-                    } else {
-                        i14++;
-                    }
-                }
-                document = null;
-                if (document == null && (arrayList2 = stickerSet.documents) != null && arrayList2.size() > 0) {
-                    document = stickerSet.documents.get(0);
-                }
-            } else {
-                str = null;
-                document = null;
-            }
-            if (str != null && document != null) {
-                SpannableString spannableString = new SpannableString(MessageObject.findAnimatedEmojiEmoticon(document));
-                spannableString.setSpan(new kb0(this, document, this.h.getFontMetricsInt()), 0, spannableString.length(), 33);
-                t5 m10 = t5.m(i10, 0, document);
-                this.d = m10;
-                org.telegram.ui.ActionBar.f7.y(this, m10, org.telegram.ui.ActionBar.y6.f23541n6, u6Var, PorterDuff.Mode.SRC_IN);
-                this.d.a(this);
-                SpannableString spannableString2 = new SpannableString(str);
-                spannableString2.setSpan(new li.z5(this, 1), 0, spannableString2.length(), 33);
-                this.f30832n = new SpannableStringBuilder().append((CharSequence) split[0]).append((CharSequence) spannableString).append(' ').append((CharSequence) spannableString2).append((CharSequence) split[1]);
-                this.M = 1.0f;
-                this.f30829b = null;
-                return;
-            }
-            this.f30832n = split[0];
-            this.f30834s = split[1];
-            ea0 ea0Var = new ea0(u6Var);
-            this.f30831f = ea0Var;
-            ea0Var.f27794l = org.telegram.ui.ActionBar.y6.G8;
-            ea0Var.f27795m = org.telegram.ui.ActionBar.y6.f23449i6;
-            ea0Var.k(4.0f);
-        } else if (i11 == 4) {
-            this.f30832n = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StickersCheckStickersBotForMoreOptions), org.telegram.ui.ActionBar.y6.gc, 2, null, u6Var);
-        }
-    }
-
-    public final int a(int i10, boolean z10) {
-        int i11;
-        float f7;
-        float f10;
-        int i12 = 0;
-        if (i10 <= 0) {
-            return 0;
-        }
-        CharSequence charSequence = this.G;
-        TextPaint textPaint = this.h;
-        CharSequence charSequence2 = this.f30832n;
-        if (charSequence2 != charSequence || this.F != i10) {
-            if (charSequence2 != null) {
-                StaticLayout staticLayout = new StaticLayout(charSequence2, 0, charSequence2.length(), textPaint, Math.max(i10, 0), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                this.f30833r = staticLayout;
-                ea0 ea0Var = this.f30831f;
-                if (ea0Var != null && this.O == null) {
-                    int lineCount = staticLayout.getLineCount() - 1;
-                    this.f30836x = AndroidUtilities.dp(2.0f) + ((int) this.f30833r.getPrimaryHorizontal(charSequence2.length()));
-                    this.f30837y = this.f30833r.getLineTop(lineCount);
-                    this.E = r3 - this.f30837y;
-                    float min = Math.min(AndroidUtilities.dp(100.0f), this.f30833r.getWidth() - this.f30836x);
-                    if (this.N == null) {
-                        this.N = new Rect();
-                    }
-                    Rect rect = this.N;
-                    int i13 = this.f30836x;
-                    rect.set(i13, this.f30837y, (int) (i13 + min), r3);
-                    ea0Var.setBounds(this.N);
-                    this.e = true;
-                }
-            } else {
-                this.f30833r = null;
-                this.e = false;
-            }
-            this.G = charSequence2;
-            this.F = i10;
-        }
-        SpannableStringBuilder spannableStringBuilder = this.v;
-        if (spannableStringBuilder != this.I || this.H != i10) {
-            if (spannableStringBuilder != null) {
-                SpannableStringBuilder spannableStringBuilder2 = this.v;
-                i11 = i10;
-                this.f30835w = new StaticLayout(spannableStringBuilder2, 0, spannableStringBuilder2.length(), textPaint, i11, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            } else {
-                i11 = i10;
-                this.f30835w = null;
-            }
-            this.I = this.v;
-            this.H = i11;
-        }
-        StaticLayout staticLayout2 = this.f30833r;
-        if (staticLayout2 != null) {
-            i12 = staticLayout2.getHeight();
-        }
-        StaticLayout staticLayout3 = this.f30835w;
-        if (staticLayout3 != null) {
-            float height = staticLayout3.getHeight() - this.E;
-            if (z10) {
-                f10 = 1.0f;
-            } else {
-                f10 = this.M;
-            }
-            f7 = height * f10;
+    public nb0() {
+        if (Build.VERSION.SDK_INT >= 33) {
+            this.d = new lb0();
         } else {
-            f7 = 0.0f;
+            this.d = null;
         }
-        return i12 + ((int) f7);
     }
 
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.E8));
+    public static void a(Matrix matrix, float[] fArr) {
+        Matrix matrix2 = f28738l;
+        matrix.invert(matrix2);
+        float[] fArr2 = f28737k;
+        fArr2[0] = 0.0f;
+        fArr2[1] = 0.0f;
+        fArr2[2] = 1.0f;
+        fArr2[3] = 1.0f;
+        matrix2.mapPoints(fArr2);
+        fArr[0] = fArr2[2] - fArr2[0];
+        fArr[1] = fArr2[3] - fArr2[1];
+        fArr[2] = fArr2[0];
+        fArr[3] = fArr2[1];
     }
 
-    @Override
-    public final void didReceivedNotification(int r8, int r9, java.lang.Object... r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.nb0.didReceivedNotification(int, int, java.lang.Object[]):void");
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        t5 t5Var = this.d;
-        if (t5Var != null) {
-            t5Var.a(this);
+    public static boolean b(float f7) {
+        if (Math.abs(f7 - 1.0f) <= 1.0E-4f) {
+            return true;
         }
-        NotificationCenter.getInstance(this.f30828a).addWeakObserver(this, NotificationCenter.groupStickersDidLoad);
+        return false;
     }
 
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        t5 t5Var = this.d;
-        if (t5Var != null) {
-            t5Var.o(this);
+    public final void c(RectF rectF) {
+        RectF rectF2 = this.f28745j;
+        rectF2.set(0.0f, 0.0f, this.e, this.f28742f);
+        Matrix.ScaleToFit scaleToFit = Matrix.ScaleToFit.FILL;
+        Matrix matrix = this.f28744i;
+        matrix.setRectToRect(rectF2, rectF, scaleToFit);
+        org.telegram.messenger.k9 k9Var = this.f28741c;
+        mb0 mb0Var = (mb0) k9Var.d;
+        mb0Var.f28410b.set(matrix);
+        BitmapShader bitmapShader = mb0Var.d;
+        if (bitmapShader != null) {
+            bitmapShader.setLocalMatrix(matrix);
         }
-        NotificationCenter.getInstance(this.f30828a).removeObserver(this, NotificationCenter.groupStickersDidLoad);
+        mb0 mb0Var2 = (mb0) k9Var.e;
+        mb0Var2.f28410b.set(matrix);
+        BitmapShader bitmapShader2 = mb0Var2.d;
+        if (bitmapShader2 != null) {
+            bitmapShader2.setLocalMatrix(matrix);
+        }
+        lb0 lb0Var = this.d;
+        if (lb0Var != null && Build.VERSION.SDK_INT >= 33) {
+            float[] fArr = lb0Var.f28064g;
+            a(matrix, fArr);
+            lb0Var.e.a(fArr);
+            lb0Var.f28063f.a(fArr);
+        }
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        Rect rect;
-        super.onDraw(canvas);
-        if (this.f30833r != null) {
-            canvas.save();
-            canvas.translate(getPaddingLeft(), getPaddingTop());
-            TextPaint textPaint = this.h;
-            textPaint.setAlpha(255);
-            this.f30833r.draw(canvas);
-            ea0 ea0Var = this.f30831f;
-            if (ea0Var != null && this.e) {
-                ea0Var.setAlpha((int) ((1.0f - this.M) * 255.0f));
-                Rect rect2 = this.N;
-                if (rect2 != null && (rect = this.O) != null) {
-                    float f7 = this.M;
-                    Rect rect3 = AndroidUtilities.rectTmp2;
-                    AndroidUtilities.lerp(rect2, rect, f7, rect3);
-                    ea0Var.setBounds(rect3);
+    public final void d(Matrix matrix) {
+        boolean z10;
+        org.telegram.messenger.k9 k9Var = this.f28741c;
+        float[] fArr = (float[]) k9Var.f16552b;
+        a(matrix, fArr);
+        mb0 mb0Var = (mb0) k9Var.f16554f;
+        mb0Var.f28410b.set(matrix);
+        BitmapShader bitmapShader = mb0Var.d;
+        if (bitmapShader != null) {
+            bitmapShader.setLocalMatrix(matrix);
+        }
+        boolean z11 = false;
+        if (b(fArr[0]) && b(fArr[1])) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        mb0Var.a(z10);
+        lb0 lb0Var = this.d;
+        if (lb0Var != null && Build.VERSION.SDK_INT >= 33) {
+            float[] fArr2 = lb0Var.f28064g;
+            a(matrix, fArr2);
+            mb0 mb0Var2 = lb0Var.d;
+            if (b(fArr2[0]) && b(fArr2[1])) {
+                z11 = true;
+            }
+            mb0Var2.a(z11);
+            lb0Var.e.b(fArr2);
+            lb0Var.f28063f.b(fArr2);
+        }
+    }
+
+    public final Paint e(Bitmap bitmap, Bitmap bitmap2, int i10, int i11, int i12, boolean z10) {
+        Bitmap bitmap3;
+        Bitmap bitmap4 = (Bitmap) this.f28739a.k(bitmap2);
+        if (i12 >= 0) {
+            int o10 = i0.b.o(i10, ((Color.alpha(i10) * i11) * i12) / 25500);
+            a5.a aVar = this.f28740b;
+            yg.a aVar2 = (yg.a) aVar.f282c;
+            if (aVar2.a(bitmap) || o10 != aVar.f281b || ((Bitmap) aVar.d) == null) {
+                Bitmap bitmap5 = (Bitmap) aVar.d;
+                if (bitmap5 == null || bitmap5.getWidth() != bitmap.getWidth() || ((Bitmap) aVar.d).getHeight() != bitmap.getHeight()) {
+                    aVar.d = Bitmap.createBitmap(bitmap);
                 }
-                ea0Var.draw(canvas);
-                invalidate();
+                Utilities.applySoftLight(bitmap, (Bitmap) aVar.d, o10);
+                aVar2.b(bitmap);
+                aVar.f281b = o10;
             }
-            if (this.f30835w != null) {
-                canvas.save();
-                canvas.translate(0.0f, this.f30837y);
-                textPaint.setAlpha((int) (this.M * 255.0f));
-                this.f30835w.draw(canvas);
-                canvas.restore();
+            bitmap3 = (Bitmap) aVar.d;
+        } else {
+            bitmap3 = null;
+        }
+        Bitmap bitmap6 = bitmap3;
+        this.e = bitmap.getWidth();
+        this.f28742f = bitmap.getHeight();
+        this.f28743g = bitmap4.getWidth();
+        this.h = bitmap4.getHeight();
+        lb0 lb0Var = this.d;
+        if (lb0Var != null && z10 && Build.VERSION.SDK_INT >= 33) {
+            return lb0Var.a(bitmap, bitmap4, bitmap6, i11, i12);
+        }
+        org.telegram.messenger.k9 k9Var = this.f28741c;
+        tm tmVar = (tm) k9Var.f16555g;
+        tm tmVar2 = (tm) k9Var.h;
+        mb0 mb0Var = (mb0) k9Var.e;
+        Paint paint = (Paint) k9Var.f16553c;
+        mb0 mb0Var2 = (mb0) k9Var.d;
+        boolean b10 = mb0Var2.b(bitmap);
+        mb0 mb0Var3 = (mb0) k9Var.f16554f;
+        boolean b11 = b10 | mb0Var3.b(bitmap4);
+        if (i12 >= 0) {
+            if ((mb0Var.b(bitmap6) | b11) || k9Var.f16551a != 1) {
+                k9Var.f16551a = 1;
+                paint.setShader(new ComposeShader(mb0Var2.d, new ComposeShader(mb0Var.d, mb0Var3.d, PorterDuff.Mode.DST_IN), PorterDuff.Mode.SRC_OVER));
+                return paint;
             }
-            t5 t5Var = this.d;
-            if (t5Var != null) {
-                t5Var.setAlpha((int) (this.M * 255.0f));
-                this.d.setBounds(this.f30830c);
-                this.d.draw(canvas);
-            }
-            canvas.restore();
+        } else if ((tmVar2.R(i0.b.o(-1, ((-i12) * i11) / 100)) | b11 | tmVar.R(-16777216)) || k9Var.f16551a != 2) {
+            k9Var.f16551a = 2;
+            paint.setShader(new ComposeShader((rf.h) tmVar.f30655b, new ComposeShader(new ComposeShader(mb0Var2.d, mb0Var3.d, PorterDuff.Mode.DST_IN), (rf.h) tmVar2.f30655b, PorterDuff.Mode.MULTIPLY), PorterDuff.Mode.SRC_OVER));
+            return paint;
         }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        setPadding(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f));
-        int size = View.MeasureSpec.getSize(i10);
-        if (this.K && (i12 = this.J) > 0) {
-            size = Math.min(size, i12);
-        }
-        this.J = size;
-        int paddingLeft = (size - getPaddingLeft()) - getPaddingRight();
-        if (paddingLeft < 0) {
-            paddingLeft = 0;
-        }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(getPaddingBottom() + getPaddingTop() + a(paddingLeft, false), 1073741824));
-    }
-
-    @Override
-    public final void updateColors() {
-        TextPaint textPaint = this.h;
-        if (textPaint != null) {
-            try {
-                int alpha = textPaint.getAlpha();
-                textPaint.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.E8, false));
-                textPaint.setAlpha(alpha);
-                invalidate();
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-        }
+        return paint;
     }
 }

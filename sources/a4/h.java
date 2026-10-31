@@ -1,11 +1,11 @@
 package a4;
 
-import a8.yb;
 import android.text.SpannableStringBuilder;
 import e2.x;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
+import v7.t6;
 public final class h extends k {
     public final x h = new x();
     public final g f262i = new g();
@@ -21,7 +21,7 @@ public final class h extends k {
     public h(int i10, List list) {
         this.f264k = i10 == -1 ? 1 : i10;
         if (list != null) {
-            byte[] bArr = e2.g.f9660a;
+            byte[] bArr = e2.g.f6140a;
             if (list.size() == 1 && ((byte[]) list.get(0)).length == 1) {
                 byte b10 = ((byte[]) list.get(0))[0];
             }
@@ -55,7 +55,7 @@ public final class h extends k {
     @Override
     public final void g(i iVar) {
         boolean z10;
-        ByteBuffer byteBuffer = iVar.f12569c;
+        ByteBuffer byteBuffer = iVar.f7586c;
         byteBuffer.getClass();
         byte[] array = byteBuffer.array();
         int limit = byteBuffer.limit();
@@ -89,25 +89,24 @@ public final class h extends k {
                         }
                         g gVar = new g(i11, i13);
                         this.f269p = gVar;
-                        byte[] bArr = gVar.f260b;
                         gVar.e = 1;
-                        bArr[0] = A3;
+                        ((byte[]) gVar.f260b)[0] = A3;
                     } else {
                         if (i10 == 2) {
                             z11 = true;
                         }
-                        yb.g(z11);
+                        t6.f(z11);
                         g gVar2 = this.f269p;
                         if (gVar2 == null) {
                             e2.a.c("Cea708Decoder", "Encountered DTVCC_PACKET_DATA before DTVCC_PACKET_START");
                         } else {
-                            byte[] bArr2 = gVar2.f260b;
+                            byte[] bArr = (byte[]) gVar2.f260b;
                             int i14 = gVar2.e;
                             int i15 = i14 + 1;
                             gVar2.e = i15;
-                            bArr2[i14] = A2;
+                            bArr[i14] = A2;
                             gVar2.e = i14 + 2;
-                            bArr2[i15] = A3;
+                            bArr[i15] = A3;
                         }
                     }
                     g gVar3 = this.f269p;
@@ -146,39 +145,38 @@ public final class h extends k {
             e2.a.b("Cea708Decoder", "DtvCcPacket ended prematurely; size is " + ((this.f269p.d * 2) - 1) + ", but current index is " + this.f269p.e + " (sequence number " + this.f269p.f261c + ");");
         }
         g gVar2 = this.f269p;
-        byte[] bArr = gVar2.f260b;
         int i12 = gVar2.e;
         g gVar3 = this.f262i;
-        gVar3.k(i12, bArr);
+        gVar3.b0(i12, (byte[]) gVar2.f260b);
         boolean z11 = false;
         while (true) {
             if (gVar3.b() > 0) {
                 int i13 = 3;
-                int g7 = gVar3.g(3);
-                int g10 = gVar3.g(5);
-                if (g7 == 7) {
-                    gVar3.o(i11);
-                    g7 = gVar3.g(6);
-                    if (g7 < 7) {
-                        a1.g.z(g7, "Invalid extended service number: ", "Cea708Decoder");
+                int i14 = gVar3.i(3);
+                int i15 = gVar3.i(5);
+                if (i14 == 7) {
+                    gVar3.f0(i11);
+                    i14 = gVar3.i(6);
+                    if (i14 < 7) {
+                        a1.g.w(i14, "Invalid extended service number: ", "Cea708Decoder");
                     }
                 }
-                if (g10 == 0) {
-                    if (g7 != 0) {
-                        e2.a.l("Cea708Decoder", "serviceNumber is non-zero (" + g7 + ") when blockSize is 0");
+                if (i15 == 0) {
+                    if (i14 != 0) {
+                        e2.a.l("Cea708Decoder", "serviceNumber is non-zero (" + i14 + ") when blockSize is 0");
                     }
-                } else if (g7 != this.f264k) {
-                    gVar3.p(g10);
+                } else if (i14 != this.f264k) {
+                    gVar3.g0(i15);
                 } else {
-                    int e = (g10 * 8) + gVar3.e();
-                    while (gVar3.e() < e) {
-                        int g11 = gVar3.g(8);
-                        if (g11 != 16) {
-                            if (g11 <= 31) {
-                                if (g11 != 0) {
-                                    if (g11 != i13) {
-                                        if (g11 != 8) {
-                                            switch (g11) {
+                    int f7 = (i15 * 8) + gVar3.f();
+                    while (gVar3.f() < f7) {
+                        int i16 = gVar3.i(8);
+                        if (i16 != 16) {
+                            if (i16 <= 31) {
+                                if (i16 != 0) {
+                                    if (i16 != i13) {
+                                        if (i16 != 8) {
+                                            switch (i16) {
                                                 case 12:
                                                     l();
                                                     break;
@@ -188,16 +186,16 @@ public final class h extends k {
                                                 case 14:
                                                     break;
                                                 default:
-                                                    if (g11 >= 17 && g11 <= 23) {
-                                                        e2.a.l("Cea708Decoder", "Currently unsupported COMMAND_EXT1 Command: " + g11);
-                                                        gVar3.o(8);
+                                                    if (i16 >= 17 && i16 <= 23) {
+                                                        e2.a.l("Cea708Decoder", "Currently unsupported COMMAND_EXT1 Command: " + i16);
+                                                        gVar3.f0(8);
                                                         break;
-                                                    } else if (g11 >= 24 && g11 <= 31) {
-                                                        e2.a.l("Cea708Decoder", "Currently unsupported COMMAND_P16 Command: " + g11);
-                                                        gVar3.o(16);
+                                                    } else if (i16 >= 24 && i16 <= 31) {
+                                                        e2.a.l("Cea708Decoder", "Currently unsupported COMMAND_P16 Command: " + i16);
+                                                        gVar3.f0(16);
                                                         break;
                                                     } else {
-                                                        a1.g.z(g11, "Invalid C0 command: ", "Cea708Decoder");
+                                                        a1.g.w(i16, "Invalid C0 command: ", "Cea708Decoder");
                                                         break;
                                                     }
                                             }
@@ -213,18 +211,18 @@ public final class h extends k {
                                     }
                                 }
                                 i10 = i11;
-                            } else if (g11 <= 127) {
-                                if (g11 == 127) {
+                            } else if (i16 <= 127) {
+                                if (i16 == 127) {
                                     this.f266m.a((char) 9835);
                                 } else {
-                                    this.f266m.a((char) (g11 & 255));
+                                    this.f266m.a((char) (i16 & 255));
                                 }
                                 i10 = i11;
                                 z11 = true;
                             } else {
-                                if (g11 <= 159) {
+                                if (i16 <= 159) {
                                     f[] fVarArr = this.f265l;
-                                    switch (g11) {
+                                    switch (i16) {
                                         case 128:
                                         case 129:
                                         case 130:
@@ -234,18 +232,18 @@ public final class h extends k {
                                         case 134:
                                         case 135:
                                             z10 = true;
-                                            int i14 = g11 - 128;
-                                            if (this.f270q != i14) {
-                                                this.f270q = i14;
-                                                this.f266m = fVarArr[i14];
+                                            int i17 = i16 - 128;
+                                            if (this.f270q != i17) {
+                                                this.f270q = i17;
+                                                this.f266m = fVarArr[i17];
                                                 break;
                                             }
                                             break;
                                         case 136:
                                             z10 = true;
-                                            for (int i15 = 1; i15 <= 8; i15++) {
-                                                if (gVar3.f()) {
-                                                    f fVar2 = fVarArr[8 - i15];
+                                            for (int i18 = 1; i18 <= 8; i18++) {
+                                                if (gVar3.h()) {
+                                                    f fVar2 = fVarArr[8 - i18];
                                                     fVar2.f241a.clear();
                                                     fVar2.f242b.clear();
                                                     fVar2.f252o = -1;
@@ -257,39 +255,39 @@ public final class h extends k {
                                             }
                                             break;
                                         case 137:
-                                            for (int i16 = 1; i16 <= 8; i16++) {
-                                                if (gVar3.f()) {
-                                                    fVarArr[8 - i16].d = true;
+                                            for (int i19 = 1; i19 <= 8; i19++) {
+                                                if (gVar3.h()) {
+                                                    fVarArr[8 - i19].d = true;
                                                 }
                                             }
                                             z10 = true;
                                             break;
                                         case 138:
-                                            for (int i17 = 1; i17 <= 8; i17++) {
-                                                if (gVar3.f()) {
-                                                    fVarArr[8 - i17].d = false;
+                                            for (int i20 = 1; i20 <= 8; i20++) {
+                                                if (gVar3.h()) {
+                                                    fVarArr[8 - i20].d = false;
                                                 }
                                             }
                                             z10 = true;
                                             break;
                                         case 139:
-                                            for (int i18 = 1; i18 <= 8; i18++) {
-                                                if (gVar3.f()) {
-                                                    fVarArr[8 - i18].d = !fVar.d;
+                                            for (int i21 = 1; i21 <= 8; i21++) {
+                                                if (gVar3.h()) {
+                                                    fVarArr[8 - i21].d = !fVar.d;
                                                 }
                                             }
                                             z10 = true;
                                             break;
                                         case 140:
-                                            for (int i19 = 1; i19 <= 8; i19++) {
-                                                if (gVar3.f()) {
-                                                    fVarArr[8 - i19].d();
+                                            for (int i22 = 1; i22 <= 8; i22++) {
+                                                if (gVar3.h()) {
+                                                    fVarArr[8 - i22].d();
                                                 }
                                             }
                                             z10 = true;
                                             break;
                                         case 141:
-                                            gVar3.o(8);
+                                            gVar3.f0(8);
                                             z10 = true;
                                             break;
                                         case 142:
@@ -300,32 +298,32 @@ public final class h extends k {
                                             z10 = true;
                                             break;
                                         case 144:
-                                            int i20 = i11;
+                                            int i23 = i11;
                                             if (!this.f266m.f243c) {
-                                                gVar3.o(16);
+                                                gVar3.f0(16);
                                                 z10 = true;
                                                 i13 = 3;
                                                 break;
                                             } else {
-                                                gVar3.g(4);
-                                                gVar3.g(i20);
-                                                gVar3.g(i20);
-                                                boolean f7 = gVar3.f();
-                                                boolean f10 = gVar3.f();
+                                                gVar3.i(4);
+                                                gVar3.i(i23);
+                                                gVar3.i(i23);
+                                                boolean h = gVar3.h();
+                                                boolean h10 = gVar3.h();
                                                 i13 = 3;
-                                                gVar3.g(3);
-                                                gVar3.g(3);
-                                                this.f266m.e(f7, f10);
+                                                gVar3.i(3);
+                                                gVar3.i(3);
+                                                this.f266m.e(h, h10);
                                                 z10 = true;
                                             }
                                         case 145:
                                             if (!this.f266m.f243c) {
-                                                gVar3.o(24);
+                                                gVar3.f0(24);
                                             } else {
-                                                int c11 = f.c(gVar3.g(2), gVar3.g(2), gVar3.g(2), gVar3.g(2));
-                                                int c12 = f.c(gVar3.g(2), gVar3.g(2), gVar3.g(2), gVar3.g(2));
-                                                gVar3.o(2);
-                                                f.c(gVar3.g(2), gVar3.g(2), gVar3.g(2), 0);
+                                                int c11 = f.c(gVar3.i(2), gVar3.i(2), gVar3.i(2), gVar3.i(2));
+                                                int c12 = f.c(gVar3.i(2), gVar3.i(2), gVar3.i(2), gVar3.i(2));
+                                                gVar3.f0(2);
+                                                f.c(gVar3.i(2), gVar3.i(2), gVar3.i(2), 0);
                                                 this.f266m.f(c11, c12);
                                             }
                                             z10 = true;
@@ -333,17 +331,17 @@ public final class h extends k {
                                             break;
                                         case 146:
                                             if (!this.f266m.f243c) {
-                                                gVar3.o(16);
+                                                gVar3.f0(16);
                                             } else {
-                                                gVar3.o(4);
-                                                int g12 = gVar3.g(4);
-                                                gVar3.o(2);
-                                                gVar3.g(6);
+                                                gVar3.f0(4);
+                                                int i24 = gVar3.i(4);
+                                                gVar3.f0(2);
+                                                gVar3.i(6);
                                                 f fVar3 = this.f266m;
-                                                if (fVar3.f258u != g12) {
+                                                if (fVar3.f258u != i24) {
                                                     fVar3.a('\n');
                                                 }
-                                                fVar3.f258u = g12;
+                                                fVar3.f258u = i24;
                                             }
                                             z10 = true;
                                             i13 = 3;
@@ -353,25 +351,25 @@ public final class h extends k {
                                         case 149:
                                         case 150:
                                         default:
-                                            a1.g.z(g11, "Invalid C1 command: ", "Cea708Decoder");
+                                            a1.g.w(i16, "Invalid C1 command: ", "Cea708Decoder");
                                             z10 = true;
                                             break;
                                         case 151:
                                             if (!this.f266m.f243c) {
-                                                gVar3.o(32);
+                                                gVar3.f0(32);
                                             } else {
-                                                int c13 = f.c(gVar3.g(2), gVar3.g(2), gVar3.g(2), gVar3.g(2));
-                                                gVar3.g(2);
-                                                f.c(gVar3.g(2), gVar3.g(2), gVar3.g(2), 0);
-                                                gVar3.f();
-                                                gVar3.f();
-                                                gVar3.g(2);
-                                                gVar3.g(2);
-                                                int g13 = gVar3.g(2);
-                                                gVar3.o(8);
+                                                int c13 = f.c(gVar3.i(2), gVar3.i(2), gVar3.i(2), gVar3.i(2));
+                                                gVar3.i(2);
+                                                f.c(gVar3.i(2), gVar3.i(2), gVar3.i(2), 0);
+                                                gVar3.h();
+                                                gVar3.h();
+                                                gVar3.i(2);
+                                                gVar3.i(2);
+                                                int i25 = gVar3.i(2);
+                                                gVar3.f0(8);
                                                 f fVar4 = this.f266m;
                                                 fVar4.f251n = c13;
-                                                fVar4.f248k = g13;
+                                                fVar4.f248k = i25;
                                             }
                                             z10 = true;
                                             i13 = 3;
@@ -384,61 +382,61 @@ public final class h extends k {
                                         case 157:
                                         case 158:
                                         case 159:
-                                            int i21 = g11 - 152;
-                                            f fVar5 = fVarArr[i21];
-                                            gVar3.o(i11);
-                                            boolean f11 = gVar3.f();
-                                            gVar3.o(i11);
-                                            int g14 = gVar3.g(i13);
-                                            boolean f12 = gVar3.f();
-                                            int g15 = gVar3.g(7);
-                                            int g16 = gVar3.g(8);
-                                            int g17 = gVar3.g(4);
-                                            int g18 = gVar3.g(4);
-                                            gVar3.o(i11);
-                                            gVar3.o(6);
-                                            gVar3.o(i11);
-                                            int g19 = gVar3.g(3);
-                                            int g20 = gVar3.g(3);
+                                            int i26 = i16 - 152;
+                                            f fVar5 = fVarArr[i26];
+                                            gVar3.f0(i11);
+                                            boolean h11 = gVar3.h();
+                                            gVar3.f0(i11);
+                                            int i27 = gVar3.i(i13);
+                                            boolean h12 = gVar3.h();
+                                            int i28 = gVar3.i(7);
+                                            int i29 = gVar3.i(8);
+                                            int i30 = gVar3.i(4);
+                                            int i31 = gVar3.i(4);
+                                            gVar3.f0(i11);
+                                            gVar3.f0(6);
+                                            gVar3.f0(i11);
+                                            int i32 = gVar3.i(3);
+                                            int i33 = gVar3.i(3);
                                             ArrayList arrayList = fVar5.f241a;
                                             fVar5.f243c = true;
-                                            fVar5.d = f11;
-                                            fVar5.e = g14;
-                                            fVar5.f244f = f12;
-                                            fVar5.f245g = g15;
-                                            fVar5.h = g16;
-                                            fVar5.f246i = g17;
-                                            int i22 = g18 + 1;
-                                            if (fVar5.f247j != i22) {
-                                                fVar5.f247j = i22;
+                                            fVar5.d = h11;
+                                            fVar5.e = i27;
+                                            fVar5.f244f = h12;
+                                            fVar5.f245g = i28;
+                                            fVar5.h = i29;
+                                            fVar5.f246i = i30;
+                                            int i34 = i31 + 1;
+                                            if (fVar5.f247j != i34) {
+                                                fVar5.f247j = i34;
                                                 while (true) {
                                                     if (arrayList.size() >= fVar5.f247j || arrayList.size() >= 15) {
                                                         arrayList.remove(0);
                                                     }
                                                 }
                                             }
-                                            if (g19 != 0 && fVar5.f249l != g19) {
-                                                fVar5.f249l = g19;
-                                                int i23 = g19 - 1;
-                                                int i24 = f.B[i23];
-                                                boolean z12 = f.A[i23];
-                                                int i25 = f.f239y[i23];
-                                                int i26 = f.f240z[i23];
-                                                int i27 = f.f238x[i23];
-                                                fVar5.f251n = i24;
-                                                fVar5.f248k = i27;
+                                            if (i32 != 0 && fVar5.f249l != i32) {
+                                                fVar5.f249l = i32;
+                                                int i35 = i32 - 1;
+                                                int i36 = f.B[i35];
+                                                boolean z12 = f.A[i35];
+                                                int i37 = f.f239y[i35];
+                                                int i38 = f.f240z[i35];
+                                                int i39 = f.f238x[i35];
+                                                fVar5.f251n = i36;
+                                                fVar5.f248k = i39;
                                             }
-                                            if (g20 != 0 && fVar5.f250m != g20) {
-                                                fVar5.f250m = g20;
-                                                int i28 = g20 - 1;
-                                                int i29 = f.D[i28];
-                                                int i30 = f.C[i28];
+                                            if (i33 != 0 && fVar5.f250m != i33) {
+                                                fVar5.f250m = i33;
+                                                int i40 = i33 - 1;
+                                                int i41 = f.D[i40];
+                                                int i42 = f.C[i40];
                                                 fVar5.e(false, false);
-                                                fVar5.f(f.v, f.E[i28]);
+                                                fVar5.f(f.v, f.E[i40]);
                                             }
-                                            if (this.f270q != i21) {
-                                                this.f270q = i21;
-                                                this.f266m = fVarArr[i21];
+                                            if (this.f270q != i26) {
+                                                this.f270q = i26;
+                                                this.f266m = fVarArr[i26];
                                             }
                                             z10 = true;
                                             i13 = 3;
@@ -446,10 +444,10 @@ public final class h extends k {
                                     }
                                 } else {
                                     z10 = true;
-                                    if (g11 <= 255) {
-                                        this.f266m.a((char) (g11 & 255));
+                                    if (i16 <= 255) {
+                                        this.f266m.a((char) (i16 & 255));
                                     } else {
-                                        a1.g.z(g11, "Invalid base command: ", "Cea708Decoder");
+                                        a1.g.w(i16, "Invalid base command: ", "Cea708Decoder");
                                         i10 = 2;
                                         c10 = 7;
                                     }
@@ -460,32 +458,32 @@ public final class h extends k {
                             }
                             c10 = 7;
                         } else {
-                            int g21 = gVar3.g(8);
-                            if (g21 <= 31) {
+                            int i43 = gVar3.i(8);
+                            if (i43 <= 31) {
                                 c10 = 7;
-                                if (g21 > 7) {
-                                    if (g21 <= 15) {
-                                        gVar3.o(8);
-                                    } else if (g21 <= 23) {
-                                        gVar3.o(16);
-                                    } else if (g21 <= 31) {
-                                        gVar3.o(24);
+                                if (i43 > 7) {
+                                    if (i43 <= 15) {
+                                        gVar3.f0(8);
+                                    } else if (i43 <= 23) {
+                                        gVar3.f0(16);
+                                    } else if (i43 <= 31) {
+                                        gVar3.f0(24);
                                     }
                                 }
                             } else {
                                 c10 = 7;
-                                if (g21 <= 127) {
-                                    if (g21 != 32) {
-                                        if (g21 != 33) {
-                                            if (g21 != 37) {
-                                                if (g21 != 42) {
-                                                    if (g21 != 44) {
-                                                        if (g21 != 63) {
-                                                            if (g21 != 57) {
-                                                                if (g21 != 58) {
-                                                                    if (g21 != 60) {
-                                                                        if (g21 != 61) {
-                                                                            switch (g21) {
+                                if (i43 <= 127) {
+                                    if (i43 != 32) {
+                                        if (i43 != 33) {
+                                            if (i43 != 37) {
+                                                if (i43 != 42) {
+                                                    if (i43 != 44) {
+                                                        if (i43 != 63) {
+                                                            if (i43 != 57) {
+                                                                if (i43 != 58) {
+                                                                    if (i43 != 60) {
+                                                                        if (i43 != 61) {
+                                                                            switch (i43) {
                                                                                 case 48:
                                                                                     this.f266m.a((char) 9608);
                                                                                     break;
@@ -505,7 +503,7 @@ public final class h extends k {
                                                                                     this.f266m.a((char) 8226);
                                                                                     break;
                                                                                 default:
-                                                                                    switch (g21) {
+                                                                                    switch (i43) {
                                                                                         case 118:
                                                                                             this.f266m.a((char) 8539);
                                                                                             break;
@@ -537,7 +535,7 @@ public final class h extends k {
                                                                                             this.f266m.a((char) 9484);
                                                                                             break;
                                                                                         default:
-                                                                                            a1.g.z(g21, "Invalid G2 character: ", "Cea708Decoder");
+                                                                                            a1.g.w(i43, "Invalid G2 character: ", "Cea708Decoder");
                                                                                             break;
                                                                                     }
                                                                             }
@@ -573,28 +571,28 @@ public final class h extends k {
                                     }
                                     i10 = 2;
                                     z11 = true;
-                                } else if (g21 <= 159) {
-                                    if (g21 <= 135) {
-                                        gVar3.o(32);
-                                    } else if (g21 <= 143) {
-                                        gVar3.o(40);
-                                    } else if (g21 <= 159) {
+                                } else if (i43 <= 159) {
+                                    if (i43 <= 135) {
+                                        gVar3.f0(32);
+                                    } else if (i43 <= 143) {
+                                        gVar3.f0(40);
+                                    } else if (i43 <= 159) {
                                         i10 = 2;
-                                        gVar3.o(2);
-                                        gVar3.o(gVar3.g(6) * 8);
+                                        gVar3.f0(2);
+                                        gVar3.f0(gVar3.i(6) * 8);
                                     }
                                 } else {
                                     i10 = 2;
-                                    if (g21 <= 255) {
-                                        if (g21 == 160) {
+                                    if (i43 <= 255) {
+                                        if (i43 == 160) {
                                             this.f266m.a((char) 13252);
                                         } else {
-                                            a1.g.z(g21, "Invalid G3 character: ", "Cea708Decoder");
+                                            a1.g.w(i43, "Invalid G3 character: ", "Cea708Decoder");
                                             this.f266m.a('_');
                                         }
                                         z11 = true;
                                     } else {
-                                        a1.g.z(g21, "Invalid extended command: ", "Cea708Decoder");
+                                        a1.g.w(i43, "Invalid extended command: ", "Cea708Decoder");
                                     }
                                 }
                             }

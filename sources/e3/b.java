@@ -4,47 +4,47 @@ import a3.l;
 import c3.o;
 import c3.p;
 import c3.q;
-import e2.n0;
+import e2.l0;
 import e2.x;
-import f9.g0;
-import f9.i0;
-import f9.s1;
+import e9.n0;
+import e9.x1;
 import java.util.List;
+import t7.u;
 public final class b implements o {
-    public final x f9739a;
-    public final l f9740b;
-    public final boolean f9741c;
-    public final qb.a d;
+    public final x f6215a;
+    public final l f6216b;
+    public final boolean f6217c;
+    public final u d;
     public int e;
-    public q f9742f;
-    public c f9743g;
+    public q f6218f;
+    public c f6219g;
     public long h;
-    public e[] f9744i;
-    public long f9745j;
-    public e f9746k;
-    public int f9747l;
-    public long f9748m;
-    public long f9749n;
-    public int f9750o;
-    public boolean f9751p;
+    public e[] f6220i;
+    public long f6221j;
+    public e f6222k;
+    public int f6223l;
+    public long f6224m;
+    public long f6225n;
+    public int f6226o;
+    public boolean f6227p;
 
-    public b(int i10, qb.a aVar) {
-        this.d = aVar;
-        this.f9741c = (i10 & 1) == 0;
-        this.f9739a = new x(12);
-        this.f9740b = new Object();
-        this.f9742f = new qb.a(4);
-        this.f9744i = new e[0];
-        this.f9748m = -1L;
-        this.f9749n = -1L;
-        this.f9747l = -1;
+    public b(int i10, u uVar) {
+        this.d = uVar;
+        this.f6217c = (i10 & 1) == 0;
+        this.f6215a = new x(12);
+        this.f6216b = new Object();
+        this.f6218f = new kb.a(4);
+        this.f6220i = new e[0];
+        this.f6224m = -1L;
+        this.f6225n = -1L;
+        this.f6223l = -1;
         this.h = -9223372036854775807L;
     }
 
     @Override
     public final boolean a(p pVar) {
-        x xVar = this.f9739a;
-        pVar.b(0, 12, xVar.f9731a);
+        x xVar = this.f6215a;
+        pVar.b(0, 12, xVar.f6207a);
         xVar.N(0);
         if (xVar.o() != 1179011410) {
             return false;
@@ -59,27 +59,27 @@ public final class b implements o {
     @Override
     public final void c(q qVar) {
         this.e = 0;
-        if (this.f9741c) {
-            qVar = new c2.b(qVar, this.d);
+        if (this.f6217c) {
+            qVar = new ac.a(qVar, this.d);
         }
-        this.f9742f = qVar;
-        this.f9745j = -1L;
+        this.f6218f = qVar;
+        this.f6221j = -1L;
     }
 
     @Override
     public final void d(long j10, long j11) {
         e[] eVarArr;
-        this.f9745j = -1L;
-        this.f9746k = null;
-        for (e eVar : this.f9744i) {
-            if (eVar.f9766k == 0) {
-                eVar.f9764i = 0;
+        this.f6221j = -1L;
+        this.f6222k = null;
+        for (e eVar : this.f6220i) {
+            if (eVar.f6242k == 0) {
+                eVar.f6240i = 0;
             } else {
-                eVar.f9764i = eVar.f9769n[n0.f(eVar.f9768m, j10, true)];
+                eVar.f6240i = eVar.f6245n[l0.f(eVar.f6244m, j10, true)];
             }
         }
         if (j10 == 0) {
-            if (this.f9744i.length == 0) {
+            if (this.f6220i.length == 0) {
                 this.e = 0;
                 return;
             } else {
@@ -92,8 +92,8 @@ public final class b implements o {
 
     @Override
     public final List e() {
-        g0 g0Var = i0.f10286b;
-        return s1.e;
+        e9.l0 l0Var = n0.f6390b;
+        return x1.e;
     }
 
     @Override

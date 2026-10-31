@@ -1,31 +1,19 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.TLRPC;
-public final class dj implements Runnable {
-    public final int f19927a;
-    public final SendMessagesHelper f19928b;
-    public final TLRPC.Message f19929c;
-    public final boolean d;
-
-    public dj(SendMessagesHelper sendMessagesHelper, TLRPC.Message message, boolean z10, int i10) {
-        this.f19927a = i10;
-        this.f19928b = sendMessagesHelper;
-        this.f19929c = message;
-        this.d = z10;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f19927a) {
-            case 0:
-                this.f19928b.lambda$putToSendingMessages$64(this.f19929c, this.d);
-                return;
-            case 1:
-                this.f19928b.lambda$performSendMessageRequest$90(this.f19929c, this.d);
-                return;
-            default:
-                this.f19928b.lambda$performSendMessageRequest$87(this.f19929c, this.d);
-                return;
-        }
-    }
+public final class dj {
+    public int f15241a;
+    public int f15242b;
+    public int f15243c;
+    public int d;
+    public float e;
+    public float f15244f;
+    public float f15245g;
+    public float h;
+    public boolean f15246i;
+    public boolean f15247j;
+    public boolean f15248k;
+    public boolean f15249l;
+    public org.telegram.ui.Cells.q1 f15250m;
+    public float f15251n;
+    public boolean f15252o;
+    public boolean f15253p;
 }

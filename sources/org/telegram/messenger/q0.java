@@ -1,44 +1,35 @@
 package org.telegram.messenger;
-public final class q0 implements Runnable {
-    public final int f21000a;
-    public final long f21001b;
-    public final long f21002c;
-    public final long d;
-    public final Object e;
 
-    public q0(long j10, long j11, long j12, org.telegram.ui.e5 e5Var) {
-        this.f21000a = 2;
-        this.f21001b = j10;
-        this.f21002c = j11;
-        this.d = j12;
-        this.e = e5Var;
+import android.content.SharedPreferences;
+import android.text.TextUtils;
+import org.telegram.tgnet.TLRPC;
+public final class q0 implements m0 {
+    public final String f17537a;
+    public final String f17538b;
+    public String f17539c;
+
+    public q0(String str, String str2) {
+        this.f17537a = str;
+        this.f17538b = str2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f21000a) {
-            case 0:
-                ((BotGuardHelper) this.e).lambda$openGuardBotWebApp$0(this.f21001b, this.f21002c, this.d);
-                return;
-            case 1:
-                ((MediaDataController) this.e).lambda$loadMusic$142(this.f21001b, this.f21002c, this.d);
-                return;
-            default:
-                long j10 = this.f21001b;
-                long j11 = this.f21002c;
-                org.telegram.ui.c7.f38187l0 = Long.valueOf(j10 * j11);
-                Long valueOf = Long.valueOf(this.d * j11);
-                org.telegram.ui.c7.m0 = valueOf;
-                ((org.telegram.ui.e5) this.e).run(org.telegram.ui.c7.f38187l0, valueOf);
-                return;
+    public final boolean a(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue) {
+        if (jSONValue instanceof TLRPC.TL_jsonString) {
+            TLRPC.TL_jsonString tL_jsonString = (TLRPC.TL_jsonString) jSONValue;
+            if (!TextUtils.equals(tL_jsonString.value, this.f17539c)) {
+                String str = tL_jsonString.value;
+                this.f17539c = str;
+                editor.putString(this.f17537a, str);
+                return true;
+            }
+            return false;
         }
+        return false;
     }
 
-    public q0(BaseController baseController, long j10, long j11, long j12, int i10) {
-        this.f21000a = i10;
-        this.e = baseController;
-        this.f21001b = j10;
-        this.f21002c = j11;
-        this.d = j12;
+    @Override
+    public final void b(SharedPreferences sharedPreferences) {
+        this.f17539c = sharedPreferences.getString(this.f17537a, this.f17538b);
     }
 }

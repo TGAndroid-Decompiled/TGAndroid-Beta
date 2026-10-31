@@ -1,93 +1,51 @@
 package org.telegram.ui.Cells;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ea0;
-import org.telegram.ui.Components.nm0;
-import org.telegram.ui.Components.qc;
-import org.telegram.ui.SessionsActivity;
-import org.telegram.ui.ey;
-public final class g implements Runnable {
-    public final int f24132a;
-    public final Object f24133b;
+import android.graphics.RectF;
+import android.text.Layout;
+import android.text.style.ClickableSpan;
+import org.telegram.ui.Components.t80;
+import org.telegram.ui.ProfileActivity;
+public final class g extends gf.e {
+    public t80 d;
+    public final Layout e;
+    public final ClickableSpan f21906f;
+    public final float f21907g;
+    public final i h;
 
-    public g(Object obj, int i10) {
-        this.f24132a = i10;
-        this.f24133b = obj;
+    public g(i iVar, Layout layout, ClickableSpan clickableSpan, float f7) {
+        this.h = iVar;
+        this.e = layout;
+        this.f21906f = clickableSpan;
+        this.f21907g = f7;
     }
 
     @Override
-    public final void run() {
-        switch (this.f24132a) {
-            case 0:
-                h hVar = (h) this.f24133b;
-                ea0 ea0Var = hVar.d;
-                if (ea0Var != null) {
-                    hVar.h.E.l(ea0Var, true);
-                    return;
-                }
-                return;
-            case 1:
-                j1 j1Var = ((t1) this.f24133b).e;
-                if (j1Var != null) {
-                    j1Var.j();
-                    return;
-                }
-                return;
-            case 2:
-                ((z1) this.f24133b).a();
-                return;
-            case 3:
-                AndroidUtilities.hideKeyboard(((zh.t4) this.f24133b).f24003b.getEditText());
-                return;
-            case 4:
-                AndroidUtilities.hideKeyboard(((g3) this.f24133b).d);
-                return;
-            case 5:
-                m6 m6Var = (m6) this.f24133b;
-                if (m6Var.getParent() instanceof nm0) {
-                    ((nm0) m6Var.getParent()).getOnItemClickListener().c(RecyclerView.R(m6Var), m6Var);
-                    return;
-                } else {
-                    m6Var.callOnClick();
-                    return;
-                }
-            case 6:
-                ((w7) this.f24133b).h();
-                return;
-            case 7:
-                fa faVar = (fa) this.f24133b;
-                faVar.C.invalidate();
-                faVar.T();
-                return;
-            case 8:
-                ((p9) this.f24133b).f24783b.T();
-                return;
-            case 9:
-                ka kaVar = (ka) this.f24133b;
-                kaVar.f24367s = -1;
-                int i10 = 0;
-                while (true) {
-                    s1[] s1VarArr = kaVar.e;
-                    if (i10 < s1VarArr.length) {
-                        s1 s1Var = s1VarArr[i10];
-                        if (s1Var != null) {
-                            s1Var.invalidate();
-                        }
-                        i10++;
-                    } else {
-                        return;
-                    }
-                }
-            case 10:
-                qc.e();
-                ((ey) this.f24133b).presentFragment(new SessionsActivity(0));
-                return;
-            default:
-                org.telegram.ui.ActionBar.k3 k3Var = (org.telegram.ui.ActionBar.k3) this.f24133b;
-                k3Var.setCanDismissWithSwipe(true);
-                k3Var.setCanDismissWithTouchOutside(true);
-                return;
+    public final void c(boolean z10) {
+        long j10;
+        f fVar = new f(this, 0);
+        if (z10) {
+            j10 = 0;
+        } else {
+            j10 = 350;
         }
+        org.telegram.messenger.i0.h3(fVar, j10);
+    }
+
+    @Override
+    public final void d() {
+        i iVar = this.h;
+        ji.a aVar = iVar.E;
+        t80 t80Var = iVar.G;
+        if (t80Var != null) {
+            aVar.n(t80Var, true);
+        }
+        t80 k10 = ji.a.k(this.e, this.f21906f, this.f21907g);
+        this.d = k10;
+        iVar.G = k10;
+        int w02 = org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f21336ze, iVar.I);
+        RectF rectF = ProfileActivity.R6;
+        this.d.g(org.telegram.ui.ActionBar.t6.r1(0.8f, w02), org.telegram.ui.ActionBar.t6.r1(1.3f, w02), org.telegram.ui.ActionBar.t6.r1(1.0f, w02), org.telegram.ui.ActionBar.t6.r1(4.0f, w02));
+        this.d.f30520x.setStrokeWidth(org.telegram.messenger.i0.N(1.25f));
+        aVar.c(this.d, null);
     }
 }

@@ -1,5 +1,5 @@
 package s0;
 
-import a8.zf;
-public abstract class j extends zf {
+import w7.p7;
+public abstract class j extends p7 {
 }

@@ -1,18 +1,17 @@
 package w7;
-public abstract class k5 {
-    public static int a(int i10) {
-        if (i10 != 0) {
-            if (i10 != 90) {
-                if (i10 != 180) {
-                    if (i10 == 270) {
-                        return 3;
-                    }
-                    throw new IllegalArgumentException(ic.a.i(i10, "Invalid rotation: "));
-                }
-                return 2;
-            }
-            return 1;
+public final class k5 implements ja.d {
+    public static final k5 f52616a = new Object();
+
+    static {
+        sc.e.v(sc.e.l(d.class, new a(1)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ja.e eVar = (ja.e) obj2;
+            throw null;
         }
-        return 0;
+        throw new ClassCastException();
     }
 }

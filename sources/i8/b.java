@@ -1,6 +1,3 @@
 package i8;
-public interface b {
-    void onCancel();
-
-    void onFinish();
+public final class b extends a9.a {
 }

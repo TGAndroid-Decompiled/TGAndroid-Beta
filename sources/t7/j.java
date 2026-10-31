@@ -1,4 +1,35 @@
 package t7;
-public abstract class j extends c8.b implements a {
-    public static final int f48760b = 0;
+
+import java.util.Iterator;
+public final class j extends f {
+    public final transient l f48547c;
+    public final transient k d;
+
+    public j(l lVar, k kVar) {
+        this.f48547c = lVar;
+        this.d = kVar;
+    }
+
+    @Override
+    public final boolean contains(Object obj) {
+        if (this.f48547c.get(obj) != null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return this.d.listIterator(0);
+    }
+
+    @Override
+    public final int l(Object[] objArr) {
+        return this.d.l(objArr);
+    }
+
+    @Override
+    public final int size() {
+        return this.f48547c.h;
+    }
 }

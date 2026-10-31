@@ -1,49 +1,47 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-public final class ki0 extends mi.m {
-    public Runnable W;
+import android.view.View;
+public final class ki0 implements Runnable {
+    public final int f38873a;
+    public final NotificationsCustomSettingsActivity f38874b;
+    public final ui0 f38875c;
+    public final View d;
 
-    @Override
-    public final void N() {
-        super.N();
-        Runnable runnable = this.W;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-            this.W = null;
-        }
-        ji0 ji0Var = new ji0(this, 0);
-        this.W = ji0Var;
-        AndroidUtilities.runOnUIThread(ji0Var);
+    public ki0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, ui0 ui0Var, View view, int i10, int i11) {
+        this.f38873a = i11;
+        this.f38874b = notificationsCustomSettingsActivity;
+        this.f38875c = ui0Var;
+        this.d = view;
     }
 
     @Override
-    public final void W() {
-        Runnable runnable = this.W;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-            this.W = null;
-        }
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("chatItemAnimator disable notifications");
+    public final void run() {
+        switch (this.f38873a) {
+            case 0:
+                this.f38874b.o0(this.f38875c, this.d, false);
+                return;
+            case 1:
+                this.f38874b.i0(this.f38875c, this.d);
+                return;
+            case 2:
+                NotificationsCustomSettingsActivity.b0(this.f38874b, this.f38875c, this.d);
+                return;
+            case 3:
+                NotificationsCustomSettingsActivity.Z(this.f38874b, this.f38875c, this.d);
+                return;
+            case 4:
+                this.f38874b.i0(this.f38875c, this.d);
+                return;
+            default:
+                this.f38874b.o0(this.f38875c, this.d, true);
+                return;
         }
     }
 
-    @Override
-    public final void g() {
-        super.g();
-        Runnable runnable = this.W;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-        }
-        ji0 ji0Var = new ji0(this, 1);
-        this.W = ji0Var;
-        AndroidUtilities.runOnUIThread(ji0Var);
-    }
-
-    @Override
-    public final void F() {
+    public ki0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, ui0 ui0Var, View view, boolean z10, int i10) {
+        this.f38873a = i10;
+        this.f38874b = notificationsCustomSettingsActivity;
+        this.f38875c = ui0Var;
+        this.d = view;
     }
 }

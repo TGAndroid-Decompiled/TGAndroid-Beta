@@ -1,6 +1,5 @@
 package org.telegram.messenger.video;
 
-import a3.i0;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -11,11 +10,11 @@ import java.util.Iterator;
 import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.d20;
+import org.telegram.messenger.f8;
+import org.telegram.messenger.i0;
+import org.telegram.messenger.tz;
 import org.telegram.ui.Components.AnimatedFileNative;
 public class VideoFramesRewinder {
     private Frame currentFrame;
@@ -29,7 +28,7 @@ public class VideoFramesRewinder {
     private View parentView;
     private long prepareToMs;
     private float prepareWithSpeed;
-    int f21536w;
+    int f18541w;
     private final Paint paint = new Paint(2);
     private final int[] meta = new int[8];
     private final ArrayList<Frame> freeFrames = new ArrayList<>();
@@ -49,9 +48,9 @@ public class VideoFramesRewinder {
     }
 
     public VideoFramesRewinder() {
-        int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
-        if (devicePerformanceClass != 1) {
-            if (devicePerformanceClass != 2) {
+        int o10 = tz.o();
+        if (o10 != 1) {
+            if (o10 != 2) {
                 this.maxFramesCount = 100;
                 this.maxFrameSide = 480;
                 return;
@@ -76,9 +75,9 @@ public class VideoFramesRewinder {
     }
 
     public void lambda$new$1(ArrayList arrayList, long j10) {
-        FileLog.d("[VideoFramesRewinder] total prepare of " + arrayList.size() + " took " + (System.currentTimeMillis() - j10) + "ms");
+        f8.b("[VideoFramesRewinder] total prepare of " + arrayList.size() + " took " + (System.currentTimeMillis() - j10) + "ms");
         if (!arrayList.isEmpty()) {
-            FileLog.d("[VideoFramesRewinder] prepared from " + ((Frame) arrayList.get(0)).position + "ms to " + ((Frame) arrayList.get(arrayList.size() - 1)).position + "ms (requested up to " + this.prepareToMs + "ms)");
+            f8.b("[VideoFramesRewinder] prepared from " + ((Frame) arrayList.get(0)).position + "ms to " + ((Frame) arrayList.get(arrayList.size() - 1)).position + "ms (requested up to " + this.prepareToMs + "ms)");
         }
         this.isPreparing = false;
         Iterator<Frame> it = this.frames.iterator();
@@ -86,7 +85,7 @@ public class VideoFramesRewinder {
             Frame next = it.next();
             if (this.currentFrame != next && next.position > this.lastSeek) {
                 if (this.freeFrames.size() > 20) {
-                    AndroidUtilities.recycleBitmap(next.bitmap);
+                    i0.z2(next.bitmap);
                 } else {
                     this.freeFrames.add(next);
                 }
@@ -94,10 +93,10 @@ public class VideoFramesRewinder {
             }
         }
         while (!arrayList.isEmpty() && this.frames.size() < this.maxFramesCount) {
-            this.frames.add((Frame) ic.a.y(1, arrayList));
+            this.frames.add((Frame) i0.a.v(1, arrayList));
         }
         if (arrayList.size() > 0) {
-            FileLog.d("[VideoFramesRewinder] prepared " + arrayList.size() + " more frames than I could fit :(");
+            f8.b("[VideoFramesRewinder] prepared " + arrayList.size() + " more frames than I could fit :(");
         }
         if (this.destroyAfterPrepare) {
             release();
@@ -116,7 +115,7 @@ public class VideoFramesRewinder {
         char c11 = 4;
         int i12 = iArr[4];
         int i13 = 0;
-        int min = Math.min(this.f21536w / 4, iArr[0]);
+        int min = Math.min(this.f18541w / 4, iArr[0]);
         int min2 = Math.min(this.h / 4, this.meta[1]);
         int i14 = this.maxFrameSide;
         if (min > i14 || min2 > i14) {
@@ -145,11 +144,11 @@ public class VideoFramesRewinder {
             }
             Bitmap bitmap = frame.bitmap;
             if (bitmap == null || bitmap.getWidth() != min || frame.bitmap.getHeight() != min2) {
-                AndroidUtilities.recycleBitmap(frame.bitmap);
+                i0.z2(frame.bitmap);
                 try {
                     frame.bitmap = Bitmap.createBitmap(min, min2, Bitmap.Config.ARGB_8888);
                 } catch (OutOfMemoryError unused) {
-                    FileLog.d("[VideoFramesRewinder] failed to create bitmap: out of memory");
+                    f8.b("[VideoFramesRewinder] failed to create bitmap: out of memory");
                 }
             }
             while (true) {
@@ -182,18 +181,18 @@ public class VideoFramesRewinder {
             c12 = c10;
             i13 = 0;
         }
-        AndroidUtilities.runOnUIThread(new i0(this, arrayList, currentTimeMillis, 12));
+        i0.g3(new a3.i0(this, arrayList, currentTimeMillis, 3));
     }
 
     private void prepare(long j10) {
         if (this.isPreparing) {
             return;
         }
-        FileLog.d("[VideoFramesRewinder] starting preparing " + j10 + "ms");
+        f8.b("[VideoFramesRewinder] starting preparing " + j10 + "ms");
         this.isPreparing = true;
         this.prepareToMs = j10;
         this.prepareWithSpeed = this.lastSpeed;
-        Utilities.themeQueue.postRunnable(this.prepareRunnable);
+        Utilities.f14523i.c(this.prepareRunnable);
     }
 
     public void clearCurrent() {
@@ -204,7 +203,7 @@ public class VideoFramesRewinder {
     }
 
     public void draw(Canvas canvas, int i10, int i11) {
-        this.f21536w = i10;
+        this.f18541w = i10;
         this.h = i11;
         if (this.mDecoder != null && this.currentFrame != null) {
             canvas.save();
@@ -238,7 +237,7 @@ public class VideoFramesRewinder {
         this.until.set(0L);
         Iterator<Frame> it = this.frames.iterator();
         while (it.hasNext()) {
-            AndroidUtilities.recycleBitmap(it.next().bitmap);
+            i0.z2(it.next().bitmap);
         }
         this.frames.clear();
         ArrayList<Frame> arrayList = this.freeFrames;
@@ -246,7 +245,7 @@ public class VideoFramesRewinder {
         while (i10 < size) {
             Frame frame = arrayList.get(i10);
             i10++;
-            AndroidUtilities.recycleBitmap(frame.bitmap);
+            i0.z2(frame.bitmap);
         }
         this.freeFrames.clear();
     }
@@ -266,7 +265,7 @@ public class VideoFramesRewinder {
             float f10 = 25.0f * f7;
             if (((float) Math.abs(next.position - j10)) < f10) {
                 if (this.currentFrame != next) {
-                    FileLog.d("[VideoFramesRewinder] found a frame " + next.position + "ms to fit to " + j10 + "ms from " + this.frames.size() + " frames");
+                    f8.b("[VideoFramesRewinder] found a frame " + next.position + "ms to fit to " + j10 + "ms from " + this.frames.size() + " frames");
                     this.currentFrame = next;
                     invalidate();
                     int i10 = 0;
@@ -276,7 +275,7 @@ public class VideoFramesRewinder {
                         i10++;
                     }
                     if (i10 > 0) {
-                        FileLog.d("[VideoFramesRewinder] also deleted " + i10 + " frames after this frame");
+                        f8.b("[VideoFramesRewinder] also deleted " + i10 + " frames after this frame");
                     }
                 }
                 for (int size = arrayList.size() - 2; size >= 0; size--) {
@@ -291,7 +290,7 @@ public class VideoFramesRewinder {
                 return;
             }
         }
-        FileLog.d("[VideoFramesRewinder] didn't find a frame, wanting to prepare " + j10 + "ms");
+        f8.b("[VideoFramesRewinder] didn't find a frame, wanting to prepare " + j10 + "ms");
         prepare(Math.max(0L, j10));
     }
 
@@ -305,6 +304,6 @@ public class VideoFramesRewinder {
             return;
         }
         this.stop.set(false);
-        this.mDecoder = AnimatedFileNative.a(file.getAbsolutePath(), this.meta, UserConfig.selectedAccount, 0L, null, true);
+        this.mDecoder = AnimatedFileNative.a(file.getAbsolutePath(), this.meta, d20.f15147s0, 0L, null, true);
     }
 }

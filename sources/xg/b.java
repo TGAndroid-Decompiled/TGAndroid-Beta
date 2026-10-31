@@ -1,91 +1,67 @@
 package xg;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.wh;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.f7;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.ar;
-public final class b extends FrameLayout {
-    public final b6 f51815a;
-    public final ImageView f51816b;
+import org.telegram.messenger.d20;
+import org.telegram.messenger.sc;
+import org.telegram.ui.ActionBar.p6;
+import org.telegram.ui.ActionBar.t6;
+import w7.b9;
+public final class b implements wg.c {
+    public final int f53674a;
+    public final p6 f53675b;
 
-    public b(Context context, u6 u6Var) {
-        super(context);
+    public b(int i10, p6 p6Var) {
+        this.f53674a = i10;
+        this.f53675b = p6Var;
+    }
+
+    @Override
+    public final int g(p6 p6Var, boolean z10) {
+        float f7;
+        float f10;
         int i10;
-        b6 b6Var = new b6(context);
-        this.f51815a = b6Var;
-        b6Var.setTextSize(16);
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
+        float f11;
+        int i11;
+        switch (this.f53674a) {
+            case 0:
+                if (!b9.c(d20.f15147s0, this.f53675b)) {
+                    return i0.b.o(t6.w0(t6.Ge, p6Var), 255);
+                }
+                if (sc.e(262144)) {
+                    f7 = 0.85f;
+                } else {
+                    f7 = 0.76f;
+                }
+                return t6.r1(f7, t6.w0(t6.Ge, p6Var));
+            case 1:
+                if (!b9.c(d20.f15147s0, this.f53675b)) {
+                    if (z10) {
+                        i10 = t6.f21206s8;
+                    } else {
+                        i10 = t6.Qe;
+                    }
+                    return i0.b.o(t6.w0(i10, p6Var), 255);
+                }
+                if (sc.e(262144)) {
+                    f10 = 0.85f;
+                } else {
+                    f10 = 0.76f;
+                }
+                return t6.r1(f10, t6.w0(t6.Qe, p6Var));
+            default:
+                if (!b9.c(d20.f15147s0, this.f53675b)) {
+                    if (z10) {
+                        i11 = t6.f21206s8;
+                    } else {
+                        i11 = t6.Qe;
+                    }
+                    return i0.b.o(t6.w0(i11, p6Var), 255);
+                }
+                if (sc.e(262144)) {
+                    f11 = 0.85f;
+                } else {
+                    f11 = 0.76f;
+                }
+                return t6.r1(f11, t6.w0(t6.Qe, p6Var));
         }
-        b6Var.setGravity(i10);
-        int i11 = y6.L6;
-        f7.Y(b6Var, i11, u6Var);
-        b6Var.setTag(Integer.valueOf(i11));
-        addView(b6Var);
-        ImageView imageView = new ImageView(context);
-        this.f51816b = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView(imageView);
-        b6Var.k(LocaleController.getString(R.string.BoostingAddChannelOrGroup));
-        Drawable drawable = getResources().getDrawable(R.drawable.poll_add_circle);
-        Drawable drawable2 = getResources().getDrawable(R.drawable.poll_add_plus);
-        int i12 = y6.N6;
-        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        f7.y(this, drawable, i12, u6Var, mode);
-        f7.y(this, drawable2, y6.f23486k7, u6Var, mode);
-        imageView.setImageDrawable(new ar(drawable, drawable2));
-        f7.i(y6.f23428h5, this, u6Var);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int dp;
-        int measuredWidth;
-        int i14 = i12 - i10;
-        b6 b6Var = this.f51815a;
-        int textHeight = ((i13 - i11) - b6Var.getTextHeight()) / 2;
-        boolean z11 = LocaleController.isRTL;
-        float f7 = 23.0f;
-        ImageView imageView = this.f51816b;
-        if (z11) {
-            int measuredWidth2 = getMeasuredWidth() - b6Var.getMeasuredWidth();
-            if (imageView.getVisibility() == 0) {
-                f7 = 68.0f;
-            }
-            dp = measuredWidth2 - AndroidUtilities.dp(f7);
-        } else {
-            if (imageView.getVisibility() == 0) {
-                f7 = 68.0f;
-            }
-            dp = AndroidUtilities.dp(f7);
-        }
-        b6Var.layout(dp, textHeight, b6Var.getMeasuredWidth() + dp, b6Var.getMeasuredHeight() + textHeight);
-        if (!LocaleController.isRTL) {
-            measuredWidth = AndroidUtilities.dp(24.0f);
-        } else {
-            measuredWidth = (i14 - imageView.getMeasuredWidth()) - AndroidUtilities.dp(24.0f);
-        }
-        imageView.layout(measuredWidth, 0, imageView.getMeasuredWidth() + measuredWidth, imageView.getMeasuredHeight());
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        this.f51815a.measure(wh.x(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-        this.f51816b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
-        setMeasuredDimension(size, AndroidUtilities.dp(50.0f));
     }
 }

@@ -5,25 +5,25 @@ import android.os.IBinder;
 import android.os.Parcel;
 import java.lang.ref.WeakReference;
 public final class e extends Binder implements b {
-    public static final int f18657b = 0;
-    public final WeakReference f18658a;
+    public static final int f13493b = 0;
+    public final WeakReference f13494a;
 
     public e() {
         attachInterface(this, "android.support.v4.media.session.IMediaControllerCallback");
-        this.f18658a = new WeakReference(null);
+        this.f13494a = new WeakReference(null);
     }
 
     @Override
-    public final void h(int i10) {
-        if (this.f18658a.get() == null) {
+    public final void c(int i10) {
+        if (this.f13494a.get() == null) {
             return;
         }
         throw new ClassCastException();
     }
 
     @Override
-    public final void onRepeatModeChanged(int i10) {
-        if (this.f18658a.get() == null) {
+    public final void i(int i10) {
+        if (this.f13494a.get() == null) {
             return;
         }
         throw new ClassCastException();
@@ -31,11 +31,11 @@ public final class e extends Binder implements b {
 
     @Override
     public final boolean onTransact(int i10, Parcel parcel, Parcel parcel2, int i11) {
-        z zVar;
+        w wVar;
         if (i10 != 3) {
             if (i10 != 9) {
                 if (i10 != 1598968902) {
-                    WeakReference weakReference = this.f18658a;
+                    WeakReference weakReference = this.f13494a;
                     switch (i10) {
                         case 11:
                             parcel.enforceInterface("android.support.v4.media.session.IMediaControllerCallback");
@@ -46,7 +46,7 @@ public final class e extends Binder implements b {
                             break;
                         case 12:
                             parcel.enforceInterface("android.support.v4.media.session.IMediaControllerCallback");
-                            h(parcel.readInt());
+                            i(parcel.readInt());
                             return true;
                         case 13:
                             parcel.enforceInterface("android.support.v4.media.session.IMediaControllerCallback");
@@ -64,22 +64,22 @@ public final class e extends Binder implements b {
                 return true;
             }
             parcel.enforceInterface("android.support.v4.media.session.IMediaControllerCallback");
-            onRepeatModeChanged(parcel.readInt());
+            c(parcel.readInt());
             return true;
         }
         parcel.enforceInterface("android.support.v4.media.session.IMediaControllerCallback");
         if (parcel.readInt() != 0) {
-            zVar = z.CREATOR.createFromParcel(parcel);
+            wVar = w.CREATOR.createFromParcel(parcel);
         } else {
-            zVar = null;
+            wVar = null;
         }
-        r(zVar);
+        u(wVar);
         return true;
     }
 
     @Override
-    public final void r(z zVar) {
-        if (this.f18658a.get() == null) {
+    public final void u(w wVar) {
+        if (this.f13494a.get() == null) {
             return;
         }
         throw new ClassCastException();

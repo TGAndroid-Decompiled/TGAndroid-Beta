@@ -4,25 +4,22 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class wp extends s4.h0 {
-    public final Context f45380c;
+public final class wp extends s4.g0 {
+    public final Context f43346c;
     public final xp d;
 
     public wp(xp xpVar, Context context) {
         this.d = xpVar;
-        this.f45380c = context;
+        this.f43346c = context;
     }
 
     @Override
-    public final int h() {
+    public final int b() {
         int i10;
         xp xpVar = this.d;
         if (!xpVar.d.isEmpty()) {
-            i10 = xpVar.f45749n.size() + 1;
+            i10 = xpVar.f43618n.size() + 1;
         } else {
             i10 = 0;
         }
@@ -30,7 +27,7 @@ public final class wp extends s4.h0 {
     }
 
     @Override
-    public final int j(int i10) {
+    public final int d(int i10) {
         if (i10 == 0) {
             return 3;
         }
@@ -44,54 +41,54 @@ public final class wp extends s4.h0 {
     }
 
     @Override
-    public final void v(s4.e1 e1Var, int i10) {
+    public final void t(s4.c1 c1Var, int i10) {
         int i11;
-        View view = e1Var.f47773a;
-        int j10 = j(i10);
+        View view = c1Var.f47898a;
+        int d = d(i10);
         xp xpVar = this.d;
-        if (j10 != 0) {
-            if (j10 != 1) {
-                if (j10 == 2) {
-                    TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) xpVar.f45749n.get(i10 - 3);
+        if (d != 0) {
+            if (d != 1) {
+                if (d == 2) {
+                    TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) xpVar.f43618n.get(i10 - 3);
                     boolean contains = xpVar.d.contains(tL_availableReaction.reaction);
-                    i11 = ((org.telegram.ui.ActionBar.r2) xpVar).currentAccount;
+                    i11 = ((org.telegram.ui.ActionBar.k2) xpVar).currentAccount;
                     ((org.telegram.ui.Cells.x) view).a(tL_availableReaction, contains, i11);
                     return;
                 }
                 return;
             }
-            ((org.telegram.ui.Cells.q4) view).setText(LocaleController.getString(R.string.OnlyAllowThisReactions));
+            ((org.telegram.ui.Cells.p4) view).setText(org.telegram.messenger.cd.L0(2131747838, null));
             return;
         }
-        org.telegram.ui.Cells.i9 i9Var = (org.telegram.ui.Cells.i9) view;
-        org.telegram.ui.ActionBar.f7.V(i9Var.getTextView(), org.telegram.ui.ActionBar.y6.B6, null);
-        int i12 = xpVar.f45751s;
+        org.telegram.ui.Cells.b9 b9Var = (org.telegram.ui.Cells.b9) view;
+        org.telegram.ui.ActionBar.a7.V(b9Var.getTextView(), org.telegram.ui.ActionBar.t6.B6, null);
+        int i12 = xpVar.f43620s;
         if (i12 == 1) {
-            i9Var.setText(LocaleController.getString(R.string.EnableSomeReactionsInfo));
+            b9Var.setText(org.telegram.messenger.cd.L0(2131751148, null));
         } else if (i12 == 0) {
-            i9Var.setText(LocaleController.getString(R.string.EnableAllReactionsInfo));
+            b9Var.setText(org.telegram.messenger.cd.L0(2131751160, null));
         } else if (i12 == 2) {
-            i9Var.setText(LocaleController.getString(R.string.DisableReactionsInfo));
+            b9Var.setText(org.telegram.messenger.cd.L0(2131751430, null));
         }
     }
 
     @Override
-    public final s4.e1 x(ViewGroup viewGroup, int i10) {
-        Context context = this.f45380c;
+    public final s4.c1 w(ViewGroup viewGroup, int i10) {
+        Context context = this.f43346c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 3) {
-                    return new s4.e1(new org.telegram.ui.Cells.x(context, false, false));
+                    return new s4.c1(new org.telegram.ui.Cells.x(context, false, false));
                 }
                 FrameLayout frameLayout = new FrameLayout(context);
                 xp xpVar = this.d;
-                AndroidUtilities.removeFromParent(xpVar.f45750r);
-                frameLayout.addView(xpVar.f45750r);
-                frameLayout.setLayoutParams(new s4.q0(-1, -2));
-                return new s4.e1(frameLayout);
+                org.telegram.messenger.i0.E2(xpVar.f43619r);
+                frameLayout.addView(xpVar.f43619r);
+                frameLayout.setLayoutParams(new s4.o0(-1, -2));
+                return new s4.c1(frameLayout);
             }
-            return new s4.e1(new org.telegram.ui.Cells.q4(context, 23));
+            return new s4.c1(new org.telegram.ui.Cells.p4(context, 23));
         }
-        return new s4.e1(new org.telegram.ui.Cells.i9(context));
+        return new s4.c1(new org.telegram.ui.Cells.b9(context));
     }
 }

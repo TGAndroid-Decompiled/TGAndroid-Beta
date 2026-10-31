@@ -1,91 +1,99 @@
 package uh;
 
-import ag.v;
-import android.graphics.Canvas;
 import android.graphics.Rect;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Cells.s1;
-import org.telegram.ui.Components.ck0;
-import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.r6;
-public final class d extends c {
-    public final r6 d;
-    public final ck0 e;
-    public final oe.b f49950f;
-    public float h;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.ui.Cells.s7;
+import s4.m0;
+import s4.z0;
+public final class d extends m0 {
+    public final int f50236a;
+    public final i f50237b;
 
-    public d(s1 s1Var, u6 u6Var) {
-        super(u6Var);
-        ck0 ck0Var = new ck0(s1Var);
-        this.e = ck0Var;
-        ck0Var.d(null, true, false);
-        ck0Var.v = 650.0f;
-        ck0Var.e(0.69f, false);
-        ck0Var.f27194p.setStrokeWidth(AndroidUtilities.dp(1.5f));
-        this.f49950f = new oe.b(s1Var, ds.h, 260L);
-        r6 r6Var = new r6(true, false, false);
-        this.d = r6Var;
-        r6Var.x(AndroidUtilities.bold());
-        r6Var.w(AndroidUtilities.dp(13.0f));
-        r6Var.f32142b = 17;
-        int w02 = y6.w0(y6.f23449i6, u6Var);
-        if (this.f49948b != w02) {
-            y6.E1(this.f49947a, w02, false);
-            this.f49948b = w02;
-        }
+    public d(i iVar, int i10) {
+        this.f50236a = i10;
+        this.f50237b = iVar;
     }
 
     @Override
-    public final void a(int i10) {
-        this.f49947a.setAlpha(i10);
-        this.d.B = i10;
-    }
-
-    public final float b() {
-        return this.f49950f.e;
-    }
-
-    public final void c(int i10) {
-        this.d.u(i10);
-        this.e.f27193o = i10;
-    }
-
-    public final void d(float f7) {
-        if (this.h != f7) {
-            this.h = f7;
-            Rect bounds = getBounds();
-            int i10 = (int) this.h;
-            this.d.setBounds(bounds.left, bounds.top + i10, bounds.right, bounds.bottom + i10);
+    public final void c(Rect rect, View view, RecyclerView recyclerView, z0 z0Var) {
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        boolean z13;
+        switch (this.f50236a) {
+            case 0:
+                if (view instanceof s7) {
+                    s7 s7Var = (s7) view;
+                    i iVar = this.f50237b;
+                    iVar.f50248f.getClass();
+                    int R = RecyclerView.R(s7Var);
+                    int i10 = iVar.h.J;
+                    boolean z14 = true;
+                    if (R < i10) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    s7Var.f23018a0 = z10;
+                    int i11 = R % i10;
+                    if (i11 == 0) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    s7Var.V = z11;
+                    if (i11 != i10 - 1) {
+                        z14 = false;
+                    }
+                    s7Var.W = z14;
+                    rect.left = 0;
+                    rect.top = 0;
+                    rect.bottom = 0;
+                    rect.right = 0;
+                    return;
+                }
+                rect.left = 0;
+                rect.top = 0;
+                rect.bottom = 0;
+                rect.right = 0;
+                return;
+            default:
+                if (view instanceof s7) {
+                    s7 s7Var2 = (s7) view;
+                    i iVar2 = this.f50237b;
+                    iVar2.f50250r.getClass();
+                    int R2 = RecyclerView.R(s7Var2);
+                    int i12 = iVar2.f50251s.J;
+                    boolean z15 = true;
+                    if (R2 < i12) {
+                        z12 = true;
+                    } else {
+                        z12 = false;
+                    }
+                    s7Var2.f23018a0 = z12;
+                    int i13 = R2 % i12;
+                    if (i13 == 0) {
+                        z13 = true;
+                    } else {
+                        z13 = false;
+                    }
+                    s7Var2.V = z13;
+                    if (i13 != i12 - 1) {
+                        z15 = false;
+                    }
+                    s7Var2.W = z15;
+                    rect.left = 0;
+                    rect.top = 0;
+                    rect.bottom = 0;
+                    rect.right = 0;
+                    return;
+                }
+                rect.left = 0;
+                rect.top = 0;
+                rect.bottom = 0;
+                rect.right = 0;
+                return;
         }
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        float f7 = this.f49950f.e;
-        if (f7 < 1.0f) {
-            v.b(canvas, this.d, 1.0f - f7);
-        }
-        if (f7 > 0.0f) {
-            float exactCenterX = getBounds().exactCenterX();
-            float exactCenterY = getBounds().exactCenterY();
-            canvas.save();
-            canvas.scale(f7, f7, exactCenterX, exactCenterY);
-            this.e.a(canvas);
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        super.onBoundsChange(rect);
-        Rect bounds = getBounds();
-        int i10 = (int) this.h;
-        this.d.setBounds(bounds.left, bounds.top + i10, bounds.right, bounds.bottom + i10);
-        int dp = AndroidUtilities.dp(11.0f);
-        int centerX = rect.centerX();
-        int centerY = rect.centerY();
-        this.e.f(centerX - dp, centerY - dp, centerX + dp, centerY + dp);
     }
 }

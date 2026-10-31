@@ -1,15 +1,27 @@
 package fg;
 
-import android.graphics.Bitmap;
-import java.util.List;
+import org.telegram.ui.Components.h6;
 public final class a {
-    public final int f10466a;
-    public final Bitmap f10467b;
-    public final List f10468c;
+    public final CharSequence f7057a;
+    public final int f7058b = 2;
+    public final Runnable f7059c;
+    public final float d;
+    public final float e;
+    public final h6 f7060f;
 
-    public a(Bitmap bitmap, int i10, List list) {
-        this.f10468c = list;
-        this.f10467b = bitmap;
-        this.f10466a = i10;
+    public a(String str, Runnable runnable) {
+        this.f7057a = str;
+        this.f7059c = runnable;
+    }
+
+    public a(String str) {
+        this.f7057a = str;
+    }
+
+    public a(String str, float f7, float f10, h6 h6Var) {
+        this.f7057a = str;
+        this.d = f7;
+        this.e = f10;
+        this.f7060f = h6Var;
     }
 }

@@ -1,72 +1,59 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessageObject;
-public final class i7 implements Runnable {
-    public final int f29229a;
-    public final m8 f29230b;
-    public final l80 f29231c;
-    public final MessageObject d;
+import android.content.Context;
+import org.telegram.ui.PhotoViewer;
+public final class i7 extends oc {
+    public final int f26900b;
+    public final org.telegram.messenger.us f26901c;
 
-    public i7(m8 m8Var, MessageObject messageObject, l80 l80Var, int i10) {
-        this.f29229a = i10;
-        this.f29230b = m8Var;
-        this.d = messageObject;
-        this.f29231c = l80Var;
+    public i7(org.telegram.messenger.us usVar, Context context, int i10) {
+        super(context);
+        this.f26900b = i10;
+        this.f26901c = usVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f29229a) {
+    public final void c(boolean z10) {
+        boolean z11;
+        int i10;
+        switch (this.f26900b) {
             case 0:
-                m8 m8Var = this.f29230b;
-                m8Var.getClass();
-                this.f29231c.u();
-                m8Var.x0(this.d);
-                return;
-            case 1:
-                m8 m8Var2 = this.f29230b;
-                m8Var2.getClass();
-                this.f29231c.u();
-                m8Var2.G0(this.d);
-                return;
-            case 2:
-                m8 m8Var3 = this.f29230b;
-                MessageObject messageObject = this.d;
-                m8Var3.C0(messageObject, false, new i7(m8Var3, messageObject, this.f29231c, 5), false);
-                return;
-            case 3:
-                m8 m8Var4 = this.f29230b;
-                m8Var4.getClass();
-                this.f29231c.u();
-                m8Var4.x0(this.d);
-                return;
-            case 4:
-                m8 m8Var5 = this.f29230b;
-                m8Var5.getClass();
-                this.f29231c.u();
-                m8Var5.G0(this.d);
-                return;
-            case 5:
-                m8.p(this.f29230b, this.d, this.f29231c);
-                return;
-            case 6:
-                m8 m8Var6 = this.f29230b;
-                m8Var6.C0(this.d, true, new j7(m8Var6, this.f29231c, 4), false);
-                return;
-            case 7:
-                m8.I(this.f29230b, this.d, this.f29231c);
+                w7 w7Var = (w7) this.f26901c;
+                w7Var.updateColors();
+                org.telegram.ui.vr vrVar = w7Var.E1;
+                if (vrVar != null) {
+                    vrVar.a(b5.d.u());
+                    return;
+                }
                 return;
             default:
-                this.f29230b.B0(this.d);
-                this.f29231c.u();
+                PhotoViewer photoViewer = (PhotoViewer) this.f26901c;
+                org.telegram.ui.ActionBar.b1 b1Var = photoViewer.F0;
+                if (b1Var != null) {
+                    b1Var.f(z10);
+                    org.telegram.ui.ActionBar.b1 b1Var2 = photoViewer.F0;
+                    if (z10) {
+                        i10 = 259241196;
+                    } else {
+                        i10 = 268435455;
+                    }
+                    b1Var2.setSelectorColor(i10);
+                }
+                u61 u61Var = photoViewer.F2;
+                if (u61Var != null) {
+                    if (!b5.d.u() && !photoViewer.f33582r) {
+                        z11 = false;
+                    } else {
+                        z11 = true;
+                    }
+                    u61Var.t0(z11);
+                }
+                org.telegram.ui.vr vrVar2 = photoViewer.f33630w0;
+                if (vrVar2 != null) {
+                    vrVar2.a(b5.d.u());
+                    return;
+                }
                 return;
         }
-    }
-
-    public i7(m8 m8Var, l80 l80Var, MessageObject messageObject, int i10) {
-        this.f29229a = i10;
-        this.f29230b = m8Var;
-        this.f29231c = l80Var;
-        this.d = messageObject;
     }
 }

@@ -4,19 +4,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 public class AppStartReceiver extends BroadcastReceiver {
-    public static void lambda$onReceive$0() {
-        SharedConfig.loadConfig();
-        if (SharedConfig.passcodeHash.length() > 0) {
-            SharedConfig.appLocked = true;
-            SharedConfig.saveConfig();
-        }
-        ApplicationLoader.startPushService();
-    }
+    public static final int f14354a = 0;
 
     @Override
-    public void onReceive(Context context, Intent intent) {
+    public final void onReceive(Context context, Intent intent) {
         if (intent != null && "android.intent.action.BOOT_COMPLETED".equals(intent.getAction())) {
-            AndroidUtilities.runOnUIThread(new a2(2));
+            i0.g3(new ag.f3(9));
         }
     }
 }

@@ -1,31 +1,13 @@
 package org.telegram.ui.Wallet;
-
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_wallet;
-public final class n6 implements Runnable {
-    public final int f37052a;
-    public final WalletEngine2 f37053b;
-    public final Utilities.Callback2 f37054c;
-    public final TL_wallet.sendTransfer d;
-    public final String e;
-
-    public n6(WalletEngine2 walletEngine2, Utilities.Callback2 callback2, TL_wallet.sendTransfer sendtransfer, String str, int i10) {
-        this.f37052a = i10;
-        this.f37053b = walletEngine2;
-        this.f37054c = callback2;
-        this.d = sendtransfer;
-        this.e = str;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f37052a) {
-            case 0:
-                this.f37053b.lambda$prepareTonConnectTransfer$4(this.f37054c, this.d, this.e);
-                return;
-            default:
-                this.f37053b.lambda$prepareSendNFT$25(this.f37054c, this.d, this.e);
-                return;
-        }
-    }
+public final class n6 {
+    public boolean f34940a;
+    public float f34941b;
+    public float f34942c;
+    public float d;
+    public float e;
+    public float f34943f;
+    public float f34944g;
+    public long h;
+    public long f34945i;
+    public long f34946j;
 }

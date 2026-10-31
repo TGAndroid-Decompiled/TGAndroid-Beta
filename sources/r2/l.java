@@ -7,18 +7,23 @@ import android.os.Handler;
 import android.view.Surface;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
-import li.h5;
-import org.telegram.ui.Wallet.a6;
+import org.telegram.ui.web.v1;
 public interface l {
-    void d(long j10, int i10, int i11, int i12);
+    void a(int i10, int i11, int i12, long j10);
 
-    void e(int i10, h2.d dVar, long j10, int i11);
+    void b(int i10, h2.d dVar, long j10, int i11);
 
-    void f(int i10);
+    void c(int i10);
+
+    void d(a3.m mVar, Handler handler);
+
+    void e();
+
+    void f(v1 v1Var);
 
     void flush();
 
-    void g(a3.m mVar, Handler handler);
+    void g(int i10, long j10);
 
     ByteBuffer getInputBuffer(int i10);
 
@@ -26,25 +31,19 @@ public interface l {
 
     MediaFormat getOutputFormat();
 
-    void h();
+    int h();
 
-    void i(int i10, long j10);
+    int i(MediaCodec.BufferInfo bufferInfo);
 
-    int j();
+    boolean j(n2.u uVar);
 
-    int k(MediaCodec.BufferInfo bufferInfo);
+    void k(int i10);
 
-    boolean l(h5 h5Var);
+    void l(Surface surface);
 
-    void m(int i10);
+    void m(ArrayList arrayList);
 
-    void n(Surface surface);
-
-    void o(a6 a6Var);
-
-    void p(ArrayList arrayList);
-
-    void q(ArrayList arrayList);
+    void n(ArrayList arrayList);
 
     void release();
 

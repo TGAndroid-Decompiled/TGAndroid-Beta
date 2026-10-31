@@ -1,57 +1,59 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class en0 implements TextWatcher {
-    public final int f38913a;
-    public final gn0 f38914b;
+import android.content.Context;
+import android.graphics.Canvas;
+public final class en0 extends org.telegram.ui.Components.tk0 {
+    public final int f37087e3;
+    public final nn0 f37088f3;
 
-    public en0(gn0 gn0Var, int i10) {
-        this.f38914b = gn0Var;
-        this.f38913a = i10;
+    public en0(nn0 nn0Var, Context context, org.telegram.ui.ActionBar.p6 p6Var, int i10) {
+        super(context, p6Var);
+        this.f37088f3 = nn0Var;
+        this.f37087e3 = i10;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int length;
-        String code;
-        gn0 gn0Var = this.f38914b;
-        if (!gn0Var.H && (length = editable.length()) >= 1) {
-            int i10 = this.f38913a;
-            if (length > 1) {
-                String obj = editable.toString();
-                gn0Var.H = true;
-                for (int i11 = 0; i11 < Math.min(gn0Var.O - i10, length); i11++) {
-                    if (i11 == 0) {
-                        editable.replace(0, length, obj.substring(i11, i11 + 1));
-                    } else {
-                        gn0Var.d[i10 + i11].setText(obj.substring(i11, i11 + 1));
-                    }
-                }
-                gn0Var.H = false;
-            }
-            if (i10 != gn0Var.O - 1) {
-                int i12 = i10 + 1;
-                EditTextBoldCursor editTextBoldCursor = gn0Var.d[i12];
-                editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                gn0Var.d[i12].requestFocus();
-            }
-            int i13 = gn0Var.O;
-            if (i10 == i13 - 1 || (i10 == i13 - 2 && length >= 2)) {
-                code = gn0Var.getCode();
-                if (code.length() == gn0Var.O) {
-                    gn0Var.h(null);
-                }
-            }
+    public final Integer V0(int i10) {
+        nn0 nn0Var = this.f37088f3;
+        if ((i10 >= nn0Var.f39985b0 && i10 < nn0Var.f39987c0) || (i10 >= nn0Var.f39988d0 && i10 < nn0Var.f39989e0)) {
+            return 0;
+        }
+        return super.V0(i10);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        nn0 nn0Var = this.f37088f3;
+        if (nn0Var.G && nn0Var.E != null && nn0Var.F != null) {
+            int save = canvas.save();
+            canvas.translate(nn0Var.E.getLeft() + nn0Var.F.getLeft(), nn0Var.F.getTop());
+            nn0Var.E.draw(canvas);
+            canvas.restoreToCount(save);
         }
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        rh.v5 v5Var;
+        super.onLayout(z10, i10, i11, i12, i13);
+        nn0 nn0Var = this.f37088f3;
+        tn0 tn0Var = nn0Var.f40001p0;
+        nn0Var.h();
+        if (nn0Var.K != null) {
+            if (nn0Var.J != null && nn0Var.c()) {
+                nn0Var.J.g(false);
+                return;
+            }
+            return;
+        }
+        if (this.f37087e3 == 1) {
+            v5Var = tn0Var.f41872c;
+        } else {
+            v5Var = tn0Var.f41870b;
+        }
+        if (v5Var != null && nn0Var.c()) {
+            v5Var.b();
+        }
     }
 }

@@ -1,18 +1,27 @@
 package org.telegram.ui.Components;
-public final class gx0 {
-    public float f28774a;
-    public float f28775b;
-    public float f28776c;
-    public float d;
-    public float e;
-    public float f28777f;
-    public float f28778g;
-    public float h;
-    public float f28779i;
-    public int f28780j;
-    public final hx0 f28781k;
 
-    public gx0(hx0 hx0Var) {
-        this.f28781k = hx0Var;
+import android.text.Editable;
+import android.text.TextWatcher;
+public final class gx0 implements TextWatcher {
+    public final NumberTextView f26534a;
+    public final fx0 f26535b;
+
+    public gx0(NumberTextView numberTextView, fx0 fx0Var) {
+        this.f26534a = numberTextView;
+        this.f26535b = fx0Var;
+    }
+
+    @Override
+    public final void afterTextChanged(Editable editable) {
+        this.f26534a.a(50 - Character.codePointCount(editable, 0, editable.length()), true);
+        this.f26535b.setErrorText(null);
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

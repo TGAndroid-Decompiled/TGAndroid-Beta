@@ -1,37 +1,22 @@
 package org.telegram.ui.ActionBar;
+public final class u4 {
+    public static final u4 f21348a;
+    public static final u4 f21349b;
+    public static final u4[] f21350c;
 
-import android.content.Context;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-public final class u4 extends ArrayAdapter {
-    public final a5 f23131a;
-
-    public u4(a5 a5Var, Context context) {
-        super(context, 0);
-        this.f23131a = a5Var;
+    static {
+        ?? r02 = new Enum("BACK", 0);
+        f21348a = r02;
+        ?? r12 = new Enum("MENU", 1);
+        f21349b = r12;
+        f21350c = new u4[]{r02, r12};
     }
 
-    @Override
-    public final View getView(int i10, View view, ViewGroup viewGroup) {
-        a5 a5Var = this.f23131a;
-        com.google.firebase.messaging.m mVar = a5Var.f22411q;
-        MenuItem menuItem = (MenuItem) getItem(i10);
-        int width = a5Var.I.getWidth();
-        boolean z10 = false;
-        if (view != null) {
-            int i11 = mVar.f7751a;
-            if (((a5) mVar.e).Q.f22512j != null) {
-                z10 = true;
-            }
-            c5.e(view, menuItem, z10);
-        } else {
-            view = c5.b(((a5) mVar.e).Q, (Context) mVar.f7753c, menuItem, true, false, false);
-            int i12 = mVar.f7752b;
-            view.setPadding(i12, 0, i12, 0);
-        }
-        view.setMinimumWidth(width);
-        return view;
+    public static u4 valueOf(String str) {
+        return (u4) Enum.valueOf(u4.class, str);
+    }
+
+    public static u4[] values() {
+        return (u4[]) f21350c.clone();
     }
 }

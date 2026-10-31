@@ -1,66 +1,22 @@
 package org.telegram.ui.Components;
+public final class me implements o1.g {
+    public boolean f28423a = false;
+    public final float f28424b;
+    public final lu0 f28425c;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class me extends FrameLayout {
-    public final ChatActivityEnterView f30511a;
-
-    public me(ChatActivityEnterView chatActivityEnterView, Activity activity) {
-        super(activity);
-        this.f30511a = chatActivityEnterView;
+    public me(float f7, lu0 lu0Var) {
+        this.f28424b = f7;
+        this.f28425c = lu0Var;
     }
 
     @Override
-    public final boolean drawChild(final Canvas canvas, final View view, final long j10) {
-        ChatActivityEnterView chatActivityEnterView = this.f30511a;
-        if (view != null && view == chatActivityEnterView.E0) {
-            return chatActivityEnterView.b0(canvas, new Utilities.Callback0Return() {
-                @Override
-                public final Object run() {
-                    Boolean valueOf;
-                    valueOf = Boolean.valueOf(super/*android.widget.FrameLayout*/.drawChild(canvas, view, j10));
-                    return valueOf;
-                }
-            });
-        }
-        if (chatActivityEnterView.f25996z4 && view == chatActivityEnterView.f25873e1) {
-            return true;
-        }
-        return super.drawChild(canvas, view, j10);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        ChatActivityEnterView chatActivityEnterView = this.f30511a;
-        if (!chatActivityEnterView.B0.isEmpty()) {
-            for (int i14 = 0; i14 < getChildCount(); i14++) {
-                View childAt = getChildAt(i14);
-                Float f7 = (Float) chatActivityEnterView.B0.get(childAt);
-                if (f7 != null) {
-                    childAt.setTranslationX(f7.floatValue() - childAt.getLeft());
-                    childAt.animate().translationX(0.0f).setDuration(150L).setInterpolator(ds.f27530f).start();
-                }
+    public final void a(o1.j jVar, float f7, float f10) {
+        if (!this.f28423a && f7 >= this.f28424b) {
+            this.f28423a = true;
+            try {
+                this.f28425c.performHapticFeedback(3, 2);
+            } catch (Exception unused) {
             }
-            chatActivityEnterView.B0.clear();
         }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        int max = Math.max(AndroidUtilities.dp(44.0f), getMeasuredHeight());
-        ChatActivityEnterView chatActivityEnterView = this.f30511a;
-        oe.e eVar = chatActivityEnterView.f25908j5;
-        if (eVar.f19333f > 0.0f) {
-            eVar.a(max);
-        } else {
-            eVar.c(max);
-        }
-        chatActivityEnterView.J();
     }
 }

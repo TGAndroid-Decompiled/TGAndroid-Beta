@@ -1,37 +1,37 @@
 package k1;
-public final class n extends nd.i implements ud.p {
-    public final int f16062a;
-    public int f16063b;
-    public Object f16064c;
+public final class n extends ed.j implements ld.p {
+    public final int f10541a;
+    public int f10542b;
+    public Object f10543c;
     public final z d;
 
-    public n(z zVar, ld.c cVar, int i10) {
+    public n(z zVar, cd.c cVar, int i10) {
         super(2, cVar);
-        this.f16062a = i10;
+        this.f10541a = i10;
         this.d = zVar;
     }
 
     @Override
-    public final ld.c create(Object obj, ld.c cVar) {
-        switch (this.f16062a) {
+    public final cd.c create(Object obj, cd.c cVar) {
+        switch (this.f10541a) {
             case 0:
                 n nVar = new n(this.d, cVar, 0);
-                nVar.f16064c = obj;
+                nVar.f10543c = obj;
                 return nVar;
             default:
                 n nVar2 = new n(this.d, cVar, 1);
-                nVar2.f16064c = obj;
+                nVar2.f10543c = obj;
                 return nVar2;
         }
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        switch (this.f16062a) {
+        switch (this.f10541a) {
             case 0:
-                return ((n) create((k) obj, (ld.c) obj2)).invokeSuspend(jd.i.f15579a);
+                return ((n) create((l) obj, (cd.c) obj2)).invokeSuspend(ad.j.f401a);
             default:
-                return ((n) create((fe.c) obj, (ld.c) obj2)).invokeSuspend(jd.i.f15579a);
+                return ((n) create((wd.c) obj, (cd.c) obj2)).invokeSuspend(ad.j.f401a);
         }
     }
 

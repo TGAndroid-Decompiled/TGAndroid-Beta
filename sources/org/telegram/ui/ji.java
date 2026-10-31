@@ -1,24 +1,20 @@
 package org.telegram.ui;
-public final class ji implements org.telegram.ui.Components.sh0 {
-    public boolean f40545a = true;
-    public final org.telegram.ui.Components.gl0 f40546b;
 
-    public ji(org.telegram.ui.Components.gl0 gl0Var) {
-        this.f40546b = gl0Var;
+import android.app.Activity;
+import java.util.ArrayList;
+public final class ji extends org.telegram.ui.Components.cv {
+    public final ki N1;
+
+    public ji(ki kiVar, org.telegram.ui.ActionBar.k2 k2Var, Activity activity, org.telegram.ui.ActionBar.p6 p6Var, ArrayList arrayList) {
+        super(k2Var, activity, p6Var, arrayList);
+        this.N1 = kiVar;
     }
 
     @Override
-    public final void a(float f7, float f10) {
-        int i10 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
-        org.telegram.ui.Components.gl0 gl0Var = this.f40546b;
-        if (i10 == 0 && !this.f40545a) {
-            gl0Var.r(false);
-            this.f40545a = true;
-        } else if (f7 == 1.0f && this.f40545a) {
-            gl0Var.setAlpha(1.0f - f10);
-            if (f10 == 1.0f) {
-                this.f40545a = false;
-            }
-        }
+    public final void dismiss() {
+        super.dismiss();
+        un unVar = this.N1.f38872p;
+        unVar.getClass();
+        unVar.o8(false, true, 0.0f);
     }
 }

@@ -1,67 +1,21 @@
 package org.telegram.ui.Components;
+public final class xb implements Runnable {
+    public final int f32455a;
+    public final eb f32456b;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.TextView;
-import org.telegram.messenger.Emoji;
-public final class xb extends aa0 {
-    public final int L;
-
-    public xb(Context context, int i10, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(context, u6Var);
-        this.L = i10;
+    public xb(eb ebVar, int i10) {
+        this.f32455a = i10;
+        this.f32456b = ebVar;
     }
 
     @Override
-    public int a() {
-        switch (this.L) {
-            case 4:
-                return 3;
-            default:
-                return super.a();
-        }
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.L) {
-            case 3:
-                if (getAlpha() < 0.9f) {
-                    return false;
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            default:
-                return super.dispatchTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.L) {
-            case 5:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
-        }
-    }
-
-    @Override
-    public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        switch (this.L) {
+    public final void run() {
+        switch (this.f32455a) {
             case 0:
-                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
-                return;
-            case 1:
-                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
-                return;
-            case 2:
-                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+                this.f32456b.performHapticFeedback(3, 2);
                 return;
             default:
-                super.setText(charSequence, bufferType);
+                this.f32456b.performHapticFeedback(3, 2);
                 return;
         }
     }

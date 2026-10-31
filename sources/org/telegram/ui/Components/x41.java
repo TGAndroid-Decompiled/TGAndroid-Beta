@@ -1,19 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-public final class x41 extends g51 {
-    public final org.telegram.ui.ig Z;
+import android.graphics.Typeface;
+import android.text.TextPaint;
+import android.text.style.MetricAffectingSpan;
+public final class x41 extends MetricAffectingSpan {
+    public Typeface f32348a;
+    public int f32349b;
+    public int f32350c;
 
-    public x41(Activity activity, String str, String str2, TLRPC.InputPeer inputPeer, int i10, TL_iv.RichMessage richMessage, org.telegram.ui.ig igVar) {
-        super(activity, str, str2, null, inputPeer, i10, false, richMessage);
-        this.Z = igVar;
+    public x41(Typeface typeface) {
+        this.f32350c = -1;
+        this.f32348a = typeface;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.Z.run();
+    public final void updateDrawState(TextPaint textPaint) {
+        int i10 = this.f32350c;
+        if (i10 >= 0) {
+            this.f32349b = org.telegram.ui.ActionBar.t6.v0(i10);
+        }
+        Typeface typeface = this.f32348a;
+        if (typeface != null) {
+            textPaint.setTypeface(typeface);
+        }
+        int i11 = this.f32349b;
+        if (i11 != 0) {
+            textPaint.setColor(i11);
+        }
+        textPaint.setFlags(textPaint.getFlags() | 128);
+    }
+
+    @Override
+    public final void updateMeasureState(TextPaint textPaint) {
+        Typeface typeface = this.f32348a;
+        if (typeface != null) {
+            textPaint.setTypeface(typeface);
+        }
+        textPaint.setFlags(textPaint.getFlags() | 128);
+    }
+
+    public x41() {
+        Typeface typeface = Typeface.DEFAULT;
+        this.f32350c = -1;
+        this.f32348a = typeface;
+    }
+
+    public x41(Typeface typeface, int i10) {
+        this.f32350c = -1;
+        this.f32348a = typeface;
+        this.f32349b = i10;
     }
 }

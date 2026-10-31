@@ -1,301 +1,160 @@
 package m4;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import bi.e6;
-import bi.md;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.concurrent.TimeUnit;
-import java.util.regex.Pattern;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.e3;
-import org.telegram.ui.ActionBar.f7;
-import org.telegram.ui.ActionBar.k3;
-import org.telegram.ui.ActionBar.o6;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.f2;
-import org.telegram.ui.Components.f4;
-import org.telegram.ui.Components.g4;
-import org.telegram.ui.Components.g5;
-import org.telegram.ui.Components.go;
-import org.telegram.ui.Components.j2;
-import org.telegram.ui.Components.k5;
-import org.telegram.ui.Components.kb1;
-import org.telegram.ui.Components.lz;
-import org.telegram.ui.Components.nd0;
-import org.telegram.ui.Components.nz;
-import org.telegram.ui.Components.y3;
-public final class v0 implements Runnable {
-    public final int f18267a;
-    public final Object f18268b;
-    public final Object f18269c;
-    public final Object d;
-    public final Object e;
+import android.graphics.RenderNode;
+import android.graphics.Typeface;
+import android.view.WindowManager;
+import com.google.android.gms.tasks.OnSuccessListener;
+import java.util.List;
+import org.telegram.messenger.f8;
+import org.telegram.messenger.l9;
+import org.telegram.messenger.v2;
+import org.telegram.ui.ActionBar.x1;
+import org.telegram.ui.Components.wb0;
+import v7.p8;
+public final class v0 implements g1, h1, e2.j, org.telegram.ui.ActionBar.u1, wb0, n2.l, d9.k, l9, OnSuccessListener {
+    public final int f12965a;
 
-    public v0(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f18267a = i10;
-        this.f18269c = obj;
-        this.d = obj2;
-        this.f18268b = obj3;
-        this.e = obj4;
+    public v0(int i10) {
+        this.f12965a = i10;
     }
 
-    private final void a() {
-        int x02;
-        int x03;
-        int x04;
-        int x05;
-        go goVar = (go) this.f18269c;
-        Context context = (Context) this.d;
-        u6 u6Var = (u6) this.e;
-        long j10 = goVar.V;
-        final org.telegram.ui.Components.p1 p1Var = new org.telegram.ui.Components.p1(16, goVar, (View) this.f18268b);
-        k5 k5Var = new k5(8);
-        int i10 = y6.f23465j5;
-        if (u6Var != null) {
-            x02 = u6Var.e(i10);
-        } else {
-            x02 = y6.x0(null, i10, false);
-        }
-        int i11 = x02;
-        int i12 = y6.f23428h5;
-        if (u6Var != null) {
-            x03 = u6Var.e(i12);
-        } else {
-            x03 = y6.x0(null, i12, false);
-        }
-        int i13 = x03;
-        int i14 = y6.Ji;
-        if (u6Var != null) {
-            u6Var.e(i14);
-        } else {
-            y6.x0(null, i14, false);
-        }
-        int i15 = y6.Ni;
-        if (u6Var != null) {
-            u6Var.e(i15);
-        } else {
-            y6.x0(null, i15, false);
-        }
-        int i16 = y6.E8;
-        if (u6Var != null) {
-            u6Var.e(i16);
-        } else {
-            y6.x0(null, i16, false);
-        }
-        int i17 = y6.G8;
-        if (u6Var != null) {
-            u6Var.e(i17);
-        } else {
-            y6.x0(null, i17, false);
-        }
-        int i18 = y6.f23449i6;
-        if (u6Var != null) {
-            u6Var.e(i18);
-        } else {
-            y6.x0(null, i18, false);
-        }
-        int i19 = y6.Sh;
-        if (u6Var != null) {
-            x04 = u6Var.e(i19);
-        } else {
-            x04 = y6.x0(null, i19, false);
-        }
-        int i20 = y6.Oh;
-        if (u6Var != null) {
-            x05 = u6Var.e(i20);
-        } else {
-            x05 = y6.x0(null, i20, false);
-        }
-        if (u6Var != null) {
-            u6Var.e(y6.Qh);
-        } else {
-            y6.x0(null, y6.Qh, false);
-        }
-        Pattern pattern = g5.f28387a;
-        if (context == null) {
-            return;
-        }
-        final int i21 = (int) MessagesController.getInstance(UserConfig.selectedAccount).config.pollClosePeriodMax.get(TimeUnit.SECONDS);
-        final e3 e3Var = new e3(context, u6Var);
-        e3Var.a();
-        int i22 = x04;
-        final nd0 nd0Var = new nd0(context, u6Var);
-        nd0Var.setTextColor(i11);
-        nd0Var.setTextOffset(AndroidUtilities.dp(10.0f));
-        nd0Var.setItemCount(5);
-        int i23 = x05;
-        final ?? nd0Var2 = new nd0(context, u6Var);
-        nd0Var2.setWrapSelectorWheel(true);
-        nd0Var2.setAllItemsCount(24);
-        nd0Var2.setItemCount(5);
-        nd0Var2.setTextColor(i11);
-        nd0Var2.setTextOffset(-AndroidUtilities.dp(10.0f));
-        final ?? nd0Var3 = new nd0(context, u6Var);
-        nd0Var3.setWrapSelectorWheel(true);
-        nd0Var3.setAllItemsCount(60);
-        nd0Var3.setItemCount(5);
-        nd0Var3.setTextColor(i11);
-        nd0Var3.setTextOffset(-AndroidUtilities.dp(34.0f));
-        FrameLayout frameLayout = new FrameLayout(context);
-        y3 y3Var = new y3(context, nd0Var, nd0Var2, nd0Var3, 2);
-        y3Var.setOrientation(1);
-        frameLayout.addView(y3Var, kb1.g(-1.0f, -1));
-        frameLayout.addView(new FrameLayout(context), kb1.h(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, 120.0f));
-        FrameLayout frameLayout2 = new FrameLayout(context);
-        y3Var.addView(frameLayout2, kb1.x(-1, -2, 51, 22, 0, 0, 4));
-        TextView textView = new TextView(context);
-        textView.setText(LocaleController.getString(R.string.StopPollDeadlineHeader));
-        textView.setTextColor(i11);
-        textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        frameLayout2.addView(textView, kb1.h(-2, -2.0f, 51, 0.0f, 12.0f, 0.0f, 0.0f));
-        textView.setOnTouchListener(new ei.d(10));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(0);
-        linearLayout.setWeightSum(1.0f);
-        y3Var.addView(linearLayout, kb1.t(-1, -2, 1.0f, 0, 0, 23, 0, 23));
-        final TextView textView2 = new TextView(context);
-        textView2.setTextSize(1, 12.0f);
-        f7.V(textView2, y6.q5, u6Var);
-        textView2.setGravity(17);
-        final Calendar calendar = Calendar.getInstance();
-        md mdVar = new md(context, 16);
-        mdVar.setText(LocaleController.getString(R.string.StopPollDeadlineButton));
-        kb1.c(mdVar, 0.02f, 1.2f);
-        linearLayout.addView(nd0Var, kb1.p(0.5f, 0, 270));
-        nd0Var.setMinValue(0);
-        nd0Var.setMaxValue(365);
-        nd0Var.setWrapSelectorWheel(false);
-        nd0Var.setFormatter(new f2(2));
-        e6 e6Var = new e6(i21, nd0Var, (f4) nd0Var2, (g4) nd0Var3, textView2);
-        nd0Var.setOnValueChangedListener(e6Var);
-        nd0Var2.setMinValue(0);
-        nd0Var2.setMaxValue(23);
-        linearLayout.addView((View) nd0Var2, kb1.p(0.2f, 0, 270));
-        nd0Var2.setFormatter(new f2(3));
-        nd0Var2.setOnValueChangedListener(e6Var);
-        nd0Var3.setMinValue(0);
-        nd0Var3.setMaxValue(59);
-        nd0Var3.setValue(0);
-        nd0Var3.setFormatter(new f2(4));
-        linearLayout.addView((View) nd0Var3, kb1.p(0.3f, 0, 270));
-        nd0Var3.setOnValueChangedListener(e6Var);
-        if (j10 > 0 && j10 != 2147483646) {
-            long j11 = 1000 * j10;
-            calendar.setTimeInMillis(System.currentTimeMillis());
-            calendar.set(12, 0);
-            calendar.set(13, 0);
-            calendar.set(14, 0);
-            calendar.set(11, 0);
-            int timeInMillis = (int) ((j11 - calendar.getTimeInMillis()) / 86400000);
-            calendar.setTimeInMillis(j11);
-            if (timeInMillis >= 0) {
-                nd0Var3.setValue(calendar.get(12));
-                nd0Var2.setValue(calendar.get(11));
-                nd0Var.setValue(timeInMillis);
-            }
-        }
-        final boolean[] zArr = {true};
-        g5.g(null, null, 0L, i21, 3, nd0Var, nd0Var2, nd0Var3);
-        g5.e(textView2, nd0Var, nd0Var2, nd0Var3);
-        mdVar.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
-        mdVar.setGravity(17);
-        mdVar.setTextColor(i22);
-        mdVar.setTextSize(1, 14.0f);
-        mdVar.setTypeface(AndroidUtilities.bold());
-        mdVar.setBackground(o6.e(new float[]{24.0f}, i23));
-        y3Var.addView(mdVar, kb1.x(-1, 48, 83, 14, 15, 14, 16));
-        mdVar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                Runnable runnable;
-                zArr[0] = false;
-                nd0 nd0Var4 = nd0Var;
-                f4 f4Var = nd0Var2;
-                g4 g4Var = nd0Var3;
-                boolean g7 = g5.g(null, null, 0L, i21, 3, nd0Var4, f4Var, g4Var);
-                g5.e(textView2, nd0Var4, f4Var, g4Var);
-                long currentTimeMillis = System.currentTimeMillis();
-                Calendar calendar2 = calendar;
-                calendar2.setTimeInMillis(currentTimeMillis);
-                calendar2.add(6, nd0Var4.getValue());
-                calendar2.set(11, f4Var.getValue());
-                calendar2.set(12, g4Var.getValue());
-                if (g7) {
-                    calendar2.set(13, 0);
-                    calendar2.set(14, 0);
-                }
-                p1Var.G((int) (calendar2.getTimeInMillis() / 1000), 0, true);
-                runnable = e3Var.f22602a.dismissRunnable;
-                runnable.run();
-            }
-        });
-        y3Var.addView(textView2, kb1.x(-1, -2, 83, 14, 0, 14, 16));
-        e3Var.b(frameLayout);
-        k3 k3Var = e3Var.f22602a;
-        k3Var.show();
-        k3Var.setOnDismissListener(new j2(0, k5Var, zArr));
-        k3Var.setBackgroundColor(i13);
-        k3Var.fixNavigationBar(i13);
+    public static RenderNode b(Object obj) {
+        return (RenderNode) obj;
     }
 
-    private final void b() {
-        lz lzVar = (lz) this.f18269c;
-        TLRPC.TL_messages_getStickers tL_messages_getStickers = (TLRPC.TL_messages_getStickers) this.d;
-        TLObject tLObject = (TLObject) this.f18268b;
-        Runnable runnable = (Runnable) this.e;
-        ArrayList arrayList = lzVar.f30320s;
-        nz nzVar = lzVar.f30321w;
-        if (nzVar.M != lzVar.f30315b) {
-            return;
-        }
-        nzVar.L = 0;
-        if (tL_messages_getStickers.emoticon.equals(lzVar.f30314a)) {
-            if (!(tLObject instanceof TLRPC.TL_messages_stickers)) {
-                runnable.run();
-                return;
-            }
-            TLRPC.TL_messages_stickers tL_messages_stickers = (TLRPC.TL_messages_stickers) tLObject;
-            int size = arrayList.size();
-            int size2 = tL_messages_stickers.stickers.size();
-            for (int i10 = 0; i10 < size2; i10++) {
-                TLRPC.Document document = tL_messages_stickers.stickers.get(i10);
-                if (lzVar.v.indexOfKey(document.f22034id) < 0) {
-                    arrayList.add(document);
-                }
-            }
-            if (size != arrayList.size()) {
-                lzVar.f30317f.put(arrayList, nzVar.N);
-                if (size == 0) {
-                    lzVar.h.add(arrayList);
-                }
-            }
-        }
-        runnable.run();
+    public static void c(WindowManager.LayoutParams layoutParams, int i10) {
+        layoutParams.layoutInDisplayCutoutMode = i10;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: m4.v0.run():void");
+    public void a(n1 n1Var, w wVar, List list) {
+        switch (this.f12965a) {
+            case 0:
+                n1Var.x0(list);
+                return;
+            default:
+                n1Var.x0(list);
+                return;
+        }
     }
 
-    public v0(f0 f0Var, Object obj, Object obj2, Object obj3, int i10) {
-        this.f18267a = i10;
-        this.f18268b = f0Var;
-        this.f18269c = obj;
-        this.d = obj2;
-        this.e = obj3;
+    @Override
+    public void accept(Object obj) {
+        n1 n1Var = (n1) obj;
+        switch (this.f12965a) {
+            case 3:
+                n1Var.stop();
+                return;
+            case 4:
+                n1Var.b0();
+                return;
+            case 5:
+                n1Var.G();
+                return;
+            case 6:
+            default:
+                n1Var.u();
+                return;
+            case 7:
+                n1Var.a();
+                return;
+        }
+    }
+
+    @Override
+    public Object apply(Object obj) {
+        o2.q qVar = (o2.q) obj;
+        qVar.e();
+        return e9.n0.u(e9.s.x(qVar.Y.f49994b, new th.m1(4)));
+    }
+
+    @Override
+    public String e(int i10) {
+        switch (this.f12965a) {
+            case 14:
+                return String.valueOf(i10);
+            default:
+                return String.format("%02d", Integer.valueOf(i10 * 5));
+        }
+    }
+
+    @Override
+    public Object f(f0 f0Var, w wVar, int i10) {
+        switch (this.f12965a) {
+            case 2:
+                f0Var.getClass();
+                throw new ClassCastException();
+            case 6:
+                f0Var.getClass();
+                throw new ClassCastException();
+            case 8:
+                f0Var.getClass();
+                throw new ClassCastException();
+            case 10:
+                f0Var.getClass();
+                throw new ClassCastException();
+            default:
+                oa.d dVar = f0Var.e;
+                f0Var.s(wVar);
+                dVar.getClass();
+                return p8.b(new t1(-6));
+        }
+    }
+
+    @Override
+    public void h(x1 x1Var, int i10) {
+        switch (this.f12965a) {
+            case 13:
+                return;
+            case 14:
+            case 15:
+            default:
+                x1Var.dismiss();
+                return;
+            case 16:
+                x1Var.dismiss();
+                return;
+            case 17:
+                x1Var.dismiss();
+                return;
+        }
+    }
+
+    @Override
+    public Object l(Object obj) {
+        Integer num = (Integer) obj;
+        switch (this.f12965a) {
+            case 24:
+                Typeface typeface = org.telegram.messenger.i0.f15999a;
+                return "%s";
+            default:
+                return "%" + (num.intValue() + 1) + "$s";
+        }
+    }
+
+    @Override
+    public void onSuccess(Object obj) {
+        Void r12 = (Void) obj;
+        boolean z10 = v2.f18448a;
+        f8.b("sms listener registered");
+    }
+
+    public v0(Object obj, int i10) {
+        this.f12965a = i10;
+    }
+
+    public v0(String str, int i10, int i11, r rVar) {
+        this.f12965a = 2;
+    }
+
+    public v0(String str, r rVar, int i10) {
+        this.f12965a = i10;
+    }
+
+    @Override
+    public void release() {
+    }
+
+    private final void d(x1 x1Var, int i10) {
     }
 }

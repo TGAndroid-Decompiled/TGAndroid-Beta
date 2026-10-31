@@ -1,32 +1,43 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
-public final class xe0 implements NotificationCenter.NotificationCenterDelegate {
-    public final int f34744a;
-    public final Utilities.Callback f34745b;
-    public final NotificationCenter.NotificationCenterDelegate[] f34746c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class xe0 extends AnimatorListenerAdapter {
+    public final int f32463a;
+    public final ye0 f32464b;
 
-    public xe0(int i10, Utilities.Callback callback, NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr) {
-        this.f34744a = i10;
-        this.f34745b = callback;
-        this.f34746c = notificationCenterDelegateArr;
+    public xe0(ye0 ye0Var, int i10) {
+        this.f32463a = i10;
+        this.f32464b = ye0Var;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        int i12 = NotificationCenter.activityPermissionsGranted;
-        if (i10 == i12) {
-            int intValue = ((Integer) objArr[0]).intValue();
-            String[] strArr = (String[]) objArr[1];
-            int[] iArr = (int[]) objArr[2];
-            if (intValue == this.f34744a) {
-                Utilities.Callback callback = this.f34745b;
-                if (callback != null) {
-                    callback.run(iArr);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f32463a) {
+            case 0:
+                ye0 ye0Var = this.f32464b;
+                ye0Var.h = false;
+                ye0Var.f32701a = ye0Var.f32703c;
+                ye0Var.invalidate();
+                int i10 = ye0Var.J;
+                if (i10 >= 0) {
+                    ye0Var.b(i10);
+                    ye0Var.J = -1;
+                    return;
                 }
-                NotificationCenter.getGlobalInstance().removeObserver(this.f34746c[0], i12);
-            }
+                return;
+            default:
+                ye0 ye0Var2 = this.f32464b;
+                ye0Var2.f32705n = false;
+                ye0Var2.h = false;
+                ye0Var2.invalidate();
+                int i11 = ye0Var2.J;
+                if (i11 >= 0) {
+                    ye0Var2.b(i11);
+                    ye0Var2.J = -1;
+                }
+                ye0Var2.a();
+                return;
         }
     }
 }

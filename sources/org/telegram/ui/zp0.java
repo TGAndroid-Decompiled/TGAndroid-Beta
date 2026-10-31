@@ -1,46 +1,21 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import java.util.ArrayList;
-import java.util.HashMap;
-public final class zp0 implements sq0 {
-    public final HashMap f46336a;
-    public final ArrayList f46337b;
-    public final cq0 f46338c;
+import android.app.Activity;
+import org.telegram.tgnet.TLObject;
+public final class zp0 extends org.telegram.ui.Components.cx0 {
+    public final aq0 f44211o2;
 
-    public zp0(cq0 cq0Var, HashMap hashMap, ArrayList arrayList) {
-        this.f46338c = cq0Var;
-        this.f46336a = hashMap;
-        this.f46337b = arrayList;
+    public zp0(aq0 aq0Var, Activity activity, org.telegram.messenger.jj jjVar, TLObject tLObject, org.telegram.ui.ActionBar.p6 p6Var) {
+        super(activity, jjVar, tLObject, p6Var);
+        this.f44211o2 = aq0Var;
     }
 
     @Override
-    public final void b(Editable editable) {
-        cq0 cq0Var = this.f46338c;
-        org.telegram.ui.Components.ru ruVar = cq0Var.M;
-        cq0Var.f38432a = editable;
-        ruVar.setText(editable);
-    }
-
-    @Override
-    public final void d(int i10, boolean z10, boolean z11) {
-        cq0 cq0Var = this.f46338c;
-        cq0Var.removeSelfFromStack();
-        if (!z10) {
-            cq0Var.W(this.f46336a, this.f46337b, z11, i10);
+    public final void dismiss() {
+        super.dismiss();
+        PhotoViewer photoViewer = this.f44211o2.f35697b;
+        if (photoViewer.U3 == this) {
+            photoViewer.U3 = null;
         }
-    }
-
-    @Override
-    public final boolean e() {
-        return true;
-    }
-
-    @Override
-    public final void a() {
-    }
-
-    @Override
-    public final void c() {
     }
 }

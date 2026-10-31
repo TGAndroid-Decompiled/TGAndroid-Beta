@@ -1,22 +1,56 @@
 package xh;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-import org.telegram.messenger.Emoji;
-public final class b extends ReplacementSpan {
-    public final Emoji.EmojiSpan f51889a;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class b implements RequestDelegate {
+    public final int f53693a;
+    public final i f53694b;
+    public final org.telegram.ui.ActionBar.x1 f53695c;
 
-    public b(Emoji.EmojiSpan emojiSpan) {
-        this.f51889a = emojiSpan;
+    public b(i iVar, org.telegram.ui.ActionBar.x1 x1Var, int i10) {
+        this.f53693a = i10;
+        this.f53694b = iVar;
+        this.f53695c = x1Var;
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        return this.f51889a.getSize(paint, charSequence, i10, i11, fontMetricsInt);
-    }
-
-    @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f53693a) {
+            case 0:
+                final i iVar = this.f53694b;
+                final org.telegram.ui.ActionBar.x1 x1Var = this.f53695c;
+                org.telegram.messenger.i0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r5) {
+                            case 0:
+                                i.A0(iVar, x1Var, tLObject, tL_error);
+                                return;
+                            default:
+                                i.B0(iVar, x1Var, tLObject, tL_error);
+                                return;
+                        }
+                    }
+                });
+                return;
+            default:
+                final i iVar2 = this.f53694b;
+                final org.telegram.ui.ActionBar.x1 x1Var2 = this.f53695c;
+                org.telegram.messenger.i0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r5) {
+                            case 0:
+                                i.A0(iVar2, x1Var2, tLObject, tL_error);
+                                return;
+                            default:
+                                i.B0(iVar2, x1Var2, tLObject, tL_error);
+                                return;
+                        }
+                    }
+                });
+                return;
+        }
     }
 }

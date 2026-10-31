@@ -1,59 +1,70 @@
 package org.telegram.ui.Components;
 
+import android.content.DialogInterface;
 import android.view.View;
-public final class r0 implements View.OnClickListener {
-    public final int f32073a;
-    public final boolean[] f32074b;
+public final class r0 implements DialogInterface.OnDismissListener {
+    public final int f29790a;
+    public final Object f29791b;
 
-    public r0(int i10, boolean[] zArr) {
-        this.f32073a = i10;
-        this.f32074b = zArr;
+    public r0(Object obj, int i10) {
+        this.f29790a = i10;
+        this.f29791b = obj;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f32073a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        int i10 = this.f29790a;
+        Object obj = this.f29791b;
+        switch (i10) {
             case 0:
-                boolean[] zArr = this.f32074b;
-                boolean z10 = !zArr[0];
-                zArr[0] = z10;
-                ((org.telegram.ui.Cells.y1) view).c(z10, true);
+                ((org.telegram.ui.lg) obj).run();
                 return;
             case 1:
-                boolean[] zArr2 = this.f32074b;
-                boolean z11 = !zArr2[0];
-                zArr2[0] = z11;
-                ((org.telegram.ui.Cells.y1) view).c(z11, true);
+                org.telegram.messenger.i0.v1((r4) obj);
                 return;
             case 2:
-                boolean[] zArr3 = this.f32074b;
-                boolean z12 = !zArr3[0];
-                zArr3[0] = z12;
-                ((org.telegram.ui.Cells.y1) view).c(z12, true);
+                org.telegram.messenger.i0.v1((y3) obj);
                 return;
             case 3:
-                boolean[] zArr4 = this.f32074b;
-                boolean z13 = !zArr4[0];
-                zArr4[0] = z13;
-                ((org.telegram.ui.Cells.y1) view).c(z13, true);
+                ((ChatActivityEnterView) obj).L0 = null;
                 return;
             case 4:
-                boolean[] zArr5 = this.f32074b;
-                boolean z14 = !zArr5[0];
-                zArr5[0] = z14;
-                ((org.telegram.ui.Cells.y1) view).c(z14, true);
+                ((bi) obj).f24739w4 = false;
                 return;
             case 5:
-                boolean[] zArr6 = this.f32074b;
-                boolean z15 = !zArr6[0];
-                zArr6[0] = z15;
-                ((org.telegram.ui.Cells.y1) view).c(z15, true);
+                kk kkVar = (kk) obj;
+                kkVar.T0 = null;
+                kkVar.S.post(new ek(kkVar, 2));
+                return;
+            case 6:
+                mt mtVar = (mt) obj;
+                mtVar.V1 = null;
+                mtVar.requestFocus();
+                return;
+            case 7:
+                float[] fArr = FragmentContextView.W0;
+                ((FragmentContextView) obj).c(false);
+                return;
+            case 8:
+                rm0.H = null;
+                ((View) obj).requestFocus();
+                return;
+            case 9:
+                org.telegram.messenger.i0.v1((lm0) obj);
                 return;
             default:
-                boolean[] zArr7 = this.f32074b;
-                boolean z16 = !zArr7[0];
-                zArr7[0] = z16;
-                ((org.telegram.ui.Cells.y1) view).c(z16, true);
+                ThemeEditorView themeEditorView = ((i01) obj).d;
+                themeEditorView.f24218n = null;
+                if (themeEditorView.d != null) {
+                    org.telegram.messenger.i0.x3(themeEditorView.f24214j, themeEditorView.f24210c, themeEditorView.f24213i);
+                    try {
+                        themeEditorView.f24214j.addView(themeEditorView.f24210c, themeEditorView.f24213i);
+                        themeEditorView.e();
+                        return;
+                    } catch (Exception unused) {
+                        return;
+                    }
+                }
                 return;
         }
     }

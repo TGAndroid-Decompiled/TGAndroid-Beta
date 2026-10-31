@@ -1,30 +1,37 @@
 package jf;
 
-import com.google.android.gms.internal.cast.f4;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ThreadPoolExecutor;
-import org.telegram.messenger.FileLog;
-public final class a extends ThreadPoolExecutor implements AutoCloseable {
-    public final c f15612a;
+import android.app.Activity;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.i0;
+import org.telegram.ui.LaunchActivity;
+public final class a extends FrameLayout {
+    public final Activity f9833a;
+    public int f9834b;
+    public int f9835c;
+    public boolean d;
 
-    public a(jf.c r8, java.util.concurrent.PriorityBlockingQueue r9) {
-        throw new UnsupportedOperationException("Method not decompiled: jf.a.<init>(jf.c, java.util.concurrent.PriorityBlockingQueue):void");
+    public a(LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.f9833a = launchActivity;
     }
 
     @Override
-    public final void beforeExecute(Thread thread, Runnable runnable) {
-        CountDownLatch countDownLatch = this.f15612a.f15616b;
-        if (countDownLatch != null) {
-            try {
-                countDownLatch.await();
-            } catch (InterruptedException e) {
-                FileLog.e(e);
-            }
+    public final void onMeasure(int i10, int i11) {
+        boolean z10;
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        boolean H1 = i0.H1(this.f9833a);
+        if (!H1) {
+            this.f9834b = size;
+            this.f9835c = size2;
         }
-    }
-
-    @Override
-    public final void close() {
-        f4.f(this);
+        if (H1 && size < this.f9834b && size2 < this.f9835c) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.d = z10;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
     }
 }

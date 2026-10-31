@@ -1,8 +1,38 @@
 package org.telegram.ui.ActionBar;
-public abstract class j {
-    public boolean a() {
-        return true;
+
+import android.content.Context;
+import android.widget.FrameLayout;
+import org.telegram.ui.uw;
+public final class j extends n {
+    public final int d = 0;
+    public final FrameLayout e;
+
+    public j(uw uwVar, Context context, ac.a aVar) {
+        super(context, null, aVar);
+        this.e = uwVar;
     }
 
-    public abstract void b(int i10);
+    @Override
+    public final void b(fe.m mVar) {
+        switch (this.d) {
+            case 0:
+                super.b(mVar);
+                float totalVisibility = getTotalVisibility();
+                org.telegram.ui.Cells.a5 a5Var = ((kg.g1) this.e).F0;
+                if (a5Var != null) {
+                    a5Var.setTranslationY(totalVisibility * org.telegram.messenger.i0.L(-11.0f));
+                    return;
+                }
+                return;
+            default:
+                super.b(mVar);
+                ((uw) this.e).invalidate();
+                return;
+        }
+    }
+
+    public j(kg.g1 g1Var, Context context, p6 p6Var, ac.a aVar) {
+        super(context, p6Var, aVar);
+        this.e = g1Var;
+    }
 }

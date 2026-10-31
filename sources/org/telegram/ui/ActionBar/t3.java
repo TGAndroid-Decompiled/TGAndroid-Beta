@@ -1,35 +1,25 @@
 package org.telegram.ui.ActionBar;
+public final class t3 {
+    public static final t3 f20861a;
+    public static final t3 f20862b;
+    public static final t3 f20863c;
+    public static final t3[] d;
 
-import android.animation.ValueAnimator;
-public final class t3 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f23098a;
-    public final b4 f23099b;
-
-    public t3(b4 b4Var, int i10) {
-        this.f23098a = i10;
-        this.f23099b = b4Var;
+    static {
+        ?? r02 = new Enum("NONE", 0);
+        f20861a = r02;
+        ?? r12 = new Enum("VERTICAL", 1);
+        f20862b = r12;
+        ?? r32 = new Enum("FULL", 2);
+        f20863c = r32;
+        d = new t3[]{r02, r12, r32};
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f23098a) {
-            case 0:
-                b4 b4Var = this.f23099b;
-                b4Var.getClass();
-                b4Var.V = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                b4Var.invalidate();
-                return;
-            case 1:
-                b4 b4Var2 = this.f23099b;
-                b4Var2.getClass();
-                b4Var2.e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                b4Var2.invalidate();
-                return;
-            default:
-                b4 b4Var3 = this.f23099b;
-                b4Var3.getClass();
-                b4Var3.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                return;
-        }
+    public static t3 valueOf(String str) {
+        return (t3) Enum.valueOf(t3.class, str);
+    }
+
+    public static t3[] values() {
+        return (t3[]) d.clone();
     }
 }

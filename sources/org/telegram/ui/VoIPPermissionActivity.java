@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import java.util.ArrayList;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.voip.VoIPPreNotificationService;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.tl.TL_phone;
@@ -42,7 +41,7 @@ public class VoIPPermissionActivity extends Activity {
                 }
                 requestPermissions(strArr, i10);
             } catch (Exception e) {
-                FileLog.e(e);
+                org.telegram.messenger.f8.g(e, true);
             }
         }
     }
@@ -79,7 +78,7 @@ public class VoIPPermissionActivity extends Activity {
             } else {
                 VoIPPreNotificationService.decline(this, 1);
             }
-            org.telegram.ui.Components.voip.g2.h(this, new oy0(this, 29), i10);
+            org.telegram.ui.Components.voip.m1.h(this, new ce1(this, 0), i10);
         } else {
             finish();
         }

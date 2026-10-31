@@ -1,338 +1,361 @@
 package ag;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.text.TextUtils;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
-import org.telegram.messenger.BaseController;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.UserObject;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.d20;
+import org.telegram.messenger.fs;
+import org.telegram.messenger.jj;
+import org.telegram.messenger.m20;
+import org.telegram.messenger.qi;
+import org.telegram.messenger.ri;
+import org.telegram.messenger.u3;
+import org.telegram.messenger.ui;
+import org.telegram.messenger.voip.NativeInstance;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.messenger.vp;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_bots;
-import org.telegram.tgnet.tl.TL_ephemeral;
-import org.telegram.tgnet.tl.TL_iv;
-public final class b0 extends BaseController {
-    public static volatile b0[] f1253a = new b0[4];
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.UndoView;
+import org.telegram.ui.Components.ac0;
+import org.telegram.ui.Components.bb;
+import org.telegram.ui.Components.cc;
+import org.telegram.ui.Components.lm0;
+import org.telegram.ui.Components.r4;
+import org.telegram.ui.Components.wb;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PasscodeActivity;
+import org.telegram.ui.SessionsActivity;
+import org.telegram.ui.StickersActivity;
+import org.telegram.ui.b40;
+import org.telegram.ui.f40;
+import org.telegram.ui.hh;
+import org.telegram.ui.q8;
+import org.telegram.ui.un;
+import org.telegram.ui.yb0;
+public final class b0 implements org.telegram.ui.ActionBar.u1, e2.o, m4.o0, e2.j, NativeInstance.PayloadCallback, m20, t5.b, ri {
+    public final int f465a;
+    public final int f466b;
+    public final Object f467c;
+    public final Object d;
 
-    public static TLRPC.TL_message b(TL_ephemeral.EphemeralMessage ephemeralMessage) {
-        int i10;
-        int i11;
-        TLRPC.TL_message tL_message = new TLRPC.TL_message();
-        tL_message.out = ephemeralMessage.out;
-        tL_message.f22049id = MessageObject.ephemeralMessageIdPack(ephemeralMessage.f22241id);
-        TLRPC.Peer peer = ephemeralMessage.from_id;
-        if (peer != null) {
-            tL_message.from_id = peer;
-            tL_message.flags |= 256;
+    public b0(int i10, Object obj, Object obj2, int i11) {
+        this.f465a = i11;
+        this.f466b = i10;
+        this.f467c = obj;
+        this.d = obj2;
+    }
+
+    @Override
+    public void accept(java.lang.Object r5) {
+        throw new UnsupportedOperationException("Method not decompiled: ag.b0.accept(java.lang.Object):void");
+    }
+
+    @Override
+    public void b(m4.w wVar) {
+        byte[] bArr;
+        m4.p0 p0Var = (m4.p0) this.f467c;
+        n4.h hVar = (n4.h) this.d;
+        if (TextUtils.isEmpty(hVar.f13498a)) {
+            e2.a.l("MediaSessionLegacyStub", "onAddQueueItem(): Media ID shouldn't be empty");
+            return;
         }
-        tL_message.peer_id = ephemeralMessage.peer_id;
-        int i12 = ephemeralMessage.anchor_msg_id;
-        tL_message.ephemeralAnchorMsgId = i12;
-        if (!ephemeralMessage.welcome && i12 == 0) {
-            tL_message.ephemeralReceiverBotId = ephemeralMessage.receiver_id;
+        int i10 = m4.o.f12868a;
+        String str = hVar.f13498a;
+        b2.d0 d0Var = new b2.d0();
+        e9.l0 l0Var = e9.n0.f6390b;
+        e9.x1 x1Var = e9.x1.e;
+        List list = Collections.EMPTY_LIST;
+        b2.i0 i0Var = new b2.i0();
+        b2.l0 l0Var2 = b2.l0.d;
+        if (str == null) {
+            str = "";
+        }
+        String str2 = str;
+        int i11 = 4;
+        android.support.v4.media.session.a0 a0Var = new android.support.v4.media.session.a0(4);
+        a0Var.f875b = hVar.f13503r;
+        b2.l0 l0Var3 = new b2.l0(a0Var);
+        CharSequence charSequence = hVar.f13499b;
+        b2.r0 r0Var = new b2.r0();
+        r0Var.f2202f = hVar.f13500c;
+        r0Var.f2203g = hVar.d;
+        r0Var.f2209n = hVar.h;
+        Bundle bundle = null;
+        r0Var.f2204i = m4.o.c(null);
+        Bitmap bitmap = hVar.e;
+        if (bitmap == null) {
+            bArr = null;
         } else {
-            tL_message.ephemeralReceiverBotId = -1L;
-        }
-        tL_message.date = ephemeralMessage.date;
-        tL_message.message = ephemeralMessage.message;
-        if (ephemeralMessage.noforwards) {
-            tL_message.noforwards = true;
-            tL_message.flags |= 67108864;
-        }
-        if (ephemeralMessage.invert_media) {
-            tL_message.invert_media = true;
-            tL_message.flags |= 134217728;
-        }
-        TL_iv.RichMessage richMessage = ephemeralMessage.rich_message;
-        if (richMessage != null) {
-            tL_message.rich_message = richMessage;
-            tL_message.flags2 |= 8192;
-        }
-        ArrayList<TLRPC.MessageEntity> arrayList = ephemeralMessage.entities;
-        if (arrayList != null && !arrayList.isEmpty()) {
-            tL_message.entities = ephemeralMessage.entities;
-            tL_message.flags |= 128;
-        }
-        TLRPC.MessageMedia messageMedia = ephemeralMessage.media;
-        if (messageMedia != null && ephemeralMessage.rich_message == null) {
-            tL_message.media = messageMedia;
-            tL_message.flags |= 512;
-        }
-        TLRPC.ReplyMarkup replyMarkup = ephemeralMessage.reply_markup;
-        if (replyMarkup != null) {
-            tL_message.reply_markup = replyMarkup;
-            tL_message.flags |= 64;
-        }
-        long j10 = ephemeralMessage.via_bot_id;
-        if (j10 != 0) {
-            tL_message.via_bot_id = j10;
-            tL_message.flags |= 2048;
-        }
-        TLRPC.MessageReplyHeader messageReplyHeader = ephemeralMessage.reply_to;
-        if (messageReplyHeader != null) {
-            TLRPC.MessageReplyHeader messageReplyHeader2 = (TLRPC.MessageReplyHeader) TLObject.deepCopy(messageReplyHeader, new w(0));
-            tL_message.reply_to = messageReplyHeader2;
-            if (ephemeralMessage.reply_to.reply_to_ephemeral && (i11 = messageReplyHeader2.reply_to_msg_id) != 0) {
-                messageReplyHeader2.reply_to_msg_id = MessageObject.ephemeralMessageIdPack(i11);
-                tL_message.reply_to.reply_to_msg_id |= 16;
-            }
-            TLRPC.MessageReplyHeader messageReplyHeader3 = tL_message.reply_to;
-            if (messageReplyHeader3.reply_to_top_id == 0 && (i10 = ephemeralMessage.top_msg_id) != 0) {
-                messageReplyHeader3.reply_to_top_id = i10;
-                messageReplyHeader3.forum_topic = true;
-                messageReplyHeader3.flags |= 2;
-            }
-            tL_message.flags |= 8;
-        } else if (ephemeralMessage.top_msg_id != 0) {
-            TLRPC.TL_messageReplyHeader tL_messageReplyHeader = new TLRPC.TL_messageReplyHeader();
-            tL_message.reply_to = tL_messageReplyHeader;
-            tL_messageReplyHeader.reply_to_top_id = ephemeralMessage.top_msg_id;
-            tL_messageReplyHeader.forum_topic = true;
-            tL_messageReplyHeader.flags |= 2;
-            tL_message.flags |= 8;
-        }
-        MessageObject.getDialogId(tL_message);
-        return tL_message;
-    }
-
-    public static TL_ephemeral.TL_ephemeralMessage c(TLRPC.Message message, int i10) {
-        TL_ephemeral.TL_ephemeralMessage tL_ephemeralMessage = new TL_ephemeral.TL_ephemeralMessage();
-        tL_ephemeralMessage.out = message.out;
-        tL_ephemeralMessage.invert_media = message.invert_media;
-        tL_ephemeralMessage.noforwards = message.noforwards;
-        tL_ephemeralMessage.f22241id = MessageObject.ephemeralMessageIdUnpack(message.f22049id);
-        tL_ephemeralMessage.from_id = message.from_id;
-        tL_ephemeralMessage.peer_id = message.peer_id;
-        tL_ephemeralMessage.receiver_id = message.ephemeralReceiverBotId;
-        if (i10 != 0) {
-            tL_ephemeralMessage.top_msg_id = i10;
-            tL_ephemeralMessage.flags |= 2;
-        }
-        tL_ephemeralMessage.date = message.date;
-        tL_ephemeralMessage.message = message.message;
-        tL_ephemeralMessage.entities = message.entities;
-        tL_ephemeralMessage.media = message.media;
-        tL_ephemeralMessage.reply_markup = message.reply_markup;
-        tL_ephemeralMessage.reply_to = message.reply_to;
-        tL_ephemeralMessage.rich_message = message.rich_message;
-        tL_ephemeralMessage.via_bot_id = message.via_bot_id;
-        tL_ephemeralMessage.anchor_msg_id = message.ephemeralAnchorMsgId;
-        return tL_ephemeralMessage;
-    }
-
-    public static b0 g(int i10) {
-        b0 b0Var;
-        b0 b0Var2 = f1253a[i10];
-        if (b0Var2 == null) {
-            synchronized (b0.class) {
+            if (hVar.f13501f == null) {
                 try {
-                    b0Var = f1253a[i10];
-                    if (b0Var == null) {
-                        ?? r02 = f1253a;
-                        ?? baseController = new BaseController(i10);
-                        r02[i10] = baseController;
-                        b0Var = baseController;
-                    }
-                } catch (Throwable th2) {
-                    throw th2;
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 0, byteArrayOutputStream);
+                    hVar.f13501f = byteArrayOutputStream.toByteArray();
+                    byteArrayOutputStream.close();
+                } catch (IOException e) {
+                    e2.a.m("MediaDescriptionCompat", "Failed to compress MediaDescriptionCompat artwork", e);
                 }
             }
-            return b0Var;
+            bArr = hVar.f13501f;
         }
-        return b0Var2;
+        if (bArr != null) {
+            r0Var.b(bArr, 3);
+        }
+        Bundle bundle2 = hVar.f13502n;
+        if (bundle2 != null) {
+            bundle = new Bundle(bundle2);
+        }
+        if (bundle != null && bundle.containsKey("android.media.extra.BT_FOLDER_TYPE")) {
+            long j10 = bundle.getLong("android.media.extra.BT_FOLDER_TYPE");
+            if (j10 != 0) {
+                if (j10 == 1) {
+                    i11 = 1;
+                } else if (j10 == 2) {
+                    i11 = 2;
+                } else if (j10 == 3) {
+                    i11 = 3;
+                } else if (j10 != 4) {
+                    if (j10 == 5) {
+                        i11 = 5;
+                    } else if (j10 == 6) {
+                        i11 = 6;
+                    }
+                }
+                r0Var.f2212q = Integer.valueOf(i11);
+                bundle.remove("android.media.extra.BT_FOLDER_TYPE");
+            }
+            i11 = 0;
+            r0Var.f2212q = Integer.valueOf(i11);
+            bundle.remove("android.media.extra.BT_FOLDER_TYPE");
+        }
+        r0Var.f2213r = Boolean.FALSE;
+        if (bundle != null && bundle.containsKey("androidx.media3.session.EXTRAS_KEY_MEDIA_TYPE_COMPAT")) {
+            r0Var.H = Integer.valueOf((int) bundle.getLong("androidx.media3.session.EXTRAS_KEY_MEDIA_TYPE_COMPAT"));
+            bundle.remove("androidx.media3.session.EXTRAS_KEY_MEDIA_TYPE_COMPAT");
+        }
+        if (bundle != null && bundle.containsKey("androidx.media.utils.extras.CUSTOM_BROWSER_ACTION_ID_LIST")) {
+            ArrayList<String> stringArrayList = bundle.getStringArrayList("androidx.media.utils.extras.CUSTOM_BROWSER_ACTION_ID_LIST");
+            stringArrayList.getClass();
+            r0Var.J = e9.n0.u(e9.n0.u(stringArrayList));
+        }
+        if (bundle != null && bundle.containsKey("androidx.media3.mediadescriptioncompat.title")) {
+            r0Var.f2199a = bundle.getCharSequence("androidx.media3.mediadescriptioncompat.title");
+            r0Var.e = charSequence;
+            bundle.remove("androidx.media3.mediadescriptioncompat.title");
+        } else {
+            r0Var.f2199a = charSequence;
+        }
+        if (bundle != null && !bundle.isEmpty()) {
+            r0Var.I = bundle;
+        }
+        r0Var.f2214s = Boolean.TRUE;
+        j9.y l4 = p0Var.h.l(wVar, e9.n0.y(new b2.p0(str2, new b2.e0(d0Var), null, new b2.j0(i0Var), new b2.s0(r0Var), l0Var3)));
+        l4.a(new j9.u(0, l4, new a5.a(p0Var, wVar, this.f466b)), j9.r.f9763a);
     }
 
-    public final boolean a(TLObject tLObject, List list, Utilities.Callback callback) {
-        TLRPC.ChatFull chatFull;
-        TLRPC.ChatFull chatFull2;
-        if (list == null || list.isEmpty() || (tLObject instanceof TL_ephemeral.TL_sendMessage)) {
-            return true;
-        }
-        if (tLObject instanceof TLRPC.TL_messages_sendMessage) {
-            TLRPC.TL_messages_sendMessage tL_messages_sendMessage = (TLRPC.TL_messages_sendMessage) tLObject;
-            if (tL_messages_sendMessage.ephemeralReceiverBotId != 0) {
-                TL_ephemeral.TL_sendMessage tL_sendMessage = new TL_ephemeral.TL_sendMessage();
-                tL_sendMessage.peer = tL_messages_sendMessage.peer;
-                if (tL_messages_sendMessage.ephemeralReceiverBotId == -1) {
-                    tL_sendMessage.receiver_id = new TLRPC.TL_inputUserEmpty();
-                    tL_sendMessage.welcome = true;
-                } else {
-                    tL_sendMessage.receiver_id = getMessagesController().getInputUser(tL_messages_sendMessage.ephemeralReceiverBotId);
-                }
-                tL_sendMessage.query_id = 0L;
-                tL_sendMessage.message = tL_messages_sendMessage.message;
-                tL_sendMessage.entities = tL_messages_sendMessage.entities;
-                tL_sendMessage.media = null;
-                tL_sendMessage.reply_markup = tL_messages_sendMessage.reply_markup;
-                tL_sendMessage.rich_message = tL_messages_sendMessage.rich_message;
-                tL_sendMessage.random_id = tL_messages_sendMessage.random_id;
-                TLRPC.InputReplyTo inputReplyTo = tL_messages_sendMessage.reply_to;
-                boolean z10 = inputReplyTo instanceof TLRPC.TL_inputReplyToMessage;
-                TLRPC.TL_inputReplyToEphemeralMessage tL_inputReplyToEphemeralMessage = inputReplyTo;
-                if (z10) {
-                    TLRPC.TL_inputReplyToMessage tL_inputReplyToMessage = (TLRPC.TL_inputReplyToMessage) inputReplyTo;
-                    tL_inputReplyToEphemeralMessage = inputReplyTo;
-                    if (MessageObject.isEphemeralMessageId(tL_inputReplyToMessage.reply_to_msg_id)) {
-                        TLRPC.TL_inputReplyToEphemeralMessage tL_inputReplyToEphemeralMessage2 = new TLRPC.TL_inputReplyToEphemeralMessage();
-                        tL_inputReplyToEphemeralMessage2.f22094id = MessageObject.ephemeralMessageIdUnpack(tL_inputReplyToMessage.reply_to_msg_id);
-                        tL_inputReplyToEphemeralMessage = tL_inputReplyToEphemeralMessage2;
-                    }
-                }
-                tL_sendMessage.reply_to = tL_inputReplyToEphemeralMessage;
-                tL_sendMessage.rich_message = tL_messages_sendMessage.rich_message;
-                tL_sendMessage.invert_media = tL_messages_sendMessage.invert_media;
-                callback.run(tL_sendMessage);
-                return false;
-            }
-            long peerDialogId = DialogObject.getPeerDialogId(tL_messages_sendMessage.peer);
-            if (peerDialogId < 0 && (chatFull2 = getMessagesController().getChatFull(-peerDialogId)) != null) {
-                long f7 = f(tL_messages_sendMessage.message, chatFull2.bot_info);
-                if (f7 != 0) {
-                    tL_messages_sendMessage.ephemeralReceiverBotId = f7;
-                    return a(tLObject, list, callback);
-                }
-            }
-        }
-        if (tLObject instanceof TLRPC.TL_messages_sendMedia) {
-            TLRPC.TL_messages_sendMedia tL_messages_sendMedia = (TLRPC.TL_messages_sendMedia) tLObject;
-            if (tL_messages_sendMedia.ephemeralReceiverBotId != 0) {
-                TL_ephemeral.TL_sendMessage tL_sendMessage2 = new TL_ephemeral.TL_sendMessage();
-                tL_sendMessage2.peer = tL_messages_sendMedia.peer;
-                if (tL_messages_sendMedia.ephemeralReceiverBotId == -1) {
-                    tL_sendMessage2.receiver_id = new TLRPC.TL_inputUserEmpty();
-                    tL_sendMessage2.welcome = true;
-                } else {
-                    tL_sendMessage2.receiver_id = getMessagesController().getInputUser(tL_messages_sendMedia.ephemeralReceiverBotId);
-                }
-                tL_sendMessage2.query_id = 0L;
-                tL_sendMessage2.message = tL_messages_sendMedia.message;
-                tL_sendMessage2.entities = tL_messages_sendMedia.entities;
-                tL_sendMessage2.media = tL_messages_sendMedia.media;
-                tL_sendMessage2.reply_markup = tL_messages_sendMedia.reply_markup;
-                tL_sendMessage2.rich_message = null;
-                tL_sendMessage2.random_id = tL_messages_sendMedia.random_id;
-                TLRPC.InputReplyTo inputReplyTo2 = tL_messages_sendMedia.reply_to;
-                boolean z11 = inputReplyTo2 instanceof TLRPC.TL_inputReplyToMessage;
-                TLRPC.TL_inputReplyToEphemeralMessage tL_inputReplyToEphemeralMessage3 = inputReplyTo2;
-                if (z11) {
-                    TLRPC.TL_inputReplyToMessage tL_inputReplyToMessage2 = (TLRPC.TL_inputReplyToMessage) inputReplyTo2;
-                    tL_inputReplyToEphemeralMessage3 = inputReplyTo2;
-                    if (MessageObject.isEphemeralMessageId(tL_inputReplyToMessage2.reply_to_msg_id)) {
-                        TLRPC.TL_inputReplyToEphemeralMessage tL_inputReplyToEphemeralMessage4 = new TLRPC.TL_inputReplyToEphemeralMessage();
-                        tL_inputReplyToEphemeralMessage4.f22094id = MessageObject.ephemeralMessageIdUnpack(tL_inputReplyToMessage2.reply_to_msg_id);
-                        tL_inputReplyToEphemeralMessage3 = tL_inputReplyToEphemeralMessage4;
-                    }
-                }
-                tL_sendMessage2.reply_to = tL_inputReplyToEphemeralMessage3;
-                tL_sendMessage2.invert_media = tL_messages_sendMedia.invert_media;
-                callback.run(tL_sendMessage2);
-                return false;
-            }
-            long peerDialogId2 = DialogObject.getPeerDialogId(tL_messages_sendMedia.peer);
-            if (peerDialogId2 < 0 && (chatFull = getMessagesController().getChatFull(-peerDialogId2)) != null) {
-                long f10 = f(tL_messages_sendMedia.message, chatFull.bot_info);
-                if (f10 != 0) {
-                    tL_messages_sendMedia.ephemeralReceiverBotId = f10;
-                    return a(tLObject, list, callback);
-                }
-            }
-        }
-        return true;
-    }
-
-    public final long d(long j10, String str) {
-        TLRPC.ChatFull chatFull;
-        if (j10 >= 0 || (chatFull = getMessagesController().getChatFull(-j10)) == null) {
-            return 0L;
-        }
-        return f(str, chatFull.bot_info);
-    }
-
-    public final long e(String str, a0.h hVar) {
-        String substring;
-        String str2;
-        if (str != null && hVar != null && !hVar.i() && str.startsWith("/") && str.length() >= 2) {
-            int indexOf = str.indexOf(32);
-            if (indexOf != -1) {
-                substring = str.substring(1, indexOf);
-            } else {
-                substring = str.substring(1);
-            }
-            int indexOf2 = substring.indexOf(64);
-            if (indexOf2 != -1) {
-                String substring2 = substring.substring(0, indexOf2);
-                str2 = substring.substring(indexOf2 + 1);
-                substring = substring2;
-            } else {
-                str2 = null;
-            }
-            if (substring.isEmpty()) {
-                return 0L;
-            }
-            if (str2 != null) {
-                for (int i10 = 0; i10 < hVar.m(); i10++) {
-                    TL_bots.BotInfo botInfo = (TL_bots.BotInfo) hVar.n(i10);
-                    if (UserObject.hasPublicUsername(getMessagesController().getUser(Long.valueOf(botInfo.user_id)), str2)) {
-                        ArrayList<TLRPC.BotCommand> arrayList = botInfo.commands;
-                        int size = arrayList.size();
-                        int i11 = 0;
-                        while (i11 < size) {
-                            TLRPC.BotCommand botCommand = arrayList.get(i11);
-                            i11++;
-                            TLRPC.BotCommand botCommand2 = botCommand;
-                            if (botCommand2.command.equalsIgnoreCase(substring)) {
-                                if (!botCommand2.ephemeral) {
-                                    return 0L;
-                                }
-                                return botInfo.user_id;
-                            }
-                        }
-                        continue;
-                    }
-                }
-                return 0L;
-            }
-            long j10 = 0;
+    @Override
+    public void c(String str, ArrayList arrayList) {
+        ArrayList arrayList2;
+        zf.n1 n1Var = (zf.n1) this.f467c;
+        HashMap hashMap = (HashMap) this.d;
+        zf.o1 o1Var = n1Var.f55595a;
+        int i10 = o1Var.P;
+        HashMap hashMap2 = o1Var.I;
+        if (this.f466b == i10) {
+            int size = arrayList.size();
             boolean z10 = false;
-            for (int i12 = 0; i12 < hVar.m(); i12++) {
-                TL_bots.BotInfo botInfo2 = (TL_bots.BotInfo) hVar.n(i12);
-                ArrayList<TLRPC.BotCommand> arrayList2 = botInfo2.commands;
-                int size2 = arrayList2.size();
-                int i13 = 0;
-                while (i13 < size2) {
-                    TLRPC.BotCommand botCommand3 = arrayList2.get(i13);
-                    i13++;
-                    TLRPC.BotCommand botCommand4 = botCommand3;
-                    if (botCommand4.command.equalsIgnoreCase(substring)) {
-                        if (j10 != 0) {
-                            return 0L;
-                        }
-                        j10 = botInfo2.user_id;
-                        z10 = botCommand4.ephemeral;
+            for (int i11 = 0; i11 < size; i11++) {
+                String str2 = ((qi) arrayList.get(i11)).f17590a;
+                if (hashMap != null) {
+                    arrayList2 = (ArrayList) hashMap.get(str2);
+                } else {
+                    arrayList2 = null;
+                }
+                if (arrayList2 != null && !arrayList2.isEmpty()) {
+                    n1Var.a();
+                    if (!hashMap2.containsKey(arrayList2)) {
+                        hashMap2.put(arrayList2, str2);
+                        o1Var.J.add(arrayList2);
+                        z10 = true;
                     }
                 }
             }
             if (z10) {
-                return j10;
+                o1Var.f();
             }
         }
-        return 0L;
     }
 
-    public final long f(String str, ArrayList arrayList) {
-        if (str != null && arrayList != null && !arrayList.isEmpty() && str.startsWith("/") && str.length() >= 2) {
-            a0.h hVar = new a0.h(arrayList.size());
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                TL_bots.BotInfo botInfo = (TL_bots.BotInfo) obj;
-                hVar.k(botInfo, botInfo.user_id);
-            }
-            return e(str, hVar);
+    @Override
+    public Object g() {
+        ((q5.d) ((ea.d) this.f467c).d).x((l5.i) this.d, this.f466b + 1, false);
+        return null;
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
+        int i11;
+        switch (this.f465a) {
+            case 0:
+                f0 f0Var = (f0) this.f467c;
+                TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) this.d;
+                String obj = f0Var.getText().toString();
+                if (obj.length() > 32) {
+                    org.telegram.messenger.i0.E3(f0Var);
+                    return;
+                }
+                s0 d = s0.d(this.f466b);
+                TL_account.TL_businessChatLink c10 = d.c(tL_businessChatLink.link);
+                if (c10 != null) {
+                    TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink = new TL_account.TL_inputBusinessChatLink();
+                    tL_inputBusinessChatLink.message = c10.message;
+                    tL_inputBusinessChatLink.entities = c10.entities;
+                    tL_inputBusinessChatLink.title = obj;
+                    d.b(c10, tL_inputBusinessChatLink, null);
+                }
+                x1Var.dismiss();
+                return;
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 9:
+            case 14:
+            default:
+                StickersActivity.e0((StickersActivity) this.f467c, (ArrayList) this.d, this.f466b);
+                return;
+            case 5:
+                un unVar = (un) this.f467c;
+                boolean[] zArr = (boolean[]) this.d;
+                unVar.getMessagesController().z3(unVar.e, unVar.f42243f, this.f466b, false, !zArr[1], zArr[0]);
+                wb B = cc.B(unVar, true, null, null, unVar.f42477xa);
+                B.j();
+                bb bbVar = B.e;
+                bbVar.postDelayed(new hh(0, bbVar), 550L);
+                return;
+            case 6:
+                un.i0((un) this.f467c, this.f466b, (jj) this.d);
+                return;
+            case 7:
+                r4 r4Var = (r4) this.f467c;
+                fs fsVar = (fs) this.d;
+                String trim = r4Var.getText().toString().trim();
+                if (trim.length() <= this.f466b && !trim.isEmpty()) {
+                    fsVar.a(trim);
+                    x1Var.dismiss();
+                    return;
+                }
+                org.telegram.messenger.i0.E3(r4Var);
+                return;
+            case 8:
+                lm0 lm0Var = (lm0) this.f467c;
+                TLRPC.Reaction reaction = (TLRPC.Reaction) this.d;
+                String obj2 = lm0Var.getText().toString();
+                if (obj2.length() > 12) {
+                    org.telegram.messenger.i0.E3(lm0Var);
+                    return;
+                }
+                vp.r1(this.f466b).i4(obj2, sg.o0.d(reaction));
+                x1Var.dismiss();
+                return;
+            case 10:
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.d;
+                f40 f40Var = ((b40) this.f467c).f35978o1;
+                u3 u3Var = f40Var.f37176b.R2;
+                String obj3 = editTextBoldCursor.getText().toString();
+                int i12 = this.f466b;
+                u3Var.A(i12, obj3);
+                org.telegram.messenger.i0.v1(editTextBoldCursor);
+                UndoView m12 = f40Var.f37176b.m1();
+                if (i12 == 0) {
+                    i11 = 39;
+                } else {
+                    i11 = 100;
+                }
+                m12.j(i11, 0L, null);
+                if (VoIPService.getSharedInstance() != null) {
+                    VoIPService.getSharedInstance().playStartRecordSound();
+                    return;
+                }
+                return;
+            case 11:
+                LaunchActivity launchActivity = (LaunchActivity) this.f467c;
+                HashMap hashMap = (HashMap) this.d;
+                ArrayList arrayList = launchActivity.f33353d0;
+                if (!arrayList.isEmpty() && org.telegram.messenger.i0.J1((org.telegram.ui.ActionBar.k2) i0.a.g(1, arrayList))) {
+                    yb0 yb0Var = new yb0(0);
+                    yb0Var.N0 = new i2.q(hashMap, this.f466b, 13);
+                    launchActivity.t0(yb0Var);
+                    return;
+                }
+                return;
+            case 12:
+                ((yb0) this.f467c).K0(900, this.f466b, (TLRPC.User) this.d);
+                return;
+            case 13:
+                PasscodeActivity.Y((PasscodeActivity) this.f467c, (ac0) this.d, this.f466b);
+                return;
+            case 15:
+                SessionsActivity.b0((SessionsActivity) this.f467c, this.f466b, (boolean[]) this.d);
+                return;
         }
-        return 0L;
+    }
+
+    @Override
+    public void i(Object obj, TLRPC.Document document, Boolean bool) {
+        Context context = (Context) this.f467c;
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) this.d;
+        int i10 = this.f466b;
+        String str = "😀";
+        String V = jj.V(document, "😀", Integer.valueOf(i10));
+        if (!TextUtils.isEmpty(V)) {
+            str = V;
+        }
+        org.telegram.ui.ActionBar.x1 x1Var = new org.telegram.ui.ActionBar.x1(3, context, null);
+        TLRPC.TL_stickers_addStickerToSet tL_stickers_addStickerToSet = new TLRPC.TL_stickers_addStickerToSet();
+        tL_stickers_addStickerToSet.stickerset = ui.Z(tL_messages_stickerSet.set);
+        tL_stickers_addStickerToSet.sticker = ui.a0(document, str);
+        ConnectionsManager.getInstance(d20.f15147s0).sendRequest(tL_stickers_addStickerToSet, new q8(x1Var, i10, document, obj, tL_stickers_addStickerToSet, 3));
+        try {
+            x1Var.r(350L);
+        } catch (Exception unused) {
+        }
+    }
+
+    @Override
+    public void invoke(Object obj) {
+        b2.d1 d1Var = (b2.d1) obj;
+        int i10 = this.f466b;
+        d1Var.h(i10);
+        d1Var.s((b2.e1) this.f467c, (b2.e1) this.d, i10);
+    }
+
+    @Override
+    public void run(int i10, String str) {
+        ((VoIPService) this.f467c).lambda$createGroupInstance$66(this.f466b, (boolean[]) this.d, i10, str);
+    }
+
+    public b0(Object obj, int i10, Object obj2, int i11) {
+        this.f465a = i11;
+        this.f467c = obj;
+        this.f466b = i10;
+        this.d = obj2;
+    }
+
+    public b0(Object obj, Object obj2, int i10, int i11) {
+        this.f465a = i11;
+        this.f467c = obj;
+        this.d = obj2;
+        this.f466b = i10;
     }
 }

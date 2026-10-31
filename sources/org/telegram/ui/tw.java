@@ -1,30 +1,41 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import org.telegram.messenger.AndroidUtilities;
-public final class tw extends org.telegram.ui.Components.ka {
-    @Override
-    public final int C1() {
-        return AndroidUtilities.dp(48.0f);
+import android.view.View;
+public final class tw {
+    public final int f41954a;
+    public final uw f41955b;
+    public final View f41956c;
+
+    public tw(uw uwVar, View view, int i10) {
+        this.f41954a = i10;
+        this.f41955b = uwVar;
+        this.f41956c = view;
     }
 
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
+    public final void a(boolean z10) {
+        switch (this.f41954a) {
+            case 0:
+                View view = this.f41956c;
+                if (view instanceof th.l) {
+                    this.f41955b.O0.E0.i((th.l) view, false);
+                    if (z10) {
+                        org.telegram.messenger.i0.h3(new org.telegram.ui.Components.voip.m0(2), 500L);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                View view2 = this.f41956c;
+                if (view2 instanceof th.l) {
+                    this.f41955b.O0.E0.i((th.l) view2, false);
+                    if (z10) {
+                        org.telegram.messenger.i0.h3(new org.telegram.ui.Components.voip.m0(2), 500L);
+                        return;
+                    }
+                    return;
+                }
+                return;
+        }
     }
 }

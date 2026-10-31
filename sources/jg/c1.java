@@ -1,44 +1,34 @@
 package jg;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.Components.j9;
-public final class c1 extends View {
-    public final Drawable f15655a;
-    public final ImageReceiver f15656b;
+import java.util.ArrayList;
+import org.telegram.ui.Components.tk0;
+import vh.s3;
+public final class c1 extends tk0 {
+    public final ArrayList f9904e3;
+    public final ArrayList f9905f3;
+    public final ArrayList f9906g3;
+    public final ArrayList f9907h3;
+    public final ArrayList f9908i3;
+    public final s3 f9909j3;
 
-    public c1(d1 d1Var, Context context) {
-        super(context);
-        this.f15655a = getContext().getResources().getDrawable(R.drawable.map_pin_photo).mutate();
-        j9 j9Var = new j9((u6) null);
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f15656b = imageReceiver;
-        j9Var.r(d1Var.getUserConfig().getCurrentUser());
-        imageReceiver.setForUserOrChat(d1Var.getUserConfig().getCurrentUser(), j9Var);
+    public c1(s3 s3Var, Context context, i1 i1Var) {
+        super(context, i1Var);
+        this.f9909j3 = s3Var;
+        this.f9904e3 = new ArrayList();
+        this.f9905f3 = new ArrayList();
+        this.f9906g3 = new ArrayList();
+        this.f9907h3 = new ArrayList();
+        this.f9908i3 = new ArrayList(10);
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int dp = AndroidUtilities.dp(62.0f);
-        int dp2 = AndroidUtilities.dp(85.0f);
-        Drawable drawable = this.f15655a;
-        drawable.setBounds(0, 0, dp, dp2);
-        drawable.draw(canvas);
-        int dp3 = AndroidUtilities.dp(62.0f);
-        ImageReceiver imageReceiver = this.f15656b;
-        imageReceiver.setRoundRadius(dp3);
-        imageReceiver.setImageCoords(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f));
-        imageReceiver.draw(canvas);
+    public final void dispatchDraw(android.graphics.Canvas r28) {
+        throw new UnsupportedOperationException("Method not decompiled: jg.c1.dispatchDraw(android.graphics.Canvas):void");
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(62.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(85.0f), 1073741824));
+    public final boolean drawChild(android.graphics.Canvas r19, android.view.View r20, long r21) {
+        throw new UnsupportedOperationException("Method not decompiled: jg.c1.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
     }
 }

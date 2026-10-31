@@ -1,19 +1,18 @@
 package xd;
 
-import a8.kf;
-import java.util.Iterator;
-public abstract class a implements Iterable {
-    public final char f51785a;
-    public final char f51786b;
-    public final int f51787c = 1;
+import bb.u;
+import java.util.concurrent.CancellationException;
+public final class a extends CancellationException {
+    public final transient u f53658a;
 
-    public a(char c10, char c11) {
-        this.f51785a = c10;
-        this.f51786b = (char) kf.a(c10, c11, 1);
+    public a(u uVar) {
+        super("Flow was aborted, no more elements needed");
+        this.f53658a = uVar;
     }
 
     @Override
-    public final Iterator iterator() {
-        return new b(this.f51785a, this.f51786b, this.f51787c);
+    public final Throwable fillInStackTrace() {
+        setStackTrace(new StackTraceElement[0]);
+        return this;
     }
 }

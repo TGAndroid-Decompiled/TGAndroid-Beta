@@ -1,56 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
-import android.text.TextPaint;
-import android.text.style.URLSpan;
-import android.view.View;
-import org.telegram.tgnet.TLObject;
-public class y61 extends URLSpan {
-    public final boolean f34982a;
-    public final z11 f34983b;
-    public TLObject f34984c;
-    public String d;
+import java.util.function.ToDoubleFunction;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class y61 implements ToDoubleFunction {
+    public final int f32645a;
 
-    public y61(String str) {
-        this(str, (z11) null);
+    public y61(int i10) {
+        this.f32645a = i10;
     }
 
     @Override
-    public void onClick(View view) {
-        String url = getURL();
-        if (url.startsWith("@")) {
-            qf.d.o(view.getContext(), Uri.parse("https://t.me/" + url.substring(1)), true, true);
-            return;
+    public final double applyAsDouble(Object obj) {
+        switch (this.f32645a) {
+            case 0:
+                return ((a71) obj).f24324a;
+            case 1:
+                return ((TLRPC.TL_topPeer) obj).rating;
+            case 2:
+                return ((TLRPC.TL_topPeer) obj).rating;
+            case 3:
+                return ((TLRPC.TL_topPeer) obj).rating;
+            case 4:
+                return rh.t0.e1((TL_stars.starGiftAttributeBackdrop) obj);
+            case 5:
+                return rh.t0.e1((TL_stars.starGiftAttributePattern) obj);
+            default:
+                return rh.t0.e1((TL_stars.starGiftAttributeModel) obj);
         }
-        qf.d.r(view.getContext(), url);
-    }
-
-    @Override
-    public void updateDrawState(TextPaint textPaint) {
-        boolean z10;
-        int i10 = textPaint.linkColor;
-        int color = textPaint.getColor();
-        super.updateDrawState(textPaint);
-        z11 z11Var = this.f34983b;
-        if (z11Var != null) {
-            z11Var.a(textPaint);
-        }
-        if (i10 == color && !this.f34982a) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        textPaint.setUnderlineText(z10);
-    }
-
-    public y61(String str, int i10) {
-        this(str, (z11) null);
-        this.f34982a = true;
-    }
-
-    public y61(String str, z11 z11Var) {
-        super(str != null ? str.replace((char) 8238, ' ') : str);
-        this.f34982a = false;
-        this.f34983b = z11Var;
     }
 }

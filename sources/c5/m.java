@@ -1,84 +1,114 @@
 package c5;
-public abstract class m {
-    public static final b f6148a;
-    public static final b f6149b;
-    public static final b f6150c;
-    public static final b d;
-    public static final b e;
 
-    static {
-        new b(0, "VISUAL_STATE_CALLBACK", "VISUAL_STATE_CALLBACK");
-        new b(0, "OFF_SCREEN_PRERASTER", "OFF_SCREEN_PRERASTER");
-        new b(3, "SAFE_BROWSING_ENABLE", "SAFE_BROWSING_ENABLE");
-        new b(1, "DISABLED_ACTION_MODE_MENU_ITEMS", "DISABLED_ACTION_MODE_MENU_ITEMS");
-        new b(4, "START_SAFE_BROWSING", "START_SAFE_BROWSING");
-        new b(4, "SAFE_BROWSING_WHITELIST", "SAFE_BROWSING_WHITELIST");
-        new b(4, "SAFE_BROWSING_WHITELIST", "SAFE_BROWSING_ALLOWLIST");
-        new b(4, "SAFE_BROWSING_ALLOWLIST", "SAFE_BROWSING_WHITELIST");
-        new b(4, "SAFE_BROWSING_ALLOWLIST", "SAFE_BROWSING_ALLOWLIST");
-        new b(4, "SAFE_BROWSING_PRIVACY_POLICY_URL", "SAFE_BROWSING_PRIVACY_POLICY_URL");
-        new b(1, "SERVICE_WORKER_BASIC_USAGE", "SERVICE_WORKER_BASIC_USAGE");
-        new b(1, "SERVICE_WORKER_CACHE_MODE", "SERVICE_WORKER_CACHE_MODE");
-        new b(1, "SERVICE_WORKER_CONTENT_ACCESS", "SERVICE_WORKER_CONTENT_ACCESS");
-        new b(1, "SERVICE_WORKER_FILE_ACCESS", "SERVICE_WORKER_FILE_ACCESS");
-        new b(1, "SERVICE_WORKER_BLOCK_NETWORK_LOADS", "SERVICE_WORKER_BLOCK_NETWORK_LOADS");
-        new b(1, "SERVICE_WORKER_SHOULD_INTERCEPT_REQUEST", "SERVICE_WORKER_SHOULD_INTERCEPT_REQUEST");
-        new b(0, "RECEIVE_WEB_RESOURCE_ERROR", "RECEIVE_WEB_RESOURCE_ERROR");
-        new b(0, "RECEIVE_HTTP_ERROR", "RECEIVE_HTTP_ERROR");
-        new b(1, "SHOULD_OVERRIDE_WITH_REDIRECTS", "SHOULD_OVERRIDE_WITH_REDIRECTS");
-        new b(4, "SAFE_BROWSING_HIT", "SAFE_BROWSING_HIT");
-        new b(1, "WEB_RESOURCE_REQUEST_IS_REDIRECT", "WEB_RESOURCE_REQUEST_IS_REDIRECT");
-        new b(0, "WEB_RESOURCE_ERROR_GET_DESCRIPTION", "WEB_RESOURCE_ERROR_GET_DESCRIPTION");
-        new b(0, "WEB_RESOURCE_ERROR_GET_CODE", "WEB_RESOURCE_ERROR_GET_CODE");
-        new b(4, "SAFE_BROWSING_RESPONSE_BACK_TO_SAFETY", "SAFE_BROWSING_RESPONSE_BACK_TO_SAFETY");
-        new b(4, "SAFE_BROWSING_RESPONSE_PROCEED", "SAFE_BROWSING_RESPONSE_PROCEED");
-        new b(4, "SAFE_BROWSING_RESPONSE_SHOW_INTERSTITIAL", "SAFE_BROWSING_RESPONSE_SHOW_INTERSTITIAL");
-        new b(0, "WEB_MESSAGE_PORT_POST_MESSAGE", "WEB_MESSAGE_PORT_POST_MESSAGE");
-        new b(0, "WEB_MESSAGE_PORT_CLOSE", "WEB_MESSAGE_PORT_CLOSE");
-        f6148a = new b(2, "WEB_MESSAGE_ARRAY_BUFFER", "WEB_MESSAGE_ARRAY_BUFFER");
-        new b(0, "WEB_MESSAGE_PORT_SET_MESSAGE_CALLBACK", "WEB_MESSAGE_PORT_SET_MESSAGE_CALLBACK");
-        new b(0, "CREATE_WEB_MESSAGE_CHANNEL", "CREATE_WEB_MESSAGE_CHANNEL");
-        new b(0, "POST_WEB_MESSAGE", "POST_WEB_MESSAGE");
-        new b(0, "WEB_MESSAGE_CALLBACK_ON_MESSAGE", "WEB_MESSAGE_CALLBACK_ON_MESSAGE");
-        new b(3, "GET_WEB_VIEW_CLIENT", "GET_WEB_VIEW_CLIENT");
-        new b(3, "GET_WEB_CHROME_CLIENT", "GET_WEB_CHROME_CLIENT");
-        new b(6, "GET_WEB_VIEW_RENDERER", "GET_WEB_VIEW_RENDERER");
-        new b(6, "WEB_VIEW_RENDERER_TERMINATE", "WEB_VIEW_RENDERER_TERMINATE");
-        new b(5, "TRACING_CONTROLLER_BASIC_USAGE", "TRACING_CONTROLLER_BASIC_USAGE");
-        new i();
-        new i();
-        new i();
-        new b(6, "WEB_VIEW_RENDERER_CLIENT_BASIC_USAGE", "WEB_VIEW_RENDERER_CLIENT_BASIC_USAGE");
-        new k();
-        new b(2, "PROXY_OVERRIDE", "PROXY_OVERRIDE:3");
-        f6149b = new b(2, "MULTI_PROCESS", "MULTI_PROCESS_QUERY");
-        new b(6, "FORCE_DARK", "FORCE_DARK");
-        new b(2, "FORCE_DARK_STRATEGY", "FORCE_DARK_BEHAVIOR");
-        f6150c = new b(2, "WEB_MESSAGE_LISTENER", "WEB_MESSAGE_LISTENER");
-        d = new b(2, "DOCUMENT_START_SCRIPT", "DOCUMENT_START_SCRIPT:1");
-        new b(2, "PROXY_OVERRIDE_REVERSE_BYPASS", "PROXY_OVERRIDE_REVERSE_BYPASS");
-        new b(2, "GET_VARIATIONS_HEADER", "GET_VARIATIONS_HEADER");
-        new b(2, "ENTERPRISE_AUTHENTICATION_APP_LINK_POLICY", "ENTERPRISE_AUTHENTICATION_APP_LINK_POLICY");
-        new b(2, "GET_COOKIE_INFO", "GET_COOKIE_INFO");
-        new b(2, "REQUESTED_WITH_HEADER_ALLOW_LIST", "REQUESTED_WITH_HEADER_ALLOW_LIST");
-        new b(2, "USER_AGENT_METADATA", "USER_AGENT_METADATA");
-        new l(0, "MULTI_PROFILE", "MULTI_PROFILE");
-        new b(2, "ATTRIBUTION_REGISTRATION_BEHAVIOR", "ATTRIBUTION_BEHAVIOR");
-        new b(2, "WEBVIEW_MEDIA_INTEGRITY_API_STATUS", "WEBVIEW_INTEGRITY_API_STATUS");
-        new b(2, "MUTE_AUDIO", "MUTE_AUDIO");
-        new b(2, "WEB_AUTHENTICATION", "WEB_AUTHENTICATION");
-        new b(2, "SPECULATIVE_LOADING_STATUS", "SPECULATIVE_LOADING");
-        new b(2, "BACK_FORWARD_CACHE", "BACK_FORWARD_CACHE");
-        new b(2, "DELETE_BROWSING_DATA", "WEB_STORAGE_DELETE_BROWSING_DATA");
-        new l(1, "PREFETCH_URL_V4", "PREFETCH_URL_V4");
-        new b(2, "IMPLEMENTATION_ONLY_FEATURE", "ASYNC_WEBVIEW_STARTUP");
-        new b(2, "DEFAULT_TRAFFICSTATS_TAGGING", "DEFAULT_TRAFFICSTATS_TAGGING");
-        new b(2, "PRERENDER_URL_V2", "PRERENDER_URL_V2");
-        new b(2, "SPECULATIVE_LOADING_CONFIG_V2", "SPECULATIVE_LOADING_CONFIG_V2");
-        new b(2, "SAVE_STATE", "SAVE_STATE");
-        new b(2, "WEB_VIEW_NAVIGATION_CLIENT_BASIC_USAGE", "WEB_VIEW_NAVIGATION_CLIENT_BASIC_USAGE");
-        e = new b(2, "CACHE_PROVIDER", "PROVIDER_WEAKLY_REF_WEBVIEW");
-        new b(2, "PAYMENT_REQUEST", "PAYMENT_REQUEST");
-        new b(2, "WEBVIEW_BUILDER", "WEBVIEW_BUILDER");
+import android.text.TextUtils;
+import c3.i0;
+import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONObject;
+public final class m {
+    public final String f3799a;
+    public final JSONObject f3800b;
+    public final String f3801c;
+    public final String d;
+    public final String e;
+    public final String f3802f;
+    public final String f3803g;
+    public final ArrayList h;
+    public final ArrayList f3804i;
+
+    public m(String str) {
+        ArrayList arrayList;
+        this.f3799a = str;
+        JSONObject jSONObject = new JSONObject(str);
+        this.f3800b = jSONObject;
+        String optString = jSONObject.optString("productId");
+        this.f3801c = optString;
+        String optString2 = jSONObject.optString("type");
+        this.d = optString2;
+        if (!TextUtils.isEmpty(optString)) {
+            if (!TextUtils.isEmpty(optString2)) {
+                this.e = jSONObject.optString("title");
+                jSONObject.optString("name");
+                jSONObject.optString("description");
+                jSONObject.optString("packageDisplayName");
+                jSONObject.optString("iconUrl");
+                this.f3802f = jSONObject.optString("skuDetailsToken");
+                this.f3803g = jSONObject.optString("serializedDocid");
+                JSONArray optJSONArray = jSONObject.optJSONArray("subscriptionOfferDetails");
+                if (optJSONArray != null) {
+                    ArrayList arrayList2 = new ArrayList();
+                    for (int i10 = 0; i10 < optJSONArray.length(); i10++) {
+                        arrayList2.add(new l(optJSONArray.getJSONObject(i10)));
+                    }
+                    this.h = arrayList2;
+                } else {
+                    if (!optString2.equals("subs") && !optString2.equals("play_pass_subs")) {
+                        arrayList = null;
+                    } else {
+                        arrayList = new ArrayList();
+                    }
+                    this.h = arrayList;
+                }
+                JSONObject optJSONObject = this.f3800b.optJSONObject("oneTimePurchaseOfferDetails");
+                JSONArray optJSONArray2 = this.f3800b.optJSONArray("oneTimePurchaseOfferDetailsList");
+                ArrayList arrayList3 = new ArrayList();
+                if (optJSONArray2 != null) {
+                    for (int i11 = 0; i11 < optJSONArray2.length(); i11++) {
+                        arrayList3.add(new i(optJSONArray2.getJSONObject(i11)));
+                    }
+                    this.f3804i = arrayList3;
+                    return;
+                } else if (optJSONObject != null) {
+                    arrayList3.add(new i(optJSONObject));
+                    this.f3804i = arrayList3;
+                    return;
+                } else {
+                    this.f3804i = null;
+                    return;
+                }
+            }
+            throw new IllegalArgumentException("Product type cannot be empty.");
+        }
+        throw new IllegalArgumentException("Product id cannot be empty.");
+    }
+
+    public final i a() {
+        ArrayList arrayList = this.f3804i;
+        if (arrayList != null && !arrayList.isEmpty()) {
+            return (i) arrayList.get(0);
+        }
+        return null;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof m)) {
+            return false;
+        }
+        return TextUtils.equals(this.f3799a, ((m) obj).f3799a);
+    }
+
+    public final int hashCode() {
+        return this.f3799a.hashCode();
+    }
+
+    public final String toString() {
+        String obj = this.f3800b.toString();
+        String valueOf = String.valueOf(this.h);
+        StringBuilder sb2 = new StringBuilder("ProductDetails{jsonString='");
+        i0.r(sb2, this.f3799a, "', parsedJson=", obj, ", productId='");
+        sb2.append(this.f3801c);
+        sb2.append("', productType='");
+        sb2.append(this.d);
+        sb2.append("', title='");
+        sb2.append(this.e);
+        sb2.append("', productDetailsToken='");
+        sb2.append(this.f3802f);
+        sb2.append("', subscriptionOfferDetails=");
+        sb2.append(valueOf);
+        sb2.append("}");
+        return sb2.toString();
     }
 }

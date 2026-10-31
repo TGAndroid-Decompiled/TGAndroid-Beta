@@ -1,106 +1,74 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.ViewGroup;
-public final class o00 extends mm0 {
-    public final Context f31118c;
-    public final s00 d;
+import java.util.Iterator;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.Utilities;
+public final class o00 implements org.telegram.ui.ActionBar.o0, fe.l, org.telegram.ui.ActionBar.u1, cu0 {
+    public final FragmentContextView f28928a;
 
-    public o00(s00 s00Var, Context context) {
-        this.d = s00Var;
-        this.f31118c = context;
+    public o00(FragmentContextView fragmentContextView) {
+        this.f28928a = fragmentContextView;
     }
 
     @Override
-    public final boolean D(s4.e1 e1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.h.size();
-    }
-
-    @Override
-    public final long i(int i10) {
-        return this.d.f32430k0.get(i10);
-    }
-
-    @Override
-    public final int j(int i10) {
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.e1 e1Var, int i10) {
-        int i11;
-        boolean z10;
-        float f7;
-        int i12;
-        int i13;
-        int i14;
-        q00 q00Var = (q00) e1Var.f47773a;
-        if (q00Var.f31745b != null) {
-            i11 = q00Var.getId();
-        } else {
-            i11 = -1;
+    public void b(fe.m mVar) {
+        FragmentContextView fragmentContextView = this.f28928a;
+        fe.m mVar2 = fragmentContextView.U0;
+        float f7 = 1.0f - mVar2.f7047a.d.f7040c.f7048a;
+        fragmentContextView.d.setAlpha(f7);
+        fragmentContextView.d.setScaleX(org.telegram.messenger.i0.T1(0.7f, 1.0f, f7));
+        fragmentContextView.d.setScaleY(org.telegram.messenger.i0.T1(0.7f, 1.0f, f7));
+        Iterator it = mVar2.iterator();
+        while (it.hasNext()) {
+            fe.h hVar = (fe.h) it.next();
+            float c10 = hVar.c();
+            Object obj = hVar.f7034a;
+            float T1 = org.telegram.messenger.i0.T1(0.7f, 1.0f, c10);
+            dh.d dVar = ((a10) obj).f24262b;
+            dVar.setAlpha(hVar.c());
+            dVar.setScaleX(T1);
+            dVar.setScaleY(T1);
         }
-        p00 p00Var = (p00) this.d.h.get(i10);
-        q00Var.f31745b = p00Var;
-        q00Var.e = i10;
-        q00Var.setContentDescription(p00Var.f31418b);
-        q00Var.requestLayout();
-        boolean z11 = q00Var.f31759n;
-        p00 p00Var2 = q00Var.f31745b;
-        if (p00Var2 != null && p00Var2.f31421g) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (z11 != z10) {
-            c6.release(q00Var, q00Var.f31760r);
-            c6.release(q00Var, q00Var.O);
-            c6.release(q00Var, q00Var.Q);
-            c6.release(q00Var, q00Var.S);
-            if (q00Var.f31758l0) {
-                int i15 = 26;
-                if (q00Var.f31745b.f31421g) {
-                    i12 = 26;
-                } else {
-                    i12 = 0;
-                }
-                q00Var.f31760r = c6.update(i12, q00Var, q00Var.f31760r, q00Var.f31761s);
-                if (q00Var.f31745b.f31421g) {
-                    i13 = 26;
-                } else {
-                    i13 = 0;
-                }
-                q00Var.O = c6.update(i13, q00Var, q00Var.O, q00Var.P);
-                if (q00Var.f31745b.f31421g) {
-                    i14 = 26;
-                } else {
-                    i14 = 0;
-                }
-                q00Var.Q = c6.update(i14, q00Var, q00Var.Q, q00Var.R);
-                if (!q00Var.f31745b.f31421g) {
-                    i15 = 0;
-                }
-                q00Var.S = c6.update(i15, q00Var, q00Var.S, q00Var.T);
+    }
+
+    @Override
+    public void d(org.telegram.messenger.md mdVar) {
+        float[] fArr = FragmentContextView.W0;
+        this.f28928a.k(mdVar);
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
+        FragmentContextView fragmentContextView = this.f28928a;
+        org.telegram.ui.ActionBar.k2 k2Var = fragmentContextView.h;
+        if (k2Var instanceof org.telegram.ui.ay) {
+            for (int i11 = 0; i11 < 4; i11++) {
+                Utilities.d.c(new org.telegram.messenger.ed(org.telegram.messenger.nd.f(i11), 6));
             }
-            q00Var.f31759n = q00Var.f31745b.f31421g;
+            return;
         }
-        if (i11 != q00Var.getId()) {
-            if (q00Var.f31745b.f31420f) {
-                f7 = 1.0f;
-            } else {
-                f7 = 0.0f;
+        org.telegram.messenger.nd.f(k2Var.getCurrentAccount()).k(fragmentContextView.f24046n.a());
+    }
+
+    @Override
+    public void k(int i10) {
+        float[] fArr = FragmentContextView.W0;
+        if (i10 >= 0) {
+            float[] fArr2 = FragmentContextView.W0;
+            if (i10 < 6) {
+                MediaController B = MediaController.B();
+                FragmentContextView fragmentContextView = this.f28928a;
+                float C = B.C(fragmentContextView.W);
+                float f7 = fArr2[i10];
+                MediaController.B().m0(fragmentContextView.W, f7);
+                if (C != f7) {
+                    fragmentContextView.l(C, f7, false);
+                }
             }
-            q00Var.f31757k0 = f7;
         }
     }
 
     @Override
-    public final s4.e1 x(ViewGroup viewGroup, int i10) {
-        return new s4.e1(new q00(this.d, this.f31118c));
+    public void a() {
     }
 }

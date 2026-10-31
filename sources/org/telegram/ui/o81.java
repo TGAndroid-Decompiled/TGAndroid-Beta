@@ -1,34 +1,31 @@
 package org.telegram.ui;
 
-import android.text.TextWatcher;
-import android.widget.TextView;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class o81 implements TextWatcher {
-    public boolean f42015a;
-    public final int f42016b;
-    public final EditTextBoldCursor f42017c;
-    public final org.telegram.ui.Components.sd0 d;
-    public final int[] e;
-    public final TextView f42018f;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.widget.FrameLayout;
+public final class o81 extends FrameLayout {
+    public final int f40200a;
+    public final Rect f40201b;
+    public final m91 f40202c;
 
-    public o81(int i10, EditTextBoldCursor editTextBoldCursor, org.telegram.ui.Components.sd0 sd0Var, int[] iArr, TextView textView) {
-        this.f42016b = i10;
-        this.f42017c = editTextBoldCursor;
-        this.d = sd0Var;
-        this.e = iArr;
-        this.f42018f = textView;
+    public o81(m91 m91Var, Context context, int i10, Rect rect) {
+        super(context);
+        this.f40202c = m91Var;
+        this.f40200a = i10;
+        this.f40201b = rect;
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.o81.afterTextChanged(android.text.Editable):void");
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void onDraw(Canvas canvas) {
+        int i10 = this.f40200a;
+        Rect rect = this.f40201b;
+        m91 m91Var = this.f40202c;
+        if (i10 == 0) {
+            m91Var.f39584r.setBounds(m91Var.W.getLeft() - rect.left, 0, m91Var.W.getRight() + rect.right, getMeasuredHeight());
+        } else {
+            m91Var.f39584r.setBounds(-rect.left, 0, getMeasuredWidth() + rect.right, getMeasuredHeight());
+        }
+        m91Var.f39584r.draw(canvas);
     }
 }

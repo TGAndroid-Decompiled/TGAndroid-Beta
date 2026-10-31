@@ -1,42 +1,82 @@
 package org.telegram.ui;
 
-import android.graphics.Outline;
-import android.graphics.Rect;
+import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewOutlineProvider;
-import org.telegram.messenger.AndroidUtilities;
-public final class a51 extends ViewOutlineProvider {
-    public final Rect f37696a = new Rect();
-    public final Integer f37697b;
-    public final f61 f37698c;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+public final class a51 extends org.telegram.ui.Components.z41 {
+    static {
+        org.telegram.ui.Components.z41.h(new org.telegram.ui.Components.z41());
+    }
 
-    public a51(f61 f61Var, Integer num) {
-        this.f37698c = f61Var;
-        this.f37697b = num;
+    public static org.telegram.ui.Components.a51 i(int i10, int i11, int i12, int i13, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3) {
+        org.telegram.ui.Components.a51 K = org.telegram.ui.Components.a51.K(a51.class);
+        K.d = i10;
+        K.f24291k = i13;
+        K.f24292l = charSequence;
+        K.f24293m = charSequence2;
+        K.f24294n = charSequence3;
+        K.B = (i11 & 4294967295L) | (i12 << 32);
+        return K;
     }
 
     @Override
-    public final void getOutline(View view, Outline outline) {
-        float intValue;
-        Integer num = this.f37697b;
-        if (num == null) {
-            intValue = view.getWidth() / 2.0f;
+    public final void b(View view, org.telegram.ui.Components.a51 a51Var, boolean z10, org.telegram.ui.Components.p51 p51Var, org.telegram.ui.Components.u51 u51Var) {
+        boolean z11;
+        int i10;
+        float f7;
+        long j10 = a51Var.B;
+        int i11 = (int) j10;
+        int i12 = (int) (j10 >>> 32);
+        b51 b51Var = (b51) view;
+        int i13 = a51Var.f24291k;
+        CharSequence charSequence = a51Var.f24292l;
+        CharSequence charSequence2 = a51Var.f24293m;
+        CharSequence charSequence3 = a51Var.f24294n;
+        TextView textView = b51Var.e;
+        TextView textView2 = b51Var.f36109f;
+        int i14 = 0;
+        if (i11 == 0 && i12 == 0) {
+            z11 = false;
         } else {
-            intValue = num.intValue();
+            z11 = true;
         }
-        float dp = intValue + AndroidUtilities.dp(20.0f);
-        float width = (view.getWidth() - view.getPaddingLeft()) - view.getPaddingRight();
-        float height = (view.getHeight() - view.getPaddingBottom()) - view.getPaddingTop();
-        f61 f61Var = this.f37698c;
-        boolean n10 = f61Var.n();
-        Rect rect = this.f37696a;
-        if (n10) {
-            int paddingLeft = (int) ((dp - (f61Var.f39186a1 * dp)) + view.getPaddingLeft());
-            float z10 = c3.h0.z(1.0f, f61Var.f39189b1, height, view.getPaddingTop());
-            rect.set(paddingLeft, (int) c3.h0.z(1.0f, f61Var.f39189b1, AndroidUtilities.dp(f61Var.f39194d1), z10), (int) (((width - dp) * f61Var.f39186a1) + view.getPaddingLeft() + dp), (int) c3.h0.z(1.0f, f61Var.f39189b1, AndroidUtilities.dp(f61Var.f39194d1), view.getPaddingTop() + height));
+        b51Var.f36110n = z11;
+        FrameLayout frameLayout = b51Var.f36108c;
+        if (i13 != 0) {
+            i10 = 0;
         } else {
-            rect.set((int) ((dp - (f61Var.f39186a1 * dp)) + view.getPaddingLeft()), view.getPaddingTop(), (int) (((width - dp) * f61Var.f39186a1) + view.getPaddingLeft() + dp), (int) ((height * f61Var.f39189b1) + view.getPaddingTop()));
+            i10 = 8;
         }
-        outline.setRoundRect(rect, AndroidUtilities.dp(12.0f));
+        frameLayout.setVisibility(i10);
+        float f10 = 0.0f;
+        if (i13 == 0) {
+            f7 = org.telegram.messenger.i0.L(2.0f);
+        } else {
+            f7 = 0.0f;
+        }
+        textView.setTranslationX(f7);
+        if (i13 == 0) {
+            f10 = org.telegram.messenger.i0.L(2.0f);
+        }
+        textView2.setTranslationX(f10);
+        b51Var.f36107b.b(i11, i12);
+        b51Var.d.setImageResource(i13);
+        textView.setText(charSequence);
+        boolean isEmpty = TextUtils.isEmpty(charSequence2);
+        b51Var.f36111r = !isEmpty;
+        if (isEmpty) {
+            i14 = 8;
+        }
+        textView2.setVisibility(i14);
+        textView2.setText(charSequence2);
+        b51Var.setValue(charSequence3);
+        b51Var.updateColors();
+    }
+
+    @Override
+    public final View d(Context context, org.telegram.ui.Components.tk0 tk0Var, int i10, org.telegram.ui.ActionBar.p6 p6Var) {
+        return new b51(context, p6Var);
     }
 }

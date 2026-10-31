@@ -1,21 +1,23 @@
 package org.telegram.ui;
 
-import android.view.ViewGroup;
-public final class z20 extends s4.l {
-    public final x50 F;
+import org.telegram.tgnet.TLRPC;
+public final class z20 extends q4 {
+    public final b50 U;
 
-    public z20(x50 x50Var) {
-        this.F = x50Var;
+    public z20(b50 b50Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.U = b50Var;
     }
 
     @Override
-    public final void P(s4.e1 e1Var) {
-        ViewGroup viewGroup;
-        x50 x50Var = this.F;
-        x50Var.Q.invalidate();
-        x50Var.a2.invalidate();
-        viewGroup = ((org.telegram.ui.ActionBar.k3) x50Var).containerView;
-        viewGroup.invalidate();
-        x50.J0(x50Var);
+    public final void c() {
+        b50 b50Var = this.U;
+        org.telegram.messenger.c cVar = b50Var.f36036k1;
+        a30 a30Var = b50Var.f36026i1;
+        long dialogId = a30Var.getDialogId();
+        if (dialogId > 0) {
+            TLRPC.User Z1 = org.telegram.messenger.vp.r1(cVar.f14863a).Z1(Long.valueOf(dialogId));
+            a30Var.H(null, org.telegram.messenger.ic.m(cVar.f14863a, 0, Z1), org.telegram.messenger.ic.m(cVar.f14863a, 1, Z1), false);
+        }
     }
 }

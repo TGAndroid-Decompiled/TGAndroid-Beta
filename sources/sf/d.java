@@ -1,119 +1,176 @@
 package sf;
 
-import aa.m0;
-import android.app.PictureInPictureParams;
-import android.graphics.Rect;
-import android.os.Build;
-import android.view.View;
-import bi.i6;
-import com.google.firebase.messaging.q;
-import fi.x3;
-import i2.j0;
-import java.util.HashMap;
-import k2.o0;
-public final class d {
-    public static int f48164n;
-    public static final Rect f48165o = new Rect();
-    public final m0 f48166a;
-    public final uf.e f48167b;
-    public final String f48168c;
-    public final int d;
-    public final int e;
-    public final boolean f48169f;
-    public final uf.a f48170g;
-    public final o0 h;
-    public final q f48171i;
-    public View f48172j;
-    public View f48173k;
-    public j0 f48174l;
-    public boolean f48175m;
-
-    public d(m0 m0Var, c cVar) {
-        int i10 = f48164n;
-        f48164n = i10 + 1;
-        o0 o0Var = new o0();
-        this.h = o0Var;
-        x3 x3Var = new x3(this, 1);
-        ?? obj = new Object();
-        obj.d = new i6(obj, 13);
-        obj.f7757a = x3Var;
-        this.f48171i = obj;
-        StringBuilder sb2 = new StringBuilder();
-        String str = cVar.f48158c;
-        sb2.append(str == null ? "pip-source" : str);
-        sb2.append("-");
-        sb2.append(i10);
-        String sb3 = sb2.toString();
-        this.f48168c = sb3;
-        this.f48170g = cVar.f48157b;
-        this.d = cVar.e;
-        this.e = cVar.d;
-        this.f48169f = cVar.f48159f;
-        this.f48166a = m0Var;
-        o0Var.d(cVar.h, cVar.f48161i);
-        this.f48174l = cVar.f48160g;
-        this.f48173k = cVar.f48163k;
-        this.f48167b = new uf.e(this);
-        View view = cVar.f48162j;
-        obj.D(view);
-        this.f48172j = view;
-        if (view != null) {
-            e(view);
-        }
-        b(false);
-        ((HashMap) m0Var.f1150a).put(sb3, this);
-        m0Var.E();
-    }
-
-    public final PictureInPictureParams a() {
-        boolean z10;
-        PictureInPictureParams.Builder a2 = this.h.a();
-        a2.setActions(null);
-        int i10 = Build.VERSION.SDK_INT;
-        if (i10 >= 31) {
-            if (i10 >= 31) {
-                z10 = true;
-            } else {
-                z10 = false;
+import j$.util.List;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.zip.CRC32;
+import org.telegram.messenger.w0;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ex0;
+public abstract class d {
+    public static void a(TLRPC.GroupCall groupCall, TLRPC.GroupCall groupCall2) {
+        if ((groupCall2 instanceof TLRPC.TL_groupCall) && (groupCall instanceof TLRPC.TL_groupCall)) {
+            TLRPC.TL_groupCall tL_groupCall = (TLRPC.TL_groupCall) groupCall2;
+            if (tL_groupCall.min) {
+                TLRPC.TL_groupCall tL_groupCall2 = (TLRPC.TL_groupCall) groupCall;
+                tL_groupCall.can_change_join_muted = tL_groupCall2.can_change_join_muted;
+                tL_groupCall.can_start_video = tL_groupCall2.can_start_video;
+                tL_groupCall.creator = tL_groupCall2.creator;
+                tL_groupCall.can_change_messages_enabled = tL_groupCall2.can_change_messages_enabled;
             }
-            a2.setAutoEnterEnabled(z10);
         }
-        return a2.build();
     }
 
-    public final void b(boolean z10) {
-        boolean z11;
-        if (this.h.c() && this.f48170g.g()) {
-            z11 = true;
+    public static void b(TLRPC.Poll poll, long j10) {
+        if (poll != null) {
+            int size = poll.answers.size();
+            for (int i10 = 0; i10 < size; i10++) {
+                poll.answers.get(i10).unshuffled_index = i10;
+            }
+            if (!poll.creator && poll.shuffle_answers) {
+                CRC32 crc32 = new CRC32();
+                int size2 = poll.answers.size();
+                for (int i11 = 0; i11 < size2; i11++) {
+                    TLRPC.PollAnswer pollAnswer = poll.answers.get(i11);
+                    if (pollAnswer.option != null) {
+                        crc32.reset();
+                        String l4 = Long.toString(j10);
+                        Charset charset = StandardCharsets.UTF_8;
+                        crc32.update(l4.getBytes(charset));
+                        crc32.update(pollAnswer.option);
+                        crc32.update(Long.toString(poll.f19819id).getBytes(charset));
+                        pollAnswer.shuffle_hash = crc32.getValue();
+                    }
+                }
+                ArrayList<TLRPC.PollAnswer> arrayList = new ArrayList<>(poll.answers);
+                poll.shuffled_answers = arrayList;
+                List.EL.sort(arrayList, new ex0(15));
+            }
+        }
+    }
+
+    public static ArrayList c(Class cls, java.util.List list) {
+        ArrayList arrayList = new ArrayList();
+        if (list != null) {
+            for (Object obj : list) {
+                if (cls.isInstance(obj)) {
+                    arrayList.add(cls.cast(obj));
+                }
+            }
+        }
+        return arrayList;
+    }
+
+    public static Object d(ArrayList arrayList, Class cls) {
+        if (arrayList != null) {
+            int size = arrayList.size();
+            int i10 = 0;
+            while (i10 < size) {
+                Object obj = arrayList.get(i10);
+                i10++;
+                if (cls.isInstance(obj)) {
+                    return cls.cast(obj);
+                }
+            }
+            return null;
+        }
+        return null;
+    }
+
+    public static TLRPC.Document e(TL_stars.StarGift starGift) {
+        TLRPC.Document document = starGift.sticker;
+        ArrayList<TL_stars.StarGiftAttribute> arrayList = starGift.attributes;
+        if (arrayList != null && document == null) {
+            int size = arrayList.size();
+            int i10 = 0;
+            while (i10 < size) {
+                TL_stars.StarGiftAttribute starGiftAttribute = arrayList.get(i10);
+                i10++;
+                TL_stars.StarGiftAttribute starGiftAttribute2 = starGiftAttribute;
+                if (starGiftAttribute2 instanceof TL_stars.starGiftAttributeModel) {
+                    return ((TL_stars.starGiftAttributeModel) starGiftAttribute2).document;
+                }
+            }
+        }
+        return document;
+    }
+
+    public static String f(TLRPC.ChatTheme chatTheme) {
+        if (chatTheme instanceof TLRPC.TL_chatTheme) {
+            return ((TLRPC.TL_chatTheme) chatTheme).emoticon;
+        }
+        if (chatTheme instanceof TLRPC.TL_chatThemeUniqueGift) {
+            return ((TLRPC.TL_chatThemeUniqueGift) chatTheme).gift.title;
+        }
+        return null;
+    }
+
+    public static boolean g(Object obj, Class... clsArr) {
+        if (obj != null) {
+            for (Class cls : clsArr) {
+                if (cls.isInstance(obj)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static TLRPC.InputMedia h(TLRPC.MessageMedia messageMedia) {
+        TLRPC.InputMedia tL_inputMediaGeoPoint;
+        if (messageMedia instanceof TLRPC.TL_messageMediaVenue) {
+            tL_inputMediaGeoPoint = new TLRPC.TL_inputMediaVenue();
+            tL_inputMediaGeoPoint.address = messageMedia.address;
+            tL_inputMediaGeoPoint.title = messageMedia.title;
+            tL_inputMediaGeoPoint.provider = messageMedia.provider;
+            tL_inputMediaGeoPoint.venue_id = messageMedia.venue_id;
+            tL_inputMediaGeoPoint.venue_type = "";
+        } else if (messageMedia instanceof TLRPC.TL_messageMediaGeoLive) {
+            tL_inputMediaGeoPoint = new TLRPC.TL_inputMediaGeoLive();
+            tL_inputMediaGeoPoint.period = messageMedia.period;
+            int i10 = tL_inputMediaGeoPoint.flags;
+            tL_inputMediaGeoPoint.flags = i10 | 2;
+            int i11 = messageMedia.heading;
+            if (i11 != 0) {
+                tL_inputMediaGeoPoint.heading = i11;
+                tL_inputMediaGeoPoint.flags = i10 | 6;
+            }
+            int i12 = messageMedia.proximity_notification_radius;
+            if (i12 != 0) {
+                tL_inputMediaGeoPoint.proximity_notification_radius = i12;
+                tL_inputMediaGeoPoint.flags |= 8;
+            }
         } else {
-            z11 = false;
+            tL_inputMediaGeoPoint = new TLRPC.TL_inputMediaGeoPoint();
         }
-        if (this.f48175m != z11) {
-            this.f48175m = z11;
-            if (z10) {
-                m0 m0Var = this.f48166a;
-                m0Var.E();
-                ((a) m0Var.f1152c).invalidate();
+        TLRPC.TL_inputGeoPoint tL_inputGeoPoint = new TLRPC.TL_inputGeoPoint();
+        tL_inputMediaGeoPoint.geo_point = tL_inputGeoPoint;
+        TLRPC.GeoPoint geoPoint = messageMedia.geo;
+        tL_inputGeoPoint.lat = geoPoint.lat;
+        tL_inputGeoPoint._long = geoPoint._long;
+        return tL_inputMediaGeoPoint;
+    }
+
+    public static void i(String str, ArrayList arrayList) {
+        int i10;
+        int i11;
+        int i12;
+        if (arrayList != null && !arrayList.isEmpty()) {
+            w0.m();
+            if (str != null) {
+                i10 = str.length();
+            } else {
+                i10 = 0;
+            }
+            for (int i13 = 0; i13 < arrayList.size(); i13++) {
+                TLRPC.MessageEntity messageEntity = (TLRPC.MessageEntity) arrayList.get(i13);
+                if (messageEntity == null || (i11 = messageEntity.offset) < 0 || i11 > i10 || (i12 = messageEntity.length) <= 0 || i12 > i10 - i11) {
+                    arrayList.clear();
+                    return;
+                }
             }
         }
-    }
-
-    public final void c() {
-        this.f48171i.D(null);
-        m0 m0Var = this.f48166a;
-        if (((HashMap) m0Var.f1150a).remove(this.f48168c) != null) {
-            m0Var.E();
-        }
-    }
-
-    public final void d(int i10, int i11) {
-        if (this.h.d(i10, i11)) {
-            b(true);
-            this.f48166a.l(this);
-        }
-    }
-
-    public final void e(android.view.View r12) {
-        throw new UnsupportedOperationException("Method not decompiled: sf.d.e(android.view.View):void");
     }
 }

@@ -1,32 +1,37 @@
 package k1;
-public final class m extends kotlin.jvm.internal.j implements ud.l {
-    public final int f16060b;
-    public final Object f16061c;
 
-    public m(Object obj, int i10) {
-        super(1);
-        this.f16060b = i10;
-        this.f16061c = obj;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+public final class m extends OutputStream {
+    public final FileOutputStream f10540a;
+
+    public m(FileOutputStream fileOutputStream) {
+        this.f10540a = fileOutputStream;
     }
 
     @Override
-    public final Object invoke(Object obj) {
-        switch (this.f16060b) {
-            case 0:
-                Throwable th2 = (Throwable) obj;
-                if (th2 != null) {
-                    ((z) this.f16061c).f16111f.d(new g(th2));
-                }
-                Object obj2 = z.f16107s;
-                z zVar = (z) this.f16061c;
-                synchronized (obj2) {
-                    z.f16106r.remove(zVar.b().getAbsolutePath());
-                }
-                return jd.i.f15579a;
-            default:
-                Throwable th3 = (Throwable) obj;
-                ((le.h) this.f16061c).b();
-                return jd.i.f15579a;
-        }
+    public final void flush() {
+        this.f10540a.flush();
+    }
+
+    @Override
+    public final void write(int i10) {
+        this.f10540a.write(i10);
+    }
+
+    @Override
+    public final void write(byte[] b10) {
+        kotlin.jvm.internal.i.e(b10, "b");
+        this.f10540a.write(b10);
+    }
+
+    @Override
+    public final void write(byte[] bytes, int i10, int i11) {
+        kotlin.jvm.internal.i.e(bytes, "bytes");
+        this.f10540a.write(bytes, i10, i11);
+    }
+
+    @Override
+    public final void close() {
     }
 }

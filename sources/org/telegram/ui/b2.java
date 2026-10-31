@@ -2,186 +2,304 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.text.Layout;
-import android.view.MotionEvent;
+import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import java.io.File;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-public final class b2 extends View implements org.telegram.ui.Cells.r9, e3 {
-    public final j70 f37865a;
-    public final h4 f37866b;
-    public a3 f37867c;
-    public int d;
-    public int e;
-    public TL_iv.pageBlockParagraph f37868f;
+import org.telegram.ui.Components.RadialProgress2;
+public final class b2 extends FrameLayout implements org.telegram.messenger.z5, org.telegram.ui.Cells.j9 {
+    public int D;
+    public boolean E;
+    public int F;
+    public int G;
+    public TLRPC.PhotoSize H;
+    public String I;
+    public TLRPC.PhotoSize J;
+    public String K;
+    public TLRPC.Photo L;
+    public final int M;
+    public TL_iv.pageBlockPhoto N;
+    public TLObject O;
+    public TL_iv.PageBlock P;
+    public boolean Q;
+    public org.telegram.messenger.bj R;
+    public Drawable S;
+    public boolean T;
+    public final m60 f35948a;
+    public final f4 f35949b;
+    public z2 f35950c;
+    public z2 d;
+    public final ImageReceiver e;
+    public final RadialProgress2 f35951f;
+    public final c1 h;
+    public final int f35952n;
+    public boolean f35953r;
+    public int f35954s;
+    public int f35955w;
+    public int f35956x;
+    public int f35957y;
 
-    public b2(Context context, j70 j70Var, h4 h4Var) {
+    public b2(Context context, m60 m60Var, f4 f4Var, int i10) {
         super(context);
-        this.f37865a = j70Var;
-        this.f37866b = h4Var;
+        this.f35948a = m60Var;
+        this.f35949b = f4Var;
+        setWillNotDraw(false);
+        this.e = new ImageReceiver(this);
+        c1 c1Var = new c1(context, m60Var, f4Var, 1);
+        this.h = c1Var;
+        RadialProgress2 radialProgress2 = new RadialProgress2(this, null);
+        this.f35951f = radialProgress2;
+        radialProgress2.d = -1;
+        radialProgress2.setColors(1711276032, 2130706432, -1, -2500135);
+        this.M = org.telegram.messenger.b6.q(((h4) m60Var).X).k();
+        addView(c1Var, w7.b6.c(-2.0f, -1));
+        this.f35952n = i10;
+    }
+
+    private int getIconForCurrentState() {
+        int i10 = this.F;
+        if (i10 == 0) {
+            return 2;
+        }
+        if (i10 == 1) {
+            return 3;
+        }
+        return 4;
     }
 
     @Override
-    public final void fillTextLayoutBlocks(ArrayList arrayList) {
-        a3 a3Var = this.f37867c;
-        if (a3Var != null) {
-            arrayList.add(a3Var);
+    public final void C(boolean z10) {
+        b(false);
+    }
+
+    @Override
+    public final void M(String str) {
+        this.f35951f.p(true, 1.0f);
+        b(true);
+    }
+
+    public final void a(TL_iv.pageBlockPhoto pageblockphoto, TLObject tLObject, boolean z10, boolean z11) {
+        this.P = null;
+        this.N = pageblockphoto;
+        this.O = tLObject;
+        this.Q = z10;
+        this.f35953r = z11;
+        this.h.setVisibility(4);
+        if (!TextUtils.isEmpty(this.N.url)) {
+            this.S = getResources().getDrawable(2131232190);
+        }
+        TL_iv.pageBlockPhoto pageblockphoto2 = this.N;
+        if (pageblockphoto2 != null) {
+            TLRPC.Photo d = e4.d(pageblockphoto2.photo_id, this.O);
+            if (d != null) {
+                this.H = org.telegram.messenger.b8.w(d.sizes, org.telegram.messenger.i0.Z0(false), false, null, false);
+            } else {
+                this.H = null;
+            }
+        } else {
+            this.H = null;
+        }
+        b(false);
+        requestLayout();
+    }
+
+    public final void b(boolean z10) {
+        boolean z11;
+        int i10 = ((h4) this.f35948a).X;
+        String r10 = org.telegram.messenger.b8.r(null, this.H);
+        org.telegram.messenger.b8.G(i10);
+        File K = org.telegram.messenger.b8.K(this.H, null, true, true);
+        org.telegram.messenger.b8.G(i10);
+        File K2 = org.telegram.messenger.b8.K(this.H, null, false, true);
+        if (!K.exists() && (K2 == null || !K2.exists())) {
+            z11 = false;
+        } else {
+            z11 = true;
+        }
+        boolean isEmpty = TextUtils.isEmpty(r10);
+        RadialProgress2 radialProgress2 = this.f35951f;
+        if (isEmpty) {
+            radialProgress2.setIcon(4, false, false);
+            return;
+        }
+        if (z11) {
+            org.telegram.messenger.b6.q(i10).v(this);
+            this.F = -1;
+            radialProgress2.setIcon(getIconForCurrentState(), false, z10);
+        } else {
+            org.telegram.messenger.b6.q(i10).a(r10, null, this);
+            float f7 = 0.0f;
+            if (!this.T && !org.telegram.messenger.b8.G(i10).T(r10)) {
+                this.F = 0;
+            } else {
+                this.F = 1;
+                Float w9 = org.telegram.messenger.hc.D().w(r10);
+                if (w9 != null) {
+                    f7 = w9.floatValue();
+                }
+            }
+            radialProgress2.setIcon(getIconForCurrentState(), true, z10);
+            radialProgress2.p(false, f7);
+        }
+        invalidate();
+    }
+
+    public View getChannelCell() {
+        return this.h;
+    }
+
+    public TL_iv.pageBlockPhoto getCurrentBlock() {
+        return this.N;
+    }
+
+    public TLObject getCurrentPage() {
+        return this.O;
+    }
+
+    public ImageReceiver getImageView() {
+        return this.e;
+    }
+
+    @Override
+    public int getObserverTag() {
+        return this.M;
+    }
+
+    @Override
+    public final void h(ArrayList arrayList) {
+        z2 z2Var = this.f35950c;
+        if (z2Var != null) {
+            arrayList.add(z2Var);
+        }
+        z2 z2Var2 = this.d;
+        if (z2Var2 != null) {
+            arrayList.add(z2Var2);
         }
     }
 
     @Override
-    public int getBoundLeft() {
-        a3 a3Var = this.f37867c;
-        if (a3Var == null) {
-            return -1;
+    public final void i(long j10, long j11) {
+        this.f35951f.p(true, Math.min(1.0f, ((float) j10) / ((float) j11)));
+        if (this.F != 1) {
+            b(true);
         }
-        int a2 = a3Var.a() + a3Var.f37666s;
-        this.f37865a.getClass();
-        return a2 - AndroidUtilities.dp(18);
-    }
-
-    @Override
-    public int getBoundRight() {
-        a3 a3Var = this.f37867c;
-        if (a3Var == null) {
-            return -1;
-        }
-        int b10 = a3Var.b() + a3Var.f37666s;
-        this.f37865a.getClass();
-        return AndroidUtilities.dp(18) + b10;
-    }
-
-    @Override
-    public int getLastLineBoundRight() {
-        a3 a3Var = this.f37867c;
-        if (a3Var == null) {
-            return -1;
-        }
-        int c10 = a3Var.c() + a3Var.f37666s;
-        this.f37865a.getClass();
-        return AndroidUtilities.dp(18) + c10;
-    }
-
-    public int getMinWidth() {
-        return d3.b(this);
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        a3 a3Var = this.f37867c;
-        if (a3Var != null) {
-            a3Var.attach(this);
+        this.e.P();
+        b(false);
+        z2 z2Var = this.f35950c;
+        if (z2Var != null) {
+            z2Var.i(this);
+        }
+        z2 z2Var2 = this.d;
+        if (z2Var2 != null) {
+            z2Var2.i(this);
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        a3 a3Var = this.f37867c;
-        if (a3Var != null) {
-            a3Var.detach(this);
+        this.e.R();
+        org.telegram.messenger.b6.q(((h4) this.f35948a).X).v(this);
+        z2 z2Var = this.f35950c;
+        if (z2Var != null) {
+            z2Var.f(this);
+        }
+        z2 z2Var2 = this.d;
+        if (z2Var2 != null) {
+            z2Var2.f(this);
         }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.f37868f == null) {
+        Canvas canvas2;
+        if (this.N == null) {
             return;
         }
-        a3 a3Var = this.f37867c;
-        j70 j70Var = this.f37865a;
-        if (a3Var != null) {
-            canvas.save();
-            canvas.translate(this.d, this.e);
-            j4.v(j70Var, canvas, this, 0);
-            this.f37867c.draw(canvas, this);
-            canvas.restore();
+        ImageReceiver imageReceiver = this.e;
+        if (imageReceiver.I() && imageReceiver.f14384h1 == 1.0f) {
+            canvas2 = canvas;
+        } else {
+            canvas2 = canvas;
+            canvas2.drawRect(imageReceiver.K0, imageReceiver.L0, imageReceiver.y(), imageReceiver.A(), h4.f37714p1);
         }
-        j4.u(canvas, j70Var, this.f37868f, getMeasuredHeight());
+        imageReceiver.h(canvas2, null);
+        if (imageReceiver.Q0) {
+            this.f35951f.draw(canvas2);
+        }
+        if (!TextUtils.isEmpty(this.N.url) && !(this.L instanceof org.telegram.ui.web.x1)) {
+            int measuredWidth = getMeasuredWidth() - org.telegram.messenger.i0.L(35.0f);
+            int L = (int) (imageReceiver.L0 + org.telegram.messenger.i0.L(11.0f));
+            this.S.setBounds(measuredWidth, L, org.telegram.messenger.i0.L(24.0f) + measuredWidth, org.telegram.messenger.i0.L(24.0f) + L);
+            this.S.draw(canvas2);
+        }
+        z2 z2Var = this.f35950c;
+        m60 m60Var = this.f35948a;
+        int i10 = 0;
+        if (z2Var != null) {
+            canvas2.save();
+            canvas2.translate(this.f35954s, this.f35955w);
+            h4.t(m60Var, canvas2, this, 0);
+            this.f35950c.d(canvas2, this);
+            canvas2.restore();
+            i10 = 1;
+        }
+        if (this.d != null) {
+            canvas2.save();
+            canvas2.translate(this.f35954s, this.f35955w + this.f35956x);
+            h4.t(m60Var, canvas2, this, i10);
+            this.d.d(canvas2, this);
+            canvas2.restore();
+        }
+        h4.s(canvas2, m60Var, this.N, getMeasuredHeight());
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.TextView");
         accessibilityNodeInfo.setEnabled(true);
-        a3 a3Var = this.f37867c;
-        if (a3Var == null) {
-            return;
+        StringBuilder sb2 = new StringBuilder(org.telegram.messenger.cd.L0(2131753948, null));
+        if (this.f35950c != null) {
+            sb2.append(", ");
+            sb2.append(this.f35950c.d.getText());
         }
-        accessibilityNodeInfo.setText(j4.j(this.f37865a, this.f37866b, a3Var));
+        accessibilityNodeInfo.setText(sb2.toString());
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        Layout.Alignment alignment;
-        int dp;
-        int size = View.MeasureSpec.getSize(i10);
-        TL_iv.pageBlockParagraph pageblockparagraph = this.f37868f;
-        if (pageblockparagraph != null) {
-            int i13 = pageblockparagraph.level;
-            j70 j70Var = this.f37865a;
-            i12 = 0;
-            if (i13 == 0) {
-                j70Var.getClass();
-                this.e = AndroidUtilities.dp(8);
-                j70Var.getClass();
-                this.d = AndroidUtilities.dp(18);
-            } else {
-                this.e = 0;
-                j70Var.getClass();
-                this.d = AndroidUtilities.dp((this.f37868f.level * 14) + 18);
-            }
-            if (this.f37868f.text instanceof TL_iv.textMath) {
-                alignment = Layout.Alignment.ALIGN_CENTER;
-            } else {
-                h4 h4Var = this.f37866b;
-                if (h4Var != null && h4Var.G) {
-                    alignment = org.telegram.ui.Components.qx0.a();
-                } else {
-                    alignment = Layout.Alignment.ALIGN_NORMAL;
-                }
-            }
-            Layout.Alignment alignment2 = alignment;
-            TL_iv.RichText richText = this.f37868f.text;
-            j70 j70Var2 = this.f37865a;
-            j70Var2.getClass();
-            a3 p10 = j4.p(j70Var2, this, null, richText, (size - AndroidUtilities.dp(18)) - this.d, this.e, this.f37868f, alignment2, 0, this.f37866b);
-            this.f37867c = p10;
-            if (p10 != null) {
-                int height = p10.d.getHeight();
-                if (this.f37868f.level > 0) {
-                    j70Var.getClass();
-                    dp = AndroidUtilities.dp(8);
-                } else {
-                    j70Var.getClass();
-                    dp = AndroidUtilities.dp(16);
-                }
-                i12 = dp + height;
-                a3 a3Var = this.f37867c;
-                a3Var.f37666s = this.d;
-                a3Var.v = this.e;
-            }
-        } else {
-            i12 = 1;
-        }
-        setMeasuredDimension(size, i12);
+    public final void onMeasure(int r30, int r31) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.b2.onMeasure(int, int):void");
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!j4.l(this.f37865a, this.f37866b, motionEvent, this, this.f37867c, this.d, this.e) && !super.onTouchEvent(motionEvent)) {
-            return false;
-        }
-        return true;
+    public final boolean onTouchEvent(android.view.MotionEvent r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.b2.onTouchEvent(android.view.MotionEvent):boolean");
     }
 
-    public void setBlock(TL_iv.pageBlockParagraph pageblockparagraph) {
-        this.f37868f = pageblockparagraph;
-        requestLayout();
+    public void setParentBlock(TL_iv.PageBlock pageBlock) {
+        TL_iv.pageBlockChannel pageblockchannel;
+        this.P = pageBlock;
+        f4 f4Var = this.f35949b;
+        if (f4Var != null && (pageblockchannel = f4Var.F) != null && (pageBlock instanceof TL_iv.pageBlockCover)) {
+            c1 c1Var = this.h;
+            c1Var.setBlock(pageblockchannel);
+            c1Var.setVisibility(0);
+        }
+    }
+
+    @Override
+    public final void n(long j10, long j11) {
     }
 }

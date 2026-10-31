@@ -1,116 +1,296 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
+import android.content.res.Resources;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
-import android.graphics.RectF;
+import android.graphics.PorterDuff;
+import android.graphics.Rect;
+import android.graphics.Region;
 import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
-import org.telegram.messenger.AndroidUtilities;
-public class gq extends Drawable {
-    public static final u1.a h = new u1.a();
-    public float f28713a;
-    public final float f28714b;
-    public long f28715c;
-    public final float[] d;
-    public final Paint e;
-    public float f28716f;
-    public final RectF f28717g;
+import android.view.View;
+public abstract class gq extends Drawable {
+    public final int f26490a;
+    public Object f26491b;
 
-    public gq(int i10) {
-        this.f28713a = AndroidUtilities.dp(18.0f);
-        this.f28714b = AndroidUtilities.dp(2.25f);
-        this.f28715c = -1L;
-        this.d = new float[2];
-        Paint paint = new Paint();
-        this.e = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        this.f28717g = new RectF();
-        b(i10);
+    public gq() {
+        this.f26490a = 1;
     }
 
-    public static void a(float[] fArr, float f7) {
-        int i10;
-        float f10 = (1520.0f * f7) / 5400.0f;
-        fArr[0] = Math.max(0.0f, f10 - 20.0f);
-        fArr[1] = f10;
-        for (int i11 = 0; i11 < 4; i11++) {
-            u1.a aVar = h;
-            fArr[1] = (aVar.getInterpolation((f7 - (i11 * 1350)) / 667.0f) * 250.0f) + fArr[1];
-            fArr[0] = (aVar.getInterpolation((f7 - (i10 + 667)) / 667.0f) * 250.0f) + fArr[0];
+    @Override
+    public void applyTheme(Resources.Theme theme) {
+        switch (this.f26490a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f26491b;
+                if (drawable != null) {
+                    drawable.applyTheme(theme);
+                    return;
+                }
+                return;
+            default:
+                super.applyTheme(theme);
+                return;
         }
     }
 
-    public final void b(int i10) {
-        this.e.setColor(i10);
-    }
-
     @Override
-    public final void draw(Canvas canvas) {
-        if (this.f28715c < 0) {
-            this.f28715c = SystemClock.elapsedRealtime();
+    public void clearColorFilter() {
+        switch (this.f26490a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f26491b;
+                if (drawable != null) {
+                    drawable.clearColorFilter();
+                    return;
+                } else {
+                    super.clearColorFilter();
+                    return;
+                }
+            default:
+                super.clearColorFilter();
+                return;
         }
-        float[] fArr = this.d;
-        a(fArr, (float) ((SystemClock.elapsedRealtime() - this.f28715c) % 5400));
-        float f7 = this.f28716f;
-        float f10 = fArr[0];
-        Paint paint = this.e;
-        canvas.drawArc(this.f28717g, f7 + f10, fArr[1] - f10, false, paint);
-        invalidateSelf();
     }
 
     @Override
-    public int getIntrinsicHeight() {
-        return (int) (this.f28713a + this.f28714b);
+    public Drawable getCurrent() {
+        switch (this.f26490a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f26491b;
+                if (drawable != null) {
+                    return drawable.getCurrent();
+                }
+                return super.getCurrent();
+            default:
+                return super.getCurrent();
+        }
     }
 
     @Override
-    public int getIntrinsicWidth() {
-        return (int) (this.f28713a + this.f28714b);
+    public int getMinimumHeight() {
+        switch (this.f26490a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f26491b;
+                if (drawable != null) {
+                    return drawable.getMinimumHeight();
+                }
+                return super.getMinimumHeight();
+            default:
+                return super.getMinimumHeight();
+        }
     }
 
     @Override
-    public final int getOpacity() {
+    public int getMinimumWidth() {
+        switch (this.f26490a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f26491b;
+                if (drawable != null) {
+                    return drawable.getMinimumWidth();
+                }
+                return super.getMinimumWidth();
+            default:
+                return super.getMinimumWidth();
+        }
+    }
+
+    @Override
+    public int getOpacity() {
         return -2;
     }
 
     @Override
-    public final void setAlpha(int i10) {
-        this.e.setAlpha(i10);
+    public boolean getPadding(Rect rect) {
+        switch (this.f26490a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f26491b;
+                if (drawable != null) {
+                    return drawable.getPadding(rect);
+                }
+                return super.getPadding(rect);
+            default:
+                return super.getPadding(rect);
+        }
     }
 
     @Override
-    public final void setBounds(int i10, int i11, int i12, int i13) {
-        float f7 = i10;
-        float f10 = i12 - i10;
-        float f11 = this.f28714b;
-        float f12 = this.f28713a;
-        float f13 = i11;
-        float f14 = i13 - i11;
-        this.f28717g.set(c3.h0.B(f10 - (f11 / 2.0f), f12, 2.0f, f7), (((f14 - (f11 / 2.0f)) - f12) / 2.0f) + f13, ((((f11 / 2.0f) + f10) + f12) / 2.0f) + f7, ((((f11 / 2.0f) + f14) + f12) / 2.0f) + f13);
-        super.setBounds(i10, i11, i12, i13);
-        this.e.setStrokeWidth(f11);
-    }
-
-    public gq(float f7, float f10, int i10) {
-        this.f28713a = AndroidUtilities.dp(18.0f);
-        this.f28714b = AndroidUtilities.dp(2.25f);
-        this.f28715c = -1L;
-        this.d = new float[2];
-        Paint paint = new Paint();
-        this.e = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        this.f28717g = new RectF();
-        this.f28713a = f7;
-        this.f28714b = f10;
-        b(i10);
+    public int[] getState() {
+        switch (this.f26490a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f26491b;
+                if (drawable != null) {
+                    return drawable.getState();
+                }
+                return super.getState();
+            default:
+                return super.getState();
+        }
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public Region getTransparentRegion() {
+        switch (this.f26490a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f26491b;
+                if (drawable != null) {
+                    return drawable.getTransparentRegion();
+                }
+                return super.getTransparentRegion();
+            default:
+                return super.getTransparentRegion();
+        }
+    }
+
+    @Override
+    public void jumpToCurrentState() {
+        switch (this.f26490a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f26491b;
+                if (drawable != null) {
+                    drawable.jumpToCurrentState();
+                    return;
+                }
+                return;
+            default:
+                super.jumpToCurrentState();
+                return;
+        }
+    }
+
+    @Override
+    public boolean onLevelChange(int i10) {
+        switch (this.f26490a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f26491b;
+                if (drawable != null) {
+                    return drawable.setLevel(i10);
+                }
+                return super.onLevelChange(i10);
+            default:
+                return super.onLevelChange(i10);
+        }
+    }
+
+    @Override
+    public void setAlpha(int i10) {
+        ((Paint) this.f26491b).setAlpha(i10);
+    }
+
+    @Override
+    public void setChangingConfigurations(int i10) {
+        switch (this.f26490a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f26491b;
+                if (drawable != null) {
+                    drawable.setChangingConfigurations(i10);
+                    return;
+                } else {
+                    super.setChangingConfigurations(i10);
+                    return;
+                }
+            default:
+                super.setChangingConfigurations(i10);
+                return;
+        }
+    }
+
+    @Override
+    public void setColorFilter(int i10, PorterDuff.Mode mode) {
+        switch (this.f26490a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f26491b;
+                if (drawable != null) {
+                    drawable.setColorFilter(i10, mode);
+                    return;
+                } else {
+                    super.setColorFilter(i10, mode);
+                    return;
+                }
+            default:
+                super.setColorFilter(i10, mode);
+                return;
+        }
+    }
+
+    @Override
+    public void setFilterBitmap(boolean z10) {
+        switch (this.f26490a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f26491b;
+                if (drawable != null) {
+                    drawable.setFilterBitmap(z10);
+                    return;
+                }
+                return;
+            default:
+                super.setFilterBitmap(z10);
+                return;
+        }
+    }
+
+    @Override
+    public void setHotspot(float f7, float f10) {
+        switch (this.f26490a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f26491b;
+                if (drawable != null) {
+                    drawable.setHotspot(f7, f10);
+                    return;
+                }
+                return;
+            default:
+                super.setHotspot(f7, f10);
+                return;
+        }
+    }
+
+    @Override
+    public void setHotspotBounds(int i10, int i11, int i12, int i13) {
+        switch (this.f26490a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f26491b;
+                if (drawable != null) {
+                    drawable.setHotspotBounds(i10, i11, i12, i13);
+                    return;
+                }
+                return;
+            default:
+                super.setHotspotBounds(i10, i11, i12, i13);
+                return;
+        }
+    }
+
+    @Override
+    public boolean setState(int[] iArr) {
+        switch (this.f26490a) {
+            case 1:
+                Drawable drawable = (Drawable) this.f26491b;
+                if (drawable != null) {
+                    return drawable.setState(iArr);
+                }
+                return super.setState(iArr);
+            default:
+                return super.setState(iArr);
+        }
+    }
+
+    public gq(View view) {
+        this.f26490a = 0;
+        this.f26491b = new Paint(1);
+        if (view != null) {
+            view.addOnAttachStateChangeListener(new l.d(this, 7));
+            if (view.isAttachedToWindow()) {
+                view.post(new ho(this, 3));
+            }
+        }
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+        ((Paint) this.f26491b).setColorFilter(colorFilter);
+    }
+
+    public void a() {
+    }
+
+    public void b() {
     }
 }

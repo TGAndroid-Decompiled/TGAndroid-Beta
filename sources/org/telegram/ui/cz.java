@@ -1,63 +1,26 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class cz implements RequestDelegate {
-    public final int f38475a;
-    public final oz f38476b;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class cz implements org.telegram.ui.ActionBar.u1 {
+    public final int f36572a;
+    public final EditTextBoldCursor f36573b;
 
-    public cz(oz ozVar, int i10) {
-        this.f38475a = i10;
-        this.f38476b = ozVar;
+    public cz(EditTextBoldCursor editTextBoldCursor, int i10) {
+        this.f36572a = i10;
+        this.f36573b = editTextBoldCursor;
     }
 
     @Override
-    public final void run(TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f38475a) {
+    public final void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
+        switch (this.f36572a) {
             case 0:
-                final oz ozVar = this.f38476b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                oz ozVar2 = ozVar;
-                                ozVar2.E = 0;
-                                if (tL_error == null) {
-                                    org.telegram.messenger.t.q(R.string.FilterInviteNameEdited, org.telegram.ui.Components.wc.b0(ozVar2), R.raw.contact_check, 36);
-                                    return;
-                                }
-                                return;
-                            default:
-                                oz.V(ozVar, tL_error);
-                                return;
-                        }
-                    }
-                });
+                org.telegram.messenger.i0.v1(this.f36573b);
+                return;
+            case 1:
+                org.telegram.messenger.i0.v1(this.f36573b);
                 return;
             default:
-                final oz ozVar2 = this.f38476b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                oz ozVar22 = ozVar2;
-                                ozVar22.E = 0;
-                                if (tL_error == null) {
-                                    org.telegram.messenger.t.q(R.string.FilterInviteNameEdited, org.telegram.ui.Components.wc.b0(ozVar22), R.raw.contact_check, 36);
-                                    return;
-                                }
-                                return;
-                            default:
-                                oz.V(ozVar2, tL_error);
-                                return;
-                        }
-                    }
-                });
+                org.telegram.messenger.i0.v1(this.f36573b);
                 return;
         }
     }

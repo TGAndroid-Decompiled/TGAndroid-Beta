@@ -1,30 +1,20 @@
 package org.telegram.messenger;
 
-import java.text.Collator;
-import java.util.Comparator;
-import org.telegram.tgnet.TLRPC;
-public final class p1 implements Comparator {
-    public final int f20909a;
-    public final Collator f20910b;
-    public final Object f20911c;
+import java.util.List;
+public final class p1 implements t1, c5.n {
+    public final u1 f17397a;
 
-    public p1(Object obj, Collator collator, int i10) {
-        this.f20909a = i10;
-        this.f20911c = obj;
-        this.f20910b = collator;
+    public p1(u1 u1Var) {
+        this.f17397a = u1Var;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int lambda$buildContactsSectionsArrays$43;
-        int lambda$processLoadedContacts$30;
-        switch (this.f20909a) {
-            case 0:
-                lambda$buildContactsSectionsArrays$43 = ((ContactsController) this.f20911c).lambda$buildContactsSectionsArrays$43(this.f20910b, (TLRPC.TL_contact) obj, (TLRPC.TL_contact) obj2);
-                return lambda$buildContactsSectionsArrays$43;
-            default:
-                lambda$processLoadedContacts$30 = ContactsController.lambda$processLoadedContacts$30((a0.h) this.f20911c, this.f20910b, (TLRPC.TL_contact) obj, (TLRPC.TL_contact) obj2);
-                return lambda$processLoadedContacts$30;
-        }
+    public void a(c5.g gVar, List list) {
+        u1.c(this.f17397a, gVar, list);
+    }
+
+    @Override
+    public void b(c5.g gVar, List list) {
+        this.f17397a.n(gVar, list, null);
     }
 }

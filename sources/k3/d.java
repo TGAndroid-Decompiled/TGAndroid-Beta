@@ -1,21 +1,21 @@
 package k3;
 
-import f9.f0;
-import f9.i0;
-import f9.s1;
+import e9.k0;
+import e9.n0;
+import e9.x1;
 import org.xmlpull.v1.XmlPullParser;
 public abstract class d {
-    public static final String[] f16357a = {"Camera:MotionPhoto", "GCamera:MotionPhoto", "Camera:MicroVideo", "GCamera:MicroVideo"};
-    public static final String[] f16358b = {"Camera:MotionPhotoPresentationTimestampUs", "GCamera:MotionPhotoPresentationTimestampUs", "Camera:MicroVideoPresentationTimestampUs", "GCamera:MicroVideoPresentationTimestampUs"};
-    public static final String[] f16359c = {"Camera:MicroVideoOffset", "GCamera:MicroVideoOffset"};
+    public static final String[] f10840a = {"Camera:MotionPhoto", "GCamera:MotionPhoto", "Camera:MicroVideo", "GCamera:MicroVideo"};
+    public static final String[] f10841b = {"Camera:MotionPhotoPresentationTimestampUs", "GCamera:MotionPhotoPresentationTimestampUs", "Camera:MicroVideoPresentationTimestampUs", "GCamera:MicroVideoPresentationTimestampUs"};
+    public static final String[] f10842c = {"Camera:MicroVideoOffset", "GCamera:MicroVideoOffset"};
 
-    public static a8.lg a(java.lang.String r20) {
-        throw new UnsupportedOperationException("Method not decompiled: k3.d.a(java.lang.String):a8.lg");
+    public static c3.g0 a(java.lang.String r21) {
+        throw new UnsupportedOperationException("Method not decompiled: k3.d.a(java.lang.String):c3.g0");
     }
 
-    public static s1 b(XmlPullParser xmlPullParser, String str, String str2) {
+    public static x1 b(XmlPullParser xmlPullParser, String str, String str2) {
         long j10;
-        f0 t10 = i0.t();
+        k0 t10 = n0.t();
         String concat = str.concat(":Item");
         String concat2 = str.concat(":Directory");
         do {
@@ -39,9 +39,9 @@ public abstract class d {
                     if (f12 != null) {
                         j11 = Long.parseLong(f12);
                     }
-                    t10.c(new c(f7, j10, j11, f10));
+                    t10.c(new c(f7, f10, j10, j11));
                 } else {
-                    return s1.e;
+                    return x1.e;
                 }
             }
         } while (!e2.a.h(xmlPullParser, concat2));

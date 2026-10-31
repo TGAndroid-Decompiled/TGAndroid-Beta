@@ -1,13 +1,10 @@
 package k2;
 public final class s0 {
-    public final b2.a1 f16269a;
-    public final long f16270b;
-    public final long f16271c;
-    public long d;
+    public final o f10761a;
+    public final w0 f10762b;
 
-    public s0(b2.a1 a1Var, long j10, long j11) {
-        this.f16269a = a1Var;
-        this.f16270b = j10;
-        this.f16271c = j11;
+    public s0(w0 w0Var, o oVar) {
+        this.f10762b = w0Var;
+        this.f10761a = oVar;
     }
 }

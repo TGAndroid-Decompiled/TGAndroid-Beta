@@ -1,86 +1,111 @@
 package f9;
 
-import a8.ta;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Map;
-public class d extends a8.x {
-    public final Map f10270b;
-    public final k1 f10271c;
+import j$.util.Objects;
+import v7.t6;
+public class d {
+    public static final b d;
+    public final a f6968a;
+    public final Character f6969b;
+    public volatile d f6970c;
 
-    public d(k1 k1Var, Map map) {
-        super(1);
-        this.f10271c = k1Var;
-        map.getClass();
-        this.f10270b = map;
+    static {
+        new c("base64()", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/");
+        new c("base64Url()", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_");
+        new d("base32()", "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567");
+        new d("base32Hex()", "0123456789ABCDEFGHIJKLMNOPQRSTUV");
+        d = new b(new a("base16()", "0123456789ABCDEF".toCharArray()));
     }
 
-    @Override
-    public final void clear() {
-        Iterator it = iterator();
-        while (true) {
-            ta taVar = (ta) it;
-            if (taVar.hasNext()) {
-                taVar.next();
-                taVar.remove();
-            } else {
-                return;
+    public d(a aVar, Character ch2) {
+        boolean z10;
+        this.f6968a = aVar;
+        if (ch2 != null) {
+            char charValue = ch2.charValue();
+            byte[] bArr = aVar.f6967g;
+            if (charValue < bArr.length && bArr[charValue] != -1) {
+                z10 = false;
+                t6.h(z10, "Padding character %s was already in alphabet", ch2);
+                this.f6969b = ch2;
+            }
+        }
+        z10 = true;
+        t6.h(z10, "Padding character %s was already in alphabet", ch2);
+        this.f6969b = ch2;
+    }
+
+    public final void a(StringBuilder sb2, byte[] bArr, int i10, int i11) {
+        boolean z10;
+        t6.n(i10, i10 + i11, bArr.length);
+        a aVar = this.f6968a;
+        int i12 = aVar.f6966f;
+        int i13 = aVar.d;
+        int i14 = 0;
+        if (i11 <= i12) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        t6.f(z10);
+        long j10 = 0;
+        for (int i15 = 0; i15 < i11; i15++) {
+            j10 = (j10 | (bArr[i10 + i15] & 255)) << 8;
+        }
+        int i16 = ((i11 + 1) * 8) - i13;
+        while (i14 < i11 * 8) {
+            sb2.append(aVar.f6964b[((int) (j10 >>> (i16 - i14))) & aVar.f6965c]);
+            i14 += i13;
+        }
+        Character ch2 = this.f6969b;
+        if (ch2 != null) {
+            while (i14 < aVar.f6966f * 8) {
+                sb2.append(ch2.charValue());
+                i14 += i13;
             }
         }
     }
 
-    @Override
-    public final boolean contains(Object obj) {
-        return this.f10270b.containsKey(obj);
+    public void b(StringBuilder sb2, byte[] bArr, int i10) {
+        int i11 = 0;
+        t6.n(0, i10, bArr.length);
+        while (i11 < i10) {
+            a aVar = this.f6968a;
+            a(sb2, bArr, i11, Math.min(aVar.f6966f, i10 - i11));
+            i11 += aVar.f6966f;
+        }
     }
 
-    @Override
-    public final boolean containsAll(Collection collection) {
-        return this.f10270b.keySet().containsAll(collection);
-    }
-
-    @Override
     public final boolean equals(Object obj) {
-        if (this != obj && !this.f10270b.keySet().equals(obj)) {
-            return false;
+        if (obj instanceof d) {
+            d dVar = (d) obj;
+            if (this.f6968a.equals(dVar.f6968a) && Objects.equals(this.f6969b, dVar.f6969b)) {
+                return true;
+            }
         }
-        return true;
+        return false;
     }
 
-    @Override
     public final int hashCode() {
-        return this.f10270b.keySet().hashCode();
+        return this.f6968a.hashCode() ^ Objects.hashCode(this.f6969b);
     }
 
-    @Override
-    public final boolean isEmpty() {
-        return this.f10270b.isEmpty();
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return new ta(this, this.f10270b.entrySet().iterator(), 4);
-    }
-
-    @Override
-    public final boolean remove(Object obj) {
-        int i10;
-        Collection collection = (Collection) this.f10270b.remove(obj);
-        if (collection != null) {
-            i10 = collection.size();
-            collection.clear();
-            this.f10271c.f10292f -= i10;
-        } else {
-            i10 = 0;
+    public final String toString() {
+        StringBuilder sb2 = new StringBuilder("BaseEncoding.");
+        a aVar = this.f6968a;
+        sb2.append(aVar);
+        if (8 % aVar.d != 0) {
+            Character ch2 = this.f6969b;
+            if (ch2 == null) {
+                sb2.append(".omitPadding()");
+            } else {
+                sb2.append(".withPadChar('");
+                sb2.append(ch2);
+                sb2.append("')");
+            }
         }
-        if (i10 <= 0) {
-            return false;
-        }
-        return true;
+        return sb2.toString();
     }
 
-    @Override
-    public final int size() {
-        return this.f10270b.size();
+    public d(String str, String str2) {
+        this(new a(str, str2.toCharArray()), (Character) '=');
     }
 }

@@ -1,204 +1,121 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import java.util.Random;
-import org.telegram.messenger.LiteMode;
-public class fa {
-    public float f28065a;
-    public float f28066b;
-    public final Path f28067c;
-    public final Paint d;
-    public final float[] e;
-    public final float[] f28068f;
-    public final float[] f28069g;
-    public final float[] h;
-    public final float[] f28070i;
-    public final float[] f28071j;
-    public final float[] f28072k;
-    public final float[] f28073l;
-    public final Random f28074m;
-    public final float f28075n;
-    public final float f28076o;
-    public final float f28077p;
-    public final Matrix f28078q;
-    public final int f28079r;
-    public float f28080s;
-    public float f28081t;
-    public float f28082u;
+import android.content.Context;
+import android.view.KeyEvent;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+public final class fa extends sk0 {
+    public final int f26020c;
+    public final Context d;
+    public final Object e;
+    public final KeyEvent.Callback f26021f;
 
-    public fa(int i10) {
-        this(i10, 512);
+    public fa(qi qiVar, Context context) {
+        this.f26020c = 1;
+        this.f26021f = qiVar;
+        this.e = new ArrayList();
+        this.d = context;
     }
 
-    public final void a(float f7, float f10, Canvas canvas, Paint paint) {
-        int i10;
-        if (!LiteMode.isEnabled(this.f28079r)) {
-            return;
+    @Override
+    public void B(s4.i0 i0Var) {
+        switch (this.f26020c) {
+            case 0:
+                ((sk0) this.e).B(new ea(this, i0Var));
+                return;
+            default:
+                super.B(i0Var);
+                return;
         }
-        Path path = this.f28067c;
-        path.reset();
-        int i11 = 0;
-        while (true) {
-            float f11 = this.f28075n;
-            if (i11 < f11) {
-                float[] fArr = this.f28070i;
-                float f12 = fArr[i11];
-                int i12 = i11 + 1;
-                if (i12 < f11) {
-                    i10 = i12;
+    }
+
+    @Override
+    public final boolean D(s4.c1 c1Var) {
+        switch (this.f26020c) {
+            case 0:
+                return ((sk0) this.e).D(c1Var);
+            default:
+                if (c1Var.f47901f == 0) {
+                    return true;
+                }
+                return false;
+        }
+    }
+
+    @Override
+    public final int b() {
+        switch (this.f26020c) {
+            case 0:
+                return ((sk0) this.e).b() + 1;
+            default:
+                return ((ArrayList) this.e).size();
+        }
+    }
+
+    @Override
+    public final int d(int i10) {
+        int i11;
+        switch (this.f26020c) {
+            case 0:
+                ha haVar = (ha) this.f26021f;
+                if (haVar.G1) {
+                    i11 = b() - 1;
                 } else {
-                    i10 = 0;
+                    i11 = 0;
                 }
-                float f13 = fArr[i10];
-                float[] fArr2 = this.e;
-                float f14 = 1.0f - f12;
-                float[] fArr3 = this.f28069g;
-                float f15 = (fArr3[i11] * f12) + (fArr2[i11] * f14);
-                float f16 = 1.0f - f13;
-                float f17 = (fArr3[i10] * f13) + (fArr2[i10] * f16);
-                float[] fArr4 = this.f28068f;
-                float f18 = fArr4[i11] * f14;
-                float[] fArr5 = this.h;
-                float f19 = (fArr5[i10] * f13) + (fArr4[i10] * f16);
-                float max = (((Math.max(f15, f17) - Math.min(f15, f17)) / 2.0f) + Math.min(f15, f17)) * this.f28076o * this.f28077p;
-                Matrix matrix = this.f28078q;
-                matrix.reset();
-                matrix.setRotate((fArr5[i11] * f12) + f18, f7, f10);
-                float[] fArr6 = this.f28072k;
-                fArr6[0] = f7;
-                float f20 = f10 - f15;
-                fArr6[1] = f20;
-                fArr6[2] = f7 + max;
-                fArr6[3] = f20;
-                matrix.mapPoints(fArr6);
-                float[] fArr7 = this.f28073l;
-                fArr7[0] = f7;
-                float f21 = f10 - f17;
-                fArr7[1] = f21;
-                fArr7[2] = f7 - max;
-                fArr7[3] = f21;
-                matrix.reset();
-                matrix.setRotate(f19, f7, f10);
-                matrix.mapPoints(fArr7);
-                if (i11 == 0) {
-                    path.moveTo(fArr6[0], fArr6[1]);
+                if (i10 == i11) {
+                    return -1000;
                 }
-                path.cubicTo(fArr6[2], fArr6[3], fArr7[2], fArr7[3], fArr7[0], fArr7[1]);
-                i11 = i12;
-            } else {
-                canvas.save();
-                canvas.drawPath(path, paint);
-                canvas.restore();
+                return ((sk0) this.e).d(i10 - (!haVar.G1 ? 1 : 0));
+            default:
+                return 0;
+        }
+    }
+
+    @Override
+    public final void t(s4.c1 c1Var, int i10) {
+        int i11;
+        switch (this.f26020c) {
+            case 0:
+                ha haVar = (ha) this.f26021f;
+                if (haVar.G1) {
+                    i11 = b() - 1;
+                } else {
+                    i11 = 0;
+                }
+                if (i10 != i11) {
+                    ((sk0) this.e).t(c1Var, i10 - (!haVar.G1 ? 1 : 0));
+                    return;
+                }
                 return;
-            }
-        }
-    }
-
-    public final void b() {
-        for (int i10 = 0; i10 < this.f28075n; i10++) {
-            c(this.e, this.f28068f, i10);
-            c(this.f28069g, this.h, i10);
-            this.f28070i[i10] = 0.0f;
-        }
-    }
-
-    public final void c(float[] fArr, float[] fArr2, int i10) {
-        float f7 = this.f28075n;
-        float f10 = this.f28066b;
-        float f11 = this.f28065a;
-        Random random = this.f28074m;
-        fArr[i10] = (Math.abs((random.nextInt() % 100.0f) / 100.0f) * (f10 - f11)) + f11;
-        fArr2[i10] = (((random.nextInt() % 100.0f) / 100.0f) * (360.0f / f7) * 0.05f) + ((360.0f / f7) * i10);
-        this.f28071j[i10] = (float) (((Math.abs(random.nextInt() % 100.0f) / 100.0f) * 0.003d) + 0.017d);
-    }
-
-    public final void d(float f7, boolean z10) {
-        this.f28080s = f7;
-        if (!LiteMode.isEnabled(this.f28079r)) {
-            return;
-        }
-        if (z10) {
-            float f10 = this.f28080s;
-            float f11 = this.f28081t;
-            if (f10 > f11) {
-                this.f28082u = (f10 - f11) / 205.0f;
+            default:
+                org.telegram.ui.Cells.ua uaVar = (org.telegram.ui.Cells.ua) c1Var.f47898a;
+                uaVar.d(1, false, false);
+                uaVar.setSize(((qi) this.f26021f).f29660r);
+                uaVar.e(1, ((ArrayList) this.e).get(i10), null, 0);
                 return;
-            } else {
-                this.f28082u = (f10 - f11) / 275.0f;
-                return;
-            }
-        }
-        float f12 = this.f28080s;
-        float f13 = this.f28081t;
-        if (f12 > f13) {
-            this.f28082u = (f12 - f13) / 320.0f;
-        } else {
-            this.f28082u = (f12 - f13) / 375.0f;
         }
     }
 
-    public final void e(float f7, float f10) {
-        if (LiteMode.isEnabled(this.f28079r)) {
-            for (int i10 = 0; i10 < this.f28075n; i10++) {
-                float[] fArr = this.f28070i;
-                float f11 = fArr[i10];
-                float f12 = this.f28071j[i10];
-                float f13 = (f12 * f7 * 8.2f * f10) + (0.8f * f12) + f11;
-                fArr[i10] = f13;
-                if (f13 >= 1.0f) {
-                    fArr[i10] = 0.0f;
-                    float[] fArr2 = this.f28069g;
-                    this.e[i10] = fArr2[i10];
-                    float[] fArr3 = this.h;
-                    this.f28068f[i10] = fArr3[i10];
-                    c(fArr2, fArr3, i10);
+    @Override
+    public final s4.c1 w(ViewGroup viewGroup, int i10) {
+        switch (this.f26020c) {
+            case 0:
+                if (i10 == -1000) {
+                    return new s4.c1(new bi.t0((ha) this.f26021f, this.d));
                 }
-            }
+                return ((sk0) this.e).w(viewGroup, i10);
+            default:
+                pi piVar = new pi(this, this.d);
+                piVar.f23151b = false;
+                return new s4.c1(piVar);
         }
     }
 
-    public final void f(long j10) {
-        float f7 = this.f28080s;
-        float f10 = this.f28081t;
-        if (f7 != f10) {
-            float f11 = this.f28082u;
-            float f12 = (((float) j10) * f11) + f10;
-            this.f28081t = f12;
-            if (f11 > 0.0f) {
-                if (f12 > f7) {
-                    this.f28081t = f7;
-                }
-            } else if (f12 < f7) {
-                this.f28081t = f7;
-            }
-        }
-    }
-
-    public fa(int i10, int i11) {
-        float f7;
-        this.f28067c = new Path();
-        this.d = new Paint(1);
-        this.f28072k = new float[4];
-        this.f28073l = new float[4];
-        this.f28074m = new Random();
-        this.f28077p = 1.0f;
-        this.f28078q = new Matrix();
-        this.f28075n = i10;
-        this.f28076o = (float) (Math.tan(3.141592653589793d / (f7 * 2.0f)) * 1.3333333333333333d);
-        this.e = new float[i10];
-        this.f28068f = new float[i10];
-        this.f28069g = new float[i10];
-        this.h = new float[i10];
-        this.f28070i = new float[i10];
-        this.f28071j = new float[i10];
-        for (int i12 = 0; i12 < this.f28075n; i12++) {
-            c(this.e, this.f28068f, i12);
-            c(this.f28069g, this.h, i12);
-            this.f28070i[i12] = 0.0f;
-        }
-        this.f28079r = i11;
+    public fa(ha haVar, sk0 sk0Var, Context context) {
+        this.f26020c = 0;
+        this.f26021f = haVar;
+        this.e = sk0Var;
+        this.d = context;
     }
 }

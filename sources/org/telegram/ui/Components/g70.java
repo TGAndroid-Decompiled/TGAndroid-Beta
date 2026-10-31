@@ -1,27 +1,19 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class g70 implements RequestDelegate {
-    public final int f28449a;
-    public final i70 f28450b;
+import android.content.Context;
+public final class g70 extends tk0 {
+    public final k70 f26278e3;
 
-    public g70(i70 i70Var, int i10) {
-        this.f28449a = i10;
-        this.f28450b = i70Var;
+    public g70(k70 k70Var, Context context) {
+        super(context, null);
+        this.f26278e3 = k70Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f28449a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new kg(this.f28450b, tL_error, tLObject, 11));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new so(27, this.f28450b, tL_error));
-                return;
+    public final void requestLayout() {
+        if (this.f26278e3.f27663q1) {
+            return;
         }
+        super.requestLayout();
     }
 }

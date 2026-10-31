@@ -1,27 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
-public final class h7 implements Utilities.Callback {
-    public final int f28905a;
-    public final m8 f28906b;
+import android.content.Context;
+import android.view.accessibility.AccessibilityNodeInfo;
+public final class h7 extends ei0 {
+    public final w7 D;
+    public float f26636r;
+    public float f26637s;
+    public boolean f26638w;
+    public final mg.c2 f26639x;
+    public final float f26640y;
 
-    public h7(m8 m8Var, int i10) {
-        this.f28905a = i10;
-        this.f28906b = m8Var;
+    public h7(w7 w7Var, Context context, float f7) {
+        super(context);
+        this.D = w7Var;
+        this.f26640y = f7;
+        this.f26639x = new mg.c2(this, 22);
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f28905a) {
-            case 0:
-                m8.v(this.f28906b, (MessageObject) obj);
-                return;
-            default:
-                Uri uri = (Uri) obj;
-                m8.J(this.f28906b);
-                return;
-        }
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.addAction(16);
+    }
+
+    @Override
+    public final boolean onTouchEvent(android.view.MotionEvent r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.h7.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

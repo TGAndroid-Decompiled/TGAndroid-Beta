@@ -1,83 +1,60 @@
 package org.telegram.ui.Components;
 
-import android.content.Intent;
-import java.util.ArrayList;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.SendMessagesHelper;
-public final class di implements ek {
-    public final ti f27467a;
+import android.util.SparseIntArray;
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
+public final class di implements org.telegram.messenger.r20 {
+    public final int f25418a;
+    public final Object f25419b;
 
-    public di(ti tiVar) {
-        this.f27467a = tiVar;
+    public di(Object obj, int i10) {
+        this.f25418a = i10;
+        this.f25419b = obj;
     }
 
     @Override
-    public final void P() {
-        this.f27467a.H1(true);
-    }
-
-    @Override
-    public final void l(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j10, boolean z11, long j11) {
-        ti tiVar = this.f27467a;
-        ek ekVar = tiVar.X;
-        if (ekVar != null) {
-            ekVar.l(arrayList, str, arrayList2, arrayList3, z10, i10, j10, z11, j11);
-            return;
-        }
-        org.telegram.ui.ActionBar.r2 r2Var = tiVar.f32990f0;
-        if (r2Var instanceof ek) {
-            ((ek) r2Var).l(arrayList, str, arrayList2, arrayList3, z10, i10, j10, z11, j11);
-        } else if (r2Var instanceof org.telegram.ui.kn0) {
-            org.telegram.ui.kn0 kn0Var = (org.telegram.ui.kn0) r2Var;
-            ArrayList arrayList4 = new ArrayList();
-            int size = arrayList.size();
-            for (int i11 = 0; i11 < size; i11++) {
-                SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-                sendingMediaInfo.path = (String) arrayList.get(i11);
-                arrayList4.add(sendingMediaInfo);
-            }
-            kn0Var.G1(arrayList4);
-        }
-    }
-
-    @Override
-    public final void m(long j10, ArrayList arrayList, boolean z10, int i10) {
-        ti tiVar = this.f27467a;
-        ek ekVar = tiVar.X;
-        if (ekVar != null) {
-            ekVar.m(j10, arrayList, z10, i10);
-            return;
-        }
-        org.telegram.ui.ActionBar.r2 r2Var = tiVar.f32990f0;
-        if (r2Var instanceof org.telegram.ui.wn) {
-            ((org.telegram.ui.wn) r2Var).m(j10, arrayList, z10, i10);
-        } else if (r2Var instanceof org.telegram.ui.kn0) {
-            ((org.telegram.ui.kn0) r2Var).G1(arrayList);
-        }
-    }
-
-    @Override
-    public final void x() {
-        ti tiVar = this.f27467a;
-        ek ekVar = tiVar.X;
-        if (ekVar != null) {
-            ekVar.x();
-            return;
-        }
-        org.telegram.ui.ActionBar.r2 r2Var = tiVar.f32990f0;
-        if (r2Var instanceof ek) {
-            ((ek) r2Var).x();
-        } else if (r2Var instanceof org.telegram.ui.kn0) {
-            org.telegram.ui.kn0 kn0Var = (org.telegram.ui.kn0) r2Var;
-            kn0Var.getClass();
-            try {
-                Intent intent = new Intent("android.intent.action.GET_CONTENT");
-                intent.putExtra("android.intent.extra.ALLOW_MULTIPLE", true);
-                intent.setType("*/*");
-                kn0Var.startActivityForResult(intent, 21);
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
+    public final Object a(Object obj) {
+        int i10;
+        int i11 = this.f25418a;
+        boolean z10 = false;
+        Object obj2 = this.f25419b;
+        switch (i11) {
+            case 0:
+                return Boolean.valueOf(mi.N((mi) obj2, (org.telegram.messenger.jj) obj));
+            case 1:
+                jh.h hVar = (jh.h) obj2;
+                View view = (View) obj;
+                ImageReceiver imageReceiver = new ImageReceiver(view);
+                int i12 = org.telegram.ui.ActionBar.t6.Dc;
+                if (org.telegram.ui.ActionBar.t6.I.q()) {
+                    i10 = 3;
+                } else {
+                    i10 = 6;
+                }
+                org.telegram.messenger.c00 c10 = org.telegram.messenger.v5.c(i10 * 0.12f, i12);
+                c10.f14888t = true;
+                c10.f14881m = org.telegram.ui.ActionBar.t6.f20955ef;
+                imageReceiver.s0(org.telegram.messenger.ic.p(org.telegram.messenger.b30.b(hVar.f10416b.geo, 300, 168, 15, Math.min(2, (int) Math.ceil(org.telegram.messenger.i0.f16025p)))), null, null, null, new up(c10), null, 0);
+                view.addOnAttachStateChangeListener(new jh.f(imageReceiver, 0));
+                imageReceiver.J0(org.telegram.messenger.i0.L(14.0f));
+                return new jh.g(0, imageReceiver, view.getContext().getResources().getDrawable(2131231645).mutate());
+            case 2:
+                int i13 = ((SparseIntArray) obj2).get(((Integer) obj).intValue(), -1);
+                if (i13 == -1) {
+                    return Boolean.TRUE;
+                }
+                if (i13 == 1) {
+                    z10 = true;
+                }
+                return Boolean.valueOf(z10);
+            default:
+                u51 u51Var = (u51) obj2;
+                View view2 = (View) obj;
+                u51Var.getClass();
+                if (view2.getParent() != u51Var) {
+                    return Boolean.FALSE;
+                }
+                return Boolean.valueOf(!p51.K(u51Var.T(view2).f47901f));
         }
     }
 }

@@ -3,28 +3,27 @@ package bb;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.os.Build;
-import li.h5;
 public final class f0 {
-    public static final f0 f3755a = new Object();
-    public static final h5 f3756b;
+    public static final f0 f2555a = new Object();
+    public static final a4.l f2556b;
 
     static {
-        ma.d dVar = new ma.d();
-        dVar.d(e0.class, g.f3757a);
-        dVar.d(n0.class, h.f3760a);
-        dVar.d(j.class, e.f3747a);
-        dVar.d(b.class, d.f3739a);
-        dVar.d(a.class, c.f3730a);
-        dVar.d(q.class, f.f3752a);
+        la.d dVar = new la.d();
+        dVar.e(e0.class, g.f2557a);
+        dVar.e(n0.class, h.f2560a);
+        dVar.e(j.class, e.f2547a);
+        dVar.e(b.class, d.f2539a);
+        dVar.e(a.class, c.f2530a);
+        dVar.e(q.class, f.f2552a);
         dVar.d = true;
-        f3756b = new h5(dVar);
+        f2556b = new a4.l(dVar, 26);
     }
 
-    public static b a(m9.h hVar) {
+    public static b a(l9.h hVar) {
         String valueOf;
         String str;
         hVar.a();
-        Context context = hVar.f18379a;
+        Context context = hVar.f11707a;
         kotlin.jvm.internal.i.d(context, "firebaseApp.applicationContext");
         String packageName = context.getPackageName();
         PackageInfo packageInfo = context.getPackageManager().getPackageInfo(packageName, 0);
@@ -35,7 +34,7 @@ public final class f0 {
         }
         String str2 = valueOf;
         hVar.a();
-        String str3 = hVar.f18381c.f18390b;
+        String str3 = hVar.f11709c.f11718b;
         kotlin.jvm.internal.i.d(str3, "firebaseApp.options.applicationId");
         String MODEL = Build.MODEL;
         kotlin.jvm.internal.i.d(MODEL, "MODEL");

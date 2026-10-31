@@ -1,168 +1,94 @@
 package ig;
 
-import j$.util.Objects;
-import java.util.HashMap;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.support.LongSparseIntArray;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_chatlists;
-public final class l extends qg.a {
-    public final TLRPC.Dialog f14149c;
-    public final TLRPC.RecentMeUrl d;
-    public final TLRPC.TL_contact e;
-    public final boolean f14150f;
-    public final boolean f14151g;
-    public final boolean h;
-    public final TL_chatlists.TL_chatlists_chatlistUpdates f14152i;
-    public final int f14153j;
-    public final int f14154k;
-    public final String f14155l;
-    public final TLRPC.Chat f14156m;
-    public final TLRPC.User f14157n;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.view.MotionEvent;
+import android.view.View;
+public final class l extends View {
+    public final Paint f8354a;
+    public final Paint f8355b;
+    public float f8356c;
+    public final u d;
 
-    public l(n nVar, TL_chatlists.TL_chatlists_chatlistUpdates tL_chatlists_chatlistUpdates) {
-        super(17, true);
-        this.f14152i = tL_chatlists_chatlistUpdates;
-        int i10 = nVar.W;
-        nVar.W = i10 + 1;
-        this.f14154k = i10;
+    public l(u uVar, Context context) {
+        super(context);
+        this.d = uVar;
+        this.f8354a = new Paint(1);
+        Paint paint = new Paint(1);
+        this.f8355b = paint;
+        paint.setColor(-1);
+        paint.setStyle(Paint.Style.FILL_AND_STROKE);
+        paint.setStrokeWidth(org.telegram.messenger.i0.L(3.0f));
     }
 
-    public final int hashCode() {
-        return Objects.hash(this.f14149c, this.f14156m, this.d, this.e, this.f14155l);
+    public final void a() {
+        this.f8354a.setShader(new LinearGradient(0.0f, 0.0f, getWidth(), 0.0f, new int[]{0, this.d.f8476m1}, (float[]) null, Shader.TileMode.CLAMP));
     }
 
-    public l(n nVar, String str) {
-        super(22, false);
-        HashMap hashMap = nVar.Y;
-        Integer num = (Integer) hashMap.get(str);
-        if (num != null) {
-            this.f14154k = num.intValue();
-        } else {
-            int i10 = nVar.W;
-            nVar.W = i10 + 1;
-            this.f14154k = i10;
-            hashMap.put(str, Integer.valueOf(i10));
-        }
-        this.f14155l = str;
+    public final void b(float f7) {
+        float L = org.telegram.messenger.i0.L(6.0f);
+        float a2 = w7.u.a(((f7 - L) + (org.telegram.messenger.i0.L(13.0f) - (this.f8355b.getStrokeWidth() / 2.0f))) / (getWidth() - (L * 2.0f)), 0.0f, 1.0f);
+        this.f8356c = a2;
+        u uVar = this.d;
+        uVar.I0(i0.b.o(uVar.f8476m1, (int) (a2 * 255.0f)), 1);
+        invalidate();
     }
 
-    public l(n nVar, TLRPC.User user) {
-        super(23, false);
-        this.f14157n = user;
-        long j10 = user.f22177id;
-        LongSparseIntArray longSparseIntArray = nVar.X;
-        int i10 = longSparseIntArray.get(j10, -1);
-        if (i10 >= 0) {
-            this.f14154k = i10;
-            return;
-        }
-        int i11 = nVar.W;
-        nVar.W = i11 + 1;
-        this.f14154k = i11;
-        longSparseIntArray.put(user.f22177id, i11);
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        float height = getHeight() / 2.0f;
+        float L = org.telegram.messenger.i0.L(6.0f);
+        RectF rectF = org.telegram.messenger.i0.P;
+        float f7 = height - L;
+        float f10 = height + L;
+        rectF.set(L, f7, getWidth() - L, f10);
+        canvas.save();
+        u uVar = this.d;
+        uVar.l1.rewind();
+        uVar.l1.addRoundRect(rectF, org.telegram.messenger.i0.L(16.0f), org.telegram.messenger.i0.L(16.0f), Path.Direction.CW);
+        canvas.clipPath(uVar.l1);
+        jg.n1.z1(canvas, rectF, org.telegram.messenger.i0.L(6.0f));
+        canvas.restore();
+        rectF.set(L, f7, getWidth() - L, f10);
+        canvas.drawRoundRect(rectF, org.telegram.messenger.i0.L(16.0f), org.telegram.messenger.i0.L(16.0f), this.f8354a);
+        float L2 = org.telegram.messenger.i0.L(13.0f);
+        Paint paint = this.f8355b;
+        float strokeWidth = L2 - (paint.getStrokeWidth() / 2.0f);
+        float max = Math.max(L + strokeWidth, (((getWidth() - (2.0f * L)) * this.f8356c) + L) - strokeWidth);
+        canvas.drawCircle(max, height, L2, paint);
+        jg.n1.A1(max, height, strokeWidth, i0.b.o(uVar.f8476m1, (int) (this.f8356c * 255.0f)), canvas);
     }
 
-    public l(n nVar, TLRPC.Chat chat) {
-        super(23, false);
-        this.f14156m = chat;
-        long j10 = chat.f22028id;
-        LongSparseIntArray longSparseIntArray = nVar.X;
-        int i10 = longSparseIntArray.get(-j10, -1);
-        if (i10 >= 0) {
-            this.f14154k = i10;
-            return;
-        }
-        int i11 = nVar.W;
-        nVar.W = i11 + 1;
-        this.f14154k = i11;
-        longSparseIntArray.put(-chat.f22028id, i11);
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        a();
     }
 
-    public l(n nVar, int i10, TLRPC.Dialog dialog) {
-        super(i10, true);
-        LongSparseIntArray longSparseIntArray = nVar.X;
-        boolean z10 = true;
-        this.f14149c = dialog;
-        if (dialog != null) {
-            int i11 = longSparseIntArray.get(dialog.f22032id, -1);
-            if (i11 >= 0) {
-                this.f14154k = i11;
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        int actionMasked = motionEvent.getActionMasked();
+        if (actionMasked != 0) {
+            if (actionMasked != 1) {
+                if (actionMasked != 2) {
+                    if (actionMasked == 3) {
+                        getParent().requestDisallowInterceptTouchEvent(false);
+                    }
+                }
             } else {
-                int i12 = nVar.W;
-                nVar.W = i12 + 1;
-                this.f14154k = i12;
-                longSparseIntArray.put(dialog.f22032id, i12);
+                b(motionEvent.getX());
+                getParent().requestDisallowInterceptTouchEvent(false);
             }
-        } else if (i10 == 19) {
-            this.f14154k = 5;
-        } else {
-            int i13 = nVar.W;
-            nVar.W = i13 + 1;
-            this.f14154k = i13;
+            return true;
         }
-        if (dialog != null) {
-            int i14 = nVar.h;
-            int i15 = nVar.F;
-            if (i14 != 7 && i14 != 8) {
-                this.f14151g = dialog.pinned;
-            } else {
-                MessagesController.DialogFilter dialogFilter = MessagesController.getInstance(i15).selectedDialogFilter[nVar.h == 8 ? (char) 1 : (char) 0];
-                this.f14151g = (dialogFilter == null || dialogFilter.pinnedDialogs.indexOfKey(dialog.f22032id) < 0) ? false : z10;
-            }
-            this.h = dialog.isFolder;
-            this.f14150f = MessagesController.getInstance(i15).isForum(dialog.f22032id);
-        }
-    }
-
-    public l(n nVar, TLRPC.RecentMeUrl recentMeUrl) {
-        super(4, true);
-        this.d = recentMeUrl;
-        int i10 = nVar.W;
-        nVar.W = i10 + 1;
-        this.f14154k = i10;
-    }
-
-    public l(n nVar, int i10) {
-        super(i10, true);
-        this.f14153j = i10;
-        if (i10 == 10) {
-            this.f14154k = 1;
-        } else if (i10 == 19) {
-            this.f14154k = 5;
-        } else {
-            int i11 = nVar.W;
-            nVar.W = i11 + 1;
-            this.f14154k = i11;
-        }
-    }
-
-    public l(n nVar, int i10, int i11) {
-        super(5, true);
-        this.f14153j = i10;
-        int i12 = nVar.W;
-        nVar.W = i12 + 1;
-        this.f14154k = i12;
-    }
-
-    public l(n nVar, TLRPC.TL_contact tL_contact) {
-        super(6, true);
-        LongSparseIntArray longSparseIntArray = nVar.X;
-        this.e = tL_contact;
-        if (tL_contact != null) {
-            int i10 = longSparseIntArray.get(tL_contact.user_id, -1);
-            if (i10 > 0) {
-                this.f14154k = i10;
-                return;
-            }
-            int i11 = nVar.W;
-            nVar.W = i11 + 1;
-            this.f14154k = i11;
-            longSparseIntArray.put(tL_contact.user_id, i11);
-            return;
-        }
-        int i12 = nVar.W;
-        nVar.W = i12 + 1;
-        this.f14154k = i12;
+        getParent().requestDisallowInterceptTouchEvent(true);
+        b(motionEvent.getX());
+        return true;
     }
 }

@@ -1,89 +1,59 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class q70 extends a81 {
-    public float f31816f;
-    public float h;
-    public final Paint f31817n;
-    public float f31818r;
-    public k6.c f31819s;
-    public final z70 v;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class q70 implements org.telegram.messenger.j20 {
+    public final int f29548a;
+    public final long f29549b;
+    public final org.telegram.ui.ActionBar.z2 f29550c;
+    public final Object d;
 
-    public q70(z70 z70Var, Context context) {
-        super(z70Var, context);
-        this.v = z70Var;
-        this.f31817n = new Paint();
+    public q70(ha haVar, Object obj, long j10, int i10) {
+        this.f29548a = i10;
+        this.f29550c = haVar;
+        this.d = obj;
+        this.f29549b = j10;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int i10;
-        z70 z70Var = this.v;
-        int i11 = z70Var.f27099y;
-        i10 = ((org.telegram.ui.ActionBar.k3) z70Var).backgroundPaddingTop;
-        z70Var.V.setTranslationY(AndroidUtilities.dp(64.0f) + AndroidUtilities.dp(6.0f) + (i11 - i10));
-        float f7 = z70Var.f35274o0 + z70Var.f35280u0;
-        fy0 fy0Var = z70Var.f27096s;
-        if (fy0Var.getVisibility() != 0) {
-            this.f31816f = f7;
-            this.h = f7;
-        } else if (this.h != f7) {
-            this.h = f7;
-            this.f31818r = (f7 - this.f31816f) * 0.10666667f;
-        }
-        float f10 = this.f31816f;
-        float f11 = this.h;
-        if (f10 != f11) {
-            float f12 = this.f31818r;
-            float f13 = f10 + f12;
-            this.f31816f = f13;
-            if (f12 > 0.0f && f13 > f11) {
-                this.f31816f = f11;
-            } else if (f12 < 0.0f && f13 < f11) {
-                this.f31816f = f11;
-            } else {
-                invalidate();
-            }
-        }
-        fy0Var.setTranslationY(z70Var.f27099y + this.f31816f);
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        z70 z70Var = this.v;
-        if (view == z70Var.V) {
-            canvas.save();
-            canvas.clipRect(0.0f, view.getY() - AndroidUtilities.dp(4.0f), getMeasuredWidth(), view.getY() + z70Var.f35271k0 + 1.0f);
-            canvas.drawColor(i0.a.o(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23357d6, false), (int) (z70Var.f35268h0 * 255.0f)));
-            int o10 = i0.a.o(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23358d7, false), (int) (z70Var.f35268h0 * 255.0f));
-            Paint paint = this.f31817n;
-            paint.setColor(o10);
-            canvas.drawRect(0.0f, view.getY() + z70Var.f35271k0, getMeasuredWidth(), view.getY() + z70Var.f35271k0 + 1.0f, paint);
-            boolean drawChild = super.drawChild(canvas, view, j10);
-            canvas.restore();
-            return drawChild;
-        }
-        return super.drawChild(canvas, view, j10);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        k6.c cVar = this.f31819s;
-        if (cVar != null) {
-            ((f81) cVar.f16405b).f28048b = true;
+    public final void a(Object obj, Object obj2) {
+        TLRPC.Updates updates;
+        switch (this.f29548a) {
+            case 0:
+                u70 u70Var = (u70) this.f29550c;
+                TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite = (TLRPC.TL_messages_importChatInvite) this.d;
+                TLRPC.ChatInviteJoinResult chatInviteJoinResult = (TLRPC.ChatInviteJoinResult) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultOk) {
+                    TLRPC.Updates updates2 = ((TLRPC.TL_chatInviteJoinResultOk) chatInviteJoinResult).updates;
+                    org.telegram.messenger.vp.r1(u70Var.f21583a).L3(updates2, false);
+                    updates = updates2;
+                } else {
+                    if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultWebView) {
+                        org.telegram.messenger.i0.g3(new n70(u70Var, (TLRPC.TL_chatInviteJoinResultWebView) chatInviteJoinResult, this.f29549b, 1));
+                    }
+                    updates = null;
+                }
+                org.telegram.messenger.i0.g3(new org.telegram.ui.fp((Object) u70Var, (Object) tL_error, (Object) updates, (Object) tL_messages_importChatInvite, 14));
+                return;
+            case 1:
+                ph.q3 q3Var = (ph.q3) this.f29550c;
+                TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) this.d;
+                rh.d3 d3Var = (rh.d3) obj;
+                gf.e eVar = (gf.e) obj2;
+                eVar.d();
+                rh.e6.x(q3Var.f21583a, d3Var.f46756a).h(d3Var.f46757b, tL_starGiftUnique, this.f29549b, null, true, new org.telegram.tgnet.e(q3Var, eVar, tL_starGiftUnique, 6));
+                return;
+            default:
+                rh.t7.d1((rh.t7) this.f29550c, (a51) this.d, this.f29549b, (Boolean) obj, (String) obj2);
+                return;
         }
     }
 
-    @Override
-    public final void onViewAdded(View view) {
-        if (view == this.v.f35279t0 && this.f31819s == null) {
-            this.f31819s = new k6.c(view);
-        }
+    public q70(u70 u70Var, long j10, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
+        this.f29548a = 0;
+        this.f29550c = u70Var;
+        this.f29549b = j10;
+        this.d = tL_messages_importChatInvite;
     }
 }

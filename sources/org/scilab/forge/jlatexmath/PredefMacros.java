@@ -6,8 +6,8 @@ import java.util.Map;
 import java.util.StringTokenizer;
 import org.scilab.forge.jlatexmath.TeXFormula;
 import org.scilab.forge.jlatexmath.dynamic.DynamicAtom;
-import org.telegram.ui.Components.b10;
 import ru.noties.jlatexmath.awt.Color;
+import sc.e;
 public class PredefMacros {
     static {
         NewEnvironmentMacro.addNewEnvironment("array", "\\array@@env{#1}{", "}", 1);
@@ -128,7 +128,7 @@ public class PredefMacros {
     }
 
     public static final Atom Braket_macro(TeXParser teXParser, String[] strArr) {
-        return new TeXFormula(teXParser, g.p("\\left\\langle ", strArr[1].replaceAll("\\|", "\\\\middle\\\\vert "), "\\right\\rangle")).root;
+        return new TeXFormula(teXParser, g.n("\\left\\langle ", strArr[1].replaceAll("\\|", "\\\\middle\\\\vert "), "\\right\\rangle")).root;
     }
 
     public static final Atom DeclareMathSizes_macro(TeXParser teXParser, String[] strArr) {
@@ -184,7 +184,7 @@ public class PredefMacros {
     }
 
     public static final Atom Set_macro(TeXParser teXParser, String[] strArr) {
-        return new TeXFormula(teXParser, g.p("\\left\\{", strArr[1].replaceFirst("\\|", "\\\\middle\\\\vert "), "\\right\\}")).root;
+        return new TeXFormula(teXParser, g.n("\\left\\{", strArr[1].replaceFirst("\\|", "\\\\middle\\\\vert "), "\\right\\}")).root;
     }
 
     public static final Atom TStroke_macro(TeXParser teXParser, String[] strArr) {
@@ -1344,7 +1344,7 @@ public class PredefMacros {
             NewCommandMacro.addNewCommand(str.substring(1), strArr[2], valueOf.intValue(), strArr[4]);
             return null;
         }
-        throw new ParseException(b10.j("Invalid name for the command :", str));
+        throw new ParseException(e.h("Invalid name for the command :", str));
     }
 
     public static final Atom newenvironment_macro(TeXParser teXParser, String[] strArr) {
@@ -1510,7 +1510,7 @@ public class PredefMacros {
             NewCommandMacro.addReNewCommand(str.substring(1), strArr[2], valueOf.intValue());
             return null;
         }
-        throw new ParseException(b10.j("Invalid name for the command :", str));
+        throw new ParseException(e.h("Invalid name for the command :", str));
     }
 
     public static final Atom renewenvironment_macro(TeXParser teXParser, String[] strArr) {
@@ -1556,9 +1556,9 @@ public class PredefMacros {
         String str = "";
         for (int i10 = 0; i10 < 13; i10++) {
             while (parseInt >= iArr[i10]) {
-                StringBuilder u10 = g.u(str);
-                u10.append(strArr2[i10]);
-                str = u10.toString();
+                StringBuilder t10 = g.t(str);
+                t10.append(strArr2[i10]);
+                str = t10.toString();
                 parseInt -= iArr[i10];
             }
         }

@@ -1,47 +1,69 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Point;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class f81 implements View.OnLayoutChangeListener {
-    public Boolean f28047a;
-    public boolean f28048b;
-    public final k6.c f28049c;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.ViewGroup;
+import android.webkit.WebView;
+public final class f81 extends WebView {
+    public final int f26012a = 0;
+    public final Object f26013b;
 
-    public f81(k6.c cVar, View view) {
-        this.f28049c = cVar;
-        o1.j jVar = new o1.j(view, o1.h.f18952n, 0.0f);
-        cVar.f16406c = jVar;
-        jVar.f18968u.a(1.0f);
-        ((o1.j) cVar.f16406c).f18968u.b(350.0f);
+    public f81(org.telegram.ui.sm0 sm0Var, Context context) {
+        super(context);
+        this.f26013b = sm0Var;
     }
 
     @Override
-    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        boolean z10;
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        Boolean bool = this.f28047a;
-        if (bool == null || bool.booleanValue() != z10) {
-            this.f28047a = Boolean.valueOf(z10);
-            this.f28048b = true;
-        }
-        if (i15 != 0 && i15 != i11 && !this.f28048b) {
-            k6.c cVar = this.f28049c;
-            ((o1.j) cVar.f16406c).c();
-            if (view.getVisibility() != 0) {
-                view.setTranslationY(0.0f);
+    public void onAttachedToWindow() {
+        switch (this.f26012a) {
+            case 0:
+                org.telegram.messenger.i0.u((Context) this.f26013b, true);
+                super.onAttachedToWindow();
                 return;
-            }
-            ((o1.j) cVar.f16406c).f18968u.f18974i = 0.0f;
-            view.setTranslationY((i15 - i11) + 0.0f);
-            ((o1.j) cVar.f16406c).h();
-            return;
+            default:
+                super.onAttachedToWindow();
+                return;
         }
-        this.f28048b = false;
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        switch (this.f26012a) {
+            case 0:
+                org.telegram.messenger.i0.u((Context) this.f26013b, false);
+                super.onDetachedFromWindow();
+                return;
+            default:
+                super.onDetachedFromWindow();
+                return;
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f26012a) {
+            case 1:
+                super.onMeasure(i10, i11);
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f26012a) {
+            case 1:
+                ((ViewGroup) ((org.telegram.ui.sm0) this.f26013b).fragmentView).requestDisallowInterceptTouchEvent(true);
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    public f81(Context context, Context context2) {
+        super(context);
+        this.f26013b = context2;
     }
 }

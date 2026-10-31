@@ -1,57 +1,143 @@
 package ag;
 
-import java.io.InputStream;
-import java.util.Iterator;
-import java.util.Map;
-import org.json.JSONObject;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.SerializedData;
-import org.telegram.tgnet.TLRPC;
-public abstract class b {
-    public static void a(Map map) {
-        if (!map.isEmpty()) {
-            return;
-        }
-        try {
-            InputStream open = ApplicationLoader.applicationContext.getAssets().open("currencies.json");
-            String str = e2.n0.f9691a;
-            JSONObject jSONObject = new JSONObject(new String(g9.f.b(open), e9.j.f9844a));
-            Iterator<String> keys = jSONObject.keys();
-            while (keys.hasNext()) {
-                String next = keys.next();
-                map.put(next, Integer.valueOf(jSONObject.optJSONObject(next).optInt("exp")));
-            }
-            open.close();
-        } catch (Exception e) {
-            FileLog.e(e);
+import android.os.Bundle;
+import android.view.View;
+import java.io.Serializable;
+import org.telegram.messenger.cd;
+import org.telegram.messenger.o20;
+import org.telegram.ui.Cells.p8;
+import org.telegram.ui.Cells.t8;
+import org.telegram.ui.Components.a51;
+import org.telegram.ui.Components.q4;
+import org.telegram.ui.Components.s4;
+import org.telegram.ui.un;
+public final class b implements o20, org.telegram.ui.ActionBar.u1 {
+    public final int f463a;
+    public final f f464b;
+
+    public b(f fVar, int i10) {
+        this.f463a = i10;
+        this.f464b = fVar;
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
+        switch (this.f463a) {
+            case 1:
+                this.f464b.b0();
+                return;
+            default:
+                this.f464b.finishFragment();
+                return;
         }
     }
 
-    public static TLRPC.InputStorePaymentPurpose b(String str) {
-        FileLog.d("BillingUtilities.getPurpose " + str);
-        SerializedData serializedData = new SerializedData(Utilities.hexToBytes(str));
-        a a2 = a.a(serializedData, serializedData.readInt32(true));
-        serializedData.cleanup();
-        if (a2.f1251c != null) {
-            FileLog.d("BillingUtilities.getPurpose: got purpose from received obfuscated profile id");
-            return a2.f1251c;
+    @Override
+    public void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        a51 a51Var = (a51) obj;
+        final View view = (View) obj2;
+        Integer num = (Integer) number;
+        Float f7 = (Float) serializable;
+        Float f10 = (Float) serializable2;
+        final f fVar = this.f464b;
+        if (!fVar.f505c.h(a51Var)) {
+            int i10 = a51Var.d;
+            if (i10 != 2 && a51Var.f7680a != 17) {
+                if (i10 == 1) {
+                    fVar.f508r = !fVar.f508r;
+                    fVar.f504b.f30819f3.O(true);
+                    fVar.Z(true);
+                    return;
+                } else if (i10 == 6) {
+                    x0 x0Var = fVar.f505c;
+                    fVar.f509s = true;
+                    x0Var.h = true;
+                    fVar.f504b.f30819f3.O(true);
+                    fVar.Z(true);
+                    return;
+                } else if (i10 == 7) {
+                    x0 x0Var2 = fVar.f505c;
+                    fVar.f509s = false;
+                    x0Var2.h = false;
+                    fVar.f504b.f30819f3.O(true);
+                    fVar.Z(true);
+                    return;
+                } else if (i10 == 3) {
+                    fVar.f511x = 0;
+                    fVar.f504b.f30819f3.O(true);
+                    fVar.Z(true);
+                    return;
+                } else if (i10 == 4) {
+                    fVar.f511x = 1;
+                    fVar.f504b.f30819f3.O(true);
+                    fVar.Z(true);
+                    return;
+                } else if (i10 == 5) {
+                    fVar.f511x = 2;
+                    fVar.f504b.f30819f3.O(true);
+                    fVar.Z(true);
+                    return;
+                } else if (i10 == 8) {
+                    s4.x(fVar.getParentActivity(), cd.L0(2131752823, null), cd.L0(2131752825, null), fVar.E, new q4() {
+                        @Override
+                        public final void K(int i11, int i12, boolean z10) {
+                            switch (r3) {
+                                case 0:
+                                    f fVar2 = fVar;
+                                    fVar2.getClass();
+                                    fVar2.E = i11;
+                                    ((p8) view).w(cd.Q(i11), true);
+                                    fVar2.Z(true);
+                                    return;
+                                default:
+                                    f fVar3 = fVar;
+                                    fVar3.getClass();
+                                    fVar3.F = i11;
+                                    ((p8) view).w(cd.Q(i11), true);
+                                    fVar3.Z(true);
+                                    return;
+                            }
+                        }
+                    });
+                    return;
+                } else if (i10 == 9) {
+                    s4.x(fVar.getParentActivity(), cd.L0(2131752826, null), cd.L0(2131752825, null), fVar.F, new q4() {
+                        @Override
+                        public final void K(int i11, int i12, boolean z10) {
+                            switch (r3) {
+                                case 0:
+                                    f fVar2 = fVar;
+                                    fVar2.getClass();
+                                    fVar2.E = i11;
+                                    ((p8) view).w(cd.Q(i11), true);
+                                    fVar2.Z(true);
+                                    return;
+                                default:
+                                    f fVar3 = fVar;
+                                    fVar3.getClass();
+                                    fVar3.F = i11;
+                                    ((p8) view).w(cd.Q(i11), true);
+                                    fVar3.Z(true);
+                                    return;
+                            }
+                        }
+                    });
+                    return;
+                } else if (i10 == 10) {
+                    boolean z10 = !fVar.f510w;
+                    fVar.f510w = z10;
+                    ((t8) view).setChecked(z10);
+                    fVar.Z(true);
+                    return;
+                } else {
+                    return;
+                }
+            }
+            Bundle bundle = new Bundle();
+            bundle.putLong("user_id", fVar.getUserConfig().e());
+            bundle.putInt("chatMode", 5);
+            bundle.putString("quick_reply", "away");
+            fVar.presentFragment(new un(bundle));
         }
-        SerializedData serializedData2 = new SerializedData(8);
-        serializedData2.writeInt64(a2.f1250b);
-        String bytesToHex = Utilities.bytesToHex(serializedData2.toByteArray());
-        serializedData2.cleanup();
-        FileLog.d("BillingUtilities.getPurpose: searching purpose under " + bytesToHex);
-        String string = ApplicationLoader.applicationContext.getSharedPreferences("purchases", 0).getString(bytesToHex, null);
-        if (string != null) {
-            FileLog.d("BillingUtilities.getPurpose: got {" + string + "} under " + bytesToHex);
-            SerializedData serializedData3 = new SerializedData(Utilities.hexToBytes(string));
-            a a10 = a.a(serializedData3, serializedData3.readInt32(true));
-            serializedData3.cleanup();
-            return a10.f1251c;
-        }
-        FileLog.d("BillingUtilities.getPurpose: purpose under " + bytesToHex + " not found");
-        throw new RuntimeException(a1.g.p("no purpose under ", bytesToHex, " found :("));
     }
 }

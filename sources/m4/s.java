@@ -1,44 +1,45 @@
 package m4;
 
-import a8.yb;
 import android.content.Context;
 import android.os.Bundle;
+import e9.x1;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.ui.LaunchActivity;
+import v7.t6;
 public final class s {
-    public static final AtomicReference f18216n = new AtomicReference(null);
-    public final Context f18217a;
-    public final b2.g1 f18218b;
-    public String f18219c;
-    public final qb.a d;
+    public static final AtomicReference f12914n = new AtomicReference(null);
+    public final Context f12915a;
+    public final b2.f1 f12916b;
+    public String f12917c;
+    public final oa.d d;
     public final Bundle e;
-    public final Bundle f18220f;
-    public e2.d f18221g;
+    public final Bundle f12918f;
+    public e2.d f12919g;
     public final boolean h;
-    public final f9.s1 f18222i;
-    public final f9.s1 f18223j;
-    public final f9.s1 f18224k;
-    public final boolean f18225l;
-    public boolean f18226m;
+    public final x1 f12920i;
+    public final x1 f12921j;
+    public final x1 f12922k;
+    public final boolean f12923l;
+    public boolean f12924m;
 
-    public s(LaunchActivity launchActivity, b2.g1 g1Var) {
-        qb.a aVar = new qb.a(13);
+    public s(LaunchActivity launchActivity, b2.f1 f1Var) {
+        oa.d dVar = new oa.d(11);
         Context applicationContext = launchActivity.getApplicationContext();
         applicationContext.getClass();
-        this.f18217a = applicationContext;
-        g1Var.getClass();
-        this.f18218b = g1Var;
-        yb.g(g1Var.P());
-        this.f18219c = "";
-        this.d = aVar;
+        this.f12915a = applicationContext;
+        f1Var.getClass();
+        this.f12916b = f1Var;
+        t6.f(f1Var.O());
+        this.f12917c = "";
+        this.d = dVar;
         this.e = new Bundle();
-        this.f18220f = new Bundle();
-        f9.g0 g0Var = f9.i0.f10286b;
-        f9.s1 s1Var = f9.s1.e;
-        this.f18222i = s1Var;
-        this.f18223j = s1Var;
+        this.f12918f = new Bundle();
+        e9.l0 l0Var = e9.n0.f6390b;
+        x1 x1Var = x1.e;
+        this.f12920i = x1Var;
+        this.f12921j = x1Var;
         this.h = true;
-        this.f18225l = true;
-        this.f18224k = s1Var;
+        this.f12923l = true;
+        this.f12922k = x1Var;
     }
 }

@@ -1,45 +1,48 @@
 package vh;
 
-import android.view.View;
-import android.view.WindowInsets;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.n20;
-import r0.k1;
-import r0.n;
-public final class b implements n20, n {
-    public final f f50339a;
+import android.animation.ValueAnimator;
+public final class b implements ValueAnimator.AnimatorUpdateListener {
+    public final int f50925a;
+    public final d f50926b;
 
-    public b(f fVar) {
-        this.f50339a = fVar;
+    public b(d dVar, int i10) {
+        this.f50925a = i10;
+        this.f50926b = dVar;
     }
 
     @Override
-    public k1 P0(View view, k1 k1Var) {
-        boolean z10;
-        WindowInsets g7 = k1Var.g();
-        f fVar = this.f50339a;
-        fVar.processLegacyContainerInsets(g7);
-        oe.b bVar = fVar.Y;
-        if (k1Var.f47153a.f(8).d > 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        bVar.a(z10, true);
-        return k1.f47152b;
-    }
-
-    @Override
-    public void a(int i10) {
-        int min = Math.min(i10, AndroidUtilities.dp(144.0f));
-        if (i10 > 0) {
-            min -= AndroidUtilities.dp(8.0f);
-        }
-        f fVar = this.f50339a;
-        if (fVar.f50359l0 != min) {
-            fVar.f50359l0 = min;
-            fVar.X.a(min);
-            fVar.f50355h0.postOnAnimation(new ti.g(fVar, 12));
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f50925a) {
+            case 0:
+                d dVar = this.f50926b;
+                dVar.getClass();
+                dVar.S = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                dVar.invalidate();
+                return;
+            case 1:
+                d dVar2 = this.f50926b;
+                dVar2.getClass();
+                dVar2.f51050b0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                dVar2.invalidate();
+                return;
+            case 2:
+                d dVar3 = this.f50926b;
+                dVar3.getClass();
+                dVar3.P = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                dVar3.invalidate();
+                return;
+            case 3:
+                d dVar4 = this.f50926b;
+                dVar4.getClass();
+                dVar4.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                dVar4.invalidate();
+                return;
+            default:
+                d dVar5 = this.f50926b;
+                dVar5.getClass();
+                dVar5.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                dVar5.invalidate();
+                return;
         }
     }
 }

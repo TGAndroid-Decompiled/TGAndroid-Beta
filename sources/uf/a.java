@@ -1,23 +1,15 @@
 package uf;
 
-import a8.fg;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.view.View;
+import java.nio.ShortBuffer;
+import jb.b;
+import oa.d;
 public interface a {
-    void a(fg fgVar);
+    public static final hb.a f50228p = new hb.a(23);
+    public static final d f50229q = new d(23);
+    public static final b f50230t = new b(23);
+    public static final kb.a f50231u = new kb.a(23);
 
-    void b(fg fgVar);
+    int t1(int i10, int i11, int i12);
 
-    Bitmap c();
-
-    void d(Canvas canvas);
-
-    Bitmap e();
-
-    void f(Canvas canvas);
-
-    boolean g();
-
-    View h();
+    void u0(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11);
 }

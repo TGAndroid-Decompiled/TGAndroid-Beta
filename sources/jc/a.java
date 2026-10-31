@@ -1,15 +1,21 @@
 package jc;
-public final class a {
-    public final byte[] f15546a;
-    public final int f15547b;
 
-    public a(int i10, byte[] bArr) {
-        this.f15547b = i10;
-        this.f15546a = bArr;
-    }
+import android.util.Log;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+public final class a extends c {
+    public final int f9812a;
+    public Object f9813b;
 
-    public a(byte[] bArr, int i10) {
-        this.f15546a = bArr;
-        this.f15547b = i10;
+    @Override
+    public final void b(String str) {
+        switch (this.f9812a) {
+            case 0:
+                Log.d("isoparser", String.valueOf((String) this.f9813b) + ":" + str);
+                return;
+            default:
+                ((Logger) this.f9813b).log(Level.FINE, str);
+                return;
+        }
     }
 }

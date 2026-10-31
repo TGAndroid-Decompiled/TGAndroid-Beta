@@ -1,36 +1,37 @@
 package d1;
 
-import v0.i;
+import kotlin.jvm.internal.i;
+import v0.h;
 public final class c implements Runnable {
-    public final int f7827a;
-    public final e f7828b;
-    public final Throwable f7829c;
+    public final int f5633a;
+    public final f f5634b;
+    public final Throwable f5635c;
 
-    public c(e eVar, Throwable th2, int i10) {
-        this.f7827a = i10;
-        this.f7828b = eVar;
-        this.f7829c = th2;
+    public c(f fVar, Throwable th2, int i10) {
+        this.f5633a = i10;
+        this.f5634b = fVar;
+        this.f5635c = th2;
     }
 
     @Override
     public final void run() {
-        switch (this.f7827a) {
+        switch (this.f5633a) {
             case 0:
-                i iVar = this.f7828b.f7832f;
-                if (iVar != null) {
-                    iVar.onError(new y0.a(new x0.a(26), this.f7829c.getMessage()));
+                h hVar = this.f5634b.f5641f;
+                if (hVar != null) {
+                    hVar.g(new y0.a(new x0.a(26), this.f5635c.getMessage()));
                     return;
                 } else {
-                    kotlin.jvm.internal.i.h("callback");
+                    i.h("callback");
                     throw null;
                 }
             default:
-                i iVar2 = this.f7828b.f7832f;
-                if (iVar2 != null) {
-                    iVar2.onError(new w0.c(this.f7829c.getMessage(), 2));
+                h hVar2 = this.f5634b.f5641f;
+                if (hVar2 != null) {
+                    hVar2.g(new w0.c(2, this.f5635c.getMessage()));
                     return;
                 } else {
-                    kotlin.jvm.internal.i.h("callback");
+                    i.h("callback");
                     throw null;
                 }
         }

@@ -2,54 +2,78 @@ package sg;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.pt0;
-public final class i0 extends FrameLayout {
-    public final pt0 f48270a;
+import org.telegram.ui.Components.f5;
+import org.telegram.ui.Components.g9;
+public final class i0 extends g9 {
+    public boolean G;
+    public f5 H;
+    public d I;
+    public boolean J;
+    public final k0 K;
 
-    public i0(pt0 pt0Var, Context context) {
+    public i0(k0 k0Var, Context context) {
         super(context);
-        this.f48270a = pt0Var;
-        setWillNotDraw(false);
+        this.K = k0Var;
+        getImageReceiver().h0(3);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.J = true;
+        f5 f5Var = this.H;
+        if (f5Var != null) {
+            f5Var.a(this);
+        }
+        d dVar = this.I;
+        if (dVar != null) {
+            dVar.f(this);
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.J = false;
+        f5 f5Var = this.H;
+        if (f5Var != null) {
+            f5Var.n(this);
+        }
+        d dVar = this.I;
+        if (dVar != null) {
+            dVar.d(this);
+        }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        pt0 pt0Var = this.f48270a;
-        Paint paint = pt0Var.f48377q1;
-        p1 p1Var = pt0Var.f48369j1;
-        paint.setAlpha((int) ((1.0f - pt0Var.f48381s1) * p1Var.getAlpha() * 102.0f));
-        RectF rectF = AndroidUtilities.rectTmp;
-        p1Var.b(rectF);
-        k0 k0Var = pt0Var.R0;
-        int top = k0Var.getTop();
-        float translationY = p1Var.getTranslationY() + k0Var.getTranslationY() + p1Var.getTop() + top;
-        float f7 = rectF.left;
-        u1 u1Var = pt0Var.f48370k1;
-        rectF.set(AndroidUtilities.lerp(f7, u1Var.getLeft(), pt0Var.f48381s1), AndroidUtilities.lerp(rectF.top + translationY, u1Var.getTop() - u1Var.getTranslationY(), pt0Var.f48381s1), AndroidUtilities.lerp(rectF.right, u1Var.getRight(), pt0Var.f48381s1), AndroidUtilities.lerp(translationY + rectF.bottom, u1Var.getBottom() - u1Var.getTranslationY(), pt0Var.f48381s1));
-        float dp = AndroidUtilities.dp(AndroidUtilities.lerp(32, 16, pt0Var.f48381s1));
-        Paint paint2 = pt0Var.f48379r1;
-        int alpha = paint2.getAlpha();
-        paint2.setAlpha((int) (alpha * pt0Var.f48381s1));
-        canvas.drawRoundRect(rectF, dp, dp, paint2);
-        paint2.setAlpha(alpha);
-        canvas.drawRoundRect(rectF, dp, dp, paint);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getActionMasked() == 0) {
-            pt0 pt0Var = this.f48270a;
-            if (pt0Var.f48383t1) {
-                pt0Var.y0(false);
-                return true;
+        f5 f5Var = this.H;
+        if (f5Var != null) {
+            f5Var.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            this.H.setAlpha(255);
+            this.H.draw(canvas);
+            this.G = true;
+            return;
+        }
+        d dVar = this.I;
+        if (dVar != null) {
+            dVar.e(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            this.I.b(canvas);
+            this.G = true;
+            return;
+        }
+        if (getImageReceiver().B() != null && getImageReceiver().B().f24765k0) {
+            this.G = true;
+        }
+        if (!this.G && getImageReceiver().B() != null && !getImageReceiver().B().f24765k0) {
+            k0 k0Var = this.K;
+            if (k0Var.f48365a == 2 && !k0Var.f48386z) {
+                getImageReceiver().B().N(getImageReceiver().B().e[0] - 1, false, false);
+            } else {
+                getImageReceiver().B().N(0, false, false);
+                getImageReceiver().B().start();
             }
         }
-        return super.onTouchEvent(motionEvent);
+        super.onDraw(canvas);
     }
 }

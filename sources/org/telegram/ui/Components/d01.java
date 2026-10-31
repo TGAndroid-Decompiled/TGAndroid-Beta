@@ -1,60 +1,30 @@
 package org.telegram.ui.Components;
-public final class d01 extends kb1 {
-    public final int f27309c;
+public final class d01 implements Runnable {
+    public final int f25240a;
+    public final Runnable f25241b;
+    public final Runnable f25242c;
 
-    public d01(int i10) {
-        this.f27309c = i10;
+    public d01(Runnable runnable, Runnable runnable2, int i10) {
+        this.f25240a = i10;
+        this.f25241b = runnable;
+        this.f25242c = runnable2;
     }
 
     @Override
-    public final int F(k01 k01Var, int i10) {
-        switch (this.f27309c) {
+    public final void run() {
+        switch (this.f25240a) {
             case 0:
-                return Integer.MIN_VALUE;
-            case 1:
-                return 0;
-            case 2:
-                return i10;
-            case 3:
-                return Integer.MIN_VALUE;
+                h01.b(this.f25241b);
+                Runnable runnable = this.f25242c;
+                if (runnable != null) {
+                    org.telegram.messenger.i0.g3(runnable);
+                    return;
+                }
+                return;
             default:
-                return Integer.MIN_VALUE;
-        }
-    }
-
-    @Override
-    public i01 G() {
-        switch (this.f27309c) {
-            case 3:
-                return new i01();
-            default:
-                return super.G();
-        }
-    }
-
-    @Override
-    public final int H(k01 k01Var, int i10) {
-        switch (this.f27309c) {
-            case 0:
-                return Integer.MIN_VALUE;
-            case 1:
-                return 0;
-            case 2:
-                return i10;
-            case 3:
-                return 0;
-            default:
-                return 0;
-        }
-    }
-
-    @Override
-    public int J(int i10, int i11) {
-        switch (this.f27309c) {
-            case 4:
-                return i11;
-            default:
-                return i10;
+                this.f25241b.run();
+                this.f25242c.run();
+                return;
         }
     }
 }

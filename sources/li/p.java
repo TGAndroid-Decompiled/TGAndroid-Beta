@@ -1,28 +1,23 @@
 package li;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import bi.i8;
-public final class p implements TextWatcher {
-    public final String[] f17399a;
-    public final i8 f17400b;
+import android.os.SystemClock;
+import java.util.concurrent.atomic.AtomicLong;
+import org.telegram.messenger.f8;
+public final class p {
+    public static final AtomicLong f12221c = new AtomicLong(1);
+    public final long f12222a = f12221c.getAndIncrement();
+    public final long f12223b = SystemClock.elapsedRealtime();
 
-    public p(String[] strArr, i8 i8Var) {
-        this.f17399a = strArr;
-        this.f17400b = i8Var;
+    public final void a(String str, Throwable th2) {
+        f8.d(c() + str + ": " + th2);
+        f8.g(th2, true);
     }
 
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        this.f17399a[0] = editable.toString();
-        this.f17400b.run();
+    public final void b(String str) {
+        f8.b(c() + str);
     }
 
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final String c() {
+        return "RoundVideo[" + this.f12222a + "] t+" + (SystemClock.elapsedRealtime() - this.f12223b) + "ms [" + Thread.currentThread().getName() + "] ";
     }
 }

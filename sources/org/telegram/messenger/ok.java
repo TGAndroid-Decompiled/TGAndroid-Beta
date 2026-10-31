@@ -1,116 +1,117 @@
 package org.telegram.messenger;
 
-import android.app.Activity;
-import java.io.IOException;
-import java.util.Locale;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.nd0;
-import org.telegram.ui.ThemeActivity;
-import org.telegram.ui.hn;
-import org.telegram.ui.kn0;
-import org.telegram.ui.wn;
-public final class ok implements org.telegram.ui.ActionBar.b2, e2.j {
-    public final int f20897a = 3;
-    public final boolean f20898b;
-    public final Object f20899c;
-    public final Object d;
-    public final Object e;
-    public final Object f20900f;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class ok implements Runnable {
+    public final int f17277a;
+    public final vp f17278b;
+    public final ArrayList f17279c;
+    public final long d;
 
-    public ok(a8.ng ngVar, u2.u uVar, u2.c0 c0Var, IOException iOException, boolean z10) {
-        this.f20899c = ngVar;
-        this.d = uVar;
-        this.e = c0Var;
-        this.f20900f = iOException;
-        this.f20898b = z10;
+    public ok(vp vpVar, long j10, ArrayList arrayList, int i10) {
+        this.f17277a = i10;
+        this.f17278b = vpVar;
+        this.d = j10;
+        this.f17279c = arrayList;
     }
 
     @Override
-    public void accept(Object obj) {
-        a8.ng ngVar = (a8.ng) this.f20899c;
-        ((u2.k0) obj).f(ngVar.f639b, (u2.g0) ngVar.f640c, (u2.u) this.d, (u2.c0) this.e, (IOException) this.f20900f, this.f20898b);
-    }
-
-    @Override
-    public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        int i11;
-        int i12 = this.f20897a;
-        boolean z10 = this.f20898b;
-        Object obj = this.f20900f;
-        Object obj2 = this.e;
-        Object obj3 = this.d;
-        Object obj4 = this.f20899c;
-        switch (i12) {
+    public final void run() {
+        int i10;
+        long j10;
+        long j11;
+        int i11 = this.f17277a;
+        long j12 = this.d;
+        ArrayList arrayList = this.f17279c;
+        vp vpVar = this.f17278b;
+        switch (i11) {
             case 0:
-                ((SendMessagesHelper) obj4).lambda$sendCallback$44(this.f20898b, (MessageObject) obj3, (TL_keyboard.KeyboardButtonProto) obj2, (wn) obj, e2Var, i10);
+                hs messagesStorage = vpVar.getMessagesStorage();
+                long j13 = this.d;
+                ArrayList arrayList2 = this.f17279c;
+                vpVar.getMessagesStorage().R1(j13, -j13, arrayList2, messagesStorage.P0(j13, arrayList2, false, true, 0, 0));
                 return;
             case 1:
-                hn hnVar = (hn) obj4;
-                TL_account.contentSettings contentsettings = (TL_account.contentSettings) obj;
-                wn wnVar = hnVar.f39938a;
-                li.s2 s2Var = new li.s2(19, hnVar, (org.telegram.ui.Cells.s1) obj3);
-                if (((boolean[]) obj2)[0]) {
-                    if (!z10 && (contentsettings == null || !contentsettings.sensitive_can_change)) {
-                        s2Var.run(Boolean.TRUE);
-                        return;
+                vpVar.getNotificationCenter().k(7, arrayList, Long.valueOf(j12), Boolean.FALSE);
+                if (j12 == 0) {
+                    int size = arrayList.size();
+                    for (int i12 = 0; i12 < size; i12++) {
+                        jj jjVar = (jj) vpVar.U.get(((Integer) arrayList.get(i12)).intValue());
+                        if (jjVar != null) {
+                            jjVar.Z = true;
+                        }
                     }
-                    Activity parentActivity = wnVar.getParentActivity();
-                    i11 = ((org.telegram.ui.ActionBar.r2) wnVar).currentAccount;
-                    ThemeActivity.D0(i11, parentActivity, new li.s2(20, hnVar, s2Var), wnVar.getResourceProvider());
                     return;
                 }
-                s2Var.run(Boolean.FALSE);
+                ArrayList arrayList3 = (ArrayList) vpVar.R.f(-j12);
+                if (arrayList3 != null) {
+                    for (int i13 = 0; i13 < arrayList3.size(); i13++) {
+                        jj jjVar2 = (jj) arrayList3.get(i13);
+                        int size2 = arrayList.size();
+                        int i14 = 0;
+                        while (true) {
+                            if (i14 >= size2) {
+                                break;
+                            } else if (jjVar2.f1() == ((Integer) arrayList.get(i14)).intValue()) {
+                                jjVar2.Z = true;
+                            } else {
+                                i14++;
+                            }
+                        }
+                    }
+                    return;
+                }
+                return;
+            case 2:
+                if (arrayList != null) {
+                    vpVar.getClass();
+                    for (int i15 = 0; i15 < arrayList.size(); i15++) {
+                        TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) arrayList.get(i15);
+                        vp messagesController = vpVar.getMessagesController();
+                        int i16 = tL_forumTopic.top_message;
+                        TLRPC.Message message = tL_forumTopic.topMessage;
+                        if (message != null) {
+                            i10 = message.date;
+                        } else {
+                            i10 = 0;
+                        }
+                        long j14 = this.d;
+                        if (vpVar.x2(j14)) {
+                            j10 = o5.o(tL_forumTopic.from_id);
+                        } else {
+                            j10 = tL_forumTopic.f19845id;
+                        }
+                        messagesController.h3(j14, i16, 0, i10, false, j10, 0, true, 0);
+                        hs messagesStorage2 = vpVar.getMessagesStorage();
+                        long j15 = -j14;
+                        if (vpVar.x2(j14)) {
+                            j11 = o5.o(tL_forumTopic.from_id);
+                        } else {
+                            j11 = tL_forumTopic.f19845id;
+                        }
+                        messagesStorage2.d2(j15, j11, tL_forumTopic.top_message, 0);
+                    }
+                }
+                vpVar.getMessagesStorage().f15938a.c(new zj(vpVar, 19));
+                return;
+            case 3:
+                vpVar.i5(0, -j12, arrayList);
+                vpVar.getNotificationCenter().k(3, new Object[0]);
+                return;
+            case 4:
+                i0.g3(new ok(this.f17278b, this.d, this.f17279c, 5));
                 return;
             default:
-                nd0 nd0Var = (nd0) obj4;
-                nd0 nd0Var2 = (nd0) obj3;
-                nd0 nd0Var3 = (nd0) obj2;
-                i2.z zVar = (i2.z) obj;
-                if (z10) {
-                    org.telegram.ui.Components.g5.d(nd0Var, nd0Var2, nd0Var3);
-                }
-                int value = nd0Var3.getValue();
-                int value2 = nd0Var2.getValue();
-                int value3 = nd0Var.getValue();
-                kn0 kn0Var = (kn0) zVar.f13804c;
-                int i13 = zVar.f13803b;
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) zVar.d;
-                if (i13 == 8) {
-                    int[] iArr = kn0Var.f40887x;
-                    iArr[0] = value;
-                    iArr[1] = value2 + 1;
-                    iArr[2] = value3;
-                } else {
-                    kn0Var.getClass();
-                }
-                editTextBoldCursor.setText(String.format(Locale.US, "%02d.%02d.%d", Integer.valueOf(value3), Integer.valueOf(value2 + 1), Integer.valueOf(value)));
+                vpVar.i5(0, j12, arrayList);
+                vpVar.getNotificationCenter().k(3, new Object[0]);
                 return;
         }
     }
 
-    public ok(SendMessagesHelper sendMessagesHelper, boolean z10, MessageObject messageObject, TL_keyboard.KeyboardButtonProto keyboardButtonProto, wn wnVar) {
-        this.f20899c = sendMessagesHelper;
-        this.f20898b = z10;
-        this.d = messageObject;
-        this.e = keyboardButtonProto;
-        this.f20900f = wnVar;
-    }
-
-    public ok(hn hnVar, org.telegram.ui.Cells.s1 s1Var, boolean[] zArr, boolean z10, TL_account.contentSettings contentsettings) {
-        this.f20899c = hnVar;
-        this.d = s1Var;
-        this.e = zArr;
-        this.f20898b = z10;
-        this.f20900f = contentsettings;
-    }
-
-    public ok(boolean z10, nd0 nd0Var, nd0 nd0Var2, nd0 nd0Var3, i2.z zVar) {
-        this.f20898b = z10;
-        this.f20899c = nd0Var;
-        this.d = nd0Var2;
-        this.e = nd0Var3;
-        this.f20900f = zVar;
+    public ok(vp vpVar, ArrayList arrayList, long j10, int i10) {
+        this.f17277a = i10;
+        this.f17278b = vpVar;
+        this.f17279c = arrayList;
+        this.d = j10;
     }
 }

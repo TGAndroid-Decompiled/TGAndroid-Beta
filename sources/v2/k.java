@@ -1,39 +1,44 @@
 package v2;
 
-import a8.hc;
-import a8.yb;
 import b2.x;
-import g2.b0;
+import g2.c0;
+import v7.l7;
+import v7.t6;
 public final class k extends f {
-    public final e f50060s;
-    public m4.c v;
-    public long f50061w;
-    public volatile boolean f50062x;
+    public final e f50324s;
+    public u9.b f50325w;
+    public long f50326x;
+    public volatile boolean f50327y;
 
-    public k(g2.h hVar, g2.m mVar, x xVar, int i10, Object obj, e eVar) {
-        super(hVar, mVar, 2, xVar, i10, obj, -9223372036854775807L, -9223372036854775807L);
-        this.f50060s = eVar;
+    public k(g2.h hVar, g2.n nVar, x xVar, int i10, Object obj, e eVar) {
+        super(hVar, nVar, 2, xVar, i10, obj, -9223372036854775807L, -9223372036854775807L);
+        this.f50324s = eVar;
+    }
+
+    @Override
+    public final void R1() {
+        this.f50327y = true;
     }
 
     @Override
     public final void b() {
         boolean z10;
-        if (this.f50061w == 0) {
-            this.f50060s.b(this.v, -9223372036854775807L, -9223372036854775807L);
+        if (this.f50326x == 0) {
+            this.f50324s.b(this.f50325w, -9223372036854775807L, -9223372036854775807L);
         }
         try {
-            g2.m b10 = this.f50042b.b(this.f50061w);
-            b0 b0Var = this.f50046r;
-            c3.l lVar = new c3.l(b0Var, b10.e, b0Var.open(b10));
-            while (!this.f50062x) {
-                int f7 = this.f50060s.f50034a.f(lVar, e.v);
+            g2.n b10 = this.f50306b.b(this.f50326x);
+            c0 c0Var = this.f50310r;
+            c3.l lVar = new c3.l(c0Var, b10.e, c0Var.open(b10));
+            while (!this.f50327y) {
+                int f7 = this.f50324s.f50298a.f(lVar, e.f50297w);
                 boolean z11 = false;
                 if (f7 != 1) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                yb.p(z10);
+                t6.p(z10);
                 if (f7 == 0) {
                     z11 = true;
                     continue;
@@ -42,15 +47,10 @@ public final class k extends f {
                     break;
                 }
             }
-            this.f50061w = lVar.d - this.f50042b.e;
-            this.f50060s.a();
+            this.f50326x = lVar.d - this.f50306b.e;
+            this.f50324s.a();
         } finally {
-            hc.a(this.f50046r);
+            l7.a(this.f50310r);
         }
-    }
-
-    @Override
-    public final void f0() {
-        this.f50062x = true;
     }
 }

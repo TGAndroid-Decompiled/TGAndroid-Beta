@@ -1,70 +1,104 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DialogObject;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class rx0 {
-    public final r5 f32396a;
-    public Drawable f32397b;
+import android.view.animation.OvershootInterpolator;
+public final class rx0 extends View {
+    public String f30037a;
+    public Drawable f30038b;
+    public boolean f30039c;
+    public int d;
+    public final t5 e;
+    public final sx0 f30040f;
 
-    public rx0(FrameLayout frameLayout) {
-        this(18, frameLayout);
+    public rx0(sx0 sx0Var, Context context) {
+        super(context);
+        this.f30040f = sx0Var;
+        this.d = 0;
+        this.e = new t5(this, 350L, new OvershootInterpolator(5.0f));
     }
 
-    public final r5 a(TLObject tLObject, boolean z10, int i10) {
-        if (tLObject instanceof TLRPC.User) {
-            return b((TLRPC.User) tLObject, null, i10, z10);
-        }
-        if (tLObject instanceof TLRPC.Chat) {
-            return b(null, (TLRPC.Chat) tLObject, i10, z10);
-        }
-        return b(null, null, i10, z10);
-    }
-
-    public final r5 b(TLRPC.User user, TLRPC.Chat chat, int i10, boolean z10) {
-        r5 r5Var = this.f32396a;
-        if (chat != null && chat.verified) {
-            Drawable drawable = this.f32397b;
-            if (drawable == null) {
-                drawable = new ar(org.telegram.ui.ActionBar.y6.f23389f1, org.telegram.ui.ActionBar.y6.f23444i1);
-            }
-            this.f32397b = drawable;
-            r5Var.g(drawable, z10);
-            r5Var.k(null);
-            return r5Var;
-        } else if (chat != null && DialogObject.getEmojiStatusDocumentId(chat.emoji_status) != 0) {
-            r5Var.j(DialogObject.getEmojiStatusDocumentId(chat.emoji_status), z10);
-            r5Var.k(Integer.valueOf(i10));
-            return r5Var;
-        } else if (user != null && user.verified) {
-            Drawable drawable2 = this.f32397b;
-            if (drawable2 == null) {
-                drawable2 = new ar(org.telegram.ui.ActionBar.y6.f23389f1, org.telegram.ui.ActionBar.y6.f23444i1);
-            }
-            this.f32397b = drawable2;
-            r5Var.g(drawable2, z10);
-            r5Var.k(null);
-            return r5Var;
-        } else if (user != null && DialogObject.getEmojiStatusDocumentId(user.emoji_status) != 0) {
-            r5Var.j(DialogObject.getEmojiStatusDocumentId(user.emoji_status), z10);
-            r5Var.k(Integer.valueOf(i10));
-            return r5Var;
-        } else if (user != null && user.premium) {
-            r5Var.g(tg.b1.d().e, z10);
-            r5Var.k(Integer.valueOf(i10));
-            return r5Var;
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        float f7;
+        if (isPressed()) {
+            f7 = 1.0f;
         } else {
-            r5Var.g(null, z10);
-            r5Var.k(null);
-            return r5Var;
+            f7 = 0.0f;
+        }
+        float e = ((1.0f - this.e.e(false, f7)) * 0.2f) + 0.8f;
+        if (this.f30038b != null) {
+            int height = getHeight() - getPaddingBottom();
+            this.f30038b.setBounds(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
+            canvas.scale(e, e, getWidth() / 2, (getPaddingTop() + height) / 2);
+            Drawable drawable = this.f30038b;
+            if (drawable instanceof f5) {
+                ((f5) drawable).p(System.currentTimeMillis());
+            }
+            this.f30038b.draw(canvas);
         }
     }
 
-    public rx0(int i10, View view) {
-        this.f32396a = new r5(AndroidUtilities.dp(i10), view);
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        Drawable drawable = this.f30038b;
+        if (drawable instanceof f5) {
+            ((f5) drawable).a(this);
+        }
+        this.f30039c = true;
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        Drawable drawable = this.f30038b;
+        if (drawable instanceof f5) {
+            ((f5) drawable).n(this);
+        }
+        this.f30039c = false;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        float f7;
+        int L = org.telegram.messenger.i0.L(3.0f);
+        float f10 = 6.66f;
+        if (this.d == 0) {
+            f7 = 0.0f;
+        } else {
+            f7 = 6.66f;
+        }
+        int L2 = org.telegram.messenger.i0.L(f7 + 3.0f);
+        int L3 = org.telegram.messenger.i0.L(3.0f);
+        if (this.d != 0) {
+            f10 = 0.0f;
+        }
+        setPadding(L, L2, L3, org.telegram.messenger.i0.L(f10 + 3.0f));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(44.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(52.0f), 1073741824));
+    }
+
+    public void setDirection(int i10) {
+        this.d = i10;
+        invalidate();
+    }
+
+    public void setImageDrawable(Drawable drawable) {
+        Drawable drawable2 = this.f30038b;
+        if (drawable2 instanceof f5) {
+            ((f5) drawable2).n(this);
+        }
+        this.f30038b = drawable;
+        if ((drawable instanceof f5) && this.f30039c) {
+            ((f5) drawable).a(this);
+        }
+    }
+
+    @Override
+    public void setPressed(boolean z10) {
+        super.setPressed(z10);
+        invalidate();
     }
 }

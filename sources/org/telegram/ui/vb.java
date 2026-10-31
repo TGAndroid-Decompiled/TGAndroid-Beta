@@ -1,48 +1,44 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-public final class vb extends org.telegram.ui.Components.kb1 {
-    public MessageObject f44226c;
-    public int d = 0;
-    public boolean e = true;
-    public int f44227f = 0;
-    public int f44228g;
-    public final wb h;
+import java.util.concurrent.CountDownLatch;
+public final class vb implements Runnable {
+    public final int f42693a;
+    public final zb f42694b;
 
-    public vb(wb wbVar) {
-        this.h = wbVar;
+    public vb(zb zbVar, int i10) {
+        this.f42693a = i10;
+        this.f42694b = zbVar;
     }
 
     @Override
-    public final void N() {
-        MessageObject messageObject = this.f44226c;
-        wb wbVar = this.h;
-        if (messageObject != null) {
-            int indexOf = wbVar.f44604o0.indexOf(messageObject) + wbVar.E.f43287f;
-            if (indexOf >= 0) {
-                wbVar.f44616x.i1(indexOf, this.f44228g, false);
-            }
-        } else {
-            wbVar.f44616x.i1(this.d, this.f44227f, this.e);
-        }
-        this.f44226c = null;
-        wbVar.V = true;
-        wbVar.e1();
-        AndroidUtilities.runOnUIThread(new bu0(this, 21));
-    }
-
-    @Override
-    public final void Q() {
-        wb wbVar = this.h;
-        wbVar.K0 = wbVar.getNotificationCenter().setAnimationInProgress(wbVar.K0, wb.R0);
-    }
-
-    @Override
-    public final void S(View view) {
-        if (view instanceof org.telegram.ui.Cells.s1) {
-            this.h.h.add((org.telegram.ui.Cells.s1) view);
+    public final void run() {
+        switch (this.f42693a) {
+            case 0:
+                CountDownLatch countDownLatch = new CountDownLatch(2);
+                zb zbVar = this.f42694b;
+                zbVar.a(countDownLatch, null);
+                zbVar.b(countDownLatch, null);
+                try {
+                    countDownLatch.await();
+                } catch (InterruptedException unused) {
+                }
+                org.telegram.messenger.i0.g3(new vb(zbVar, 3));
+                return;
+            case 1:
+                zb zbVar2 = this.f42694b;
+                zbVar2.G = false;
+                zbVar2.d(true);
+                return;
+            case 2:
+                zb zbVar3 = this.f42694b;
+                zbVar3.G = false;
+                zbVar3.d(true);
+                return;
+            default:
+                zb zbVar4 = this.f42694b;
+                zbVar4.G = false;
+                zbVar4.d(true);
+                return;
         }
     }
 }

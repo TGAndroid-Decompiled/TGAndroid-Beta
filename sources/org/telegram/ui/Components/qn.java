@@ -1,138 +1,21 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class qn implements ty {
-    public final Utilities.Callback f31944a;
-    public final nn f31945b;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class qn extends org.telegram.ui.ActionBar.k1 {
+    public final sn f29687o;
 
-    public qn(Utilities.Callback callback, nn nnVar) {
-        this.f31944a = callback;
-        this.f31945b = nnVar;
+    public qn(sn snVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.f29687o = snVar;
     }
 
     @Override
-    public final boolean A() {
-        return false;
-    }
-
-    @Override
-    public final long a() {
-        return 0L;
-    }
-
-    @Override
-    public final boolean b() {
-        return false;
-    }
-
-    @Override
-    public final boolean c() {
-        return false;
-    }
-
-    @Override
-    public final int f() {
-        return 0;
-    }
-
-    @Override
-    public final boolean g() {
-        return false;
-    }
-
-    @Override
-    public final boolean j() {
-        return false;
-    }
-
-    @Override
-    public final boolean k() {
-        return false;
-    }
-
-    @Override
-    public final void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, int i10) {
-        this.f31944a.run(new th.h(document, obj));
-        this.f31945b.dismiss(true);
-    }
-
-    @Override
-    public final float p() {
-        return 0.0f;
-    }
-
-    @Override
-    public final void x(long j10, TLRPC.Document document, String str, boolean z10) {
-        this.f31944a.run(new th.h(document, null));
-        this.f31945b.dismiss(true);
-    }
-
-    @Override
-    public final boolean z() {
-        return false;
-    }
-
-    @Override
-    public final void n() {
-    }
-
-    @Override
-    public final void q() {
-    }
-
-    @Override
-    public final void u() {
-    }
-
-    @Override
-    public final void w() {
-    }
-
-    @Override
-    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-    }
-
-    @Override
-    public final void i(int i10) {
-    }
-
-    @Override
-    public final void l(String str) {
-    }
-
-    @Override
-    public final void o(q61 q61Var) {
-    }
-
-    @Override
-    public final void r(TLRPC.StickerSetCovered stickerSetCovered) {
-    }
-
-    @Override
-    public final void s(int i10) {
-    }
-
-    @Override
-    public final void t(ArrayList arrayList) {
-    }
-
-    @Override
-    public final void y(long j10) {
-    }
-
-    @Override
-    public final void e(Object obj, Object obj2) {
-    }
-
-    @Override
-    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z10) {
-    }
-
-    @Override
-    public final void v(View view, Object obj, String str, Object obj2, boolean z10, int i10, int i11) {
+    public final void dismiss() {
+        d(true);
+        org.telegram.ui.un unVar = this.f29687o.G;
+        if (unVar != null) {
+            unVar.getClass();
+            unVar.o8(false, true, 0.0f);
+        }
     }
 }

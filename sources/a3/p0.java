@@ -15,17 +15,17 @@ public interface p0 {
 
     void g();
 
-    void h(long j10);
+    void h(a6.i iVar);
 
-    void i();
+    void i(long j10);
 
-    void j(int i10);
+    void j();
 
-    void k();
+    void k(int i10);
 
-    void l(b2.x xVar, long j10, int i10, List list);
+    void l();
 
-    void m(b6.i iVar);
+    void m(b2.x xVar, long j10, int i10, List list);
 
     void n(boolean z10);
 

@@ -2,6 +2,10 @@ package org.telegram.messenger;
 
 import android.graphics.Color;
 public class Intro {
+    public static void a(int i10) {
+        setBackgroundColor(Color.red(i10) / 255.0f, Color.green(i10) / 255.0f, Color.blue(i10) / 255.0f, Color.alpha(i10) / 255.0f);
+    }
+
     public static native void onDrawFrame(int i10);
 
     public static native void onSurfaceChanged(int i10, int i11, float f7, int i12);
@@ -9,10 +13,6 @@ public class Intro {
     public static native void onSurfaceCreated();
 
     private static native void setBackgroundColor(float f7, float f10, float f11, float f12);
-
-    public static void setBackgroundColor(int i10) {
-        setBackgroundColor(Color.red(i10) / 255.0f, Color.green(i10) / 255.0f, Color.blue(i10) / 255.0f, Color.alpha(i10) / 255.0f);
-    }
 
     public static native void setDate(float f7);
 

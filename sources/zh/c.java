@@ -1,89 +1,116 @@
 package zh;
 
 import android.content.Context;
-import android.os.Bundle;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.FrameLayout;
-import java.util.List;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.GiftAuctionController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.k71;
-import org.telegram.ui.Components.kb1;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.nm0;
-import org.telegram.ui.Components.p7;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
-public final class c extends bb {
-    public static final int f52970a0 = 0;
-    public final List X;
-    public final GiftAuctionController.Auction Y;
-    public k71 Z;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.HashSet;
+import org.telegram.messenger.cd;
+import org.telegram.messenger.i0;
+import org.telegram.messenger.o5;
+import org.telegram.messenger.vp;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.p6;
+import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.Components.g9;
+import org.telegram.ui.Components.r8;
+import rf.o;
+import w7.b6;
+public final class c extends FrameLayout implements k6 {
+    public final p6 f55769a;
+    public final g9 f55770b;
+    public final TextView f55771c;
+    public final TextView d;
+    public final ImageView e;
 
-    public c(Context context, u6 u6Var, GiftAuctionController.Auction auction, List list) {
-        super(context, null, false, false, 2, u6Var);
-        this.Y = auction;
-        this.X = list;
-        this.v = 0.2f;
-        this.L = false;
-        this.K = AndroidUtilities.dp(12.0f);
-        this.e.setTitle(y());
-        fixNavigationBar();
-        this.d.setPadding(this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f), this.backgroundPaddingLeft, AndroidUtilities.dp(64.0f));
-        this.d.setOnItemClickListener(new p7(3));
-        this.d.setOverScrollMode(2);
-        fi.d dVar = new fi.d(context, u6Var, true);
-        dVar.setOnClickListener(new ig.d0(this, 27));
-        dVar.i(LocaleController.getString(R.string.OK), false, true);
-        FrameLayout.LayoutParams h = kb1.h(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
-        int i10 = h.leftMargin;
-        int i11 = this.backgroundPaddingLeft;
-        h.leftMargin = i10 + i11;
-        h.rightMargin += i11;
-        this.containerView.addView(dVar, h);
-        this.Z.O(false);
+    public c(Context context, p6 p6Var) {
+        super(context);
+        this.f55769a = p6Var;
+        g9 g9Var = new g9(context);
+        this.f55770b = g9Var;
+        g9Var.setRoundRadius(i0.L(9.0f));
+        addView(g9Var, b6.d(32, 32.0f, 19, 20.0f, 0.0f, 0.0f, 0.0f));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        linearLayout.setGravity(16);
+        TextView textView = new TextView(context);
+        this.f55771c = textView;
+        textView.setTypeface(i0.o());
+        textView.setTextSize(1, 16.0f);
+        textView.setSingleLine(true);
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView.setEllipsize(truncateAt);
+        linearLayout.addView(textView, b6.o(-1, -2));
+        TextView textView2 = new TextView(context);
+        this.d = textView2;
+        textView2.setTextSize(1, 13.0f);
+        textView2.setSingleLine(true);
+        textView2.setEllipsize(truncateAt);
+        linearLayout.addView(textView2, b6.k(0.0f, 2.0f, 0.0f, 0.0f, -1, -2));
+        addView(linearLayout, b6.d(-1, -2.0f, 19, 67.0f, 0.0f, 48.0f, 1.0f));
+        ImageView imageView = new ImageView(context);
+        this.e = imageView;
+        imageView.setImageResource(2131232188);
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        addView(imageView, b6.d(24, 24.0f, 21, 0.0f, 0.0f, 11.0f, 0.0f));
+        updateColors();
     }
 
-    public static void P(c cVar, TL_stars.TL_StarGiftAuctionAcquiredGift tL_StarGiftAuctionAcquiredGift) {
-        long peerDialogId = DialogObject.getPeerDialogId(tL_StarGiftAuctionAcquiredGift.peer);
-        cVar.dismiss();
-        org.telegram.ui.ActionBar.r2 U = LaunchActivity.U();
-        if (U != null && !UserObject.isService(peerDialogId)) {
-            Bundle bundle = new Bundle();
-            if (peerDialogId > 0) {
-                bundle.putLong("user_id", peerDialogId);
-                if (peerDialogId == UserConfig.getInstance(cVar.currentAccount).getClientUserId()) {
-                    bundle.putBoolean("my_profile", true);
-                }
-            } else {
-                bundle.putLong("chat_id", -peerDialogId);
-            }
-            bundle.putBoolean("open_gifts", true);
-            U.presentFragment(new ProfileActivity(bundle, null));
+    public final void a(int i10, TLRPC.Chat chat) {
+        int i11;
+        if (chat == null) {
+            return;
         }
+        TLRPC.ChatFull M0 = vp.r1(i10).M0(chat.f19793id);
+        setTitle(o5.u(chat));
+        if (M0 != null) {
+            i11 = M0.linked_peers.size();
+        } else {
+            i11 = 0;
+        }
+        setSubtitle(cd.G(i11, "CommunityWithChats", new Object[0]));
+        this.f55770b.e(chat, new r8(chat));
     }
 
     @Override
-    public final mm0 v(nm0 nm0Var) {
-        k71 k71Var = new k71(this.d, getContext(), this.currentAccount, 0, true, new hi.e2(this, 25), this.resourcesProvider);
-        this.Z = k71Var;
-        k71Var.f29878r = false;
-        return k71Var;
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(t6.f21330z6));
+        hashSet.add(Integer.valueOf(t6.G6));
     }
 
     @Override
-    public final CharSequence y() {
-        List list = this.X;
-        if (list == null) {
-            return null;
-        }
-        return LocaleController.formatPluralString("Gift2AuctionsAcquiredGifts", list.size(), new Object[0]);
+    public final void dispatchDraw(Canvas canvas) {
+        Drawable drawable = t6.S0;
+        g9 g9Var = this.f55770b;
+        o.a(canvas, drawable, (g9Var.getWidth() / 2.0f) + g9Var.getLeft(), (g9Var.getHeight() / 2.0f) + g9Var.getTop(), g9Var.getHeight());
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(i0.L(60.0f), 1073741824));
+    }
+
+    public void setSubtitle(CharSequence charSequence) {
+        this.d.setText(charSequence);
+    }
+
+    public void setTitle(CharSequence charSequence) {
+        this.f55771c.setText(charSequence);
+    }
+
+    @Override
+    public final void updateColors() {
+        int i10 = t6.f21330z6;
+        p6 p6Var = this.f55769a;
+        this.e.setColorFilter(t6.w0(i10, p6Var));
+        this.f55771c.setTextColor(t6.w0(t6.G6, p6Var));
+        this.d.setTextColor(t6.w0(i10, p6Var));
     }
 }

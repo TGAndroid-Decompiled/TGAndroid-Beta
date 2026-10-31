@@ -1,22 +1,19 @@
 package g2;
-
-import java.util.Map;
-public final class p implements e9.l {
-    public final int f12273a;
+public final class p implements g {
+    public d0 f7328b;
+    public String f7329c;
+    public boolean f7330f;
+    public final n4.q f7327a = new n4.q(19);
+    public final int d = 8000;
+    public final int e = 8000;
 
     @Override
-    public final boolean apply(Object obj) {
-        switch (this.f12273a) {
-            case 0:
-                if (((Map.Entry) obj).getKey() != null) {
-                    return true;
-                }
-                return false;
-            default:
-                if (((String) obj) != null) {
-                    return true;
-                }
-                return false;
+    public final h createDataSource() {
+        s sVar = new s(this.f7329c, this.d, this.e, this.f7330f, this.f7327a);
+        d0 d0Var = this.f7328b;
+        if (d0Var != null) {
+            sVar.addTransferListener(d0Var);
         }
+        return sVar;
     }
 }

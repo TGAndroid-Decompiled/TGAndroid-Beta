@@ -1,37 +1,36 @@
 package org.telegram.ui;
 
+import android.text.style.URLSpan;
 import android.view.View;
-import java.util.ArrayList;
-public final class rf implements View.OnClickListener {
-    public final int f42978a;
-    public final wn f42979b;
-    public final ArrayList f42980c;
+public final class rf implements org.telegram.messenger.r20 {
+    public final int f41211a;
+    public final Object f41212b;
+    public final Object f41213c;
 
-    public rf(wn wnVar, ArrayList arrayList, int i10) {
-        this.f42978a = i10;
-        this.f42979b = wnVar;
-        this.f42980c = arrayList;
+    public rf(int i10, Object obj, Object obj2) {
+        this.f41211a = i10;
+        this.f41212b = obj;
+        this.f41213c = obj2;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f42978a) {
+    public final Object a(Object obj) {
+        org.telegram.ui.Cells.q1 q1Var;
+        switch (this.f41211a) {
             case 0:
-                wn wnVar = this.f42979b;
-                li liVar = new li(wnVar, wnVar, wnVar.getParentActivity(), wnVar.f45309ua, this.f42980c);
-                liVar.setCalcMandatoryInsets(wnVar.I9());
-                liVar.setDimBehind(false);
-                wnVar.J7(false);
-                wnVar.showDialog(liVar);
-                return;
-            default:
-                wn wnVar2 = this.f42979b;
-                if (wnVar2.getParentActivity() != null && wnVar2.getParentActivity() != null) {
-                    new org.telegram.ui.Components.aw(wnVar2, wnVar2.getParentActivity(), wnVar2.f45309ua, this.f42980c).show();
-                    wnVar2.J7(true);
-                    return;
+                un unVar = (un) this.f41212b;
+                View view = (View) this.f41213c;
+                URLSpan uRLSpan = (URLSpan) obj;
+                org.telegram.messenger.jj jjVar = unVar.f42421t5;
+                if (view instanceof org.telegram.ui.Cells.q1) {
+                    q1Var = (org.telegram.ui.Cells.q1) view;
+                } else {
+                    q1Var = null;
                 }
-                return;
+                unVar.c8(uRLSpan, false, jjVar, q1Var);
+                return Boolean.TRUE;
+            default:
+                return jh.c.d((View) obj, (String) this.f41212b, (String) this.f41213c, null, null);
         }
     }
 }

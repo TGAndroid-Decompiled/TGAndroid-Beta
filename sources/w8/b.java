@@ -1,27 +1,22 @@
 package w8;
 
-import a8.df;
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.google.android.gms.identity.intents.model.UserAddress;
-public final class b extends p6.a {
-    public static final Parcelable.Creator<b> CREATOR = new s(5);
-    public String f51132a;
-    public String f51133b;
-    public String f51134c;
-    public int d;
-    public UserAddress e;
+import java.util.ArrayList;
+import v8.s;
+import w7.h0;
+public final class b extends o6.a {
+    public static final Parcelable.Creator<b> CREATOR = new s(15);
+    public String f52750a;
+    public String f52751b;
+    public ArrayList f52752c;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q5 = df.q(parcel, 20293);
-        df.l(parcel, 1, this.f51132a);
-        df.l(parcel, 2, this.f51133b);
-        df.l(parcel, 3, this.f51134c);
-        int i11 = this.d;
-        df.s(parcel, 4, 4);
-        parcel.writeInt(i11);
-        df.k(parcel, 5, this.e, i10);
-        df.r(parcel, q5);
+        int q6 = h0.q(parcel, 20293);
+        h0.l(parcel, 2, this.f52750a);
+        h0.l(parcel, 3, this.f52751b);
+        h0.p(parcel, 4, this.f52752c);
+        h0.r(parcel, q6);
     }
 }

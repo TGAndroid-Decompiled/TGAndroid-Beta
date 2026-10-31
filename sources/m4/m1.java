@@ -1,42 +1,42 @@
 package m4;
-public final class m1 extends b2.p1 {
-    public static final Object f18161j = new Object();
+public final class m1 extends b2.o1 {
+    public static final Object f12859j = new Object();
     public final b2.p0 e;
-    public final boolean f18162f;
-    public final boolean f18163g;
+    public final boolean f12860f;
+    public final boolean f12861g;
     public final b2.j0 h;
-    public final long f18164i;
+    public final long f12862i;
 
     public m1(n1 n1Var) {
         b2.j0 j0Var;
         this.e = n1Var.v();
-        this.f18162f = n1Var.e0();
-        this.f18163g = n1Var.v0();
+        this.f12860f = n1Var.d0();
+        this.f12861g = n1Var.v0();
         if (n1Var.P0()) {
-            j0Var = b2.j0.f3234f;
+            j0Var = b2.j0.f2072f;
         } else {
             j0Var = null;
         }
         this.h = j0Var;
-        this.f18164i = e2.n0.S(n1Var.z());
+        this.f12862i = e2.l0.S(n1Var.z());
     }
 
     @Override
     public final int b(Object obj) {
-        if (f18161j.equals(obj)) {
+        if (f12859j.equals(obj)) {
             return 0;
         }
         return -1;
     }
 
     @Override
-    public final b2.m1 f(int i10, b2.m1 m1Var, boolean z10) {
-        m1Var.getClass();
-        b2.c cVar = b2.c.f3153c;
-        Object obj = f18161j;
-        m1Var.h(obj, obj, 0, this.f18164i, 0L, cVar, false);
-        m1Var.f3281f = false;
-        return m1Var;
+    public final b2.l1 f(int i10, b2.l1 l1Var, boolean z10) {
+        l1Var.getClass();
+        b2.c cVar = b2.c.f1990c;
+        Object obj = f12859j;
+        l1Var.h(obj, obj, 0, this.f12862i, 0L, cVar, false);
+        l1Var.f2110f = false;
+        return l1Var;
     }
 
     @Override
@@ -46,14 +46,14 @@ public final class m1 extends b2.p1 {
 
     @Override
     public final Object l(int i10) {
-        return f18161j;
+        return f12859j;
     }
 
     @Override
-    public final b2.o1 m(int i10, b2.o1 o1Var, long j10) {
-        o1Var.b(f18161j, this.e, null, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, this.f18162f, this.f18163g, this.h, 0L, this.f18164i, 0, 0, 0L);
-        o1Var.f3332k = false;
-        return o1Var;
+    public final b2.n1 m(int i10, b2.n1 n1Var, long j10) {
+        n1Var.b(f12859j, this.e, null, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, this.f12860f, this.f12861g, this.h, 0L, this.f12862i, 0, 0, 0L);
+        n1Var.f2144k = false;
+        return n1Var;
     }
 
     @Override

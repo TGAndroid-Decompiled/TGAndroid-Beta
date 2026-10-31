@@ -1,7 +1,7 @@
 package org.telegram.SQLite;
 
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
+import org.telegram.messenger.f8;
+import org.telegram.messenger.v2;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.Vector;
@@ -102,9 +102,9 @@ public class SQLiteCursor {
     }
 
     public boolean next() {
-        boolean z10;
         SQLitePreparedStatement sQLitePreparedStatement = this.preparedStatement;
         int step = sQLitePreparedStatement.step(sQLitePreparedStatement.getStatementHandle());
+        boolean z10 = true;
         if (step == -1) {
             int i10 = 6;
             while (true) {
@@ -113,13 +113,13 @@ public class SQLiteCursor {
                     break;
                 }
                 try {
-                    if (BuildVars.LOGS_ENABLED) {
-                        FileLog.d("sqlite busy, waiting...");
+                    if (v2.f18448a) {
+                        f8.b("sqlite busy, waiting...");
                     }
                     Thread.sleep(500L);
                     step = this.preparedStatement.step();
                 } catch (Exception e) {
-                    FileLog.e(e);
+                    f8.g(e, true);
                 }
                 if (step == 0) {
                     break;
@@ -130,9 +130,7 @@ public class SQLiteCursor {
                 throw new SQLiteException("sqlite busy");
             }
         }
-        if (step == 0) {
-            z10 = true;
-        } else {
+        if (step != 0) {
             z10 = false;
         }
         this.inRow = z10;

@@ -1,121 +1,218 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class t80 extends mm0 {
-    public final Context f32880c;
-    public final u80 d;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.CornerPathEffect;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
+public class t80 extends Drawable {
+    public Rect A;
+    public final float[] B;
+    public final RectF C;
+    public boolean D;
+    public int E;
+    public Paint F;
+    public LinearGradient G;
+    public Matrix H;
+    public int I;
+    public Paint J;
+    public LinearGradient K;
+    public Matrix L;
+    public final org.telegram.ui.ActionBar.p6 f30501a;
+    public long f30502b;
+    public long f30503c;
+    public LinearGradient d;
+    public LinearGradient e;
+    public final Matrix f30504f;
+    public final Matrix f30505g;
+    public int h;
+    public int f30506i;
+    public int f30507j;
+    public int f30508k;
+    public int f30509l;
+    public int f30510m;
+    public boolean f30511n;
+    public Integer f30512o;
+    public Integer f30513p;
+    public Integer f30514q;
+    public Integer f30515r;
+    public int f30516s;
+    public float f30517t;
+    public float f30518u;
+    public long v;
+    public final Paint f30519w;
+    public final Paint f30520x;
+    public Path f30521y;
+    public final Path f30522z;
 
-    public t80(u80 u80Var, Context context) {
-        this.d = u80Var;
-        this.f32880c = context;
+    public t80(org.telegram.ui.ActionBar.p6 p6Var) {
+        this();
+        this.f30501a = p6Var;
     }
 
-    @Override
-    public final boolean D(s4.e1 e1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.f33286r.size();
-    }
-
-    @Override
-    public final int j(int i10) {
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.e1 e1Var, int i10) {
-        int i11;
-        TLObject chat;
-        String str;
-        int i12;
-        View view = e1Var.f47773a;
-        u80 u80Var = this.d;
-        long peerId = MessageObject.getPeerId((TLRPC.Peer) u80Var.f33286r.get(i10));
-        if (peerId > 0) {
-            i12 = ((org.telegram.ui.ActionBar.k3) u80Var).currentAccount;
-            chat = MessagesController.getInstance(i12).getUser(Long.valueOf(peerId));
-            str = LocaleController.getString(R.string.VoipGroupPersonalAccount);
-        } else {
-            i11 = ((org.telegram.ui.ActionBar.k3) u80Var).currentAccount;
-            chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-peerId));
-            str = null;
+    public final void a() {
+        if (!c() && !d()) {
+            this.f30503c = SystemClock.elapsedRealtime();
         }
-        boolean z10 = false;
-        if (u80Var.f33288w == 0) {
-            org.telegram.ui.Cells.k7 k7Var = (org.telegram.ui.Cells.k7) view;
-            if (peerId == MessageObject.getPeerId(u80Var.f33289x)) {
-                z10 = true;
-            }
-            k7Var.c(peerId, z10, null);
+    }
+
+    public void b(Canvas canvas, Path path) {
+        canvas.drawPath(path, this.f30519w);
+        if (this.f30511n) {
+            canvas.drawPath(path, this.f30520x);
+        }
+    }
+
+    public final boolean c() {
+        if (this.f30503c > 0 && ((float) (SystemClock.elapsedRealtime() - this.f30503c)) >= 320.0f) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean d() {
+        if (this.f30503c > 0 && ((float) (SystemClock.elapsedRealtime() - this.f30503c)) < 320.0f) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void draw(android.graphics.Canvas r34) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.t80.draw(android.graphics.Canvas):void");
+    }
+
+    public final void e(RectF rectF) {
+        super.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+        this.A = null;
+    }
+
+    public final void f(int i10, int i11) {
+        this.f30512o = Integer.valueOf(i10);
+        this.f30513p = Integer.valueOf(i11);
+        this.f30511n = false;
+    }
+
+    public final void g(int i10, int i11, int i12, int i13) {
+        this.f30512o = Integer.valueOf(i10);
+        this.f30513p = Integer.valueOf(i11);
+        this.f30511n = true;
+        this.f30514q = Integer.valueOf(i12);
+        this.f30515r = Integer.valueOf(i13);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    public final void h() {
+        this.f30517t = 2.0f;
+    }
+
+    public final void i(float f7) {
+        boolean z10;
+        if (this.f30521y != null) {
+            this.f30519w.setPathEffect(new CornerPathEffect(f7));
+            this.f30520x.setPathEffect(new CornerPathEffect(f7));
             return;
         }
-        org.telegram.ui.Cells.k4 k4Var = (org.telegram.ui.Cells.k4) view;
-        if (i10 != h() - 1) {
+        float[] fArr = this.B;
+        if (fArr[0] == f7 && fArr[2] == f7 && fArr[4] == f7 && fArr[6] == f7) {
+            z10 = false;
+        } else {
             z10 = true;
         }
-        k4Var.e(chat, null, str, z10);
-    }
-
-    @Override
-    public final s4.e1 x(ViewGroup viewGroup, int i10) {
-        boolean z10;
-        View k4Var;
-        u80 u80Var = this.d;
-        if (u80Var.f33288w == 0) {
-            k4Var = new org.telegram.ui.Cells.k7(this.f32880c, 2, null);
-            k4Var.setLayoutParams(new s4.q0(AndroidUtilities.dp(80.0f), AndroidUtilities.dp(100.0f)));
-        } else {
-            if (u80Var.f33288w == 2) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            k4Var = new org.telegram.ui.Cells.k4(2, 0, this.f32880c, null, false, z10);
+        fArr[1] = f7;
+        fArr[0] = f7;
+        fArr[3] = f7;
+        fArr[2] = f7;
+        fArr[5] = f7;
+        fArr[4] = f7;
+        fArr[7] = f7;
+        fArr[6] = f7;
+        if (this.A != null && z10) {
+            Path path = this.f30522z;
+            path.rewind();
+            Rect rect = this.A;
+            RectF rectF = this.C;
+            rectF.set(rect);
+            path.addRoundRect(rectF, fArr, Path.Direction.CW);
         }
-        return new s4.e1(k4Var);
     }
 
-    @Override
-    public final void y(s4.e1 e1Var) {
-        long j10;
-        e1Var.b();
-        long peerId = MessageObject.getPeerId(this.d.f33289x);
-        View view = e1Var.f47773a;
-        boolean z10 = true;
-        if (view instanceof org.telegram.ui.Cells.k4) {
-            org.telegram.ui.Cells.k4 k4Var = (org.telegram.ui.Cells.k4) view;
-            Object object = k4Var.getObject();
-            if (object != null) {
-                if (object instanceof TLRPC.Chat) {
-                    j10 = -((TLRPC.Chat) object).f22028id;
-                } else {
-                    j10 = ((TLRPC.User) object).f22177id;
+    public final void j(float[] fArr) {
+        if (fArr != null && fArr.length == 8) {
+            boolean z10 = false;
+            for (int i10 = 0; i10 < 8; i10++) {
+                float[] fArr2 = this.B;
+                float f7 = fArr2[i10];
+                float f10 = fArr[i10];
+                if (f7 != f10) {
+                    fArr2[i10] = f10;
+                    z10 = true;
                 }
-            } else {
-                j10 = 0;
             }
-            if (peerId != j10) {
-                z10 = false;
+            if (this.A != null && z10) {
+                Path path = this.f30522z;
+                path.rewind();
+                Rect rect = this.A;
+                RectF rectF = this.C;
+                rectF.set(rect);
+                path.addRoundRect(rectF, fArr, Path.Direction.CW);
             }
-            k4Var.c(z10, false);
-            return;
         }
-        org.telegram.ui.Cells.k7 k7Var = (org.telegram.ui.Cells.k7) view;
-        if (peerId != k7Var.getCurrentDialog()) {
-            z10 = false;
+    }
+
+    public final void k(float f7) {
+        i(org.telegram.messenger.i0.L(f7));
+    }
+
+    public final void l() {
+        Path path = this.f30521y;
+        if (path != null) {
+            RectF rectF = org.telegram.messenger.i0.P;
+            path.computeBounds(rectF, false);
+            e(rectF);
         }
-        k7Var.b(z10, false);
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f30519w.setAlpha(i10);
+        this.f30520x.setAlpha(i10);
+        if (i10 > 0) {
+            invalidateSelf();
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f30519w.setColorFilter(colorFilter);
+    }
+
+    public t80() {
+        this.f30502b = -1L;
+        this.f30503c = -1L;
+        this.f30504f = new Matrix();
+        this.f30505g = new Matrix();
+        this.f30509l = org.telegram.ui.ActionBar.t6.f21001h5;
+        this.f30510m = org.telegram.ui.ActionBar.t6.f21019i5;
+        this.f30517t = 1.0f;
+        this.f30518u = 1.0f;
+        this.f30519w = new Paint(1);
+        Paint paint = new Paint(1);
+        this.f30520x = paint;
+        this.f30522z = new Path();
+        this.B = new float[8];
+        this.C = new RectF();
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(org.telegram.messenger.i0.f16025p > 2.0f ? 2.0f : 1.0f);
     }
 }

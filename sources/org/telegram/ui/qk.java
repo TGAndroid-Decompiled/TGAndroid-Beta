@@ -1,20 +1,28 @@
 package org.telegram.ui;
-public final class qk extends org.telegram.ui.Components.ql0 {
-    public final wn f42738l;
 
-    public qk(wn wnVar, rj rjVar, uj ujVar) {
-        super(rjVar, ujVar);
-        this.f42738l = wnVar;
+import android.content.Context;
+public final class qk extends bh.h {
+    public final un L;
+
+    public qk(un unVar, Context context, org.telegram.ui.ActionBar.p6 p6Var, jj jjVar, tg.b bVar) {
+        super(context, p6Var, bVar, jjVar);
+        this.L = unVar;
     }
 
-    public final void e(int i10) {
-        if (this.f42738l.f45136gb) {
-            if (i10 == 0) {
-                i10 = 1;
-            } else if (i10 == 1) {
-                i10 = 0;
-            }
+    @Override
+    public final void setVisibility(int i10) {
+        boolean z10;
+        super.setVisibility(i10);
+        j6.m mVar = this.L.Xc;
+        boolean z11 = false;
+        if (i10 == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        this.f31934b = i10;
+        if (getMeasuredWidth() > 0) {
+            z11 = true;
+        }
+        mVar.h(3, z10, z11);
     }
 }

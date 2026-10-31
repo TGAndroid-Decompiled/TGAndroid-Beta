@@ -1,18 +1,15 @@
 package org.telegram.ui;
+public final class a30 extends org.telegram.ui.Components.ug0 {
+    public final b50 f35539s1;
 
-import android.view.ViewGroup;
-import androidx.recyclerview.widget.RecyclerView;
-public final class a30 extends s4.u0 {
-    public final x50 f37670a;
-
-    public a30(x50 x50Var) {
-        this.f37670a = x50Var;
+    public a30(b50 b50Var, LaunchActivity launchActivity, y30 y30Var, i40 i40Var, z20 z20Var) {
+        super(launchActivity, y30Var, i40Var, z20Var);
+        this.f35539s1 = b50Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.k3) this.f37670a).containerView;
-        viewGroup.invalidate();
+    public final void invalidate() {
+        super.invalidate();
+        this.f35539s1.f21586b.invalidate();
     }
 }

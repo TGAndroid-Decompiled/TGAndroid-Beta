@@ -1,52 +1,22 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-public final class o implements Runnable {
-    public final int f22901a;
-    public final ActionBarLayout f22902b;
+import android.view.View;
+public final class o implements r0.m, ei.o {
+    public final k2 f20617a;
 
-    public o(ActionBarLayout actionBarLayout, int i10) {
-        this.f22901a = i10;
-        this.f22902b = actionBarLayout;
+    public o(k2 k2Var) {
+        this.f20617a = k2Var;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f22901a;
-        ActionBarLayout actionBarLayout = this.f22902b;
-        switch (i10) {
-            case 0:
-                actionBarLayout.invalidate();
-                return;
-            case 1:
-                actionBarLayout.requestLayout();
-                actionBarLayout.f22344s.requestLayout();
-                actionBarLayout.v.requestLayout();
-                actionBarLayout.f22352w.requestLayout();
-                return;
-            case 2:
-                if (actionBarLayout.f22304a && actionBarLayout.getLastFragment() != null && actionBarLayout.f22344s.getChildCount() == 0) {
-                    if (BuildVars.DEBUG_VERSION) {
-                        FileLog.e(new RuntimeException(TextUtils.join(", ", actionBarLayout.f22336o1)));
-                    }
-                    actionBarLayout.W(true, true);
-                    return;
-                }
-                return;
-            case 3:
-                Drawable drawable = ActionBarLayout.f22301v1;
-                actionBarLayout.G(false);
-                return;
-            case 4:
-                Drawable drawable2 = ActionBarLayout.f22301v1;
-                actionBarLayout.G(false);
-                return;
-            default:
-                actionBarLayout.H0.setVisibility(8);
-                return;
-        }
+    public r0.j1 R0(View view, r0.j1 j1Var) {
+        return this.f20617a.onInsetsInternal(view, j1Var);
+    }
+
+    @Override
+    public int c() {
+        k2 k2Var = this.f20617a;
+        k2Var.getClass();
+        return k2Var.getThemedColor(t6.f20872a7);
     }
 }

@@ -1,50 +1,19 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.widget.FrameLayout;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-public final class p31 extends FrameLayout implements org.telegram.ui.ActionBar.p6 {
-    public final Path f42294a;
-    public eh.d f42295b;
+import androidx.recyclerview.widget.RecyclerView;
+public final class p31 extends s4.s0 {
+    public final s31 f40460a;
 
-    public p31(Activity activity) {
-        super(activity);
-        this.f42294a = new Path();
+    public p31(s31 s31Var) {
+        this.f40460a = s31Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        canvas.save();
-        canvas.clipPath(this.f42294a);
-        super.dispatchDraw(canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        Path path = this.f42294a;
-        path.rewind();
-        path.addRoundRect(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), i10 - AndroidUtilities.dp(9.0f), i11 - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
-    }
-
-    public void setBlurredBackground(eh.d dVar) {
-        this.f42295b = dVar;
-        setBackground(dVar);
-    }
-
-    @Override
-    public final void updateColors() {
-        eh.d dVar = this.f42295b;
-        if (dVar != null) {
-            dVar.updateColors();
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        s31 s31Var = this.f40460a;
+        if (s31Var.f26666k1.I1) {
+            org.telegram.messenger.i0.v1(s31Var.U1);
         }
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+        s31.d1(s31Var);
     }
 }

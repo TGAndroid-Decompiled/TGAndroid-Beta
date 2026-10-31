@@ -1,30 +1,41 @@
 package org.telegram.messenger.voip;
 
 import java.util.ArrayList;
+import org.telegram.messenger.voip.VoIPDebugToSend;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-public final class p implements Runnable {
-    public final int f21665a;
-    public final TLObject f21666b;
-    public final ArrayList f21667c;
-    public final ArrayList d;
-    public final Runnable e;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_phone;
+public final class p implements RequestDelegate {
+    public final int f18688a;
+    public final Object f18689b;
+    public final Object f18690c;
+    public final Object d;
 
-    public p(TLObject tLObject, ArrayList arrayList, ArrayList arrayList2, Runnable runnable, int i10) {
-        this.f21665a = i10;
-        this.f21666b = tLObject;
-        this.f21667c = arrayList;
-        this.d = arrayList2;
-        this.e = runnable;
+    public p(Object obj, Object obj2, Object obj3, int i10) {
+        this.f18688a = i10;
+        this.f18689b = obj;
+        this.f18690c = obj2;
+        this.d = obj3;
     }
 
     @Override
-    public final void run() {
-        switch (this.f21665a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f18688a) {
             case 0:
-                VoIPService.lambda$startConferenceGroupCall$48(this.f21666b, this.f21667c, this.d, this.e);
+                ((VoIPDebugToSend) this.f18689b).lambda$done$3((VoIPDebugToSend.Data) this.f18690c, (TL_phone.saveCallDebug) this.d, tLObject, tL_error);
+                return;
+            case 1:
+                ((GroupCallMessagesController) this.f18689b).lambda$sendCallMessage$5((h) this.f18690c, (GroupCallMessage) this.d, tLObject, tL_error);
+                return;
+            case 2:
+                VoIPService.lambda$startConferenceGroupCall$49((ArrayList) this.f18689b, (ArrayList) this.f18690c, (z) this.d, tLObject, tL_error);
+                return;
+            case 3:
+                ((VoIPService) this.f18689b).lambda$startConferenceGroupCall$45((TL_phone.PhoneCall) this.f18690c, (TL_phone.exportGroupCallInvite) this.d, tLObject, tL_error);
                 return;
             default:
-                VoIPService.lambda$startConferenceGroupCall$40(this.f21666b, this.f21667c, this.d, this.e);
+                VoIPService.lambda$startConferenceGroupCall$41((ArrayList) this.f18689b, (ArrayList) this.f18690c, (z) this.d, tLObject, tL_error);
                 return;
         }
     }

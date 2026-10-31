@@ -1,23 +1,70 @@
 package sg;
 
-import android.content.Context;
-import android.graphics.Canvas;
 import android.view.View;
-import org.telegram.ui.pt0;
-public final class e0 extends View {
-    public final pt0 f48228a;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.concurrent.CountDownLatch;
+import org.telegram.messenger.hc;
+import org.telegram.messenger.tz;
+public abstract class e0 {
+    public static Runnable f48321c;
+    public static Boolean h;
+    public static final HashSet f48319a = new HashSet();
+    public static volatile boolean f48320b = false;
+    public static boolean d = true;
+    public static boolean e = false;
+    public static boolean f48322f = false;
+    public static boolean f48323g = false;
 
-    public e0(pt0 pt0Var, Context context) {
-        super(context);
-        this.f48228a = pt0Var;
+    public static void a() {
+        com.google.android.gms.internal.cast.c0 c0Var = hc.D().f15865p;
+        CountDownLatch countDownLatch = (CountDownLatch) c0Var.f4586c;
+        if (countDownLatch != null) {
+            countDownLatch.countDown();
+            c0Var.f4586c = null;
+        }
+        f48320b = false;
+        e = false;
+        f48323g = false;
+        f48321c = null;
+        Iterator it = f48319a.iterator();
+        while (it.hasNext()) {
+            ((View) it.next()).invalidate();
+        }
+        f48319a.clear();
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        c0 c0Var = this.f48228a.L0;
-        if (c0Var != null) {
-            c0Var.d(canvas);
+    public static boolean b(View view) {
+        if (f48320b) {
+            f48319a.add(view);
         }
+        return f48320b;
+    }
+
+    public static boolean c(View... viewArr) {
+        boolean z10;
+        if (h == null) {
+            if (tz.o() != 2) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            h = Boolean.valueOf(z10);
+        }
+        if (!h.booleanValue()) {
+            return false;
+        }
+        if (f48320b) {
+            f48319a.addAll(Arrays.asList(viewArr));
+        }
+        return f48320b;
+    }
+
+    public static boolean d() {
+        if (!f48320b && !e && !f48323g) {
+            return false;
+        }
+        return true;
     }
 }

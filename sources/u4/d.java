@@ -1,5 +1,6 @@
 package u4;
 
+import a0.g;
 import a0.l;
 import android.content.ComponentName;
 import android.content.Context;
@@ -20,8 +21,8 @@ import java.util.List;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlSerializer;
 public abstract class d {
-    public static volatile ArrayList f49614a;
-    public static final Object f49615b = new Object();
+    public static volatile ArrayList f50158a;
+    public static final Object f50159b = new Object();
 
     public static String a(XmlResourceParser xmlResourceParser, String str) {
         String attributeValue = xmlResourceParser.getAttributeValue("http://schemas.android.com/apk/res/android", str);
@@ -39,8 +40,8 @@ public abstract class d {
         return attributeValue;
     }
 
-    public static a0.f c(Context context, File file) {
-        g f7;
+    public static a0.f c(File file, Context context) {
+        f f7;
         ?? lVar = new l(0);
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
@@ -52,7 +53,7 @@ public abstract class d {
                     if (next == 1) {
                         break;
                     } else if (next == 2 && newPullParser.getName().equals("target") && (f7 = f(newPullParser, context)) != null) {
-                        lVar.put(f7.f49624c.f12209b, f7);
+                        lVar.put(f7.f50165c.f7263b, f7);
                     }
                 }
             }
@@ -139,7 +140,7 @@ public abstract class d {
         return arrayList;
     }
 
-    public static g f(XmlPullParser xmlPullParser, Context context) {
+    public static f f(XmlPullParser xmlPullParser, Context context) {
         ComponentName unflattenFromString;
         Intent intent;
         if (!xmlPullParser.getName().equals("target")) {
@@ -200,31 +201,31 @@ public abstract class d {
             }
         }
         ?? obj = new Object();
-        obj.f12208a = context;
-        obj.f12209b = b10;
+        obj.f7262a = context;
+        obj.f7263b = b10;
         obj.e = b11;
-        obj.f12217m = parseInt;
+        obj.f7271m = parseInt;
         if (!TextUtils.isEmpty(b12)) {
-            obj.f12211f = b12;
+            obj.f7265f = b12;
         }
         if (!TextUtils.isEmpty(b13)) {
-            obj.f12212g = b13;
+            obj.f7266g = b13;
         }
         if (unflattenFromString != null) {
             obj.d = unflattenFromString;
         }
         if (!arrayList.isEmpty()) {
-            obj.f12210c = (Intent[]) arrayList.toArray(new Intent[0]);
+            obj.f7264c = (Intent[]) arrayList.toArray(new Intent[0]);
         }
         if (!hashSet.isEmpty()) {
-            a0.g gVar = new a0.g(0);
+            g gVar = new g(0);
             gVar.addAll(hashSet);
-            obj.f12214j = gVar;
+            obj.f7268j = gVar;
         }
         if (!TextUtils.isEmpty(obj.e)) {
-            Intent[] intentArr = obj.f12210c;
+            Intent[] intentArr = obj.f7264c;
             if (intentArr != null && intentArr.length != 0) {
-                return new g(obj, b15, b16);
+                return new f(obj, b15, b16);
             }
             throw new IllegalArgumentException("Shortcut must have an intent");
         }
@@ -238,20 +239,20 @@ public abstract class d {
         xmlSerializer.attribute(null, str, str2);
     }
 
-    public static void h(XmlSerializer xmlSerializer, g gVar) {
+    public static void h(XmlSerializer xmlSerializer, f fVar) {
         Intent[] intentArr;
         xmlSerializer.startTag(null, "target");
-        g0.c cVar = gVar.f49624c;
-        String str = gVar.f49623b;
-        String str2 = gVar.f49622a;
-        g(xmlSerializer, "id", cVar.f12209b);
+        g0.c cVar = fVar.f50165c;
+        String str = fVar.f50164b;
+        String str2 = fVar.f50163a;
+        g(xmlSerializer, "id", cVar.f7263b);
         g(xmlSerializer, "short_label", cVar.e.toString());
-        g(xmlSerializer, "rank", Integer.toString(cVar.f12217m));
-        if (!TextUtils.isEmpty(cVar.f12211f)) {
-            g(xmlSerializer, "long_label", cVar.f12211f.toString());
+        g(xmlSerializer, "rank", Integer.toString(cVar.f7271m));
+        if (!TextUtils.isEmpty(cVar.f7265f)) {
+            g(xmlSerializer, "long_label", cVar.f7265f.toString());
         }
-        if (!TextUtils.isEmpty(cVar.f12212g)) {
-            g(xmlSerializer, "disabled_message", cVar.f12212g.toString());
+        if (!TextUtils.isEmpty(cVar.f7266g)) {
+            g(xmlSerializer, "disabled_message", cVar.f7266g.toString());
         }
         ComponentName componentName = cVar.d;
         if (componentName != null) {
@@ -263,7 +264,7 @@ public abstract class d {
         if (!TextUtils.isEmpty(str)) {
             g(xmlSerializer, "icon_bitmap_path", str);
         }
-        Intent[] intentArr2 = cVar.f12210c;
+        Intent[] intentArr2 = cVar.f7264c;
         for (Intent intent : (Intent[]) Arrays.copyOf(intentArr2, intentArr2.length)) {
             xmlSerializer.startTag(null, "intent");
             g(xmlSerializer, "action", intent.getAction());
@@ -273,7 +274,7 @@ public abstract class d {
             }
             xmlSerializer.endTag(null, "intent");
         }
-        for (String str3 : cVar.f12214j) {
+        for (String str3 : cVar.f7268j) {
             if (!TextUtils.isEmpty(str3)) {
                 xmlSerializer.startTag(null, "categories");
                 g(xmlSerializer, "name", str3);

@@ -1,44 +1,25 @@
 package sb;
 
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.Looper;
-import com.google.android.gms.internal.cast.y;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import java.util.concurrent.Callable;
-import k9.u;
-public final class f {
-    public static final Object f48084b = new Object();
-    public static f f48085c;
-    public final y f48086a;
+import jb.g;
+public final class f implements r9.d {
+    public static final f f48139b = new f(0);
+    public static final f f48140c = new f(1);
+    public static final f d = new f(2);
+    public final int f48141a;
 
-    public f(Looper looper) {
-        ?? handler = new Handler(looper);
-        Looper.getMainLooper();
-        this.f48086a = handler;
+    public f(int i10) {
+        this.f48141a = i10;
     }
 
-    public static f a() {
-        f fVar;
-        synchronized (f48084b) {
-            try {
-                if (f48085c == null) {
-                    HandlerThread handlerThread = new HandlerThread("MLHandler", 9);
-                    handlerThread.start();
-                    f48085c = new f(handlerThread.getLooper());
-                }
-                fVar = f48085c;
-            } catch (Throwable th2) {
-                throw th2;
-            }
+    @Override
+    public final Object K(bh.d dVar) {
+        switch (this.f48141a) {
+            case 0:
+                return new d((g) dVar.b(g.class));
+            case 1:
+                return new c((d) dVar.b(d.class), (jb.d) dVar.b(jb.d.class));
+            default:
+                return new pb.b(dVar.c(c.class));
         }
-        return fVar;
-    }
-
-    public static Task b(Callable callable) {
-        TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        m.f48102a.execute(new u(27, callable, taskCompletionSource));
-        return taskCompletionSource.getTask();
     }
 }

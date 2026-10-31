@@ -1,48 +1,27 @@
 package ig;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class p0 {
-    public final int f14197a;
-    public final int f14198b;
-    public final String f14199c;
-    public final int d;
-    public final TLRPC.MessagesFilter e;
-    public TLObject f14200f;
-    public n0 f14201g;
-    public boolean h;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class p0 extends AnimatorListenerAdapter {
+    public final int f8389a;
+    public final q0 f8390b;
 
-    public p0(int i10, int i11, String str) {
-        this.h = true;
-        this.f14197a = i10;
-        this.f14199c = str;
-        this.e = null;
-        this.d = i11;
+    public p0(q0 q0Var, int i10) {
+        this.f8389a = i10;
+        this.f8390b = q0Var;
     }
 
-    public final boolean a() {
-        int i10 = this.d;
-        if (i10 == 0 || i10 == 1 || i10 == 2 || i10 == 3 || i10 == 5) {
-            return true;
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f8389a) {
+            case 0:
+                q0 q0Var = this.f8390b;
+                q0Var.K = null;
+                q0Var.f8413f.f(new gg.c(this, 6));
+                return;
+            default:
+                this.f8390b.f8413f.f(new gg.c(this, 7));
+                return;
         }
-        return false;
-    }
-
-    public final boolean b(p0 p0Var) {
-        if (this.d != p0Var.d) {
-            if (a() && p0Var.a()) {
-                return true;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public p0(int i10, int i11, TLRPC.MessagesFilter messagesFilter, int i12) {
-        this.h = true;
-        this.f14197a = i10;
-        this.f14198b = i11;
-        this.e = messagesFilter;
-        this.d = i12;
     }
 }

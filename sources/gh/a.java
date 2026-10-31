@@ -1,279 +1,126 @@
 package gh;
+public final class a {
+    public static final a D;
+    public static final a E;
+    public static final a F;
+    public static final a G;
+    public static final a H;
+    public static final a I;
+    public static final a J;
+    public static final a K;
+    public static final a L;
+    public static final a M;
+    public static final a N;
+    public static final a O;
+    public static final a P;
+    public static final a Q;
+    public static final a R;
+    public static final a[] S;
+    public static final a f7508f;
+    public static final a h;
+    public static final a f7509n;
+    public static final a f7510r;
+    public static final a f7511s;
+    public static final a f7512w;
+    public static final a f7513x;
+    public static final a f7514y;
+    public final int f7515a;
+    public final int f7516b;
+    public final int f7517c;
+    public final int d;
+    public final int e;
+    a EF7;
+    a EF0;
 
-import a8.me;
-import a8.yb;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import b2.e1;
-import com.google.firebase.datatransport.TransportRegistrar;
-import e2.g0;
-import e2.o;
-import e9.k;
-import f9.m1;
-import f9.o1;
-import f9.p1;
-import f9.q0;
-import f9.r0;
-import f9.t0;
-import f9.y1;
-import fh.d;
-import hi.i4;
-import hi.m3;
-import hi.n4;
-import i2.m;
-import j$.util.Objects;
-import j2.e;
-import j5.f;
-import java.util.Collection;
-import org.telegram.messenger.GenericProvider;
-import org.telegram.messenger.LiteMode;
-import org.telegram.ui.ActionBar.d7;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.ar;
-import org.telegram.ui.Components.ow0;
-import org.telegram.ui.Components.pw0;
-import org.telegram.ui.Components.qw0;
-public final class a implements d, ow0, pw0, GenericProvider, k, o, s9.d, d7 {
-    public final int f12485a;
-
-    public a(int i10) {
-        this.f12485a = i10;
+    static {
+        a aVar = new a("CONTACTS", 0, 2131624257);
+        f7508f = aVar;
+        a aVar2 = new a("CALLS", 1, 2131624251);
+        h = aVar2;
+        a aVar3 = new a("CHATS", 2, 2131624252);
+        f7509n = aVar3;
+        a aVar4 = new a("SETTINGS", 3, 2131624276);
+        f7510r = aVar4;
+        a aVar5 = new a(4, 2131624253, "CHECKLIST", 2131624254);
+        f7511s = aVar5;
+        a aVar6 = new a(5, 2131624255, "COLORS", 2131624256);
+        f7512w = aVar6;
+        a aVar7 = new a(6, 2131624260, "FILES", 2131624261);
+        f7513x = aVar7;
+        a aVar8 = new a(7, 2131624262, "GALLERY", 2131624263);
+        f7514y = aVar8;
+        a aVar9 = new a(8, 2131624264, "GIFT", 2131624265);
+        a aVar10 = new a(9, 2131624266, "LOCATION", 2131624267);
+        D = aVar10;
+        a aVar11 = new a(10, 2131624277, "STICKER", 2131624278);
+        E = aVar11;
+        a aVar12 = new a(11, 2131624258, "EMOJI", 2131624259);
+        F = aVar12;
+        a aVar13 = new a(12, 2131624268, "MODELS", 2131624269);
+        G = aVar13;
+        a aVar14 = new a(13, 2131624270, "MUSIC", 2131624271);
+        H = aVar14;
+        a aVar15 = new a(14, 2131624272, "POLL", 2131624273);
+        I = aVar15;
+        a aVar16 = new a(15, 2131624279, "SYMBOLS", 2131624280);
+        J = aVar16;
+        a aVar17 = new a(16, 2131624274, "REPLIES", 2131624275);
+        K = aVar17;
+        a aVar18 = new a(17, 2131624281, "WALLET", 2131624282);
+        a aVar19 = new a();
+        L = aVar19;
+        a aVar20 = new a(19, 2131624249, "ARTICLE", 2131624250);
+        M = aVar20;
+        a aVar21 = new a(20, 2131624039, "GRAM", 2131624040);
+        N = aVar21;
+        a aVar22 = new a("BOOSTS", 21, 2131623944, 25, 49);
+        O = aVar22;
+        a aVar23 = new a("MONETIZATION", 22, 2131624088, 19, 45);
+        P = aVar23;
+        a aVar24 = new a("STORIES_SAVED", 23, 2131624099, 20, 40);
+        Q = aVar24;
+        a aVar25 = new a("STORIES_ARCHIVE", 24, 2131624098);
+        R = aVar25;
+        S = new a[]{aVar, aVar2, aVar3, aVar4, aVar5, aVar6, aVar7, aVar8, aVar9, aVar10, aVar11, aVar12, aVar13, aVar14, aVar15, aVar16, aVar17, aVar18, aVar19, aVar20, aVar21, aVar22, aVar23, aVar24, aVar25};
     }
 
-    @Override
-    public Object apply(Object obj) {
-        int i10;
-        p1 p1Var;
-        int i11 = 0;
-        boolean z10 = true;
-        switch (this.f12485a) {
-            case 23:
-                return new e((g0) obj);
-            case 26:
-                String str = (String) obj;
-                e9.a aVar = i9.a.f13898g;
-                aVar.getClass();
-                int length = str.length() - 1;
-                while (true) {
-                    if (length >= 0) {
-                        if (aVar.c(str.charAt(length))) {
-                            length--;
-                        } else {
-                            z10 = false;
-                        }
-                    }
-                }
-                if (!z10 || str.isEmpty()) {
-                    StringBuilder sb2 = new StringBuilder(str.length() + 16);
-                    sb2.append('\"');
-                    while (i11 < str.length()) {
-                        char charAt = str.charAt(i11);
-                        if (charAt == '\r' || charAt == '\\' || charAt == '\"') {
-                            sb2.append('\\');
-                        }
-                        sb2.append(charAt);
-                        i11++;
-                    }
-                    sb2.append('\"');
-                    return sb2.toString();
-                }
-                return str;
-            default:
-                Collection<Object> collection = (Collection) obj;
-                int i12 = r0.d;
-                if (collection instanceof r0) {
-                    return (r0) collection;
-                }
-                boolean z11 = collection instanceof m1;
-                if (z11) {
-                    i10 = ((q0) ((y1) ((m1) collection)).s()).size();
-                } else {
-                    i10 = 11;
-                }
-                ?? obj2 = new Object();
-                obj2.f10318b = false;
-                ?? obj3 = new Object();
-                obj3.d(i10);
-                obj2.f10317a = obj3;
-                if (z11) {
-                    m1 m1Var = (m1) collection;
-                    if (m1Var instanceof y1) {
-                        p1Var = ((y1) m1Var).e;
-                    } else {
-                        p1Var = null;
-                    }
-                    if (p1Var != null) {
-                        obj3.a(Math.max(obj3.f10321c, p1Var.f10321c));
-                        if (p1Var.f10321c == 0) {
-                            i11 = -1;
-                        }
-                        while (i11 >= 0) {
-                            yb.j(i11, p1Var.f10321c);
-                            Object obj4 = p1Var.f10319a[i11];
-                            yb.j(i11, p1Var.f10321c);
-                            obj2.c(p1Var.f10320b[i11], obj4);
-                            i11++;
-                            if (i11 >= p1Var.f10321c) {
-                                i11 = -1;
-                            }
-                        }
-                    } else {
-                        r0 r0Var = (r0) m1Var;
-                        t0 t10 = r0Var.t();
-                        p1 p1Var2 = obj2.f10317a;
-                        p1Var2.a(Math.max(p1Var2.f10321c, t10.size()));
-                        for (o1 o1Var : r0Var.t()) {
-                            obj2.c(o1Var.a(), o1Var.f10313a);
-                        }
-                    }
-                } else {
-                    for (Object obj5 : collection) {
-                        obj2.a(obj5);
-                    }
-                }
-                Objects.requireNonNull(obj2.f10317a);
-                if (obj2.f10317a.f10321c == 0) {
-                    return y1.f10361n;
-                }
-                obj2.f10318b = true;
-                return new y1(obj2.f10317a);
-        }
+    public a(String str, int i10, int i11, int i12, int i13) {
+        this.f7515a = i11;
+        this.f7516b = i11;
+        this.d = i12;
+        this.e = i13;
+        this.f7517c = -1;
     }
 
-    @Override
-    public void b(Object obj, float f7) {
-        switch (this.f12485a) {
-            case 13:
-                m3 m3Var = (m3) obj;
-                m3Var.f13104c = f7;
-                m3Var.f13108f.invalidate();
-                m3Var.X.setAlpha(f7);
-                m3Var.F();
-                m3Var.D();
-                return;
-            case 14:
-            default:
-                ((n4) obj).setSwipeOffsetY(f7);
-                return;
-            case 15:
-                ((i4) obj).setLoadProgress(f7);
-                return;
-        }
+    public static a valueOf(String str) {
+        return (a) Enum.valueOf(a.class, str);
     }
 
-    @Override
-    public void d(int i10, View view) {
-        Drawable background = view.getBackground();
-        if (background instanceof ar) {
-            Drawable drawable = ((ar) background).f26639a;
-            if (drawable instanceof ColorDrawable) {
-                ((ColorDrawable) drawable).setColor(i10);
-                view.invalidate();
-            }
-        }
+    public static a[] values() {
+        return (a[]) S.clone();
     }
 
-    @Override
-    public Object d1(me meVar) {
-        f lambda$getComponents$0;
-        lambda$getComponents$0 = TransportRegistrar.lambda$getComponents$0(meVar);
-        return lambda$getComponents$0;
+    public a() {
+        this.f7517c = 2131232769;
+        this.f7515a = -1;
+        this.f7516b = -1;
+        this.d = -1;
+        this.e = -1;
     }
 
-    @Override
-    public float get(Object obj) {
-        switch (this.f12485a) {
-            case 12:
-                return ((m3) obj).f13104c;
-            case 13:
-            default:
-                return ((n4) obj).getSwipeOffsetY();
-            case 14:
-                return ((i4) obj).f13035c;
-        }
+    public a(String str, int i10, int i11) {
+        this.f7515a = i11;
+        this.f7516b = i11;
+        this.d = -1;
+        this.e = -1;
+        this.f7517c = -1;
     }
 
-    @Override
-    public int i(u6 u6Var, boolean z10) {
-        float f7;
-        float f10;
-        float f11;
-        float f12;
-        float f13;
-        switch (this.f12485a) {
-            case 0:
-                return 855638016;
-            case 1:
-                if (LiteMode.isEnabled(262144)) {
-                    f7 = 0.85f;
-                } else {
-                    f7 = 0.76f;
-                }
-                return y6.o1(f7, y6.w0(y6.Fi, u6Var));
-            case 2:
-                return 1073741824;
-            case 3:
-                return y6.o1(0.075f, -16777216);
-            case 4:
-                return y6.o1(0.88f, y6.w0(y6.f23357d6, u6Var));
-            case 5:
-                int x02 = y6.x0(null, y6.G8, false);
-                if (z10) {
-                    f10 = 0.85f;
-                } else {
-                    f10 = 0.825f;
-                }
-                return y6.o1(f10, x02);
-            case 6:
-                if (LiteMode.isEnabled(262144)) {
-                    f11 = 0.85f;
-                } else {
-                    f11 = 0.76f;
-                }
-                return c.n(f11, y6.w0(y6.f23357d6, u6Var), y6.w0(y6.Yk, u6Var));
-            case 7:
-                if (LiteMode.isEnabled(262144)) {
-                    f12 = 0.85f;
-                } else {
-                    f12 = 0.76f;
-                }
-                return y6.o1(f12, y6.w0(y6.f23357d6, u6Var));
-            case 8:
-                if (LiteMode.isEnabled(262144)) {
-                    f13 = 0.85f;
-                } else {
-                    f13 = 0.8f;
-                }
-                return c.n(f13, y6.w0(y6.f23300a7, u6Var), y6.w0(y6.f23357d6, u6Var));
-            case 9:
-                return y6.o1(0.78f, y6.w0(y6.f23428h5, u6Var));
-            case 10:
-                return y6.o1(0.7f, y6.w0(y6.f23357d6, u6Var));
-            default:
-                LiteMode.isEnabled(262144);
-                return 0;
-        }
-    }
-
-    @Override
-    public void invoke(Object obj) {
-        e1 e1Var = (e1) obj;
-        switch (this.f12485a) {
-            case 24:
-                e1Var.onPlayerError(new m(2, new RuntimeException("Player release timed out."), 1003));
-                return;
-            default:
-                e1Var.onRenderedFirstFrame();
-                return;
-        }
-    }
-
-    @Override
-    public Object provide(Object obj) {
-        Void r12 = (Void) obj;
-        qw0 qw0Var = n4.f13152b0;
-        return Boolean.FALSE;
+    public a(int i10, int i11, String str, int i12) {
+        this.f7515a = i11;
+        this.f7516b = i12;
+        this.d = -1;
+        this.e = -1;
+        this.f7517c = -1;
     }
 }

@@ -1,43 +1,42 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class f30 implements Runnable {
-    public final x50 f39145a;
+import android.os.Bundle;
+import org.telegram.messenger.voip.GroupCallMessage;
+public final class f30 implements dh.b {
+    public final b50 f37165a;
 
-    public f30(x50 x50Var) {
-        this.f39145a = x50Var;
+    public f30(b50 b50Var) {
+        this.f37165a = b50Var;
     }
 
-    @Override
-    public final void run() {
-        int i10;
-        x50 x50Var = this.f39145a;
-        org.telegram.ui.ActionBar.b6 b6Var = x50Var.U;
-        c50 c50Var = x50Var.V;
-        if (c50Var != null && !x50Var.isDismissed()) {
-            ChatObject.Call call = x50Var.f45491a1;
-            if (call != null) {
-                i10 = call.call.schedule_date;
-            } else {
-                i10 = x50Var.f45534k2;
-            }
-            if (i10 != 0) {
-                int currentTime = i10 - x50Var.d.getConnectionsManager().getCurrentTime();
-                if (currentTime >= 86400) {
-                    c50Var.l(LocaleController.formatPluralString("Days", Math.round(currentTime / 86400.0f), new Object[0]), false);
-                } else {
-                    c50Var.l(AndroidUtilities.formatFullDuration(Math.abs(currentTime)), false);
-                    if (currentTime < 0 && b6Var.getTag() == null) {
-                        b6Var.setTag(1);
-                        b6Var.l(LocaleController.getString(R.string.VoipChatLateBy), false);
-                    }
-                }
-                x50Var.W.l(LocaleController.formatStartsTime(i10, 3), false);
-                AndroidUtilities.runOnUIThread(x50Var.f45584w2, 1000L);
-            }
+    public final void a(GroupCallMessage groupCallMessage) {
+        org.telegram.ui.ActionBar.k2 Q = LaunchActivity.Q();
+        if (Q == null) {
+            return;
         }
+        boolean z10 = Q instanceof ProfileActivity;
+        b50 b50Var = this.f37165a;
+        if (z10 && ((ProfileActivity) Q).a() == groupCallMessage.fromId) {
+            b50Var.dismiss();
+            return;
+        }
+        int R0 = b50Var.R0();
+        Bundle bundle = new Bundle();
+        long j10 = groupCallMessage.fromId;
+        if (j10 > 0) {
+            bundle.putLong("user_id", j10);
+        } else {
+            bundle.putLong("chat_id", -j10);
+        }
+        boolean z11 = true;
+        if (groupCallMessage.fromId == org.telegram.messenger.d20.i(b50Var.f36036k1.f14863a).e()) {
+            bundle.putBoolean("my_profile", true);
+        }
+        ProfileActivity profileActivity = new ProfileActivity(bundle, null);
+        if (R0 > 0 && R0 != Integer.MAX_VALUE) {
+            z11 = false;
+        }
+        Q.presentFragment(profileActivity, false, z11);
+        b50Var.dismiss();
     }
 }

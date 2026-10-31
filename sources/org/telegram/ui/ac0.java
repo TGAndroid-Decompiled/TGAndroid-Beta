@@ -1,51 +1,40 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.IMapsProvider;
-public final class ac0 implements Runnable {
-    public final int f37731a;
-    public final rc0 f37732b;
-    public final IMapsProvider.IMapView f37733c;
+import android.animation.ValueAnimator;
+public final class ac0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f35621a;
+    public final hf0 f35622b;
 
-    public ac0(rc0 rc0Var, IMapsProvider.IMapView iMapView, int i10) {
-        this.f37731a = i10;
-        this.f37732b = rc0Var;
-        this.f37733c = iMapView;
+    public ac0(hf0 hf0Var, int i10) {
+        this.f35621a = i10;
+        this.f35622b = hf0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37731a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f35621a) {
             case 0:
-                rc0 rc0Var = this.f37732b;
-                IMapsProvider.IMapView iMapView = this.f37733c;
-                if (rc0Var.K != null && rc0Var.getParentActivity() != null) {
-                    try {
-                        iMapView.onCreate(null);
-                        ApplicationLoader.getMapsProvider().initializeMaps(ApplicationLoader.applicationContext);
-                        rc0Var.K.getMapAsync(new cc0(rc0Var, 0));
-                        rc0Var.f42946t0 = true;
-                        if (rc0Var.f42947u0) {
-                            rc0Var.K.onResume();
-                            return;
-                        }
-                        return;
-                    } catch (Exception e) {
-                        FileLog.e(e);
-                        return;
-                    }
-                }
+                hf0 hf0Var = this.f35622b;
+                hf0Var.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                hf0Var.f37922c.setAlpha(floatValue);
+                hf0Var.f37922c.setTranslationY((1.0f - floatValue) * org.telegram.messenger.i0.L(230.0f));
+                return;
+            case 1:
+                hf0 hf0Var2 = this.f35622b;
+                hf0Var2.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float f7 = (0.9f * floatValue2) + 0.1f;
+                hf0Var2.V.setScaleX(f7);
+                hf0Var2.V.setScaleY(f7);
+                hf0Var2.V.setAlpha(floatValue2);
                 return;
             default:
-                rc0 rc0Var2 = this.f37732b;
-                IMapsProvider.IMapView iMapView2 = this.f37733c;
-                try {
-                    iMapView2.onCreate(null);
-                } catch (Exception unused) {
-                }
-                AndroidUtilities.runOnUIThread(new ac0(rc0Var2, iMapView2, 0));
+                hf0 hf0Var3 = this.f35622b;
+                hf0Var3.getClass();
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                hf0Var3.f37922c.setAlpha(floatValue3);
+                hf0Var3.f37922c.setTranslationY((1.0f - floatValue3) * org.telegram.messenger.i0.L(230.0f));
                 return;
         }
     }

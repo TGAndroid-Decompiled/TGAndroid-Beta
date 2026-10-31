@@ -1,3 +1,8 @@
 package o5;
-public interface b extends id.a {
+public final class b {
+    public final f f14085a;
+
+    public b(f fVar) {
+        this.f14085a = fVar;
+    }
 }

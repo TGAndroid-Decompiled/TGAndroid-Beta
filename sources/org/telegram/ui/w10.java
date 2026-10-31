@@ -1,89 +1,34 @@
 package org.telegram.ui;
-public final class w10 implements org.telegram.ui.Components.lp0 {
-    public final int f44484a;
-    public final ug.g f44485b;
 
-    public w10(ug.g gVar, int i10) {
-        this.f44484a = i10;
-        this.f44485b = gVar;
+import android.content.DialogInterface;
+public final class w10 implements DialogInterface.OnDismissListener {
+    public final int f42859a;
+    public final b50 f42860b;
+
+    public w10(b50 b50Var, int i10) {
+        this.f42859a = i10;
+        this.f42860b = b50Var;
     }
 
     @Override
-    public final void U(float f7, boolean z10) {
-        switch (this.f44484a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f42859a) {
             case 0:
-                ug.o oVar = this.f44485b.f49816c;
-                if (oVar != null) {
-                    oVar.B = f7 * 2.0f;
+                org.telegram.ui.ActionBar.k2 T = LaunchActivity.T();
+                if (this.f42860b.f36055o2 && (T instanceof un)) {
+                    ((un) T).ja(true, true);
                     return;
                 }
                 return;
             case 1:
-                ug.o oVar2 = this.f44485b.f49816c;
-                if (oVar2 != null) {
-                    oVar2.C = f7 * 2.0f;
-                    return;
-                }
+                this.f42860b.dismiss();
                 return;
             case 2:
-                ug.o oVar3 = this.f44485b.f49816c;
-                if (oVar3 != null) {
-                    oVar3.D = f7;
-                    return;
-                }
+                this.f42860b.f36089v3 = null;
                 return;
             default:
-                ug.o oVar4 = this.f44485b.f49816c;
-                if (oVar4 != null) {
-                    oVar4.G = f7 * 2.0f;
-                    return;
-                }
+                this.f42860b.f36027i2 = null;
                 return;
         }
-    }
-
-    @Override
-    public final CharSequence getContentDescription() {
-        switch (this.f44484a) {
-            case 0:
-                return null;
-            case 1:
-                return null;
-            case 2:
-                return null;
-            default:
-                return null;
-        }
-    }
-
-    @Override
-    public final int k0() {
-        switch (this.f44484a) {
-            case 0:
-                return 0;
-            case 1:
-                return 0;
-            case 2:
-                return 0;
-            default:
-                return 0;
-        }
-    }
-
-    @Override
-    public final void y() {
-        int i10 = this.f44484a;
-    }
-
-    private final void a() {
-    }
-
-    private final void b() {
-    }
-
-    private final void c() {
-    }
-
-    private final void d() {
     }
 }

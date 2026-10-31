@@ -1,68 +1,163 @@
 package sg;
 
-import org.telegram.ui.pt0;
-import org.telegram.ui.zq0;
-public final class d0 implements rg.b1 {
-    public final zq0 f48218a;
-    public final pt0 f48219b;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Paint;
+import android.os.Build;
+import android.text.InputFilter;
+import android.text.SpannableStringBuilder;
+import android.view.ActionMode;
+import android.view.GestureDetector;
+import android.view.Menu;
+import android.view.MotionEvent;
+import bi.g6;
+import java.util.HashSet;
+import org.telegram.messenger.cd;
+import org.telegram.messenger.f8;
+import org.telegram.ui.ActionBar.a7;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.p6;
+import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.Components.mt;
+import org.telegram.ui.ns0;
+public abstract class d0 extends mt implements k6 {
+    public final p6 Y1;
+    public final m2.t Z1;
+    public Runnable a2;
+    public int f48316b2;
 
-    public d0(pt0 pt0Var, zq0 zq0Var) {
-        this.f48219b = pt0Var;
-        this.f48218a = zq0Var;
+    public d0(int i10, Context context, p6 p6Var) {
+        super(context, p6Var);
+        this.Y1 = p6Var;
+        this.Z1 = new m2.t(getContext(), new GestureDetector.SimpleOnGestureListener());
+        setBackground(null);
+        setIncludeFontPadding(true);
+        int i11 = Build.VERSION.SDK_INT;
+        setShowSoftInputOnFocus(false);
+        setSingleLine(false);
+        setMaxLines(50);
+        this.f48316b2 = i10;
+        setFilters(new InputFilter[]{new InputFilter.LengthFilter(i10)});
+        setTextSize(1, 22.0f);
+        setGravity(80);
+        setPadding(org.telegram.messenger.i0.L(18.0f), org.telegram.messenger.i0.L(4.0f), org.telegram.messenger.i0.L(18.0f), org.telegram.messenger.i0.L(12.0f));
+        a7.V(this, t6.Ie, p6Var);
+        a7.H(this, t6.Vc, p6Var);
+        a7.D(this, t6.f21028ig, p6Var);
+        int i12 = t6.Je;
+        a7.m(this, 34, i12, p6Var);
+        a7.E(this, i12, p6Var);
+        a7.m(this, 30, t6.Ke, p6Var);
+        a7.m(this, 36, t6.f21048jg, p6Var);
+        if (i11 >= 28) {
+            setFallbackLineSpacing(false);
+        }
+        setOnFocusChangeListener(new g6((l) this, 7));
+        setTextIsSelectable(true);
+        setLongClickable(false);
+        setFocusableInTouchMode(false);
     }
 
-    @Override
-    public final void a() {
-        this.f48218a.run();
+    public final void I() {
+        setLongClickable(false);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(getText());
+        if (((b[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), b.class)).length == 0) {
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("x");
+            b bVar = new b(this.Y1);
+            ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f48274f, 255);
+            ofInt.addUpdateListener(new a(bVar, this, 0));
+            ofInt.setDuration(200L);
+            ofInt.start();
+            spannableStringBuilder2.setSpan(bVar, 0, spannableStringBuilder2.length(), 33);
+            setText(getText().append((CharSequence) spannableStringBuilder2));
+        }
     }
 
-    @Override
-    public final void b() {
-        e0 e0Var = this.f48219b.M0;
-        if (e0Var != null) {
-            e0Var.invalidate();
+    public final void J(boolean z10) {
+        b[] bVarArr;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(getText());
+        for (b bVar : (b[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), b.class)) {
+            rh.o oVar = new rh.o(24, this, bVar);
+            if (z10) {
+                setCursorVisible(false);
+                ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f48274f, 0);
+                ofInt.addUpdateListener(new a(bVar, this, 1));
+                ofInt.addListener(new ns0(oVar, 28));
+                ofInt.setDuration(200L);
+                ofInt.start();
+            } else {
+                oVar.run();
+            }
         }
     }
 
     @Override
-    public final void c() {
-        pt0 pt0Var = this.f48219b;
-        if (pt0Var.Z0) {
-            pt0Var.Z0 = false;
-            return;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (((GestureDetector) this.Z1.f12684b).onTouchEvent(motionEvent) && !isLongClickable()) {
+            return false;
         }
-        pt0Var.f48368i1.b(1);
-        pt0Var.i((rg.m) rg.m.f47500a.get(0));
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    public int getEditTextSelectionEnd() {
+        int selectionEnd = getSelectionEnd();
+        if (selectionEnd < 0) {
+            return 0;
+        }
+        return selectionEnd;
+    }
+
+    public int getEditTextSelectionStart() {
+        int selectionStart = getSelectionStart();
+        if (selectionStart < 0) {
+            return 0;
+        }
+        return selectionStart;
+    }
+
+    public Paint.FontMetricsInt getFontMetricsInt() {
+        return getPaint().getFontMetricsInt();
     }
 
     @Override
-    public final boolean d() {
-        boolean z10;
-        pt0 pt0Var = this.f48219b;
-        if (pt0Var.H0 == null) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (!z10) {
-            pt0Var.q0(null, true);
-        }
-        return z10;
+    public final void o(ActionMode actionMode, Menu menu) {
+        menu.clear();
+        menu.add(2131296494, 2131296494, 0, cd.L0(2131751599, null));
     }
 
     @Override
-    public final void e() {
-        pt0 pt0Var = this.f48219b;
-        pt0Var.f48384u0.f47597a.a();
-        pt0Var.f48358a1.setViewHidden(false);
+    public final void onSelectionChanged(int i10, int i11) {
+        super.onSelectionChanged(i10, i11);
+        if (hasSelection() && ((b[]) getText().getSpans(i10, i11, b.class)).length != 0) {
+            setSelection(i10, i11 - 1);
+        }
+    }
+
+    public void setMaxLength(int i10) {
+        if (this.f48316b2 != i10) {
+            this.f48316b2 = i10;
+            setFilters(new InputFilter[]{new InputFilter.LengthFilter(i10)});
+        }
+    }
+
+    public void setOnFocused(Runnable runnable) {
+        this.a2 = runnable;
     }
 
     @Override
-    public final void f() {
-        pt0 pt0Var = this.f48219b;
-        if (pt0Var.H0 != null) {
-            pt0Var.q0(null, true);
+    public final void updateColors() {
+        p6 p6Var = this.Y1;
+        try {
+            setHintColor(t6.w0(t6.Je, p6Var));
+            setCursorColor(t6.w0(t6.Ke, p6Var));
+            setHandlesColor(t6.w0(t6.f21048jg, p6Var));
+            invalidate();
+        } catch (Exception e) {
+            f8.g(e, true);
         }
-        pt0Var.f48358a1.setViewHidden(true);
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

@@ -1,33 +1,22 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class t50 implements ValueAnimator.AnimatorUpdateListener {
-    public final boolean[] f32867a;
-    public final p50 f32868b;
-    public final p60 f32869c;
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+public final class t50 extends j80 {
+    public final x50 M;
 
-    public t50(p60 p60Var, boolean[] zArr, p50 p50Var) {
-        this.f32869c = p60Var;
-        this.f32867a = zArr;
-        this.f32868b = p50Var;
+    public t50(x50 x50Var, Context context, org.telegram.ui.ActionBar.k2 k2Var, org.telegram.ui.ActionBar.z2 z2Var, boolean z10) {
+        super(context, k2Var, z2Var, false, z10);
+        this.M = x50Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        if (floatValue > 0.5f) {
-            boolean[] zArr = this.f32867a;
-            if (!zArr[0]) {
-                zArr[0] = true;
-                this.f32868b.run();
-            }
-        }
-        if (floatValue >= 0.5f) {
-            floatValue -= 1.0f;
-        }
-        float f7 = floatValue * 180.0f;
-        p60 p60Var = this.f32869c;
-        p60Var.f31477f.setRotationY(f7);
-        p60Var.f31495q0.setRotationY(f7);
+    public final void e(SpannableStringBuilder spannableStringBuilder) {
+        c60 c60Var = this.M.f32356c;
+        org.telegram.ui.ActionBar.p2 p2Var = c60Var.f21589c;
+        int i10 = c60.f24989e2;
+        wb Q = new cc(p2Var, c60Var.I0).Q(2131624027, 36, spannableStringBuilder);
+        Q.f32143r = false;
+        Q.k(true);
     }
 }

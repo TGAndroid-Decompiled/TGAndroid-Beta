@@ -1,46 +1,39 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.ViewPropertyAnimator;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class nt0 extends AnimatorListenerAdapter {
-    public final int f41883a;
-    public final int f41884b;
-    public final PhotoViewer f41885c;
+import android.view.View;
+import android.widget.RelativeLayout;
+public final class nt0 extends RelativeLayout {
+    public final PopupNotificationActivity f40050a;
 
-    public nt0(PhotoViewer photoViewer, int i10, int i11) {
-        this.f41883a = i11;
-        this.f41885c = photoViewer;
-        this.f41884b = i10;
+    public nt0(PopupNotificationActivity popupNotificationActivity, PopupNotificationActivity popupNotificationActivity2) {
+        super(popupNotificationActivity2);
+        this.f40050a = popupNotificationActivity;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f41883a) {
-            case 0:
-                PhotoViewer photoViewer = this.f41885c;
-                ot0 ot0Var = photoViewer.N1;
-                ot0Var.e.setVisibility(0);
-                FrameLayout frameLayout = ot0Var.f48583r;
-                frameLayout.setVisibility(0);
-                frameLayout.setTranslationY(AndroidUtilities.dp(18.0f));
-                ViewPropertyAnimator translationY = frameLayout.animate().alpha(1.0f).translationY(0.0f);
-                org.telegram.ui.Components.ds dsVar = org.telegram.ui.Components.ds.h;
-                org.telegram.messenger.wh.q(translationY, dsVar, 320L);
-                ot0Var.f48585w.animate().alpha(1.0f).translationX(0.0f).setInterpolator(dsVar).setDuration(320L).start();
-                photoViewer.f35815u4 = this.f41884b;
-                photoViewer.f35780q6 = null;
-                photoViewer.f35763o6 = -1;
-                return;
-            default:
-                int i10 = this.f41884b;
-                PhotoViewer photoViewer2 = this.f41885c;
-                photoViewer2.f35815u4 = i10;
-                photoViewer2.f35780q6 = null;
-                photoViewer2.f35763o6 = -1;
-                return;
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        for (int i14 = 0; i14 < getChildCount(); i14++) {
+            View childAt = getChildAt(i14);
+            if (childAt.getTag() instanceof String) {
+                int left = childAt.getLeft();
+                PopupNotificationActivity popupNotificationActivity = this.f40050a;
+                childAt.layout(left, org.telegram.messenger.i0.L(3.0f) + popupNotificationActivity.f33680b.getTop(), childAt.getRight(), popupNotificationActivity.f33680b.getBottom());
+            }
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        PopupNotificationActivity popupNotificationActivity = this.f40050a;
+        int measuredWidth = popupNotificationActivity.f33680b.getMeasuredWidth();
+        int measuredHeight = popupNotificationActivity.f33680b.getMeasuredHeight();
+        for (int i12 = 0; i12 < getChildCount(); i12++) {
+            View childAt = getChildAt(i12);
+            if (childAt.getTag() instanceof String) {
+                childAt.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(measuredHeight - org.telegram.messenger.i0.L(3.0f), 1073741824));
+            }
         }
     }
 }

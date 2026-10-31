@@ -3,117 +3,74 @@ package r0;
 import android.os.Bundle;
 import android.text.Spanned;
 import android.text.style.ClickableSpan;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.accessibility.AccessibilityNodeProvider;
 import java.lang.ref.WeakReference;
 import java.util.Collections;
 import java.util.List;
-import org.telegram.ui.Components.h2;
-import org.telegram.ui.Components.p1;
-import org.telegram.ui.Components.wz;
 public class b {
-    public static final View.AccessibilityDelegate f47110c = new View.AccessibilityDelegate();
-    public final View.AccessibilityDelegate f47111a;
-    public final a f47112b;
+    public static final View.AccessibilityDelegate f46103c = new View.AccessibilityDelegate();
+    public final View.AccessibilityDelegate f46104a;
+    public final a f46105b;
 
     public b() {
-        this(f47110c);
+        this(f46103c);
     }
 
-    public jg.i a(View view) {
-        AccessibilityNodeProvider accessibilityNodeProvider = this.f47111a.getAccessibilityNodeProvider(view);
+    public r2.y a(View view) {
+        AccessibilityNodeProvider accessibilityNodeProvider = this.f46104a.getAccessibilityNodeProvider(view);
         if (accessibilityNodeProvider != null) {
-            return new jg.i(accessibilityNodeProvider);
+            return new r2.y(accessibilityNodeProvider, 3);
         }
         return null;
     }
 
     public void b(View view, AccessibilityEvent accessibilityEvent) {
-        this.f47111a.onInitializeAccessibilityEvent(view, accessibilityEvent);
+        this.f46104a.onInitializeAccessibilityEvent(view, accessibilityEvent);
     }
 
-    public void c(View view, s0.d dVar) {
-        this.f47111a.onInitializeAccessibilityNodeInfo(view, dVar.f47688a);
+    public void c(View view, s0.c cVar) {
+        this.f46104a.onInitializeAccessibilityNodeInfo(view, cVar.f47850a);
     }
 
     public boolean d(View view, int i10, Bundle bundle) {
-        ClickableSpan[] clickableSpanArr;
-        boolean z10;
         WeakReference weakReference;
         ClickableSpan clickableSpan;
+        ClickableSpan[] clickableSpanArr;
         List list = (List) view.getTag(2131296682);
         if (list == null) {
             list = Collections.EMPTY_LIST;
         }
-        boolean z11 = false;
-        int i11 = 0;
-        while (true) {
-            clickableSpanArr = null;
-            if (i11 >= list.size()) {
-                break;
-            }
-            s0.c cVar = (s0.c) list.get(i11);
-            if (cVar.a() == i10) {
-                Class cls = cVar.f47686c;
-                p1 p1Var = cVar.d;
-                if (p1Var != null) {
-                    if (cls != null) {
-                        try {
-                            if (cls.getDeclaredConstructor(null).newInstance(null) == null) {
-                                throw null;
-                            }
-                            throw new ClassCastException();
-                        } catch (Exception e) {
-                            Log.e("A11yActionCompat", "Failed to execute command with argument class ViewCommandArgument: ".concat(cls.getName()), e);
-                        }
-                    }
-                    wz wzVar = (wz) p1Var.f31425b;
-                    h2 h2Var = (h2) p1Var.f31426c;
-                    if (!wzVar.f34616x) {
-                        wzVar.setRefreshing(true);
-                        h2Var.run();
-                    }
-                    z10 = true;
-                }
-            } else {
-                i11++;
-            }
+        for (int i11 = 0; i11 < list.size() && ((AccessibilityNodeInfo.AccessibilityAction) ((s0.b) list.get(i11)).f47847a).getId() != i10; i11++) {
         }
-        z10 = false;
-        if (!z10) {
-            z10 = this.f47111a.performAccessibilityAction(view, i10, bundle);
-        }
-        if (!z10 && i10 == 2131296269 && bundle != null) {
+        boolean performAccessibilityAction = this.f46104a.performAccessibilityAction(view, i10, bundle);
+        if (!performAccessibilityAction && i10 == 2131296269 && bundle != null) {
             int i12 = bundle.getInt("ACCESSIBILITY_CLICKABLE_SPAN_ID", -1);
             SparseArray sparseArray = (SparseArray) view.getTag(2131296683);
             if (sparseArray != null && (weakReference = (WeakReference) sparseArray.get(i12)) != null && (clickableSpan = (ClickableSpan) weakReference.get()) != null) {
                 CharSequence text = view.createAccessibilityNodeInfo().getText();
                 if (text instanceof Spanned) {
                     clickableSpanArr = (ClickableSpan[]) ((Spanned) text).getSpans(0, text.length(), ClickableSpan.class);
+                } else {
+                    clickableSpanArr = null;
                 }
-                int i13 = 0;
-                while (true) {
-                    if (clickableSpanArr == null || i13 >= clickableSpanArr.length) {
-                        break;
-                    } else if (clickableSpan.equals(clickableSpanArr[i13])) {
+                for (int i13 = 0; clickableSpanArr != null && i13 < clickableSpanArr.length; i13++) {
+                    if (clickableSpan.equals(clickableSpanArr[i13])) {
                         clickableSpan.onClick(view);
-                        z11 = true;
-                        break;
-                    } else {
-                        i13++;
+                        return true;
                     }
                 }
             }
-            return z11;
+            return false;
         }
-        return z10;
+        return performAccessibilityAction;
     }
 
     public b(View.AccessibilityDelegate accessibilityDelegate) {
-        this.f47111a = accessibilityDelegate;
-        this.f47112b = new a(this);
+        this.f46104a = accessibilityDelegate;
+        this.f46105b = new a(this);
     }
 }

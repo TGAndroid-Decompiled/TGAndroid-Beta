@@ -1,32 +1,46 @@
 package org.telegram.ui.Cells;
 
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import org.telegram.messenger.MediaDataController;
-public final class ia extends GestureDetector.SimpleOnGestureListener {
-    public final ja f24262a;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.HashSet;
+public final class ia extends FrameLayout implements org.telegram.ui.ActionBar.k6 {
+    public boolean f22051a;
+    public org.telegram.ui.Components.g9 f22052b;
+    public TextView f22053c;
+    public TextView d;
 
-    public ia(ja jaVar) {
-        this.f24262a = jaVar;
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.f20913c9));
     }
 
     @Override
-    public final boolean onDoubleTap(MotionEvent motionEvent) {
-        ja jaVar = this.f24262a;
-        int i10 = jaVar.I7;
-        if (jaVar.Ke != 2 || MediaDataController.getInstance(i10).getDoubleTapReaction() == null) {
-            return false;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (this.f22051a) {
+            canvas.drawLine(org.telegram.messenger.i0.L(72.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.t6.f21052k0);
         }
-        boolean selectReaction = jaVar.getMessageObject().selectReaction(bh.x0.b(MediaDataController.getInstance(i10).getDoubleTapReaction()), false, false);
-        jaVar.Z3(jaVar.getMessageObject(), null, false, false, false, false);
-        jaVar.requestLayout();
-        bh.s0.b(false);
-        if (selectReaction) {
-            ka kaVar = jaVar.Le;
-            bh.s0.d(kaVar.f24366r, null, kaVar.e[1], null, motionEvent.getX(), motionEvent.getY(), bh.x0.b(MediaDataController.getInstance(i10).getDoubleTapReaction()), jaVar.I7, 0);
-            bh.s0.f();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(56.0f), 1073741824));
+    }
+
+    @Override
+    public final void updateColors() {
+        org.telegram.ui.Components.g9 g9Var = this.f22052b;
+        if (g9Var != null) {
+            try {
+                if (g9Var.getImageReceiver() != null && (g9Var.getImageReceiver().t() instanceof gg.d)) {
+                    ((gg.d) g9Var.getImageReceiver().t()).a(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f20913c9, false));
+                    g9Var.invalidate();
+                }
+            } catch (Exception e) {
+                org.telegram.messenger.f8.g(e, true);
+            }
         }
-        jaVar.getViewTreeObserver().addOnPreDrawListener(new ha(this, 0));
-        return true;
     }
 }

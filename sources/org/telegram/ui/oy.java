@@ -1,42 +1,24 @@
 package org.telegram.ui;
 
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessageObject;
-public final class oy implements ImageReceiver.ImageReceiverDelegate {
-    public final py f42248a;
-    public final boolean f42249b;
-    public final MessageObject f42250c;
-    public final qy d;
+import android.content.Context;
+import android.view.View;
+public final class oy extends org.telegram.ui.Components.z41 {
+    public static final int f40391b = 0;
 
-    public oy(qy qyVar, py pyVar, boolean z10, MessageObject messageObject) {
-        this.d = qyVar;
-        this.f42248a = pyVar;
-        this.f42249b = z10;
-        this.f42250c = messageObject;
+    static {
+        org.telegram.ui.Components.z41.h(new org.telegram.ui.Components.z41());
     }
 
     @Override
-    public final void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        py pyVar = this.f42248a;
-        if (pyVar.f42541r.getLottieAnimation() != null) {
-            pyVar.f42541r.getLottieAnimation().N(0, false, true);
-        }
+    public final void b(View view, org.telegram.ui.Components.a51 a51Var, boolean z10, org.telegram.ui.Components.p51 p51Var, org.telegram.ui.Components.u51 u51Var) {
+        py pyVar = (py) view;
+        pyVar.f40809n = (org.telegram.messenger.q20) a51Var.G;
+        pyVar.f40810r = a51Var;
+        pyVar.b(a51Var.f24305z, false);
     }
 
     @Override
-    public final void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        org.telegram.messenger.p5.a(this, i10, str, drawable);
-    }
-
-    @Override
-    public final void onAnimationReady(ImageReceiver imageReceiver) {
-        MessageObject messageObject;
-        if (this.f42249b && (messageObject = this.f42250c) != null && messageObject.isAnimatedAnimatedEmoji() && imageReceiver.getLottieAnimation() != null && imageReceiver.getLottieAnimation().f35096x == null) {
-            try {
-                this.d.G.performHapticFeedback(3, 1);
-            } catch (Exception unused) {
-            }
-        }
+    public final View d(Context context, org.telegram.ui.Components.tk0 tk0Var, int i10, org.telegram.ui.ActionBar.p6 p6Var) {
+        return new py(context, p6Var);
     }
 }

@@ -1,38 +1,29 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class ad0 implements org.telegram.ui.Components.vw0 {
-    public final int f37736a;
-    public final org.telegram.ui.ActionBar.r2 f37737b;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ad0 implements RequestDelegate {
+    public final int f35628a;
+    public final bd0 f35629b;
+    public final String f35630c;
+    public final String d;
 
-    public ad0(int i10, org.telegram.ui.ActionBar.r2 r2Var) {
-        this.f37736a = i10;
-        this.f37737b = r2Var;
+    public ad0(bd0 bd0Var, String str, String str2, int i10) {
+        this.f35628a = i10;
+        this.f35629b = bd0Var;
+        this.f35630c = str;
+        this.d = str2;
     }
 
     @Override
-    public final void I(int i10, boolean z10) {
-        wf0 wf0Var;
-        il0 il0Var;
-        switch (this.f37736a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f35628a) {
             case 0:
-                ig0 ig0Var = (ig0) this.f37737b;
-                if (i10 > AndroidUtilities.dp(20.0f) && ig0Var.m1()) {
-                    AndroidUtilities.hideKeyboard(ig0Var.fragmentView);
-                }
-                if (i10 <= AndroidUtilities.dp(20.0f) && (wf0Var = ig0Var.T) != null) {
-                    wf0Var.run();
-                    ig0Var.T = null;
-                    return;
-                }
+                org.telegram.messenger.i0.g3(new xc0(this.f35629b, tL_error, this.f35630c, this.d, tLObject));
                 return;
             default:
-                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f37737b;
-                if (i10 >= AndroidUtilities.dp(20.0f) && (il0Var = passcodeActivity.T) != null) {
-                    il0Var.run();
-                    passcodeActivity.T = null;
-                    return;
-                }
+                org.telegram.messenger.i0.g3(new xc0(this.f35629b, tL_error, tLObject, this.f35630c, this.d));
                 return;
         }
     }

@@ -1,58 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.HashtagSearchController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class n40 implements Utilities.Callback5, Utilities.Callback5Return {
-    public final o40 f30729a;
+import android.animation.ValueAnimator;
+public final class n40 implements ValueAnimator.AnimatorUpdateListener {
+    public final boolean[] f28679a;
+    public final j40 f28680b;
+    public final e50 f28681c;
 
-    public n40(o40 o40Var) {
-        this.f30729a = o40Var;
+    public n40(e50 e50Var, boolean[] zArr, j40 j40Var) {
+        this.f28681c = e50Var;
+        this.f28679a = zArr;
+        this.f28680b = j40Var;
     }
 
     @Override
-    public void mo5run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        int i10 = ((u61) obj).d;
-        o40 o40Var = this.f30729a;
-        if (i10 == 0) {
-            HashtagSearchController.getInstance(o40Var.f31154a).clearHistory();
-            o40Var.f31157f.O(true);
-            return;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        if (floatValue > 0.5f) {
+            boolean[] zArr = this.f28679a;
+            if (!zArr[0]) {
+                zArr[0] = true;
+                this.f28680b.run();
+            }
         }
-        Utilities.Callback callback = o40Var.h;
-        if (callback != null) {
-            callback.run((String) o40Var.f31156c.get(i10 - 1));
+        if (floatValue >= 0.5f) {
+            floatValue -= 1.0f;
         }
-    }
-
-    @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        int i10 = ((u61) obj).d;
-        boolean z10 = false;
-        if (i10 != 0) {
-            o40 o40Var = this.f30729a;
-            String str = (String) o40Var.f31156c.get(i10 - 1);
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(o40Var.getContext(), 0, o40Var.f31155b);
-            String string = LocaleController.getString(R.string.ClearSearchSingleAlertTitle);
-            org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22369a;
-            e2Var.R = string;
-            e2Var.T = LocaleController.formatString(R.string.ClearSearchSingleHashtagAlertText, str);
-            alertDialog$Builder.k(LocaleController.getString(R.string.ClearSearchRemove), new p1(22, o40Var, str));
-            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            e2Var.show();
-            z10 = true;
-        }
-        return Boolean.valueOf(z10);
+        float f7 = floatValue * 180.0f;
+        e50 e50Var = this.f28681c;
+        e50Var.f25656f.setRotationY(f7);
+        e50Var.f25674q0.setRotationY(f7);
     }
 }

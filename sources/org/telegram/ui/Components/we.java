@@ -1,7 +1,15 @@
 package org.telegram.ui.Components;
-public final class we extends rq {
+
+import android.util.Property;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class we extends Property {
     @Override
-    public final int a() {
-        return org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23570of, false);
+    public final Object get(Object obj) {
+        return Float.valueOf(((ChatActivityEnterView.RecordCircle) obj).getScale());
+    }
+
+    @Override
+    public final void set(Object obj, Object obj2) {
+        ((ChatActivityEnterView.RecordCircle) obj).setScale(((Float) obj2).floatValue());
     }
 }

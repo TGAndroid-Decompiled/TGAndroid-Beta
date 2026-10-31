@@ -1,99 +1,46 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class xm0 implements TextWatcher {
-    public final kn0 f45737a;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class xm0 implements r0.m, org.telegram.ui.ActionBar.u1 {
+    public final int f43600a;
+    public final tn0 f43601b;
 
-    public xm0(kn0 kn0Var) {
-        this.f45737a = kn0Var;
+    public xm0(tn0 tn0Var, int i10) {
+        this.f43600a = i10;
+        this.f43601b = tn0Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z10;
-        String str;
-        int indexOf;
-        kn0 kn0Var = this.f45737a;
-        ArrayList arrayList = kn0Var.U0;
-        HashMap hashMap = kn0Var.W0;
-        if (kn0Var.Z0) {
-            return;
+    public r0.j1 R0(View view, r0.j1 j1Var) {
+        i0.c I0 = org.telegram.messenger.i0.I0(j1Var, false);
+        tn0 tn0Var = this.f43601b;
+        tn0Var.f41871b0 = I0;
+        en0 en0Var = tn0Var.h.f39984b;
+        int i10 = I0.f7765a;
+        int paddingTop = en0Var.getPaddingTop();
+        i0.c cVar = tn0Var.f41871b0;
+        en0Var.setPadding(i10, paddingTop, cVar.f7767c, org.telegram.messenger.i0.L(72.0f) + cVar.d);
+        en0 en0Var2 = tn0Var.f41876n.f39984b;
+        int i11 = tn0Var.f41871b0.f7765a;
+        int paddingTop2 = en0Var2.getPaddingTop();
+        i0.c cVar2 = tn0Var.f41871b0;
+        en0Var2.setPadding(i11, paddingTop2, cVar2.f7767c, org.telegram.messenger.i0.L(72.0f) + cVar2.d);
+        FrameLayout frameLayout = tn0Var.P;
+        i0.c cVar3 = tn0Var.f41871b0;
+        frameLayout.setPadding(cVar3.f7765a, 0, cVar3.f7767c, cVar3.d);
+        return r0.j1.f46131b;
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
+        switch (this.f43600a) {
+            case 1:
+                this.f43601b.finishFragment();
+                return;
+            default:
+                this.f43601b.C0();
+                return;
         }
-        kn0Var.Z0 = true;
-        String d = kf.b.d(kn0Var.Y[1].getText().toString(), false);
-        kn0Var.Y[1].setText(d);
-        org.telegram.ui.Components.q40 q40Var = (org.telegram.ui.Components.q40) kn0Var.Y[2];
-        if (d.length() == 0) {
-            q40Var.setHintText((String) null);
-            q40Var.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
-            kn0Var.Y[0].setText(LocaleController.getString(R.string.ChooseCountry));
-        } else {
-            int i10 = 4;
-            if (d.length() > 4) {
-                while (true) {
-                    if (i10 >= 1) {
-                        String substring = d.substring(0, i10);
-                        if (((String) hashMap.get(substring)) != null) {
-                            kn0Var.Y[1].setText(substring);
-                            str = d.substring(i10) + kn0Var.Y[2].getText().toString();
-                            d = substring;
-                            z10 = true;
-                            break;
-                        }
-                        i10--;
-                    } else {
-                        z10 = false;
-                        str = null;
-                        break;
-                    }
-                }
-                if (!z10) {
-                    str = d.substring(1) + kn0Var.Y[2].getText().toString();
-                    EditTextBoldCursor editTextBoldCursor = kn0Var.Y[1];
-                    d = d.substring(0, 1);
-                    editTextBoldCursor.setText(d);
-                }
-            } else {
-                z10 = false;
-                str = null;
-            }
-            String str2 = (String) hashMap.get(d);
-            if (str2 != null && (indexOf = arrayList.indexOf(str2)) != -1) {
-                kn0Var.Y[0].setText((CharSequence) arrayList.get(indexOf));
-                String str3 = (String) kn0Var.X0.get(d);
-                if (str3 != null) {
-                    q40Var.setHintText(str3.replace('X', (char) 8211));
-                    q40Var.setHint((CharSequence) null);
-                }
-            } else {
-                q40Var.setHintText((String) null);
-                q40Var.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
-                kn0Var.Y[0].setText(LocaleController.getString(R.string.WrongCountry));
-            }
-            if (!z10) {
-                EditTextBoldCursor editTextBoldCursor2 = kn0Var.Y[1];
-                editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
-            }
-            if (str != null) {
-                q40Var.requestFocus();
-                q40Var.setText(str);
-                q40Var.setSelection(q40Var.length());
-            }
-        }
-        kn0Var.Z0 = false;
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

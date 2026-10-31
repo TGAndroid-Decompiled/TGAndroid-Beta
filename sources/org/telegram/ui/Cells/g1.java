@@ -1,110 +1,54 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.SharedConfig;
-public final class g1 extends m1 {
-    public final int e;
-    public final s1 f24144f;
+import android.util.Property;
+import android.view.View;
+import org.telegram.ui.Components.b11;
+import org.telegram.ui.Components.mj0;
+import org.telegram.ui.ms0;
+public final class g1 extends Property {
+    public final int f21909a;
 
-    public g1(int i10, s1 s1Var) {
-        super(0);
-        this.f24144f = s1Var;
-        this.e = i10;
+    public g1(Class cls, String str, int i10) {
+        super(cls, str);
+        this.f21909a = i10;
     }
 
     @Override
-    public final void e() {
-        float f7;
-        boolean z10;
-        MessageObject.GroupedMessagePosition groupedMessagePosition;
-        int i10;
-        int i11;
-        Rect bounds = getBounds();
-        RectF rectF = (RectF) this.d;
-        rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
-        Path path = this.f24421b;
-        path.rewind();
-        s1 s1Var = this.f24144f;
-        int[] iArr = s1Var.f25349x3;
-        int i12 = this.e;
-        int i13 = iArr[i12];
-        if (i13 != 3 && i13 != 4) {
-            float f10 = 0.0f;
-            if (i13 == 2) {
-                MessageObject messageObject = s1Var.f25367y7;
-                if (messageObject != null && messageObject.isOutOwner()) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                for (int i14 = 0; i14 < 4; i14++) {
-                    if (!s1Var.f25246q3) {
-                        if (z10) {
-                            i10 = 3;
-                        } else {
-                            i10 = 2;
-                        }
-                        if (i14 == i10) {
-                            float[] fArr = s1.Ge;
-                            int i15 = i14 * 2;
-                            float dp = AndroidUtilities.dp(SharedConfig.bubbleRadius);
-                            fArr[i15 + 1] = dp;
-                            fArr[i15] = dp;
-                        } else if (((s1Var.f25165k8 && s1Var.L == null) || s1Var.F) && (i14 == 2 || i14 == 3)) {
-                            float[] fArr2 = s1.Ge;
-                            int i16 = i14 * 2;
-                            int i17 = i16 + 1;
-                            if (s1Var.F) {
-                                i11 = Math.min(5, SharedConfig.bubbleRadius);
-                            } else {
-                                i11 = SharedConfig.bubbleRadius;
-                            }
-                            float dp2 = AndroidUtilities.dp(i11);
-                            fArr2[i17] = dp2;
-                            fArr2[i16] = dp2;
-                        }
-                    }
-                    float[] fArr3 = s1.Ge;
-                    int i18 = i14 * 2;
-                    fArr3[i18 + 1] = 0.0f;
-                    fArr3[i18] = 0.0f;
-                }
-                if (!z10 && !s1Var.J && (groupedMessagePosition = s1Var.L) == null && (groupedMessagePosition == null || s1Var.f25018a3)) {
-                    path.moveTo(rectF.left + AndroidUtilities.dp(6.0f), rectF.top);
-                    path.lineTo(rectF.left + AndroidUtilities.dp(6.0f), (rectF.bottom - AndroidUtilities.dp(6.0f)) - AndroidUtilities.dp(5.0f));
-                    RectF rectF2 = AndroidUtilities.rectTmp;
-                    rectF2.set(rectF.left + AndroidUtilities.dp(-7.0f), rectF.bottom - AndroidUtilities.dp(23.0f), rectF.left + AndroidUtilities.dp(6.0f), rectF.bottom);
-                    path.arcTo(rectF2, 0.0f, 83.0f, false);
-                    float f11 = rectF.right;
-                    float[] fArr4 = s1.Ge;
-                    float f12 = rectF.bottom;
-                    rectF2.set(f11 - (fArr4[4] * 2.0f), f12 - (fArr4[5] * 2.0f), f11, f12);
-                    path.arcTo(rectF2, 90.0f, -90.0f, false);
-                    path.lineTo(rectF.right, rectF.top);
-                    path.close();
-                } else {
-                    path.addRoundRect(rectF, s1.Ge, Path.Direction.CW);
-                }
-                path.close();
+    public final Object get(Object obj) {
+        switch (this.f21909a) {
+            case 0:
+                return Float.valueOf(((q1) obj).Uc);
+            case 1:
+                return Integer.valueOf(Math.round(((View) obj).getTranslationY()));
+            case 2:
+                return Float.valueOf(((mj0) obj).f28536w);
+            case 3:
+                return Float.valueOf(((b11) obj).h);
+            default:
+                return Float.valueOf(((ms0) obj).f39756a);
+        }
+    }
+
+    @Override
+    public final void set(Object obj, Object obj2) {
+        switch (this.f21909a) {
+            case 0:
+                ((q1) obj).setAnimationOffsetX(((Float) obj2).floatValue());
                 return;
-            }
-            if (i13 == 0) {
-                f10 = AndroidUtilities.dp(6.0f);
-            }
-            path.addRoundRect(rectF, f10, f10, Path.Direction.CW);
-            return;
+            case 1:
+                ((View) obj).setTranslationY(((Integer) obj2).intValue());
+                return;
+            case 2:
+                ((mj0) obj).setTransitionProgress(((Float) obj2).floatValue());
+                return;
+            case 3:
+                b11 b11Var = (b11) obj;
+                b11Var.h = ((Float) obj2).floatValue();
+                b11Var.invalidate();
+                return;
+            default:
+                ((ms0) obj).b(((Float) obj2).floatValue());
+                return;
         }
-        float centerX = rectF.centerX();
-        float centerY = rectF.centerY();
-        if (iArr[i12] == 3) {
-            f7 = 16.0f;
-        } else {
-            f7 = 20.0f;
-        }
-        path.addCircle(centerX, centerY, AndroidUtilities.dp(f7), Path.Direction.CW);
     }
 }

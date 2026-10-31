@@ -1,92 +1,83 @@
 package org.telegram.ui;
 
-import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Point;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
-import android.webkit.RenderProcessGoneDetail;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class bo0 extends WebViewClient {
-    public final Context f38077a;
-    public final ro0 f38078b;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class bo0 extends org.telegram.ui.ActionBar.k2 {
+    public Bitmap f36283a;
+    public BitmapDrawable f36284b;
+    public ao0 f36285c;
+    public zn0 d;
+    public boolean e;
+    public boolean f36286f;
 
-    public bo0(ro0 ro0Var, Context context) {
-        this.f38078b = ro0Var;
-        this.f38077a = context;
+    @Override
+    public final View createView(Context context) {
+        this.actionBar.setBackgroundColor(-13421773);
+        this.actionBar.C(-12763843, false);
+        this.actionBar.setTitleColor(-1);
+        this.actionBar.D(-1, false);
+        this.actionBar.setBackButtonImage(2131231241);
+        this.actionBar.setAllowOverlayTitle(true);
+        this.actionBar.setTitle(org.telegram.messenger.cd.L0(2131751699, null));
+        this.actionBar.setActionBarMenuOnItemClick(new t60(this, 14));
+        this.actionBar.p().h(1, 2131231243, org.telegram.messenger.cd.L0(2131751355, null), org.telegram.messenger.i0.L(56.0f));
+        zn0 zn0Var = new zn0(this, context);
+        this.d = zn0Var;
+        this.fragmentView = zn0Var;
+        zn0Var.G = getArguments().getBoolean("freeform", false);
+        this.fragmentView.setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
+        return this.fragmentView;
     }
 
     @Override
-    public final void onPageFinished(WebView webView, String str) {
-        super.onPageFinished(webView, str);
-        ro0 ro0Var = this.f38078b;
-        ro0Var.f43137z0 = false;
-        ro0Var.I0(true, false);
-        ro0Var.L0();
+    public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
+        return false;
     }
 
     @Override
-    public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-        ro0 ro0Var = this.f38078b;
-        try {
-            if (!AndroidUtilities.isSafeToShow(ro0Var.getParentActivity())) {
-                return true;
+    public final boolean onFragmentCreate() {
+        int max;
+        if (this.f36283a == null) {
+            String string = getArguments().getString("photoPath");
+            Uri uri = (Uri) getArguments().getParcelable("photoUri");
+            if (string == null && uri == null) {
+                return false;
             }
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ro0Var.getParentActivity(), 0, ro0Var.Y0);
-            alertDialog$Builder.f22369a.R = LocaleController.getString(R.string.ChromeCrashTitle);
-            alertDialog$Builder.f22369a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new nj0(this, 9));
-            alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-            alertDialog$Builder.p();
-            return true;
-        } catch (Exception e) {
-            FileLog.e(e);
-            return false;
-        }
-    }
-
-    @Override
-    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        Uri parse;
-        boolean equals;
-        ro0 ro0Var;
-        boolean z10;
-        try {
-            parse = Uri.parse(str);
-            equals = "t.me".equals(parse.getHost());
-            ro0Var = this.f38078b;
-        } catch (Exception unused) {
-        }
-        if (equals) {
-            ro0Var.u0();
-            return true;
-        }
-        if (!ro0.f43096h1.contains(parse.getScheme())) {
-            if (!ro0.f43095g1.contains(parse.getScheme())) {
-                try {
-                    if (ro0Var.getParentActivity() != null) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    if (z10) {
-                        ro0Var.getParentActivity().startActivityForResult(new Intent("android.intent.action.VIEW", parse), 210);
-                        return true;
-                    }
-                } catch (ActivityNotFoundException unused2) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f38077a);
-                    alertDialog$Builder.f22369a.R = ro0Var.f43122p0;
-                    alertDialog$Builder.f22369a.T = LocaleController.getString(R.string.PaymentAppNotFoundForDeeplink);
-                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                    alertDialog$Builder.p();
-                }
+            if (string != null && !sc.e.x(string)) {
+                return false;
             }
-            return false;
+            if (org.telegram.messenger.i0.Q1()) {
+                max = org.telegram.messenger.i0.L(520.0f);
+            } else {
+                Point point = org.telegram.messenger.i0.f16026q;
+                max = Math.max(point.x, point.y);
+            }
+            float f7 = max;
+            Bitmap K = org.telegram.messenger.hc.K(string, uri, f7, f7, true);
+            this.f36283a = K;
+            if (K == null) {
+                return false;
+            }
         }
+        this.f36284b = new BitmapDrawable(this.f36283a);
+        super.onFragmentCreate();
         return true;
+    }
+
+    @Override
+    public final void onFragmentDestroy() {
+        super.onFragmentDestroy();
+        Bitmap bitmap = this.f36283a;
+        if (bitmap != null && !this.e) {
+            bitmap.recycle();
+            this.f36283a = null;
+        }
+        this.f36284b = null;
     }
 }

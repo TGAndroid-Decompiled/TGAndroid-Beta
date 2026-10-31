@@ -1,9 +1,7 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public interface oj {
-    void a(TLRPC.User user, boolean z10, int i10, long j10);
-
-    void b(ArrayList arrayList, String str, boolean z10, int i10, long j10, boolean z11);
+import java.io.File;
+public final class oj {
+    public File f29082a;
+    public String f29083b;
 }

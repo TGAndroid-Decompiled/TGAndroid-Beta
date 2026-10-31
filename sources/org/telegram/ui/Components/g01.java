@@ -1,25 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.util.Pair;
-import java.lang.reflect.Array;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.view.View;
 import java.util.ArrayList;
-public final class g01 extends ArrayList {
-    public final Class f28349a;
-    public final Class f28350b;
+public final class g01 {
+    public final View f26206a;
+    public final ArrayList f26207b;
+    public final Runnable f26208c;
+    public Runnable d;
+    public final Bitmap e;
+    public final Matrix f26209f;
+    public float f26210g;
 
-    public g01(Class cls, Class cls2) {
-        this.f28349a = cls;
-        this.f28350b = cls2;
+    public g01(View view, Runnable runnable) {
+        this.f26210g = 1.0f;
+        this.f26206a = view;
+        this.f26207b = null;
+        this.f26208c = null;
+        this.d = runnable;
+        this.e = null;
+        this.f26209f = null;
     }
 
-    public final k6.c h() {
-        int size = size();
-        Object[] objArr = (Object[]) Array.newInstance(this.f28349a, size);
-        Object[] objArr2 = (Object[]) Array.newInstance(this.f28350b, size);
-        for (int i10 = 0; i10 < size; i10++) {
-            objArr[i10] = ((Pair) get(i10)).first;
-            objArr2[i10] = ((Pair) get(i10)).second;
-        }
-        return new k6.c(objArr, objArr2);
+    public g01(ArrayList arrayList, a3.l0 l0Var) {
+        this.f26210g = 1.0f;
+        this.f26206a = null;
+        this.f26207b = arrayList;
+        this.f26208c = null;
+        this.d = l0Var;
+        this.e = null;
+        this.f26209f = null;
+    }
+
+    public g01(Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
+        this.f26210g = 1.0f;
+        this.f26206a = null;
+        this.f26207b = null;
+        this.f26208c = runnable;
+        this.d = runnable2;
+        this.f26209f = matrix;
+        this.e = bitmap;
     }
 }

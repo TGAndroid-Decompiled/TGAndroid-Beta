@@ -1,45 +1,94 @@
 package k0;
 
-import a8.h0;
+import android.app.AlertDialog;
 import android.hardware.fingerprint.FingerprintManager;
-import androidx.biometric.v;
-import androidx.biometric.x;
+import android.support.v4.media.session.a0;
+import androidx.biometric.w;
+import androidx.biometric.y;
 import androidx.lifecycle.z;
 import java.lang.ref.WeakReference;
-import rb.c;
+import k6.h;
+import org.telegram.messenger.cd;
+import org.telegram.ui.Wallet.u0;
 public final class a extends FingerprintManager.AuthenticationCallback {
-    public final c f16041a;
+    public final int f10518a;
+    public final Object f10519b;
 
-    public a(c cVar) {
-        this.f16041a = cVar;
+    public a(Object obj, int i10) {
+        this.f10518a = i10;
+        this.f10519b = obj;
     }
 
     @Override
     public final void onAuthenticationError(int i10, CharSequence charSequence) {
-        ((v) ((h0) this.f16041a.f47358b).d).a(i10, charSequence);
+        switch (this.f10518a) {
+            case 0:
+                ((w) ((a0) ((h) this.f10519b).f10943b).d).a(i10, charSequence);
+                return;
+            default:
+                u0 u0Var = (u0) this.f10519b;
+                if (u0Var.f() && !u0Var.f35261f) {
+                    if (i10 == 5) {
+                        u0Var.c("AUTH_CANCELED");
+                        return;
+                    } else {
+                        u0Var.a();
+                        return;
+                    }
+                }
+                return;
+        }
     }
 
     @Override
     public final void onAuthenticationFailed() {
-        WeakReference weakReference = ((v) ((h0) this.f16041a.f47358b).d).f2289a;
-        if (weakReference.get() != null && ((x) weakReference.get()).f2299n) {
-            x xVar = (x) weakReference.get();
-            if (xVar.f2306u == null) {
-                xVar.f2306u = new z();
-            }
-            x.h(xVar.f2306u, Boolean.TRUE);
+        AlertDialog alertDialog;
+        int i10 = this.f10518a;
+        Object obj = this.f10519b;
+        switch (i10) {
+            case 0:
+                WeakReference weakReference = ((w) ((a0) ((h) obj).f10943b).d).f1122a;
+                if (weakReference.get() != null && ((y) weakReference.get()).f1132n) {
+                    y yVar = (y) weakReference.get();
+                    if (yVar.f1139u == null) {
+                        yVar.f1139u = new z();
+                    }
+                    y.h(yVar.f1139u, Boolean.TRUE);
+                    return;
+                }
+                return;
+            default:
+                u0 u0Var = (u0) obj;
+                if (u0Var.f() && (alertDialog = u0Var.f35263i) != null) {
+                    alertDialog.setMessage(cd.L0(2131743143, null));
+                    return;
+                }
+                return;
         }
     }
 
     @Override
     public final void onAuthenticationHelp(int i10, CharSequence charSequence) {
-        WeakReference weakReference = ((v) ((h0) this.f16041a.f47358b).d).f2289a;
-        if (weakReference.get() != null) {
-            x xVar = (x) weakReference.get();
-            if (xVar.f2305t == null) {
-                xVar.f2305t = new z();
-            }
-            x.h(xVar.f2305t, charSequence);
+        AlertDialog alertDialog;
+        switch (this.f10518a) {
+            case 0:
+                WeakReference weakReference = ((w) ((a0) ((h) this.f10519b).f10943b).d).f1122a;
+                if (weakReference.get() != null) {
+                    y yVar = (y) weakReference.get();
+                    if (yVar.f1138t == null) {
+                        yVar.f1138t = new z();
+                    }
+                    y.h(yVar.f1138t, charSequence);
+                    return;
+                }
+                return;
+            default:
+                u0 u0Var = (u0) this.f10519b;
+                if (u0Var.f() && (alertDialog = u0Var.f35263i) != null) {
+                    alertDialog.setMessage(charSequence);
+                    return;
+                }
+                return;
         }
     }
 

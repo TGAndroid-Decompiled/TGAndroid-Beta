@@ -1,3 +1,3 @@
 package x7;
-public abstract class q {
+public interface q {
 }

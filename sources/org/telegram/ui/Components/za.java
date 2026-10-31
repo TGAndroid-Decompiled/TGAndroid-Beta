@@ -1,121 +1,88 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.KeyEvent;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-public final class za extends mm0 {
-    public final int f35303c;
-    public final Context d;
-    public final Object e;
-    public final KeyEvent.Callback f35304f;
+import android.animation.AnimatorSet;
+import java.util.LinkedList;
+public final class za implements o1.f {
+    public final int f32989a;
+    public final Object f32990b;
+    public final Object f32991c;
 
-    public za(ij ijVar, Context context) {
-        this.f35303c = 1;
-        this.f35304f = ijVar;
-        this.e = new ArrayList();
-        this.d = context;
+    public za(int i10, Object obj, Object obj2) {
+        this.f32989a = i10;
+        this.f32990b = obj;
+        this.f32991c = obj2;
     }
 
     @Override
-    public void B(s4.j0 j0Var) {
-        switch (this.f35303c) {
+    public final void a(o1.j jVar, boolean z10, float f7, float f10) {
+        switch (this.f32989a) {
             case 0:
-                ((mm0) this.e).B(new ya(this, j0Var));
+                tf tfVar = (tf) this.f32991c;
+                ((bb) this.f32990b).setInOutOffset(0.0f);
+                if (!z10) {
+                    tfVar.run();
+                    return;
+                }
                 return;
-            default:
-                super.B(j0Var);
+            case 1:
+                jg jgVar = (jg) this.f32991c;
+                AnimatorSet animatorSet = ((bi) this.f32990b).f21624z0;
+                if (animatorSet != null && !animatorSet.isRunning()) {
+                    jgVar.run();
+                    return;
+                }
                 return;
-        }
-    }
-
-    @Override
-    public final boolean D(s4.e1 e1Var) {
-        switch (this.f35303c) {
-            case 0:
-                return ((mm0) this.e).D(e1Var);
-            default:
-                if (e1Var.f47776f == 0) {
-                    return true;
-                }
-                return false;
-        }
-    }
-
-    @Override
-    public final int h() {
-        switch (this.f35303c) {
-            case 0:
-                return ((mm0) this.e).h() + 1;
-            default:
-                return ((ArrayList) this.e).size();
-        }
-    }
-
-    @Override
-    public final int j(int i10) {
-        int i11;
-        switch (this.f35303c) {
-            case 0:
-                bb bbVar = (bb) this.f35304f;
-                if (bbVar.P) {
-                    i11 = h() - 1;
-                } else {
-                    i11 = 0;
-                }
-                if (i10 == i11) {
-                    return -1000;
-                }
-                return ((mm0) this.e).j(i10 - (!bbVar.P ? 1 : 0));
-            default:
-                return 0;
-        }
-    }
-
-    @Override
-    public final void v(s4.e1 e1Var, int i10) {
-        int i11;
-        switch (this.f35303c) {
-            case 0:
-                bb bbVar = (bb) this.f35304f;
-                if (bbVar.P) {
-                    i11 = h() - 1;
-                } else {
-                    i11 = 0;
-                }
-                if (i10 != i11) {
-                    ((mm0) this.e).v(e1Var, i10 - (!bbVar.P ? 1 : 0));
+            case 2:
+                bi biVar = (bi) ((jh) this.f32990b).d;
+                biVar.f24725t2.setTranslationY(0.0f);
+                biVar.f24725t2.l(biVar.f24675f4);
+                biVar.X0.g();
+                biVar.f21586b.invalidate();
+                ((mg) this.f32991c).run();
+                biVar.O1(0);
+                return;
+            case 3:
+                zc0 zc0Var = (zc0) this.f32990b;
+                jb0 jb0Var = (jb0) this.f32991c;
+                LinkedList linkedList = zc0Var.U;
+                zc0Var.T = null;
+                jb0Var.D = null;
+                jb0Var.y();
+                if (!z10) {
+                    jb0Var.h = 1.0f;
+                    jb0Var.y();
+                    if (!linkedList.isEmpty()) {
+                        ((Runnable) linkedList.poll()).run();
+                        zc0Var.V.poll();
+                        return;
+                    }
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.Cells.fb fbVar = (org.telegram.ui.Cells.fb) e1Var.f47773a;
-                fbVar.d(1, false, false);
-                fbVar.setSize(((ij) this.f35304f).f29341r);
-                fbVar.e(1, ((ArrayList) this.e).get(i10), null, 0);
+                xh.h3 h3Var = (xh.h3) this.f32990b;
+                Runnable runnable = (Runnable) this.f32991c;
+                if (jVar == h3Var.G) {
+                    h3Var.G = null;
+                    if (runnable != null) {
+                        runnable.run();
+                    }
+                    Runnable runnable2 = h3Var.E;
+                    if (runnable2 != null) {
+                        runnable2.run();
+                    }
+                    float f11 = h3Var.h;
+                    if (f11 != -1.0f) {
+                        boolean z11 = h3Var.f53792s;
+                        h3Var.f53792s = true;
+                        h3Var.setOffsetY(f11);
+                        h3Var.h = -1.0f;
+                        h3Var.f53792s = z11;
+                    }
+                    h3Var.f53790n = -2.1474836E9f;
+                    return;
+                }
                 return;
         }
-    }
-
-    @Override
-    public final s4.e1 x(ViewGroup viewGroup, int i10) {
-        switch (this.f35303c) {
-            case 0:
-                if (i10 == -1000) {
-                    return new s4.e1(new bi.cc((bb) this.f35304f, this.d));
-                }
-                return ((mm0) this.e).x(viewGroup, i10);
-            default:
-                hj hjVar = new hj(this, this.d);
-                hjVar.f24126b = false;
-                return new s4.e1(hjVar);
-        }
-    }
-
-    public za(bb bbVar, mm0 mm0Var, Context context) {
-        this.f35303c = 0;
-        this.f35304f = bbVar;
-        this.e = mm0Var;
-        this.d = context;
     }
 }

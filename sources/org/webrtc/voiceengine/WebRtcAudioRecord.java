@@ -6,11 +6,11 @@ import android.media.AudioRecord;
 import android.media.projection.MediaProjection;
 import android.os.Build;
 import android.os.Process;
-import ic.a;
+import i0.a;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.Arrays;
-import org.telegram.messenger.FileLog;
+import org.telegram.messenger.f8;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.webrtc.Logging;
 import org.webrtc.ThreadUtils;
@@ -90,7 +90,7 @@ public class WebRtcAudioRecord {
                             WebRtcAudioRecord webRtcAudioRecord = WebRtcAudioRecord.this;
                             webRtcAudioRecord.nativeDataIsRecorded(read, webRtcAudioRecord.nativeAudioRecord);
                         } catch (UnsatisfiedLinkError e) {
-                            FileLog.e(e);
+                            f8.g(e, true);
                             this.keepAlive = false;
                         }
                     }
@@ -110,8 +110,8 @@ public class WebRtcAudioRecord {
                 if (WebRtcAudioRecord.this.audioRecord != null) {
                     WebRtcAudioRecord.this.audioRecord.stop();
                 }
-            } catch (IllegalStateException e10) {
-                Logging.e("WebRtcAudioRecord", "AudioRecord.stop failed: " + e10.getMessage());
+            } catch (IllegalStateException e7) {
+                Logging.e("WebRtcAudioRecord", "AudioRecord.stop failed: " + e7.getMessage());
             }
         }
 
@@ -428,7 +428,7 @@ public class WebRtcAudioRecord {
         try {
             this.audioRecord.stop();
         } catch (Throwable th2) {
-            FileLog.e(th2);
+            f8.g(th2, true);
         }
         releaseAudioResources(false);
         return true;
@@ -489,7 +489,7 @@ public class WebRtcAudioRecord {
         try {
             audioRecord.stop();
         } catch (Throwable th2) {
-            FileLog.e(th2);
+            f8.g(th2, true);
         }
         releaseAudioResources(true);
     }

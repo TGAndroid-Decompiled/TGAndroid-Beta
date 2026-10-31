@@ -1,53 +1,46 @@
 package ih;
 
-import android.graphics.Bitmap;
-import java.lang.ref.WeakReference;
+import android.text.TextUtils;
+import org.telegram.messenger.b8;
+import org.telegram.messenger.jj;
+import org.telegram.tgnet.TLRPC;
 public final class a {
-    public WeakReference f14308a;
-    public long f14309b;
-    public boolean f14310c = true;
+    public final int f8515a;
+    public final TLRPC.Document f8516b;
+    public final String f8517c;
+    public final jj d;
+    public final String e;
+    public boolean f8518f;
+    public boolean f8519g;
 
-    public final boolean a(Bitmap bitmap) {
-        Bitmap bitmap2;
-        long j10;
-        if (!this.f14310c) {
-            WeakReference weakReference = this.f14308a;
-            if (weakReference != null) {
-                bitmap2 = (Bitmap) weakReference.get();
-            } else {
-                bitmap2 = null;
-            }
-            if (bitmap2 == bitmap) {
-                if (bitmap != null && !bitmap.isRecycled()) {
-                    j10 = bitmap.getGenerationId();
-                } else {
-                    j10 = 0;
-                }
-                if (j10 != this.f14309b) {
-                    return true;
-                }
-                return false;
-            }
-            return true;
-        }
-        return true;
+    public a(int i10, jj jjVar, TLRPC.Document document, String str) {
+        this.f8515a = i10;
+        this.d = jjVar;
+        this.f8516b = document;
+        this.f8517c = str;
+        this.e = TextUtils.isEmpty(str) ? b8.r(null, document) : str;
+        a();
     }
 
-    public final void b(Bitmap bitmap) {
-        WeakReference weakReference;
-        long j10;
-        if (bitmap != null) {
-            weakReference = new WeakReference(bitmap);
+    public final void a() {
+        boolean z10;
+        boolean z11 = false;
+        String str = this.f8517c;
+        if (str != null) {
+            z10 = sc.e.x(str);
         } else {
-            weakReference = null;
+            z10 = false;
         }
-        this.f14308a = weakReference;
-        if (bitmap != null && !bitmap.isRecycled()) {
-            j10 = bitmap.getGenerationId();
-        } else {
-            j10 = 0;
+        int i10 = this.f8515a;
+        if (!z10) {
+            b8.G(i10);
+            z10 = b8.I(this.f8516b).exists();
         }
-        this.f14309b = j10;
-        this.f14310c = false;
+        this.f8518f = z10;
+        String str2 = this.e;
+        if (!TextUtils.isEmpty(str2) && b8.G(i10).T(str2)) {
+            z11 = true;
+        }
+        this.f8519g = z11;
     }
 }

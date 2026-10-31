@@ -1,94 +1,176 @@
 package h8;
 
-import a8.df;
+import android.location.Location;
+import android.os.IBinder;
+import android.os.IInterface;
 import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.Arrays;
-public final class b extends p6.a {
-    public static final Parcelable.Creator<b> CREATOR = new j(3);
-    public final long f12699a;
-    public final int f12700b;
-    public final boolean f12701c;
-    public final String d;
-    public final s7.j e;
+import bh.d;
+import fg.i;
+import i8.f;
+import j8.e;
+import java.util.HashMap;
+import n6.l;
+import org.telegram.messenger.db;
+import org.telegram.messenger.eb;
+import org.telegram.messenger.fa;
+import org.telegram.messenger.ga;
+import org.telegram.messenger.ia;
+import org.telegram.messenger.p;
+import org.telegram.messenger.s1;
+import org.telegram.messenger.z9;
+import org.telegram.ui.Components.lk;
+public final class b extends b8.b {
+    public final int f7638b = 1;
+    public final Object f7639c;
 
-    public b(long j10, int i10, boolean z10, String str, s7.j jVar) {
-        this.f12699a = j10;
-        this.f12700b = i10;
-        this.f12701c = z10;
-        this.d = str;
-        this.e = jVar;
-    }
-
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof b)) {
-            return false;
-        }
-        b bVar = (b) obj;
-        if (this.f12699a != bVar.f12699a || this.f12700b != bVar.f12700b || this.f12701c != bVar.f12701c || !o6.l.l(this.d, bVar.d) || !o6.l.l(this.e, bVar.e)) {
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Long.valueOf(this.f12699a), Integer.valueOf(this.f12700b), Boolean.valueOf(this.f12701c)});
-    }
-
-    public final String toString() {
-        String str;
-        StringBuilder u10 = a1.g.u("LastLocationRequest[");
-        long j10 = this.f12699a;
-        if (j10 != Long.MAX_VALUE) {
-            u10.append("maxAge=");
-            s7.p.a(u10, j10);
-        }
-        int i10 = this.f12700b;
-        if (i10 != 0) {
-            u10.append(", ");
-            if (i10 != 0) {
-                if (i10 != 1) {
-                    if (i10 == 2) {
-                        str = "GRANULARITY_FINE";
-                    } else {
-                        throw new IllegalArgumentException();
-                    }
-                } else {
-                    str = "GRANULARITY_COARSE";
-                }
-            } else {
-                str = "GRANULARITY_PERMISSION_LEVEL";
-            }
-            u10.append(str);
-        }
-        if (this.f12701c) {
-            u10.append(", bypass");
-        }
-        String str2 = this.d;
-        if (str2 != null) {
-            u10.append(", moduleId=");
-            u10.append(str2);
-        }
-        s7.j jVar = this.e;
-        if (jVar != null) {
-            u10.append(", impersonation=");
-            u10.append(jVar);
-        }
-        u10.append(']');
-        return u10.toString();
+    public b(p pVar) {
+        super("com.google.android.gms.maps.internal.IOnMarkerClickListener", 10);
+        this.f7639c = pVar;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q5 = df.q(parcel, 20293);
-        df.s(parcel, 1, 8);
-        parcel.writeLong(this.f12699a);
-        df.s(parcel, 2, 4);
-        parcel.writeInt(this.f12700b);
-        df.s(parcel, 3, 4);
-        parcel.writeInt(this.f12701c ? 1 : 0);
-        df.l(parcel, 4, this.d);
-        df.k(parcel, 5, this.e, i10);
-        df.r(parcel, q5);
+    public final boolean K0(int i10, Parcel parcel, Parcel parcel2) {
+        s7.a aVar;
+        a9.a aVar2;
+        switch (this.f7638b) {
+            case 0:
+                if (i10 == 1) {
+                    IBinder readStrongBinder = parcel.readStrongBinder();
+                    if (readStrongBinder == null) {
+                        aVar = 0;
+                    } else {
+                        IInterface queryLocalInterface = readStrongBinder.queryLocalInterface("com.google.android.gms.maps.model.internal.IMarkerDelegate");
+                        if (queryLocalInterface instanceof s7.a) {
+                            aVar = (s7.a) queryLocalInterface;
+                        } else {
+                            aVar = new a9.a(readStrongBinder, "com.google.android.gms.maps.model.internal.IMarkerDelegate", 9);
+                        }
+                    }
+                    s7.b.a(parcel);
+                    p pVar = (p) this.f7639c;
+                    e eVar = new e(aVar);
+                    ga gaVar = (ga) pVar.f17389b;
+                    eb ebVar = (eb) pVar.f17390c;
+                    HashMap hashMap = gaVar.f15690b;
+                    fa faVar = (fa) hashMap.get(eVar);
+                    if (faVar == null) {
+                        faVar = new fa(gaVar, eVar);
+                        hashMap.put(eVar, faVar);
+                    }
+                    ebVar.a(faVar);
+                    parcel2.writeNoException();
+                    parcel2.writeInt(1);
+                    return true;
+                }
+                return false;
+            case 1:
+                if (i10 == 1) {
+                    IBinder readStrongBinder2 = parcel.readStrongBinder();
+                    if (readStrongBinder2 == null) {
+                        aVar2 = null;
+                    } else {
+                        IInterface queryLocalInterface2 = readStrongBinder2.queryLocalInterface("com.google.android.gms.maps.internal.IGoogleMapDelegate");
+                        if (queryLocalInterface2 instanceof f) {
+                            aVar2 = (f) queryLocalInterface2;
+                        } else {
+                            aVar2 = new a9.a(readStrongBinder2, "com.google.android.gms.maps.internal.IGoogleMapDelegate", 9);
+                        }
+                    }
+                    s7.b.a(parcel);
+                    ia iaVar = (ia) this.f7639c;
+                    ?? obj = new Object();
+                    new HashMap();
+                    l.g(aVar2);
+                    obj.f13526a = aVar2;
+                    d dVar = iaVar.f16092a;
+                    ?? r62 = iaVar.f16093b;
+                    ?? obj2 = new Object();
+                    obj2.f15690b = new HashMap();
+                    obj2.f15691c = new HashMap();
+                    obj2.f15689a = obj;
+                    r62.accept(obj2);
+                    dVar.q((i) dVar.f2777a);
+                    parcel2.writeNoException();
+                    return true;
+                }
+                return false;
+            case 2:
+                if (i10 == 1) {
+                    x6.a M0 = x6.b.M0(parcel.readStrongBinder());
+                    s7.b.a(parcel);
+                    ((z9) this.f7639c).f19492b.accept((Location) x6.b.N0(M0));
+                    parcel2.writeNoException();
+                    return true;
+                }
+                return false;
+            case 3:
+                if (i10 == 1) {
+                    ((lk) ((s1) this.f7639c).f17863b).run();
+                    parcel2.writeNoException();
+                    return true;
+                }
+                return false;
+            case 4:
+                if (i10 == 1) {
+                    int readInt = parcel.readInt();
+                    s7.b.a(parcel);
+                    db dbVar = (db) ((s1) this.f7639c).f17863b;
+                    int i11 = 2;
+                    if (readInt != 2) {
+                        i11 = 3;
+                        if (readInt != 3) {
+                            i11 = 1;
+                        }
+                    }
+                    dbVar.d(i11);
+                    parcel2.writeNoException();
+                    return true;
+                }
+                return false;
+            case 5:
+                if (i10 == 1) {
+                    ((Runnable) ((s1) this.f7639c).f17863b).run();
+                    parcel2.writeNoException();
+                    return true;
+                }
+                return false;
+            default:
+                if (i10 == 1) {
+                    ((lk) ((s1) this.f7639c).f17863b).run();
+                    parcel2.writeNoException();
+                    return true;
+                }
+                return false;
+        }
+    }
+
+    public b(s1 s1Var) {
+        super("com.google.android.gms.maps.internal.IOnMapLoadedCallback", 10);
+        this.f7639c = s1Var;
+    }
+
+    public b(s1 s1Var, byte b10) {
+        super("com.google.android.gms.maps.internal.IOnCameraMoveStartedListener", 10);
+        this.f7639c = s1Var;
+    }
+
+    public b(s1 s1Var, char c10) {
+        super("com.google.android.gms.maps.internal.IOnCameraMoveListener", 10);
+        this.f7639c = s1Var;
+    }
+
+    public b(s1 s1Var, int i10) {
+        super("com.google.android.gms.maps.internal.IOnCameraIdleListener", 10);
+        this.f7639c = s1Var;
+    }
+
+    public b(z9 z9Var) {
+        super("com.google.android.gms.maps.internal.IOnMyLocationChangeListener", 10);
+        this.f7639c = z9Var;
+    }
+
+    public b(ia iaVar) {
+        super("com.google.android.gms.maps.internal.IOnMapReadyCallback", 10);
+        this.f7639c = iaVar;
     }
 }

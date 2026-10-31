@@ -1,27 +1,30 @@
 package org.telegram.messenger.voip;
 
-import org.telegram.tgnet.TLRPC;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
 public final class t implements Runnable {
-    public final int f21682a;
-    public final VoIPService f21683b;
-    public final TLRPC.Updates f21684c;
-    public final long d;
+    public final int f18703a;
+    public final TLObject f18704b;
+    public final ArrayList f18705c;
+    public final ArrayList d;
+    public final Runnable e;
 
-    public t(VoIPService voIPService, TLRPC.Updates updates, long j10, int i10) {
-        this.f21682a = i10;
-        this.f21683b = voIPService;
-        this.f21684c = updates;
-        this.d = j10;
+    public t(TLObject tLObject, ArrayList arrayList, ArrayList arrayList2, Runnable runnable, int i10) {
+        this.f18703a = i10;
+        this.f18704b = tLObject;
+        this.f18705c = arrayList;
+        this.d = arrayList2;
+        this.e = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f21682a) {
+        switch (this.f18703a) {
             case 0:
-                this.f21683b.lambda$startConferenceGroupCall$38(this.f21684c, this.d);
+                VoIPService.lambda$startConferenceGroupCall$48(this.f18704b, this.f18705c, this.d, this.e);
                 return;
             default:
-                this.f21683b.lambda$startConferenceGroupCall$46(this.f21684c, this.d);
+                VoIPService.lambda$startConferenceGroupCall$40(this.f18704b, this.f18705c, this.d, this.e);
                 return;
         }
     }

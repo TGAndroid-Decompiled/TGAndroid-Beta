@@ -1,22 +1,26 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLObject;
-public final class gs0 extends org.telegram.ui.Components.dz0 {
-    public final hs0 f39686x0;
-
-    public gs0(hs0 hs0Var, Activity activity, MessageObject messageObject, TLObject tLObject, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(activity, messageObject, tLObject, u6Var);
-        this.f39686x0 = hs0Var;
-    }
-
-    @Override
-    public final void dismiss() {
-        super.dismiss();
-        PhotoViewer photoViewer = this.f39686x0.f39958b;
-        if (photoViewer.U3 == this) {
-            photoViewer.U3 = null;
-        }
-    }
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.ui.Components.ClippingImageView;
+public final class gs0 {
+    public ImageReceiver f37627a;
+    public int f37628b;
+    public int f37629c;
+    public View d;
+    public org.telegram.messenger.kc e;
+    public long f37630f;
+    public long f37631g;
+    public int[] h;
+    public int f37632i;
+    public int f37633j;
+    public boolean f37635l;
+    public ClippingImageView f37636m;
+    public int f37637n;
+    public boolean f37639p;
+    public int f37640q;
+    public boolean f37641r;
+    public boolean f37642s;
+    public float f37634k = 1.0f;
+    public boolean f37638o = true;
 }

@@ -1,36 +1,71 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class c71 extends org.telegram.ui.ActionBar.k3 {
-    public static final int e = 0;
-    public TLRPC.TL_authorization f38209b;
-    public SessionsActivity f38210c;
-    public org.telegram.ui.Components.bk0 d;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.ui.Components.Crop.CropAreaView;
+public final class c71 extends View {
+    public ImageReceiver f36408a;
+    public ImageReceiver f36409b;
+    public View f36410c;
+    public org.telegram.ui.Components.be0 d;
+    public Path e;
+    public Drawable f36411f;
 
-    public static void m(c71 c71Var, String str) {
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(c71Var.getContext());
-        alertDialog$Builder.f(new CharSequence[]{LocaleController.getString(R.string.Copy)}, new ng.j(12, c71Var, str));
-        alertDialog$Builder.p();
-    }
-
-    public static void n(c71 c71Var) {
-        TL_account.changeAuthorizationSettings changeauthorizationsettings = new TL_account.changeAuthorizationSettings();
-        TLRPC.TL_authorization tL_authorization = c71Var.f38209b;
-        changeauthorizationsettings.encrypted_requests_disabled = tL_authorization.encrypted_requests_disabled;
-        changeauthorizationsettings.call_requests_disabled = tL_authorization.call_requests_disabled;
-        changeauthorizationsettings.flags = 3;
-        changeauthorizationsettings.hash = tL_authorization.hash;
-        ConnectionsManager.getInstance(c71Var.currentAccount).sendRequest(changeauthorizationsettings, new di.d6(22));
+    @Override
+    public final void draw(Canvas canvas) {
+        int measuredWidth = getMeasuredWidth() >> 1;
+        int measuredHeight = getMeasuredHeight() - org.telegram.messenger.i0.L(30.0f);
+        int L = org.telegram.messenger.i0.L(46.0f) + measuredWidth;
+        ImageReceiver imageReceiver = this.f36408a;
+        imageReceiver.y0((measuredWidth - org.telegram.messenger.i0.L(46.0f)) - org.telegram.messenger.i0.L(30.0f), measuredHeight - org.telegram.messenger.i0.L(30.0f), org.telegram.messenger.i0.L(60.0f), org.telegram.messenger.i0.L(60.0f));
+        this.f36409b.y0(L - org.telegram.messenger.i0.L(30.0f), measuredHeight - org.telegram.messenger.i0.L(30.0f), org.telegram.messenger.i0.L(60.0f), org.telegram.messenger.i0.L(60.0f));
+        Drawable drawable = this.f36411f;
+        drawable.setBounds(org.telegram.ui.Cells.f1.z(2, measuredWidth, drawable), org.telegram.ui.Cells.f1.y(2, measuredHeight, drawable), org.telegram.ui.Cells.f1.w(2, measuredWidth, drawable), org.telegram.ui.Cells.f1.f(2, measuredHeight, drawable));
+        drawable.draw(canvas);
+        Path path = this.e;
+        path.reset();
+        path.addCircle(L, measuredHeight, org.telegram.messenger.i0.L(30.0f), Path.Direction.CW);
+        imageReceiver.h(canvas, null);
+        if (this.f36410c != null) {
+            CropAreaView cropAreaView = this.d.f24615b.f6583a;
+            float L2 = org.telegram.messenger.i0.L(60.0f) / cropAreaView.f23951a;
+            float left = (0.0f - this.d.getLeft()) - cropAreaView.f23953b;
+            canvas.save();
+            canvas.clipPath(path);
+            canvas.scale(L2, L2, 0.0f, 0.0f);
+            canvas.translate(left, (0.0f - this.d.getTop()) - cropAreaView.f23955c);
+            canvas.translate((L - org.telegram.messenger.i0.L(30.0f)) / L2, (measuredHeight - org.telegram.messenger.i0.L(30.0f)) / L2);
+            PhotoViewer.v1().f33491g4 = true;
+            this.f36410c.draw(canvas);
+            PhotoViewer.v1().f33491g4 = false;
+            canvas.restore();
+        }
+        super.draw(canvas);
+        this.f36410c.invalidate();
+        invalidate();
     }
 
     @Override
-    public final void show() {
-        super.show();
-        this.d.d();
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f36408a.P();
+        this.f36409b.P();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f36408a.R();
+        this.f36409b.R();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        this.f36408a.J0(org.telegram.messenger.i0.L(30.0f));
+        this.f36409b.J0(org.telegram.messenger.i0.L(30.0f));
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(86.0f), 1073741824));
     }
 }

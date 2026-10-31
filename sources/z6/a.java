@@ -1,11 +1,7 @@
 package z6;
 
-import dalvik.system.DelegateLastClassLoader;
+import k6.c;
 public abstract class a {
-    public static DelegateLastClassLoader a(ClassLoader classLoader, String str) {
-        return new DelegateLastClassLoader(str, classLoader);
-    }
-
-    public static void b() {
-    }
+    public static final c f54632a = new c("is_user_verifying_platform_authenticator_available_for_credential", 1);
+    public static final c f54633b = new c("is_user_verifying_platform_authenticator_available", 1);
 }

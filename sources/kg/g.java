@@ -1,58 +1,129 @@
 package kg;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.ActionBar.y6;
-public final class g {
-    public Bitmap f16562a;
-    public Canvas f16563b;
-    public final RectF f16564c = new RectF();
-    public final Paint d;
-    public final u6 e;
-    public int f16565f;
-    public boolean f16566g;
-    public int h;
+import android.content.Context;
+import org.telegram.ui.ActionBar.t6;
+public final class g extends g2 {
+    public final int f11090r;
 
-    public g(u6 u6Var) {
-        Paint paint = new Paint(1);
-        this.d = paint;
-        this.f16565f = 0;
-        this.f16566g = true;
-        paint.setColor(0);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        this.e = u6Var;
+    public g(Context context, int i10) {
+        super(context);
+        this.f11090r = i10;
     }
 
-    public final Bitmap a(int i10, int i11) {
-        Canvas canvas;
-        int w02 = y6.w0(y6.f23357d6, this.e);
-        int i12 = (i10 + i11) << 10;
-        int i13 = this.f16565f;
-        Paint paint = this.d;
-        RectF rectF = this.f16564c;
-        if (i12 == i13 && !this.f16566g) {
-            if (w02 != this.h && (canvas = this.f16563b) != null && this.f16562a != null) {
-                this.h = w02;
-                canvas.drawColor(w02, PorterDuff.Mode.SRC);
-                this.f16563b.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paint);
-            }
-        } else {
-            this.f16566g = false;
-            this.f16565f = i12;
-            this.f16562a = Bitmap.createBitmap(i11, i10, Bitmap.Config.ARGB_8888);
-            this.f16563b = new Canvas(this.f16562a);
-            rectF.set(0.0f, 0.0f, i11, i10);
-            Canvas canvas2 = this.f16563b;
-            this.h = w02;
-            canvas2.drawColor(w02);
-            this.f16563b.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paint);
+    @Override
+    public final void a() {
+        switch (this.f11090r) {
+            case 0:
+                f2 f2Var = this.f11092a;
+                f2Var.f11081q = true;
+                f2Var.K = false;
+                f2Var.H = true;
+                f2Var.J = true;
+                f2Var.f11075k = org.telegram.messenger.i0.L(-14.0f);
+                f2 f2Var2 = this.f11092a;
+                f2Var2.f11087x = 2000L;
+                f2Var2.f11088y = 3000;
+                f2Var2.f11082r = 16;
+                f2Var2.G = false;
+                f2Var2.O = 28;
+                f2Var2.Q = t6.Ak;
+                f2Var2.c();
+                return;
+            case 1:
+                super.a();
+                f2 f2Var3 = this.f11092a;
+                f2Var3.f11081q = true;
+                f2Var3.K = false;
+                f2Var3.L = true;
+                f2Var3.H = true;
+                f2Var3.c();
+                return;
+            case 2:
+                f2 f2Var4 = new f2(50);
+                this.f11092a = f2Var4;
+                f2Var4.O = 100;
+                f2Var4.M = false;
+                f2Var4.G = false;
+                f2Var4.K = true;
+                f2Var4.H = true;
+                f2Var4.J = false;
+                f2Var4.f11082r = 4;
+                f2Var4.f11086w = 0.98f;
+                f2Var4.v = 0.98f;
+                f2Var4.f11085u = 0.98f;
+                f2Var4.c();
+                return;
+            case 3:
+                f2 f2Var5 = this.f11092a;
+                f2Var5.f11081q = true;
+                f2Var5.K = false;
+                f2Var5.H = true;
+                f2Var5.J = true;
+                f2Var5.f11075k = org.telegram.messenger.i0.L(-14.0f);
+                f2 f2Var6 = this.f11092a;
+                f2Var6.f11087x = 2000L;
+                f2Var6.f11088y = 3000;
+                f2Var6.f11082r = 16;
+                f2Var6.G = false;
+                f2Var6.O = 28;
+                f2Var6.Q = t6.Ak;
+                f2Var6.c();
+                return;
+            case 4:
+                super.a();
+                f2 f2Var7 = this.f11092a;
+                f2Var7.f11081q = true;
+                f2Var7.K = false;
+                f2Var7.L = true;
+                f2Var7.H = true;
+                f2Var7.c();
+                return;
+            default:
+                super.a();
+                f2 f2Var8 = this.f11092a;
+                f2Var8.f11081q = true;
+                f2Var8.K = false;
+                f2Var8.L = true;
+                f2Var8.H = true;
+                f2Var8.c();
+                return;
         }
-        return this.f16562a;
+    }
+
+    @Override
+    public int getStarsRectWidth() {
+        switch (this.f11090r) {
+            case 2:
+                return getMeasuredWidth();
+            case 3:
+            default:
+                return super.getStarsRectWidth();
+            case 4:
+                return getMeasuredWidth();
+            case 5:
+                return getMeasuredWidth();
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f11090r) {
+            case 0:
+                super.onMeasure(i10, i11);
+                this.f11092a.f11069b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - org.telegram.messenger.i0.L(52.0f));
+                return;
+            case 1:
+                super.onMeasure(i10, i11);
+                this.f11092a.f11069b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - org.telegram.messenger.i0.L(52.0f));
+                return;
+            case 2:
+            default:
+                super.onMeasure(i10, i11);
+                return;
+            case 3:
+                super.onMeasure(i10, i11);
+                this.f11092a.f11069b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - org.telegram.messenger.i0.L(52.0f));
+                return;
+        }
     }
 }

@@ -1,96 +1,230 @@
 package w7;
 
+import android.media.MediaCodec;
+import android.media.MediaExtractor;
+import android.media.MediaFormat;
+import android.opengl.EGL14;
+import android.opengl.EGLExt;
 import android.opengl.GLES20;
-import android.opengl.GLES30;
-import android.util.AtomicFile;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.FileOutputStream;
+import android.os.SystemClock;
+import java.io.IOException;
+import java.nio.Buffer;
 import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
 public abstract class r {
-    public static int a(int i10, String str) {
-        int glCreateShader = GLES20.glCreateShader(i10);
-        GLES20.glShaderSource(glCreateShader, str);
-        GLES20.glCompileShader(glCreateShader);
-        int[] iArr = new int[1];
-        GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
-        if (iArr[0] != 0) {
-            return glCreateShader;
+    public static int a(MediaExtractor mediaExtractor) {
+        for (int i10 = 0; i10 < mediaExtractor.getTrackCount(); i10++) {
+            String string = mediaExtractor.getTrackFormat(i10).getString("mime");
+            if (string != null && string.startsWith("video/")) {
+                return i10;
+            }
         }
-        String glGetShaderInfoLog = GLES20.glGetShaderInfoLog(glCreateShader);
-        GLES20.glDeleteShader(glCreateShader);
-        throw new IllegalStateException(glGetShaderInfoLog);
+        return -1;
     }
 
-    public static boolean b(int i10, AtomicFile atomicFile) {
-        DataInputStream dataInputStream;
-        if (!atomicFile.getBaseFile().isFile()) {
-            return false;
-        }
-        try {
-            dataInputStream = new DataInputStream(atomicFile.openRead());
-        } catch (Exception unused) {
-        }
-        if (dataInputStream.readInt() == 1145524273) {
-            int readInt = dataInputStream.readInt();
-            int readInt2 = dataInputStream.readInt();
-            if (readInt2 > 0 && readInt2 <= 16777216) {
-                int[] iArr = new int[1];
-                byte[] bArr = new byte[readInt2];
-                dataInputStream.readFully(bArr);
-                if (dataInputStream.read() == -1) {
-                    ByteBuffer order = ByteBuffer.allocateDirect(readInt2).order(ByteOrder.nativeOrder());
-                    order.put(bArr).position(0);
-                    while (GLES20.glGetError() != 0) {
-                    }
-                    GLES30.glProgramBinary(i10, readInt, order, readInt2);
-                    int glGetError = GLES20.glGetError();
-                    GLES20.glGetProgramiv(i10, 35714, iArr, 0);
-                    if (glGetError == 0 && iArr[0] != 0) {
-                        dataInputStream.close();
-                        return true;
-                    }
-                    dataInputStream.close();
-                    atomicFile.delete();
-                    return false;
+    public static int b(MediaExtractor mediaExtractor, MediaCodec mediaCodec, MediaCodec mediaCodec2, li.z0 z0Var, long j10, long j11, li.a1 a1Var) {
+        long j12;
+        boolean z10;
+        long j13;
+        long j14;
+        boolean z11;
+        boolean z12;
+        long j15;
+        int i10;
+        boolean z13;
+        boolean z14;
+        int i11;
+        int dequeueOutputBuffer;
+        boolean z15;
+        int dequeueInputBuffer;
+        int i12;
+        int readSampleData;
+        MediaCodec mediaCodec3 = mediaCodec;
+        MediaCodec.BufferInfo bufferInfo = new MediaCodec.BufferInfo();
+        MediaCodec.BufferInfo bufferInfo2 = new MediaCodec.BufferInfo();
+        int i13 = 0;
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        boolean z16 = false;
+        int i14 = 0;
+        boolean z17 = false;
+        boolean z18 = false;
+        int i15 = 0;
+        while (!z16) {
+            if (!z17 && (dequeueInputBuffer = mediaCodec3.dequeueInputBuffer(10000L)) >= 0) {
+                long sampleTime = mediaExtractor.getSampleTime();
+                if ((mediaExtractor.getSampleFlags() & 1) != 0) {
+                    i12 = 1;
+                } else {
+                    i12 = i13;
                 }
-                throw new IllegalStateException("Invalid binary size");
+                if (sampleTime < 0 || (sampleTime >= j11 && i12 != 0)) {
+                    j12 = elapsedRealtime;
+                    z10 = z16;
+                    j14 = 0;
+                    j13 = 10000;
+                    mediaCodec3 = mediaCodec;
+                    mediaCodec3.queueInputBuffer(dequeueInputBuffer, 0, 0, 0L, 4);
+                } else {
+                    ByteBuffer inputBuffer = mediaCodec3.getInputBuffer(dequeueInputBuffer);
+                    if (inputBuffer == null) {
+                        readSampleData = -1;
+                    } else {
+                        readSampleData = mediaExtractor.readSampleData(inputBuffer, i13);
+                    }
+                    if (readSampleData < 0) {
+                        j12 = elapsedRealtime;
+                        z10 = z16;
+                        j14 = 0;
+                        j13 = 10000;
+                        mediaCodec3.queueInputBuffer(dequeueInputBuffer, 0, 0, 0L, 4);
+                        mediaCodec3 = mediaCodec;
+                    } else {
+                        j12 = elapsedRealtime;
+                        z10 = z16;
+                        j14 = 0;
+                        j13 = 10000;
+                        mediaCodec3 = mediaCodec;
+                        mediaCodec3.queueInputBuffer(dequeueInputBuffer, 0, readSampleData, sampleTime, 0);
+                        mediaExtractor.advance();
+                        z11 = true;
+                    }
+                }
+                z17 = true;
+                z11 = true;
+            } else {
+                j12 = elapsedRealtime;
+                z10 = z16;
+                j13 = 10000;
+                j14 = 0;
+                z11 = false;
             }
-            throw new IllegalStateException("Invalid binary length");
+            if (!z18 && (dequeueOutputBuffer = mediaCodec3.dequeueOutputBuffer(bufferInfo, j13)) >= 0) {
+                long j16 = bufferInfo.presentationTimeUs;
+                if (bufferInfo.size > 0 && j16 >= j10 && j16 < j11) {
+                    z15 = true;
+                } else {
+                    z15 = false;
+                }
+                mediaCodec3.releaseOutputBuffer(dequeueOutputBuffer, z15);
+                if (z15) {
+                    synchronized (z0Var.f12357b) {
+                        long elapsedRealtime2 = SystemClock.elapsedRealtime() + 2500;
+                        while (!z0Var.f12365m) {
+                            long elapsedRealtime3 = elapsedRealtime2 - SystemClock.elapsedRealtime();
+                            if (elapsedRealtime3 > j14) {
+                                try {
+                                    z0Var.f12357b.wait(elapsedRealtime3);
+                                    j14 = 0;
+                                } catch (InterruptedException e) {
+                                    Thread.currentThread().interrupt();
+                                    throw new IOException("Video re-encoding was interrupted", e);
+                                }
+                            } else {
+                                throw new IOException("Decoded frame did not arrive");
+                            }
+                        }
+                        z0Var.f12365m = false;
+                    }
+                    z0Var.f12363k.updateTexImage();
+                    z0Var.f12363k.getTransformMatrix(z0Var.f12358c);
+                    int i16 = z0Var.f12356a;
+                    GLES20.glViewport(0, 0, i16, i16);
+                    GLES20.glUseProgram(z0Var.f12361i);
+                    GLES20.glActiveTexture(33984);
+                    GLES20.glBindTexture(36197, z0Var.f12362j);
+                    int glGetAttribLocation = GLES20.glGetAttribLocation(z0Var.f12361i, "aPosition");
+                    int glGetAttribLocation2 = GLES20.glGetAttribLocation(z0Var.f12361i, "aTextureCoord");
+                    FloatBuffer floatBuffer = z0Var.d;
+                    floatBuffer.position(0);
+                    GLES20.glVertexAttribPointer(glGetAttribLocation, 2, 5126, false, 16, (Buffer) z0Var.d);
+                    GLES20.glEnableVertexAttribArray(glGetAttribLocation);
+                    floatBuffer.position(2);
+                    GLES20.glVertexAttribPointer(glGetAttribLocation2, 2, 5126, false, 16, (Buffer) z0Var.d);
+                    GLES20.glEnableVertexAttribArray(glGetAttribLocation2);
+                    z12 = true;
+                    GLES20.glUniformMatrix4fv(GLES20.glGetUniformLocation(z0Var.f12361i, "uTextureMatrix"), 1, false, z0Var.f12358c, 0);
+                    GLES20.glDrawArrays(5, 0, 4);
+                    EGLExt.eglPresentationTimeANDROID(z0Var.f12359f, z0Var.h, j16 * 1000);
+                    if (!EGL14.eglSwapBuffers(z0Var.f12359f, z0Var.h)) {
+                        throw new IllegalStateException("eglSwapBuffers failed: 0x" + Integer.toHexString(EGL14.eglGetError()));
+                    }
+                } else {
+                    z12 = true;
+                }
+                if ((bufferInfo.flags & 4) != 0) {
+                    mediaCodec2.signalEndOfInputStream();
+                    z18 = z12;
+                }
+                z11 = z12;
+            } else {
+                z12 = true;
+            }
+            if (z18) {
+                j15 = 10000;
+            } else {
+                j15 = 0;
+            }
+            int dequeueOutputBuffer2 = mediaCodec2.dequeueOutputBuffer(bufferInfo2, j15);
+            int i17 = i15;
+            z16 = z10;
+            while (true) {
+                if (dequeueOutputBuffer2 != -1) {
+                    if (dequeueOutputBuffer2 == -2) {
+                        MediaFormat outputFormat = mediaCodec2.getOutputFormat();
+                        i17 = li.o.f(outputFormat);
+                        a1Var.s(outputFormat);
+                    } else if (dequeueOutputBuffer2 >= 0) {
+                        ByteBuffer outputBuffer = mediaCodec2.getOutputBuffer(dequeueOutputBuffer2);
+                        int i18 = bufferInfo2.flags;
+                        if ((i18 & 2) != 0) {
+                            z13 = z12;
+                        } else {
+                            z13 = false;
+                        }
+                        if (outputBuffer != null && (i11 = bufferInfo2.size) > 0 && !z13) {
+                            if (i17 > 0 && (i18 & 1) != 0 && i11 > i17) {
+                                bufferInfo2.offset += i17;
+                                bufferInfo2.size = i11 - i17;
+                            }
+                            a1Var.p(outputBuffer, bufferInfo2);
+                            i14++;
+                        }
+                        if ((bufferInfo2.flags & 4) != 0) {
+                            z14 = z12;
+                        } else {
+                            z14 = false;
+                        }
+                        i10 = 0;
+                        mediaCodec2.releaseOutputBuffer(dequeueOutputBuffer2, false);
+                        z16 = z14;
+                        if (z14) {
+                            break;
+                        }
+                        dequeueOutputBuffer2 = mediaCodec2.dequeueOutputBuffer(bufferInfo2, 0L);
+                        z11 = z12;
+                    }
+                    dequeueOutputBuffer2 = mediaCodec2.dequeueOutputBuffer(bufferInfo2, 0L);
+                    z11 = z12;
+                } else {
+                    i10 = 0;
+                    break;
+                }
+            }
+            long elapsedRealtime4 = SystemClock.elapsedRealtime();
+            if (z11) {
+                elapsedRealtime = elapsedRealtime4;
+            } else if (elapsedRealtime4 - j12 <= 5000) {
+                elapsedRealtime = j12;
+            } else {
+                throw new IOException("Video re-encoding stalled");
+            }
+            i15 = i17;
+            i13 = i10;
         }
-        throw new IllegalStateException("Invalid program cache");
+        return i14;
     }
 
-    public static void c(int i10, AtomicFile atomicFile) {
-        FileOutputStream fileOutputStream = null;
-        try {
-            int[] iArr = new int[1];
-            int[] iArr2 = new int[1];
-            GLES20.glGetProgramiv(i10, 34625, iArr, 0);
-            int i11 = iArr[0];
-            if (i11 > 0 && i11 <= 16777216) {
-                ByteBuffer order = ByteBuffer.allocateDirect(i11).order(ByteOrder.nativeOrder());
-                GLES30.glGetProgramBinary(i10, iArr[0], iArr, 0, iArr2, 0, order);
-                int i12 = iArr[0];
-                if (i12 > 0) {
-                    byte[] bArr = new byte[i12];
-                    order.position(0);
-                    order.get(bArr);
-                    fileOutputStream = atomicFile.startWrite();
-                    DataOutputStream dataOutputStream = new DataOutputStream(fileOutputStream);
-                    dataOutputStream.writeInt(1145524273);
-                    dataOutputStream.writeInt(iArr2[0]);
-                    dataOutputStream.writeInt(i12);
-                    dataOutputStream.write(bArr);
-                    dataOutputStream.flush();
-                    atomicFile.finishWrite(fileOutputStream);
-                }
-            }
-        } catch (Exception unused) {
-            if (fileOutputStream != null) {
-                atomicFile.failWrite(fileOutputStream);
-            }
-        }
+    public static void c(java.io.File r3, long r4, long r6, long r8, int r10, int r11, int r12, li.a1 r13) {
+        throw new UnsupportedOperationException("Method not decompiled: w7.r.c(java.io.File, long, long, long, int, int, int, li.a1):void");
     }
 }

@@ -1,9 +1,8 @@
 package h5;
-public abstract class a extends com.googlecode.mp4parser.b {
-    public int f12609f;
+public abstract class a {
+    public static final int f7627a = 0;
 
-    public a(String str) {
-        super(str);
-        this.f12609f = 1;
+    static {
+        a.class.getClassLoader();
     }
 }

@@ -1,81 +1,126 @@
 package x7;
 
-import java.util.ListIterator;
-import java.util.NoSuchElementException;
-public final class ra extends a8.y implements ListIterator {
-    public final int f51684b;
-    public int f51685c;
-    public final ta d;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+public final class ra extends e9.j2 {
+    public final e9.e f53310b;
 
-    public ra(ta taVar, int i10) {
-        super(8);
-        int size = taVar.size();
-        if (i10 >= 0 && i10 <= size) {
-            this.f51684b = size;
-            this.f51685c = i10;
-            this.d = taVar;
-            return;
+    public ra(e9.e eVar) {
+        super(1);
+        this.f53310b = eVar;
+    }
+
+    @Override
+    public final void clear() {
+        this.f53310b.clear();
+    }
+
+    @Override
+    public final boolean contains(Object obj) {
+        Set entrySet = this.f53310b.f6349b.entrySet();
+        entrySet.getClass();
+        try {
+            return entrySet.contains(obj);
+        } catch (ClassCastException | NullPointerException unused) {
+            return false;
         }
-        throw new IndexOutOfBoundsException(w7.c0.c(i10, size, "index"));
-    }
-
-    public final Object a(int i10) {
-        return this.d.get(i10);
     }
 
     @Override
-    public final void add(Object obj) {
-        throw new UnsupportedOperationException();
+    public final boolean isEmpty() {
+        return this.f53310b.isEmpty();
     }
 
     @Override
-    public final boolean hasNext() {
-        if (this.f51685c < this.f51684b) {
+    public final Iterator iterator() {
+        return new e9.d(this.f53310b, (byte) 0);
+    }
+
+    @Override
+    public final boolean remove(Object obj) {
+        Object obj2;
+        if (!contains(obj)) {
+            return false;
+        }
+        Map.Entry entry = (Map.Entry) obj;
+        entry.getClass();
+        f fVar = (f) this.f53310b.e;
+        Object key = entry.getKey();
+        j jVar = fVar.f53142c;
+        jVar.getClass();
+        try {
+            obj2 = jVar.remove(key);
+        } catch (ClassCastException | NullPointerException unused) {
+            obj2 = null;
+        }
+        Collection collection = (Collection) obj2;
+        if (collection != null) {
+            int size = collection.size();
+            collection.clear();
+            fVar.d -= size;
             return true;
         }
-        return false;
+        return true;
     }
 
     @Override
-    public final boolean hasPrevious() {
-        if (this.f51685c > 0) {
-            return true;
+    public final boolean removeAll(Collection collection) {
+        try {
+            if (collection != null) {
+                return w7.t8.a(this, collection);
+            }
+            throw null;
+        } catch (UnsupportedOperationException unused) {
+            boolean z10 = false;
+            for (Object obj : collection) {
+                z10 |= remove(obj);
+            }
+            return z10;
         }
-        return false;
     }
 
     @Override
-    public final Object next() {
-        if (hasNext()) {
-            int i10 = this.f51685c;
-            this.f51685c = i10 + 1;
-            return a(i10);
+    public final boolean retainAll(Collection collection) {
+        int i10;
+        try {
+            if (collection != null) {
+                return super.retainAll(collection);
+            }
+            throw null;
+        } catch (UnsupportedOperationException unused) {
+            int size = collection.size();
+            if (size < 3) {
+                if (size >= 0) {
+                    i10 = size + 1;
+                } else {
+                    throw new IllegalArgumentException(i0.a.i(size, "expectedSize cannot be negative but was: "));
+                }
+            } else if (size < 1073741824) {
+                i10 = (int) Math.ceil(size / 0.75d);
+            } else {
+                i10 = Integer.MAX_VALUE;
+            }
+            HashSet hashSet = new HashSet(i10);
+            for (Object obj : collection) {
+                if (contains(obj) && (obj instanceof Map.Entry)) {
+                    hashSet.add(((Map.Entry) obj).getKey());
+                }
+            }
+            f fVar = (f) this.f53310b.e;
+            a aVar = fVar.f53125a;
+            if (aVar == null) {
+                aVar = new a(fVar, fVar.f53142c);
+                fVar.f53125a = aVar;
+            }
+            return aVar.retainAll(hashSet);
         }
-        throw new NoSuchElementException();
     }
 
     @Override
-    public final int nextIndex() {
-        return this.f51685c;
-    }
-
-    @Override
-    public final Object previous() {
-        if (hasPrevious()) {
-            int i10 = this.f51685c - 1;
-            this.f51685c = i10;
-            return a(i10);
-        }
-        throw new NoSuchElementException();
-    }
-
-    @Override
-    public final int previousIndex() {
-        return this.f51685c - 1;
-    }
-
-    @Override
-    public final void set(Object obj) {
-        throw new UnsupportedOperationException();
+    public final int size() {
+        return this.f53310b.f6349b.size();
     }
 }

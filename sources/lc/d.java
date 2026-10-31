@@ -1,353 +1,369 @@
 package lc;
 
-import java.util.Arrays;
+import e2.j0;
 public abstract class d {
-    public static final int[][] f16973a = {new int[]{1, 1, 1, 1, 1, 1, 1}, new int[]{1, 0, 0, 0, 0, 0, 1}, new int[]{1, 0, 1, 1, 1, 0, 1}, new int[]{1, 0, 1, 1, 1, 0, 1}, new int[]{1, 0, 1, 1, 1, 0, 1}, new int[]{1, 0, 0, 0, 0, 0, 1}, new int[]{1, 1, 1, 1, 1, 1, 1}};
-    public static final int[][] f16974b = {new int[]{1, 1, 1, 1, 1}, new int[]{1, 0, 0, 0, 1}, new int[]{1, 0, 1, 0, 1}, new int[]{1, 0, 0, 0, 1}, new int[]{1, 1, 1, 1, 1}};
-    public static final int[][] f16975c = {new int[]{-1, -1, -1, -1, -1, -1, -1}, new int[]{6, 18, -1, -1, -1, -1, -1}, new int[]{6, 22, -1, -1, -1, -1, -1}, new int[]{6, 26, -1, -1, -1, -1, -1}, new int[]{6, 30, -1, -1, -1, -1, -1}, new int[]{6, 34, -1, -1, -1, -1, -1}, new int[]{6, 22, 38, -1, -1, -1, -1}, new int[]{6, 24, 42, -1, -1, -1, -1}, new int[]{6, 26, 46, -1, -1, -1, -1}, new int[]{6, 28, 50, -1, -1, -1, -1}, new int[]{6, 30, 54, -1, -1, -1, -1}, new int[]{6, 32, 58, -1, -1, -1, -1}, new int[]{6, 34, 62, -1, -1, -1, -1}, new int[]{6, 26, 46, 66, -1, -1, -1}, new int[]{6, 26, 48, 70, -1, -1, -1}, new int[]{6, 26, 50, 74, -1, -1, -1}, new int[]{6, 30, 54, 78, -1, -1, -1}, new int[]{6, 30, 56, 82, -1, -1, -1}, new int[]{6, 30, 58, 86, -1, -1, -1}, new int[]{6, 34, 62, 90, -1, -1, -1}, new int[]{6, 28, 50, 72, 94, -1, -1}, new int[]{6, 26, 50, 74, 98, -1, -1}, new int[]{6, 30, 54, 78, 102, -1, -1}, new int[]{6, 28, 54, 80, 106, -1, -1}, new int[]{6, 32, 58, 84, 110, -1, -1}, new int[]{6, 30, 58, 86, 114, -1, -1}, new int[]{6, 34, 62, 90, 118, -1, -1}, new int[]{6, 26, 50, 74, 98, 122, -1}, new int[]{6, 30, 54, 78, 102, 126, -1}, new int[]{6, 26, 52, 78, 104, 130, -1}, new int[]{6, 30, 56, 82, 108, 134, -1}, new int[]{6, 34, 60, 86, 112, 138, -1}, new int[]{6, 30, 58, 86, 114, 142, -1}, new int[]{6, 34, 62, 90, 118, 146, -1}, new int[]{6, 30, 54, 78, 102, 126, 150}, new int[]{6, 24, 50, 76, 102, 128, 154}, new int[]{6, 28, 54, 80, 106, 132, 158}, new int[]{6, 32, 58, 84, 110, 136, 162}, new int[]{6, 26, 54, 82, 110, 138, 166}, new int[]{6, 30, 58, 86, 114, 142, 170}};
-    public static final int[][] d = {new int[]{8, 0}, new int[]{8, 1}, new int[]{8, 2}, new int[]{8, 3}, new int[]{8, 4}, new int[]{8, 5}, new int[]{8, 7}, new int[]{8, 8}, new int[]{7, 8}, new int[]{5, 8}, new int[]{4, 8}, new int[]{3, 8}, new int[]{2, 8}, new int[]{1, 8}, new int[]{0, 8}};
+    public static final int[] f11743a = {16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15};
+    public static final byte[] f11744b = {65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 43, 47};
 
-    public static int a(b bVar, boolean z10) {
+    public static String a(byte[] bArr) {
         int i10;
-        byte b10;
-        int i11 = bVar.f16969b;
-        int i12 = bVar.f16970c;
-        if (z10) {
-            i10 = i12;
-        } else {
-            i10 = i11;
-        }
-        if (!z10) {
-            i11 = i12;
-        }
-        byte[][] bArr = bVar.f16968a;
-        int i13 = 0;
-        for (int i14 = 0; i14 < i10; i14++) {
-            byte b11 = -1;
-            int i15 = 0;
-            for (int i16 = 0; i16 < i11; i16++) {
-                if (z10) {
-                    b10 = bArr[i14][i16];
-                } else {
-                    b10 = bArr[i16][i14];
-                }
-                if (b10 == b11) {
-                    i15++;
-                } else {
-                    if (i15 >= 5) {
-                        i13 += i15 - 2;
-                    }
-                    i15 = 1;
-                    b11 = b10;
-                }
-            }
-            if (i15 >= 5) {
-                i13 = (i15 - 2) + i13;
-            }
-        }
-        return i13;
-    }
-
-    public static void b(fc.a aVar, jc.c cVar, jc.f fVar, int i10, b bVar) {
         int i11;
         int i12;
-        byte[][] bArr;
         int i13;
         int i14;
-        int i15;
-        int i16;
-        int i17;
-        int i18;
-        int i19;
-        int i20;
-        int i21;
-        byte[][] bArr2 = bVar.f16968a;
-        int i22 = bVar.f16969b;
-        int i23 = bVar.f16970c;
-        for (byte[] bArr3 : bArr2) {
-            Arrays.fill(bArr3, (byte) -1);
+        if (bArr == 0) {
+            return null;
         }
-        int length = f16973a[0].length;
-        e(0, 0, bVar);
-        int i24 = i22 - length;
-        e(i24, 0, bVar);
-        e(0, i24, bVar);
-        d(0, 7, bVar);
-        int i25 = i22 - 8;
-        d(i25, 7, bVar);
-        d(0, i25, bVar);
-        f(7, 0, bVar);
-        int i26 = i23 - 8;
-        f(i26, 0, bVar);
-        int i27 = i23 - 7;
-        f(7, i27, bVar);
-        if (bVar.a(8, i26) != 0) {
-            bVar.b(8, i26, 1);
-            int i28 = fVar.f15566a;
-            if (i28 < 2) {
-                i11 = 0;
-                i12 = 1;
+        int length = (((((bArr.length * 8) + 5) / 6) + 3) / 4) * 4;
+        StringBuilder sb2 = new StringBuilder(length);
+        int i15 = 0;
+        while (true) {
+            int i16 = i15 / 8;
+            if (bArr.length <= i16) {
+                i12 = -1;
             } else {
-                i11 = 0;
-                int[] iArr = f16975c[i28 - 1];
-                i12 = 1;
-                int length2 = iArr.length;
-                int i29 = 0;
-                while (i29 < length2) {
-                    int i30 = iArr[i29];
-                    if (i30 >= 0) {
-                        int length3 = iArr.length;
-                        int i31 = 0;
-                        while (i31 < length3) {
-                            int i32 = iArr[i31];
-                            if (i32 >= 0 && g(bVar.a(i32, i30))) {
-                                int i33 = i32 - 2;
-                                int i34 = i30 - 2;
-                                bArr = bArr2;
-                                i13 = i22;
-                                int i35 = 0;
-                                while (true) {
-                                    if (i35 >= 5) {
-                                        break;
-                                    }
-                                    int[] iArr2 = f16974b[i35];
-                                    int i36 = i35;
-                                    int i37 = 0;
-                                    for (int i38 = 5; i37 < i38; i38 = 5) {
-                                        int i39 = i37;
-                                        bVar.b(i33 + i37, i34 + i36, iArr2[i39]);
-                                        i37 = i39 + 1;
-                                        length3 = length3;
-                                    }
-                                    i35 = i36 + 1;
-                                }
+                if (bArr.length - 1 == i16) {
+                    i10 = 0;
+                } else {
+                    i10 = bArr[i16 + 1];
+                }
+                int i17 = (i15 % 24) / 6;
+                if (i17 != 0) {
+                    if (i17 != 1) {
+                        if (i17 != 2) {
+                            if (i17 != 3) {
+                                i12 = 0;
                             } else {
-                                bArr = bArr2;
-                                i13 = i22;
+                                i11 = bArr[i16];
                             }
-                            i31++;
-                            bArr2 = bArr;
-                            i22 = i13;
-                            length3 = length3;
+                        } else {
+                            i13 = (bArr[i16] << 2) & 60;
+                            i14 = (i10 >> 6) & 3;
                         }
+                    } else {
+                        i13 = (bArr[i16] << 4) & 48;
+                        i14 = (i10 >> 4) & 15;
                     }
-                    i29++;
-                    bArr2 = bArr2;
-                    i22 = i22;
+                    i12 = i13 | i14;
+                } else {
+                    i11 = bArr[i16] >> 2;
                 }
+                i12 = i11 & 63;
             }
-            byte[][] bArr4 = bArr2;
-            int i40 = i22;
-            int i41 = 8;
-            while (i41 < i25) {
-                int i42 = i41 + 1;
-                int i43 = i42 % 2;
-                if (g(bVar.a(i41, 6))) {
-                    bVar.b(i41, 6, i43);
-                }
-                if (g(bVar.a(6, i41))) {
-                    bVar.b(6, i41, i43);
-                }
-                i41 = i42;
+            if (i12 < 0) {
+                break;
             }
-            fc.a aVar2 = new fc.a();
-            if (i10 >= 0 && i10 < 8) {
-                int i44 = (cVar.f15552a << 3) | i10;
-                aVar2.b(i44, 5);
-                aVar2.b(c(i44, 1335), 10);
-                fc.a aVar3 = new fc.a();
-                aVar3.b(21522, 15);
-                if (aVar2.f10403b == aVar3.f10403b) {
-                    int i45 = i11;
-                    while (true) {
-                        int[] iArr3 = aVar2.f10402a;
-                        if (i45 >= iArr3.length) {
-                            break;
-                        }
-                        iArr3[i45] = iArr3[i45] ^ aVar3.f10402a[i45];
-                        i45++;
-                    }
-                    if (aVar2.f10403b == 15) {
-                        int i46 = i11;
-                        while (true) {
-                            int i47 = aVar2.f10403b;
-                            if (i46 >= i47) {
+            sb2.append((char) f11744b[i12]);
+            i15 += 6;
+        }
+        for (int length2 = sb2.length(); length2 < length; length2++) {
+            sb2.append('=');
+        }
+        return sb2.toString();
+    }
+
+    public static boolean b(String str) {
+        if (str == null || str.length() == 0) {
+            return false;
+        }
+        int length = str.length();
+        for (int i10 = 0; i10 < length; i10++) {
+            char charAt = str.charAt(i10);
+            if (charAt != '\t' && charAt != ' ' && charAt != '\"' && charAt != ',' && charAt != '/' && charAt != '{' && charAt != '}' && charAt != '(' && charAt != ')') {
+                switch (charAt) {
+                    case ':':
+                    case ';':
+                    case '<':
+                    case '=':
+                    case '>':
+                    case '?':
+                    case '@':
+                        break;
+                    default:
+                        switch (charAt) {
+                            case '[':
+                            case '\\':
+                            case ']':
                                 break;
-                            }
-                            boolean d10 = aVar2.d((i47 - 1) - i46);
-                            int[] iArr4 = d[i46];
-                            int i48 = iArr4[i11];
-                            byte[] bArr5 = bArr4[iArr4[i12]];
-                            byte b10 = d10 ? (byte) 1 : (byte) 0;
-                            bArr5[i48] = b10;
-                            if (i46 < 8) {
-                                i21 = (i40 - i46) - 1;
-                                i20 = 8;
-                            } else {
-                                i20 = (i46 - 8) + i27;
-                                i21 = 8;
-                            }
-                            bArr4[i20][i21] = b10;
-                            i46++;
+                            default:
                         }
-                        if (i28 >= 7) {
-                            fc.a aVar4 = new fc.a();
-                            aVar4.b(i28, 6);
-                            aVar4.b(c(i28, 7973), 12);
-                            if (aVar4.f10403b == 18) {
-                                int i49 = 17;
-                                for (int i50 = i11; i50 < 6; i50++) {
-                                    for (int i51 = i11; i51 < 3; i51++) {
-                                        boolean d11 = aVar4.d(i49);
-                                        i49--;
-                                        int i52 = (i23 - 11) + i51;
-                                        byte[] bArr6 = bArr4[i52];
-                                        byte b11 = d11 ? (byte) 1 : (byte) 0;
-                                        bArr6[i50] = b11;
-                                        bArr4[i50][i52] = b11;
-                                    }
-                                }
-                            } else {
-                                throw new Exception("should not happen but we got: " + aVar4.f10403b);
-                            }
-                        }
-                        int i53 = i40 - 1;
-                        int i54 = i23 - 1;
-                        int i55 = i11;
-                        int i56 = -1;
-                        while (i53 > 0) {
-                            if (i53 == 6) {
-                                i53--;
-                            }
-                            while (i54 >= 0 && i54 < i23) {
-                                for (int i57 = i11; i57 < 2; i57++) {
-                                    int i58 = i53 - i57;
-                                    if (g(bVar.a(i58, i54))) {
-                                        if (i55 < aVar.f10403b) {
-                                            boolean d12 = aVar.d(i55);
-                                            i55++;
-                                            i14 = d12;
-                                        } else {
-                                            i14 = i11;
-                                        }
-                                        if (i10 != -1) {
-                                            switch (i10) {
-                                                case 0:
-                                                    i15 = i54 + i58;
-                                                    i16 = i15 & 1;
-                                                    break;
-                                                case 1:
-                                                    i16 = i54 & 1;
-                                                    break;
-                                                case 2:
-                                                    i16 = i58 % 3;
-                                                    break;
-                                                case 3:
-                                                    i16 = (i54 + i58) % 3;
-                                                    break;
-                                                case 4:
-                                                    i16 = ((i58 / 3) + (i54 / 2)) & 1;
-                                                    break;
-                                                case 5:
-                                                    int i59 = i54 * i58;
-                                                    i16 = (i59 % 3) + (i59 & 1);
-                                                    break;
-                                                case 6:
-                                                    int i60 = i54 * i58;
-                                                    i17 = i60 & 1;
-                                                    i18 = i60 % 3;
-                                                    i15 = i18 + i17;
-                                                    i16 = i15 & 1;
-                                                    break;
-                                                case 7:
-                                                    i18 = (i54 * i58) % 3;
-                                                    i17 = (i54 + i58) & 1;
-                                                    i15 = i18 + i17;
-                                                    i16 = i15 & 1;
-                                                    break;
-                                                default:
-                                                    throw new IllegalArgumentException(ic.a.i(i10, "Invalid mask pattern: "));
-                                            }
-                                            if (i16 == 0) {
-                                                i19 = i12;
-                                            } else {
-                                                i19 = i11;
-                                            }
-                                            if (i19 != 0) {
-                                                i14 = ~i14 ? 1 : 0;
-                                            }
-                                        }
-                                        bArr4[i54][i58] = (byte) i14;
-                                    }
-                                }
-                                i54 += i56;
-                            }
-                            i56 = -i56;
-                            i54 += i56;
-                            i53 -= 2;
-                        }
-                        if (i55 == aVar.f10403b) {
-                            return;
-                        }
-                        throw new Exception("Not all bits consumed: " + i55 + '/' + aVar.f10403b);
-                    }
-                    throw new Exception("should not happen but we got: " + aVar2.f10403b);
                 }
-                throw new IllegalArgumentException("Sizes don't match");
             }
-            throw new Exception("Invalid mask pattern");
+            return false;
         }
-        throw new Exception();
+        return true;
     }
 
-    public static int c(int i10, int i11) {
-        if (i11 != 0) {
-            int numberOfLeadingZeros = Integer.numberOfLeadingZeros(i11);
-            int i12 = 32 - numberOfLeadingZeros;
-            int i13 = i10 << (31 - numberOfLeadingZeros);
-            while (32 - Integer.numberOfLeadingZeros(i13) >= i12) {
-                i13 ^= i11 << ((32 - Integer.numberOfLeadingZeros(i13)) - i12);
-            }
-            return i13;
-        }
-        throw new IllegalArgumentException("0 polynomial");
-    }
-
-    public static void d(int i10, int i11, b bVar) {
-        for (int i12 = 0; i12 < 8; i12++) {
-            int i13 = i10 + i12;
-            if (g(bVar.a(i13, i11))) {
-                bVar.b(i13, i11, 0);
+    public static void c(c5.x xVar, int[] iArr, int[] iArr2, j0 j0Var) {
+        int i10;
+        int p5;
+        int p9;
+        int i11 = 0;
+        while (i11 < iArr2.length) {
+            int m10 = j0Var.m(xVar, iArr);
+            if (m10 >= 0 && m10 <= 15) {
+                iArr2[i11] = m10;
             } else {
-                throw new Exception();
+                switch (m10) {
+                    case 16:
+                        i10 = iArr2[i11 - 1];
+                        p5 = xVar.p(iArr, 2) + 3;
+                        break;
+                    case 17:
+                        p9 = xVar.p(iArr, 3) + 3;
+                        p5 = p9;
+                        i10 = 0;
+                        break;
+                    case 18:
+                        p9 = xVar.p(iArr, 7) + 11;
+                        p5 = p9;
+                        i10 = 0;
+                        break;
+                    default:
+                        throw new Exception(String.format("[%s] Bad code length '%d' at the bit index '%d'.", d.class.getSimpleName(), Integer.valueOf(m10), iArr));
+                }
+                for (int i12 = 0; i12 < p5; i12++) {
+                    iArr2[i11 + i12] = i10;
+                }
+                i11 += p5 - 1;
             }
+            i11++;
         }
     }
 
-    public static void e(int i10, int i11, b bVar) {
-        for (int i12 = 0; i12 < 7; i12++) {
-            int[] iArr = f16973a[i12];
-            for (int i13 = 0; i13 < 7; i13++) {
-                bVar.b(i10 + i13, i11 + i12, iArr[i13]);
-            }
+    public static int d(c5.x xVar, int[] iArr, j0 j0Var) {
+        int i10;
+        int m10 = j0Var.m(xVar, iArr);
+        int i11 = 2;
+        int i12 = 5;
+        switch (m10) {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+                return m10 + 1;
+            case 4:
+                i11 = 1;
+                break;
+            case 5:
+                i11 = 1;
+                i12 = 7;
+                break;
+            case 6:
+                i12 = 9;
+                break;
+            case 7:
+                i12 = 13;
+                break;
+            case 8:
+                i12 = 17;
+                i11 = 3;
+                break;
+            case 9:
+                i12 = 25;
+                i11 = 3;
+                break;
+            case 10:
+                i12 = 33;
+                i11 = 4;
+                break;
+            case 11:
+                i12 = 49;
+                i11 = 4;
+                break;
+            case 12:
+                i10 = 65;
+                i11 = 5;
+                i12 = i10;
+                break;
+            case 13:
+                i10 = 97;
+                i11 = 5;
+                i12 = i10;
+                break;
+            case 14:
+                i12 = 129;
+                i11 = 6;
+                break;
+            case 15:
+                i12 = 193;
+                i11 = 6;
+                break;
+            case 16:
+                i12 = 257;
+                i11 = 7;
+                break;
+            case 17:
+                i12 = 385;
+                i11 = 7;
+                break;
+            case 18:
+                i12 = 513;
+                i11 = 8;
+                break;
+            case 19:
+                i12 = 769;
+                i11 = 8;
+                break;
+            case 20:
+                i12 = 1025;
+                i11 = 9;
+                break;
+            case 21:
+                i12 = 1537;
+                i11 = 9;
+                break;
+            case 22:
+                i12 = 2049;
+                i11 = 10;
+                break;
+            case 23:
+                i12 = 3073;
+                i11 = 10;
+                break;
+            case 24:
+                i12 = 4097;
+                i11 = 11;
+                break;
+            case 25:
+                i12 = 6145;
+                i11 = 11;
+                break;
+            case 26:
+                i12 = 8193;
+                i11 = 12;
+                break;
+            case 27:
+                i12 = 12289;
+                i11 = 12;
+                break;
+            case 28:
+                i12 = 16385;
+                i11 = 13;
+                break;
+            case 29:
+                i12 = 24577;
+                i11 = 13;
+                break;
+            default:
+                throw new Exception(String.format("[%s] Bad distance code '%d' at the bit index '%d'.", d.class.getSimpleName(), Integer.valueOf(m10), Integer.valueOf(iArr[0])));
         }
+        return xVar.p(iArr, i11) + i12;
     }
 
-    public static void f(int i10, int i11, b bVar) {
-        for (int i12 = 0; i12 < 7; i12++) {
-            int i13 = i11 + i12;
-            if (g(bVar.a(i10, i13))) {
-                bVar.b(i10, i13, 0);
-            } else {
-                throw new Exception();
-            }
+    public static void e(c5.x xVar, int[] iArr, j0[] j0VarArr) {
+        int p5 = xVar.p(iArr, 5) + 257;
+        int p9 = xVar.p(iArr, 5) + 1;
+        int p10 = xVar.p(iArr, 4) + 4;
+        int[] iArr2 = new int[19];
+        for (int i10 = 0; i10 < p10; i10++) {
+            iArr2[f11743a[i10]] = (byte) xVar.p(iArr, 3);
         }
+        j0 j0Var = new j0(iArr2);
+        int[] iArr3 = new int[p5];
+        c(xVar, iArr, iArr3, j0Var);
+        j0 j0Var2 = new j0(iArr3);
+        int[] iArr4 = new int[p9];
+        c(xVar, iArr, iArr4, j0Var);
+        j0 j0Var3 = new j0(iArr4);
+        j0VarArr[0] = j0Var2;
+        j0VarArr[1] = j0Var3;
     }
 
-    public static boolean g(int i10) {
-        if (i10 == -1) {
-            return true;
+    public static int f(c5.x xVar, int[] iArr, int i10) {
+        int i11;
+        int i12 = 1;
+        switch (i10) {
+            case 257:
+            case 258:
+            case 259:
+            case 260:
+            case 261:
+            case 262:
+            case 263:
+            case 264:
+                return i10 - 254;
+            case 265:
+                i11 = 11;
+                break;
+            case 266:
+                i11 = 13;
+                break;
+            case 267:
+                i11 = 15;
+                break;
+            case 268:
+                i11 = 17;
+                break;
+            case 269:
+                i11 = 19;
+                i12 = 2;
+                break;
+            case 270:
+                i11 = 23;
+                i12 = 2;
+                break;
+            case 271:
+                i11 = 27;
+                i12 = 2;
+                break;
+            case 272:
+                i11 = 31;
+                i12 = 2;
+                break;
+            case 273:
+                i11 = 35;
+                i12 = 3;
+                break;
+            case 274:
+                i11 = 43;
+                i12 = 3;
+                break;
+            case 275:
+                i11 = 51;
+                i12 = 3;
+                break;
+            case 276:
+                i11 = 59;
+                i12 = 3;
+                break;
+            case 277:
+                i11 = 67;
+                i12 = 4;
+                break;
+            case 278:
+                i11 = 83;
+                i12 = 4;
+                break;
+            case 279:
+                i11 = 99;
+                i12 = 4;
+                break;
+            case 280:
+                i11 = 115;
+                i12 = 4;
+                break;
+            case 281:
+                i11 = 131;
+                i12 = 5;
+                break;
+            case 282:
+                i11 = 163;
+                i12 = 5;
+                break;
+            case 283:
+                i11 = 195;
+                i12 = 5;
+                break;
+            case 284:
+                i11 = 227;
+                i12 = 5;
+                break;
+            case 285:
+                return 258;
+            default:
+                throw new Exception(String.format("[%s] Bad literal/length code '%d' at the bit index '%d'.", d.class.getSimpleName(), Integer.valueOf(i10), Integer.valueOf(iArr[0])));
         }
-        return false;
+        return xVar.p(iArr, i12) + i11;
     }
 }

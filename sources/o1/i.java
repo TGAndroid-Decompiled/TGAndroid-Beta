@@ -1,6 +1,8 @@
 package o1;
-public abstract class i {
-    public abstract float a(Object obj);
+public final class i {
+    public float f13940a;
 
-    public abstract void b(Object obj, float f7);
+    public i(float f7) {
+        this.f13940a = f7;
+    }
 }

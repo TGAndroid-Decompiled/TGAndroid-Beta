@@ -1,4 +1,3 @@
 package ga;
-public interface a {
-    StackTraceElement[] w(StackTraceElement[] stackTraceElementArr);
+public final class a {
 }

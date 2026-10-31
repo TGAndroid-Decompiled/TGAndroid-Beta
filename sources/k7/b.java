@@ -1,13 +1,16 @@
 package k7;
 public abstract class b {
-    public static final l6.c f16426a;
-    public static final l6.c[] f16427b;
+    public static final k6.c f10953a;
+    public static final k6.c[] f10954b;
+    public static final k6.c f10955c;
+    public static final k6.c[] d;
 
     static {
-        l6.c cVar = new l6.c("sms_code_autofill", 2L);
-        l6.c cVar2 = new l6.c("sms_code_browser", 2L);
-        l6.c cVar3 = new l6.c("sms_retrieve", 1L);
-        f16426a = cVar3;
-        f16427b = new l6.c[]{cVar, cVar2, cVar3, new l6.c("user_consent", 3L)};
+        k6.c cVar = new k6.c("CLIENT_TELEMETRY", 1L);
+        f10953a = cVar;
+        f10954b = new k6.c[]{cVar};
+        k6.c cVar2 = new k6.c("moduleinstall", 7L);
+        f10955c = cVar2;
+        d = new k6.c[]{cVar2};
     }
 }

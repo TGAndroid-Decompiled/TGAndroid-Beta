@@ -1,39 +1,35 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
 import android.graphics.RectF;
-public final class bl implements org.telegram.ui.Components.fl0 {
-    public final wn f38051a;
+import android.view.ViewTreeObserver;
+public final class bl implements ViewTreeObserver.OnPreDrawListener {
+    public final int f36276a;
+    public final Object f36277b;
 
-    public bl(wn wnVar) {
-        this.f38051a = wnVar;
+    public bl(Object obj, int i10) {
+        this.f36276a = i10;
+        this.f36277b = obj;
     }
 
     @Override
-    public final boolean f() {
-        return true;
-    }
-
-    @Override
-    public final boolean i() {
-        return false;
-    }
-
-    @Override
-    public final boolean o() {
-        return false;
-    }
-
-    @Override
-    public final void p(android.view.View r24, bh.x0 r25, boolean r26, boolean r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bl.p(android.view.View, bh.x0, boolean, boolean):void");
-    }
-
-    @Override
-    public final void m() {
-    }
-
-    @Override
-    public final void l(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
+    public final boolean onPreDraw() {
+        org.telegram.ui.ActionBar.l lVar;
+        int i10 = this.f36276a;
+        Object obj = this.f36277b;
+        switch (i10) {
+            case 0:
+                lVar = ((org.telegram.ui.ActionBar.k2) ((cl) obj).d).actionBar;
+                lVar.invalidate();
+                return true;
+            case 1:
+                ProfileActivity profileActivity = (ProfileActivity) obj;
+                RectF rectF = ProfileActivity.R6;
+                profileActivity.x5();
+                profileActivity.y5();
+                return true;
+            default:
+                ((u61) obj).s0();
+                return true;
+        }
     }
 }

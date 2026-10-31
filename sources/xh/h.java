@@ -1,52 +1,57 @@
 package xh;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Canvas;
-import m4.w1;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class h implements Runnable {
-    public final int f51940a;
-    public final i f51941b;
-    public final int f51942c;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.z20;
+import org.telegram.ui.ActionBar.a7;
+import org.telegram.ui.ActionBar.p6;
+import org.telegram.ui.ActionBar.t6;
+import w7.b6;
+public final class h extends FrameLayout {
+    public final ImageView f53770a;
+    public final TextView f53771b;
+    public final TextView f53772c;
 
-    public h(i iVar, int i10, int i11) {
-        this.f51940a = i11;
-        this.f51941b = iVar;
-        this.f51942c = i10;
+    public h(Context context, p6 p6Var, boolean z10) {
+        super(context);
+        float f7;
+        ImageView imageView = new ImageView(context);
+        this.f53770a = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        int i10 = t6.G6;
+        a7.t(imageView, i10, p6Var, PorterDuff.Mode.SRC_IN);
+        addView(imageView, b6.d(24, 24.0f, 51, 20.0f, 11.46f, 0.0f, 0.0f));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        if (z10) {
+            f7 = 2.0f;
+        } else {
+            f7 = 9.8f;
+        }
+        addView(linearLayout, b6.d(-1, -2.0f, 23, 64.0f, f7, 24.0f, z10 ? 4.0f : 9.8f));
+        TextView textView = new TextView(context);
+        this.f53771b = textView;
+        a7.V(textView, i10, p6Var);
+        textView.setTypeface(org.telegram.messenger.i0.o());
+        textView.setTextSize(1, 14.0f);
+        TextView f10 = z20.f(linearLayout, textView, b6.t(-1, -2, 55, 0, 0, 0, 1), context);
+        this.f53772c = f10;
+        a7.V(f10, t6.f21330z6, p6Var);
+        f10.setTextSize(1, 14.0f);
+        linearLayout.addView(f10, b6.t(-1, -2, 55, 0, 0, 0, 0));
     }
 
-    @Override
-    public final void run() {
-        switch (this.f51940a) {
-            case 0:
-                i iVar = this.f51941b;
-                int i10 = iVar.f51951k;
-                w1[] w1VarArr = iVar.f51946c;
-                int i11 = this.f51942c;
-                if (w1VarArr[i11] == null) {
-                    w1VarArr[i11] = new w1(i10);
-                }
-                Bitmap bitmap = iVar.e;
-                if (bitmap == null) {
-                    iVar.e = Bitmap.createBitmap(i10, i10, Bitmap.Config.ALPHA_8);
-                    iVar.f51947f = new Canvas(iVar.e);
-                } else {
-                    bitmap.eraseColor(0);
-                }
-                iVar.a(iVar.f51947f, iVar.f51955o);
-                Utilities.copyBitmaps(iVar.e, (Bitmap) w1VarArr[i11].f18292b);
-                AndroidUtilities.runOnUIThread(new h(iVar, i11, 1));
-                return;
-            default:
-                i iVar2 = this.f51941b;
-                int i12 = this.f51942c;
-                iVar2.d = i12;
-                iVar2.f51948g.setShader((BitmapShader) iVar2.f51946c[i12].f18293c);
-                iVar2.f51950j = false;
-                iVar2.f51956p = true;
-                return;
-        }
+    public final void a(int i10, CharSequence charSequence, CharSequence charSequence2) {
+        this.f53770a.setImageResource(i10);
+        this.f53771b.setText(charSequence);
+        this.f53772c.setText(charSequence2);
+    }
+
+    public void setText(CharSequence charSequence) {
+        this.f53772c.setText(charSequence);
     }
 }

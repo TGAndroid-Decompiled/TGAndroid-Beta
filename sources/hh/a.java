@@ -1,4 +1,6 @@
 package hh;
-public interface a extends ri.a {
-    eh.d f();
+public interface a {
+    void c(int i10);
+
+    void d(float f7);
 }

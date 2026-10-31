@@ -1,179 +1,165 @@
 package jg;
 
-import android.content.SharedPreferences;
-import android.text.TextUtils;
-import j$.time.Instant;
-import j$.time.ZoneId;
-import j$.time.format.TextStyle;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.SerializedData;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.b10;
-public final class g2 {
-    public static volatile g2[] e = new g2[4];
-    public static final Object[] f15714f = new Object[4];
-    public final int f15715a;
-    public boolean f15716b;
-    public boolean f15717c;
-    public final ArrayList d = new ArrayList();
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+public final class g2 extends i {
+    public final int f9981n;
+    public RectF f9982r;
 
-    static {
-        for (int i10 = 0; i10 < 4; i10++) {
-            f15714f[i10] = new Object();
-        }
+    public g2(j jVar, Context context, int i10) {
+        super(jVar, context);
+        this.f9981n = i10;
     }
 
-    public g2(int i10) {
-        this.f15715a = i10;
-    }
-
-    public static g2 b(int i10) {
-        g2 g2Var;
-        g2 g2Var2 = e[i10];
-        if (g2Var2 == null) {
-            synchronized (f15714f[i10]) {
-                try {
-                    g2Var = e[i10];
-                    if (g2Var == null) {
-                        g2[] g2VarArr = e;
-                        g2 g2Var3 = new g2(i10);
-                        g2VarArr[i10] = g2Var3;
-                        g2Var = g2Var3;
-                    }
-                } catch (Throwable th2) {
-                    throw th2;
+    @Override
+    public final int a(float f7, float f10) {
+        float measuredWidth;
+        float measuredWidth2;
+        float measuredWidth3;
+        switch (this.f9981n) {
+            case 0:
+                float L = org.telegram.messenger.i0.L(19.5f);
+                float L2 = org.telegram.messenger.i0.L(1.0f) + L;
+                float f11 = L2 * 2.0f;
+                float B = c3.i0.B(getMeasuredHeight(), f11, 2.0f, L2);
+                if (f7 > L2 - L && f10 > B - L && f7 < L2 + L && f10 < B + L) {
+                    return 1;
                 }
-            }
-            return g2Var;
-        }
-        return g2Var2;
-    }
-
-    public static String e(TLRPC.TL_timezone tL_timezone, boolean z10) {
-        if (tL_timezone == null) {
-            return null;
-        }
-        if (z10) {
-            return tL_timezone.name + ", " + f(tL_timezone);
-        }
-        return tL_timezone.name;
-    }
-
-    public static String f(TLRPC.TL_timezone tL_timezone) {
-        String str;
-        String str2;
-        int i10 = tL_timezone.utc_offset;
-        if (i10 == 0) {
-            return "GMT";
-        }
-        if (i10 < 0) {
-            str = "-";
-        } else {
-            str = "+";
-        }
-        String concat = "GMT".concat(str);
-        int abs = Math.abs(tL_timezone.utc_offset) / 60;
-        int i11 = abs / 60;
-        int i12 = abs % 60;
-        StringBuilder u10 = a1.g.u(concat);
-        String str3 = "";
-        if (i11 >= 10) {
-            str2 = "";
-        } else {
-            str2 = "0";
-        }
-        u10.append(str2);
-        u10.append(i11);
-        StringBuilder u11 = a1.g.u(b10.u(u10.toString(), ":"));
-        if (i12 < 10) {
-            str3 = "0";
-        }
-        u11.append(str3);
-        u11.append(i12);
-        return u11.toString();
-    }
-
-    public final TLRPC.TL_timezone a(String str) {
-        if (str == null) {
-            return null;
-        }
-        g();
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.d;
-            if (i10 >= arrayList.size()) {
-                return null;
-            }
-            TLRPC.TL_timezone tL_timezone = (TLRPC.TL_timezone) arrayList.get(i10);
-            if (TextUtils.equals(tL_timezone.f22168id, str)) {
-                return tL_timezone;
-            }
-            i10++;
+                if (f7 > ((getMeasuredWidth() - f11) + L2) - L && f10 > B - L && f7 < (getMeasuredWidth() - f11) + L2 + L && f10 < B + L) {
+                    return 2;
+                }
+                if (Math.pow(f10 - measuredWidth, 2.0d) + Math.pow(f7 - measuredWidth, 2.0d) < Math.pow(getMeasuredWidth() / 2.0f, 2.0d)) {
+                    return 3;
+                }
+                return 0;
+            case 1:
+                float L3 = org.telegram.messenger.i0.L(19.5f);
+                float L4 = org.telegram.messenger.i0.L(1.0f) + L3;
+                float f12 = L4 * 2.0f;
+                float B2 = c3.i0.B(getMeasuredHeight(), f12, 2.0f, L4);
+                if (f7 > L4 - L3 && f10 > B2 - L3 && f7 < L4 + L3 && f10 < B2 + L3) {
+                    return 1;
+                }
+                if (f7 > ((getMeasuredWidth() - f12) + L4) - L3 && f10 > B2 - L3 && f7 < (getMeasuredWidth() - f12) + L4 + L3 && f10 < B2 + L3) {
+                    return 2;
+                }
+                if (Math.pow(f10 - measuredWidth2, 2.0d) + Math.pow(f7 - measuredWidth2, 2.0d) < Math.pow(getMeasuredWidth() / 2.0f, 2.0d)) {
+                    return 3;
+                }
+                return 0;
+            default:
+                float L5 = org.telegram.messenger.i0.L(19.5f);
+                float L6 = org.telegram.messenger.i0.L(1.0f) + L5;
+                float f13 = L6 * 2.0f;
+                float B3 = c3.i0.B(getMeasuredHeight(), f13, 2.0f, L6);
+                if (f7 > L6 - L5 && f10 > B3 - L5 && f7 < L6 + L5 && f10 < B3 + L5) {
+                    return 1;
+                }
+                if (f7 > ((getMeasuredWidth() - f13) + L6) - L5 && f10 > B3 - L5 && f7 < (getMeasuredWidth() - f13) + L6 + L5 && f10 < B3 + L5) {
+                    return 2;
+                }
+                if (Math.pow(f10 - measuredWidth3, 2.0d) + Math.pow(f7 - measuredWidth3, 2.0d) < Math.pow(getMeasuredWidth() / 2.0f, 2.0d)) {
+                    return 3;
+                }
+                return 0;
         }
     }
 
-    public final java.lang.String c() {
-        throw new UnsupportedOperationException("Method not decompiled: jg.g2.c():java.lang.String");
+    @Override
+    public final void onDraw(Canvas canvas) {
+        switch (this.f9981n) {
+            case 0:
+                RectF rectF = this.f9982r;
+                super.onDraw(canvas);
+                int saveCount = canvas.getSaveCount();
+                float showAlpha = getShowAlpha();
+                if (showAlpha > 0.0f) {
+                    if (showAlpha < 1.0f) {
+                        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (showAlpha * 255.0f), 31);
+                    }
+                    float N = org.telegram.messenger.i0.N(5.66f);
+                    float L = org.telegram.messenger.i0.L(1.0f) + N + org.telegram.messenger.i0.L(15.0f);
+                    float measuredWidth = (getMeasuredWidth() / 2) - L;
+                    float f7 = (2.0f * measuredWidth) + L;
+                    rectF.set(L, L, f7, f7);
+                    Paint paint = this.f10011a;
+                    canvas.drawArc(rectF, 0.0f, 180.0f, false, paint);
+                    canvas.drawArc(rectF, 180.0f, 180.0f, false, paint);
+                    float f10 = measuredWidth + L;
+                    Paint paint2 = this.f10013c;
+                    canvas.drawCircle(L, f10, N, paint2);
+                    Paint paint3 = this.f10012b;
+                    canvas.drawCircle(L, f10, N - org.telegram.messenger.i0.L(1.0f), paint3);
+                    canvas.drawCircle(f7, f10, N, paint2);
+                    canvas.drawCircle(f7, f10, N - org.telegram.messenger.i0.L(1.0f), paint3);
+                    canvas.restoreToCount(saveCount);
+                    return;
+                }
+                return;
+            case 1:
+                RectF rectF2 = this.f9982r;
+                super.onDraw(canvas);
+                int saveCount2 = canvas.getSaveCount();
+                float showAlpha2 = getShowAlpha();
+                if (showAlpha2 > 0.0f) {
+                    if (showAlpha2 < 1.0f) {
+                        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (showAlpha2 * 255.0f), 31);
+                    }
+                    float N2 = org.telegram.messenger.i0.N(5.66f);
+                    float L2 = org.telegram.messenger.i0.L(1.0f) + N2 + org.telegram.messenger.i0.L(15.0f);
+                    float measuredWidth2 = (getMeasuredWidth() / 2.0f) - L2;
+                    float f11 = (2.0f * measuredWidth2) + L2;
+                    rectF2.set(L2, L2, f11, f11);
+                    Paint paint4 = this.f10011a;
+                    canvas.drawArc(rectF2, 0.0f, 180.0f, false, paint4);
+                    canvas.drawArc(rectF2, 180.0f, 180.0f, false, paint4);
+                    float f12 = measuredWidth2 + L2;
+                    Paint paint5 = this.f10013c;
+                    canvas.drawCircle(L2, f12, N2, paint5);
+                    Paint paint6 = this.f10012b;
+                    canvas.drawCircle(L2, f12, N2 - org.telegram.messenger.i0.L(1.0f), paint6);
+                    canvas.drawCircle(f11, f12, N2, paint5);
+                    canvas.drawCircle(f11, f12, N2 - org.telegram.messenger.i0.L(1.0f), paint6);
+                    canvas.restoreToCount(saveCount2);
+                    return;
+                }
+                return;
+            default:
+                RectF rectF3 = this.f9982r;
+                super.onDraw(canvas);
+                int saveCount3 = canvas.getSaveCount();
+                float showAlpha3 = getShowAlpha();
+                if (showAlpha3 > 0.0f) {
+                    if (showAlpha3 < 1.0f) {
+                        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (showAlpha3 * 255.0f), 31);
+                    }
+                    float N3 = org.telegram.messenger.i0.N(5.66f);
+                    float L3 = org.telegram.messenger.i0.L(1.0f) + N3 + org.telegram.messenger.i0.L(15.0f);
+                    float measuredWidth3 = (getMeasuredWidth() / 2) - L3;
+                    float f13 = (2.0f * measuredWidth3) + L3;
+                    rectF3.set(L3, L3, f13, f13);
+                    Paint paint7 = this.f10011a;
+                    canvas.drawArc(rectF3, 0.0f, 180.0f, false, paint7);
+                    canvas.drawArc(rectF3, 180.0f, 180.0f, false, paint7);
+                    float f14 = measuredWidth3 + L3;
+                    Paint paint8 = this.f10013c;
+                    canvas.drawCircle(L3, f14, N3, paint8);
+                    Paint paint9 = this.f10012b;
+                    canvas.drawCircle(L3, f14, N3 - org.telegram.messenger.i0.L(1.0f), paint9);
+                    canvas.drawCircle(f13, f14, N3, paint8);
+                    canvas.drawCircle(f13, f14, N3 - org.telegram.messenger.i0.L(1.0f), paint9);
+                    canvas.restoreToCount(saveCount3);
+                    return;
+                }
+                return;
+        }
     }
 
-    public final String d(String str, boolean z10) {
-        String str2;
-        TLRPC.TL_timezone a2 = a(str);
-        if (a2 != null) {
-            return e(a2, z10);
-        }
-        ZoneId of2 = ZoneId.of(str);
-        String str3 = "";
-        if (of2 == null) {
-            return "";
-        }
-        if (z10) {
-            String displayName = of2.getRules().getOffset(Instant.now()).getDisplayName(TextStyle.FULL, LocaleController.getInstance().getCurrentLocale());
-            str2 = "GMT";
-            if (displayName.length() != 1 || displayName.charAt(0) != 'Z') {
-                str2 = "GMT".concat(displayName);
-            }
-        } else {
-            str2 = null;
-        }
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(of2.getId().replace("/", ", ").replace("_", " "));
-        if (str2 != null) {
-            str3 = ", ".concat(str2);
-        }
-        sb2.append(str3);
-        return sb2.toString();
-    }
-
-    public final void g() {
-        if (!this.f15716b && !this.f15717c) {
-            this.f15716b = true;
-            int i10 = this.f15715a;
-            SharedPreferences mainSettings = MessagesController.getInstance(i10).getMainSettings();
-            TLRPC.help_timezonesList help_timezoneslist = null;
-            String string = mainSettings.getString("timezones", null);
-            int i11 = 0;
-            if (string != null) {
-                SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
-                help_timezoneslist = TLRPC.help_timezonesList.TLdeserialize(serializedData, serializedData.readInt32(false), false);
-            }
-            ArrayList arrayList = this.d;
-            arrayList.clear();
-            if (help_timezoneslist != null) {
-                arrayList.addAll(help_timezoneslist.timezones);
-            }
-            NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.timezonesUpdated, new Object[0]);
-            TLRPC.TL_help_getTimezonesList tL_help_getTimezonesList = new TLRPC.TL_help_getTimezonesList();
-            if (help_timezoneslist != null) {
-                i11 = help_timezoneslist.hash;
-            }
-            tL_help_getTimezonesList.hash = i11;
-            ConnectionsManager.getInstance(i10).sendRequest(tL_help_getTimezonesList, new bi.j(23, this, mainSettings));
-        }
+    public g2(i2 i2Var, Context context) {
+        super(i2Var, context);
+        this.f9981n = 1;
+        this.f9982r = new RectF();
     }
 }

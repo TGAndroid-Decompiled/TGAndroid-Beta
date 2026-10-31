@@ -1,37 +1,54 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-public final class xa implements dh.a {
-    public final int f45635a;
-    public final Object f45636b;
+import j$.util.Objects;
+import j$.util.function.Predicate$CC;
+import java.util.function.Predicate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.tl.TL_stars;
+public final class xa implements Predicate {
+    public final int f43523a;
 
-    public xa(Object obj, int i10) {
-        this.f45635a = i10;
-        this.f45636b = obj;
+    public xa(int i10) {
+        this.f43523a = i10;
     }
 
-    @Override
-    public final void b(ch.a aVar, RectF rectF) {
-        switch (this.f45635a) {
+    public Predicate and(Predicate predicate) {
+        int i10 = this.f43523a;
+        return Predicate$CC.$default$and(this, predicate);
+    }
+
+    public Predicate negate() {
+        switch (this.f43523a) {
             case 0:
+                return Predicate$CC.$default$negate(this);
+            case 1:
+                return Predicate$CC.$default$negate(this);
+            case 2:
+                return Predicate$CC.$default$negate(this);
             default:
-                aVar.f6296a = true;
-                return;
+                return Predicate$CC.$default$negate(this);
         }
     }
 
+    public Predicate or(Predicate predicate) {
+        int i10 = this.f43523a;
+        return Predicate$CC.$default$or(this, predicate);
+    }
+
     @Override
-    public final void f(Canvas canvas, RectF rectF) {
-        switch (this.f45635a) {
+    public final boolean test(Object obj) {
+        switch (this.f43523a) {
             case 0:
-                ((tb) this.f45636b).X(canvas, rectF);
-                return;
+                if (((String) obj) != null) {
+                    return true;
+                }
+                return false;
+            case 1:
+                return !org.telegram.messenger.jj.c3(((org.telegram.messenger.jj) obj).f16337k);
+            case 2:
+                return Objects.nonNull((TLObject) obj);
             default:
-                PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f45636b;
-                org.telegram.ui.Components.nm0 nm0Var = premiumPreviewFragment.f35889a;
-                ih.d.a(nm0Var, canvas, rectF, nm0Var, premiumPreviewFragment.f35895d0);
-                return;
+                return !((TL_stars.StarGift) obj).auction;
         }
     }
 }

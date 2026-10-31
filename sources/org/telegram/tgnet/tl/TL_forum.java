@@ -125,13 +125,13 @@ public class TL_forum {
         public int offset_id;
         public int offset_topic;
         public TLRPC.InputPeer peer;
-        public String f22248q;
+        public String f20012q;
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             boolean z10;
             outputSerializedData.writeInt32(1000635391);
-            if (this.f22248q != null) {
+            if (this.f20012q != null) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -140,7 +140,7 @@ public class TL_forum {
             outputSerializedData.writeInt32(flag);
             this.peer.serializeToStream(outputSerializedData);
             if (TLObject.hasFlag(flag, 1)) {
-                outputSerializedData.writeString(this.f22248q);
+                outputSerializedData.writeString(this.f20012q);
             }
             outputSerializedData.writeInt32(this.offset_date);
             outputSerializedData.writeInt32(this.offset_id);

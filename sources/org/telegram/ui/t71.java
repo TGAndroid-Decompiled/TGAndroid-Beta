@@ -1,30 +1,35 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class t71 implements RequestDelegate {
-    public final int f43532a;
-    public final f81 f43533b;
+import android.content.Context;
+import java.util.HashSet;
+public final class t71 extends org.telegram.ui.Cells.i0 implements org.telegram.ui.ActionBar.k6 {
+    public int e;
+    public final x71 f41764f;
 
-    public t71(f81 f81Var, int i10) {
-        this.f43532a = i10;
-        this.f43533b = f81Var;
+    public t71(x71 x71Var, Context context) {
+        super(context);
+        this.f41764f = x71Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f43532a) {
-            case 0:
-                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
-                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
-                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
-                f81 f81Var = this.f43533b;
-                f81Var.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new t71(f81Var, 1));
-                return;
-            default:
-                this.f43533b.getMessagesController().loadAppConfig();
-                return;
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.Jj));
+    }
+
+    @Override
+    public final void updateColors() {
+        org.telegram.ui.Cells.h0 h0Var = this.d;
+        if (h0Var != null) {
+            try {
+                int x02 = org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.Jj, false);
+                if (x02 != this.e) {
+                    this.e = x02;
+                    h0Var.setOuterColor(x02);
+                    h0Var.invalidate();
+                }
+            } catch (Exception e) {
+                org.telegram.messenger.f8.g(e, true);
+            }
         }
     }
 }

@@ -1,71 +1,69 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
+import android.animation.ValueAnimator;
+import android.graphics.LinearGradient;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Shader;
 import android.view.View;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-public final class w10 implements View.OnLongClickListener {
-    public final int f34423a;
-    public final Object f34424b;
+public final class w10 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f31962a;
+    public final int f31963b;
+    public final int f31964c;
+    public final int d;
+    public final int e;
+    public final View f31965f;
 
-    public w10(Object obj, int i10) {
-        this.f34423a = i10;
-        this.f34424b = obj;
+    public w10(View view, int i10, int i11, int i12, int i13, int i14) {
+        this.f31962a = i14;
+        this.f31965f = view;
+        this.f31963b = i10;
+        this.f31964c = i11;
+        this.d = i12;
+        this.e = i13;
     }
 
     @Override
-    public final boolean onLongClick(View view) {
-        int i10 = this.f34423a;
-        Object obj = this.f34424b;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        int i10 = this.f31962a;
+        int i11 = this.e;
+        int i12 = this.d;
+        int i13 = this.f31964c;
+        int i14 = this.f31963b;
+        View view = this.f31965f;
         switch (i10) {
             case 0:
-                final FragmentContextView fragmentContextView = (FragmentContextView) obj;
-                float[] fArr = FragmentContextView.W0;
-                final float playbackSpeed = MediaController.getInstance().getPlaybackSpeed(fragmentContextView.W);
-                fragmentContextView.I.e(playbackSpeed, false);
-                org.telegram.ui.ActionBar.c1 c1Var = fragmentContextView.I;
-                int i11 = org.telegram.ui.ActionBar.y6.G8;
-                org.telegram.ui.ActionBar.f7.i(i11, c1Var, fragmentContextView.f26172q0);
-                org.telegram.ui.ActionBar.c1 c1Var2 = fragmentContextView.I;
-                c1Var2.N = fragmentContextView.h instanceof org.telegram.ui.wn;
-                c1Var2.F.setShader(null);
-                c1Var2.h = null;
-                Bitmap bitmap = c1Var2.f22531f;
-                if (bitmap != null) {
-                    bitmap.recycle();
-                    c1Var2.f22531f = null;
-                }
-                fragmentContextView.G.H(org.telegram.ui.ActionBar.y6.x0(null, i11, false));
-                fragmentContextView.G.V();
-                fragmentContextView.q(false);
-                fragmentContextView.G.setDimMenu(0.3f);
-                fragmentContextView.G.U(fragmentContextView.I, null);
-                fragmentContextView.G.setOnMenuDismiss(new Utilities.Callback() {
-                    @Override
-                    public final void run(Object obj2) {
-                        float[] fArr2 = FragmentContextView.W0;
-                        if (!((Boolean) obj2).booleanValue()) {
-                            MediaController mediaController = MediaController.getInstance();
-                            FragmentContextView fragmentContextView2 = FragmentContextView.this;
-                            fragmentContextView2.l(playbackSpeed, mediaController.getPlaybackSpeed(fragmentContextView2.W), false);
-                        }
-                    }
-                });
-                MessagesController.getGlobalNotificationsSettings().edit().putInt("speedhint", -15).apply();
-                return true;
+                y10 y10Var = (y10) view;
+                y10Var.L = i0.b.f(((Float) valueAnimator.getAnimatedValue()).floatValue(), i14, i13);
+                y10Var.M = i0.b.f(((Float) valueAnimator.getAnimatedValue()).floatValue(), i12, i11);
+                y10Var.F.setColorFilter(new PorterDuffColorFilter(y10Var.L, PorterDuff.Mode.MULTIPLY));
+                y10Var.E.setColor(y10Var.L);
+                y10Var.f32601r.setColor(y10Var.M);
+                y10Var.J.d(i0.b.o(y10Var.M, 38));
+                y10Var.invalidate();
+                return;
             case 1:
-                me0 me0Var = (me0) obj;
-                me0Var.f30526r.setText("");
-                fi.t8.a(me0Var.f30527s, true);
-                Drawable drawable = me0Var.f30513a;
-                if (drawable instanceof vc0) {
-                    ((vc0) drawable).x();
+                org.telegram.ui.Components.voip.r rVar = (org.telegram.ui.Components.voip.r) view;
+                rVar.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                rVar.D0 = i0.b.f(floatValue, i14, i13);
+                int f7 = i0.b.f(floatValue, i12, i11);
+                rVar.F0 = f7;
+                rVar.T.setColor(f7);
+                if (rVar.S > 0.0f) {
+                    rVar.invalidate();
+                    return;
                 }
-                return true;
+                return;
             default:
-                return nr0.q((nr0) obj);
+                rh.v8 v8Var = (rh.v8) view;
+                v8Var.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                v8Var.f47613r = i0.b.f(floatValue2, i14, i13);
+                v8Var.f47614s = i0.b.f(floatValue2, i12, i11);
+                v8Var.D = new LinearGradient(0.0f, 0.0f, 255.0f, 0.0f, new int[]{v8Var.f47613r, v8Var.f47614s}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                v8Var.invalidate();
+                return;
         }
     }
 }

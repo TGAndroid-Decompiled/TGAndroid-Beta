@@ -1,20 +1,34 @@
 package org.telegram.ui.Cells;
 
-import android.text.TextPaint;
-import android.text.style.CharacterStyle;
-import android.text.style.UpdateAppearance;
-public final class r8 extends CharacterStyle implements UpdateAppearance {
-    public final int f24998a;
-    public final org.telegram.ui.ActionBar.u6 f24999b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class r8 extends AnimatorListenerAdapter {
+    public final int f22873a;
+    public final int f22874b;
+    public final t8 f22875c;
 
-    public r8(int i10, org.telegram.ui.ActionBar.u6 u6Var) {
-        this.f24998a = i10;
-        this.f24999b = u6Var;
+    public r8(t8 t8Var, int i10, int i11) {
+        this.f22873a = i11;
+        this.f22875c = t8Var;
+        this.f22874b = i10;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setColor(org.telegram.ui.ActionBar.y6.w0(this.f24998a, this.f24999b));
-        textPaint.setUnderlineText(true);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f22873a) {
+            case 0:
+                t8 t8Var = this.f22875c;
+                t8Var.f23104r = 0;
+                t8Var.setBackgroundColor(this.f22874b);
+                t8Var.invalidate();
+                return;
+            default:
+                int i10 = this.f22874b;
+                t8 t8Var2 = this.f22875c;
+                t8Var2.setBackgroundColor(i10);
+                t8Var2.f23104r = 0;
+                t8Var2.invalidate();
+                return;
+        }
     }
 }

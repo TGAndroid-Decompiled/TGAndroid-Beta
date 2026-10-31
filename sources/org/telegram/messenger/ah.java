@@ -1,58 +1,23 @@
 package org.telegram.messenger;
-public final class ah implements Runnable {
-    public final int f19635a;
-    public final NotificationsController f19636b;
 
-    public ah(NotificationsController notificationsController, int i10) {
-        this.f19635a = i10;
-        this.f19636b = notificationsController;
+import org.telegram.tgnet.RequestDelegate;
+public final class ah implements RequestDelegate {
+    public final int f14610a;
+    public final int f14611b;
+    public final String f14612c;
+    public final String d;
+    public final f1 e;
+
+    public ah(f1 f1Var, int i10, String str, String str2, int i11) {
+        this.f14610a = i11;
+        this.e = f1Var;
+        this.f14611b = i10;
+        this.f14612c = str;
+        this.d = str2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19635a) {
-            case 0:
-                NotificationsController.f(this.f19636b);
-                return;
-            case 1:
-                NotificationsController.H(this.f19636b);
-                return;
-            case 2:
-                NotificationsController.p(this.f19636b);
-                return;
-            case 3:
-                NotificationsController.A(this.f19636b);
-                return;
-            case 4:
-                NotificationsController.J(this.f19636b);
-                return;
-            case 5:
-                NotificationsController.P(this.f19636b);
-                return;
-            case 6:
-                NotificationsController.G(this.f19636b);
-                return;
-            case 7:
-                NotificationsController.T(this.f19636b);
-                return;
-            case 8:
-                NotificationsController.W(this.f19636b);
-                return;
-            case 9:
-                NotificationsController.K(this.f19636b);
-                return;
-            case 10:
-                NotificationsController.c(this.f19636b);
-                return;
-            case 11:
-                NotificationsController.Y(this.f19636b);
-                return;
-            case 12:
-                NotificationsController.b(this.f19636b);
-                return;
-            default:
-                NotificationsController.y(this.f19636b);
-                return;
-        }
+    public final void run(org.telegram.tgnet.TLObject r17, org.telegram.tgnet.TLRPC.TL_error r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ah.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
     }
 }

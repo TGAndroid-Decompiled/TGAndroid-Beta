@@ -1,24 +1,38 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class ld1 extends AnimatorListenerAdapter {
-    public final int f41088a;
-    public final md1 f41089b;
+import android.view.View;
+import org.telegram.messenger.voip.VoIPService;
+public final class ld1 implements View.OnClickListener {
+    public final int f39187a;
+    public final be1 f39188b;
+    public final VoIPService f39189c;
 
-    public ld1(md1 md1Var, int i10) {
-        this.f41088a = i10;
-        this.f41089b = md1Var;
+    public ld1(be1 be1Var, VoIPService voIPService, int i10) {
+        this.f39187a = i10;
+        this.f39188b = be1Var;
+        this.f39189c = voIPService;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f41088a) {
+    public final void onClick(View view) {
+        switch (this.f39187a) {
             case 0:
-                this.f41089b.f41420b.f42970s.setVisibility(8);
+                be1 be1Var = this.f39188b;
+                org.telegram.messenger.i0.g3(new md1(be1Var, 8));
+                int i10 = be1Var.L;
+                if (i10 > 0) {
+                    this.f39189c.sendCallRating(i10);
+                    return;
+                }
                 return;
             default:
-                this.f41089b.f41420b.f42964a.setVisibility(8);
+                be1 be1Var2 = this.f39188b;
+                org.telegram.messenger.i0.g3(new md1(be1Var2, 10));
+                int i11 = be1Var2.L;
+                if (i11 > 0) {
+                    this.f39189c.sendCallRating(i11);
+                    return;
+                }
                 return;
         }
     }

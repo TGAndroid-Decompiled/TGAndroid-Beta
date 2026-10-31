@@ -1,44 +1,58 @@
 package org.telegram.messenger;
-public final class ve implements Runnable {
-    public final int f21517a = 2;
-    public final MessagesStorage f21518b;
-    public final boolean f21519c;
-    public final int d;
-    public final long e;
 
-    public ve(MessagesStorage messagesStorage, int i10, boolean z10, long j10) {
-        this.f21518b = messagesStorage;
-        this.d = i10;
-        this.f21519c = z10;
-        this.e = j10;
+import java.util.Timer;
+import java.util.TimerTask;
+import org.telegram.ui.u60;
+import org.telegram.ui.v60;
+public final class ve extends TimerTask {
+    public final int f18515a;
+    public final Object f18516b;
+    public final Object f18517c;
+
+    public ve(int i10, Object obj, Object obj2) {
+        this.f18515a = i10;
+        this.f18517c = obj;
+        this.f18516b = obj2;
     }
 
     @Override
     public final void run() {
-        switch (this.f21517a) {
+        switch (this.f18515a) {
             case 0:
-                this.f21518b.lambda$markMessagesAsDeleted$235(this.e, this.d, this.f21519c);
+                synchronized (((MediaController) this.f18517c).f14485v1) {
+                    i0.g3(new t6(23, this, (jj) this.f18516b));
+                }
                 return;
             case 1:
-                this.f21518b.lambda$removeFromDownloadQueue$186(this.f21519c, this.d, this.e);
+                try {
+                    ((Timer) ((org.telegram.ui.Components.pj) this.f18517c).h).cancel();
+                    ((org.telegram.ui.Components.pj) this.f18517c).h = null;
+                } catch (Exception e) {
+                    f8.g(e, true);
+                }
+                Utilities.f14522g.c(new org.telegram.ui.xs(1, (org.telegram.ui.Components.pj) this.f18517c, (String) this.f18516b));
+                return;
+            case 2:
+                v60 v60Var = (v60) this.f18517c;
+                try {
+                    v60Var.f42637f.cancel();
+                    v60Var.f42637f = null;
+                } catch (Exception e7) {
+                    f8.g(e7, true);
+                }
+                i0.g3(new u60(this, (String) this.f18516b, 0));
                 return;
             default:
-                this.f21518b.lambda$loadPendingTasks$31(this.d, this.f21519c, this.e);
+                zf.f1 f1Var = (zf.f1) this.f18517c;
+                try {
+                    f1Var.f55486n.cancel();
+                    f1Var.f55486n = null;
+                } catch (Exception e10) {
+                    f8.g(e10, true);
+                }
+                f1Var.getClass();
+                i0.g3(new yh.o(6, f1Var, (String) this.f18516b));
                 return;
         }
-    }
-
-    public ve(MessagesStorage messagesStorage, long j10, int i10, boolean z10) {
-        this.f21518b = messagesStorage;
-        this.e = j10;
-        this.d = i10;
-        this.f21519c = z10;
-    }
-
-    public ve(MessagesStorage messagesStorage, boolean z10, int i10, long j10) {
-        this.f21518b = messagesStorage;
-        this.f21519c = z10;
-        this.d = i10;
-        this.e = j10;
     }
 }

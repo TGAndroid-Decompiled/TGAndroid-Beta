@@ -1,8 +1,8 @@
 package a4;
 
-import a8.yb;
-import e2.n0;
+import e2.l0;
 import java.util.ArrayDeque;
+import v7.t6;
 public abstract class k implements z3.e {
     public final ArrayDeque f273a = new ArrayDeque();
     public final ArrayDeque f274b;
@@ -46,7 +46,7 @@ public abstract class k implements z3.e {
         } else {
             z10 = false;
         }
-        yb.p(z10);
+        t6.p(z10);
         ArrayDeque arrayDeque = this.f273a;
         if (arrayDeque.isEmpty()) {
             return null;
@@ -65,7 +65,7 @@ public abstract class k implements z3.e {
         } else {
             z10 = false;
         }
-        yb.g(z10);
+        t6.f(z10);
         i iVar2 = (i) iVar;
         if (!iVar2.isEndOfStream()) {
             long j10 = iVar2.e;
@@ -100,7 +100,7 @@ public abstract class k implements z3.e {
                 break;
             }
             i iVar = (i) arrayDeque2.poll();
-            String str = n0.f9691a;
+            String str = l0.f6165a;
             iVar.clear();
             arrayDeque.add(iVar);
         }
@@ -123,7 +123,7 @@ public abstract class k implements z3.e {
         while (true) {
             ArrayDeque arrayDeque2 = this.f275c;
             if (!arrayDeque2.isEmpty()) {
-                String str = n0.f9691a;
+                String str = l0.f6165a;
                 if (((i) arrayDeque2.peek()).e <= this.e) {
                     i iVar = (i) arrayDeque2.poll();
                     boolean isEndOfStream = iVar.isEndOfStream();
@@ -141,8 +141,8 @@ public abstract class k implements z3.e {
                         z3.j jVar2 = (z3.j) arrayDeque.pollFirst();
                         long j10 = iVar.e;
                         jVar2.timeUs = j10;
-                        jVar2.f52717a = f7;
-                        jVar2.f52718b = j10;
+                        jVar2.f54569a = f7;
+                        jVar2.f54570b = j10;
                         iVar.clear();
                         arrayDeque3.add(iVar);
                         return jVar2;

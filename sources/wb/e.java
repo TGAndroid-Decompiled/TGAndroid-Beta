@@ -1,79 +1,94 @@
 package wb;
+public class e {
+    public static final byte[] d = new byte[0];
+    public final vb.d f52784a;
+    public byte[] f52785b = d;
+    public final int[] f52786c = new int[32];
 
-import android.content.Context;
-import com.google.mlkit.nl.languageid.IdentifiedLanguage;
-import com.google.mlkit.nl.languageid.bundled.internal.ThickLanguageIdentifier;
-import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicReference;
-import o6.l;
-import sb.i;
-public final class e extends i {
-    public ThickLanguageIdentifier d;
-    public final Context e;
-    public final vb.a f51214f;
-    public final boolean f51215g;
-
-    public e(Context context, vb.a aVar) {
-        this.e = context;
-        this.f51214f = aVar;
-        aVar.getClass();
-        this.f51215g = true;
+    public e(vb.d dVar) {
+        this.f52784a = dVar;
     }
 
-    @Override
-    public final void b() {
-        l.k(Thread.currentThread().equals(((AtomicReference) this.f48092a.d).get()));
-        if (this.d == null) {
-            this.f51214f.getClass();
-            ThickLanguageIdentifier thickLanguageIdentifier = new ThickLanguageIdentifier(this.e);
-            this.d = thickLanguageIdentifier;
-            thickLanguageIdentifier.b();
+    public b a() {
+        int[] iArr;
+        vb.d dVar = this.f52784a;
+        int i10 = dVar.f50754a;
+        int i11 = dVar.f50755b;
+        b bVar = new b(i10, i11);
+        if (this.f52785b.length < i10) {
+            this.f52785b = new byte[i10];
         }
-    }
-
-    @Override
-    public final void c() {
-        l.k(Thread.currentThread().equals(((AtomicReference) this.f48092a.d).get()));
-        ThickLanguageIdentifier thickLanguageIdentifier = this.d;
-        if (thickLanguageIdentifier != null) {
-            thickLanguageIdentifier.c();
-            this.d = null;
+        int i12 = 0;
+        while (true) {
+            iArr = this.f52786c;
+            if (i12 >= 32) {
+                break;
+            }
+            iArr[i12] = 0;
+            i12++;
         }
-    }
-
-    public final String e(String str) {
-        String str2;
-        if (this.d == null) {
-            b();
+        for (int i13 = 1; i13 < 5; i13++) {
+            byte[] b10 = dVar.b((i11 * i13) / 5, this.f52785b);
+            int i14 = (i10 * 4) / 5;
+            for (int i15 = i10 / 5; i15 < i14; i15++) {
+                int i16 = (b10[i15] & 255) >> 3;
+                iArr[i16] = iArr[i16] + 1;
+            }
         }
-        if (!str.isEmpty()) {
-            ThickLanguageIdentifier thickLanguageIdentifier = this.d;
-            l.h(thickLanguageIdentifier);
-            ArrayList a2 = thickLanguageIdentifier.a(str);
-            int size = a2.size();
-            int i10 = 0;
-            while (true) {
-                if (i10 < size) {
-                    Object obj = a2.get(i10);
-                    i10++;
-                    IdentifiedLanguage identifiedLanguage = (IdentifiedLanguage) obj;
-                    if (!"unknown".equals(identifiedLanguage.f7797a)) {
-                        str2 = identifiedLanguage.f7797a;
-                        break;
+        int length = iArr.length;
+        int i17 = 0;
+        int i18 = 0;
+        int i19 = 0;
+        for (int i20 = 0; i20 < length; i20++) {
+            int i21 = iArr[i20];
+            if (i21 > i17) {
+                i19 = i20;
+                i17 = i21;
+            }
+            if (i21 > i18) {
+                i18 = i21;
+            }
+        }
+        int i22 = 0;
+        int i23 = 0;
+        for (int i24 = 0; i24 < length; i24++) {
+            int i25 = i24 - i19;
+            int i26 = iArr[i24] * i25 * i25;
+            if (i26 > i23) {
+                i22 = i24;
+                i23 = i26;
+            }
+        }
+        if (i19 <= i22) {
+            int i27 = i19;
+            i19 = i22;
+            i22 = i27;
+        }
+        if (i19 - i22 > length / 16) {
+            int i28 = i19 - 1;
+            int i29 = -1;
+            int i30 = i28;
+            while (i28 > i22) {
+                int i31 = i28 - i22;
+                int i32 = (i18 - iArr[i28]) * (i19 - i28) * i31 * i31;
+                if (i32 > i29) {
+                    i30 = i28;
+                    i29 = i32;
+                }
+                i28--;
+            }
+            int i33 = i30 << 3;
+            byte[] a2 = dVar.a();
+            for (int i34 = 0; i34 < i11; i34++) {
+                int i35 = i34 * i10;
+                for (int i36 = 0; i36 < i10; i36++) {
+                    if ((a2[i35 + i36] & 255) < i33) {
+                        bVar.c(i36, i34);
                     }
-                } else {
-                    str2 = "";
-                    break;
                 }
             }
-            if (str2.isEmpty()) {
-                return "und";
-            }
-            if ("iw".equals(str2)) {
-                return "he";
-            }
-            return str2;
+            return bVar;
         }
-        return "und";
+        throw vb.e.a();
     }
 }

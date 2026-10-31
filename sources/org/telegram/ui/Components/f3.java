@@ -1,45 +1,25 @@
 package org.telegram.ui.Components;
 
-import java.util.regex.Pattern;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.ui.LaunchActivity;
-public final class f3 implements Runnable {
-    public final int f27994a = 1;
-    public final int f27995b;
-    public final int[] f27996c;
-    public final Runnable d;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.Region;
+public final class f3 extends g9 {
+    public final Path G;
 
-    public f3(int i10, int[] iArr, org.telegram.ui.kz kzVar) {
-        this.f27995b = i10;
-        this.f27996c = iArr;
-        this.d = kzVar;
+    public f3(Context context) {
+        super(context);
+        this.G = new Path();
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f27994a;
-        Runnable runnable = this.d;
-        int[] iArr = this.f27996c;
-        int i11 = this.f27995b;
-        switch (i10) {
-            case 0:
-                iArr[0] = i11;
-                runnable.run();
-                return;
-            default:
-                Pattern pattern = LaunchActivity.D1;
-                ConnectionsManager.getInstance(i11).cancelRequest(iArr[0], true);
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-        }
-    }
-
-    public f3(int[] iArr, Runnable runnable, int i10) {
-        this.f27996c = iArr;
-        this.f27995b = i10;
-        this.d = runnable;
+    public final void onDraw(Canvas canvas) {
+        canvas.save();
+        Path path = this.G;
+        path.rewind();
+        path.addCircle(org.telegram.messenger.i0.L(54.0f), org.telegram.messenger.i0.L(53.0f), org.telegram.messenger.i0.L(14.0f), Path.Direction.CW);
+        canvas.clipPath(path, Region.Op.DIFFERENCE);
+        super.onDraw(canvas);
+        canvas.restore();
     }
 }

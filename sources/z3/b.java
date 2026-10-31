@@ -1,54 +1,54 @@
 package z3;
 
-import a8.yb;
-import e2.n0;
-import f9.g0;
-import f9.i0;
-import f9.n1;
-import f9.s1;
+import e2.l0;
+import e9.n0;
+import e9.r;
+import e9.s1;
+import e9.x1;
 import java.util.List;
+import v7.t6;
 public final class b implements d {
-    public static final f9.n f52703c = new f9.n(new vg.d(15), n1.f10306b);
-    public final i0 f52704a;
-    public final long[] f52705b;
+    public static final r f54555c = new r(new xg.a(27), s1.f6413b);
+    public final n0 f54556a;
+    public final long[] f54557b;
 
-    public b(f9.s1 r19) {
-        throw new UnsupportedOperationException("Method not decompiled: z3.b.<init>(f9.s1):void");
+    public b(e9.x1 r19) {
+        throw new UnsupportedOperationException("Method not decompiled: z3.b.<init>(e9.x1):void");
     }
 
     @Override
-    public final int c(long j10) {
-        int b10 = n0.b(this.f52705b, j10, false);
-        if (b10 < this.f52704a.size()) {
+    public final int a(long j10) {
+        int b10 = l0.b(this.f54557b, j10, false);
+        if (b10 < this.f54556a.size()) {
             return b10;
         }
         return -1;
     }
 
     @Override
-    public final long e(int i10) {
+    public final long g(int i10) {
         boolean z10;
-        if (i10 < this.f52704a.size()) {
+        if (i10 < this.f54556a.size()) {
             z10 = true;
         } else {
             z10 = false;
         }
-        yb.g(z10);
-        return this.f52705b[i10];
+        t6.f(z10);
+        return this.f54557b[i10];
     }
 
     @Override
-    public final List g(long j10) {
-        int f7 = n0.f(this.f52705b, j10, false);
+    public final List p(long j10) {
+        int f7 = l0.f(this.f54557b, j10, false);
         if (f7 == -1) {
-            g0 g0Var = i0.f10286b;
-            return s1.e;
+            e9.l0 l0Var = n0.f6390b;
+            return x1.e;
         }
-        return (i0) this.f52704a.get(f7);
+        return (n0) this.f54556a.get(f7);
     }
 
     @Override
-    public final int k() {
-        return this.f52704a.size();
+    public final int s() {
+        return this.f54556a.size();
     }
 }

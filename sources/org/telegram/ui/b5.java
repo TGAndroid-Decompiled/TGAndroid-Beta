@@ -1,18 +1,19 @@
 package org.telegram.ui;
+public enum b5 {
+    d(2131232265, "OPEN_PROFILE", "OpenProfile"),
+    e(2131232087, "OPEN_CHANNEL", "OpenChannel2"),
+    f35982f(2131232112, "OPEN_GROUP", "OpenGroup2"),
+    h(2131232112, "SEND_MESSAGE", "SendMessage"),
+    f35983n(2131232221, "MENTION", "Mention"),
+    f35984r(2131232353, "SEARCH_MESSAGES", "AvatarPreviewSearchMessages");
+    
+    public final String f35986a;
+    public final int f35987b;
+    public final int f35988c;
 
-import org.telegram.messenger.NotificationCenter;
-public final class b5 implements NotificationCenter.NotificationCenterDelegate {
-    public final c5 f37883a;
-
-    public b5(c5 c5Var) {
-        this.f37883a = c5Var;
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        c5 c5Var = this.f37883a;
-        if (c5Var.f38175g && i10 == c5Var.e) {
-            c5Var.b(objArr);
-        }
+    b5(int i10, String str, String str2) {
+        this.f35986a = str2;
+        this.f35987b = r2;
+        this.f35988c = i10;
     }
 }

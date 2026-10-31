@@ -1,39 +1,32 @@
 package org.telegram.messenger.voip;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
+import java.util.ArrayList;
 public final class z implements Runnable {
-    public final int f21701a;
-    public final VoIPService f21702b;
-    public final TLRPC.TL_error f21703c;
-    public final TLObject d;
+    public final int f18729a;
+    public final VoIPService f18730b;
+    public final ArrayList f18731c;
+    public final ArrayList d;
+    public final ArrayList e;
+    public final String f18732f;
 
-    public z(int i10, VoIPService voIPService, TLObject tLObject, TLRPC.TL_error tL_error) {
-        this.f21701a = i10;
-        this.f21702b = voIPService;
-        this.f21703c = tL_error;
-        this.d = tLObject;
+    public z(VoIPService voIPService, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, String str, int i10) {
+        this.f18729a = i10;
+        this.f18730b = voIPService;
+        this.f18731c = arrayList;
+        this.d = arrayList2;
+        this.e = arrayList3;
+        this.f18732f = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f21701a) {
+        switch (this.f18729a) {
             case 0:
-                this.f21702b.lambda$startGroupCheckShortpoll$61(this.d, this.f21703c);
-                return;
-            case 1:
-                this.f21702b.lambda$processAcceptedCall$19(this.f21703c, this.d);
+                VoIPService.m1(this.f18730b, this.f18731c, this.d, this.e, this.f18732f);
                 return;
             default:
-                this.f21702b.lambda$acceptIncomingCall$101(this.f21703c, this.d);
+                this.f18730b.lambda$startConferenceGroupCall$39(this.f18731c, this.d, this.e, this.f18732f);
                 return;
         }
-    }
-
-    public z(VoIPService voIPService, TLObject tLObject, TLRPC.TL_error tL_error) {
-        this.f21701a = 0;
-        this.f21702b = voIPService;
-        this.d = tLObject;
-        this.f21703c = tL_error;
     }
 }

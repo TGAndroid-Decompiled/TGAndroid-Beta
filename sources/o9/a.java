@@ -1,3 +1,5 @@
 package o9;
-public @interface a {
+
+import l9.c;
+public class a extends c {
 }

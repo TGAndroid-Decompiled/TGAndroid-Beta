@@ -1,13 +1,26 @@
 package k2;
-public final class z extends Exception {
-    public final int f16329a;
-    public final boolean f16330b;
-    public final b2.x f16331c;
+public interface z {
+    void H();
 
-    public z(int i10, b2.x xVar, boolean z10) {
-        super(ic.a.i(i10, "AudioTrack write failed: "));
-        this.f16330b = z10;
-        this.f16329a = i10;
-        this.f16331c = xVar;
-    }
+    void P(Exception exc);
+
+    void S();
+
+    void a(int i10);
+
+    void a0(x0 x0Var);
+
+    void e(boolean z10);
+
+    void e0(x0 x0Var);
+
+    void f(long j10);
+
+    void f0();
+
+    void i0(long j10, int i10, long j11);
+
+    void n();
+
+    void o();
 }

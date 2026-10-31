@@ -1,19 +1,21 @@
 package org.telegram.ui;
+public final class pi implements org.telegram.ui.Components.jk0 {
+    public final un f40674a;
 
-import android.app.Activity;
-public final class pi extends org.telegram.ui.Cells.v0 {
-    public final wn f42406t2;
-
-    public pi(Activity activity, org.telegram.ui.ActionBar.u6 u6Var, wn wnVar) {
-        super(activity, u6Var, false);
-        this.f42406t2 = wnVar;
+    public pi(un unVar) {
+        this.f40674a = unVar;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        float y3 = getY();
-        wn wnVar = this.f42406t2;
-        Y(wnVar.f45088d1.getY() + y3, wnVar.f45163j1.getBackgroundSizeY());
+    public final boolean mo16b(float r11, float r12, int r13, android.view.View r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.pi.mo16b(float, float, int, android.view.View):boolean");
+    }
+
+    @Override
+    public final void p(float f7) {
+    }
+
+    @Override
+    public final void g() {
     }
 }

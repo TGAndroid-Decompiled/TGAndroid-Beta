@@ -1,17 +1,11 @@
 package org.telegram.ui;
-public final class sx0 implements Runnable {
-    public final int f43429a = 1;
-    public final ux0 f43430b;
 
-    @Override
-    public final void run() {
-        switch (this.f43429a) {
-            case 0:
-                this.f43430b.getClass();
-                throw null;
-            default:
-                this.f43430b.getClass();
-                throw null;
-        }
+import android.content.Context;
+public final class sx0 extends org.telegram.ui.Cells.i {
+    public final xx0 f41664e0;
+
+    public sx0(xx0 xx0Var, Context context, org.telegram.ui.ActionBar.k2 k2Var, org.telegram.ui.ActionBar.p6 p6Var) {
+        super(context, k2Var, p6Var);
+        this.f41664e0 = xx0Var;
     }
 }

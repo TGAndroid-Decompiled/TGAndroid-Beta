@@ -1,3 +1,16 @@
 package nh;
-public interface a {
+
+import android.animation.TimeInterpolator;
+public final class a implements TimeInterpolator {
+    public final int f13800a;
+
+    @Override
+    public final float getInterpolation(float f7) {
+        switch (this.f13800a) {
+            case 0:
+                return f7;
+            default:
+                return ((((6.0f * f7) - 15.0f) * f7) + 10.0f) * f7 * f7 * f7;
+        }
+    }
 }

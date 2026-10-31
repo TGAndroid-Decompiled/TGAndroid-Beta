@@ -1,53 +1,116 @@
 package ig;
 
-import android.view.ViewGroup;
-import bi.cc;
-import org.telegram.ui.Components.mm0;
-public final class p1 extends mm0 {
-    public j1 f14202c;
-    public Integer d;
-    public cc e;
-    public boolean f14203f;
-    public int h;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import java.util.ArrayList;
+import org.telegram.ui.Components.pu0;
+public final class p1 {
+    public c1 f8391a;
+    public w0 f8392b;
+    public Paint f8393c;
+    public Paint d;
+    public Paint e;
+    public Paint f8394f;
+    public Paint f8395g;
+    public f1 h;
+    public float f8396i;
+    public float f8397j;
+    public o1 f8398k;
+    public l1 f8399l;
+    public ArrayList f8400m;
+    public ArrayList f8401n;
+    public Matrix f8402o;
+    public float[] f8403p;
 
-    @Override
-    public final boolean D(s4.e1 e1Var) {
-        if (e1Var.b() == 0) {
-            return false;
-        }
-        return this.f14202c.D(e1Var);
+    public static float a(float f7, float f10, float f11, float f12, float f13, float f14) {
+        float f15 = f13 - f11;
+        float f16 = f14 - f12;
+        float max = Math.max(Math.min((((f10 - f12) * f16) + ((f7 - f11) * f15)) / ((f16 * f16) + (f15 * f15)), 1.0f), 0.0f);
+        float f17 = ((f15 * max) + f11) - f7;
+        float f18 = ((max * f16) + f12) - f10;
+        return (float) Math.sqrt((f18 * f18) + (f17 * f17));
     }
 
-    @Override
-    public final int h() {
-        j1 j1Var = this.f14202c;
-        int K = j1Var.K();
-        j1Var.M0 = K;
-        return K + 1;
+    public final void b(Canvas canvas, pu0 pu0Var, o1 o1Var) {
+        Paint paint;
+        Paint paint2;
+        float width = (o1Var.d / pu0Var.f29435a) * canvas.getWidth();
+        float height = (o1Var.e / pu0Var.f29436b) * canvas.getHeight();
+        float L = org.telegram.messenger.i0.L(5.0f);
+        boolean z10 = o1Var.f8381a;
+        if (z10) {
+            paint = this.d;
+        } else {
+            paint = this.f8394f;
+        }
+        canvas.drawCircle(width, height, L, paint);
+        float width2 = (o1Var.d / pu0Var.f29435a) * canvas.getWidth();
+        float height2 = (o1Var.e / pu0Var.f29436b) * canvas.getHeight();
+        float L2 = org.telegram.messenger.i0.L(5.0f);
+        if (z10) {
+            paint2 = this.e;
+        } else {
+            paint2 = this.f8395g;
+        }
+        canvas.drawCircle(width2, height2, L2, paint2);
     }
 
-    @Override
-    public final int j(int i10) {
-        if (i10 == 0) {
-            return -983904;
-        }
-        return this.f14202c.j(i10 - 1);
+    public final void c(float f7, float f10, boolean z10) {
+        float[] fArr = this.f8403p;
+        fArr[0] = f7;
+        fArr[1] = f10;
+        d(z10);
     }
 
-    @Override
-    public final void v(s4.e1 e1Var, int i10) {
-        if (i10 > 0) {
-            this.f14202c.v(e1Var, i10 - 1);
+    public final void d(boolean z10) {
+        int i10;
+        float[] fArr = this.f8403p;
+        f1 f1Var = this.h;
+        if (f1Var != null) {
+            float f7 = f1Var.h;
+            if (f7 != 0.0f) {
+                float f10 = fArr[0] - f1Var.f8300b;
+                fArr[0] = f10;
+                fArr[1] = fArr[1] - f1Var.f8301c;
+                if (z10) {
+                    i10 = -1;
+                } else {
+                    i10 = 1;
+                }
+                double d = f7 * i10;
+                float cos = (float) ((Math.cos(d) * f10) - (Math.sin(d) * fArr[1]));
+                double sin = Math.sin(d) * fArr[0];
+                f1 f1Var2 = this.h;
+                fArr[0] = cos + f1Var2.f8300b;
+                fArr[1] = ((float) i0.a.c(d, fArr[1], sin)) + f1Var2.f8301c;
+            }
         }
     }
 
-    @Override
-    public final s4.e1 x(ViewGroup viewGroup, int i10) {
-        if (i10 == -983904) {
-            cc ccVar = new cc(this, viewGroup.getContext(), 4);
-            this.e = ccVar;
-            return new s4.e1(ccVar);
+    public final void e() {
+        f1 f1Var;
+        c1 c1Var = this.f8391a;
+        if (c1Var != null && c1Var.getPainting() != null && (f1Var = this.h) != null) {
+            f1Var.f8302f = c1Var.getCurrentWeight();
+            q0 painting = c1Var.getPainting();
+            f1 f1Var2 = this.h;
+            int currentColor = c1Var.getCurrentColor();
+            if (f1Var2 != null) {
+                if (painting.f8424r != null) {
+                    painting.f8413f.f(new ag.o0(painting, f1Var2, currentColor, 6));
+                }
+            } else {
+                painting.getClass();
+            }
+            this.f8400m.clear();
+            this.f8401n.clear();
+            this.h = null;
+            b1 b1Var = c1Var.f8282a;
+            if (b1Var != null) {
+                b1Var.j();
+            }
+            c1Var.e.f8267z = true;
         }
-        return this.f14202c.x(viewGroup, i10);
     }
 }

@@ -1,31 +1,35 @@
 package org.telegram.messenger;
 
-import android.content.SharedPreferences;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class s7 implements RequestDelegate {
-    public final int f21186a;
-    public final MediaDataController f21187b;
-    public final SharedPreferences f21188c;
+import java.util.ArrayList;
+public final class s7 implements Runnable {
+    public final int f17877a;
+    public final b8 f17878b;
+    public final String f17879c;
 
-    public s7(MediaDataController mediaDataController, SharedPreferences sharedPreferences, int i10) {
-        this.f21186a = i10;
-        this.f21187b = mediaDataController;
-        this.f21188c = sharedPreferences;
+    public s7(b8 b8Var, String str, int i10) {
+        this.f17877a = i10;
+        this.f17878b = b8Var;
+        this.f17879c = str;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f21186a) {
+    public final void run() {
+        switch (this.f17877a) {
             case 0:
-                this.f21187b.lambda$loadSavedReactions$241(this.f21188c, tLObject, tL_error);
-                return;
-            case 1:
-                this.f21187b.lambda$loadReplyIcons$245(this.f21188c, tLObject, tL_error);
+                b8 b8Var = this.f17878b;
+                m7 m7Var = (m7) b8Var.f14746w.remove(this.f17879c);
+                if (m7Var != null && ((ArrayList) m7Var.f16884e1.d).remove(m7Var)) {
+                    Utilities.d.c(new b7(m7Var, 7));
+                    return;
+                }
                 return;
             default:
-                this.f21187b.lambda$loadRestrictedStatusEmojis$247(this.f21188c, tLObject, tL_error);
+                b8 b8Var2 = this.f17878b;
+                m7 m7Var2 = (m7) b8Var2.f14746w.remove(this.f17879c);
+                if (m7Var2 != null && ((ArrayList) m7Var2.f16884e1.d).remove(m7Var2)) {
+                    Utilities.d.c(new b7(m7Var2, 7));
+                    return;
+                }
                 return;
         }
     }

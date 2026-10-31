@@ -2,23 +2,19 @@ package org.telegram.ui;
 
 import android.graphics.drawable.Drawable;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
 public final class hh implements Runnable {
-    public final int f39895a;
-    public final View f39896b;
+    public final int f37964a;
+    public final View f37965b;
 
     public hh(int i10, View view) {
-        this.f39895a = i10;
-        this.f39896b = view;
+        this.f37964a = i10;
+        this.f37965b = view;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f39895a;
-        View view = this.f39896b;
+        int i10 = this.f37964a;
+        View view = this.f37965b;
         switch (i10) {
             case 0:
                 try {
@@ -31,27 +27,24 @@ public final class hh implements Runnable {
                 view.setBackgroundDrawable(null);
                 return;
             case 2:
-                view.setVisibility(8);
+                Drawable[] drawableArr = PhotoViewer.U8;
+                org.telegram.messenger.i0.E2(view);
                 return;
             case 3:
-                Drawable[] drawableArr = PhotoViewer.U8;
-                AndroidUtilities.removeFromParent(view);
-                return;
-            case 4:
                 Drawable[] drawableArr2 = PhotoViewer.U8;
                 view.setVisibility(8);
                 return;
-            case 5:
-                SharedConfig.setSuggestStickers(0);
-                ((org.telegram.ui.Cells.ga) view).f24181c.c(LocaleController.getString(R.string.SuggestStickersAll), true, true);
+            case 4:
+                org.telegram.messenger.tz.I(0);
+                ((org.telegram.ui.Cells.x9) view).f23599c.c(org.telegram.messenger.cd.L0(2131744427, null), true, true);
                 return;
-            case 6:
-                SharedConfig.setSuggestStickers(1);
-                ((org.telegram.ui.Cells.ga) view).f24181c.c(LocaleController.getString(R.string.SuggestStickersInstalled), true, true);
+            case 5:
+                org.telegram.messenger.tz.I(1);
+                ((org.telegram.ui.Cells.x9) view).f23599c.c(org.telegram.messenger.cd.L0(2131744426, null), true, true);
                 return;
             default:
-                SharedConfig.setSuggestStickers(2);
-                ((org.telegram.ui.Cells.ga) view).f24181c.c(LocaleController.getString(R.string.SuggestStickersNone), true, true);
+                org.telegram.messenger.tz.I(2);
+                ((org.telegram.ui.Cells.x9) view).f23599c.c(org.telegram.messenger.cd.L0(2131744425, null), true, true);
                 return;
         }
     }

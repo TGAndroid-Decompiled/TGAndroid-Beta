@@ -1,29 +1,21 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.LocationController;
+import org.telegram.tgnet.TLRPC;
 public final class w5 implements Runnable {
-    public final int f21719a;
-    public final LocationController f21720b;
-    public final LocationController.SharingLocationInfo f21721c;
+    public final int f19063a;
+    public final b6 f19064b;
+    public final TLRPC.Document f19065c;
+    public final jj d;
 
-    public w5(int i10, LocationController.SharingLocationInfo sharingLocationInfo, LocationController locationController) {
-        this.f21719a = i10;
-        this.f21720b = locationController;
-        this.f21721c = sharingLocationInfo;
+    public w5(b6 b6Var, TLRPC.Document document, jj jjVar, int i10) {
+        this.f19063a = i10;
+        this.f19064b = b6Var;
+        this.f19065c = document;
+        this.d = jjVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f21719a) {
-            case 0:
-                this.f21720b.lambda$broadcastLastKnownLocation$6(this.f21721c);
-                return;
-            case 1:
-                this.f21720b.lambda$removeSharingLocation$20(this.f21721c);
-                return;
-            default:
-                this.f21720b.lambda$update$8(this.f21721c);
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.w5.run():void");
     }
 }

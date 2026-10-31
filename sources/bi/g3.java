@@ -1,37 +1,23 @@
 package bi;
-
-import org.telegram.tgnet.TLRPC;
 public final class g3 implements Runnable {
-    public final int f4645a;
-    public final h7 f4646b;
-    public final TLRPC.TL_error f4647c;
-    public final Runnable d;
+    public final int f3036a;
+    public final d4 f3037b;
+    public final s4.l0 f3038c;
 
-    public g3(h7 h7Var, TLRPC.TL_error tL_error, Runnable runnable, int i10) {
-        this.f4645a = i10;
-        this.f4646b = h7Var;
-        this.f4647c = tL_error;
-        this.d = runnable;
+    public g3(d4 d4Var, s4.l0 l0Var, int i10) {
+        this.f3036a = i10;
+        this.f3037b = d4Var;
+        this.f3038c = l0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f4645a) {
+        switch (this.f3036a) {
             case 0:
-                this.f4646b.getBulletinFactory().g0(this.f4647c, false);
-                Runnable runnable = this.d;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
+                this.f3037b.setItemAnimator(this.f3038c);
                 return;
             default:
-                this.f4646b.getBulletinFactory().g0(this.f4647c, false);
-                Runnable runnable2 = this.d;
-                if (runnable2 != null) {
-                    runnable2.run();
-                    return;
-                }
+                this.f3037b.setItemAnimator(this.f3038c);
                 return;
         }
     }

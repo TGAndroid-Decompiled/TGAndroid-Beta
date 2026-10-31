@@ -2,7 +2,7 @@ package x2;
 
 import android.util.SparseArray;
 import android.util.SparseBooleanArray;
-import b2.r1;
+import b2.q1;
 import b2.t1;
 import b2.u1;
 import java.util.HashMap;
@@ -20,10 +20,10 @@ public final class i extends t1 {
 
     public i(j jVar) {
         d(jVar);
-        this.J = jVar.f51383w0;
-        this.K = jVar.f51384x0;
-        this.L = jVar.f51385y0;
-        this.M = jVar.f51386z0;
+        this.J = jVar.f52920w0;
+        this.K = jVar.f52921x0;
+        this.L = jVar.f52922y0;
+        this.M = jVar.f52923z0;
         this.N = jVar.A0;
         this.O = jVar.B0;
         this.P = jVar.C0;
@@ -37,8 +37,8 @@ public final class i extends t1 {
     }
 
     @Override
-    public final void a(r1 r1Var) {
-        this.H.put(r1Var.f3385a, r1Var);
+    public final void a(q1 q1Var) {
+        this.H.put(q1Var.f2196a, q1Var);
     }
 
     @Override

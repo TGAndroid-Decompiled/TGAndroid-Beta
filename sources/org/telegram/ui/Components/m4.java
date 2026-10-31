@@ -1,9 +1,9 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.LocaleController;
-public final class m4 extends nd0 {
+import android.widget.TextView;
+public final class m4 extends p80 {
     @Override
-    public final CharSequence d(int i10) {
-        return LocaleController.formatPluralString("Times", i10 + 1, new Object[0]);
+    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        super.setText(org.telegram.messenger.k6.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
     }
 }

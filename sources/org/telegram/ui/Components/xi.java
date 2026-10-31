@@ -1,24 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class xi implements Utilities.Callback5, Utilities.Callback5Return {
-    public final fj f34777a;
+import org.telegram.tgnet.TLRPC;
+public final class xi implements cj {
+    public final int f32475a;
+    public final TLRPC.User f32476b;
 
-    @Override
-    public void mo5run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        this.f34777a.P((u61) obj, (View) obj2);
+    public xi(int i10, TLRPC.User user) {
+        this.f32475a = i10;
+        this.f32476b = user;
     }
 
     @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        this.f34777a.P((u61) obj, (View) obj2);
-        return Boolean.TRUE;
+    public final String run() {
+        af.b c10;
+        StringBuilder sb2;
+        String str;
+        switch (this.f32475a) {
+            case 0:
+                c10 = af.b.c();
+                sb2 = new StringBuilder("+");
+                str = this.f32476b.phone;
+                break;
+            default:
+                c10 = af.b.c();
+                sb2 = new StringBuilder("+");
+                str = this.f32476b.phone;
+                break;
+        }
+        return org.telegram.messenger.m5.h(sb2, str, c10);
     }
 }

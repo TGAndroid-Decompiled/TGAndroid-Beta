@@ -1,44 +1,45 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class k30 extends org.telegram.ui.Components.nm0 {
-    public final x50 f40651f3;
+import android.content.SharedPreferences;
+import java.util.concurrent.CountDownLatch;
+import org.telegram.messenger.voip.VoIPService;
+public final class k30 implements org.telegram.ui.ActionBar.t2 {
+    public final b50 f38674a;
 
-    public k30(x50 x50Var, LaunchActivity launchActivity) {
-        super(launchActivity, null);
-        this.f40651f3 = x50Var;
+    public k30(b50 b50Var) {
+        this.f38674a = b50Var;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        org.telegram.ui.Components.b30 b30Var = (org.telegram.ui.Components.b30) view;
-        x50 x50Var = this.f40651f3;
-        d50 d50Var = x50Var.Q;
-        o30 o30Var = x50Var.a2;
-        if (o30Var.f34027r == null && !x50Var.N2.k()) {
-            b30Var.setAlpha(1.0f);
-            b30Var.setTranslationX(0.0f);
-            b30Var.setTranslationY(0.0f);
+    public final void w() {
+        CountDownLatch groupCallBottomSheetLatch;
+        VoIPService sharedInstance = VoIPService.getSharedInstance();
+        if (sharedInstance != null && (groupCallBottomSheetLatch = sharedInstance.getGroupCallBottomSheetLatch()) != null) {
+            groupCallBottomSheetLatch.countDown();
         }
-        k30 k30Var = x50Var.f45540m2;
-        b30Var.getClass();
-        k30Var.getClass();
-        if (RecyclerView.R(b30Var) == -1 && b30Var.getRenderer() != null) {
-            return true;
+        b50 b50Var = this.f38674a;
+        if (b50Var.f36093w3 == 6) {
+            SharedPreferences d12 = org.telegram.messenger.vp.d1();
+            if (!d12.getBoolean("reminderhint", false)) {
+                d12.edit().putBoolean("reminderhint", true).commit();
+                if (b50Var.f36010e2 == null) {
+                    org.telegram.ui.Components.q30 q30Var = new org.telegram.ui.Components.q30(b50Var.getContext(), 8);
+                    b50Var.f36010e2 = q30Var;
+                    q30Var.setAlpha(0.0f);
+                    b50Var.f36010e2.setVisibility(4);
+                    b50Var.f36010e2.setShowingDuration(4000L);
+                    b50Var.f21586b.addView(b50Var.f36010e2, w7.b6.d(-2, -2.0f, 51, 19.0f, 0.0f, 19.0f, 0.0f));
+                    b50Var.f36010e2.setText(org.telegram.messenger.cd.L0(2131743464, null));
+                    b50Var.f36010e2.d();
+                }
+                b50Var.f36010e2.setExtraTranslationY(-org.telegram.messenger.i0.f16020m);
+                b50Var.f36010e2.f(b50Var.f36073s1, true);
+            }
         }
-        if (b30Var.getTranslationY() != 0.0f && b30Var.getRenderer() != null && b30Var.getRenderer().f34183c != null) {
-            float top = d50Var.getTop() - getTop();
-            float measuredHeight = d50Var.getMeasuredHeight() + top;
-            float f7 = o30Var.f34010c;
-            canvas.save();
-            float f10 = 1.0f - f7;
-            canvas.clipRect(0.0f, top * f10, getMeasuredWidth(), (getMeasuredHeight() * f7) + (measuredHeight * f10));
-            boolean drawChild = super.drawChild(canvas, view, j10);
-            canvas.restore();
-            return drawChild;
-        }
-        return super.drawChild(canvas, view, j10);
+    }
+
+    @Override
+    public final boolean y() {
+        return true;
     }
 }

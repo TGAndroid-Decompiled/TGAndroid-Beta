@@ -1,18 +1,25 @@
 package c2;
 
-import a8.yb;
-public final class m {
-    public static final m f5957b = new m(0);
-    public final long f5958a;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+public interface m {
+    public static final ByteBuffer f3552a = ByteBuffer.allocateDirect(0).order(ByteOrder.nativeOrder());
 
-    public m(long j10) {
-        boolean z10;
-        if (j10 >= 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        yb.g(z10);
-        this.f5958a = j10;
-    }
+    ByteBuffer a();
+
+    void b(ByteBuffer byteBuffer);
+
+    boolean c();
+
+    void d(k kVar);
+
+    j e(j jVar);
+
+    void f();
+
+    long g(long j10);
+
+    boolean isActive();
+
+    void reset();
 }

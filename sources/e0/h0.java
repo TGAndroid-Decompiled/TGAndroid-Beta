@@ -1,15 +1,13 @@
 package e0;
 
 import android.content.ComponentName;
-import java.util.ArrayDeque;
+import android.os.IBinder;
 public final class h0 {
-    public final ComponentName f9548a;
-    public b.c f9550c;
-    public boolean f9549b = false;
-    public final ArrayDeque d = new ArrayDeque();
-    public int e = 0;
+    public final ComponentName f6024a;
+    public final IBinder f6025b;
 
-    public h0(ComponentName componentName) {
-        this.f9548a = componentName;
+    public h0(ComponentName componentName, IBinder iBinder) {
+        this.f6024a = componentName;
+        this.f6025b = iBinder;
     }
 }

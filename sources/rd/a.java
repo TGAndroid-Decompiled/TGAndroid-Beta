@@ -1,26 +1,17 @@
 package rd;
+
+import java.nio.charset.Charset;
 public abstract class a {
-    public static final Integer f47363a;
+    public static final Charset f46479a;
 
     static {
-        Integer num;
-        Object obj;
-        Integer num2 = null;
-        try {
-            obj = Class.forName("android.os.Build$VERSION").getField("SDK_INT").get(null);
-        } catch (Throwable unused) {
-        }
-        if (obj instanceof Integer) {
-            num = (Integer) obj;
-            if (num != null && num.intValue() > 0) {
-                num2 = num;
-            }
-            f47363a = num2;
-        }
-        num = null;
-        if (num != null) {
-            num2 = num;
-        }
-        f47363a = num2;
+        Charset forName = Charset.forName("UTF-8");
+        kotlin.jvm.internal.i.d(forName, "forName(...)");
+        f46479a = forName;
+        kotlin.jvm.internal.i.d(Charset.forName("UTF-16"), "forName(...)");
+        kotlin.jvm.internal.i.d(Charset.forName("UTF-16BE"), "forName(...)");
+        kotlin.jvm.internal.i.d(Charset.forName("UTF-16LE"), "forName(...)");
+        kotlin.jvm.internal.i.d(Charset.forName("US-ASCII"), "forName(...)");
+        kotlin.jvm.internal.i.d(Charset.forName("ISO-8859-1"), "forName(...)");
     }
 }

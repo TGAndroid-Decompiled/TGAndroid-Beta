@@ -1,44 +1,45 @@
 package d1;
 
+import kotlin.jvm.internal.i;
 import org.json.JSONException;
-import v0.i;
+import v0.h;
 public final class b implements Runnable {
-    public final int f7824a;
-    public final e f7825b;
-    public final JSONException f7826c;
+    public final int f5630a;
+    public final f f5631b;
+    public final JSONException f5632c;
 
-    public b(e eVar, JSONException jSONException, int i10) {
-        this.f7824a = i10;
-        this.f7825b = eVar;
-        this.f7826c = jSONException;
+    public b(f fVar, JSONException jSONException, int i10) {
+        this.f5630a = i10;
+        this.f5631b = fVar;
+        this.f5632c = jSONException;
     }
 
     @Override
     public final void run() {
         y0.a aVar;
-        switch (this.f7824a) {
+        switch (this.f5630a) {
             case 0:
-                i iVar = this.f7825b.f7832f;
-                if (iVar != null) {
-                    iVar.onError(new y0.a(new x0.a(4), this.f7826c.getMessage()));
+                h hVar = this.f5631b.f5641f;
+                if (hVar != null) {
+                    hVar.g(new y0.a(new x0.a(4), this.f5632c.getMessage()));
                     return;
                 } else {
-                    kotlin.jvm.internal.i.h("callback");
+                    i.h("callback");
                     throw null;
                 }
             default:
-                i iVar2 = this.f7825b.f7832f;
-                if (iVar2 != null) {
-                    String message = this.f7826c.getMessage();
+                h hVar2 = this.f5631b.f5641f;
+                if (hVar2 != null) {
+                    String message = this.f5632c.getMessage();
                     if (message != null && message.length() > 0) {
                         aVar = new y0.a(new x0.a(4), message);
                     } else {
                         aVar = new y0.a(new x0.a(4), "Unknown error");
                     }
-                    iVar2.onError(aVar);
+                    hVar2.g(aVar);
                     return;
                 }
-                kotlin.jvm.internal.i.h("callback");
+                i.h("callback");
                 throw null;
         }
     }

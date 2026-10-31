@@ -2,15 +2,17 @@ package org.telegram.messenger.secretmedia;
 
 import android.net.Uri;
 import g2.c;
-import g2.c0;
-import g2.j;
-import g2.m;
+import g2.d0;
+import g2.k;
+import g2.n;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
-import org.telegram.messenger.FileLoader;
-import org.telegram.ui.Components.b10;
+import java.util.regex.Pattern;
+import org.telegram.messenger.b8;
+import org.telegram.messenger.w0;
+import sc.e;
 public final class EncryptedFileDataSource extends c {
     private int bytesRemaining;
     EncryptedFileInputStream fileInputStream;
@@ -53,31 +55,34 @@ public final class EncryptedFileDataSource extends c {
     }
 
     @Override
-    public long open(m mVar) {
-        Uri uri = mVar.f12257a;
-        long j10 = mVar.f12260f;
-        long j11 = mVar.e;
-        this.uri = uri;
-        File file = new File(mVar.f12257a.getPath());
-        EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(FileLoader.getInternalCacheDir(), b10.u(file.getName(), ".key")));
+    public long open(n nVar) {
+        this.uri = nVar.f7314a;
+        File file = new File(nVar.f7314a.getPath());
+        String name = file.getName();
+        Pattern pattern = b8.I;
+        EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(w0.f19025b.getCacheDir(), e.A(name, ".key")));
         this.fileInputStream = encryptedFileInputStream;
-        encryptedFileInputStream.skip(j11);
-        transferInitializing(mVar);
-        long length = (int) file.length();
-        if (j11 <= length) {
-            int i10 = (int) (length - j11);
+        encryptedFileInputStream.skip(nVar.e);
+        int length = (int) file.length();
+        transferInitializing(nVar);
+        long j10 = nVar.e;
+        long j11 = length;
+        if (j10 <= j11) {
+            int i10 = (int) (j11 - j10);
             this.bytesRemaining = i10;
-            if (j10 != -1) {
-                this.bytesRemaining = (int) Math.min(i10, j10);
+            long j12 = nVar.f7317f;
+            if (j12 != -1) {
+                this.bytesRemaining = (int) Math.min(i10, j12);
             }
             this.opened = true;
-            transferStarted(mVar);
-            if (j10 != -1) {
-                return j10;
+            transferStarted(nVar);
+            long j13 = nVar.f7317f;
+            if (j13 != -1) {
+                return j13;
             }
             return this.bytesRemaining;
         }
-        throw new j(2008);
+        throw new k(2008);
     }
 
     @Override
@@ -101,10 +106,10 @@ public final class EncryptedFileDataSource extends c {
     }
 
     @Deprecated
-    public EncryptedFileDataSource(c0 c0Var) {
+    public EncryptedFileDataSource(d0 d0Var) {
         this();
-        if (c0Var != null) {
-            addTransferListener(c0Var);
+        if (d0Var != null) {
+            addTransferListener(d0Var);
         }
     }
 }

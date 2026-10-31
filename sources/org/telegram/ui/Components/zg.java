@@ -1,46 +1,76 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.R;
-public final class zg {
-    public static final zg d;
-    public static final zg e;
-    public static final zg[] f35333f;
-    public final yg f35334a;
-    public final yg f35335b;
-    public final int f35336c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class zg extends AnimatorListenerAdapter {
+    public final int f33053a;
+    public final boolean f33054b;
+    public final gh f33055c;
 
-    static {
-        int i10 = R.raw.voice_and_video;
-        yg ygVar = yg.f35047a;
-        yg ygVar2 = yg.f35048b;
-        zg zgVar = new zg("VOICE_TO_VIDEO", 0, ygVar, ygVar2, i10);
-        d = zgVar;
-        int i11 = R.raw.sticker_to_keyboard;
-        yg ygVar3 = yg.f35049c;
-        yg ygVar4 = yg.d;
-        zg zgVar2 = new zg("STICKER_TO_KEYBOARD", 1, ygVar3, ygVar4, i11);
-        int i12 = R.raw.smile_to_keyboard;
-        yg ygVar5 = yg.e;
-        zg zgVar3 = new zg("SMILE_TO_KEYBOARD", 2, ygVar5, ygVar4, i12);
-        zg zgVar4 = new zg("VIDEO_TO_VOICE", 3, ygVar2, ygVar, i10);
-        e = zgVar4;
-        zg zgVar5 = new zg("KEYBOARD_TO_STICKER", 4, ygVar4, ygVar3, R.raw.keyboard_to_sticker);
-        int i13 = R.raw.keyboard_to_gif;
-        yg ygVar6 = yg.f35050f;
-        f35333f = new zg[]{zgVar, zgVar2, zgVar3, zgVar4, zgVar5, new zg("KEYBOARD_TO_GIF", 5, ygVar4, ygVar6, i13), new zg("KEYBOARD_TO_SMILE", 6, ygVar4, ygVar5, R.raw.keyboard_to_smile), new zg("GIF_TO_KEYBOARD", 7, ygVar6, ygVar4, R.raw.gif_to_keyboard), new zg("GIF_TO_SMILE", 8, ygVar6, ygVar5, R.raw.gif_to_smile), new zg("SMILE_TO_GIF", 9, ygVar5, ygVar6, R.raw.smile_to_gif), new zg("SMILE_TO_STICKER", 10, ygVar5, ygVar3, R.raw.smile_to_sticker), new zg("STICKER_TO_SMILE", 11, ygVar3, ygVar5, R.raw.sticker_to_smile)};
+    public zg(gh ghVar, boolean z10, int i10) {
+        this.f33053a = i10;
+        this.f33055c = ghVar;
+        this.f33054b = z10;
     }
 
-    public zg(String str, int i10, yg ygVar, yg ygVar2, int i11) {
-        this.f35334a = ygVar;
-        this.f35335b = ygVar2;
-        this.f35336c = i11;
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        switch (this.f33053a) {
+            case 0:
+                gh ghVar = this.f33055c;
+                bi biVar = ghVar.e;
+                boolean z10 = this.f33054b;
+                if (!z10) {
+                    biVar.y3.setVisibility(8);
+                } else {
+                    biVar.f24718r3.setVisibility(8);
+                }
+                if (z10) {
+                    i10 = org.telegram.messenger.i0.L(36.0f);
+                } else {
+                    i10 = 0;
+                }
+                for (int i11 = 0; i11 < biVar.f24717r2.size(); i11++) {
+                    ((xh.i3) biVar.f24717r2.valueAt(i11)).setMeasureOffsetY(i10);
+                }
+                if (ghVar.f26368a == animator) {
+                    ghVar.f26368a = null;
+                    return;
+                }
+                return;
+            default:
+                bi biVar2 = this.f33055c.e;
+                boolean z11 = this.f33054b;
+                biVar2.f24734v3 = z11;
+                if (!z11) {
+                    biVar2.f24738w3.setVisibility(8);
+                    return;
+                }
+                return;
+        }
     }
 
-    public static zg valueOf(String str) {
-        return (zg) Enum.valueOf(zg.class, str);
-    }
-
-    public static zg[] values() {
-        return (zg[]) f35333f.clone();
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f33053a) {
+            case 0:
+                bi biVar = this.f33055c.e;
+                if (this.f33054b) {
+                    biVar.y3.setAlpha(0.0f);
+                    biVar.y3.setVisibility(0);
+                    int L = org.telegram.messenger.i0.L(36.0f);
+                    for (int i10 = 0; i10 < biVar.f24717r2.size(); i10++) {
+                        ((xh.i3) biVar.f24717r2.valueAt(i10)).setMeasureOffsetY(L);
+                    }
+                    return;
+                }
+                biVar.f24718r3.setAlpha(0.0f);
+                biVar.f24718r3.setVisibility(0);
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
+        }
     }
 }

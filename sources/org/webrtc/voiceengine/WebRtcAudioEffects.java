@@ -6,7 +6,7 @@ import android.media.audiofx.NoiseSuppressor;
 import android.os.Build;
 import java.util.List;
 import java.util.UUID;
-import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.tz;
 import org.webrtc.Logging;
 public class WebRtcAudioEffects {
     private static final UUID AOSP_ACOUSTIC_ECHO_CANCELER = UUID.fromString("bb392ec0-8d4d-11e0-a896-0002a5d5c51b");
@@ -172,7 +172,7 @@ public class WebRtcAudioEffects {
             this.aec = create;
             if (create != null) {
                 boolean enabled = create.getEnabled();
-                if (this.shouldEnableAec && canUseAcousticEchoCanceler() && !SharedConfig.disableVoiceAudioEffects) {
+                if (this.shouldEnableAec && canUseAcousticEchoCanceler() && !tz.V) {
                     z12 = true;
                 } else {
                     z12 = false;
@@ -206,7 +206,7 @@ public class WebRtcAudioEffects {
             this.ns = create2;
             if (create2 != null) {
                 boolean enabled2 = create2.getEnabled();
-                if (this.shouldEnableNs && canUseNoiseSuppressor() && !SharedConfig.disableVoiceAudioEffects) {
+                if (this.shouldEnableNs && canUseNoiseSuppressor() && !tz.V) {
                     z13 = true;
                 }
                 if (this.ns.setEnabled(z13) != 0) {

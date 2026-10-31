@@ -1,113 +1,72 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-public final class er extends View implements org.telegram.ui.ActionBar.p6 {
-    public final Paint f27911a;
-    public final Paint f27912b;
-    public final RectF f27913c;
-    public int d;
-    public long e;
-    public int f27914f;
-    public int h;
-    public int f27915n;
-    public int f27916r;
+import android.graphics.drawable.Drawable;
+public final class er implements Drawable.Callback {
+    public final int f25852a;
+    public final fr f25853b;
 
-    public er(Context context, int i10) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.f27911a = paint;
-        Paint paint2 = new Paint(1);
-        this.f27912b = paint2;
-        this.f27913c = new RectF();
-        this.d = 0;
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        paint2.setStyle(style);
-        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        paint2.setStrokeCap(Paint.Cap.ROUND);
-        if (i10 == 0) {
-            this.f27914f = org.telegram.ui.ActionBar.y6.B7;
-            this.h = org.telegram.ui.ActionBar.y6.C7;
-        } else if (i10 == 1) {
-            this.f27914f = org.telegram.ui.ActionBar.y6.D7;
-            this.h = org.telegram.ui.ActionBar.y6.E7;
-        } else if (i10 == 2) {
-            this.f27914f = org.telegram.ui.ActionBar.y6.F7;
-            this.h = org.telegram.ui.ActionBar.y6.G7;
-        } else if (i10 == 3) {
-            this.f27914f = org.telegram.ui.ActionBar.y6.H7;
-            this.h = org.telegram.ui.ActionBar.y6.I7;
+    public er(fr frVar, int i10) {
+        this.f25852a = i10;
+        this.f25853b = frVar;
+    }
+
+    @Override
+    public final void invalidateDrawable(Drawable drawable) {
+        switch (this.f25852a) {
+            case 0:
+                fr frVar = this.f25853b;
+                if (frVar.f26122c < 1.0f) {
+                    frVar.invalidateSelf();
+                    return;
+                }
+                return;
+            default:
+                fr frVar2 = this.f25853b;
+                if (frVar2.f26122c > 0.0f) {
+                    frVar2.invalidateSelf();
+                    return;
+                }
+                return;
         }
-        updateColors();
-    }
-
-    public final void a(int i10, int i11) {
-        this.f27914f = -1;
-        this.h = -1;
-        this.f27915n = i10;
-        this.f27916r = i11;
-        updateColors();
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.e = System.currentTimeMillis();
-        invalidate();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (getVisibility() != 0) {
-            return;
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j10) {
+        switch (this.f25852a) {
+            case 0:
+                fr frVar = this.f25853b;
+                if (frVar.f26122c < 1.0f) {
+                    frVar.scheduleSelf(runnable, j10);
+                    return;
+                }
+                return;
+            default:
+                fr frVar2 = this.f25853b;
+                if (frVar2.f26122c > 0.0f) {
+                    frVar2.scheduleSelf(runnable, j10);
+                    return;
+                }
+                return;
         }
-        long currentTimeMillis = System.currentTimeMillis();
-        long j10 = currentTimeMillis - this.e;
-        this.e = currentTimeMillis;
-        this.d = (int) ((((float) (j10 * 360)) / 1000.0f) + this.d);
-        int measuredWidth = (getMeasuredWidth() / 2) - AndroidUtilities.dp(9.0f);
-        int measuredHeight = (getMeasuredHeight() / 2) - AndroidUtilities.dp(9.0f);
-        RectF rectF = this.f27913c;
-        rectF.set(measuredWidth, measuredHeight, AndroidUtilities.dp(18.0f) + measuredWidth, AndroidUtilities.dp(18.0f) + measuredHeight);
-        canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, AndroidUtilities.dp(9.0f), this.f27911a);
-        canvas.drawArc(rectF, this.d - 90, 90.0f, false, this.f27912b);
-        invalidate();
     }
 
     @Override
-    public void setVisibility(int i10) {
-        super.setVisibility(i10);
-        this.e = System.currentTimeMillis();
-        invalidate();
-    }
-
-    @Override
-    public final void updateColors() {
-        int i10 = this.f27914f;
-        Paint paint = this.f27911a;
-        if (i10 >= 0) {
-            paint.setColor(org.telegram.ui.ActionBar.y6.x0(null, i10, false));
-        } else {
-            paint.setColor(this.f27915n);
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        switch (this.f25852a) {
+            case 0:
+                fr frVar = this.f25853b;
+                if (frVar.f26122c < 1.0f) {
+                    frVar.unscheduleSelf(runnable);
+                    return;
+                }
+                return;
+            default:
+                fr frVar2 = this.f25853b;
+                if (frVar2.f26122c > 0.0f) {
+                    frVar2.unscheduleSelf(runnable);
+                    return;
+                }
+                return;
         }
-        int i11 = this.h;
-        Paint paint2 = this.f27912b;
-        if (i11 >= 0) {
-            paint2.setColor(org.telegram.ui.ActionBar.y6.x0(null, i11, false));
-        } else {
-            paint2.setColor(this.f27916r);
-        }
-        invalidate();
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
     }
 }

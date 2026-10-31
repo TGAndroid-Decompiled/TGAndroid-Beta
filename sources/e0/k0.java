@@ -1,18 +1,84 @@
 package e0;
 
-import androidx.core.graphics.drawable.IconCompat;
+import android.app.AppOpsManager;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.os.Build;
+import android.os.Bundle;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.HashSet;
 public final class k0 {
-    public CharSequence f9561a;
-    public IconCompat f9562b;
+    public static String d;
+    public static j0 f6040g;
+    public final Context f6041a;
+    public final NotificationManager f6042b;
+    public static final Object f6038c = new Object();
+    public static HashSet e = new HashSet();
+    public static final Object f6039f = new Object();
 
-    public final l0 a() {
-        ?? obj = new Object();
-        obj.f9564a = this.f9561a;
-        obj.f9565b = this.f9562b;
-        obj.f9566c = null;
-        obj.d = null;
-        obj.e = false;
-        obj.f9567f = false;
-        return obj;
+    public k0(Context context) {
+        this.f6041a = context;
+        this.f6042b = (NotificationManager) context.getSystemService("notification");
+    }
+
+    public static k0 c(Context context) {
+        return new k0(context);
+    }
+
+    public final boolean a() {
+        Method method;
+        Integer num;
+        if (Build.VERSION.SDK_INT >= 24) {
+            return androidx.emoji2.text.w.a(this.f6042b);
+        }
+        Context context = this.f6041a;
+        AppOpsManager appOpsManager = (AppOpsManager) context.getSystemService("appops");
+        ApplicationInfo applicationInfo = context.getApplicationInfo();
+        String packageName = context.getApplicationContext().getPackageName();
+        int i10 = applicationInfo.uid;
+        try {
+            Class<?> cls = Class.forName(AppOpsManager.class.getName());
+            Class<?> cls2 = Integer.TYPE;
+            method = cls.getMethod("checkOpNoThrow", cls2, cls2, String.class);
+            num = (Integer) cls.getDeclaredField("OP_POST_NOTIFICATION").get(Integer.class);
+            num.getClass();
+        } catch (ClassNotFoundException | IllegalAccessException | NoSuchFieldException | NoSuchMethodException | RuntimeException | InvocationTargetException unused) {
+        }
+        if (((Integer) method.invoke(appOpsManager, num, Integer.valueOf(i10), packageName)).intValue() == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void b(int i10, String str) {
+        this.f6042b.cancel(str, i10);
+    }
+
+    public final void d(int i10, Notification notification) {
+        e(null, i10, notification);
+    }
+
+    public final void e(String str, int i10, Notification notification) {
+        NotificationManager notificationManager = this.f6042b;
+        Bundle bundle = notification.extras;
+        if (bundle != null && bundle.getBoolean("android.support.useSideChannel")) {
+            g0 g0Var = new g0(this.f6041a.getPackageName(), i10, str, notification);
+            synchronized (f6039f) {
+                try {
+                    if (f6040g == null) {
+                        f6040g = new j0(this.f6041a.getApplicationContext());
+                    }
+                    f6040g.f6036b.obtainMessage(0, g0Var).sendToTarget();
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
+            notificationManager.cancel(str, i10);
+            return;
+        }
+        notificationManager.notify(str, i10, notification);
     }
 }

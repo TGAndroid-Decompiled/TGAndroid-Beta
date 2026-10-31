@@ -1,62 +1,8 @@
 package org.telegram.ui;
 
-import android.graphics.Typeface;
-import android.text.TextPaint;
-import android.util.SparseArray;
+import org.telegram.tgnet.tl.TL_iv;
 public final class q3 {
-    public TextPaint f42586a;
-    public final SparseArray f42587b = new SparseArray();
-    public final SparseArray f42588c = new SparseArray();
-    public final SparseArray d = new SparseArray();
-    public final SparseArray e = new SparseArray();
-    public final SparseArray f42589f = new SparseArray();
-    public final SparseArray f42590g = new SparseArray();
-    public final SparseArray h = new SparseArray();
-    public final SparseArray f42591i = new SparseArray();
-    public final SparseArray f42592j = new SparseArray();
-    public final SparseArray f42593k = new SparseArray();
-    public final SparseArray f42594l = new SparseArray();
-    public final SparseArray f42595m = new SparseArray();
-    public final SparseArray f42596n = new SparseArray();
-    public final SparseArray f42597o = new SparseArray();
-    public final SparseArray f42598p = new SparseArray();
-    public final SparseArray f42599q = new SparseArray();
-    public final SparseArray f42600r = new SparseArray();
-    public final SparseArray f42601s = new SparseArray();
-    public final SparseArray f42602t = new SparseArray();
-    public final SparseArray f42603u = new SparseArray();
-    public final SparseArray v = new SparseArray();
-    public final SparseArray f42604w = new SparseArray();
-    public final SparseArray f42605x = new SparseArray();
-    public final SparseArray f42606y = new SparseArray();
-    public final SparseArray f42607z = new SparseArray();
-    public final SparseArray A = new SparseArray();
-
-    public static void a(j70 j70Var, SparseArray sparseArray) {
-        for (int i10 = 0; i10 < sparseArray.size(); i10++) {
-            int keyAt = sparseArray.keyAt(i10);
-            TextPaint textPaint = (TextPaint) sparseArray.valueAt(i10);
-            if (textPaint != null) {
-                if ((keyAt & 8) == 0 && (keyAt & 512) == 0) {
-                    textPaint.setColor(j70Var.b());
-                } else {
-                    textPaint.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.J6, false));
-                }
-            }
-        }
-    }
-
-    public static void b(int i10, TextPaint textPaint, Typeface typeface, Typeface typeface2, Typeface typeface3, Typeface typeface4) {
-        int i11 = i10 & 1;
-        if (i11 != 0 && (i10 & 2) != 0) {
-            textPaint.setTypeface(typeface2);
-        } else if (i11 != 0) {
-            textPaint.setTypeface(typeface3);
-        } else if ((i10 & 2) != 0) {
-            textPaint.setTypeface(typeface4);
-        } else if ((i10 & 4) != 0) {
-        } else {
-            textPaint.setTypeface(typeface);
-        }
-    }
+    public int f40847a;
+    public Object f40848b;
+    public TL_iv.PageBlock f40849c;
 }

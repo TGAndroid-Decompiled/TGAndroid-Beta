@@ -1,57 +1,36 @@
 package i7;
 
-import a8.aa;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import h7.l;
-import h7.q;
-import kotlin.jvm.internal.i;
-public final class f extends c8.b implements a {
-    public final int f13880b;
-    public final TaskCompletionSource f13881c;
+import android.os.BadParcelableException;
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class f {
+    public static final int f8231a = 0;
 
-    public f(int i10, TaskCompletionSource taskCompletionSource) {
-        super(8);
-        this.f13880b = i10;
-        this.f13881c = taskCompletionSource;
-        attachInterface(this, "com.google.android.gms.identitycredentials.internal.IIdentityCredentialCallbacks");
+    static {
+        f.class.getClassLoader();
     }
 
-    @Override
-    public void D(Status status, q qVar) {
-        i.e(status, "status");
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void D0(Status status, h7.e eVar) {
-        switch (this.f13880b) {
-            case 0:
-                i.e(status, "status");
-                aa.a(status, eVar, this.f13881c);
-                return;
-            default:
-                i.e(status, "status");
-                throw new UnsupportedOperationException();
+    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() == 0) {
+            return null;
         }
+        return (Parcelable) creator.createFromParcel(parcel);
     }
 
-    @Override
-    public void d0(Status status, h7.b bVar) {
-        i.e(status, "status");
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void s0(Status status, l lVar) {
-        switch (this.f13880b) {
-            case 1:
-                i.e(status, "status");
-                aa.a(status, lVar, this.f13881c);
-                return;
-            default:
-                i.e(status, "status");
-                throw new UnsupportedOperationException();
+    public static void b(Parcel parcel) {
+        int dataAvail = parcel.dataAvail();
+        if (dataAvail <= 0) {
+            return;
         }
+        throw new BadParcelableException(i0.a.i(dataAvail, "Parcel data not fully consumed, unread size: "));
+    }
+
+    public static void c(Parcel parcel, Parcelable parcelable) {
+        if (parcelable == null) {
+            parcel.writeInt(0);
+            return;
+        }
+        parcel.writeInt(1);
+        parcelable.writeToParcel(parcel, 0);
     }
 }

@@ -1,15 +1,29 @@
 package dg;
 
-import java.nio.ShortBuffer;
-import pa.d;
-import sb.b;
-public interface a {
-    public static final d f8348l = new Object();
-    public static final tb.a f8349m = new tb.a(6);
-    public static final qb.a f8350o = new qb.a(6);
-    public static final b f8351p = new b(6);
+import android.graphics.Paint;
+import org.telegram.ui.ActionBar.p6;
+import org.telegram.ui.ActionBar.t6;
+public final class a extends g {
+    public final p6 f5880q;
+    public final Paint f5881r;
+    public int f5882s;
 
-    void G0(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11);
+    public a(cg.a aVar, p6 p6Var) {
+        super(aVar, false, null);
+        Paint paint = new Paint();
+        this.f5881r = paint;
+        this.f5882s = 0;
+        this.f5880q = p6Var;
+        Paint paint2 = this.f5911c;
+        Paint.Style style = Paint.Style.STROKE;
+        paint2.setStyle(style);
+        paint.setStyle(style);
+        this.f5911c.setAntiAlias(false);
+    }
 
-    int t1(int i10, int i11, int i12);
+    @Override
+    public final void a() {
+        super.a();
+        this.f5882s = i0.b.f(0.3f, t6.w0(t6.f20929d6, this.f5880q), this.f5918m);
+    }
 }

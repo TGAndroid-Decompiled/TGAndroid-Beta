@@ -1,35 +1,50 @@
 package org.telegram.ui.Components;
 
-import java.util.Arrays;
-import java.util.Comparator;
-public final class gh0 implements Comparator {
-    public final oh0 f28585a;
+import android.app.Activity;
+import android.graphics.Point;
+import android.view.View;
+import android.widget.LinearLayout;
+public final class gh0 extends LinearLayout {
+    public boolean f26371a;
+    public final jh0 f26372b;
 
-    public gh0(oh0 oh0Var) {
-        this.f28585a = oh0Var;
-    }
-
-    public final int a(nh0 nh0Var) {
-        oh0 oh0Var = this.f28585a;
-        int size = oh0Var.f31289r.answers.size();
-        for (int i10 = 0; i10 < size; i10++) {
-            if (Arrays.equals(oh0Var.f31289r.answers.get(i10).option, nh0Var.d)) {
-                return i10;
-            }
-        }
-        return 0;
+    public gh0(jh0 jh0Var, Activity activity) {
+        super(activity);
+        this.f26372b = jh0Var;
+        this.f26371a = false;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int a2 = a((nh0) obj);
-        int a10 = a((nh0) obj2);
-        if (a2 > a10) {
-            return 1;
+    public final void onMeasure(int i10, int i11) {
+        int i12;
+        jh0 jh0Var = this.f26372b;
+        ac0 ac0Var = jh0Var.H;
+        ac0 ac0Var2 = jh0Var.G;
+        this.f26371a = true;
+        Point point = org.telegram.messenger.i0.f16026q;
+        if (point.x > point.y) {
+            i12 = 3;
+        } else {
+            i12 = 5;
         }
-        if (a2 < a10) {
-            return -1;
+        ac0Var2.setItemCount(i12);
+        ac0Var.setItemCount(i12);
+        ac0Var2.getLayoutParams().height = org.telegram.messenger.i0.L(54.0f) * i12;
+        ac0Var.getLayoutParams().height = org.telegram.messenger.i0.L(54.0f) * i12;
+        this.f26371a = false;
+        int size = View.MeasureSpec.getSize(i10);
+        jh0Var.N = size;
+        if (size != 0) {
+            jh0Var.c(false);
         }
-        return 0;
+        super.onMeasure(i10, i11);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f26371a) {
+            return;
+        }
+        super.requestLayout();
     }
 }

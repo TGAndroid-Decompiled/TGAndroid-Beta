@@ -1,489 +1,136 @@
 package wg;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-import bi.jc;
-import di.l4;
-import ig.o;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BillingController;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.f7;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Cells.a9;
-import org.telegram.ui.Cells.q4;
-import org.telegram.ui.Cells.v8;
-import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.j9;
-import org.telegram.ui.Components.nm0;
-import org.telegram.ui.Components.s6;
-import org.telegram.ui.Components.y9;
-import s4.e1;
-import vg.u;
-import xg.d0;
-import xg.i;
-import xg.l;
-import xg.r;
-import xg.v;
-import xg.w;
-import xg.x;
-import xg.y;
-public final class b extends qg.b {
-    public final u6 d;
-    public nm0 f51229f;
-    public u h;
-    public u f51230n;
-    public r f51231r;
-    public u f51232s;
-    public TLRPC.Chat v;
-    public ArrayList e = new ArrayList();
-    public final HashMap f51233w = new HashMap();
+import android.graphics.Color;
+import org.telegram.messenger.i0;
+import org.telegram.messenger.sc;
+import org.telegram.ui.ActionBar.a7;
+import org.telegram.ui.ActionBar.p6;
+import org.telegram.ui.ActionBar.t6;
+public class b implements a {
+    public final p6 f52839a;
+    public final int f52840b;
+    public final float f52841c;
+    public int d;
+    public int e;
+    public int f52842f;
+    public int h;
+    public int f52843n;
+    public int f52844r;
 
-    public b(u6 u6Var) {
-        this.d = u6Var;
-        o oVar = new o(this, 26);
-        MessagesStorage messagesStorage = MessagesStorage.getInstance(UserConfig.selectedAccount);
-        messagesStorage.getStorageQueue().postRunnable(new s9.g(23, messagesStorage, oVar));
+    public b(int i10, p6 p6Var) {
+        this(p6Var, i10, sc.e(262144) ? 0.85f : 0.76f);
     }
 
     @Override
-    public final boolean D(e1 e1Var) {
-        int i10 = e1Var.f47776f;
-        if (i10 != 2 && i10 != 11 && i10 != 8 && i10 != 10 && i10 != 15 && i10 != 12 && i10 != 17 && i10 != 18) {
-            return false;
+    public int E() {
+        a();
+        if (b() && Color.alpha(t6.w0(this.f52843n, this.f52839a)) != 0) {
+            return 0;
         }
-        return true;
-    }
-
-    public final int F(TLRPC.Chat chat) {
-        Integer num;
-        int i10;
-        TLRPC.ChatFull chatFull = MessagesController.getInstance(UserConfig.selectedAccount).getChatFull(chat.f22028id);
-        if (chatFull != null && (i10 = chatFull.participants_count) > 0) {
-            return i10;
-        }
-        HashMap hashMap = this.f51233w;
-        if (!hashMap.isEmpty() && (num = (Integer) hashMap.get(Long.valueOf(chat.f22028id))) != null) {
-            return num.intValue();
-        }
-        return chat.participants_count;
-    }
-
-    public final void G() {
-        for (int i10 = 0; i10 < this.e.size(); i10++) {
-            if (((a) this.e.get(i10)).f47075a == 7) {
-                m(i10);
-            }
-        }
+        return this.h;
     }
 
     @Override
-    public final int h() {
-        return this.e.size();
+    public final float N() {
+        if (b()) {
+            return i0.N(1.0f);
+        }
+        return -1.0f;
     }
 
     @Override
-    public final int j(int i10) {
-        return ((a) this.e.get(i10)).f47075a;
+    public final float X() {
+        if (b()) {
+            return i0.N(2.25f);
+        }
+        return -1.0f;
+    }
+
+    public final void a() {
+        if (this.f52844r != a7.f20158b) {
+            d();
+        }
+    }
+
+    public final boolean b() {
+        if (this.f52843n >= 0 && t6.i1(this.f52839a)) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final void v(e1 e1Var, int i10) {
-        boolean z10;
-        int i11;
-        int i12;
-        long j10;
-        boolean z11;
-        int i13 = e1Var.f47776f;
-        View view = e1Var.f47773a;
-        a aVar = (a) this.e.get(i10);
-        if (i13 != 0) {
-            TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption = null;
-            if (i13 != 2) {
-                if (i13 != 5) {
-                    if (i13 != 6) {
-                        if (i13 != 7) {
-                            String str = "";
-                            switch (i13) {
-                                case 9:
-                                    xg.g gVar = (xg.g) view;
-                                    TLRPC.InputPeer inputPeer = aVar.d;
-                                    if (inputPeer != null) {
-                                        if (inputPeer instanceof TLRPC.TL_inputPeerChat) {
-                                            TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(inputPeer.chat_id));
-                                            gVar.f(chat, aVar.f51224i, aVar.f51223g, F(chat));
-                                        } else if (inputPeer instanceof TLRPC.TL_inputPeerChannel) {
-                                            TLRPC.Chat chat2 = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(inputPeer.channel_id));
-                                            gVar.f(chat2, aVar.f51224i, aVar.f51223g, F(chat2));
-                                        }
-                                    } else {
-                                        TLRPC.Chat chat3 = aVar.e;
-                                        gVar.f(chat3, aVar.f51224i, aVar.f51223g, F(chat3));
-                                    }
-                                    gVar.setChatDeleteListener(this.f51230n);
-                                    return;
-                                case 10:
-                                    ((xg.h) view).setDate(aVar.h);
-                                    return;
-                                case 11:
-                                    xg.u uVar = (xg.u) view;
-                                    int i14 = aVar.f51227l;
-                                    boolean z12 = aVar.f47076b;
-                                    boolean z13 = aVar.f51223g;
-                                    List list = (List) aVar.f51222f;
-                                    TLRPC.Chat chat4 = this.v;
-                                    l4 l4Var = uVar.d;
-                                    uVar.f51870s = i14;
-                                    boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat4);
-                                    if (i14 == 0) {
-                                        if (isChannelAndNotMegaGroup) {
-                                            i12 = R.string.BoostingAllSubscribers;
-                                        } else {
-                                            i12 = R.string.BoostingAllMembers;
-                                        }
-                                        l4Var.k(LocaleController.formatString(i12, new Object[0]));
-                                    } else if (i14 == 1) {
-                                        if (isChannelAndNotMegaGroup) {
-                                            i11 = R.string.BoostingNewSubscribers;
-                                        } else {
-                                            i11 = R.string.BoostingNewMembers;
-                                        }
-                                        l4Var.k(LocaleController.formatString(i11, new Object[0]));
-                                    }
-                                    uVar.f51822f.a(z12, false);
-                                    uVar.setDivider(z13);
-                                    f7.Y(uVar.e, y6.f23540n5, uVar.f51819a);
-                                    if (list.size() == 0) {
-                                        uVar.setSubtitle(uVar.e(LocaleController.getString(R.string.BoostingFromAllCountries)));
-                                        return;
-                                    } else if (list.size() <= 3) {
-                                        if (list.size() == 1) {
-                                            uVar.setSubtitle(uVar.e(LocaleController.formatString("BoostingFromAllCountries1", R.string.BoostingFromAllCountries1, ((TLRPC.TL_help_country) list.get(0)).default_name)));
-                                            return;
-                                        } else if (list.size() == 2) {
-                                            uVar.setSubtitle(uVar.e(LocaleController.formatString("BoostingFromAllCountries2", R.string.BoostingFromAllCountries2, ((TLRPC.TL_help_country) list.get(0)).default_name, ((TLRPC.TL_help_country) list.get(1)).default_name)));
-                                            return;
-                                        } else {
-                                            uVar.setSubtitle(uVar.e(LocaleController.formatString("BoostingFromAllCountries3", R.string.BoostingFromAllCountries3, ((TLRPC.TL_help_country) list.get(0)).default_name, ((TLRPC.TL_help_country) list.get(1)).default_name, ((TLRPC.TL_help_country) list.get(2)).default_name)));
-                                            return;
-                                        }
-                                    } else {
-                                        uVar.setSubtitle(uVar.e(LocaleController.formatPluralString("BoostingFromCountriesCount", list.size(), new Object[0])));
-                                        return;
-                                    }
-                                case 12:
-                                    i iVar = (i) view;
-                                    TLObject tLObject = aVar.f51228m;
-                                    int i15 = aVar.f51224i;
-                                    int i16 = aVar.f51225j;
-                                    long j11 = aVar.h;
-                                    CharSequence charSequence = aVar.f51221c;
-                                    boolean z14 = aVar.f51223g;
-                                    boolean z15 = aVar.f47076b;
-                                    l4 l4Var2 = iVar.d;
-                                    iVar.v = tLObject;
-                                    if (i15 >= 12) {
-                                        l4Var2.k(LocaleController.formatPluralString("Years", 1, new Object[0]));
-                                    } else {
-                                        l4Var2.k(LocaleController.formatPluralString("Months", i15, new Object[0]));
-                                    }
-                                    StringBuilder sb2 = new StringBuilder();
-                                    BillingController billingController = BillingController.getInstance();
-                                    if (i16 > 0) {
-                                        j10 = j11 / i16;
-                                    } else {
-                                        j10 = j11;
-                                    }
-                                    sb2.append(billingController.formatCurrency(j10, charSequence.toString()));
-                                    sb2.append(" x ");
-                                    sb2.append(i16);
-                                    iVar.setSubtitle(sb2.toString());
-                                    b6 b6Var = iVar.f51845s;
-                                    BillingController billingController2 = BillingController.getInstance();
-                                    if (i16 <= 0) {
-                                        j11 = 0;
-                                    }
-                                    b6Var.l(billingController2.formatCurrency(j11, charSequence.toString()), false);
-                                    iVar.setDivider(z14);
-                                    iVar.f51822f.a(z15, false);
-                                    return;
-                                case 13:
-                                    x xVar = (x) view;
-                                    xVar.setText(aVar.f51221c);
-                                    int i17 = aVar.f51224i;
-                                    s6 s6Var = xVar.f51880r;
-                                    if (i17 > 0) {
-                                        str = LocaleController.formatPluralString("BoostingBoostsCountTitle", i17, Integer.valueOf(i17));
-                                    }
-                                    s6Var.a();
-                                    s6Var.c(str, true, true);
-                                    return;
-                                case 14:
-                                    ((xg.e) view).setGiveaway((TL_stories.PrepaidGiveaway) aVar.f51222f);
-                                    return;
-                                case 15:
-                                    y yVar = (y) view;
-                                    CharSequence charSequence2 = aVar.f51221c;
-                                    boolean z16 = aVar.f47076b;
-                                    boolean z17 = aVar.f51223g;
-                                    yVar.K = aVar.f51227l;
-                                    yVar.f(charSequence2, z16, z17);
-                                    return;
-                                case 16:
-                                    l lVar = (l) view;
-                                    lVar.setCount(aVar.f51224i);
-                                    lVar.setAfterTextChangedListener(this.f51232s);
-                                    return;
-                                case 17:
-                                    w wVar = (w) view;
-                                    TLObject tLObject2 = aVar.f51228m;
-                                    if (tLObject2 != null) {
-                                        tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) tLObject2;
-                                    }
-                                    int i18 = aVar.f51224i;
-                                    long j12 = aVar.h;
-                                    boolean z18 = aVar.f47076b;
-                                    TextView textView = wVar.f51876f;
-                                    s6 s6Var2 = wVar.d;
-                                    s6 s6Var3 = wVar.e;
-                                    if (wVar.f51878r == tL_starsGiveawayOption) {
-                                        z11 = true;
-                                    } else {
-                                        z11 = false;
-                                    }
-                                    wVar.f51873a.a(z18, z11);
-                                    wVar.f51878r = tL_starsGiveawayOption;
-                                    if (z11) {
-                                        s6Var3.a();
-                                    }
-                                    if (tL_starsGiveawayOption == null) {
-                                        s6Var2.c(wVar.h, false, true);
-                                        s6Var3.c(wVar.f51877n, z11, true);
-                                        textView.setText("");
-                                    } else {
-                                        s6Var2.c(LocaleController.formatPluralStringComma("GiveawayStars", (int) tL_starsGiveawayOption.stars, ' '), false, true);
-                                        s6Var3.c(LocaleController.formatPluralStringComma("BoostingStarOptionPerUser", (int) j12, ','), z11, true);
-                                        textView.setText(BillingController.getInstance().formatCurrency(tL_starsGiveawayOption.amount, tL_starsGiveawayOption.currency));
-                                    }
-                                    int i19 = i18 + 1;
-                                    wVar.f51879s = i19;
-                                    if (!z11) {
-                                        wVar.v.d(i19, true);
-                                    }
-                                    wVar.invalidate();
-                                    return;
-                                default:
-                                    return;
-                            }
-                        }
-                        d0 d0Var = (d0) view;
-                        d0Var.setText(aVar.f51221c);
-                        d0Var.setBackground(aVar.f51223g);
-                        return;
-                    }
-                    ((q4) view).setText(aVar.f51221c);
-                    return;
-                }
-                v vVar = (v) view;
-                List list2 = aVar.f51226k;
-                int i20 = aVar.f51224i;
-                vVar.getClass();
-                String[] strArr = new String[list2.size()];
-                for (int i21 = 0; i21 < list2.size(); i21++) {
-                    strArr[i21] = String.valueOf((Integer) list2.get(i21));
-                }
-                vVar.f51871a.b(i20, null, strArr);
-                vVar.setCallBack(this.h);
-                return;
-            }
-            xg.d dVar = (xg.d) view;
-            int i22 = aVar.f51227l;
-            int i23 = aVar.f51224i;
-            TLRPC.User user = (TLRPC.User) aVar.f51222f;
-            boolean z19 = aVar.f47076b;
-            y9 y9Var = dVar.f51821c;
-            u6 u6Var = dVar.f51819a;
-            l4 l4Var3 = dVar.d;
-            b6 b6Var2 = dVar.e;
-            j9 j9Var = dVar.f51820b;
-            if (dVar.f51835s == i22) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            dVar.f51835s = i22;
-            if (i22 == 0) {
-                l4Var3.k(LocaleController.getString(R.string.BoostingCreateGiveaway));
-                dVar.setSubtitle(LocaleController.getString(R.string.BoostingWinnersRandomly));
-                f7.Y(b6Var2, y6.f23615r5, u6Var);
-                j9Var.g(16);
-                j9Var.i(-15292942, -15630089);
-                dVar.setDivider(true);
-                f7.a0(R.drawable.greydivider_bottom, y6.f23319b7, dVar.getContext(), dVar, null);
-            } else if (i22 == 1) {
-                l4Var3.k(LocaleController.getString(R.string.BoostingAwardSpecificUsers));
-                if (i23 == 1 && user != null) {
-                    dVar.setSubtitle(dVar.e(Emoji.replaceEmoji(UserObject.getUserName(user), b6Var2.getPaint().getFontMetricsInt(), false)));
-                } else if (i23 > 0) {
-                    dVar.setSubtitle(dVar.e(LocaleController.formatPluralString("Recipient", i23, new Object[0])));
-                } else {
-                    dVar.setSubtitle(dVar.e(LocaleController.getString(R.string.BoostingSelectRecipients)));
-                }
-                f7.Y(b6Var2, y6.f23540n5, u6Var);
-                j9Var.g(6);
-                j9Var.i(-3905294, -6923014);
-                dVar.setDivider(false);
-                f7.a0(R.drawable.greydivider_top, y6.f23319b7, dVar.getContext(), dVar, null);
-            } else if (i22 == 2) {
-                l4Var3.k(LocaleController.getString(R.string.BoostingPremium));
-                if (i23 == 1 && user != null) {
-                    dVar.setSubtitle(dVar.e(Emoji.replaceEmoji(UserObject.getUserName(user), b6Var2.getPaint().getFontMetricsInt(), false)));
-                } else if (i23 > 0) {
-                    dVar.setSubtitle(dVar.e(LocaleController.formatPluralString("Recipient", i23, new Object[0])));
-                } else {
-                    dVar.setSubtitle(dVar.e(LocaleController.getString(R.string.BoostingWinnersRandomly)));
-                }
-                f7.Y(b6Var2, y6.f23540n5, u6Var);
-                j9Var.g(25);
-                j9Var.i(-3905294, -6923014);
-                dVar.setDivider(true);
-                f7.a0(R.drawable.greydivider_bottom, y6.f23319b7, dVar.getContext(), dVar, null);
-            } else if (i22 == 3) {
-                l4Var3.k(v8.b(LocaleController.getString(R.string.BoostingStars)));
-                dVar.setSubtitle(LocaleController.getString(R.string.BoostingWinnersRandomly));
-                f7.Y(b6Var2, y6.f23615r5, u6Var);
-                j9Var.g(26);
-                j9Var.i(-146917, -625593);
-                dVar.setDivider(false);
-                f7.a0(R.drawable.greydivider_top, y6.f23319b7, dVar.getContext(), dVar, null);
-            }
-            dVar.f51822f.a(z19, z10);
-            y9Var.setImageDrawable(j9Var);
-            y9Var.setRoundRadius(AndroidUtilities.dp(20.0f));
+    public final float b0() {
+        return i0.N(0.6f);
+    }
+
+    public boolean c() {
+        if (i0.B(t6.w0(this.f52840b, this.f52839a)) < 0.721f) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void d() {
+        this.f52844r = a7.f20158b;
+        this.d = t6.r1(this.f52841c, t6.w0(this.f52840b, this.f52839a));
+        if (c()) {
+            this.f52842f = 687865855;
+            this.h = 352321535;
+            this.e = 0;
             return;
         }
-        r rVar = (r) view;
-        this.f51231r = rVar;
-        rVar.setBoostViaGifsText(this.v);
-        this.f51231r.setStars(aVar.f51223g);
+        this.f52842f = -1;
+        this.h = -1;
+        this.e = 536870912;
     }
 
     @Override
-    public final e1 x(ViewGroup viewGroup, int i10) {
-        jc jcVar;
-        boolean z10;
-        Context context = viewGroup.getContext();
-        u6 u6Var = this.d;
-        switch (i10) {
-            case 2:
-                jcVar = new xg.d(context, u6Var);
-                break;
-            case 3:
-                jcVar = new View(context);
-                break;
-            case 4:
-                int i11 = y6.f23300a7;
-                View f7Var = new org.telegram.ui.Cells.f7(context, y6.w0(i11, u6Var), 0);
-                f7.i(i11, f7Var, u6Var);
-                jcVar = f7Var;
-                break;
-            case 5:
-                jcVar = new v(context, u6Var);
-                break;
-            case 6:
-                View q4Var = new q4(context, y6.L6, 21, 15, 3, false, false, this.d);
-                f7.i(y6.f23428h5, q4Var, u6Var);
-                jcVar = q4Var;
-                break;
-            case 7:
-                jcVar = new d0(context, u6Var);
-                break;
-            case 8:
-                jcVar = new xg.b(context, u6Var);
-                break;
-            case 9:
-                jcVar = new xg.g(context, u6Var);
-                break;
-            case 10:
-                jcVar = new xg.h(context, u6Var);
-                break;
-            case 11:
-                xg.c cVar = new xg.c(context, u6Var);
-                cVar.f51821c.setVisibility(8);
-                jcVar = cVar;
-                break;
-            case 12:
-                jcVar = new i(context, u6Var);
-                break;
-            case 13:
-                View xVar = new x(context, u6Var);
-                f7.i(y6.f23428h5, xVar, u6Var);
-                jcVar = xVar;
-                break;
-            case 14:
-                jcVar = new xg.d(context, u6Var);
-                break;
-            case 15:
-                a9 a9Var = new a9(context, u6Var);
-                a9Var.setHeight(50);
-                jcVar = a9Var;
-                break;
-            case 16:
-                jcVar = new l(context, u6Var);
-                break;
-            case 17:
-                jcVar = new w(context, u6Var);
-                break;
-            case 18:
-                jc jcVar2 = new jc(context);
-                String string = LocaleController.getString(R.string.NotifyMoreOptions);
-                if (jcVar2.f4918c == -1) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                jcVar2.f4918c = -1;
-                s6 s6Var = jcVar2.f4916a;
-                s6Var.c(string, z10, true);
-                int i12 = y6.f23561o6;
-                y6.v0(i12);
-                f7.Z(s6Var, i12, null);
-                PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-                ImageView imageView = jcVar2.f4917b;
-                f7.t(imageView, i12, null, mode);
-                if (z10) {
-                    imageView.animate().rotation(0.0f).setDuration(340L).setInterpolator(ds.h);
-                } else {
-                    imageView.setRotation(0.0f);
-                }
-                jcVar2.d = false;
-                jcVar2.setWillNotDraw(true);
-                jcVar = jcVar2;
-                break;
-            default:
-                jcVar = new r(context, u6Var);
-                break;
+    public final int h0() {
+        if (b()) {
+            return t6.w0(t6.f21315ya, this.f52839a);
         }
-        return ic.a.n(jcVar, jcVar, -1, -2);
+        return 0;
+    }
+
+    @Override
+    public int j0() {
+        a();
+        if (b()) {
+            return t6.w0(t6.f21299xa, this.f52839a);
+        }
+        return this.e;
+    }
+
+    @Override
+    public int n0() {
+        a();
+        return this.d;
+    }
+
+    @Override
+    public int u() {
+        a();
+        if (b() && Color.alpha(t6.w0(this.f52843n, this.f52839a)) != 0) {
+            return 0;
+        }
+        return this.f52842f;
+    }
+
+    @Override
+    public final int w() {
+        if (b()) {
+            return t6.w0(this.f52843n, this.f52839a);
+        }
+        return 0;
+    }
+
+    public b(p6 p6Var, int i10, float f7) {
+        this.f52843n = -1;
+        this.f52844r = a7.f20158b;
+        this.f52839a = p6Var;
+        this.f52840b = i10;
+        this.f52841c = f7;
+        d();
     }
 }

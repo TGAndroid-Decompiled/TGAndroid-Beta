@@ -2,7 +2,8 @@ package org.telegram.tgnet;
 
 import j$.util.Objects;
 import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
+import org.telegram.messenger.q20;
+import org.telegram.messenger.r20;
 import org.telegram.tgnet.TLObject;
 public class Vector<T extends TLObject> extends TLObject {
     public static final int constructor = 481674261;
@@ -77,7 +78,7 @@ public class Vector<T extends TLObject> extends TLObject {
             TLParseException.doThrowOrLog(inputSerializedData, "StarGift", i10, z10);
             return null;
         }
-        Vector<Int> vector = new Vector<>(new s(18));
+        Vector<Int> vector = new Vector<>(new t(18));
         vector.readParams(inputSerializedData, z10);
         return vector;
     }
@@ -87,12 +88,12 @@ public class Vector<T extends TLObject> extends TLObject {
             TLParseException.doThrowOrLog(inputSerializedData, "Vector", i10, z10);
             return null;
         }
-        Vector<Int> vector = new Vector<>(new s(18));
+        Vector<Int> vector = new Vector<>(new t(18));
         vector.readParams(inputSerializedData, z10);
         return vector;
     }
 
-    private static <T> ArrayList<T> deserialize(InputSerializedData inputSerializedData, Utilities.CallbackReturn<Boolean, T> callbackReturn, boolean z10) {
+    private static <T> ArrayList<T> deserialize(InputSerializedData inputSerializedData, r20 r20Var, boolean z10) {
         int readInt32 = inputSerializedData.readInt32(z10);
         if (readInt32 != 481674261) {
             TLParseException.doThrowOrLog(inputSerializedData, "Vector", readInt32, z10);
@@ -103,31 +104,31 @@ public class Vector<T extends TLObject> extends TLObject {
             TLParseException.doThrowOrLog(inputSerializedData, "VectorWrongSize", readInt32, z10);
             return new ArrayList<>();
         }
-        ArrayList<T> arrayList = new ArrayList<>(readInt322);
+        ArrayList<T> arrayList = (ArrayList<T>) new ArrayList(readInt322);
         for (int i10 = 0; i10 < readInt322; i10++) {
-            arrayList.add(callbackReturn.run(Boolean.valueOf(z10)));
+            arrayList.add(r20Var.a(Boolean.valueOf(z10)));
         }
         return arrayList;
     }
 
     public static ArrayList<byte[]> deserializeByteArray(InputSerializedData inputSerializedData, boolean z10) {
         Objects.requireNonNull(inputSerializedData);
-        return deserialize(inputSerializedData, new u(3, inputSerializedData), z10);
+        return deserialize(inputSerializedData, new v(inputSerializedData, 3), z10);
     }
 
     public static ArrayList<Integer> deserializeInt(InputSerializedData inputSerializedData, boolean z10) {
         Objects.requireNonNull(inputSerializedData);
-        return deserialize(inputSerializedData, new u(1, inputSerializedData), z10);
+        return deserialize(inputSerializedData, new v(inputSerializedData, 1), z10);
     }
 
     public static ArrayList<java.lang.Long> deserializeLong(InputSerializedData inputSerializedData, boolean z10) {
         Objects.requireNonNull(inputSerializedData);
-        return deserialize(inputSerializedData, new u(0, inputSerializedData), z10);
+        return deserialize(inputSerializedData, new v(inputSerializedData, 0), z10);
     }
 
     public static ArrayList<String> deserializeString(InputSerializedData inputSerializedData, boolean z10) {
         Objects.requireNonNull(inputSerializedData);
-        return deserialize(inputSerializedData, new u(2, inputSerializedData), z10);
+        return deserialize(inputSerializedData, new v(inputSerializedData, 2), z10);
     }
 
     public static <T extends TLObject> void serialize(OutputSerializedData outputSerializedData, ArrayList<T> arrayList) {
@@ -140,22 +141,22 @@ public class Vector<T extends TLObject> extends TLObject {
 
     public static void serializeByteArray(OutputSerializedData outputSerializedData, ArrayList<byte[]> arrayList) {
         Objects.requireNonNull(outputSerializedData);
-        serialize(outputSerializedData, new v(outputSerializedData, 2), arrayList);
+        serialize(outputSerializedData, new w(outputSerializedData, 2), arrayList);
     }
 
     public static void serializeInt(OutputSerializedData outputSerializedData, ArrayList<Integer> arrayList) {
         Objects.requireNonNull(outputSerializedData);
-        serialize(outputSerializedData, new v(outputSerializedData, 1), arrayList);
+        serialize(outputSerializedData, new w(outputSerializedData, 1), arrayList);
     }
 
     public static void serializeLong(OutputSerializedData outputSerializedData, ArrayList<java.lang.Long> arrayList) {
         Objects.requireNonNull(outputSerializedData);
-        serialize(outputSerializedData, new v(outputSerializedData, 0), arrayList);
+        serialize(outputSerializedData, new w(outputSerializedData, 0), arrayList);
     }
 
     public static void serializeString(OutputSerializedData outputSerializedData, ArrayList<String> arrayList) {
         Objects.requireNonNull(outputSerializedData);
-        serialize(outputSerializedData, new v(outputSerializedData, 3), arrayList);
+        serialize(outputSerializedData, new w(outputSerializedData, 3), arrayList);
     }
 
     private static boolean validateSize(int i10, int i11, int i12) {
@@ -194,11 +195,11 @@ public class Vector<T extends TLObject> extends TLObject {
         return arrayList;
     }
 
-    public static <T> void serialize(OutputSerializedData outputSerializedData, Utilities.Callback<T> callback, ArrayList<T> arrayList) {
+    public static <T> void serialize(OutputSerializedData outputSerializedData, q20 q20Var, ArrayList<T> arrayList) {
         outputSerializedData.writeInt32(481674261);
         outputSerializedData.writeInt32(arrayList.size());
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            callback.run(arrayList.get(i10));
+            q20Var.a(arrayList.get(i10));
         }
     }
 

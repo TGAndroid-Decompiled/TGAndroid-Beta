@@ -1,14 +1,13 @@
 package a1;
 
 import androidx.credentials.playservices.CredentialProviderPlayServicesImpl;
-import v0.i;
 public final class e implements Runnable {
     public final int f39a;
-    public final i f40b;
+    public final v0.h f40b;
 
-    public e(i iVar, int i10) {
+    public e(v0.h hVar, int i10) {
         this.f39a = i10;
-        this.f40b = iVar;
+        this.f40b = hVar;
     }
 
     @Override
@@ -36,16 +35,16 @@ public final class e implements Runnable {
                 CredentialProviderPlayServicesImpl.$r8$lambda$4jXvrTRoERmCISXRfwXYkLdVeEA(this.f40b);
                 return;
             case 7:
-                this.f40b.onError(new w0.h("No provider data returned.", 2));
+                this.f40b.g(new w0.h(2, "No provider data returned."));
                 return;
             case 8:
-                this.f40b.onError(new w0.c((CharSequence) null, 2));
+                this.f40b.g(new w0.c(2, (CharSequence) null));
                 return;
             case 9:
-                this.f40b.onError(new w0.c((CharSequence) null, 2));
+                this.f40b.g(new w0.c(2, (CharSequence) null));
                 return;
             default:
-                this.f40b.onError(new w0.h("Failed to launch the selector UI. Hint: ensure the `context` parameter is an Activity-based context.", 2));
+                this.f40b.g(new w0.h(2, "Failed to launch the selector UI. Hint: ensure the `context` parameter is an Activity-based context."));
                 return;
         }
     }

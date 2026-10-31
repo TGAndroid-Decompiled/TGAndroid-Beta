@@ -1,65 +1,46 @@
 package org.telegram.ui;
 
-import android.content.Context;
 import org.telegram.tgnet.TLRPC;
-public final class lj extends org.telegram.ui.Components.po {
-    public final wn f41192z0;
+public final class lj implements org.telegram.messenger.bs {
+    public final int f39249a;
+    public final boolean f39250b;
+    public final Object f39251c;
 
-    public lj(wn wnVar, Context context, wn wnVar2, boolean z10, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(context, wnVar2, z10, u6Var);
-        this.f41192z0 = wnVar;
+    public lj(int i10, Object obj, boolean z10) {
+        this.f39249a = i10;
+        this.f39251c = obj;
+        this.f39250b = z10;
     }
 
     @Override
-    public final boolean a() {
-        boolean z10;
-        wn wnVar = this.f41192z0;
-        if (!wnVar.f45124fb && !wnVar.isInPreviewMode()) {
-            z10 = ((org.telegram.ui.ActionBar.r2) wnVar).inBubbleMode;
-            if (!z10 && wnVar.f45162j0 != null && !wnVar.E3) {
-                if (!wnVar.R9() || wnVar.f45290t4) {
-                    return true;
+    public final void a(int i10) {
+        org.telegram.ui.Components.bc bcVar;
+        switch (this.f39249a) {
+            case 0:
+                un unVar = ((nj) this.f39251c).f39956b;
+                if (i10 > 0 && unVar.getParentActivity() != null) {
+                    org.telegram.ui.Components.cc a02 = org.telegram.ui.Components.cc.a0(unVar);
+                    if (this.f39250b) {
+                        bcVar = org.telegram.ui.Components.bc.G;
+                    } else {
+                        bcVar = org.telegram.ui.Components.bc.I;
+                    }
+                    a02.m(bcVar, i10, 0, 0, unVar.f42477xa).j();
+                    return;
                 }
-                return false;
-            }
-            return false;
+                return;
+            default:
+                mj mjVar = (mj) this.f39251c;
+                un unVar2 = mjVar.f39712b.f39956b;
+                if (i10 >= 50) {
+                    TLRPC.Chat chat = unVar2.e;
+                    TLRPC.User user = unVar2.f42243f;
+                    boolean z10 = this.f39250b;
+                    org.telegram.ui.Components.s4.r(unVar2, true, chat, user, false, false, false, z10, new y0(mjVar, z10));
+                    return;
+                }
+                unVar2.Ga(unVar2.f42394r4, true);
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public final boolean d() {
-        wn wnVar = this.f41192z0;
-        TLRPC.User user = wnVar.f45113f;
-        if (user != null && user.linked_community_id != 0) {
-            wnVar.showDialog(new ii.j0(wnVar, wnVar.f45113f.linked_community_id, null, null));
-            return true;
-        }
-        TLRPC.Chat chat = wnVar.e;
-        if (chat != null && chat.linked_community_id != 0) {
-            wnVar.showDialog(new ii.j0(wnVar, wnVar.e.linked_community_id, null, null));
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void f() {
-        String str;
-        wn wnVar = this.f41192z0;
-        if (wnVar.Q9()) {
-            str = "";
-        } else {
-            str = null;
-        }
-        wnVar.ya(str);
-    }
-
-    @Override
-    public final boolean o() {
-        if (this.f41192z0.f45091d4 == 3) {
-            return true;
-        }
-        return false;
     }
 }

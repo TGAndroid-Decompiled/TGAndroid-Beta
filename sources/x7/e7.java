@@ -1,20 +1,30 @@
 package x7;
-public enum e7 implements b {
-    SOURCE_UNKNOWN(0),
-    BITMAP(1),
-    BYTEARRAY(2),
-    BYTEBUFFER(3),
-    FILEPATH(4),
-    ANDROID_MEDIA_IMAGE(5);
-    
-    public final int f51507a;
 
-    e7(int i10) {
-        this.f51507a = i10;
+import java.util.Arrays;
+public final class e7 {
+    public final d7 f53137a;
+    public final Integer f53138b;
+
+    public e7(u9.b bVar) {
+        this.f53137a = (d7) bVar.f50194b;
+        this.f53138b = (Integer) bVar.f50195c;
     }
 
-    @Override
-    public final int zza() {
-        return this.f51507a;
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof e7)) {
+            return false;
+        }
+        e7 e7Var = (e7) obj;
+        if (n6.l.k(this.f53137a, e7Var.f53137a) && n6.l.k(this.f53138b, e7Var.f53138b) && n6.l.k(null, null) && n6.l.k(null, null)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.f53137a, this.f53138b, null, null});
     }
 }

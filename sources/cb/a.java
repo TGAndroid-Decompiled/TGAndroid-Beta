@@ -1,20 +1,20 @@
 package cb;
 
 import kotlin.jvm.internal.i;
-import y9.j;
+import x9.j;
 public final class a {
-    public final le.d f6171a;
-    public j f6172b = null;
+    public final ce.d f4087a;
+    public j f4088b = null;
 
-    public a(le.d dVar) {
-        this.f6171a = dVar;
+    public a(ce.d dVar) {
+        this.f4087a = dVar;
     }
 
     public final boolean equals(Object obj) {
         if (this != obj) {
             if (obj instanceof a) {
                 a aVar = (a) obj;
-                if (!this.f6171a.equals(aVar.f6171a) || !i.a(this.f6172b, aVar.f6172b)) {
+                if (!this.f4087a.equals(aVar.f4087a) || !i.a(this.f4088b, aVar.f4088b)) {
                     return false;
                 }
                 return true;
@@ -26,8 +26,8 @@ public final class a {
 
     public final int hashCode() {
         int hashCode;
-        int hashCode2 = this.f6171a.hashCode() * 31;
-        j jVar = this.f6172b;
+        int hashCode2 = this.f4087a.hashCode() * 31;
+        j jVar = this.f4088b;
         if (jVar == null) {
             hashCode = 0;
         } else {
@@ -37,6 +37,6 @@ public final class a {
     }
 
     public final String toString() {
-        return "Dependency(mutex=" + this.f6171a + ", subscriber=" + this.f6172b + ')';
+        return "Dependency(mutex=" + this.f4087a + ", subscriber=" + this.f4088b + ')';
     }
 }

@@ -1,8 +1,10 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class os0 extends org.telegram.ui.Components.zt {
-    public os0(Context context, String str) {
-        super(context, str);
-    }
+import android.view.TextureView;
+public interface os0 {
+    void H0(org.telegram.messenger.jj jjVar);
+
+    void I(org.telegram.messenger.jj jjVar);
+
+    TextureView k0();
 }

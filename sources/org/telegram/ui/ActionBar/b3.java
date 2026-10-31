@@ -1,78 +1,55 @@
 package org.telegram.ui.ActionBar;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.app.Dialog;
-import android.content.DialogInterface;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class b3 extends AnimatorListenerAdapter {
-    public final int f22428a;
-    public final int f22429b;
-    public final Dialog f22430c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+import java.util.HashSet;
+import org.telegram.messenger.f8;
+public final class b3 extends View implements k6 {
+    public final d3 f20185a;
 
-    public b3(Dialog dialog, int i10, int i11) {
-        this.f22428a = i11;
-        this.f22430c = dialog;
-        this.f22429b = i10;
+    public b3(d3 d3Var, Context context) {
+        super(context);
+        this.f20185a = d3Var;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        switch (this.f22428a) {
-            case 0:
-                k3 k3Var = (k3) this.f22430c;
-                AnimatorSet animatorSet = k3Var.currentSheetAnimation;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    k3Var.currentSheetAnimation = null;
-                    k3Var.currentSheetAnimationType = 0;
-                    return;
-                }
-                return;
-            default:
-                AnimatorSet[] animatorSetArr = ((e2) this.f22430c).F;
-                int i10 = this.f22429b;
-                AnimatorSet animatorSet2 = animatorSetArr[i10];
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    animatorSetArr[i10] = null;
-                    return;
-                }
-                return;
-        }
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.f20185a.d);
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        DialogInterface.OnClickListener onClickListener;
-        DialogInterface.OnClickListener onClickListener2;
-        int i10 = this.f22428a;
-        int i11 = this.f22429b;
-        Dialog dialog = this.f22430c;
-        switch (i10) {
-            case 0:
-                k3 k3Var = (k3) dialog;
-                AnimatorSet animatorSet = k3Var.currentSheetAnimation;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    k3Var.currentSheetAnimation = null;
-                    k3Var.currentSheetAnimationType = 0;
-                    onClickListener = k3Var.onClickListener;
-                    if (onClickListener != null) {
-                        onClickListener2 = k3Var.onClickListener;
-                        onClickListener2.onClick(k3Var, i11);
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), org.telegram.messenger.i0.f16021n);
+        setTranslationY(org.telegram.messenger.i0.f16021n);
+    }
+
+    @Override
+    public final void updateColors() {
+        d3 d3Var = this.f20185a;
+        Paint paint = d3Var.d;
+        try {
+            n3 n3Var = d3Var.f20249a;
+            if (n3Var != null) {
+                boolean z10 = false;
+                int e = n3Var.e(t6.x0(null, t6.f20872a7, false));
+                if (paint.getColor() != e) {
+                    paint.setColor(e);
+                    invalidate();
+                    org.telegram.messenger.i0.t3(d3Var, e, true, null);
+                    if (org.telegram.messenger.i0.B(e) >= 0.721f) {
+                        z10 = true;
                     }
-                    AndroidUtilities.runOnUIThread(new q(this, 8));
+                    org.telegram.messenger.i0.m3(d3Var, z10);
                 }
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
-                return;
-            default:
-                AnimatorSet[] animatorSetArr = ((e2) dialog).F;
-                AnimatorSet animatorSet2 = animatorSetArr[i11];
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    animatorSetArr[i11] = null;
-                    return;
-                }
-                return;
+            }
+        } catch (Exception e7) {
+            f8.g(e7, true);
         }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

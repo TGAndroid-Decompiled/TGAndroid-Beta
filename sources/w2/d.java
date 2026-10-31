@@ -1,6 +1,6 @@
 package w2;
 
-import t6.f;
+import r2.y;
 public interface d {
-    public static final f C = new f();
+    public static final y B = new y(14);
 }

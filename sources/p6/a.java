@@ -1,7 +1,3 @@
 package p6;
-public abstract class a implements b {
-    @Override
-    public final int describeContents() {
-        return 0;
-    }
+public final class a extends a9.a {
 }

@@ -1,29 +1,30 @@
 package org.telegram.messenger;
+public final class o7 implements Runnable {
+    public final int f17234a;
+    public final int f17235b;
+    public final Object f17236c;
+    public final Object d;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.TLRPC;
-public final class o7 implements Comparator {
-    public final int f20839a;
-    public final ArrayList f20840b;
+    public o7(Object obj, int i10, Object obj2, int i11) {
+        this.f17234a = i11;
+        this.f17236c = obj;
+        this.f17235b = i10;
+        this.d = obj2;
+    }
 
-    public o7(ArrayList arrayList, int i10) {
-        this.f20839a = i10;
-        this.f20840b = arrayList;
+    private final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.o7.a():void");
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int lambda$getEmojiSuggestions$221;
-        int lambda$reorderStickers$54;
-        switch (this.f20839a) {
-            case 0:
-                lambda$getEmojiSuggestions$221 = MediaDataController.lambda$getEmojiSuggestions$221(this.f20840b, (MediaDataController.KeywordResult) obj, (MediaDataController.KeywordResult) obj2);
-                return lambda$getEmojiSuggestions$221;
-            default:
-                lambda$reorderStickers$54 = MediaDataController.lambda$reorderStickers$54(this.f20840b, (TLRPC.TL_messages_stickerSet) obj, (TLRPC.TL_messages_stickerSet) obj2);
-                return lambda$reorderStickers$54;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.o7.run():void");
+    }
+
+    public o7(Object obj, Object obj2, int i10, int i11) {
+        this.f17234a = i11;
+        this.f17236c = obj;
+        this.d = obj2;
+        this.f17235b = i10;
     }
 }

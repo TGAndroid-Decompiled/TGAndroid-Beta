@@ -1,38 +1,29 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class jq0 implements Runnable {
-    public final int f29732a;
-    public final nr0 f29733b;
+import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_stories;
+public final class jq0 implements org.telegram.ui.ActionBar.u1, org.telegram.messenger.fs {
+    public final zt0 f27473a;
+    public final TL_stories.StoryItem f27474b;
 
-    public jq0(nr0 nr0Var, int i10) {
-        this.f29732a = i10;
-        this.f29733b = nr0Var;
+    public jq0(zt0 zt0Var, TL_stories.StoryItem storyItem) {
+        this.f27473a = zt0Var;
+        this.f27474b = storyItem;
     }
 
     @Override
-    public final void run() {
-        switch (this.f29732a) {
-            case 0:
-                nr0 nr0Var = this.f29733b;
-                nr0Var.B0 = true;
-                m20 m20Var = nr0Var.f31063z0;
-                m20Var.f30347r.setText("");
-                AndroidUtilities.showKeyboard(m20Var.f30347r);
-                return;
-            default:
-                k5 k5Var = new k5(16);
-                nr0 nr0Var2 = this.f29733b;
-                if (nr0Var2.isKeyboardVisible()) {
-                    m20 m20Var2 = nr0Var2.f31063z0;
-                    if (m20Var2 != null) {
-                        AndroidUtilities.hideKeyboard(m20Var2.f30347r);
-                    }
-                    AndroidUtilities.runOnUIThread(k5Var, 300L);
-                    return;
-                }
-                k5Var.run();
-                return;
-        }
+    public void a(String str) {
+        r0.getStoriesController().r(r0.l1, str, new vg(13, this.f27473a, this.f27474b));
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
+        ArrayList arrayList = new ArrayList(1);
+        arrayList.add(this.f27474b);
+        zt0 zt0Var = this.f27473a;
+        org.telegram.ui.ActionBar.k2 k2Var = zt0Var.f33240x1;
+        k2Var.getMessagesController().O1().s(arrayList, zt0Var.l1);
+        cc.a0(k2Var).Q(2131624050, 36, org.telegram.messenger.cd.G(1, "StoriesDeleted", new Object[0])).j();
+        zt0Var.T(false);
     }
 }

@@ -1,41 +1,40 @@
 package bb;
 
-import a8.jd;
 import android.util.Log;
-public final class y extends nd.i implements ud.q {
-    public int f3829a;
-    public fe.c f3830b;
-    public Throwable f3831c;
+public final class y extends ed.j implements ld.q {
+    public int f2630a;
+    public wd.c f2631b;
+    public Throwable f2632c;
 
     @Override
-    public final Object a(Object obj, Object obj2, nd.c cVar) {
-        ?? iVar = new nd.i(3, cVar);
-        iVar.f3830b = (fe.c) obj;
-        iVar.f3831c = (Throwable) obj2;
-        return iVar.invokeSuspend(jd.i.f15579a);
+    public final Object a(Object obj, Object obj2, ed.c cVar) {
+        ?? jVar = new ed.j(3, cVar);
+        jVar.f2631b = (wd.c) obj;
+        jVar.f2632c = (Throwable) obj2;
+        return jVar.invokeSuspend(ad.j.f401a);
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        md.a aVar = md.a.f18411a;
-        int i10 = this.f3829a;
+        dd.a aVar = dd.a.f5864a;
+        int i10 = this.f2630a;
         if (i10 != 0) {
             if (i10 == 1) {
-                jd.b(obj);
+                l9.b.b(obj);
             } else {
                 throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
             }
         } else {
-            jd.b(obj);
-            fe.c cVar = this.f3830b;
-            Log.e("FirebaseSessionsRepo", "Error reading stored session data.", this.f3831c);
+            l9.b.b(obj);
+            wd.c cVar = this.f2631b;
+            Log.e("FirebaseSessionsRepo", "Error reading stored session data.", this.f2632c);
             n1.b bVar = new n1.b(true);
-            this.f3830b = null;
-            this.f3829a = 1;
+            this.f2631b = null;
+            this.f2630a = 1;
             if (cVar.b(bVar, this) == aVar) {
                 return aVar;
             }
         }
-        return jd.i.f15579a;
+        return ad.j.f401a;
     }
 }

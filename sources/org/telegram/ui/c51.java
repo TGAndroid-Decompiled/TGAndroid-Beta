@@ -1,102 +1,57 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.util.SparseIntArray;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-public final class c51 extends h51 {
-    public final int f38176n3;
-    public final f61 f38177o3;
+import android.text.TextUtils;
+import android.view.View;
+public final class c51 extends org.telegram.ui.Components.z41 {
+    static {
+        org.telegram.ui.Components.z41.h(new org.telegram.ui.Components.z41());
+    }
 
-    public c51(f61 f61Var, Context context, int i10) {
-        super(f61Var, context);
-        this.f38177o3 = f61Var;
-        this.f38176n3 = i10;
+    public static org.telegram.ui.Components.a51 i(String str, CharSequence charSequence, String str2, View.OnClickListener onClickListener, CharSequence charSequence2, View.OnClickListener onClickListener2) {
+        org.telegram.ui.Components.a51 K = org.telegram.ui.Components.a51.K(c51.class);
+        K.f24292l = str;
+        K.f24293m = charSequence;
+        K.f24294n = str2;
+        K.D = onClickListener;
+        K.f24295o = charSequence2;
+        K.E = onClickListener2;
+        return K;
     }
 
     @Override
-    public final void k0(int i10) {
-        int i11;
-        f61 f61Var = this.f38177o3;
-        w41 w41Var = f61Var.f39198f0;
-        if (i10 == 0) {
-            f61Var.f39238x1 = false;
-            if (f61Var.f39184a != -1 && w41Var.getVisibility() == 0 && w41Var.getTranslationY() > (-AndroidUtilities.dp(51.0f))) {
-                if (w41Var.getTranslationY() > (-AndroidUtilities.dp(16.0f))) {
-                    i11 = 0;
-                } else {
-                    i11 = 1;
-                }
-                f61.a(f61Var, i11, 0);
-            }
+    public final void b(View view, org.telegram.ui.Components.a51 a51Var, boolean z10, org.telegram.ui.Components.p51 p51Var, org.telegram.ui.Components.u51 u51Var) {
+        d51 d51Var = (d51) view;
+        CharSequence charSequence = a51Var.f24292l;
+        CharSequence charSequence2 = a51Var.f24293m;
+        CharSequence charSequence3 = a51Var.f24294n;
+        View.OnClickListener onClickListener = a51Var.D;
+        CharSequence charSequence4 = a51Var.f24295o;
+        View.OnClickListener onClickListener2 = a51Var.E;
+        vh.d dVar = d51Var.e;
+        org.telegram.ui.Components.p80 p80Var = d51Var.f36620b;
+        int i10 = 0;
+        p80Var.setText(org.telegram.messenger.k6.m(charSequence, p80Var.getPaint().getFontMetricsInt(), false, null, 0));
+        org.telegram.ui.Components.p80 p80Var2 = d51Var.f36621c;
+        p80Var2.setText(org.telegram.messenger.k6.m(charSequence2, p80Var2.getPaint().getFontMetricsInt(), false, null, 0));
+        vh.d dVar2 = d51Var.d;
+        if (TextUtils.isEmpty(charSequence3)) {
+            i10 = 8;
         }
+        dVar2.setVisibility(i10);
+        dVar2.setText(charSequence3);
+        dVar2.setOnClickListener(onClickListener);
+        dVar.setText(charSequence4);
+        dVar.setOnClickListener(onClickListener2);
     }
 
     @Override
-    public final void l0(int i10) {
-        int i11;
-        org.telegram.ui.Components.ey eyVar;
-        int i12;
-        int i13;
-        f61 f61Var = this.f38177o3;
-        f61Var.h();
-        boolean z10 = false;
-        if (!f61Var.f39238x1) {
-            int I0 = f61Var.f39222r0.I0();
-            ArrayList arrayList = f61Var.D0;
-            SparseIntArray sparseIntArray = f61Var.f39234w0;
-            if (I0 != -1) {
-                int i14 = 40;
-                if (arrayList.size() <= 40 || f61Var.C0) {
-                    i14 = arrayList.size() + (f61Var.N0 ? 1 : 0);
-                }
-                if (I0 > i14 && I0 > f61Var.I0.size()) {
-                    int i15 = 0;
-                    while (true) {
-                        if (i15 >= sparseIntArray.size()) {
-                            break;
-                        }
-                        int keyAt = sparseIntArray.keyAt(i15);
-                        int valueAt = sparseIntArray.valueAt(i15);
-                        if (valueAt >= 0) {
-                            eyVar = (org.telegram.ui.Components.ey) f61Var.M0.get(valueAt);
-                        } else {
-                            eyVar = null;
-                        }
-                        if (eyVar != null) {
-                            boolean z11 = eyVar.h;
-                            int size = eyVar.f27959c.size();
-                            if (!z11) {
-                                size = Math.min(24, size);
-                            }
-                            if (I0 > keyAt && I0 <= keyAt + 1 + size) {
-                                org.telegram.ui.Components.kw kwVar = f61Var.f39193d0;
-                                if (kwVar.f30045y != null) {
-                                    i12 = 1;
-                                } else {
-                                    i12 = 0;
-                                }
-                                if (kwVar.E != null && kwVar.f30037b0) {
-                                    i13 = 1;
-                                } else {
-                                    i13 = 0;
-                                }
-                                kwVar.j(i13 + i12 + valueAt, true);
-                            }
-                        }
-                        i15++;
-                    }
-                } else {
-                    f61Var.f39193d0.j(0, true);
-                }
-            }
-        }
-        f61Var.C();
-        x41 x41Var = f61Var.f39195e0;
-        if (f61Var.f39202h0.computeVerticalScrollOffset() != 0 || (i11 = this.f38176n3) == 0 || i11 == 12 || i11 == 10 || i11 == 1 || i11 == 11 || i11 == 6) {
-            z10 = true;
-        }
-        AndroidUtilities.updateViewVisibilityAnimated(x41Var, z10, 1.0f, true);
-        f61Var.m();
+    public final View d(Context context, org.telegram.ui.Components.tk0 tk0Var, int i10, org.telegram.ui.ActionBar.p6 p6Var) {
+        return new d51(context, p6Var);
+    }
+
+    @Override
+    public final boolean f() {
+        return false;
     }
 }

@@ -2,252 +2,1697 @@ package org.telegram.ui.ActionBar;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Region;
+import android.graphics.Shader;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
+import android.text.Layout;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.gq;
-public final class u5 extends View implements oe.d {
-    public int E;
+import android.view.accessibility.AccessibilityNodeInfo;
+import java.util.ArrayList;
+import java.util.Stack;
+import org.telegram.messenger.z20;
+import org.telegram.ui.Components.ov0;
+import org.telegram.ui.Components.qv0;
+import org.telegram.ui.Components.wy;
+import org.telegram.ui.iy0;
+public class u5 extends View implements Drawable.Callback {
+    public final Path A0;
+    public boolean B0;
+    public boolean C0;
+    public Drawable D;
+    public View.OnClickListener D0;
+    public String E;
+    public boolean E0;
     public int F;
-    public final r5 f23132a;
-    public final int f23133b;
-    public final t5 f23134c;
-    public final s5 d;
-    public final Drawable e;
-    public final gq f23135f;
+    public float F0;
+    public float G;
+    public float G0;
+    public float H;
+    public org.telegram.ui.Components.k5 H0;
+    public int I;
+    public int I0;
+    public int J;
+    public PorterDuffColorFilter J0;
+    public int K;
+    public boolean K0;
+    public boolean L;
+    public Layout.Alignment L0;
+    public float M;
+    public boolean N;
+    public Drawable O;
+    public boolean P;
+    public boolean Q;
+    public float R;
+    public long S;
+    public int T;
+    public Paint U;
+    public Paint V;
+    public Paint W;
+    public float f21351a;
+    public int f21352a0;
+    public float f21353b;
+    public int f21354b0;
+    public StaticLayout f21355c;
+    public int f21356c0;
+    public StaticLayout d;
+    public int f21357d0;
+    public StaticLayout e;
+    public int f21358e0;
+    public StaticLayout f21359f;
+    public int f21360f0;
+    public int f21361g0;
     public final TextPaint h;
-    public final Paint f23136n;
-    public final RectF f23137r;
-    public CharSequence f23138s;
-    public float v;
-    public final oe.b f23139w;
-    public final oe.b f23140x;
-    public int f23141y;
+    public int f21362h0;
+    public int f21363i0;
+    public boolean f21364j0;
+    public boolean f21365k0;
+    public boolean f21366l0;
+    public boolean m0;
+    public int f21367n;
+    public boolean f21368n0;
+    public boolean f21369o0;
+    public Boolean f21370p0;
+    public int f21371q0;
+    public int f21372r;
+    public int f21373r0;
+    public CharSequence f21374s;
+    public int f21375s0;
+    public int f21376t0;
+    public int f21377u0;
+    public float f21378v0;
+    public Drawable f21379w;
+    public int f21380w0;
+    public Drawable f21381x;
+    public int f21382x0;
+    public Drawable f21383y;
+    public final ArrayList f21384y0;
+    public final Stack f21385z0;
 
-    public u5(Context context, r5 r5Var, CharSequence charSequence) {
+    public u5(Context context) {
         super(context);
-        float f7;
-        TextPaint textPaint = new TextPaint(1);
-        this.h = textPaint;
-        this.f23136n = new Paint(1);
-        this.f23137r = new RectF();
-        ds dsVar = ds.h;
-        this.f23139w = new oe.b(0, this, dsVar, 380L, true);
-        this.f23140x = new oe.b(1, this, dsVar, 250L, false);
-        this.f23132a = r5Var;
-        this.f23133b = 1;
-        this.f23134c = (t5) wi.e.f51341k.a();
-        this.d = (s5) wi.e.f51342l.a();
-        this.f23138s = charSequence;
-        this.e = context.getDrawable(R.drawable.ic_ab_done).mutate();
-        gq gqVar = new gq(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(2.0f), -1);
-        this.f23135f = gqVar;
-        gqVar.setCallback(this);
-        textPaint.setTypeface(AndroidUtilities.bold());
-        textPaint.setTextSize(AndroidUtilities.dp(15.0f));
-        c();
-        CharSequence charSequence2 = this.f23138s;
-        if (charSequence2 != null) {
-            f7 = textPaint.measureText(charSequence2, 0, charSequence2.length());
-        } else {
-            f7 = 0.0f;
-        }
-        this.v = f7;
-        setContentDescription(charSequence);
-        setOnClickListener(new x(this, 3));
+        this.f21367n = 51;
+        this.f21372r = 1;
+        this.H = 1.0f;
+        this.I = org.telegram.messenger.i0.L(4.0f);
+        this.f21371q0 = 16;
+        this.f21382x0 = 3;
+        this.f21384y0 = new ArrayList();
+        this.f21385z0 = new Stack();
+        this.A0 = new Path();
+        this.I0 = 0;
+        this.L0 = Layout.Alignment.ALIGN_NORMAL;
+        this.h = new TextPaint(1);
+        setImportantForAccessibility(1);
     }
 
-    @Override
-    public final void E(int i10, float f7, float f10, oe.e eVar) {
-        if (i10 == 0) {
-            this.f23132a.c();
-        }
-        invalidate();
+    private Layout.Alignment getAlignment() {
+        return this.L0;
     }
 
-    public final void a(boolean z10, boolean z11) {
-        boolean z12;
-        oe.e eVar;
-        oe.b bVar = this.f23139w;
-        if (bVar.f19326f == z10 && (z11 || (eVar = bVar.h) == null || !eVar.h)) {
+    public final void a(int i10) {
+        int i11;
+        Drawable drawable;
+        Drawable drawable2;
+        StaticLayout staticLayout = this.f21355c;
+        if (staticLayout == null) {
             return;
         }
-        r5 r5Var = this.f23132a;
-        if (z11 && r5Var.p()) {
-            z12 = true;
-        } else {
-            z12 = false;
-        }
-        bVar.a(z10, z12);
-        E(0, bVar.e, 0.0f, null);
-        r5Var.requestLayout();
-    }
-
-    public final void b(boolean z10) {
-        this.f23140x.a(z10, this.f23132a.p());
-        invalidate();
-    }
-
-    public final void c() {
-        int i10;
-        r5 r5Var = this.f23132a;
-        u6 u6Var = r5Var.f23029a;
-        this.f23141y = y6.w0(y6.Oh, u6Var);
-        this.E = i0.a.f(0.5f, y6.w0(y6.f23300a7, u6Var), this.f23141y);
-        int w02 = y6.w0(y6.Sh, u6Var);
-        this.F = w02;
-        int i11 = r5Var.f23035d0;
-        t5 t5Var = this.f23134c;
-        t5 t5Var2 = t5.f23104b;
-        if (t5Var != t5Var2) {
-            w02 = i11;
-        }
-        this.e.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
-        this.f23135f.b(w02);
-        this.h.setColor(w02);
-        if (t5Var == t5Var2) {
-            i10 = y6.o1(0.2f, this.F);
-        } else {
-            i10 = r5Var.f23038f0;
-        }
-        setBackground(y6.Z(i10, AndroidUtilities.dp(23.0f), AndroidUtilities.dp(23.0f)));
-        invalidate();
-    }
-
-    public int getButtonId() {
-        return this.f23133b;
-    }
-
-    public int getButtonWidth() {
-        if (this.d != s5.f23086a && !TextUtils.isEmpty(this.f23138s)) {
-            return org.telegram.messenger.t.z(32.0f, (int) Math.ceil(this.v), AndroidUtilities.dp(46.0f));
-        }
-        return AndroidUtilities.dp(46.0f);
-    }
-
-    public s5 getShape() {
-        return this.d;
-    }
-
-    public t5 getStyle() {
-        return this.f23134c;
-    }
-
-    public float getTargetVisibleFactor() {
-        if (this.f23134c != t5.f23104b && !this.f23139w.f19326f) {
-            return 0.0f;
-        }
-        return 1.0f;
-    }
-
-    public float getVisibleFactor() {
-        if (this.f23134c == t5.f23104b) {
-            return 1.0f;
-        }
-        return this.f23139w.e;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f7;
-        float width = getWidth();
-        float height = getHeight();
-        if (this.f23134c == t5.f23104b) {
-            int f10 = i0.a.f(this.f23139w.e, this.E, this.f23141y);
-            Paint paint = this.f23136n;
-            paint.setColor(f10);
-            RectF rectF = this.f23137r;
-            rectF.set(0.0f, 0.0f, width, height);
-            float f11 = height / 2.0f;
-            canvas.drawRoundRect(rectF, f11, f11, paint);
-        }
-        float f12 = this.f23140x.e;
-        if (f12 < 1.0f) {
-            float lerp = AndroidUtilities.lerp(1.0f, 0.6f, f12);
-            canvas.save();
-            canvas.scale(lerp, lerp, width / 2.0f, height / 2.0f);
-            float f13 = 1.0f - f12;
-            int i10 = (int) (f13 * 255.0f);
-            if (this.d == s5.f23086a || TextUtils.isEmpty(this.f23138s)) {
-                f7 = 0.0f;
-                Drawable drawable = this.e;
-                float intrinsicWidth = drawable.getIntrinsicWidth();
-                float intrinsicHeight = drawable.getIntrinsicHeight();
-                drawable.setBounds((int) ((width - intrinsicWidth) / 2.0f), (int) ((height - intrinsicHeight) / 2.0f), (int) ((intrinsicWidth + width) / 2.0f), (int) ((intrinsicHeight + height) / 2.0f));
-                drawable.setAlpha(i10);
-                drawable.draw(canvas);
+        if (staticLayout.getLineCount() > 0) {
+            this.f21358e0 = (int) Math.max(Math.ceil(this.f21355c.getLineWidth(0)), Math.ceil(this.f21355c.getLineRight(0) - this.f21355c.getLineLeft(0)));
+            StaticLayout staticLayout2 = this.e;
+            boolean z10 = true;
+            if (staticLayout2 != null) {
+                this.f21361g0 = staticLayout2.getLineBottom(staticLayout2.getLineCount() - 1);
+            } else if (this.f21372r > 1 && this.f21355c.getLineCount() > 0) {
+                StaticLayout staticLayout3 = this.f21355c;
+                this.f21361g0 = staticLayout3.getLineBottom(staticLayout3.getLineCount() - 1);
             } else {
+                this.f21361g0 = this.f21355c.getLineBottom(0);
+            }
+            int i12 = this.f21367n & 7;
+            if (i12 == 1) {
+                this.f21356c0 = ((i10 - this.f21358e0) / 2) - ((int) this.f21355c.getLineLeft(0));
+            } else if (i12 == 3) {
+                StaticLayout staticLayout4 = this.d;
+                if (staticLayout4 != null) {
+                    this.f21356c0 = -((int) staticLayout4.getLineLeft(0));
+                } else {
+                    this.f21356c0 = -((int) this.f21355c.getLineLeft(0));
+                }
+            } else if (this.f21355c.getLineLeft(0) == 0.0f) {
+                StaticLayout staticLayout5 = this.d;
+                if (staticLayout5 != null) {
+                    this.f21356c0 = (int) (i10 - staticLayout5.getLineWidth(0));
+                } else {
+                    this.f21356c0 = i10 - this.f21358e0;
+                }
+            } else {
+                this.f21356c0 = -org.telegram.messenger.i0.L(8.0f);
+            }
+            this.f21356c0 = getPaddingLeft() + this.f21356c0;
+            if (this.m0) {
+                if (this.f21381x != null && !this.f21366l0) {
+                    i11 = (int) (drawable.getIntrinsicWidth() * this.H);
+                } else {
+                    i11 = 0;
+                }
+                if (this.f21383y != null && !this.f21366l0) {
+                    i11 += (int) (drawable2.getIntrinsicWidth() * this.H);
+                }
+            } else {
+                i11 = 0;
+            }
+            if (this.f21358e0 + i11 <= i10 - this.f21373r0) {
+                z10 = false;
+            }
+            this.Q = z10;
+            b();
+            StaticLayout staticLayout6 = this.e;
+            if (staticLayout6 != null && this.f21376t0 > 0) {
+                this.f21378v0 = staticLayout6.getPrimaryHorizontal(0) - this.d.getPrimaryHorizontal(0);
+            }
+        }
+        int i13 = this.F;
+        if (i13 >= 0) {
+            this.G = this.f21355c.getPrimaryHorizontal(i13);
+        } else {
+            this.G = 0.0f;
+        }
+    }
+
+    public final void b() {
+        int i10;
+        if ((this.P && (this.Q || this.R != 0.0f)) || this.f21368n0) {
+            i10 = 2;
+        } else {
+            i10 = 0;
+        }
+        if (getLayerType() != i10) {
+            setLayerType(i10, null);
+            invalidate();
+        }
+    }
+
+    public final void c(Canvas canvas) {
+        ArrayList arrayList = this.f21384y0;
+        if (arrayList.isEmpty()) {
+            return;
+        }
+        Path path = this.A0;
+        path.rewind();
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            int i11 = i10 + 1;
+            Rect bounds = ((nh.i) arrayList.get(i10)).getBounds();
+            path.addRect(bounds.left, bounds.top, bounds.right, bounds.bottom, Path.Direction.CW);
+            i10 = i11;
+        }
+        canvas.clipPath(path, Region.Op.DIFFERENCE);
+    }
+
+    public void d(int i10) {
+        int i11;
+        int i12;
+        int i13;
+        CharSequence charSequence;
+        int L;
+        CharSequence charSequence2;
+        int i14;
+        int L2;
+        CharSequence charSequence3;
+        int L3;
+        int L4;
+        int L5;
+        Drawable drawable;
+        Drawable drawable2;
+        Stack stack = this.f21385z0;
+        ArrayList arrayList = this.f21384y0;
+        CharSequence charSequence4 = this.f21374s;
+        this.F = -1;
+        this.C0 = false;
+        if (charSequence4 != null) {
+            try {
+                Drawable drawable3 = this.f21379w;
+                if (drawable3 != null && !this.f21365k0) {
+                    drawable3.getIntrinsicWidth();
+                    i11 = (i10 - this.f21379w.getIntrinsicWidth()) - this.I;
+                } else {
+                    i11 = i10;
+                }
+                if (!this.m0) {
+                    if (this.f21381x != null && !this.f21366l0) {
+                        i12 = (int) (drawable.getIntrinsicWidth() * this.H);
+                        i11 = (i11 - i12) - this.I;
+                    } else {
+                        i12 = 0;
+                    }
+                    if (this.f21383y != null && !this.f21366l0) {
+                        i12 += (int) (drawable2.getIntrinsicWidth() * this.H);
+                        i11 = (i11 - i12) - this.I;
+                    }
+                } else {
+                    i12 = 0;
+                }
+                SpannableStringBuilder spannableStringBuilder = charSequence4;
+                if (this.E != null) {
+                    spannableStringBuilder = charSequence4;
+                    if (this.D != null) {
+                        int indexOf = charSequence4.toString().indexOf(this.E);
+                        this.F = indexOf;
+                        if (indexOf >= 0) {
+                            SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(charSequence4);
+                            org.telegram.ui.Cells.t2 t2Var = new org.telegram.ui.Cells.t2(this.D.getIntrinsicWidth());
+                            int i15 = this.F;
+                            valueOf.setSpan(t2Var, i15, this.E.length() + i15, 0);
+                            spannableStringBuilder = valueOf;
+                        } else {
+                            i11 = (i11 - this.D.getIntrinsicWidth()) - this.I;
+                            spannableStringBuilder = charSequence4;
+                        }
+                    }
+                }
+                CharSequence charSequence5 = spannableStringBuilder;
+                boolean z10 = this.B0;
                 TextPaint textPaint = this.h;
-                int alpha = textPaint.getAlpha();
-                textPaint.setAlpha((int) (alpha * f13));
-                float descent = ((height - textPaint.descent()) - textPaint.ascent()) / 2.0f;
-                CharSequence charSequence = this.f23138s;
-                f7 = 0.0f;
-                canvas.drawText(charSequence, 0, charSequence.length(), (width - this.v) / 2.0f, descent, textPaint);
-                textPaint.setAlpha(alpha);
+                if (z10 && i12 != 0 && !this.f21366l0 && !charSequence5.equals(TextUtils.ellipsize(charSequence5, textPaint, i11, TextUtils.TruncateAt.END))) {
+                    this.C0 = true;
+                    i11 = i11 + i12 + this.I;
+                }
+                int i16 = i11;
+                if (this.L) {
+                    if (!this.f21368n0) {
+                        charSequence2 = TextUtils.ellipsize(charSequence5, textPaint, i16, TextUtils.TruncateAt.END);
+                    } else {
+                        charSequence2 = charSequence5;
+                    }
+                    if (!this.f21368n0 && !charSequence2.equals(charSequence5)) {
+                        Layout.Alignment alignment = getAlignment();
+                        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+                        StaticLayout c10 = ov0.c(charSequence5, textPaint, i16, alignment, 0.0f, truncateAt, i16, this.f21382x0, false);
+                        i14 = i16;
+                        this.e = c10;
+                        if (c10 != null) {
+                            int lineEnd = c10.getLineEnd(0);
+                            int lineStart = this.e.getLineStart(1);
+                            CharSequence subSequence = charSequence5.subSequence(0, lineEnd);
+                            SpannableStringBuilder valueOf2 = SpannableStringBuilder.valueOf(charSequence5);
+                            valueOf2.setSpan(new wy(false), 0, lineStart, 0);
+                            if (lineEnd < charSequence2.length()) {
+                                charSequence3 = charSequence2.subSequence(lineEnd, charSequence2.length());
+                            } else {
+                                charSequence3 = "…";
+                            }
+                            int length = charSequence2.length();
+                            if (this.P) {
+                                L3 = org.telegram.messenger.i0.L(2000.0f);
+                            } else {
+                                L3 = i14 + org.telegram.messenger.i0.L(8.0f);
+                            }
+                            this.d = new StaticLayout(charSequence2, 0, length, textPaint, L3, getAlignment(), 1.0f, 0.0f, false);
+                            int length2 = subSequence.length();
+                            if (this.P) {
+                                L4 = org.telegram.messenger.i0.L(2000.0f);
+                            } else {
+                                L4 = i14 + org.telegram.messenger.i0.L(8.0f);
+                            }
+                            StaticLayout staticLayout = new StaticLayout(subSequence, 0, length2, textPaint, L4, getAlignment(), 1.0f, 0.0f, false);
+                            this.f21355c = staticLayout;
+                            String str = charSequence3;
+                            if (staticLayout.getLineLeft(0) != 0.0f) {
+                                str = "\u200f" + ((Object) charSequence3);
+                            }
+                            CharSequence charSequence6 = str;
+                            int length3 = charSequence6.length();
+                            if (this.P) {
+                                L5 = org.telegram.messenger.i0.L(2000.0f);
+                            } else {
+                                L5 = i14 + org.telegram.messenger.i0.L(8.0f);
+                            }
+                            this.f21359f = new StaticLayout(charSequence6, 0, length3, textPaint, L5, getAlignment(), 1.0f, 0.0f, false);
+                            this.e = ov0.c(valueOf2, textPaint, i14 + org.telegram.messenger.i0.L(8.0f) + this.f21376t0, getAlignment(), 0.0f, truncateAt, i14 + this.f21376t0, this.f21382x0, false);
+                        }
+                    } else {
+                        i14 = i16;
+                        CharSequence charSequence7 = charSequence2;
+                        int length4 = charSequence7.length();
+                        if (!this.P && !this.f21368n0) {
+                            L2 = i14 + org.telegram.messenger.i0.L(8.0f);
+                            this.f21355c = new StaticLayout(charSequence7, 0, length4, textPaint, L2, getAlignment(), 1.0f, 0.0f, false);
+                            this.e = null;
+                            this.f21359f = null;
+                            this.d = null;
+                        }
+                        L2 = org.telegram.messenger.i0.L(2000.0f);
+                        this.f21355c = new StaticLayout(charSequence7, 0, length4, textPaint, L2, getAlignment(), 1.0f, 0.0f, false);
+                        this.e = null;
+                        this.f21359f = null;
+                        this.d = null;
+                    }
+                    i13 = i14;
+                } else if (this.f21372r > 1) {
+                    StaticLayout c11 = ov0.c(charSequence5, textPaint, i16, getAlignment(), 0.0f, TextUtils.TruncateAt.END, i16, this.f21372r, false);
+                    i13 = i16;
+                    this.f21355c = c11;
+                } else {
+                    i13 = i16;
+                    if (!this.P && !this.f21368n0) {
+                        charSequence = TextUtils.ellipsize(charSequence5, textPaint, i13, TextUtils.TruncateAt.END);
+                        int length5 = charSequence.length();
+                        if (!this.P && !this.f21368n0) {
+                            L = org.telegram.messenger.i0.L(8.0f) + i13;
+                            this.f21355c = new StaticLayout(charSequence, 0, length5, textPaint, L, getAlignment(), 1.0f, 0.0f, false);
+                        }
+                        L = org.telegram.messenger.i0.L(2000.0f);
+                        this.f21355c = new StaticLayout(charSequence, 0, length5, textPaint, L, getAlignment(), 1.0f, 0.0f, false);
+                    }
+                    charSequence = charSequence5;
+                    int length52 = charSequence.length();
+                    if (!this.P) {
+                        L = org.telegram.messenger.i0.L(8.0f) + i13;
+                        this.f21355c = new StaticLayout(charSequence, 0, length52, textPaint, L, getAlignment(), 1.0f, 0.0f, false);
+                    }
+                    L = org.telegram.messenger.i0.L(2000.0f);
+                    this.f21355c = new StaticLayout(charSequence, 0, length52, textPaint, L, getAlignment(), 1.0f, 0.0f, false);
+                }
+                stack.addAll(arrayList);
+                arrayList.clear();
+                StaticLayout staticLayout2 = this.f21355c;
+                if (staticLayout2 != null && (staticLayout2.getText() instanceof Spannable)) {
+                    nh.i.b(this, this.f21355c, -2, -2, stack, arrayList);
+                }
+                a(i13);
+            } catch (Exception unused) {
+            }
+        } else {
+            this.f21355c = null;
+            this.f21358e0 = 0;
+            this.f21361g0 = 0;
+        }
+        org.telegram.ui.Components.o5.release(this, this.H0);
+        if (this.K0) {
+            this.H0 = org.telegram.ui.Components.o5.update(this.I0, this, this.H0, this.f21355c);
+        }
+        invalidate();
+    }
+
+    public final void e(Canvas canvas) {
+        int i10 = (this.M > 0.0f ? 1 : (this.M == 0.0f ? 0 : -1));
+        int i11 = 0;
+        ArrayList arrayList = this.f21384y0;
+        if (i10 > 0 && this.f21377u0 != 0) {
+            canvas.save();
+            float f7 = this.M;
+            canvas.translate((this.f21378v0 * f7) + ((-this.f21377u0) * f7), 0.0f);
+            float f10 = this.f21351a;
+            float f11 = this.M;
+            this.f21351a = sc.e.d(this.f21378v0, f11, (-this.f21377u0) * f11, f10);
+            canvas.save();
+            c(canvas);
+            org.telegram.ui.Components.k5 k5Var = this.H0;
+            if (k5Var != null) {
+                k5Var.a();
+            }
+            this.f21355c.draw(canvas);
+            canvas.restore();
+            org.telegram.ui.Components.o5.drawAnimatedEmojis(canvas, this.f21355c, this.H0, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, this.J0);
+            int size = arrayList.size();
+            while (i11 < size) {
+                Object obj = arrayList.get(i11);
+                i11++;
+                ((nh.i) obj).draw(canvas);
             }
             canvas.restore();
-        } else {
-            f7 = 0.0f;
-        }
-        if (f12 > f7) {
-            float lerp2 = AndroidUtilities.lerp(0.6f, 1.0f, f12);
-            canvas.save();
-            canvas.scale(lerp2, lerp2, width / 2.0f, height / 2.0f);
-            gq gqVar = this.f23135f;
-            gqVar.setBounds(0, 0, (int) width, (int) height);
-            gqVar.setAlpha((int) (f12 * 255.0f));
-            gqVar.draw(canvas);
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(getButtonWidth(), AndroidUtilities.dp(46.0f));
-    }
-
-    public void setText(CharSequence charSequence) {
-        float f7;
-        if (TextUtils.equals(this.f23138s, charSequence)) {
             return;
         }
-        this.f23138s = charSequence;
-        setContentDescription(charSequence);
-        CharSequence charSequence2 = this.f23138s;
-        if (charSequence2 != null) {
-            f7 = this.h.measureText(charSequence2, 0, charSequence2.length());
-        } else {
-            f7 = 0.0f;
+        canvas.save();
+        c(canvas);
+        org.telegram.ui.Components.k5 k5Var2 = this.H0;
+        if (k5Var2 != null) {
+            k5Var2.a();
         }
-        this.v = f7;
+        this.f21355c.draw(canvas);
+        canvas.restore();
+        org.telegram.ui.Components.o5.drawAnimatedEmojis(canvas, this.f21355c, this.H0, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, this.J0);
+        int size2 = arrayList.size();
+        while (i11 < size2) {
+            Object obj2 = arrayList.get(i11);
+            i11++;
+            ((nh.i) obj2).draw(canvas);
+        }
+    }
+
+    public final boolean f() {
+        if (this.f21364j0 && getMeasuredHeight() != 0 && !this.L) {
+            d(((getMaxTextWidth() - getPaddingLeft()) - getPaddingRight()) - this.f21380w0);
+            if ((this.f21367n & 112) == 16) {
+                this.f21357d0 = (getMeasuredHeight() - this.f21361g0) / 2;
+                return true;
+            }
+            this.f21357d0 = getPaddingTop();
+            return true;
+        }
         requestLayout();
-        this.f23132a.requestLayout();
+        return true;
+    }
+
+    public final void g(qv0 qv0Var, String str) {
+        Drawable drawable = this.D;
+        if (drawable == qv0Var) {
+            return;
+        }
+        if (drawable != null) {
+            drawable.setCallback(null);
+        }
+        this.D = qv0Var;
+        if (qv0Var != null) {
+            qv0Var.setCallback(this);
+        }
+        f();
+        this.E = str;
     }
 
     @Override
-    public void setTranslationX(float f7) {
-        super.setTranslationX(f7);
-        this.f23132a.invalidate();
+    public Drawable getBackground() {
+        Drawable drawable = this.O;
+        if (drawable != null) {
+            return drawable;
+        }
+        return super.getBackground();
+    }
+
+    public float getExactWidth() {
+        int i10;
+        float measureText = getPaint().measureText(getText().toString()) + getSideDrawablesSize();
+        if (this.f21379w == null && this.f21381x == null && this.f21383y == null) {
+            i10 = 0;
+        } else {
+            i10 = this.I;
+        }
+        return measureText - i10;
+    }
+
+    public float getExactWidthIncludeDrawables() {
+        int i10;
+        int i11;
+        float exactWidth = getExactWidth();
+        Drawable drawable = this.f21379w;
+        int i12 = 0;
+        if (drawable != null) {
+            i10 = drawable.getIntrinsicWidth();
+        } else {
+            i10 = 0;
+        }
+        float f7 = exactWidth + i10;
+        Drawable drawable2 = this.f21381x;
+        if (drawable2 != null) {
+            i11 = drawable2.getIntrinsicWidth();
+        } else {
+            i11 = 0;
+        }
+        float f10 = f7 + i11;
+        Drawable drawable3 = this.f21383y;
+        if (drawable3 != null) {
+            i12 = drawable3.getIntrinsicWidth();
+        }
+        return f10 + i12;
+    }
+
+    public float getFullAlpha() {
+        return this.M;
+    }
+
+    public Layout getLayout() {
+        return this.f21355c;
+    }
+
+    public float getLayoutX() {
+        return this.f21351a;
+    }
+
+    public float getLayoutY() {
+        return this.f21353b;
+    }
+
+    public Drawable getLeftDrawable() {
+        return this.f21379w;
+    }
+
+    public int getLineCount() {
+        int i10;
+        StaticLayout staticLayout = this.f21355c;
+        if (staticLayout != null) {
+            i10 = staticLayout.getLineCount();
+        } else {
+            i10 = 0;
+        }
+        StaticLayout staticLayout2 = this.e;
+        if (staticLayout2 != null) {
+            return staticLayout2.getLineCount() + i10;
+        }
+        return i10;
+    }
+
+    public int getMaxTextWidth() {
+        int i10;
+        Drawable drawable;
+        Drawable drawable2;
+        int measuredWidth = getMeasuredWidth();
+        int i11 = 0;
+        if (this.f21366l0 && (drawable2 = this.f21381x) != null) {
+            i10 = drawable2.getIntrinsicWidth() + this.I;
+        } else {
+            i10 = 0;
+        }
+        int i12 = measuredWidth - i10;
+        if (this.f21366l0 && (drawable = this.f21383y) != null) {
+            i11 = this.I + drawable.getIntrinsicWidth();
+        }
+        return i12 - i11;
+    }
+
+    public TextPaint getPaint() {
+        return this.h;
+    }
+
+    public Drawable getRightDrawable() {
+        return this.f21381x;
+    }
+
+    public Drawable getRightDrawable2() {
+        return this.f21383y;
+    }
+
+    public boolean getRightDrawableOutside() {
+        return this.f21366l0;
+    }
+
+    public int getRightDrawableWidth() {
+        Drawable drawable = this.f21381x;
+        if (drawable == null) {
+            return 0;
+        }
+        return (int) ((drawable.getIntrinsicWidth() * this.H) + this.I);
+    }
+
+    public int getRightDrawableX() {
+        return this.f21362h0;
+    }
+
+    public int getRightDrawableY() {
+        return this.f21363i0;
+    }
+
+    public int getSideDrawablesSize() {
+        int i10;
+        Drawable drawable = this.f21379w;
+        if (drawable != null) {
+            i10 = drawable.getIntrinsicWidth() + this.I;
+        } else {
+            i10 = 0;
+        }
+        Drawable drawable2 = this.f21381x;
+        if (drawable2 != null) {
+            i10 += ((int) (drawable2.getIntrinsicWidth() * this.H)) + this.I;
+        }
+        Drawable drawable3 = this.f21383y;
+        if (drawable3 != null) {
+            return ((int) (drawable3.getIntrinsicWidth() * this.H)) + this.I + i10;
+        }
+        return i10;
+    }
+
+    public CharSequence getText() {
+        CharSequence charSequence = this.f21374s;
+        if (charSequence == null) {
+            return "";
+        }
+        return charSequence;
+    }
+
+    public int getTextColor() {
+        return this.h.getColor();
+    }
+
+    public int getTextHeight() {
+        return this.f21361g0;
+    }
+
+    public TextPaint getTextPaint() {
+        return this.h;
+    }
+
+    public int getTextStartX() {
+        int i10 = 0;
+        if (this.f21355c == null) {
+            return 0;
+        }
+        Drawable drawable = this.f21379w;
+        if (drawable != null && (this.f21367n & 7) == 3) {
+            i10 = this.I + drawable.getIntrinsicWidth();
+        }
+        Drawable drawable2 = this.D;
+        if (drawable2 != null && this.F < 0 && (this.f21367n & 7) == 3) {
+            i10 += drawable2.getIntrinsicWidth() + this.I;
+        }
+        return ((int) getX()) + this.f21356c0 + i10;
+    }
+
+    public int getTextStartY() {
+        if (this.f21355c == null) {
+            return 0;
+        }
+        return (int) getY();
+    }
+
+    public int getTextWidth() {
+        Drawable drawable;
+        int i10;
+        Drawable drawable2;
+        int i11 = this.f21358e0;
+        int i12 = 0;
+        if (this.m0) {
+            if (this.f21381x != null) {
+                i10 = (int) (drawable.getIntrinsicWidth() * this.H);
+            } else {
+                i10 = 0;
+            }
+            if (this.f21383y != null) {
+                i12 = (int) (drawable2.getIntrinsicWidth() * this.H);
+            }
+            i12 += i10;
+        }
+        return i11 + i12;
+    }
+
+    public final void h(int i10, int i11) {
+        if (this.f21376t0 == i10 && this.f21377u0 == i11) {
+            return;
+        }
+        this.f21376t0 = i10;
+        this.f21377u0 = i11;
+        d(((getMaxTextWidth() - getPaddingLeft()) - getPaddingRight()) - this.f21380w0);
+    }
+
+    @Override
+    public final boolean hasOverlappingRendering() {
+        return false;
+    }
+
+    public final void i(Drawable drawable) {
+        Drawable drawable2 = this.f21381x;
+        if (drawable2 == drawable) {
+            return;
+        }
+        if (drawable2 != null) {
+            drawable2.setCallback(null);
+        }
+        this.f21381x = drawable;
+        if (drawable != null) {
+            drawable.setCallback(this);
+        }
+        f();
+    }
+
+    @Override
+    public final void invalidateDrawable(Drawable drawable) {
+        Drawable drawable2 = this.f21379w;
+        if (drawable == drawable2) {
+            invalidate(drawable2.getBounds());
+            return;
+        }
+        Drawable drawable3 = this.f21381x;
+        if (drawable == drawable3) {
+            invalidate(drawable3.getBounds());
+            return;
+        }
+        Drawable drawable4 = this.f21383y;
+        if (drawable == drawable4) {
+            invalidate(drawable4.getBounds());
+            return;
+        }
+        Drawable drawable5 = this.D;
+        if (drawable == drawable5) {
+            invalidate(drawable5.getBounds());
+        }
+    }
+
+    public final void j(Drawable drawable) {
+        Drawable drawable2 = this.f21383y;
+        if (drawable2 == drawable) {
+            return;
+        }
+        if (drawable2 != null) {
+            drawable2.setCallback(null);
+        }
+        this.f21383y = drawable;
+        if (drawable != null) {
+            drawable.setCallback(this);
+        }
+        f();
+    }
+
+    public boolean k(CharSequence charSequence) {
+        return l(charSequence, false);
+    }
+
+    public boolean l(CharSequence charSequence, boolean z10) {
+        CharSequence charSequence2 = this.f21374s;
+        if (charSequence2 != null || charSequence != null) {
+            if (!z10 && charSequence2 != null && charSequence2.equals(charSequence)) {
+                return false;
+            }
+            this.f21374s = charSequence;
+            this.T = 500;
+            f();
+            return true;
+        }
+        return false;
+    }
+
+    public final void m() {
+        boolean z10;
+        if ((this.U == null || this.V == null) && this.P) {
+            Paint paint = new Paint();
+            this.U = paint;
+            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+            paint.setShader(new LinearGradient(0.0f, 0.0f, org.telegram.messenger.i0.L(6.0f), 0.0f, new int[]{-1, 0}, new float[]{0.0f, 1.0f}, tileMode));
+            Paint paint2 = this.U;
+            PorterDuff.Mode mode = PorterDuff.Mode.DST_OUT;
+            paint2.setXfermode(new PorterDuffXfermode(mode));
+            Paint paint3 = new Paint();
+            this.V = paint3;
+            paint3.setShader(new LinearGradient(0.0f, 0.0f, org.telegram.messenger.i0.L(6.0f), 0.0f, new int[]{0, -1}, new float[]{0.0f, 1.0f}, tileMode));
+            this.V.setXfermode(new PorterDuffXfermode(mode));
+        }
+        Boolean bool = this.f21370p0;
+        if (bool != null) {
+            z10 = bool.booleanValue();
+        } else {
+            z10 = false;
+        }
+        if ((this.W == null || this.f21352a0 != org.telegram.messenger.i0.L(this.f21371q0) || this.f21369o0 != z10) && this.f21368n0) {
+            if (this.W == null) {
+                this.W = new Paint();
+            }
+            this.f21369o0 = z10;
+            if (z10) {
+                Paint paint4 = this.W;
+                int L = org.telegram.messenger.i0.L(this.f21371q0);
+                this.f21352a0 = L;
+                paint4.setShader(new LinearGradient(0.0f, 0.0f, L, 0.0f, new int[]{-1, 0}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+            } else {
+                Paint paint5 = this.W;
+                int L2 = org.telegram.messenger.i0.L(this.f21371q0);
+                this.f21352a0 = L2;
+                paint5.setShader(new LinearGradient(0.0f, 0.0f, L2, 0.0f, new int[]{0, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+            }
+            this.W.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        }
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.K0 = true;
+        this.H0 = org.telegram.ui.Components.o5.update(this.I0, this, this.H0, this.f21355c);
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.K0 = false;
+        org.telegram.ui.Components.o5.release(this, this.H0);
+        this.f21364j0 = false;
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        boolean z10;
+        int i10;
+        Drawable drawable;
+        float f7;
+        float f10;
+        int i11;
+        Drawable drawable2;
+        int u10;
+        int i12;
+        int i13;
+        int u11;
+        int i14;
+        int u12;
+        int i15;
+        float f11;
+        float f12;
+        float f13;
+        Drawable drawable3;
+        float f14;
+        boolean z11;
+        float f15;
+        Drawable drawable4;
+        int u13;
+        int i16;
+        int u14;
+        int i17;
+        float f16;
+        float f17;
+        Drawable drawable5;
+        Drawable drawable6;
+        Drawable drawable7;
+        int u15;
+        int i18;
+        int u16;
+        int i19;
+        int intrinsicHeight;
+        Drawable drawable8;
+        int u17;
+        int i20;
+        int u18;
+        int i21;
+        int intrinsicHeight2;
+        int intrinsicHeight3;
+        super.onDraw(canvas);
+        this.f21351a = 0.0f;
+        this.f21353b = 0.0f;
+        if (this.P && (this.Q || this.R != 0.0f)) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.f21360f0 = this.f21358e0;
+        Drawable drawable9 = this.f21379w;
+        if (drawable9 != null && !this.f21365k0) {
+            int i22 = (int) (-this.R);
+            int i23 = this.f21367n;
+            if ((i23 & 7) == 1) {
+                i22 += this.f21356c0;
+            }
+            if ((i23 & 112) == 16) {
+                intrinsicHeight3 = ((getMeasuredHeight() - this.f21379w.getIntrinsicHeight()) / 2) + this.J;
+            } else {
+                intrinsicHeight3 = this.J + ((this.f21361g0 - this.f21379w.getIntrinsicHeight()) / 2) + getPaddingTop();
+            }
+            Drawable drawable10 = this.f21379w;
+            drawable10.setBounds(i22, intrinsicHeight3, drawable10.getIntrinsicWidth() + i22, this.f21379w.getIntrinsicHeight() + intrinsicHeight3);
+            this.f21379w.draw(canvas);
+            int i24 = this.f21367n & 7;
+            if (i24 != 3 && i24 != 1) {
+                i10 = 0;
+            } else {
+                i10 = this.f21379w.getIntrinsicWidth() + this.I;
+            }
+            this.f21360f0 = this.f21379w.getIntrinsicWidth() + this.I + this.f21360f0;
+        } else if (this.f21365k0 && drawable9 != null) {
+            i10 = this.I + drawable9.getIntrinsicWidth();
+        } else {
+            i10 = 0;
+        }
+        Drawable drawable11 = this.D;
+        if (drawable11 != null && this.E != null) {
+            int i25 = (int) ((-this.R) + this.G);
+            int i26 = this.f21367n;
+            if ((i26 & 7) == 1) {
+                i25 += this.f21356c0;
+            }
+            if ((i26 & 112) == 16) {
+                intrinsicHeight2 = ((getMeasuredHeight() - this.D.getIntrinsicHeight()) / 2) + this.J;
+            } else {
+                intrinsicHeight2 = this.J + ((this.f21361g0 - drawable11.getIntrinsicHeight()) / 2);
+            }
+            Drawable drawable12 = this.D;
+            drawable12.setBounds(i25, intrinsicHeight2, drawable12.getIntrinsicWidth() + i25, this.D.getIntrinsicHeight() + intrinsicHeight2);
+            this.D.draw(canvas);
+            if (this.F < 0) {
+                int i27 = this.f21367n & 7;
+                if (i27 == 3 || i27 == 1) {
+                    i10 += this.D.getIntrinsicWidth() + this.I;
+                }
+                this.f21360f0 = this.D.getIntrinsicWidth() + this.I + this.f21360f0;
+            }
+        }
+        int i28 = i10;
+        if (this.f21381x != null && !this.C0 && this.H > 0.0f && !this.f21366l0 && !this.m0) {
+            int i29 = this.f21358e0 + i28 + this.I + ((int) (-this.R));
+            int i30 = this.f21367n & 7;
+            if (i30 == 1 || i30 == 5) {
+                i29 += this.f21356c0;
+            }
+            int intrinsicWidth = (int) (drawable.getIntrinsicWidth() * this.H);
+            int intrinsicHeight4 = (int) (this.f21381x.getIntrinsicHeight() * this.H);
+            if ((this.f21367n & 112) == 16) {
+                u18 = (getMeasuredHeight() - intrinsicHeight4) / 2;
+                i21 = this.K;
+            } else {
+                u18 = i0.a.u(this.f21361g0, intrinsicHeight4, 2, getPaddingTop());
+                i21 = this.K;
+            }
+            int i31 = u18 + i21;
+            f7 = 0.0f;
+            this.f21381x.setBounds(i29, i31, i29 + intrinsicWidth, i31 + intrinsicHeight4);
+            this.f21362h0 = i29 + (intrinsicWidth >> 1);
+            this.f21363i0 = i31 + (intrinsicHeight4 >> 1);
+            this.f21381x.draw(canvas);
+            this.f21360f0 = this.I + intrinsicWidth + this.f21360f0;
+        } else {
+            f7 = 0.0f;
+        }
+        if (this.f21383y != null && !this.C0 && this.H > f7 && !this.f21366l0 && !this.m0) {
+            int i32 = this.f21358e0 + i28 + this.I + ((int) (-this.R));
+            if (this.f21381x != null) {
+                i32 += ((int) (drawable8.getIntrinsicWidth() * this.H)) + this.I;
+            }
+            int i33 = this.f21367n & 7;
+            if (i33 == 1 || i33 == 5) {
+                i32 += this.f21356c0;
+            }
+            int intrinsicWidth2 = (int) (this.f21383y.getIntrinsicWidth() * this.H);
+            int intrinsicHeight5 = (int) (this.f21383y.getIntrinsicHeight() * this.H);
+            if ((this.f21367n & 112) == 16) {
+                u17 = (getMeasuredHeight() - intrinsicHeight5) / 2;
+                i20 = this.K;
+            } else {
+                u17 = i0.a.u(this.f21361g0, intrinsicHeight5, 2, getPaddingTop());
+                i20 = this.K;
+            }
+            int i34 = u17 + i20;
+            this.f21383y.setBounds(i32, i34, i32 + intrinsicWidth2, intrinsicHeight5 + i34);
+            this.f21383y.draw(canvas);
+            this.f21360f0 = this.I + intrinsicWidth2 + this.f21360f0;
+        }
+        int L = org.telegram.messenger.i0.L(16.0f) + this.f21360f0;
+        float f18 = this.R;
+        if (f18 != f7) {
+            if (this.f21379w != null && !this.f21365k0) {
+                int i35 = ((int) (-f18)) + L;
+                if ((this.f21367n & 112) == 16) {
+                    intrinsicHeight = ((getMeasuredHeight() - this.f21379w.getIntrinsicHeight()) / 2) + this.J;
+                } else {
+                    intrinsicHeight = this.J + ((this.f21361g0 - this.f21379w.getIntrinsicHeight()) / 2) + getPaddingTop();
+                }
+                Drawable drawable13 = this.f21379w;
+                drawable13.setBounds(i35, intrinsicHeight, drawable13.getIntrinsicWidth() + i35, this.f21379w.getIntrinsicHeight() + intrinsicHeight);
+                this.f21379w.draw(canvas);
+            }
+            if (this.f21381x != null && !this.f21366l0) {
+                int intrinsicWidth3 = (int) (drawable5.getIntrinsicWidth() * this.H);
+                int intrinsicHeight6 = (int) (this.f21381x.getIntrinsicHeight() * this.H);
+                int i36 = this.f21358e0 + i28 + this.I + ((int) (-this.R)) + L;
+                if ((this.f21367n & 112) == 16) {
+                    u16 = (getMeasuredHeight() - intrinsicHeight6) / 2;
+                    i19 = this.K;
+                } else {
+                    u16 = i0.a.u(this.f21361g0, intrinsicHeight6, 2, getPaddingTop());
+                    i19 = this.K;
+                }
+                int i37 = u16 + i19;
+                f10 = 16.0f;
+                this.f21381x.setBounds(i36, i37, i36 + intrinsicWidth3, i37 + intrinsicHeight6);
+                this.f21362h0 = i36 + (intrinsicWidth3 >> 1);
+                this.f21363i0 = i37 + (intrinsicHeight6 >> 1);
+                this.f21381x.draw(canvas);
+            } else {
+                f10 = 16.0f;
+            }
+            if (this.f21383y != null && !this.f21366l0) {
+                int intrinsicWidth4 = (int) (drawable6.getIntrinsicWidth() * this.H);
+                int intrinsicHeight7 = (int) (this.f21383y.getIntrinsicHeight() * this.H);
+                int i38 = this.f21358e0 + i28 + this.I + ((int) (-this.R)) + L;
+                if (this.f21381x != null) {
+                    i38 += ((int) (drawable7.getIntrinsicWidth() * this.H)) + this.I;
+                }
+                if ((this.f21367n & 112) == 16) {
+                    u15 = (getMeasuredHeight() - intrinsicHeight7) / 2;
+                    i18 = this.K;
+                } else {
+                    u15 = i0.a.u(this.f21361g0, intrinsicHeight7, 2, getPaddingTop());
+                    i18 = this.K;
+                }
+                int i39 = u15 + i18;
+                this.f21383y.setBounds(i38, i39, intrinsicWidth4 + i38, intrinsicHeight7 + i39);
+                this.f21383y.draw(canvas);
+            }
+        } else {
+            f10 = 16.0f;
+        }
+        if (this.f21355c != null) {
+            if (this.f21365k0 || this.f21366l0 || this.f21368n0 || this.f21373r0 > 0) {
+                canvas.save();
+                int maxTextWidth = getMaxTextWidth() - this.f21373r0;
+                Drawable drawable14 = this.f21381x;
+                if (drawable14 != null && !(drawable14 instanceof org.telegram.ui.Components.d5) && this.f21366l0) {
+                    f11 = 2.0f;
+                } else {
+                    f11 = f7;
+                }
+                canvas.clipRect(i28, 0, maxTextWidth - org.telegram.messenger.i0.L(f11), getMeasuredHeight());
+            }
+            org.telegram.messenger.k6.f16540n = false;
+            if (this.O != null) {
+                int i40 = this.f21358e0;
+                int i41 = (i40 / 2) + ((int) ((this.f21356c0 + i28) - this.R));
+                int max = Math.max(getPaddingRight() + getPaddingLeft() + i40, this.f21375s0);
+                int i42 = i41 - (max / 2);
+                this.O.setBounds(i42, 0, max + i42, getMeasuredHeight());
+                this.O.draw(canvas);
+            }
+            if (this.f21356c0 + i28 != 0 || this.f21357d0 != 0 || this.R != f7) {
+                canvas.save();
+                canvas.translate((this.f21356c0 + i28) - this.R, this.f21357d0);
+                this.f21351a = ((this.f21356c0 + i28) - this.R) + this.f21351a;
+                this.f21353b += this.f21357d0;
+            }
+            e(canvas);
+            StaticLayout staticLayout = this.f21359f;
+            TextPaint textPaint = this.h;
+            if (staticLayout != null && this.M < 1.0f) {
+                int alpha = textPaint.getAlpha();
+                textPaint.setAlpha((int) ((1.0f - this.M) * 255.0f));
+                canvas.save();
+                if (this.f21359f.getText().length() == 1) {
+                    if (this.f21382x0 == 1) {
+                        f17 = 0.5f;
+                    } else {
+                        f17 = 4.0f;
+                    }
+                    f16 = org.telegram.messenger.i0.L(f17);
+                } else {
+                    f16 = f7;
+                }
+                if (this.f21355c.getLineLeft(0) != f7) {
+                    float f19 = (-this.f21355c.getLineWidth(0)) + f16;
+                    float f20 = f7;
+                    canvas.translate(f19, f20);
+                    f12 = f20;
+                } else {
+                    f12 = f7;
+                    canvas.translate(this.f21355c.getLineWidth(0) - f16, f12);
+                }
+                float f21 = this.M;
+                canvas.translate((this.f21378v0 * f21) + ((-this.f21377u0) * f21), f12);
+                this.f21359f.draw(canvas);
+                canvas.restore();
+                textPaint.setAlpha(alpha);
+            } else {
+                f12 = f7;
+            }
+            if (this.e != null) {
+                if (this.M > f12) {
+                    int alpha2 = textPaint.getAlpha();
+                    textPaint.setAlpha((int) (this.M * 255.0f));
+                    float f22 = this.M;
+                    float f23 = this.f21378v0;
+                    float f24 = ((f22 * f23) + ((-this.f21377u0) * f22)) - f23;
+                    f13 = 0.0f;
+                    canvas.translate(f24, 0.0f);
+                    this.e.draw(canvas);
+                    textPaint.setAlpha(alpha2);
+                } else {
+                    f13 = 0.0f;
+                }
+            } else {
+                f13 = f12;
+            }
+            if (this.R != f13) {
+                canvas.translate(L, f13);
+                e(canvas);
+            }
+            if (this.f21356c0 + i28 != 0 || this.f21357d0 != 0 || this.R != f13) {
+                canvas.restore();
+            }
+            if (this.f21381x != null && !this.C0 && this.H > 0.0f && !this.f21366l0 && this.m0) {
+                int i43 = this.f21358e0 + i28 + this.I + ((int) (-this.R));
+                int i44 = this.f21367n & 7;
+                if (i44 == 1 || i44 == 5) {
+                    i43 += this.f21356c0;
+                }
+                int intrinsicWidth5 = (int) (drawable3.getIntrinsicWidth() * this.H);
+                int intrinsicHeight8 = (int) (this.f21381x.getIntrinsicHeight() * this.H);
+                if ((this.f21367n & 112) == 16) {
+                    u14 = (getMeasuredHeight() - intrinsicHeight8) / 2;
+                    i17 = this.K;
+                } else {
+                    u14 = i0.a.u(this.f21361g0, intrinsicHeight8, 2, getPaddingTop());
+                    i17 = this.K;
+                }
+                int i45 = u14 + i17;
+                this.f21381x.setBounds(i43, i45, i43 + intrinsicWidth5, i45 + intrinsicHeight8);
+                this.f21362h0 = i43 + (intrinsicWidth5 >> 1);
+                this.f21363i0 = i45 + (intrinsicHeight8 >> 1);
+                this.f21381x.draw(canvas);
+                this.f21360f0 = this.I + intrinsicWidth5 + this.f21360f0;
+            }
+            if (this.f21383y != null && !this.C0 && this.H > 0.0f && !this.f21366l0 && this.m0) {
+                int i46 = this.f21358e0 + i28 + this.I + ((int) (-this.R));
+                if (this.f21381x != null) {
+                    i46 += ((int) (drawable4.getIntrinsicWidth() * this.H)) + this.I;
+                }
+                int i47 = this.f21367n & 7;
+                if (i47 == 1 || i47 == 5) {
+                    i46 += this.f21356c0;
+                }
+                int intrinsicWidth6 = (int) (this.f21383y.getIntrinsicWidth() * this.H);
+                int intrinsicHeight9 = (int) (this.f21383y.getIntrinsicHeight() * this.H);
+                if ((this.f21367n & 112) == 16) {
+                    u13 = (getMeasuredHeight() - intrinsicHeight9) / 2;
+                    i16 = this.K;
+                } else {
+                    u13 = i0.a.u(this.f21361g0, intrinsicHeight9, 2, getPaddingTop());
+                    i16 = this.K;
+                }
+                int i48 = u13 + i16;
+                this.f21383y.setBounds(i46, i48, i46 + intrinsicWidth6, intrinsicHeight9 + i48);
+                this.f21383y.draw(canvas);
+                this.f21360f0 = this.I + intrinsicWidth6 + this.f21360f0;
+            }
+            if (z10) {
+                if (this.R < org.telegram.messenger.i0.L(10.0f)) {
+                    this.U.setAlpha((int) ((this.R / org.telegram.messenger.i0.L(10.0f)) * 255.0f));
+                } else {
+                    if (this.R > (org.telegram.messenger.i0.L(f10) + this.f21360f0) - org.telegram.messenger.i0.L(10.0f)) {
+                        this.U.setAlpha((int) z20.x(this.R - ((org.telegram.messenger.i0.L(f10) + this.f21360f0) - org.telegram.messenger.i0.L(10.0f)), org.telegram.messenger.i0.L(10.0f), 1.0f, 255.0f));
+                    } else {
+                        this.U.setAlpha(255);
+                    }
+                }
+                canvas.drawRect(i28, 0.0f, org.telegram.messenger.i0.L(6.0f) + i28, getMeasuredHeight(), this.U);
+                canvas.save();
+                canvas.translate((getMaxTextWidth() - this.f21373r0) - org.telegram.messenger.i0.L(6.0f), 0.0f);
+                canvas.drawRect(0.0f, 0.0f, org.telegram.messenger.i0.L(6.0f), getMeasuredHeight(), this.V);
+                canvas.restore();
+            } else if (this.f21368n0 && this.Q && this.W != null) {
+                canvas.save();
+                m();
+                if (!this.f21369o0) {
+                    int maxTextWidth2 = (getMaxTextWidth() - this.f21373r0) - this.f21352a0;
+                    Drawable drawable15 = this.f21381x;
+                    if (drawable15 != null && !(drawable15 instanceof org.telegram.ui.Components.d5) && this.f21366l0) {
+                        f14 = 2.0f;
+                    } else {
+                        f14 = 0.0f;
+                    }
+                    canvas.translate(maxTextWidth2 - org.telegram.messenger.i0.L(f14), 0.0f);
+                }
+                canvas.drawRect(i28, 0.0f, this.f21352a0, getMeasuredHeight(), this.W);
+                canvas.restore();
+            }
+            if (!this.P || (!this.Q && this.R == 0.0f)) {
+                z11 = true;
+            } else {
+                long elapsedRealtime = SystemClock.elapsedRealtime();
+                long j10 = elapsedRealtime - this.S;
+                if (j10 > 17) {
+                    j10 = 17;
+                }
+                int i49 = this.T;
+                if (i49 > 0) {
+                    this.T = (int) (i49 - j10);
+                    z11 = true;
+                } else {
+                    int L2 = org.telegram.messenger.i0.L(f10) + this.f21360f0;
+                    if (this.R < org.telegram.messenger.i0.L(100.0f)) {
+                        f15 = a1.g.c(this.R, org.telegram.messenger.i0.L(100.0f), 20.0f, 30.0f);
+                        z11 = true;
+                    } else if (this.R >= L2 - org.telegram.messenger.i0.L(100.0f)) {
+                        z11 = true;
+                        f15 = z20.v(this.R - (L2 - org.telegram.messenger.i0.L(100.0f)), org.telegram.messenger.i0.L(100.0f), 20.0f, 50.0f);
+                    } else {
+                        z11 = true;
+                        f15 = 50.0f;
+                    }
+                    float L3 = ((((float) j10) / 1000.0f) * org.telegram.messenger.i0.L(f15)) + this.R;
+                    this.R = L3;
+                    this.S = elapsedRealtime;
+                    if (L3 > L2) {
+                        this.R = 0.0f;
+                        this.T = 500;
+                    }
+                    b();
+                }
+                invalidate();
+            }
+            org.telegram.messenger.k6.f16540n = z11;
+            if (this.f21365k0 || this.f21366l0 || this.f21368n0 || this.f21373r0 > 0) {
+                canvas.restore();
+            }
+        }
+        Drawable drawable16 = this.f21379w;
+        if (drawable16 != null && this.f21365k0) {
+            int intrinsicWidth7 = drawable16.getIntrinsicWidth();
+            int intrinsicHeight10 = this.f21379w.getIntrinsicHeight();
+            if ((this.f21367n & 112) == 16) {
+                u12 = (getMeasuredHeight() - intrinsicHeight10) / 2;
+                i15 = this.J;
+            } else {
+                u12 = i0.a.u(this.f21361g0, intrinsicHeight10, 2, getPaddingTop());
+                i15 = this.J;
+            }
+            int i50 = u12 + i15;
+            this.f21379w.setBounds(0, i50, intrinsicWidth7, intrinsicHeight10 + i50);
+            this.f21379w.draw(canvas);
+        }
+        if (this.f21381x != null && this.f21366l0) {
+            int i51 = this.f21358e0 + i28 + this.I;
+            float f25 = this.R;
+            if (f25 == 0.0f) {
+                i13 = -L;
+            } else {
+                i13 = (int) (-f25);
+            }
+            int min = Math.min(i51 + i13 + L, (getMaxTextWidth() - this.f21373r0) + this.I);
+            int intrinsicWidth8 = (int) (this.f21381x.getIntrinsicWidth() * this.H);
+            int intrinsicHeight11 = (int) (this.f21381x.getIntrinsicHeight() * this.H);
+            if ((this.f21367n & 112) == 16) {
+                u11 = (getMeasuredHeight() - intrinsicHeight11) / 2;
+                i14 = this.K;
+            } else {
+                u11 = i0.a.u(this.f21361g0, intrinsicHeight11, 2, getPaddingTop());
+                i14 = this.K;
+            }
+            int i52 = u11 + i14;
+            this.f21381x.setBounds(min, i52, min + intrinsicWidth8, i52 + intrinsicHeight11);
+            this.f21362h0 = min + (intrinsicWidth8 >> 1);
+            this.f21363i0 = i52 + (intrinsicHeight11 >> 1);
+            this.f21381x.draw(canvas);
+        }
+        if (this.f21383y != null && this.f21366l0) {
+            int i53 = i28 + this.f21358e0 + this.I;
+            float f26 = this.R;
+            if (f26 == 0.0f) {
+                i11 = -L;
+            } else {
+                i11 = (int) (-f26);
+            }
+            int min2 = Math.min(i53 + i11 + L, (getMaxTextWidth() - this.f21373r0) + this.I);
+            if (this.f21381x != null) {
+                min2 += ((int) (drawable2.getIntrinsicWidth() * this.H)) + this.I;
+            }
+            int intrinsicWidth9 = (int) (this.f21383y.getIntrinsicWidth() * this.H);
+            int intrinsicHeight12 = (int) (this.f21383y.getIntrinsicHeight() * this.H);
+            if ((this.f21367n & 112) == 16) {
+                u10 = (getMeasuredHeight() - intrinsicHeight12) / 2;
+                i12 = this.K;
+            } else {
+                u10 = i0.a.u(this.f21361g0, intrinsicHeight12, 2, getPaddingTop());
+                i12 = this.K;
+            }
+            int i54 = u10 + i12;
+            this.f21383y.setBounds(min2, i54, intrinsicWidth9 + min2, intrinsicHeight12 + i54);
+            this.f21383y.draw(canvas);
+        }
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setVisibleToUser(true);
+        accessibilityNodeInfo.setClassName("android.widget.TextView");
+        accessibilityNodeInfo.setText(this.f21374s);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        this.f21364j0 = true;
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        Drawable drawable;
+        Drawable drawable2;
+        Drawable drawable3;
+        Drawable drawable4;
+        Drawable drawable5;
+        Drawable drawable6;
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        int i18 = this.f21354b0;
+        int i19 = org.telegram.messenger.i0.f16026q.x;
+        if (i18 != i19) {
+            this.f21354b0 = i19;
+            this.R = 0.0f;
+            this.T = 500;
+            b();
+        }
+        int paddingLeft = ((size - getPaddingLeft()) - getPaddingRight()) - this.f21380w0;
+        if (this.f21365k0 && (drawable6 = this.f21379w) != null) {
+            i12 = drawable6.getIntrinsicWidth() + this.I;
+        } else {
+            i12 = 0;
+        }
+        int i20 = paddingLeft - i12;
+        if (this.f21366l0 && (drawable5 = this.f21381x) != null) {
+            i13 = drawable5.getIntrinsicWidth() + this.I;
+        } else {
+            i13 = 0;
+        }
+        int i21 = i20 - i13;
+        if (this.f21366l0 && (drawable4 = this.f21383y) != null) {
+            i14 = drawable4.getIntrinsicWidth() + this.I;
+        } else {
+            i14 = 0;
+        }
+        d(i21 - i14);
+        if (View.MeasureSpec.getMode(i11) != 1073741824) {
+            size2 = getPaddingBottom() + getPaddingTop() + this.f21361g0;
+        }
+        if (this.N) {
+            int paddingRight = getPaddingRight() + getPaddingLeft() + this.f21358e0 + this.f21380w0;
+            if (this.f21365k0 && (drawable3 = this.f21379w) != null) {
+                i15 = drawable3.getIntrinsicWidth() + this.I;
+            } else {
+                i15 = 0;
+            }
+            int i22 = paddingRight + i15;
+            if (this.f21366l0 && (drawable2 = this.f21381x) != null) {
+                i16 = drawable2.getIntrinsicWidth() + this.I;
+            } else {
+                i16 = 0;
+            }
+            int i23 = i22 + i16;
+            if (this.f21366l0 && (drawable = this.f21383y) != null) {
+                i17 = drawable.getIntrinsicWidth() + this.I;
+            } else {
+                i17 = 0;
+            }
+            size = Math.max(Math.min(size, i23 + i17), 0);
+        }
+        setMeasuredDimension(size, size2);
+        if ((this.f21367n & 112) == 16) {
+            this.f21357d0 = i0.a.u((getMeasuredHeight() - getPaddingTop()) - getPaddingBottom(), this.f21361g0, 2, getPaddingTop());
+        } else {
+            this.f21357d0 = getPaddingTop();
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.D0 != null && this.f21381x != null) {
+            RectF rectF = org.telegram.messenger.i0.P;
+            rectF.set(this.f21362h0 - org.telegram.messenger.i0.L(16.0f), this.f21363i0 - org.telegram.messenger.i0.L(16.0f), org.telegram.messenger.i0.L(16.0f) + this.f21362h0, org.telegram.messenger.i0.L(16.0f) + this.f21363i0);
+            if (motionEvent.getAction() == 0 && rectF.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                this.E0 = true;
+                this.F0 = motionEvent.getX();
+                this.G0 = motionEvent.getY();
+                getParent().requestDisallowInterceptTouchEvent(true);
+                Drawable drawable = this.f21381x;
+                if (drawable instanceof t5) {
+                    ((iy0) ((t5) drawable)).f38377f.c(true);
+                }
+            } else if (motionEvent.getAction() == 2 && this.E0) {
+                if (Math.abs(motionEvent.getX() - this.F0) >= org.telegram.messenger.i0.e || Math.abs(motionEvent.getY() - this.G0) >= org.telegram.messenger.i0.e) {
+                    this.E0 = false;
+                    getParent().requestDisallowInterceptTouchEvent(false);
+                    Drawable drawable2 = this.f21381x;
+                    if (drawable2 instanceof t5) {
+                        ((iy0) ((t5) drawable2)).f38377f.c(false);
+                    }
+                }
+            } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                if (this.E0 && motionEvent.getAction() == 1) {
+                    this.D0.onClick(this);
+                    Drawable drawable3 = this.f21381x;
+                    if (drawable3 instanceof t5) {
+                        ((iy0) ((t5) drawable3)).f38377f.c(false);
+                    }
+                }
+                this.E0 = false;
+                getParent().requestDisallowInterceptTouchEvent(false);
+            }
+        }
+        if (super.onTouchEvent(motionEvent) || this.E0) {
+            return true;
+        }
+        return false;
+    }
+
+    public void setAlignment(Layout.Alignment alignment) {
+        this.L0 = alignment;
+        requestLayout();
+    }
+
+    @Override
+    public void setBackgroundDrawable(Drawable drawable) {
+        if (this.f21372r > 1) {
+            super.setBackgroundDrawable(drawable);
+        } else {
+            this.O = drawable;
+        }
+    }
+
+    public void setBuildFullLayout(boolean z10) {
+        this.L = z10;
+    }
+
+    public void setCanHideRightDrawable(boolean z10) {
+        this.B0 = z10;
+    }
+
+    public void setDrawablePadding(int i10) {
+        if (this.I == i10) {
+            return;
+        }
+        this.I = i10;
+        f();
+    }
+
+    public void setEllipsizeByGradient(int i10) {
+        if (!this.P) {
+            this.f21368n0 = true;
+            this.f21370p0 = null;
+            m();
+            b();
+        }
+        this.f21371q0 = i10;
+        m();
+    }
+
+    public void setEmojiCacheType(int i10) {
+        if (i10 != this.I0) {
+            org.telegram.ui.Components.o5.release(this, this.H0);
+            this.I0 = i10;
+            if (this.K0) {
+                this.H0 = org.telegram.ui.Components.o5.update(i10, this, this.H0, this.f21355c);
+            }
+        }
+    }
+
+    public void setEmojiColor(int i10) {
+        this.J0 = new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN);
+    }
+
+    public void setFullAlpha(float f7) {
+        this.M = f7;
+        invalidate();
+    }
+
+    public void setFullTextMaxLines(int i10) {
+        this.f21382x0 = i10;
+    }
+
+    public void setGravity(int i10) {
+        this.f21367n = i10;
+    }
+
+    public void setLeftDrawable(int i10) {
+        setLeftDrawable(i10 == 0 ? null : getContext().getResources().getDrawable(i10));
+    }
+
+    public void setLeftDrawableOutside(boolean z10) {
+        this.f21365k0 = z10;
+    }
+
+    public void setLeftDrawableTopPadding(int i10) {
+        this.J = i10;
+    }
+
+    public void setLinkTextColor(int i10) {
+        this.h.linkColor = i10;
+        invalidate();
+    }
+
+    public void setMaxLines(int i10) {
+        this.f21372r = i10;
+    }
+
+    public void setMinWidth(int i10) {
+        this.f21375s0 = i10;
+    }
+
+    public void setMinusWidth(int i10) {
+        if (i10 == this.f21380w0) {
+            return;
+        }
+        this.f21380w0 = i10;
+        f();
+    }
+
+    public void setRightDrawable(int i10) {
+        Drawable drawable;
+        if (i10 == 0) {
+            drawable = null;
+        } else {
+            drawable = getContext().getResources().getDrawable(i10);
+        }
+        i(drawable);
+    }
+
+    public void setRightDrawableInside(boolean z10) {
+        this.m0 = z10;
+    }
+
+    public void setRightDrawableOnClick(View.OnClickListener onClickListener) {
+        this.D0 = onClickListener;
+    }
+
+    public void setRightDrawableOutside(boolean z10) {
+        this.f21366l0 = z10;
+    }
+
+    public void setRightDrawableScale(float f7) {
+        this.H = f7;
+    }
+
+    public void setRightDrawableTopPadding(int i10) {
+        this.K = i10;
+    }
+
+    public void setRightPadding(int i10) {
+        if (this.f21373r0 != i10) {
+            this.f21373r0 = i10;
+            int maxTextWidth = ((getMaxTextWidth() - getPaddingLeft()) - getPaddingRight()) - this.f21380w0;
+            Drawable drawable = this.f21379w;
+            if (drawable != null && !this.f21365k0) {
+                maxTextWidth = (maxTextWidth - drawable.getIntrinsicWidth()) - this.I;
+            }
+            int i11 = 0;
+            if (!this.m0) {
+                Drawable drawable2 = this.f21381x;
+                if (drawable2 != null && !this.f21366l0) {
+                    i11 = (int) (drawable2.getIntrinsicWidth() * this.H);
+                    maxTextWidth = (maxTextWidth - i11) - this.I;
+                }
+                Drawable drawable3 = this.f21383y;
+                if (drawable3 != null && !this.f21366l0) {
+                    i11 = (int) (drawable3.getIntrinsicWidth() * this.H);
+                    maxTextWidth = (maxTextWidth - i11) - this.I;
+                }
+            }
+            if (this.E != null && this.D != null) {
+                int indexOf = this.f21374s.toString().indexOf(this.E);
+                this.F = indexOf;
+                if (indexOf < 0) {
+                    maxTextWidth = (maxTextWidth - this.D.getIntrinsicWidth()) - this.I;
+                }
+            }
+            if (this.B0 && i11 != 0 && !this.f21366l0) {
+                TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+                if (!this.f21374s.equals(TextUtils.ellipsize(this.f21374s, this.h, maxTextWidth, truncateAt))) {
+                    this.C0 = true;
+                    maxTextWidth = maxTextWidth + i11 + this.I;
+                }
+            }
+            a(maxTextWidth);
+            invalidate();
+        }
+    }
+
+    public void setScrollNonFitText(boolean z10) {
+        if (this.P == z10) {
+            return;
+        }
+        this.P = z10;
+        m();
+        requestLayout();
+        b();
+    }
+
+    public void setSideDrawablesColor(int i10) {
+        t6.C1(i10, this.f21381x);
+        t6.C1(i10, this.f21379w);
+    }
+
+    public void setTextColor(int i10) {
+        this.h.setColor(i10);
+        invalidate();
+    }
+
+    public void setTextSize(int i10) {
+        setTextSizePx(org.telegram.messenger.i0.L(i10));
+    }
+
+    public void setTextSizePx(int i10) {
+        float f7 = i10;
+        TextPaint textPaint = this.h;
+        if (f7 == textPaint.getTextSize()) {
+            return;
+        }
+        textPaint.setTextSize(f7);
+        f();
+    }
+
+    public void setTypeface(Typeface typeface) {
+        this.h.setTypeface(typeface);
+    }
+
+    public void setWidthWrapContent(boolean z10) {
+        this.N = z10;
+    }
+
+    public void v(int i10, float f7, float f10, fe.f fVar) {
+        invalidate();
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f23135f && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f21381x && drawable != this.f21383y && drawable != this.f21379w && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;
     }
 
-    @Override
-    public final void z(float f7, int i10) {
+    public void setLeftDrawable(Drawable drawable) {
+        Drawable drawable2 = this.f21379w;
+        if (drawable2 == drawable) {
+            return;
+        }
+        if (drawable2 != null) {
+            drawable2.setCallback(null);
+        }
+        this.f21379w = drawable;
+        if (drawable != null) {
+            drawable.setCallback(this);
+        }
+        f();
+    }
+
+    public void setEllipsizeByGradient(boolean z10) {
+        if (this.P == z10) {
+            return;
+        }
+        this.f21368n0 = z10;
+        this.f21370p0 = null;
+        m();
+        b();
     }
 }

@@ -1,32 +1,57 @@
 package org.telegram.ui;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-public final class el0 extends Drawable {
-    public final org.telegram.ui.Components.r11 f38907a;
-    public final org.telegram.ui.ActionBar.u6 f38908b;
+import android.view.View;
+import android.widget.TextView;
+public final class el0 extends TextView {
+    public final int f37081a;
 
-    public el0(org.telegram.ui.Components.r11 r11Var, org.telegram.ui.ActionBar.u6 u6Var) {
-        this.f38907a = r11Var;
-        this.f38908b = u6Var;
+    public el0(Context context, int i10) {
+        super(context);
+        this.f37081a = i10;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        this.f38907a.c(getBounds().centerX() - (this.f38907a.f32090c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.G6, this.f38908b), canvas);
+    public void dispatchDraw(Canvas canvas) {
+        switch (this.f37081a) {
+            case 4:
+                super.dispatchDraw(canvas);
+                canvas.drawCircle(org.telegram.messenger.i0.L(3.5f), org.telegram.messenger.i0.L(11.5f), org.telegram.messenger.i0.L(2.5f), getPaint());
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
+        }
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
+    public void onMeasure(int i10, int i11) {
+        switch (this.f37081a) {
+            case 0:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(100.0f), Integer.MIN_VALUE));
+                return;
+            case 1:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(org.telegram.messenger.i0.L(26.0f)), 1073741824));
+                return;
+            case 2:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.ui.ActionBar.l.getCurrentActionBarHeight(), 1073741824));
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
     }
 
     @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        switch (this.f37081a) {
+            case 5:
+                super.setText(org.telegram.messenger.k6.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
+                return;
+            default:
+                super.setText(charSequence, bufferType);
+                return;
+        }
     }
 }

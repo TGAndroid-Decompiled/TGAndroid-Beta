@@ -1,4 +1,6 @@
 package o6;
-public interface b {
-    void a(l6.a aVar);
+
+import android.os.Parcelable;
+public interface b extends Parcelable {
+    public static final String NULL = "SAFE_PARCELABLE_NULL_STRING";
 }

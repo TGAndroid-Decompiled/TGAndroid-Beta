@@ -1,5 +1,8 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.drawable.StateListDrawable;
-public final class k6 extends StateListDrawable {
+import java.util.HashSet;
+public interface k6 {
+    void addColorKeys(HashSet hashSet);
+
+    void updateColors();
 }

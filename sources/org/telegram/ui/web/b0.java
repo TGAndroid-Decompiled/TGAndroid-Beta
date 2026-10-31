@@ -1,65 +1,30 @@
 package org.telegram.ui.web;
 
-import android.webkit.WebView;
-import di.x7;
-import java.io.Serializable;
-import org.telegram.tgnet.TLObject;
+import android.os.Bundle;
+import org.telegram.messenger.cd;
+import org.telegram.messenger.h20;
 import org.telegram.tgnet.TLRPC;
-public final class b0 implements Runnable {
-    public final int f44706a;
-    public final Object f44707b;
-    public final Object f44708c;
-    public final Serializable d;
-    public final Object e;
-    public final Object f44709f;
+import org.telegram.ui.Components.cc;
+import org.telegram.ui.un;
+public final class b0 extends un {
+    public boolean f42991jd;
+    public final TLRPC.User f42992kd;
+    public final long f42993ld;
+    public final z0 f42994md;
 
-    public b0(Object obj, WebView webView, Object obj2, String str, Object obj3, int i10) {
-        this.f44706a = i10;
-        this.f44707b = obj;
-        this.e = webView;
-        this.f44709f = obj2;
-        this.d = str;
-        this.f44708c = obj3;
+    public b0(z0 z0Var, Bundle bundle, TLRPC.User user, long j10) {
+        super(bundle);
+        this.f42994md = z0Var;
+        this.f42992kd = user;
+        this.f42993ld = j10;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.b0.run():void");
-    }
-
-    public b0(Object obj, String str, Serializable serializable, String str2, String str3, int i10) {
-        this.f44706a = i10;
-        this.f44707b = obj;
-        this.d = str;
-        this.e = serializable;
-        this.f44709f = str2;
-        this.f44708c = str3;
-    }
-
-    public b0(a1 a1Var, TLObject tLObject, x7 x7Var, String str, String str2) {
-        this.f44706a = 1;
-        this.f44707b = a1Var;
-        this.f44708c = tLObject;
-        this.e = x7Var;
-        this.d = str;
-        this.f44709f = str2;
-    }
-
-    public b0(a1 a1Var, TLObject tLObject, String[] strArr, TLRPC.TL_error tL_error, org.telegram.ui.ActionBar.e2 e2Var) {
-        this.f44706a = 3;
-        this.f44707b = a1Var;
-        this.f44708c = tLObject;
-        this.d = strArr;
-        this.e = tL_error;
-        this.f44709f = e2Var;
-    }
-
-    public b0(a1 a1Var, TLRPC.TL_error tL_error, String str, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, TLObject tLObject) {
-        this.f44706a = 0;
-        this.f44707b = a1Var;
-        this.e = tL_error;
-        this.d = str;
-        this.f44709f = tL_inputInvoiceSlug;
-        this.f44708c = tLObject;
+    public final void onBecomeFullyVisible() {
+        super.onBecomeFullyVisible();
+        if (!this.f42991jd) {
+            this.f42991jd = true;
+            cc.a0(this).I(2131623989, cd.a0(null, null, 2131751740, h20.p(this.f42992kd)), org.telegram.messenger.i0.T2(cd.a0(null, null, 2131751741, h20.p(this.f42994md.U)), new bi.e(this, this.f42993ld, 20))).j();
+        }
     }
 }

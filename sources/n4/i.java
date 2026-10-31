@@ -6,14 +6,14 @@ import android.os.Parcel;
 import android.os.Parcelable;
 public final class i implements Parcelable {
     public static final Parcelable.Creator<i> CREATOR;
-    public static final a0.f f18669c;
+    public static final a0.f f13505c;
     public static final String[] d;
-    public final Bundle f18670a;
-    public MediaMetadata f18671b;
+    public final Bundle f13506a;
+    public MediaMetadata f13507b;
 
     static {
         ?? lVar = new a0.l(0);
-        f18669c = lVar;
+        f13505c = lVar;
         lVar.put("android.media.metadata.TITLE", 1);
         lVar.put("android.media.metadata.ARTIST", 1);
         lVar.put("android.media.metadata.DURATION", 0);
@@ -46,13 +46,13 @@ public final class i implements Parcelable {
         lVar.put("android.media.metadata.ADVERTISEMENT", 0);
         lVar.put("android.media.metadata.DOWNLOAD_STATUS", 0);
         d = new String[]{"android.media.metadata.TITLE", "android.media.metadata.ARTIST", "android.media.metadata.ALBUM", "android.media.metadata.ALBUM_ARTIST", "android.media.metadata.WRITER", "android.media.metadata.AUTHOR", "android.media.metadata.COMPOSER", "android.media.metadata.DISPLAY_SUBTITLE", "android.media.metadata.DISPLAY_DESCRIPTION"};
-        CREATOR = new h8.j(27);
+        CREATOR = new m8.i(3);
     }
 
     public i(Bundle bundle) {
         Bundle bundle2 = new Bundle(bundle);
-        this.f18670a = bundle2;
-        ClassLoader classLoader = s.class.getClassLoader();
+        this.f13506a = bundle2;
+        ClassLoader classLoader = q.class.getClassLoader();
         classLoader.getClass();
         bundle2.setClassLoader(classLoader);
     }
@@ -64,12 +64,12 @@ public final class i implements Parcelable {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeBundle(this.f18670a);
+        parcel.writeBundle(this.f13506a);
     }
 
     public i(Parcel parcel) {
-        Bundle readBundle = parcel.readBundle(s.class.getClassLoader());
+        Bundle readBundle = parcel.readBundle(q.class.getClassLoader());
         readBundle.getClass();
-        this.f18670a = readBundle;
+        this.f13506a = readBundle;
     }
 }

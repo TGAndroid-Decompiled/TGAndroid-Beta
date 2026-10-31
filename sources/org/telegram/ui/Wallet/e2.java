@@ -4,8 +4,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.ShapeDrawable;
+import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
 import android.util.Base64;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -20,47 +23,47 @@ import java.util.HashSet;
 import java.util.Locale;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.kh;
-import org.telegram.messenger.wh;
+import org.telegram.messenger.cd;
+import org.telegram.messenger.fe;
+import org.telegram.messenger.q20;
+import org.telegram.messenger.vp;
+import org.telegram.messenger.z20;
+import org.telegram.messenger.zs;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.kb1;
-import org.telegram.ui.jb0;
+import org.telegram.ui.Components.dq;
+import org.telegram.ui.af;
+import org.telegram.ui.f11;
+import org.telegram.ui.j70;
+import org.telegram.ui.qa0;
 public final class e2 {
-    public final int f36513a;
-    public final l0 f36514b;
-    public final HashSet f36515c = new HashSet();
+    public final int f34445a;
+    public final k0 f34446b;
+    public final HashSet f34447c = new HashSet();
     public final ArrayList d = new ArrayList();
     public int e;
-    public final ConnectionsManager f36516f;
-    public a2 f36517g;
+    public final ConnectionsManager f34448f;
+    public a2 f34449g;
     public boolean h;
 
-    public e2(l0 l0Var) {
+    public e2(k0 k0Var) {
         this.e = -1;
-        int i10 = l0Var.f36834a;
-        this.f36513a = i10;
-        this.f36514b = l0Var;
+        int i10 = k0Var.f34776a;
+        this.f34445a = i10;
+        this.f34446b = k0Var;
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i10);
-        this.f36516f = connectionsManager;
+        this.f34448f = connectionsManager;
         if (this.e >= 0) {
             return;
         }
-        this.e = connectionsManager.sendRequestTyped(new TL_wallet.tonConnectGetSessions(), new Object(), new d(this, 4));
+        this.e = connectionsManager.sendRequestTyped(new TL_wallet.tonConnectGetSessions(), new a3.b(1), new d(this, 4));
     }
 
-    public static String A(String str) {
+    public static String C(String str) {
         if (TextUtils.isEmpty(str)) {
-            return LocaleController.getString(R.string.WalletUnknownAddress);
+            return cd.L0(2131742998, null);
         }
         if (str.length() <= 10) {
             return str;
@@ -68,43 +71,43 @@ public final class e2 {
         return str.substring(0, 4) + "…" + str.substring(str.length() - 4);
     }
 
-    public static org.telegram.ui.Wallet.j2 B(android.content.Context r27, final int r28, final org.telegram.ui.Wallet.z1 r29, final org.telegram.tgnet.TLRPC.TL_urlAuthResultRequest r30, final org.telegram.ui.ActionBar.u6 r31, final org.telegram.ui.r80 r32, final java.lang.Runnable r33) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.e2.B(android.content.Context, int, org.telegram.ui.Wallet.z1, org.telegram.tgnet.TLRPC$TL_urlAuthResultRequest, org.telegram.ui.ActionBar.u6, org.telegram.ui.r80, java.lang.Runnable):org.telegram.ui.Wallet.j2");
+    public static org.telegram.ui.Wallet.z2 D(android.content.Context r30, final int r31, final org.telegram.ui.Wallet.z1 r32, final org.telegram.tgnet.TLRPC.TL_urlAuthResultRequest r33, final org.telegram.ui.ActionBar.p6 r34, final org.telegram.ui.r70 r35, final java.lang.Runnable r36) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.e2.D(android.content.Context, int, org.telegram.ui.Wallet.z1, org.telegram.tgnet.TLRPC$TL_urlAuthResultRequest, org.telegram.ui.ActionBar.p6, org.telegram.ui.r70, java.lang.Runnable):org.telegram.ui.Wallet.z2");
     }
 
-    public static LinearLayout D(Context context, String str, org.telegram.ui.ActionBar.u6 u6Var) {
-        LinearLayout d = wh.d(context, 1);
-        int dp = AndroidUtilities.dp(16.0f);
-        int i10 = org.telegram.ui.ActionBar.y6.f23357d6;
-        ShapeDrawable c02 = org.telegram.ui.ActionBar.y6.c0(dp, org.telegram.ui.ActionBar.y6.w0(i10, u6Var));
-        org.telegram.ui.ActionBar.b7 N = org.telegram.ui.ActionBar.f7.N(i10);
-        d.setBackground(c02);
-        org.telegram.ui.ActionBar.f7.k(d, c02, N, null, u6Var);
-        org.telegram.ui.Cells.q4 q4Var = new org.telegram.ui.Cells.q4(context, u6Var);
-        q4Var.setText(str);
-        d.addView(q4Var, kb1.r(-1, -2));
-        return d;
+    public static LinearLayout F(Context context, String str, org.telegram.ui.ActionBar.p6 p6Var) {
+        LinearLayout f7 = org.telegram.messenger.m5.f(context, 1);
+        int L = org.telegram.messenger.i0.L(16.0f);
+        int i10 = org.telegram.ui.ActionBar.t6.f20929d6;
+        ShapeDrawable d02 = org.telegram.ui.ActionBar.t6.d0(L, org.telegram.ui.ActionBar.t6.w0(i10, p6Var));
+        org.telegram.ui.ActionBar.w6 N = org.telegram.ui.ActionBar.a7.N(i10);
+        f7.setBackground(d02);
+        org.telegram.ui.ActionBar.a7.k(f7, d02, N, null, p6Var);
+        org.telegram.ui.Cells.p4 p4Var = new org.telegram.ui.Cells.p4(context, p6Var);
+        p4Var.setText(str);
+        f7.addView(p4Var, w7.b6.o(-1, -2));
+        return f7;
     }
 
-    public static void E(String str, JSONObject jSONObject) {
-        F(str, jSONObject);
-        String v = v("type", jSONObject);
+    public static void G(String str, JSONObject jSONObject) {
+        H(str, jSONObject);
+        String x10 = x("type", jSONObject);
         char c10 = 65535;
-        switch (v.hashCode()) {
+        switch (x10.hashCode()) {
             case -1388966911:
-                if (v.equals("binary")) {
+                if (x10.equals("binary")) {
                     c10 = 0;
                     break;
                 }
                 break;
             case 3049826:
-                if (v.equals("cell")) {
+                if (x10.equals("cell")) {
                     c10 = 1;
                     break;
                 }
                 break;
             case 3556653:
-                if (v.equals("text")) {
+                if (x10.equals("text")) {
                     c10 = 2;
                     break;
                 }
@@ -112,76 +115,93 @@ public final class e2 {
         }
         switch (c10) {
             case 0:
-                String v10 = v("bytes", jSONObject);
-                if (v10.matches("[A-Za-z0-9+/]*={0,2}") && Base64.encodeToString(Base64.decode(v10, 2), 2).replace("=", "").equals(v10.replace("=", ""))) {
+                String x11 = x("bytes", jSONObject);
+                if (x11.matches("[A-Za-z0-9+/]*={0,2}") && Base64.encodeToString(Base64.decode(x11, 2), 2).replace("=", "").equals(x11.replace("=", ""))) {
                     return;
                 }
                 throw new IllegalArgumentException("Invalid base64 data");
             case 1:
-                v("schema", jSONObject);
-                if (!WalletEngine2.isValidCellBoc(v("cell", jSONObject))) {
+                x("schema", jSONObject);
+                if (!WalletEngine2.isValidCellBoc(x("cell", jSONObject))) {
                     throw new IllegalArgumentException("Invalid data cell");
                 }
                 return;
             case 2:
-                v("text", jSONObject);
+                x("text", jSONObject);
                 return;
             default:
                 throw new IllegalArgumentException("Unknown signing data type");
         }
     }
 
-    public static void F(String str, JSONObject jSONObject) {
-        if (jSONObject.has("network") && !"-239".equals(v("network", jSONObject))) {
+    public static void H(String str, JSONObject jSONObject) {
+        if (jSONObject.has("network") && !"-239".equals(x("network", jSONObject))) {
             throw new IllegalArgumentException("Wrong network");
         }
-        if (jSONObject.has("from") && !WalletEngine2.sameTonConnectAddress(v("from", jSONObject), str)) {
+        if (jSONObject.has("from") && !WalletEngine2.sameTonConnectAddress(x("from", jSONObject), str)) {
             throw new IllegalArgumentException("Wrong signer");
         }
     }
 
-    public static void G(org.json.JSONObject r10, java.lang.String r11, int r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.e2.G(org.json.JSONObject, java.lang.String, int):void");
+    public static void I(org.json.JSONObject r10, java.lang.String r11, int r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.e2.I(org.json.JSONObject, java.lang.String, int):void");
     }
 
     public static void a(e2 e2Var, TL_wallet.tonConnectSession tonconnectsession, String str, k kVar) {
-        if (!e2Var.f36515c.remove(Long.valueOf(tonconnectsession.f22291id))) {
+        if (!e2Var.f34447c.remove(Long.valueOf(tonconnectsession.f20055id))) {
             return;
         }
         if (str == null) {
             Collection.EL.removeIf(e2Var.d, new a1(tonconnectsession, 0));
-            e2Var.f36514b.L();
+            e2Var.f34446b.L();
         }
-        kVar.run(str);
+        kVar.a(str);
     }
 
-    public static LinearLayout b(Context context, int i10, CharSequence charSequence, CharSequence charSequence2, SpannableStringBuilder spannableStringBuilder, String str, org.telegram.ui.ActionBar.u6 u6Var) {
-        int i11;
+    public static SpannableStringBuilder b(long j10) {
+        String o10 = k0.o(j10, true);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(o10);
+        int indexOf = o10.indexOf(46);
+        if (indexOf >= 0) {
+            spannableStringBuilder.setSpan(new RelativeSizeSpan(0.6875f), indexOf, spannableStringBuilder.length(), 33);
+        }
+        if (spannableStringBuilder.length() == 0 || spannableStringBuilder.charAt(spannableStringBuilder.length() - 1) != 'x') {
+            spannableStringBuilder.append((CharSequence) " x");
+        }
+        dq dqVar = new dq(2131232816, 2);
+        dqVar.d = false;
+        dqVar.c(org.telegram.messenger.i0.L(16.0f));
+        spannableStringBuilder.setSpan(dqVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
+        return spannableStringBuilder;
+    }
+
+    public static LinearLayout c(Context context, CharSequence charSequence, CharSequence charSequence2, SpannableStringBuilder spannableStringBuilder, String str, org.telegram.ui.ActionBar.p6 p6Var) {
+        int i10;
         boolean z10;
-        LinearLayout.LayoutParams r6;
+        LinearLayout.LayoutParams o10;
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(0);
         linearLayout.setGravity(16);
-        linearLayout.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(5.0f));
+        linearLayout.setPadding(org.telegram.messenger.i0.L(12.0f), org.telegram.messenger.i0.L(5.0f), org.telegram.messenger.i0.L(12.0f), org.telegram.messenger.i0.L(5.0f));
         ImageView imageView = new ImageView(context);
         GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.TL_BR, new int[]{-14899731, -15431455});
         gradientDrawable.setShape(1);
         imageView.setBackground(gradientDrawable);
-        imageView.setImageResource(i10);
-        imageView.setPadding(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f));
-        linearLayout.addView(imageView, kb1.t(46, 46, 0.0f, 16, 0, 0, 12, 0));
+        imageView.setImageResource(2131231955);
+        imageView.setPadding(org.telegram.messenger.i0.L(7.0f), org.telegram.messenger.i0.L(7.0f), org.telegram.messenger.i0.L(7.0f), org.telegram.messenger.i0.L(7.0f));
+        linearLayout.addView(imageView, w7.b6.q(46, 46, 0.0f, 16, 0, 0, 12, 0));
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(1);
         if (charSequence2 == null && str == null) {
-            i11 = 16;
+            i10 = 16;
         } else {
-            i11 = 48;
+            i10 = 48;
         }
-        linearLayout2.setGravity(i11);
+        linearLayout2.setGravity(i10);
         TextView textView = new TextView(context);
-        wh.j(16.0f, 1, textView);
-        int i12 = org.telegram.ui.ActionBar.y6.G6;
-        org.telegram.ui.ActionBar.f7.V(textView, i12, u6Var);
+        z20.n(textView, 1, 16.0f);
+        int i11 = org.telegram.ui.ActionBar.t6.G6;
+        org.telegram.ui.ActionBar.a7.V(textView, i11, p6Var);
         if (charSequence2 != null) {
             z10 = true;
         } else {
@@ -194,52 +214,52 @@ public final class e2 {
         textView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
         textView.setText(charSequence);
         if (charSequence2 == null) {
-            r6 = kb1.u(-1, AndroidUtilities.dp(24.0f), 16);
+            o10 = w7.b6.r(-1, org.telegram.messenger.i0.L(24.0f), 16);
         } else {
-            r6 = kb1.r(-1, -2);
+            o10 = w7.b6.o(-1, -2);
         }
-        r6.weight = 0.0f;
-        linearLayout2.addView(textView, r6);
+        o10.weight = 0.0f;
+        linearLayout2.addView(textView, o10);
         if (!TextUtils.isEmpty(charSequence2)) {
-            TextView g7 = org.telegram.messenger.t.g(context, 1, 14.0f);
-            org.telegram.ui.ActionBar.f7.V(g7, org.telegram.ui.ActionBar.y6.f23768z6, u6Var);
-            g7.setSingleLine(true);
-            g7.setEllipsize(TextUtils.TruncateAt.END);
-            g7.setText(charSequence2);
-            linearLayout2.addView(g7, kb1.o(0.0f, 3.0f, 0.0f, 0.0f, -1, -2));
+            TextView g10 = org.telegram.messenger.m5.g(context, 1, 14.0f);
+            org.telegram.ui.ActionBar.a7.V(g10, org.telegram.ui.ActionBar.t6.f21330z6, p6Var);
+            g10.setSingleLine(true);
+            g10.setEllipsize(TextUtils.TruncateAt.END);
+            g10.setText(charSequence2);
+            linearLayout2.addView(g10, w7.b6.k(0.0f, 3.0f, 0.0f, 0.0f, -1, -2));
         }
         if (!TextUtils.isEmpty(str)) {
             TextView textView2 = new TextView(context);
-            org.telegram.ui.ActionBar.l5 l5Var = new org.telegram.ui.ActionBar.l5(0, false, false, null);
-            l5Var.f22852x = false;
-            l5Var.f22851w = Integer.valueOf(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.jl, u6Var));
-            textView2.setBackground(l5Var);
-            textView2.setPadding(AndroidUtilities.dp(19.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(15.0f), AndroidUtilities.dp(8.0f));
+            org.telegram.ui.ActionBar.c5 c5Var = new org.telegram.ui.ActionBar.c5(0, false, false, null);
+            c5Var.f20229x = false;
+            c5Var.f20228w = Integer.valueOf(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.Xl, p6Var));
+            textView2.setBackground(c5Var);
+            textView2.setPadding(org.telegram.messenger.i0.L(19.0f), org.telegram.messenger.i0.L(9.0f), org.telegram.messenger.i0.L(15.0f), org.telegram.messenger.i0.L(8.0f));
             textView2.setTextSize(1, 15.0f);
-            org.telegram.ui.ActionBar.f7.V(textView2, i12, u6Var);
+            org.telegram.ui.ActionBar.a7.V(textView2, i11, p6Var);
             textView2.setMaxLines(2);
             textView2.setText(str);
-            linearLayout2.addView(textView2, kb1.o(0.0f, 6.0f, 0.0f, 0.0f, -2, -2));
+            linearLayout2.addView(textView2, w7.b6.k(0.0f, 6.0f, 0.0f, 0.0f, -2, -2));
         }
-        linearLayout.addView(linearLayout2, kb1.s(0, -2, 1.0f, 16));
+        linearLayout.addView(linearLayout2, w7.b6.p(0, -2, 1.0f, 16));
         if (!TextUtils.isEmpty(spannableStringBuilder)) {
             TextView textView3 = new TextView(context);
-            textView3.setTypeface(AndroidUtilities.bold());
+            textView3.setTypeface(org.telegram.messenger.i0.o());
             textView3.setTextSize(1, 14.0f);
             textView3.setGravity(21);
             textView3.setText(spannableStringBuilder);
             if (spannableStringBuilder.toString().startsWith("+")) {
-                i12 = org.telegram.ui.ActionBar.y6.uj;
+                i11 = org.telegram.ui.ActionBar.t6.ik;
             }
-            org.telegram.ui.ActionBar.f7.V(textView3, i12, u6Var);
-            linearLayout.addView(textView3, kb1.t(-2, -2, 0.0f, 16, 8, 0, 0, 0));
+            org.telegram.ui.ActionBar.a7.V(textView3, i11, p6Var);
+            linearLayout.addView(textView3, w7.b6.q(-2, -2, 0.0f, 16, 8, 0, 0, 0));
         }
         return linearLayout;
     }
 
-    public static JSONObject f(i0 i0Var, TL_wallet.tonConnectSession tonconnectsession, String str, byte[] bArr, byte[] bArr2, int i10) {
+    public static JSONObject g(h0 h0Var, TL_wallet.tonConnectSession tonconnectsession, String str, byte[] bArr, byte[] bArr2, int i10) {
         if (tonconnectsession.client_id != null) {
-            JSONObject jSONObject = new JSONObject(WalletEngine2.tonConnectCrypto(i0Var, tonconnectsession, str, bArr, new JSONObject().put("decrypt", Base64.encodeToString(bArr2, 2))).getString("plaintext"));
+            JSONObject jSONObject = new JSONObject(WalletEngine2.tonConnectCrypto(h0Var, tonconnectsession, str, bArr, new JSONObject().put("decrypt", Base64.encodeToString(bArr2, 2))).getString("plaintext"));
             Object obj = jSONObject.get("id");
             if ((obj instanceof String) && ((String) obj).matches("[\\x20-\\x7e]{1,100}")) {
                 try {
@@ -254,7 +274,7 @@ public final class e2 {
                             if ("signData".equals(string)) {
                                 if (jSONArray.length() == 1 && (jSONArray.get(0) instanceof String)) {
                                     JSONObject jSONObject2 = new JSONObject(jSONArray.getString(0));
-                                    E(str, jSONObject2);
+                                    G(str, jSONObject2);
                                     jSONObject.put("data", jSONObject2);
                                 } else {
                                     throw new IllegalArgumentException("Expected one JSON data parameter");
@@ -265,7 +285,7 @@ public final class e2 {
                         }
                         if (jSONArray.length() == 1 && (jSONArray.get(0) instanceof String)) {
                             JSONObject jSONObject3 = new JSONObject(jSONArray.getString(0));
-                            G(jSONObject3, str, i10);
+                            I(jSONObject3, str, i10);
                             jSONObject.put("transaction", jSONObject3);
                         } else {
                             throw new IllegalArgumentException("Expected one JSON transaction parameter");
@@ -284,18 +304,18 @@ public final class e2 {
         throw new IllegalArgumentException("Missing registered session key");
     }
 
-    public static TextView g(Context context, String str, org.telegram.ui.ActionBar.u6 u6Var) {
+    public static TextView h(Context context, String str, org.telegram.ui.ActionBar.p6 p6Var) {
         TextView textView = new TextView(context);
-        wh.j(14.0f, 1, textView);
-        org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.Oh, u6Var);
+        z20.n(textView, 1, 14.0f);
+        org.telegram.ui.ActionBar.a7.V(textView, org.telegram.ui.ActionBar.t6.Ci, p6Var);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) str);
         textView.setText(spannableStringBuilder);
         return textView;
     }
 
-    public static String h(String str, Exception exc) {
-        FileLog.e("[gram-wallet] TON Connect ".concat(str), exc);
+    public static String i(String str, Exception exc) {
+        org.telegram.messenger.f8.e("[gram-wallet] TON Connect ".concat(str), exc);
         String message = exc.getMessage();
         if (message != null && !message.isEmpty()) {
             return message;
@@ -303,19 +323,31 @@ public final class e2 {
         return exc.getClass().getSimpleName();
     }
 
-    public static String j(long j10, long j11) {
-        StringBuilder t10 = a1.g.t(j10, "tonconnect_reply.", ".");
-        t10.append(j11);
-        return t10.toString();
+    public static SpannableStringBuilder k(long j10) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        SpannableString spannableString = new SpannableString("GRAM");
+        spannableString.setSpan(new dq(2131232815, 0), 0, spannableString.length(), 33);
+        spannableStringBuilder.append((CharSequence) spannableString).append((CharSequence) " ");
+        spannableStringBuilder.append((CharSequence) k0.o(-j10, true)).append((CharSequence) " ");
+        int length = spannableStringBuilder.length();
+        spannableStringBuilder.append((CharSequence) cd.L0(2131749525, null));
+        spannableStringBuilder.setSpan(new ForegroundColorSpan(-9577217), length, spannableStringBuilder.length(), 33);
+        return spannableStringBuilder;
     }
 
-    public static void k(String str, String str2) {
+    public static String l(long j10, long j11) {
+        StringBuilder s10 = a1.g.s(j10, "tonconnect_reply.", ".");
+        s10.append(j11);
+        return s10.toString();
+    }
+
+    public static void m(String str, String str2) {
         if (str2 != null) {
-            FileLog.e("[gram-wallet] TON Connect " + str + ": " + str2);
+            org.telegram.messenger.f8.d("[gram-wallet] TON Connect " + str + ": " + str2);
         }
     }
 
-    public static String l(String str) {
+    public static String n(String str) {
         URI create = URI.create(str);
         if ("https".equalsIgnoreCase(create.getScheme()) && create.getHost() != null) {
             return create.getHost().toLowerCase(Locale.ROOT);
@@ -323,51 +355,51 @@ public final class e2 {
         throw new IllegalArgumentException("Manifest URL must use HTTPS and include a host");
     }
 
-    public static void o(Context context, int i10, long j10, int i11, org.telegram.ui.ActionBar.u6 u6Var, jb0 jb0Var) {
-        l0 x9 = l0.x(i10);
-        e2 e2Var = x9.f36838g;
-        kh khVar = new kh(context, i10, x9, u6Var, jb0Var);
-        if (!e2Var.h && e2Var.f36517g == null) {
-            String string = MessagesController.getMainSettings(e2Var.f36513a).getString(j(j10, i11), null);
+    public static void q(Context context, int i10, long j10, int i11, org.telegram.ui.ActionBar.p6 p6Var, qa0 qa0Var) {
+        k0 x10 = k0.x(i10);
+        e2 e2Var = x10.f34780g;
+        j70 j70Var = new j70(context, i10, x10, p6Var, qa0Var);
+        if (!e2Var.h && e2Var.f34449g == null) {
+            String string = vp.r1(e2Var.f34445a).f7.getString(l(j10, i11), null);
             if (string != null) {
                 e2Var.h = true;
-                s sVar = new s(3, e2Var, khVar);
+                f11 f11Var = new f11(11, e2Var, j70Var);
                 try {
-                    e2Var.C(j10, i11, new JSONObject(string), sVar);
+                    e2Var.E(j10, i11, new JSONObject(string), f11Var);
                     return;
                 } catch (Exception e) {
-                    sVar.run(h("restore response", e));
+                    f11Var.a(i("restore response", e));
                     return;
                 }
             }
             e2Var.h = true;
-            e2Var.f36514b.m0(new bi.da(e2Var, j10, khVar, i11, 18));
+            e2Var.f34446b.m0(new org.telegram.ui.z(e2Var, j10, j70Var, i11));
             return;
         }
-        khVar.run(null, "A TON Connect request is already open");
+        j70Var.a(null, "A TON Connect request is already open");
     }
 
-    public static b2 p(i0 i0Var, TL_wallet.tonConnectSession tonconnectsession, String str, byte[] bArr, String str2, String str3, String str4, TL_wallet.tonConnectChallenge tonconnectchallenge, int i10) {
+    public static b2 r(h0 h0Var, TL_wallet.tonConnectSession tonconnectsession, String str, byte[] bArr, String str2, String str3, String str4, TL_wallet.tonConnectChallenge tonconnectchallenge, int i10) {
         JSONObject jSONObject = new JSONObject(str2);
         if (str3.equals(jSONObject.getString("manifestUrl"))) {
-            String l4 = l(str3);
+            String n10 = n(str3);
             TL_wallet.tonConnectManifest tonconnectmanifest = tonconnectsession.manifest;
-            if (tonconnectmanifest != null && l4.equals(l(tonconnectmanifest.url))) {
-                return q(i0Var, tonconnectsession, str, bArr, jSONObject.getJSONArray("items"), l4, str4, tonconnectchallenge, i10);
+            if (tonconnectmanifest != null && n10.equals(n(tonconnectmanifest.url))) {
+                return s(h0Var, tonconnectsession, str, bArr, jSONObject.getJSONArray("items"), n10, str4, tonconnectchallenge, i10);
             }
             throw new IllegalArgumentException("Manifest domain does not match the connection request");
         }
         throw new IllegalArgumentException("Manifest URL changed");
     }
 
-    public static b2 q(i0 i0Var, TL_wallet.tonConnectSession tonconnectsession, String str, byte[] bArr, JSONArray jSONArray, String str2, String str3, TL_wallet.tonConnectChallenge tonconnectchallenge, int i10) {
+    public static b2 s(h0 h0Var, TL_wallet.tonConnectSession tonconnectsession, String str, byte[] bArr, JSONArray jSONArray, String str2, String str3, TL_wallet.tonConnectChallenge tonconnectchallenge, int i10) {
         boolean z10;
         JSONObject jSONObject;
         String str4;
         int i11;
         String str5;
         String str6;
-        i0 i0Var2 = i0Var;
+        h0 h0Var2 = h0Var;
         JSONArray jSONArray2 = jSONArray;
         if (jSONArray2.length() != 0) {
             JSONObject jSONObject2 = new JSONObject();
@@ -405,7 +437,7 @@ public final class e2 {
                     if (tonconnectchallenge != null) {
                         put.put("challenge", Base64.encodeToString(tonconnectchallenge.challenge, 2));
                     }
-                    JSONObject jSONObject4 = WalletEngine2.tonConnectCrypto(i0Var2, tonconnectsession, str, bArr, put);
+                    JSONObject jSONObject4 = WalletEngine2.tonConnectCrypto(h0Var2, tonconnectsession, str, bArr, put);
                     if (tonconnectchallenge == null) {
                         return new b2(jSONObject4);
                     }
@@ -427,7 +459,7 @@ public final class e2 {
                                 String string2 = jSONObject5.getString("payload");
                                 str4 = str7;
                                 i11 = i14;
-                                JSONObject jSONObject6 = WalletEngine2.tonConnectCrypto(i0Var2, tonconnectsession, str, bArr, new JSONObject().put("proofDomain", str2).put("proofPayload", string2).put("timestamp", i10));
+                                JSONObject jSONObject6 = WalletEngine2.tonConnectCrypto(h0Var2, tonconnectsession, str, bArr, new JSONObject().put("proofDomain", str2).put("proofPayload", string2).put("timestamp", i10));
                                 str5 = str8;
                                 TL_wallet.walletOwnershipProof walletownershipproof2 = new TL_wallet.walletOwnershipProof();
                                 walletownershipproof2.timestamp = i10;
@@ -445,7 +477,7 @@ public final class e2 {
                                 jSONArray3.put(new JSONObject().put("name", string).put("error", new JSONObject().put("code", 400).put("message", "Method is not supported")));
                             }
                             i14 = i11 + 1;
-                            i0Var2 = i0Var;
+                            h0Var2 = h0Var;
                             jSONArray2 = jSONArray;
                             str7 = str4;
                             str8 = str5;
@@ -453,11 +485,11 @@ public final class e2 {
                             jSONObject4 = jSONObject;
                         }
                         JSONObject jSONObject7 = jSONObject4;
-                        JSONObject put2 = new JSONObject().put("event", "connect").put("id", tonconnectchallenge.event_id).put("payload", new JSONObject().put("items", jSONArray3).put("device", new JSONObject().put("platform", "android").put("appName", "gramwallet").put("appVersion", BuildVars.BUILD_VERSION_STRING).put("maxProtocolVersion", 2).put("features", new JSONArray().put(new JSONObject().put("name", "SendTransaction").put("maxMessages", 255)).put(new JSONObject().put("name", "SignMessage").put("maxMessages", 255)).put(new JSONObject().put("name", "SignData").put("types", new JSONArray().put("text").put("binary").put("cell"))))));
+                        JSONObject put2 = new JSONObject().put("event", "connect").put("id", tonconnectchallenge.event_id).put("payload", new JSONObject().put("items", jSONArray3).put("device", new JSONObject().put("platform", "android").put("appName", "gramwallet").put("appVersion", org.telegram.messenger.v2.f18450c).put("maxProtocolVersion", 2).put("features", new JSONArray().put(new JSONObject().put("name", "SendTransaction").put("maxMessages", 255)).put(new JSONObject().put("name", "SignMessage").put("maxMessages", 255)).put(new JSONObject().put("name", "SignData").put("types", new JSONArray().put("text").put("binary").put("cell"))))));
                         if (str3 != null) {
                             put2.put("response", new JSONObject().put("error", new JSONObject().put("code", 400).put("message", "Embedded request is not supported")));
                         }
-                        JSONObject jSONObject8 = WalletEngine2.tonConnectCrypto(i0Var, tonconnectsession, str, bArr, new JSONObject().put("encrypt", put2));
+                        JSONObject jSONObject8 = WalletEngine2.tonConnectCrypto(h0Var, tonconnectsession, str, bArr, new JSONObject().put("encrypt", put2));
                         jSONObject8.put("challengeAnswer", jSONObject7.getString("challengeAnswer"));
                         b2 b2Var = new b2(jSONObject8);
                         b2Var.d = walletownershipproof;
@@ -473,39 +505,39 @@ public final class e2 {
         }
     }
 
-    public static b2 r(i0 i0Var, TL_wallet.tonConnectSession tonconnectsession, String str, byte[] bArr, long j10) {
+    public static b2 t(h0 h0Var, TL_wallet.tonConnectSession tonconnectsession, String str, byte[] bArr, long j10) {
         if (j10 >= 0 && tonconnectsession.client_id != null) {
-            return new b2(WalletEngine2.tonConnectCrypto(i0Var, tonconnectsession, str, bArr, new JSONObject().put("encrypt", new JSONObject().put("event", "disconnect").put("id", j10).put("payload", new JSONObject()))));
+            return new b2(WalletEngine2.tonConnectCrypto(h0Var, tonconnectsession, str, bArr, new JSONObject().put("encrypt", new JSONObject().put("event", "disconnect").put("id", j10).put("payload", new JSONObject()))));
         }
         throw new IllegalArgumentException("Invalid disconnect session or event ID");
     }
 
-    public static TextView t(int i10, Context context, CharSequence charSequence, org.telegram.ui.ActionBar.u6 u6Var) {
+    public static TextView v(int i10, Context context, CharSequence charSequence, org.telegram.ui.ActionBar.p6 p6Var) {
         TextView textView = new TextView(context);
         textView.setText(charSequence);
         textView.setTextSize(1, i10);
-        org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.G6, u6Var);
+        org.telegram.ui.ActionBar.a7.V(textView, org.telegram.ui.ActionBar.t6.G6, p6Var);
         textView.setGravity(17);
         return textView;
     }
 
-    public static boolean u(z1 z1Var) {
+    public static boolean w(z1 z1Var) {
         if (z1Var != null) {
             try {
-                JSONArray jSONArray = new JSONObject(z1Var.f37574a).getJSONArray("items");
+                JSONArray jSONArray = new JSONObject(z1Var.f35448a).getJSONArray("items");
                 for (int i10 = 0; i10 < jSONArray.length(); i10++) {
                     if ("ton_proof".equals(jSONArray.getJSONObject(i10).optString("name"))) {
                         return true;
                     }
                 }
             } catch (Exception e) {
-                h("read proof request", e);
+                i("read proof request", e);
             }
         }
         return false;
     }
 
-    public static String v(String str, JSONObject jSONObject) {
+    public static String x(String str, JSONObject jSONObject) {
         Object obj = jSONObject.get(str);
         if (obj instanceof String) {
             return (String) obj;
@@ -513,9 +545,9 @@ public final class e2 {
         throw new IllegalArgumentException(str.concat(" must be a string"));
     }
 
-    public static String x(TLRPC.TL_error tL_error, String str) {
+    public static String z(TLRPC.TL_error tL_error, String str) {
         String str2;
-        String n10;
+        String p5;
         if (tL_error == null) {
             str2 = str.concat(" returned an empty or unsuccessful response");
         } else {
@@ -524,36 +556,79 @@ public final class e2 {
                 str2 = "RPC error " + tL_error.code;
             }
         }
-        StringBuilder v = a1.g.v("[gram-wallet] TON Connect ", str, ": ");
+        StringBuilder u10 = a1.g.u("[gram-wallet] TON Connect ", str, ": ");
         if (tL_error == null) {
-            n10 = "";
+            p5 = "";
         } else {
-            n10 = a1.g.n(tL_error.code, " ", new StringBuilder("code="));
+            p5 = a1.g.p(new StringBuilder("code="), tL_error.code, " ");
         }
-        v.append(n10);
-        v.append(str2);
-        FileLog.e(v.toString());
+        u10.append(p5);
+        u10.append(str2);
+        org.telegram.messenger.f8.d(u10.toString());
         return str2;
     }
 
-    public final void C(long j10, int i10, JSONObject jSONObject, Utilities.Callback callback) {
+    public final boolean A(a2 a2Var) {
+        if (!a2Var.f34175q) {
+            String str = a2Var.h;
+            k0 k0Var = this.f34446b;
+            if (Objects.equals(str, k0Var.t()) && Arrays.equals(a2Var.f34166g, k0Var.y())) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final void B(a2 a2Var, h0 h0Var, q20 q20Var) {
+        WalletEngine2 walletEngine2 = this.f34446b.f34777b;
+        if (walletEngine2 != null) {
+            boolean A = A(a2Var);
+            int i10 = a2Var.f34163b;
+            TL_wallet.tonConnectSession tonconnectsession = a2Var.f34162a;
+            if (A && !j(a2Var)) {
+                SharedPreferences sharedPreferences = vp.r1(this.f34445a).f7;
+                String string = sharedPreferences.getString(l(tonconnectsession.f20055id, i10) + ".transfer", null);
+                if (string != null) {
+                    try {
+                        JSONObject jSONObject = new JSONObject(string);
+                        TL_wallet.sendTransfer sendtransfer = new TL_wallet.sendTransfer();
+                        sendtransfer.user_id = new TLRPC.TL_inputUserEmpty();
+                        sendtransfer.data_normal = Base64.decode(jSONObject.getString("boc"), 2);
+                        sendtransfer.random_id = jSONObject.getLong("randomId");
+                        this.f34448f.sendRequestTyped(sendtransfer, new a3.b(1), new af(this, q20Var, a2Var, h0Var, sendtransfer, 5));
+                        return;
+                    } catch (Exception e) {
+                        q20Var.a(i("restore transfer", e));
+                        return;
+                    }
+                }
+                d2 d2Var = a2Var.f34165f;
+                walletEngine2.prepareTonConnectTransfer(h0Var, d2Var, "ton-connect:" + tonconnectsession.f20055id + ":" + i10, new q(this, a2Var, h0Var, q20Var, 7));
+                return;
+            }
+        }
+        y(a2Var, h0Var, null, 0, "Wallet unavailable or request expired", q20Var);
+    }
+
+    public final void E(long j10, int i10, JSONObject jSONObject, q20 q20Var) {
         TL_wallet.tonConnectSubmitResponse tonconnectsubmitresponse = new TL_wallet.tonConnectSubmitResponse();
         tonconnectsubmitresponse.session_id = j10;
         tonconnectsubmitresponse.msg_id = i10;
         tonconnectsubmitresponse.trace_id = jSONObject.optString("traceId", null);
         tonconnectsubmitresponse.body = Base64.decode(jSONObject.optString("body"), 2);
-        this.f36516f.sendRequestTyped(tonconnectsubmitresponse, new Object(), new ai.c1(this, callback, jSONObject, j10, i10));
+        this.f34448f.sendRequestTyped(tonconnectsubmitresponse, new a3.b(1), new org.telegram.ui.Components.s2(this, q20Var, jSONObject, j10, i10));
     }
 
-    public final boolean c(z1 z1Var, TL_wallet.tonConnectSession tonconnectsession, String str, byte[] bArr) {
+    public final boolean d(z1 z1Var, TL_wallet.tonConnectSession tonconnectsession, String str, byte[] bArr) {
         TL_wallet.tonConnectManifest tonconnectmanifest;
         TL_wallet.tonConnectSession tonconnectsession2 = z1Var.e;
         if (!tonconnectsession2.closed && !tonconnectsession2.closing && tonconnectsession2.manifest_error == null && (tonconnectmanifest = tonconnectsession2.manifest) != null && Objects.equals(tonconnectmanifest.url, tonconnectsession.manifest.url) && Objects.equals(z1Var.e.manifest.name, tonconnectsession.manifest.name)) {
             TLRPC.WebDocument webDocument = z1Var.e.manifest.icon;
             TLRPC.WebDocument webDocument2 = tonconnectsession.manifest.icon;
             if ((webDocument == webDocument2 || (webDocument != null && webDocument2 != null && Objects.equals(webDocument.url, webDocument2.url))) && Arrays.equals(z1Var.e.nonce, tonconnectsession.nonce)) {
-                l0 l0Var = this.f36514b;
-                if (str.equals(l0Var.t()) && Arrays.equals(bArr, l0Var.y())) {
+                k0 k0Var = this.f34446b;
+                if (str.equals(k0Var.t()) && Arrays.equals(bArr, k0Var.y())) {
                     return true;
                 }
                 return false;
@@ -563,53 +638,52 @@ public final class e2 {
         return false;
     }
 
-    public final void d(long j10, int i10, Utilities.Callback callback) {
+    public final void e(int i10, long j10, q20 q20Var) {
         long j11;
-        MessagesController.getMainSettings(this.f36513a).edit().remove(j(j10, i10)).remove(j(j10, j11) + ".transfer").apply();
-        a2 a2Var = this.f36517g;
-        if (a2Var != null && a2Var.f36361a.f22291id == j10 && a2Var.f36362b == i10) {
-            a2Var.f36371n = true;
+        vp.r1(this.f34445a).f7.edit().remove(l(j10, i10)).remove(l(j10, j11) + ".transfer").apply();
+        a2 a2Var = this.f34449g;
+        if (a2Var != null && a2Var.f34162a.f20055id == j10 && a2Var.f34163b == i10) {
+            a2Var.f34172n = true;
         }
-        callback.run(null);
+        q20Var.a(null);
     }
 
-    public final void e(a2 a2Var, boolean z10, Utilities.Callback callback) {
-        boolean z11 = a2Var.f36370m;
-        TL_wallet.tonConnectSession tonconnectsession = a2Var.f36361a;
+    public final void f(a2 a2Var, boolean z10, q20 q20Var) {
+        boolean z11 = a2Var.f34171m;
+        TL_wallet.tonConnectSession tonconnectsession = a2Var.f34162a;
         if (z11) {
             return;
         }
-        if (!a2Var.f36371n && !i(a2Var) && y(a2Var) && (z10 || a2Var.f36369l >= 0 || "disconnect".equals(a2Var.e) || a2Var.f36373p)) {
-            a2Var.f36370m = true;
-            o oVar = new o(this, a2Var, callback, 2);
-            String string = MessagesController.getMainSettings(this.f36513a).getString(j(tonconnectsession.f22291id, a2Var.f36362b), null);
+        if (!a2Var.f34172n && !j(a2Var) && A(a2Var) && (z10 || a2Var.f34170l >= 0 || "disconnect".equals(a2Var.e) || a2Var.f34174p)) {
+            a2Var.f34171m = true;
+            m mVar = new m(this, a2Var, q20Var, 2);
+            String string = vp.r1(this.f34445a).f7.getString(l(tonconnectsession.f20055id, a2Var.f34163b), null);
             if (string != null) {
                 try {
-                } catch (Exception e) {
-                    e = e;
+                    try {
+                        E(tonconnectsession.f20055id, a2Var.f34163b, new JSONObject(string), mVar);
+                    } catch (Exception e) {
+                        e = e;
+                        mVar = mVar;
+                        mVar.a(i("restore response", e));
+                    }
+                } catch (Exception e7) {
+                    e = e7;
                 }
-                try {
-                    C(tonconnectsession.f22291id, a2Var.f36362b, new JSONObject(string), oVar);
-                    return;
-                } catch (Exception e10) {
-                    e = e10;
-                    oVar = oVar;
-                    oVar.run(h("restore response", e));
-                    return;
-                }
+            } else {
+                this.f34446b.z(new v(this, mVar, a2Var, z10, 1), true, false);
             }
-            this.f36514b.z(new w(this, oVar, a2Var, z10, 1), true, false);
-            return;
+        } else {
+            q20Var.a("Request expired, was processed, or the wallet changed");
         }
-        callback.run("Request expired, was processed, or the wallet changed");
     }
 
-    public final boolean i(a2 a2Var) {
-        long currentTime = this.f36516f.getCurrentTime();
-        if (a2Var.f36363c > currentTime) {
-            d2 d2Var = a2Var.f36364f;
+    public final boolean j(a2 a2Var) {
+        long currentTime = this.f34448f.getCurrentTime();
+        if (a2Var.f34164c > currentTime) {
+            d2 d2Var = a2Var.f34165f;
             if (d2Var != null) {
-                long j10 = d2Var.f36479a;
+                long j10 = d2Var.f34372a;
                 if (j10 == 0 || j10 > currentTime) {
                     return false;
                 }
@@ -620,18 +694,18 @@ public final class e2 {
         return true;
     }
 
-    public final void m(int i10, long j10) {
-        a2 a2Var = this.f36517g;
-        if (a2Var != null && a2Var.f36361a.f22291id == j10 && a2Var.f36362b == i10 && !a2Var.f36370m) {
-            a2Var.f36371n = true;
-            Runnable runnable = a2Var.f36375r;
+    public final void o(int i10, long j10) {
+        a2 a2Var = this.f34449g;
+        if (a2Var != null && a2Var.f34162a.f20055id == j10 && a2Var.f34163b == i10 && !a2Var.f34171m) {
+            a2Var.f34172n = true;
+            Runnable runnable = a2Var.f34176r;
             if (runnable != null) {
                 runnable.run();
             }
         }
     }
 
-    public final void n(TL_wallet.tonConnectSession tonconnectsession) {
+    public final void p(TL_wallet.tonConnectSession tonconnectsession) {
         TL_wallet.tonConnectManifest tonconnectmanifest;
         TL_wallet.tonConnectManifest tonconnectmanifest2;
         TLRPC.WebDocument webDocument;
@@ -642,68 +716,25 @@ public final class e2 {
         if (!tonconnectsession.closed) {
             arrayList.add(tonconnectsession);
         }
-        a2 a2Var = this.f36517g;
+        a2 a2Var = this.f34449g;
         if (a2Var != null) {
-            TL_wallet.tonConnectSession tonconnectsession2 = a2Var.f36361a;
-            if (tonconnectsession2.f22291id == tonconnectsession.f22291id && (tonconnectsession.closed || tonconnectsession.closing || !Objects.equals(tonconnectsession.client_id, tonconnectsession2.client_id) || !Arrays.equals(tonconnectsession.nonce, tonconnectsession2.nonce) || (tonconnectmanifest = tonconnectsession.manifest) == null || (tonconnectmanifest2 = tonconnectsession2.manifest) == null || !Objects.equals(tonconnectmanifest.url, tonconnectmanifest2.url) || !Objects.equals(tonconnectsession.manifest.name, tonconnectsession2.manifest.name) || ((webDocument = tonconnectsession.manifest.icon) != (webDocument2 = tonconnectsession2.manifest.icon) && (webDocument == null || webDocument2 == null || !Objects.equals(webDocument.url, webDocument2.url))))) {
-                a2Var.f36374q = true;
-                m(a2Var.f36362b, tonconnectsession.f22291id);
+            TL_wallet.tonConnectSession tonconnectsession2 = a2Var.f34162a;
+            if (tonconnectsession2.f20055id == tonconnectsession.f20055id && (tonconnectsession.closed || tonconnectsession.closing || !Objects.equals(tonconnectsession.client_id, tonconnectsession2.client_id) || !Arrays.equals(tonconnectsession.nonce, tonconnectsession2.nonce) || (tonconnectmanifest = tonconnectsession.manifest) == null || (tonconnectmanifest2 = tonconnectsession2.manifest) == null || !Objects.equals(tonconnectmanifest.url, tonconnectmanifest2.url) || !Objects.equals(tonconnectsession.manifest.name, tonconnectsession2.manifest.name) || ((webDocument = tonconnectsession.manifest.icon) != (webDocument2 = tonconnectsession2.manifest.icon) && (webDocument == null || webDocument2 == null || !Objects.equals(webDocument.url, webDocument2.url))))) {
+                a2Var.f34175q = true;
+                o(a2Var.f34163b, tonconnectsession.f20055id);
             }
         }
-        NotificationCenter.getInstance(this.f36513a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.walletUpdate, this.f36514b, tonconnectsession);
+        zs.f(this.f34445a).k(zs.f19582a4, this.f34446b, tonconnectsession);
     }
 
-    public final void s(a2 a2Var) {
-        a2Var.f36375r = null;
-        if (!a2Var.f36370m && this.f36517g == a2Var) {
-            this.f36517g = null;
+    public final void u(a2 a2Var) {
+        a2Var.f34176r = null;
+        if (!a2Var.f34171m && this.f34449g == a2Var) {
+            this.f34449g = null;
         }
     }
 
-    public final void w(a2 a2Var, i0 i0Var, Object obj, int i10, String str, Utilities.Callback callback) {
-        Utilities.globalQueue.postRunnable(new ig.d1(this, a2Var, i10, obj, str, i0Var, callback));
-    }
-
-    public final boolean y(a2 a2Var) {
-        if (!a2Var.f36374q) {
-            String str = a2Var.h;
-            l0 l0Var = this.f36514b;
-            if (Objects.equals(str, l0Var.t()) && Arrays.equals(a2Var.f36365g, l0Var.y())) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final void z(a2 a2Var, i0 i0Var, Utilities.Callback callback) {
-        WalletEngine2 walletEngine2 = this.f36514b.f36835b;
-        if (walletEngine2 != null) {
-            boolean y3 = y(a2Var);
-            int i10 = a2Var.f36362b;
-            TL_wallet.tonConnectSession tonconnectsession = a2Var.f36361a;
-            if (y3 && !i(a2Var)) {
-                SharedPreferences mainSettings = MessagesController.getMainSettings(this.f36513a);
-                String string = mainSettings.getString(j(tonconnectsession.f22291id, i10) + ".transfer", null);
-                if (string != null) {
-                    try {
-                        JSONObject jSONObject = new JSONObject(string);
-                        TL_wallet.sendTransfer sendtransfer = new TL_wallet.sendTransfer();
-                        sendtransfer.user_id = new TLRPC.TL_inputUserEmpty();
-                        sendtransfer.data_normal = Base64.decode(jSONObject.getString("boc"), 2);
-                        sendtransfer.random_id = jSONObject.getLong("randomId");
-                        this.f36516f.sendRequestTyped(sendtransfer, new Object(), new bi.t3(this, callback, a2Var, i0Var, sendtransfer, 6));
-                        return;
-                    } catch (Exception e) {
-                        callback.run(h("restore transfer", e));
-                        return;
-                    }
-                }
-                d2 d2Var = a2Var.f36364f;
-                walletEngine2.prepareTonConnectTransfer(i0Var, d2Var, "ton-connect:" + tonconnectsession.f22291id + ":" + i10, new p(this, a2Var, i0Var, callback, 7));
-                return;
-            }
-        }
-        w(a2Var, i0Var, null, 0, "Wallet unavailable or request expired", callback);
+    public final void y(a2 a2Var, h0 h0Var, Object obj, int i10, String str, q20 q20Var) {
+        Utilities.e.c(new fe(this, a2Var, i10, obj, str, h0Var, q20Var, 14));
     }
 }

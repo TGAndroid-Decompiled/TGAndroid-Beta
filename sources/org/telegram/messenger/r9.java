@@ -1,47 +1,68 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class r9 implements Runnable {
-    public final int f21098a = 0;
-    public final int f21099b;
-    public final boolean f21100c;
-    public final boolean d;
-    public final int e;
-    public final BaseController f21101f;
-    public final Object h;
+import org.telegram.tgnet.tl.TL_payments;
+import org.telegram.ui.af0;
+public final class r9 implements j20 {
+    public final int f17709a;
+    public final long f17710b;
+    public final Object f17711c;
+    public final Object d;
 
-    public r9(MediaDataController mediaDataController, boolean z10, int i10, ArrayList arrayList, boolean z11, int i11) {
-        this.f21101f = mediaDataController;
-        this.f21100c = z10;
-        this.f21099b = i10;
-        this.h = arrayList;
-        this.d = z11;
-        this.e = i11;
+    public r9(Object obj, Object obj2, long j10, int i10) {
+        this.f17709a = i10;
+        this.f17711c = obj;
+        this.d = obj2;
+        this.f17710b = j10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f21098a) {
+    public final void a(Object obj, Object obj2) {
+        switch (this.f17709a) {
             case 0:
-                boolean z10 = this.d;
-                int i10 = this.e;
-                ((MediaDataController) this.f21101f).lambda$processLoadedRecentDocuments$52(this.f21100c, this.f21099b, (ArrayList) this.h, z10, i10);
+                TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState = (TL_payments.TL_StarGiftAuctionState) obj;
+                ((org.telegram.ui.Components.s2) this.d).a(((x9) this.f17711c).b(this.f17710b), (TLRPC.TL_error) obj2);
+                return;
+            case 1:
+                vp vpVar = (vp) this.f17711c;
+                yh.c0 c0Var = (yh.c0) this.d;
+                TLRPC.Bool bool = (TLRPC.Bool) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                if (bool != null) {
+                    vpVar.T2(0, this.f17710b, true);
+                }
+                c0Var.a(bool, tL_error);
+                return;
+            case 2:
+                vp vpVar2 = (vp) this.f17711c;
+                yh.c0 c0Var2 = (yh.c0) this.d;
+                TLRPC.Bool bool2 = (TLRPC.Bool) obj;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                if (bool2 != null) {
+                    vpVar2.T2(0, this.f17710b, true);
+                }
+                c0Var2.a(bool2, tL_error2);
                 return;
             default:
-                boolean z11 = this.d;
-                int i11 = this.e;
-                ((MessagesController) this.f21101f).lambda$processLoadedMessages$188(this.f21099b, (TLRPC.messages_Messages) this.h, this.f21100c, z11, i11);
-                return;
+                af0 af0Var = (af0) this.d;
+                TLRPC.auth_Authorization auth_authorization = (TLRPC.auth_Authorization) obj;
+                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
+                ((org.telegram.ui.ActionBar.x1) this.f17711c).dismiss();
+                long j10 = this.f17710b;
+                if (tL_error3 != null) {
+                    af0Var.a(Long.valueOf(j10), null, tL_error3.text);
+                    return;
+                } else {
+                    af0Var.a(Long.valueOf(j10), auth_authorization, null);
+                    return;
+                }
         }
     }
 
-    public r9(MessagesController messagesController, int i10, TLRPC.messages_Messages messages_messages, boolean z10, boolean z11, int i11) {
-        this.f21101f = messagesController;
-        this.f21099b = i10;
-        this.h = messages_messages;
-        this.f21100c = z10;
-        this.d = z11;
-        this.e = i11;
+    public r9(vp vpVar, long j10, j20 j20Var, int i10) {
+        this.f17709a = i10;
+        this.f17711c = vpVar;
+        this.f17710b = j10;
+        this.d = j20Var;
     }
 }

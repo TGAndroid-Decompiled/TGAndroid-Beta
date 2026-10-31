@@ -1,10 +1,15 @@
 package org.telegram.ui.Components;
 
-import android.widget.TextView;
-import org.telegram.messenger.Emoji;
-public final class t4 extends aa0 {
+import android.text.TextPaint;
+import android.text.style.MetricAffectingSpan;
+public final class t4 extends MetricAffectingSpan {
+    public String f30437a;
+
     @Override
-    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+    public final void updateDrawState(TextPaint textPaint) {
+    }
+
+    @Override
+    public final void updateMeasureState(TextPaint textPaint) {
     }
 }

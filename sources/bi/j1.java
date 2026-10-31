@@ -1,44 +1,40 @@
 package bi;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-public final class j1 implements TextWatcher {
-    public final k1 f4861a;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuItem;
+public final class j1 implements ActionMode.Callback {
+    public final n1 f3113a;
 
-    public j1(k1 k1Var) {
-        this.f4861a = k1Var;
+    public j1(n1 n1Var) {
+        this.f3113a = n1Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z10;
-        bg.a i10;
-        String obj;
-        int indexOf;
-        if (editable != null && !editable.toString().isEmpty() && !".".equals(editable.toString())) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        if (!z10 && (indexOf = (obj = editable.toString()).indexOf(46)) >= 0 && (obj.length() - indexOf) - 1 > 2) {
-            editable.delete(indexOf + 3, obj.length());
-        }
-        k1 k1Var = this.f4861a;
-        if (!z10) {
-            i10 = bg.a.h(editable.toString(), k1Var.E.f3978a);
-        } else {
-            i10 = bg.a.i(0L, k1Var.E.f3978a);
-        }
-        k1Var.n(i10, false, false, true);
-        k1Var.f4933b.c(k1Var.f4934c.isFocused(), true ^ TextUtils.isEmpty(k1Var.f4934c.getText()));
+    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+        return false;
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+        return true;
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+        if (this.f3113a.length() != 0) {
+            return false;
+        }
+        for (int size = menu.size() - 1; size >= 0; size--) {
+            int itemId = menu.getItem(size).getItemId();
+            if (itemId != 16908322 && itemId != 16908337) {
+                menu.removeItem(itemId);
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public final void onDestroyActionMode(ActionMode actionMode) {
     }
 }

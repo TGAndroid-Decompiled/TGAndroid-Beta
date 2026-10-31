@@ -1,15 +1,46 @@
 package org.telegram.ui.Components;
-public final class ze0 implements u0.g, e5 {
-    public final kf0 f35327a;
 
-    public ze0(kf0 kf0Var) {
-        this.f35327a = kf0Var;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+import org.telegram.ui.LaunchActivity;
+public final class ze0 extends FrameLayout {
+    public float f33026a;
+    public float f33027b;
+    public boolean f33028c;
+    public boolean d;
+    public final PipRoundVideoView e;
+
+    public ze0(PipRoundVideoView pipRoundVideoView, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.e = pipRoundVideoView;
     }
 
     @Override
-    public void G(int i10, int i11, boolean z10) {
-        kf0 kf0Var = this.f35327a;
-        kf0Var.K.a(kf0Var.N, z10, i10, 0L);
-        kf0Var.dismiss();
+    public final void onDraw(Canvas canvas) {
+        jg.x0 x0Var = org.telegram.ui.ActionBar.t6.f21055k3;
+        if (x0Var != null) {
+            x0Var.setAlpha((int) (getAlpha() * 255.0f));
+            org.telegram.ui.ActionBar.t6.f21055k3.setBounds(org.telegram.messenger.i0.L(1.0f), org.telegram.messenger.i0.L(2.0f), org.telegram.messenger.i0.L(125.0f), org.telegram.messenger.i0.L(125.0f));
+            org.telegram.ui.ActionBar.t6.f21055k3.draw(canvas);
+            org.telegram.ui.ActionBar.t6.S1.setColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f21190ra, false));
+            org.telegram.ui.ActionBar.t6.S1.setAlpha((int) (getAlpha() * 255.0f));
+            canvas.drawCircle(org.telegram.messenger.i0.L(63.0f), org.telegram.messenger.i0.L(63.0f), org.telegram.messenger.i0.L(59.5f), org.telegram.ui.ActionBar.t6.S1);
+        }
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            this.f33026a = motionEvent.getRawX();
+            this.f33027b = motionEvent.getRawY();
+            this.d = true;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean onTouchEvent(android.view.MotionEvent r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ze0.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

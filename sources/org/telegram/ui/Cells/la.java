@@ -1,65 +1,82 @@
 package org.telegram.ui.Cells;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.graphics.drawable.Drawable;
 import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class la extends FrameLayout {
-    public TextView f24401a;
-    public ImageView f24402b;
-    public boolean f24403c;
+import org.telegram.ui.Components.gr;
+import org.telegram.ui.Components.kp;
+public final class la extends TextView {
+    public boolean f22266a;
+    public final org.telegram.ui.Components.t5 f22267b;
+    public kp f22268c;
 
-    public final void a(String str, boolean z10, boolean z11) {
-        int i10;
-        this.f24401a.setText(str);
-        ImageView imageView = this.f24402b;
-        if (z10) {
-            i10 = 0;
-        } else {
-            i10 = 4;
+    public la(Context context) {
+        super(context);
+        this.f22267b = new org.telegram.ui.Components.t5(this, 0L, 350L, gr.h);
+    }
+
+    public final void a(boolean z10, boolean z11) {
+        this.f22266a = z10;
+        boolean z12 = true;
+        if (!z11) {
+            this.f22267b.f(z10, true);
         }
-        imageView.setVisibility(i10);
-        this.f24403c = z11;
+        if (!isPressed() && !z10) {
+            z12 = false;
+        }
+        super.setPressed(z12);
+        invalidate();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        float dp;
-        int i10;
-        if (this.f24403c) {
-            if (LocaleController.isRTL) {
-                dp = 0.0f;
+        Canvas canvas2;
+        float d = this.f22267b.d(this.f22266a);
+        if (d > 0.0f) {
+            if (d < 1.0f) {
+                canvas2 = canvas;
+                canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) ((1.0f - d) * 255.0f), 31);
+                float f7 = 1.0f - (0.2f * d);
+                canvas2.scale(f7, f7, getWidth() / 2.0f, getHeight() / 2.0f);
+                canvas2.translate(0.0f, org.telegram.messenger.i0.L(-12.0f) * d);
+                super.onDraw(canvas2);
+                canvas2.restore();
             } else {
-                dp = AndroidUtilities.dp(20.0f);
+                canvas2 = canvas;
             }
-            float f7 = dp;
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (LocaleController.isRTL) {
-                i10 = AndroidUtilities.dp(20.0f);
-            } else {
-                i10 = 0;
+            if (this.f22268c == null) {
+                kp kpVar = new kp(org.telegram.messenger.i0.L(16.0f), org.telegram.messenger.i0.L(2.0f), getCurrentTextColor());
+                this.f22268c = kpVar;
+                kpVar.setCallback(this);
             }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.y6.f23479k0);
+            this.f22268c.b(getCurrentTextColor());
+            float f10 = 1.0f - d;
+            this.f22268c.setBounds(getWidth() / 2, (getHeight() / 2) + ((int) (org.telegram.messenger.i0.L(12.0f) * f10)), getWidth() / 2, (getHeight() / 2) + ((int) (f10 * org.telegram.messenger.i0.L(12.0f))));
+            this.f22268c.setAlpha((int) (d * 255.0f));
+            this.f22268c.draw(canvas2);
+            invalidate();
+            return;
         }
+        super.onDraw(canvas);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.f24403c ? 1 : 0), 1073741824));
+    public final void setPressed(boolean z10) {
+        boolean z11;
+        if (!z10 && !this.f22266a) {
+            z11 = false;
+        } else {
+            z11 = true;
+        }
+        super.setPressed(z11);
     }
 
-    public void setTypeChecked(boolean z10) {
-        int i10;
-        ImageView imageView = this.f24402b;
-        if (z10) {
-            i10 = 0;
-        } else {
-            i10 = 4;
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (this.f22268c != drawable && !super.verifyDrawable(drawable)) {
+            return false;
         }
-        imageView.setVisibility(i10);
+        return true;
     }
 }

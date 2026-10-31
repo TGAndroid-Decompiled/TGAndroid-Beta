@@ -1,31 +1,17 @@
 package org.telegram.ui.Components;
+public abstract class mp extends z4.a {
+    public abstract int j();
 
-import android.animation.ValueAnimator;
-public final class mp implements ValueAnimator.AnimatorUpdateListener {
-    public boolean f30570a = false;
-    public final c31 f30571b;
-    public final float f30572c;
-    public final boolean d;
-    public final zp e;
-
-    public mp(zp zpVar, c31 c31Var, float f7, boolean z10) {
-        this.e = zpVar;
-        this.f30571b = c31Var;
-        this.f30572c = f7;
-        this.d = z10;
-    }
-
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        zp zpVar = this.e;
-        zpVar.R = floatValue;
-        if (!this.d) {
-            floatValue = 1.0f - floatValue;
+    public final int k(int i10) {
+        int size = ((tg0) this).f30573c.size();
+        int j10 = j();
+        if (i10 < j10) {
+            return ((size - (j10 * 2)) - ((j10 - i10) - 1)) - 1;
         }
-        this.f30571b.setRadius(this.f30572c * floatValue);
-        if (!this.f30570a && zpVar.R > 0.5f) {
-            this.f30570a = true;
+        int i11 = size - j10;
+        if (i10 >= i11) {
+            return i10 - i11;
         }
+        return i10 - j10;
     }
 }

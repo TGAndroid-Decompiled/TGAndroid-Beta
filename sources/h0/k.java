@@ -1,26 +1,26 @@
 package h0;
 
-import c3.h0;
+import c3.i0;
 public final class k {
-    public static final k f12545k;
-    public final float f12546a;
-    public final float f12547b;
-    public final float f12548c;
+    public static final k f7560k;
+    public final float f7561a;
+    public final float f7562b;
+    public final float f7563c;
     public final float d;
     public final float e;
-    public final float f12549f;
-    public final float[] f12550g;
+    public final float f7564f;
+    public final float[] f7565g;
     public final float h;
-    public final float f12551i;
-    public final float f12552j;
+    public final float f7566i;
+    public final float f7567j;
 
     static {
         float f7;
         float[] fArr;
         float j10 = (float) ((b.j() * 63.66197723675813d) / 100.0d);
-        float[] fArr2 = b.f12527c;
+        float[] fArr2 = b.f7542c;
         float f10 = fArr2[0];
-        float[][] fArr3 = b.f12525a;
+        float[][] fArr3 = b.f7540a;
         float[] fArr4 = fArr3[0];
         float f11 = fArr2[1];
         float f12 = fArr4[1] * f11;
@@ -36,7 +36,7 @@ public final class k {
             f7 = 0.655f;
         }
         float f17 = f7;
-        float D = h0.D((float) Math.exp(((-j10) - 42.0f) / 92.0f), 0.2777778f, 1.0f, 1.0f);
+        float D = i0.D((float) Math.exp(((-j10) - 42.0f) / 92.0f), 0.2777778f, 1.0f, 1.0f);
         double d = D;
         if (d > 1.0d) {
             D = 1.0f;
@@ -44,7 +44,7 @@ public final class k {
             D = 0.0f;
         }
         float f18 = 1.0f / ((5.0f * j10) + 1.0f);
-        float E = h0.E(f18, f18, f18, f18);
+        float E = i0.E(f18, f18, f18, f18);
         float f19 = 1.0f - E;
         float cbrt = (0.1f * f19 * f19 * ((float) Math.cbrt(j10 * 5.0d))) + (E * j10);
         float j11 = b.j() / fArr2[1];
@@ -58,19 +58,19 @@ public final class k {
         float f23 = (f22 * 400.0f) / (f22 + 27.13f);
         float f24 = fArr7[2];
         float[] fArr8 = {f21, f23, (400.0f * f24) / (f24 + 27.13f)};
-        f12545k = new k(j11, h0.C(fArr8[2], 0.05f, (fArr8[0] * 2.0f) + fArr8[1], pow), pow, pow, f17, 1.0f, new float[]{(((100.0f / f14) * D) + 1.0f) - D, (((100.0f / f15) * D) + 1.0f) - D, (((100.0f / f16) * D) + 1.0f) - D}, cbrt, (float) Math.pow(cbrt, 0.25d), sqrt);
+        f7560k = new k(j11, i0.C(fArr8[2], 0.05f, (fArr8[0] * 2.0f) + fArr8[1], pow), pow, pow, f17, 1.0f, new float[]{(((100.0f / f14) * D) + 1.0f) - D, (((100.0f / f15) * D) + 1.0f) - D, (((100.0f / f16) * D) + 1.0f) - D}, cbrt, (float) Math.pow(cbrt, 0.25d), sqrt);
     }
 
     public k(float f7, float f10, float f11, float f12, float f13, float f14, float[] fArr, float f15, float f16, float f17) {
-        this.f12549f = f7;
-        this.f12546a = f10;
-        this.f12547b = f11;
-        this.f12548c = f12;
+        this.f7564f = f7;
+        this.f7561a = f10;
+        this.f7562b = f11;
+        this.f7563c = f12;
         this.d = f13;
         this.e = f14;
-        this.f12550g = fArr;
+        this.f7565g = fArr;
         this.h = f15;
-        this.f12551i = f16;
-        this.f12552j = f17;
+        this.f7566i = f16;
+        this.f7567j = f17;
     }
 }

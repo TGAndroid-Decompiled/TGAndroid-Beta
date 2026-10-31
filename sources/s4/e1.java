@@ -1,262 +1,57 @@
 package s4;
 
-import android.util.Log;
 import android.view.View;
+import android.view.accessibility.AccessibilityEvent;
 import androidx.recyclerview.widget.RecyclerView;
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.WeakHashMap;
-import org.telegram.messenger.BuildVars;
-public abstract class e1 {
-    public static final List f47772u = Collections.EMPTY_LIST;
-    public final View f47773a;
-    public WeakReference f47774b;
-    public int f47781l;
-    public RecyclerView f47789t;
-    public int f47775c = -1;
-    public int d = -1;
-    public long e = -1;
-    public int f47776f = -1;
-    public int f47777g = -1;
-    public int h = -1;
-    public int f47778i = -1;
-    public e1 f47779j = null;
-    public e1 f47780k = null;
-    public ArrayList f47782m = null;
-    public List f47783n = null;
-    public int f47784o = 0;
-    public rf.e f47785p = null;
-    public boolean f47786q = false;
-    public int f47787r = 0;
-    public int f47788s = -1;
+public final class e1 extends r0.b {
+    public final RecyclerView d;
+    public final d1 e = new d1(this);
 
-    public e1(View view) {
-        if (view != null) {
-            this.f47773a = view;
-            return;
-        }
-        throw new IllegalArgumentException("itemView may not be null");
+    public e1(RecyclerView recyclerView) {
+        this.d = recyclerView;
     }
 
-    public final void a(int i10) {
-        this.f47781l = i10 | this.f47781l;
-    }
-
-    public final int b() {
-        RecyclerView recyclerView = this.f47789t;
-        if (recyclerView == null) {
-            return -1;
-        }
-        return recyclerView.N(this);
-    }
-
-    public final int c() {
-        int i10 = this.f47777g;
-        if (i10 == -1) {
-            return this.f47775c;
-        }
-        return i10;
-    }
-
-    public final List d() {
-        ArrayList arrayList;
-        if ((this.f47781l & 1024) == 0 && (arrayList = this.f47782m) != null && arrayList.size() != 0) {
-            return this.f47783n;
-        }
-        return f47772u;
-    }
-
-    public final boolean e(int i10) {
-        if ((i10 & this.f47781l) != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean f() {
-        View view = this.f47773a;
-        if (view.getParent() != null && view.getParent() != this.f47789t) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean g() {
-        if ((this.f47781l & 1) != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean h() {
-        if ((this.f47781l & 4) != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean i() {
-        if ((this.f47781l & 16) == 0) {
-            WeakHashMap weakHashMap = r0.i0.f47143a;
-            if (!this.f47773a.hasTransientState()) {
-                return true;
+    @Override
+    public final void b(View view, AccessibilityEvent accessibilityEvent) {
+        super.b(view, accessibilityEvent);
+        if ((view instanceof RecyclerView) && !this.d.Z()) {
+            RecyclerView recyclerView = (RecyclerView) view;
+            if (recyclerView.getLayoutManager() != null) {
+                a0 a0Var = (a0) recyclerView.getLayoutManager();
+                RecyclerView recyclerView2 = a0Var.f47979b;
+                hf.e eVar = recyclerView2.f1894b;
+                if (accessibilityEvent != null) {
+                    boolean z10 = true;
+                    if (!recyclerView2.canScrollVertically(1) && !a0Var.f47979b.canScrollVertically(-1) && !a0Var.f47979b.canScrollHorizontally(-1) && !a0Var.f47979b.canScrollHorizontally(1)) {
+                        z10 = false;
+                    }
+                    accessibilityEvent.setScrollable(z10);
+                    g0 g0Var = a0Var.f47979b.f1922x;
+                    if (g0Var != null) {
+                        accessibilityEvent.setItemCount(g0Var.b());
+                    }
+                }
+                if (a0Var.r() > 0) {
+                    accessibilityEvent.setFromIndex(a0Var.L0());
+                    accessibilityEvent.setToIndex(a0Var.N0());
+                }
             }
-            return false;
-        }
-        return false;
-    }
-
-    public final boolean j() {
-        if ((this.f47781l & 8) != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean k() {
-        if (this.f47785p != null) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean l() {
-        if ((this.f47781l & 256) != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean m() {
-        if ((this.f47781l & 2) != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void n(int i10, boolean z10) {
-        if (this.d == -1) {
-            this.d = this.f47775c;
-        }
-        if (this.f47777g == -1) {
-            this.f47777g = this.f47775c;
-        }
-        if (z10) {
-            this.f47777g += i10;
-        }
-        this.f47775c += i10;
-        View view = this.f47773a;
-        if (view.getLayoutParams() != null) {
-            ((q0) view.getLayoutParams()).f47869c = true;
         }
     }
 
-    public final void o() {
-        this.f47781l = 0;
-        int i10 = this.f47775c;
-        if (i10 != -1) {
-            this.h = i10;
-        }
-        this.f47775c = -1;
-        this.d = -1;
-        this.e = -1L;
-        this.f47777g = -1;
-        this.f47784o = 0;
-        this.f47779j = null;
-        this.f47780k = null;
-        ArrayList arrayList = this.f47782m;
-        if (arrayList != null) {
-            arrayList.clear();
-        }
-        this.f47781l &= -1025;
-        this.f47787r = 0;
-        this.f47788s = -1;
-        RecyclerView.m(this);
-    }
-
-    public final void p(int i10, int i11) {
-        this.f47781l = (i10 & i11) | (this.f47781l & (~i11));
-    }
-
-    public final void q(boolean z10) {
-        int i10;
-        int i11 = this.f47784o;
-        if (z10) {
-            i10 = i11 - 1;
-        } else {
-            i10 = i11 + 1;
-        }
-        this.f47784o = i10;
-        if (i10 < 0) {
-            this.f47784o = 0;
-            if (!BuildVars.DEBUG_VERSION) {
-                Log.e("View", "isRecyclable decremented below 0: unmatched pair of setIsRecyable() calls for " + this);
-                return;
-            }
-            throw new RuntimeException("isRecyclable decremented below 0: unmatched pair of setIsRecyable() calls for " + this);
-        } else if (!z10 && i10 == 1) {
-            this.f47781l |= 16;
-        } else if (z10 && i10 == 0) {
-            this.f47781l &= -17;
+    @Override
+    public final void c(View view, s0.c cVar) {
+        this.f46104a.onInitializeAccessibilityNodeInfo(view, cVar.f47850a);
+        RecyclerView recyclerView = this.d;
+        if (!recyclerView.Z() && recyclerView.getLayoutManager() != null) {
+            n0 layoutManager = recyclerView.getLayoutManager();
+            RecyclerView recyclerView2 = layoutManager.f47979b;
+            layoutManager.S(recyclerView2.f1894b, recyclerView2.f1918u0, cVar);
         }
     }
 
-    public final boolean r() {
-        if ((this.f47781l & 128) != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean s() {
-        if ((this.f47781l & 32) != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final String toString() {
-        String str;
-        StringBuilder sb2 = new StringBuilder("ViewHolder{" + Integer.toHexString(hashCode()) + " position=" + this.f47775c + " id=" + this.e + ", oldPos=" + this.d + ", pLpos:" + this.f47777g);
-        if (k()) {
-            sb2.append(" scrap ");
-            if (this.f47786q) {
-                str = "[changeScrap]";
-            } else {
-                str = "[attachedScrap]";
-            }
-            sb2.append(str);
-        }
-        if (h()) {
-            sb2.append(" invalid");
-        }
-        if (!g()) {
-            sb2.append(" unbound");
-        }
-        if ((this.f47781l & 2) != 0) {
-            sb2.append(" update");
-        }
-        if (j()) {
-            sb2.append(" removed");
-        }
-        if (r()) {
-            sb2.append(" ignored");
-        }
-        if (l()) {
-            sb2.append(" tmpDetached");
-        }
-        if (!i()) {
-            sb2.append(" not recyclable(" + this.f47784o + ")");
-        }
-        if ((this.f47781l & 512) != 0 || h()) {
-            sb2.append(" undefined adapter position");
-        }
-        if (this.f47773a.getParent() == null) {
-            sb2.append(" no parent");
-        }
-        sb2.append("}");
-        return sb2.toString();
+    @Override
+    public final boolean d(android.view.View r4, int r5, android.os.Bundle r6) {
+        throw new UnsupportedOperationException("Method not decompiled: s4.e1.d(android.view.View, int, android.os.Bundle):boolean");
     }
 }

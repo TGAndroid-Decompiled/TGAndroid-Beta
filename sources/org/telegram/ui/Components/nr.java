@@ -1,27 +1,15 @@
 package org.telegram.ui.Components;
+public final class nr implements org.telegram.messenger.j20 {
+    public final int f28880a;
+    public final vr f28881b;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-public final class nr implements TextWatcher {
-    public final so f31028a;
-    public final lr f31029b;
-
-    public nr(so soVar, lr lrVar) {
-        this.f31028a = soVar;
-        this.f31029b = lrVar;
+    public nr(vr vrVar, int i10) {
+        this.f28880a = i10;
+        this.f28881b = vrVar;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        this.f31028a.run();
-        this.f31029b.run();
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void a(java.lang.Object r14, java.lang.Object r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.nr.a(java.lang.Object, java.lang.Object):void");
     }
 }

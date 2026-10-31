@@ -1,0 +1,685 @@
+package org.telegram.messenger;
+
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextUtils;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.concurrent.atomic.AtomicReference;
+import org.telegram.ui.Components.qz0;
+import org.telegram.ui.xh0;
+public final class gj implements xh0 {
+    public float D;
+    public jj E;
+    public int F;
+    public org.telegram.ui.Components.dc G;
+    public boolean H;
+    public boolean I;
+    public boolean J;
+    public String K;
+    public qz0 L;
+    public int M;
+    public boolean N;
+    public int O;
+    public Drawable P;
+    public qz0 Q;
+    public int R;
+    public org.telegram.ui.Cells.y S;
+    public Paint T;
+    public boolean U;
+    public Paint V;
+    public boolean f15714a;
+    public boolean f15715b;
+    public int f15716c;
+    public StaticLayout e;
+    public int f15717f;
+    public int h;
+    public int f15718n;
+    public int f15719r;
+    public int f15720s;
+    public int f15721w;
+    public byte f15722x;
+    public final AtomicReference d = new AtomicReference();
+    public final ArrayList f15723y = new ArrayList();
+
+    public static String b(String str) {
+        if (str == null) {
+            return null;
+        }
+        String replaceAll = str.toLowerCase().replaceAll("\\W|lang$", "");
+        replaceAll.getClass();
+        char c10 = 65535;
+        switch (replaceAll.hashCode()) {
+            case -1886433663:
+                if (replaceAll.equals("actionscript")) {
+                    c10 = 0;
+                    break;
+                }
+                break;
+            case -1408289185:
+                if (replaceAll.equals("aspnet")) {
+                    c10 = 1;
+                    break;
+                }
+                break;
+            case -1395746259:
+                if (replaceAll.equals("bbcode")) {
+                    c10 = 2;
+                    break;
+                }
+                break;
+            case -1351281305:
+                if (replaceAll.equals("csharp")) {
+                    c10 = 3;
+                    break;
+                }
+                break;
+            case -1265393852:
+                if (replaceAll.equals("fsharp")) {
+                    c10 = 4;
+                    break;
+                }
+                break;
+            case -1081245651:
+                if (replaceAll.equals("matlab")) {
+                    c10 = 5;
+                    break;
+                }
+                break;
+            case -973197092:
+                if (replaceAll.equals("python")) {
+                    c10 = 6;
+                    break;
+                }
+                break;
+            case -522285947:
+                if (replaceAll.equals("typescript")) {
+                    c10 = 7;
+                    break;
+                }
+                break;
+            case 114:
+                if (replaceAll.equals("r")) {
+                    c10 = '\b';
+                    break;
+                }
+                break;
+            case 3184:
+                if (replaceAll.equals("cs")) {
+                    c10 = '\t';
+                    break;
+                }
+                break;
+            case 3401:
+                if (replaceAll.equals("js")) {
+                    c10 = '\n';
+                    break;
+                }
+                break;
+            case 3479:
+                if (replaceAll.equals("md")) {
+                    c10 = 11;
+                    break;
+                }
+                break;
+            case 3593:
+                if (replaceAll.equals("py")) {
+                    c10 = '\f';
+                    break;
+                }
+                break;
+            case 3632:
+                if (replaceAll.equals("rb")) {
+                    c10 = '\r';
+                    break;
+                }
+                break;
+            case 3704:
+                if (replaceAll.equals("tl")) {
+                    c10 = 14;
+                    break;
+                }
+                break;
+            case 3711:
+                if (replaceAll.equals("ts")) {
+                    c10 = 15;
+                    break;
+                }
+                break;
+            case 96891:
+                if (replaceAll.equals("asm")) {
+                    c10 = 16;
+                    break;
+                }
+                break;
+            case 98723:
+                if (replaceAll.equals("cpp")) {
+                    c10 = 17;
+                    break;
+                }
+                break;
+            case 98819:
+                if (replaceAll.equals("css")) {
+                    c10 = 18;
+                    break;
+                }
+                break;
+            case 98822:
+                if (replaceAll.equals("csv")) {
+                    c10 = 19;
+                    break;
+                }
+                break;
+            case 104420:
+                if (replaceAll.equals("ini")) {
+                    c10 = 20;
+                    break;
+                }
+                break;
+            case 105551:
+                if (replaceAll.equals("jsx")) {
+                    c10 = 21;
+                    break;
+                }
+                break;
+            case 110968:
+                if (replaceAll.equals("php")) {
+                    c10 = 22;
+                    break;
+                }
+                break;
+            case 112080:
+                if (replaceAll.equals("qml")) {
+                    c10 = 23;
+                    break;
+                }
+                break;
+            case 114126:
+                if (replaceAll.equals("sql")) {
+                    c10 = 24;
+                    break;
+                }
+                break;
+            case 114922:
+                if (replaceAll.equals("tlb")) {
+                    c10 = 25;
+                    break;
+                }
+                break;
+            case 115161:
+                if (replaceAll.equals("tsx")) {
+                    c10 = 26;
+                    break;
+                }
+                break;
+            case 118807:
+                if (replaceAll.equals("xml")) {
+                    c10 = 27;
+                    break;
+                }
+                break;
+            case 119768:
+                if (replaceAll.equals("yml")) {
+                    c10 = 28;
+                    break;
+                }
+                break;
+            case 3154628:
+                if (replaceAll.equals("func")) {
+                    c10 = 29;
+                    break;
+                }
+                break;
+            case 3175934:
+                if (replaceAll.equals("glsl")) {
+                    c10 = 30;
+                    break;
+                }
+                break;
+            case 3205725:
+                if (replaceAll.equals("hlsl")) {
+                    c10 = 31;
+                    break;
+                }
+                break;
+            case 3213227:
+                if (replaceAll.equals("html")) {
+                    c10 = ' ';
+                    break;
+                }
+                break;
+            case 3213448:
+                if (replaceAll.equals("http")) {
+                    c10 = '!';
+                    break;
+                }
+                break;
+            case 3271912:
+                if (replaceAll.equals("json")) {
+                    c10 = '\"';
+                    break;
+                }
+                break;
+            case 3318169:
+                if (replaceAll.equals("less")) {
+                    c10 = '#';
+                    break;
+                }
+                break;
+            case 3373901:
+                if (replaceAll.equals("nasm")) {
+                    c10 = '$';
+                    break;
+                }
+                break;
+            case 3404364:
+                if (replaceAll.equals("objc")) {
+                    c10 = '%';
+                    break;
+                }
+                break;
+            case 3511770:
+                if (replaceAll.equals("ruby")) {
+                    c10 = '&';
+                    break;
+                }
+                break;
+            case 3522862:
+                if (replaceAll.equals("sass")) {
+                    c10 = '\'';
+                    break;
+                }
+                break;
+            case 3524784:
+                if (replaceAll.equals("scss")) {
+                    c10 = '(';
+                    break;
+                }
+                break;
+            case 3561037:
+                if (replaceAll.equals("tl-b")) {
+                    c10 = ')';
+                    break;
+                }
+                break;
+            case 3642020:
+                if (replaceAll.equals("wasm")) {
+                    c10 = '*';
+                    break;
+                }
+                break;
+            case 3701415:
+                if (replaceAll.equals("yaml")) {
+                    c10 = '+';
+                    break;
+                }
+                break;
+            case 94833107:
+                if (replaceAll.equals("cobol")) {
+                    c10 = ',';
+                    break;
+                }
+                break;
+            case 101429325:
+                if (replaceAll.equals("json5")) {
+                    c10 = '-';
+                    break;
+                }
+                break;
+            case 101429384:
+                if (replaceAll.equals("jsonp")) {
+                    c10 = '.';
+                    break;
+                }
+                break;
+            case 112003953:
+                if (replaceAll.equals("vbnet")) {
+                    c10 = '/';
+                    break;
+                }
+                break;
+            case 188995949:
+                if (replaceAll.equals("javascript")) {
+                    c10 = '0';
+                    break;
+                }
+                break;
+            case 213985633:
+                if (replaceAll.equals("autohotkey")) {
+                    c10 = '1';
+                    break;
+                }
+                break;
+            case 246938863:
+                if (replaceAll.equals("markdown")) {
+                    c10 = '2';
+                    break;
+                }
+                break;
+            case 499384161:
+                if (replaceAll.equals("visual-basic")) {
+                    c10 = '3';
+                    break;
+                }
+                break;
+            case 1064174568:
+                if (replaceAll.equals("gdscript")) {
+                    c10 = '4';
+                    break;
+                }
+                break;
+            case 1067478602:
+                if (replaceAll.equals("objectivec")) {
+                    c10 = '5';
+                    break;
+                }
+                break;
+        }
+        switch (c10) {
+            case 0:
+                return "ActionScript";
+            case 1:
+                return "ASP.NET";
+            case 2:
+                return "BBCode";
+            case 3:
+            case '\t':
+                return "C#";
+            case 4:
+                return "F#";
+            case 5:
+            case '\b':
+            case 14:
+            case 16:
+            case 18:
+            case 19:
+            case 20:
+            case 21:
+            case 22:
+            case 23:
+            case 24:
+            case 26:
+            case 27:
+            case 28:
+            case 30:
+            case 31:
+            case ' ':
+            case '!':
+            case '\"':
+            case '#':
+            case '$':
+            case '\'':
+            case '(':
+            case '*':
+            case '+':
+            case ',':
+            case '-':
+            case '.':
+                return str.toUpperCase();
+            case 6:
+            case '\f':
+                return "Python";
+            case 7:
+            case 15:
+                return "TypeScript";
+            case '\n':
+            case '0':
+                return "JavaScript";
+            case 11:
+            case '2':
+                return "Markdown";
+            case '\r':
+            case '&':
+                return "Ruby";
+            case 17:
+                return "C++";
+            case 25:
+            case ')':
+                return "TL-B";
+            case 29:
+                return "FunC";
+            case '%':
+            case '5':
+                return "Objective-C";
+            case '/':
+                return "VB.NET";
+            case '1':
+                return "AutoHotKey";
+            case '3':
+                return "Visual Basic";
+            case '4':
+                return "GDScript";
+            default:
+                return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
+        }
+    }
+
+    @Override
+    public final Layout a() {
+        return this.e;
+    }
+
+    public final int c() {
+        float f7;
+        if (this.U) {
+            f7 = 28.0f;
+        } else {
+            f7 = 15.0f;
+        }
+        return i0.L(f7);
+    }
+
+    public final float d(org.telegram.ui.Cells.x1 x1Var) {
+        boolean f7;
+        float f10;
+        if (x1Var.f23481f3) {
+            HashSet hashSet = x1Var.f23476e3;
+            f7 = true;
+            if (hashSet != null && hashSet.contains(Integer.valueOf(this.f15716c))) {
+                f7 = false;
+            }
+        } else {
+            f7 = f();
+        }
+        float f11 = 0.0f;
+        if (f7) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.0f;
+        }
+        if (f()) {
+            f11 = 1.0f;
+        }
+        return i0.T1(f10, f11, x1Var.L1);
+    }
+
+    @Override
+    public final View e() {
+        return null;
+    }
+
+    public final boolean f() {
+        HashSet hashSet;
+        jj jjVar = this.E;
+        if (jjVar != null && (hashSet = jjVar.I0) != null && hashSet.contains(Integer.valueOf(this.f15716c))) {
+            return false;
+        }
+        return true;
+    }
+
+    public final int g() {
+        float f7;
+        if (this.L != null) {
+            f7 = 32.0f;
+        } else {
+            f7 = 12.0f;
+        }
+        return i0.L(f7);
+    }
+
+    public final int h() {
+        StaticLayout staticLayout;
+        if (this.L == null && (staticLayout = this.e) != null && staticLayout.getLineCount() != 0) {
+            return Math.round(((this.e.getLineBottom(0) + this.e.getLineTop(0)) / 2.0f) - (i0.L(18.0f) / 2.0f));
+        }
+        return i0.L(8.0f) + (-g());
+    }
+
+    public final void i(Canvas canvas, RectF rectF, int i10, int i11, float f7) {
+        if (!this.N) {
+            return;
+        }
+        int r12 = org.telegram.ui.ActionBar.t6.r1(0.1f, i10);
+        if (this.R != r12) {
+            org.telegram.ui.Cells.y yVar = this.S;
+            this.R = r12;
+            org.telegram.ui.ActionBar.t6.H1(yVar, r12, true);
+        }
+        this.S.setBounds(i0.L(3.0f) + ((int) rectF.left), (int) (rectF.bottom - i0.L(38.0f)), (int) rectF.right, (int) rectF.bottom);
+        int i12 = (int) (255.0f * f7);
+        this.S.setAlpha(i12);
+        if (this.S.getCallback() != null) {
+            this.S.draw(canvas);
+        }
+        this.T.setColor(i0.b.o(i11, 38));
+        canvas.drawRect(rectF.left + i0.L(10.0f), (rectF.bottom - i0.L(38.0f)) - i0.f1(), rectF.right - i0.L(6.66f), rectF.bottom - i0.L(38.0f), this.T);
+        float min = Math.min(rectF.width() - i0.L(12.0f), (this.P.getIntrinsicWidth() * 0.8f) + i0.L(5.0f) + this.Q.f29774c);
+        float centerX = rectF.centerX() - (min / 2.0f);
+        float L = rectF.bottom - (i0.L(38.0f) / 2.0f);
+        if (this.O != i10) {
+            Drawable drawable = this.P;
+            this.O = i10;
+            drawable.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
+        }
+        this.P.setAlpha(i12);
+        Drawable drawable2 = this.P;
+        drawable2.setBounds((int) centerX, (int) (L - ((drawable2.getIntrinsicHeight() * 0.8f) / 2.0f)), (int) ((this.P.getIntrinsicWidth() * 0.8f) + centerX), (int) a1.g.A(this.P.getIntrinsicHeight(), 0.8f, 2.0f, L));
+        this.P.draw(canvas);
+        float intrinsicWidth = (this.P.getIntrinsicWidth() * 0.8f) + i0.L(5.0f) + centerX;
+        qz0 qz0Var = this.Q;
+        qz0Var.f29784p = i0.L(12.0f) + ((int) (min - ((this.P.getIntrinsicWidth() * 0.8f) + i0.L(5.0f))));
+        qz0Var.c(intrinsicWidth, L, f7, i10, canvas);
+    }
+
+    public final int j(org.telegram.ui.Cells.x1 x1Var) {
+        if (!this.J) {
+            return this.f15721w;
+        }
+        return i0.W1(d(x1Var), this.f15721w, this.F);
+    }
+
+    public final boolean k(float f7, float f10, float f11) {
+        if (this.N && f7 >= f11 - i0.L(38.0f) && f7 <= f11 && f10 >= (-g())) {
+            if (f10 <= i0.L(26.0f) + h()) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final boolean l() {
+        byte b10 = this.f15722x;
+        if ((b10 & 1) != 0 && (b10 & 2) == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void m(int i10, String str, boolean z10) {
+        boolean z11;
+        if (i10 >= 75 && !z10) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        this.N = z11;
+        int i11 = 5;
+        if (z11) {
+            this.Q = new qz0(cd.L0(2131751765, null).toUpperCase(), tz.W0 - 3, i0.o());
+            Drawable f7 = i0.a.f(w0.f19025b, 2131232102);
+            this.P = f7;
+            f7.setColorFilter(new PorterDuffColorFilter(this.O, PorterDuff.Mode.SRC_IN));
+            this.S = org.telegram.ui.ActionBar.t6.c0(this.R, 0, 0, Math.min(5, tz.Y0), 0);
+            this.T = new Paint(1);
+        }
+        if (TextUtils.isEmpty(str)) {
+            this.K = null;
+            this.L = null;
+            return;
+        }
+        this.K = str;
+        String b10 = b(str);
+        int i12 = tz.W0 - 1;
+        di.s sVar = di.l.f5973a;
+        if (i10 <= 120) {
+            if (i10 > 50) {
+                i11 = 3;
+            } else {
+                i11 = 2;
+            }
+        }
+        qz0 qz0Var = new qz0(b10, i12 - (i11 / 2), i0.o());
+        this.L = qz0Var;
+        this.M = i0.L(4.0f) + ((int) (qz0Var.f29772a.getTextSize() * 1.714f));
+    }
+
+    public final void n(String str, boolean z10) {
+        this.U = true;
+        this.N = !z10;
+        if (!z10) {
+            Drawable f7 = i0.a.f(w0.f19025b, 2131232102);
+            this.P = f7;
+            f7.setColorFilter(new PorterDuffColorFilter(this.O, PorterDuff.Mode.SRC_IN));
+            this.S = org.telegram.ui.ActionBar.t6.c0(this.R, 0, 0, Math.min(5, tz.Y0), 0);
+        }
+        qz0 qz0Var = null;
+        if (TextUtils.isEmpty(str)) {
+            str = null;
+        }
+        this.K = str;
+        if (str != null) {
+            qz0Var = new qz0(str, Math.max(8, tz.W0 - 4), null);
+        }
+        this.L = qz0Var;
+        this.M = 0;
+    }
+
+    public final float o(ArrayList arrayList) {
+        gj gjVar;
+        int i10;
+        if (arrayList == null) {
+            return 0.0f;
+        }
+        int i11 = 0;
+        for (int i12 = 0; i12 < arrayList.size() && (gjVar = (gj) arrayList.get(i12)) != this; i12++) {
+            int i13 = gjVar.f15717f;
+            if (gjVar.J && gjVar.f()) {
+                i10 = gjVar.F;
+            } else {
+                i10 = gjVar.f15721w;
+            }
+            i11 += i10 + i13 + gjVar.h;
+        }
+        return i11;
+    }
+
+    public final float p(ArrayList arrayList, org.telegram.ui.Cells.x1 x1Var) {
+        gj gjVar;
+        if (arrayList == null) {
+            return 0.0f;
+        }
+        int i10 = 0;
+        for (int i11 = 0; i11 < arrayList.size() && (gjVar = (gj) arrayList.get(i11)) != this; i11++) {
+            i10 += gjVar.j(x1Var) + gjVar.f15717f + gjVar.h;
+        }
+        return i10;
+    }
+}

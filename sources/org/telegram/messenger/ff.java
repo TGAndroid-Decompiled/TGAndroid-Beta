@@ -1,78 +1,32 @@
 package org.telegram.messenger;
-public final class ff implements Runnable {
-    public final int f20094a;
-    public final MessagesStorage f20095b;
-    public final int f20096c;
-    public final long d;
-    public final long e;
 
-    public ff(int i10, long j10, long j11, MessagesStorage messagesStorage) {
-        this.f20094a = 3;
-        this.f20095b = messagesStorage;
-        this.d = j10;
-        this.f20096c = i10;
-        this.e = j11;
-    }
+import android.graphics.PointF;
+public final class ff {
+    public float f15545a;
+    public float f15546b;
+    public float f15547c;
+    public float d;
+    public float e;
+    public float f15548f;
+    public float f15549g;
+    public int h;
+    public int f15550i;
+    public float f15551j;
+    public float f15552k;
+    public float f15553l;
+    public float f15554m;
+    public int f15555n;
+    public float f15556o;
+    public e2.c f15557p = new e2.c();
+    public float f15558q;
+    public PointF f15559r;
+    public float f15560s;
+    public float f15561t;
 
-    @Override
-    public final void run() {
-        switch (this.f20094a) {
-            case 0:
-                long j10 = this.d;
-                long j11 = this.e;
-                this.f20095b.lambda$deleteAllReactionsFromChat$87(this.f20096c, j10, j11);
-                return;
-            case 1:
-                long j12 = this.d;
-                long j13 = this.e;
-                this.f20095b.lambda$updateMessageTopicId$218(this.f20096c, j12, j13);
-                return;
-            case 2:
-                long j14 = this.e;
-                int i10 = this.f20096c;
-                this.f20095b.lambda$markMessagePollVotesAsRead$267(this.d, j14, i10);
-                return;
-            case 3:
-                int i11 = this.f20096c;
-                long j15 = this.e;
-                this.f20095b.lambda$loadPendingTasks$13(this.d, i11, j15);
-                return;
-            case 4:
-                long j16 = this.e;
-                int i12 = this.f20096c;
-                this.f20095b.lambda$markMessageReactionsAsRead$266(this.d, j16, i12);
-                return;
-            case 5:
-                long j17 = this.e;
-                int i13 = this.f20096c;
-                this.f20095b.lambda$loadPendingTasks$32(this.d, j17, i13);
-                return;
-            case 6:
-                long j18 = this.d;
-                long j19 = this.e;
-                this.f20095b.lambda$markMentionMessageAsRead$116(this.f20096c, j18, j19);
-                return;
-            default:
-                long j20 = this.e;
-                int i14 = this.f20096c;
-                this.f20095b.lambda$resetMentionsCount$118(this.d, j20, i14);
-                return;
+    public final boolean a() {
+        if (Math.abs(this.f15545a) < 0.1f && Math.abs(this.f15546b) < 0.1f && Math.abs(this.f15547c) < 0.1f && Math.abs(this.d) < 0.1f && Math.abs(this.e) < 0.1f && Math.abs(this.f15548f) < 0.1f && Math.abs(this.f15549g) < 0.1f && this.h == 0 && this.f15550i == 0 && Math.abs(this.f15551j) < 0.1f && Math.abs(this.f15552k) < 0.1f && Math.abs(this.f15553l) < 0.1f && Math.abs(this.f15554m) < 0.1f && this.f15555n == 0 && Math.abs(this.f15556o) < 0.1f) {
+            return true;
         }
-    }
-
-    public ff(MessagesStorage messagesStorage, int i10, long j10, long j11, int i11) {
-        this.f20094a = i11;
-        this.f20095b = messagesStorage;
-        this.f20096c = i10;
-        this.d = j10;
-        this.e = j11;
-    }
-
-    public ff(MessagesStorage messagesStorage, long j10, long j11, int i10, int i11) {
-        this.f20094a = i11;
-        this.f20095b = messagesStorage;
-        this.d = j10;
-        this.e = j11;
-        this.f20096c = i10;
+        return false;
     }
 }

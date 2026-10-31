@@ -1,32 +1,34 @@
 package jg;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class u1 implements TextWatcher {
-    public final TextView f15862a;
-    public final Runnable[] f15863b;
+import android.view.View;
+import org.telegram.ui.ActionBar.v5;
+public final class u1 implements Runnable {
+    public final int f10293a;
+    public final View f10294b;
 
-    public u1(TextView textView, Runnable[] runnableArr) {
-        this.f15862a = textView;
-        this.f15863b = runnableArr;
+    public u1(int i10, View view) {
+        this.f10293a = i10;
+        this.f10294b = view;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        if (this.f15862a.getAlpha() > 0.0f) {
-            Runnable[] runnableArr = this.f15863b;
-            AndroidUtilities.cancelRunOnUIThread(runnableArr[0]);
-            AndroidUtilities.runOnUIThread(runnableArr[0]);
+    public final void run() {
+        switch (this.f10293a) {
+            case 0:
+                this.f10294b.performClick();
+                return;
+            default:
+                View view = this.f10294b;
+                if (view instanceof v5) {
+                    v5 v5Var = (v5) view;
+                    if (!v5Var.f21411a) {
+                        v5Var.f21411a = true;
+                        v5Var.invalidate();
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

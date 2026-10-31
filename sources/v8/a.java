@@ -1,26 +1,57 @@
 package v8;
 
-import a8.df;
-import android.graphics.PointF;
-import android.os.Parcel;
-import android.os.Parcelable;
-import q7.m;
-public final class a extends p6.a {
-    public static final Parcelable.Creator<a> CREATOR = new m(22);
-    public final PointF[] f50125a;
-    public final int f50126b;
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.SystemClock;
+import android.util.Log;
+import com.google.android.gms.tasks.Task;
+import java.util.concurrent.TimeUnit;
+public abstract class a {
+    public static final long f50670a = TimeUnit.MINUTES.toMillis(10);
+    public static final long f50671b = SystemClock.elapsedRealtime();
+    public static final int f50672c = 0;
 
-    public a(PointF[] pointFArr, int i10) {
-        this.f50125a = pointFArr;
-        this.f50126b = i10;
+    public static void a(Task task, Activity activity) {
+        ?? obj = new Object();
+        int incrementAndGet = u.f50739f.incrementAndGet();
+        obj.f50740a = incrementAndGet;
+        u.e.put(incrementAndGet, obj);
+        u.d.postDelayed(obj, f50670a);
+        task.addOnCompleteListener(obj);
+        FragmentTransaction beginTransaction = activity.getFragmentManager().beginTransaction();
+        int i10 = obj.f50740a;
+        Bundle bundle = new Bundle();
+        bundle.putInt("resolveCallId", i10);
+        bundle.putInt("requestCode", 991);
+        bundle.putLong("initializationElapsedRealtime", f50671b);
+        Fragment fragment = new Fragment();
+        fragment.setArguments(bundle);
+        int i11 = obj.f50740a;
+        StringBuilder sb2 = new StringBuilder(58);
+        sb2.append("com.google.android.gms.wallet.AutoResolveHelper");
+        sb2.append(i11);
+        beginTransaction.add(fragment, sb2.toString()).commit();
     }
 
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q5 = df.q(parcel, 20293);
-        df.o(parcel, 2, this.f50125a, i10);
-        df.s(parcel, 3, 4);
-        parcel.writeInt(this.f50126b);
-        df.r(parcel, q5);
+    public static void b(Activity activity, int i10, int i11, Intent intent) {
+        PendingIntent createPendingResult = activity.createPendingResult(i10, intent, 1073741824);
+        if (createPendingResult == null) {
+            if (Log.isLoggable("AutoResolveHelper", 5)) {
+                Log.w("AutoResolveHelper", "Null pending result returned when trying to deliver task result!");
+                return;
+            }
+            return;
+        }
+        try {
+            createPendingResult.send(i11);
+        } catch (PendingIntent.CanceledException e) {
+            if (Log.isLoggable("AutoResolveHelper", 6)) {
+                Log.e("AutoResolveHelper", "Exception sending pending result", e);
+            }
+        }
     }
 }

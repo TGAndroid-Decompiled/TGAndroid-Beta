@@ -2,36 +2,29 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 public final class i51 implements View.OnClickListener {
-    public final int f29221a;
-    public final s51 f29222b;
+    public final int f26885a;
+    public final UndoView f26886b;
 
-    public i51(s51 s51Var, int i10) {
-        this.f29221a = i10;
-        this.f29222b = s51Var;
+    public i51(UndoView undoView, int i10) {
+        this.f26885a = i10;
+        this.f26886b = undoView;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f29221a) {
+        int i10 = this.f26885a;
+        UndoView undoView = this.f26886b;
+        switch (i10) {
             case 0:
-                this.f29222b.dismiss();
-                return;
-            case 1:
-                this.f29222b.dismiss();
-                return;
-            case 2:
-                this.f29222b.dismiss();
-                return;
-            case 3:
-                s51 s51Var = this.f29222b;
-                CharSequence charSequence = s51Var.f32477c0;
-                if (charSequence != null) {
-                    s51Var.f32478d0.run(charSequence);
+                int i11 = UndoView.f24237i0;
+                if (undoView.a()) {
+                    undoView.d(1, false);
+                    return;
                 }
-                s51Var.dismiss();
                 return;
             default:
-                s51.P(this.f29222b, view);
+                int i12 = UndoView.f24237i0;
+                undoView.d(1, false);
                 return;
         }
     }

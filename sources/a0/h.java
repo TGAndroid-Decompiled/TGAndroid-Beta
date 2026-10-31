@@ -9,8 +9,8 @@ public final class h implements Cloneable {
 
     public h(int i10) {
         if (i10 == 0) {
-            this.f15b = b0.a.f3101b;
-            this.f16c = b0.a.f3102c;
+            this.f15b = b0.a.f1939b;
+            this.f16c = b0.a.f1940c;
             return;
         }
         int i11 = i10 * 8;
@@ -31,7 +31,7 @@ public final class h implements Cloneable {
         this.f16c = new Object[i14];
     }
 
-    public final void a(Long l4, long j10) {
+    public final void a(long j10, Long l4) {
         int i10 = this.d;
         if (i10 != 0 && j10 <= this.f15b[i10 - 1]) {
             k(l4, j10);
@@ -195,7 +195,7 @@ public final class h implements Cloneable {
             }
             return this.f15b[i10];
         }
-        throw new IllegalArgumentException(ic.a.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(i0.a.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public final void k(Object obj, long j10) {
@@ -266,7 +266,7 @@ public final class h implements Cloneable {
             kotlin.jvm.internal.i.e(jArr2, "<this>");
             System.arraycopy(jArr2, i10, jArr2, i20, i19);
             Object[] objArr3 = this.f16c;
-            kd.f.c(i20, i10, this.d, objArr3, objArr3);
+            bd.h.c(i20, i10, this.d, objArr3, objArr3);
         }
         this.f15b[i10] = j10;
         this.f16c[i10] = obj;
@@ -332,7 +332,7 @@ public final class h implements Cloneable {
             }
             return this.f16c[i10];
         }
-        throw new IllegalArgumentException(ic.a.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(i0.a.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public final String toString() {

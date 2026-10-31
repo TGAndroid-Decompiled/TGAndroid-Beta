@@ -1,24 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class z4 extends FrameLayout {
-    public final org.telegram.ui.Cells.y1[] f35231a;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class z4 implements Runnable {
+    public final int f32893a;
+    public final b5 f32894b;
+    public final ArrayList f32895c;
+    public final HashSet d;
 
-    public z4(Context context, org.telegram.ui.Cells.y1[] y1VarArr) {
-        super(context);
-        this.f35231a = y1VarArr;
+    public z4(b5 b5Var, ArrayList arrayList, HashSet hashSet, int i10) {
+        this.f32893a = i10;
+        this.f32894b = b5Var;
+        this.f32895c = arrayList;
+        this.d = hashSet;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        org.telegram.ui.Cells.y1[] y1VarArr = this.f35231a;
-        if (y1VarArr[0] != null) {
-            int measuredWidth = getMeasuredWidth();
-            int measuredHeight = getMeasuredHeight();
-            setMeasuredDimension(measuredWidth, AndroidUtilities.dp(7.0f) + y1VarArr[0].getMeasuredHeight() + measuredHeight);
+    public final void run() {
+        switch (this.f32893a) {
+            case 0:
+                org.telegram.messenger.i0.g3(new z4(this.f32894b, this.f32895c, this.d, 1));
+                return;
+            default:
+                b5 b5Var = this.f32894b;
+                b5Var.d(this.f32895c);
+                HashSet hashSet = this.d;
+                if (!hashSet.isEmpty()) {
+                    ArrayList<Long> arrayList = new ArrayList<>(hashSet);
+                    TLRPC.TL_messages_getCustomEmojiDocuments tL_messages_getCustomEmojiDocuments = new TLRPC.TL_messages_getCustomEmojiDocuments();
+                    tL_messages_getCustomEmojiDocuments.document_id = arrayList;
+                    ConnectionsManager.getInstance(b5Var.e).sendRequest(tL_messages_getCustomEmojiDocuments, new ag.k0(23, b5Var, arrayList));
+                    return;
+                }
+                return;
         }
     }
 }

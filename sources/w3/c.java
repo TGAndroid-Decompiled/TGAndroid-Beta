@@ -1,21 +1,21 @@
 package w3;
 
 import android.util.Pair;
-import b2.w0;
-import e2.n0;
+import b2.v0;
+import e2.l0;
 import e2.x;
 import java.nio.charset.StandardCharsets;
 import u2.z0;
 public abstract class c {
-    public static final byte[] f50721a;
+    public static final byte[] f52342a;
 
     static {
-        String str = n0.f9691a;
-        f50721a = "OpusHead".getBytes(StandardCharsets.UTF_8);
+        String str = l0.f6165a;
+        f52342a = "OpusHead".getBytes(StandardCharsets.UTF_8);
     }
 
     public static void a(x xVar) {
-        int i10 = xVar.f9732b;
+        int i10 = xVar.f6208b;
         xVar.O(4);
         if (xVar.m() != 1751411826) {
             i10 += 4;
@@ -45,7 +45,7 @@ public abstract class c {
         }
         xVar.O(1);
         d(xVar);
-        String e = w0.e(xVar.A());
+        String e = v0.e(xVar.A());
         if (!"audio/mpeg".equals(e) && !"audio/vnd.dts".equals(e) && !"audio/vnd.dts.hd".equals(e)) {
             xVar.O(4);
             long C = xVar.C();
@@ -111,7 +111,7 @@ public abstract class c {
         int i13;
         Integer num2;
         boolean z13;
-        int i14 = xVar.f9732b;
+        int i14 = xVar.f6208b;
         while (i14 - i10 < i11) {
             xVar.N(i14);
             int m10 = xVar.m();
@@ -207,7 +207,7 @@ public abstract class c {
                         z14 = true;
                     }
                     c3.b.b("tenc atom is mandatory", z14);
-                    String str2 = n0.f9691a;
+                    String str2 = l0.f6165a;
                     create = Pair.create(num, rVar);
                 }
                 if (create != null) {
@@ -219,8 +219,8 @@ public abstract class c {
         return null;
     }
 
-    public static java.util.ArrayList i(f2.d r62, c3.w r63, long r64, b2.t r66, boolean r67, boolean r68, e9.k r69, boolean r70) {
-        throw new UnsupportedOperationException("Method not decompiled: w3.c.i(f2.d, c3.w, long, b2.t, boolean, boolean, e9.k, boolean):java.util.ArrayList");
+    public static java.util.ArrayList i(f2.d r59, c3.w r60, long r61, b2.t r63, boolean r64, boolean r65, d9.k r66, boolean r67) {
+        throw new UnsupportedOperationException("Method not decompiled: w3.c.i(f2.d, c3.w, long, b2.t, boolean, boolean, d9.k, boolean):java.util.ArrayList");
     }
 
     public static b2.u0 j(f2.e r17) {

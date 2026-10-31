@@ -1,14 +1,22 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class p50 extends org.telegram.ui.Cells.a4 {
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        if (AndroidUtilities.isTablet()) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(420.0f), View.MeasureSpec.getSize(i10)), 1073741824), i11);
+import java.util.Comparator;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class p50 implements Comparator {
+    public static String a(TLObject tLObject) {
+        if (tLObject instanceof TLRPC.User) {
+            TLRPC.User user = (TLRPC.User) tLObject;
+            return org.telegram.messenger.i5.m(0, user.first_name, user.last_name);
+        } else if (tLObject instanceof TLRPC.Chat) {
+            return ((TLRPC.Chat) tLObject).title;
         } else {
-            super.onMeasure(i10, i11);
+            return "";
         }
+    }
+
+    @Override
+    public final int compare(Object obj, Object obj2) {
+        return a((TLObject) obj).compareTo(a((TLObject) obj2));
     }
 }

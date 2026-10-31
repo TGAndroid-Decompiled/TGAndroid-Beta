@@ -1,39 +1,28 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.CacheByChatsController;
-public final class z5 implements a80 {
-    public final int f46163a;
-    public final c6 f46164b;
-    public final CacheByChatsController.KeepMediaException f46165c;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.widget.FrameLayout;
+import androidx.recyclerview.widget.RecyclerView;
+public final class z5 implements org.telegram.ui.Components.ju0 {
+    public final int f44018a;
+    public final FrameLayout f44019b;
 
-    public z5(c6 c6Var, CacheByChatsController.KeepMediaException keepMediaException, int i10) {
-        this.f46163a = i10;
-        this.f46164b = c6Var;
-        this.f46165c = keepMediaException;
+    public z5(int i10, FrameLayout frameLayout) {
+        this.f44018a = i10;
+        this.f44019b = frameLayout;
     }
 
     @Override
-    public final void a(int i10) {
-        switch (this.f46163a) {
+    public final void a(Canvas canvas, RectF rectF, RecyclerView recyclerView) {
+        switch (this.f44018a) {
             case 0:
-                int i11 = CacheByChatsController.KEEP_MEDIA_DELETE;
-                c6 c6Var = this.f46164b;
-                CacheByChatsController.KeepMediaException keepMediaException = this.f46165c;
-                if (i10 == i11) {
-                    c6Var.d.remove(keepMediaException);
-                    c6Var.V();
-                } else {
-                    keepMediaException.keepMedia = i10;
-                    AndroidUtilities.updateVisibleRows(c6Var.f38179b);
-                }
-                c6Var.getMessagesController().getCacheByChatsController().saveKeepMediaExceptions(c6Var.e, c6Var.d);
+                org.telegram.ui.Components.tk0 tk0Var = (org.telegram.ui.Components.tk0) recyclerView;
+                yg.d.a(tk0Var, canvas, rectF, tk0Var, this.f44019b);
                 return;
             default:
-                this.f46165c.keepMedia = i10;
-                c6 c6Var2 = this.f46164b;
-                c6Var2.getMessagesController().getCacheByChatsController().saveKeepMediaExceptions(c6Var2.e, c6Var2.d);
-                AndroidUtilities.updateVisibleRows(c6Var2.f38179b);
+                org.telegram.ui.Components.tk0 tk0Var2 = (org.telegram.ui.Components.tk0) recyclerView;
+                yg.d.a(tk0Var2, canvas, rectF, tk0Var2, this.f44019b);
                 return;
         }
     }

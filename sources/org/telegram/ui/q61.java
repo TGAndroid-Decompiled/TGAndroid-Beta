@@ -1,24 +1,19 @@
 package org.telegram.ui;
-public final class q61 extends g.o {
-    public final s61 f42624c;
-
-    public q61(s61 s61Var) {
-        this.f42624c = s61Var;
-    }
-
-    @Override
-    public final int i(int i10) {
-        int i11;
-        s61 s61Var = this.f42624c;
-        org.telegram.ui.Components.vz vzVar = s61Var.X;
-        org.telegram.ui.Components.k71 k71Var = s61Var.f43248d0;
-        if (k71Var == null) {
-            return vzVar.J;
-        }
-        org.telegram.ui.Components.u61 G = k71Var.G(i10 - 1);
-        if (G != null && (i11 = G.f33258u) != -1) {
-            return i11;
-        }
-        return vzVar.J;
-    }
+public final class q61 {
+    public String f40877a;
+    public String f40878b;
+    public String f40879c;
+    public boolean d;
+    public String e;
+    public String f40880f;
+    public String f40881g;
+    public boolean h;
+    public String f40882i;
+    public String f40883j;
+    public String f40884k;
+    public boolean f40885l;
+    public String f40886m;
+    public String f40887n;
+    public String f40888o;
+    public boolean f40889p;
 }

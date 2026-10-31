@@ -1,41 +1,32 @@
 package k2;
 public final class t implements Runnable {
-    public final int f16272a;
-    public final int f16273b;
-    public final long f16274c;
-    public final long d;
-    public final Object e;
+    public final int f10763a;
+    public final hf.b f10764b;
+    public final x0 f10765c;
 
-    public t(Object obj, int i10, long j10, long j11, int i11) {
-        this.f16272a = i11;
-        this.e = obj;
-        this.f16273b = i10;
-        this.f16274c = j10;
-        this.d = j11;
+    public t(hf.b bVar, x0 x0Var, int i10) {
+        this.f10763a = i10;
+        this.f10764b = bVar;
+        this.f10765c = x0Var;
     }
 
     @Override
     public final void run() {
-        u2.g0 g0Var;
-        int i10 = this.f16272a;
-        Object obj = this.e;
+        int i10 = this.f10763a;
+        x0 x0Var = this.f10765c;
+        hf.b bVar = this.f10764b;
         switch (i10) {
             case 0:
-                String str = e2.n0.f9691a;
-                j2.e eVar = ((i2.d0) ((v) ((rf.b) obj).f47371c)).f13508a.f13613s;
-                j2.a p10 = eVar.p();
-                eVar.q(p10, 1011, new j2.d(p10, this.f16273b, this.f16274c, this.d));
+                String str = e2.l0.f6165a;
+                j2.g gVar = ((i2.c0) ((w) bVar.f7658c)).f7821a.f7927s;
+                j2.a U = gVar.U();
+                gVar.V(U, 1032, new j2.e(U, x0Var, 17));
                 return;
             default:
-                j2.e eVar2 = ((y2.b) obj).f51989b;
-                aa.m0 m0Var = eVar2.d;
-                if (((f9.i0) m0Var.f1151b).isEmpty()) {
-                    g0Var = null;
-                } else {
-                    g0Var = (u2.g0) f9.o.m((f9.i0) m0Var.f1151b);
-                }
-                j2.a n10 = eVar2.n(g0Var);
-                eVar2.q(n10, 1006, new j2.c(n10, this.f16273b, this.f16274c, this.d));
+                String str2 = e2.l0.f6165a;
+                j2.g gVar2 = ((i2.c0) ((w) bVar.f7658c)).f7821a.f7927s;
+                j2.a U2 = gVar2.U();
+                gVar2.V(U2, 1031, new j2.e(U2, x0Var, 0));
                 return;
         }
     }

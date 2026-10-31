@@ -1,40 +1,51 @@
 package di;
 
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class g implements Utilities.Callback {
-    public final int f8567a;
-    public final int f8568b;
+import android.text.SpannableStringBuilder;
+public final class g extends f {
+    public SpannableStringBuilder f5962b;
 
-    public g(int i10, int i11) {
-        this.f8567a = i11;
-        this.f8568b = i10;
+    @Override
+    public final int getSpanEnd(Object obj) {
+        SpannableStringBuilder spannableStringBuilder;
+        if (!this.f5961a && (spannableStringBuilder = this.f5962b) != null) {
+            return spannableStringBuilder.getSpanEnd(obj);
+        }
+        return super.getSpanEnd(obj);
     }
 
     @Override
-    public final void run(Object obj) {
-        ArrayList<TLRPC.EmojiGroup> arrayList;
-        switch (this.f8567a) {
-            case 0:
-                q qVar = (q) ((View) obj);
-                qVar.invalidate();
-                qVar.f8945y.setTextColor(this.f8568b);
-                return;
-            default:
-                TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) obj;
-                if (tL_messages_emojiGroups != null && (arrayList = tL_messages_emojiGroups.groups) != null) {
-                    int size = arrayList.size();
-                    int i10 = 0;
-                    while (i10 < size) {
-                        TLRPC.EmojiGroup emojiGroup = arrayList.get(i10);
-                        i10++;
-                        org.telegram.ui.Components.t5.h(this.f8568b).b(emojiGroup.icon_emoji_id, null);
-                    }
-                    return;
-                }
-                return;
+    public final int getSpanFlags(Object obj) {
+        SpannableStringBuilder spannableStringBuilder;
+        if (!this.f5961a && (spannableStringBuilder = this.f5962b) != null) {
+            return spannableStringBuilder.getSpanFlags(obj);
         }
+        return super.getSpanFlags(obj);
+    }
+
+    @Override
+    public final int getSpanStart(Object obj) {
+        SpannableStringBuilder spannableStringBuilder;
+        if (!this.f5961a && (spannableStringBuilder = this.f5962b) != null) {
+            return spannableStringBuilder.getSpanStart(obj);
+        }
+        return super.getSpanStart(obj);
+    }
+
+    @Override
+    public final Object[] getSpans(int i10, int i11, Class cls) {
+        SpannableStringBuilder spannableStringBuilder;
+        if (!this.f5961a && (spannableStringBuilder = this.f5962b) != null) {
+            return spannableStringBuilder.getSpans(i10, i11, cls);
+        }
+        return super.getSpans(i10, i11, cls);
+    }
+
+    @Override
+    public final int nextSpanTransition(int i10, int i11, Class cls) {
+        SpannableStringBuilder spannableStringBuilder;
+        if (!this.f5961a && (spannableStringBuilder = this.f5962b) != null) {
+            return spannableStringBuilder.nextSpanTransition(i10, i11, cls);
+        }
+        return super.nextSpanTransition(i10, i11, cls);
     }
 }

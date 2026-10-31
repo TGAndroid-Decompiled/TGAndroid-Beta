@@ -1,27 +1,17 @@
 package org.telegram.ui.Cells;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class i1 extends AnimatorListenerAdapter {
-    public final int f24220a;
-    public final s1 f24221b;
+import org.telegram.ui.Components.e51;
+import org.telegram.ui.Components.kn0;
+public final class i1 extends kn0 {
+    public final q1 H;
 
-    public i1(int i10, s1 s1Var) {
-        this.f24220a = i10;
-        this.f24221b = s1Var;
+    public i1(q1 q1Var, q1 q1Var2) {
+        super(q1Var2);
+        this.H = q1Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f24220a) {
-            case 0:
-                s1 s1Var = this.f24221b;
-                s1Var.f25367y7.isMediaSpoilersRevealed = true;
-                s1Var.invalidate();
-                return;
-            default:
-                this.f24221b.setSelectedBackgroundProgress(0.0f);
-                return;
-        }
+    public final void d(e51 e51Var) {
+        this.H.m3(e51Var);
     }
 }

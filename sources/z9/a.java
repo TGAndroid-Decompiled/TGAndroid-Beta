@@ -1,20 +1,16 @@
 package z9;
-public final class a implements ka.d {
-    public static final a f52867a = new Object();
-    public static final ka.c f52868b = ka.c.c("rolloutId");
-    public static final ka.c f52869c = ka.c.c("parameterKey");
-    public static final ka.c d = ka.c.c("parameterValue");
-    public static final ka.c e = ka.c.c("variantId");
-    public static final ka.c f52870f = ka.c.c("templateVersion");
+public final class a implements ja.d {
+    public static final a f55212a = new Object();
+    public static final ja.c f55213b = ja.c.c("arch");
+    public static final ja.c f55214c = ja.c.c("libraryName");
+    public static final ja.c d = ja.c.c("buildId");
 
     @Override
     public final void a(Object obj, Object obj2) {
-        ka.e eVar = (ka.e) obj2;
-        b bVar = (b) ((l) obj);
-        eVar.a(f52868b, bVar.f52871b);
-        eVar.a(f52869c, bVar.f52872c);
-        eVar.a(d, bVar.d);
-        eVar.a(e, bVar.e);
-        eVar.f(f52870f, bVar.f52873f);
+        ja.e eVar = (ja.e) obj2;
+        c0 c0Var = (c0) ((f1) obj);
+        eVar.d(f55213b, c0Var.f55243a);
+        eVar.d(f55214c, c0Var.f55244b);
+        eVar.d(d, c0Var.f55245c);
     }
 }

@@ -1,4 +1,3 @@
 package ld;
-public interface f extends h {
-    g getKey();
+public interface f extends ad.a {
 }

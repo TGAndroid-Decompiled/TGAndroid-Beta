@@ -1,19 +1,11 @@
 package org.telegram.ui.Components;
-public final class dy0 implements Runnable {
-    public final int f27573a;
-    public final Object f27574b;
+public final class dy0 {
+    public final jy0 f25565a;
+    public final ly0 f25566b;
+    public boolean f25567c = true;
 
-    public dy0(Object obj, int i10) {
-        this.f27573a = i10;
-        this.f27574b = obj;
-    }
-
-    private final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.dy0.a():void");
-    }
-
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.dy0.run():void");
+    public dy0(jy0 jy0Var, ly0 ly0Var) {
+        this.f25565a = jy0Var;
+        this.f25566b = ly0Var;
     }
 }

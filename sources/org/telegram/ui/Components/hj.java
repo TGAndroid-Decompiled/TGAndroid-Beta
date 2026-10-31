@@ -1,52 +1,57 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.ui.WallpapersListActivity;
-import org.telegram.ui.fi1;
-import org.telegram.ui.gi1;
-import org.telegram.ui.vc1;
-public final class hj extends org.telegram.ui.Cells.fb {
-    public final int f28999w;
-    public final mm0 f29000x;
+import java.io.File;
+import java.util.Comparator;
+public final class hj implements Comparator {
+    public final int f26748a;
+    public final xj f26749b;
 
-    public hj(mm0 mm0Var, Context context, int i10) {
-        super(context, 5);
-        this.f28999w = i10;
-        this.f29000x = mm0Var;
+    public hj(xj xjVar, int i10) {
+        this.f26748a = i10;
+        this.f26749b = xjVar;
     }
 
     @Override
-    public final void a(int i10, Object obj) {
-        switch (this.f28999w) {
+    public final int compare(Object obj, Object obj2) {
+        qj qjVar = (qj) obj;
+        qj qjVar2 = (qj) obj2;
+        switch (this.f26748a) {
             case 0:
-                q0.a aVar = ((ij) ((za) this.f29000x).f35304f).f29344x;
-                if (aVar != null) {
-                    aVar.accept(obj);
-                    return;
+                xj xjVar = this.f26749b;
+                xjVar.getClass();
+                File file = qjVar.f29668f;
+                if (file != null) {
+                    if (qjVar2.f29668f != null) {
+                        boolean isDirectory = file.isDirectory();
+                        if (isDirectory != qjVar2.f29668f.isDirectory()) {
+                            if (isDirectory) {
+                            }
+                        } else if (!isDirectory && !xjVar.f32482c0) {
+                            int i10 = (qjVar.f29668f.lastModified() > qjVar2.f29668f.lastModified() ? 1 : (qjVar.f29668f.lastModified() == qjVar2.f29668f.lastModified() ? 0 : -1));
+                            if (i10 == 0) {
+                                return 0;
+                            }
+                            if (i10 > 0) {
+                            }
+                        } else {
+                            return qjVar.f29668f.getName().compareToIgnoreCase(qjVar2.f29668f.getName());
+                        }
+                    }
+                    return 1;
                 }
-                return;
-            case 1:
-                WallpapersListActivity.s0(((fi1) this.f29000x).d, this, obj, i10);
-                return;
+                return -1;
             default:
-                ((gi1) this.f29000x).E.presentFragment(new vc1(obj, null, true));
-                return;
+                if (this.f26749b.f32482c0) {
+                    return qjVar.f29668f.getName().compareToIgnoreCase(qjVar2.f29668f.getName());
+                }
+                int i11 = (qjVar.f29668f.lastModified() > qjVar2.f29668f.lastModified() ? 1 : (qjVar.f29668f.lastModified() == qjVar2.f29668f.lastModified() ? 0 : -1));
+                if (i11 == 0) {
+                    return 0;
+                }
+                if (i11 > 0) {
+                    return -1;
+                }
+                return 1;
         }
-    }
-
-    @Override
-    public boolean b(Object obj, int i10) {
-        switch (this.f28999w) {
-            case 1:
-                return WallpapersListActivity.t0(((fi1) this.f29000x).d, this, obj, i10);
-            default:
-                return super.b(obj, i10);
-        }
-    }
-
-    public hj(za zaVar, Context context) {
-        super(context, 1);
-        this.f28999w = 0;
-        this.f29000x = zaVar;
     }
 }

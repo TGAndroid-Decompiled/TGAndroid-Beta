@@ -1,123 +1,118 @@
 package org.telegram.ui.Components.voip;
 
 import android.animation.ValueAnimator;
-import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.graphics.Point;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.fa;
-public final class q0 {
-    public float f34127a;
-    public float f34128b;
-    public float f34129c;
-    public boolean e;
-    public final m3 f34130f;
-    public final m3 f34131g;
-    public ValueAnimator f34133j;
-    public int f34134k;
-    public float d = 0.0f;
-    public boolean h = false;
-    public float f34132i = 1.0f;
+import android.view.WindowManager;
+import org.telegram.ui.ActionBar.w5;
+public final class q0 extends GestureDetector.SimpleOnGestureListener {
+    public float f31586a;
+    public float f31587b;
+    public final int f31588c;
+    public final s0 d;
 
-    public q0(int i10, int i11, int i12, int i13) {
-        ?? faVar = new fa(i13 - 1);
-        this.f34130f = faVar;
-        ?? faVar2 = new fa(i13);
-        this.f34131g = faVar2;
-        faVar.f28065a = i10;
-        faVar.f28066b = i11;
-        faVar2.f28065a = i10 - i12;
-        faVar2.f28066b = i11 - i12;
-        faVar.b();
-        faVar2.b();
-        faVar.d.setColor(-1);
-        faVar.d.setAlpha(20);
-        faVar2.d.setColor(-1);
-        faVar2.d.setAlpha(36);
+    public q0(s0 s0Var, int i10) {
+        this.d = s0Var;
+        this.f31588c = i10;
     }
 
-    public final void a(Canvas canvas, float f7, float f10, View view) {
-        float f11 = (this.f34127a * 0.4f) + 0.8f;
-        if (this.e || this.d != 0.0f) {
-            canvas.save();
-            float interpolation = ds.f27530f.getInterpolation(this.d) * f11;
-            canvas.scale(interpolation, interpolation, f7, f10);
-            float f12 = this.f34127a;
-            float f13 = this.f34132i;
-            m3 m3Var = this.f34130f;
-            m3Var.g(f12, f13);
-            Paint paint = m3Var.d;
-            m3Var.a(f7, f10, canvas, paint);
-            float f14 = this.f34127a;
-            float f15 = this.f34132i;
-            m3 m3Var2 = this.f34131g;
-            m3Var2.g(f14, f15);
-            m3Var2.a(f7, f10, canvas, paint);
-            canvas.restore();
-        }
-        if (!this.h || this.f34134k != 0) {
-            int i10 = this.f34134k;
-            if (i10 != 0) {
-                this.f34134k = i10 - 1;
-            }
-            if (this.d != 0.0f) {
-                view.invalidate();
-            }
-        }
-    }
-
-    public final void b(double d) {
-        float f7 = ((float) d) / 80.0f;
-        float f10 = 0.0f;
-        if (!this.e) {
-            f7 = 0.0f;
-        }
-        if (f7 > 1.0f) {
-            f10 = 1.0f;
-        } else if (f7 >= 0.0f) {
-            f10 = f7;
-        }
-        this.f34128b = f10;
-        this.f34129c = (f10 - this.f34127a) / 200.0f;
-    }
-
-    public final void c() {
-        float f7 = this.f34128b;
-        float f10 = this.f34127a;
-        if (f7 != f10) {
-            float f11 = this.f34129c;
-            float f12 = (16.0f * f11) + f10;
-            this.f34127a = f12;
-            if (f11 > 0.0f) {
-                if (f12 > f7) {
-                    this.f34127a = f7;
-                }
-            } else if (f12 < f7) {
-                this.f34127a = f7;
-            }
-        }
-        boolean z10 = this.e;
-        if (z10) {
-            float f13 = this.d;
-            if (f13 != 1.0f) {
-                float f14 = f13 + 0.045714285f;
-                this.d = f14;
-                if (f14 > 1.0f) {
-                    this.d = 1.0f;
-                    return;
-                }
-                return;
-            }
-        }
-        if (!z10) {
-            float f15 = this.d;
-            if (f15 != 0.0f) {
-                float f16 = f15 - 0.045714285f;
-                this.d = f16;
-                if (f16 < 0.0f) {
-                    this.d = 0.0f;
+    @Override
+    public final boolean onDown(MotionEvent motionEvent) {
+        s0 s0Var = this.d;
+        if (s0Var.K) {
+            for (int i10 = 1; i10 < s0Var.e.getChildCount(); i10++) {
+                View childAt = s0Var.e.getChildAt(i10);
+                if (childAt.dispatchTouchEvent(motionEvent)) {
+                    s0Var.J = childAt;
+                    return true;
                 }
             }
         }
+        this.f31586a = s0Var.Q;
+        this.f31587b = s0Var.R;
+        return true;
+    }
+
+    @Override
+    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
+        Point point;
+        float L;
+        float f11;
+        s0 s0Var = this.d;
+        if (s0Var.H && !s0Var.I) {
+            o1.j jVar = s0Var.S;
+            jVar.f13948a = f7;
+            float f12 = s0Var.Q;
+            jVar.f13949b = f12;
+            jVar.f13950c = true;
+            o1.k kVar = jVar.f13957m;
+            int i10 = s0Var.M;
+            float f13 = (f7 / 7.0f) + (i10 / 2.0f) + f12;
+            int i11 = org.telegram.messenger.i0.f16026q.x;
+            if (f13 >= i11 / 2.0f) {
+                L = (i11 - i10) - org.telegram.messenger.i0.L(16.0f);
+            } else {
+                L = org.telegram.messenger.i0.L(16.0f);
+            }
+            kVar.f13964i = L;
+            s0Var.S.h();
+            o1.j jVar2 = s0Var.T;
+            jVar2.f13948a = f7;
+            jVar2.f13949b = s0Var.R;
+            jVar2.f13950c = true;
+            jVar2.f13957m.f13964i = w7.u.a((f10 / 10.0f) + f11, org.telegram.messenger.i0.L(16.0f), (point.y - s0Var.N) - org.telegram.messenger.i0.L(16.0f));
+            s0Var.T.h();
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
+        s0 s0Var = this.d;
+        if (!s0Var.H && s0Var.L == null && !s0Var.I) {
+            float abs = Math.abs(f7);
+            float f11 = this.f31588c;
+            if (abs >= f11 || Math.abs(f10) >= f11) {
+                s0Var.H = true;
+                s0Var.S.d();
+                s0Var.T.d();
+            }
+        }
+        if (s0Var.H) {
+            WindowManager.LayoutParams layoutParams = s0Var.f31649c;
+            float rawX = (motionEvent2.getRawX() + this.f31586a) - motionEvent.getRawX();
+            s0Var.Q = rawX;
+            layoutParams.x = (int) rawX;
+            WindowManager.LayoutParams layoutParams2 = s0Var.f31649c;
+            float rawY = (motionEvent2.getRawY() + this.f31587b) - motionEvent.getRawY();
+            s0Var.R = rawY;
+            layoutParams2.y = (int) rawY;
+            org.telegram.messenger.i0.S3(s0Var.f31648b, s0Var.d, s0Var.f31649c);
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean onSingleTapUp(MotionEvent motionEvent) {
+        s0 s0Var = this.d;
+        ValueAnimator valueAnimator = s0Var.L;
+        w5 w5Var = s0Var.X;
+        if (valueAnimator == null) {
+            if (s0Var.W) {
+                org.telegram.messenger.i0.r(w5Var);
+                s0Var.W = false;
+            }
+            boolean z10 = !s0Var.K;
+            s0Var.K = z10;
+            s0Var.j(z10);
+            if (s0Var.K && !s0Var.W) {
+                org.telegram.messenger.i0.h3(w5Var, 2500L);
+                s0Var.W = true;
+            }
+        }
+        return true;
     }
 }

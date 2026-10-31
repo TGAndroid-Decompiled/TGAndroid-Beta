@@ -1,6 +1,6 @@
 package w0;
 public final class h extends i {
-    public h(CharSequence charSequence, int i10) {
+    public h(int i10, CharSequence charSequence) {
         super(charSequence, "androidx.credentials.TYPE_GET_CREDENTIAL_PROVIDER_CONFIGURATION_EXCEPTION");
         switch (i10) {
             case 2:

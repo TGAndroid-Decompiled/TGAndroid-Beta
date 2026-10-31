@@ -6,11 +6,11 @@ import android.content.Intent;
 import android.widget.Toast;
 public class CustomTabsCopyReceiver extends BroadcastReceiver {
     @Override
-    public void onReceive(Context context, Intent intent) {
+    public final void onReceive(Context context, Intent intent) {
         String dataString = intent.getDataString();
         if (dataString != null) {
-            AndroidUtilities.addToClipboard(dataString);
-            Toast.makeText(context, LocaleController.getString(R.string.LinkCopied), 0).show();
+            i0.g(dataString);
+            Toast.makeText(context, cd.L0(2131748931, null), 0).show();
         }
     }
 }

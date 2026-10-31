@@ -8,9 +8,9 @@ import java.net.InetAddress;
 import java.net.SocketTimeoutException;
 import java.util.Arrays;
 public abstract class b {
-    public static final Object f52693a = new Object();
-    public static final Object f52694b = new Object();
-    public static boolean f52695c;
+    public static final Object f54545a = new Object();
+    public static final Object f54546b = new Object();
+    public static boolean f54547c;
     public static long d;
 
     public static long a() {
@@ -19,7 +19,7 @@ public abstract class b {
         byte[] bArr;
         DatagramSocket datagramSocket = new DatagramSocket();
         try {
-            synchronized (f52694b) {
+            synchronized (f54546b) {
             }
             datagramSocket.setSoTimeout(1000);
             c();
@@ -66,18 +66,18 @@ public abstract class b {
                     long j14 = (elapsedRealtime2 - elapsedRealtime) + currentTimeMillis;
                     byte b12 = bArr3[b10];
                     long e = e(24, bArr3);
-                    long e10 = e(32, bArr3);
-                    long e11 = e(40, bArr3);
-                    b((byte) ((b12 >> 6) & 3), (byte) (b12 & 7), bArr3[1] & 255, e11);
-                    long j15 = (j14 + (((e11 - j14) + (e10 - e)) / 2)) - elapsedRealtime2;
+                    long e7 = e(32, bArr3);
+                    long e10 = e(40, bArr3);
+                    b((byte) ((b12 >> 6) & 3), (byte) (b12 & 7), bArr3[1] & 255, e10);
+                    long j15 = (j14 + (((e10 - j14) + (e7 - e)) / 2)) - elapsedRealtime2;
                     datagramSocket.close();
                     return j15;
-                } catch (SocketTimeoutException e12) {
+                } catch (SocketTimeoutException e11) {
                     if (socketTimeoutException == null) {
-                        socketTimeoutException2 = e12;
+                        socketTimeoutException2 = e11;
                     } else {
                         SocketTimeoutException socketTimeoutException3 = socketTimeoutException;
-                        socketTimeoutException3.addSuppressed(e12);
+                        socketTimeoutException3.addSuppressed(e11);
                         socketTimeoutException2 = socketTimeoutException3;
                     }
                     int i12 = i11 + 1;
@@ -104,7 +104,7 @@ public abstract class b {
     public static void b(byte b10, byte b11, int i10, long j10) {
         if (b10 != 3) {
             if (b11 != 4 && b11 != 5) {
-                throw new IOException(ic.a.i(b11, "SNTP: Untrusted mode: "));
+                throw new IOException(i0.a.i(b11, "SNTP: Untrusted mode: "));
             }
             if (i10 != 0 && i10 <= 15) {
                 if (j10 != 0) {
@@ -112,13 +112,13 @@ public abstract class b {
                 }
                 throw new IOException("SNTP: Zero transmitTime");
             }
-            throw new IOException(ic.a.i(i10, "SNTP: Untrusted stratum: "));
+            throw new IOException(i0.a.i(i10, "SNTP: Untrusted stratum: "));
         }
         throw new IOException("SNTP: Unsynchronized server");
     }
 
     public static void c() {
-        synchronized (f52694b) {
+        synchronized (f54546b) {
         }
     }
 

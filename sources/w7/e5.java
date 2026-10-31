@@ -1,12 +1,17 @@
 package w7;
-public abstract class e5 {
-    public static int a(Object obj) {
-        int hashCode;
+public final class e5 implements ja.d {
+    public static final e5 f52505a = new Object();
+
+    static {
+        sc.e.v(sc.e.l(d.class, sc.e.q(sc.e.l(d.class, new a(1)), 2)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
         if (obj == null) {
-            hashCode = 0;
-        } else {
-            hashCode = obj.hashCode();
+            ja.e eVar = (ja.e) obj2;
+            throw null;
         }
-        return (int) (Integer.rotateLeft((int) (hashCode * (-862048943)), 15) * 461845907);
+        throw new ClassCastException();
     }
 }

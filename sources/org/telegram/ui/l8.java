@@ -1,20 +1,22 @@
 package org.telegram.ui;
+public final class l8 implements Runnable {
+    public final int f39086a;
+    public final j9 f39087b;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-public final class l8 {
-    public MessageObject f40991a;
-    public ArrayList f40992b;
-    public int f40993c;
-    public boolean f40994f;
-    public int h;
-    public float f40996i;
-    public float f40997j;
-    public float f40998k;
-    public float f40999l;
-    public float f41000m;
-    public float f41001n;
-    public float d = 1.0f;
-    public float e = 1.0f;
-    public boolean f40995g = true;
+    public l8(j9 j9Var, int i10) {
+        this.f39086a = i10;
+        this.f39087b = j9Var;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f39086a) {
+            case 0:
+                this.f39087b.l0(false);
+                return;
+            default:
+                this.f39087b.g0();
+                return;
+        }
+    }
 }

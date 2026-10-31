@@ -1,38 +1,24 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class s20 implements Utilities.Callback2 {
-    public final int f43225a;
-    public final x50 f43226b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.widget.TextView;
+public final class s20 extends TextView {
+    public final RectF f41354a;
+    public final b50 f41355b;
 
-    public s20(x50 x50Var, int i10) {
-        this.f43225a = i10;
-        this.f43226b = x50Var;
+    public s20(b50 b50Var, Context context) {
+        super(context);
+        this.f41355b = b50Var;
+        this.f41354a = new RectF();
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        TLRPC.Updates updates = (TLRPC.Updates) obj;
-        TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-        switch (this.f43225a) {
-            case 0:
-                x50 x50Var = this.f43226b;
-                if (updates != null) {
-                    x50Var.d.getMessagesController().lambda$processUpdates$379(updates, false);
-                }
-                AndroidUtilities.runOnUIThread(new j20(x50Var, 10));
-                return;
-            default:
-                x50 x50Var2 = this.f43226b;
-                if (updates != null) {
-                    x50Var2.d.getMessagesController().lambda$processUpdates$379(updates, false);
-                    return;
-                } else {
-                    x50Var2.getClass();
-                    return;
-                }
-        }
+    public final void onDraw(Canvas canvas) {
+        RectF rectF = this.f41354a;
+        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+        canvas.drawRoundRect(rectF, org.telegram.messenger.i0.L(12.0f), org.telegram.messenger.i0.L(12.0f), this.f41355b.X2);
+        super.onDraw(canvas);
     }
 }

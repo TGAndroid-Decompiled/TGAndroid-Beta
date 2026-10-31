@@ -1,204 +1,40 @@
 package org.telegram.ui;
 
-import android.graphics.Typeface;
-import android.text.TextPaint;
+import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Toast;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.RadioButton;
-public final class r implements View.OnClickListener {
-    public final int f42819a;
-    public final j4 f42820b;
+public final class r implements ps0, org.telegram.ui.Components.ik0, org.telegram.ui.ActionBar.i1 {
+    public final h4 f41098a;
 
-    public r(j4 j4Var, int i10) {
-        this.f42819a = i10;
-        this.f42820b = j4Var;
+    public r(h4 h4Var) {
+        this.f41098a = h4Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        Typeface typeface;
-        Typeface create;
-        Typeface create2;
-        Typeface create3;
-        boolean z10;
-        switch (this.f42819a) {
-            case 0:
-                j4 j4Var = this.f42820b;
-                if (j4Var.f40414u0[0].f()) {
-                    if (j4Var.f40414u0[0].getWebView() != null) {
-                        j4Var.f40414u0[0].getWebView().findNext(false);
-                        return;
-                    }
-                    return;
-                }
-                j4Var.W(j4Var.G - 1);
-                return;
-            case 1:
-                j4 j4Var2 = this.f42820b;
-                if (j4Var2.f40414u0[0].f()) {
-                    if (j4Var2.f40414u0[0].getWebView() != null) {
-                        j4Var2.f40414u0[0].getWebView().findNext(true);
-                        return;
-                    }
-                    return;
-                }
-                j4Var2.W(j4Var2.G + 1);
-                return;
-            case 2:
-                j4 j4Var3 = this.f42820b;
-                l0 l0Var = j4Var3.f40402h0;
-                if (l0Var.T) {
-                    l0Var.h(false);
-                    return;
-                } else if (l0Var.W) {
-                    l0Var.k(false);
-                    return;
-                } else {
-                    if (j4Var3.J()) {
-                        m3 m3Var = j4Var3.f40414u0[0];
-                        if (m3Var.f41317s) {
-                            if (m3Var.f() && m3Var.getWebView() != null) {
-                                m3Var.getWebView().goBack();
-                                return;
-                            }
-                            return;
-                        }
-                    }
-                    if (j4Var3.f40398d0.size() > 1) {
-                        j4Var3.G();
-                        return;
-                    }
-                    v3 v3Var = j4Var3.K;
-                    if (v3Var != null) {
-                        v3Var.dismiss(false);
-                        return;
-                    } else {
-                        j4Var3.o(true, true);
-                        return;
-                    }
-                }
-            case 3:
-                v3 v3Var2 = this.f42820b.K;
-                if (v3Var2 != null) {
-                    v3Var2.dismiss(true);
-                    return;
-                }
-                return;
-            case 4:
-                j4 j4Var4 = this.f42820b;
-                int intValue = ((Integer) view.getTag()).intValue();
-                j4Var4.f40448a = intValue;
-                int i10 = 0;
-                for (int i11 = 0; i11 < 2; i11++) {
-                    k0 k0Var = j4Var4.T0[i11];
-                    if (i11 == intValue) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    ((RadioButton) k0Var.f40640b).a(z10, true);
-                }
-                q3 q3Var = j4.f40374g1;
-                int i12 = j4Var4.f40448a;
-                q3Var.getClass();
-                ApplicationLoader.applicationContext.getSharedPreferences("articles", 0).edit().putInt("font_type", i12).commit();
-                if (i12 == 0) {
-                    typeface = Typeface.DEFAULT;
-                } else {
-                    typeface = Typeface.SERIF;
-                }
-                Typeface typeface2 = typeface;
-                if (i12 == 0) {
-                    create = AndroidUtilities.getTypeface("fonts/ritalic.ttf");
-                } else {
-                    create = Typeface.create("serif", 2);
-                }
-                Typeface typeface3 = create;
-                if (i12 == 0) {
-                    create2 = AndroidUtilities.bold();
-                } else {
-                    create2 = Typeface.create("serif", 1);
-                }
-                Typeface typeface4 = create2;
-                if (i12 == 0) {
-                    create3 = AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf");
-                } else {
-                    create3 = Typeface.create("serif", 3);
-                }
-                Typeface typeface5 = create3;
-                for (int i13 = 0; i13 < q3Var.f42602t.size(); i13++) {
-                    q3.b(q3Var.f42602t.keyAt(i13), (TextPaint) q3Var.f42602t.valueAt(i13), typeface2, typeface5, typeface4, typeface3);
-                }
-                for (int i14 = 0; i14 < q3Var.f42601s.size(); i14++) {
-                    q3.b(q3Var.f42601s.keyAt(i14), (TextPaint) q3Var.f42601s.valueAt(i14), typeface2, typeface5, typeface4, typeface3);
-                }
-                for (int i15 = 0; i15 < q3Var.f42599q.size(); i15++) {
-                    q3.b(q3Var.f42599q.keyAt(i15), (TextPaint) q3Var.f42599q.valueAt(i15), typeface2, typeface5, typeface4, typeface3);
-                }
-                for (int i16 = 0; i16 < q3Var.f42600r.size(); i16++) {
-                    q3.b(q3Var.f42600r.keyAt(i16), (TextPaint) q3Var.f42600r.valueAt(i16), typeface2, typeface5, typeface4, typeface3);
-                }
-                for (int i17 = 0; i17 < q3Var.f42603u.size(); i17++) {
-                    q3.b(q3Var.f42603u.keyAt(i17), (TextPaint) q3Var.f42603u.valueAt(i17), typeface2, typeface5, typeface4, typeface3);
-                }
-                for (int i18 = 0; i18 < q3Var.f42604w.size(); i18++) {
-                    q3.b(q3Var.f42604w.keyAt(i18), (TextPaint) q3Var.f42604w.valueAt(i18), typeface2, typeface5, typeface4, typeface3);
-                }
-                for (int i19 = 0; i19 < q3Var.f42605x.size(); i19++) {
-                    q3.b(q3Var.f42605x.keyAt(i19), (TextPaint) q3Var.f42605x.valueAt(i19), typeface2, typeface5, typeface4, typeface3);
-                }
-                for (int i20 = 0; i20 < q3Var.f42587b.size(); i20++) {
-                    q3.b(q3Var.f42587b.keyAt(i20), (TextPaint) q3Var.f42587b.valueAt(i20), typeface2, typeface5, typeface4, typeface3);
-                }
-                for (int i21 = 0; i21 < q3Var.f42588c.size(); i21++) {
-                    q3.b(q3Var.f42588c.keyAt(i21), (TextPaint) q3Var.f42588c.valueAt(i21), typeface2, typeface5, typeface4, typeface3);
-                }
-                for (int i22 = 0; i22 < q3Var.f42597o.size(); i22++) {
-                    q3.b(q3Var.f42597o.keyAt(i22), (TextPaint) q3Var.f42597o.valueAt(i22), typeface2, typeface5, typeface4, typeface3);
-                }
-                for (int i23 = 0; i23 < q3Var.f42598p.size(); i23++) {
-                    q3.b(q3Var.f42598p.keyAt(i23), (TextPaint) q3Var.f42598p.valueAt(i23), typeface2, typeface5, typeface4, typeface3);
-                }
-                for (int i24 = 0; i24 < q3Var.v.size(); i24++) {
-                    q3.b(q3Var.v.keyAt(i24), (TextPaint) q3Var.v.valueAt(i24), typeface2, typeface5, typeface4, typeface3);
-                }
-                for (int i25 = 0; i25 < q3Var.f42606y.size(); i25++) {
-                    q3.b(q3Var.f42606y.keyAt(i25), (TextPaint) q3Var.f42606y.valueAt(i25), typeface2, typeface5, typeface4, typeface3);
-                }
-                for (int i26 = 0; i26 < q3Var.f42607z.size(); i26++) {
-                    q3.b(q3Var.f42607z.keyAt(i26), (TextPaint) q3Var.f42607z.valueAt(i26), typeface2, typeface5, typeface4, typeface3);
-                }
-                for (int i27 = 0; i27 < q3Var.A.size(); i27++) {
-                    q3.b(q3Var.A.keyAt(i27), (TextPaint) q3Var.A.valueAt(i27), typeface2, typeface5, typeface4, typeface3);
-                }
-                while (true) {
-                    m3[] m3VarArr = j4Var4.f40414u0;
-                    if (i10 < m3VarArr.length) {
-                        m3VarArr[i10].f41313c.l();
-                        i10++;
-                    } else {
-                        return;
-                    }
-                }
-            default:
-                j4 j4Var5 = this.f42820b;
-                a3 a3Var = j4Var5.d;
-                if (a3Var != null) {
-                    AndroidUtilities.addToClipboard(a3Var.d.getText());
-                    if (AndroidUtilities.shouldShowClipboardToast()) {
-                        Toast.makeText(j4Var5.L, LocaleController.getString(R.string.TextCopied), 0).show();
-                    }
-                }
-                org.telegram.ui.ActionBar.o1 o1Var = j4Var5.H;
-                if (o1Var != null && o1Var.isShowing()) {
-                    j4Var5.H.d(true);
-                    return;
-                }
-                return;
+    public void a(float[] fArr) {
+        h4 h4Var = this.f41098a;
+        fArr[0] = h4Var.J0;
+        fArr[1] = h4Var.f37746u0[0].f39038b.getMeasuredHeight();
+    }
+
+    @Override
+    public boolean f(int i10, View view) {
+        h4 h4Var = this.f41098a;
+        h4Var.getClass();
+        if (view instanceof h2) {
+            b4 b4Var = ((h2) view).f37693n;
+            h4Var.X(b4Var.f35976a.articles.get(b4Var.f35977b).url);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void r(KeyEvent keyEvent) {
+        org.telegram.ui.ActionBar.k1 k1Var;
+        h4 h4Var = this.f41098a;
+        h4Var.getClass();
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (k1Var = h4Var.H) != null && k1Var.isShowing()) {
+            h4Var.H.d(true);
         }
     }
 }

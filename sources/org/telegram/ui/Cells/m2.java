@@ -1,60 +1,69 @@
 package org.telegram.ui.Cells;
 
-import org.telegram.messenger.Utilities;
-public final class m2 {
-    public long f24423a;
-    public long f24424b;
-    public boolean f24425c;
-    public boolean d;
-    public long e;
-    public int f24426f;
-    public Integer f24427g;
-    public int h;
-    public int f24428i;
-    public boolean f24429j;
-    public boolean f24430k;
-    public float f24431l;
-    public boolean f24432m;
-    public int f24433n;
-    public boolean f24434o = false;
-    public long f24435p;
-    public final p2 f24436q;
+import org.telegram.messenger.vp;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ay;
+public final class m2 extends th.t5 {
+    public final v2 S;
 
-    public m2(p2 p2Var) {
-        this.f24436q = p2Var;
+    public m2(v2 v2Var) {
+        super(null, false);
+        this.S = v2Var;
     }
 
-    public final boolean a() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.m2.a():boolean");
+    @Override
+    public final boolean c(TLRPC.Chat chat, TLRPC.User user) {
+        if (((chat != null && chat.linked_community_id != 0) || (user != null && user.linked_community_id != 0)) && !this.S.O0) {
+            return true;
+        }
+        return false;
     }
 
-    public final void b() {
-        boolean z10 = this.f24434o;
-        p2 p2Var = this.f24436q;
-        if (!z10) {
-            Integer num = this.f24427g;
-            if (num != null && p2Var.f24659f3 != null) {
-                float f7 = this.f24431l;
-                if (f7 != 1.0f) {
-                    this.f24431l = f7 + 0.08f;
-                    p2Var.invalidate();
-                    this.f24431l = Utilities.clamp(this.f24431l, 1.0f, 0.0f);
-                    return;
+    @Override
+    public final boolean d(long j10) {
+        v2 v2Var = this.S;
+        int i10 = v2Var.F0;
+        ay ayVar = v2Var.D4;
+        if (ayVar != null && !v2Var.O0) {
+            if (j10 > 0) {
+                TLRPC.User Z1 = vp.r1(i10).Z1(Long.valueOf(j10));
+                if (Z1 != null && Z1.linked_community_id != 0) {
+                    ayVar.showDialog(new yh.a0(ayVar, Z1.linked_community_id));
+                    return true;
                 }
+                return false;
             }
-            if (num == null) {
-                float f10 = this.f24431l;
-                if (f10 != 0.0f) {
-                    this.f24431l = f10 - 0.08f;
-                    p2Var.invalidate();
-                }
+            TLRPC.Chat L0 = vp.r1(i10).L0(Long.valueOf(-j10));
+            if (L0 != null && L0.linked_community_id != 0) {
+                ayVar.showDialog(new yh.a0(ayVar, L0.linked_community_id));
+                return true;
             }
-            this.f24431l = Utilities.clamp(this.f24431l, 1.0f, 0.0f);
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final void e() {
+        v2 v2Var = this.S;
+        r2 r2Var = v2Var.f23187d0;
+        if (r2Var == null) {
             return;
         }
-        if (System.currentTimeMillis() - this.f24435p > 100) {
-            this.f24434o = false;
+        r2Var.x(v2Var);
+    }
+
+    @Override
+    public final void f(long j10) {
+        v2 v2Var = this.S;
+        r2 r2Var = v2Var.f23187d0;
+        if (r2Var == null) {
+            return;
         }
-        p2Var.invalidate();
+        if (v2Var.J0 != 0) {
+            r2Var.q();
+        } else {
+            r2Var.u(v2Var);
+        }
     }
 }

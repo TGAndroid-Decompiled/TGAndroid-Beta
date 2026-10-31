@@ -1,39 +1,21 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class m21 implements Runnable {
-    public final int f41308a;
-    public final org.telegram.messenger.video.a f41309b;
-    public final org.telegram.ui.Components.wc f41310c;
-    public final Context d;
-    public final di.k0 e;
-
-    public m21(org.telegram.messenger.video.a aVar, org.telegram.ui.Components.wc wcVar, Context context, di.k0 k0Var, int i10) {
-        this.f41308a = i10;
-        this.f41309b = aVar;
-        this.f41310c = wcVar;
-        this.d = context;
-        this.e = k0Var;
-    }
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class m21 extends FrameLayout {
+    public FrameLayout f39459a;
+    public org.telegram.ui.Cells.y3 f39460b;
+    public kg.x0 f39461c;
+    public String d;
+    public ValueAnimator e;
+    public float f39462f;
+    public Boolean h;
+    public ValueAnimator f39463n;
 
     @Override
-    public final void run() {
-        switch (this.f41308a) {
-            case 0:
-                this.f41309b.run();
-                this.f41310c.c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new cv(this.d, 2), this.e)).j();
-                return;
-            case 1:
-                this.f41309b.run();
-                this.f41310c.c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new cv(this.d, 5), this.e)).j();
-                return;
-            default:
-                this.f41309b.run();
-                this.f41310c.c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new cv(this.d, 6), this.e)).j();
-                return;
-        }
+    public final void onMeasure(int i10, int i11) {
+        setPadding(org.telegram.messenger.i0.L(5.0f), org.telegram.messenger.i0.L(8.0f), org.telegram.messenger.i0.L(5.0f), org.telegram.messenger.i0.L(8.0f));
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(getPaddingBottom() + getPaddingTop() + org.telegram.messenger.i0.L(44.0f), 1073741824));
     }
 }

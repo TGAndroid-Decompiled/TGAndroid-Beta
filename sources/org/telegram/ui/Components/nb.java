@@ -1,70 +1,52 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-public abstract class nb extends ub {
-    private mb button;
-    private int childrenMeasuredWidth;
-    org.telegram.ui.ActionBar.u6 resourcesProvider;
-    public jc timerView;
-    private boolean wrapWidth;
-
-    public nb(Context context, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(context, u6Var);
-        this.resourcesProvider = u6Var;
-    }
-
-    public mb getButton() {
-        return this.button;
-    }
+import android.view.ViewPropertyAnimator;
+public final class nb extends ta {
+    public float f28734a;
+    public mb f28735b;
+    public g9 f28736c;
+    public f6 d;
+    public boolean e;
 
     @Override
-    public void measureChildWithMargins(View view, int i10, int i11, int i12, int i13) {
-        mb mbVar = this.button;
-        if (mbVar != null && view != mbVar) {
-            i11 = org.telegram.ui.d3.w(12.0f, mbVar.getMeasuredWidth(), i11);
-        }
-        super.measureChildWithMargins(view, i10, i11, i12, i13);
-        if (view != this.button) {
-            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
-            this.childrenMeasuredWidth = Math.max(this.childrenMeasuredWidth, view.getMeasuredWidth() + marginLayoutParams.leftMargin + marginLayoutParams.rightMargin);
-        }
+    public CharSequence getAccessibilityText() {
+        return this.d.getText();
     }
 
-    @Override
-    public void onMeasure(int i10, int i11) {
-        this.childrenMeasuredWidth = 0;
-        if (this.wrapWidth) {
-            i10 = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), Integer.MIN_VALUE);
+    public void setProgress(float f7) {
+        boolean z10;
+        float f10;
+        boolean z11 = this.e;
+        float f11 = 1.0f;
+        int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
+        boolean z12 = false;
+        if (i10 < 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        super.onMeasure(i10, i11);
-        if (this.button != null && View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
-            setMeasuredDimension(this.button.getMeasuredWidth() + this.childrenMeasuredWidth, getMeasuredHeight());
+        if (z11 != z10) {
+            if (i10 < 0) {
+                z12 = true;
+            }
+            this.e = z12;
+            ViewPropertyAnimator animate = this.f28736c.animate();
+            if (this.e) {
+                f10 = 0.78f;
+            } else {
+                f10 = 1.0f;
+            }
+            ViewPropertyAnimator scaleX = animate.scaleX(f10);
+            if (this.e) {
+                f11 = 0.78f;
+            }
+            scaleX.scaleY(f11).setDuration(320L).setInterpolator(gr.h).start();
         }
+        this.f28734a = f7;
+        this.f28735b.invalidate();
     }
 
-    public void setButton(mb mbVar) {
-        mb mbVar2 = this.button;
-        if (mbVar2 != null) {
-            removeCallback(mbVar2);
-            removeView(this.button);
-        }
-        this.button = mbVar;
-        if (mbVar != null) {
-            addCallback(mbVar);
-            addView(mbVar, 0, kb1.l(-2.0f, -2.0f, 8388629));
-        }
-    }
-
-    public void setTimer() {
-        jc jcVar = new jc(getContext(), this.resourcesProvider);
-        this.timerView = jcVar;
-        jcVar.f29634b = 5000L;
-        addView(jcVar, kb1.m(20.0f, 20.0f, 8388627, 21.0f, 0.0f, 21.0f, 0.0f));
-    }
-
-    public void setWrapWidth() {
-        this.wrapWidth = true;
+    public void setTextColor(int i10) {
+        this.d.setTextColor(i10);
     }
 }

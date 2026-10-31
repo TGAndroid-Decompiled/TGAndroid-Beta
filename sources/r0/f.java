@@ -9,5 +9,5 @@ public interface f {
 
     int e();
 
-    int k();
+    int l();
 }

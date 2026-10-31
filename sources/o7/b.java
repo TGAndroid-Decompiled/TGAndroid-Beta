@@ -1,29 +1,8 @@
 package o7;
-public final class b extends d {
-    public static final b f19200a = new Object();
+public abstract class b {
+    public static final int f14101a = 0;
 
-    @Override
-    public final Object a() {
-        throw new IllegalStateException("Optional.get() cannot be called on an absent value");
-    }
-
-    @Override
-    public final boolean b() {
-        return false;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return 2040732332;
-    }
-
-    public final String toString() {
-        return "Optional.absent()";
+    static {
+        b.class.getClassLoader();
     }
 }

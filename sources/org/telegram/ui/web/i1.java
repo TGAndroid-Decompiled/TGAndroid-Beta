@@ -1,66 +1,41 @@
 package org.telegram.ui.web;
 
-import android.os.AsyncTask;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import org.telegram.messenger.Utilities;
-public final class i1 extends AsyncTask {
-    public final HashMap f44785a = new HashMap();
-    public final Utilities.Callback f44786b;
-    public Exception f44787c;
+import org.telegram.ui.zd;
+public final class i1 implements Runnable {
+    public final int f43062a;
+    public final org.telegram.ui.m0 f43063b;
 
-    public i1(Utilities.Callback callback) {
-        this.f44786b = callback;
+    public i1(org.telegram.ui.m0 m0Var, int i10) {
+        this.f43062a = i10;
+        this.f43063b = m0Var;
     }
 
     @Override
-    public final Object doInBackground(Object[] objArr) {
-        BufferedReader bufferedReader;
-        try {
-            HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(((String[]) objArr)[0]).openConnection();
-            for (Map.Entry entry : this.f44785a.entrySet()) {
-                if (entry.getKey() != null && entry.getValue() != null) {
-                    httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
+    public final void run() {
+        switch (this.f43062a) {
+            case 0:
+                org.telegram.ui.m0 m0Var = this.f43063b;
+                m0Var.A0 = true;
+                if (m0Var.getParent() != null) {
+                    m0Var.getParent().requestDisallowInterceptTouchEvent(true);
                 }
-            }
-            httpURLConnection.setRequestMethod("GET");
-            httpURLConnection.setDoInput(true);
-            int responseCode = httpURLConnection.getResponseCode();
-            if (responseCode >= 200 && responseCode < 300) {
-                bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-            } else {
-                bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getErrorStream()));
-            }
-            StringBuilder sb2 = new StringBuilder();
-            while (true) {
-                String readLine = bufferedReader.readLine();
-                if (readLine != null) {
-                    sb2.append(readLine);
-                } else {
-                    bufferedReader.close();
-                    return sb2.toString();
+                try {
+                    m0Var.performHapticFeedback(0, 1);
+                    return;
+                } catch (Exception unused) {
+                    return;
                 }
-            }
-        } catch (Exception e) {
-            this.f44787c = e;
-            return null;
-        }
-    }
-
-    @Override
-    public final void onPostExecute(Object obj) {
-        String str = (String) obj;
-        Utilities.Callback callback = this.f44786b;
-        if (callback != null) {
-            if (this.f44787c == null) {
-                callback.run(str);
-            } else {
-                callback.run(null);
-            }
+            default:
+                org.telegram.ui.m0 m0Var2 = this.f43063b;
+                zd zdVar = m0Var2.f43095b0;
+                if (m0Var2.W) {
+                    zdVar.requestFocus();
+                    org.telegram.messenger.i0.J3(zdVar);
+                    return;
+                }
+                zdVar.clearFocus();
+                org.telegram.messenger.i0.v1(zdVar);
+                return;
         }
     }
 }

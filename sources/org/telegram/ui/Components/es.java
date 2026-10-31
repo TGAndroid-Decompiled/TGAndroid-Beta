@@ -1,53 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.EditText;
+import java.util.ArrayList;
 public final class es implements Runnable {
-    public final int f27917a;
-    public final hs f27918b;
+    public final int f25854a;
+    public final fs f25855b;
 
-    public es(hs hsVar, int i10) {
-        this.f27917a = i10;
-        this.f27918b = hsVar;
+    public es(fs fsVar, int i10) {
+        this.f25854a = i10;
+        this.f25855b = fsVar;
     }
 
     @Override
     public final void run() {
-        View view;
-        switch (this.f27917a) {
+        switch (this.f25854a) {
             case 0:
-                hs hsVar = this.f27918b;
-                if (hsVar.f29063b == null && (view = hsVar.d) != null) {
-                    View findFocus = view.findFocus();
-                    if (findFocus instanceof EditText) {
-                        hsVar.f29063b = (EditText) findFocus;
-                    }
-                }
-                EditText editText = hsVar.f29063b;
-                if (editText != null) {
-                    if (editText.length() != 0 || hsVar.e) {
-                        try {
-                            hsVar.performHapticFeedback(3, 2);
-                            hsVar.playSoundEffect(0);
-                        } catch (Exception unused) {
-                        }
-                        hsVar.f29063b.dispatchKeyEvent(new KeyEvent(0, 67));
-                        hsVar.f29063b.dispatchKeyEvent(new KeyEvent(1, 67));
-                        if (hsVar.f29065f) {
-                            hsVar.postDelayed(hsVar.h, 50L);
-                            return;
-                        }
-                        return;
-                    }
+                fs fsVar = this.f25855b;
+                fsVar.f26126c = false;
+                fsVar.f26125b.run();
+                ArrayList arrayList = fsVar.h;
+                if (arrayList.isEmpty() || System.currentTimeMillis() - fsVar.f26127f > 3600000) {
+                    arrayList.clear();
+                    fsVar.e = false;
+                    fsVar.f26128g = null;
+                    fsVar.a();
                     return;
                 }
                 return;
             default:
-                hs hsVar2 = this.f27918b;
-                hsVar2.f29066n = false;
-                hsVar2.f29065f = true;
-                hsVar2.h.run();
+                this.f25855b.f26129i = false;
                 return;
         }
     }

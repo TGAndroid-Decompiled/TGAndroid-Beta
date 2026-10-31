@@ -1,3 +1,3 @@
 package ld;
-public interface e extends f {
+public interface e extends ad.a {
 }

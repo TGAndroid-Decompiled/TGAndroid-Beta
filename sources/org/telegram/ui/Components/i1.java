@@ -1,25 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class i1 implements View.OnClickListener {
-    public final int f29171a;
-    public final org.telegram.ui.Cells.y1 f29172b;
+import android.content.DialogInterface;
+import android.widget.EditText;
+public final class i1 implements DialogInterface.OnDismissListener {
+    public final int f26861a;
+    public final EditText f26862b;
 
-    public i1(org.telegram.ui.Cells.y1 y1Var, int i10) {
-        this.f29171a = i10;
-        this.f29172b = y1Var;
+    public i1(EditText editText, int i10) {
+        this.f26861a = i10;
+        this.f26862b = editText;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f29171a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f26861a) {
             case 0:
-                org.telegram.ui.Cells.y1 y1Var = this.f29172b;
-                y1Var.c(!y1Var.b(), true);
+                org.telegram.messenger.i0.v1(this.f26862b);
                 return;
             default:
-                org.telegram.ui.Cells.y1 y1Var2 = this.f29172b;
-                y1Var2.c(!y1Var2.b(), true);
+                org.telegram.messenger.i0.v1(this.f26862b);
                 return;
         }
     }

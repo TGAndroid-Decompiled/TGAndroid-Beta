@@ -1,18 +1,18 @@
 package f2;
 
-import a8.ed;
-import a8.yb;
 import b2.r0;
 import b2.t0;
 import b2.x;
-import c3.h0;
-import e2.n0;
+import c3.i0;
+import e2.l0;
 import java.util.ArrayList;
 import java.util.Arrays;
+import v7.c8;
+import v7.t6;
 public final class b implements t0 {
-    public final String f10055a;
-    public final byte[] f10056b;
-    public final int f10057c;
+    public final String f6728a;
+    public final byte[] f6729b;
+    public final int f6730c;
     public final int d;
 
     public b(String str, byte[] bArr, int i10, int i11) {
@@ -56,28 +56,28 @@ public final class b implements t0 {
                 if (i11 == 23 && bArr.length == 4) {
                     r2 = true;
                 }
-                yb.g(r2);
+                t6.f(r2);
                 break;
             case 1:
                 if (i11 == 75 && bArr.length == 1 && ((b10 = bArr[0]) == 0 || b10 == 1)) {
                     r2 = true;
                 }
-                yb.g(r2);
+                t6.f(r2);
                 break;
             case 2:
             case 3:
                 if (i11 == 78 && bArr.length == 8) {
                     r2 = true;
                 }
-                yb.g(r2);
+                t6.f(r2);
                 break;
             case 4:
-                yb.g(i11 == 0);
+                t6.f(i11 == 0);
                 break;
         }
-        this.f10055a = str;
-        this.f10056b = bArr;
-        this.f10057c = i10;
+        this.f6728a = str;
+        this.f6729b = bArr;
+        this.f6730c = i10;
         this.d = i11;
     }
 
@@ -92,11 +92,11 @@ public final class b implements t0 {
     }
 
     public final ArrayList d() {
-        yb.o("Metadata is not an auxiliary tracks map", this.f10055a.equals("auxiliary.tracks.map"));
-        byte[] bArr = this.f10056b;
+        t6.o("Metadata is not an auxiliary tracks map", this.f6728a.equals("auxiliary.tracks.map"));
+        byte[] bArr = this.f6729b;
         byte b10 = bArr[1];
         ArrayList arrayList = new ArrayList();
-        for (int i10 = 0; i10 < b10; i10 = h0.i(bArr[i10 + 2], i10, 1, arrayList)) {
+        for (int i10 = 0; i10 < b10; i10 = i0.j(bArr[i10 + 2], i10, 1, arrayList)) {
         }
         return arrayList;
     }
@@ -107,7 +107,7 @@ public final class b implements t0 {
         }
         if (obj != null && b.class == obj.getClass()) {
             b bVar = (b) obj;
-            if (this.f10055a.equals(bVar.f10055a) && Arrays.equals(this.f10056b, bVar.f10056b) && this.f10057c == bVar.f10057c && this.d == bVar.d) {
+            if (this.f6728a.equals(bVar.f6728a) && Arrays.equals(this.f6729b, bVar.f6729b) && this.f6730c == bVar.f6730c && this.d == bVar.d) {
                 return true;
             }
         }
@@ -115,15 +115,15 @@ public final class b implements t0 {
     }
 
     public final int hashCode() {
-        return ((((Arrays.hashCode(this.f10056b) + a1.g.f(527, 31, this.f10055a)) * 31) + this.f10057c) * 31) + this.d;
+        return ((((Arrays.hashCode(this.f6729b) + a1.g.f(527, 31, this.f6728a)) * 31) + this.f6730c) * 31) + this.d;
     }
 
     public final String toString() {
         String sb2;
         boolean z10;
         boolean z11;
-        String str = this.f10055a;
-        byte[] bArr = this.f10056b;
+        String str = this.f6728a;
+        byte[] bArr = this.f6729b;
         int i10 = this.d;
         if (i10 != 0) {
             if (i10 != 1) {
@@ -133,7 +133,7 @@ public final class b implements t0 {
                             if (i10 == 78) {
                                 sb2 = String.valueOf(new e2.x(bArr).G());
                             }
-                            sb2 = n0.f0(bArr);
+                            sb2 = l0.f0(bArr);
                         } else {
                             sb2 = String.valueOf(bArr[0] & 255);
                         }
@@ -143,8 +143,8 @@ public final class b implements t0 {
                         } else {
                             z11 = false;
                         }
-                        yb.d("array too small: %s < %s", bArr.length, 4, z11);
-                        sb2 = String.valueOf(ed.c(bArr[0], bArr[1], bArr[2], bArr[3]));
+                        t6.b(bArr.length, 4, "array too small: %s < %s", z11);
+                        sb2 = String.valueOf(c8.c(bArr[0], bArr[1], bArr[2], bArr[3]));
                     }
                 } else {
                     if (bArr.length >= 4) {
@@ -152,22 +152,22 @@ public final class b implements t0 {
                     } else {
                         z10 = false;
                     }
-                    yb.d("array too small: %s < %s", bArr.length, 4, z10);
-                    sb2 = String.valueOf(Float.intBitsToFloat(ed.c(bArr[0], bArr[1], bArr[2], bArr[3])));
+                    t6.b(bArr.length, 4, "array too small: %s < %s", z10);
+                    sb2 = String.valueOf(Float.intBitsToFloat(c8.c(bArr[0], bArr[1], bArr[2], bArr[3])));
                 }
             } else {
-                sb2 = n0.r(bArr);
+                sb2 = l0.r(bArr);
             }
         } else {
             if (str.equals("auxiliary.tracks.map")) {
                 ArrayList d = d();
-                StringBuilder u10 = a1.g.u("track types = ");
-                new d5.j(String.valueOf(',')).a(u10, d.iterator());
-                sb2 = u10.toString();
+                StringBuilder t10 = a1.g.t("track types = ");
+                new com.google.android.gms.internal.clearcut.e(String.valueOf(','), 1).a(t10, d.iterator());
+                sb2 = t10.toString();
             }
-            sb2 = n0.f0(bArr);
+            sb2 = l0.f0(bArr);
         }
-        return h0.m("mdta: key=", str, ", value=", sb2);
+        return i0.n("mdta: key=", str, ", value=", sb2);
     }
 
     @Override

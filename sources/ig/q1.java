@@ -1,39 +1,16 @@
 package ig;
+public final class q1 {
+    public int f8432a;
+    public float f8433b;
+    public float f8434c;
 
-import java.util.ArrayList;
-import org.telegram.ui.ps;
-public final class q1 implements z1 {
-    public final ps f14207a;
-
-    public q1(ps psVar) {
-        this.f14207a = psVar;
+    public q1(float f7, float f10, int i10) {
+        this.f8432a = i10;
+        this.f8433b = f7;
+        this.f8434c = f10;
     }
 
-    @Override
-    public final a0.h U() {
-        return null;
-    }
-
-    @Override
-    public final void f(int i10) {
-        ps psVar = this.f14207a;
-        psVar.l();
-        if (i10 != 0) {
-            psVar.F();
-        }
-    }
-
-    @Override
-    public final boolean k0(int i10) {
-        return true;
-    }
-
-    @Override
-    public final a0.h y() {
-        return null;
-    }
-
-    @Override
-    public final void p0(ArrayList arrayList) {
+    public final Object clone() {
+        return new q1(this.f8433b, this.f8434c, this.f8432a);
     }
 }

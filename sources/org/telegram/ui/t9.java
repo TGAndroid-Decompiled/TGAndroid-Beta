@@ -1,20 +1,12 @@
 package org.telegram.ui;
-public final class t9 extends y9 {
-    public final u9 f43543g0;
+public interface t9 {
+    void L(String str);
 
-    public t9(u9 u9Var, int i10) {
-        super(i10);
-        this.f43543g0 = u9Var;
-    }
+    String P0();
 
-    @Override
-    public final void finishFragment() {
-        setFinishing(true);
-        this.f43543g0.dismiss();
-    }
+    void X0(org.telegram.messenger.is isVar);
 
-    @Override
-    public final void removeSelfFromStack() {
-        this.f43543g0.dismiss();
-    }
+    boolean i1(String str, k9 k9Var);
+
+    void onDismiss();
 }

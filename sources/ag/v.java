@@ -1,106 +1,154 @@
 package ag;
 
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.NinePatchDrawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-public abstract class v {
-    public static final Rect f1384a = new Rect();
+import android.app.Activity;
+import android.content.Context;
+import java.util.WeakHashMap;
+import org.telegram.ui.ActionBar.p6;
+import org.telegram.ui.Components.bi;
+import org.telegram.ui.km;
+import org.telegram.ui.mk;
+import org.telegram.ui.un;
+public final class v extends bi {
+    public final int F4;
+    public final Object G4;
 
-    static {
-        new Rect();
-        new RectF();
+    public v(org.telegram.ui.ActionBar.k2 k2Var, Activity activity, org.telegram.ui.ActionBar.k2 k2Var2, p6 p6Var, int i10) {
+        super(activity, k2Var2, false, false, true, p6Var);
+        this.F4 = i10;
+        this.G4 = k2Var;
     }
 
-    public static void a(Canvas canvas, Drawable drawable, float f7, float f10, float f11) {
-        float dpf2 = f11 / AndroidUtilities.dpf2(72.0f);
-        d(drawable, AndroidUtilities.dpf2(9.66f) + (f7 - AndroidUtilities.dpf2(36.0f)), AndroidUtilities.dpf2(4.66f) + (f10 - AndroidUtilities.dpf2(36.0f)), 53);
-        canvas.save();
-        canvas.scale(dpf2, dpf2, f7, f10);
-        drawable.draw(canvas);
-        canvas.restore();
-    }
-
-    public static void b(Canvas canvas, Drawable drawable, float f7) {
-        if (drawable != null && f7 != 0.0f) {
-            if (f7 == 1.0f) {
-                drawable.draw(canvas);
+    @Override
+    public void L() {
+        int i10;
+        int i11 = this.F4;
+        Object obj = this.G4;
+        switch (i11) {
+            case 0:
+                w wVar = (w) obj;
+                v vVar = wVar.L;
+                if (vVar != null && vVar.isShowing()) {
+                    org.telegram.messenger.i0.Z2(wVar.getParentActivity(), w.g0(wVar));
+                }
+                super.L();
                 return;
-            }
-            canvas.save();
-            canvas.scale(f7, f7, drawable.getBounds().exactCenterX(), drawable.getBounds().exactCenterY());
-            drawable.draw(canvas);
-            canvas.restore();
+            case 1:
+                un unVar = (un) obj;
+                v vVar2 = unVar.X1;
+                if (vVar2 != null && (vVar2.isShowing() || this.f24705o2)) {
+                    Activity parentActivity = unVar.getParentActivity();
+                    i10 = ((org.telegram.ui.ActionBar.k2) unVar).classGuid;
+                    org.telegram.messenger.i0.Z2(parentActivity, i10);
+                }
+                super.L();
+                unVar.ja(false, true);
+                km kmVar = unVar.l1;
+                if (kmVar != null) {
+                    WeakHashMap weakHashMap = r0.h0.f46123a;
+                    r0.x.c(kmVar);
+                    return;
+                }
+                return;
+            case 2:
+                super.L();
+                Runnable runnable = (Runnable) obj;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+            default:
+                super.L();
+                return;
         }
     }
 
-    public static void c(Rect rect, float f7, float f10, int i10, int i11, int i12) {
-        int round;
-        int round2;
-        int i13 = i12 & 7;
-        if (i13 != 3) {
-            if (i13 != 5) {
-                round = Math.round(f7 - (i10 / 2.0f));
-            } else {
-                round = Math.round(f7 - i10);
-            }
-        } else {
-            round = Math.round(f7);
+    @Override
+    public void n0() {
+        int i10;
+        mk mkVar;
+        int i11 = this.F4;
+        Object obj = this.G4;
+        switch (i11) {
+            case 0:
+                w wVar = (w) obj;
+                v vVar = wVar.L;
+                if (vVar != null) {
+                    vVar.A0(false);
+                }
+                v vVar2 = wVar.L;
+                if (vVar2 != null && vVar2.isShowing()) {
+                    org.telegram.messenger.i0.Z2(wVar.getParentActivity(), w.h0(wVar));
+                    return;
+                }
+                return;
+            case 1:
+                un unVar = (un) obj;
+                boolean z10 = this.f24705o2;
+                boolean M = this.f24721s2.M();
+                if (!M) {
+                    unVar.R3 = false;
+                    mk mkVar2 = unVar.Z;
+                    if (mkVar2 != null) {
+                        if (!z10) {
+                            mkVar2.L();
+                        }
+                        if (unVar.Z.getEditField() != null) {
+                            unVar.Z.getEditField().clearFocus();
+                        }
+                    }
+                }
+                if (!z10) {
+                    v vVar3 = unVar.X1;
+                    if (vVar3 != null) {
+                        vVar3.A0(false);
+                    }
+                    if (M && (mkVar = unVar.Z) != null && mkVar.getEditField() != null) {
+                        unVar.Z.getEditField().requestFocus();
+                    }
+                    v vVar4 = unVar.X1;
+                    if (vVar4 != null && vVar4.isShowing()) {
+                        Activity parentActivity = unVar.getParentActivity();
+                        i10 = ((org.telegram.ui.ActionBar.k2) unVar).classGuid;
+                        org.telegram.messenger.i0.Z2(parentActivity, i10);
+                    }
+                    unVar.ja(false, false);
+                    km kmVar = unVar.l1;
+                    if (kmVar != null) {
+                        WeakHashMap weakHashMap = r0.h0.f46123a;
+                        r0.x.c(kmVar);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 2:
+            default:
+                return;
+            case 3:
+                th.z2 z2Var = (th.z2) obj;
+                v vVar5 = z2Var.f49753r2;
+                if (vVar5 != null) {
+                    vVar5.A0(false);
+                }
+                th.t1 t1Var = z2Var.K1;
+                if (t1Var != null && t1Var.getEditField() != null) {
+                    z2Var.K1.getEditField().requestFocus();
+                    return;
+                }
+                return;
         }
-        int i14 = i12 & 112;
-        if (i14 != 48) {
-            if (i14 != 80) {
-                round2 = Math.round(f10 - (i11 / 2.0f));
-            } else {
-                round2 = Math.round(f10 - i11);
-            }
-        } else {
-            round2 = Math.round(f10);
-        }
-        rect.set(round, round2, i10 + round, i11 + round2);
     }
 
-    public static void d(Drawable drawable, float f7, float f10, int i10) {
-        if (drawable == null) {
-            return;
-        }
-        e(drawable, f7, f10, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), i10);
+    public v(Context context, org.telegram.ui.ActionBar.k2 k2Var, p6 p6Var, Runnable runnable) {
+        super(context, k2Var, false, false, true, p6Var);
+        this.F4 = 2;
+        this.G4 = runnable;
     }
 
-    public static void e(Drawable drawable, float f7, float f10, int i10, int i11, int i12) {
-        if (drawable != null) {
-            Rect rect = f1384a;
-            c(rect, f7, f10, i10, i11, i12);
-            drawable.setBounds(rect);
-        }
-    }
-
-    public static void f(ImageReceiver imageReceiver, float f7, float f10, int i10, int i11) {
-        if (imageReceiver != null) {
-            Rect rect = f1384a;
-            c(rect, f7, f10, i10, i11, 17);
-            imageReceiver.setImageCoords(rect);
-        }
-    }
-
-    public static void g(Drawable drawable, int i10, int i11, int i12, int i13) {
-        Rect rect = f1384a;
-        if (drawable.getPadding(rect)) {
-            drawable.setBounds(i10 - rect.left, i11 - rect.top, i12 + rect.right, i13 + rect.bottom);
-        } else {
-            drawable.setBounds(i10, i11, i12, i13);
-        }
-    }
-
-    public static void h(NinePatchDrawable ninePatchDrawable, Rect rect) {
-        Rect rect2 = f1384a;
-        if (ninePatchDrawable.getPadding(rect2)) {
-            ninePatchDrawable.setBounds(rect.left - rect2.left, rect.top - rect2.top, rect.right + rect2.right, rect.bottom + rect2.bottom);
-        } else {
-            ninePatchDrawable.setBounds(rect);
-        }
+    public v(th.z2 z2Var, Context context, p6 p6Var) {
+        super(context, null, false, false, true, p6Var);
+        this.F4 = 3;
+        this.G4 = z2Var;
     }
 }

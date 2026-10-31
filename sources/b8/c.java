@@ -1,28 +1,18 @@
 package b8;
 
-import android.os.IBinder;
-import android.os.IInterface;
 import android.os.Parcel;
-public final class c implements IInterface {
-    public final IBinder f3674a;
+import android.os.Parcelable;
+public abstract class c {
+    public static final int f2506a = 0;
 
-    public c(IBinder iBinder) {
-        this.f3674a = iBinder;
+    static {
+        c.class.getClassLoader();
     }
 
-    public final void F0(Parcel parcel, int i10) {
-        Parcel obtain = Parcel.obtain();
-        try {
-            this.f3674a.transact(i10, parcel, obtain, 0);
-            obtain.readException();
-        } finally {
-            parcel.recycle();
-            obtain.recycle();
+    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() == 0) {
+            return null;
         }
-    }
-
-    @Override
-    public final IBinder asBinder() {
-        return this.f3674a;
+        return (Parcelable) creator.createFromParcel(parcel);
     }
 }

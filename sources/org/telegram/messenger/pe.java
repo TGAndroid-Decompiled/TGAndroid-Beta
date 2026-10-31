@@ -1,30 +1,32 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-public final class pe implements Runnable {
-    public final int f20960a;
-    public final int f20961b;
-    public final Utilities.Callback2 f20962c;
+import java.io.File;
+public final class pe extends File {
+    public final int f17432a;
 
-    public pe(int i10, int i11, Utilities.Callback2 callback2) {
-        this.f20960a = i11;
-        this.f20961b = i10;
-        this.f20962c = callback2;
+    public pe(int i10, File file, String str) {
+        super(file, str);
+        this.f17432a = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f20960a) {
+    public final boolean delete() {
+        switch (this.f17432a) {
             case 0:
-                MessagesController.AnonymousClass1.lambda$getLocal$1(this.f20961b, this.f20962c);
-                return;
+                if (v2.f18448a) {
+                    f8.d("delete voice file (trimmed)");
+                }
+                return super.delete();
             case 1:
-                MessagesController.AnonymousClass4.lambda$getLocal$1(this.f20961b, this.f20962c);
-                return;
+                if (v2.f18448a) {
+                    f8.d("delete voice file (from resume)");
+                }
+                return super.delete();
             default:
-                MessagesController.AnonymousClass5.lambda$getLocal$2(this.f20961b, this.f20962c);
-                return;
+                if (v2.f18448a) {
+                    f8.d("delete camera file");
+                }
+                return super.delete();
         }
     }
 }

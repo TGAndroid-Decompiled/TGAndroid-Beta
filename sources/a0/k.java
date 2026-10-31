@@ -1,6 +1,6 @@
 package a0;
 
-import w7.e0;
+import w7.w5;
 public final class k {
     public int[] f23a;
     public int f24b;
@@ -13,9 +13,9 @@ public final class k {
             if (i10 == i11) {
                 int[] iArr = this.f23a;
                 int[] iArr2 = kVar.f23a;
-                xd.e a2 = e0.a(0, i11);
-                int i12 = a2.f51791a;
-                int i13 = a2.f51792b;
+                od.e a2 = w5.a(0, i11);
+                int i12 = a2.f14147a;
+                int i13 = a2.f14148b;
                 if (i12 <= i13) {
                     while (iArr[i12] == iArr2[i12]) {
                         if (i12 != i13) {

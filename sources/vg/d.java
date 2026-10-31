@@ -1,115 +1,158 @@
 package vg;
 
-import a8.me;
-import android.util.Log;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.Task;
-import java.io.File;
-import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import org.telegram.messenger.GenericProvider;
-import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.ActionBar.e2;
-import org.telegram.ui.Components.jd0;
-import zh.g4;
-public final class d implements b2, jd0, e9.k, e2.j, Continuation, s9.d, GenericProvider {
-    public final int f50192a;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Outline;
+import android.graphics.Paint;
+import android.graphics.RecordingCanvas;
+import android.graphics.Rect;
+import android.graphics.RenderNode;
+import android.os.Build;
+import org.telegram.messenger.i0;
+import org.telegram.ui.ActionBar.t6;
+import w7.k8;
+public final class d extends k8 {
+    public final float f50824a = i0.N(0.55f);
+    public final Outline f50825b = new Outline();
+    public final Rect f50826c = new Rect();
+    public final RenderNode d;
+    public final RenderNode e;
+    public final Paint f50827f;
+    public tg.g f50828g;
+    public boolean h;
+    public final f f50829i;
 
-    public d(int i10) {
-        this.f50192a = i10;
+    public d(f fVar) {
+        this.f50829i = fVar;
+        RenderNode renderNode = new RenderNode("BlurredNode");
+        this.d = renderNode;
+        this.e = new RenderNode("BlurredFill");
+        Paint paint = new Paint(1);
+        this.f50827f = paint;
+        this.h = true;
+        renderNode.setClipToOutline(true);
+        renderNode.setClipToBounds(true);
+        paint.setColor(0);
     }
 
     @Override
-    public void accept(Object obj) {
-        ((ExecutorService) obj).shutdown();
+    public final void a() {
+        this.d.discardDisplayList();
+        this.e.discardDisplayList();
+        this.h = true;
     }
 
     @Override
-    public java.lang.Object apply(java.lang.Object r26) {
-        throw new UnsupportedOperationException("Method not decompiled: vg.d.apply(java.lang.Object):java.lang.Object");
+    public final void b(Canvas canvas, hi.a aVar) {
+        f fVar = this.f50829i;
+        e eVar = fVar.M;
+        if (!this.d.hasDisplayList() || this.h) {
+            e();
+        }
+        int r12 = t6.r1(this.d.getAlpha() * fVar.R, fVar.f50845r);
+        int alpha = Color.alpha(r12);
+        Paint paint = this.f50827f;
+        if (alpha != 0) {
+            paint.setShadowLayer(fVar.P, 0.0f, fVar.Q, r12);
+            eVar.c(canvas, paint, fVar.O);
+        }
+        int r13 = t6.r1(this.d.getAlpha() * fVar.R, fVar.f50849y);
+        if (Color.alpha(r13) != 0) {
+            paint.setShadowLayer(this.f50824a, 0.0f, 0.0f, r13);
+            eVar.c(canvas, paint, fVar.O);
+        }
+        Rect rect = eVar.f50839m;
+        canvas.save();
+        canvas.translate(rect.left, rect.top);
+        canvas.drawRenderNode(this.d);
+        canvas.restore();
     }
 
-    @Override
-    public Object d1(me meVar) {
-        Set x9 = meVar.x(za.a.class);
-        za.c cVar = za.c.f52900c;
-        if (cVar == null) {
-            synchronized (za.c.class) {
-                try {
-                    cVar = za.c.f52900c;
-                    if (cVar == null) {
-                        cVar = new za.c(0);
-                        za.c.f52900c = cVar;
-                    }
-                } finally {
-                }
+    public final boolean c() {
+        return this.d.hasDisplayList();
+    }
+
+    public final void d() {
+        f fVar = this.f50829i;
+        Rect rect = fVar.M.f50839m;
+        int width = rect.width();
+        int height = rect.height();
+        Rect rect2 = this.f50826c;
+        rect2.set(0, 0, width, height);
+        float[] fArr = fVar.M.f50831b;
+        Outline outline = this.f50825b;
+        f.l(outline, rect2, fArr);
+        outline.setAlpha(1.0f);
+        if (!rect.isEmpty()) {
+            this.e.setPosition(0, 0, rect.width(), rect.height());
+            this.d.setPosition(0, 0, rect.width(), rect.height());
+            this.d.setOutline(outline);
+            this.h = true;
+        }
+    }
+
+    public final void e() {
+        this.h = false;
+        f fVar = this.f50829i;
+        e eVar = fVar.M;
+        Rect rect = eVar.f50839m;
+        float f7 = fVar.d;
+        float f10 = rect.left + f7;
+        float f11 = fVar.e;
+        float f12 = rect.top + f11;
+        float f13 = rect.right + f7;
+        float f14 = rect.bottom + f11;
+        RecordingCanvas beginRecording = this.e.beginRecording();
+        beginRecording.save();
+        beginRecording.translate(-f10, -f12);
+        if (this.f50828g != null && Build.VERSION.SDK_INT >= 33) {
+            int i10 = eVar.f50833f;
+            if (i10 <= 0) {
+                i10 = i0.L(11.0f);
             }
+            int max = Math.max(Math.min(i10, Math.min(rect.width(), rect.height()) / 5), 1);
+            float height = rect.height();
+            float[] fArr = eVar.f50832c;
+            this.f50828g.a(rect.width(), height, fArr[0], fArr[2], fArr[4], fArr[6], max, eVar.f50834g, eVar.h, fVar.f50846s);
         }
-        return new za.b(x9, cVar);
-    }
-
-    @Override
-    public String f(int i10) {
-        switch (this.f50192a) {
-            case 1:
-                return String.valueOf(i10);
-            default:
-                return String.format("%02d", Integer.valueOf(i10 * 5));
-        }
-    }
-
-    @Override
-    public void h(e2 e2Var, int i10) {
-        switch (this.f50192a) {
-            case 0:
-                return;
-            case 3:
-                e2Var.dismiss();
-                return;
-            case 4:
-                e2Var.dismiss();
-                return;
-            case 17:
-                e2Var.dismiss();
-                return;
-            default:
-                e2Var.dismiss();
-                return;
-        }
-    }
-
-    @Override
-    public Object provide(Object obj) {
-        Integer num = (Integer) obj;
-        int i10 = g4.f53070k0;
-        return 0;
-    }
-
-    @Override
-    public Object then(Task task) {
-        boolean z10;
-        File file;
-        if (task.isSuccessful()) {
-            y9.b bVar = (y9.b) task.getResult();
-            v9.b bVar2 = v9.b.f50135a;
-            bVar2.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f52474b);
-            z10 = true;
-            if (bVar.f52475c.delete()) {
-                bVar2.b("Deleted report file: " + file.getPath());
-            } else {
-                bVar2.d("Crashlytics could not delete report file: " + file.getPath(), null);
-            }
+        fVar.f50843f.e(beginRecording, f10, f12, f13, f14);
+        beginRecording.restore();
+        this.e.endRecording();
+        RecordingCanvas beginRecording2 = this.d.beginRecording();
+        if (Color.alpha(fVar.f50846s) == 255) {
+            beginRecording2.drawColor(fVar.f50846s);
         } else {
-            Log.w("FirebaseCrashlytics", "Crashlytics report could not be enqueued to DataTransport", task.getException());
-            z10 = false;
+            beginRecording2.drawRenderNode(this.e);
+            if (this.f50828g == null && Color.alpha(fVar.f50846s) != 0) {
+                beginRecording2.drawColor(fVar.f50846s);
+            }
         }
-        return Boolean.valueOf(z10);
+        this.d.endRecording();
     }
 
-    public d(aa.m0 m0Var) {
-        this.f50192a = 13;
+    public final void f(float f7) {
+        this.d.setAlpha(f7);
     }
 
-    private final void b(e2 e2Var, int i10) {
+    public final void g(boolean z10) {
+        this.d.setClipToOutline(z10);
+    }
+
+    public final void h(boolean z10) {
+        boolean z11;
+        if (this.f50828g != null) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        if (z10 != z11 && Build.VERSION.SDK_INT >= 33) {
+            if (z10) {
+                this.f50828g = new tg.g(this.e);
+            } else {
+                this.f50828g = null;
+                this.e.setRenderEffect(null);
+            }
+            this.h = true;
+        }
     }
 }

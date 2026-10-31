@@ -1,12 +1,19 @@
 package yd;
-public interface e extends b, jd.a {
-    boolean isExternal();
 
-    boolean isInfix();
+import td.c0;
+public final class e implements c0 {
+    public final cd.h f54399a;
 
-    boolean isInline();
+    public e(cd.h hVar) {
+        this.f54399a = hVar;
+    }
 
-    boolean isOperator();
+    @Override
+    public final cd.h c() {
+        return this.f54399a;
+    }
 
-    boolean isSuspend();
+    public final String toString() {
+        return "CoroutineScope(coroutineContext=" + this.f54399a + ')';
+    }
 }

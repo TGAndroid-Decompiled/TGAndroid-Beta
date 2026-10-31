@@ -1,31 +1,12 @@
 package th;
 
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.WebFile;
-import org.telegram.tgnet.TLRPC;
-public final class f extends sh.e {
-    public final TLRPC.MessageMedia f49198b;
-
-    public f(TLRPC.MessageMedia messageMedia) {
-        this.f49198b = messageMedia;
-        this.f48666a.setRoundRadius(AndroidUtilities.dp(7.0f));
-        ImageReceiver imageReceiver = this.f48666a;
-        TLRPC.GeoPoint geoPoint = messageMedia.geo;
-        if (geoPoint == null) {
-            imageReceiver.clearImage();
-        } else {
-            imageReceiver.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(geoPoint, 38, 38, 13, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), (String) null, (ImageLocation) null, (String) null, (Drawable) null, (Object) null, 0);
-        }
-    }
-
+public final class f extends org.telegram.ui.Components.e5 {
     @Override
-    public final void c(Canvas canvas, int i10, int i11) {
-        ImageReceiver imageReceiver = this.f48666a;
-        imageReceiver.setImageCoords(0.0f, 0.0f, i10, i11);
-        imageReceiver.draw(canvas);
+    public final void draw(Canvas canvas) {
+        canvas.save();
+        canvas.translate(org.telegram.messenger.i0.L(-2.0f), org.telegram.messenger.i0.L(1.0f));
+        super.draw(canvas);
+        canvas.restore();
     }
 }

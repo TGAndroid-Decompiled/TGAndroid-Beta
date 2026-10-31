@@ -1,65 +1,51 @@
 package ib;
 
-import java.lang.reflect.Type;
-import java.util.Collection;
-public final class c extends fb.u {
-    public final int f13912a = 0;
-    public final Object f13913b;
-    public final Object f13914c;
+import android.os.IBinder;
+import android.os.RemoteException;
+import android.util.Log;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+public final class c {
+    public final HashMap f8240a = new HashMap();
 
-    public c(fb.g gVar, Type type, fb.u uVar, hb.n nVar) {
-        this.f13913b = new o(gVar, uVar, type);
-        this.f13914c = nVar;
+    public c() {
     }
 
-    @Override
-    public final Object read(nb.a aVar) {
-        switch (this.f13912a) {
-            case 0:
-                if (aVar.x() == 9) {
-                    aVar.t();
-                    return null;
+    public void a(IBinder iBinder) {
+        synchronized (this.f8240a) {
+            if (iBinder != null) {
+                try {
+                    iBinder.queryLocalInterface("com.google.android.gms.wearable.internal.IWearableService");
+                } catch (Throwable th2) {
+                    throw th2;
                 }
-                Collection collection = (Collection) ((hb.n) this.f13914c).U1();
-                aVar.a();
-                while (aVar.k()) {
-                    collection.add(((fb.u) ((o) this.f13913b).f13949c).read(aVar));
+            }
+            new y8.a();
+            for (Map.Entry entry : this.f8240a.entrySet()) {
+                if (entry.getValue() == null) {
+                    try {
+                        throw null;
+                        break;
+                    } catch (RemoteException unused) {
+                        String valueOf = String.valueOf(entry.getKey());
+                        Log.w("WearableClient", "onPostInitHandler: Didn't add: " + valueOf + "/null");
+                    }
+                } else {
+                    throw new ClassCastException();
                 }
-                aVar.e();
-                return collection;
-            default:
-                Class cls = (Class) this.f13913b;
-                Object read = ((x0) this.f13914c).f13974c.read(aVar);
-                if (read != null && !cls.isInstance(read)) {
-                    throw new RuntimeException("Expected a " + cls.getName() + " but was " + read.getClass().getName() + "; at path " + aVar.j());
-                }
-                return read;
+            }
         }
     }
 
-    @Override
-    public final void write(nb.b bVar, Object obj) {
-        switch (this.f13912a) {
-            case 0:
-                Collection<Object> collection = (Collection) obj;
-                if (collection == null) {
-                    bVar.i();
-                    return;
-                }
-                bVar.b();
-                for (Object obj2 : collection) {
-                    ((o) this.f13913b).write(bVar, obj2);
-                }
-                bVar.e();
-                return;
-            default:
-                ((x0) this.f13914c).f13974c.write(bVar, obj);
-                return;
+    public c(Set set) {
+        Iterator it = set.iterator();
+        while (it.hasNext()) {
+            b bVar = (b) it.next();
+            HashMap hashMap = this.f8240a;
+            bVar.getClass();
+            hashMap.put(a.class, bVar.f8239a);
         }
-    }
-
-    public c(x0 x0Var, Class cls) {
-        this.f13914c = x0Var;
-        this.f13913b = cls;
     }
 }

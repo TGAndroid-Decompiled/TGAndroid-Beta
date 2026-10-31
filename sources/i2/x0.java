@@ -4,7 +4,7 @@ public interface x0 {
 
     boolean b();
 
-    void f(b2.a1 a1Var);
+    void c(b2.z0 z0Var);
 
-    b2.a1 h();
+    b2.z0 g();
 }

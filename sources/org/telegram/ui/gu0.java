@@ -1,84 +1,34 @@
 package org.telegram.ui;
+public final class gu0 implements Runnable {
+    public final int f37649a;
+    public final PrivacyControlActivity f37650b;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-import androidx.core.widget.NestedScrollView;
-public final class gu0 extends org.telegram.ui.Components.b21 {
-    public boolean f39692a;
-    public float f39693b;
-    public NestedScrollView f39694c;
-    public FrameLayout d;
-
-    public gu0(Context context) {
-        super(context);
-        this.f39692a = false;
-        this.f39693b = 1.0f;
-    }
-
-    public final void b(int i10, boolean z10) {
-        super.setVisibility(i10);
-        if (this.f39692a && z10) {
-            this.f39694c.setVisibility(i10);
-        }
+    public gu0(PrivacyControlActivity privacyControlActivity, int i10) {
+        this.f37649a = i10;
+        this.f37650b = privacyControlActivity;
     }
 
     @Override
-    public float getAlpha() {
-        if (this.f39692a) {
-            return this.f39693b;
+    public final void run() {
+        switch (this.f37649a) {
+            case 0:
+                PrivacyControlActivity privacyControlActivity = this.f37650b;
+                privacyControlActivity.getClass();
+                privacyControlActivity.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
+                return;
+            case 1:
+                PrivacyControlActivity.Y(this.f37650b);
+                return;
+            case 2:
+                PrivacyControlActivity privacyControlActivity2 = this.f37650b;
+                privacyControlActivity2.getClass();
+                privacyControlActivity2.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
+                return;
+            default:
+                PrivacyControlActivity privacyControlActivity3 = this.f37650b;
+                privacyControlActivity3.getClass();
+                privacyControlActivity3.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                return;
         }
-        return super.getAlpha();
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        if (this.d != null && getParent() == this.d) {
-            this.f39692a = true;
-            this.f39694c.setVisibility(getVisibility());
-            this.f39694c.setAlpha(this.f39693b);
-            super.setAlpha(1.0f);
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        if (this.f39692a) {
-            this.f39692a = false;
-            this.f39694c.setVisibility(8);
-            super.setAlpha(this.f39693b);
-        }
-    }
-
-    @Override
-    public void setAlpha(float f7) {
-        this.f39693b = f7;
-        if (this.f39692a) {
-            this.f39694c.setAlpha(f7);
-        } else {
-            super.setAlpha(f7);
-        }
-    }
-
-    public void setContainer(FrameLayout frameLayout) {
-        this.d = frameLayout;
-    }
-
-    public void setScrollView(NestedScrollView nestedScrollView) {
-        this.f39694c = nestedScrollView;
-    }
-
-    @Override
-    public void setTranslationY(float f7) {
-        super.setTranslationY(f7);
-        if (this.f39692a) {
-            this.f39694c.invalidate();
-        }
-    }
-
-    @Override
-    public void setVisibility(int i10) {
-        b(i10, true);
     }
 }

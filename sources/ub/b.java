@@ -1,12 +1,10 @@
 package ub;
+public final class b {
+    public final c f50201a;
+    public final jb.d f50202b;
 
-import androidx.lifecycle.b0;
-import androidx.lifecycle.m;
-import androidx.lifecycle.s;
-import com.google.android.gms.common.api.n;
-import java.io.Closeable;
-public interface b extends Closeable, s, n {
-    @Override
-    @b0(m.ON_DESTROY)
-    void close();
+    public b(c cVar, jb.d dVar) {
+        this.f50201a = cVar;
+        this.f50202b = dVar;
+    }
 }

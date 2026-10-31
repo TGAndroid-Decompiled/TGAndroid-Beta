@@ -1,44 +1,43 @@
 package bi;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-public final class a1 implements TextWatcher {
-    public final b1 f4250a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+import java.util.HashSet;
+public final class a1 extends View implements org.telegram.ui.ActionBar.k6 {
+    public final org.telegram.ui.ActionBar.p6 f2835a;
+    public final Paint f2836b;
+    public a f2837c;
 
-    public a1(b1 b1Var) {
-        this.f4250a = b1Var;
+    public a1(Context context, org.telegram.ui.ActionBar.p6 p6Var) {
+        super(context);
+        this.f2836b = new Paint();
+        this.f2835a = p6Var;
+        updateColors();
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z10;
-        bg.a i10;
-        String obj;
-        int indexOf;
-        if (editable != null && !editable.toString().isEmpty() && !".".equals(editable.toString())) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        if (!z10 && (indexOf = (obj = editable.toString()).indexOf(46)) >= 0 && (obj.length() - indexOf) - 1 > 2) {
-            editable.delete(indexOf + 3, obj.length());
-        }
-        b1 b1Var = this.f4250a;
-        if (!z10) {
-            i10 = bg.a.h(editable.toString(), b1Var.f4318n0.f3978a);
-        } else {
-            i10 = bg.a.i(0L, b1Var.f4318n0.f3978a);
-        }
-        b1Var.U(i10, false, false, true);
-        b1Var.f4309d0.c(b1Var.f4310e0.isFocused(), true ^ TextUtils.isEmpty(b1Var.f4310e0.getText()));
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.tl));
+    }
+
+    public a getRow() {
+        return this.f2837c;
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void onDraw(Canvas canvas) {
+        canvas.drawRect(0.0f, org.telegram.messenger.i0.L(6.0f), getMeasuredWidth(), org.telegram.messenger.i0.L(6.0f) + 1, this.f2836b);
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), org.telegram.messenger.i0.L(6.0f) + 1);
+    }
+
+    @Override
+    public final void updateColors() {
+        this.f2836b.setColor(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.tl, this.f2835a));
     }
 }

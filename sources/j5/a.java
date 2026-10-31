@@ -1,58 +1,54 @@
 package j5;
-public final class a {
-    public final Integer f15507a;
-    public final Object f15508b;
-    public final d f15509c;
-    public final b d;
 
-    public a(Integer num, Object obj, d dVar, b bVar) {
-        this.f15507a = num;
-        if (obj != null) {
-            this.f15508b = obj;
-            this.f15509c = dVar;
-            this.d = bVar;
-            return;
-        }
-        throw new NullPointerException("Null payload");
+import i5.c;
+import j$.util.DesugarCollections;
+import java.nio.charset.Charset;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.regex.Pattern;
+import l5.k;
+import v7.m8;
+public final class a implements k {
+    public static final String f9665c;
+    public static final Set d;
+    public static final a e;
+    public static final a f9666f;
+    public final String f9667a;
+    public final String f9668b;
+
+    static {
+        String a2 = m8.a("hts/frbslgiggolai.o/0clgbthfra=snpoo", "tp:/ieaeogn.ogepscmvc/o/ac?omtjo_rt3");
+        f9665c = a2;
+        String a10 = m8.a("hts/frbslgigp.ogepscmv/ieo/eaybtho", "tp:/ieaeogn-agolai.o/1frlglgc/aclg");
+        String a11 = m8.a("AzSCki82AwsLzKd5O8zo", "IayckHiZRO1EFl1aGoK");
+        d = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList(new c("proto"), new c("json"))));
+        e = new a(a2, null);
+        f9666f = new a(a10, a11);
     }
 
-    public final boolean equals(Object obj) {
-        b bVar;
-        if (obj == this) {
-            return true;
-        }
-        if (obj instanceof a) {
-            a aVar = (a) obj;
-            b bVar2 = aVar.d;
-            Integer num = aVar.f15507a;
-            Integer num2 = this.f15507a;
-            if (num2 != null ? num2.equals(num) : num == null) {
-                if (this.f15508b.equals(aVar.f15508b) && this.f15509c.equals(aVar.f15509c) && ((bVar = this.d) != null ? bVar.equals(bVar2) : bVar2 == null)) {
-                    return true;
+    public a(String str, String str2) {
+        this.f9667a = str;
+        this.f9668b = str2;
+    }
+
+    public static a a(byte[] bArr) {
+        String str = new String(bArr, Charset.forName("UTF-8"));
+        if (str.startsWith("1$")) {
+            String[] split = str.substring(2).split(Pattern.quote("\\"), 2);
+            if (split.length == 2) {
+                String str2 = split[0];
+                if (!str2.isEmpty()) {
+                    String str3 = split[1];
+                    if (str3.isEmpty()) {
+                        str3 = null;
+                    }
+                    return new a(str2, str3);
                 }
+                throw new IllegalArgumentException("Missing endpoint in CCTDestination extras");
             }
+            throw new IllegalArgumentException("Extra is not a valid encoded LegacyFlgDestination");
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        int hashCode;
-        int i10 = 0;
-        Integer num = this.f15507a;
-        if (num == null) {
-            hashCode = 0;
-        } else {
-            hashCode = num.hashCode();
-        }
-        int hashCode2 = (((((hashCode ^ 1000003) * 1000003) ^ this.f15508b.hashCode()) * 1000003) ^ this.f15509c.hashCode()) * 1000003;
-        b bVar = this.d;
-        if (bVar != null) {
-            i10 = bVar.hashCode();
-        }
-        return i10 ^ hashCode2;
-    }
-
-    public final String toString() {
-        return "Event{code=" + this.f15507a + ", payload=" + this.f15508b + ", priority=" + this.f15509c + ", productData=" + this.d + "}";
+        throw new IllegalArgumentException("Version marker missing from extras");
     }
 }

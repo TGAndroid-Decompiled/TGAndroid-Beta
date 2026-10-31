@@ -1,26 +1,35 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_account;
-public final class i41 implements org.telegram.ui.ActionBar.b2, org.telegram.ui.Components.pl0 {
-    public final f61 f40042a;
+public final class i41 implements org.telegram.messenger.q20 {
+    public final int f38173a;
+    public final SessionsActivity f38174b;
 
-    public i41(f61 f61Var) {
-        this.f40042a = f61Var;
+    public i41(SessionsActivity sessionsActivity, int i10) {
+        this.f38173a = i10;
+        this.f38174b = sessionsActivity;
     }
 
     @Override
-    public void d() {
-        this.f40042a.m();
-    }
-
-    @Override
-    public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        f61 f61Var = this.f40042a;
-        int i11 = f61Var.V;
-        ConnectionsManager.getInstance(i11).sendRequest(new TL_account.clearRecentEmojiStatuses(), null);
-        MediaDataController.getInstance(i11).clearRecentEmojiStatuses();
-        f61Var.B(false, true, true);
+    public final void a(Object obj) {
+        switch (this.f38173a) {
+            case 0:
+                TL_account.connectedBots connectedbots = (TL_account.connectedBots) obj;
+                SessionsActivity sessionsActivity = this.f38174b;
+                sessionsActivity.getClass();
+                if (connectedbots != null) {
+                    sessionsActivity.f34037f = connectedbots.connected_bots;
+                    if (sessionsActivity.f34034a != null) {
+                        sessionsActivity.q0();
+                        sessionsActivity.f34034a.f();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                SessionsActivity.Z(this.f38174b, (Boolean) obj);
+                return;
+        }
     }
 }

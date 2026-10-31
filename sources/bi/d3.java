@@ -1,33 +1,42 @@
 package bi;
+public final class d3 implements Runnable {
+    public final int f2919a;
+    public final n1 f2920b;
+    public final int f2921c;
 
-import org.telegram.messenger.Utilities;
-public final class d3 implements Utilities.Callback {
-    public final int f4486a;
-    public final h7 f4487b;
-    public final Long f4488c;
-    public final vg.n1[] d;
-
-    public d3(h7 h7Var, Long l4, vg.n1[] n1VarArr, int i10) {
-        this.f4486a = i10;
-        this.f4487b = h7Var;
-        this.f4488c = l4;
-        this.d = n1VarArr;
+    public d3(n1 n1Var, int i10, int i11) {
+        this.f2919a = i11;
+        this.f2920b = n1Var;
+        this.f2921c = i10;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f4486a) {
+    public final void run() {
+        switch (this.f2919a) {
             case 0:
-                qf.c cVar = (qf.c) obj;
-                cVar.d();
-                long longValue = this.f4488c.longValue();
-                h7 h7Var = this.f4487b;
-                h7Var.P1(longValue, new v3(h7Var, cVar, this.d, 0));
+                n1 n1Var = this.f2920b;
+                n1Var.N();
+                n1Var.setSelection(Math.max(0, Math.min(this.f2921c, n1Var.length())));
+                return;
+            case 1:
+                n1 n1Var2 = this.f2920b;
+                n1Var2.N();
+                n1Var2.setSelection(Math.max(0, Math.min(this.f2921c, n1Var2.length())));
+                return;
+            case 2:
+                n1 n1Var3 = this.f2920b;
+                n1Var3.N();
+                n1Var3.setSelection(Math.max(0, Math.min(this.f2921c, n1Var3.length())));
+                return;
+            case 3:
+                n1 n1Var4 = this.f2920b;
+                n1Var4.N();
+                n1Var4.setSelection(Math.min(this.f2921c, n1Var4.length()));
                 return;
             default:
-                h7 h7Var2 = this.f4487b;
-                h7Var2.getClass();
-                h7Var2.O1(this.f4488c.longValue(), null, (qf.c) obj, this.d[0]);
+                n1 n1Var5 = this.f2920b;
+                n1Var5.N();
+                n1Var5.setSelection(Math.max(0, Math.min(this.f2921c, n1Var5.length())));
                 return;
         }
     }

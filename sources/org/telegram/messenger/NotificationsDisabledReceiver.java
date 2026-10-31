@@ -6,10 +6,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.SystemClock;
 import android.text.TextUtils;
-import org.telegram.ui.Components.b10;
+import org.telegram.tgnet.ConnectionsManager;
 public class NotificationsDisabledReceiver extends BroadcastReceiver {
     @Override
-    public void onReceive(Context context, Intent intent) {
+    public final void onReceive(Context context, Intent intent) {
         if ("android.app.action.NOTIFICATION_CHANNEL_BLOCK_STATE_CHANGED".equals(intent.getAction())) {
             String stringExtra = intent.getStringExtra("android.app.extra.NOTIFICATION_CHANNEL_ID");
             int i10 = 0;
@@ -17,95 +17,95 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
             if (!TextUtils.isEmpty(stringExtra) && !stringExtra.contains("_ia_")) {
                 String[] split = stringExtra.split("_");
                 if (split.length >= 3) {
-                    ApplicationLoader.postInitApplication();
-                    int intValue = Utilities.parseInt((CharSequence) split[0]).intValue();
+                    w0.w();
+                    int intValue = Utilities.z(split[0]).intValue();
                     if (intValue >= 0 && intValue < 4) {
-                        if (BuildVars.LOGS_ENABLED) {
-                            FileLog.d("received disabled notification channel event for " + stringExtra + " state = " + booleanExtra);
+                        if (v2.f18448a) {
+                            f8.b("received disabled notification channel event for " + stringExtra + " state = " + booleanExtra);
                         }
-                        if (SystemClock.elapsedRealtime() - AccountInstance.getInstance(intValue).getNotificationsController().lastNotificationChannelCreateTime <= 1000) {
-                            if (BuildVars.LOGS_ENABLED) {
-                                FileLog.d("received disable notification event right after creating notification channel, ignoring");
+                        if (SystemClock.elapsedRealtime() - ot.t(c.a(intValue).f14863a).O <= 1000) {
+                            if (v2.f18448a) {
+                                f8.b("received disable notification event right after creating notification channel, ignoring");
                                 return;
                             }
                             return;
                         }
-                        SharedPreferences notificationsSettings = AccountInstance.getInstance(intValue).getNotificationsSettings();
+                        SharedPreferences c10 = c.a(intValue).c();
                         int i11 = Integer.MAX_VALUE;
                         if (split[1].startsWith("channel")) {
-                            if (stringExtra.equals(notificationsSettings.getString("channels", null))) {
-                                if (BuildVars.LOGS_ENABLED) {
-                                    FileLog.d("apply channel{channel} " + stringExtra + " state");
+                            if (stringExtra.equals(c10.getString("channels", null))) {
+                                if (v2.f18448a) {
+                                    f8.b("apply channel{channel} " + stringExtra + " state");
                                 }
-                                SharedPreferences.Editor edit = notificationsSettings.edit();
-                                String globalNotificationsKey = NotificationsController.getGlobalNotificationsKey(2);
+                                SharedPreferences.Editor edit = c10.edit();
+                                String q6 = ot.q(2);
                                 if (booleanExtra) {
                                     i10 = Integer.MAX_VALUE;
                                 }
-                                edit.putInt(globalNotificationsKey, i10).commit();
-                                AccountInstance.getInstance(intValue).getNotificationsController().updateServerNotificationsSettings(2);
+                                edit.putInt(q6, i10).commit();
+                                ot.t(c.a(intValue).f14863a).b0(2);
                             } else {
                                 return;
                             }
                         } else if (split[1].startsWith("groups")) {
-                            if (stringExtra.equals(notificationsSettings.getString("groups", null))) {
-                                if (BuildVars.LOGS_ENABLED) {
-                                    FileLog.d("apply channel{groups} " + stringExtra + " state");
+                            if (stringExtra.equals(c10.getString("groups", null))) {
+                                if (v2.f18448a) {
+                                    f8.b("apply channel{groups} " + stringExtra + " state");
                                 }
-                                SharedPreferences.Editor edit2 = notificationsSettings.edit();
-                                String globalNotificationsKey2 = NotificationsController.getGlobalNotificationsKey(0);
+                                SharedPreferences.Editor edit2 = c10.edit();
+                                String q10 = ot.q(0);
                                 if (!booleanExtra) {
                                     i11 = 0;
                                 }
-                                edit2.putInt(globalNotificationsKey2, i11).commit();
-                                AccountInstance.getInstance(intValue).getNotificationsController().updateServerNotificationsSettings(0);
+                                edit2.putInt(q10, i11).commit();
+                                ot.t(c.a(intValue).f14863a).b0(0);
                             } else {
                                 return;
                             }
                         } else if (split[1].startsWith("private")) {
-                            if (stringExtra.equals(notificationsSettings.getString("private", null))) {
-                                if (BuildVars.LOGS_ENABLED) {
-                                    FileLog.d("apply channel{private} " + stringExtra + " state");
+                            if (stringExtra.equals(c10.getString("private", null))) {
+                                if (v2.f18448a) {
+                                    f8.b("apply channel{private} " + stringExtra + " state");
                                 }
-                                SharedPreferences.Editor edit3 = notificationsSettings.edit();
-                                String globalNotificationsKey3 = NotificationsController.getGlobalNotificationsKey(1);
+                                SharedPreferences.Editor edit3 = c10.edit();
+                                String q11 = ot.q(1);
                                 if (booleanExtra) {
                                     i10 = Integer.MAX_VALUE;
                                 }
-                                edit3.putInt(globalNotificationsKey3, i10).commit();
-                                AccountInstance.getInstance(intValue).getNotificationsController().updateServerNotificationsSettings(1);
+                                edit3.putInt(q11, i10).commit();
+                                ot.t(c.a(intValue).f14863a).b0(1);
                             } else {
                                 return;
                             }
                         } else if (split[1].startsWith("stories")) {
-                            if (stringExtra.equals(notificationsSettings.getString("stories", null))) {
-                                if (BuildVars.LOGS_ENABLED) {
-                                    FileLog.d("apply channel{stories} " + stringExtra + " state");
+                            if (stringExtra.equals(c10.getString("stories", null))) {
+                                if (v2.f18448a) {
+                                    f8.b("apply channel{stories} " + stringExtra + " state");
                                 }
-                                notificationsSettings.edit().putBoolean(NotificationsController.getGlobalNotificationsKey(3), !booleanExtra).commit();
-                                AccountInstance.getInstance(intValue).getNotificationsController().updateServerNotificationsSettings(1);
+                                c10.edit().putBoolean(ot.q(3), !booleanExtra).commit();
+                                ot.t(c.a(intValue).f14863a).b0(1);
                             } else {
                                 return;
                             }
                         } else {
-                            long longValue = Utilities.parseLong(split[1]).longValue();
+                            long longValue = Utilities.A(split[1]).longValue();
                             if (longValue != 0) {
-                                String sharedPrefKey = NotificationsController.getSharedPrefKey(longValue, 0);
-                                if (stringExtra.equals(notificationsSettings.getString("org.telegram.key" + longValue, null))) {
-                                    if (BuildVars.LOGS_ENABLED) {
-                                        FileLog.d("apply channel{else} " + stringExtra + " state");
+                                String v = ot.v(longValue, 0, false);
+                                if (stringExtra.equals(c10.getString("org.telegram.key" + longValue, null))) {
+                                    if (v2.f18448a) {
+                                        f8.b("apply channel{else} " + stringExtra + " state");
                                     }
-                                    SharedPreferences.Editor edit4 = notificationsSettings.edit();
-                                    String j10 = b10.j("notify2_", sharedPrefKey);
+                                    SharedPreferences.Editor edit4 = c10.edit();
+                                    String h = sc.e.h("notify2_", v);
                                     if (booleanExtra) {
                                         i10 = 2;
                                     }
-                                    edit4.putInt(j10, i10);
+                                    edit4.putInt(h, i10);
                                     if (!booleanExtra) {
-                                        edit4.remove("notifyuntil_" + sharedPrefKey);
+                                        edit4.remove("notifyuntil_" + v);
                                     }
                                     edit4.commit();
-                                    AccountInstance.getInstance(intValue).getNotificationsController().updateServerNotificationsSettings(longValue, 0L, true);
+                                    ot.t(c.a(intValue).f14863a).c0(longValue, 0L, true);
                                 } else {
                                     return;
                                 }
@@ -113,7 +113,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                                 return;
                             }
                         }
-                        AccountInstance.getInstance(intValue).getConnectionsManager().resumeNetworkMaybe();
+                        ConnectionsManager.getInstance(c.a(intValue).f14863a).resumeNetworkMaybe();
                     }
                 }
             }

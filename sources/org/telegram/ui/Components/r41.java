@@ -1,51 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewPropertyAnimator;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class r41 extends s4.u0 {
-    public final g51 f32119a;
+import android.animation.ValueAnimator;
+public final class r41 implements ValueAnimator.AnimatorUpdateListener {
+    public int f29830a = 0;
+    public final int f29831b;
+    public final w41 f29832c;
 
-    public r41(g51 g51Var) {
-        this.f32119a = g51Var;
+    public r41(w41 w41Var, int i10) {
+        this.f29832c = w41Var;
+        this.f29831b = i10;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        g51 g51Var = this.f32119a;
-        q41 q41Var = g51Var.M;
-        if (i10 == 0) {
-            g51Var.L = false;
-        }
-        if ((i10 == 0 || i10 == 2) && g51Var.K(false) > 0.0f && g51Var.K(false) < AndroidUtilities.dp(96.0f) && q41Var.canScrollVertically(1) && g51.F(g51Var)) {
-            g51Var.L = true;
-            q41Var.w0(0, (int) g51Var.K(false), null);
-        }
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ViewGroup viewGroup;
-        float f7;
-        g51 g51Var = this.f32119a;
-        viewGroup = ((org.telegram.ui.ActionBar.k3) g51Var).containerView;
-        viewGroup.invalidate();
-        boolean canScrollVertically = g51Var.M.canScrollVertically(1);
-        View view = g51Var.Q;
-        Boolean bool = g51Var.W;
-        if (bool != null && bool.booleanValue() == canScrollVertically) {
-            return;
-        }
-        g51Var.W = Boolean.valueOf(canScrollVertically);
-        view.animate().cancel();
-        ViewPropertyAnimator animate = view.animate();
-        if (canScrollVertically) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        org.telegram.messenger.wh.q(animate.alpha(f7), ds.h, 320L);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        int floatValue = (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * this.f29831b);
+        w41 w41Var = this.f29832c;
+        w41Var.N = true;
+        w41Var.f31999n.scrollBy(0, floatValue - this.f29830a);
+        w41Var.N = false;
+        this.f29830a = floatValue;
     }
 }

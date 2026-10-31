@@ -1,93 +1,68 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
+import android.content.Context;
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class u01 extends FrameLayout {
-    public final x01 f33184a;
-    public boolean f33185b;
-    public boolean f33186c;
-    public boolean d;
-    public boolean e;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+public final class u01 extends sk0 {
+    public Context f30743c;
+    public ArrayList d;
 
-    public u01(x01 x01Var, View view, boolean z10) {
-        super(x01Var.getContext());
-        this.d = false;
-        this.e = true;
-        this.f33184a = x01Var;
-        setWillNotDraw(false);
-        if (!z10) {
-            setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f));
-        }
-        addView(view, kb1.g(-1.0f, -1));
+    @Override
+    public final boolean D(s4.c1 c1Var) {
+        return true;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        float f7;
-        float f10;
-        float f11;
-        float f12;
-        boolean z10 = this.f33185b;
-        x01 x01Var = this.f33184a;
-        if (z10 || this.f33186c) {
-            canvas2 = canvas;
-            float dp = AndroidUtilities.dp(10.0f);
-            float[] fArr = x01Var.f34629c;
-            boolean z11 = this.f33185b;
-            if (z11 && this.d) {
-                f7 = dp;
-            } else {
-                f7 = 0.0f;
-            }
-            fArr[1] = f7;
-            fArr[0] = f7;
-            if (z11 && this.e) {
-                f10 = dp;
-            } else {
-                f10 = 0.0f;
-            }
-            fArr[3] = f10;
-            fArr[2] = f10;
-            boolean z12 = this.f33186c;
-            if (z12 && this.e) {
-                f11 = dp;
-            } else {
-                f11 = 0.0f;
-            }
-            fArr[5] = f11;
-            fArr[4] = f11;
-            if (!z12 || !this.d) {
-                dp = 0.0f;
-            }
-            fArr[7] = dp;
-            fArr[6] = dp;
-            x01Var.f34628b.rewind();
-            RectF rectF = AndroidUtilities.rectTmp;
-            float f13 = x01Var.h;
-            float width = getWidth() - x01Var.h;
-            float height = getHeight();
-            float f14 = x01Var.h;
-            if (this.f33186c) {
-                f12 = -1.0f;
-            } else {
-                f12 = 1.0f;
-            }
-            rectF.set(f13, f13, width, (f14 * f12) + height);
-            if (!this.e) {
-                rectF.right += x01Var.f34630f;
-            }
-            x01Var.f34628b.addRoundRect(rectF, x01Var.f34629c, Path.Direction.CW);
-            canvas2.drawPath(x01Var.f34628b, x01Var.e);
-        } else {
-            float f15 = x01Var.h;
-            canvas2 = canvas;
-            canvas2.drawRect(f15, f15, getWidth() - x01Var.h, getHeight() + x01Var.h, x01Var.e);
+    public final int b() {
+        ArrayList arrayList = this.d;
+        if (arrayList.isEmpty()) {
+            return 0;
         }
-        super.onDraw(canvas2);
+        return arrayList.size() + 1;
+    }
+
+    @Override
+    public final int d(int i10) {
+        if (i10 == 0) {
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void t(s4.c1 c1Var, int i10) {
+        int c10;
+        if (c1Var.f47901f == 0) {
+            boolean z10 = true;
+            org.telegram.ui.ActionBar.c7 c7Var = (org.telegram.ui.ActionBar.c7) ((ArrayList) this.d.get(i10 - 1)).get(0);
+            if (c7Var.e == org.telegram.ui.ActionBar.t6.Be) {
+                c10 = 0;
+            } else {
+                c10 = c7Var.c();
+            }
+            org.telegram.ui.Cells.w8 w8Var = (org.telegram.ui.Cells.w8) c1Var.f47898a;
+            w8Var.f23409a.setText(org.telegram.ui.ActionBar.d5.c(c7Var.e));
+            w8Var.f23410b = c10;
+            if (c10 != 0) {
+                z10 = false;
+            }
+            w8Var.setWillNotDraw(z10);
+            w8Var.invalidate();
+        }
+    }
+
+    @Override
+    public final s4.c1 w(ViewGroup viewGroup, int i10) {
+        View w8Var;
+        Context context = this.f30743c;
+        if (i10 != 0) {
+            w8Var = new View(context);
+            w8Var.setLayoutParams(new s4.o0(-1, org.telegram.messenger.i0.L(56.0f)));
+        } else {
+            w8Var = new org.telegram.ui.Cells.w8(context);
+            w8Var.setLayoutParams(new s4.o0(-1, -2));
+        }
+        return new s4.c1(w8Var);
     }
 }

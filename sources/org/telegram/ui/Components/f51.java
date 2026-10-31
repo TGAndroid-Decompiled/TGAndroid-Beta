@@ -1,44 +1,15 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-public final class f51 extends s4.h0 {
-    public Context f28031c;
-    public View d;
-    public int e;
-
-    public final void D(View view) {
-        if (this.d == view) {
-            return;
-        }
-        this.e++;
-        this.d = view;
-        m(1);
+import android.text.TextPaint;
+public final class f51 extends e51 {
+    public f51(String str) {
+        super(str != null ? str.replace((char) 8238, ' ') : str, (yz0) null);
     }
 
     @Override
-    public final int h() {
-        return 2;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == 0) {
-            return 0;
-        }
-        return this.e;
-    }
-
-    @Override
-    public final s4.e1 x(ViewGroup viewGroup, int i10) {
-        if (i10 == 0) {
-            return new s4.e1(new vn(this.f28031c, 13));
-        }
-        return new s4.e1(this.d);
-    }
-
-    @Override
-    public final void v(s4.e1 e1Var, int i10) {
+    public final void updateDrawState(TextPaint textPaint) {
+        super.updateDrawState(textPaint);
+        textPaint.setTypeface(org.telegram.messenger.i0.o());
+        textPaint.setUnderlineText(false);
     }
 }

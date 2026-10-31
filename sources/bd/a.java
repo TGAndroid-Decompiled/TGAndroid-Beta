@@ -1,66 +1,54 @@
 package bd;
 
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.Socket;
-import java.net.SocketException;
-import java.net.SocketTimeoutException;
-import java.util.List;
-import java.util.logging.Level;
-public final class a implements Runnable {
-    public final InputStream f3850a;
-    public final Socket f3851b;
-    public final k f3852c;
+import java.util.concurrent.Executor;
+public final class a implements ld.l {
+    public final int f2646a;
+    public final Object f2647b;
 
-    public a(k kVar, InputStream inputStream, Socket socket) {
-        this.f3852c = kVar;
-        this.f3850a = inputStream;
-        this.f3851b = socket;
+    public a(Object obj, int i10) {
+        this.f2646a = i10;
+        this.f2647b = obj;
     }
 
     @Override
-    public final void run() {
-        OutputStream outputStream;
-        InputStream inputStream = this.f3850a;
-        k kVar = this.f3852c;
-        Socket socket = this.f3851b;
-        OutputStream outputStream2 = null;
-        try {
-            try {
-                outputStream = socket.getOutputStream();
-            } catch (Throwable th2) {
-                th = th2;
-            }
-        } catch (Exception e) {
-            e = e;
+    public final Object invoke(Object obj) {
+        switch (this.f2646a) {
+            case 0:
+                if (obj == ((e) this.f2647b)) {
+                    return "(this Collection)";
+                }
+                return String.valueOf(obj);
+            case 1:
+                c1.d dVar = (c1.d) this.f2647b;
+                w0.i e = (w0.i) obj;
+                kotlin.jvm.internal.i.e(e, "e");
+                dVar.f().execute(new c1.a(dVar, e, 2));
+                break;
+            case 2:
+                d1.f fVar = (d1.f) this.f2647b;
+                w0.d e7 = (w0.d) obj;
+                kotlin.jvm.internal.i.e(e7, "e");
+                Executor executor = fVar.f5642g;
+                if (executor != null) {
+                    executor.execute(new d1.a(fVar, e7, 0));
+                    break;
+                } else {
+                    kotlin.jvm.internal.i.h("executor");
+                    throw null;
+                }
+            default:
+                e1.d dVar2 = (e1.d) this.f2647b;
+                w0.d e10 = (w0.d) obj;
+                kotlin.jvm.internal.i.e(e10, "e");
+                Executor executor2 = dVar2.f6098g;
+                if (executor2 != null) {
+                    executor2.execute(new e1.c(dVar2, e10, 0));
+                    break;
+                } else {
+                    kotlin.jvm.internal.i.h("executor");
+                    throw null;
+                }
         }
-        try {
-            d dVar = new d(kVar, new rb.c(8), this.f3850a, outputStream, socket.getInetAddress());
-            while (!socket.isClosed()) {
-                dVar.c();
-            }
-            k.d(outputStream);
-        } catch (Exception e10) {
-            e = e10;
-            outputStream2 = outputStream;
-            if ((!(e instanceof SocketException) || !"NanoHttpd Shutdown".equals(e.getMessage())) && !(e instanceof SocketTimeoutException)) {
-                k.d.log(Level.SEVERE, "Communication with the client broken, or an bug in the handler code", (Throwable) e);
-            }
-            k.d(outputStream2);
-            k.d(inputStream);
-            k.d(socket);
-            ((List) kVar.f3890c.f600c).remove(this);
-        } catch (Throwable th3) {
-            th = th3;
-            outputStream2 = outputStream;
-            k.d(outputStream2);
-            k.d(inputStream);
-            k.d(socket);
-            ((List) kVar.f3890c.f600c).remove(this);
-            throw th;
-        }
-        k.d(inputStream);
-        k.d(socket);
-        ((List) kVar.f3890c.f600c).remove(this);
+        return ad.j.f401a;
     }
 }

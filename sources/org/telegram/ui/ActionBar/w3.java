@@ -1,48 +1,99 @@
 package org.telegram.ui.ActionBar;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.os.Build;
-import android.view.ViewGroup;
-public final class w3 extends AnimatorListenerAdapter {
-    public final r3 f23209a;
-    public final y3 f23210b;
-    public final b4 f23211c;
+import java.io.File;
+import java.io.FileOutputStream;
+import org.telegram.messenger.f8;
+public final class w3 implements Runnable {
+    public final int f21442a;
+    public final Bitmap f21443b;
+    public final File f21444c;
 
-    public w3(b4 b4Var, r3 r3Var, y3 y3Var) {
-        this.f23211c = b4Var;
-        this.f23209a = r3Var;
-        this.f23210b = y3Var;
+    public w3(Bitmap bitmap, File file, int i10) {
+        this.f21442a = i10;
+        this.f21443b = bitmap;
+        this.f21444c = file;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        int i11;
-        r3 r3Var = this.f23209a;
-        ViewGroup viewGroup = r3Var.f23006b;
-        if (viewGroup == null) {
-            viewGroup = r3Var.f23007c;
+    public final void run() {
+        switch (this.f21442a) {
+            case 0:
+                File file = this.f21444c;
+                Bitmap bitmap = this.f21443b;
+                try {
+                    FileOutputStream fileOutputStream = new FileOutputStream(file);
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 87, fileOutputStream);
+                    fileOutputStream.close();
+                    return;
+                } catch (Exception e) {
+                    f8.g(e, true);
+                    return;
+                }
+            case 1:
+                try {
+                    this.f21443b.compress(Bitmap.CompressFormat.PNG, 87, new FileOutputStream(this.f21444c));
+                    return;
+                } catch (Exception e7) {
+                    f8.g(e7, true);
+                    return;
+                }
+            case 2:
+                Bitmap bitmap2 = this.f21443b;
+                try {
+                    try {
+                        bitmap2.compress(Bitmap.CompressFormat.WEBP, 100, new FileOutputStream(this.f21444c));
+                        if (bitmap2.isRecycled()) {
+                            return;
+                        }
+                    } catch (Exception e10) {
+                        f8.g(e10, true);
+                        if (bitmap2.isRecycled()) {
+                            return;
+                        }
+                    }
+                    bitmap2.recycle();
+                    return;
+                } catch (Throwable th2) {
+                    if (!bitmap2.isRecycled()) {
+                        bitmap2.recycle();
+                    }
+                    throw th2;
+                }
+            case 3:
+                Bitmap bitmap3 = this.f21443b;
+                try {
+                    try {
+                        bitmap3.compress(Bitmap.CompressFormat.WEBP, 100, new FileOutputStream(this.f21444c));
+                    } catch (Exception e11) {
+                        f8.g(e11, true);
+                    }
+                    return;
+                } finally {
+                    org.telegram.messenger.i0.z2(bitmap3);
+                }
+            case 4:
+                try {
+                    this.f21443b.compress(Bitmap.CompressFormat.PNG, 87, new FileOutputStream(this.f21444c));
+                    return;
+                } catch (Exception e12) {
+                    f8.g(e12, true);
+                    return;
+                }
+            default:
+                try {
+                    this.f21443b.compress(Bitmap.CompressFormat.PNG, 87, new FileOutputStream(this.f21444c));
+                    return;
+                } catch (Exception e13) {
+                    f8.g(e13, true);
+                    return;
+                }
         }
-        b4 b4Var = this.f23211c;
-        y3 y3Var = this.f23210b;
-        if (viewGroup != null && r3Var.f23014m == null && (i10 = r3Var.f23009g) > 0 && (i11 = r3Var.h) > 0) {
-            if (Build.VERSION.SDK_INT >= 26) {
-                b4.g(viewGroup, -r3Var.f23010i, new li.s2(3, r3Var, y3Var));
-                b4Var.f22433b = null;
-                b4Var.invalidate();
-                return;
-            }
-            r3Var.f23014m = Bitmap.createBitmap(i10, i11, Bitmap.Config.RGB_565);
-            Canvas canvas = new Canvas(r3Var.f23014m);
-            canvas.translate(0.0f, -r3Var.f23010i);
-            viewGroup.draw(canvas);
-        }
-        y3Var.mo36getWindowView().setDrawingFromOverlay(false);
-        y3Var.release();
-        b4Var.f22433b = null;
-        b4Var.invalidate();
+    }
+
+    public w3(File file, Bitmap bitmap) {
+        this.f21442a = 0;
+        this.f21444c = file;
+        this.f21443b = bitmap;
     }
 }

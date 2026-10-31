@@ -1,25 +1,72 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.TLRPC;
 public final class pf implements Runnable {
-    public final int f20963a;
-    public final MessagesStorage f20964b;
-    public final TLRPC.TL_chatFull f20965c;
+    public final int f17433a;
+    public final q20 f17434b;
 
-    public pf(MessagesStorage messagesStorage, TLRPC.TL_chatFull tL_chatFull, int i10) {
-        this.f20963a = i10;
-        this.f20964b = messagesStorage;
-        this.f20965c = tL_chatFull;
+    public pf(q20 q20Var, int i10) {
+        this.f17433a = i10;
+        this.f17434b = q20Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f20963a) {
+        int i10 = this.f17433a;
+        q20 q20Var = this.f17434b;
+        switch (i10) {
             case 0:
-                this.f20964b.lambda$updateChatInfo$143(this.f20965c);
+                if (q20Var != null) {
+                    q20Var.a(null);
+                    return;
+                }
+                return;
+            case 1:
+                if (q20Var != null) {
+                    q20Var.a(null);
+                    return;
+                }
+                return;
+            case 2:
+                if (q20Var != null) {
+                    q20Var.a(null);
+                    return;
+                }
+                return;
+            case 3:
+                if (q20Var != null) {
+                    q20Var.a(null);
+                    return;
+                }
+                return;
+            case 4:
+                if (q20Var != null) {
+                    q20Var.a(null);
+                    return;
+                }
+                return;
+            case 5:
+                if (q20Var != null) {
+                    q20Var.a(null);
+                    return;
+                }
+                return;
+            case 6:
+                q20Var.a(null);
+                return;
+            case 7:
+                if (q20Var != null) {
+                    q20Var.a(null);
+                    return;
+                }
+                return;
+            case 8:
+                if (q20Var != null) {
+                    q20Var.a(null);
+                    return;
+                }
                 return;
             default:
-                this.f20964b.lambda$updateChatParticipants$125(this.f20965c);
+                int i11 = ShortcutResultReceiver.f14516a;
+                q20Var.a(Boolean.TRUE);
                 return;
         }
     }

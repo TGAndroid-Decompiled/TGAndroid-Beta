@@ -1,44 +1,48 @@
 package r0;
 
-import android.view.DisplayCutout;
 import android.view.WindowInsets;
-import j$.util.Objects;
 public class d1 extends c1 {
-    public d1(k1 k1Var, WindowInsets windowInsets) {
-        super(k1Var, windowInsets);
+    public i0.c f46107o;
+    public i0.c f46108p;
+    public i0.c f46109q;
+
+    public d1(j1 j1Var, WindowInsets windowInsets) {
+        super(j1Var, windowInsets);
+        this.f46107o = null;
+        this.f46108p = null;
+        this.f46109q = null;
     }
 
     @Override
-    public k1 a() {
-        return k1.h(null, this.f47118c.consumeDisplayCutout());
+    public i0.c h() {
+        if (this.f46108p == null) {
+            this.f46108p = i0.c.c(this.f46100c.getMandatorySystemGestureInsets());
+        }
+        return this.f46108p;
     }
 
     @Override
-    public i e() {
-        DisplayCutout displayCutout = this.f47118c.getDisplayCutout();
-        if (displayCutout == null) {
-            return null;
+    public i0.c j() {
+        if (this.f46107o == null) {
+            this.f46107o = i0.c.c(this.f46100c.getSystemGestureInsets());
         }
-        return new i(displayCutout);
+        return this.f46107o;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public i0.c l() {
+        if (this.f46109q == null) {
+            this.f46109q = i0.c.c(this.f46100c.getTappableElementInsets());
         }
-        if (!(obj instanceof d1)) {
-            return false;
-        }
-        d1 d1Var = (d1) obj;
-        if (Objects.equals(this.f47118c, d1Var.f47118c) && Objects.equals(this.f47120g, d1Var.f47120g) && b1.B(this.h, d1Var.h)) {
-            return true;
-        }
-        return false;
+        return this.f46109q;
     }
 
     @Override
-    public int hashCode() {
-        return this.f47118c.hashCode();
+    public j1 m(int i10, int i11, int i12, int i13) {
+        return j1.h(null, this.f46100c.inset(i10, i11, i12, i13));
+    }
+
+    @Override
+    public void s(i0.c cVar) {
     }
 }

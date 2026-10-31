@@ -1,57 +1,33 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.util.Property;
+import android.app.Activity;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.view.ViewTreeObserver;
-import org.telegram.messenger.AndroidUtilities;
-public final class wt0 implements ViewTreeObserver.OnPreDrawListener {
-    public final qu0 f45401a;
-    public final Integer f45402b;
-    public final PhotoViewer f45403c;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class wt0 extends i31 {
+    public final ih.s f43366e2;
+    public final z21[] f43367f2;
+    public final PremiumPreviewFragment f43368g2;
 
-    public wt0(PhotoViewer photoViewer, qu0 qu0Var, Integer num) {
-        this.f45403c = photoViewer;
-        this.f45401a = qu0Var;
-        this.f45402b = num;
+    public wt0(PremiumPreviewFragment premiumPreviewFragment, PremiumPreviewFragment premiumPreviewFragment2, Activity activity, Integer num, int i10, org.telegram.ui.ActionBar.p6 p6Var, int i11, ih.s sVar, z21[] z21VarArr) {
+        super(premiumPreviewFragment2, activity, true, num, i10, true, p6Var, i11);
+        this.f43368g2 = premiumPreviewFragment;
+        this.f43366e2 = sVar;
+        this.f43367f2 = z21VarArr;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        PhotoViewer photoViewer = this.f45403c;
-        photoViewer.f35688g0.getViewTreeObserver().removeOnPreDrawListener(this);
-        photoViewer.F.setTranslationY(-AndroidUtilities.dp(32.0f));
-        ViewPropertyAnimator duration = photoViewer.F.animate().alpha(1.0f).translationY(0.0f).setDuration(150L);
-        org.telegram.ui.Components.ds dsVar = org.telegram.ui.Components.ds.f27530f;
-        duration.setInterpolator(dsVar).start();
-        photoViewer.N0.setTranslationY(-AndroidUtilities.dp(32.0f));
-        photoViewer.N0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(dsVar).start();
-        photoViewer.O0.setTranslationY(-AndroidUtilities.dp(32.0f));
-        photoViewer.O0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(dsVar).start();
-        photoViewer.P0.setTranslationY(AndroidUtilities.dp(32.0f));
-        photoViewer.P0.animate().alpha(1.0f).setDuration(150L).setInterpolator(dsVar).start();
-        photoViewer.S0.setTranslationY(AndroidUtilities.dp(32.0f));
-        photoViewer.S0.setAlpha(0.0f);
-        photoViewer.S0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(dsVar).start();
-        photoViewer.f35796s3.setTranslationY(AndroidUtilities.dp(32.0f));
-        photoViewer.f35796s3.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(dsVar).start();
-        photoViewer.f35670e0.setAlpha(0.0f);
-        photoViewer.L0.setAlpha(0);
-        photoViewer.f35752n4 = 4;
-        photoViewer.f35670e0.invalidate();
-        AnimatorSet animatorSet = new AnimatorSet();
-        bi.j5 j5Var = photoViewer.P0;
-        ObjectAnimator duration2 = ObjectAnimator.ofFloat(j5Var, View.TRANSLATION_Y, j5Var.getTranslationY(), 0.0f).setDuration(220L);
-        duration2.setInterpolator(dsVar);
-        bi.j5 j5Var2 = photoViewer.P0;
-        Property property = View.ALPHA;
-        ObjectAnimator duration3 = ObjectAnimator.ofFloat(j5Var2, property, 1.0f).setDuration(220L);
-        duration3.setInterpolator(dsVar);
-        animatorSet.playTogether(ObjectAnimator.ofFloat(photoViewer.f35670e0, property, 0.0f, 1.0f).setDuration(220L), ObjectAnimator.ofFloat(photoViewer.f35714j0, property, 0.0f, 1.0f).setDuration(220L), duration2, duration3);
-        animatorSet.addListener(new vt0(this));
-        animatorSet.start();
-        return true;
+    public final float getScrimDrawableTranslationY() {
+        return 0.0f;
+    }
+
+    @Override
+    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        this.f43366e2.a(l4, num);
+        z21 z21Var = this.f43367f2[0];
+        if (z21Var != null) {
+            this.f43368g2.f33715u0 = null;
+            z21Var.dismiss();
+        }
     }
 }

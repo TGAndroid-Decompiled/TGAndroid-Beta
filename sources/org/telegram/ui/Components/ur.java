@@ -1,103 +1,200 @@
 package org.telegram.ui.Components;
 
-import android.text.SpannableStringBuilder;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
-public final class ur implements RequestDelegate {
-    public final int f33446a;
-    public final zr f33447b;
-    public final fi.d f33448c;
+public final class ur {
+    public final int f31013a;
+    public String f31014b;
+    public final ArrayList f31015c;
+    public final boolean[] d;
+    public boolean[] e;
+    public boolean f31016f;
+    public final int f31017g;
+    public int h;
+    public int f31018i;
+    public final vr f31019j;
 
-    public ur(zr zrVar, fi.d dVar, int i10) {
-        this.f33446a = i10;
-        this.f33447b = zrVar;
-        this.f33448c = dVar;
+    public ur(vr vrVar, int i10, ArrayList arrayList) {
+        this.f31019j = vrVar;
+        this.f31013a = i10;
+        int size = arrayList.size();
+        this.f31017g = size;
+        this.f31018i = 0;
+        if (size > 0) {
+            this.f31015c = arrayList;
+            this.d = new boolean[size];
+            this.f31016f = true;
+            i();
+        }
     }
 
-    @Override
-    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f33446a) {
-            case 0:
-                final zr zrVar = this.f33447b;
-                final fi.d dVar = this.f33448c;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                zr zrVar2 = zrVar;
-                                zrVar2.getClass();
-                                dVar.setLoading(false);
-                                TLObject tLObject2 = tLObject;
-                                if (tLObject2 != null && (tLObject2 instanceof TL_phone.groupCallStreamRtmpUrl)) {
-                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl = (TL_phone.groupCallStreamRtmpUrl) tLObject2;
-                                    zrVar2.f35431b0 = groupcallstreamrtmpurl.url;
-                                    zrVar2.f35432c0 = groupcallstreamrtmpurl.key;
-                                    zrVar2.f35433d0 = new SpannableStringBuilder(zrVar2.f35432c0);
-                                    zrVar2.f35434e0.O(true);
-                                    return;
-                                }
-                                return;
-                            default:
-                                zr zrVar3 = zrVar;
-                                zrVar3.getClass();
-                                dVar.setLoading(false);
-                                TLObject tLObject3 = tLObject;
-                                if (tLObject3 instanceof TL_phone.groupCallStreamRtmpUrl) {
-                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl2 = (TL_phone.groupCallStreamRtmpUrl) tLObject3;
-                                    zrVar3.f35431b0 = groupcallstreamrtmpurl2.url;
-                                    zrVar3.f35432c0 = groupcallstreamrtmpurl2.key;
-                                    zrVar3.f35433d0 = new SpannableStringBuilder(zrVar3.f35432c0);
-                                    zrVar3.f35434e0.O(true);
-                                    return;
-                                }
-                                return;
-                        }
+    public final boolean a() {
+        boolean[] zArr;
+        for (int i10 = 0; i10 < this.f31017g; i10++) {
+            if (!this.d[i10] || ((zArr = this.e) != null && !zArr[i10])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public final void b(org.telegram.messenger.t20 t20Var) {
+        for (int i10 = 0; i10 < this.f31017g; i10++) {
+            boolean[] zArr = this.e;
+            if (zArr == null || zArr[i10]) {
+                t20Var.a(i10, (TLObject) this.f31015c.get(i10));
+            }
+        }
+    }
+
+    public final void c(org.telegram.messenger.t20 t20Var) {
+        boolean[] zArr;
+        for (int i10 = 0; i10 < this.f31017g; i10++) {
+            if (this.d[i10] && ((zArr = this.e) == null || zArr[i10])) {
+                t20Var.a(i10, (TLObject) this.f31015c.get(i10));
+            }
+        }
+    }
+
+    public final boolean d() {
+        int i10;
+        if (this.e != null) {
+            i10 = this.h;
+        } else {
+            i10 = this.f31017g;
+        }
+        if (i10 > 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean e() {
+        int i10;
+        if (this.e != null) {
+            i10 = this.h;
+        } else {
+            i10 = this.f31017g;
+        }
+        if (i10 > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void f() {
+        boolean[] zArr;
+        boolean[] zArr2;
+        boolean z10 = false;
+        int i10 = 0;
+        while (true) {
+            int i11 = this.f31017g;
+            zArr = this.d;
+            if (i10 >= i11) {
+                break;
+            } else if (!zArr[i10] || ((zArr2 = this.e) != null && !zArr2[i10])) {
+                i10++;
+            }
+        }
+        z10 = true;
+        Arrays.fill(zArr, !z10);
+        h();
+        this.f31019j.P1.O(true);
+    }
+
+    public final void g(int i10) {
+        boolean[] zArr = this.e;
+        if (zArr != null && !zArr[i10]) {
+            return;
+        }
+        boolean[] zArr2 = this.d;
+        boolean z10 = zArr2[i10];
+        zArr2[i10] = !z10;
+        if (!z10) {
+            this.f31018i++;
+        } else {
+            this.f31018i--;
+        }
+        this.f31019j.P1.O(true);
+    }
+
+    public final void h() {
+        this.f31018i = 0;
+        this.h = 0;
+        for (int i10 = 0; i10 < this.f31017g; i10++) {
+            boolean[] zArr = this.e;
+            boolean[] zArr2 = this.d;
+            if (zArr == null) {
+                if (zArr2[i10]) {
+                    this.f31018i++;
+                }
+            } else if (zArr[i10]) {
+                this.h++;
+                if (zArr2[i10]) {
+                    this.f31018i++;
+                }
+            }
+        }
+    }
+
+    public final void i() {
+        TLObject tLObject;
+        String o10;
+        String a02;
+        String a03;
+        String a04;
+        String a05;
+        int i10 = this.f31017g;
+        if (i10 != 0) {
+            for (int i11 = 0; i11 < i10; i11++) {
+                boolean[] zArr = this.e;
+                if (zArr == null || zArr[i11]) {
+                    tLObject = (TLObject) this.f31015c.get(i11);
+                    break;
+                }
+            }
+            tLObject = null;
+            if (tLObject instanceof TLRPC.User) {
+                o10 = org.telegram.messenger.h20.k((TLRPC.User) tLObject);
+            } else {
+                o10 = org.telegram.messenger.i5.o(tLObject);
+            }
+            int i12 = this.f31013a;
+            if (i12 == 0) {
+                this.f31014b = org.telegram.messenger.cd.L0(2131751503, null);
+            } else if (i12 == 1) {
+                if (d()) {
+                    a05 = org.telegram.messenger.cd.L0(2131751583, null);
+                } else {
+                    a05 = org.telegram.messenger.cd.a0(null, null, 2131751588, o10);
+                }
+                this.f31014b = a05;
+            } else if (i12 == 3) {
+                if (d()) {
+                    a04 = org.telegram.messenger.cd.L0(2131751578, null);
+                } else {
+                    a04 = org.telegram.messenger.cd.a0(null, null, 2131751579, o10);
+                }
+                this.f31014b = a04;
+            } else if (i12 == 2) {
+                if (this.f31019j.Y1) {
+                    if (d()) {
+                        a03 = org.telegram.messenger.cd.L0(2131751501, null);
+                    } else {
+                        a03 = org.telegram.messenger.cd.a0(null, null, 2131751502, o10);
                     }
-                });
-                return;
-            default:
-                final zr zrVar2 = this.f33447b;
-                final fi.d dVar2 = this.f33448c;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                zr zrVar22 = zrVar2;
-                                zrVar22.getClass();
-                                dVar2.setLoading(false);
-                                TLObject tLObject2 = tLObject;
-                                if (tLObject2 != null && (tLObject2 instanceof TL_phone.groupCallStreamRtmpUrl)) {
-                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl = (TL_phone.groupCallStreamRtmpUrl) tLObject2;
-                                    zrVar22.f35431b0 = groupcallstreamrtmpurl.url;
-                                    zrVar22.f35432c0 = groupcallstreamrtmpurl.key;
-                                    zrVar22.f35433d0 = new SpannableStringBuilder(zrVar22.f35432c0);
-                                    zrVar22.f35434e0.O(true);
-                                    return;
-                                }
-                                return;
-                            default:
-                                zr zrVar3 = zrVar2;
-                                zrVar3.getClass();
-                                dVar2.setLoading(false);
-                                TLObject tLObject3 = tLObject;
-                                if (tLObject3 instanceof TL_phone.groupCallStreamRtmpUrl) {
-                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl2 = (TL_phone.groupCallStreamRtmpUrl) tLObject3;
-                                    zrVar3.f35431b0 = groupcallstreamrtmpurl2.url;
-                                    zrVar3.f35432c0 = groupcallstreamrtmpurl2.key;
-                                    zrVar3.f35433d0 = new SpannableStringBuilder(zrVar3.f35432c0);
-                                    zrVar3.f35434e0.O(true);
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-                return;
+                    this.f31014b = a03;
+                    return;
+                }
+                if (d()) {
+                    a02 = org.telegram.messenger.cd.L0(2131751568, null);
+                } else {
+                    a02 = org.telegram.messenger.cd.a0(null, null, 2131751569, o10);
+                }
+                this.f31014b = a02;
+            }
         }
     }
 }

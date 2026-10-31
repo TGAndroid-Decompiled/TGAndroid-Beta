@@ -1,31 +1,44 @@
 package org.telegram.messenger;
 
-import java.io.File;
-import org.telegram.messenger.AudioRecorderV2Controller;
-public final class u implements Runnable {
-    public final int f21358a;
-    public final AudioRecorderV2Controller.AnonymousClass2 f21359b;
-    public final long f21360c;
-    public final AudioRecorderV2Controller.Listener d;
-    public final File e;
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
+public final class u extends CharacterStyle {
+    public final int f18203a;
+    public int f18204b;
 
-    public u(AudioRecorderV2Controller.AnonymousClass2 anonymousClass2, long j10, AudioRecorderV2Controller.Listener listener, File file, int i10) {
-        this.f21358a = i10;
-        this.f21359b = anonymousClass2;
-        this.f21360c = j10;
-        this.d = listener;
-        this.e = file;
+    public u(int i10, int i11) {
+        this.f18203a = i11;
+        this.f18204b = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f21358a) {
+    public final void updateDrawState(TextPaint textPaint) {
+        switch (this.f18203a) {
             case 0:
-                AudioRecorderV2Controller.AnonymousClass2.a(this.f21359b, this.f21360c, this.d, this.e);
+                textPaint.setUnderlineText(false);
+                textPaint.setTypeface(i0.o());
+                textPaint.setColor(this.f18204b);
+                return;
+            case 1:
+                textPaint.setUnderlineText(false);
+                textPaint.setColor(this.f18204b);
+                return;
+            case 2:
+                textPaint.setAlpha((int) ((this.f18204b / 255.0f) * textPaint.getAlpha()));
                 return;
             default:
-                AudioRecorderV2Controller.AnonymousClass2.b(this.f21359b, this.f21360c, this.d, this.e);
+                textPaint.setColor(org.telegram.ui.ActionBar.t6.r1(textPaint.getAlpha() / 255.0f, this.f18204b));
                 return;
         }
+    }
+
+    public u(int i10, int i11, boolean z10) {
+        this.f18203a = i11;
+        this.f18204b = i10;
+    }
+
+    public u() {
+        this.f18203a = 2;
+        this.f18204b = 0;
     }
 }

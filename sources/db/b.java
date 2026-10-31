@@ -1,46 +1,46 @@
 package db;
 
-import a8.h0;
-import ce.c0;
+import android.support.v4.media.session.a0;
 import java.io.Serializable;
 import java.util.Map;
+import ld.p;
 import org.json.JSONObject;
-import ud.p;
-public final class b extends nd.i implements p {
-    public final int f8280a = 1;
-    public int f8281b;
-    public Object f8282c;
+import td.c0;
+public final class b extends ed.j implements p {
+    public final int f5833a = 1;
+    public int f5834b;
+    public Object f5835c;
     public Object d;
     public Serializable e;
-    public final Object f8283f;
+    public final Object f5836f;
 
-    public b(h0 h0Var, Map map, b bVar, c cVar, ld.c cVar2) {
+    public b(a0 a0Var, Map map, b bVar, c cVar, cd.c cVar2) {
         super(2, cVar2);
-        this.d = h0Var;
-        this.f8282c = map;
+        this.d = a0Var;
+        this.f5835c = map;
         this.e = bVar;
-        this.f8283f = cVar;
+        this.f5836f = cVar;
     }
 
     @Override
-    public final ld.c create(Object obj, ld.c cVar) {
-        switch (this.f8280a) {
+    public final cd.c create(Object obj, cd.c cVar) {
+        switch (this.f5833a) {
             case 0:
-                b bVar = new b((d) this.f8283f, cVar);
-                bVar.f8282c = obj;
+                b bVar = new b((d) this.f5836f, cVar);
+                bVar.f5835c = obj;
                 return bVar;
             default:
-                return new b((h0) this.d, this.f8282c, (b) this.e, (c) this.f8283f, cVar);
+                return new b((a0) this.d, this.f5835c, (b) this.e, (c) this.f5836f, cVar);
         }
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        switch (this.f8280a) {
+        switch (this.f5833a) {
             case 0:
-                return ((b) create((JSONObject) obj, (ld.c) obj2)).invokeSuspend(jd.i.f15579a);
+                return ((b) create((JSONObject) obj, (cd.c) obj2)).invokeSuspend(ad.j.f401a);
             default:
-                return ((b) create((c0) obj, (ld.c) obj2)).invokeSuspend(jd.i.f15579a);
+                return ((b) create((c0) obj, (cd.c) obj2)).invokeSuspend(ad.j.f401a);
         }
     }
 
@@ -49,8 +49,8 @@ public final class b extends nd.i implements p {
         throw new UnsupportedOperationException("Method not decompiled: db.b.invokeSuspend(java.lang.Object):java.lang.Object");
     }
 
-    public b(d dVar, ld.c cVar) {
+    public b(d dVar, cd.c cVar) {
         super(2, cVar);
-        this.f8283f = dVar;
+        this.f5836f = dVar;
     }
 }

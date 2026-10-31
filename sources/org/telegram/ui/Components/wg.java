@@ -1,79 +1,58 @@
 package org.telegram.ui.Components;
+public final class wg implements Runnable {
+    public final int f32171a;
+    public final bi f32172b;
+    public final boolean f32173c;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class wg extends FrameLayout {
-    public final org.telegram.ui.ActionBar.b6 f34508a;
-    public final RectF f34509b;
-    public final Paint f34510c;
-    public final Drawable d;
-    public boolean e;
-
-    public wg(Activity activity) {
-        super(activity);
-        this.f34509b = new RectF();
-        this.f34510c = new Paint(1);
-        this.e = false;
-        org.telegram.ui.ActionBar.b6 b6Var = new org.telegram.ui.ActionBar.b6(activity);
-        this.f34508a = b6Var;
-        addView(b6Var, kb1.g(-1.0f, -1));
-        setWillNotDraw(false);
-        Drawable drawable = activity.getDrawable(R.drawable.msg_mini_close_tooltip);
-        this.d = drawable;
-        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-        setClipToPadding(false);
-        setClipChildren(false);
-        kb1.b(this);
+    public wg(bi biVar, boolean z10, int i10) {
+        this.f32171a = i10;
+        this.f32172b = biVar;
+        this.f32173c = z10;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if ((view instanceof org.telegram.ui.ActionBar.b6) && this.e) {
-            org.telegram.ui.ActionBar.b6 b6Var = (org.telegram.ui.ActionBar.b6) view;
-            canvas.save();
-            canvas.scale(0.8f, 0.8f);
-            canvas.translate(-AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f));
-            int color = b6Var.getTextPaint().getColor();
-            b6Var.getTextPaint().setColor(-1);
-            boolean drawChild = super.drawChild(canvas, view, j10);
-            b6Var.getTextPaint().setColor(color);
-            canvas.restore();
-            return drawChild;
+    public final void run() {
+        switch (this.f32171a) {
+            case 0:
+                boolean z10 = this.f32173c;
+                bi biVar = this.f32172b;
+                if (!z10) {
+                    biVar.W2.setVisibility(8);
+                    return;
+                } else {
+                    biVar.getClass();
+                    return;
+                }
+            case 1:
+                boolean z11 = this.f32173c;
+                bi biVar2 = this.f32172b;
+                if (!z11) {
+                    biVar2.f24720s1.setVisibility(8);
+                    return;
+                } else {
+                    biVar2.getClass();
+                    return;
+                }
+            case 2:
+                boolean z12 = this.f32173c;
+                bi biVar3 = this.f32172b;
+                if (!z12) {
+                    biVar3.f24728u1.setVisibility(8);
+                    return;
+                } else {
+                    biVar3.getClass();
+                    return;
+                }
+            default:
+                boolean z13 = this.f32173c;
+                bi biVar4 = this.f32172b;
+                if (z13) {
+                    biVar4.f24718r3.setVisibility(4);
+                    return;
+                } else {
+                    biVar4.getClass();
+                    return;
+                }
         }
-        return super.drawChild(canvas, view, j10);
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.e) {
-            canvas.save();
-            int dp = AndroidUtilities.dp(26.0f);
-            canvas.translate(AndroidUtilities.dp(5.0f), (getMeasuredHeight() - dp) / 2.0f);
-            float f7 = dp;
-            RectF rectF = this.f34509b;
-            rectF.set(-AndroidUtilities.dp(5.0f), 0.0f, getMeasuredWidth() - getPaddingEnd(), f7);
-            float f10 = f7 / 2.0f;
-            canvas.drawRoundRect(rectF, f10, f10, this.f34510c);
-            int measuredWidth = (getMeasuredWidth() - getPaddingEnd()) - AndroidUtilities.dp(6.0f);
-            Drawable drawable = this.d;
-            canvas.translate(measuredWidth - drawable.getIntrinsicWidth(), AndroidUtilities.dp(5.0f));
-            drawable.draw(canvas);
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        this.f34510c.setShader(new LinearGradient(0.0f, 0.0f, getMeasuredWidth(), 0.0f, new int[]{-9071617, -5999873}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
     }
 }

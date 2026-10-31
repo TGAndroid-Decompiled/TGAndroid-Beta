@@ -1,43 +1,45 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.DownloadController;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.MessageObject;
+import android.app.Activity;
+import android.content.Context;
+import android.view.ViewGroup;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class dx0 implements Runnable {
-    public final int f27560a;
-    public final TLRPC.Document f27561b;
-    public final int f27562c;
-    public final MessageObject d;
-    public final org.telegram.ui.Cells.s1 e;
-    public final TLRPC.TL_messages_stickerSet f27563f;
+public final class dx0 extends sk0 {
+    public final Context f25562c;
+    public final ex0 d;
 
-    public dx0(TLRPC.Document document, int i10, MessageObject messageObject, org.telegram.ui.Cells.s1 s1Var, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i11) {
-        this.f27560a = i11;
-        this.f27561b = document;
-        this.f27562c = i10;
-        this.d = messageObject;
-        this.e = s1Var;
-        this.f27563f = tL_messages_stickerSet;
+    public dx0(ex0 ex0Var, Activity activity) {
+        this.d = ex0Var;
+        this.f25562c = activity;
     }
 
     @Override
-    public final void run() {
-        switch (this.f27560a) {
-            case 0:
-                TLRPC.Document document = this.f27561b;
-                String attachFileName = FileLoader.getAttachFileName(document);
-                int i10 = this.f27562c;
-                DownloadController.getInstance(i10).addLoadingFileObserver(attachFileName, this.d, this.e);
-                FileLoader.getInstance(i10).loadFile(document, this.f27563f, 1, 1);
-                return;
-            default:
-                TLRPC.Document document2 = this.f27561b;
-                String attachFileName2 = FileLoader.getAttachFileName(document2);
-                int i11 = this.f27562c;
-                DownloadController.getInstance(i11).addLoadingFileObserver(attachFileName2, this.d, this.e);
-                FileLoader.getInstance(i11).loadFile(document2, this.f27563f, 1, 1);
-                return;
+    public final boolean D(s4.c1 c1Var) {
+        return false;
+    }
+
+    @Override
+    public final int b() {
+        return this.d.f25887c.size();
+    }
+
+    @Override
+    public final void t(s4.c1 c1Var, int i10) {
+        org.telegram.ui.Cells.v vVar = (org.telegram.ui.Cells.v) c1Var.f47898a;
+        ArrayList arrayList = this.d.f25887c;
+        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i10);
+        boolean z10 = true;
+        if (i10 == arrayList.size() - 1) {
+            z10 = false;
         }
+        vVar.b(stickerSetCovered, z10);
+    }
+
+    @Override
+    public final s4.c1 w(ViewGroup viewGroup, int i10) {
+        org.telegram.ui.Cells.v vVar = new org.telegram.ui.Cells.v(this.f25562c, false);
+        vVar.setLayoutParams(new s4.o0(-1, org.telegram.messenger.i0.L(82.0f)));
+        return new s4.c1(vVar);
     }
 }

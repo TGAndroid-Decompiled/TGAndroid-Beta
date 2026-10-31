@@ -2,13 +2,13 @@ package g;
 
 import android.os.Handler;
 import java.lang.ref.WeakReference;
-import p4.m0;
+import p4.n0;
 public final class c extends Handler {
-    public final int f12114a;
-    public WeakReference f12115b;
+    public final int f7168a;
+    public WeakReference f7169b;
 
     public c(int i10) {
-        this.f12114a = i10;
+        this.f7168a = i10;
     }
 
     @Override
@@ -16,8 +16,8 @@ public final class c extends Handler {
         throw new UnsupportedOperationException("Method not decompiled: g.c.handleMessage(android.os.Message):void");
     }
 
-    public c(m0 m0Var) {
-        this.f12114a = 2;
-        this.f12115b = new WeakReference(m0Var);
+    public c(n0 n0Var) {
+        this.f7168a = 2;
+        this.f7169b = new WeakReference(n0Var);
     }
 }

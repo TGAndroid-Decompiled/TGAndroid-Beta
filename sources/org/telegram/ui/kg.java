@@ -2,37 +2,37 @@ package org.telegram.ui;
 
 import android.content.DialogInterface;
 public final class kg implements DialogInterface.OnCancelListener {
-    public final int f40794a;
-    public final Object f40795b;
+    public final int f38792a;
+    public final Object f38793b;
 
     public kg(Object obj, int i10) {
-        this.f40794a = i10;
-        this.f40795b = obj;
+        this.f38792a = i10;
+        this.f38793b = obj;
     }
 
     @Override
     public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f40794a) {
+        switch (this.f38792a) {
             case 0:
-                wn wnVar = (wn) this.f40795b;
-                wnVar.f45268r9 = true;
-                wnVar.f45246p9 = 0;
-                wnVar.Qb = 0;
-                wnVar.Z4 = 0;
-                wnVar.C9();
-                wnVar.dc(false);
+                un unVar = (un) this.f38793b;
+                unVar.p9 = true;
+                unVar.f42350n9 = 0;
+                unVar.Lb = 0;
+                unVar.Z4 = 0;
+                unVar.C9();
+                unVar.gc(false);
                 return;
             case 1:
-                oo ooVar = (oo) this.f40795b;
-                ooVar.L0 = false;
-                ooVar.f42131b = null;
+                oo ooVar = (oo) this.f38793b;
                 ooVar.M0 = false;
+                ooVar.f40316b = null;
+                ooVar.N0 = false;
                 return;
             case 2:
-                ((pp) this.f40795b).f42468n = null;
+                ((qp) this.f38793b).f41024n = null;
                 return;
             default:
-                ((ob0) this.f40795b).b();
+                ((ua0) this.f38793b).b();
                 return;
         }
     }

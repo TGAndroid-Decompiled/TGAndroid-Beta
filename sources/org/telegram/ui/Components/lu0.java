@@ -1,163 +1,113 @@
 package org.telegram.ui.Components;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
-import android.text.TextUtils;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC;
-public final class lu0 extends mm0 {
-    public final Context f30306c;
-    public TLRPC.ChatFull d;
-    public ArrayList e;
-    public final bw0 f30307f;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLObject;
+public final class lu0 extends View {
+    public final ImageReceiver f28197a;
+    public final r8 f28198b;
+    public final Paint f28199c;
+    public float d;
+    public boolean e;
+    public ValueAnimator f28200f;
 
-    public lu0(bw0 bw0Var, Context context) {
-        this.f30307f = bw0Var;
-        this.f30306c = context;
+    public lu0(Context context) {
+        super(context);
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.f28197a = imageReceiver;
+        this.f28198b = new r8((org.telegram.ui.ActionBar.p6) null);
+        Paint paint = new Paint(1);
+        this.f28199c = paint;
+        imageReceiver.J0(org.telegram.messenger.i0.L(28.0f));
+        paint.setStrokeWidth(org.telegram.messenger.i0.L(2.0f));
+        paint.setStyle(Paint.Style.STROKE);
     }
 
-    @Override
-    public final boolean D(s4.e1 e1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        TLRPC.ChatFull chatFull = this.d;
-        if (chatFull != null && chatFull.participants.participants.isEmpty()) {
-            return 1;
+    public final void a(boolean z10, boolean z11) {
+        ValueAnimator valueAnimator = this.f28200f;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
         }
-        TLRPC.ChatFull chatFull2 = this.d;
-        if (chatFull2 != null) {
-            return chatFull2.participants.participants.size();
-        }
-        return 0;
-    }
-
-    @Override
-    public final int j(int i10) {
-        TLRPC.ChatFull chatFull = this.d;
-        if (chatFull != null && chatFull.participants.participants.isEmpty()) {
-            return 20;
-        }
-        return 21;
-    }
-
-    @Override
-    public final void v(s4.e1 e1Var, int i10) {
-        TLRPC.ChatParticipant chatParticipant;
-        String str;
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        boolean z13;
-        boolean z14;
-        boolean z15;
-        boolean z16;
-        boolean z17;
-        bw0 bw0Var = this.f30307f;
-        org.telegram.ui.ActionBar.r2 r2Var = bw0Var.f26992x1;
-        View view = e1Var.f47773a;
-        if (view instanceof org.telegram.ui.Cells.ab) {
-            org.telegram.ui.Cells.ab abVar = (org.telegram.ui.Cells.ab) view;
-            if (!this.e.isEmpty()) {
-                chatParticipant = this.d.participants.participants.get(((Integer) this.e.get(i10)).intValue());
-            } else {
-                chatParticipant = this.d.participants.participants.get(i10);
+        float f7 = 0.0f;
+        if (z11) {
+            if (z10) {
+                f7 = 1.0f;
             }
-            if (chatParticipant != null) {
-                boolean z18 = true;
-                if (chatParticipant instanceof TLRPC.TL_chatChannelParticipant) {
-                    TLRPC.ChannelParticipant channelParticipant = ((TLRPC.TL_chatChannelParticipant) chatParticipant).channelParticipant;
-                    String str2 = channelParticipant.rank;
-                    if (channelParticipant instanceof TLRPC.TL_channelParticipantCreator) {
-                        if (TextUtils.isEmpty(str2)) {
-                            str2 = LocaleController.getString("ChannelCreator", R.string.ChannelCreator);
-                        }
-                        z16 = true;
-                        z17 = true;
-                        z15 = false;
-                    } else if (channelParticipant instanceof TLRPC.TL_channelParticipantAdmin) {
-                        if (TextUtils.isEmpty(str2)) {
-                            str2 = LocaleController.getString("ChannelAdmin", R.string.ChannelAdmin);
-                        }
-                        if (channelParticipant.promoted_by == r2Var.getUserConfig().getClientUserId()) {
-                            z15 = true;
-                        } else {
-                            z15 = false;
-                        }
-                        z16 = true;
-                        z17 = false;
-                    } else {
-                        z15 = false;
-                        z16 = false;
-                        z17 = false;
-                    }
-                    boolean z19 = z17;
-                    z12 = z15;
-                    z10 = z16;
-                    z11 = z19;
-                    str = str2;
-                } else {
-                    String str3 = chatParticipant.rank;
-                    if (chatParticipant instanceof TLRPC.TL_chatParticipantCreator) {
-                        if (TextUtils.isEmpty(str3)) {
-                            str3 = LocaleController.getString("ChannelCreator", R.string.ChannelCreator);
-                        }
-                        str = str3;
-                        z10 = true;
-                        z11 = true;
-                        z12 = false;
-                    } else if (chatParticipant instanceof TLRPC.TL_chatParticipantAdmin) {
-                        if (TextUtils.isEmpty(str3)) {
-                            str3 = LocaleController.getString("ChannelAdmin", R.string.ChannelAdmin);
-                        }
-                        if (chatParticipant.inviter_id == r2Var.getUserConfig().getClientUserId()) {
-                            z13 = true;
-                        } else {
-                            z13 = false;
-                        }
-                        z12 = z13;
-                        str = str3;
-                        z10 = true;
-                        z11 = false;
-                    } else {
-                        str = str3;
-                        z10 = false;
-                        z11 = false;
-                        z12 = false;
-                    }
-                }
-                TLRPC.User user = r2Var.getMessagesController().getUser(Long.valueOf(chatParticipant.user_id));
-                if (UserObject.isUserSelf(user) && ChatObject.canManageMyTag(r2Var.getMessagesController().getChat(Long.valueOf(-bw0Var.l1)))) {
-                    z14 = true;
-                } else {
-                    z14 = false;
-                }
-                abVar.a(str, z10, z11, z14, new e70(this, user, str, z10, z11, z12, 1));
-                if (i10 == this.d.participants.participants.size() - 1) {
-                    z18 = false;
-                }
-                abVar.d(user, null, null, z18);
-            }
+            ValueAnimator duration = ValueAnimator.ofFloat(this.d, f7).setDuration(200L);
+            duration.setInterpolator(gr.f26495f);
+            duration.addUpdateListener(new r60(this, 21));
+            duration.addListener(new t60(this, 22));
+            duration.start();
+            this.f28200f = duration;
+            return;
         }
+        if (z10) {
+            f7 = 1.0f;
+        }
+        this.d = f7;
+        invalidate();
     }
 
     @Override
-    public final s4.e1 x(ViewGroup viewGroup, int i10) {
-        bw0 bw0Var = this.f30307f;
-        if (i10 == 20) {
-            ou0 U = bw0.U(7, bw0Var.l1, this.f30306c, bw0Var.H1);
-            U.setLayoutParams(new s4.q0(-1, -1));
-            return new s4.e1(U);
+    public final boolean isSelected() {
+        if (this.d == 1.0f) {
+            return true;
         }
-        org.telegram.ui.Cells.ab abVar = new org.telegram.ui.Cells.ab(9, 0, this.f30306c, bw0Var.H1, true, false);
-        abVar.setLayoutParams(new s4.q0(-1, -2));
-        return new s4.e1(abVar);
+        return false;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f28197a.P();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f28197a.R();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        canvas.save();
+        float f7 = (this.d * 0.1f) + 0.9f;
+        canvas.scale(f7, f7);
+        int x02 = org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f21094m5, false);
+        Paint paint = this.f28199c;
+        paint.setColor(x02);
+        paint.setAlpha((int) (Color.alpha(paint.getColor()) * this.d));
+        float strokeWidth = paint.getStrokeWidth();
+        RectF rectF = org.telegram.messenger.i0.P;
+        rectF.set(strokeWidth, strokeWidth, getWidth() - strokeWidth, getHeight() - strokeWidth);
+        canvas.drawArc(rectF, -90.0f, this.d * 360.0f, false, paint);
+        canvas.restore();
+        if (!this.e) {
+            float strokeWidth2 = paint.getStrokeWidth() * 2.5f * this.d;
+            float f10 = 2.0f * strokeWidth2;
+            float width = getWidth() - f10;
+            float height = getHeight() - f10;
+            ImageReceiver imageReceiver = this.f28197a;
+            imageReceiver.y0(strokeWidth2, strokeWidth2, width, height);
+            imageReceiver.h(canvas, null);
+        }
+    }
+
+    public void setAvatar(TLObject tLObject) {
+        r8 r8Var = this.f28198b;
+        r8Var.l(tLObject);
+        this.f28197a.i0(tLObject, r8Var, null);
+    }
+
+    public void setHideAvatar(boolean z10) {
+        this.e = z10;
+        invalidate();
     }
 }

@@ -1,18 +1,33 @@
 package org.telegram.ui.Components;
-public interface ob {
-    boolean a();
 
-    void b(qc qcVar);
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.Typeface;
+import android.widget.ImageView;
+public class ob extends ta {
+    public final ImageView f29022a;
+    public final p80 f29023b;
 
-    void c(float f7);
+    public ob(Context context, org.telegram.ui.ActionBar.p6 p6Var) {
+        super(context, p6Var);
+        int i10 = org.telegram.ui.ActionBar.t6.vj;
+        getThemedColor(i10);
+        ImageView imageView = new ImageView(context);
+        this.f29022a = imageView;
+        org.telegram.ui.ActionBar.a7.t(imageView, i10, p6Var, PorterDuff.Mode.MULTIPLY);
+        addView(imageView, w7.b6.i(24.0f, 24.0f, 8388627, 16.0f, 12.0f, 16.0f, 12.0f));
+        p80 p80Var = new p80(context, null);
+        this.f29023b = p80Var;
+        p80Var.setDisablePaddingsOffsetY(true);
+        p80Var.setSingleLine();
+        org.telegram.ui.ActionBar.a7.V(p80Var, i10, p6Var);
+        p80Var.setTypeface(Typeface.SANS_SERIF);
+        p80Var.setTextSize(1, 15.0f);
+        addView(p80Var, w7.b6.i(-2.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
+    }
 
-    void d(qc qcVar);
-
-    boolean e();
-
-    int f(int i10);
-
-    boolean g(int i10);
-
-    int h(int i10);
+    @Override
+    public CharSequence getAccessibilityText() {
+        return this.f29023b.getText();
+    }
 }

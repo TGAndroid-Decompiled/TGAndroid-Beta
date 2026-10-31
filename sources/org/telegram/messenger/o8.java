@@ -1,49 +1,33 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.Timer;
 import org.telegram.tgnet.TLRPC;
 public final class o8 implements Runnable {
-    public final int f20841a = 0;
-    public final long f20842b;
-    public final ArrayList f20843c;
-    public final a0.h d;
-    public final Runnable e;
-    public final BaseController f20844f;
-    public final Object h;
-    public final Object f20845n;
+    public final int f17237a;
+    public final w8 f17238b;
+    public final TLRPC.TL_messages_sendMultiMedia f17239c;
+    public final Object[] d;
 
-    public o8(MediaDataController mediaDataController, Timer.Task task, Timer timer, ArrayList arrayList, long j10, a0.h hVar, Runnable runnable) {
-        this.f20844f = mediaDataController;
-        this.h = task;
-        this.f20845n = timer;
-        this.f20843c = arrayList;
-        this.f20842b = j10;
-        this.d = hVar;
-        this.e = runnable;
+    public o8(w8 w8Var, TLRPC.TL_messages_sendMultiMedia tL_messages_sendMultiMedia, Object[] objArr, int i10) {
+        this.f17237a = i10;
+        this.f17238b = w8Var;
+        this.f17239c = tL_messages_sendMultiMedia;
+        this.d = objArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f20841a) {
+        switch (this.f17237a) {
             case 0:
-                ((MediaDataController) this.f20844f).lambda$loadReplyMessagesForMessages$171((Timer.Task) this.h, (Timer) this.f20845n, this.f20843c, this.f20842b, this.d, this.e);
+                qz sendMessagesHelper = this.f17238b.getSendMessagesHelper();
+                Object[] objArr = this.d;
+                sendMessagesHelper.P(this.f17239c, (ArrayList) objArr[1], (ArrayList) objArr[2], null, (cz) objArr[4], ((Boolean) objArr[5]).booleanValue());
                 return;
             default:
-                Runnable runnable = this.e;
-                ((TopicsController) this.f20844f).lambda$reloadTopics$13((TLRPC.TL_messages_savedDialogs) this.h, this.f20842b, this.f20843c, this.d, (HashSet) this.f20845n, runnable);
+                qz sendMessagesHelper2 = this.f17238b.getSendMessagesHelper();
+                Object[] objArr2 = this.d;
+                sendMessagesHelper2.P(this.f17239c, (ArrayList) objArr2[1], (ArrayList) objArr2[2], null, (cz) objArr2[4], ((Boolean) objArr2[5]).booleanValue());
                 return;
         }
-    }
-
-    public o8(TopicsController topicsController, TLRPC.TL_messages_savedDialogs tL_messages_savedDialogs, long j10, ArrayList arrayList, a0.h hVar, HashSet hashSet, Runnable runnable) {
-        this.f20844f = topicsController;
-        this.h = tL_messages_savedDialogs;
-        this.f20842b = j10;
-        this.f20843c = arrayList;
-        this.d = hVar;
-        this.f20845n = hashSet;
-        this.e = runnable;
     }
 }

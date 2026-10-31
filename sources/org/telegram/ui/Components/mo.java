@@ -1,49 +1,52 @@
 package org.telegram.ui.Components;
+public final class mo implements Runnable {
+    public final int f28563a;
+    public final dp f28564b;
 
-import org.telegram.tgnet.TLRPC;
-public final class mo implements q8 {
-    public final org.telegram.ui.ActionBar.o1[] f30565a;
-    public final po f30566b;
-
-    public mo(po poVar, org.telegram.ui.ActionBar.o1[] o1VarArr) {
-        this.f30566b = poVar;
-        this.f30565a = o1VarArr;
+    public mo(dp dpVar, int i10) {
+        this.f28563a = i10;
+        this.f28564b = dpVar;
     }
 
     @Override
-    public final void T0(int i10, int i11) {
-        int i12;
-        org.telegram.ui.wn wnVar = this.f30566b.G;
-        if (wnVar != null) {
-            wnVar.getMessagesController().setDialogHistoryTTL(wnVar.a(), i10);
-            TLRPC.ChatFull chatFull = wnVar.f45245p8;
-            TLRPC.UserFull userFull = wnVar.f45255q8;
-            if (userFull != null || chatFull != null) {
-                wnVar.Z7();
-                UndoView undoView = wnVar.K3;
-                if (undoView != null) {
-                    long a2 = wnVar.a();
-                    TLRPC.User i13 = wnVar.i();
-                    if (userFull != null) {
-                        i12 = userFull.ttl_period;
-                    } else {
-                        i12 = chatFull.ttl_period;
-                    }
-                    undoView.k(a2, i11, i13, Integer.valueOf(i12), null, null);
-                }
-            }
+    public final void run() {
+        switch (this.f28563a) {
+            case 0:
+                this.f28564b.f25487n1.f();
+                return;
+            case 1:
+                this.f28564b.K0(true);
+                return;
+            case 2:
+                dp dpVar = this.f28564b;
+                org.telegram.ui.un unVar = dpVar.f25491r1;
+                org.telegram.ui.ActionBar.k2 f02 = org.telegram.ui.u61.f0(unVar.getMessagesController().L0(Long.valueOf(-unVar.a())), true);
+                ?? obj = new Object();
+                obj.f20389a = true;
+                f02.setResourceProvider(unVar.getResourceProvider());
+                obj.f20391c = new org.telegram.messenger.rz(17);
+                obj.d = new mo(dpVar, 3);
+                obj.f20390b = new mo(dpVar, 4);
+                obj.e = true;
+                dpVar.N1 = f02;
+                unVar.showAsSheet(f02, obj);
+                return;
+            case 3:
+                this.f28564b.O0();
+                return;
+            case 4:
+                this.f28564b.N1 = null;
+                return;
+            case 5:
+                this.f28564b.O0();
+                return;
+            case 6:
+                this.f28564b.N1 = null;
+                return;
+            default:
+                dp dpVar2 = this.f28564b;
+                dpVar2.K1.f(dpVar2.f25496w1, true);
+                return;
         }
-    }
-
-    @Override
-    public final void dismiss() {
-        org.telegram.ui.ActionBar.o1 o1Var = this.f30565a[0];
-        if (o1Var != null) {
-            o1Var.dismiss();
-        }
-    }
-
-    @Override
-    public final void e1() {
     }
 }

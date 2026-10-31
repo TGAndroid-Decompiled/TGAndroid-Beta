@@ -1,31 +1,29 @@
 package org.telegram.messenger;
 
-import java.util.concurrent.atomic.AtomicInteger;
-public final class b0 implements Runnable {
-    public final int f19659a;
-    public final AtomicInteger f19660b;
-    public final AtomicInteger f19661c;
-    public final Runnable d;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import android.view.View;
+public final class b0 extends ClickableSpan {
+    public final int f14699a;
+    public final Runnable f14700b;
 
-    public b0(AtomicInteger atomicInteger, AtomicInteger atomicInteger2, Runnable runnable, int i10) {
-        this.f19659a = i10;
-        this.f19660b = atomicInteger;
-        this.f19661c = atomicInteger2;
-        this.d = runnable;
+    public b0(int i10, Runnable runnable) {
+        this.f14699a = i10;
+        this.f14700b = runnable;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19659a) {
-            case 0:
-                BillingController.c(this.f19660b, this.f19661c, this.d);
-                return;
-            case 1:
-                BillingController.g(this.f19660b, this.f19661c, this.d);
-                return;
-            default:
-                BillingController.d(this.f19660b, this.f19661c, this.d);
-                return;
+    public final void onClick(View view) {
+        Runnable runnable = this.f14700b;
+        if (runnable != null) {
+            runnable.run();
         }
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        super.updateDrawState(textPaint);
+        textPaint.setUnderlineText(false);
+        textPaint.setColor(this.f14699a);
     }
 }

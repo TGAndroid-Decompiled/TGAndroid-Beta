@@ -1,330 +1,88 @@
 package ag;
 
-import a8.yb;
-import android.os.Bundle;
-import android.os.Looper;
-import android.text.SpannableString;
 import android.text.TextUtils;
-import android.util.StateSet;
-import bi.ca;
-import bi.p5;
-import di.b4;
-import di.h7;
-import fi.l2;
-import fi.sb;
-import fi.w7;
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
-import li.n3;
-import li.s3;
-import li.v3;
 import org.telegram.SQLite.SQLiteDatabase;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.j5;
-import org.telegram.ui.ActionBar.r2;
-import org.telegram.ui.Cells.j1;
-import org.telegram.ui.Cells.s1;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.dj;
-import org.telegram.ui.fe;
-import org.telegram.ui.ge;
-import org.telegram.ui.hn;
-import org.telegram.ui.om;
-import org.telegram.ui.t4;
-import org.telegram.ui.ui;
-import org.telegram.ui.vi;
-import org.telegram.ui.wn;
+import org.telegram.SQLite.SQLitePreparedStatement;
+import org.telegram.messenger.f8;
+import org.telegram.messenger.hs;
+import org.telegram.tgnet.NativeByteBuffer;
+import org.telegram.tgnet.tl.TL_account;
 public final class r0 implements Runnable {
-    public final int f1374a;
-    public final int f1375b;
-    public final Object f1376c;
+    public final int f693a;
+    public final hs f694b;
+    public final ArrayList f695c;
 
-    public r0(int i10, Object obj, int i11) {
-        this.f1374a = i11;
-        this.f1375b = i10;
-        this.f1376c = obj;
+    public r0(hs hsVar, ArrayList arrayList, int i10) {
+        this.f693a = i10;
+        this.f694b = hsVar;
+        this.f695c = arrayList;
     }
 
     @Override
     public final void run() {
-        ArrayList<TLRPC.MessageEntity> arrayList;
-        ArrayList<TLRPC.MessageEntity> arrayList2;
-        boolean z10;
-        int i10;
-        int i11;
-        int i12 = this.f1374a;
-        boolean z11 = false;
-        int i13 = this.f1375b;
-        Object obj = this.f1376c;
-        switch (i12) {
+        switch (this.f693a) {
             case 0:
-                Bundle bundle = new Bundle();
-                bundle.putLong("user_id", UserConfig.getInstance(i13).clientUserId);
-                ((j5) obj).getLastFragment().presentFragment(new ProfileActivity(bundle, null));
-                return;
-            case 1:
-                bh.h hVar = (bh.h) obj;
-                if (hVar.f4035b) {
-                    Utilities.Callback callback = hVar.d;
-                    if (callback != null) {
-                        if (i13 < 300) {
-                            z11 = true;
+                hs hsVar = this.f694b;
+                ArrayList arrayList = this.f695c;
+                SQLitePreparedStatement sQLitePreparedStatement = null;
+                try {
+                    try {
+                        SQLiteDatabase sQLiteDatabase = hsVar.f15940b;
+                        sQLiteDatabase.executeFast("DELETE FROM business_links").stepThis().dispose();
+                        sQLitePreparedStatement = sQLiteDatabase.executeFast("REPLACE INTO business_links VALUES(?, ?)");
+                        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                            TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) arrayList.get(i10);
+                            NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tL_businessChatLink.getObjectSize());
+                            tL_businessChatLink.serializeToStream(nativeByteBuffer);
+                            sQLitePreparedStatement.requery();
+                            sQLitePreparedStatement.bindByteBuffer(1, nativeByteBuffer);
+                            sQLitePreparedStatement.bindInteger(2, i10);
+                            sQLitePreparedStatement.step();
                         }
-                        callback.run(Boolean.valueOf(z11));
-                        try {
-                            hVar.f4034a.performHapticFeedback(3);
-                        } catch (Exception unused) {
+                        if (sQLitePreparedStatement == null) {
+                            return;
+                        }
+                    } catch (Exception e) {
+                        f8.g(e, true);
+                        if (sQLitePreparedStatement == null) {
+                            return;
                         }
                     }
-                    hVar.f4036c = true;
-                    int max = Math.max(50, i13 - 100);
-                    AndroidUtilities.runOnUIThread(new r0(hVar, max, 1), max);
-                    return;
-                }
-                return;
-            case 2:
-                qf.d.r(((bi.y) obj).getParentActivity(), LocaleController.getString(i13));
-                return;
-            case 3:
-                ConnectionsManager.getInstance(((ca) obj).f4441a).cancelRequest(i13, true);
-                return;
-            case 4:
-                ((c2.g) obj).f5944b.onAudioFocusChange(i13);
-                return;
-            case 5:
-                h7 h7Var = (h7) obj;
-                ArrayList arrayList3 = h7Var.f8633g;
-                h7Var.v(arrayList3);
-                p5 p5Var = h7Var.J;
-                Collections.sort(arrayList3, p5Var);
-                ArrayList arrayList4 = h7Var.h;
-                h7Var.v(arrayList4);
-                Collections.sort(arrayList4, p5Var);
-                NotificationCenter.getInstance(i13).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
-                return;
-            case 6:
-                ((fi.o) obj).run(Integer.valueOf(i13));
-                return;
-            case 7:
-                ((Utilities.Callback) obj).run(Integer.valueOf(i13));
-                return;
-            case 8:
-                ((l2) obj).r0(i13);
-                return;
-            case 9:
-                MessagesController.getInstance(i13).putUsers((ArrayList) obj, true);
-                return;
-            case 10:
-                sb sbVar = (sb) obj;
-                int i14 = sbVar.f11611c;
-                sbVar.l();
-                sbVar.X1 = false;
-                File file = sbVar.K1.O0;
-                if (file != null) {
-                    file.delete();
-                    sbVar.K1.O0 = null;
-                }
-                sbVar.V(sbVar.K1, true);
-                CharSequence[] charSequenceArr = {sbVar.f11613c1.getText()};
-                if (MessagesController.getInstance(i14).storyEntitiesAllowed()) {
-                    arrayList = MediaDataController.getInstance(i14).getEntities(charSequenceArr, true);
-                } else {
-                    arrayList = new ArrayList<>();
-                }
-                CharSequence[] charSequenceArr2 = {sbVar.K1.C0};
-                if (MessagesController.getInstance(i14).storyEntitiesAllowed()) {
-                    arrayList2 = MediaDataController.getInstance(i14).getEntities(charSequenceArr2, true);
-                } else {
-                    arrayList2 = new ArrayList<>();
-                }
-                w7 w7Var = sbVar.K1;
-                if (TextUtils.equals(w7Var.C0, charSequenceArr[0]) && MediaDataController.entitiesEqual(arrayList, arrayList2)) {
-                    z10 = false;
-                } else {
-                    z10 = true;
-                }
-                w7Var.f11909k = z10;
-                sbVar.K1.C0 = new SpannableString(sbVar.f11613c1.getText());
-                sbVar.y();
-                sbVar.x();
-                w7 w7Var2 = sbVar.K1;
-                if (w7Var2 != null && w7Var2.K) {
-                    i10 = 1;
-                } else {
-                    i10 = 0;
-                }
-                sbVar.O1 = i10;
-                sbVar.K1 = (w7) sbVar.H1.get(i13);
-                sbVar.N(0, 1);
-                sbVar.M(0, 1);
-                sbVar.f11616d1.f11106b.f32504g3.O(false);
-                sbVar.f11613c1.setText(sbVar.K1.C0);
-                return;
-            case 11:
-                j2.e eVar = ((i2.s0) obj).M;
-                j2.a l4 = eVar.l();
-                eVar.q(l4, 1034, new ig.g(l4, i13, 14, (char) 0));
-                return;
-            case 12:
-                ((ig.i0) obj).m(i13);
-                return;
-            case 13:
-                try {
-                    SQLiteDatabase database = ((MessagesStorage) obj).getDatabase();
-                    database.executeFast("DELETE FROM business_replies WHERE topic_id = " + i13).stepThis().dispose();
-                    database.executeFast("DELETE FROM quick_replies_messages WHERE topic_id = " + i13).stepThis().dispose();
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
-            case 14:
-                jh.g gVar = (jh.g) obj;
-                gVar.getClass();
-                try {
-                    gVar.f15952a.scrollBy(0, i13);
+                    sQLitePreparedStatement.dispose();
                     return;
                 } catch (Throwable th2) {
-                    FileLog.e(th2);
-                    return;
-                }
-            case 15:
-                String str = e2.n0.f9691a;
-                e2.c cVar = ((i2.d0) ((k2.v) ((rf.b) obj).f47371c)).f13508a.C;
-                i2.w wVar = new i2.w(i13, 2);
-                cVar.getClass();
-                if (Looper.myLooper() == ((e2.i0) cVar.f9638c).f9671a.getLooper()) {
-                    z11 = true;
-                }
-                yb.p(z11);
-                cVar.f9636a++;
-                cVar.i(new b4(25, cVar, wVar));
-                Integer num = (Integer) cVar.e;
-                cVar.n(Integer.valueOf(i13));
-                return;
-            case 16:
-                li.c0 c0Var = (li.c0) obj;
-                li.f0 f0Var = c0Var.f17166f;
-                if (c0Var.f17165c && f0Var.E != null && f0Var.f17652a != null) {
-                    c0Var.d = true;
-                    c0Var.f17163a.setPressed(false);
-                    try {
-                        c0Var.performHapticFeedback(0);
-                    } catch (Exception unused2) {
+                    if (sQLitePreparedStatement != null) {
+                        sQLitePreparedStatement.dispose();
                     }
-                    li.d0 d0Var = f0Var.E;
-                    li.a aVar = f0Var.f17652a;
-                    v3 v3Var = ((n3) d0Var).f17379a;
-                    v3Var.u3(false);
-                    v3Var.f17556p3.B(new s3(v3Var, aVar, i13), c0Var);
+                    throw th2;
+                }
+            case 1:
+                hs hsVar2 = this.f694b;
+                ArrayList arrayList2 = this.f695c;
+                try {
+                    SQLiteDatabase sQLiteDatabase2 = hsVar2.f15940b;
+                    String join = TextUtils.join(", ", arrayList2);
+                    sQLiteDatabase2.executeFast("DELETE FROM quick_replies_messages WHERE topic_id IN (" + join + ")").stepThis().dispose();
+                    return;
+                } catch (Exception e7) {
+                    f8.g(e7, true);
                     return;
                 }
-                return;
-            case 17:
-                ConnectionsManager.lambda$onUpdateConfig$21(i13, (TLRPC.TL_config) obj);
-                return;
-            case 18:
-                MessagesController.getInstance(i13).loadFullChat(((TLRPC.Chat) obj).f22028id, 0, true);
-                return;
-            case 19:
-                ((t4) ((org.telegram.ui.f) obj).f39115b).W(i13, true);
-                return;
-            case 20:
-                s1 s1Var = (s1) obj;
-                int i15 = s1Var.f25322v7;
-                if (i13 == i15) {
-                    org.telegram.ui.Cells.d0 d0Var2 = (org.telegram.ui.Cells.d0) s1Var.f25222o7.get(i15);
-                    if (d0Var2 != null) {
-                        org.telegram.ui.Cells.y yVar = d0Var2.f23978s;
-                        if (yVar != null) {
-                            yVar.setState(StateSet.NOTHING);
-                        }
-                        d0Var2.b(false);
-                        if (!s1Var.f25367y7.scheduled) {
-                            if (d0Var2.f23969j != null) {
-                                s1Var.j();
-                            } else if (d0Var2.f23968i != null) {
-                                s1Var.j();
-                                j1 j1Var = s1Var.Jc;
-                                if (j1Var != null) {
-                                    j1Var.q1(s1Var, d0Var2.f23968i);
-                                }
-                            }
-                        }
-                    }
-                    s1Var.f25322v7 = -1;
-                    s1Var.a3();
-                    return;
-                }
-                return;
-            case 21:
-                ge geVar = ((fe) obj).f39341f;
-                geVar.getClass();
-                geVar.c(i13);
-                return;
-            case 22:
-                wn wnVar = ((ui) obj).f44040g;
-                if (wnVar.Wb == i13) {
-                    wnVar.Ya();
-                    return;
-                }
-                return;
-            case 23:
-                wn wnVar2 = ((vi) obj).f44361g;
-                if (wnVar2.Wb == i13) {
-                    wnVar2.Ya();
-                    return;
-                }
-                return;
-            case 24:
-                ((dj) obj).f38632a.j(this.f1375b, 0, true, 0, true, 0);
-                return;
-            case 25:
-                wn wnVar3 = ((ui) obj).f44040g;
-                if (wnVar3.Wb == i13) {
-                    wnVar3.Ya();
-                    return;
-                }
-                return;
-            case 26:
-                wn wnVar4 = ((vi) obj).f44361g;
-                if (wnVar4.Wb == i13) {
-                    wnVar4.Ya();
-                    return;
-                }
-                return;
-            case 27:
-                wn wnVar5 = ((vi) obj).f44361g;
-                if (wnVar5.Wb == i13) {
-                    wnVar5.Ya();
-                    return;
-                }
-                return;
-            case 28:
-                wn wnVar6 = ((om) obj).B0;
-                wnVar6.f45364z0.h1(i13, wnVar6.K4);
-                return;
             default:
-                i11 = ((r2) ((hn) obj).f39938a).currentAccount;
-                ConnectionsManager.getInstance(i11).cancelRequest(i13, true);
-                return;
+                hs hsVar3 = this.f694b;
+                ArrayList arrayList3 = this.f695c;
+                try {
+                    SQLiteDatabase sQLiteDatabase3 = hsVar3.f15940b;
+                    if (sQLiteDatabase3 != null) {
+                        sQLiteDatabase3.executeFast("DELETE FROM story_drafts WHERE id IN (" + TextUtils.join(", ", arrayList3) + ")").stepThis().dispose();
+                        return;
+                    }
+                    return;
+                } catch (Exception e10) {
+                    f8.g(e10, true);
+                    return;
+                }
         }
-    }
-
-    public r0(Object obj, int i10, int i11) {
-        this.f1374a = i11;
-        this.f1376c = obj;
-        this.f1375b = i10;
     }
 }

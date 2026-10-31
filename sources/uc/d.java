@@ -1,369 +1,75 @@
 package uc;
 
-import e2.j0;
-public abstract class d {
-    public static final int[] f49684a = {16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15};
-    public static final byte[] f49685b = {65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 43, 47};
+import j$.util.DesugarCollections;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import w7.c8;
+import xc.i;
+public final class d extends c8 {
+    public static final Set f50214g = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("a", "abbr", "acronym", "b", "bdo", "big", "br", "button", "cite", "code", "dfn", "em", "i", "img", "input", "kbd", "label", "map", "object", "q", "samp", "script", "select", "small", "span", "strong", "sub", "sup", "textarea", "time", "tt", "var")));
+    public static final Set h = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("area", "base", "br", "col", "embed", "hr", "img", "input", "keygen", "link", "meta", "param", "source", "track", "wbr")));
+    public static final Set f50215i = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("address", "article", "aside", "blockquote", "canvas", "dd", "div", "dl", "dt", "fieldset", "figcaption", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "header", "hgroup", "hr", "li", "main", "nav", "noscript", "ol", "output", "p", "pre", "section", "table", "tfoot", "ul", "video")));
+    public final jb.b f50216a;
+    public final kb.a f50217b;
+    public final ArrayList f50218c = new ArrayList(0);
+    public a d = new a("", 0, Collections.EMPTY_MAP, null);
+    public boolean e;
+    public boolean f50219f;
 
-    public static String a(byte[] bArr) {
-        int i10;
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        if (bArr == 0) {
-            return null;
-        }
-        int length = (((((bArr.length * 8) + 5) / 6) + 3) / 4) * 4;
-        StringBuilder sb2 = new StringBuilder(length);
-        int i15 = 0;
-        while (true) {
-            int i16 = i15 / 8;
-            if (bArr.length <= i16) {
-                i12 = -1;
-            } else {
-                if (bArr.length - 1 == i16) {
-                    i10 = 0;
+    public d(jb.b bVar, kb.a aVar) {
+        this.f50216a = bVar;
+        this.f50217b = aVar;
+    }
+
+    public static Map a(i iVar) {
+        boolean z10;
+        wc.b bVar = iVar.f53641k;
+        int i10 = bVar.f52799a;
+        if (i10 > 0) {
+            HashMap hashMap = new HashMap(i10);
+            int i11 = 0;
+            while (true) {
+                if (i11 < bVar.f52799a) {
+                    z10 = true;
                 } else {
-                    i10 = bArr[i16 + 1];
+                    z10 = false;
                 }
-                int i17 = (i15 % 24) / 6;
-                if (i17 != 0) {
-                    if (i17 != 1) {
-                        if (i17 != 2) {
-                            if (i17 != 3) {
-                                i12 = 0;
-                            } else {
-                                i11 = bArr[i16];
-                            }
+                if (z10) {
+                    String str = bVar.f52801c[i11];
+                    String str2 = bVar.f52800b[i11];
+                    if (str == null) {
+                        str = "";
+                    }
+                    ?? obj = new Object();
+                    if (str2 != null) {
+                        obj.f52796a = str2.trim();
+                        if (str2.length() != 0) {
+                            obj.f52797b = str;
+                            obj.f52798c = bVar;
+                            i11++;
+                            hashMap.put(obj.f52796a.toLowerCase(Locale.US), obj.f52797b);
                         } else {
-                            i13 = (bArr[i16] << 2) & 60;
-                            i14 = (i10 >> 6) & 3;
+                            throw new IllegalArgumentException("String must not be empty");
                         }
                     } else {
-                        i13 = (bArr[i16] << 4) & 48;
-                        i14 = (i10 >> 4) & 15;
+                        throw new IllegalArgumentException("Object must not be null");
                     }
-                    i12 = i13 | i14;
                 } else {
-                    i11 = bArr[i16] >> 2;
-                }
-                i12 = i11 & 63;
-            }
-            if (i12 < 0) {
-                break;
-            }
-            sb2.append((char) f49685b[i12]);
-            i15 += 6;
-        }
-        for (int length2 = sb2.length(); length2 < length; length2++) {
-            sb2.append('=');
-        }
-        return sb2.toString();
-    }
-
-    public static boolean b(String str) {
-        if (str == null || str.length() == 0) {
-            return false;
-        }
-        int length = str.length();
-        for (int i10 = 0; i10 < length; i10++) {
-            char charAt = str.charAt(i10);
-            if (charAt != '\t' && charAt != ' ' && charAt != '\"' && charAt != ',' && charAt != '/' && charAt != '{' && charAt != '}' && charAt != '(' && charAt != ')') {
-                switch (charAt) {
-                    case ':':
-                    case ';':
-                    case '<':
-                    case '=':
-                    case '>':
-                    case '?':
-                    case '@':
-                        break;
-                    default:
-                        switch (charAt) {
-                            case '[':
-                            case '\\':
-                            case ']':
-                                break;
-                            default:
-                        }
+                    return DesugarCollections.unmodifiableMap(hashMap);
                 }
             }
-            return false;
-        }
-        return true;
-    }
-
-    public static void c(d5.z zVar, int[] iArr, int[] iArr2, j0 j0Var) {
-        int i10;
-        int p10;
-        int p11;
-        int i11 = 0;
-        while (i11 < iArr2.length) {
-            int i12 = j0Var.i(zVar, iArr);
-            if (i12 >= 0 && i12 <= 15) {
-                iArr2[i11] = i12;
-            } else {
-                switch (i12) {
-                    case 16:
-                        i10 = iArr2[i11 - 1];
-                        p10 = zVar.p(2, iArr) + 3;
-                        break;
-                    case 17:
-                        p11 = zVar.p(3, iArr) + 3;
-                        p10 = p11;
-                        i10 = 0;
-                        break;
-                    case 18:
-                        p11 = zVar.p(7, iArr) + 11;
-                        p10 = p11;
-                        i10 = 0;
-                        break;
-                    default:
-                        throw new Exception(String.format("[%s] Bad code length '%d' at the bit index '%d'.", d.class.getSimpleName(), Integer.valueOf(i12), iArr));
-                }
-                for (int i13 = 0; i13 < p10; i13++) {
-                    iArr2[i11 + i13] = i10;
-                }
-                i11 += p10 - 1;
-            }
-            i11++;
+        } else {
+            return Collections.EMPTY_MAP;
         }
     }
 
-    public static int d(d5.z zVar, int[] iArr, j0 j0Var) {
-        int i10;
-        int i11 = j0Var.i(zVar, iArr);
-        int i12 = 2;
-        int i13 = 5;
-        switch (i11) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-                return i11 + 1;
-            case 4:
-                i12 = 1;
-                break;
-            case 5:
-                i12 = 1;
-                i13 = 7;
-                break;
-            case 6:
-                i13 = 9;
-                break;
-            case 7:
-                i13 = 13;
-                break;
-            case 8:
-                i13 = 17;
-                i12 = 3;
-                break;
-            case 9:
-                i13 = 25;
-                i12 = 3;
-                break;
-            case 10:
-                i13 = 33;
-                i12 = 4;
-                break;
-            case 11:
-                i13 = 49;
-                i12 = 4;
-                break;
-            case 12:
-                i10 = 65;
-                i12 = 5;
-                i13 = i10;
-                break;
-            case 13:
-                i10 = 97;
-                i12 = 5;
-                i13 = i10;
-                break;
-            case 14:
-                i13 = 129;
-                i12 = 6;
-                break;
-            case 15:
-                i13 = 193;
-                i12 = 6;
-                break;
-            case 16:
-                i13 = 257;
-                i12 = 7;
-                break;
-            case 17:
-                i13 = 385;
-                i12 = 7;
-                break;
-            case 18:
-                i13 = 513;
-                i12 = 8;
-                break;
-            case 19:
-                i13 = 769;
-                i12 = 8;
-                break;
-            case 20:
-                i13 = 1025;
-                i12 = 9;
-                break;
-            case 21:
-                i13 = 1537;
-                i12 = 9;
-                break;
-            case 22:
-                i13 = 2049;
-                i12 = 10;
-                break;
-            case 23:
-                i13 = 3073;
-                i12 = 10;
-                break;
-            case 24:
-                i13 = 4097;
-                i12 = 11;
-                break;
-            case 25:
-                i13 = 6145;
-                i12 = 11;
-                break;
-            case 26:
-                i13 = 8193;
-                i12 = 12;
-                break;
-            case 27:
-                i13 = 12289;
-                i12 = 12;
-                break;
-            case 28:
-                i13 = 16385;
-                i12 = 13;
-                break;
-            case 29:
-                i13 = 24577;
-                i12 = 13;
-                break;
-            default:
-                throw new Exception(String.format("[%s] Bad distance code '%d' at the bit index '%d'.", d.class.getSimpleName(), Integer.valueOf(i11), Integer.valueOf(iArr[0])));
-        }
-        return zVar.p(i12, iArr) + i13;
-    }
-
-    public static void e(d5.z zVar, int[] iArr, j0[] j0VarArr) {
-        int p10 = zVar.p(5, iArr) + 257;
-        int p11 = zVar.p(5, iArr) + 1;
-        int p12 = zVar.p(4, iArr) + 4;
-        int[] iArr2 = new int[19];
-        for (int i10 = 0; i10 < p12; i10++) {
-            iArr2[f49684a[i10]] = (byte) zVar.p(3, iArr);
-        }
-        j0 j0Var = new j0(iArr2);
-        int[] iArr3 = new int[p10];
-        c(zVar, iArr, iArr3, j0Var);
-        j0 j0Var2 = new j0(iArr3);
-        int[] iArr4 = new int[p11];
-        c(zVar, iArr, iArr4, j0Var);
-        j0 j0Var3 = new j0(iArr4);
-        j0VarArr[0] = j0Var2;
-        j0VarArr[1] = j0Var3;
-    }
-
-    public static int f(d5.z zVar, int[] iArr, int i10) {
-        int i11;
-        int i12 = 1;
-        switch (i10) {
-            case 257:
-            case 258:
-            case 259:
-            case 260:
-            case 261:
-            case 262:
-            case 263:
-            case 264:
-                return i10 - 254;
-            case 265:
-                i11 = 11;
-                break;
-            case 266:
-                i11 = 13;
-                break;
-            case 267:
-                i11 = 15;
-                break;
-            case 268:
-                i11 = 17;
-                break;
-            case 269:
-                i11 = 19;
-                i12 = 2;
-                break;
-            case 270:
-                i11 = 23;
-                i12 = 2;
-                break;
-            case 271:
-                i11 = 27;
-                i12 = 2;
-                break;
-            case 272:
-                i11 = 31;
-                i12 = 2;
-                break;
-            case 273:
-                i11 = 35;
-                i12 = 3;
-                break;
-            case 274:
-                i11 = 43;
-                i12 = 3;
-                break;
-            case 275:
-                i11 = 51;
-                i12 = 3;
-                break;
-            case 276:
-                i11 = 59;
-                i12 = 3;
-                break;
-            case 277:
-                i11 = 67;
-                i12 = 4;
-                break;
-            case 278:
-                i11 = 83;
-                i12 = 4;
-                break;
-            case 279:
-                i11 = 99;
-                i12 = 4;
-                break;
-            case 280:
-                i11 = 115;
-                i12 = 4;
-                break;
-            case 281:
-                i11 = 131;
-                i12 = 5;
-                break;
-            case 282:
-                i11 = 163;
-                i12 = 5;
-                break;
-            case 283:
-                i11 = 195;
-                i12 = 5;
-                break;
-            case 284:
-                i11 = 227;
-                i12 = 5;
-                break;
-            case 285:
-                return 258;
-            default:
-                throw new Exception(String.format("[%s] Bad literal/length code '%d' at the bit index '%d'.", d.class.getSimpleName(), Integer.valueOf(i10), Integer.valueOf(iArr[0])));
-        }
-        return zVar.p(i12, iArr) + i11;
+    public final void b(java.lang.Appendable r17, java.lang.String r18) {
+        throw new UnsupportedOperationException("Method not decompiled: uc.d.b(java.lang.Appendable, java.lang.String):void");
     }
 }

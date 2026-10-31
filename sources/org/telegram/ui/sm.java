@@ -1,65 +1,41 @@
 package org.telegram.ui;
-public final class sm implements Runnable {
-    public final int f43360a;
-    public final hn f43361b;
 
-    public sm(hn hnVar, int i10) {
-        this.f43360a = i10;
-        this.f43361b = hnVar;
+import org.telegram.tgnet.TLRPC;
+public final class sm implements Runnable {
+    public final int f41541a;
+    public final fn f41542b;
+    public final TLRPC.Chat f41543c;
+
+    public sm(fn fnVar, TLRPC.Chat chat, int i10) {
+        this.f41541a = i10;
+        this.f41542b = fnVar;
+        this.f41543c = chat;
     }
 
     @Override
     public final void run() {
-        switch (this.f43360a) {
+        String str;
+        int i10 = this.f41541a;
+        TLRPC.Chat chat = this.f41543c;
+        fn fnVar = this.f41542b;
+        switch (i10) {
             case 0:
-                wn wnVar = this.f43361b.f39938a;
-                wnVar.f45291t5 = null;
-                wnVar.f45304u5 = null;
+                fnVar.p(chat);
                 return;
             case 1:
-                hn hnVar = this.f43361b;
-                hnVar.getClass();
-                wn wnVar2 = hnVar.f39938a;
-                new tg.y0((org.telegram.ui.ActionBar.r2) wnVar2, 8, true).show();
-                wnVar2.getMessagesController().pressTranscribeButton();
+                fnVar.a(chat);
                 return;
             case 2:
-                hn hnVar2 = this.f43361b;
-                hnVar2.getClass();
-                wn wnVar3 = hnVar2.f39938a;
-                new tg.y0((org.telegram.ui.ActionBar.r2) wnVar3, 8, true).show();
-                wnVar3.getMessagesController().pressTranscribeButton();
-                return;
-            case 3:
-                hn hnVar3 = this.f43361b;
-                hnVar3.getClass();
-                wn wnVar4 = hnVar3.f39938a;
-                new tg.y0((org.telegram.ui.ActionBar.r2) wnVar4, 8, true).show();
-                wnVar4.getMessagesController().pressTranscribeButton();
-                return;
-            case 4:
-                this.f43361b.f39938a.presentFragment(new PremiumPreviewFragment(0, "similar_channels"));
-                return;
-            case 5:
-                wn wnVar5 = this.f43361b.f39938a;
-                wnVar5.f45291t5 = null;
-                wnVar5.f45304u5 = null;
-                return;
-            case 6:
-                this.f43361b.f39938a.Y.E0();
-                return;
-            case 7:
-                this.f43361b.f39938a.Y.E0();
-                return;
-            case 8:
-                wn wnVar6 = this.f43361b.f39938a;
-                ThemeActivity themeActivity = new ThemeActivity(0);
-                themeActivity.T0 = true;
-                wnVar6.presentFragment(themeActivity);
+                fnVar.f37301a.Aa(chat);
                 return;
             default:
-                wn wnVar7 = this.f43361b.f39938a;
-                wnVar7.showDialog(new tg.y0((org.telegram.ui.ActionBar.r2) wnVar7, 39, false));
+                org.telegram.ui.Components.cc a02 = org.telegram.ui.Components.cc.a0(fnVar.f37301a);
+                if (chat == null) {
+                    str = "";
+                } else {
+                    str = chat.title;
+                }
+                a02.Q(2131623989, 36, org.telegram.messenger.cd.a0(null, null, 2131742861, str)).k(true);
                 return;
         }
     }

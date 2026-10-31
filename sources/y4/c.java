@@ -1,48 +1,87 @@
 package y4;
 
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
-public final class c extends Drawable.ConstantState {
-    public final Drawable.ConstantState f52049a;
+import a0.f;
+import a0.l;
+import a1.g;
+import android.os.Parcel;
+import android.util.SparseIntArray;
+public final class c extends b {
+    public final SparseIntArray d;
+    public final Parcel e;
+    public final int f54182f;
+    public final int f54183g;
+    public final String h;
+    public int f54184i;
+    public int f54185j;
+    public int f54186k;
 
-    public c(Drawable.ConstantState constantState) {
-        this.f52049a = constantState;
+    public c(Parcel parcel) {
+        this(parcel, parcel.dataPosition(), parcel.dataSize(), "", new l(0), new l(0), new l(0));
     }
 
     @Override
-    public final boolean canApplyTheme() {
-        return this.f52049a.canApplyTheme();
+    public final c a() {
+        Parcel parcel = this.e;
+        int dataPosition = parcel.dataPosition();
+        int i10 = this.f54185j;
+        if (i10 == this.f54182f) {
+            i10 = this.f54183g;
+        }
+        return new c(parcel, dataPosition, i10, g.r(new StringBuilder(), this.h, "  "), this.f54179a, this.f54180b, this.f54181c);
     }
 
     @Override
-    public final int getChangingConfigurations() {
-        return this.f52049a.getChangingConfigurations();
+    public final boolean e(int i10) {
+        while (this.f54185j < this.f54183g) {
+            int i11 = this.f54186k;
+            if (i11 != i10) {
+                if (String.valueOf(i11).compareTo(String.valueOf(i10)) <= 0) {
+                    int i12 = this.f54185j;
+                    Parcel parcel = this.e;
+                    parcel.setDataPosition(i12);
+                    int readInt = parcel.readInt();
+                    this.f54186k = parcel.readInt();
+                    this.f54185j += readInt;
+                } else {
+                    return false;
+                }
+            } else {
+                return true;
+            }
+        }
+        if (this.f54186k == i10) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final Drawable newDrawable() {
-        d dVar = new d(null);
-        Drawable newDrawable = this.f52049a.newDrawable();
-        dVar.f27238b = newDrawable;
-        newDrawable.setCallback(dVar.e);
-        return dVar;
+    public final void i(int i10) {
+        int i11 = this.f54184i;
+        SparseIntArray sparseIntArray = this.d;
+        Parcel parcel = this.e;
+        if (i11 >= 0) {
+            int i12 = sparseIntArray.get(i11);
+            int dataPosition = parcel.dataPosition();
+            parcel.setDataPosition(i12);
+            parcel.writeInt(dataPosition - i12);
+            parcel.setDataPosition(dataPosition);
+        }
+        this.f54184i = i10;
+        sparseIntArray.put(i10, parcel.dataPosition());
+        parcel.writeInt(0);
+        parcel.writeInt(i10);
     }
 
-    @Override
-    public final Drawable newDrawable(Resources resources) {
-        d dVar = new d(null);
-        Drawable newDrawable = this.f52049a.newDrawable(resources);
-        dVar.f27238b = newDrawable;
-        newDrawable.setCallback(dVar.e);
-        return dVar;
-    }
-
-    @Override
-    public final Drawable newDrawable(Resources resources, Resources.Theme theme) {
-        d dVar = new d(null);
-        Drawable newDrawable = this.f52049a.newDrawable(resources, theme);
-        dVar.f27238b = newDrawable;
-        newDrawable.setCallback(dVar.e);
-        return dVar;
+    public c(Parcel parcel, int i10, int i11, String str, f fVar, f fVar2, f fVar3) {
+        super(fVar, fVar2, fVar3);
+        this.d = new SparseIntArray();
+        this.f54184i = -1;
+        this.f54186k = -1;
+        this.e = parcel;
+        this.f54182f = i10;
+        this.f54183g = i11;
+        this.f54185j = i10;
+        this.h = str;
     }
 }

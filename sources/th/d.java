@@ -1,21 +1,32 @@
 package th;
 
-import android.graphics.Canvas;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.SendMessagesHelper;
-public final class d extends sh.e {
-    public final MediaController.PhotoEntry f49190b;
-    public final SendMessagesHelper.SendingMediaInfo f49191c;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class d implements Runnable {
+    public final int f48859a;
+    public final m f48860b;
 
-    public d(org.telegram.messenger.SendMessagesHelper.SendingMediaInfo r10) {
-        throw new UnsupportedOperationException("Method not decompiled: th.d.<init>(org.telegram.messenger.SendMessagesHelper$SendingMediaInfo):void");
+    public d(m mVar, int i10) {
+        this.f48859a = i10;
+        this.f48860b = mVar;
     }
 
     @Override
-    public final void c(Canvas canvas, int i10, int i11) {
-        ImageReceiver imageReceiver = this.f48666a;
-        imageReceiver.setImageCoords(0.0f, 0.0f, i10, i11);
-        imageReceiver.draw(canvas);
+    public final void run() {
+        switch (this.f48859a) {
+            case 0:
+                this.f48860b.p(true, false);
+                return;
+            case 1:
+                m mVar = this.f48860b;
+                vh.p2 p2Var = mVar.J;
+                if (p2Var != null) {
+                    p2Var.e(true);
+                }
+                mVar.f49202e0.presentFragment(new PremiumPreviewFragment(0, "stories"));
+                return;
+            default:
+                this.f48860b.c();
+                return;
+        }
     }
 }

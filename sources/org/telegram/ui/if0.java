@@ -1,25 +1,29 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class if0 extends xr {
-    public final int h;
-    public final lf0 f40133n;
+import android.view.View;
+public final class if0 implements org.telegram.ui.Components.hk0, org.telegram.ui.ActionBar.u1 {
+    public final jf0 f38255a;
 
-    public if0(lf0 lf0Var, Context context, int i10) {
-        super(context);
-        this.h = i10;
-        this.f40133n = lf0Var;
+    public if0(jf0 jf0Var) {
+        this.f38255a = jf0Var;
     }
 
     @Override
-    public final void a() {
-        switch (this.h) {
-            case 0:
-                this.f40133n.h(null);
-                return;
-            default:
-                this.f40133n.h(null);
-                return;
-        }
+    public void b(float f7, float f10, int i10, View view) {
+        jf0.a0(this.f38255a, i10);
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
+        jf0.Z(this.f38255a);
+    }
+
+    @Override
+    public boolean h1(View view) {
+        return false;
+    }
+
+    @Override
+    public void q0(View view, float f7, float f10) {
     }
 }

@@ -1,38 +1,53 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class df0 implements RequestDelegate {
-    public final int f38600a;
-    public final lf0 f38601b;
-    public final Bundle f38602c;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.ViewSwitcher;
+public final class df0 implements ViewSwitcher.ViewFactory {
+    public final int f36759a;
+    public final Object f36760b;
 
-    public df0(lf0 lf0Var, Bundle bundle, int i10) {
-        this.f38600a = i10;
-        this.f38601b = lf0Var;
-        this.f38602c = bundle;
+    public df0(Object obj, int i10) {
+        this.f36759a = i10;
+        this.f36760b = obj;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f38600a) {
+    public final View makeView() {
+        int i10;
+        int i11 = this.f36759a;
+        Object obj = this.f36760b;
+        switch (i11) {
             case 0:
-                lf0 lf0Var = this.f38601b;
-                if (tLObject != null) {
-                    AndroidUtilities.runOnUIThread(new ne0(lf0Var, this.f38602c, tLObject, false, 4));
-                    return;
-                } else if (tL_error != null && tL_error.text != null) {
-                    AndroidUtilities.runOnUIThread(new kb0(11, lf0Var, tL_error));
-                    return;
+                TextView textView = new TextView((Context) obj);
+                textView.setPadding(org.telegram.messenger.i0.L(16.0f), org.telegram.messenger.i0.L(12.0f), org.telegram.messenger.i0.L(16.0f), org.telegram.messenger.i0.L(12.0f));
+                textView.setTextSize(1, 16.0f);
+                org.telegram.ui.ActionBar.a7.V(textView, org.telegram.ui.ActionBar.t6.G6, null);
+                org.telegram.ui.ActionBar.a7.E(textView, org.telegram.ui.ActionBar.t6.H6, null);
+                textView.setMaxLines(1);
+                textView.setSingleLine(true);
+                textView.setEllipsize(TextUtils.TruncateAt.END);
+                if (org.telegram.messenger.cd.X) {
+                    i10 = 5;
                 } else {
-                    return;
+                    i10 = 3;
                 }
+                textView.setGravity(i10 | 1);
+                return textView;
+            case 1:
+                TextView textView2 = new TextView((Context) obj);
+                org.telegram.ui.ActionBar.a7.V(textView2, org.telegram.ui.ActionBar.t6.D6, null);
+                textView2.setGravity(1);
+                textView2.setLineSpacing(org.telegram.messenger.i0.L(2.0f), 1.0f);
+                textView2.setTextSize(1, 15.0f);
+                return textView2;
             default:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.e10(this.f38601b, tL_error, this.f38602c, tLObject, 27));
-                return;
+                PhotoViewer photoViewer = (PhotoViewer) obj;
+                Drawable[] drawableArr = PhotoViewer.U8;
+                return new vr0(photoViewer.E, photoViewer.T1, photoViewer.Q, new xo0(photoViewer, 0), new af0(photoViewer, 1));
         }
     }
 }

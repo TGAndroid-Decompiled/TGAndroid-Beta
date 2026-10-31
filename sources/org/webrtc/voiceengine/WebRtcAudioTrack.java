@@ -7,7 +7,7 @@ import android.media.AudioTrack;
 import android.os.Build;
 import android.os.Process;
 import java.nio.ByteBuffer;
-import org.telegram.messenger.FileLog;
+import org.telegram.messenger.f8;
 import org.webrtc.ContextUtils;
 import org.webrtc.Logging;
 import org.webrtc.ThreadUtils;
@@ -108,7 +108,7 @@ public class WebRtcAudioTrack {
                         try {
                             Thread.sleep(nanoTime / 1000000, (int) (nanoTime % 1000000));
                         } catch (InterruptedException e) {
-                            FileLog.e(e);
+                            f8.g(e, true);
                         }
                     } else {
                         this.targetTimeNs = System.nanoTime();
@@ -122,8 +122,8 @@ public class WebRtcAudioTrack {
                 try {
                     WebRtcAudioTrack.this.audioTrack.stop();
                     Logging.d("WebRtcAudioTrack", "AudioTrack.stop is done.");
-                } catch (Exception e10) {
-                    Logging.e("WebRtcAudioTrack", "AudioTrack.stop failed: " + e10.getMessage());
+                } catch (Exception e7) {
+                    Logging.e("WebRtcAudioTrack", "AudioTrack.stop failed: " + e7.getMessage());
                 }
             }
         }
@@ -315,7 +315,7 @@ public class WebRtcAudioTrack {
             try {
                 audioTrack.release();
             } catch (Throwable th2) {
-                FileLog.e(th2);
+                f8.g(th2, true);
             }
         }
     }
@@ -466,7 +466,7 @@ public class WebRtcAudioTrack {
         try {
             releaseAudioResources();
         } catch (Throwable th2) {
-            FileLog.e(th2);
+            f8.g(th2, true);
         }
         return true;
     }

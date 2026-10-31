@@ -1,8 +1,10 @@
 package s4;
+
+import androidx.recyclerview.widget.RecyclerView;
 public final class o {
-    public int f47848a;
-    public int f47849b;
-    public int f47850c;
-    public boolean d;
-    public boolean e;
+    public boolean f47989a;
+    public int f47990b;
+    public int f47991c;
+    public RecyclerView d;
+    public int e;
 }

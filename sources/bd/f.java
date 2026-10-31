@@ -1,28 +1,103 @@
 package bd;
 
-import java.io.FilterOutputStream;
-public final class f extends FilterOutputStream {
-    public final void a() {
-        ((FilterOutputStream) this).out.write("0\r\n\r\n".getBytes());
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
+public final class f implements Collection {
+    public final Object[] f2654a;
+    public final boolean f2655b;
+
+    public f(Object[] values, boolean z10) {
+        kotlin.jvm.internal.i.e(values, "values");
+        this.f2654a = values;
+        this.f2655b = z10;
     }
 
     @Override
-    public final void write(int i10) {
-        write(new byte[]{(byte) i10}, 0, 1);
+    public final boolean add(Object obj) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 
     @Override
-    public final void write(byte[] bArr) {
-        write(bArr, 0, bArr.length);
+    public final boolean addAll(Collection collection) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 
     @Override
-    public final void write(byte[] bArr, int i10, int i11) {
-        if (i11 == 0) {
-            return;
+    public final void clear() {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final boolean contains(Object obj) {
+        return h.a(this.f2654a, obj);
+    }
+
+    @Override
+    public final boolean containsAll(Collection elements) {
+        kotlin.jvm.internal.i.e(elements, "elements");
+        Collection<Object> collection = elements;
+        if (collection.isEmpty()) {
+            return true;
         }
-        ((FilterOutputStream) this).out.write(String.format("%x\r\n", Integer.valueOf(i11)).getBytes());
-        ((FilterOutputStream) this).out.write(bArr, i10, i11);
-        ((FilterOutputStream) this).out.write("\r\n".getBytes());
+        for (Object obj : collection) {
+            if (!h.a(this.f2654a, obj)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean isEmpty() {
+        if (this.f2654a.length == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final Iterator iterator() {
+        Object[] array = this.f2654a;
+        kotlin.jvm.internal.i.e(array, "array");
+        return new b(array);
+    }
+
+    @Override
+    public final boolean remove(Object obj) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final boolean removeAll(Collection collection) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final boolean retainAll(Collection collection) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final int size() {
+        return this.f2654a.length;
+    }
+
+    @Override
+    public final Object[] toArray() {
+        Object[] objArr = this.f2654a;
+        kotlin.jvm.internal.i.e(objArr, "<this>");
+        if (this.f2655b && objArr.getClass().equals(Object[].class)) {
+            return objArr;
+        }
+        Object[] copyOf = Arrays.copyOf(objArr, objArr.length, Object[].class);
+        kotlin.jvm.internal.i.d(copyOf, "copyOf(...)");
+        return copyOf;
+    }
+
+    @Override
+    public final Object[] toArray(Object[] array) {
+        kotlin.jvm.internal.i.e(array, "array");
+        return kotlin.jvm.internal.i.j(this, array);
     }
 }

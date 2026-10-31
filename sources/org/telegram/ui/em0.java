@@ -1,175 +1,158 @@
 package org.telegram.ui;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.text.StaticLayout;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class em0 extends FrameLayout {
-    public final int f38910a;
-    public Object f38911b;
-    public float f38912c;
-    public final KeyEvent.Callback d;
+import android.content.Intent;
+import android.net.Uri;
+import android.webkit.RenderProcessGoneDetail;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class em0 extends WebViewClient {
+    public final int f37084a;
+    public final Context f37085b;
+    public final sm0 f37086c;
 
-    public em0(Context context, EditTextBoldCursor editTextBoldCursor, int i10) {
-        super(context);
-        this.f38910a = i10;
-        this.d = editTextBoldCursor;
+    public em0(sm0 sm0Var, Context context, int i10) {
+        this.f37084a = i10;
+        this.f37086c = sm0Var;
+        this.f37085b = context;
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f38910a) {
+    public final void onPageFinished(WebView webView, String str) {
+        switch (this.f37084a) {
             case 0:
-                if (((StaticLayout) this.f38911b) != null) {
-                    canvas.save();
-                    canvas.translate(AndroidUtilities.dp(21.0f) + this.f38912c, ((EditTextBoldCursor) this.d).getLineY() + AndroidUtilities.dp(3.0f));
-                    ((StaticLayout) this.f38911b).draw(canvas);
-                    canvas.restore();
-                    return;
-                }
-                return;
-            case 1:
-                if (((StaticLayout) this.f38911b) != null) {
-                    canvas.save();
-                    canvas.translate(AndroidUtilities.dp(21.0f) + this.f38912c, ((EditTextBoldCursor) this.d).getLineY() + AndroidUtilities.dp(3.0f));
-                    ((StaticLayout) this.f38911b).draw(canvas);
-                    canvas.restore();
-                    return;
-                }
-                return;
-            case 2:
-                if (((StaticLayout) this.f38911b) != null) {
-                    canvas.save();
-                    canvas.translate(AndroidUtilities.dp(21.0f) + this.f38912c, ((EditTextBoldCursor) this.d).getLineY() + AndroidUtilities.dp(3.0f));
-                    ((StaticLayout) this.f38911b).draw(canvas);
-                    canvas.restore();
-                    return;
-                }
+                super.onPageFinished(webView, str);
+                sm0 sm0Var = this.f37086c;
+                sm0Var.f41586z0 = false;
+                sm0Var.M0(true, false);
+                sm0Var.P0();
                 return;
             default:
-                super.onDraw(canvas);
+                super.onPageFinished(webView, str);
+                sm0 sm0Var2 = this.f37086c;
+                sm0Var2.f41586z0 = false;
+                sm0Var2.M0(true, false);
+                sm0Var2.P0();
                 return;
         }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        org.telegram.ui.Components.jj0 jj0Var;
-        switch (this.f38910a) {
+    public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
+        int i10 = this.f37084a;
+        sm0 sm0Var = this.f37086c;
+        switch (i10) {
             case 0:
-                int size = View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(34.0f);
-                StaticLayout errorLayout = ((EditTextBoldCursor) this.d).getErrorLayout(size);
-                this.f38911b = errorLayout;
-                if (errorLayout != null) {
-                    int lineCount = errorLayout.getLineCount();
-                    int i12 = 0;
-                    if (lineCount > 1) {
-                        i11 = View.MeasureSpec.makeMeasureSpec((((StaticLayout) this.f38911b).getLineBottom(lineCount - 1) - ((StaticLayout) this.f38911b).getLineBottom(0)) + AndroidUtilities.dp(64.0f), 1073741824);
+                try {
+                    if (!org.telegram.messenger.i0.M1(sm0Var.getParentActivity())) {
+                        return true;
                     }
-                    if (LocaleController.isRTL) {
-                        float f7 = 0.0f;
-                        while (true) {
-                            if (i12 < lineCount) {
-                                if (((StaticLayout) this.f38911b).getLineLeft(i12) != 0.0f) {
-                                    this.f38912c = 0.0f;
-                                } else {
-                                    f7 = Math.max(f7, ((StaticLayout) this.f38911b).getLineWidth(i12));
-                                    if (i12 == lineCount - 1) {
-                                        this.f38912c = size - f7;
-                                    }
-                                    i12++;
-                                }
-                            }
-                        }
-                    }
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, sm0Var.getParentActivity(), sm0Var.Y0);
+                    org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20134a;
+                    x1Var.R = org.telegram.messenger.cd.L0(2131752104, null);
+                    x1Var.T = org.telegram.messenger.i0.T2(org.telegram.messenger.cd.L0(2131752105, null), new mg0(this, 10));
+                    alertDialog$Builder.k(org.telegram.messenger.cd.L0(2131747847, null), null);
+                    alertDialog$Builder.p();
+                    return true;
+                } catch (Exception e) {
+                    org.telegram.messenger.f8.g(e, true);
+                    return false;
                 }
-                super.onMeasure(i10, i11);
-                return;
-            case 1:
-                int size2 = View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(34.0f);
-                StaticLayout errorLayout2 = ((EditTextBoldCursor) this.d).getErrorLayout(size2);
-                this.f38911b = errorLayout2;
-                if (errorLayout2 != null) {
-                    int lineCount2 = errorLayout2.getLineCount();
-                    int i13 = 0;
-                    if (lineCount2 > 1) {
-                        i11 = View.MeasureSpec.makeMeasureSpec((((StaticLayout) this.f38911b).getLineBottom(lineCount2 - 1) - ((StaticLayout) this.f38911b).getLineBottom(0)) + AndroidUtilities.dp(64.0f), 1073741824);
-                    }
-                    if (LocaleController.isRTL) {
-                        float f10 = 0.0f;
-                        while (true) {
-                            if (i13 < lineCount2) {
-                                if (((StaticLayout) this.f38911b).getLineLeft(i13) != 0.0f) {
-                                    this.f38912c = 0.0f;
-                                } else {
-                                    f10 = Math.max(f10, ((StaticLayout) this.f38911b).getLineWidth(i13));
-                                    if (i13 == lineCount2 - 1) {
-                                        this.f38912c = size2 - f10;
-                                    }
-                                    i13++;
-                                }
-                            }
-                        }
-                    }
-                }
-                super.onMeasure(i10, i11);
-                return;
-            case 2:
-                int size3 = View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(34.0f);
-                StaticLayout errorLayout3 = ((EditTextBoldCursor) this.d).getErrorLayout(size3);
-                this.f38911b = errorLayout3;
-                if (errorLayout3 != null) {
-                    int lineCount3 = errorLayout3.getLineCount();
-                    int i14 = 0;
-                    if (lineCount3 > 1) {
-                        i11 = View.MeasureSpec.makeMeasureSpec((((StaticLayout) this.f38911b).getLineBottom(lineCount3 - 1) - ((StaticLayout) this.f38911b).getLineBottom(0)) + AndroidUtilities.dp(64.0f), 1073741824);
-                    }
-                    if (LocaleController.isRTL) {
-                        float f11 = 0.0f;
-                        while (true) {
-                            if (i14 < lineCount3) {
-                                if (((StaticLayout) this.f38911b).getLineLeft(i14) != 0.0f) {
-                                    this.f38912c = 0.0f;
-                                } else {
-                                    f11 = Math.max(f11, ((StaticLayout) this.f38911b).getLineWidth(i14));
-                                    if (i14 == lineCount3 - 1) {
-                                        this.f38912c = size3 - f11;
-                                    }
-                                    i14++;
-                                }
-                            }
-                        }
-                    }
-                }
-                super.onMeasure(i10, i11);
-                return;
             default:
-                super.onMeasure(i10, i11);
-                org.telegram.ui.Components.bk0 bk0Var = ((org.telegram.ui.Components.jj0) this.d).h;
-                float measuredHeight = (jj0Var.f29682f / 768.0f) * ((jg.l) this.f38911b).getMeasuredHeight();
-                if (this.f38912c != measuredHeight) {
-                    this.f38912c = measuredHeight;
-                    ViewGroup.LayoutParams layoutParams = bk0Var.getLayoutParams();
-                    int i15 = (int) measuredHeight;
-                    bk0Var.getLayoutParams().width = i15;
-                    layoutParams.height = i15;
-                    super.onMeasure(i10, i11);
-                    return;
+                try {
+                    if (!org.telegram.messenger.i0.M1(sm0Var.getParentActivity())) {
+                        return true;
+                    }
+                    AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(0, sm0Var.getParentActivity(), sm0Var.Y0);
+                    org.telegram.ui.ActionBar.x1 x1Var2 = alertDialog$Builder2.f20134a;
+                    x1Var2.R = org.telegram.messenger.cd.L0(2131752104, null);
+                    x1Var2.T = org.telegram.messenger.i0.T2(org.telegram.messenger.cd.L0(2131752105, null), new mg0(this, 12));
+                    alertDialog$Builder2.k(org.telegram.messenger.cd.L0(2131747847, null), null);
+                    alertDialog$Builder2.p();
+                    return true;
+                } catch (Exception e7) {
+                    org.telegram.messenger.f8.g(e7, true);
+                    return false;
                 }
-                return;
         }
     }
 
-    public em0(org.telegram.ui.Components.jj0 jj0Var, Context context, jg.l lVar) {
-        super(context);
-        this.f38910a = 3;
-        this.d = jj0Var;
-        this.f38911b = lVar;
+    @Override
+    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
+        boolean z10;
+        Uri parse;
+        int i10 = this.f37084a;
+        Context context = this.f37085b;
+        boolean z11 = false;
+        sm0 sm0Var = this.f37086c;
+        switch (i10) {
+            case 0:
+                try {
+                    Uri parse2 = Uri.parse(str);
+                    if ("t.me".equals(parse2.getHost())) {
+                        sm0Var.y0();
+                    } else if (!sm0.f41545h1.contains(parse2.getScheme())) {
+                        if (sm0.f41544g1.contains(parse2.getScheme())) {
+                            return false;
+                        }
+                        try {
+                            if (sm0Var.getParentActivity() != null) {
+                                z10 = true;
+                            } else {
+                                z10 = false;
+                            }
+                            if (z10) {
+                                sm0Var.getParentActivity().startActivityForResult(new Intent("android.intent.action.VIEW", parse2), 210);
+                            }
+                        } catch (ActivityNotFoundException unused) {
+                            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context);
+                            org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20134a;
+                            x1Var.R = sm0Var.f41571p0;
+                            x1Var.T = org.telegram.messenger.cd.L0(2131747445, null);
+                            alertDialog$Builder.k(org.telegram.messenger.cd.L0(2131747847, null), null);
+                            alertDialog$Builder.p();
+                        }
+                    }
+                    return true;
+                } catch (Exception unused2) {
+                    return false;
+                }
+            default:
+                sm0Var.D = !str.equals(sm0Var.f41584y);
+                try {
+                    parse = Uri.parse(str);
+                } catch (Exception unused3) {
+                }
+                if ("t.me".equals(parse.getHost())) {
+                    sm0Var.y0();
+                    return true;
+                } else if (sm0.f41545h1.contains(parse.getScheme())) {
+                    return true;
+                } else {
+                    if (!sm0.f41544g1.contains(parse.getScheme())) {
+                        try {
+                            if (sm0Var.getParentActivity() != null) {
+                                z11 = true;
+                            }
+                            if (!z11) {
+                                return true;
+                            }
+                            sm0Var.getParentActivity().startActivityForResult(new Intent("android.intent.action.VIEW", parse), 210);
+                            return true;
+                        } catch (ActivityNotFoundException unused4) {
+                            AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(context);
+                            org.telegram.ui.ActionBar.x1 x1Var2 = alertDialog$Builder2.f20134a;
+                            x1Var2.R = sm0Var.f41571p0;
+                            x1Var2.T = org.telegram.messenger.cd.L0(2131747445, null);
+                            alertDialog$Builder2.k(org.telegram.messenger.cd.L0(2131747847, null), null);
+                            alertDialog$Builder2.p();
+                            return true;
+                        }
+                    }
+                    return super.shouldOverrideUrlLoading(webView, str);
+                }
+        }
     }
 }

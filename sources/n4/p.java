@@ -1,11 +1,61 @@
 package n4;
 
-import android.content.Context;
 import android.media.session.MediaSession;
-import android.os.Bundle;
-public final class p extends o {
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class p implements Parcelable {
+    public static final Parcelable.Creator<p> CREATOR = new m8.i(5);
+    public final MediaSession.Token f13524b;
+    public d f13525c;
+    public final Object f13523a = new Object();
+    public y4.d d = null;
+
+    public p(MediaSession.Token token, k kVar) {
+        this.f13524b = token;
+        this.f13525c = kVar;
+    }
+
+    public final d a() {
+        d dVar;
+        synchronized (this.f13523a) {
+            dVar = this.f13525c;
+        }
+        return dVar;
+    }
+
+    public final void b(d dVar) {
+        synchronized (this.f13523a) {
+            this.f13525c = dVar;
+        }
+    }
+
+    public final void c(y4.d dVar) {
+        synchronized (this.f13523a) {
+            this.d = dVar;
+        }
+    }
+
     @Override
-    public final MediaSession a(Context context, String str, Bundle bundle) {
-        return android.support.v4.media.session.x.f(context, str, bundle);
+    public final int describeContents() {
+        return 0;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof p)) {
+            return false;
+        }
+        return this.f13524b.equals(((p) obj).f13524b);
+    }
+
+    public final int hashCode() {
+        return this.f13524b.hashCode();
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        parcel.writeParcelable(this.f13524b, i10);
     }
 }

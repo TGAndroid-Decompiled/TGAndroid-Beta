@@ -1,29 +1,14 @@
 package org.telegram.messenger;
+public final class k7 {
+    public long f16542a;
+    public long f16543b;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MediaDataController;
-public final class k7 implements Runnable {
-    public final int f20486a;
-    public final MediaDataController.KeywordResultCallback f20487b;
-    public final ArrayList f20488c;
-    public final String d;
-
-    public k7(MediaDataController.KeywordResultCallback keywordResultCallback, ArrayList arrayList, String str, int i10) {
-        this.f20486a = i10;
-        this.f20487b = keywordResultCallback;
-        this.f20488c = arrayList;
-        this.d = str;
+    public k7(long j10, long j11) {
+        this.f16542a = j10;
+        this.f16543b = j11;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f20486a) {
-            case 0:
-                this.f20487b.run(this.f20488c, this.d);
-                return;
-            default:
-                this.f20487b.run(this.f20488c, this.d);
-                return;
-        }
+    public final String toString() {
+        return "Range{start=" + this.f16542a + ", end=" + this.f16543b + '}';
     }
 }

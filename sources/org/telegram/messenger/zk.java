@@ -1,66 +1,100 @@
 package org.telegram.messenger;
 
+import android.util.SparseArray;
 import java.util.ArrayList;
-import java.util.Set;
-import org.telegram.messenger.TranslateController;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_update;
 public final class zk implements Runnable {
-    public final int f22019a = 0;
-    public final boolean f22020b;
-    public final long f22021c;
-    public final BaseController d;
-    public final Object e;
-    public final Object f22022f;
+    public final int f19544a = 1;
+    public final vp f19545b;
+    public final long f19546c;
+    public final int d;
+    public final long e;
+    public final Object f19547f;
     public final Object h;
-    public final Object f22023n;
+    public final Object f19548n;
+    public final Object f19549r;
 
-    public zk(long j10, Set set, TranslateController.PendingTranslation pendingTranslation, TranslateController translateController, TLObject tLObject, TLRPC.TL_error tL_error, boolean z10) {
-        this.d = translateController;
-        this.e = pendingTranslation;
-        this.f22022f = tLObject;
-        this.f22020b = z10;
-        this.h = tL_error;
-        this.f22021c = j10;
-        this.f22023n = set;
+    public zk(vp vpVar, ArrayList arrayList, long j10, TLRPC.updates_ChannelDifference updates_channeldifference, TLRPC.Chat chat, a0.h hVar, int i10, long j11) {
+        this.f19545b = vpVar;
+        this.f19547f = arrayList;
+        this.f19546c = j10;
+        this.h = updates_channeldifference;
+        this.f19548n = chat;
+        this.f19549r = hVar;
+        this.d = i10;
+        this.e = j11;
     }
 
     @Override
     public final void run() {
-        switch (this.f22019a) {
+        TLRPC.Chat chat;
+        a0.h hVar;
+        switch (this.f19544a) {
             case 0:
-                long j10 = this.f22021c;
-                ((TranslateController) this.d).lambda$pushToTranslate$22((TranslateController.PendingTranslation) this.e, (TLObject) this.f22022f, this.f22020b, (TLRPC.TL_error) this.h, j10, (Set) this.f22023n);
-                return;
-            case 1:
-                long j11 = this.f22021c;
-                ((MediaDataController) this.d).lambda$broadcastReplyMessages$179((ArrayList) this.e, this.f22020b, (ArrayList) this.f22022f, (ArrayList) this.h, (a0.h) this.f22023n, j11);
+                vp vpVar = this.f19545b;
+                boolean[] zArr = (boolean[]) this.f19547f;
+                hs hsVar = (hs) this.h;
+                long j10 = this.f19546c;
+                Runnable[] runnableArr = (Runnable[]) this.f19548n;
+                long j11 = this.e;
+                int i10 = this.d;
+                jp jpVar = (jp) this.f19549r;
+                if (!zArr[0]) {
+                    i0.g3(new qb(vpVar, zArr, hsVar.O(j10), runnableArr, j11, i10, jpVar));
+                    return;
+                }
                 return;
             default:
-                long j12 = this.f22021c;
-                ((MemberRequestsController) this.d).lambda$getImporters$0((TLRPC.TL_error) this.h, (TLObject) this.f22022f, (TLRPC.TL_chatInviteImporter) this.e, this.f22020b, j12, (RequestDelegate) this.f22023n);
+                vp vpVar2 = this.f19545b;
+                ArrayList arrayList = (ArrayList) this.f19547f;
+                long j12 = this.f19546c;
+                TLRPC.updates_ChannelDifference updates_channeldifference = (TLRPC.updates_ChannelDifference) this.h;
+                TLRPC.Chat chat2 = (TLRPC.Chat) this.f19548n;
+                a0.h hVar2 = (a0.h) this.f19549r;
+                int i11 = this.d;
+                long j13 = this.e;
+                if (!arrayList.isEmpty()) {
+                    SparseArray sparseArray = new SparseArray();
+                    int size = arrayList.size();
+                    int i12 = 0;
+                    while (i12 < size) {
+                        Object obj = arrayList.get(i12);
+                        i12++;
+                        TL_update.TL_updateMessageID tL_updateMessageID = (TL_update.TL_updateMessageID) obj;
+                        TLRPC.Chat chat3 = chat2;
+                        a0.h hVar3 = hVar2;
+                        ArrayList arrayList2 = arrayList;
+                        long[] a2 = vpVar2.getMessagesStorage().a2(tL_updateMessageID.random_id, -j12, null, tL_updateMessageID.f20050id, 0, -1, 0);
+                        if (a2 != null) {
+                            sparseArray.put(tL_updateMessageID.f20050id, a2);
+                        }
+                        chat2 = chat3;
+                        hVar2 = hVar3;
+                        arrayList = arrayList2;
+                    }
+                    chat = chat2;
+                    hVar = hVar2;
+                    if (sparseArray.size() != 0) {
+                        i0.g3(new tl(vpVar2, sparseArray, 1));
+                    }
+                } else {
+                    chat = chat2;
+                    hVar = hVar2;
+                }
+                Utilities.d.c(new zm(vpVar2, updates_channeldifference, j12, chat, hVar, i11, j13));
                 return;
         }
     }
 
-    public zk(long j10, MemberRequestsController memberRequestsController, RequestDelegate requestDelegate, TLObject tLObject, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, TLRPC.TL_error tL_error, boolean z10) {
-        this.d = memberRequestsController;
-        this.h = tL_error;
-        this.f22022f = tLObject;
-        this.e = tL_chatInviteImporter;
-        this.f22020b = z10;
-        this.f22021c = j10;
-        this.f22023n = requestDelegate;
-    }
-
-    public zk(MediaDataController mediaDataController, ArrayList arrayList, boolean z10, ArrayList arrayList2, ArrayList arrayList3, a0.h hVar, long j10) {
-        this.d = mediaDataController;
-        this.e = arrayList;
-        this.f22020b = z10;
-        this.f22022f = arrayList2;
-        this.h = arrayList3;
-        this.f22023n = hVar;
-        this.f22021c = j10;
+    public zk(vp vpVar, boolean[] zArr, hs hsVar, long j10, Runnable[] runnableArr, long j11, int i10, jp jpVar) {
+        this.f19545b = vpVar;
+        this.f19547f = zArr;
+        this.h = hsVar;
+        this.f19546c = j10;
+        this.f19548n = runnableArr;
+        this.e = j11;
+        this.d = i10;
+        this.f19549r = jpVar;
     }
 }

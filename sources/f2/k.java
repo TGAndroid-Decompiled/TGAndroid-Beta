@@ -1,20 +1,20 @@
 package f2;
 
-import f9.i0;
-import f9.s1;
+import e9.n0;
+import e9.x1;
 public final class k {
-    public final i0 f10074a;
-    public final int[] f10075b;
+    public final n0 f6747a;
+    public final int[] f6748b;
 
-    public k(s1 s1Var, int[] iArr, int i10) {
+    public k(x1 x1Var, int[] iArr, int i10) {
         switch (i10) {
             case 1:
-                this.f10074a = i0.u(s1Var);
-                this.f10075b = iArr;
+                this.f6747a = n0.u(x1Var);
+                this.f6748b = iArr;
                 return;
             default:
-                this.f10074a = i0.u(s1Var);
-                this.f10075b = iArr;
+                this.f6747a = n0.u(x1Var);
+                this.f6748b = iArr;
                 return;
         }
     }

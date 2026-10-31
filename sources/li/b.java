@@ -1,15 +1,42 @@
 package li;
-public final class b implements Runnable {
-    public final int f17113a;
-    public final v3 f17114b;
 
-    public b(v3 v3Var, int i10) {
-        this.f17113a = i10;
-        this.f17114b = v3Var;
+import android.os.Handler;
+import j$.util.Objects;
+public final class b implements Runnable {
+    public final int f12027a;
+    public final l f12028b;
+    public final q0 f12029c;
+    public final long d;
+
+    public b(l lVar, q0 q0Var, long j10, int i10) {
+        this.f12027a = i10;
+        this.f12028b = lVar;
+        this.f12029c = q0Var;
+        this.d = j10;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: li.b.run():void");
+        switch (this.f12027a) {
+            case 0:
+                l lVar = this.f12028b;
+                lVar.f12111c.post(new b(lVar, this.f12029c, this.d, 1));
+                return;
+            default:
+                l lVar2 = this.f12028b;
+                q0 q0Var = this.f12029c;
+                long j10 = this.d;
+                if (lVar2.V && lVar2.G == q0Var) {
+                    p pVar = lVar2.f12129j;
+                    pVar.b("camera switch first preview frame: path=DUAL_ACTIVE, totalElapsedMs=" + l.z(j10));
+                    x0 x0Var = (x0) lVar2.f12132k.f279b;
+                    Handler handler = x0Var.f12312i;
+                    k2.m0 m0Var = x0Var.d;
+                    Objects.requireNonNull(m0Var);
+                    handler.post(new lg.s(m0Var, 3));
+                    return;
+                }
+                return;
+        }
     }
 }

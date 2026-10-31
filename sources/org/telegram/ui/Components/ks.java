@@ -1,17 +1,57 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.Utilities;
-public final class ks implements Utilities.Callback2 {
-    public final int f30019a;
-    public final rs f30020b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class ks extends AnimatorListenerAdapter {
+    public final int f27897a;
+    public final s4.c1 f27898b;
+    public final org.telegram.ui.Cells.v2 f27899c;
+    public final ps d;
 
-    public ks(rs rsVar, int i10) {
-        this.f30019a = i10;
-        this.f30020b = rsVar;
+    public ks(ps psVar, s4.c1 c1Var, org.telegram.ui.Cells.v2 v2Var, int i10) {
+        this.f27897a = i10;
+        this.d = psVar;
+        this.f27898b = c1Var;
+        this.f27899c = v2Var;
     }
 
     @Override
-    public final void run(java.lang.Object r13, java.lang.Object r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ks.run(java.lang.Object, java.lang.Object):void");
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f27897a) {
+            case 0:
+                animator.removeAllListeners();
+                org.telegram.ui.Cells.v2 v2Var = this.f27899c;
+                v2Var.setClipProgress(0.0f);
+                v2Var.setElevation(0.0f);
+                ps psVar = this.d;
+                s4.c1 c1Var = this.f27898b;
+                psVar.d(c1Var);
+                psVar.f29417x.remove(c1Var);
+                psVar.A();
+                return;
+            default:
+                animator.removeAllListeners();
+                org.telegram.ui.Cells.v2 v2Var2 = this.f27899c;
+                v2Var2.setClipProgress(0.0f);
+                v2Var2.setElevation(0.0f);
+                ps psVar2 = this.d;
+                s4.c1 c1Var2 = this.f27898b;
+                psVar2.d(c1Var2);
+                psVar2.f29417x.remove(c1Var2);
+                psVar2.A();
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        switch (this.f27897a) {
+            case 0:
+                this.d.y();
+                return;
+            default:
+                this.d.y();
+                return;
+        }
     }
 }

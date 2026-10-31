@@ -1,44 +1,28 @@
 package org.telegram.ui;
 
-import android.content.Context;
+import android.animation.ValueAnimator;
+import android.graphics.Outline;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class pq0 extends org.telegram.ui.Components.c10 {
-    public final int U;
+import android.view.ViewOutlineProvider;
+public final class pq0 extends ViewOutlineProvider {
+    public final int f40715a;
+    public final float f40716b;
+    public final Object f40717c;
 
-    public pq0(Context context, int i10, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(context, u6Var);
-        this.U = i10;
+    public pq0(Object obj, float f7, int i10) {
+        this.f40715a = i10;
+        this.f40717c = obj;
+        this.f40716b = f7;
     }
 
     @Override
-    public int getColumnsCount() {
-        switch (this.U) {
+    public final void getOutline(View view, Outline outline) {
+        switch (this.f40715a) {
             case 0:
-                return 3;
-            default:
-                return super.getColumnsCount();
-        }
-    }
-
-    @Override
-    public int getViewType() {
-        switch (this.U) {
-            case 0:
-                return 2;
-            default:
-                return super.getViewType();
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.U) {
-            case 1:
-                setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(104.0f));
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), (1.0f / this.f40716b) * ((Float) ((ValueAnimator) this.f40717c).getAnimatedValue()).floatValue() * org.telegram.messenger.i0.L(10.0f));
                 return;
             default:
-                super.onMeasure(i10, i11);
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), (1.0f / this.f40716b) * (1.0f - ((PhotoViewer) this.f40717c).W) * org.telegram.messenger.i0.L(10.0f));
                 return;
         }
     }

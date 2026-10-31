@@ -1,118 +1,83 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLObject;
-public final class vi0 extends org.telegram.ui.Components.mm0 {
-    public final Context f44362c;
-    public final xi0 d;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Parcelable;
+import android.util.SparseArray;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class vi0 extends org.telegram.ui.ActionBar.k {
+    public final Context f42733a;
+    public final yi0 f42734b;
 
-    public vi0(xi0 xi0Var, Context context) {
-        this.d = xi0Var;
-        this.f44362c = context;
+    public vi0(yi0 yi0Var, Context context) {
+        this.f42734b = yi0Var;
+        this.f42733a = context;
     }
 
     @Override
-    public final void A(s4.e1 e1Var) {
-        View view = e1Var.f47773a;
-        if (view instanceof org.telegram.ui.Cells.f5) {
-            ((org.telegram.ui.Cells.f5) view).a();
+    public final void b(int i10) {
+        int i11;
+        int i12;
+        org.telegram.ui.ActionBar.i5 i5Var;
+        yi0 yi0Var = this.f42734b;
+        org.telegram.ui.ActionBar.p6 p6Var = yi0Var.f43849f;
+        SparseArray sparseArray = yi0Var.I;
+        if (i10 == -1) {
+            i5Var = ((org.telegram.ui.ActionBar.k2) yi0Var).simpleActionBar;
+            if (i5Var.s()) {
+                yi0.a0(yi0Var);
+                return;
+            } else {
+                yi0Var.finishFragment();
+                return;
+            }
         }
-    }
-
-    @Override
-    public final boolean D(s4.e1 e1Var) {
-        if (e1Var.f47776f == 0) {
-            return ((org.telegram.ui.Cells.f5) e1Var.f47773a).getCurrentObject() instanceof TLObject;
-        }
-        return false;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.Q;
-    }
-
-    @Override
-    public final int j(int i10) {
-        xi0 xi0Var = this.d;
-        if (xi0Var.R.contains(Integer.valueOf(i10))) {
-            return 1;
-        }
-        if (i10 != xi0Var.H && i10 != xi0Var.O) {
-            if (i10 == xi0Var.K) {
-                return 3;
+        if (i10 == 1) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, yi0Var.getParentActivity(), p6Var);
+            String G = org.telegram.messenger.cd.G(sparseArray.size(), "DeleteTones", new Object[0]);
+            org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20134a;
+            x1Var.R = G;
+            x1Var.T = org.telegram.messenger.i0.W2(org.telegram.messenger.cd.G(sparseArray.size(), "DeleteTonesMessage", new Object[0]));
+            alertDialog$Builder.h(org.telegram.messenger.cd.L0(2131752589, null), new org.telegram.ui.Components.z11(17));
+            alertDialog$Builder.k(org.telegram.messenger.cd.L0(2131751599, null), new tt(this, 28));
+            TextView textView = (TextView) alertDialog$Builder.p().d(-1);
+            if (textView != null) {
+                org.telegram.ui.ActionBar.a7.V(textView, org.telegram.ui.ActionBar.t6.f21170q7, p6Var);
             }
-            if (i10 == xi0Var.L) {
-                return 4;
-            }
-            if (i10 == xi0Var.N) {
-                return 5;
-            }
-            if (i10 == xi0Var.P) {
-                return 6;
-            }
-            if (i10 == xi0Var.M) {
-                return 7;
-            }
-            return 0;
-        }
-        return 2;
-    }
-
-    @Override
-    public final void v(s4.e1 r18, int r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.vi0.v(s4.e1, int):void");
-    }
-
-    @Override
-    public final s4.e1 x(ViewGroup viewGroup, int i10) {
-        View view;
-        org.telegram.ui.Cells.f7 f7Var;
-        xi0 xi0Var = this.d;
-        if (i10 != 0) {
-            int i11 = 1;
-            Context context = this.f44362c;
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    if (i10 != 4) {
-                        if (i10 != 5) {
-                            if (i10 != 6) {
-                                if (i10 != 7) {
-                                    view = new org.telegram.ui.Cells.w4(context, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(120.0f));
-                                }
-                            } else {
-                                view = new org.telegram.ui.Cells.i3(context, 16);
-                                view.setLayoutParams(new s4.q0(-1, 16));
-                            }
-                        } else {
-                            view = new wi0(xi0Var, context);
-                            view.setLayoutParams(new s4.q0(-1, -2));
-                        }
-                    }
-                    if (i10 != 4) {
-                        i11 = 2;
-                    }
-                    kg.g gVar = new kg.g(xi0Var.getResourceProvider());
-                    xi0Var.f45700c0 = gVar;
-                    view = new ui0(this, this.f44362c, i11, gVar, xi0Var.getResourceProvider());
-                } else {
-                    org.telegram.ui.Cells.q4 q4Var = new org.telegram.ui.Cells.q4(this.f44362c, org.telegram.ui.ActionBar.y6.G6, 16, 11, false, xi0Var.getResourceProvider());
-                    q4Var.setHeight(43);
-                    f7Var = q4Var;
+        } else if (i10 == 2) {
+            int size = sparseArray.size();
+            Context context = this.f42733a;
+            if (size == 1) {
+                Intent intent = new Intent(context, LaunchActivity.class);
+                intent.setAction("android.intent.action.SEND");
+                i12 = ((org.telegram.ui.ActionBar.k2) yi0Var).currentAccount;
+                Uri a2 = ((wi0) sparseArray.valueAt(0)).a(i12);
+                if (a2 != null) {
+                    intent.putExtra("android.intent.extra.STREAM", a2);
+                    context.startActivity(intent);
                 }
             } else {
-                xi0Var.getResourceProvider();
-                f7Var = new org.telegram.ui.Cells.f7(context, (d3) null);
+                Intent intent2 = new Intent(context, LaunchActivity.class);
+                intent2.setAction("android.intent.action.SEND_MULTIPLE");
+                ArrayList<? extends Parcelable> arrayList = new ArrayList<>();
+                for (int i13 = 0; i13 < sparseArray.size(); i13++) {
+                    i11 = ((org.telegram.ui.ActionBar.k2) yi0Var).currentAccount;
+                    Uri a10 = ((wi0) sparseArray.valueAt(i13)).a(i11);
+                    if (a10 != null) {
+                        arrayList.add(a10);
+                    }
+                }
+                if (!arrayList.isEmpty()) {
+                    intent2.putParcelableArrayListExtra("android.intent.extra.STREAM", arrayList);
+                    context.startActivity(intent2);
+                }
             }
-            view = f7Var;
-        } else {
-            org.telegram.ui.Cells.f5 f5Var = new org.telegram.ui.Cells.f5(6, 2, this.f44362c, xi0Var.getResourceProvider(), false);
-            f5Var.setDividerColor(org.telegram.ui.ActionBar.y6.f23358d7);
-            view = f5Var;
+            yi0.a0(yi0Var);
+            yi0Var.h0();
+            yi0Var.e.f();
         }
-        return new s4.e1(view);
     }
 }

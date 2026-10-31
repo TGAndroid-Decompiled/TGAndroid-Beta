@@ -1,126 +1,208 @@
 package org.telegram.ui.web;
 
-import android.app.Activity;
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.JavascriptInterface;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.widget.FrameLayout;
-import java.io.InputStream;
-import org.json.JSONObject;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.Timer;
+import android.text.TextUtils;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.kb1;
-import org.telegram.ui.LaunchActivity;
-public final class z1 implements Utilities.Callback {
-    public final int f44980a;
-    public final Timer.Task f44981b;
-    public final boolean[] f44982c;
-    public final Timer d;
-    public final h2 e;
-    public final Utilities.Callback f44983f;
+import org.telegram.messenger.b8;
+import org.telegram.messenger.f8;
+import org.telegram.tgnet.SerializedData;
+public final class z1 implements Runnable {
+    public final int f43292a;
+    public final d2 f43293b;
 
-    public z1(Timer.Task task, boolean[] zArr, Timer timer, h2 h2Var, Utilities.Callback callback, int i10) {
-        this.f44980a = i10;
-        this.f44981b = task;
-        this.f44982c = zArr;
-        this.d = timer;
-        this.e = h2Var;
-        this.f44983f = callback;
+    public z1(d2 d2Var, int i10) {
+        this.f43292a = i10;
+        this.f43293b = d2Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f44980a) {
+    public final void run() {
+        switch (this.f43292a) {
             case 0:
-                Timer.Task task = this.f44981b;
-                boolean[] zArr = this.f44982c;
-                Timer timer = this.d;
-                h2 h2Var = this.e;
-                Utilities.Callback callback = this.f44983f;
-                InputStream inputStream = (InputStream) obj;
-                Timer.done(task);
-                if (!zArr[0]) {
-                    Timer.Task start = Timer.start(timer, "readHTML");
-                    String str = h2Var.f44771a;
-                    final z1 z1Var = new z1(start, zArr, timer, h2Var, callback, 1);
-                    if (inputStream == null) {
-                        z1Var.run(null);
-                        return;
-                    }
-                    Context context = LaunchActivity.I1;
-                    if (context == null) {
-                        context = ApplicationLoader.applicationContext;
-                    }
-                    Activity findActivity = AndroidUtilities.findActivity(context);
-                    if (findActivity == null) {
-                        z1Var.run(null);
-                        return;
-                    }
-                    View rootView = findActivity.findViewById(16908290).getRootView();
-                    if (!(rootView instanceof ViewGroup)) {
-                        z1Var.run(null);
-                        return;
-                    }
-                    final ?? frameLayout = new FrameLayout(context);
-                    ((ViewGroup) rootView).addView(frameLayout);
-                    final WebView webView = new WebView(context);
-                    WebSettings settings = webView.getSettings();
-                    settings.setAllowContentAccess(false);
-                    settings.setDatabaseEnabled(false);
-                    settings.setAllowFileAccess(false);
-                    settings.setJavaScriptEnabled(true);
-                    settings.setSaveFormData(false);
-                    settings.setGeolocationEnabled(false);
-                    settings.setDomStorageEnabled(false);
-                    settings.setAllowFileAccessFromFileURLs(false);
-                    settings.setAllowUniversalAccessFromFileURLs(false);
-                    webView.setWebViewClient(new c2(h2Var, inputStream));
-                    webView.setWebChromeClient(new WebChromeClient());
-                    frameLayout.addView(webView, kb1.g(-1.0f, -1));
-                    final boolean[] zArr2 = {false};
-                    webView.addJavascriptInterface(new Object() {
-                        @JavascriptInterface
-                        public void done(String str2) {
-                            AndroidUtilities.runOnUIThread(new b0(zArr2, webView, frameLayout, str2, z1Var, 6));
+                final d2 d2Var = this.f43293b;
+                if (!d2Var.d) {
+                    d2Var.d = true;
+                    long currentTimeMillis = System.currentTimeMillis();
+                    final ArrayList arrayList = new ArrayList();
+                    for (c2 c2Var : d2Var.f43017a.values()) {
+                        if (!TextUtils.isEmpty(c2Var.f43008b) && currentTimeMillis - c2Var.f43007a <= 604800000) {
+                            arrayList.add(0, c2Var);
+                            if (arrayList.size() >= 100) {
+                                Utilities.e.c(new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        switch (r3) {
+                                            case 0:
+                                                d2 d2Var2 = d2Var;
+                                                d2Var2.getClass();
+                                                int i10 = 0;
+                                                while (true) {
+                                                    ArrayList arrayList2 = arrayList;
+                                                    if (i10 < arrayList2.size()) {
+                                                        c2 c2Var2 = (c2) arrayList2.get(i10);
+                                                        d2Var2.f43017a.put(c2Var2.f43008b, c2Var2);
+                                                        i10++;
+                                                    } else {
+                                                        d2Var2.f43018b = true;
+                                                        d2Var2.f43019c = false;
+                                                        return;
+                                                    }
+                                                }
+                                            default:
+                                                File file = new File(b8.z(4), "webmetacache.dat");
+                                                boolean exists = file.exists();
+                                                d2 d2Var3 = d2Var;
+                                                if (!exists) {
+                                                    try {
+                                                        file.createNewFile();
+                                                    } catch (Exception e) {
+                                                        f8.g(e, true);
+                                                        d2Var3.d = false;
+                                                        return;
+                                                    }
+                                                }
+                                                b2 b2Var = new b2();
+                                                b2Var.f43002a.addAll(arrayList);
+                                                SerializedData serializedData = new SerializedData(b2Var.getObjectSize());
+                                                b2Var.serializeToStream(serializedData);
+                                                try {
+                                                    FileOutputStream fileOutputStream = new FileOutputStream(file);
+                                                    fileOutputStream.write(serializedData.toByteArray());
+                                                    fileOutputStream.close();
+                                                } catch (Exception e7) {
+                                                    f8.g(e7, true);
+                                                }
+                                                org.telegram.messenger.i0.g3(new z1(d2Var3, 2));
+                                                return;
+                                        }
+                                    }
+                                });
+                                return;
+                            }
                         }
-                    }, "Instant");
-                    webView.loadUrl(str);
+                    }
+                    Utilities.e.c(new Runnable() {
+                        @Override
+                        public final void run() {
+                            switch (r3) {
+                                case 0:
+                                    d2 d2Var2 = d2Var;
+                                    d2Var2.getClass();
+                                    int i10 = 0;
+                                    while (true) {
+                                        ArrayList arrayList2 = arrayList;
+                                        if (i10 < arrayList2.size()) {
+                                            c2 c2Var2 = (c2) arrayList2.get(i10);
+                                            d2Var2.f43017a.put(c2Var2.f43008b, c2Var2);
+                                            i10++;
+                                        } else {
+                                            d2Var2.f43018b = true;
+                                            d2Var2.f43019c = false;
+                                            return;
+                                        }
+                                    }
+                                default:
+                                    File file = new File(b8.z(4), "webmetacache.dat");
+                                    boolean exists = file.exists();
+                                    d2 d2Var3 = d2Var;
+                                    if (!exists) {
+                                        try {
+                                            file.createNewFile();
+                                        } catch (Exception e) {
+                                            f8.g(e, true);
+                                            d2Var3.d = false;
+                                            return;
+                                        }
+                                    }
+                                    b2 b2Var = new b2();
+                                    b2Var.f43002a.addAll(arrayList);
+                                    SerializedData serializedData = new SerializedData(b2Var.getObjectSize());
+                                    b2Var.serializeToStream(serializedData);
+                                    try {
+                                        FileOutputStream fileOutputStream = new FileOutputStream(file);
+                                        fileOutputStream.write(serializedData.toByteArray());
+                                        fileOutputStream.close();
+                                    } catch (Exception e7) {
+                                        f8.g(e7, true);
+                                    }
+                                    org.telegram.messenger.i0.g3(new z1(d2Var3, 2));
+                                    return;
+                            }
+                        }
+                    });
                     return;
                 }
                 return;
-            default:
-                Timer.Task task2 = this.f44981b;
-                boolean[] zArr3 = this.f44982c;
-                Timer timer2 = this.d;
-                h2 h2Var2 = this.e;
-                Utilities.Callback callback2 = this.f44983f;
-                JSONObject jSONObject = (JSONObject) obj;
-                Timer.done(task2);
-                if (!zArr3[0]) {
-                    Timer.Task start2 = Timer.start(timer2, "parseJSON");
-                    try {
-                        h2Var2.f44773c = h2Var2.i(h2Var2.f44771a, jSONObject);
-                    } catch (Exception e) {
-                        Timer.log(timer2, "error: " + e);
-                        FileLog.e(e);
-                    }
-                    Timer.done(start2);
-                    callback2.run(h2Var2);
-                    TLRPC.TL_webPage tL_webPage = h2Var2.f44773c;
-                    if (tL_webPage != null) {
-                        h2.e.put(tL_webPage, h2Var2);
-                    }
-                    Timer.finish(timer2);
+            case 1:
+                final d2 d2Var2 = this.f43293b;
+                File file = new File(b8.z(4), "webmetacache.dat");
+                if (!file.exists()) {
+                    d2Var2.f43018b = true;
                     return;
                 }
+                final ArrayList arrayList2 = new ArrayList();
+                try {
+                    SerializedData serializedData = new SerializedData(file);
+                    b2 b2Var = new b2();
+                    b2Var.readParams(serializedData, true);
+                    arrayList2.addAll(b2Var.f43002a);
+                } catch (Exception e) {
+                    f8.g(e, true);
+                }
+                org.telegram.messenger.i0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                d2 d2Var22 = d2Var2;
+                                d2Var22.getClass();
+                                int i10 = 0;
+                                while (true) {
+                                    ArrayList arrayList22 = arrayList2;
+                                    if (i10 < arrayList22.size()) {
+                                        c2 c2Var2 = (c2) arrayList22.get(i10);
+                                        d2Var22.f43017a.put(c2Var2.f43008b, c2Var2);
+                                        i10++;
+                                    } else {
+                                        d2Var22.f43018b = true;
+                                        d2Var22.f43019c = false;
+                                        return;
+                                    }
+                                }
+                            default:
+                                File file2 = new File(b8.z(4), "webmetacache.dat");
+                                boolean exists = file2.exists();
+                                d2 d2Var3 = d2Var2;
+                                if (!exists) {
+                                    try {
+                                        file2.createNewFile();
+                                    } catch (Exception e7) {
+                                        f8.g(e7, true);
+                                        d2Var3.d = false;
+                                        return;
+                                    }
+                                }
+                                b2 b2Var2 = new b2();
+                                b2Var2.f43002a.addAll(arrayList2);
+                                SerializedData serializedData2 = new SerializedData(b2Var2.getObjectSize());
+                                b2Var2.serializeToStream(serializedData2);
+                                try {
+                                    FileOutputStream fileOutputStream = new FileOutputStream(file2);
+                                    fileOutputStream.write(serializedData2.toByteArray());
+                                    fileOutputStream.close();
+                                } catch (Exception e72) {
+                                    f8.g(e72, true);
+                                }
+                                org.telegram.messenger.i0.g3(new z1(d2Var3, 2));
+                                return;
+                        }
+                    }
+                });
+                return;
+            default:
+                this.f43293b.d = false;
                 return;
         }
     }

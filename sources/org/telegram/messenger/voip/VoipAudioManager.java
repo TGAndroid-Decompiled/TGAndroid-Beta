@@ -3,9 +3,8 @@ package org.telegram.messenger.voip;
 import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.os.Build;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.j20;
 public class VoipAudioManager {
     private Boolean isSpeakerphoneOn;
 
@@ -21,7 +20,7 @@ public class VoipAudioManager {
     }
 
     private AudioManager getAudioManager() {
-        return (AudioManager) ApplicationLoader.applicationContext.getSystemService("audio");
+        return (AudioManager) org.telegram.messenger.w0.f19025b.getSystemService("audio");
     }
 
     public static boolean isBluetoothDevice(AudioDeviceInfo audioDeviceInfo) {
@@ -42,12 +41,12 @@ public class VoipAudioManager {
         return true;
     }
 
-    public static void lambda$isBluetoothAndSpeakerOnAsync$3(Utilities.Callback2 callback2, boolean z10, boolean z11) {
-        callback2.run(Boolean.valueOf(z10), Boolean.valueOf(z11));
+    public static void lambda$isBluetoothAndSpeakerOnAsync$3(j20 j20Var, boolean z10, boolean z11) {
+        j20Var.a(Boolean.valueOf(z10), Boolean.valueOf(z11));
     }
 
-    public void lambda$isBluetoothAndSpeakerOnAsync$4(Utilities.Callback2 callback2) {
-        AndroidUtilities.runOnUIThread(new e2.o0(callback2, isBluetoothOn(), getAudioManager().isSpeakerphoneOn(), 3));
+    public void lambda$isBluetoothAndSpeakerOnAsync$4(j20 j20Var) {
+        org.telegram.messenger.i0.g3(new e2.m0(j20Var, isBluetoothOn(), getAudioManager().isSpeakerphoneOn(), 3));
     }
 
     public static void lambda$stopBluetooth$2(AudioManager audioManager) {
@@ -68,8 +67,8 @@ public class VoipAudioManager {
         return null;
     }
 
-    public void isBluetoothAndSpeakerOnAsync(Utilities.Callback2<Boolean, Boolean> callback2) {
-        Utilities.globalQueue.postRunnable(new m0(2, this, callback2));
+    public void isBluetoothAndSpeakerOnAsync(j20 j20Var) {
+        Utilities.e.c(new mh.k(21, this, j20Var));
     }
 
     public boolean isBluetoothOn() {
@@ -103,7 +102,7 @@ public class VoipAudioManager {
 
     public void setSpeakerphoneOn(boolean z10) {
         this.isSpeakerphoneOn = Boolean.valueOf(z10);
-        Utilities.globalQueue.postRunnable(new bh.n(21, getAudioManager(), z10));
+        Utilities.e.c(new k2.v(6, getAudioManager(), z10));
     }
 
     public void startBluetooth() {
@@ -114,7 +113,7 @@ public class VoipAudioManager {
                 return;
             }
             this.isSpeakerphoneOn = Boolean.FALSE;
-            Utilities.globalQueue.postRunnable(new m0(1, audioManager, findBluetoothDevice));
+            Utilities.e.c(new mh.k(20, audioManager, findBluetoothDevice));
             return;
         }
         audioManager.startBluetoothSco();
@@ -123,7 +122,7 @@ public class VoipAudioManager {
     public void stopBluetooth() {
         AudioManager audioManager = getAudioManager();
         if (Build.VERSION.SDK_INT >= 31) {
-            Utilities.globalQueue.postRunnable(new r0(audioManager, 2));
+            Utilities.e.c(new w0(audioManager, 2));
         } else {
             audioManager.stopBluetoothSco();
         }

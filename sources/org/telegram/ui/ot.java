@@ -1,64 +1,61 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Timer;
-import org.telegram.messenger.Emoji;
-public final class ot extends org.telegram.ui.Components.mm0 {
-    public final Context f42186c;
-    public Timer d;
-    public ArrayList e;
-    public final ArrayList f42187f = new ArrayList();
-    public final qt h;
+import java.util.Comparator;
+import org.telegram.messenger.support.LongSparseIntArray;
+import org.telegram.tgnet.TLRPC;
+public final class ot implements Comparator {
+    public final int f40380a;
+    public final Object f40381b;
 
-    public ot(qt qtVar, Context context, HashMap hashMap) {
-        this.h = qtVar;
-        this.f42186c = context;
-        for (List<lt> list : hashMap.values()) {
-            for (lt ltVar : list) {
-                this.f42187f.add(ltVar);
-            }
+    public ot(Object obj, int i10) {
+        this.f40380a = i10;
+        this.f40381b = obj;
+    }
+
+    @Override
+    public final int compare(Object obj, Object obj2) {
+        switch (this.f40380a) {
+            case 0:
+                return ((Comparator) this.f40381b).compare(((nt) obj).f40047a, ((nt) obj2).f40047a);
+            case 1:
+                LongSparseIntArray longSparseIntArray = (LongSparseIntArray) this.f40381b;
+                int i10 = longSparseIntArray.get(((Long) obj).longValue());
+                int i11 = longSparseIntArray.get(((Long) obj2).longValue());
+                if (i10 > i11) {
+                    return 1;
+                }
+                if (i10 < i11) {
+                    return -1;
+                }
+                return 0;
+            case 2:
+                org.telegram.messenger.zc zcVar = (org.telegram.messenger.zc) this.f40381b;
+                org.telegram.messenger.zc zcVar2 = (org.telegram.messenger.zc) obj;
+                org.telegram.messenger.zc zcVar3 = (org.telegram.messenger.zc) obj2;
+                if (zcVar2 != zcVar) {
+                    if (zcVar3 != zcVar) {
+                        int i12 = zcVar2.f19502k;
+                        int i13 = zcVar3.f19502k;
+                        if (i12 == i13) {
+                            return zcVar2.f19495a.compareTo(zcVar3.f19495a);
+                        }
+                        if (i12 <= i13) {
+                            if (i12 >= i13) {
+                                return 0;
+                            }
+                        }
+                    }
+                    return 1;
+                }
+                return -1;
+            default:
+                StickersActivity stickersActivity = (StickersActivity) this.f40381b;
+                int indexOf = stickersActivity.d.indexOf((TLRPC.TL_messages_stickerSet) obj);
+                int indexOf2 = stickersActivity.d.indexOf((TLRPC.TL_messages_stickerSet) obj2);
+                if (indexOf >= 0 && indexOf2 >= 0) {
+                    return indexOf - indexOf2;
+                }
+                return 0;
         }
-    }
-
-    @Override
-    public final boolean D(s4.e1 e1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        ArrayList arrayList = this.e;
-        if (arrayList == null) {
-            return 0;
-        }
-        return arrayList.size();
-    }
-
-    @Override
-    public final int j(int i10) {
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.e1 e1Var, int i10) {
-        String str;
-        lt ltVar = (lt) this.e.get(i10);
-        org.telegram.ui.Cells.ga gaVar = (org.telegram.ui.Cells.ga) e1Var.f47773a;
-        CharSequence replaceEmoji = Emoji.replaceEmoji(qt.W(ltVar), gaVar.getTextView().getPaint().getFontMetricsInt(), false);
-        if (this.h.h) {
-            str = "+" + ltVar.f41260c;
-        } else {
-            str = null;
-        }
-        gaVar.c(replaceEmoji, str, false, false);
-    }
-
-    @Override
-    public final s4.e1 x(ViewGroup viewGroup, int i10) {
-        return new s4.e1(qt.V(this.f42186c));
     }
 }

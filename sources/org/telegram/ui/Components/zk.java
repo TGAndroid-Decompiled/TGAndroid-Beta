@@ -1,40 +1,18 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.widget.TextView;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class zk implements TextWatcher {
-    public boolean f35370a;
-    public final TextView f35371b;
+public final class zk extends TextView {
+    public float f33101a;
+    public float f33102b;
 
-    public zk(jg.a1 a1Var, TextView textView) {
-        this.f35371b = textView;
-        this.f35370a = TextUtils.isEmpty(a1Var.getText());
+    @Override
+    public final float getTranslationX() {
+        return this.f33101a;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i10;
-        boolean isEmpty = TextUtils.isEmpty(editable);
-        if (isEmpty != this.f35370a) {
-            this.f35370a = isEmpty;
-            if (isEmpty) {
-                i10 = R.string.Remove;
-            } else {
-                i10 = R.string.Add;
-            }
-            this.f35371b.setText(LocaleController.getString(i10));
-        }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void setTranslationX(float f7) {
+        this.f33101a = f7;
+        setTranslationY(this.f33102b + f7);
     }
 }

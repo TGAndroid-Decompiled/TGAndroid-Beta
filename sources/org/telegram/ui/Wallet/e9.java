@@ -1,67 +1,91 @@
 package org.telegram.ui.Wallet;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-public final class e9 extends ReplacementSpan {
-    public final String f36548a;
-    public final String f36549b;
-    public final boolean f36550c;
-    public float d;
-    public int e;
-    public int f36551f;
-    public g9 h;
-    public g9 f36552n;
-    public final h9 f36553r;
+import android.text.TextUtils;
+import android.widget.TextView;
+import org.telegram.messenger.j20;
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.Components.ii;
+public final class e9 implements j20 {
+    public final int f34470a;
+    public final r9 f34471b;
 
-    public e9(h9 h9Var, String str, boolean z10, boolean z11) {
-        String str2;
-        this.f36553r = h9Var;
-        this.f36548a = str;
-        if (z10) {
-            str2 = h9Var.P;
-        } else {
-            str2 = "";
-        }
-        this.f36549b = str2;
-        this.f36550c = z11;
-    }
-
-    public final int a() {
-        int i10 = this.e;
-        return Math.round((h9.S.getInterpolation(this.f36553r.I) * (this.f36551f - i10)) + i10);
+    public e9(r9 r9Var, int i10) {
+        this.f34470a = i10;
+        this.f34471b = r9Var;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        Canvas canvas2;
-        Paint paint2;
-        int i15;
-        float textSize = paint.getTextSize();
-        if (this.f36550c) {
-            paint.setTextSize((28.0f * textSize) / 44.0f);
+    public final void a(Object obj, Object obj2) {
+        int i10;
+        int i11;
+        switch (this.f34470a) {
+            case 0:
+                String str = (String) obj2;
+                r9.f0(this.f34471b, (TL_wallet.walletUserAddress) obj);
+                return;
+            case 1:
+                TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
+                String str2 = (String) obj2;
+                r9 r9Var = this.f34471b;
+                r9Var.getClass();
+                if (wallettransaction != null) {
+                    r9Var.f35129e0 = wallettransaction.fee;
+                    r9Var.C0();
+                    return;
+                }
+                return;
+            case 2:
+                TL_wallet.walletUserAddress walletuseraddress = (TL_wallet.walletUserAddress) obj;
+                r9 r9Var2 = this.f34471b;
+                r9Var2.f35143r = false;
+                if (TextUtils.equals((String) obj2, "WALLET_USER_UNAVAILABLE")) {
+                    r9Var2.finishFragment();
+                    return;
+                }
+                r9Var2.e = walletuseraddress;
+                if (walletuseraddress != null) {
+                    r9Var2.h = walletuseraddress.address;
+                }
+                ii iiVar = r9Var2.f29837a;
+                if (iiVar != null) {
+                    iiVar.f30819f3.O(true);
+                }
+                r9Var2.B0();
+                r9Var2.s0();
+                w8 w8Var = r9Var2.f35150w;
+                if (w8Var != null) {
+                    w8Var.a(r9Var2.h, r9Var2.f35130f);
+                    return;
+                }
+                return;
+            case 3:
+                r9 r9Var3 = this.f34471b;
+                r9Var3.f35132g0 = (String) obj;
+                r9Var3.f35133h0 = ((Boolean) obj2).booleanValue();
+                r9Var3.P.setText(r9Var3.f35132g0);
+                TextView textView = r9Var3.P;
+                if (TextUtils.isEmpty(r9Var3.f35132g0)) {
+                    i10 = 8;
+                } else {
+                    i10 = 0;
+                }
+                textView.setVisibility(i10);
+                r9Var3.D0();
+                return;
+            default:
+                r9 r9Var4 = this.f34471b;
+                r9Var4.f35132g0 = (String) obj;
+                r9Var4.f35133h0 = ((Boolean) obj2).booleanValue();
+                r9Var4.P.setText(r9Var4.f35132g0);
+                TextView textView2 = r9Var4.P;
+                if (TextUtils.isEmpty(r9Var4.f35132g0)) {
+                    i11 = 8;
+                } else {
+                    i11 = 0;
+                }
+                textView2.setVisibility(i11);
+                r9Var4.D0();
+                return;
         }
-        float f10 = f7 - this.d;
-        g9 g9Var = this.f36552n;
-        if (g9Var != null) {
-            paint2 = paint;
-            i15 = i13;
-            canvas2 = canvas;
-            g9Var.b(canvas2, paint2, this.f36549b, f10, i15);
-        } else {
-            canvas2 = canvas;
-            paint2 = paint;
-            i15 = i13;
-        }
-        this.h.b(canvas2, paint2, this.f36548a, f10, i15);
-        paint2.setTextSize(textSize);
-    }
-
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        if (fontMetricsInt != null) {
-            paint.getFontMetricsInt(fontMetricsInt);
-        }
-        return a();
     }
 }

@@ -1,29 +1,33 @@
 package bi;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.ui.Components.k71;
-import org.telegram.ui.Components.nm0;
-public final class q1 extends k71 {
-    public final x1 P;
+import android.animation.ValueAnimator;
+public final class q1 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f3291a;
+    public final k2 f3292b;
 
-    public q1(x1 x1Var, nm0 nm0Var, Context context, int i10, ai.e eVar, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(nm0Var, context, i10, 0, true, eVar, u6Var);
-        this.P = x1Var;
+    public q1(k2 k2Var, int i10) {
+        this.f3291a = i10;
+        this.f3292b = k2Var;
     }
 
     @Override
-    public final void v(s4.e1 e1Var, int i10) {
-        super.v(e1Var, i10);
-        View view = e1Var.f47773a;
-        if (!(view instanceof v1)) {
-            return;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f3291a) {
+            case 0:
+                k2 k2Var = this.f3292b;
+                k2Var.getClass();
+                k2Var.Q0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k2Var.j0();
+                return;
+            default:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k2 k2Var2 = this.f3292b;
+                k2Var2.I = floatValue;
+                k2Var2.z0();
+                k2Var2.P.setTranslationX(org.telegram.messenger.i0.W1(k2Var2.I, k2Var2.G[0] - k2Var2.H[0], 0));
+                k2Var2.P.setTranslationY(org.telegram.messenger.i0.W1(k2Var2.I, k2Var2.G[1] - k2Var2.H[1], 0));
+                k2Var2.O.invalidate();
+                return;
         }
-        v1 v1Var = (v1) view;
-        s1 s1Var = v1Var.v;
-        boolean S = this.P.S(s1Var);
-        v1Var.f5540c.f(S, false);
-        v1Var.f5543r.a(S, false);
-        v1Var.setOnClickListener(new q(4, this, s1Var));
     }
 }

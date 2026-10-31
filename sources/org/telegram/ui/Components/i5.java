@@ -1,51 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class i5 extends FrameLayout {
-    public boolean f29212a;
-    public int f29213b;
-    public s6 f29214c;
-    public s6 d;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class i5 extends AnimatorListenerAdapter {
+    public final int f26883a;
+    public final o5 f26884b;
 
-    public s6 getSubtitleTextView() {
-        return this.d;
-    }
-
-    public s6 getTitle() {
-        return this.f29214c;
+    public i5(o5 o5Var, int i10) {
+        this.f26883a = i10;
+        this.f26884b = o5Var;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int i14;
-        s6 s6Var = this.d;
-        s6 s6Var2 = this.f29214c;
-        int B = org.telegram.messenger.wh.B(42.0f, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 2);
-        if (this.f29212a) {
-            i14 = AndroidUtilities.statusBarHeight;
-        } else {
-            i14 = 0;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f26883a) {
+            case 0:
+                o5.access$002(this.f26884b, null);
+                o5.access$102(false);
+                return;
+            case 1:
+                o5 o5Var = this.f26884b;
+                o5.access$002(o5Var, null);
+                if (o5.access$200(o5Var) != null) {
+                    o5.access$200(o5Var).run();
+                    o5.access$202(o5Var, null);
+                    return;
+                }
+                return;
+            default:
+                o5.access$302(this.f26884b, null);
+                return;
         }
-        int i15 = B + i14;
-        int i16 = this.f29213b;
-        if (s6Var.getVisibility() != 8) {
-            s6Var2.layout(i16, (AndroidUtilities.dp(1.0f) + i15) - s6Var2.getPaddingTop(), s6Var2.getMeasuredWidth() + i16, s6Var2.getPaddingBottom() + ((AndroidUtilities.dp(1.3f) + (s6Var2.getTextHeight() + i15)) - s6Var2.getPaddingTop()));
-        } else {
-            s6Var2.layout(i16, (AndroidUtilities.dp(11.0f) + i15) - s6Var2.getPaddingTop(), s6Var2.getMeasuredWidth() + i16, s6Var2.getPaddingBottom() + ((AndroidUtilities.dp(11.0f) + (s6Var2.getTextHeight() + i15)) - s6Var2.getPaddingTop()));
-        }
-        s6Var.layout(i16, AndroidUtilities.dp(20.0f) + i15, s6Var.getMeasuredWidth() + i16, AndroidUtilities.dp(24.0f) + s6Var.getTextHeight() + i15);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        s6 s6Var = this.f29214c;
-        int paddingRight = s6Var.getPaddingRight() + size;
-        int dp = paddingRight - AndroidUtilities.dp(16.0f);
-        s6Var.measure(View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(s6Var.getPaddingRight() + AndroidUtilities.dp(32.0f), Integer.MIN_VALUE));
-        this.d.measure(View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), Integer.MIN_VALUE));
-        setMeasuredDimension(paddingRight, View.MeasureSpec.getSize(i11));
     }
 }

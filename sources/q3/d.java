@@ -2,20 +2,20 @@ package q3;
 
 import j$.util.Objects;
 import java.util.Arrays;
-public final class d extends i {
-    public final String f46969b;
-    public final boolean f46970c;
+public final class d extends j {
+    public final String f45430b;
+    public final boolean f45431c;
     public final boolean d;
     public final String[] e;
-    public final i[] f46971f;
+    public final j[] f45432f;
 
-    public d(String str, boolean z10, boolean z11, String[] strArr, i[] iVarArr) {
+    public d(String str, boolean z10, boolean z11, String[] strArr, j[] jVarArr) {
         super("CTOC");
-        this.f46969b = str;
-        this.f46970c = z10;
+        this.f45430b = str;
+        this.f45431c = z10;
         this.d = z11;
         this.e = strArr;
-        this.f46971f = iVarArr;
+        this.f45432f = jVarArr;
     }
 
     public final boolean equals(Object obj) {
@@ -24,7 +24,7 @@ public final class d extends i {
         }
         if (obj != null && d.class == obj.getClass()) {
             d dVar = (d) obj;
-            if (this.f46970c == dVar.f46970c && this.d == dVar.d && Objects.equals(this.f46969b, dVar.f46969b) && Arrays.equals(this.e, dVar.e) && Arrays.equals(this.f46971f, dVar.f46971f)) {
+            if (this.f45431c == dVar.f45431c && this.d == dVar.d && Objects.equals(this.f45430b, dVar.f45430b) && Arrays.equals(this.e, dVar.e) && Arrays.equals(this.f45432f, dVar.f45432f)) {
                 return true;
             }
         }
@@ -33,8 +33,8 @@ public final class d extends i {
 
     public final int hashCode() {
         int i10;
-        int i11 = (((527 + (this.f46970c ? 1 : 0)) * 31) + (this.d ? 1 : 0)) * 31;
-        String str = this.f46969b;
+        int i11 = (((527 + (this.f45431c ? 1 : 0)) * 31) + (this.d ? 1 : 0)) * 31;
+        String str = this.f45430b;
         if (str != null) {
             i10 = str.hashCode();
         } else {

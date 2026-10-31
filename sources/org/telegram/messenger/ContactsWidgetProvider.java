@@ -12,83 +12,63 @@ import android.widget.RemoteViews;
 import java.util.ArrayList;
 import org.telegram.ui.LaunchActivity;
 public class ContactsWidgetProvider extends AppWidgetProvider {
-    private static int getCellsForSize(int i10) {
+    public static void a(Context context, AppWidgetManager appWidgetManager, int i10) {
+        w0.w();
         int i11 = 2;
-        while (i11 * 86 < i10) {
+        while (i11 * 86 < appWidgetManager.getAppWidgetOptions(i10).getInt("appWidgetMaxHeight")) {
             i11++;
         }
-        return i11 - 1;
-    }
-
-    public static void updateWidget(Context context, AppWidgetManager appWidgetManager, int i10) {
-        int i11;
-        int i12;
-        ApplicationLoader.postInitApplication();
-        int cellsForSize = getCellsForSize(appWidgetManager.getAppWidgetOptions(i10).getInt("appWidgetMaxHeight"));
+        int i12 = i11 - 1;
         Intent intent = new Intent(context, ContactsWidgetService.class);
         intent.putExtra("appWidgetId", i10);
         intent.setData(Uri.parse(intent.toUri(1)));
         SharedPreferences sharedPreferences = context.getSharedPreferences("shortcut_widget", 0);
+        int i13 = 2131492903;
         if (!sharedPreferences.getBoolean("deleted" + i10, false)) {
-            int i13 = sharedPreferences.getInt("account" + i10, -1);
-            if (i13 == -1) {
+            int i14 = sharedPreferences.getInt("account" + i10, -1);
+            if (i14 == -1) {
                 SharedPreferences.Editor edit = sharedPreferences.edit();
-                edit.putInt(ic.a.i(i10, "account"), UserConfig.selectedAccount);
+                edit.putInt(i0.a.i(i10, "account"), d20.f15147s0);
                 edit.putInt("type" + i10, 0).commit();
             }
-            ArrayList<Long> arrayList = new ArrayList<>();
-            if (i13 >= 0) {
-                i11 = i10;
-                AccountInstance.getInstance(i13).getMessagesStorage().getWidgetDialogIds(i11, 1, arrayList, null, null, false);
-            } else {
-                i11 = i10;
+            ArrayList arrayList = new ArrayList();
+            if (i14 >= 0) {
+                hs.a0(c.a(i14).f14863a).q0(i10, 1, arrayList, null, null, false);
             }
             int ceil = (int) Math.ceil(arrayList.size() / 2.0f);
-            if (cellsForSize != 1 && ceil > 1) {
-                if (cellsForSize != 2 && ceil > 2) {
-                    if (cellsForSize != 3 && ceil > 3) {
-                        i12 = R.layout.contacts_widget_layout_4;
-                    } else {
-                        i12 = R.layout.contacts_widget_layout_3;
-                    }
-                } else {
-                    i12 = R.layout.contacts_widget_layout_2;
-                }
-            } else {
-                i12 = R.layout.contacts_widget_layout_1;
+            if (i12 != 1 && ceil > 1) {
+                i13 = (i12 == 2 || ceil <= 2) ? 2131492904 : (i12 == 3 || ceil <= 3) ? 2131492905 : 2131492906;
             }
-        } else {
-            i11 = i10;
-            i12 = R.layout.contacts_widget_layout_1;
         }
-        RemoteViews remoteViews = new RemoteViews(context.getPackageName(), i12);
-        remoteViews.setRemoteAdapter(i11, R.id.list_view, intent);
-        remoteViews.setEmptyView(R.id.list_view, R.id.empty_view);
-        Intent intent2 = new Intent(ApplicationLoader.applicationContext, LaunchActivity.class);
+        RemoteViews remoteViews = new RemoteViews(context.getPackageName(), i13);
+        remoteViews.setRemoteAdapter(i10, 2131296476, intent);
+        remoteViews.setEmptyView(2131296476, 2131296423);
+        Intent intent2 = new Intent(w0.f19025b, LaunchActivity.class);
         intent2.setAction("com.tmessages.openchat" + Math.random() + Integer.MAX_VALUE);
         intent2.addFlags(67108864);
         intent2.addCategory("android.intent.category.LAUNCHER");
-        remoteViews.setPendingIntentTemplate(R.id.list_view, PendingIntent.getActivity(ApplicationLoader.applicationContext, 0, intent2, 167772160));
-        appWidgetManager.updateAppWidget(i11, remoteViews);
-        appWidgetManager.notifyAppWidgetViewDataChanged(i11, R.id.list_view);
+        remoteViews.setPendingIntentTemplate(2131296476, PendingIntent.getActivity(w0.f19025b, 0, intent2, 167772160));
+        appWidgetManager.updateAppWidget(i10, remoteViews);
+        appWidgetManager.notifyAppWidgetViewDataChanged(i10, 2131296476);
     }
 
     @Override
-    public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager, int i10, Bundle bundle) {
-        updateWidget(context, appWidgetManager, i10);
+    public final void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager, int i10, Bundle bundle) {
+        a(context, appWidgetManager, i10);
         super.onAppWidgetOptionsChanged(context, appWidgetManager, i10, bundle);
     }
 
     @Override
-    public void onDeleted(Context context, int[] iArr) {
+    public final void onDeleted(Context context, int[] iArr) {
         super.onDeleted(context, iArr);
-        ApplicationLoader.postInitApplication();
+        w0.w();
         SharedPreferences sharedPreferences = context.getSharedPreferences("shortcut_widget", 0);
         SharedPreferences.Editor edit = sharedPreferences.edit();
         for (int i10 = 0; i10 < iArr.length; i10++) {
             int i11 = sharedPreferences.getInt("account" + iArr[i10], -1);
             if (i11 >= 0) {
-                AccountInstance.getInstance(i11).getMessagesStorage().clearWidgetDialogs(iArr[i10]);
+                hs a02 = hs.a0(c.a(i11).f14863a);
+                a02.f15938a.c(new yp(a02, iArr[i10], 2));
             }
             edit.remove("account" + iArr[i10]);
             edit.remove("type" + iArr[i10]);
@@ -98,15 +78,10 @@ public class ContactsWidgetProvider extends AppWidgetProvider {
     }
 
     @Override
-    public void onReceive(Context context, Intent intent) {
-        super.onReceive(context, intent);
-    }
-
-    @Override
-    public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] iArr) {
+    public final void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] iArr) {
         super.onUpdate(context, appWidgetManager, iArr);
         for (int i10 : iArr) {
-            updateWidget(context, appWidgetManager, i10);
+            a(context, appWidgetManager, i10);
         }
     }
 }

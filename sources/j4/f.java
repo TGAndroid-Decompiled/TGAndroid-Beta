@@ -1,38 +1,38 @@
 package j4;
 
-import b2.w0;
+import b2.v0;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 public final class f {
-    public final int f15310a;
-    public final List f15311b;
+    public final int f9471a;
+    public final List f9472b;
 
     public f(int i10, List list) {
-        this.f15310a = i10;
-        this.f15311b = list;
+        this.f9471a = i10;
+        this.f9472b = list;
     }
 
-    public j4.g0 a(int r6, k6.m r7) {
-        throw new UnsupportedOperationException("Method not decompiled: j4.f.a(int, k6.m):j4.g0");
+    public j4.h0 a(int r6, j6.m r7) {
+        throw new UnsupportedOperationException("Method not decompiled: j4.f.a(int, j6.m):j4.h0");
     }
 
-    public List b(k6.m mVar) {
+    public List b(j6.m mVar) {
         boolean z10;
         String str;
         int i10;
         List list;
         boolean z11;
         boolean c10 = c(32);
-        List list2 = this.f15311b;
+        List list2 = this.f9472b;
         if (c10) {
             return list2;
         }
         e2.x xVar = new e2.x((byte[]) mVar.d);
         while (xVar.a() > 0) {
             int A = xVar.A();
-            int A2 = xVar.f9732b + xVar.A();
+            int A2 = xVar.f6208b + xVar.A();
             if (A == 134) {
                 ArrayList arrayList = new ArrayList();
                 int A3 = xVar.A() & 31;
@@ -59,16 +59,16 @@ public final class f {
                         } else {
                             z11 = false;
                         }
-                        byte[] bArr = e2.g.f9660a;
+                        byte[] bArr = e2.g.f6140a;
                         list = Collections.singletonList(z11 ? new byte[]{1} : new byte[]{0});
                     } else {
                         list = null;
                     }
                     b2.w wVar = new b2.w();
-                    wVar.f3533r = w0.n(str);
+                    wVar.f2370r = v0.n(str);
                     wVar.d = y3;
                     wVar.O = i10;
-                    wVar.f3536u = list;
+                    wVar.f2373u = list;
                     arrayList.add(new b2.x(wVar));
                 }
                 list2 = arrayList;
@@ -79,19 +79,19 @@ public final class f {
     }
 
     public boolean c(int i10) {
-        if ((i10 & this.f15310a) != 0) {
+        if ((i10 & this.f9471a) != 0) {
             return true;
         }
         return false;
     }
 
     public f() {
-        this.f15310a = 1;
-        this.f15311b = Collections.singletonList(null);
+        this.f9471a = 1;
+        this.f9472b = Collections.singletonList(null);
     }
 
     public f(ArrayList arrayList) {
-        this.f15310a = 0;
-        this.f15311b = arrayList;
+        this.f9471a = 0;
+        this.f9472b = arrayList;
     }
 }

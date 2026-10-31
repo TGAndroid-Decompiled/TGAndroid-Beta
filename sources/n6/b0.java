@@ -1,0 +1,73 @@
+package n6;
+
+import android.os.Bundle;
+import android.os.IBinder;
+import android.os.Parcel;
+import android.util.Log;
+public final class b0 extends b8.b {
+    public g f13555b;
+    public final int f13556c;
+
+    public b0(g gVar, int i10) {
+        super("com.google.android.gms.common.internal.IGmsCallbacks", 7);
+        this.f13555b = gVar;
+        this.f13556c = i10;
+    }
+
+    @Override
+    public final boolean K0(int i10, Parcel parcel, Parcel parcel2) {
+        n nVar;
+        if (i10 != 1) {
+            if (i10 != 2) {
+                if (i10 != 3) {
+                    return false;
+                }
+                int readInt = parcel.readInt();
+                IBinder readStrongBinder = parcel.readStrongBinder();
+                f0 f0Var = (f0) m7.a.a(parcel, f0.CREATOR);
+                m7.a.b(parcel);
+                g gVar = this.f13555b;
+                l.h(gVar, "onPostInitCompleteWithConnectionInfo can be called only once per call togetRemoteService");
+                l.g(f0Var);
+                gVar.Q = f0Var;
+                if (gVar.D()) {
+                    e eVar = f0Var.d;
+                    m a2 = m.a();
+                    if (eVar == null) {
+                        nVar = null;
+                    } else {
+                        nVar = eVar.f13563a;
+                    }
+                    synchronized (a2) {
+                        if (nVar == null) {
+                            nVar = m.f13619c;
+                        } else {
+                            n nVar2 = (n) a2.f13620a;
+                            if (nVar2 != null) {
+                                if (nVar2.f13621a < nVar.f13621a) {
+                                }
+                            }
+                        }
+                        a2.f13620a = nVar;
+                    }
+                }
+                Bundle bundle = f0Var.f13578a;
+                l.h(this.f13555b, "onPostInitComplete can be called only once per call to getRemoteService");
+                this.f13555b.C(readInt, readStrongBinder, bundle, this.f13556c);
+                this.f13555b = null;
+            } else {
+                parcel.readInt();
+                Bundle bundle2 = (Bundle) m7.a.a(parcel, Bundle.CREATOR);
+                m7.a.b(parcel);
+                Log.wtf("GmsClient", "received deprecated onAccountValidationComplete callback, ignoring", new Exception());
+            }
+        } else {
+            m7.a.b(parcel);
+            l.h(this.f13555b, "onPostInitComplete can be called only once per call to getRemoteService");
+            this.f13555b.C(parcel.readInt(), parcel.readStrongBinder(), (Bundle) m7.a.a(parcel, Bundle.CREATOR), this.f13556c);
+            this.f13555b = null;
+        }
+        parcel2.writeNoException();
+        return true;
+    }
+}

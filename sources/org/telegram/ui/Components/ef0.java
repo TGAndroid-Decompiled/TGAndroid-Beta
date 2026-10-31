@@ -1,15 +1,25 @@
 package org.telegram.ui.Components;
-public final class ef0 extends org.telegram.ui.ActionBar.j {
-    public final kf0 f27840a;
 
-    public ef0(kf0 kf0Var) {
-        this.f27840a = kf0Var;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class ef0 extends AnimatorListenerAdapter {
+    public final int f25772a;
+    public final jf0 f25773b;
+
+    public ef0(jf0 jf0Var, int i10) {
+        this.f25772a = i10;
+        this.f25773b = jf0Var;
     }
 
     @Override
-    public final void b(int i10) {
-        if (i10 == -1) {
-            this.f27840a.dismiss();
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f25772a) {
+            case 0:
+                this.f25773b.F = null;
+                return;
+            default:
+                this.f25773b.u();
+                return;
         }
     }
 }

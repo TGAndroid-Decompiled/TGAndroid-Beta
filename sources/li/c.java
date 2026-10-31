@@ -1,144 +1,23 @@
 package li;
+public final class c {
+    public final int f12030a;
+    public final a4.l f12031b;
 
-import android.graphics.Bitmap;
-import android.graphics.PorterDuff;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.view.KeyEvent;
-import android.widget.HorizontalScrollView;
-import android.widget.ImageView;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.ActionBar.f7;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.wc;
-public final class c implements Utilities.Callback2 {
-    public final int f17156a = 0;
-    public final boolean[] f17157b;
-    public final fi.d f17158c;
-    public final boolean d;
-    public final u6 e;
-    public final Object f17159f;
-    public final Object f17160g;
-    public final Object h;
-    public final Object f17161i;
-    public final KeyEvent.Callback f17162j;
-
-    public c(String str, String[] strArr, ImageView imageView, u6 u6Var, boolean z10, int[] iArr, fi.d dVar, HorizontalScrollView horizontalScrollView, boolean[] zArr) {
-        this.f17159f = str;
-        this.f17160g = strArr;
-        this.h = imageView;
-        this.e = u6Var;
-        this.d = z10;
-        this.f17161i = iArr;
-        this.f17158c = dVar;
-        this.f17162j = horizontalScrollView;
-        this.f17157b = zArr;
+    public c(a4.l lVar, int i10) {
+        this.f12030a = i10;
+        this.f12031b = lVar;
     }
 
-    @Override
-    public final void run(Object obj, Object obj2) {
-        int i10;
-        String string;
-        CharSequence formatSpannable;
-        int i11 = this.f17156a;
-        u6 u6Var = this.e;
-        KeyEvent.Callback callback = this.f17162j;
-        Object obj3 = this.f17161i;
-        Object obj4 = this.h;
-        boolean z10 = this.d;
-        fi.d dVar = this.f17158c;
-        Object obj5 = this.f17160g;
-        Object obj6 = this.f17159f;
-        boolean[] zArr = this.f17157b;
-        switch (i11) {
+    public void a(Exception exc) {
+        switch (this.f12030a) {
             case 0:
-                ImageView imageView = (ImageView) obj4;
-                int[] iArr = (int[]) obj3;
-                HorizontalScrollView horizontalScrollView = (HorizontalScrollView) callback;
-                Bitmap bitmap = (Bitmap) obj;
-                Boolean bool = (Boolean) obj2;
-                if (TextUtils.equals((String) obj6, ((String[]) obj5)[0])) {
-                    if (bool.booleanValue()) {
-                        f7.t(imageView, y6.f23599q7, u6Var, PorterDuff.Mode.SRC_IN);
-                        if (!z10) {
-                            int i12 = -iArr[0];
-                            iArr[0] = i12;
-                            AndroidUtilities.shakeViewSpring(imageView, i12);
-                        }
-                    } else {
-                        f7.t(imageView, y6.G6, u6Var, PorterDuff.Mode.SRC_IN);
-                    }
-                    if (bitmap != null) {
-                        imageView.setImageBitmap(bitmap);
-                    }
-                    dVar.setEnabled(!bool.booleanValue());
-                    if (bitmap != null) {
-                        i10 = 0;
-                    } else {
-                        i10 = 8;
-                    }
-                    horizontalScrollView.setVisibility(i10);
-                    zArr[0] = bool.booleanValue();
-                    return;
-                }
+                a4.l lVar = this.f12031b;
+                ((x0) lVar.f279b).f12312i.post(new n0(lVar, exc, 1));
                 return;
             default:
-                org.telegram.ui.Wallet.a2 a2Var = (org.telegram.ui.Wallet.a2) obj6;
-                boolean[] zArr2 = (boolean[]) obj5;
-                org.telegram.ui.Wallet.l0 l0Var = (org.telegram.ui.Wallet.l0) obj4;
-                TextView textView = (TextView) obj3;
-                org.telegram.ui.Wallet.i2 i2Var = (org.telegram.ui.Wallet.i2) callback;
-                TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
-                String str = (String) obj2;
-                if (!zArr[0] && !a2Var.f36370m && !a2Var.f36371n) {
-                    boolean z11 = a2Var.f36373p;
-                    zArr2[0] = z11;
-                    dVar.setEnabled(z11);
-                    boolean z12 = zArr2[0];
-                    if (z12 && !z10) {
-                        SpannableStringBuilder n10 = org.telegram.ui.Wallet.l0.n(wallettransaction.fee, true);
-                        CharSequence m10 = l0Var.m(wallettransaction.fee, true);
-                        if (TextUtils.isEmpty(m10)) {
-                            formatSpannable = LocaleController.formatSpannable(R.string.WalletFeeAmount, n10);
-                        } else {
-                            formatSpannable = LocaleController.formatSpannable(R.string.WalletFeeAmountWithCurrency, n10, m10);
-                        }
-                        textView.setText(formatSpannable);
-                        return;
-                    } else if (!z12) {
-                        if (str != null) {
-                            string = str;
-                        } else {
-                            string = LocaleController.getString(R.string.WalletTransactionSimulationFailed);
-                        }
-                        if (str == null) {
-                            org.telegram.ui.Wallet.e2.k("preview", string);
-                        }
-                        wc.d0(string, i2Var.topBulletinContainer, u6Var);
-                        return;
-                    } else {
-                        return;
-                    }
-                }
+                a4.l lVar2 = this.f12031b;
+                ((x0) lVar2.f279b).f12312i.post(new n0(lVar2, exc, 0));
                 return;
         }
-    }
-
-    public c(boolean[] zArr, org.telegram.ui.Wallet.a2 a2Var, boolean[] zArr2, fi.d dVar, boolean z10, org.telegram.ui.Wallet.l0 l0Var, TextView textView, org.telegram.ui.Wallet.i2 i2Var, u6 u6Var) {
-        this.f17157b = zArr;
-        this.f17159f = a2Var;
-        this.f17160g = zArr2;
-        this.f17158c = dVar;
-        this.d = z10;
-        this.h = l0Var;
-        this.f17161i = textView;
-        this.f17162j = i2Var;
-        this.e = u6Var;
     }
 }

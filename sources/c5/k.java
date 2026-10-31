@@ -1,51 +1,31 @@
 package c5;
 
-import android.content.pm.PackageInfo;
-import android.os.Build;
-import java.lang.reflect.InvocationTargetException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-public final class k extends c {
-    public final Pattern d;
+import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONObject;
+public final class k {
+    public final ArrayList f3796a;
 
     public k() {
-        super("ALGORITHMIC_DARKENING", "ALGORITHMIC_DARKENING");
-        this.d = Pattern.compile("\\A\\d+");
+        this.f3796a = new ArrayList();
+        new ArrayList();
+        new ArrayList();
     }
 
-    @Override
-    public final boolean a() {
-        if (Build.VERSION.SDK_INT >= 33) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean b() {
-        int i10;
-        PackageInfo packageInfo;
-        boolean b10 = super.b();
-        if (b10 && (i10 = Build.VERSION.SDK_INT) < 29) {
-            boolean z10 = b5.a.f3646a;
-            if (i10 >= 26) {
-                packageInfo = x6.a.a();
-            } else {
-                try {
-                    packageInfo = b5.a.b();
-                } catch (ClassNotFoundException | IllegalAccessException | NoSuchMethodException | InvocationTargetException unused) {
-                    packageInfo = null;
+    public k(JSONArray jSONArray) {
+        ArrayList arrayList = new ArrayList();
+        if (jSONArray != null) {
+            for (int i10 = 0; i10 < jSONArray.length(); i10++) {
+                JSONObject optJSONObject = jSONArray.optJSONObject(i10);
+                if (optJSONObject != null) {
+                    arrayList.add(new j(optJSONObject));
                 }
             }
-            if (packageInfo == null) {
-                return false;
-            }
-            Matcher matcher = this.d.matcher(packageInfo.versionName);
-            if (!matcher.find() || Integer.parseInt(packageInfo.versionName.substring(matcher.start(), matcher.end())) < 105) {
-                return false;
-            }
-            return true;
         }
-        return b10;
+        this.f3796a = arrayList;
+    }
+
+    public k(ArrayList arrayList) {
+        this.f3796a = arrayList;
     }
 }

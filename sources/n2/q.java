@@ -3,33 +3,32 @@ package n2;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import li.e3;
 public interface q {
-    void E(byte[] bArr, byte[] bArr2);
+    void B0(byte[] bArr);
 
-    void H(byte[] bArr);
+    byte[] P0(byte[] bArr, byte[] bArr2);
 
-    byte[] R(byte[] bArr, byte[] bArr2);
+    h2.b X(byte[] bArr);
 
-    void T(e3 e3Var);
+    void X0(byte[] bArr);
 
-    void U(byte[] bArr);
+    o Y0(byte[] bArr, List list, int i10, HashMap hashMap);
 
-    o Y(byte[] bArr, List list, int i10, HashMap hashMap);
+    byte[] b0();
 
-    Map b(byte[] bArr);
+    int d1();
 
-    void e(byte[] bArr, j2.j jVar);
+    Map k(byte[] bArr);
 
-    int i0();
+    void p(byte[] bArr, j2.l lVar);
 
-    p k();
-
-    boolean p0(String str, byte[] bArr);
+    void q0(byte[] bArr, byte[] bArr2);
 
     void release();
 
-    h2.b y(byte[] bArr);
+    p u();
 
-    byte[] z();
+    boolean x1(String str, byte[] bArr);
+
+    void y(m2.t tVar);
 }

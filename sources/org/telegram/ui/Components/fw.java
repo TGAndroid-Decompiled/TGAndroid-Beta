@@ -1,18 +1,19 @@
 package org.telegram.ui.Components;
-public final class fw extends tg.c1 {
-    @Override
-    public final void invalidate() {
-        if (bh.m0.b(this)) {
-            return;
-        }
-        super.invalidate();
+
+import android.content.Context;
+public final class fw extends iy {
+    public final vy H;
+
+    public fw(vy vyVar, Context context) {
+        super(vyVar, context, 0);
+        this.H = vyVar;
     }
 
     @Override
-    public final void invalidate(int i10, int i11, int i12, int i13) {
-        if (bh.m0.b(this)) {
-            return;
+    public final void setTranslationY(float f7) {
+        if (f7 != getTranslationY()) {
+            super.setTranslationY(f7);
+            this.H.f31931x0.invalidate();
         }
-        super.invalidate(i10, i11, i12, i13);
     }
 }

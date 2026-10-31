@@ -1,42 +1,32 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import org.telegram.messenger.voip.GroupCallMessage;
-public final class v30 implements nh.a {
-    public final x50 f44176a;
+import android.view.ViewTreeObserver;
+public final class v30 implements ViewTreeObserver.OnPreDrawListener {
+    public final int f42586a;
+    public final b50 f42587b;
 
-    public v30(x50 x50Var) {
-        this.f44176a = x50Var;
+    public v30(b50 b50Var, int i10) {
+        this.f42586a = i10;
+        this.f42587b = b50Var;
     }
 
-    public final void a(GroupCallMessage groupCallMessage) {
-        org.telegram.ui.ActionBar.r2 R = LaunchActivity.R();
-        if (R == null) {
-            return;
+    @Override
+    public final boolean onPreDraw() {
+        switch (this.f42586a) {
+            case 0:
+                b50 b50Var = this.f42587b;
+                b50Var.H1.getViewTreeObserver().removeOnPreDrawListener(this);
+                b50Var.R3.j(null);
+                org.telegram.messenger.i0.a4(b50Var.f36008d4);
+                b50Var.f21586b.requestLayout();
+                return false;
+            default:
+                b50 b50Var2 = this.f42587b;
+                b50Var2.H1.getViewTreeObserver().removeOnPreDrawListener(this);
+                b50Var2.R3.j(null);
+                org.telegram.messenger.i0.a4(b50Var2.f36008d4);
+                b50Var2.f21586b.requestLayout();
+                return false;
         }
-        boolean z10 = R instanceof ProfileActivity;
-        x50 x50Var = this.f44176a;
-        if (z10 && ((ProfileActivity) R).a() == groupCallMessage.fromId) {
-            x50Var.dismiss();
-            return;
-        }
-        int P0 = x50Var.P0();
-        Bundle bundle = new Bundle();
-        long j10 = groupCallMessage.fromId;
-        if (j10 > 0) {
-            bundle.putLong("user_id", j10);
-        } else {
-            bundle.putLong("chat_id", -j10);
-        }
-        boolean z11 = true;
-        if (groupCallMessage.fromId == x50Var.d.getUserConfig().getClientUserId()) {
-            bundle.putBoolean("my_profile", true);
-        }
-        ProfileActivity profileActivity = new ProfileActivity(bundle, null);
-        if (P0 > 0 && P0 != Integer.MAX_VALUE) {
-            z11 = false;
-        }
-        R.presentFragment(profileActivity, false, z11);
-        x50Var.dismiss();
     }
 }

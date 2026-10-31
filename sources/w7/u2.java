@@ -1,17 +1,17 @@
 package w7;
+public final class u2 implements ja.d {
+    public static final u2 f52706a = new Object();
 
-import org.telegram.ui.Components.b10;
-public final class u2 implements ka.d {
-    public static final u2 f51043a = new Object();
-    public static final ka.c f51044b = new ka.c("identifyLanguageConfidenceThreshold", ic.a.m(b10.m(h.class, new e(1))));
-    public static final ka.c f51045c = new ka.c("identifyAllLanguagesConfidenceThreshold", ic.a.m(b10.m(h.class, new e(2))));
-    public static final ka.c d = new ka.c("confidenceThreshold", ic.a.m(b10.m(h.class, new e(3))));
+    static {
+        sc.e.v(sc.e.l(d.class, sc.e.q(sc.e.l(d.class, sc.e.q(sc.e.l(d.class, sc.e.q(sc.e.l(d.class, sc.e.q(sc.e.l(d.class, sc.e.q(sc.e.l(d.class, sc.e.q(sc.e.l(d.class, new a(1)), 2)), 3)), 4)), 5)), 6)), 7)));
+    }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        ka.e eVar = (ka.e) obj2;
-        eVar.a(f51044b, null);
-        eVar.a(f51045c, null);
-        eVar.a(d, ((i6) obj).f50945a);
+        if (obj == null) {
+            ja.e eVar = (ja.e) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

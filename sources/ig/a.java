@@ -1,34 +1,22 @@
 package ig;
-
-import android.location.Location;
-import org.telegram.messenger.AndroidUtilities;
-public final class a implements Runnable {
-    public final int f13981a;
-    public final c f13982b;
-    public final String f13983c;
-    public final Location d;
-
-    public a(c cVar, String str, Location location, int i10) {
-        this.f13981a = i10;
-        this.f13982b = cVar;
-        this.f13983c = str;
-        this.d = location;
+public final class a extends h {
+    @Override
+    public final int c() {
+        return -30208;
     }
 
     @Override
-    public final void run() {
-        switch (this.f13981a) {
-            case 0:
-                c cVar = this.f13982b;
-                cVar.getClass();
-                AndroidUtilities.runOnUIThread(new a(cVar, this.f13983c, this.d, 1));
-                return;
-            default:
-                c cVar2 = this.f13982b;
-                cVar2.E = null;
-                cVar2.v = null;
-                cVar2.H(this.f13983c, this.d, true);
-                return;
-        }
+    public final float d() {
+        return 0.25f;
+    }
+
+    @Override
+    public final int e() {
+        return 2131624123;
+    }
+
+    @Override
+    public final float j() {
+        return 0.25f;
     }
 }

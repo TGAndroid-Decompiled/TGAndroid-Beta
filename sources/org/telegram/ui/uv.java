@@ -1,132 +1,98 @@
 package org.telegram.ui;
 
-import android.content.SharedPreferences;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.UndoView;
-public final class uv implements Runnable {
-    public final int f44120a;
-    public final ey f44121b;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class uv implements View.OnLongClickListener {
+    public final int f42530a;
+    public final ay f42531b;
 
-    public uv(ey eyVar, int i10) {
-        this.f44120a = i10;
-        this.f44121b = eyVar;
+    public uv(ay ayVar, int i10) {
+        this.f42530a = i10;
+        this.f42531b = ayVar;
     }
 
     @Override
-    public final void run() {
-        cf1 cf1Var;
-        switch (this.f44120a) {
+    public final boolean onLongClick(View view) {
+        boolean z10;
+        boolean z11;
+        int i10;
+        int i11;
+        int i12 = this.f42530a;
+        ay ayVar = this.f42531b;
+        switch (i12) {
             case 0:
-                ey eyVar = this.f44121b;
-                mx mxVar = eyVar.C0;
-                if (mxVar != null && mxVar.A0) {
-                    mxVar.R(false);
-                    return;
+                ArrayList arrayList = ayVar.I2;
+                if (ayVar.getParentActivity() == null) {
+                    return false;
                 }
-                eyVar.X.f30347r.getText().clear();
-                AndroidUtilities.hideKeyboard(eyVar.X.f30347r);
-                eyVar.X.f30347r.clearFocus();
-                eyVar.Y.b(false);
-                return;
+                boolean z12 = !arrayList.isEmpty();
+                boolean z13 = true;
+                for (int i13 = 0; i13 < arrayList.size(); i13++) {
+                    long longValue = ((Long) arrayList.get(i13)).longValue();
+                    if (z12 && longValue != ayVar.getUserConfig().e()) {
+                        z12 = false;
+                    }
+                    if (org.telegram.messenger.o5.C(longValue)) {
+                        z13 = false;
+                    }
+                    TLRPC.Chat L0 = ayVar.getMessagesController().L0(Long.valueOf(-longValue));
+                    if (L0 != null && !org.telegram.messenger.w3.B(L0)) {
+                        z13 = false;
+                    }
+                }
+                if (ayVar.l4() && ayVar.w3()) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                if (z10) {
+                    ArrayList arrayList2 = ayVar.D2;
+                    int size = arrayList2.size();
+                    int i14 = 0;
+                    while (true) {
+                        if (i14 < size) {
+                            Object obj = arrayList2.get(i14);
+                            i14++;
+                            if (((org.telegram.messenger.ef) obj).b()) {
+                                z10 = false;
+                            }
+                        }
+                    }
+                }
+                ArrayList arrayList3 = ayVar.D2;
+                if (arrayList3 != null && arrayList3.size() > 1) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                org.telegram.ui.Components.z60 H = org.telegram.ui.Components.z60.H(ayVar, view);
+                if (z11) {
+                    i10 = 2131745652;
+                } else {
+                    i10 = 2131745653;
+                }
+                H.l(2131232358, org.telegram.messenger.cd.L0(i10, null), new fv(ayVar, 5), z10);
+                H.c(2131231509, org.telegram.messenger.cd.L0(2131745600, null), new fv(ayVar, 6), false);
+                if (z12) {
+                    i11 = 2131745531;
+                } else {
+                    i11 = 2131745876;
+                }
+                H.l(2131232076, org.telegram.messenger.cd.L0(i11, null), new k2.v(26, ayVar, z12), z13);
+                H.Z();
+                return true;
             case 1:
-                ey eyVar2 = this.f44121b;
-                if (eyVar2.R0 != 10) {
-                    eyVar2.k4(false);
-                }
-                if (eyVar2.L && eyVar2.f4().I()) {
-                    eyVar2.E0.h();
-                    return;
-                } else {
-                    eyVar2.F4(true, true);
-                    return;
-                }
+                ay ayVar2 = this.f42531b;
+                ayVar2.C4(ayVar2.I2, 104, true, true, null);
+                return true;
             case 2:
-                ey eyVar3 = this.f44121b;
-                jh.f fVar = eyVar3.f39103y1;
-                if (fVar != null) {
-                    fVar.d();
-                }
-                eyVar3.A3();
-                eyVar3.B3();
-                li.w1 w1Var = eyVar3.C1;
-                if (w1Var != null) {
-                    w1Var.setTranslationY(-eyVar3.v.d());
-                    return;
-                }
-                return;
-            case 3:
-                this.f44121b.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.forceImportContactsStart, new Object[0]);
-                return;
-            case 4:
-                this.f44121b.U3();
-                return;
-            case 5:
-                this.f44121b.c5();
-                return;
-            case 6:
-                ey.E0(this.f44121b);
-                return;
-            case 7:
-                MessagesController.getInstance(this.f44121b.currentAccount).getMainSettings().edit().putBoolean("storyhint", false).commit();
-                return;
-            case 8:
-                this.f44121b.getMessagesController().removeSuggestion(0L, "SETUP_LOGIN_EMAIL");
-                return;
-            case 9:
-                ey eyVar4 = this.f44121b;
-                fi.v3 v3Var = eyVar4.f39057q0;
-                if (v3Var != null) {
-                    v3Var.e(true);
-                }
-                eyVar4.presentFragment(new PremiumPreviewFragment(0, "stories"));
-                return;
-            case 10:
-                this.f44121b.f38998e0[0].d.l();
-                return;
-            case 11:
-                ey eyVar5 = this.f44121b;
-                UndoView g42 = eyVar5.g4();
-                if (g42 != null) {
-                    g42.l(0L, 15, null, new ev(eyVar5, 26));
-                    return;
-                }
-                return;
-            case 12:
-                ey eyVar6 = this.f44121b;
-                eyVar6.getClass();
-                SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-                long j10 = globalMainSettings.getLong("cache_hint_period", 604800000L);
-                if (j10 <= 604800000) {
-                    j10 = 2592000000L;
-                }
-                globalMainSettings.edit().putLong("cache_hint_showafter", System.currentTimeMillis() + j10).putLong("cache_hint_period", j10).apply();
-                eyVar6.c5();
-                return;
-            case 13:
-                ey eyVar7 = this.f44121b;
-                eyVar7.f38998e0[0].f38702a.requestLayout();
-                vw vwVar = eyVar7.G3;
-                if (vwVar != null && (vwVar.getFragment() instanceof cf1)) {
-                    cf1Var = (cf1) eyVar7.G3.getFragment();
-                } else {
-                    cf1Var = null;
-                }
-                if (cf1Var != null) {
-                    cf1Var.B0();
-                }
-                eyVar7.O3(false);
-                eyVar7.a5();
-                mx mxVar2 = eyVar7.C0;
-                if (mxVar2 != null) {
-                    mxVar2.invalidate();
-                    return;
-                }
-                return;
+                ayVar.A4(view);
+                return true;
             default:
-                this.f44121b.k5();
-                return;
+                ayVar.getContactsController().B();
+                ayVar.V4();
+                return true;
         }
     }
 }

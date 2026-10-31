@@ -1,19 +1,10 @@
 package x8;
+public interface a {
+    void a(y8.f fVar);
 
-import a8.df;
-import android.os.Parcel;
-import android.os.Parcelable;
-import w8.s;
-public final class a extends p6.a {
-    public static final Parcelable.Creator<a> CREATOR = new s(15);
-    public String f51741a;
-    public String f51742b;
+    void b(y8.f fVar);
 
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q5 = df.q(parcel, 20293);
-        df.l(parcel, 2, this.f51741a);
-        df.l(parcel, 3, this.f51742b);
-        df.r(parcel, q5);
-    }
+    void c(y8.f fVar);
+
+    void d(y8.f fVar);
 }

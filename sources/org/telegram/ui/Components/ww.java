@@ -1,19 +1,26 @@
 package org.telegram.ui.Components;
+public final class ww extends g.o {
+    public final vy f32265c;
 
-import android.content.Context;
-public final class ww extends fz {
-    public final sz H;
-
-    public ww(sz szVar, Context context) {
-        super(szVar, context, 2);
-        this.H = szVar;
+    public ww(vy vyVar) {
+        this.f32265c = vyVar;
     }
 
     @Override
-    public final void setTranslationY(float f7) {
-        if (getTranslationY() != f7) {
-            super.setTranslationY(f7);
-            this.H.f32725g0.invalidate();
+    public final int i(int i10) {
+        vy vyVar = this.f32265c;
+        ex exVar = vyVar.R;
+        vw vwVar = vyVar.Q;
+        s4.g0 adapter = vyVar.P.getAdapter();
+        ux uxVar = vyVar.S;
+        if (adapter == uxVar) {
+            int d = uxVar.d(i10);
+            if (d == 1 || d == 3 || d == 2 || d == 4 || d == 5) {
+                return vwVar.J;
+            }
+        } else if ((vyVar.f31867d0 && i10 == 0) || i10 == exVar.d || i10 == exVar.f25879c || i10 == exVar.f25880f || exVar.f25882r.indexOfKey(i10) >= 0 || exVar.f25884w.indexOfKey(i10) >= 0) {
+            return vwVar.J;
         }
+        return 1;
     }
 }

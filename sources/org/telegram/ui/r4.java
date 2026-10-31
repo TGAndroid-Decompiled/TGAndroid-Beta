@@ -1,10 +1,11 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class r4 implements RequestDelegate {
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+import android.content.Context;
+public final class r4 extends a5 {
+    public final ac.a G;
+
+    public r4(ac.a aVar, Context context, org.telegram.ui.ActionBar.p6 p6Var, t4 t4Var) {
+        super(context, p6Var, t4Var);
+        this.G = aVar;
     }
 }

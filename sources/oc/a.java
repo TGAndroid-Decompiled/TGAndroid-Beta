@@ -1,526 +1,96 @@
 package oc;
 
-import java.nio.ByteBuffer;
-import java.util.Arrays;
-import java.util.HashMap;
-public final class a extends b {
-    public static final HashMap U;
-    public static final HashMap V;
-    public boolean A;
-    public boolean B;
-    public boolean C;
-    public int D;
-    public boolean E;
-    public int F;
-    public int G;
-    public int H;
-    public int I;
-    public int J;
-    public int K;
-    public int L;
-    public int M;
-    public int N;
-    public int O;
-    public int P;
-    public int Q;
-    public int R;
-    public int S;
-    public boolean T;
-    public byte[] d;
-    public int e;
-    public int f19277f;
-    public int f19278g;
-    public int h;
-    public int f19279i;
-    public boolean f19280j;
-    public boolean f19281k;
-    public int f19282l;
-    public int f19283m;
-    public int f19284n;
-    public int f19285o;
-    public int f19286p;
-    public int f19287q;
-    public int f19288r;
-    public int f19289s;
-    public int f19290t;
-    public int f19291u;
-    public int v;
-    public int f19292w;
-    public int f19293x;
-    public int f19294y;
-    public int f19295z;
+import w7.m7;
+public final class a {
+    public static final String[] f14124o = {"34", "37"};
+    public static final String[] f14125p = {"60", "62", "64", "65"};
+    public static final String[] f14126q = {"35"};
+    public static final String[] f14127r = {"300", "301", "302", "303", "304", "305", "309", "36", "38", "39"};
+    public static final String[] f14128s = {"4"};
+    public static final String[] f14129t = {"2221", "2222", "2223", "2224", "2225", "2226", "2227", "2228", "2229", "223", "224", "225", "226", "227", "228", "229", "23", "24", "25", "26", "270", "271", "2720", "50", "51", "52", "53", "54", "55"};
+    public final String f14130a;
+    public final String f14131b;
+    public final Integer f14132c;
+    public final Integer d;
+    public final String e;
+    public final String f14133f;
+    public final String f14134g;
+    public final String h;
+    public final String f14135i;
+    public final String f14136j;
+    public final String f14137k;
+    public String f14138l;
+    public String f14139m;
+    public final String f14140n;
 
-    static {
-        HashMap hashMap = new HashMap();
-        U = hashMap;
-        HashMap hashMap2 = new HashMap();
-        V = hashMap2;
-        hashMap.put(0, 96000);
-        hashMap.put(1, 88200);
-        hashMap.put(2, 64000);
-        hashMap.put(3, 48000);
-        hashMap.put(4, 44100);
-        hashMap.put(5, 32000);
-        hashMap.put(6, 24000);
-        hashMap.put(7, 22050);
-        hashMap.put(8, 16000);
-        hashMap.put(9, 12000);
-        hashMap.put(10, 11025);
-        hashMap.put(11, 8000);
-        hashMap2.put(1, "AAC main");
-        hashMap2.put(2, "AAC LC");
-        hashMap2.put(3, "AAC SSR");
-        hashMap2.put(4, "AAC LTP");
-        hashMap2.put(5, "SBR");
-        hashMap2.put(6, "AAC Scalable");
-        hashMap2.put(7, "TwinVQ");
-        hashMap2.put(8, "CELP");
-        hashMap2.put(9, "HVXC");
-        hashMap2.put(10, "(reserved)");
-        hashMap2.put(11, "(reserved)");
-        hashMap2.put(12, "TTSI");
-        ic.a.q(13, hashMap2, "Main synthetic", 14, "Wavetable synthesis");
-        ic.a.q(15, hashMap2, "General MIDI", 16, "Algorithmic Synthesis and Audio FX");
-        ic.a.q(17, hashMap2, "ER AAC LC", 18, "(reserved)");
-        ic.a.q(19, hashMap2, "ER AAC LTP", 20, "ER AAC Scalable");
-        ic.a.q(21, hashMap2, "ER TwinVQ", 22, "ER BSAC");
-        ic.a.q(23, hashMap2, "ER AAC LD", 24, "ER CELP");
-        ic.a.q(25, hashMap2, "ER HVXC", 26, "ER HILN");
-        ic.a.q(27, hashMap2, "ER Parametric", 28, "SSC");
-        ic.a.q(29, hashMap2, "PS", 30, "MPEG Surround");
-        ic.a.q(31, hashMap2, "(escape)", 32, "Layer-1");
-        ic.a.q(33, hashMap2, "Layer-2", 34, "Layer-3");
-        ic.a.q(35, hashMap2, "DST", 36, "ALS");
-        ic.a.q(37, hashMap2, "SLS", 38, "SLS non-core");
-        ic.a.q(39, hashMap2, "ER AAC ELD", 40, "SMR Simple");
-        hashMap2.put(41, "SMR Main");
-    }
-
-    public static int c(c cVar) {
-        int a2 = cVar.a(5);
-        if (a2 == 31) {
-            return cVar.a(6) + 32;
-        }
-        return a2;
-    }
-
-    @Override
-    public final void b(ByteBuffer byteBuffer) {
-        int i10;
-        int i11;
-        ByteBuffer slice = byteBuffer.slice();
-        slice.limit(this.f19297b);
-        byteBuffer.position(byteBuffer.position() + this.f19297b);
-        byte[] bArr = new byte[this.f19297b];
-        this.d = bArr;
-        slice.get(bArr);
-        slice.rewind();
-        c cVar = new c(0, slice);
-        this.e = c(cVar);
-        int a2 = cVar.a(4);
-        this.f19277f = a2;
-        int i12 = 15;
-        if (a2 == 15) {
-            this.f19278g = cVar.a(24);
-        }
-        this.h = cVar.a(4);
-        int i13 = this.e;
-        if (i13 != 5 && i13 != 29) {
-            this.f19279i = 0;
+    public a(String str, Integer num, Integer num2, String str2, String str3, String str4, String str5, String str6, String str7, String str8, String str9, String str10, String str11, String str12, String str13, String str14, String str15) {
+        String replaceAll;
+        String str16;
+        if (str == null) {
+            replaceAll = null;
         } else {
-            this.f19279i = 5;
-            this.f19280j = true;
-            if (i13 == 29) {
-                this.f19281k = true;
-            }
-            int a10 = cVar.a(4);
-            this.f19282l = a10;
-            if (a10 == 15) {
-                this.f19283m = cVar.a(24);
-            }
-            int c10 = c(cVar);
-            this.e = c10;
-            if (c10 == 22) {
-                this.f19284n = cVar.a(4);
-            }
+            replaceAll = str.trim().replaceAll("\\s+|-", "");
         }
-        int i14 = this.e;
-        switch (i14) {
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 6:
-            case 7:
-            case 17:
-            case 19:
-            case 20:
-            case 21:
-            case 22:
-            case 23:
-                int i15 = this.h;
-                this.f19290t = cVar.a(1);
-                int a11 = cVar.a(1);
-                this.f19291u = a11;
-                if (a11 == 1) {
-                    this.v = cVar.a(14);
-                }
-                this.f19292w = cVar.a(1);
-                if (i15 != 0) {
-                    if (i14 == 6 || i14 == 20) {
-                        this.f19293x = cVar.a(3);
-                    }
-                    if (this.f19292w == 1) {
-                        if (i14 == 22) {
-                            this.f19294y = cVar.a(5);
-                            this.f19295z = cVar.a(11);
-                        }
-                        if (i14 == 17 || i14 == 19 || i14 == 20 || i14 == 23) {
-                            this.A = cVar.b();
-                            this.B = cVar.b();
-                            this.C = cVar.b();
-                        }
-                        this.D = cVar.a(1);
-                    }
-                    this.E = true;
-                    break;
-                } else {
-                    throw new UnsupportedOperationException("can't parse program_config_element yet");
-                }
-                break;
-            case 8:
-                throw new UnsupportedOperationException("can't parse CelpSpecificConfig yet");
-            case 9:
-                throw new UnsupportedOperationException("can't parse HvxcSpecificConfig yet");
-            case 12:
-                throw new UnsupportedOperationException("can't parse TTSSpecificConfig yet");
-            case 13:
-            case 14:
-            case 15:
-            case 16:
-                throw new UnsupportedOperationException("can't parse StructuredAudioSpecificConfig yet");
-            case 24:
-                throw new UnsupportedOperationException("can't parse ErrorResilientCelpSpecificConfig yet");
-            case 25:
-                throw new UnsupportedOperationException("can't parse ErrorResilientHvxcSpecificConfig yet");
-            case 26:
-            case 27:
-                int a12 = cVar.a(1);
-                this.F = a12;
-                if (a12 == 1) {
-                    int a13 = cVar.a(2);
-                    this.G = a13;
-                    if (a13 != 1) {
-                        this.I = cVar.a(1);
-                        this.J = cVar.a(2);
-                        int a14 = cVar.a(1);
-                        this.K = a14;
-                        if (a14 == 1) {
-                            this.L = cVar.a(1);
-                        }
-                    }
-                    if (this.G != 0) {
-                        this.M = cVar.a(1);
-                        this.N = cVar.a(8);
-                        this.O = cVar.a(4);
-                        this.P = cVar.a(12);
-                        this.Q = cVar.a(2);
-                    }
-                    this.H = cVar.a(1);
-                    this.T = true;
-                    break;
-                } else {
-                    int a15 = cVar.a(1);
-                    this.R = a15;
-                    if (a15 == 1) {
-                        this.S = cVar.a(2);
-                        break;
-                    }
-                }
-                break;
-            case 28:
-                throw new UnsupportedOperationException("can't parse SSCSpecificConfig yet");
-            case 30:
-                this.f19285o = cVar.a(1);
-                throw new UnsupportedOperationException("can't parse SpatialSpecificConfig yet");
-            case 32:
-            case 33:
-            case 34:
-                throw new UnsupportedOperationException("can't parse MPEG_1_2_SpecificConfig yet");
-            case 35:
-                throw new UnsupportedOperationException("can't parse DSTSpecificConfig yet");
-            case 36:
-                this.f19286p = cVar.a(5);
-                throw new UnsupportedOperationException("can't parse ALSSpecificConfig yet");
-            case 37:
-            case 38:
-                throw new UnsupportedOperationException("can't parse SLSSpecificConfig yet");
-            case 39:
-                int i16 = this.h;
-                cVar.b();
-                cVar.b();
-                cVar.b();
-                cVar.b();
-                if (cVar.b()) {
-                    cVar.b();
-                    cVar.b();
-                    switch (i16) {
-                        case 1:
-                        case 2:
-                            i11 = 1;
-                            break;
-                        case 3:
-                            i11 = 2;
-                            break;
-                        case 4:
-                        case 5:
-                        case 6:
-                            i11 = 3;
-                            break;
-                        case 7:
-                            i11 = 4;
-                            break;
-                        default:
-                            i11 = 0;
-                            break;
-                    }
-                    for (int i17 = 0; i17 < i11; i17++) {
-                        cVar.b();
-                        cVar.a(4);
-                        cVar.a(4);
-                        cVar.a(3);
-                        cVar.a(2);
-                        boolean b10 = cVar.b();
-                        boolean b11 = cVar.b();
-                        if (b10) {
-                            cVar.a(2);
-                            cVar.b();
-                            cVar.a(2);
-                        }
-                        if (b11) {
-                            cVar.a(2);
-                            cVar.a(2);
-                            cVar.b();
-                        }
-                        cVar.b();
-                    }
-                }
-                while (cVar.a(4) != 0) {
-                    int a16 = cVar.a(4);
-                    if (a16 == i12) {
-                        i10 = cVar.a(8);
-                        a16 += i10;
-                    } else {
-                        i10 = 0;
-                    }
-                    if (i10 == 255) {
-                        a16 += cVar.a(16);
-                    }
-                    for (int i18 = 0; i18 < a16; i18++) {
-                        cVar.a(8);
-                    }
-                    i12 = 15;
-                }
-                break;
-            case 40:
-            case 41:
-                throw new UnsupportedOperationException("can't parse SymbolicMusicSpecificConfig yet");
-        }
-        int i19 = this.e;
-        if (i19 != 17 && i19 != 39) {
-            switch (i19) {
-                case 19:
-                case 20:
-                case 21:
-                case 22:
-                case 23:
-                case 24:
-                case 25:
-                case 26:
-                case 27:
-                    break;
-                default:
-                    if (this.f19279i == 5 && (cVar.f19299a.limit() * 8) - cVar.f19301c >= 16) {
-                        int a17 = cVar.a(11);
-                        this.f19289s = a17;
-                        if (a17 == 695) {
-                            int c11 = c(cVar);
-                            this.f19279i = c11;
-                            if (c11 == 5) {
-                                boolean b12 = cVar.b();
-                                this.f19280j = b12;
-                                if (b12) {
-                                    int a18 = cVar.a(4);
-                                    this.f19282l = a18;
-                                    if (a18 == 15) {
-                                        this.f19283m = cVar.a(24);
-                                    }
-                                    if ((cVar.f19299a.limit() * 8) - cVar.f19301c >= 12) {
-                                        int a19 = cVar.a(11);
-                                        this.f19289s = a19;
-                                        if (a19 == 1352) {
-                                            this.f19281k = cVar.b();
-                                        }
-                                    }
-                                }
-                            }
-                            if (this.f19279i == 22) {
-                                boolean b13 = cVar.b();
-                                this.f19280j = b13;
-                                if (b13) {
-                                    int a20 = cVar.a(4);
-                                    this.f19282l = a20;
-                                    if (a20 == 15) {
-                                        this.f19283m = cVar.a(24);
-                                    }
-                                }
-                                this.f19284n = cVar.a(4);
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-            }
-        }
-        int a21 = cVar.a(2);
-        this.f19287q = a21;
-        if (a21 != 2 && a21 != 3) {
-            if (a21 == 3) {
-                int a22 = cVar.a(1);
-                this.f19288r = a22;
-                if (a22 == 0) {
-                    throw new RuntimeException("not implemented");
-                }
-            }
-            if (this.f19279i == 5) {
-                return;
-            }
-            return;
-        }
-        throw new UnsupportedOperationException("can't parse ErrorProtectionSpecificConfig yet");
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && a.class == obj.getClass()) {
-                a aVar = (a) obj;
-                if (this.B == aVar.B && this.A == aVar.A && this.C == aVar.C && this.e == aVar.e && this.h == aVar.h && this.v == aVar.v && this.f19291u == aVar.f19291u && this.f19288r == aVar.f19288r && this.f19287q == aVar.f19287q && this.K == aVar.K && this.f19279i == aVar.f19279i && this.f19284n == aVar.f19284n && this.f19292w == aVar.f19292w && this.D == aVar.D && this.f19283m == aVar.f19283m && this.f19282l == aVar.f19282l && this.f19286p == aVar.f19286p && this.f19290t == aVar.f19290t && this.E == aVar.E && this.Q == aVar.Q && this.R == aVar.R && this.S == aVar.S && this.P == aVar.P && this.N == aVar.N && this.M == aVar.M && this.O == aVar.O && this.J == aVar.J && this.I == aVar.I && this.F == aVar.F && this.f19293x == aVar.f19293x && this.f19295z == aVar.f19295z && this.f19294y == aVar.f19294y && this.H == aVar.H && this.G == aVar.G && this.T == aVar.T && this.f19281k == aVar.f19281k && this.f19285o == aVar.f19285o && this.f19278g == aVar.f19278g && this.f19277f == aVar.f19277f && this.f19280j == aVar.f19280j && this.f19289s == aVar.f19289s && this.L == aVar.L && Arrays.equals(this.d, aVar.d)) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        int i10;
-        byte[] bArr = this.d;
-        if (bArr != null) {
-            i10 = Arrays.hashCode(bArr);
+        this.f14130a = m7.e(replaceAll);
+        this.f14132c = num;
+        this.d = num2;
+        this.f14131b = m7.e(str2);
+        this.e = m7.e(str3);
+        this.f14133f = m7.e(str4);
+        this.f14134g = m7.e(str5);
+        this.h = m7.e(str6);
+        this.f14135i = m7.e(str7);
+        this.f14136j = m7.e(str8);
+        this.f14137k = m7.e(str9);
+        this.f14139m = m7.a(str10) == null ? a() : str10;
+        if (m7.e(str11) == null) {
+            str16 = b();
         } else {
-            i10 = 0;
+            str16 = str11;
         }
-        return (((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((i10 * 31) + this.e) * 31) + this.f19277f) * 31) + this.f19278g) * 31) + this.h) * 31) + this.f19279i) * 31) + (this.f19280j ? 1 : 0)) * 31) + (this.f19281k ? 1 : 0)) * 31) + this.f19282l) * 31) + this.f19283m) * 31) + this.f19284n) * 31) + this.f19285o) * 31) + this.f19286p) * 31) + this.f19287q) * 31) + this.f19288r) * 31) + this.f19289s) * 31) + this.f19290t) * 31) + this.f19291u) * 31) + this.v) * 31) + this.f19292w) * 31) + this.f19293x) * 31) + this.f19294y) * 31) + this.f19295z) * 31) + (this.A ? 1 : 0)) * 31) + (this.B ? 1 : 0)) * 31) + (this.C ? 1 : 0)) * 31) + this.D) * 31) + (this.E ? 1 : 0)) * 31) + this.F) * 31) + this.G) * 31) + this.H) * 31) + this.I) * 31) + this.J) * 31) + this.K) * 31) + this.L) * 31) + this.M) * 31) + this.N) * 31) + this.O) * 31) + this.P) * 31) + this.Q) * 31) + this.R) * 31) + this.S) * 31) + (this.T ? 1 : 0);
+        this.f14138l = str16;
+        m7.e(str12);
+        m7.b(str13);
+        m7.e(str14);
+        this.f14140n = m7.e(str15);
     }
 
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder("AudioSpecificConfig{configBytes=");
-        sb2.append(f5.b.c(0, this.d));
-        sb2.append(", audioObjectType=");
-        sb2.append(this.e);
-        sb2.append(" (");
-        Integer valueOf = Integer.valueOf(this.e);
-        HashMap hashMap = V;
-        sb2.append((String) hashMap.get(valueOf));
-        sb2.append("), samplingFrequencyIndex=");
-        sb2.append(this.f19277f);
-        sb2.append(" (");
-        Integer valueOf2 = Integer.valueOf(this.f19277f);
-        HashMap hashMap2 = U;
-        sb2.append(hashMap2.get(valueOf2));
-        sb2.append("), samplingFrequency=");
-        sb2.append(this.f19278g);
-        sb2.append(", channelConfiguration=");
-        sb2.append(this.h);
-        if (this.f19279i > 0) {
-            sb2.append(", extensionAudioObjectType=");
-            sb2.append(this.f19279i);
-            sb2.append(" (");
-            sb2.append((String) hashMap.get(Integer.valueOf(this.f19279i)));
-            sb2.append("), sbrPresentFlag=");
-            sb2.append(this.f19280j);
-            sb2.append(", psPresentFlag=");
-            sb2.append(this.f19281k);
-            sb2.append(", extensionSamplingFrequencyIndex=");
-            sb2.append(this.f19282l);
-            sb2.append(" (");
-            sb2.append(hashMap2.get(Integer.valueOf(this.f19282l)));
-            sb2.append("), extensionSamplingFrequency=");
-            sb2.append(this.f19283m);
-            sb2.append(", extensionChannelConfiguration=");
-            sb2.append(this.f19284n);
+    public final String a() {
+        String str;
+        if (m7.d(this.f14139m)) {
+            String str2 = this.f14130a;
+            if (!m7.d(str2)) {
+                if (m7.c(str2, f14124o)) {
+                    str = "American Express";
+                } else if (m7.c(str2, f14125p)) {
+                    str = "Discover";
+                } else if (m7.c(str2, f14126q)) {
+                    str = "JCB";
+                } else if (m7.c(str2, f14127r)) {
+                    str = "Diners Club";
+                } else if (m7.c(str2, f14128s)) {
+                    str = "Visa";
+                } else if (m7.c(str2, f14129t)) {
+                    str = "MasterCard";
+                } else {
+                    str = "Unknown";
+                }
+                this.f14139m = str;
+            }
         }
-        sb2.append(", syncExtensionType=");
-        sb2.append(this.f19289s);
-        if (this.E) {
-            sb2.append(", frameLengthFlag=");
-            sb2.append(this.f19290t);
-            sb2.append(", dependsOnCoreCoder=");
-            sb2.append(this.f19291u);
-            sb2.append(", coreCoderDelay=");
-            sb2.append(this.v);
-            sb2.append(", extensionFlag=");
-            sb2.append(this.f19292w);
-            sb2.append(", layerNr=");
-            sb2.append(this.f19293x);
-            sb2.append(", numOfSubFrame=");
-            sb2.append(this.f19294y);
-            sb2.append(", layer_length=");
-            sb2.append(this.f19295z);
-            sb2.append(", aacSectionDataResilienceFlag=");
-            sb2.append(this.A);
-            sb2.append(", aacScalefactorDataResilienceFlag=");
-            sb2.append(this.B);
-            sb2.append(", aacSpectralDataResilienceFlag=");
-            sb2.append(this.C);
-            sb2.append(", extensionFlag3=");
-            sb2.append(this.D);
+        return this.f14139m;
+    }
+
+    public final String b() {
+        if (!m7.d(this.f14138l)) {
+            return this.f14138l;
         }
-        if (this.T) {
-            sb2.append(", isBaseLayer=");
-            sb2.append(this.F);
-            sb2.append(", paraMode=");
-            sb2.append(this.G);
-            sb2.append(", paraExtensionFlag=");
-            sb2.append(this.H);
-            sb2.append(", hvxcVarMode=");
-            sb2.append(this.I);
-            sb2.append(", hvxcRateMode=");
-            sb2.append(this.J);
-            sb2.append(", erHvxcExtensionFlag=");
-            sb2.append(this.K);
-            sb2.append(", var_ScalableFlag=");
-            sb2.append(this.L);
-            sb2.append(", hilnQuantMode=");
-            sb2.append(this.M);
-            sb2.append(", hilnMaxNumLine=");
-            sb2.append(this.N);
-            sb2.append(", hilnSampleRateCode=");
-            sb2.append(this.O);
-            sb2.append(", hilnFrameLength=");
-            sb2.append(this.P);
-            sb2.append(", hilnContMode=");
-            sb2.append(this.Q);
-            sb2.append(", hilnEnhaLayer=");
-            sb2.append(this.R);
-            sb2.append(", hilnEnhaQuantMode=");
-            sb2.append(this.S);
+        String str = this.f14130a;
+        if (str != null && str.length() > 4) {
+            String substring = str.substring(str.length() - 4, str.length());
+            this.f14138l = substring;
+            return substring;
         }
-        sb2.append('}');
-        return sb2.toString();
+        return null;
     }
 }

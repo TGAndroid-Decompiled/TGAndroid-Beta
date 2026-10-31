@@ -1,29 +1,47 @@
 package org.telegram.ui;
+public final class ti extends org.telegram.ui.ActionBar.k1 {
+    public final org.telegram.ui.Components.mj0 f41846o;
+    public final un f41847p;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class ti implements NotificationCenter.NotificationCenterDelegate {
-    public final int f43656a;
-    public final ai.h1 f43657b;
-    public final wn f43658c;
-    public final wn d;
-
-    public ti(wn wnVar, int i10, ai.h1 h1Var, wn wnVar2) {
-        this.d = wnVar;
-        this.f43656a = i10;
-        this.f43657b = h1Var;
-        this.f43658c = wnVar2;
+    public ti(un unVar, cb cbVar, org.telegram.ui.Components.mj0 mj0Var) {
+        super(cbVar, -2, -2);
+        this.f41847p = unVar;
+        this.f41846o = mj0Var;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        int i12;
-        int i13 = NotificationCenter.messagesDidLoad;
-        if (i10 == i13 && ((Integer) objArr[10]).intValue() == this.f43656a) {
-            this.f43657b.run();
-            AndroidUtilities.runOnUIThread(new i2.b0(this.f43658c, i10, i11, objArr), 50L);
-            i12 = ((org.telegram.ui.ActionBar.r2) this.d).currentAccount;
-            NotificationCenter.getInstance(i12).removeObserver(this, i13);
+    public final void d(boolean z10) {
+        super.d(z10);
+        org.telegram.ui.Components.mj0 mj0Var = this.f41846o;
+        if (mj0Var != null) {
+            mj0Var.d(z10);
+        }
+    }
+
+    @Override
+    public final void dismiss() {
+        d(true);
+        un unVar = this.f41847p;
+        if (unVar.f42240e9 == this) {
+            org.telegram.ui.Components.wb wbVar = org.telegram.ui.Components.wb.f32128w;
+            org.telegram.ui.Components.wb wbVar2 = unVar.B1;
+            if (wbVar == wbVar2 && wbVar2 != null) {
+                wbVar2.b();
+                unVar.B1 = null;
+            }
+            unVar.f42240e9 = null;
+            unVar.f42276h9 = null;
+            unVar.f42265g9 = null;
+            unVar.B0.R = true;
+            if (unVar.f42252f9) {
+                unVar.o8(false, true, 0.0f);
+            } else {
+                unVar.f42252f9 = true;
+            }
+            mk mkVar = unVar.Z;
+            if (mkVar != null && mkVar.getEditField() != null) {
+                unVar.Z.getEditField().setAllowDrawCursor(true);
+            }
         }
     }
 }

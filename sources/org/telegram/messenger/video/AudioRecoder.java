@@ -7,17 +7,17 @@ import android.view.Surface;
 import java.nio.ByteBuffer;
 import java.nio.ShortBuffer;
 import java.util.ArrayList;
-import org.telegram.messenger.FileLog;
+import org.telegram.messenger.f8;
 import org.telegram.messenger.video.MediaCodecVideoConvertor;
 public class AudioRecoder {
     private static final int BYTES_PER_SHORT = 2;
-    ArrayList<cg.a> audioInputs;
+    ArrayList<tf.a> audioInputs;
     private final MediaCodec encoder;
     private boolean encoderDone;
     private ByteBuffer[] encoderInputBuffers;
     private ByteBuffer[] encoderOutputBuffers;
     public final MediaFormat format;
-    cg.a mainInput;
+    tf.a mainInput;
     private int sampleRate;
     private long totalDurationUs;
     private final int TIMEOUT_USEC = 2500;
@@ -32,7 +32,7 @@ public class AudioRecoder {
     private int channelCount = 2;
     private long encoderInputPresentationTimeUs = 0;
 
-    public AudioRecoder(ArrayList<cg.a> arrayList, long j10) {
+    public AudioRecoder(ArrayList<tf.a> arrayList, long j10) {
         this.sampleRate = 44100;
         this.audioInputs = arrayList;
         this.totalDurationUs = j10;
@@ -64,14 +64,14 @@ public class AudioRecoder {
     }
 
     private void mix(ShortBuffer shortBuffer) {
-        cg.a aVar;
+        tf.a aVar;
         int remaining = shortBuffer.remaining();
         for (int i10 = 0; i10 < remaining && isInputAvailable(); i10++) {
             boolean z10 = false;
             short s10 = 0;
             for (int i11 = 0; i11 < this.audioInputs.size() && isInputAvailable(); i11++) {
                 if (this.audioInputs.get(i11).c()) {
-                    s10 = (short) ((((short) (aVar.a() * aVar.f6287a)) / this.audioInputs.size()) + s10);
+                    s10 = (short) ((((short) (aVar.a() * aVar.f48688a)) / this.audioInputs.size()) + s10);
                     z10 = true;
                 }
             }
@@ -88,7 +88,7 @@ public class AudioRecoder {
                 this.audioInputs.get(i10).d();
             }
         } catch (Exception e) {
-            FileLog.e(e);
+            f8.g(e, true);
         }
     }
 

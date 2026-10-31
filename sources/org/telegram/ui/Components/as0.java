@@ -1,96 +1,56 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import j$.util.Objects;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class as0 implements Runnable {
-    public final int f26657a;
-    public final int f26658b;
-    public final Object f26659c;
-    public final Object d;
-    public final Object e;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import androidx.recyclerview.widget.RecyclerView;
+public final class as0 implements ViewTreeObserver.OnPreDrawListener {
+    public final int f24455a;
+    public final int f24456b;
+    public final KeyEvent.Callback f24457c;
 
-    public as0(int i10, TLRPC.TL_error tL_error, org.telegram.ui.ActionBar.r2 r2Var, TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction) {
-        this.f26657a = 15;
-        this.f26658b = i10;
-        this.d = tL_error;
-        this.e = r2Var;
-        this.f26659c = tL_payments_assignPlayMarketTransaction;
-    }
-
-    private final void a() {
-        aa.b0 b0Var = (aa.b0) this.d;
-        m5.i iVar = (m5.i) this.e;
-        int i10 = this.f26658b;
-        Runnable runnable = (Runnable) this.f26659c;
-        u5.c cVar = (u5.c) b0Var.d;
-        try {
-            try {
-                t5.d dVar = (t5.d) b0Var.f1034f;
-                Objects.requireNonNull(dVar);
-                ((t5.g) cVar).f(new org.telegram.ui.Components.voip.j1(dVar, 7));
-                NetworkInfo activeNetworkInfo = ((ConnectivityManager) ((Context) b0Var.f1031a).getSystemService("connectivity")).getActiveNetworkInfo();
-                if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
-                    b0Var.e(iVar, i10);
-                } else {
-                    ((t5.g) cVar).f(new i2.z(b0Var, iVar, i10, 19));
-                }
-                runnable.run();
-            } catch (u5.a unused) {
-                ((s4.d) b0Var.f1032b).t(iVar, i10 + 1, false);
-                runnable.run();
-            }
-        } catch (Throwable th2) {
-            runnable.run();
-            throw th2;
-        }
+    public as0(KeyEvent.Callback callback, int i10, int i11) {
+        this.f24455a = i11;
+        this.f24457c = callback;
+        this.f24456b = i10;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.as0.run():void");
-    }
-
-    public as0(Object obj, int i10, Object obj2, Object obj3, int i11) {
-        this.f26657a = i11;
-        this.d = obj;
-        this.f26658b = i10;
-        this.e = obj2;
-        this.f26659c = obj3;
-    }
-
-    public as0(Object obj, Object obj2, int i10, Object obj3, int i11) {
-        this.f26657a = i11;
-        this.d = obj;
-        this.e = obj2;
-        this.f26658b = i10;
-        this.f26659c = obj3;
-    }
-
-    public as0(Object obj, Object obj2, Object obj3, int i10, int i11) {
-        this.f26657a = i11;
-        this.d = obj;
-        this.e = obj2;
-        this.f26659c = obj3;
-        this.f26658b = i10;
-    }
-
-    public as0(String str, int i10, org.telegram.ui.ActionBar.k3 k3Var, org.telegram.ui.ActionBar.u6 u6Var) {
-        this.f26657a = 7;
-        this.f26659c = str;
-        this.f26658b = i10;
-        this.d = k3Var;
-        this.e = u6Var;
-    }
-
-    public as0(uz0 uz0Var, int i10, String str, ArrayList arrayList) {
-        this.f26657a = 3;
-        this.d = uz0Var;
-        this.f26658b = i10;
-        this.f26659c = str;
-        this.e = arrayList;
+    public final boolean onPreDraw() {
+        int i10 = this.f24455a;
+        int i11 = this.f24456b;
+        KeyEvent.Callback callback = this.f24457c;
+        switch (i10) {
+            case 0:
+                zt0 zt0Var = (zt0) callback;
+                zt0Var.m0[i11].getViewTreeObserver().removeOnPreDrawListener(this);
+                zt0Var.c0(i11);
+                return true;
+            default:
+                e61 e61Var = (e61) callback;
+                ag.b1 b1Var = e61Var.f25719k1;
+                b1Var.getViewTreeObserver().removeOnPreDrawListener(this);
+                int childCount = b1Var.getChildCount();
+                AnimatorSet animatorSet = new AnimatorSet();
+                for (int i12 = 0; i12 < childCount; i12++) {
+                    View childAt = b1Var.getChildAt(i12);
+                    b1Var.getClass();
+                    int R = RecyclerView.R(childAt);
+                    if (R >= i11) {
+                        if (R == 1 && b1Var.getAdapter() == e61Var.l1 && (childAt instanceof org.telegram.ui.Cells.z3)) {
+                            childAt = ((org.telegram.ui.Cells.z3) childAt).getTextView();
+                        }
+                        childAt.setAlpha(0.0f);
+                        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt, View.ALPHA, 0.0f, 1.0f);
+                        ofFloat.setStartDelay((int) ((Math.min(b1Var.getMeasuredHeight(), Math.max(0, childAt.getTop())) / b1Var.getMeasuredHeight()) * 100.0f));
+                        ofFloat.setDuration(200L);
+                        animatorSet.playTogether(ofFloat);
+                    }
+                }
+                animatorSet.start();
+                return true;
+        }
     }
 }

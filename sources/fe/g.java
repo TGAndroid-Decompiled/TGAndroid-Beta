@@ -1,17 +1,14 @@
 package fe;
+public interface g {
+    void a();
 
-import kotlin.jvm.internal.p;
-public final class g implements c {
-    public final c f10447a;
-    public final p f10448b;
+    void g(boolean z10);
 
-    public g(c cVar, p pVar) {
-        this.f10447a = cVar;
-        this.f10448b = pVar;
-    }
+    boolean l();
 
-    @Override
-    public final java.lang.Object b(java.lang.Object r5, nd.c r6) {
-        throw new UnsupportedOperationException("Method not decompiled: fe.g.b(java.lang.Object, nd.c):java.lang.Object");
-    }
+    boolean m(float f7);
+
+    void n();
+
+    void z();
 }

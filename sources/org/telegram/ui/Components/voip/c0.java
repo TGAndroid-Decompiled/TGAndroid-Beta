@@ -1,34 +1,47 @@
 package org.telegram.ui.Components.voip;
+public final class c0 implements z4.e {
+    public int f31355a = 0;
+    public int f31356b;
+    public final e0 f31357c;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class c0 extends AnimatorListenerAdapter {
-    public final int f33857a;
-    public final l0 f33858b;
-
-    public c0(l0 l0Var, int i10) {
-        this.f33857a = i10;
-        this.f33858b = l0Var;
+    public c0(e0 e0Var) {
+        this.f31357c = e0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f33857a) {
-            case 0:
-                super.onAnimationEnd(animator);
-                l0 l0Var = this.f33858b;
-                l0Var.J0 = null;
-                l0Var.I0 = 0.0f;
-                l0Var.invalidate();
-                return;
-            default:
-                l0 l0Var2 = this.f33858b;
-                l0Var2.B0 = null;
-                l0Var2.f34039y0 = 1.0f;
-                l0Var2.f34028r0 = 0.0f;
-                l0Var2.f34030s0 = 0.0f;
-                l0Var2.invalidate();
-                return;
+    public final void a(int i10) {
+        int i11 = this.f31355a;
+        e0 e0Var = this.f31357c;
+        if (i11 == 0) {
+            if (i10 <= e0Var.D) {
+                e0Var.f31399n = 1;
+            } else {
+                e0Var.f31399n = 2;
+            }
+            e0.a(e0Var);
+        } else if (i10 <= e0Var.D) {
+            this.f31356b = 1;
+        } else {
+            this.f31356b = 2;
+        }
+    }
+
+    @Override
+    public final void b(float f7, int i10, int i11) {
+        e0 e0Var = this.f31357c;
+        e0Var.f31404y = i10;
+        e0Var.f31403x = f7;
+        e0Var.d();
+    }
+
+    @Override
+    public final void c(int i10) {
+        this.f31355a = i10;
+        if (i10 == 0) {
+            int i11 = this.f31356b;
+            e0 e0Var = this.f31357c;
+            e0Var.f31399n = i11;
+            e0.a(e0Var);
         }
     }
 }

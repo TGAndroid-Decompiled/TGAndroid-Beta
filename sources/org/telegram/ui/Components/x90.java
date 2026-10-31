@@ -1,241 +1,144 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.os.SystemClock;
-import android.text.Layout;
-import android.text.Spanned;
-import android.text.style.CharacterStyle;
-import android.util.Pair;
+import android.content.Context;
+import android.view.MotionEvent;
 import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-public final class x90 {
-    public View f34707a;
-    public org.telegram.ui.Cells.a1 f34708b;
-    public final ArrayList f34709c = new ArrayList();
-    public int d = 0;
-    public final ArrayList e = new ArrayList();
-    public int f34710f = 0;
+public final class x90 extends tk0 {
+    public boolean f32447e3;
+    public boolean f32448f3;
+    public int f32449g3;
+    public int f32450h3;
+    public final y90 f32451i3;
 
-    public x90() {
+    public x90(y90 y90Var, Context context, org.telegram.ui.ActionBar.p6 p6Var) {
+        super(context, p6Var);
+        this.f32451i3 = y90Var;
+        setOnScrollListener(new ag.u(this, 24));
+        i(new w90(this));
     }
 
-    public static ea0 i(Layout layout, CharacterStyle characterStyle, float f7) {
-        if (layout != null && characterStyle != null && (layout.getText() instanceof Spanned)) {
-            Spanned spanned = (Spanned) layout.getText();
-            t90 t90Var = new t90(0);
-            int spanStart = spanned.getSpanStart(characterStyle);
-            int spanEnd = spanned.getSpanEnd(characterStyle);
-            t90Var.d(layout, spanStart, f7);
-            layout.getSelectionPath(spanStart, spanEnd, t90Var);
-            ea0 ea0Var = new ea0();
-            ea0Var.f27806y = t90Var;
-            ea0Var.D = true;
-            ea0Var.k(4.0f);
-            ea0Var.l();
-            return ea0Var;
-        }
-        return null;
+    @Override
+    public final void l0(int i10) {
+        y90 y90Var = this.f32451i3;
+        y90Var.invalidate();
+        y90Var.b();
     }
 
-    public final void a(ba0 ba0Var, Object obj) {
-        this.f34709c.add(new Pair(ba0Var, obj));
-        this.d++;
-        h(obj, true);
-    }
-
-    public final void b(ea0 ea0Var, Object obj) {
-        this.e.add(new Pair(ea0Var, obj));
-        this.f34710f++;
-        h(obj, true);
-    }
-
-    public final void c() {
-        d(true);
-    }
-
-    public final void d(boolean z10) {
-        if (z10) {
-            for (int i10 = 0; i10 < this.d; i10++) {
-                j(i10);
-            }
-        } else if (this.d > 0) {
-            int i11 = 0;
-            while (true) {
-                int i12 = this.d;
-                ArrayList arrayList = this.f34709c;
-                if (i11 < i12) {
-                    ((ba0) ((Pair) arrayList.get(i11)).first).c();
-                    h(((Pair) arrayList.get(i11)).second, false);
-                    i11++;
-                } else {
-                    arrayList.clear();
-                    this.d = 0;
-                    h(null, true);
-                    return;
-                }
-            }
-        }
-    }
-
-    public final void e() {
-        for (int i10 = 0; i10 < this.f34710f; i10++) {
-            m(i10, true);
-        }
-    }
-
-    public final boolean f(Canvas canvas) {
-        int i10 = 0;
-        boolean z10 = false;
-        while (i10 < this.f34710f) {
-            ((ea0) ((Pair) this.e.get(i10)).first).draw(canvas);
-            i10++;
-            z10 = true;
-        }
-        for (int i11 = 0; i11 < this.d; i11++) {
-            if (!((ba0) ((Pair) this.f34709c.get(i11)).first).a(canvas) && !z10) {
-                z10 = false;
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        boolean z10;
+        y90 y90Var = this.f32451i3;
+        zf.x0 x0Var = y90Var.f32667f;
+        zf.c1 c1Var = y90Var.e;
+        if (!y90Var.f32666c.f47873t ? this.f32448f3 || c1Var == null || c1Var.e == null || !c1Var.f55463f || motionEvent.getY() >= c1Var.e.getBottom() : this.f32448f3 || c1Var == null || c1Var.e == null || !c1Var.f55463f || motionEvent.getY() <= c1Var.e.getTop()) {
+            if (!this.f32447e3 && org.telegram.ui.lt.p().q(motionEvent, y90Var.f32665b, null, this.f30625n2)) {
+                z10 = true;
             } else {
-                z10 = true;
+                z10 = false;
             }
-        }
-        return z10;
-    }
-
-    public final boolean g(Canvas canvas, Object obj) {
-        boolean z10 = false;
-        for (int i10 = 0; i10 < this.f34710f; i10++) {
-            ArrayList arrayList = this.e;
-            if (((Pair) arrayList.get(i10)).second == obj) {
-                ((ea0) ((Pair) arrayList.get(i10)).first).draw(canvas);
-                z10 = true;
-            }
-        }
-        for (int i11 = 0; i11 < this.d; i11++) {
-            ArrayList arrayList2 = this.f34709c;
-            if (((Pair) arrayList2.get(i11)).second == obj) {
-                if (!((ba0) ((Pair) arrayList2.get(i11)).first).a(canvas) && !z10) {
-                    z10 = false;
-                } else {
-                    z10 = true;
+            if (((x0Var.N() && motionEvent.getAction() == 0) || motionEvent.getAction() == 2) && x0Var.N()) {
+                if (x0Var.f55660n0 == null) {
+                    mw mwVar = new mw(x0Var, x0Var.f55651f, x0Var.f55659n, x0Var.f55664r, 1);
+                    x0Var.f55660n0 = mwVar;
+                    mwVar.a();
                 }
+                x0Var.f55660n0.b();
+            }
+            if (super.onInterceptTouchEvent(motionEvent) || z10) {
+                return true;
             }
         }
-        h(obj, false);
-        return z10;
+        return false;
     }
 
-    public final void h(Object obj, boolean z10) {
-        View view;
-        View view2;
-        if (obj instanceof View) {
-            ((View) obj).invalidate();
-        } else if (obj instanceof org.telegram.ui.a3) {
-            org.telegram.ui.a3 a3Var = (org.telegram.ui.a3) obj;
-            if (!a3Var.f37662c && (view2 = a3Var.f37661b) != null) {
-                view2.invalidate();
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int N0;
+        int i14;
+        int i15;
+        int i16 = i12 - i10;
+        int i17 = i13 - i11;
+        y90 y90Var = this.f32451i3;
+        boolean g10 = y90Var.g();
+        s4.a0 currentLayoutManager = y90Var.getCurrentLayoutManager();
+        if (g10) {
+            N0 = currentLayoutManager.L0();
+        } else {
+            N0 = currentLayoutManager.N0();
+        }
+        View m10 = currentLayoutManager.m(N0);
+        if (m10 != null) {
+            int top = m10.getTop();
+            if (g10) {
+                i15 = 0;
+            } else {
+                i15 = this.f32450h3 - i17;
             }
-        } else if (z10 && (view = this.f34707a) != null) {
-            view.invalidate();
+            i14 = top - i15;
+        } else {
+            i14 = 0;
         }
-        org.telegram.ui.Cells.a1 a1Var = this.f34708b;
-        if (a1Var != null) {
-            a1Var.run();
+        super.onLayout(z10, i10, i11, i12, i13);
+        if (y90Var.H) {
+            y90Var.G = true;
+            currentLayoutManager.h1(0, 100000);
+            super.onLayout(false, i10, i11, i12, i13);
+            y90Var.G = false;
+            y90Var.H = false;
+        } else if (N0 != -1 && i16 == this.f32449g3 && i17 - this.f32450h3 != 0) {
+            y90Var.G = true;
+            currentLayoutManager.i1(N0, i14, false);
+            super.onLayout(false, i10, i11, i12, i13);
+            y90Var.G = false;
         }
+        this.f32450h3 = i17;
+        this.f32449g3 = i16;
     }
 
-    public final void j(int i10) {
-        if (i10 >= 0 && i10 < this.d) {
-            Pair pair = (Pair) this.f34709c.get(i10);
-            ba0 ba0Var = (ba0) pair.first;
-            if (ba0Var.f26787p < 0) {
-                ba0Var.f26787p = Math.max(ba0Var.f26786o + ba0Var.f26788q, SystemClock.elapsedRealtime());
-                h(pair.second, true);
-                AndroidUtilities.runOnUIThread(new w90(this, ba0Var, 1), Math.max(0L, (ba0Var.f26787p - SystemClock.elapsedRealtime()) + 175));
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int size = View.MeasureSpec.getSize(i11);
+        y90 y90Var = this.f32451i3;
+        zf.c1 c1Var = y90Var.e;
+        if (c1Var != null) {
+            c1Var.d = Integer.valueOf(size);
+            org.telegram.ui.do0 do0Var = c1Var.e;
+            if (do0Var != null) {
+                do0Var.requestLayout();
             }
         }
+        float min = (int) Math.min(org.telegram.messenger.i0.L(126.0f), org.telegram.messenger.i0.f16026q.y * 0.22f);
+        y90Var.f32671w = min;
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size + ((int) min), 1073741824));
     }
 
-    public final void k(ba0 ba0Var, boolean z10) {
-        ArrayList arrayList;
-        Pair pair;
-        if (ba0Var != null) {
-            int i10 = 0;
-            while (true) {
-                int i11 = this.d;
-                arrayList = this.f34709c;
-                if (i10 < i11) {
-                    if (((Pair) arrayList.get(i10)).first == ba0Var) {
-                        pair = (Pair) arrayList.get(i10);
-                        break;
-                    }
-                    i10++;
-                } else {
-                    pair = null;
-                    break;
-                }
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        y90 y90Var = this.f32451i3;
+        zf.c1 c1Var = y90Var.e;
+        if (y90Var.f32666c.f47873t) {
+            if (!this.f32448f3 && c1Var != null && c1Var.e != null && c1Var.f55463f && motionEvent.getY() > c1Var.e.getTop()) {
+                return false;
             }
-            if (pair != null) {
-                if (z10) {
-                    if (ba0Var.f26787p < 0) {
-                        ba0Var.f26787p = Math.max(ba0Var.f26786o + ba0Var.f26788q, SystemClock.elapsedRealtime());
-                        h(pair.second, true);
-                        AndroidUtilities.runOnUIThread(new w90(this, ba0Var, 0), Math.max(0L, (ba0Var.f26787p - SystemClock.elapsedRealtime()) + 175));
-                        return;
-                    }
-                    return;
-                }
-                arrayList.remove(pair);
-                ba0Var.c();
-                this.d = arrayList.size();
-                h(pair.second, true);
-            }
+        } else if (!this.f32448f3 && c1Var != null && c1Var.e != null && c1Var.f55463f && motionEvent.getY() < c1Var.e.getBottom()) {
+            return false;
         }
+        return super.onTouchEvent(motionEvent);
     }
 
-    public final void l(ea0 ea0Var, boolean z10) {
-        if (ea0Var != null) {
-            for (int i10 = 0; i10 < this.f34710f; i10++) {
-                if (((Pair) this.e.get(i10)).first == ea0Var) {
-                    m(i10, z10);
-                    return;
-                }
-            }
+    @Override
+    public final void requestLayout() {
+        if (this.f32451i3.G) {
+            return;
         }
+        super.requestLayout();
     }
 
-    public final void m(int i10, boolean z10) {
-        if (i10 >= 0 && i10 < this.f34710f) {
-            ArrayList arrayList = this.e;
-            Pair pair = (Pair) arrayList.get(i10);
-            if (pair != null) {
-                ea0 ea0Var = (ea0) pair.first;
-                if (z10) {
-                    if (!ea0Var.c()) {
-                        if (!ea0Var.d()) {
-                            ea0Var.a();
-                        }
-                        u90 u90Var = new u90(1, this, ea0Var);
-                        long j10 = 0;
-                        if (ea0Var.f27788c > 0) {
-                            j10 = 320 - (SystemClock.elapsedRealtime() - ea0Var.f27788c);
-                        }
-                        AndroidUtilities.runOnUIThread(u90Var, j10);
-                        return;
-                    }
-                    l(ea0Var, false);
-                    return;
-                }
-                arrayList.remove(pair);
-                ea0Var.f27787b = -1L;
-                ea0Var.f27788c = -1L;
-                this.f34710f = arrayList.size();
-                h(pair.second, true);
-            }
-        }
-    }
-
-    public x90(View view) {
-        this.f34707a = view;
+    @Override
+    public void setTranslationY(float f7) {
+        super.setTranslationY(f7);
+        y90 y90Var = this.f32451i3;
+        y90Var.invalidate();
+        y90Var.b();
     }
 }

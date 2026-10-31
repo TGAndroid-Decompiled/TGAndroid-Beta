@@ -1,3 +1,7 @@
 package x7;
-public abstract class r {
+
+import java.util.Collection;
+import java.util.Set;
+public interface r extends Collection {
+    Set zza();
 }

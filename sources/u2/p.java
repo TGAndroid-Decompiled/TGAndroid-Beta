@@ -5,47 +5,47 @@ import androidx.media3.exoplayer.hls.HlsMediaSource$Factory;
 import java.lang.reflect.GenericDeclaration;
 import java.util.HashMap;
 public final class p {
-    public final c3.m f49429a;
-    public rf.b d;
-    public qb.a f49432f;
-    public final HashMap f49430b = new HashMap();
-    public final HashMap f49431c = new HashMap();
+    public final c3.m f49972a;
+    public hf.b d;
+    public t7.u f49975f;
+    public final HashMap f49973b = new HashMap();
+    public final HashMap f49974c = new HashMap();
     public boolean e = true;
-    public int f49433g = 3;
+    public int f49976g = 3;
 
-    public p(c3.m mVar, qb.a aVar) {
-        this.f49429a = mVar;
-        this.f49432f = aVar;
+    public p(c3.m mVar, t7.u uVar) {
+        this.f49972a = mVar;
+        this.f49975f = uVar;
     }
 
     public static void a(p pVar) {
-        c3.m mVar = pVar.f49429a;
+        c3.m mVar = pVar.f49972a;
         synchronized (mVar) {
-            mVar.f6088f = 1;
+            mVar.f3683f = 1;
         }
     }
 
     public final f0 b(int i10) {
-        e9.t tVar;
-        e9.t nVar;
+        d9.t tVar;
+        d9.t mVar;
         Integer valueOf = Integer.valueOf(i10);
-        HashMap hashMap = this.f49431c;
+        HashMap hashMap = this.f49974c;
         f0 f0Var = (f0) hashMap.get(valueOf);
         if (f0Var != null) {
             return f0Var;
         }
         Integer valueOf2 = Integer.valueOf(i10);
-        HashMap hashMap2 = this.f49430b;
-        e9.t tVar2 = (e9.t) hashMap2.get(valueOf2);
+        HashMap hashMap2 = this.f49973b;
+        d9.t tVar2 = (d9.t) hashMap2.get(valueOf2);
         if (tVar2 == null) {
-            final rf.b bVar = this.d;
+            final hf.b bVar = this.d;
             bVar.getClass();
             if (i10 != 0) {
                 if (i10 != 1) {
                     if (i10 != 2) {
                         if (i10 != 3) {
                             if (i10 == 4) {
-                                nVar = new e9.t() {
+                                mVar = new d9.t() {
                                     @Override
                                     public final Object get() {
                                         switch (r3) {
@@ -56,20 +56,20 @@ public final class p {
                                             case 2:
                                                 return q.e((Class) this, bVar);
                                             default:
-                                                return new x0(bVar, ((p) this).f49429a);
+                                                return new x0(bVar, ((p) this).f49972a);
                                         }
                                     }
                                 };
                             } else {
-                                throw new IllegalArgumentException(ic.a.i(i10, "Unrecognized contentType: "));
+                                throw new IllegalArgumentException(i0.a.i(i10, "Unrecognized contentType: "));
                             }
                         } else {
-                            nVar = new i2.n(Class.forName("androidx.media3.exoplayer.rtsp.RtspMediaSource$Factory").asSubclass(f0.class), 3);
+                            mVar = new i2.m(Class.forName("androidx.media3.exoplayer.rtsp.RtspMediaSource$Factory").asSubclass(f0.class), 3);
                         }
-                        tVar2 = nVar;
+                        tVar2 = mVar;
                     } else {
                         final Class asSubclass = HlsMediaSource$Factory.class.asSubclass(f0.class);
-                        tVar = new e9.t() {
+                        tVar = new d9.t() {
                             @Override
                             public final Object get() {
                                 switch (r3) {
@@ -80,14 +80,14 @@ public final class p {
                                     case 2:
                                         return q.e((Class) asSubclass, bVar);
                                     default:
-                                        return new x0(bVar, ((p) asSubclass).f49429a);
+                                        return new x0(bVar, ((p) asSubclass).f49972a);
                                 }
                             }
                         };
                     }
                 } else {
                     final GenericDeclaration asSubclass2 = Class.forName("androidx.media3.exoplayer.smoothstreaming.SsMediaSource$Factory").asSubclass(f0.class);
-                    tVar = new e9.t() {
+                    tVar = new d9.t() {
                         @Override
                         public final Object get() {
                             switch (r3) {
@@ -98,7 +98,7 @@ public final class p {
                                 case 2:
                                     return q.e((Class) asSubclass2, bVar);
                                 default:
-                                    return new x0(bVar, ((p) asSubclass2).f49429a);
+                                    return new x0(bVar, ((p) asSubclass2).f49972a);
                             }
                         }
                     };
@@ -106,7 +106,7 @@ public final class p {
                 tVar2 = tVar;
             } else {
                 final Class asSubclass3 = DashMediaSource$Factory.class.asSubclass(f0.class);
-                tVar2 = new e9.t() {
+                tVar2 = new d9.t() {
                     @Override
                     public final Object get() {
                         switch (r3) {
@@ -117,7 +117,7 @@ public final class p {
                             case 2:
                                 return q.e((Class) asSubclass3, bVar);
                             default:
-                                return new x0(bVar, ((p) asSubclass3).f49429a);
+                                return new x0(bVar, ((p) asSubclass3).f49972a);
                         }
                     }
                 };
@@ -125,9 +125,9 @@ public final class p {
             hashMap2.put(Integer.valueOf(i10), tVar2);
         }
         f0 f0Var2 = (f0) tVar2.get();
-        f0Var2.b(this.f49432f);
-        f0Var2.c(this.e);
-        f0Var2.d(this.f49433g);
+        f0Var2.d(this.f49975f);
+        f0Var2.b(this.e);
+        f0Var2.c(this.f49976g);
         hashMap.put(Integer.valueOf(i10), f0Var2);
         return f0Var2;
     }

@@ -1,39 +1,26 @@
 package org.telegram.ui.Components;
+public final class km implements org.telegram.messenger.q20 {
+    public final int f27823a;
+    public final jn f27824b;
+    public final int f27825c;
 
-import android.content.Context;
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.ui.vc1;
-public final class km extends org.telegram.ui.ActionBar.w0 {
-    public final int f29984x0;
-    public final Object f29985y0;
-
-    public km(li liVar, Context context, org.telegram.ui.ActionBar.z zVar, org.telegram.ui.ActionBar.u6 u6Var, int i10) {
-        super(context, zVar, 0, 0, false, u6Var);
-        this.f29984x0 = i10;
-        this.f29985y0 = liVar;
+    public km(jn jnVar, int i10, int i11) {
+        this.f27823a = i11;
+        this.f27824b = jnVar;
+        this.f27825c = i10;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f29984x0) {
+    public final void a(Object obj) {
+        switch (this.f27823a) {
             case 0:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(((ChatAttachAlertPhotoLayout) this.f29985y0).f26063x.getText());
-                return;
-            case 1:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(((cn) this.f29985y0).f27213x.getText());
+                this.f27824b.h0(this.f27825c, (ih.f) obj);
                 return;
             default:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(((vc1) this.f29985y0).h.getText());
+                jn jnVar = this.f27824b;
+                jnVar.getClass();
+                jnVar.h0(this.f27825c, new jh.e((String) obj));
                 return;
         }
-    }
-
-    public km(vc1 vc1Var, Context context, org.telegram.ui.ActionBar.z zVar) {
-        super(context, zVar, 0);
-        this.f29984x0 = 2;
-        this.f29985y0 = vc1Var;
     }
 }

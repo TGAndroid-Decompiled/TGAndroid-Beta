@@ -1,18 +1,16 @@
 package org.telegram.ui.Components;
+public final class ym extends s4.j {
+    public final jn F;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class ym extends AnimatorListenerAdapter {
-    public final zm f35110a;
-
-    public ym(zm zmVar) {
-        this.f35110a = zmVar;
+    public ym(jn jnVar) {
+        this.F = jnVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        zm zmVar = this.f35110a;
-        zmVar.f35378b.isChatPreviewSpoilerRevealed = true;
-        zmVar.O.f26633z.invalidate();
+    public final void P(s4.c1 c1Var) {
+        if (c1Var.b() == 0) {
+            jn jnVar = this.F;
+            jnVar.f30947b.L1(jnVar, 0);
+        }
     }
 }

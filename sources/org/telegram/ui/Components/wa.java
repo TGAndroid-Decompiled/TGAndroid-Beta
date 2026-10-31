@@ -1,129 +1,39 @@
 package org.telegram.ui.Components;
+public final class wa extends o1.h {
+    public final int f32127a;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class wa extends ww0 {
-    public final boolean f34487l0;
-    public final boolean m0;
-    public final bb f34488n0;
-
-    public wa(bb bbVar, Context context, boolean z10, boolean z11) {
-        super(context, null);
-        this.f34488n0 = bbVar;
-        this.f34487l0 = z10;
-        this.m0 = z11;
+    public wa(int i10) {
+        this.f32127a = i10;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        bb bbVar = this.f34488n0;
-        bbVar.I(canvas, this);
-        super.dispatchDraw(canvas);
-        bbVar.H(canvas, this);
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        Drawable drawable;
-        if (motionEvent.getAction() == 0) {
-            float y3 = motionEvent.getY();
-            bb bbVar = this.f34488n0;
-            drawable = ((org.telegram.ui.ActionBar.k3) bbVar).shadowDrawable;
-            if (y3 < drawable.getBounds().top) {
-                bbVar.dismiss();
-            }
+    public final float a(Object obj) {
+        switch (this.f32127a) {
+            case 0:
+                return ((bb) obj).inOutOffset;
+            case 1:
+                return ((org.telegram.ui.rf0) obj).N;
+            default:
+                return ((org.telegram.ui.rf0) obj).M;
         }
-        return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (!this.m0) {
-            this.f34488n0.getClass();
+    public final void b(Object obj, float f7) {
+        switch (this.f32127a) {
+            case 0:
+                bb.access$2200((bb) obj, f7);
+                return;
+            case 1:
+                org.telegram.ui.rf0 rf0Var = (org.telegram.ui.rf0) obj;
+                rf0Var.N = f7;
+                rf0Var.invalidate();
+                return;
+            default:
+                org.telegram.ui.rf0 rf0Var2 = (org.telegram.ui.rf0) obj;
+                rf0Var2.M = f7;
+                rf0Var2.invalidate();
+                return;
         }
-        return super.drawChild(canvas, view, j10);
-    }
-
-    @Override
-    public final void onLayout(boolean r12, int r13, int r14, int r15, int r16) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.wa.onLayout(boolean, int, int, int, int):void");
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        float f7;
-        boolean z10;
-        int i13;
-        ru ruVar;
-        int size = View.MeasureSpec.getSize(i11);
-        bb bbVar = this.f34488n0;
-        bbVar.h = size;
-        bbVar.D(i10, i11);
-        if (this.f34487l0) {
-            i11 = View.MeasureSpec.makeMeasureSpec(bbVar.h, 1073741824);
-        }
-        if (bbVar.Q != null) {
-            int size2 = View.MeasureSpec.getSize(i10);
-            int size3 = View.MeasureSpec.getSize(i11);
-            setMeasuredDimension(size2, size3);
-            ru ruVar2 = bbVar.Q;
-            if (ruVar2 != null && !ruVar2.N && AndroidUtilities.dp(20.0f) >= 0) {
-                ru ruVar3 = bbVar.Q;
-                if (!ruVar3.e && !ruVar3.O) {
-                    ruVar3.j();
-                }
-            }
-            int i14 = 0;
-            if (AndroidUtilities.dp(20.0f) >= 0) {
-                z10 = ((org.telegram.ui.ActionBar.k3) bbVar).keyboardVisible;
-                if (!z10 && (ruVar = bbVar.Q) != null) {
-                    i13 = ruVar.getEmojiPadding();
-                } else {
-                    i13 = 0;
-                }
-                if (!AndroidUtilities.isInMultiwindow) {
-                    size3 -= i13;
-                    i11 = View.MeasureSpec.makeMeasureSpec(size3, 1073741824);
-                }
-            }
-            int i15 = i11;
-            int childCount = getChildCount();
-            while (i14 < childCount) {
-                View childAt = getChildAt(i14);
-                if (childAt != null && childAt.getVisibility() != 8) {
-                    ru ruVar4 = bbVar.Q;
-                    if (ruVar4 != null && ruVar4.l(childAt)) {
-                        if (!AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
-                            childAt.measure(View.MeasureSpec.makeMeasureSpec(size2, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getLayoutParams().height, 1073741824));
-                        } else if (AndroidUtilities.isTablet()) {
-                            int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size2, 1073741824);
-                            if (AndroidUtilities.isTablet()) {
-                                f7 = 200.0f;
-                            } else {
-                                f7 = 320.0f;
-                            }
-                            childAt.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(f7), getPaddingTop() + (size3 - AndroidUtilities.statusBarHeight)), 1073741824));
-                        } else {
-                            childAt.measure(View.MeasureSpec.makeMeasureSpec(size2, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + (size3 - AndroidUtilities.statusBarHeight), 1073741824));
-                        }
-                    } else {
-                        i12 = i10;
-                        measureChildWithMargins(childAt, i12, 0, i15, 0);
-                        i14++;
-                        i10 = i12;
-                    }
-                }
-                i12 = i10;
-                i14++;
-                i10 = i12;
-            }
-            return;
-        }
-        super.onMeasure(i10, i11);
     }
 }

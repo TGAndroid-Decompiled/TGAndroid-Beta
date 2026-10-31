@@ -1,121 +1,47 @@
 package bi;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.text.SpannableStringBuilder;
-import android.view.MotionEvent;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BillingController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.aa0;
-import org.telegram.ui.Components.kb1;
-import org.telegram.ui.Components.zq;
-public final class c extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
-    public final int f4408a;
-    public final org.telegram.ui.ActionBar.u6 f4409b;
-    public final TextView f4410c;
-    public final aa0 d;
-    public bg.b e;
-    public final zq[] f4411f;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import org.telegram.ui.gj0;
+public final class c implements View.OnClickListener {
+    public final int f2877a;
+    public final Object f2878b;
+    public final Object f2879c;
+    public final Object d;
+    public final Object e;
+    public final Object f2880f;
 
-    public c(Context context, int i10, org.telegram.ui.ActionBar.u6 u6Var) {
-        this(context, i10, bg.b.f3980a, u6Var);
-    }
-
-    public final void a() {
-        bg.b bVar = this.e;
-        int i10 = this.f4408a;
-        bg.a s10 = ca.x(i10, bVar).s();
-        bg.b bVar2 = this.e;
-        bg.b bVar3 = bg.b.f3980a;
-        TextView textView = this.f4410c;
-        org.telegram.ui.ActionBar.u6 u6Var = this.f4409b;
-        aa0 aa0Var = this.d;
-        if (bVar2 == bVar3) {
-            textView.setText(dd.W0(false, LocaleController.formatString(R.string.Gift2MessageStarsInfo, LocaleController.formatNumber(s10.a(), ',')), 0.6f, null));
-            int i11 = org.telegram.ui.ActionBar.y6.Gi;
-            org.telegram.ui.ActionBar.f7.V(aa0Var, i11, u6Var);
-            org.telegram.ui.ActionBar.f7.H(aa0Var, i11, u6Var);
-            aa0Var.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.Gift2MessageStarsInfoLink), new a3.d(this, 16)), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f)));
-        } else if (bVar2 == bg.b.f3981b) {
-            SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2MessageStarsInfoTON, s10.b()));
-            zq[] zqVarArr = this.f4411f;
-            textView.setText(dd.W0(true, replaceTags, 0.6f, zqVarArr));
-            zqVarArr[0].setColorKey(org.telegram.ui.ActionBar.y6.Gi);
-            StringBuilder sb2 = new StringBuilder(10);
-            sb2.append('~');
-            sb2.append(BillingController.getInstance().formatCurrency((long) (MessagesController.getInstance(i10).config.tonUsdRate.get() * s10.c() * 100.0d), "USD", 2));
-            int i12 = org.telegram.ui.ActionBar.y6.Hi;
-            int i13 = org.telegram.ui.ActionBar.y6.Fi;
-            org.telegram.ui.ActionBar.f7.n(aa0Var, i12, i13, 3, 0.33f, u6Var);
-            org.telegram.ui.ActionBar.f7.o(aa0Var, 2, i12, i13, 3, 0.33f, u6Var);
-            aa0Var.setText(sb2);
-        }
+    public c(Context context, String str, String[] strArr, org.telegram.ui.ActionBar.p6 p6Var, org.telegram.ui.ActionBar.z2 z2Var) {
+        this.f2877a = 2;
+        this.f2878b = context;
+        this.f2879c = str;
+        this.e = strArr;
+        this.d = p6Var;
+        this.f2880f = z2Var;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.starBalanceUpdated) {
-            a();
-        }
+    public final void onClick(android.view.View r22) {
+        throw new UnsupportedOperationException("Method not decompiled: bi.c.onClick(android.view.View):void");
     }
 
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (isEnabled() && super.dispatchTouchEvent(motionEvent)) {
-            return true;
-        }
-        return false;
+    public c(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i10) {
+        this.f2877a = i10;
+        this.f2878b = obj;
+        this.f2879c = obj2;
+        this.d = obj3;
+        this.e = obj4;
+        this.f2880f = obj5;
     }
 
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        a();
-        int i10 = this.f4408a;
-        NotificationCenter.getInstance(i10).addWeakObserver(this, NotificationCenter.starBalanceUpdated);
-        NotificationCenter.getInstance(i10).addWeakObserver(this, NotificationCenter.botStarsUpdated);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        int i10 = this.f4408a;
-        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.starBalanceUpdated);
-        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.botStarsUpdated);
-    }
-
-    public c(Context context, int i10, bg.b bVar, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(context);
-        this.f4411f = new zq[1];
-        this.f4408a = i10;
-        this.f4409b = u6Var;
-        this.e = bVar;
-        setOrientation(1);
-        setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(9.0f));
-        int dp = AndroidUtilities.dp(24.0f);
-        int i11 = org.telegram.ui.ActionBar.y6.Fi;
-        Drawable c02 = org.telegram.ui.ActionBar.y6.c0(dp, org.telegram.ui.ActionBar.y6.w0(i11, u6Var));
-        org.telegram.ui.ActionBar.b7 N = org.telegram.ui.ActionBar.f7.N(i11);
-        setBackground(c02);
-        org.telegram.ui.ActionBar.f7.k(this, c02, N, null, u6Var);
-        TextView textView = new TextView(context);
-        this.f4410c = textView;
-        textView.setTextSize(1, 13.0f);
-        org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.Hi, u6Var);
-        textView.setGravity(17);
-        addView(textView, kb1.t(-2, -2, 0.0f, 17, 0, 0, 0, 0));
-        aa0 aa0Var = new aa0(context, u6Var);
-        this.d = aa0Var;
-        aa0Var.setTextSize(1, 12.0f);
-        aa0Var.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.Gift2MessageStarsInfoLink), new b(context, 0, u6Var)), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f)));
-        aa0Var.setGravity(17);
-        addView(aa0Var, kb1.t(-2, -2, 0.0f, 17, 0, 1, 0, 0));
-        a();
+    public c(org.telegram.ui.ActionBar.z2 z2Var, FrameLayout frameLayout, ArrayList arrayList, int[] iArr, gj0 gj0Var) {
+        this.f2877a = 11;
+        this.f2880f = z2Var;
+        this.f2878b = frameLayout;
+        this.f2879c = arrayList;
+        this.d = iArr;
+        this.e = gj0Var;
     }
 }

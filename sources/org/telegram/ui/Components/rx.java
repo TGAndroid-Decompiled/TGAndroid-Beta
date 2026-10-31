@@ -1,26 +1,35 @@
 package org.telegram.ui.Components;
-public final class rx extends g.o {
-    public final sz f32395c;
 
-    public rx(sz szVar) {
-        this.f32395c = szVar;
+import android.view.View;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class rx implements View.OnClickListener {
+    public final boolean[] f30034a;
+    public final l2.f f30035b;
+    public final androidx.mediarouter.app.w f30036c;
+
+    public rx(androidx.mediarouter.app.w wVar, boolean[] zArr, l2.f fVar) {
+        this.f30036c = wVar;
+        this.f30034a = zArr;
+        this.f30035b = fVar;
     }
 
     @Override
-    public final int i(int i10) {
-        sz szVar = this.f32395c;
-        zx zxVar = szVar.R;
-        qx qxVar = szVar.Q;
-        s4.h0 adapter = szVar.P.getAdapter();
-        sy syVar = szVar.S;
-        if (adapter == syVar) {
-            int j10 = syVar.j(i10);
-            if (j10 == 1 || j10 == 3 || j10 == 2 || j10 == 4 || j10 == 5) {
-                return qxVar.J;
-            }
-        } else if ((szVar.f32715d0 && i10 == 0) || i10 == zxVar.d || i10 == zxVar.f35454c || i10 == zxVar.f35455f || zxVar.f35457r.indexOfKey(i10) >= 0 || zxVar.v.indexOfKey(i10) >= 0) {
-            return qxVar.J;
+    public final void onClick(View view) {
+        ux uxVar = (ux) this.f30036c.f1886b;
+        boolean[] zArr = this.f30034a;
+        if (zArr[0]) {
+            return;
         }
-        return 1;
+        zArr[0] = true;
+        org.telegram.ui.ActionBar.x1[] x1VarArr = {new org.telegram.ui.ActionBar.x1(3, uxVar.F.getContext(), null)};
+        TLRPC.TL_messages_getEmojiURL tL_messages_getEmojiURL = new TLRPC.TL_messages_getEmojiURL();
+        vy vyVar = uxVar.F;
+        String str = uxVar.f31076x;
+        if (str == null) {
+            str = vyVar.W0[0];
+        }
+        tL_messages_getEmojiURL.lang_code = str;
+        org.telegram.messenger.i0.h3(new ag.o0(this, x1VarArr, ConnectionsManager.getInstance(vyVar.f31865c1).sendRequest(tL_messages_getEmojiURL, new ag.p0(this, x1VarArr, this.f30035b, 9)), 24), 1000L);
     }
 }

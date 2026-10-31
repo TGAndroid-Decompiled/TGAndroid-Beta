@@ -1,28 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class dw extends y9 {
-    public final gw G;
+import org.telegram.tgnet.TLRPC;
+public final class dw extends g.o {
+    public final vy f25548c;
 
-    public dw(gw gwVar, Context context) {
-        super(context);
-        this.G = gwVar;
+    public dw(vy vyVar) {
+        this.f25548c = vyVar;
     }
 
     @Override
-    public final void invalidate() {
-        if (bh.m0.b(this)) {
-            return;
+    public final int i(int i10) {
+        vy vyVar = this.f25548c;
+        qy qyVar = vyVar.f31938z0;
+        s4.g0 adapter = vyVar.D0.getAdapter();
+        ny nyVar = vyVar.f31935y0;
+        if (adapter == nyVar) {
+            if (i10 == 0) {
+                return nyVar.d;
+            }
+            if (i10 == nyVar.f28918s || (nyVar.h.get(i10) != null && !(nyVar.h.get(i10) instanceof TLRPC.Document))) {
+                return nyVar.d;
+            }
+            return 1;
+        } else if (i10 != qyVar.f29766y && (qyVar.f29762r.get(i10) == null || (qyVar.f29762r.get(i10) instanceof TLRPC.Document))) {
+            return 1;
+        } else {
+            return nyVar.d;
         }
-        super.invalidate();
-        this.G.f();
-    }
-
-    @Override
-    public final void invalidate(int i10, int i11, int i12, int i13) {
-        if (bh.m0.b(this)) {
-            return;
-        }
-        super.invalidate(i10, i11, i12, i13);
     }
 }

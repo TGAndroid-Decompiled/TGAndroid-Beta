@@ -197,12 +197,12 @@ public class SurfaceTextureHelper {
         if (i10 > 0) {
             if (i11 > 0) {
                 this.surfaceTexture.setDefaultBufferSize(i10, i11);
-                this.handler.post(new i2.v(this, i10, i11, 12));
+                this.handler.post(new i2.u(this, i10, i11, 14));
                 return;
             }
-            throw new IllegalArgumentException(ic.a.i(i11, "Texture height must be positive, but was "));
+            throw new IllegalArgumentException(i0.a.i(i11, "Texture height must be positive, but was "));
         }
-        throw new IllegalArgumentException(ic.a.i(i10, "Texture width must be positive, but was "));
+        throw new IllegalArgumentException(i0.a.i(i10, "Texture width must be positive, but was "));
     }
 
     public void startListening(VideoSink videoSink) {

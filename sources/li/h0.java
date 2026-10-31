@@ -1,61 +1,30 @@
 package li;
+public final class h0 implements Runnable {
+    public final int f12076a;
+    public final x0 f12077b;
+    public final Exception f12078c;
 
-import android.graphics.Rect;
-import android.text.Layout;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Cells.da;
-public final class h0 implements da {
-    public final Layout f17270a;
-    public final int f17271b;
-    public final int f17272c;
-    public final j0 d;
-
-    public h0(j0 j0Var, Layout layout, int i10, int i11) {
-        this.d = j0Var;
-        this.f17270a = layout;
-        this.f17271b = i10;
-        this.f17272c = i11;
+    public h0(x0 x0Var, Exception exc, int i10) {
+        this.f12076a = i10;
+        this.f12077b = x0Var;
+        this.f12078c = exc;
     }
 
     @Override
-    public final Layout getLayout() {
-        return this.f17270a;
-    }
-
-    @Override
-    public final CharSequence getPrefix() {
-        return null;
-    }
-
-    @Override
-    public final int getRow() {
-        return 0;
-    }
-
-    @Override
-    public final Rect getSelectionBounds() {
-        return null;
-    }
-
-    @Override
-    public final CharSequence getText() {
-        TL_iv.PageBlock pageBlock;
-        TL_iv.PageCaption pageCaption;
-        TL_iv.RichText richText;
-        a L = this.d.f17307c.L();
-        if (L != null && (pageBlock = L.f17053b) != null && (pageCaption = pageBlock.caption) != null && (richText = pageCaption.text) != null) {
-            return f6.r(richText, null, true);
+    public final void run() {
+        switch (this.f12076a) {
+            case 0:
+                this.f12077b.h(this.f12078c);
+                return;
+            case 1:
+                this.f12077b.h(this.f12078c);
+                return;
+            case 2:
+                this.f12077b.h(this.f12078c);
+                return;
+            default:
+                this.f12077b.h(this.f12078c);
+                return;
         }
-        return "";
-    }
-
-    @Override
-    public final int getX() {
-        return this.f17271b;
-    }
-
-    @Override
-    public final int getY() {
-        return this.f17272c;
     }
 }

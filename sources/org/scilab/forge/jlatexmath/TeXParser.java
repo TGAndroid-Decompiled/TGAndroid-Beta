@@ -1,7 +1,7 @@
 package org.scilab.forge.jlatexmath;
 
 import a1.g;
-import ic.a;
+import i0.a;
 import java.lang.Character;
 import java.util.HashSet;
 import java.util.Set;
@@ -238,7 +238,7 @@ public class TeXParser {
                 if (this.isPartial) {
                     return new ColorAtom(new RomanAtom(new TeXFormula("\\backslash ".concat(command)).root), (Color) null, Color.RED);
                 }
-                throw new ParseException(g.p("Unknown symbol or command or predefined TeXFormula: '", command, "'"));
+                throw new ParseException(g.n("Unknown symbol or command or predefined TeXFormula: '", command, "'"));
             }
         } catch (FormulaNotFoundException unused2) {
             return SymbolAtom.get(command);

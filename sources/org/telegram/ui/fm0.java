@@ -1,56 +1,56 @@
 package org.telegram.ui;
+public final class fm0 extends org.telegram.ui.ActionBar.k {
+    public final sm0 f37300a;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class fm0 implements TextWatcher {
-    public boolean f39399a;
-    public final EditTextBoldCursor f39400b;
-    public final String f39401c;
-    public final kn0 d;
-
-    public fm0(kn0 kn0Var, EditTextBoldCursor editTextBoldCursor, String str) {
-        this.d = kn0Var;
-        this.f39400b = editTextBoldCursor;
-        this.f39401c = str;
+    public fm0(sm0 sm0Var) {
+        this.f37300a = sm0Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        if (this.f39399a) {
-            return;
-        }
-        boolean z10 = true;
-        this.f39399a = true;
-        int i10 = 0;
-        while (true) {
-            if (i10 < editable.length()) {
-                char charAt = editable.charAt(i10);
-                if ((charAt < 'a' || charAt > 'z') && ((charAt < 'A' || charAt > 'Z') && !((charAt >= '0' && charAt <= '9') || charAt == '-' || charAt == ' '))) {
-                    break;
-                }
-                i10++;
-            } else {
-                z10 = false;
-                break;
+    public final void b(int i10) {
+        sm0 sm0Var = this.f37300a;
+        if (i10 == -1) {
+            if (!sm0Var.P0) {
+                sm0Var.finishFragment();
             }
+        } else if (i10 == 1 && !sm0Var.P0) {
+            if (sm0Var.f41578u0 != 3) {
+                org.telegram.messenger.i0.v1(sm0Var.getParentActivity().getCurrentFocus());
+            }
+            int i11 = sm0Var.f41578u0;
+            if (i11 != 0) {
+                int i12 = 0;
+                if (i11 != 1) {
+                    if (i11 != 2) {
+                        if (i11 != 3) {
+                            if (i11 == 6) {
+                                sm0Var.F0(false);
+                                return;
+                            }
+                            return;
+                        }
+                        sm0.o0(sm0Var);
+                        return;
+                    }
+                    sm0.n0(sm0Var);
+                    return;
+                }
+                while (true) {
+                    org.telegram.ui.Cells.m6[] m6VarArr = sm0Var.h;
+                    if (i12 >= m6VarArr.length) {
+                        break;
+                    } else if (m6VarArr[i12].f22312b.f24161f) {
+                        sm0Var.G0 = sm0Var.E0.shipping_options.get(i12);
+                        break;
+                    } else {
+                        i12++;
+                    }
+                }
+                sm0Var.y0();
+                return;
+            }
+            sm0Var.I0(true);
+            sm0.q0(sm0Var);
         }
-        this.f39399a = false;
-        EditTextBoldCursor editTextBoldCursor = this.f39400b;
-        if (z10) {
-            editTextBoldCursor.setErrorText(LocaleController.getString(R.string.PassportUseLatinOnly));
-        } else {
-            kn0.J0(this.d, editTextBoldCursor, this.f39401c, editable, false);
-        }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

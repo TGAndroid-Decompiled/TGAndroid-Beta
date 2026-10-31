@@ -1,11 +1,4 @@
 package k6;
-
-import java.util.concurrent.Executor;
-public final class n implements Executor {
-    public static final n f16425a = new Object();
-
-    @Override
-    public final void execute(Runnable runnable) {
-        runnable.run();
-    }
+public abstract class n {
+    public static final l[] f10949a = {o.f10950a, o.f10951b};
 }

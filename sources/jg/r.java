@@ -1,35 +1,60 @@
 package jg;
 
-import android.content.DialogInterface;
+import android.view.MotionEvent;
 import android.view.View;
-public final class r implements DialogInterface.OnDismissListener {
-    public final int f15818a;
-    public final View f15819b;
+import android.widget.FrameLayout;
+import vh.b4;
+public final class r implements View.OnTouchListener {
+    public final int f10161a;
+    public final FrameLayout f10162b;
 
-    public r(int i10, View view) {
-        this.f15818a = i10;
-        this.f15819b = view;
+    public r(int i10, FrameLayout frameLayout) {
+        this.f10161a = i10;
+        this.f10162b = frameLayout;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f15818a) {
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        org.telegram.ui.ActionBar.k1 k1Var;
+        org.telegram.ui.ActionBar.k1 k1Var2;
+        org.telegram.ui.ActionBar.k1 k1Var3;
+        switch (this.f10161a) {
             case 0:
-                w.e = null;
-                View view = this.f15819b;
-                if (view != null) {
-                    view.requestFocus();
-                    return;
+                r0 r0Var = (r0) this.f10162b;
+                r0Var.getClass();
+                if (motionEvent.getActionMasked() == 0 && (k1Var = r0Var.A1) != null && k1Var.isShowing()) {
+                    view.getHitRect(r0Var.C1);
+                    if (!r0Var.C1.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        r0Var.A1.d(true);
+                        return false;
+                    }
+                    return false;
                 }
-                return;
+                return false;
+            case 1:
+                org.telegram.ui.ActionBar.t0 t0Var = (org.telegram.ui.ActionBar.t0) this.f10162b;
+                t0Var.getClass();
+                if (motionEvent.getActionMasked() == 0 && (k1Var2 = t0Var.d) != null && k1Var2.isShowing()) {
+                    view.getHitRect(t0Var.I);
+                    if (!t0Var.I.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        t0Var.d.d(true);
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
             default:
-                z1.f15912f = null;
-                View view2 = this.f15819b;
-                if (view2 != null) {
-                    view2.requestFocus();
-                    return;
+                b4 b4Var = (b4) this.f10162b;
+                b4Var.getClass();
+                if (motionEvent.getActionMasked() == 0 && (k1Var3 = b4Var.f50983q1) != null && k1Var3.isShowing()) {
+                    view.getHitRect(b4Var.f50987s1);
+                    if (!b4Var.f50987s1.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        b4Var.f50983q1.d(true);
+                        return false;
+                    }
+                    return false;
                 }
-                return;
+                return false;
         }
     }
 }

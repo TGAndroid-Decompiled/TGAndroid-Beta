@@ -1,94 +1,25 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-public final class wn0 implements Runnable {
-    public final int f34548a = 1;
-    public final do0 f34549b;
-    public final String f34550c;
-    public final ArrayList d;
-    public final ArrayList e;
+import android.content.Context;
+import android.view.View;
+import android.widget.LinearLayout;
+public final class wn0 extends LinearLayout {
+    public final int f32220a;
+    public final int f32221b;
 
-    public wn0(do0 do0Var, String str, ArrayList arrayList, ArrayList arrayList2) {
-        this.f34549b = do0Var;
-        this.f34550c = str;
-        this.d = arrayList;
-        this.e = arrayList2;
+    public wn0(Context context, int i10, int i11) {
+        super(context);
+        this.f32220a = i10;
+        this.f32221b = i11;
     }
 
     @Override
-    public final void run() {
-        switch (this.f34548a) {
-            case 0:
-                do0 do0Var = this.f34549b;
-                int i10 = do0Var.d;
-                ArrayList arrayList = new ArrayList();
-                ArrayList arrayList2 = new ArrayList();
-                int i11 = 0;
-                while (true) {
-                    ArrayList arrayList3 = this.d;
-                    int size = arrayList3.size();
-                    String str = this.f34550c;
-                    if (i11 < size) {
-                        String documentFileName = FileLoader.getDocumentFileName(((MessageObject) arrayList3.get(i11)).getDocument());
-                        if (documentFileName != null && documentFileName.toLowerCase().contains(str)) {
-                            MessageObject messageObject = new MessageObject(i10, ((MessageObject) arrayList3.get(i11)).messageOwner, false, false);
-                            messageObject.mediaExists = ((MessageObject) arrayList3.get(i11)).mediaExists;
-                            messageObject.setQuery(do0Var.K);
-                            arrayList.add(messageObject);
-                        }
-                        i11++;
-                    } else {
-                        int i12 = 0;
-                        while (true) {
-                            ArrayList arrayList4 = this.e;
-                            if (i12 < arrayList4.size()) {
-                                String documentFileName2 = FileLoader.getDocumentFileName(((MessageObject) arrayList4.get(i12)).getDocument());
-                                if (documentFileName2 != null && documentFileName2.toLowerCase().contains(str)) {
-                                    MessageObject messageObject2 = new MessageObject(i10, ((MessageObject) arrayList4.get(i12)).messageOwner, false, false);
-                                    messageObject2.mediaExists = ((MessageObject) arrayList4.get(i12)).mediaExists;
-                                    messageObject2.setQuery(do0Var.K);
-                                    arrayList2.add(messageObject2);
-                                }
-                                i12++;
-                            } else {
-                                AndroidUtilities.runOnUIThread(new wn0(do0Var, str, arrayList, arrayList2));
-                                return;
-                            }
-                        }
-                    }
-                }
-                break;
-            default:
-                do0 do0Var2 = this.f34549b;
-                fy0 fy0Var = do0Var2.f27500a;
-                if (this.f34550c.equals(do0Var2.L)) {
-                    if (do0Var2.f27505r == 0) {
-                        do0Var2.N.b(0);
-                    }
-                    do0Var2.e(this.d, this.e, true);
-                    if (do0Var2.f27505r == 0) {
-                        fy0Var.e(false, true);
-                        aa0 aa0Var = fy0Var.e;
-                        fy0Var.d.setText(LocaleController.getString(R.string.SearchEmptyViewTitle2));
-                        aa0Var.setVisibility(0);
-                        aa0Var.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
-                        return;
-                    }
-                    return;
-                }
-                return;
-        }
+    public final int getSuggestedMinimumWidth() {
+        return org.telegram.messenger.i0.L(260.0f);
     }
 
-    public wn0(do0 do0Var, ArrayList arrayList, String str, ArrayList arrayList2) {
-        this.f34549b = do0Var;
-        this.d = arrayList;
-        this.f34550c = str;
-        this.e = arrayList2;
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), this.f32220a), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i11), this.f32221b), View.MeasureSpec.getMode(i11)));
     }
 }

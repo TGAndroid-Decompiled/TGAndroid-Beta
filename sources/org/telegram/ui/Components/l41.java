@@ -1,55 +1,52 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
-import android.text.TextPaint;
-import org.telegram.messenger.R;
-public final class l41 extends Drawable {
-    public final yj0 f30111a;
-    public int f30112b;
-    public final TextPaint f30113c;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class l41 extends tk0 {
+    public final s41 f28008e3;
+    public final w41 f28009f3;
 
-    public l41(TextPaint textPaint) {
-        bh.u0 u0Var = new bh.u0(this, 8);
-        this.f30113c = textPaint;
-        float textSize = textPaint.getTextSize() * 0.89f;
-        yj0 yj0Var = new yj0(R.raw.dots_loading, (int) textSize, (int) (textSize * 1.25f));
-        this.f30111a = yj0Var;
-        yj0Var.setCallback(u0Var);
-        yj0Var.K(1);
-        yj0Var.M((int) ((((float) SystemClock.elapsedRealtime()) / 16.0f) % 60.0f));
-        yj0Var.J(true);
-        yj0Var.start();
+    public l41(w41 w41Var, Context context, s41 s41Var) {
+        super(context, null);
+        this.f28009f3 = w41Var;
+        this.f28008e3 = s41Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int color = this.f30113c.getColor();
-        int i10 = this.f30112b;
-        yj0 yj0Var = this.f30111a;
-        if (color != i10) {
-            yj0Var.Z = true;
-            yj0Var.Q(color, "Comp 1");
-            yj0Var.o();
-            yj0Var.J(true);
-            yj0Var.V(0L);
-            this.f30112b = color;
+    public final boolean E0(float f7) {
+        if (f7 >= org.telegram.messenger.i0.L(58.0f) + this.f28009f3.E) {
+            return true;
         }
-        yj0Var.draw(canvas);
+        return false;
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        this.f28009f3.F = true;
+        return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override
-    public final void setAlpha(int i10) {
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        boolean d = this.f28008e3.d(this, motionEvent);
+        if (!super.onInterceptTouchEvent(motionEvent) && !d) {
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.f28009f3.L != null) {
+            return false;
+        }
+        return super.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (!this.f28009f3.H) {
+            super.requestLayout();
+        }
     }
 }

@@ -1,39 +1,71 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.text.SpannableStringBuilder;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class xr extends t61 {
-    public static final int f34836a = 0;
+import java.util.HashSet;
+public final class xr extends View implements org.telegram.ui.ActionBar.k6 {
+    public final fe.b f32536a;
+    public final Paint f32537b;
+    public final RectF f32538c;
+    public final RectF d;
+    public final RectF e;
+    public final ho f32539f;
 
-    static {
-        t61.setup(new t61());
+    public xr(Context context) {
+        super(context);
+        this.f32536a = new fe.b(this, gr.h, 380L);
+        this.f32537b = new Paint(1);
+        this.f32538c = new RectF();
+        this.d = new RectF();
+        this.e = new RectF();
+        this.f32539f = new ho(this, 7);
+        updateColors();
     }
 
     @Override
-    public final void bindView(View view, u61 u61Var, boolean z10, k71 k71Var, s71 s71Var) {
-        org.telegram.ui.Cells.g9 g9Var = (org.telegram.ui.Cells.g9) view;
-        g9Var.c(u61Var.f33249l, u61Var.f33251n, !u61Var.f33247j);
-        xh.n nVar = g9Var.f24174a;
-        if (u61Var.f33249l instanceof SpannableStringBuilder) {
-            nVar.setTextSize(1, 13.0f);
-            nVar.setTranslationY(AndroidUtilities.dp(2.0f));
-            nVar.setTypeface(AndroidUtilities.getTypeface("fonts/rmono.ttf"));
-        }
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        org.telegram.messenger.i0.h3(this.f32539f, 3000L);
     }
 
     @Override
-    public final View createView(Context context, nm0 nm0Var, int i10, int i11, org.telegram.ui.ActionBar.u6 u6Var) {
-        org.telegram.ui.Cells.g9 g9Var = new org.telegram.ui.Cells.g9(context, u6Var, true);
-        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23357d6, g9Var, u6Var);
-        Drawable mutate = context.getDrawable(R.drawable.msg_copy).mutate();
-        org.telegram.ui.ActionBar.f7.y(g9Var, mutate, org.telegram.ui.ActionBar.y6.L6, u6Var, PorterDuff.Mode.MULTIPLY);
-        g9Var.setImage(mutate);
-        g9Var.setImageClickListener(new bi.w0(this, context, g9Var, 22));
-        return g9Var;
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        org.telegram.messenger.i0.r(this.f32539f);
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float f7 = this.f32536a.e;
+        RectF rectF = this.d;
+        RectF rectF2 = this.f32538c;
+        RectF rectF3 = this.e;
+        org.telegram.messenger.i0.Z1(rectF, rectF2, f7, rectF3);
+        float W1 = org.telegram.messenger.i0.W1(f7, org.telegram.messenger.i0.L(15.0f), 0);
+        canvas.drawRoundRect(rectF3, W1, W1, this.f32537b);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int currentActionBarHeight = org.telegram.ui.ActionBar.l.getCurrentActionBarHeight();
+        int paddingTop = getPaddingTop();
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(paddingTop + currentActionBarHeight, 1073741824));
+        this.f32538c.set(0.0f, 0.0f, getMeasuredWidth(), paddingTop);
+        int L = ((currentActionBarHeight / 2) + paddingTop) - org.telegram.messenger.i0.L(15.0f);
+        int L2 = org.telegram.messenger.i0.L(12.0f);
+        this.d.set(org.telegram.messenger.i0.L(12.0f), L, org.telegram.messenger.i0.L(30.0f) + L2, org.telegram.messenger.i0.L(30.0f) + L);
+    }
+
+    @Override
+    public final void updateColors() {
+        this.f32537b.setColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.Vl, false));
+        invalidate();
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

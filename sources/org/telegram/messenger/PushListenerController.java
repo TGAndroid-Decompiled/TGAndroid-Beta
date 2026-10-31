@@ -2,11 +2,6 @@ package org.telegram.messenger;
 
 import android.os.SystemClock;
 import android.text.TextUtils;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import com.google.firebase.messaging.FirebaseMessaging;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
@@ -16,90 +11,6 @@ public class PushListenerController {
     public static final int PUSH_TYPE_HUAWEI = 13;
     private static CountDownLatch countDownLatch = new CountDownLatch(1);
 
-    public static final class GooglePushListenerServiceProvider implements IPushListenerServiceProvider {
-        public static final GooglePushListenerServiceProvider INSTANCE = new GooglePushListenerServiceProvider();
-        private Boolean hasServices;
-
-        private GooglePushListenerServiceProvider() {
-        }
-
-        public void lambda$onRequestPushToken$0(Task task) {
-            SharedConfig.pushStringGetTimeEnd = SystemClock.elapsedRealtime();
-            if (!task.isSuccessful()) {
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("Failed to get regid");
-                }
-                SharedConfig.pushStringStatus = "__FIREBASE_FAILED__";
-                PushListenerController.sendRegistrationToServer(getPushType(), null);
-                return;
-            }
-            String str = (String) task.getResult();
-            if (!TextUtils.isEmpty(str)) {
-                PushListenerController.sendRegistrationToServer(getPushType(), str);
-            }
-        }
-
-        public void lambda$onRequestPushToken$1() {
-            FirebaseMessaging firebaseMessaging;
-            try {
-                SharedConfig.pushStringGetTimeStart = SystemClock.elapsedRealtime();
-                m9.h.f(ApplicationLoader.applicationContext);
-                a4.l lVar = FirebaseMessaging.f7701l;
-                synchronized (FirebaseMessaging.class) {
-                    firebaseMessaging = FirebaseMessaging.getInstance(m9.h.c());
-                }
-                firebaseMessaging.getClass();
-                TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-                firebaseMessaging.f7707f.execute(new bi.f2(20, firebaseMessaging, taskCompletionSource));
-                taskCompletionSource.getTask().addOnCompleteListener(new g0(this, 11));
-            } catch (Throwable th2) {
-                FileLog.e(th2);
-            }
-        }
-
-        @Override
-        public String getLogTitle() {
-            return "Google Play Services";
-        }
-
-        @Override
-        public int getPushType() {
-            return 2;
-        }
-
-        @Override
-        public boolean hasServices() {
-            boolean z10;
-            if (this.hasServices == null) {
-                try {
-                    if (l6.d.d.d(ApplicationLoader.applicationContext, l6.e.f16930a) == 0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    this.hasServices = Boolean.valueOf(z10);
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    this.hasServices = Boolean.FALSE;
-                }
-            }
-            return this.hasServices.booleanValue();
-        }
-
-        @Override
-        public void onRequestPushToken() {
-            String str = SharedConfig.pushString;
-            if (!TextUtils.isEmpty(str)) {
-                if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED) {
-                    FileLog.d("FCM regId = " + str);
-                }
-            } else if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("FCM Registration not found.");
-            }
-            Utilities.globalQueue.postRunnable(new lh(this, 2));
-        }
-    }
-
     public interface IPushListenerServiceProvider {
         String getLogTitle();
 
@@ -108,10 +19,6 @@ public class PushListenerController {
         boolean hasServices();
 
         void onRequestPushToken();
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface PushType {
     }
 
     private static String getReactedText(String str, Object[] objArr) {
@@ -559,207 +466,212 @@ public class PushListenerController {
         }
         switch (c10) {
             case 0:
-                return LocaleController.formatString(R.string.PushChatReactContact, objArr);
+                return cd.a0(null, null, 2131746589, objArr);
             case 1:
-                return LocaleController.formatString(R.string.PushReactWalletTonConnectRequest, objArr);
+                return cd.a0(null, null, 2131746526, objArr);
             case 2:
-                return LocaleController.formatString(R.string.PushChatReactPollUpdate, objArr);
+                return cd.a0(null, null, 2131746578, objArr);
             case 3:
-                return LocaleController.formatString(R.string.PushReactGeoLocation, objArr);
+                return cd.a0(null, null, 2131746562, objArr);
             case 4:
-                return LocaleController.formatString(R.string.PushReactGameScore, objArr);
+                return cd.a0(null, null, 2131746564, objArr);
             case 5:
-                return LocaleController.formatString(R.string.PushReactStoryHidden, objArr);
+                return cd.a0(null, null, 2131746538, objArr);
             case 6:
             case 'F':
-                return LocaleController.formatString(R.string.PushChatReactTodoUpdate, objArr);
+                return cd.a0(null, null, 2131746570, objArr);
             case 7:
-                return LocaleController.formatString(R.string.PushReactRecurringPay, objArr);
+                return cd.a0(null, null, 2131746548, objArr);
             case '\b':
-                return LocaleController.formatString(R.string.PushReactStarGiftUpgrade, objArr);
+                return cd.a0(null, null, 2131746541, objArr);
             case '\t':
-                return LocaleController.formatString(R.string.PushReactHidden, objArr);
+                return cd.a0(null, null, 2131746557, objArr);
             case '\n':
-                return LocaleController.formatString(R.string.PushChatReactNotext, objArr);
+                return cd.a0(null, null, 2131746581, objArr);
             case 11:
-                return LocaleController.formatString(R.string.PushChatReactGameScore, objArr);
+                return cd.a0(null, null, 2131746586, objArr);
             case '\f':
-                return LocaleController.formatString(R.string.PushReactNoText, objArr);
+                return cd.a0(null, null, 2131746555, objArr);
             case '\r':
-                return LocaleController.formatString(R.string.PushReactPhotoSecret, objArr);
+                return cd.a0(null, null, 2131746552, objArr);
             case 14:
-                return LocaleController.formatString(R.string.PushReactWallpaper, objArr);
+                return cd.a0(null, null, 2131746525, objArr);
             case 15:
-                return LocaleController.formatString(R.string.PushChatReactInvoice, objArr);
+                return cd.a0(null, null, 2131746582, objArr);
             case 16:
             case '*':
-                return LocaleController.formatString(R.string.PushChatReactThemeChange, objArr);
+                return cd.a0(null, null, 2131746572, objArr);
             case 17:
-                return LocaleController.formatString(R.string.PushReactContect, objArr);
+                return cd.a0(null, null, 2131746567, objArr);
             case 18:
-                return LocaleController.formatString(R.string.PushReactStarGiftPrepaidUpgrade, objArr);
+                return cd.a0(null, null, 2131746543, objArr);
             case 19:
-                return LocaleController.formatString(R.string.PushChatReactSticker, objArr);
+                return cd.a0(null, null, 2131746575, objArr);
             case 20:
-                return LocaleController.formatString(R.string.PushReactSameWallpaper, objArr);
+                return cd.a0(null, null, 2131746546, objArr);
             case 21:
-                return LocaleController.formatString(R.string.PushReactGramTransferComment, objArr);
+                return cd.a0(null, null, 2131746558, objArr);
             case 22:
-                return LocaleController.formatString(R.string.PushReactGame, objArr);
+                return cd.a0(null, null, 2131746565, objArr);
             case 23:
-                return LocaleController.formatString(R.string.PushReactPoll, objArr);
+                return cd.a0(null, null, 2131746551, objArr);
             case 24:
-                return LocaleController.formatString(R.string.PushReactQuiz, objArr);
+                return cd.a0(null, null, 2131746549, objArr);
             case 25:
-                return LocaleController.formatString(R.string.PushReactText, objArr);
+                return cd.a0(null, null, 2131746533, objArr);
             case 26:
-                return LocaleController.formatString(R.string.PushReactTodo, objArr);
+                return cd.a0(null, null, 2131746531, objArr);
             case 27:
-                return LocaleController.formatString(R.string.PushReactInvoice, objArr);
+                return cd.a0(null, null, 2131746556, objArr);
             case 28:
-                return LocaleController.formatString(R.string.PushReactScreenshot, objArr);
+                return cd.a0(null, null, 2131746545, objArr);
             case 29:
-                return LocaleController.formatString(R.string.PushChatReactDoc, objArr);
+                return cd.a0(null, null, 2131746588, objArr);
             case 30:
-                return LocaleController.formatString(R.string.PushChatReactGeo, objArr);
+                return cd.a0(null, null, 2131746585, objArr);
             case 31:
-                return LocaleController.formatString(R.string.PushChatReactGif, objArr);
+                return cd.a0(null, null, 2131746583, objArr);
             case ' ':
             case 'G':
-                return LocaleController.formatString(R.string.PushReactTodoUpdate, objArr);
+                return cd.a0(null, null, 2131746530, objArr);
             case '!':
             case ';':
             case 'H':
-                return LocaleController.formatString(R.string.PushReactThemeChange, objArr);
+                return cd.a0(null, null, 2131746532, objArr);
             case '\"':
-                return LocaleController.formatString(R.string.PushReactGramTransfer, objArr);
+                return cd.a0(null, null, 2131746559, objArr);
             case '#':
-                return LocaleController.formatString(R.string.PushReactStarGiftUnpackUpgrade, objArr);
+                return cd.a0(null, null, 2131746542, objArr);
             case '$':
-                return LocaleController.formatString(R.string.PushReactGiftCode, objArr);
+                return cd.a0(null, null, 2131746560, objArr);
             case '%':
-                return LocaleController.formatString(R.string.PushReactSticker, objArr);
+                return cd.a0(null, null, 2131746540, objArr);
             case '&':
-                return LocaleController.formatString(R.string.PushChatReactAudio, objArr);
+                return cd.a0(null, null, 2131746590, objArr);
             case '\'':
-                return LocaleController.formatString(R.string.PushChatReactPhoto, objArr);
+                return cd.a0(null, null, 2131746580, objArr);
             case '(':
-                return LocaleController.formatString(R.string.PushChatReactRound, objArr);
+                return cd.a0(null, null, 2131746576, objArr);
             case ')':
-                return LocaleController.formatString(R.string.PushChatReactStory, objArr);
+                return cd.a0(null, null, 2131746574, objArr);
             case '+':
-                return LocaleController.formatString(R.string.PushChatReactVideo, objArr);
+                return cd.a0(null, null, 2131746569, objArr);
             case ',':
-                return LocaleController.formatString(R.string.NotificationChatReactGiveaway, objArr);
+                return cd.a0(null, null, 2131748064, objArr);
             case '-':
-                return LocaleController.formatString(R.string.PushReactUniqueStarGift, objArr);
+                return cd.a0(null, null, 2131746529, objArr);
             case '.':
-                return LocaleController.formatString(R.string.PushReactStoryMention, objArr);
+                return cd.a0(null, null, 2131746536, objArr);
             case '/':
-                return LocaleController.formatString(R.string.NotificationReactGiveaway, objArr);
+                return cd.a0(null, null, 2131747953, objArr);
             case '0':
-                return LocaleController.formatString(R.string.NotificationReactGiveaway, objArr);
+                return cd.a0(null, null, 2131747953, objArr);
             case '1':
-                return LocaleController.formatString(R.string.PushReactStarGift, objArr);
+                return cd.a0(null, null, 2131746544, objArr);
             case '2':
-                return LocaleController.formatString(R.string.PushChatReactGeoLive, objArr);
+                return cd.a0(null, null, 2131746584, objArr);
             case '3':
-                return LocaleController.formatString(R.string.PushReactVideoSecret, objArr);
+                return cd.a0(null, null, 2131746527, objArr);
             case '4':
-                return LocaleController.formatString(R.string.PushReactSuggestBirthday, objArr);
+                return cd.a0(null, null, 2131746535, objArr);
             case '5':
-                return LocaleController.formatString(R.string.PushReactProximity, objArr);
+                return cd.a0(null, null, 2131746550, objArr);
             case '6':
-                return LocaleController.formatString(R.string.PushReactPaidMedia, objArr);
+                return cd.a0(null, null, 2131746554, objArr);
             case '7':
-                return LocaleController.formatString(R.string.PushReactAudio, objArr);
+                return cd.a0(null, null, 2131746568, objArr);
             case '8':
-                return LocaleController.formatString(R.string.PushReactPhoto, objArr);
+                return cd.a0(null, null, 2131746553, objArr);
             case '9':
-                return LocaleController.formatString(R.string.PushReactRound, objArr);
+                return cd.a0(null, null, 2131746547, objArr);
             case ':':
-                return LocaleController.formatString(R.string.PushReactStory, objArr);
+                return cd.a0(null, null, 2131746539, objArr);
             case '<':
-                return LocaleController.formatString(R.string.PushReactVideo, objArr);
+                return cd.a0(null, null, 2131746528, objArr);
             case '=':
-                return LocaleController.formatString(R.string.PushReactSuggestUserpic, objArr);
+                return cd.a0(null, null, 2131746534, objArr);
             case '>':
-                return LocaleController.formatString(R.string.PushReactDoc, objArr);
+                return cd.a0(null, null, 2131746566, objArr);
             case '?':
-                return LocaleController.formatString(R.string.PushReactGeo, objArr);
+                return cd.a0(null, null, 2131746563, objArr);
             case '@':
-                return LocaleController.formatString(R.string.PushReactGif, objArr);
+                return cd.a0(null, null, 2131746561, objArr);
             case 'A':
-                return LocaleController.formatString(R.string.PushChatReactGame, objArr);
+                return cd.a0(null, null, 2131746587, objArr);
             case 'B':
-                return LocaleController.formatString(R.string.PushChatReactPoll, objArr);
+                return cd.a0(null, null, 2131746579, objArr);
             case 'C':
-                return LocaleController.formatString(R.string.PushChatReactQuiz, objArr);
+                return cd.a0(null, null, 2131746577, objArr);
             case 'D':
-                return LocaleController.formatString(R.string.PushChatReactText, objArr);
+                return cd.a0(null, null, 2131746573, objArr);
             case 'E':
-                return LocaleController.formatString(R.string.PushChatReactTodo, objArr);
+                return cd.a0(null, null, 2131746571, objArr);
             default:
                 return null;
         }
     }
 
     public static void lambda$processRemoteMessage$2(int i10, TLRPC.TL_updates tL_updates) {
-        MessagesController.getInstance(i10).lambda$processUpdates$379(tL_updates, false);
+        vp.r1(i10).L3(tL_updates, false);
     }
 
     public static void lambda$processRemoteMessage$3(int i10) {
-        if (UserConfig.getInstance(i10).getClientUserId() != 0) {
-            UserConfig.getInstance(i10).clearConfig();
-            MessagesController.getInstance(i10).performLogout(0);
+        if (d20.i(i10).e() != 0) {
+            d20.i(i10).b();
+            vp.r1(i10).x3(0);
         }
     }
 
     public static void lambda$processRemoteMessage$4(int i10) {
-        LocationController.getInstance(i10).setNewLocationEndWatchTime();
+        nd f7 = nd.f(i10);
+        if (f7.f17083b.isEmpty()) {
+            return;
+        }
+        f7.H = SystemClock.elapsedRealtime() + 65000;
+        f7.p();
     }
 
     public static void lambda$processRemoteMessage$5(int i10, long j10, int i11) {
-        MessagesController.getInstance(i10).reportMessageDelivery(j10, i11, true);
+        vp.r1(i10).k4(i11, j10, true);
     }
 
-    public static void lambda$processRemoteMessage$6(java.lang.String r74, java.lang.String r75, long r76) {
+    public static void lambda$processRemoteMessage$6(java.lang.String r86, java.lang.String r87, long r88) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.PushListenerController.lambda$processRemoteMessage$6(java.lang.String, java.lang.String, long):void");
     }
 
     public static void lambda$processRemoteMessage$7(String str, String str2, long j10) {
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.d(str + " PRE INIT APP");
+        if (v2.f18448a) {
+            f8.b(str + " PRE INIT APP");
         }
-        ApplicationLoader.postInitApplication();
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.d(str + " POST INIT APP");
+        w0.w();
+        if (v2.f18448a) {
+            f8.b(str + " POST INIT APP");
         }
-        Utilities.stageQueue.postRunnable(new th(0, j10, str, str2));
+        Utilities.d.c(new du(0, j10, str, str2));
     }
 
     public static void lambda$sendRegistrationToServer$0(int i10, int i11, String str) {
-        MessagesController.getInstance(i10).registerForPush(i11, str);
+        vp.r1(i10).W3(i11, str);
     }
 
     public static void lambda$sendRegistrationToServer$1(String str, int i10) {
         boolean z10;
         String str2;
-        ConnectionsManager.setRegId(str, i10, SharedConfig.pushStringStatus);
+        ConnectionsManager.setRegId(str, i10, tz.h);
         if (str != null) {
-            if (SharedConfig.pushStringGetTimeStart != 0 && SharedConfig.pushStringGetTimeEnd != 0 && (!SharedConfig.pushStatSent || !TextUtils.equals(SharedConfig.pushString, str))) {
-                SharedConfig.pushStatSent = false;
+            if (tz.f18152i != 0 && tz.f18155j != 0 && (!tz.f18158k || !TextUtils.equals(tz.f18147g, str))) {
+                tz.f18158k = false;
                 z10 = true;
             } else {
                 z10 = false;
             }
-            SharedConfig.pushString = str;
-            SharedConfig.pushType = i10;
+            tz.f18147g = str;
+            tz.f18144f = i10;
             for (int i11 = 0; i11 < 4; i11++) {
-                UserConfig userConfig = UserConfig.getInstance(i11);
-                userConfig.registeredForPush = false;
-                userConfig.saveConfig(false);
-                if (userConfig.getClientUserId() != 0) {
+                d20 i12 = d20.i(i11);
+                i12.d = false;
+                i12.v(false);
+                if (i12.e() != 0) {
                     if (z10) {
                         if (i10 == 2) {
                             str2 = "fcm";
@@ -768,23 +680,23 @@ public class PushListenerController {
                         }
                         TLRPC.TL_help_saveAppLog tL_help_saveAppLog = new TLRPC.TL_help_saveAppLog();
                         TLRPC.TL_inputAppEvent tL_inputAppEvent = new TLRPC.TL_inputAppEvent();
-                        tL_inputAppEvent.time = SharedConfig.pushStringGetTimeStart;
+                        tL_inputAppEvent.time = tz.f18152i;
                         tL_inputAppEvent.type = str2.concat("_token_request");
                         tL_inputAppEvent.peer = 0L;
                         tL_inputAppEvent.data = new TLRPC.TL_jsonNull();
                         tL_help_saveAppLog.events.add(tL_inputAppEvent);
                         TLRPC.TL_inputAppEvent tL_inputAppEvent2 = new TLRPC.TL_inputAppEvent();
-                        tL_inputAppEvent2.time = SharedConfig.pushStringGetTimeEnd;
+                        tL_inputAppEvent2.time = tz.f18155j;
                         tL_inputAppEvent2.type = str2.concat("_token_response");
-                        tL_inputAppEvent2.peer = SharedConfig.pushStringGetTimeEnd - SharedConfig.pushStringGetTimeStart;
+                        tL_inputAppEvent2.peer = tz.f18155j - tz.f18152i;
                         tL_inputAppEvent2.data = new TLRPC.TL_jsonNull();
                         tL_help_saveAppLog.events.add(tL_inputAppEvent2);
-                        SharedConfig.pushStatSent = true;
-                        SharedConfig.saveConfig();
+                        tz.f18158k = true;
+                        tz.y();
                         ConnectionsManager.getInstance(i11).sendRequest(tL_help_saveAppLog, null);
                         z10 = false;
                     }
-                    AndroidUtilities.runOnUIThread(new a7(i11, i10, str));
+                    i0.g3(new i2.u(i11, i10, str, 4));
                 }
             }
         }
@@ -792,7 +704,7 @@ public class PushListenerController {
 
     private static void onDecryptError() {
         for (int i10 = 0; i10 < 4; i10++) {
-            if (UserConfig.getInstance(i10).isClientActivated()) {
+            if (d20.i(i10).p()) {
                 ConnectionsManager.onInternalPushReceived(i10);
                 ConnectionsManager.getInstance(i10).resumeNetworkMaybe();
             }
@@ -808,23 +720,22 @@ public class PushListenerController {
             str2 = "HCM";
         }
         String str3 = str2;
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.d(str3.concat(" PRE START PROCESSING"));
+        if (v2.f18448a) {
+            f8.b(str3.concat(" PRE START PROCESSING"));
         }
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        AndroidUtilities.runOnUIThread(new th(1, j10, str3, str));
+        i0.g3(new du(1, j10, str3, str));
         try {
             countDownLatch.await();
         } catch (Throwable unused) {
         }
-        if (BuildVars.DEBUG_VERSION) {
-            StringBuilder v = a1.g.v("finished ", str3, " service, time = ");
-            v.append(SystemClock.elapsedRealtime() - elapsedRealtime);
-            FileLog.d(v.toString());
-        }
+        boolean z10 = v2.f18448a;
+        StringBuilder u10 = a1.g.u("finished ", str3, " service, time = ");
+        u10.append(SystemClock.elapsedRealtime() - elapsedRealtime);
+        f8.b(u10.toString());
     }
 
     public static void sendRegistrationToServer(int i10, String str) {
-        Utilities.stageQueue.postRunnable(new y6(str, i10, 8));
+        Utilities.d.c(new a1(str, i10, 10));
     }
 }

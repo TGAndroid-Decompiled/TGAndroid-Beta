@@ -1,38 +1,38 @@
 package u2;
 
-import a8.yb;
+import v7.t6;
 public final class w extends i2.a {
-    public final b2.p1 h;
-    public final int f49480i;
-    public final int f49481j;
-    public final int f49482k;
+    public final b2.o1 h;
+    public final int f50024i;
+    public final int f50025j;
+    public final int f50026k;
 
-    public w(b2.p1 p1Var, int i10) {
+    public w(b2.o1 o1Var, int i10) {
         super(new h1(i10));
         boolean z10;
-        this.h = p1Var;
-        int h = p1Var.h();
-        this.f49480i = h;
-        this.f49481j = p1Var.o();
-        this.f49482k = i10;
+        this.h = o1Var;
+        int h = o1Var.h();
+        this.f50024i = h;
+        this.f50025j = o1Var.o();
+        this.f50026k = i10;
         if (h > 0) {
             if (i10 <= Integer.MAX_VALUE / h) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            yb.o("LoopingMediaSource contains too many periods", z10);
+            t6.o("LoopingMediaSource contains too many periods", z10);
         }
     }
 
     @Override
     public final int h() {
-        return this.f49480i * this.f49482k;
+        return this.f50024i * this.f50026k;
     }
 
     @Override
     public final int o() {
-        return this.f49481j * this.f49482k;
+        return this.f50025j * this.f50026k;
     }
 
     @Override
@@ -45,12 +45,12 @@ public final class w extends i2.a {
 
     @Override
     public final int r(int i10) {
-        return i10 / this.f49480i;
+        return i10 / this.f50024i;
     }
 
     @Override
     public final int s(int i10) {
-        return i10 / this.f49481j;
+        return i10 / this.f50025j;
     }
 
     @Override
@@ -60,16 +60,16 @@ public final class w extends i2.a {
 
     @Override
     public final int u(int i10) {
-        return i10 * this.f49480i;
+        return i10 * this.f50024i;
     }
 
     @Override
     public final int v(int i10) {
-        return i10 * this.f49481j;
+        return i10 * this.f50025j;
     }
 
     @Override
-    public final b2.p1 x(int i10) {
+    public final b2.o1 x(int i10) {
         return this.h;
     }
 }

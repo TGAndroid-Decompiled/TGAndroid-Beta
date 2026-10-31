@@ -2,28 +2,28 @@ package i2;
 
 import android.util.Pair;
 public final class f1 implements Runnable {
-    public final int f13532a;
-    public final g1 f13533b;
-    public final Pair f13534c;
+    public final int f7858a;
+    public final i1 f7859b;
+    public final Pair f7860c;
 
-    public f1(g1 g1Var, Pair pair, int i10) {
-        this.f13532a = i10;
-        this.f13533b = g1Var;
-        this.f13534c = pair;
+    public f1(i1 i1Var, Pair pair, int i10) {
+        this.f7858a = i10;
+        this.f7859b = i1Var;
+        this.f7860c = pair;
     }
 
     @Override
     public final void run() {
-        switch (this.f13532a) {
+        switch (this.f7858a) {
             case 0:
-                j2.e eVar = this.f13533b.f13548b.h;
-                Pair pair = this.f13534c;
-                eVar.g(((Integer) pair.first).intValue(), (u2.g0) pair.second);
+                j2.g gVar = this.f7859b.f7937b.h;
+                Pair pair = this.f7860c;
+                gVar.E(((Integer) pair.first).intValue(), (u2.g0) pair.second);
                 return;
             default:
-                j2.e eVar2 = this.f13533b.f13548b.h;
-                Pair pair2 = this.f13534c;
-                eVar2.i(((Integer) pair2.first).intValue(), (u2.g0) pair2.second);
+                j2.g gVar2 = this.f7859b.f7937b.h;
+                Pair pair2 = this.f7860c;
+                gVar2.J(((Integer) pair2.first).intValue(), (u2.g0) pair2.second);
                 return;
         }
     }

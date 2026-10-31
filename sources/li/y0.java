@@ -1,531 +1,110 @@
 package li;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.text.TextUtils;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DownloadController;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.f7;
-import org.telegram.ui.ActionBar.p6;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Cells.r9;
-import org.telegram.ui.Cells.s9;
-import org.telegram.ui.Components.RadialProgress2;
-import org.telegram.ui.Components.kb1;
-public final class y0 extends z implements p6, r9, k0, DownloadController.FileDownloadProgressListener {
-    public final ImageReceiver E;
-    public final j0 F;
-    public final int G;
-    public final int H;
-    public final int I;
-    public int J;
-    public int K;
-    public boolean L;
-    public boolean M;
-    public boolean N;
-    public boolean O;
-    public int P;
-    public StaticLayout Q;
-    public StaticLayout R;
-    public q3 S;
-    public MessageObject T;
-    public TLRPC.Document U;
-    public int V;
-    public boolean W;
-    public int f17633a0;
-    public final int f17634n;
-    public final u6 f17635r;
-    public final Paint f17636s;
-    public final Paint v;
-    public final TextPaint f17637w;
-    public final TextPaint f17638x;
-    public final RadialProgress2 f17639y;
+import android.content.SharedPreferences;
+import java.lang.reflect.Array;
+public abstract class y0 {
+    public static final String[] f12332a = {"round_video_switch_back_to_front_ms", "round_video_switch_front_to_back_ms"};
+    public static final int[][] f12333b = (int[][]) Array.newInstance(Integer.TYPE, 2, 8);
+    public static final int[] f12334c = new int[2];
+    public static final int[] d = new int[2];
+    public static boolean e;
 
-    public y0(Context context, int i10, u6 u6Var) {
-        super(context);
-        this.f17636s = new Paint(1);
-        this.v = new Paint(1);
-        this.f17637w = new TextPaint(1);
-        this.f17638x = new TextPaint(1);
-        int dp = AndroidUtilities.dp(10.0f);
-        this.H = dp;
-        int dp2 = AndroidUtilities.dp(44.0f);
-        this.I = dp2;
-        this.J = AndroidUtilities.dp(16.0f);
-        this.K = AndroidUtilities.dp(16.0f);
-        this.V = -1;
-        this.f17633a0 = f7.f22629b;
-        this.f17634n = i10;
-        this.f17635r = u6Var;
-        setWillNotDraw(false);
-        setMinimumHeight(AndroidUtilities.dp(66.0f));
-        this.G = DownloadController.getInstance(i10).generateObserverTag();
-        RadialProgress2 radialProgress2 = new RadialProgress2(this, u6Var);
-        this.f17639y = radialProgress2;
-        radialProgress2.setCircleRadius(AndroidUtilities.dp(24.0f));
-        int i11 = this.J;
-        radialProgress2.r(i11, dp, i11 + dp2, dp2 + dp);
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.E = imageReceiver;
-        imageReceiver.setAllowLoadingOnAttachedOnly(true);
-        imageReceiver.setRoundRadius(AndroidUtilities.dp(6.0f));
-        j0 j0Var = new j0(context, u6Var, new b6.i(this, 29));
-        this.F = j0Var;
-        addView(j0Var.f17305a, kb1.i(-2, -2, 51));
-        updateColors();
+    public static int a(int i10) {
+        int i11 = f12334c[i10];
+        if (i11 == 0) {
+            if (i10 == 0) {
+                return 680;
+            }
+            return 630;
+        }
+        int i12 = 0;
+        for (int i13 = 0; i13 < i11; i13++) {
+            i12 += f12333b[i10][i13];
+        }
+        return Math.round(i12 / i11);
     }
 
-    @Override
-    public final boolean a(int i10, int i11) {
-        return this.F.f(i10, i11);
+    public static void b() {
+        int[] iArr = f12334c;
+        if (!e) {
+            e = true;
+            SharedPreferences sharedPreferences = org.telegram.messenger.w0.f19025b.getSharedPreferences("mainconfig", 0);
+            int i10 = 0;
+            while (true) {
+                String[] strArr = f12332a;
+                if (i10 < 2) {
+                    String string = sharedPreferences.getString(strArr[i10], null);
+                    if (string != null && !string.isEmpty()) {
+                        String[] split = string.split(",");
+                        for (int max = Math.max(0, split.length - 8); max < split.length; max++) {
+                            try {
+                                int max2 = Math.max(200, Math.min(2000, Integer.parseInt(split[max])));
+                                int[] iArr2 = f12333b[i10];
+                                int i11 = iArr[i10];
+                                iArr[i10] = i11 + 1;
+                                iArr2[i11] = max2;
+                            } catch (NumberFormatException unused) {
+                            }
+                        }
+                        d[i10] = iArr[i10] % 8;
+                    }
+                    i10++;
+                } else {
+                    return;
+                }
+            }
+        }
     }
 
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(y6.f23683uf));
+    public static void c(int i10) {
+        int i11;
+        int i12 = f12334c[i10];
+        if (i12 == 8) {
+            i11 = d[i10];
+        } else {
+            i11 = 0;
+        }
+        StringBuilder sb2 = new StringBuilder(i12 * 5);
+        for (int i13 = 0; i13 < i12; i13++) {
+            if (i13 > 0) {
+                sb2.append(',');
+            }
+            sb2.append(f12333b[i10][(i11 + i13) % 8]);
+        }
+        org.telegram.messenger.w0.f19025b.getSharedPreferences("mainconfig", 0).edit().putString(f12332a[i10], sb2.toString()).apply();
     }
 
-    @Override
-    public final void b() {
-        this.F.i();
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        this.F.c(canvas);
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        int i10;
-        int i11 = this.f17633a0;
-        int i12 = f7.f22629b;
-        if (i11 != i12) {
-            this.f17633a0 = i12;
+    public static synchronized int d(q0 q0Var, q0 q0Var2, int i10) {
+        int i11;
+        int a2;
+        synchronized (y0.class) {
             try {
-                RadialProgress2 radialProgress2 = this.f17639y;
-                u6 u6Var = this.f17635r;
-                if (radialProgress2 != null && (i10 = this.V) >= 0) {
-                    radialProgress2.d = y6.w0(i10, u6Var);
-                }
-                if (this.W && (getBackground() instanceof y1)) {
-                    ((y1) getBackground()).a(y6.w0(y6.f23357d6, u6Var));
-                }
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-        }
-        super.draw(canvas);
-    }
-
-    @Override
-    public final void e(int i10) {
-        int i11;
-        int dp = AndroidUtilities.dp(16.0f);
-        if (this.M) {
-            i10 = 0;
-        }
-        int i12 = dp + i10;
-        this.K = i12;
-        if (this.L) {
-            i12 += AndroidUtilities.dp(21.0f);
-        }
-        this.J = i12;
-        if (this.L) {
-            i11 = AndroidUtilities.dp(31.0f);
-        } else {
-            i11 = this.H;
-        }
-        int i13 = this.J;
-        int i14 = this.I;
-        this.f17639y.r(i13, i11, i13 + i14, i14 + i11);
-        requestLayout();
-    }
-
-    @Override
-    public final void fillTextLayoutBlocks(ArrayList arrayList) {
-        this.F.e(arrayList);
-    }
-
-    public final void g(TLRPC.Document document) {
-        String str;
-        File file;
-        String str2;
-        boolean z10;
-        boolean z11;
-        int i10;
-        int i11;
-        MessageObject messageObject;
-        String str3;
-        t tVar;
-        a aVar = this.f17652a;
-        ImageLocation imageLocation = null;
-        if (aVar != null && (tVar = aVar.f17056g) != null) {
-            str = tVar.e;
-        } else {
-            str = null;
-        }
-        if (TextUtils.isEmpty(str)) {
-            file = null;
-        } else {
-            file = new File(str);
-        }
-        if (document != null && (str3 = document.mime_type) != null) {
-            str2 = str3.toLowerCase();
-        } else {
-            str2 = "";
-        }
-        if (i() && file != null && file.exists() && (str2.startsWith("image/") || str2.equals("video/mp4"))) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        boolean isDocumentHasThumb = MessageObject.isDocumentHasThumb(document);
-        if (!z10 && !isDocumentHasThumb) {
-            z11 = false;
-        } else {
-            z11 = true;
-        }
-        this.L = z11;
-        int dp = AndroidUtilities.dp(16.0f);
-        if (this.M) {
-            i10 = 0;
-        } else {
-            i10 = this.f17654c;
-        }
-        int i12 = dp + i10;
-        this.K = i12;
-        if (this.L) {
-            i12 += AndroidUtilities.dp(21.0f);
-        }
-        this.J = i12;
-        if (this.L) {
-            i11 = AndroidUtilities.dp(31.0f);
-        } else {
-            i11 = this.H;
-        }
-        int i13 = this.J;
-        int i14 = this.I;
-        this.f17639y.r(i13, i11, i13 + i14, i14 + i11);
-        ImageReceiver imageReceiver = this.E;
-        if (z10) {
-            imageReceiver.setImageCoords(this.K, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(86.0f), AndroidUtilities.dp(86.0f));
-            this.E.setImage(ImageLocation.getForPath(str), "86_86", null, null, document, 1);
-        } else if (isDocumentHasThumb) {
-            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 320, false, null, true);
-            q3 q3Var = this.S;
-            if (q3Var == null) {
-                messageObject = null;
-            } else {
-                messageObject = q3Var.f17428a.f17558q3;
-            }
-            imageReceiver.setImageCoords(this.K, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(86.0f), AndroidUtilities.dp(86.0f));
-            if (closestPhotoSizeWithSize != null) {
-                imageLocation = ImageLocation.getForDocument(closestPhotoSizeWithSize, document);
-            }
-            ImageLocation imageLocation2 = imageLocation;
-            Drawable createStripedBitmap = ImageLoader.createStripedBitmap(document.thumbs);
-            if (messageObject == null) {
-                messageObject = this.T;
-            }
-            this.E.setImage(imageLocation2, "86_86", createStripedBitmap, null, messageObject, 1);
-        } else {
-            imageReceiver.clearImage();
-        }
-    }
-
-    @Override
-    public g1 getCaptionEditText() {
-        return this.F.f17305a;
-    }
-
-    @Override
-    public int getObserverTag() {
-        return this.G;
-    }
-
-    @Override
-    public a getRow() {
-        return this.f17652a;
-    }
-
-    public final TLRPC.Document h() {
-        t tVar;
-        a aVar = this.f17652a;
-        if (aVar != null && (tVar = aVar.f17056g) != null) {
-            return tVar.h;
-        }
-        return null;
-    }
-
-    public final boolean i() {
-        t tVar;
-        a aVar = this.f17652a;
-        if (aVar != null && (tVar = aVar.f17056g) != null && tVar.a()) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void j() {
-        int i10;
-        float f7;
-        int i11;
-        int i12;
-        t tVar;
-        TLRPC.Document h = h();
-        if (h == null) {
-            return;
-        }
-        if (this.L) {
-            i10 = this.K;
-            f7 = 97.0f;
-        } else {
-            i10 = this.J;
-            f7 = 54.0f;
-        }
-        int dp = AndroidUtilities.dp(f7) + i10;
-        int dp2 = AndroidUtilities.dp(40.0f);
-        if (getMeasuredWidth() > 0) {
-            i11 = getMeasuredWidth();
-        } else {
-            i11 = AndroidUtilities.displaySize.x;
-        }
-        int dp3 = (i11 - dp) - AndroidUtilities.dp(16.0f);
-        if (this.M) {
-            i12 = this.f17654c;
-        } else {
-            i12 = 0;
-        }
-        int max = Math.max(dp2, dp3 - i12);
-        TextPaint textPaint = this.f17637w;
-        textPaint.setTextSize(AndroidUtilities.dp(15.0f));
-        textPaint.setTypeface(AndroidUtilities.bold());
-        TextPaint textPaint2 = this.f17638x;
-        textPaint2.setTextSize(AndroidUtilities.dp(13.0f));
-        String documentFileName = FileLoader.getDocumentFileName(h);
-        if (TextUtils.isEmpty(documentFileName) && (tVar = this.f17652a.f17056g) != null && !TextUtils.isEmpty(tVar.e)) {
-            documentFileName = new File(this.f17652a.f17056g.e).getName();
-        }
-        if (documentFileName == null) {
-            documentFileName = "";
-        }
-        CharSequence ellipsize = TextUtils.ellipsize(documentFileName, textPaint, max, TextUtils.TruncateAt.END);
-        Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-        this.Q = new StaticLayout(ellipsize, textPaint, max, alignment, 1.0f, 0.0f, false);
-        long j10 = h.size;
-        if (j10 <= 0) {
-            t tVar2 = this.f17652a.f17056g;
-            if (tVar2 != null && !TextUtils.isEmpty(tVar2.e)) {
-                j10 = new File(this.f17652a.f17056g.e).length();
-            } else {
-                j10 = 0;
-            }
-        }
-        this.R = new StaticLayout(AndroidUtilities.formatFileSize(j10), textPaint2, max, alignment, 1.0f, 0.0f, false);
-    }
-
-    public final void k(boolean r10) {
-        throw new UnsupportedOperationException("Method not decompiled: li.y0.k(boolean):void");
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.N = true;
-        this.f17639y.n(this);
-        this.E.onAttachedToWindow();
-        k(false);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.N = false;
-        this.E.onDetachedFromWindow();
-        DownloadController.getInstance(this.f17634n).removeLoadingFileObserver(this);
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        int i10;
-        float f7;
-        int height;
-        s9 textSelectionHelper;
-        int i11;
-        float f10;
-        if (h() != null) {
-            boolean z10 = this.L;
-            u6 u6Var = this.f17635r;
-            if (z10 && !this.E.draw(canvas)) {
-                int w02 = y6.w0(y6.Gd, u6Var);
-                Paint paint = this.v;
-                paint.setColor(w02);
-                canvas.drawRoundRect(this.K, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(86.0f) + this.K, AndroidUtilities.dp(96.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paint);
-            }
-            this.f17639y.draw(canvas);
-            if (this.L) {
-                i10 = this.K;
-                f7 = 97.0f;
-            } else {
-                i10 = this.J;
-                f7 = 54.0f;
-            }
-            int dp = AndroidUtilities.dp(f7) + i10;
-            this.f17637w.setColor(y6.w0(y6.Dd, u6Var));
-            int dp2 = AndroidUtilities.dp(12.0f);
-            if (this.Q != null) {
-                canvas.save();
-                canvas.translate(dp, dp2);
-                this.Q.draw(canvas);
-                canvas.restore();
-            }
-            this.f17638x.setColor(y6.w0(y6.f23548nd, u6Var));
-            StaticLayout staticLayout = this.Q;
-            int i12 = 0;
-            if (staticLayout == null) {
-                height = 0;
-            } else {
-                height = staticLayout.getHeight();
-            }
-            int dp3 = AndroidUtilities.dp(2.0f) + dp2 + height;
-            if (this.R != null) {
-                canvas.save();
-                canvas.translate(dp, dp3);
-                this.R.draw(canvas);
-                canvas.restore();
-            }
-            if (this.S != null && (getParent() instanceof RecyclerView) && (textSelectionHelper = this.S.f17428a.getTextSelectionHelper()) != null && textSelectionHelper.x()) {
-                ((RecyclerView) getParent()).getClass();
-                int R = RecyclerView.R(this);
-                if (R > textSelectionHelper.f25412p0 && R <= textSelectionHelper.f25415s0) {
-                    if (this.M) {
+                b();
+                if (q0Var != q0Var2) {
+                    if (q0Var == q0.f12230b) {
                         i11 = 0;
                     } else {
-                        i11 = this.f17654c;
+                        i11 = 1;
                     }
-                    float dp4 = AndroidUtilities.dp(8.0f) + i11;
-                    float dp5 = AndroidUtilities.dp(2.0f);
-                    int width = getWidth();
-                    if (this.M) {
-                        i12 = this.f17654c;
+                    int max = Math.max(200, Math.min(2000, i10));
+                    int[] iArr = f12333b[i11];
+                    int[] iArr2 = d;
+                    iArr[iArr2[i11]] = max;
+                    iArr2[i11] = (iArr2[i11] + 1) % 8;
+                    int[] iArr3 = f12334c;
+                    int i12 = iArr3[i11];
+                    if (i12 < 8) {
+                        iArr3[i11] = i12 + 1;
                     }
-                    float dp6 = (width - i12) - AndroidUtilities.dp(8.0f);
-                    if (this.L) {
-                        f10 = 104.0f;
-                    } else {
-                        f10 = 64.0f;
-                    }
-                    canvas.drawRoundRect(dp4, dp5, dp6, AndroidUtilities.dp(f10), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f17636s);
+                    c(i11);
+                    a2 = a(i11);
+                } else {
+                    throw new IllegalArgumentException("Camera switch direction must change");
                 }
+            } catch (Throwable th2) {
+                throw th2;
             }
         }
-    }
-
-    @Override
-    public final void onFailedDownload(String str, boolean z10) {
-        k(true);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int i14;
-        float f7;
-        boolean z11 = this.M;
-        int i15 = 0;
-        if (z11) {
-            i14 = 0;
-        } else {
-            i14 = this.f17654c;
-        }
-        if (z11) {
-            i15 = this.f17654c;
-        }
-        int i16 = i12 - i10;
-        if (this.L) {
-            f7 = 106.0f;
-        } else {
-            f7 = 66.0f;
-        }
-        this.F.g(i14, i15, i16, AndroidUtilities.dp(f7));
-        j();
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        float f7;
-        int size = View.MeasureSpec.getSize(i10);
-        boolean z10 = this.M;
-        int i13 = 0;
-        if (z10) {
-            i12 = 0;
-        } else {
-            i12 = this.f17654c;
-        }
-        if (z10) {
-            i13 = this.f17654c;
-        }
-        int h = this.F.h(i12, i13, size);
-        if (this.L) {
-            f7 = 106.0f;
-        } else {
-            f7 = 66.0f;
-        }
-        setMeasuredDimension(size, AndroidUtilities.dp(f7) + h);
-    }
-
-    @Override
-    public final void onProgressDownload(String str, long j10, long j11) {
-        float min;
-        if (j11 <= 0) {
-            min = 0.0f;
-        } else {
-            min = Math.min(1.0f, ((float) j10) / ((float) j11));
-        }
-        this.f17639y.p(min, true);
-    }
-
-    @Override
-    public final void onSuccessDownload(String str) {
-        this.f17639y.p(1.0f, true);
-        k(true);
-    }
-
-    @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r8) {
-        throw new UnsupportedOperationException("Method not decompiled: li.y0.onTouchEvent(android.view.MotionEvent):boolean");
-    }
-
-    @Override
-    public final void updateColors() {
-        this.f17636s.setColor(y6.w0(y6.f23683uf, this.f17635r));
-        j0 j0Var = this.F;
-        if (j0Var != null) {
-            j0Var.a();
-        }
-    }
-
-    @Override
-    public final void onProgressUpload(String str, long j10, long j11, boolean z10) {
+        return a2;
     }
 }

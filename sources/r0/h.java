@@ -1,20 +1,33 @@
 package r0;
 
-import android.content.Context;
-import android.view.VelocityTracker;
-import li.h5;
+import android.view.DisplayCutout;
+import j$.util.Objects;
 public final class h {
-    public final Context f47132a;
-    public final h5 f47133b;
-    public VelocityTracker f47134c;
-    public float d;
-    public int e = -1;
-    public int f47135f = -1;
-    public int f47136g = -1;
-    public final int[] h = {Integer.MAX_VALUE, 0};
+    public final DisplayCutout f46122a;
 
-    public h(Context context, h5 h5Var) {
-        this.f47132a = context;
-        this.f47133b = h5Var;
+    public h(DisplayCutout displayCutout) {
+        this.f46122a = displayCutout;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && h.class == obj.getClass()) {
+            return Objects.equals(this.f46122a, ((h) obj).f46122a);
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        DisplayCutout displayCutout = this.f46122a;
+        if (displayCutout == null) {
+            return 0;
+        }
+        return displayCutout.hashCode();
+    }
+
+    public final String toString() {
+        return "DisplayCutoutCompat{" + this.f46122a + "}";
     }
 }

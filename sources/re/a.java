@@ -1,4 +1,4 @@
 package re;
-public interface a {
-    void a();
+public final class a {
+    public final int f46484a;
 }

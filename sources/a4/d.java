@@ -1,27 +1,23 @@
 package a4;
 
-import android.util.Pair;
-import bh.x0;
-import bh.y0;
-import bi.ud;
-import di.q;
-import di.s4;
-import di.w0;
-import fi.xb;
-import ig.h0;
-import ig.y1;
+import ag.h3;
 import java.io.File;
 import java.util.Comparator;
-import jg.b2;
-import org.telegram.messenger.camera.CameraController;
-import org.telegram.messenger.camera.Size;
-import org.telegram.tgnet.TLObject;
+import java.util.HashMap;
+import kg.y1;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.b1;
+import org.telegram.messenger.bj;
+import org.telegram.messenger.ef;
+import org.telegram.messenger.f0;
+import org.telegram.messenger.i0;
+import org.telegram.messenger.jj;
+import org.telegram.messenger.k6;
+import org.telegram.messenger.k7;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Stories.ProfileStoriesView;
-import s4.e1;
+import org.telegram.tgnet.tl.TL_update;
+import s4.c1;
 public final class d implements Comparator {
     public final int f233a;
 
@@ -31,137 +27,223 @@ public final class d implements Comparator {
 
     @Override
     public final int compare(Object obj, Object obj2) {
+        int top;
+        int top2;
         int i10;
         int i11;
-        int i12;
-        int lambda$initCamera$0;
-        int i13 = -1;
+        int compare;
         switch (this.f233a) {
             case 0:
                 return Integer.compare(((e) obj2).f236b, ((e) obj).f236b);
             case 1:
-                return Long.compare(((TLRPC.PollAnswer) obj).shuffle_hash ^ Long.MIN_VALUE, ((TLRPC.PollAnswer) obj2).shuffle_hash ^ Long.MIN_VALUE);
-            case 2:
-                return (int) (y0.k((TLObject) obj) - y0.k((TLObject) obj2));
-            case 3:
-                i10 = ((TL_stars.SavedStarGift) obj2).date;
-                i11 = ((TL_stars.SavedStarGift) obj).date;
-                break;
-            case 4:
-                i10 = ((TL_stars.SavedStarGift) obj2).date;
-                i11 = ((TL_stars.SavedStarGift) obj).date;
-                break;
-            case 5:
-                return (int) (((ud) obj2).d - ((ud) obj).d);
-            case 6:
-                int i14 = (((ci.a) obj2).f6366c > ((ci.a) obj).f6366c ? 1 : (((ci.a) obj2).f6366c == ((ci.a) obj).f6366c ? 0 : -1));
-                if (i14 > 0) {
-                    return 1;
-                }
-                if (i14 < 0) {
-                    return -1;
-                }
-                return 0;
-            case 7:
-                return ((File) obj2).getName().compareTo(((File) obj).getName());
-            case 8:
-                String name = ((File) obj).getName();
-                int i15 = da.b.f8267f;
-                return name.substring(0, i15).compareTo(((File) obj2).getName().substring(0, i15));
-            case 9:
-                i10 = ((q) obj2).f8936b;
-                i11 = ((q) obj).f8936b;
-                break;
-            case 10:
-            case 12:
-                i10 = ((w0) obj2).f9285c;
-                i11 = ((w0) obj).f9285c;
-                break;
-            case 11:
-                return (int) (((TL_phone.groupCallDonor) obj2).stars - ((TL_phone.groupCallDonor) obj).stars);
-            case 13:
-                return ((Integer) ((Pair) obj).first).intValue() - ((Integer) ((Pair) obj2).first).intValue();
-            case 14:
-                int i16 = ProfileStoriesView.f36256s0;
-                return (int) (((s4) obj2).f9149i - ((s4) obj).f9149i);
-            case 15:
-                return (int) (((Long) obj2).longValue() - ((Long) obj).longValue());
-            case 16:
-                x0 x0Var = (x0) obj2;
-                String str = ((x0) obj).f4208f;
-                if (str != null && str.equals("❤")) {
-                    i12 = -1;
-                } else {
-                    i12 = 0;
-                }
-                String str2 = x0Var.f4208f;
-                return i12 - ((str2 == null || !str2.equals("❤")) ? 0 : 0);
-            case 17:
-                return (int) (((xb) obj2).e - ((xb) obj).e);
-            case 18:
-                return Integer.compare(((i4.d) obj).f13855a.f13858b, ((i4.d) obj2).f13855a.f13858b);
-            case 19:
-                return Long.compare(((i4.c) obj).f13852b, ((i4.c) obj2).f13852b);
-            case 20:
-                int i17 = ((h0) obj).f14064b;
-                int i18 = ((h0) obj2).f14064b;
-                if (i17 < i18) {
-                    return 1;
-                }
-                if (i17 > i18) {
-                    return -1;
-                }
-                return 0;
-            case 21:
-                return Double.compare(((TLRPC.TL_topPeer) obj2).rating, ((TLRPC.TL_topPeer) obj).rating);
-            case 22:
-                int i19 = ((y1) obj).f14305b;
-                int i20 = ((y1) obj2).f14305b;
-                if (i19 < i20) {
-                    return 1;
-                }
-                if (i19 > i20) {
-                    return -1;
-                }
-                return 0;
-            case 23:
                 return ((TL_account.TL_businessWeeklyOpen) obj).start_minute - ((TL_account.TL_businessWeeklyOpen) obj2).start_minute;
-            case 24:
-                return ((b2) obj).f15641c - ((b2) obj2).f15641c;
-            case 25:
-                i10 = Integer.bitCount(((Integer) obj2).intValue());
-                i11 = Integer.bitCount(((Integer) obj).intValue());
+            case 2:
+                return ((h3) obj).f553c - ((h3) obj2).f553c;
+            case 3:
+                return ((File) obj2).getName().compareTo(((File) obj).getName());
+            case 4:
+                String name = ((File) obj).getName();
+                int i12 = ca.b.f4077f;
+                return name.substring(0, i12).compareTo(((File) obj2).getName().substring(0, i12));
+            case 5:
+                top = ((c1) obj2).f47898a.getTop();
+                top2 = ((c1) obj).f47898a.getTop();
                 break;
-            case 26:
+            case 6:
+                return Integer.compare(((i4.d) obj).f8182a.f8185b, ((i4.d) obj2).f8182a.f8185b);
+            case 7:
+                return Long.compare(((i4.c) obj).f8179b, ((i4.c) obj2).f8179b);
+            case 8:
+                top = Integer.bitCount(((Integer) obj2).intValue());
+                top2 = Integer.bitCount(((Integer) obj).intValue());
+                break;
+            case 9:
+                return (int) ((((y1) obj).f11339a * 100.0f) - (((y1) obj2).f11339a * 100.0f));
+            case 10:
                 m2.b bVar = (m2.b) obj;
                 m2.b bVar2 = (m2.b) obj2;
-                int compare = Integer.compare(bVar.f17933c, bVar2.f17933c);
-                if (compare == 0) {
-                    return bVar.f17932b.compareTo(bVar2.f17932b);
+                int compare2 = Integer.compare(bVar.f12629c, bVar2.f12629c);
+                if (compare2 == 0) {
+                    return bVar.f12628b.compareTo(bVar2.f12628b);
                 }
-                return compare;
-            case 27:
-                i10 = ((e1) obj2).f47773a.getTop();
-                i11 = ((e1) obj).f47773a.getTop();
-                break;
-            case 28:
+                return compare2;
+            case 11:
+                return ((String) obj).compareTo((String) obj2);
+            case 12:
                 byte[] bArr = (byte[]) obj;
                 byte[] bArr2 = (byte[]) obj2;
                 if (bArr.length != bArr2.length) {
                     return bArr.length - bArr2.length;
                 }
-                for (int i21 = 0; i21 < bArr.length; i21++) {
-                    byte b10 = bArr[i21];
-                    byte b11 = bArr2[i21];
+                for (int i13 = 0; i13 < bArr.length; i13++) {
+                    byte b10 = bArr[i13];
+                    byte b11 = bArr2[i13];
                     if (b10 != b11) {
                         return b10 - b11;
                     }
                 }
                 return 0;
+            case 13:
+                f0 f0Var = (f0) obj;
+                f0 f0Var2 = (f0) obj2;
+                int i14 = f0Var.f15490b;
+                int i15 = f0Var2.f15490b;
+                if (i14 < i15) {
+                    return -1;
+                }
+                if (i14 > i15 || (i10 = f0Var.f15491c) < (i11 = f0Var2.f15491c)) {
+                    return 1;
+                }
+                if (i10 > i11) {
+                    return -1;
+                }
+                return 0;
+            case 14:
+                int i16 = (((b1) obj2).e > ((b1) obj).e ? 1 : (((b1) obj2).e == ((b1) obj).e ? 0 : -1));
+                if (i16 > 0) {
+                    return -1;
+                }
+                if (i16 < 0) {
+                    return 1;
+                }
+                return 0;
+            case 15:
+                return i0.A(((TL_update.TL_updateGroupCallParticipants) obj).version, ((TL_update.TL_updateGroupCallParticipants) obj2).version);
+            case 16:
+                int i17 = (((TLRPC.TL_contact) obj).user_id > ((TLRPC.TL_contact) obj2).user_id ? 1 : (((TLRPC.TL_contact) obj).user_id == ((TLRPC.TL_contact) obj2).user_id ? 0 : -1));
+                if (i17 > 0) {
+                    return 1;
+                }
+                if (i17 < 0) {
+                    return -1;
+                }
+                return 0;
+            case 17:
+                Integer num = 0;
+                HashMap hashMap = k6.h;
+                Integer num2 = (Integer) hashMap.get((String) obj);
+                Integer num3 = (Integer) hashMap.get((String) obj2);
+                if (num2 == null) {
+                    num2 = num;
+                }
+                if (num3 != null) {
+                    num = num3;
+                }
+                if (num2.intValue() > num.intValue()) {
+                    return -1;
+                }
+                if (num2.intValue() < num.intValue()) {
+                    return 1;
+                }
+                return 0;
+            case 18:
+                int i18 = (((k7) obj).f16542a > ((k7) obj2).f16542a ? 1 : (((k7) obj).f16542a == ((k7) obj2).f16542a ? 0 : -1));
+                if (i18 > 0) {
+                    return 1;
+                }
+                if (i18 < 0) {
+                    return -1;
+                }
+                return 0;
+            case 19:
+                jj jjVar = (jj) obj;
+                jj jjVar2 = (jj) obj2;
+                String[] strArr = MediaController.U1;
+                int f12 = jjVar.f1();
+                int f13 = jjVar2.f1();
+                long j10 = jjVar.f16337k.grouped_id;
+                long j11 = jjVar2.f16337k.grouped_id;
+                if (f12 < 0 && f13 < 0) {
+                    if (j10 != 0 && j10 == j11) {
+                        compare = Integer.compare(f12, f13);
+                    } else {
+                        return Integer.compare(f13, f12);
+                    }
+                } else if (j10 != 0 && j10 == j11) {
+                    compare = Integer.compare(f13, f12);
+                } else {
+                    return Integer.compare(f12, f13);
+                }
+                return -compare;
+            case 20:
+                String[] strArr2 = MediaController.U1;
+                int i19 = (((ef) obj).D > ((ef) obj2).D ? 1 : (((ef) obj).D == ((ef) obj2).D ? 0 : -1));
+                if (i19 < 0) {
+                    return 1;
+                }
+                if (i19 > 0) {
+                    return -1;
+                }
+                return 0;
+            case 21:
+                double d = ((TLRPC.TL_topPeer) obj).rating;
+                double d10 = ((TLRPC.TL_topPeer) obj2).rating;
+                if (d > d10) {
+                    return -1;
+                }
+                if (d < d10) {
+                    return 1;
+                }
+                return 0;
+            case 22:
+                int i20 = ((TLRPC.MessageEntity) obj).offset;
+                int i21 = ((TLRPC.MessageEntity) obj2).offset;
+                if (i20 > i21) {
+                    return 1;
+                }
+                if (i20 < i21) {
+                    return -1;
+                }
+                return 0;
+            case 23:
+                double d11 = ((TLRPC.TL_topPeer) obj).rating;
+                double d12 = ((TLRPC.TL_topPeer) obj2).rating;
+                if (d11 > d12) {
+                    return -1;
+                }
+                if (d11 < d12) {
+                    return 1;
+                }
+                return 0;
+            case 24:
+                double d13 = ((TLRPC.TL_topPeer) obj).rating;
+                double d14 = ((TLRPC.TL_topPeer) obj2).rating;
+                if (d13 > d14) {
+                    return -1;
+                }
+                if (d13 < d14) {
+                    return 1;
+                }
+                return 0;
+            case 25:
+                int i22 = ((TLRPC.MessageEntity) obj).offset;
+                int i23 = ((TLRPC.MessageEntity) obj2).offset;
+                if (i22 > i23) {
+                    return 1;
+                }
+                if (i22 < i23) {
+                    return -1;
+                }
+                return 0;
+            case 26:
+                return Integer.compare(((TLRPC.MessageEntity) obj).offset, ((TLRPC.MessageEntity) obj2).offset);
+            case 27:
+                int i24 = ((TLRPC.MessageEntity) obj).offset;
+                int i25 = ((TLRPC.MessageEntity) obj2).offset;
+                if (i24 > i25) {
+                    return 1;
+                }
+                if (i24 < i25) {
+                    return -1;
+                }
+                return 0;
+            case 28:
+                top = ((String) obj2).length();
+                top2 = ((String) obj).length();
+                break;
             default:
-                lambda$initCamera$0 = CameraController.lambda$initCamera$0((Size) obj, (Size) obj2);
-                return lambda$initCamera$0;
+                return ((bj) obj).f14775a - ((bj) obj2).f14775a;
         }
-        return i10 - i11;
+        return top - top2;
     }
 }

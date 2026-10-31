@@ -5,16 +5,16 @@ import android.content.Context;
 import android.content.Intent;
 public class NotificationCallbackReceiver extends BroadcastReceiver {
     @Override
-    public void onReceive(Context context, Intent intent) {
+    public final void onReceive(Context context, Intent intent) {
         if (intent != null) {
-            ApplicationLoader.postInitApplication();
-            int intExtra = intent.getIntExtra("currentAccount", UserConfig.selectedAccount);
-            if (!UserConfig.isValidAccount(intExtra)) {
+            w0.w();
+            int intExtra = intent.getIntExtra("currentAccount", d20.f15147s0);
+            if (!d20.r(intExtra)) {
                 return;
             }
             long longExtra = intent.getLongExtra("did", 777000L);
             byte[] byteArrayExtra = intent.getByteArrayExtra("data");
-            SendMessagesHelper.getInstance(intExtra).sendNotificationCallback(longExtra, intent.getIntExtra("mid", 0), byteArrayExtra);
+            i0.g3(new rk(qz.C(intExtra), longExtra, intent.getIntExtra("mid", 0), byteArrayExtra, 10));
         }
     }
 }

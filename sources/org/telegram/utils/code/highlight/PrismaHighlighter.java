@@ -1,22 +1,22 @@
 package org.telegram.utils.code.highlight;
 
 import com.google.android.gms.internal.play_billing.s0;
-import ni.r;
+import di.t;
 public final class PrismaHighlighter implements AutoCloseable {
-    public long f46428a;
-    public final String[] f46429b;
-    public final r f46430c;
+    public long f44262a;
+    public final String[] f44263b;
+    public final t f44264c;
 
     public PrismaHighlighter(byte[] bArr) {
         if (bArr != null) {
             long nativeCreate = nativeCreate(bArr);
-            this.f46428a = nativeCreate;
+            this.f44262a = nativeCreate;
             if (nativeCreate != 0) {
                 try {
                     String[] nativeGetTokenNames = nativeGetTokenNames(nativeCreate);
-                    this.f46429b = nativeGetTokenNames;
+                    this.f44263b = nativeGetTokenNames;
                     if (nativeGetTokenNames != null && nativeGetTokenNames.length != 0 && "".equals(nativeGetTokenNames[0])) {
-                        this.f46430c = new r(nativeGetTokenNames);
+                        this.f44264c = new t(nativeGetTokenNames);
                         return;
                     }
                     throw new IllegalStateException("Invalid native token name table");
@@ -24,8 +24,8 @@ public final class PrismaHighlighter implements AutoCloseable {
                     e = e;
                     close();
                     throw e;
-                } catch (RuntimeException e10) {
-                    e = e10;
+                } catch (RuntimeException e7) {
+                    e = e7;
                     close();
                     throw e;
                 }
@@ -82,7 +82,7 @@ public final class PrismaHighlighter implements AutoCloseable {
 
     public final synchronized String[] a() {
         long j10;
-        j10 = this.f46428a;
+        j10 = this.f44262a;
         if (j10 != 0) {
         } else {
             throw new IllegalStateException("Highlighter is closed");
@@ -92,26 +92,26 @@ public final class PrismaHighlighter implements AutoCloseable {
 
     public final synchronized s0 c(String str, String str2) {
         int[] nativeHighlight;
-        long j10 = this.f46428a;
+        long j10 = this.f44262a;
         if (j10 != 0) {
             if (str != null) {
                 nativeHighlight = nativeHighlight(j10, str, str2);
-                d(this.f46429b.length, nativeHighlight, str);
+                d(this.f44263b.length, nativeHighlight, str);
             } else {
                 throw new NullPointerException("text");
             }
         } else {
             throw new IllegalStateException("Highlighter is closed");
         }
-        return new s0(nativeHighlight, this.f46430c);
+        return new s0(nativeHighlight, this.f44264c);
     }
 
     @Override
     public final synchronized void close() {
-        long j10 = this.f46428a;
+        long j10 = this.f44262a;
         if (j10 != 0) {
             nativeDestroy(j10);
-            this.f46428a = 0L;
+            this.f44262a = 0L;
         }
     }
 }

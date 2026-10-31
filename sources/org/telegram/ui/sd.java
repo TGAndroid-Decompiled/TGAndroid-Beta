@@ -1,23 +1,31 @@
 package org.telegram.ui;
+public final class sd implements Runnable {
+    public final int f41476a;
+    public final le f41477b;
+    public final u61 f41478c;
+    public final TwoStepVerificationActivity d;
 
-import android.view.View;
-public final class sd implements View.OnClickListener {
-    public final int f43298a;
-    public final org.telegram.ui.ActionBar.k3 f43299b;
-
-    public sd(org.telegram.ui.ActionBar.k3 k3Var, int i10) {
-        this.f43298a = i10;
-        this.f43299b = k3Var;
+    public sd(le leVar, u61 u61Var, TwoStepVerificationActivity twoStepVerificationActivity, int i10) {
+        this.f41476a = i10;
+        this.f41477b = leVar;
+        this.f41478c = u61Var;
+        this.d = twoStepVerificationActivity;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f43298a) {
+    public final void run() {
+        switch (this.f41476a) {
             case 0:
-                this.f43299b.dismiss();
+                this.f41477b.A0.setLoading(false);
+                this.f41478c.presentFragment(this.d);
+                return;
+            case 1:
+                this.f41477b.G0.setLoading(false);
+                this.f41478c.presentFragment(this.d);
                 return;
             default:
-                this.f43299b.dismiss();
+                this.f41477b.G0.setLoading(false);
+                this.f41478c.presentFragment(this.d);
                 return;
         }
     }

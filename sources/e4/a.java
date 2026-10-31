@@ -5,22 +5,22 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import e2.j;
 import e2.x;
-import f9.i0;
+import e9.n0;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.telegram.ui.Components.b10;
+import sc.e;
 import z3.d;
 import z3.l;
 import z3.m;
 public final class a implements m {
     public static final Pattern d = Pattern.compile("\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*-->\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*");
     public static final Pattern e = Pattern.compile("\\{\\\\.*?\\}");
-    public final StringBuilder f9774a = new StringBuilder();
-    public final ArrayList f9775b = new ArrayList();
-    public final x f9776c = new x();
+    public final StringBuilder f6250a = new StringBuilder();
+    public final ArrayList f6251b = new ArrayList();
+    public final x f6252c = new x();
 
     public static d2.b a(android.text.Spanned r21, java.lang.String r22) {
         throw new UnsupportedOperationException("Method not decompiled: e4.a.a(android.text.Spanned, java.lang.String):d2.b");
@@ -48,13 +48,23 @@ public final class a implements m {
     }
 
     @Override
-    public final void G(byte[] bArr, int i10, int i11, l lVar, j jVar) {
+    public final d l(int i10, int i11, byte[] bArr) {
+        return e.a(this, bArr, i11);
+    }
+
+    @Override
+    public final int o() {
+        return 1;
+    }
+
+    @Override
+    public final void z(byte[] bArr, int i10, int i11, l lVar, j jVar) {
         ArrayList arrayList;
         String n10;
         String str;
         a aVar = this;
-        long j10 = lVar.f52720a;
-        x xVar = aVar.f9776c;
+        long j10 = lVar.f54572a;
+        x xVar = aVar.f6252c;
         xVar.L(i10 + i11, bArr);
         xVar.N(i10);
         Charset J = xVar.J();
@@ -62,7 +72,7 @@ public final class a implements m {
             J = StandardCharsets.UTF_8;
         }
         long j11 = -9223372036854775807L;
-        if (j10 != -9223372036854775807L && lVar.f52721b) {
+        if (j10 != -9223372036854775807L && lVar.f54573b) {
             arrayList = new ArrayList();
         } else {
             arrayList = null;
@@ -86,10 +96,10 @@ public final class a implements m {
                 if (matcher.matches()) {
                     long b10 = b(matcher, 1);
                     long b11 = b(matcher, 6);
-                    StringBuilder sb2 = aVar.f9774a;
+                    StringBuilder sb2 = aVar.f6250a;
                     sb2.setLength(0);
                     long j12 = j11;
-                    ArrayList arrayList2 = aVar.f9775b;
+                    ArrayList arrayList2 = aVar.f6251b;
                     arrayList2.clear();
                     for (String n12 = xVar.n(J); !TextUtils.isEmpty(n12); n12 = xVar.n(J)) {
                         if (sb2.length() > 0) {
@@ -127,10 +137,10 @@ public final class a implements m {
                     }
                     if (j13 != j12 && b11 < j13) {
                         if (arrayList != null) {
-                            arrayList.add(new z3.a(b10, b11 - b10, i0.y(a(fromHtml, str))));
+                            arrayList.add(new z3.a(b10, b11 - b10, n0.y(a(fromHtml, str))));
                         }
                     } else {
-                        jVar.accept(new z3.a(b10, b11 - b10, i0.y(a(fromHtml, str))));
+                        jVar.accept(new z3.a(b10, b11 - b10, n0.y(a(fromHtml, str))));
                     }
                     aVar = this;
                     j11 = j12;
@@ -150,16 +160,6 @@ public final class a implements m {
                 jVar.accept((z3.a) obj);
             }
         }
-    }
-
-    @Override
-    public final d j(int i10, int i11, byte[] bArr) {
-        return b10.a(this, bArr, i11);
-    }
-
-    @Override
-    public final int y() {
-        return 1;
     }
 
     @Override

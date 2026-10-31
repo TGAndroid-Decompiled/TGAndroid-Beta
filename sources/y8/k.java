@@ -1,123 +1,76 @@
 package y8;
 
-import android.app.Service;
-import android.content.ComponentName;
-import android.content.Intent;
-import android.os.HandlerThread;
-import android.os.IBinder;
-import android.os.Looper;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
-import com.google.android.gms.tasks.Task;
-import java.util.List;
-public abstract class k extends Service implements c {
-    public static final String BIND_LISTENER_INTENT_ACTION = "com.google.android.gms.wearable.BIND_LISTENER";
-    private ComponentName zza;
-    private q zzb;
-    private IBinder zzc;
-    private Intent zzd;
-    private Looper zze;
-    private boolean zzg;
-    private final Object zzf = new Object();
-    private z8.e zzh = new z8.e(new t6.f(this));
+import com.google.android.gms.wearable.internal.DataItemAssetParcelable;
+import java.util.HashMap;
+import java.util.Map;
+public final class k extends o6.a {
+    public static final Parcelable.Creator<k> CREATOR = new c(8);
+    public final Uri f54241a;
+    public final HashMap f54242b;
+    public final byte[] f54243c;
 
-    public Looper getLooper() {
-        if (this.zze == null) {
-            HandlerThread handlerThread = new HandlerThread("WearableListenerService");
-            handlerThread.start();
-            this.zze = handlerThread.getLooper();
+    public k(Uri uri, Bundle bundle, byte[] bArr) {
+        this.f54241a = uri;
+        HashMap hashMap = new HashMap();
+        ClassLoader classLoader = DataItemAssetParcelable.class.getClassLoader();
+        n6.l.g(classLoader);
+        bundle.setClassLoader(classLoader);
+        for (String str : bundle.keySet()) {
+            Parcelable parcelable = bundle.getParcelable(str);
+            n6.l.g(parcelable);
+            hashMap.put(str, (DataItemAssetParcelable) parcelable);
         }
-        return this.zze;
+        this.f54242b = hashMap;
+        this.f54243c = bArr;
     }
 
-    @Override
-    public final android.os.IBinder onBind(android.content.Intent r5) {
-        throw new UnsupportedOperationException("Method not decompiled: y8.k.onBind(android.content.Intent):android.os.IBinder");
-    }
-
-    @Override
-    public void onChannelClosed(b bVar, int i10, int i11) {
-    }
-
-    @Override
-    public void onChannelOpened(b bVar) {
-    }
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        this.zza = new ComponentName(this, getClass().getName());
-        if (Log.isLoggable("WearableLS", 3)) {
-            Log.d("WearableLS", "onCreate: ".concat(String.valueOf(this.zza)));
+    public final String toString() {
+        Object valueOf;
+        boolean isLoggable = Log.isLoggable("DataItem", 3);
+        StringBuilder sb2 = new StringBuilder("DataItemParcelable[@");
+        sb2.append(Integer.toHexString(hashCode()));
+        byte[] bArr = this.f54243c;
+        if (bArr == null) {
+            valueOf = "null";
+        } else {
+            valueOf = Integer.valueOf(bArr.length);
         }
-        this.zzb = new q(this, getLooper());
-        Intent intent = new Intent("com.google.android.gms.wearable.BIND_LISTENER");
-        this.zzd = intent;
-        intent.setComponent(this.zza);
-        this.zzc = new m(this);
-    }
-
-    @Override
-    public void onDestroy() {
-        if (Log.isLoggable("WearableLS", 3)) {
-            Log.d("WearableLS", "onDestroy: ".concat(String.valueOf(this.zza)));
+        sb2.append(",dataSz=".concat(valueOf.toString()));
+        HashMap hashMap = this.f54242b;
+        int size = hashMap.size();
+        sb2.append(", numAssets=" + size);
+        sb2.append(", uri=".concat(String.valueOf(this.f54241a)));
+        if (!isLoggable) {
+            sb2.append("]");
+            return sb2.toString();
         }
-        synchronized (this.zzf) {
-            this.zzg = true;
-            q qVar = this.zzb;
-            if (qVar != null) {
-                qVar.getLooper().quit();
-                qVar.a("quit");
-            } else {
-                throw new IllegalStateException("onDestroy: mServiceHandler not set, did you override onCreate() but forget to call super.onCreate()? component=".concat(String.valueOf(this.zza)));
-            }
+        sb2.append("]\n  assets: ");
+        for (String str : hashMap.keySet()) {
+            String valueOf2 = String.valueOf(hashMap.get(str));
+            sb2.append("\n    " + str + ": " + valueOf2);
         }
-        super.onDestroy();
+        sb2.append("\n  ]");
+        return sb2.toString();
     }
 
     @Override
-    public void onInputClosed(b bVar, int i10, int i11) {
-    }
-
-    public abstract void onMessageReceived(g gVar);
-
-    @Override
-    public void onOutputClosed(b bVar, int i10, int i11) {
-    }
-
-    public Task<byte[]> onRequest(String str, String str2, byte[] bArr) {
-        return null;
-    }
-
-    public void onChannelClosed(d dVar, int i10, int i11) {
-    }
-
-    public void onChannelOpened(d dVar) {
-    }
-
-    public void onInputClosed(d dVar, int i10, int i11) {
-    }
-
-    public void onOutputClosed(d dVar, int i10, int i11) {
-    }
-
-    public void onCapabilityChanged(a aVar) {
-    }
-
-    public void onConnectedNodes(List<h> list) {
-    }
-
-    public void onDataChanged(e eVar) {
-    }
-
-    public void onEntityUpdate(l lVar) {
-    }
-
-    public void onNotificationReceived(n nVar) {
-    }
-
-    public void onPeerConnected(h hVar) {
-    }
-
-    public void onPeerDisconnected(h hVar) {
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q6 = w7.h0.q(parcel, 20293);
+        w7.h0.k(parcel, 2, this.f54241a, i10);
+        Bundle bundle = new Bundle();
+        ClassLoader classLoader = DataItemAssetParcelable.class.getClassLoader();
+        n6.l.g(classLoader);
+        bundle.setClassLoader(classLoader);
+        for (Map.Entry entry : this.f54242b.entrySet()) {
+            bundle.putParcelable((String) entry.getKey(), new DataItemAssetParcelable((DataItemAssetParcelable) entry.getValue()));
+        }
+        w7.h0.b(parcel, 4, bundle);
+        w7.h0.c(parcel, 5, this.f54243c);
+        w7.h0.r(parcel, q6);
     }
 }

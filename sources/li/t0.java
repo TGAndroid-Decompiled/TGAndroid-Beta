@@ -1,32 +1,15 @@
 package li;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.Components.k71;
-import org.telegram.ui.Components.nm0;
-import org.telegram.ui.Components.s71;
-import org.telegram.ui.Components.t61;
-import org.telegram.ui.Components.u61;
-public final class t0 extends t61 {
-    public static final int f17487a = 0;
+import java.io.File;
+public final class t0 {
+    public final long f12247a;
+    public final File f12248b;
+    public volatile long f12249c;
+    public volatile boolean d;
+    public volatile boolean e;
 
-    static {
-        t61.setup(new t61());
-    }
-
-    @Override
-    public final void bindView(View view, u61 u61Var, boolean z10, k71 k71Var, s71 s71Var) {
-        ((u0) view).f17506c = (a) u61Var.G;
-    }
-
-    @Override
-    public final View createView(Context context, nm0 nm0Var, int i10, int i11, u6 u6Var) {
-        return new u0(context, u6Var);
-    }
-
-    @Override
-    public final boolean isClickable() {
-        return false;
+    public t0(long j10, File file) {
+        this.f12247a = j10;
+        this.f12248b = file;
     }
 }

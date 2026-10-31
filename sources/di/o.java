@@ -1,25 +1,27 @@
 package di;
 
-import j$.util.Objects;
-public final class o extends qg.a {
-    public final long f8854c;
+import com.google.android.gms.internal.play_billing.s0;
+public final class o {
+    public final n4.q f5979a;
+    public final long f5980b;
 
-    public o(long j10) {
-        super(0, false);
-        this.f8854c = j10;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public o(q qVar, n4.q qVar2) {
+        long length;
+        long j10;
+        this.f5979a = qVar2;
+        long length2 = ((qVar.f5982b.length() + qVar.f5981a.length()) * 2) + 128;
+        s0 s0Var = (s0) qVar2.f13526a;
+        if (s0Var == null) {
+            j10 = 1024;
+        } else {
+            long length3 = (((int[]) s0Var.f5199a).length * 4) + 64;
+            if (((int[]) s0Var.f5201c) == null) {
+                length = 0;
+            } else {
+                length = ((int[]) s0Var.f5201c).length * 4;
+            }
+            j10 = length + length3;
         }
-        if ((obj instanceof o) && this.f8854c == ((o) obj).f8854c) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Objects.hash(Long.valueOf(this.f8854c));
+        this.f5980b = length2 + j10;
     }
 }

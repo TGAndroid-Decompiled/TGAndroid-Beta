@@ -1,57 +1,57 @@
 package i2;
 
 import android.os.Bundle;
-import org.telegram.messenger.GenericProvider;
-import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.wc;
-import org.telegram.ui.rg0;
-public final class y implements e2.o, e2.j, p.a, GenericProvider {
-    public final int f13787a;
-    public final boolean f13788b;
+import org.telegram.messenger.l9;
+import org.telegram.ui.Components.cc;
+import org.telegram.ui.Components.wb;
+import org.telegram.ui.pf0;
+public final class y implements e2.o, e2.j, p.a, l9 {
+    public final int f8115a;
+    public final boolean f8116b;
 
     public y(int i10, boolean z10) {
-        this.f13787a = i10;
-        this.f13788b = z10;
+        this.f8115a = i10;
+        this.f8116b = z10;
     }
 
     @Override
     public void accept(Object obj) {
-        switch (this.f13787a) {
+        switch (this.f8115a) {
             case 2:
-                ((m4.n1) obj).X(this.f13788b);
+                ((m4.n1) obj).W(this.f8116b);
                 return;
             case 3:
-                ((m4.n1) obj).q0(this.f13788b);
+                ((m4.n1) obj).p0(this.f8116b);
                 return;
             default:
-                ((m4.n1) obj).w(this.f13788b);
+                ((m4.n1) obj).w(this.f8116b);
                 return;
         }
     }
 
     @Override
-    public qc c(wc wcVar) {
-        return wcVar.k(this.f13788b);
+    public wb c(cc ccVar) {
+        return ccVar.k(this.f8116b);
     }
 
     @Override
     public void invoke(Object obj) {
-        switch (this.f13787a) {
+        switch (this.f8115a) {
             case 0:
-                ((b2.e1) obj).onShuffleModeEnabledChanged(this.f13788b);
+                ((b2.d1) obj).x(this.f8116b);
                 return;
             default:
-                ((b2.e1) obj).onSkipSilenceEnabledChanged(this.f13788b);
+                ((b2.d1) obj).e(this.f8116b);
                 return;
         }
     }
 
     @Override
-    public Object provide(Object obj) {
+    public Object l(Object obj) {
         Void r22 = (Void) obj;
-        Bundle i10 = a1.g.i("afterSignup", this.f13788b);
-        rg0 rg0Var = new rg0();
-        rg0Var.i0(i10);
-        return rg0Var;
+        Bundle g10 = a1.g.g("afterSignup", this.f8116b);
+        pf0 pf0Var = new pf0();
+        pf0Var.q0(g10);
+        return pf0Var;
     }
 }

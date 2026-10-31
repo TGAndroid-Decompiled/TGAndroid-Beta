@@ -2,61 +2,136 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
-public final class id1 extends org.telegram.ui.Cells.s1 {
-    public final Path He;
-    public final Paint Ie;
-    public final int Je;
-    public final int Ke;
-    public final int Le;
-    public final kd1 Me;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+public final class id1 extends org.telegram.ui.Components.w71 {
+    public boolean V;
+    public final Path W;
+    public final jd1 f38244a0;
 
-    public id1(kd1 kd1Var, Context context, int i10, org.telegram.ui.ActionBar.u6 u6Var, int i11, int i12, int i13) {
-        super(context, i10, false, null, u6Var);
-        this.Me = kd1Var;
-        this.Je = i11;
-        this.Ke = i12;
-        this.Le = i13;
-        this.He = new Path();
-        this.Ie = new Paint(1);
+    public id1(jd1 jd1Var, Context context) {
+        super(context, null);
+        this.f38244a0 = jd1Var;
+        this.W = new Path();
     }
 
     @Override
-    public final void Y1(Canvas canvas) {
-        this.f25136i6 = 0;
-        this.f25149j6 = this.Y5.size() - 1;
-        super.Y1(canvas);
+    public final void dispatchDraw(Canvas canvas) {
+        if (this.V) {
+            Path path = this.W;
+            path.rewind();
+            float N = org.telegram.messenger.i0.N(24.0f);
+            RectF rectF = org.telegram.messenger.i0.P;
+            rectF.set(0.0f, org.telegram.messenger.i0.f16020m, getWidth(), getHeight());
+            path.addRoundRect(rectF, N, N, Path.Direction.CW);
+            canvas.save();
+            canvas.clipPath(path);
+        }
+        super.dispatchDraw(canvas);
+        if (this.V) {
+            canvas.restore();
+        }
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        canvas.save();
-        int O2 = O2(this.Je);
-        float H2 = H2(O2);
-        float G2 = G2(O2);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(getPollButtonsLeft(), H2, getPollButtonsRight(), G2);
-        Path path = this.He;
-        path.rewind();
-        path.addRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), Path.Direction.CW);
-        Paint paint = this.Ie;
-        paint.setColor(0);
-        paint.setShadowLayer(AndroidUtilities.dp(2.0f), 0.0f, AndroidUtilities.dp(0.66f), org.telegram.ui.ActionBar.y6.o1(this.Me.f40751x * 0.2f, -16777216));
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
-        canvas.clipPath(path);
-        S1(canvas);
-        canvas.restore();
+    public float getAvailableTranslationX() {
+        return getMeasuredWidth();
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(this.Ke, this.Le);
+    public long getManualScrollDuration() {
+        return 320L;
     }
 
     @Override
-    public final void setPressed(boolean z10) {
+    public final boolean j(MotionEvent motionEvent) {
+        org.telegram.ui.ActionBar.k2 b02 = ((pf0) this.f38244a0).b0();
+        if (!(b02 instanceof of0)) {
+            return false;
+        }
+        return ((of0) b02).W(motionEvent, false);
+    }
+
+    @Override
+    public final boolean k(MotionEvent motionEvent) {
+        org.telegram.ui.ActionBar.k2 b02 = ((pf0) this.f38244a0).b0();
+        if (b02 instanceof of0) {
+            return ((of0) b02).W(motionEvent, true);
+        }
+        return false;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+    }
+
+    @Override
+    public void setLayoutParams(ViewGroup.LayoutParams layoutParams) {
+        super.setLayoutParams(layoutParams);
+    }
+
+    public void setTabletLayout(boolean z10) {
+        if (this.V == z10) {
+            return;
+        }
+        this.V = z10;
+        invalidate();
+    }
+
+    @Override
+    public final void t(View view, View view2, int i10, int i11) {
+        this.f38244a0.Y();
+    }
+
+    @Override
+    public final void u() {
+        ay ayVar;
+        jd1 jd1Var = this.f38244a0;
+        pf0 pf0Var = (pf0) jd1Var;
+        if (pf0Var.F != null) {
+            pf0Var.r0(pf0Var.f38499c.getCurrentPosition(), true);
+            pf0Var.s0(false, 0.0f);
+        }
+        pf0Var.h0();
+        id1 id1Var = pf0Var.f38499c;
+        if (id1Var != null) {
+            int currentPosition = id1Var.getCurrentPosition();
+            if (currentPosition != 2 && pf0Var.f40663y) {
+                pf0Var.a0(2);
+                pf0Var.f40663y = false;
+            }
+            if (currentPosition != 3) {
+                pf0Var.a0(3);
+            }
+            Integer num = pf0Var.I;
+            if (num != null && currentPosition == 0 && (ayVar = pf0Var.J) != null) {
+                ayVar.H4(num.intValue());
+                pf0Var.I = null;
+            }
+        }
+        jd1Var.Y();
+    }
+
+    @Override
+    public final void w(boolean z10) {
+        jd1 jd1Var = this.f38244a0;
+        pf0 pf0Var = (pf0) jd1Var;
+        boolean z11 = !z10;
+        if (pf0Var.F != null) {
+            float positionAnimated = pf0Var.f38499c.getPositionAnimated();
+            pf0Var.s0(z11, positionAnimated);
+            if (!z10) {
+                pf0Var.r0(Math.round(positionAnimated), true);
+            }
+        }
+        pf0Var.m0();
+        pf0Var.h0();
+        pf0Var.f38498b.invalidate();
+        jd1Var.Y();
+        jd1Var.checkSystemBarColors();
     }
 }

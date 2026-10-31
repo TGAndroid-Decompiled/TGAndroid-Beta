@@ -1,63 +1,81 @@
 package fc;
 
-import java.nio.charset.Charset;
-import java.util.HashMap;
-public enum c {
-    Cp437(new int[]{0, 2}, new String[0]),
-    ISO8859_1(new int[]{1, 3}, "ISO-8859-1"),
-    ISO8859_2(4, "ISO-8859-2"),
-    ISO8859_3(5, "ISO-8859-3"),
-    ISO8859_4(6, "ISO-8859-4"),
-    ISO8859_5(7, "ISO-8859-5"),
-    ISO8859_6(8, "ISO-8859-6"),
-    ISO8859_7(9, "ISO-8859-7"),
-    ISO8859_8(10, "ISO-8859-8"),
-    ISO8859_9(11, "ISO-8859-9"),
-    ISO8859_10(12, "ISO-8859-10"),
-    ISO8859_11(13, "ISO-8859-11"),
-    ISO8859_13(15, "ISO-8859-13"),
-    ISO8859_14(16, "ISO-8859-14"),
-    ISO8859_15(17, "ISO-8859-15"),
-    ISO8859_16(18, "ISO-8859-16"),
-    SJIS(20, "Shift_JIS"),
-    Cp1250(21, "windows-1250"),
-    Cp1251(22, "windows-1251"),
-    Cp1252(23, "windows-1252"),
-    Cp1256(24, "windows-1256"),
-    UnicodeBigUnmarked(25, "UTF-16BE", "UnicodeBig"),
-    UTF8(26, "UTF-8"),
-    ASCII(new int[]{27, 170}, "US-ASCII"),
-    Big5(new int[]{28}, new String[0]),
-    GB18030(29, "GB2312", "EUC_CN", "GBK"),
-    EUC_KR(30, "EUC-KR");
-    
-    public static final HashMap f10407c = new HashMap();
-    public static final HashMap d = new HashMap();
-    public final int[] f10408a;
-    public final String[] f10409b;
+import java.nio.ByteBuffer;
+public final class c {
+    public final ByteBuffer f6994a;
+    public final int f6995b;
+    public int f6996c;
 
-    static {
-        c[] values;
-        for (c cVar : values()) {
-            if (Charset.isSupported(cVar.name())) {
-                for (int i10 : cVar.f10408a) {
-                    f10407c.put(Integer.valueOf(i10), cVar);
-                }
-                d.put(cVar.name(), cVar);
-                for (String str : cVar.f10409b) {
-                    d.put(str, cVar);
-                }
-            }
+    public c(int i10, ByteBuffer byteBuffer) {
+        switch (i10) {
+            case 1:
+                this.f6996c = 0;
+                this.f6994a = byteBuffer;
+                this.f6995b = byteBuffer.position();
+                return;
+            default:
+                this.f6994a = byteBuffer;
+                this.f6995b = byteBuffer.position();
+                return;
         }
     }
 
-    c(int i10, String... strArr) {
-        this.f10408a = new int[]{i10};
-        this.f10409b = strArr;
+    public int a(int i10) {
+        int a2;
+        int i11 = this.f6995b;
+        ByteBuffer byteBuffer = this.f6994a;
+        int i12 = byteBuffer.get((this.f6996c / 8) + i11);
+        if (i12 < 0) {
+            i12 += 256;
+        }
+        int i13 = this.f6996c;
+        int i14 = 8 - (i13 % 8);
+        if (i10 <= i14) {
+            a2 = ((i12 << (i13 % 8)) & 255) >> ((i14 - i10) + (i13 % 8));
+            this.f6996c = i13 + i10;
+        } else {
+            int i15 = i10 - i14;
+            a2 = (a(i14) << i15) + a(i15);
+        }
+        byteBuffer.position(i11 + ((int) Math.ceil(this.f6996c / 8.0d)));
+        return a2;
     }
 
-    c(int[] iArr, String... strArr) {
-        this.f10408a = iArr;
-        this.f10409b = strArr;
+    public boolean b() {
+        if (a(1) == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public void c(int i10, int i11) {
+        int i12 = this.f6996c;
+        int i13 = 8 - (i12 % 8);
+        int i14 = 1;
+        int i15 = this.f6995b;
+        ByteBuffer byteBuffer = this.f6994a;
+        if (i11 <= i13) {
+            int i16 = byteBuffer.get((i12 / 8) + i15);
+            if (i16 < 0) {
+                i16 += 256;
+            }
+            int i17 = i16 + (i10 << (i13 - i11));
+            int i18 = (this.f6996c / 8) + i15;
+            if (i17 > 127) {
+                i17 -= 256;
+            }
+            byteBuffer.put(i18, (byte) i17);
+            this.f6996c += i11;
+        } else {
+            int i19 = i11 - i13;
+            c(i10 >> i19, i13);
+            c(i10 & ((1 << i19) - 1), i19);
+        }
+        int i20 = this.f6996c;
+        int i21 = (i20 / 8) + i15;
+        if (i20 % 8 <= 0) {
+            i14 = 0;
+        }
+        byteBuffer.position(i21 + i14);
     }
 }

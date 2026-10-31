@@ -1,24 +1,36 @@
 package org.telegram.messenger;
-public final class i8 implements Runnable {
-    public final int f20315a;
-    public final MediaDataController f20316b;
-    public final int f20317c;
 
-    public i8(MediaDataController mediaDataController, int i10, int i11) {
-        this.f20315a = i11;
-        this.f20316b = mediaDataController;
-        this.f20317c = i10;
+import java.io.Serializable;
+import java.util.ArrayList;
+public final class i8 implements Runnable {
+    public final int f16086a = 1;
+    public final int f16087b;
+    public final long f16088c;
+    public final int d;
+    public final int e;
+    public final Object f16089f;
+    public final Serializable h;
+
+    public i8(k8 k8Var, long j10, int i10, int i11, String str, int i12) {
+        this.f16089f = k8Var;
+        this.f16088c = j10;
+        this.f16087b = i10;
+        this.d = i11;
+        this.h = str;
+        this.e = i12;
     }
 
     @Override
     public final void run() {
-        switch (this.f20315a) {
-            case 0:
-                this.f20316b.lambda$fetchEmojiStatuses$232(this.f20317c);
-                return;
-            default:
-                this.f20316b.lambda$processLoadedStickers$103(this.f20317c);
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.i8.run():void");
+    }
+
+    public i8(hs hsVar, int i10, long j10, int i11, ArrayList arrayList, int i12) {
+        this.f16089f = hsVar;
+        this.f16087b = i10;
+        this.f16088c = j10;
+        this.d = i11;
+        this.h = arrayList;
+        this.e = i12;
     }
 }

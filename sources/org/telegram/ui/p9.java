@@ -1,121 +1,56 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.camera.CameraController;
-import org.telegram.messenger.camera.CameraView;
-public final class p9 implements Runnable {
-    public final int f42347a;
-    public final y9 f42348b;
+import android.app.Activity;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class p9 extends org.telegram.ui.ActionBar.z2 {
+    public final o9 f40537i1;
+    public final org.telegram.ui.ActionBar.z4[] f40538j1;
+    public final t9 f40539k1;
 
-    public p9(y9 y9Var, int i10) {
-        this.f42347a = i10;
-        this.f42348b = y9Var;
+    public p9(Activity activity, org.telegram.ui.ActionBar.z4[] z4VarArr, int i10, t9 t9Var) {
+        super(activity, false);
+        this.f40538j1 = z4VarArr;
+        this.f40539k1 = t9Var;
+        z4VarArr[0].setFragmentStack(new ArrayList());
+        o9 o9Var = new o9(this, i10);
+        this.f40537i1 = o9Var;
+        o9Var.f42092y = true;
+        ((ActionBarLayout) z4VarArr[0]).c(-1, o9Var);
+        ((ActionBarLayout) z4VarArr[0]).e0();
+        ViewGroup view = z4VarArr[0].getView();
+        int i11 = this.f21615t0;
+        view.setPadding(i11, 0, i11, 0);
+        o9Var.M = t9Var;
+        if (t9Var.P0() != null) {
+            o9Var.f42081c.setText(t9Var.P0());
+        }
+        this.f21586b = z4VarArr[0].getView();
+        this.f21617v0 = false;
+        setOnDismissListener(new q5(this, 1));
     }
 
     @Override
-    public final void run() {
-        float f7;
-        float f10 = 0.0f;
-        switch (this.f42347a) {
-            case 0:
-                this.f42348b.Z();
-                return;
-            case 1:
-                y9 y9Var = this.f42348b;
-                if (!y9Var.isFinishing()) {
-                    y9Var.R = null;
-                    y9Var.N = false;
-                    y9Var.f45894d0.run();
-                    if (!y9Var.N) {
-                        AndroidUtilities.runOnUIThread(new p9(y9Var, 8), 500L);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 2:
-                y9 y9Var2 = this.f42348b;
-                CameraView cameraView = y9Var2.d;
-                if (cameraView != null) {
-                    y9Var2.d0(cameraView.getTextureView().getBitmap());
-                    return;
-                }
-                return;
-            case 3:
-                this.f42348b.finishFragment();
-                return;
-            case 4:
-                y9 y9Var3 = this.f42348b;
-                x9 x9Var = y9Var3.M;
-                if (x9Var != null) {
-                    x9Var.H(y9Var3.R);
-                }
-                y9Var3.finishFragment();
-                return;
-            case 5:
-                y9 y9Var4 = this.f42348b;
-                y9Var4.U = new za.c(28);
-                Context context = ApplicationLoader.applicationContext;
-                ?? obj = new Object();
-                obj.f7500a = 256;
-                y9Var4.V = new s8.n(new com.google.android.gms.internal.vision.t2(context, (com.google.android.gms.internal.vision.x1) obj));
-                return;
-            case 6:
-                y9 y9Var5 = this.f42348b;
-                if (y9Var5.h.getTag() != null) {
-                    y9Var5.h.setTag(null);
-                    y9Var5.h.animate().setDuration(200L).alpha(0.0f).setInterpolator(org.telegram.ui.Components.ds.f27530f).start();
-                    return;
-                }
-                return;
-            case 7:
-                y9 y9Var6 = this.f42348b;
-                CameraView cameraView2 = y9Var6.d;
-                if (cameraView2 != null && cameraView2.getCameraSession() != null) {
-                    CameraController.getInstance().stopPreview(y9Var6.d.getCameraSession());
-                }
-                AndroidUtilities.runOnUIThread(new p9(y9Var6, 4));
-                return;
-            default:
-                y9 y9Var7 = this.f42348b;
-                float f11 = y9Var7.Y;
-                if (y9Var7.N) {
-                    f10 = 1.0f;
-                }
-                y9Var7.Z = f10;
-                if (f11 != f10) {
-                    ValueAnimator valueAnimator = y9Var7.X;
-                    if (valueAnimator != null) {
-                        valueAnimator.cancel();
-                    }
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(y9Var7.Y, y9Var7.Z);
-                    y9Var7.X = ofFloat;
-                    ofFloat.addUpdateListener(new s9(y9Var7, 0));
-                    y9Var7.X.setDuration(Math.abs(y9Var7.Y - y9Var7.Z) * 300.0f);
-                    y9Var7.X.setInterpolator(org.telegram.ui.Components.ds.f27530f);
-                    y9Var7.X.start();
-                    o1.j jVar = y9Var7.f45889a0;
-                    if (jVar != null) {
-                        jVar.c();
-                    }
-                    if (y9Var7.N) {
-                        f7 = y9Var7.f45891b0;
-                    } else {
-                        f7 = 1.0f - y9Var7.f45891b0;
-                    }
-                    o1.j jVar2 = new o1.j(new ac.a(f7 * 500.0f));
-                    y9Var7.f45889a0 = jVar2;
-                    jVar2.b(new q9(y9Var7, 1));
-                    y9Var7.f45889a0.f18968u = new o1.k(500.0f);
-                    y9Var7.f45889a0.f18968u.a(1.0f);
-                    y9Var7.f45889a0.f18968u.b(500.0f);
-                    y9Var7.f45889a0.h();
-                    return;
-                }
-                return;
+    public final boolean H() {
+        return false;
+    }
+
+    @Override
+    public final void dismiss() {
+        super.dismiss();
+        this.f40538j1[0] = null;
+        this.f40539k1.onDismiss();
+    }
+
+    @Override
+    public final void onBackPressed() {
+        org.telegram.ui.ActionBar.z4[] z4VarArr = this.f40538j1;
+        org.telegram.ui.ActionBar.z4 z4Var = z4VarArr[0];
+        if (z4Var != null && z4Var.getFragmentStack().size() > 1) {
+            ((ActionBarLayout) z4VarArr[0]).H();
+        } else {
+            super.onBackPressed();
         }
     }
 }

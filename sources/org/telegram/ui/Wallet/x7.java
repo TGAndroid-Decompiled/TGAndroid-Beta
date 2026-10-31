@@ -1,39 +1,23 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.wc;
-public final class x7 implements Utilities.Callback {
-    public final int f37508a;
-    public final h8 f37509b;
+import android.view.animation.OvershootInterpolator;
+public final class x7 implements Runnable {
+    public final int f35391a;
+    public final u7 f35392b;
 
-    public x7(h8 h8Var, int i10) {
-        this.f37508a = i10;
-        this.f37509b = h8Var;
+    public x7(u7 u7Var, int i10) {
+        this.f35391a = i10;
+        this.f35392b = u7Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f37508a) {
+    public final void run() {
+        switch (this.f35391a) {
             case 0:
-                l0.x(r0.currentAccount).z(new r1(3, this.f37509b, (Utilities.Callback) obj), true, false);
-                return;
-            case 1:
-                String str = (String) obj;
-                h8 h8Var = this.f37509b;
-                if (str != null) {
-                    wc.b0(h8Var).f0(str, false);
-                    return;
-                }
-                qc M = wc.b0(h8Var).M(LocaleController.getString(R.string.WalletBackupEnabled), LocaleController.getString(R.string.WalletBackupEnabledInfo), R.raw.contact_check);
-                M.f31861j = 5000;
-                M.j();
-                h8Var.f30764a.f32504g3.O(true);
+                this.f35392b.animate().rotation(0.0f).setDuration(120L).start();
                 return;
             default:
-                h8.b0(this.f37509b, (Boolean) obj);
+                this.f35392b.animate().scaleX(1.0f).scaleY(1.0f).setDuration(260L).setInterpolator(new OvershootInterpolator(2.0f)).start();
                 return;
         }
     }

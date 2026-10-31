@@ -1,30 +1,36 @@
 package org.telegram.ui;
-public final class cj extends org.telegram.ui.ActionBar.o1 {
-    public final wn f38373o;
 
-    public cj(wn wnVar, aj ajVar) {
-        super(ajVar, -2, -2);
-        this.f38373o = wnVar;
+import android.animation.ValueAnimator;
+import android.view.View;
+public final class cj implements ValueAnimator.AnimatorUpdateListener {
+    public final int f36472a;
+    public final org.telegram.ui.ActionBar.k2 f36473b;
+
+    public cj(int i10, org.telegram.ui.ActionBar.k2 k2Var) {
+        this.f36472a = i10;
+        this.f36473b = k2Var;
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        wn wnVar = this.f38373o;
-        if (wnVar.f45134g9 == this) {
-            wnVar.f45134g9 = null;
-            wnVar.f45171j9 = null;
-            wnVar.f45159i9 = null;
-            wnVar.f45364z0.R = true;
-            if (wnVar.f45146h9) {
-                wnVar.p8(false, true, 0.0f);
-            } else {
-                wnVar.f45146h9 = true;
-            }
-            jk jkVar = wnVar.Y;
-            if (jkVar != null && jkVar.getEditField() != null) {
-                wnVar.Y.getEditField().setAllowDrawCursor(true);
-            }
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f36472a) {
+            case 0:
+                un unVar = (un) this.f36473b;
+                unVar.Ea = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                unVar.l1.invalidate();
+                return;
+            case 1:
+                ay ayVar = (ay) this.f36473b;
+                ayVar.H0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                View view = ayVar.fragmentView;
+                if (view != null) {
+                    view.invalidate();
+                    return;
+                }
+                return;
+            default:
+                ((m91) this.f36473b).f39603y0.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
         }
     }
 }

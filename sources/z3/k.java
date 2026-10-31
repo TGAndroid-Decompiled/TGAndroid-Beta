@@ -2,11 +2,11 @@ package z3;
 
 import b2.x;
 public interface k {
-    public static final sb.b D = new sb.b(28);
+    public static final hb.a C = new hb.a(29);
 
-    int B0(x xVar);
+    boolean F(x xVar);
 
-    m f0(x xVar);
+    m m(x xVar);
 
-    boolean i1(x xVar);
+    int y(x xVar);
 }

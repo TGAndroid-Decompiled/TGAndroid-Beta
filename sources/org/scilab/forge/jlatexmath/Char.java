@@ -2,28 +2,28 @@ package org.scilab.forge.jlatexmath;
 
 import ru.noties.jlatexmath.awt.Font;
 public class Char {
-    private final char f19508c;
+    private final char f14317c;
     private final Font font;
     private final int fontCode;
-    private final Metrics f19509m;
+    private final Metrics f14318m;
 
     public Char(char c10, Font font, int i10, Metrics metrics) {
         this.font = font;
         this.fontCode = i10;
-        this.f19508c = c10;
-        this.f19509m = metrics;
+        this.f14317c = c10;
+        this.f14318m = metrics;
     }
 
     public char getChar() {
-        return this.f19508c;
+        return this.f14317c;
     }
 
     public CharFont getCharFont() {
-        return new CharFont(this.f19508c, this.fontCode);
+        return new CharFont(this.f14317c, this.fontCode);
     }
 
     public float getDepth() {
-        return this.f19509m.getDepth();
+        return this.f14318m.getDepth();
     }
 
     public Font getFont() {
@@ -35,18 +35,18 @@ public class Char {
     }
 
     public float getHeight() {
-        return this.f19509m.getHeight();
+        return this.f14318m.getHeight();
     }
 
     public float getItalic() {
-        return this.f19509m.getItalic();
+        return this.f14318m.getItalic();
     }
 
     public Metrics getMetrics() {
-        return this.f19509m;
+        return this.f14318m;
     }
 
     public float getWidth() {
-        return this.f19509m.getWidth();
+        return this.f14318m.getWidth();
     }
 }

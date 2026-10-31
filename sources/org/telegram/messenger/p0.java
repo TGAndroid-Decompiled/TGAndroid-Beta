@@ -1,35 +1,56 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.Utilities;
+import android.content.SharedPreferences;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 import org.telegram.tgnet.TLRPC;
-public final class p0 implements Utilities.Callback2 {
-    public final int f20908a;
+public final class p0 implements m0 {
+    public Set f17392b = Collections.EMPTY_SET;
+    public final String f17391a = "agent_bot_ids";
 
-    public p0(int i10) {
-        this.f20908a = i10;
+    @Override
+    public final boolean a(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue) {
+        if (jSONValue instanceof TLRPC.TL_jsonArray) {
+            TLRPC.TL_jsonArray tL_jsonArray = (TLRPC.TL_jsonArray) jSONValue;
+            HashSet hashSet = new HashSet();
+            int size = tL_jsonArray.value.size();
+            for (int i10 = 0; i10 < size; i10++) {
+                TLRPC.JSONValue jSONValue2 = tL_jsonArray.value.get(i10);
+                if (jSONValue2 instanceof TLRPC.TL_jsonNumber) {
+                    hashSet.add(Long.valueOf((long) ((TLRPC.TL_jsonNumber) jSONValue2).value));
+                } else if (jSONValue2 instanceof TLRPC.TL_jsonString) {
+                    try {
+                        hashSet.add(Long.valueOf(Long.parseLong(((TLRPC.TL_jsonString) jSONValue2).value)));
+                    } catch (NumberFormatException unused) {
+                    }
+                }
+            }
+            if (!hashSet.equals(this.f17392b)) {
+                this.f17392b = hashSet;
+                HashSet hashSet2 = new HashSet();
+                for (Long l4 : this.f17392b) {
+                    hashSet2.add(Long.toString(l4.longValue()));
+                }
+                editor.putStringSet(this.f17391a, hashSet2);
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f20908a) {
-            case 0:
-                BotForumHelper.lambda$stopStreaming$2((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
-                return;
-            case 1:
-                MessagesController.lambda$revertWelcomeEphemeralMessage$125((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
-                return;
-            case 2:
-                MessagesController.lambda$toggleCommunityCollapsedInDialogs$253((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
-                return;
-            case 3:
-                MessagesController.lambda$deleteEphemeralMessage$126((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
-                return;
-            case 4:
-                MessagesController.lambda$deleteEphemeralMessage$127((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
-                return;
-            default:
-                MessagesController.lambda$deleteAllReactionsFrom$130((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
-                return;
+    public final void b(SharedPreferences sharedPreferences) {
+        Set<String> stringSet = sharedPreferences.getStringSet(this.f17391a, null);
+        HashSet hashSet = new HashSet();
+        if (stringSet != null) {
+            for (String str : stringSet) {
+                try {
+                    hashSet.add(Long.valueOf(Long.parseLong(str)));
+                } catch (NumberFormatException unused) {
+                }
+            }
         }
+        this.f17392b = hashSet;
     }
 }

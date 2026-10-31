@@ -1,18 +1,23 @@
 package org.telegram.ui;
+public final class w61 implements Runnable {
+    public final int f42888a;
+    public final StickersActivity f42889b;
 
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class w61 implements View.OnClickListener {
-    public final TLRPC.TL_authorization f44529a;
-    public final c71 f44530b;
-
-    public w61(c71 c71Var, TLRPC.TL_authorization tL_authorization) {
-        this.f44530b = c71Var;
-        this.f44529a = tL_authorization;
+    public w61(StickersActivity stickersActivity, int i10) {
+        this.f42888a = i10;
+        this.f42889b = stickersActivity;
     }
 
     @Override
-    public final void onClick(View view) {
-        c71.m(this.f44530b, this.f44529a.ip);
+    public final void run() {
+        switch (this.f42888a) {
+            case 0:
+                this.f42889b.q0();
+                return;
+            default:
+                StickersActivity stickersActivity = this.f42889b;
+                stickersActivity.f34050n--;
+                return;
+        }
     }
 }

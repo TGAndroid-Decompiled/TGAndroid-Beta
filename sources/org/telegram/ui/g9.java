@@ -1,45 +1,10 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-public final class g9 extends org.telegram.ui.Components.nr0 {
-    public final org.telegram.ui.ActionBar.k3 f39533a1;
-
-    public g9(Context context, String str, String str2, org.telegram.ui.ActionBar.u6 u6Var, org.telegram.ui.ActionBar.k3 k3Var) {
-        super(context, null, str, false, str2, false, u6Var);
-        this.f39533a1 = k3Var;
-    }
-
-    @Override
-    public final void T0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        int m10;
-        String formatString;
-        if (!z10) {
-            return;
-        }
-        if (hVar != null && hVar.m() == 1) {
-            long j10 = ((TLRPC.Dialog) hVar.n(0)).f22032id;
-            if (j10 != 0 && j10 != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
-                formatString = LocaleController.formatString(R.string.InvLinkToUser, MessagesController.getInstance(this.currentAccount).getPeerName(j10, true));
-            } else {
-                formatString = LocaleController.getString(R.string.InvLinkToSavedMessages);
-            }
-        } else {
-            int i11 = R.string.InvLinkToChats;
-            if (hVar == null) {
-                m10 = 1;
-            } else {
-                m10 = hVar.m();
-            }
-            formatString = LocaleController.formatString(i11, LocaleController.formatPluralString("Chats", m10, new Object[0]));
-        }
-        org.telegram.ui.Components.qc R = new org.telegram.ui.Components.wc(this.f39533a1.topBulletinContainer, this.resourcesProvider).R(R.raw.forward, 36, AndroidUtilities.replaceTags(formatString));
-        R.f31870s = false;
-        R.j();
-    }
+import java.util.ArrayList;
+public final class g9 {
+    public long f37489a;
+    public final ArrayList f37490b = new ArrayList();
+    public final ArrayList f37491c = new ArrayList();
+    public int d;
+    public boolean e;
 }
