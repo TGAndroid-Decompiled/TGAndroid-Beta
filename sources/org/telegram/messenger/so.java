@@ -1,36 +1,84 @@
 package org.telegram.messenger;
 
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class so extends b3 {
-    public final vp e;
+public final class so implements RequestDelegate {
+    public final int f18123a;
+    public final a3 f18124b;
 
-    public so(vp vpVar) {
-        this.e = vpVar;
+    public so(a3 a3Var, int i10) {
+        this.f18123a = i10;
+        this.f18124b = a3Var;
     }
 
     @Override
-    public final void e(int i10, Object obj, j20 j20Var) {
-        Integer num = (Integer) obj;
-        this.e.getMessagesStorage().f15938a.c(new qo(i10, (z2) j20Var, 0));
-    }
-
-    @Override
-    public final void f(int i10, Object obj, long j10, a3 a3Var) {
-        Integer num = (Integer) obj;
-        TLRPC.TL_help_getAppConfig tL_help_getAppConfig = new TLRPC.TL_help_getAppConfig();
-        tL_help_getAppConfig.hash = (int) j10;
-        this.e.getConnectionsManager().sendRequest(tL_help_getAppConfig, new ro(a3Var, 0));
-    }
-
-    @Override
-    public final void g(int i10, Object obj, Object obj2) {
-        Integer num = (Integer) obj;
-        hs.a0(i10).f15938a.c(new a1(i10, (TLRPC.TL_help_appConfig) obj2, 5));
-    }
-
-    @Override
-    public final boolean j(Object obj) {
-        Integer num = (Integer) obj;
-        return false;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        String str;
+        boolean z10;
+        int i10;
+        TLRPC.TL_help_appConfig tL_help_appConfig;
+        String str2;
+        boolean z11;
+        int i11;
+        TLRPC.TL_messages_availableEffects tL_messages_availableEffects;
+        switch (this.f18123a) {
+            case 0:
+                boolean z12 = tLObject instanceof TLRPC.TL_help_appConfigNotModified;
+                a3 a3Var = this.f18124b;
+                if (z12) {
+                    Boolean bool = Boolean.TRUE;
+                    a3Var.a(bool, null, 0L, bool);
+                    return;
+                } else if (tLObject instanceof TLRPC.TL_help_appConfig) {
+                    a3Var.a(Boolean.FALSE, (TLRPC.TL_help_appConfig) tLObject, Long.valueOf(tL_help_appConfig.hash), Boolean.TRUE);
+                    return;
+                } else {
+                    StringBuilder sb2 = new StringBuilder("getting appconfig error ");
+                    if (tL_error != null) {
+                        str = tL_error.code + " " + tL_error.text;
+                    } else {
+                        str = "";
+                    }
+                    sb2.append(str);
+                    f8.d(sb2.toString());
+                    Boolean bool2 = Boolean.FALSE;
+                    if (tL_error != null && ((i10 = tL_error.code) == -2000 || i10 == -2001)) {
+                        z10 = false;
+                    } else {
+                        z10 = true;
+                    }
+                    a3Var.a(bool2, null, 0L, Boolean.valueOf(z10));
+                    return;
+                }
+            default:
+                boolean z13 = tLObject instanceof TLRPC.TL_messages_availableEffectsNotModified;
+                a3 a3Var2 = this.f18124b;
+                if (z13) {
+                    Boolean bool3 = Boolean.TRUE;
+                    a3Var2.a(bool3, null, 0L, bool3);
+                    return;
+                } else if (tLObject instanceof TLRPC.TL_messages_availableEffects) {
+                    a3Var2.a(Boolean.FALSE, (TLRPC.TL_messages_availableEffects) tLObject, Long.valueOf(tL_messages_availableEffects.hash), Boolean.TRUE);
+                    return;
+                } else {
+                    StringBuilder sb3 = new StringBuilder("getting available effects error ");
+                    if (tL_error != null) {
+                        str2 = tL_error.code + " " + tL_error.text;
+                    } else {
+                        str2 = "";
+                    }
+                    sb3.append(str2);
+                    f8.d(sb3.toString());
+                    Boolean bool4 = Boolean.FALSE;
+                    if (tL_error != null && ((i11 = tL_error.code) == -2000 || i11 == -2001)) {
+                        z11 = false;
+                    } else {
+                        z11 = true;
+                    }
+                    a3Var2.a(bool4, null, 0L, Boolean.valueOf(z11));
+                    return;
+                }
+        }
     }
 }

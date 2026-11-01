@@ -2,8 +2,8 @@ package th;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.telegram.messenger.jj;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.at;
+import org.telegram.messenger.kj;
 import org.telegram.tgnet.tl.TL_stories;
 public final class z4 extends x4 {
     public final ArrayList C;
@@ -16,40 +16,40 @@ public final class z4 extends x4 {
 
     public final void F(ArrayList arrayList) {
         int i10;
-        ArrayList arrayList2 = this.f49636i;
+        ArrayList arrayList2 = this.f49650i;
         arrayList2.size();
         int i11 = 0;
         int i12 = 0;
         while (true) {
             int size = arrayList.size();
-            i10 = this.f49633c;
+            i10 = this.f49647c;
             if (i11 >= size) {
                 break;
             }
             TL_stories.StoryItem storyItem = (TL_stories.StoryItem) arrayList.get(i11);
             if (storyItem != null) {
                 storyItem.messageId = arrayList2.size();
-                jj jjVar = new jj(i10, storyItem);
-                jjVar.r0(false);
+                kj kjVar = new kj(i10, storyItem);
+                kjVar.r0(false);
                 ArrayList arrayList3 = new ArrayList();
                 arrayList3.add(Integer.valueOf(arrayList2.size()));
                 this.C.add(arrayList3);
-                arrayList2.add(jjVar);
+                arrayList2.add(kjVar);
                 i12++;
             }
             i11++;
         }
         if (i12 > 0) {
-            zs.f(i10).k(zs.f19723x5, this);
+            at.f(i10).k(at.f14819x5, this);
         }
     }
 
     @Override
-    public final jj f(int i10) {
+    public final kj f(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f49636i;
+            ArrayList arrayList = this.f49650i;
             if (i10 < arrayList.size()) {
-                return (jj) arrayList.get(i10);
+                return (kj) arrayList.get(i10);
             }
             return null;
         }
@@ -58,7 +58,7 @@ public final class z4 extends x4 {
 
     @Override
     public final int g() {
-        return this.f49636i.size();
+        return this.f49650i.size();
     }
 
     @Override
@@ -68,7 +68,7 @@ public final class z4 extends x4 {
 
     @Override
     public final int i() {
-        return this.f49636i.size();
+        return this.f49650i.size();
     }
 
     @Override

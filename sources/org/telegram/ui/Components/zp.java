@@ -5,28 +5,28 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 public final class zp implements TextWatcher {
-    public final int f33140a = 1;
-    public final int f33141b;
-    public final View f33142c;
+    public final int f33200a = 1;
+    public final int f33201b;
+    public final View f33202c;
 
     public zp(cq cqVar, int i10) {
-        this.f33142c = cqVar;
-        this.f33141b = i10;
+        this.f33202c = cqVar;
+        this.f33201b = i10;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         int i10;
-        int i11 = this.f33140a;
-        int i12 = this.f33141b;
-        View view = this.f33142c;
+        int i11 = this.f33200a;
+        int i12 = this.f33201b;
+        View view = this.f33202c;
         boolean z10 = false;
         switch (i11) {
             case 0:
                 cq cqVar = (cq) view;
                 EditTextBoldCursor[] editTextBoldCursorArr = cqVar.E;
-                if (!cqVar.f25144r) {
-                    cqVar.f25144r = true;
+                if (!cqVar.f25221r) {
+                    cqVar.f25221r = true;
                     int i13 = 0;
                     while (i13 < editable.length()) {
                         char charAt = editable.charAt(i13);
@@ -37,7 +37,7 @@ public final class zp implements TextWatcher {
                         i13++;
                     }
                     if (editable.length() == 0) {
-                        cqVar.f25144r = false;
+                        cqVar.f25221r = false;
                         return;
                     }
                     try {
@@ -51,9 +51,9 @@ public final class zp implements TextWatcher {
                         editable.replace(0, editable.length(), String.format("%02x%02x%02x", Byte.valueOf((byte) Color.red(color)), Byte.valueOf((byte) Color.green(color)), Byte.valueOf((byte) Color.blue(color))).toUpperCase());
                         editTextBoldCursorArr[i12].setSelection(editable.length());
                     }
-                    cqVar.f25146w[cqVar.S].a(color);
-                    cqVar.f25134a.c(color, cqVar.S, true);
-                    cqVar.f25144r = false;
+                    cqVar.f25223w[cqVar.S].a(color);
+                    cqVar.f25211a.c(color, cqVar.S, true);
+                    cqVar.f25221r = false;
                     return;
                 }
                 return;
@@ -75,17 +75,17 @@ public final class zp implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f33140a;
+        int i13 = this.f33200a;
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f33140a;
+        int i13 = this.f33200a;
     }
 
     public zp(int i10, NumberTextView numberTextView) {
-        this.f33141b = i10;
-        this.f33142c = numberTextView;
+        this.f33201b = i10;
+        this.f33202c = numberTextView;
     }
 
     private final void a(int i10, int i11, int i12, CharSequence charSequence) {

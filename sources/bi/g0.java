@@ -6,12 +6,12 @@ import android.text.SpannableStringBuilder;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
-import org.telegram.messenger.ru;
-import org.telegram.messenger.vv;
+import org.telegram.messenger.su;
+import org.telegram.messenger.wv;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class g0 extends View {
-    public final ru f3023a;
+    public final su f3023a;
     public final int f3024b;
     public boolean f3025c;
     public boolean d;
@@ -23,16 +23,16 @@ public final class g0 extends View {
         this.f3026f = j0Var;
         this.f3024b = i10;
         int i11 = j0Var.f3107n;
-        int d = i0.a.d(32.0f, org.telegram.messenger.i0.f16026q.x, org.telegram.messenger.i0.L(240.0f));
+        int d = i0.a.d(32.0f, org.telegram.messenger.i0.f16172q.x, org.telegram.messenger.i0.L(240.0f));
         org.telegram.ui.ActionBar.p6 p6Var = j0Var.f3108r;
         a3.d dVar = new a3.d(this, 20);
-        vv vvVar = new vv(i11, d, p6Var);
-        SpannableStringBuilder l4 = vvVar.l(pageButton.text, vv.R(16, 13));
+        wv wvVar = new wv(i11, d, p6Var);
+        SpannableStringBuilder l4 = wvVar.l(pageButton.text, wv.R(16, 13));
         TL_keyboard.InlineButtonType inlineButtonType = pageButton.type;
-        ru ruVar = new ru(vvVar, d, l4, pageButton, inlineButtonType, pageButton.style, inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeDisabled, false, false, false, false, Boolean.FALSE, dVar);
-        this.f3023a = ruVar;
+        su suVar = new su(wvVar, d, l4, pageButton, inlineButtonType, pageButton.style, inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeDisabled, false, false, false, false, Boolean.FALSE, dVar);
+        this.f3023a = suVar;
         this.e = new ag.d3(this, i10, 1);
-        ruVar.e = ruVar.h();
+        suVar.e = suVar.h();
         setContentDescription(s6.l(pageButton.text));
         setClickable(true);
         setLongClickable(true);
@@ -41,13 +41,13 @@ public final class g0 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f3023a.f17780a.i(this);
+        this.f3023a.f18144a.i(this);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         org.telegram.messenger.i0.r(this.e);
-        this.f3023a.f17780a.f(this);
+        this.f3023a.f18144a.f(this);
         super.onDetachedFromWindow();
     }
 
@@ -56,16 +56,16 @@ public final class g0 extends View {
         super.onDraw(canvas);
         canvas.save();
         int height = getHeight();
-        ru ruVar = this.f3023a;
-        canvas.translate(0.0f, (height - ruVar.c()) / 2.0f);
-        ruVar.a(canvas);
+        su suVar = this.f3023a;
+        canvas.translate(0.0f, (height - suVar.c()) / 2.0f);
+        suVar.a(canvas);
         canvas.restore();
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        ru ruVar = this.f3023a;
-        setMeasuredDimension(ruVar.e, org.telegram.messenger.i0.L(8.0f) + ruVar.c());
+        su suVar = this.f3023a;
+        setMeasuredDimension(suVar.e, org.telegram.messenger.i0.L(8.0f) + suVar.c());
     }
 
     @Override
@@ -80,7 +80,7 @@ public final class g0 extends View {
         boolean z14;
         int actionMasked = motionEvent.getActionMasked();
         ag.d3 d3Var = this.e;
-        ru ruVar = this.f3023a;
+        su suVar = this.f3023a;
         if (actionMasked != 0) {
             if (actionMasked != 1) {
                 if (actionMasked != 2) {
@@ -88,12 +88,12 @@ public final class g0 extends View {
                         return super.onTouchEvent(motionEvent);
                     }
                     this.f3025c = false;
-                    ruVar.m(false);
+                    suVar.m(false);
                     org.telegram.messenger.i0.r(d3Var);
                     return true;
                 } else if (motionEvent.getX() < 0.0f || motionEvent.getY() < 0.0f || motionEvent.getX() > getWidth() || motionEvent.getY() > getHeight()) {
                     this.f3025c = false;
-                    ruVar.m(false);
+                    suVar.m(false);
                     org.telegram.messenger.i0.r(d3Var);
                     return true;
                 }
@@ -104,7 +104,7 @@ public final class g0 extends View {
                     z10 = false;
                 }
                 this.f3025c = false;
-                ruVar.m(false);
+                suVar.m(false);
                 org.telegram.messenger.i0.r(d3Var);
                 if (z10 && (h0Var = (j0Var = this.f3026f).E) != null && (aVar = j0Var.f2881a) != null) {
                     d4 d4Var = ((v3) h0Var).f3410a;
@@ -154,7 +154,7 @@ public final class g0 extends View {
                                 richButtonStyle.link = false;
                                 pageButton.style = richButtonStyle;
                             }
-                            d4Var.f30819f3.O(false);
+                            d4Var.f31183f3.O(false);
                             o2 o2Var2 = d4Var.Q3;
                             if (o2Var2 != null) {
                                 o2Var2.h();
@@ -168,7 +168,7 @@ public final class g0 extends View {
         }
         this.f3025c = true;
         this.d = false;
-        ruVar.m(true);
+        suVar.m(true);
         org.telegram.messenger.i0.h3(d3Var, ViewConfiguration.getLongPressTimeout());
         return true;
     }

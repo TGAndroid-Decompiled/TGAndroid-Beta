@@ -2,7 +2,7 @@ package ve;
 
 import w7.j8;
 public final class i extends a {
-    public int f50803g;
+    public int f50817g;
 
     @Override
     public final void a(j8 j8Var) {

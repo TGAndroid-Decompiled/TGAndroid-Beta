@@ -1,237 +1,151 @@
 package org.telegram.messenger;
 
 import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.text.SpannableStringBuilder;
-import android.text.StaticLayout;
-import android.text.TextUtils;
-import android.view.MotionEvent;
-import java.util.ArrayList;
-public final class uu extends qu {
-    public final uv W;
-    public final uv X;
-    public final boolean Y;
-    public final org.telegram.ui.Cells.u9[] Z;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.text.Spanned;
+import android.text.style.ReplacementSpan;
+import android.view.View;
+import org.telegram.tgnet.tl.TL_iv;
+public final class uu extends ReplacementSpan {
+    public final su f18476a;
+    public final TL_iv.textButton f18477b;
+    public final RectF f18478c = new RectF();
+    public float d;
+    public boolean e;
+    public int f18479f;
+    public View h;
 
-    public uu(vv vvVar, Rect rect, int i10, SpannableStringBuilder spannableStringBuilder, SpannableStringBuilder spannableStringBuilder2) {
-        super(vvVar, rect, i10);
-        uv uvVar;
-        if (!TextUtils.isEmpty(spannableStringBuilder)) {
-            uvVar = new uv(vvVar, spannableStringBuilder, this.f17623c);
-        } else {
-            uvVar = null;
-        }
-        this.W = uvVar;
-        uv uvVar2 = TextUtils.isEmpty(spannableStringBuilder2) ? null : new uv(vvVar, spannableStringBuilder2, this.f17623c);
-        this.X = uvVar2;
-        this.Y = vvVar.I();
-        ArrayList arrayList = new ArrayList(2);
-        if (uvVar != null) {
-            arrayList.add(uvVar);
-        }
-        if (uvVar2 != null) {
-            arrayList.add(uvVar2);
-        }
-        this.Z = (org.telegram.ui.Cells.u9[]) arrayList.toArray(new org.telegram.ui.Cells.u9[0]);
+    public uu(org.telegram.messenger.wv r21, int r22, org.telegram.tgnet.tl.TL_iv.textButton r23, java.lang.Boolean r24) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.uu.<init>(org.telegram.messenger.wv, int, org.telegram.tgnet.tl.TL_iv$textButton, java.lang.Boolean):void");
+    }
+
+    public final void a(View view) {
+        this.h = view;
+        this.f18476a.f18144a.i(view);
     }
 
     @Override
-    public final int H() {
-        int i10;
-        Rect rect = this.f17622b;
-        int i11 = rect.top;
-        int i12 = 0;
-        uv uvVar = this.W;
-        if (uvVar != null) {
-            i10 = uvVar.f18396b.getHeight();
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        int i15;
+        float f10;
+        su suVar = this.f18476a;
+        int i16 = suVar.f18144a.f18909s;
+        int i17 = 0;
+        if (i16 > 0 && this.f18479f > 0) {
+            i15 = 1;
         } else {
-            i10 = 0;
+            i15 = 0;
         }
-        int i02 = i0() + i10 + i11;
-        uv uvVar2 = this.X;
-        if (uvVar2 != null) {
-            i12 = uvVar2.f18396b.getHeight();
-        }
-        return i02 + i12 + rect.bottom;
-    }
-
-    @Override
-    public final int I() {
-        int i10;
-        int i11;
-        Rect rect = this.f17622b;
-        uv uvVar = this.X;
-        if (uvVar != null) {
-            i10 = uvVar.q() + rect.left;
-            i11 = rect.right;
-        } else {
-            uv uvVar2 = this.W;
-            if (uvVar2 != null) {
-                i10 = uvVar2.q() + rect.left;
-                i11 = rect.right;
-            } else {
-                i10 = rect.left;
-                i11 = rect.right;
+        if (i15 == 0 && i16 > 0 && (charSequence instanceof Spanned)) {
+            sv[] svVarArr = (sv[]) ((Spanned) charSequence).getSpans(i10, i11, sv.class);
+            int length = svVarArr.length;
+            int i18 = 0;
+            while (true) {
+                if (i18 >= length) {
+                    break;
+                } else if ((svVarArr[i18].f18167b & 15) == 14) {
+                    i15 = 1;
+                    break;
+                } else {
+                    i18++;
+                }
             }
         }
-        return i10 + i11;
-    }
-
-    @Override
-    public final int J() {
-        int i10 = 0;
-        uv uvVar = this.W;
-        if (uvVar != null) {
-            i10 = Math.max(0, uvVar.r());
-        }
-        uv uvVar2 = this.X;
-        if (uvVar2 != null) {
-            i10 = Math.max(i10, uvVar2.r());
-        }
-        Rect rect = this.f17622b;
-        return rect.left + i10 + rect.right;
-    }
-
-    @Override
-    public final org.telegram.ui.Cells.u9[] K() {
-        return this.Z;
-    }
-
-    @Override
-    public final void S() {
-        uv uvVar = this.W;
-        if (uvVar != null) {
-            uvVar.i(this.V);
-        }
-        uv uvVar2 = this.X;
-        if (uvVar2 != null) {
-            uvVar2.i(this.V);
-        }
-    }
-
-    @Override
-    public final void U() {
-        uv uvVar = this.W;
-        if (uvVar != null) {
-            uvVar.f(this.V);
-        }
-        uv uvVar2 = this.X;
-        if (uvVar2 != null) {
-            uvVar2.f(this.V);
-        }
-    }
-
-    @Override
-    public final void V(Canvas canvas) {
-        int i10;
-        uv uvVar = this.W;
-        if (uvVar != null) {
-            uvVar.d(canvas, uvVar.S);
-        }
-        uv uvVar2 = this.X;
-        if (uvVar2 != null) {
-            canvas.save();
-            float h02 = h0();
-            if (uvVar != null) {
-                i10 = uvVar.f18396b.getHeight();
-            } else {
-                i10 = 0;
-            }
-            canvas.translate(h02, i0() + i10);
-            uvVar2.d(canvas, uvVar2.S);
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public final boolean X(MotionEvent motionEvent) {
-        int i10;
-        Rect rect;
-        int i11;
-        uv uvVar = this.W;
-        if (uvVar != null) {
-            i10 = uvVar.f18396b.getHeight();
+        if (i15 != 0) {
+            f10 = (i12 + i14) / 2.0f;
         } else {
-            i10 = 0;
+            Paint.FontMetricsInt fontMetricsInt = paint.getFontMetricsInt();
+            f10 = ((fontMetricsInt.ascent + fontMetricsInt.descent) / 2.0f) + i13;
         }
-        int i02 = i0();
-        float y3 = motionEvent.getY();
-        int i12 = this.f17622b.top;
-        float f7 = y3 - i12;
-        if (uvVar != null && f7 >= 0.0f && f7 < i10) {
-            motionEvent.offsetLocation(0.0f, -i12);
-            boolean t10 = uvVar.t(motionEvent);
-            motionEvent.offsetLocation(0.0f, rect.top);
-            return t10;
+        canvas.save();
+        if (!suVar.f18159s) {
+            i17 = i0.L(1.0f);
         }
-        uv uvVar2 = this.X;
-        if (uvVar2 == null || f7 < i10 + i02) {
-            return false;
-        }
-        int h02 = h0();
-        motionEvent.offsetLocation(-h02, -i11);
-        boolean t11 = uvVar2.t(motionEvent);
-        motionEvent.offsetLocation(h02, i12 + i10 + i02);
-        return t11;
+        int round = Math.round(f7 + i17);
+        int ceil = (int) Math.ceil((f10 - (suVar.c() / 2.0f)) + (i15 ^ 1));
+        float f11 = round;
+        float f12 = ceil;
+        this.f18478c.set(f11, f12, round + suVar.e, suVar.c() + ceil);
+        canvas.translate(f11, f12);
+        suVar.a(canvas);
+        canvas.restore();
     }
 
     @Override
-    public final void Y(int i10, int i11, int i12) {
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        boolean z10;
+        int i12;
         int i13;
-        this.S = i10;
-        this.T = i11;
-        this.U = i12;
-        uv uvVar = this.W;
-        if (uvVar != null) {
-            uvVar.f18397c = i10 - uvVar.f18398f;
-            uvVar.d = i11;
-            uvVar.e = i12;
+        int i14;
+        int i15;
+        int i16;
+        int i17 = 0;
+        if (this.e && fontMetricsInt != null) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        uv uvVar2 = this.X;
-        if (uvVar2 != null) {
-            uvVar2.f18397c = (h0() + i10) - uvVar2.f18398f;
-            if (uvVar != null) {
-                i13 = uvVar.f18396b.getHeight();
-            } else {
-                i13 = 0;
+        if (z10) {
+            i12 = fontMetricsInt.top;
+        } else {
+            i12 = 0;
+        }
+        if (z10) {
+            i13 = fontMetricsInt.ascent;
+        } else {
+            i13 = 0;
+        }
+        if (z10) {
+            i14 = fontMetricsInt.descent;
+        } else {
+            i14 = 0;
+        }
+        if (z10) {
+            i15 = fontMetricsInt.bottom;
+        } else {
+            i15 = 0;
+        }
+        if (z10) {
+            i16 = fontMetricsInt.leading;
+        } else {
+            i16 = 0;
+        }
+        int L = i0.L(8.0f);
+        int L2 = i0.L(10.0f);
+        su suVar = this.f18476a;
+        if (fontMetricsInt != null && suVar.f18159s) {
+            float f7 = this.d;
+            int i18 = (int) (((-L2) - L) * f7);
+            fontMetricsInt.top = i18;
+            int i19 = (int) ((L2 - L) * f7);
+            fontMetricsInt.bottom = i19;
+            fontMetricsInt.ascent = i18;
+            fontMetricsInt.descent = i19;
+            fontMetricsInt.leading = 0;
+        }
+        if (z10) {
+            fontMetricsInt.top = i12;
+            fontMetricsInt.ascent = i13;
+            fontMetricsInt.descent = i14;
+            fontMetricsInt.bottom = i15;
+            fontMetricsInt.leading = i16;
+            int i20 = this.f18479f;
+            int i21 = i14 - i13;
+            if (i20 > i21) {
+                int i22 = i20 - i21;
+                int i23 = (i22 + 1) / 2;
+                int i24 = i13 - i23;
+                fontMetricsInt.ascent = i24;
+                fontMetricsInt.descent = i14 + (i22 - i23);
+                fontMetricsInt.top = Math.min(i12, i24);
+                fontMetricsInt.bottom = Math.max(fontMetricsInt.bottom, fontMetricsInt.descent);
             }
-            uvVar2.d = i0() + i13 + i11;
-            uvVar2.e = i12;
         }
-    }
-
-    public final int h0() {
-        uv uvVar = this.X;
-        if (uvVar == null || !this.Y) {
-            return 0;
+        int i25 = suVar.e;
+        if (!suVar.f18159s) {
+            i17 = i0.L(1.0f) * 2;
         }
-        int i10 = this.f17621a.C;
-        Rect rect = this.f17622b;
-        return Math.max(0, ((i10 - rect.left) - rect.right) - uvVar.r());
-    }
-
-    public final int i0() {
-        if (this.W != null && this.X != null) {
-            return i0.L(4.0f);
-        }
-        return 0;
-    }
-
-    @Override
-    public final void k(SpannableStringBuilder spannableStringBuilder) {
-        StaticLayout staticLayout;
-        qu.l(spannableStringBuilder, this.W, null);
-        uv uvVar = this.X;
-        if (uvVar != null && (staticLayout = uvVar.f18396b) != null && !TextUtils.isEmpty(staticLayout.getText())) {
-            if (spannableStringBuilder.length() > 0 && spannableStringBuilder.charAt(spannableStringBuilder.length() - 1) != '\n') {
-                spannableStringBuilder.append('\n');
-            }
-            spannableStringBuilder.append(staticLayout.getText());
-        }
-    }
-
-    @Override
-    public final boolean v() {
-        return false;
+        return i25 + i17;
     }
 }

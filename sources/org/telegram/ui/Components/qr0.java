@@ -1,35 +1,26 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-public final class qr0 extends org.telegram.ui.Cells.k7 {
-    public final zt0 f29730l0;
+import android.widget.FrameLayout;
+public final class qr0 extends FragmentContextView {
+    public final au0 X0;
 
-    public qr0(zt0 zt0Var, Context context) {
-        super(context);
-        this.f29730l0 = zt0Var;
+    public qr0(au0 au0Var, Context context, org.telegram.ui.ActionBar.k2 k2Var, au0 au0Var2, org.telegram.ui.ActionBar.p6 p6Var) {
+        super(context, k2Var, au0Var2, false, p6Var);
+        this.X0 = au0Var;
     }
 
     @Override
-    public final boolean d(org.telegram.messenger.jj jjVar) {
-        ArrayList arrayList;
-        zt0 zt0Var = this.f29730l0;
-        ot0[] ot0VarArr = zt0Var.f33234v1;
-        if (!org.telegram.messenger.jj.R4(jjVar.f16337k) && !jjVar.h4()) {
-            if (!jjVar.I3()) {
-                return false;
-            }
-            return MediaController.B().o0(ot0VarArr[4].f29177a, jjVar, zt0Var.f33184e1, true, null);
-        }
-        boolean S = MediaController.B().S(jjVar);
-        MediaController B = MediaController.B();
-        if (S) {
-            arrayList = ot0VarArr[4].f29177a;
+    public final void setVisibility(int i10) {
+        boolean z10;
+        au0 au0Var = this.X0;
+        zr zrVar = au0Var.R0;
+        FrameLayout frameLayout = au0Var.S0;
+        if (i10 == 0) {
+            z10 = true;
         } else {
-            arrayList = null;
+            z10 = false;
         }
-        B.r0(arrayList, false);
-        return S;
+        zrVar.i(frameLayout, z10, true);
     }
 }

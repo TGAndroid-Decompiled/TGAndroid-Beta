@@ -1,44 +1,44 @@
 package ph;
 
-import org.telegram.messenger.q20;
+import org.telegram.messenger.r20;
 public final class n0 implements Runnable {
-    public final int f45243a;
-    public final l1 f45244b;
-    public final q20 f45245c;
+    public final int f45254a;
+    public final l1 f45255b;
+    public final r20 f45256c;
 
-    public n0(l1 l1Var, q20 q20Var, int i10) {
-        this.f45243a = i10;
-        this.f45244b = l1Var;
-        this.f45245c = q20Var;
+    public n0(l1 l1Var, r20 r20Var, int i10) {
+        this.f45254a = i10;
+        this.f45255b = l1Var;
+        this.f45256c = r20Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f45243a) {
+        switch (this.f45254a) {
             case 0:
-                l1 l1Var = this.f45244b;
-                q20 q20Var = this.f45245c;
-                if (q20Var != null) {
+                l1 l1Var = this.f45255b;
+                r20 r20Var = this.f45256c;
+                if (r20Var != null) {
                     l1Var.getClass();
-                    q20Var.a(Boolean.FALSE);
+                    r20Var.a(Boolean.FALSE);
                 }
                 l1Var.dismiss();
                 return;
             case 1:
-                l1 l1Var2 = this.f45244b;
-                q20 q20Var2 = this.f45245c;
-                if (q20Var2 != null) {
+                l1 l1Var2 = this.f45255b;
+                r20 r20Var2 = this.f45256c;
+                if (r20Var2 != null) {
                     l1Var2.getClass();
-                    q20Var2.a(Boolean.FALSE);
+                    r20Var2.a(Boolean.FALSE);
                 }
                 l1Var2.dismiss();
                 return;
             default:
-                l1 l1Var3 = this.f45244b;
-                q20 q20Var3 = this.f45245c;
-                if (q20Var3 != null) {
+                l1 l1Var3 = this.f45255b;
+                r20 r20Var3 = this.f45256c;
+                if (r20Var3 != null) {
                     l1Var3.getClass();
-                    q20Var3.a(Boolean.FALSE);
+                    r20Var3.a(Boolean.FALSE);
                 }
                 l1Var3.dismiss();
                 return;

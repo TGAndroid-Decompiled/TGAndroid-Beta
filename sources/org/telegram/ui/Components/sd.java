@@ -3,16 +3,16 @@ package org.telegram.ui.Components;
 import android.view.View;
 import android.view.ViewGroup;
 public final class sd implements View.OnClickListener {
-    public final int f30222a;
-    public final Object f30223b;
-    public final Object f30224c;
+    public final int f30268a;
+    public final Object f30269b;
+    public final Object f30270c;
     public final ViewGroup d;
 
     public sd(int i10, ViewGroup viewGroup, Object obj, Object obj2) {
-        this.f30222a = i10;
+        this.f30268a = i10;
         this.d = viewGroup;
-        this.f30223b = obj;
-        this.f30224c = obj2;
+        this.f30269b = obj;
+        this.f30270c = obj2;
     }
 
     @Override

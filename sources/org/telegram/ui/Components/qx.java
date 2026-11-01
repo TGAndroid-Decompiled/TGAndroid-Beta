@@ -2,10 +2,10 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.view.View;
-public final class qx extends u51 {
-    public qx(Context context, int i10, org.telegram.messenger.j20 j20Var, org.telegram.messenger.o20 o20Var, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(context, i10, -1, false, j20Var, o20Var, null, p6Var, -1, 0);
-        this.f30647y2 = true;
+public final class qx extends v51 {
+    public qx(Context context, int i10, org.telegram.messenger.k20 k20Var, org.telegram.messenger.p20 p20Var, org.telegram.ui.ActionBar.p6 p6Var) {
+        super(context, i10, -1, false, k20Var, p20Var, null, p6Var, -1, 0);
+        this.f31030y2 = true;
         setOverScrollMode(2);
     }
 

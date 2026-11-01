@@ -2,15 +2,15 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 public final class h implements View.OnClickListener {
-    public final int f26558a;
-    public final z60 f26559b;
-    public final boolean f26560c;
+    public final int f26604a;
+    public final z60 f26605b;
+    public final boolean f26606c;
     public final Runnable d;
 
     public h(z60 z60Var, boolean z10, Runnable runnable, int i10) {
-        this.f26558a = i10;
-        this.f26559b = z60Var;
-        this.f26560c = z10;
+        this.f26604a = i10;
+        this.f26605b = z60Var;
+        this.f26606c = z10;
         this.d = runnable;
     }
 
@@ -18,17 +18,17 @@ public final class h implements View.OnClickListener {
     public final void onClick(View view) {
         Runnable runnable;
         Runnable runnable2;
-        switch (this.f26558a) {
+        switch (this.f26604a) {
             case 0:
-                this.f26559b.u();
-                if (!this.f26560c && (runnable = this.d) != null) {
+                this.f26605b.u();
+                if (!this.f26606c && (runnable = this.d) != null) {
                     runnable.run();
                     return;
                 }
                 return;
             default:
-                this.f26559b.u();
-                if (!this.f26560c && (runnable2 = this.d) != null) {
+                this.f26605b.u();
+                if (!this.f26606c && (runnable2 = this.d) != null) {
                     runnable2.run();
                     return;
                 }

@@ -15,49 +15,49 @@ import td.z1;
 import th.m1;
 import x7.g8;
 public final class p {
-    public final Context f53484a;
-    public final s f53485b;
-    public final g8 f53486c;
+    public final Context f53502a;
+    public final s f53503b;
+    public final g8 f53504c;
     public u9.b d;
     public u9.b e;
-    public n f53487f;
-    public final v f53488g;
+    public n f53505f;
+    public final v f53506g;
     public final ca.c h;
-    public final t9.a f53489i;
-    public final t9.a f53490j;
-    public final ExecutorService f53491k;
-    public final xa.n f53492l;
-    public final j f53493m;
-    public final u9.a f53494n;
-    public final n2.u f53495o;
+    public final t9.a f53507i;
+    public final t9.a f53508j;
+    public final ExecutorService f53509k;
+    public final xa.n f53510l;
+    public final j f53511m;
+    public final u9.a f53512n;
+    public final n2.u f53513o;
 
     public p(l9.h hVar, v vVar, u9.a aVar, s sVar, t9.a aVar2, t9.a aVar3, ca.c cVar, ExecutorService executorService, j jVar, n2.u uVar) {
-        this.f53485b = sVar;
+        this.f53503b = sVar;
         hVar.a();
-        this.f53484a = hVar.f11707a;
-        this.f53488g = vVar;
-        this.f53494n = aVar;
-        this.f53489i = aVar2;
-        this.f53490j = aVar3;
-        this.f53491k = executorService;
+        this.f53502a = hVar.f11708a;
+        this.f53506g = vVar;
+        this.f53512n = aVar;
+        this.f53507i = aVar2;
+        this.f53508j = aVar3;
+        this.f53509k = executorService;
         this.h = cVar;
         ?? obj = new Object();
-        obj.f53555b = Tasks.forResult(null);
-        obj.f53556c = new Object();
+        obj.f53573b = Tasks.forResult(null);
+        obj.f53574c = new Object();
         obj.d = new ThreadLocal();
-        obj.f53554a = executorService;
+        obj.f53572a = executorService;
         executorService.execute(new u0.b(obj, 3));
-        this.f53492l = obj;
-        this.f53493m = jVar;
-        this.f53495o = uVar;
+        this.f53510l = obj;
+        this.f53511m = jVar;
+        this.f53513o = uVar;
         System.currentTimeMillis();
-        this.f53486c = new g8();
+        this.f53504c = new g8();
     }
 
     public static Task a(p pVar, ea.d dVar) {
         Task forException;
         o oVar;
-        xa.n nVar = pVar.f53492l;
+        xa.n nVar = pVar.f53510l;
         if (Boolean.TRUE.equals(((ThreadLocal) nVar.d).get())) {
             pVar.d.b();
             if (Log.isLoggable("FirebaseCrashlytics", 2)) {
@@ -65,8 +65,8 @@ public final class p {
             }
             try {
                 try {
-                    pVar.f53489i.a(new m1(20));
-                    pVar.f53487f.g();
+                    pVar.f53507i.a(new m1(20));
+                    pVar.f53505f.g();
                     if (!dVar.d().f6463b.f6459a) {
                         if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                             Log.d("FirebaseCrashlytics", "Collection of crash reports disabled in Crashlytics settings.", null);
@@ -74,10 +74,10 @@ public final class p {
                         forException = Tasks.forException(new RuntimeException("Collection of crash reports disabled in Crashlytics settings."));
                         oVar = new o(pVar, 0);
                     } else {
-                        if (!pVar.f53487f.d(dVar)) {
+                        if (!pVar.f53505f.d(dVar)) {
                             Log.w("FirebaseCrashlytics", "Previous sessions could not be finalized.", null);
                         }
-                        forException = pVar.f53487f.h(((TaskCompletionSource) ((AtomicReference) dVar.f6471i).get()).getTask());
+                        forException = pVar.f53505f.h(((TaskCompletionSource) ((AtomicReference) dVar.f6471i).get()).getTask());
                         oVar = new o(pVar, 0);
                     }
                 } catch (Exception e) {
@@ -96,7 +96,7 @@ public final class p {
     }
 
     public final void b(ea.d dVar) {
-        Future<?> submit = this.f53491k.submit(new z1(this, dVar, false, 12));
+        Future<?> submit = this.f53509k.submit(new z1(this, dVar, false, 12));
         if (Log.isLoggable("FirebaseCrashlytics", 3)) {
             Log.d("FirebaseCrashlytics", "Crashlytics detected incomplete initialization on previous app launch. Will initialize synchronously.", null);
         }

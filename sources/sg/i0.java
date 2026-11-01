@@ -62,12 +62,12 @@ public final class i0 extends g9 {
             this.G = true;
             return;
         }
-        if (getImageReceiver().B() != null && getImageReceiver().B().f24765k0) {
+        if (getImageReceiver().B() != null && getImageReceiver().B().f25144k0) {
             this.G = true;
         }
-        if (!this.G && getImageReceiver().B() != null && !getImageReceiver().B().f24765k0) {
+        if (!this.G && getImageReceiver().B() != null && !getImageReceiver().B().f25144k0) {
             k0 k0Var = this.K;
-            if (k0Var.f48365a == 2 && !k0Var.f48386z) {
+            if (k0Var.f48376a == 2 && !k0Var.f48397z) {
                 getImageReceiver().B().N(getImageReceiver().B().e[0] - 1, false, false);
             } else {
                 getImageReceiver().B().N(0, false, false);

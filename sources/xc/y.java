@@ -8,7 +8,7 @@ public enum y extends a2 {
     public final void d(k kVar, a aVar) {
         if (aVar.j()) {
             kVar.l(this);
-            kVar.f53646c = a2.f53598a;
+            kVar.f53664c = a2.f53616a;
             return;
         }
         char i10 = aVar.i();

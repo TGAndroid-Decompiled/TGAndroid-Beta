@@ -78,7 +78,7 @@ public final class e {
             while (true) {
                 k6.h hVar = this.d;
                 if (i11 < i10) {
-                    int read = ((ff.a) hVar.f10943b).read(bArr2, i11, i10 - i11);
+                    int read = ((ff.a) hVar.f10944b).read(bArr2, i11, i10 - i11);
                     if (read > 0) {
                         i11 += read;
                     } else {
@@ -126,7 +126,7 @@ public final class e {
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("id3v2frame[pos=");
         ff.b bVar = this.f6495a;
-        sb2.append(bVar.f7055b);
+        sb2.append(bVar.f7056b);
         sb2.append(", ");
         sb2.append(bVar.e());
         sb2.append(" left]");

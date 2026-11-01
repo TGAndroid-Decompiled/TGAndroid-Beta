@@ -5,7 +5,7 @@ import android.support.v4.media.session.a0;
 import android.view.animation.Interpolator;
 import android.widget.FrameLayout;
 import b2.r1;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 import org.telegram.messenger.i0;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.Components.gr;
@@ -26,7 +26,7 @@ public final class k extends FrameLayout implements fe.e {
 
     public k(Context context, p6 p6Var, wg.b bVar, tg.b bVar2) {
         super(context);
-        this.f2810a = new String[]{cd.L0(2131753953, null), cd.L0(2131754815, null), cd.L0(2131754842, null), cd.L0(2131754790, null), cd.L0(2131754804, null), cd.L0(2131754778, null), cd.L0(2131754779, null)};
+        this.f2810a = new String[]{dd.L0(2131753953, null), dd.L0(2131754815, null), dd.L0(2131754842, null), dd.L0(2131754790, null), dd.L0(2131754804, null), dd.L0(2131754778, null), dd.L0(2131754779, null)};
         this.e = new a0[7];
         this.f2813f = new r1[7];
         this.f2815r = 83;

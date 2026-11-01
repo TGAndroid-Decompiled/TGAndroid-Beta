@@ -10,29 +10,29 @@ import i8.f;
 import j8.e;
 import java.util.HashMap;
 import n6.l;
-import org.telegram.messenger.db;
+import org.telegram.messenger.aa;
 import org.telegram.messenger.eb;
-import org.telegram.messenger.fa;
+import org.telegram.messenger.fb;
 import org.telegram.messenger.ga;
-import org.telegram.messenger.ia;
+import org.telegram.messenger.ha;
+import org.telegram.messenger.ja;
 import org.telegram.messenger.p;
 import org.telegram.messenger.s1;
-import org.telegram.messenger.z9;
 import org.telegram.ui.Components.lk;
 public final class b extends b8.b {
-    public final int f7638b = 1;
-    public final Object f7639c;
+    public final int f7639b = 2;
+    public final Object f7640c;
 
     public b(p pVar) {
         super("com.google.android.gms.maps.internal.IOnMarkerClickListener", 10);
-        this.f7639c = pVar;
+        this.f7640c = pVar;
     }
 
     @Override
     public final boolean K0(int i10, Parcel parcel, Parcel parcel2) {
         s7.a aVar;
         a9.a aVar2;
-        switch (this.f7638b) {
+        switch (this.f7639b) {
             case 0:
                 if (i10 == 1) {
                     IBinder readStrongBinder = parcel.readStrongBinder();
@@ -47,17 +47,17 @@ public final class b extends b8.b {
                         }
                     }
                     s7.b.a(parcel);
-                    p pVar = (p) this.f7639c;
+                    p pVar = (p) this.f7640c;
                     e eVar = new e(aVar);
-                    ga gaVar = (ga) pVar.f17389b;
-                    eb ebVar = (eb) pVar.f17390c;
-                    HashMap hashMap = gaVar.f15690b;
-                    fa faVar = (fa) hashMap.get(eVar);
-                    if (faVar == null) {
-                        faVar = new fa(gaVar, eVar);
-                        hashMap.put(eVar, faVar);
+                    ha haVar = (ha) pVar.f17542b;
+                    fb fbVar = (fb) pVar.f17543c;
+                    HashMap hashMap = haVar.f16039b;
+                    ga gaVar = (ga) hashMap.get(eVar);
+                    if (gaVar == null) {
+                        gaVar = new ga(haVar, eVar);
+                        hashMap.put(eVar, gaVar);
                     }
-                    ebVar.a(faVar);
+                    fbVar.a(gaVar);
                     parcel2.writeNoException();
                     parcel2.writeInt(1);
                     return true;
@@ -77,17 +77,17 @@ public final class b extends b8.b {
                         }
                     }
                     s7.b.a(parcel);
-                    ia iaVar = (ia) this.f7639c;
+                    ja jaVar = (ja) this.f7640c;
                     ?? obj = new Object();
                     new HashMap();
                     l.g(aVar2);
-                    obj.f13526a = aVar2;
-                    d dVar = iaVar.f16092a;
-                    ?? r62 = iaVar.f16093b;
+                    obj.f13527a = aVar2;
+                    d dVar = jaVar.f16427a;
+                    ?? r62 = jaVar.f16428b;
                     ?? obj2 = new Object();
-                    obj2.f15690b = new HashMap();
-                    obj2.f15691c = new HashMap();
-                    obj2.f15689a = obj;
+                    obj2.f16039b = new HashMap();
+                    obj2.f16040c = new HashMap();
+                    obj2.f16038a = obj;
                     r62.accept(obj2);
                     dVar.q((i) dVar.f2777a);
                     parcel2.writeNoException();
@@ -98,14 +98,14 @@ public final class b extends b8.b {
                 if (i10 == 1) {
                     x6.a M0 = x6.b.M0(parcel.readStrongBinder());
                     s7.b.a(parcel);
-                    ((z9) this.f7639c).f19492b.accept((Location) x6.b.N0(M0));
+                    ((aa) this.f7640c).f14588b.accept((Location) x6.b.N0(M0));
                     parcel2.writeNoException();
                     return true;
                 }
                 return false;
             case 3:
                 if (i10 == 1) {
-                    ((lk) ((s1) this.f7639c).f17863b).run();
+                    ((lk) ((s1) this.f7640c).f18056b).run();
                     parcel2.writeNoException();
                     return true;
                 }
@@ -114,7 +114,7 @@ public final class b extends b8.b {
                 if (i10 == 1) {
                     int readInt = parcel.readInt();
                     s7.b.a(parcel);
-                    db dbVar = (db) ((s1) this.f7639c).f17863b;
+                    eb ebVar = (eb) ((s1) this.f7640c).f18056b;
                     int i11 = 2;
                     if (readInt != 2) {
                         i11 = 3;
@@ -122,21 +122,21 @@ public final class b extends b8.b {
                             i11 = 1;
                         }
                     }
-                    dbVar.d(i11);
+                    ebVar.d(i11);
                     parcel2.writeNoException();
                     return true;
                 }
                 return false;
             case 5:
                 if (i10 == 1) {
-                    ((Runnable) ((s1) this.f7639c).f17863b).run();
+                    ((Runnable) ((s1) this.f7640c).f18056b).run();
                     parcel2.writeNoException();
                     return true;
                 }
                 return false;
             default:
                 if (i10 == 1) {
-                    ((lk) ((s1) this.f7639c).f17863b).run();
+                    ((lk) ((s1) this.f7640c).f18056b).run();
                     parcel2.writeNoException();
                     return true;
                 }
@@ -146,31 +146,31 @@ public final class b extends b8.b {
 
     public b(s1 s1Var) {
         super("com.google.android.gms.maps.internal.IOnMapLoadedCallback", 10);
-        this.f7639c = s1Var;
+        this.f7640c = s1Var;
     }
 
     public b(s1 s1Var, byte b10) {
         super("com.google.android.gms.maps.internal.IOnCameraMoveStartedListener", 10);
-        this.f7639c = s1Var;
+        this.f7640c = s1Var;
     }
 
     public b(s1 s1Var, char c10) {
         super("com.google.android.gms.maps.internal.IOnCameraMoveListener", 10);
-        this.f7639c = s1Var;
+        this.f7640c = s1Var;
     }
 
     public b(s1 s1Var, int i10) {
         super("com.google.android.gms.maps.internal.IOnCameraIdleListener", 10);
-        this.f7639c = s1Var;
+        this.f7640c = s1Var;
     }
 
-    public b(z9 z9Var) {
+    public b(aa aaVar) {
         super("com.google.android.gms.maps.internal.IOnMyLocationChangeListener", 10);
-        this.f7639c = z9Var;
+        this.f7640c = aaVar;
     }
 
-    public b(ia iaVar) {
+    public b(ja jaVar) {
         super("com.google.android.gms.maps.internal.IOnMapReadyCallback", 10);
-        this.f7639c = iaVar;
+        this.f7640c = jaVar;
     }
 }

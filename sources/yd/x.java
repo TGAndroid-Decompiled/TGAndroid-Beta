@@ -5,34 +5,34 @@ import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import td.t0;
 import td.u0;
 public class x {
-    public static final AtomicIntegerFieldUpdater f54424b = AtomicIntegerFieldUpdater.newUpdater(x.class, "_size$volatile");
+    public static final AtomicIntegerFieldUpdater f54445b = AtomicIntegerFieldUpdater.newUpdater(x.class, "_size$volatile");
     private volatile int _size$volatile;
-    public t0[] f54425a;
+    public t0[] f54446a;
 
     public final void a(t0 t0Var) {
         t0Var.d((u0) this);
-        t0[] t0VarArr = this.f54425a;
-        AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = f54424b;
+        t0[] t0VarArr = this.f54446a;
+        AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = f54445b;
         if (t0VarArr == null) {
             t0VarArr = new t0[4];
-            this.f54425a = t0VarArr;
+            this.f54446a = t0VarArr;
         } else if (atomicIntegerFieldUpdater.get(this) >= t0VarArr.length) {
             Object[] copyOf = Arrays.copyOf(t0VarArr, atomicIntegerFieldUpdater.get(this) * 2);
             kotlin.jvm.internal.i.d(copyOf, "copyOf(...)");
             t0VarArr = (t0[]) copyOf;
-            this.f54425a = t0VarArr;
+            this.f54446a = t0VarArr;
         }
         int i10 = atomicIntegerFieldUpdater.get(this);
         atomicIntegerFieldUpdater.set(this, i10 + 1);
         t0VarArr[i10] = t0Var;
-        t0Var.f48662b = i10;
+        t0Var.f48673b = i10;
         e(i10);
     }
 
     public final t0 b() {
         t0 t0Var;
         synchronized (this) {
-            t0[] t0VarArr = this.f54425a;
+            t0[] t0VarArr = this.f54446a;
             if (t0VarArr != null) {
                 t0Var = t0VarArr[0];
             } else {
@@ -45,7 +45,7 @@ public class x {
     public final void c(t0 t0Var) {
         synchronized (this) {
             if (t0Var.a() != null) {
-                d(t0Var.f48662b);
+                d(t0Var.f48673b);
             }
         }
     }
@@ -56,7 +56,7 @@ public class x {
 
     public final void e(int i10) {
         while (i10 > 0) {
-            t0[] t0VarArr = this.f54425a;
+            t0[] t0VarArr = this.f54446a;
             kotlin.jvm.internal.i.b(t0VarArr);
             int i11 = (i10 - 1) / 2;
             t0 t0Var = t0VarArr[i11];
@@ -72,7 +72,7 @@ public class x {
     }
 
     public final void f(int i10, int i11) {
-        t0[] t0VarArr = this.f54425a;
+        t0[] t0VarArr = this.f54446a;
         kotlin.jvm.internal.i.b(t0VarArr);
         t0 t0Var = t0VarArr[i11];
         kotlin.jvm.internal.i.b(t0Var);
@@ -80,7 +80,7 @@ public class x {
         kotlin.jvm.internal.i.b(t0Var2);
         t0VarArr[i10] = t0Var;
         t0VarArr[i11] = t0Var2;
-        t0Var.f48662b = i10;
-        t0Var2.f48662b = i11;
+        t0Var.f48673b = i10;
+        t0Var2.f48673b = i11;
     }
 }

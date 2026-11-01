@@ -6,11 +6,11 @@ import android.os.Parcelable;
 import androidx.versionedparcelable.ParcelImpl;
 import w7.g0;
 public final class m implements Parcelable.Creator {
-    public final int f53553a;
+    public final int f53571a;
 
     @Override
     public final Object createFromParcel(Parcel parcel) {
-        switch (this.f53553a) {
+        switch (this.f53571a) {
             case 0:
                 int z10 = g0.z(parcel);
                 Bundle bundle = null;
@@ -31,7 +31,7 @@ public final class m implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f53553a) {
+        switch (this.f53571a) {
             case 0:
                 return new l[i10];
             default:

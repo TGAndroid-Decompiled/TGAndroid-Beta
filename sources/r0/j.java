@@ -5,21 +5,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 public final class j {
-    public ViewParent f46127a;
-    public ViewParent f46128b;
-    public final ViewGroup f46129c;
+    public ViewParent f46138a;
+    public ViewParent f46139b;
+    public final ViewGroup f46140c;
     public boolean d;
     public int[] e;
 
     public j(ViewGroup viewGroup) {
-        this.f46129c = viewGroup;
+        this.f46140c = viewGroup;
     }
 
     public final boolean a(float f7, float f10, boolean z10) {
         ViewParent e;
         if (this.d && (e = e(0)) != null) {
             try {
-                return e.onNestedFling(this.f46129c, f7, f10, z10);
+                return e.onNestedFling(this.f46140c, f7, f10, z10);
             } catch (AbstractMethodError e7) {
                 Log.e("ViewParentCompat", "ViewParent " + e + " does not implement interface method onNestedFling", e7);
             }
@@ -31,7 +31,7 @@ public final class j {
         ViewParent e;
         if (this.d && (e = e(0)) != null) {
             try {
-                return e.onNestedPreFling(this.f46129c, f7, f10);
+                return e.onNestedPreFling(this.f46140c, f7, f10);
             } catch (AbstractMethodError e7) {
                 Log.e("ViewParentCompat", "ViewParent " + e + " does not implement interface method onNestedPreFling", e7);
             }
@@ -55,7 +55,7 @@ public final class j {
             iArr2[1] = 0;
             return false;
         }
-        ViewGroup viewGroup = this.f46129c;
+        ViewGroup viewGroup = this.f46140c;
         if (iArr2 != null) {
             viewGroup.getLocationInWindow(iArr2);
             i13 = iArr2[0];
@@ -107,7 +107,7 @@ public final class j {
                     return false;
                 }
             } else {
-                ViewGroup viewGroup = this.f46129c;
+                ViewGroup viewGroup = this.f46140c;
                 if (iArr != null) {
                     viewGroup.getLocationInWindow(iArr);
                     i15 = iArr[0];
@@ -158,9 +158,9 @@ public final class j {
             if (i10 != 1) {
                 return null;
             }
-            return this.f46128b;
+            return this.f46139b;
         }
-        return this.f46127a;
+        return this.f46138a;
     }
 
     public final boolean f(int i10) {
@@ -174,7 +174,7 @@ public final class j {
         boolean onStartNestedScroll;
         if (!f(i11)) {
             if (this.d) {
-                View view = this.f46129c;
+                View view = this.f46140c;
                 View view2 = view;
                 for (ViewParent parent = view.getParent(); parent != null; parent = parent.getParent()) {
                     boolean z10 = parent instanceof k;
@@ -193,10 +193,10 @@ public final class j {
                     if (onStartNestedScroll) {
                         if (i11 != 0) {
                             if (i11 == 1) {
-                                this.f46128b = parent;
+                                this.f46139b = parent;
                             }
                         } else {
-                            this.f46127a = parent;
+                            this.f46138a = parent;
                         }
                         if (z10) {
                             ((k) parent).q(view2, view, i10, i11);
@@ -223,7 +223,7 @@ public final class j {
         ViewParent e = e(i10);
         if (e != null) {
             boolean z10 = e instanceof k;
-            ViewGroup viewGroup = this.f46129c;
+            ViewGroup viewGroup = this.f46140c;
             if (z10) {
                 ((k) e).k(i10, viewGroup);
             } else if (i10 == 0) {
@@ -235,12 +235,12 @@ public final class j {
             }
             if (i10 != 0) {
                 if (i10 == 1) {
-                    this.f46128b = null;
+                    this.f46139b = null;
                     return;
                 }
                 return;
             }
-            this.f46127a = null;
+            this.f46138a = null;
         }
     }
 }

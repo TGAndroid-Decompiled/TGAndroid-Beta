@@ -1,167 +1,83 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.text.SpannableStringBuilder;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import org.telegram.tgnet.TLRPC;
-public final class fy extends org.telegram.ui.Components.sk0 {
-    public final Context f37362c;
-    public Drawable d;
-    public Drawable e;
-    public final iy f37363f;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+public final class fy extends s4.u {
+    public boolean d;
+    public final hy e;
 
-    public fy(iy iyVar, Context context) {
-        this.f37363f = iyVar;
-        this.f37362c = context;
+    public fy(hy hyVar) {
+        this.e = hyVar;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f47901f;
-        if (i10 == 1 || i10 == 3) {
-            return true;
-        }
-        return false;
+    public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
+        super.a(recyclerView, c1Var);
+        c1Var.f47909a.setPressed(false);
     }
 
     @Override
-    public final int b() {
-        return this.f37363f.f38371w;
+    public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
+        if (c1Var.f47912f != 3) {
+            return s4.u.l(0, 0);
+        }
+        return s4.u.l(3, 0);
     }
 
     @Override
-    public final int d(int i10) {
-        if (i10 == 0) {
-            return 2;
+    public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
+        boolean z10;
+        boolean z11 = false;
+        if (c1Var.f47912f != c1Var2.f47912f) {
+            return false;
         }
-        iy iyVar = this.f37363f;
-        if (i10 == iyVar.h) {
-            return 1;
-        }
-        if (i10 == iyVar.f38370s) {
-            return 0;
-        }
-        return 3;
-    }
-
-    @Override
-    public final void t(s4.c1 c1Var, int i10) {
-        int i11 = c1Var.f47901f;
-        View view = c1Var.f47898a;
-        boolean z10 = true;
-        iy iyVar = this.f37363f;
-        if (i11 != 0) {
-            if (i11 != 1) {
-                if (i11 == 3) {
-                    org.telegram.ui.Cells.j4 j4Var = (org.telegram.ui.Cells.j4) view;
-                    Long l4 = (Long) iyVar.e.get(i10 - iyVar.f38368n);
-                    long longValue = l4.longValue();
-                    if (org.telegram.messenger.o5.E(longValue)) {
-                        TLRPC.User Z1 = iyVar.getMessagesController().Z1(l4);
-                        if (i10 == iyVar.f38369r - 1) {
-                            z10 = false;
-                        }
-                        j4Var.e(Z1, null, null, z10);
-                        return;
-                    }
-                    TLRPC.Chat L0 = iyVar.getMessagesController().L0(Long.valueOf(-longValue));
-                    if (i10 == iyVar.f38369r - 1) {
-                        z10 = false;
-                    }
-                    j4Var.e(L0, null, null, z10);
-                    return;
-                }
-                return;
-            }
-            org.telegram.ui.Cells.p8 p8Var = (org.telegram.ui.Cells.p8) view;
-            p8Var.g(-1, org.telegram.ui.ActionBar.t6.q6);
-            if (this.d == null) {
-                Context context = this.f37362c;
-                this.d = context.getResources().getDrawable(2131232556);
-                this.e = context.getResources().getDrawable(2131232557);
-            }
-            Drawable drawable = this.d;
-            Drawable drawable2 = this.e;
-            int i12 = org.telegram.ui.ActionBar.t6.N6;
-            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-            org.telegram.ui.ActionBar.a7.y(p8Var, drawable, i12, null, mode);
-            org.telegram.ui.ActionBar.a7.y(p8Var, drawable2, org.telegram.ui.ActionBar.t6.f21059k7, null, mode);
-            org.telegram.ui.Components.eq eqVar = new org.telegram.ui.Components.eq(drawable, drawable2);
-            String L02 = org.telegram.messenger.cd.L0(2131745685, null);
-            if (iyVar.f38368n == -1) {
+        int b10 = c1Var.b();
+        int b11 = c1Var2.b();
+        hy hyVar = this.e;
+        ey eyVar = hyVar.f37882a;
+        hy hyVar2 = eyVar.f36925f;
+        int i10 = hyVar2.f37886n;
+        ArrayList arrayList = hyVar2.e;
+        int i11 = b10 - i10;
+        int i12 = b11 - i10;
+        int i13 = hyVar2.f37887r - i10;
+        if (i11 >= 0 && i12 >= 0 && i11 < i13 && i12 < i13) {
+            arrayList.set(i11, (Long) arrayList.get(i12));
+            arrayList.set(i12, (Long) arrayList.get(i11));
+            eyVar.j(b10, b11);
+            org.telegram.ui.Cells.j4 j4Var = (org.telegram.ui.Cells.j4) c1Var.f47909a;
+            if (b11 != hyVar.f37887r - 1) {
+                z10 = true;
+            } else {
                 z10 = false;
             }
-            p8Var.p(L02, eqVar, z10);
-            p8Var.getImageView().setPadding(0, org.telegram.messenger.i0.L(7.0f), 0, 0);
-            return;
-        }
-        org.telegram.ui.Cells.b9 b9Var = (org.telegram.ui.Cells.b9) view;
-        if (i10 == iyVar.f38370s) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            int i13 = iyVar.f38372x;
-            if (i13 == 0) {
-                spannableStringBuilder.append((CharSequence) org.telegram.messenger.cd.L0(2131751213, null));
-            } else if (i13 == 1) {
-                spannableStringBuilder.append((CharSequence) org.telegram.messenger.cd.L0(2131751212, null));
+            j4Var.setDrawDivider(z10);
+            org.telegram.ui.Cells.j4 j4Var2 = (org.telegram.ui.Cells.j4) c1Var2.f47909a;
+            if (b10 != hyVar.f37887r - 1) {
+                z11 = true;
             }
-            if (org.telegram.messenger.tz.f18180s.length() > 0) {
-                spannableStringBuilder.append((CharSequence) "\n\n").append((CharSequence) org.telegram.messenger.i0.W2(org.telegram.messenger.cd.L0(2131742896, null)));
-            }
-            b9Var.setText(spannableStringBuilder);
+            j4Var2.setDrawDivider(z11);
+            this.d = true;
         }
+        return true;
     }
 
     @Override
-    public final s4.c1 w(ViewGroup viewGroup, int i10) {
-        hy hyVar;
-        int i11;
-        Context context = this.f37362c;
+    public final void p(s4.c1 c1Var, int i10) {
+        hy hyVar = this.e;
         if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    FrameLayout j4Var = new org.telegram.ui.Cells.j4(context, 0, 0, false);
-                    ImageView e = org.telegram.messenger.z20.e(context, 2131231628);
-                    e.setScaleType(ImageView.ScaleType.CENTER);
-                    j4Var.setTag(2131296585, e);
-                    if (org.telegram.messenger.cd.X) {
-                        i11 = 3;
-                    } else {
-                        i11 = 5;
-                    }
-                    j4Var.addView(e, w7.b6.d(40, -1.0f, i11 | 16, 10.0f, 0.0f, 10.0f, 0.0f));
-                    e.setOnTouchListener(new org.telegram.ui.ActionBar.d1(4, this, j4Var));
-                    org.telegram.ui.ActionBar.a7.t(e, org.telegram.ui.ActionBar.t6.f20894b9, null, PorterDuff.Mode.MULTIPLY);
-                    hyVar = j4Var;
-                } else {
-                    iy iyVar = this.f37363f;
-                    hy hyVar2 = new hy(iyVar, context);
-                    iyVar.f38367f = hyVar2;
-                    hyVar = hyVar2;
-                }
-            } else {
-                FrameLayout p8Var = new org.telegram.ui.Cells.p8(context);
-                org.telegram.ui.ActionBar.a7.i(org.telegram.ui.ActionBar.t6.f20929d6, p8Var, null);
-                hyVar = p8Var;
+            hyVar.f37883b.I0(false);
+            c1Var.f47909a.setPressed(true);
+        } else if (this.d) {
+            gy gyVar = hyVar.f37885f;
+            if (gyVar != null) {
+                gyVar.a();
             }
-        } else {
-            FrameLayout b9Var = new org.telegram.ui.Cells.b9(context);
-            org.telegram.ui.ActionBar.a7.a0(b9Var, context, 2131231231, org.telegram.ui.ActionBar.t6.f20892b7);
-            hyVar = b9Var;
+            this.d = false;
         }
-        return new s4.c1(hyVar);
     }
 
     @Override
-    public final void y(s4.c1 c1Var) {
-        int i10 = c1Var.f47901f;
-        if (i10 != 3 && i10 != 1) {
-            return;
-        }
-        org.telegram.ui.ActionBar.a7.i(org.telegram.ui.ActionBar.t6.f20929d6, c1Var.f47898a, null);
+    public final void q(s4.c1 c1Var) {
     }
 }

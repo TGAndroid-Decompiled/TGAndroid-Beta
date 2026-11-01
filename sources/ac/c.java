@@ -41,7 +41,7 @@ public abstract class c {
 
     public static void c(b4.d dVar, StringBuilder sb2, int i10) {
         int i11;
-        if (wb.h.f52795c != null) {
+        if (wb.h.f52813c != null) {
             if (i10 * 13 <= dVar.d()) {
                 byte[] bArr = new byte[i10 * 2];
                 int i12 = 0;
@@ -59,7 +59,7 @@ public abstract class c {
                     i12 += 2;
                     i10--;
                 }
-                sb2.append(new String(bArr, wb.h.f52795c));
+                sb2.append(new String(bArr, wb.h.f52813c));
                 return;
             }
             throw vb.c.a();
@@ -69,7 +69,7 @@ public abstract class c {
 
     public static void d(b4.d dVar, StringBuilder sb2, int i10) {
         int i11;
-        if (wb.h.f52794b != null) {
+        if (wb.h.f52812b != null) {
             if (i10 * 13 <= dVar.d()) {
                 byte[] bArr = new byte[i10 * 2];
                 int i12 = 0;
@@ -87,7 +87,7 @@ public abstract class c {
                     i12 += 2;
                     i10--;
                 }
-                sb2.append(new String(bArr, wb.h.f52794b));
+                sb2.append(new String(bArr, wb.h.f52812b));
                 return;
             }
             throw vb.c.a();

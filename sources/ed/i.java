@@ -18,7 +18,7 @@ public abstract class i extends h implements kotlin.jvm.internal.f {
     @Override
     public final String toString() {
         if (getCompletion() == null) {
-            q.f11445a.getClass();
+            q.f11446a.getClass();
             String a2 = r.a(this);
             kotlin.jvm.internal.i.d(a2, "renderLambdaToString(...)");
             return a2;

@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.MotionEvent;
-public final class ck extends org.telegram.ui.Components.k11 {
+public final class ck extends org.telegram.ui.Components.l11 {
     public final un e;
 
     public ck(un unVar, Context context, int i10, org.telegram.ui.ActionBar.p6 p6Var) {
@@ -16,7 +16,7 @@ public final class ck extends org.telegram.ui.Components.k11 {
         if (getAlpha() != 0.0f) {
             un unVar = this.e;
             lVar = ((org.telegram.ui.ActionBar.k2) unVar).actionBar;
-            if (!lVar.u() && !unVar.M9()) {
+            if (!lVar.u() && !unVar.R9()) {
                 return super.onTouchEvent(motionEvent);
             }
             return false;

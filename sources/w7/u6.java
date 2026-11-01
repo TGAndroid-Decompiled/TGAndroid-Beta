@@ -12,13 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 import org.telegram.ui.LaunchActivity;
 public abstract class u6 {
-    public static String f52710a;
+    public static String f52728a;
 
     public static String a(LaunchActivity launchActivity) {
         String str;
         PackageManager packageManager;
         ApplicationInfo applicationInfo;
-        String str2 = f52710a;
+        String str2 = f52728a;
         if (str2 != null) {
             return str2;
         }
@@ -41,9 +41,9 @@ public abstract class u6 {
             }
         }
         if (arrayList.isEmpty()) {
-            f52710a = null;
+            f52728a = null;
         } else if (arrayList.size() == 1) {
-            f52710a = (String) arrayList.get(0);
+            f52728a = (String) arrayList.get(0);
         } else {
             if (!TextUtils.isEmpty(str)) {
                 try {
@@ -60,26 +60,26 @@ public abstract class u6 {
                     Log.e("CustomTabsHelper", "Runtime exception while getting specialized handlers");
                 }
                 if (arrayList.contains(str)) {
-                    f52710a = str;
+                    f52728a = str;
                 }
             }
             if (arrayList.contains("com.android.chrome")) {
-                f52710a = "com.android.chrome";
+                f52728a = "com.android.chrome";
             } else if (arrayList.contains("com.chrome.beta")) {
-                f52710a = "com.chrome.beta";
+                f52728a = "com.chrome.beta";
             } else if (arrayList.contains("com.chrome.dev")) {
-                f52710a = "com.chrome.dev";
+                f52728a = "com.chrome.dev";
             } else if (arrayList.contains("com.google.android.apps.chrome")) {
-                f52710a = "com.google.android.apps.chrome";
+                f52728a = "com.google.android.apps.chrome";
             }
         }
         try {
-            if ("com.sec.android.app.sbrowser".equalsIgnoreCase(f52710a) && (applicationInfo = (packageManager = org.telegram.messenger.w0.f19025b.getPackageManager()).getApplicationInfo("com.android.chrome", 0)) != null && applicationInfo.enabled) {
+            if ("com.sec.android.app.sbrowser".equalsIgnoreCase(f52728a) && (applicationInfo = (packageManager = org.telegram.messenger.w0.f18945b.getPackageManager()).getApplicationInfo("com.android.chrome", 0)) != null && applicationInfo.enabled) {
                 packageManager.getPackageInfo("com.android.chrome", 1);
-                f52710a = "com.android.chrome";
+                f52728a = "com.android.chrome";
             }
         } catch (Throwable unused2) {
         }
-        return f52710a;
+        return f52728a;
     }
 }

@@ -55,7 +55,7 @@ public final class yp extends EditTextBoldCursor {
         iy iyVar;
         View view;
         s4.a0 a0Var;
-        tk0 tk0Var;
+        uk0 uk0Var;
         ?? r16;
         yp ypVar2;
         int i12;
@@ -99,19 +99,19 @@ public final class yp extends EditTextBoldCursor {
                 }
                 if (motionEvent.getAction() == 0) {
                     int i16 = 2;
-                    if (!vyVar.f31918t1.z()) {
-                        tk0 tk0Var2 = vyVar.D0;
-                        tk0 tk0Var3 = vyVar.P;
-                        zx zxVar = vyVar.f31886j0;
-                        tk0 tk0Var4 = vyVar.f31880h0;
+                    if (!vyVar.f31996t1.z()) {
+                        uk0 uk0Var2 = vyVar.D0;
+                        uk0 uk0Var3 = vyVar.P;
+                        zx zxVar = vyVar.f31964j0;
+                        uk0 uk0Var4 = vyVar.f31958h0;
                         AnimatorSet animatorSet = vyVar.M0;
                         if (animatorSet != null) {
                             animatorSet.cancel();
                             vyVar.M0 = null;
                         }
                         vyVar.I0 = false;
-                        vyVar.f31906q0 = false;
-                        vyVar.f31864c0 = false;
+                        vyVar.f31984q0 = false;
+                        vyVar.f31942c0 = false;
                         int i17 = 0;
                         while (i17 < 3) {
                             if (i17 == 0) {
@@ -119,20 +119,20 @@ public final class yp extends EditTextBoldCursor {
                                 view = vyVar.I;
                                 r16 = z12;
                                 a0Var = vyVar.Q;
-                                tk0Var = tk0Var3;
+                                uk0Var = uk0Var3;
                             } else {
                                 boolean z13 = z12;
                                 if (i17 == i15) {
-                                    iyVar = vyVar.f31900o0;
-                                    view = vyVar.f31903p0;
-                                    a0Var = vyVar.f31883i0;
-                                    tk0Var = tk0Var4;
+                                    iyVar = vyVar.f31978o0;
+                                    view = vyVar.f31981p0;
+                                    a0Var = vyVar.f31961i0;
+                                    uk0Var = uk0Var4;
                                     r16 = z13;
                                 } else {
                                     iyVar = vyVar.G0;
                                     view = vyVar.B0;
                                     a0Var = vyVar.E0;
-                                    tk0Var = tk0Var2;
+                                    uk0Var = uk0Var2;
                                     r16 = z13;
                                 }
                             }
@@ -140,7 +140,7 @@ public final class yp extends EditTextBoldCursor {
                                 ypVar2 = ypVar3;
                                 i12 = i16;
                                 z10 = r16;
-                            } else if (iyVar2 == iyVar && (vxVar = vyVar.f31918t1) != null && vxVar.A()) {
+                            } else if (iyVar2 == iyVar && (vxVar = vyVar.f31996t1) != null && vxVar.A()) {
                                 AnimatorSet animatorSet2 = new AnimatorSet();
                                 vyVar.M0 = animatorSet2;
                                 Property property = View.TRANSLATION_Y;
@@ -152,7 +152,7 @@ public final class yp extends EditTextBoldCursor {
                                     ObjectAnimator ofFloat = ObjectAnimator.ofFloat(view, property, fArr);
                                     float[] fArr2 = new float[1];
                                     fArr2[r16] = -org.telegram.messenger.i0.L(36.0f);
-                                    ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(tk0Var, property, fArr2);
+                                    ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(uk0Var, property, fArr2);
                                     float[] fArr3 = new float[1];
                                     fArr3[r16] = org.telegram.messenger.i0.L(0.0f);
                                     ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(iyVar, property, fArr3);
@@ -170,7 +170,7 @@ public final class yp extends EditTextBoldCursor {
                                     }
                                     float[] fArr4 = new float[1];
                                     fArr4[r16] = f7;
-                                    ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(tk0Var, property, fArr4);
+                                    ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(uk0Var, property, fArr4);
                                     float[] fArr5 = new float[1];
                                     fArr5[r16] = org.telegram.messenger.i0.L(0.0f);
                                     ObjectAnimator ofFloat5 = ObjectAnimator.ofFloat(iyVar, property, fArr5);
@@ -180,8 +180,8 @@ public final class yp extends EditTextBoldCursor {
                                     animatorSet2.playTogether(animatorArr2);
                                 }
                                 vyVar.M0.setDuration(220L);
-                                vyVar.M0.setInterpolator(gr.f26495f);
-                                vyVar.M0.addListener(new bg.f(22, vyVar, tk0Var));
+                                vyVar.M0.setInterpolator(gr.f26523f);
+                                vyVar.M0.addListener(new bg.f(22, vyVar, uk0Var));
                                 vyVar.M0.start();
                                 z10 = r16;
                                 i12 = 2;
@@ -192,19 +192,19 @@ public final class yp extends EditTextBoldCursor {
                                 if (view != null && i17 != 2) {
                                     view.setTranslationY(-org.telegram.messenger.i0.L(40.0f));
                                 }
-                                if (tk0Var == tk0Var2) {
+                                if (uk0Var == uk0Var2) {
                                     int i19 = r16;
-                                    tk0Var.setPadding(i19, i19, i19, vyVar.f31908q2);
+                                    uk0Var.setPadding(i19, i19, i19, vyVar.f31986q2);
                                 } else {
                                     int i20 = r16;
-                                    if (tk0Var == tk0Var3) {
-                                        tk0Var.setPadding(org.telegram.messenger.i0.L(5.0f), i20, org.telegram.messenger.i0.L(5.0f), vyVar.f31908q2);
-                                    } else if (tk0Var == tk0Var4) {
-                                        tk0Var.setPadding(i20, vyVar.f31861b1, i20, vyVar.f31908q2);
+                                    if (uk0Var == uk0Var3) {
+                                        uk0Var.setPadding(org.telegram.messenger.i0.L(5.0f), i20, org.telegram.messenger.i0.L(5.0f), vyVar.f31986q2);
+                                    } else if (uk0Var == uk0Var4) {
+                                        uk0Var.setPadding(i20, vyVar.f31939b1, i20, vyVar.f31986q2);
                                     }
                                 }
-                                if (tk0Var == tk0Var4) {
-                                    if (vyVar.f31897n0.f33258y.size() > 0) {
+                                if (uk0Var == uk0Var4) {
+                                    if (vyVar.f31975n0.f33253y.size() > 0) {
                                         z11 = true;
                                     } else {
                                         z11 = false;
@@ -212,8 +212,8 @@ public final class yp extends EditTextBoldCursor {
                                     zxVar.K = z11;
                                     if (z11) {
                                         zxVar.G("", true);
-                                        if (tk0Var4.getAdapter() != zxVar) {
-                                            tk0Var4.setAdapter(zxVar);
+                                        if (uk0Var4.getAdapter() != zxVar) {
+                                            uk0Var4.setAdapter(zxVar);
                                         }
                                     }
                                 }
@@ -233,7 +233,7 @@ public final class yp extends EditTextBoldCursor {
                         ypVar = ypVar3;
                         i10 = 2;
                     }
-                    vx vxVar2 = vyVar.f31918t1;
+                    vx vxVar2 = vyVar.f31996t1;
                     if (i14 == 1) {
                         i11 = i10;
                     } else {

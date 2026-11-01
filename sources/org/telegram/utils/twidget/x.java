@@ -1,5 +1,6 @@
 package org.telegram.utils.twidget;
 
+import android.graphics.BlendMode;
 import android.graphics.Canvas;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
@@ -15,7 +16,6 @@ import android.graphics.Shader;
 import m4.v0;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.telegram.ui.ra1;
 public abstract class x {
     public static void a(a0 a0Var, cc.f fVar, JSONArray jSONArray, int i10, JSONObject jSONObject, z zVar, float f7) {
         RenderEffect c10;
@@ -28,23 +28,23 @@ public abstract class x {
         RenderEffect renderEffect = c10;
         Matrix matrix = new Matrix();
         if (renderEffect != null && ((Matrix) fVar.d).invert(matrix)) {
-            RectF k10 = a0.k(jSONObject, "r", new RectF());
-            if (!k10.isEmpty()) {
+            RectF j10 = a0.j(jSONObject, "r", new RectF());
+            if (!j10.isEmpty()) {
                 RenderNode renderNode = new RenderNode("widget-backdrop");
-                int floor = (int) Math.floor(k10.left * f7);
-                int floor2 = (int) Math.floor(k10.top * f7);
-                renderNode.setPosition(floor, floor2, (int) Math.ceil(k10.right * f7), (int) Math.ceil(k10.bottom * f7));
+                int floor = (int) Math.floor(j10.left * f7);
+                int floor2 = (int) Math.floor(j10.top * f7);
+                renderNode.setPosition(floor, floor2, (int) Math.ceil(j10.right * f7), (int) Math.ceil(j10.bottom * f7));
                 RecordingCanvas beginRecording = renderNode.beginRecording();
                 beginRecording.translate(-floor, -floor2);
                 beginRecording.scale(f7, f7);
                 beginRecording.concat(matrix);
-                a0Var.f(beginRecording, jSONArray, i10, zVar, f7, false);
+                a0Var.e(beginRecording, jSONArray, i10, zVar, f7, false);
                 renderNode.endRecording();
                 renderNode.setRenderEffect(renderEffect);
                 Canvas canvas = (Canvas) fVar.f4117c;
                 canvas.save();
-                Path path = a0Var.f44304f;
-                a0Var.l(jSONObject, "r", path);
+                Path path = a0Var.f44308f;
+                a0Var.k(jSONObject, "r", path);
                 canvas.clipPath(path);
                 canvas.drawColor(0, PorterDuff.Mode.CLEAR);
                 float f10 = 1.0f / f7;
@@ -68,7 +68,7 @@ public abstract class x {
         yVar.e = floor;
         renderNode.setPosition(yVar.d, floor, ((int) Math.ceil(rectF.right * f7)) + 1, ((int) Math.ceil(rectF.bottom * f7)) + 1);
         renderNode.setRenderEffect(c10);
-        yVar.f44475c = renderNode;
+        yVar.f44486c = renderNode;
         RecordingCanvas beginRecording = renderNode.beginRecording();
         beginRecording.translate(-yVar.d, -yVar.e);
         beginRecording.scale(f7, f7);
@@ -78,6 +78,7 @@ public abstract class x {
     public static RenderEffect c(JSONArray jSONArray, float f7, Shader.TileMode tileMode) {
         float f10;
         float f11;
+        BlendMode blendMode;
         Shader.TileMode tileMode2;
         RenderEffect renderEffect = null;
         for (int i10 = 0; i10 < jSONArray.length(); i10++) {
@@ -102,7 +103,8 @@ public abstract class x {
                                 tileMode2 = Shader.TileMode.DECAL;
                                 createOffsetEffect = RenderEffect.createBlurEffect(f11, f11, createOffsetEffect, tileMode2);
                             }
-                            renderEffect = RenderEffect.createBlendModeEffect(createOffsetEffect, renderEffect, ra1.a());
+                            blendMode = BlendMode.SRC_OVER;
+                            renderEffect = RenderEffect.createBlendModeEffect(createOffsetEffect, renderEffect, blendMode);
                         }
                     } else if (renderEffect == null) {
                         ColorMatrix colorMatrix = new ColorMatrix();
@@ -134,12 +136,12 @@ public abstract class x {
     }
 
     public static void d(y yVar, float f7) {
-        RenderNode b10 = v0.b(yVar.f44475c);
+        RenderNode b10 = v0.b(yVar.f44486c);
         b10.endRecording();
-        yVar.f44473a.save();
+        yVar.f44484a.save();
         float f10 = 1.0f / f7;
-        yVar.f44473a.scale(f10, f10);
-        yVar.f44473a.drawRenderNode(b10);
-        yVar.f44473a.restore();
+        yVar.f44484a.scale(f10, f10);
+        yVar.f44484a.drawRenderNode(b10);
+        yVar.f44484a.restore();
     }
 }

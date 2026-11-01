@@ -1,51 +1,39 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
 public final class ob implements Runnable {
-    public final int f17248a = 0;
-    public final String f17249b;
-    public final int f17250c;
-    public final boolean d;
+    public final int f17416a;
+    public final boolean f17417b;
+    public final int f17418c;
+    public final Object d;
+    public final Object e;
 
-    public ob(int i10, String str, boolean z10) {
-        this.f17250c = i10;
-        this.f17249b = str;
-        this.d = z10;
+    public ob(int i10, int i11, Object obj, TLObject tLObject, boolean z10) {
+        this.f17416a = i11;
+        this.d = obj;
+        this.e = tLObject;
+        this.f17417b = z10;
+        this.f17418c = i10;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f17248a;
-        boolean z10 = this.d;
-        int i11 = this.f17250c;
-        String str = this.f17249b;
-        switch (i10) {
-            case 0:
-                zs.f(i11).k(139, str, Boolean.valueOf(z10));
-                return;
-            default:
-                org.telegram.utils.twidget.m mVar = (org.telegram.utils.twidget.m) org.telegram.utils.twidget.p.f44430a.get(str);
-                if (mVar != null && mVar.f44412u != null) {
-                    if (org.telegram.utils.twidget.p.f44434g.contains(mVar)) {
-                        mVar.F = i11;
-                        mVar.f44412u.n(i11);
-                        return;
-                    }
-                    mVar.F = i11;
-                    mVar.G = z10;
-                    ArrayList arrayList = org.telegram.utils.twidget.p.f44433f;
-                    arrayList.remove(mVar);
-                    arrayList.add(mVar);
-                    org.telegram.utils.twidget.p.o();
-                    return;
-                }
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ob.run():void");
     }
 
-    public ob(String str, int i10, boolean z10) {
-        this.f17249b = str;
-        this.f17250c = i10;
-        this.d = z10;
+    public ob(sb sbVar, int i10, String str, boolean z10) {
+        this.f17416a = 0;
+        this.d = sbVar;
+        this.f17418c = i10;
+        this.e = str;
+        this.f17417b = z10;
+    }
+
+    public ob(vi viVar, int i10, boolean z10, r20 r20Var) {
+        this.f17416a = 2;
+        this.d = viVar;
+        this.f17418c = i10;
+        this.f17417b = z10;
+        this.e = r20Var;
     }
 }

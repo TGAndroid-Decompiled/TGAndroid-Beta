@@ -13,26 +13,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
 import java.util.ArrayList;
-import org.telegram.messenger.jj;
+import org.telegram.messenger.kj;
 public final class v9 extends View {
-    public final Paint f23334a;
-    public float f23335b;
-    public float f23336c;
+    public final Paint f23335a;
+    public float f23336b;
+    public float f23337c;
     public long d;
     public final Path e;
-    public final ArrayList f23337f;
+    public final ArrayList f23338f;
     public float h;
-    public float f23338n;
-    public final w9 f23339r;
+    public float f23339n;
+    public final w9 f23340r;
 
     public v9(w9 w9Var, Context context) {
         super(context);
-        this.f23339r = w9Var;
+        this.f23340r = w9Var;
         Paint paint = new Paint(1);
-        this.f23334a = paint;
+        this.f23335a = paint;
         this.d = 0L;
         this.e = new Path();
-        this.f23337f = new ArrayList();
+        this.f23338f = new ArrayList();
         paint.setStyle(Paint.Style.FILL);
     }
 
@@ -40,23 +40,23 @@ public final class v9 extends View {
         if (rectF.isEmpty()) {
             return;
         }
-        this.f23337f.add(new Rect((int) Math.floor(rectF.left), (int) Math.floor(rectF.top), (int) Math.ceil(rectF.right), (int) Math.ceil(rectF.bottom)));
+        this.f23338f.add(new Rect((int) Math.floor(rectF.left), (int) Math.floor(rectF.top), (int) Math.ceil(rectF.right), (int) Math.ceil(rectF.bottom)));
     }
 
     public final boolean b(MotionEvent motionEvent) {
-        w9 w9Var = this.f23339r;
-        if (w9Var.x() && !w9Var.f23425i) {
+        w9 w9Var = this.f23340r;
+        if (w9Var.x() && !w9Var.f23426i) {
             int action = motionEvent.getAction();
             if (action != 0) {
-                if (action == 1 && System.currentTimeMillis() - this.d < 200 && w7.z8.b((int) this.f23335b, (int) this.f23336c, (int) motionEvent.getX(), (int) motionEvent.getY()) < w9Var.f23433m) {
+                if (action == 1 && System.currentTimeMillis() - this.d < 200 && w7.z8.b((int) this.f23336b, (int) this.f23337c, (int) motionEvent.getX(), (int) motionEvent.getY()) < w9Var.f23434m) {
                     w9Var.K(motionEvent.getRawX(), motionEvent.getRawY());
                     w9Var.u();
                     w9Var.f(false);
                     return true;
                 }
             } else {
-                this.f23335b = motionEvent.getX();
-                this.f23336c = motionEvent.getY();
+                this.f23336b = motionEvent.getX();
+                this.f23337c = motionEvent.getY();
                 this.d = System.currentTimeMillis();
             }
         }
@@ -65,7 +65,7 @@ public final class v9 extends View {
 
     public final void c() {
         if (Build.VERSION.SDK_INT >= 29) {
-            ArrayList arrayList = this.f23337f;
+            ArrayList arrayList = this.f23338f;
             if (!arrayList.isEmpty()) {
                 arrayList.clear();
                 setSystemGestureExclusionRects(arrayList);
@@ -77,8 +77,8 @@ public final class v9 extends View {
     public final void invalidate() {
         ViewGroup viewGroup;
         super.invalidate();
-        w9 w9Var = this.f23339r;
-        if (w9Var.f23426i0 && (viewGroup = w9Var.F) != null) {
+        w9 w9Var = this.f23340r;
+        if (w9Var.f23427i0 && (viewGroup = w9Var.F) != null) {
             viewGroup.invalidate();
         }
     }
@@ -91,41 +91,41 @@ public final class v9 extends View {
         float f7;
         int i11;
         boolean isRtlCharAt;
-        jj jjVar;
+        kj kjVar;
         float f10;
         boolean z10;
         int i12;
-        w9 w9Var = this.f23339r;
+        w9 w9Var = this.f23340r;
         f fVar2 = w9Var.m0;
-        OvershootInterpolator overshootInterpolator = w9Var.f23417c0;
+        OvershootInterpolator overshootInterpolator = w9Var.f23418c0;
         RectF rectF = w9Var.S;
         RectF rectF2 = w9Var.T;
-        ge.b bVar = w9Var.f23413a0;
+        ge.b bVar = w9Var.f23414a0;
         if (w9Var.x()) {
             int L = org.telegram.messenger.i0.L(22.0f);
-            int i13 = w9Var.f23445x;
+            int i13 = w9Var.f23446x;
             w9Var.N();
             r9 r9Var = w9Var.W;
-            Paint paint = this.f23334a;
+            Paint paint = this.f23335a;
             Path path = this.e;
             if (r9Var != null) {
                 canvas.save();
                 int[] l4 = w9Var.l();
                 c10 = 1;
-                float f11 = l4[1] + w9Var.f23414b;
+                float f11 = l4[1] + w9Var.f23415b;
                 f7 = 8.0f;
-                float f12 = l4[0] + w9Var.f23412a;
+                float f12 = l4[0] + w9Var.f23413a;
                 canvas.translate(f12, f11);
                 r9 r9Var2 = w9Var.W;
                 if (r9Var2 instanceof q1) {
-                    jjVar = ((q1) r9Var2).getMessageObject();
+                    kjVar = ((q1) r9Var2).getMessageObject();
                 } else {
-                    jjVar = null;
+                    kjVar = null;
                 }
-                if (jjVar != null && jjVar.P3()) {
+                if (kjVar != null && kjVar.P3()) {
                     paint.setColor(w9Var.t(org.telegram.ui.ActionBar.t6.Kc));
                 } else {
-                    paint.setColor(w9Var.t(org.telegram.ui.ActionBar.t6.f21048jg));
+                    paint.setColor(w9Var.t(org.telegram.ui.ActionBar.t6.f21049jg));
                 }
                 int length = w9Var.s(w9Var.W, false).length();
                 int i14 = w9Var.v;
@@ -134,19 +134,19 @@ public final class v9 extends View {
                     Layout layout = (Layout) bVar.d;
                     if (layout != null) {
                         fVar = fVar2;
-                        int i15 = w9Var.v - bVar.f7470a;
+                        int i15 = w9Var.v - bVar.f7471a;
                         int length2 = layout.getText().length();
                         if (i15 > length2) {
                             i15 = length2;
                         }
                         int lineForOffset = layout.getLineForOffset(i15);
                         float primaryHorizontal = layout.getPrimaryHorizontal(i15);
-                        int lineBottom = (int) (layout.getLineBottom(lineForOffset) + bVar.f7471b);
-                        float f13 = primaryHorizontal + bVar.f7472c;
+                        int lineBottom = (int) (layout.getLineBottom(lineForOffset) + bVar.f7472b);
+                        float f13 = primaryHorizontal + bVar.f7473c;
                         Rect rect = (Rect) bVar.e;
                         if (rect != null) {
-                            float f14 = rect.right - w9Var.f23412a;
-                            i12 = rect.bottom - w9Var.f23414b;
+                            float f14 = rect.right - w9Var.f23413a;
+                            i12 = rect.bottom - w9Var.f23415b;
                             f10 = f14;
                             z10 = false;
                         } else {
@@ -158,7 +158,7 @@ public final class v9 extends View {
                         float f15 = i12;
                         float f16 = f11 + f15;
                         i10 = i13;
-                        if (f16 > i10 + w9Var.f23418d0 && f16 < w9Var.F.getMeasuredHeight()) {
+                        if (f16 > i10 + w9Var.f23419d0 && f16 < w9Var.F.getMeasuredHeight()) {
                             if (!z10) {
                                 canvas.save();
                                 canvas.translate(f10, f15);
@@ -216,31 +216,31 @@ public final class v9 extends View {
             if (w9Var.W != null) {
                 canvas.save();
                 int[] l10 = w9Var.l();
-                float f23 = l10[c10] + w9Var.f23414b;
-                float f24 = l10[0] + w9Var.f23412a;
+                float f23 = l10[c10] + w9Var.f23415b;
+                float f24 = l10[0] + w9Var.f23413a;
                 canvas.translate(f24, f23);
                 int length3 = w9Var.s(w9Var.W, false).length();
-                int i16 = w9Var.f23443u;
+                int i16 = w9Var.f23444u;
                 if (i16 >= 0 && i16 <= length3) {
                     w9Var.i(i16, bVar, false);
                     Layout layout2 = (Layout) bVar.d;
                     if (layout2 != null) {
-                        int i17 = w9Var.f23443u - bVar.f7470a;
+                        int i17 = w9Var.f23444u - bVar.f7471a;
                         int lineForOffset2 = layout2.getLineForOffset(i17);
                         float primaryHorizontal2 = layout2.getPrimaryHorizontal(i17);
-                        int lineBottom2 = (int) (layout2.getLineBottom(lineForOffset2) + bVar.f7471b);
-                        float f25 = primaryHorizontal2 + bVar.f7472c;
+                        int lineBottom2 = (int) (layout2.getLineBottom(lineForOffset2) + bVar.f7472b);
+                        float f25 = primaryHorizontal2 + bVar.f7473c;
                         Rect rect2 = (Rect) bVar.e;
                         if (rect2 != null) {
-                            f25 = rect2.left - w9Var.f23412a;
-                            lineBottom2 = rect2.bottom - w9Var.f23414b;
+                            f25 = rect2.left - w9Var.f23413a;
+                            lineBottom2 = rect2.bottom - w9Var.f23415b;
                             isRtlCharAt = false;
                         } else {
-                            isRtlCharAt = layout2.isRtlCharAt(w9Var.f23443u);
+                            isRtlCharAt = layout2.isRtlCharAt(w9Var.f23444u);
                         }
                         float f26 = lineBottom2;
                         float f27 = f23 + f26;
-                        if (f27 > i10 + w9Var.f23418d0 && f27 < w9Var.F.getMeasuredHeight()) {
+                        if (f27 > i10 + w9Var.f23419d0 && f27 < w9Var.F.getMeasuredHeight()) {
                             if (!isRtlCharAt) {
                                 canvas.save();
                                 float f28 = L;
@@ -286,17 +286,17 @@ public final class v9 extends View {
                 canvas.restore();
             }
             if (Build.VERSION.SDK_INT >= 29) {
-                ArrayList arrayList = this.f23337f;
+                ArrayList arrayList = this.f23338f;
                 arrayList.clear();
                 a(rectF);
                 a(rectF2);
                 setSystemGestureExclusionRects(arrayList);
             }
-            if (i11 != 0 && w9Var.f23425i) {
-                if (!w9Var.f23427j) {
+            if (i11 != 0 && w9Var.f23426i) {
+                if (!w9Var.f23428j) {
                     w9Var.N();
                 }
-                w9.a(w9Var, w9Var.f23415b0);
+                w9.a(w9Var, w9Var.f23416b0);
                 if (w9Var.I != w9Var.H || w9Var.L != w9Var.K) {
                     invalidate();
                 }
@@ -313,7 +313,7 @@ public final class v9 extends View {
                     d4Var2.c();
                 }
             }
-            if (w9Var.f23429k) {
+            if (w9Var.f23430k) {
                 invalidate();
             }
         }

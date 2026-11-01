@@ -30,7 +30,7 @@ public class p extends y0 {
 
     @Override
     public final PointF a(int i10) {
-        n0 n0Var = this.f48047c;
+        n0 n0Var = this.f48058c;
         if (n0Var instanceof a0) {
             return ((a0) n0Var).E0(i10);
         }
@@ -39,7 +39,7 @@ public class p extends y0 {
 
     @Override
     public final void d(int i10, int i11, x0 x0Var) {
-        if (this.f48046b.f1924y.r() == 0) {
+        if (this.f48057b.f1924y.r() == 0) {
             h();
             return;
         }
@@ -57,7 +57,7 @@ public class p extends y0 {
         }
         this.f4250m = i14;
         if (i13 == 0 && i14 == 0) {
-            PointF a2 = a(this.f48045a);
+            PointF a2 = a(this.f48056a);
             if (a2 != null && (a2.x != 0.0f || a2.y != 0.0f)) {
                 y0.b(a2);
                 this.f4249l = (int) (a2.x * 10000.0f);
@@ -65,7 +65,7 @@ public class p extends y0 {
                 x0Var.b((int) (this.f4249l * 1.2f), (int) (this.f4250m * 1.2f), (int) (((int) Math.ceil(Math.abs(10000) * this.f4248k)) * 1.2f), this.f4246i);
                 return;
             }
-            x0Var.d = this.f48045a;
+            x0Var.d = this.f48056a;
             h();
         }
     }

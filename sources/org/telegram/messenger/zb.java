@@ -1,36 +1,58 @@
 package org.telegram.messenger;
-public final class zb implements Runnable {
-    public final int f19493a;
-    public final cc f19494b;
 
-    public zb(cc ccVar, int i10) {
-        this.f19493a = i10;
-        this.f19494b = ccVar;
+import android.os.AsyncTask;
+import android.os.SystemClock;
+import java.io.File;
+import java.io.RandomAccessFile;
+public final class zb extends AsyncTask {
+    public final String f19677a;
+    public final File f19678b;
+    public final String f19679c;
+    public int d;
+    public RandomAccessFile e = null;
+    public boolean f19680f = true;
+    public long f19681g;
+    public final int h;
+    public final ic f19682i;
+
+    public zb(ic icVar, String str, File file, String str2, int i10) {
+        this.f19682i = icVar;
+        this.f19677a = str;
+        this.f19678b = file;
+        this.f19679c = str2;
+        this.h = i10;
+    }
+
+    public final void a(long j10, long j11) {
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        if (j10 != j11) {
+            long j12 = this.f19681g;
+            if (j12 != 0 && j12 >= elapsedRealtime - 100) {
+                return;
+            }
+        }
+        this.f19681g = elapsedRealtime;
+        Utilities.d.c(new yb(this, j10, j11, 0));
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f19493a;
-        cc ccVar = this.f19494b;
-        switch (i10) {
-            case 0:
-                hc hcVar = ccVar.h;
-                ThreadLocal threadLocal = hc.I;
-                hcVar.V(true);
-                return;
-            case 1:
-                ccVar.h.f15870u.remove(ccVar.f14974a.e);
-                i0.g3(new zb(ccVar, 3));
-                return;
-            case 2:
-                hc hcVar2 = ccVar.h;
-                ThreadLocal threadLocal2 = hc.I;
-                hcVar2.V(true);
-                return;
-            default:
-                vb vbVar = ccVar.f14974a;
-                zs.f(vbVar.f18498o).k(143, vbVar.e, 1);
-                return;
+    public final java.lang.Object doInBackground(java.lang.Object[] r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.zb.doInBackground(java.lang.Object[]):java.lang.Object");
+    }
+
+    @Override
+    public final void onCancelled() {
+        this.f19682i.U(this, 2);
+    }
+
+    @Override
+    public final void onPostExecute(Object obj) {
+        int i10;
+        if (((Boolean) obj).booleanValue()) {
+            i10 = 2;
+        } else {
+            i10 = 1;
         }
+        this.f19682i.U(this, i10);
     }
 }

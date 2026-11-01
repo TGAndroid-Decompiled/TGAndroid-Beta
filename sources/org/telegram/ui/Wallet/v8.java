@@ -10,58 +10,58 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 import java.util.Arrays;
 import java.util.Random;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 public final class v8 extends View {
     public ValueAnimator D;
     public final w8 E;
-    public final Paint f35318a;
-    public final char[] f35319b;
-    public final Random f35320c;
+    public final Paint f35322a;
+    public final char[] f35323b;
+    public final Random f35324c;
     public final int[] d;
     public final float[] e;
-    public final float f35321f;
+    public final float f35325f;
     public final float h;
-    public final float f35322n;
-    public final float f35323r;
-    public final Paint.FontMetrics f35324s;
-    public String f35325w;
-    public float f35326x;
-    public boolean f35327y;
+    public final float f35326n;
+    public final float f35327r;
+    public final Paint.FontMetrics f35328s;
+    public String f35329w;
+    public float f35330x;
+    public boolean f35331y;
 
     public v8(w8 w8Var, Context context) {
         super(context);
         this.E = w8Var;
         Paint paint = new Paint(1);
-        this.f35318a = paint;
-        this.f35319b = new char[1];
-        this.f35320c = new Random();
+        this.f35322a = paint;
+        this.f35323b = new char[1];
+        this.f35324c = new Random();
         this.d = new int[48];
         this.e = new float[48];
         paint.setTypeface(org.telegram.messenger.i0.o1("fonts/rmono.ttf"));
         paint.setTextSize(org.telegram.messenger.i0.L(12.0f));
-        this.f35321f = paint.measureText("U");
+        this.f35325f = paint.measureText("U");
         Paint.FontMetrics fontMetrics = paint.getFontMetrics();
-        this.f35324s = fontMetrics;
+        this.f35328s = fontMetrics;
         float f7 = fontMetrics.top;
-        this.f35322n = -f7;
+        this.f35326n = -f7;
         float f10 = fontMetrics.descent - fontMetrics.ascent;
         this.h = f10;
-        this.f35323r = (fontMetrics.bottom - f7) + f10;
+        this.f35327r = (fontMetrics.bottom - f7) + f10;
         setImportantForAccessibility(1);
-        setContentDescription(cd.L0(2131748789, null));
+        setContentDescription(dd.L0(2131748789, null));
     }
 
     public final float a() {
-        String str = this.f35325w;
+        String str = this.f35329w;
         int i10 = 24;
         if (str != null) {
             i10 = Math.min(24, str.length());
         }
-        return this.f35321f * (Math.max(0, (i10 - 1) / 4) + i10);
+        return this.f35325f * (Math.max(0, (i10 - 1) / 4) + i10);
     }
 
     public final int b() {
-        int max = Math.max(0, Math.min(24, this.f35325w.length()) - 1);
+        int max = Math.max(0, Math.min(24, this.f35329w.length()) - 1);
         return (((max / 4) + max) * 18) + 560;
     }
 
@@ -70,7 +70,7 @@ public final class v8 extends View {
         if (TextUtils.isEmpty(str)) {
             str = null;
         }
-        if (!z10 && TextUtils.equals(this.f35325w, str)) {
+        if (!z10 && TextUtils.equals(this.f35329w, str)) {
             return;
         }
         ValueAnimator valueAnimator = this.D;
@@ -78,18 +78,18 @@ public final class v8 extends View {
             valueAnimator.cancel();
             this.D = null;
         }
-        this.f35325w = str;
-        this.f35326x = 0.0f;
+        this.f35329w = str;
+        this.f35330x = 0.0f;
         Arrays.fill(this.d, -1);
-        String str2 = this.f35325w;
+        String str2 = this.f35329w;
         if (str2 != null) {
             z11 = true;
         } else {
             z11 = false;
         }
-        this.f35327y = z11;
+        this.f35331y = z11;
         if (str2 == null) {
-            str2 = cd.L0(2131748789, null);
+            str2 = dd.L0(2131748789, null);
         }
         setContentDescription(str2);
         requestLayout();
@@ -98,11 +98,11 @@ public final class v8 extends View {
     }
 
     public final void d() {
-        if (this.f35327y && isAttachedToWindow() && isShown()) {
-            this.f35327y = false;
+        if (this.f35331y && isAttachedToWindow() && isShown()) {
+            this.f35331y = false;
             int b10 = b();
             if (Build.VERSION.SDK_INT >= 26 && !ValueAnimator.areAnimatorsEnabled()) {
-                this.f35326x = b10;
+                this.f35330x = b10;
                 invalidate();
                 return;
             }
@@ -128,8 +128,8 @@ public final class v8 extends View {
             valueAnimator.cancel();
             this.D = null;
         }
-        if (this.f35325w != null && !this.f35327y) {
-            this.f35326x = b();
+        if (this.f35329w != null && !this.f35331y) {
+            this.f35330x = b();
         }
         super.onDetachedFromWindow();
     }
@@ -161,10 +161,10 @@ public final class v8 extends View {
         int i15;
         super.onDraw(canvas);
         int i16 = org.telegram.ui.ActionBar.t6.D6;
-        org.telegram.ui.ActionBar.p6 p6Var = this.E.f35366a;
+        org.telegram.ui.ActionBar.p6 p6Var = this.E.f35373a;
         int w02 = org.telegram.ui.ActionBar.t6.w0(i16, p6Var);
         int w03 = org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.G6, p6Var);
-        String str = this.f35325w;
+        String str = this.f35329w;
         int i17 = 48;
         if (str != null) {
             i17 = Math.min(48, str.length());
@@ -176,22 +176,22 @@ public final class v8 extends View {
             if (i20 < i18) {
                 int i21 = i20 / 24;
                 int i22 = (i19 % 6) * 5;
-                float f18 = this.f35321f;
+                float f18 = this.f35325f;
                 float f19 = i22 * f18;
                 float f20 = i21 * this.h;
-                float f21 = this.f35322n;
+                float f21 = this.f35326n;
                 float f22 = f20 + f21;
-                float f23 = this.f35326x - (i10 * 90);
-                if (this.f35325w == null) {
+                float f23 = this.f35330x - (i10 * 90);
+                if (this.f35329w == null) {
                     max = 1.0f;
                 } else {
                     max = 1.0f - Math.max(0.0f, Math.min(1.0f, f23 / 180.0f));
                 }
                 int i23 = (max > 0.0f ? 1 : (max == 0.0f ? 0 : -1));
                 float f24 = 0.0f;
-                Paint.FontMetrics fontMetrics = this.f35324s;
+                Paint.FontMetrics fontMetrics = this.f35328s;
                 int i24 = i19;
-                Paint paint2 = this.f35318a;
+                Paint paint2 = this.f35322a;
                 if (i23 > 0) {
                     paint2.setColor(w02);
                     paint2.setAlpha(Math.round(paint2.getAlpha() * 0.22f * max));
@@ -215,13 +215,13 @@ public final class v8 extends View {
                     f12 = f19;
                     f13 = f22;
                 }
-                if (this.f35325w != null) {
+                if (this.f35329w != null) {
                     int i25 = 0;
                     int i26 = 4;
                     while (i25 < i26) {
                         int i27 = i20 + i25;
                         if (i27 < i18) {
-                            float f25 = this.f35326x - ((i11 + i25) * 18);
+                            float f25 = this.f35330x - ((i11 + i25) * 18);
                             if (f25 <= f24) {
                                 i15 = i26;
                                 i12 = i20;
@@ -248,16 +248,16 @@ public final class v8 extends View {
                                     charAt = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_".charAt(((i28 * 13) + (i27 * 17)) % 64);
                                 } else {
                                     f15 = f14;
-                                    charAt = this.f35325w.charAt(i27);
+                                    charAt = this.f35329w.charAt(i27);
                                 }
-                                this.f35319b[0] = charAt;
+                                this.f35323b[0] = charAt;
                                 float[] fArr2 = this.e;
                                 if (z10) {
                                     int[] iArr = this.d;
                                     fArr = fArr2;
                                     if (iArr[i27] != i28) {
                                         iArr[i27] = i28;
-                                        fArr[i27] = this.f35320c.nextFloat();
+                                        fArr[i27] = this.f35324c.nextFloat();
                                     }
                                 } else {
                                     fArr = fArr2;
@@ -286,7 +286,7 @@ public final class v8 extends View {
                                 canvas2.clipRect(0.0f, f16, width, L);
                                 i14 = i25;
                                 i15 = 4;
-                                canvas2.drawText(this.f35319b, 0, 1, (i25 * f7) + f12, f13 - (org.telegram.messenger.i0.L(24.0f) * cos), paint);
+                                canvas2.drawText(this.f35323b, 0, 1, (i25 * f7) + f12, f13 - (org.telegram.messenger.i0.L(24.0f) * cos), paint);
                                 canvas2.restoreToCount(save);
                             }
                             i25 = i14 + 1;
@@ -306,7 +306,7 @@ public final class v8 extends View {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(View.resolveSize((int) Math.ceil(a()), i10), View.resolveSize((int) Math.ceil(this.f35323r), i11));
+        setMeasuredDimension(View.resolveSize((int) Math.ceil(a()), i10), View.resolveSize((int) Math.ceil(this.f35327r), i11));
     }
 
     @Override
@@ -323,12 +323,12 @@ public final class v8 extends View {
                 valueAnimator.cancel();
                 this.D = null;
             }
-            if (this.f35325w == null) {
+            if (this.f35329w == null) {
                 b10 = 0.0f;
             } else {
                 b10 = b();
             }
-            this.f35326x = b10;
+            this.f35330x = b10;
         }
     }
 }

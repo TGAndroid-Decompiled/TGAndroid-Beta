@@ -8,19 +8,19 @@ import r9.d;
 import r9.r;
 import td.y0;
 public final class a implements d {
-    public static final a f52769b = new a(0);
-    public static final a f52770c = new a(1);
+    public static final a f52787b = new a(0);
+    public static final a f52788c = new a(1);
     public static final a d = new a(2);
     public static final a e = new a(3);
-    public final int f52771a;
+    public final int f52789a;
 
     public a(int i10) {
-        this.f52771a = i10;
+        this.f52789a = i10;
     }
 
     @Override
     public final Object K(bh.d dVar) {
-        switch (this.f52771a) {
+        switch (this.f52789a) {
             case 0:
                 Object d10 = dVar.d(new r(n9.a.class, Executor.class));
                 i.d(d10, "c.get(Qualified.qualifie…a, Executor::class.java))");

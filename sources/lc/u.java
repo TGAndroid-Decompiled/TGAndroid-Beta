@@ -7,27 +7,27 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import javax.net.SocketFactory;
 public final class u extends Thread {
-    public final h f11774a;
-    public final SocketFactory f11775b;
-    public final InetSocketAddress f11776c;
+    public final h f11775a;
+    public final SocketFactory f11776b;
+    public final InetSocketAddress f11777c;
     public final int d;
     public final c5.x e;
-    public final c5.x f11777f;
+    public final c5.x f11778f;
 
     public u(h hVar, SocketFactory socketFactory, InetSocketAddress inetSocketAddress, int i10, c5.x xVar, c5.x xVar2) {
-        this.f11774a = hVar;
-        this.f11775b = socketFactory;
-        this.f11776c = inetSocketAddress;
+        this.f11775a = hVar;
+        this.f11776b = socketFactory;
+        this.f11777c = inetSocketAddress;
         this.d = i10;
         this.e = xVar;
-        this.f11777f = xVar2;
+        this.f11778f = xVar2;
     }
 
     public final void a(Exception exc) {
         boolean z10;
-        synchronized (this.f11774a) {
+        synchronized (this.f11775a) {
             try {
-                if (((CountDownLatch) this.f11777f.f3828c).getCount() == 0) {
+                if (((CountDownLatch) this.f11778f.f3828c).getCount() == 0) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -35,8 +35,8 @@ public final class u extends Thread {
                 if (z10) {
                     return;
                 }
-                this.f11774a.a(exc);
-                ((CountDownLatch) this.f11777f.f3828c).countDown();
+                this.f11775a.a(exc);
+                ((CountDownLatch) this.f11778f.f3828c).countDown();
             } finally {
             }
         }
@@ -44,9 +44,9 @@ public final class u extends Thread {
 
     public final void b(Socket socket) {
         boolean z10;
-        synchronized (this.f11774a) {
+        synchronized (this.f11775a) {
             try {
-                if (((CountDownLatch) this.f11777f.f3828c).getCount() == 0) {
+                if (((CountDownLatch) this.f11778f.f3828c).getCount() == 0) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -54,8 +54,8 @@ public final class u extends Thread {
                 if (z10) {
                     return;
                 }
-                this.f11774a.b(this, socket);
-                ((CountDownLatch) this.f11777f.f3828c).countDown();
+                this.f11775a.b(this, socket);
+                ((CountDownLatch) this.f11778f.f3828c).countDown();
             } finally {
             }
         }
@@ -70,18 +70,18 @@ public final class u extends Thread {
             if (xVar != null) {
                 ((CountDownLatch) xVar.f3828c).await(xVar.f3827b, TimeUnit.MILLISECONDS);
             }
-            h hVar = this.f11774a;
+            h hVar = this.f11775a;
             synchronized (hVar) {
-                if (((Socket) hVar.f11754c) != null) {
+                if (((Socket) hVar.f11755c) != null) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
             }
             if (!z10) {
-                socket = this.f11775b.createSocket();
-                int i10 = r.f11767a;
-                socket.connect(this.f11776c, this.d);
+                socket = this.f11776b.createSocket();
+                int i10 = r.f11768a;
+                socket.connect(this.f11777c, this.d);
                 b(socket);
             }
         } catch (Exception e) {

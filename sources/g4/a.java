@@ -20,37 +20,37 @@ import z3.d;
 import z3.l;
 import z3.m;
 public final class a implements m {
-    public final x f7352a = new x();
-    public final boolean f7353b;
-    public final int f7354c;
+    public final x f7353a = new x();
+    public final boolean f7354b;
+    public final int f7355c;
     public final int d;
     public final String e;
-    public final float f7355f;
+    public final float f7356f;
     public final int h;
 
     public a(List list) {
         if (list.size() == 1 && (((byte[]) list.get(0)).length == 48 || ((byte[]) list.get(0)).length == 53)) {
             byte[] bArr = (byte[]) list.get(0);
-            this.f7354c = bArr[24];
+            this.f7355c = bArr[24];
             this.d = ((bArr[26] & 255) << 24) | ((bArr[27] & 255) << 16) | ((bArr[28] & 255) << 8) | (bArr[29] & 255);
             this.e = "Serif".equals(new String(bArr, 43, bArr.length - 43, StandardCharsets.UTF_8)) ? "serif" : "sans-serif";
             int i10 = bArr[25] * 20;
             this.h = i10;
             boolean z10 = (bArr[0] & 32) != 0;
-            this.f7353b = z10;
+            this.f7354b = z10;
             if (z10) {
-                this.f7355f = l0.h(((bArr[11] & 255) | ((bArr[10] & 255) << 8)) / i10, 0.0f, 0.95f);
+                this.f7356f = l0.h(((bArr[11] & 255) | ((bArr[10] & 255) << 8)) / i10, 0.0f, 0.95f);
                 return;
             } else {
-                this.f7355f = 0.85f;
+                this.f7356f = 0.85f;
                 return;
             }
         }
-        this.f7354c = 0;
+        this.f7355c = 0;
         this.d = -1;
         this.e = "sans-serif";
-        this.f7353b = false;
-        this.f7355f = 0.85f;
+        this.f7354b = false;
+        this.f7356f = 0.85f;
         this.h = -1;
     }
 
@@ -116,7 +116,7 @@ public final class a implements m {
         boolean z12;
         boolean z13;
         int i13;
-        x xVar = this.f7352a;
+        x xVar = this.f7353a;
         xVar.L(i10 + i11, bArr);
         xVar.N(i10);
         int i14 = 1;
@@ -146,14 +146,14 @@ public final class a implements m {
             return;
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(y3);
-        b(spannableStringBuilder, this.f7354c, 0, 0, spannableStringBuilder.length(), 16711680);
+        b(spannableStringBuilder, this.f7355c, 0, 0, spannableStringBuilder.length(), 16711680);
         a(spannableStringBuilder, this.d, -1, 0, spannableStringBuilder.length(), 16711680);
         int length = spannableStringBuilder.length();
         String str = this.e;
         if (str != "sans-serif") {
             spannableStringBuilder.setSpan(new TypefaceSpan(str), 0, length, 16711713);
         }
-        float f7 = this.f7355f;
+        float f7 = this.f7356f;
         while (xVar.a() >= 8) {
             int i19 = xVar.f6208b;
             int m10 = xVar.m();
@@ -194,7 +194,7 @@ public final class a implements m {
                     } else {
                         i13 = i21;
                         int i22 = H4;
-                        b(spannableStringBuilder, A, this.f7354c, H3, i22, 0);
+                        b(spannableStringBuilder, A, this.f7355c, H3, i22, 0);
                         a(spannableStringBuilder, m12, this.d, H3, i22, 0);
                     }
                     i20 = i13 + 1;
@@ -203,7 +203,7 @@ public final class a implements m {
                     i16 = 2;
                 }
                 i12 = i16;
-            } else if (m11 == 1952608120 && this.f7353b) {
+            } else if (m11 == 1952608120 && this.f7354b) {
                 i12 = 2;
                 if (xVar.a() >= 2) {
                     z11 = true;

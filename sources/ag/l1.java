@@ -18,8 +18,8 @@ public final class l1 implements Runnable {
                 t1 t1Var = this.f623b;
                 TL_account.TL_businessBotRights tL_businessBotRights = t1Var.J;
                 tL_businessBotRights.manage_stories = !tL_businessBotRights.manage_stories;
-                t1Var.f729c.f30819f3.O(true);
-                t1Var.c0(true);
+                t1Var.f729c.f31183f3.O(true);
+                t1Var.d0(true);
                 return;
             case 1:
                 t1 t1Var2 = this.f623b;
@@ -29,8 +29,8 @@ public final class l1 implements Runnable {
                 tL_businessBotRights2.change_gift_settings = true;
                 tL_businessBotRights2.sell_gifts = true;
                 tL_businessBotRights2.view_gifts = true;
-                t1Var2.f729c.f30819f3.O(true);
-                t1Var2.c0(true);
+                t1Var2.f729c.f31183f3.O(true);
+                t1Var2.d0(true);
                 return;
             case 2:
                 t1 t1Var3 = this.f623b;
@@ -39,13 +39,13 @@ public final class l1 implements Runnable {
                 tL_businessBotRights3.edit_profile_photo = true;
                 tL_businessBotRights3.edit_bio = true;
                 tL_businessBotRights3.edit_name = true;
-                t1Var3.f729c.f30819f3.O(true);
-                t1Var3.c0(true);
+                t1Var3.f729c.f31183f3.O(true);
+                t1Var3.d0(true);
                 return;
             case 3:
                 t1 t1Var4 = this.f623b;
-                t1Var4.f729c.f30819f3.O(true);
-                t1Var4.c0(true);
+                t1Var4.f729c.f31183f3.O(true);
+                t1Var4.d0(true);
                 return;
             default:
                 t1 t1Var5 = this.f623b;
@@ -56,7 +56,7 @@ public final class l1 implements Runnable {
                     if (TextUtils.isEmpty(obj)) {
                         t1Var5.D = null;
                         t1Var5.d.b();
-                        t1Var5.f729c.f30819f3.O(true);
+                        t1Var5.f729c.f31183f3.O(true);
                         return;
                     }
                     zf.m1 m1Var = t1Var5.d;

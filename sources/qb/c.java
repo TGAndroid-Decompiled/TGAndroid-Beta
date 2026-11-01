@@ -4,10 +4,10 @@ import java.util.Arrays;
 import n6.l;
 import o1.i;
 public abstract class c {
-    public final float f45509a;
+    public final float f45520a;
 
     public c(i iVar) {
-        this.f45509a = iVar.f13940a;
+        this.f45520a = iVar.f13941a;
     }
 
     public final boolean equals(Object obj) {
@@ -18,13 +18,13 @@ public abstract class c {
             return false;
         }
         c cVar = (c) obj;
-        if (getClass().equals(cVar.getClass()) && Float.compare(this.f45509a, cVar.f45509a) == 0 && l.k(null, null)) {
+        if (getClass().equals(cVar.getClass()) && Float.compare(this.f45520a, cVar.f45520a) == 0 && l.k(null, null)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{getClass(), Float.valueOf(this.f45509a), null});
+        return Arrays.hashCode(new Object[]{getClass(), Float.valueOf(this.f45520a), null});
     }
 }

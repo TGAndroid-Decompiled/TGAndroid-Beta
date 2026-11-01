@@ -1,6 +1,6 @@
 package yd;
 public abstract class u {
-    public static final int f54420a = 0;
+    public static final int f54441a = 0;
 
     static {
         Object a2;

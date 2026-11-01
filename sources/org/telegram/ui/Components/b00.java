@@ -1,12 +1,12 @@
 package org.telegram.ui.Components;
-public final class b00 implements org.telegram.messenger.q20 {
-    public final int f24486a = 1;
-    public final org.telegram.ui.ActionBar.z4 f24487b;
-    public final vg f24488c;
+public final class b00 implements org.telegram.messenger.r20 {
+    public final int f24594a = 1;
+    public final org.telegram.ui.ActionBar.z4 f24595b;
+    public final vg f24596c;
 
     public b00(org.telegram.ui.ActionBar.z4 z4Var, vg vgVar) {
-        this.f24487b = z4Var;
-        this.f24488c = vgVar;
+        this.f24595b = z4Var;
+        this.f24596c = vgVar;
     }
 
     @Override
@@ -15,7 +15,7 @@ public final class b00 implements org.telegram.messenger.q20 {
     }
 
     public b00(vg vgVar, org.telegram.ui.ActionBar.z4 z4Var) {
-        this.f24488c = vgVar;
-        this.f24487b = z4Var;
+        this.f24596c = vgVar;
+        this.f24595b = z4Var;
     }
 }

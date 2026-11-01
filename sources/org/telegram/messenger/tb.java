@@ -1,22 +1,26 @@
 package org.telegram.messenger;
-public final class tb implements Runnable {
-    public final int f18039a;
-    public final ub f18040b;
 
-    public tb(ub ubVar, int i10) {
-        this.f18039a = i10;
-        this.f18040b = ubVar;
-    }
+import android.graphics.Bitmap;
+public abstract class tb {
+    public static final int[] f18236a;
 
-    @Override
-    public final void run() {
-        switch (this.f18039a) {
-            case 0:
-                this.f18040b.e.T(true);
-                return;
-            default:
-                this.f18040b.e.T(true);
-                return;
+    static {
+        Bitmap.CompressFormat compressFormat;
+        int[] iArr = new int[Bitmap.CompressFormat.values().length];
+        f18236a = iArr;
+        try {
+            iArr[Bitmap.CompressFormat.WEBP.ordinal()] = 1;
+        } catch (NoSuchFieldError unused) {
+        }
+        try {
+            int[] iArr2 = f18236a;
+            compressFormat = Bitmap.CompressFormat.WEBP_LOSSY;
+            iArr2[compressFormat.ordinal()] = 2;
+        } catch (NoSuchFieldError unused2) {
+        }
+        try {
+            f18236a[Bitmap.CompressFormat.WEBP_LOSSLESS.ordinal()] = 3;
+        } catch (NoSuchFieldError unused3) {
         }
     }
 }

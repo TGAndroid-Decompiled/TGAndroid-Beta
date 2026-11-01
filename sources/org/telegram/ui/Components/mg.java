@@ -3,12 +3,12 @@ package org.telegram.ui.Components;
 import android.text.TextUtils;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class mg implements Runnable {
-    public final int f28434a;
-    public final bi f28435b;
+    public final int f28471a;
+    public final bi f28472b;
 
     public mg(bi biVar, int i10) {
-        this.f28434a = i10;
-        this.f28435b = biVar;
+        this.f28471a = i10;
+        this.f28472b = biVar;
     }
 
     @Override
@@ -19,13 +19,13 @@ public final class mg implements Runnable {
         boolean t12;
         uh uhVar;
         jm jmVar;
-        switch (this.f28434a) {
+        switch (this.f28471a) {
             case 0:
-                bi biVar = this.f28435b;
+                bi biVar = this.f28472b;
                 if (biVar.T1) {
                     wtVar = biVar.J2;
                 } else {
-                    wtVar = biVar.f24745y2;
+                    wtVar = biVar.f24836y2;
                 }
                 if (wtVar.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(wtVar.getText().toString().trim())) {
                     z10 = true;
@@ -35,13 +35,13 @@ public final class mg implements Runnable {
                 biVar.A1(z10);
                 return;
             case 1:
-                bi biVar2 = this.f28435b;
-                biVar2.f21624z0 = null;
+                bi biVar2 = this.f28472b;
+                biVar2.f21625z0 = null;
                 biVar2.A0 = 0;
                 biVar2.L();
                 return;
             case 2:
-                bi biVar3 = this.f28435b;
+                bi biVar3 = this.f28472b;
                 pe peVar = biVar3.Y1;
                 if (peVar != null) {
                     j10 = peVar.j();
@@ -52,8 +52,8 @@ public final class mg implements Runnable {
                 ih ihVar = biVar3.C2;
                 biVar3.H2 = j11;
                 ihVar.setEffect(j11);
-                uh uhVar2 = biVar3.f24721s2;
-                if (uhVar2 != biVar3.a2 && uhVar2 != biVar3.f24679h2) {
+                uh uhVar2 = biVar3.f24812s2;
+                if (uhVar2 != biVar3.a2 && uhVar2 != biVar3.f24770h2) {
                     if (!uhVar2.J(false, 0, 0, j11, biVar3.e1())) {
                         biVar3.dismiss();
                     }
@@ -69,7 +69,7 @@ public final class mg implements Runnable {
                 }
                 return;
             case 3:
-                bi biVar4 = this.f28435b;
+                bi biVar4 = this.f28472b;
                 biVar4.a(true);
                 org.telegram.ui.ActionBar.k2 k2Var = biVar4.W1;
                 if (k2Var != null) {
@@ -78,20 +78,20 @@ public final class mg implements Runnable {
                 }
                 return;
             case 4:
-                this.f28435b.s1();
+                this.f28472b.s1();
                 return;
             default:
-                bi biVar5 = this.f28435b;
-                biVar5.f24702n3 = null;
-                uh uhVar3 = biVar5.f24721s2;
-                if (uhVar3 != biVar5.a2 && (uhVar = biVar5.f24725t2) != (jmVar = biVar5.f24679h2) && uhVar3 != uhVar && uhVar3 != jmVar) {
-                    biVar5.f21586b.removeView(uhVar3);
+                bi biVar5 = this.f28472b;
+                biVar5.f24793n3 = null;
+                uh uhVar3 = biVar5.f24812s2;
+                if (uhVar3 != biVar5.a2 && (uhVar = biVar5.f24816t2) != (jmVar = biVar5.f24770h2) && uhVar3 != uhVar && uhVar3 != jmVar) {
+                    biVar5.f21587b.removeView(uhVar3);
                 }
-                biVar5.f24721s2.setVisibility(8);
-                biVar5.f24721s2.s();
-                biVar5.f24725t2.H();
-                biVar5.f24721s2 = biVar5.f24725t2;
-                biVar5.f24725t2 = null;
+                biVar5.f24812s2.setVisibility(8);
+                biVar5.f24812s2.s();
+                biVar5.f24816t2.H();
+                biVar5.f24812s2 = biVar5.f24816t2;
+                biVar5.f24816t2 = null;
                 int[] iArr = biVar5.V3;
                 iArr[0] = iArr[1];
                 biVar5.u1(biVar5.T1, false);

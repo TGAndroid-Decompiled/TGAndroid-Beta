@@ -10,10 +10,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashSet;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.ru;
-import org.telegram.messenger.tz;
+import org.telegram.messenger.su;
+import org.telegram.messenger.uz;
 import org.telegram.ui.ActionBar.a7;
 public final class j0 extends c0 implements org.telegram.ui.ActionBar.k6 {
     public final ArrayList D;
@@ -48,7 +48,7 @@ public final class j0 extends c0 implements org.telegram.ui.ActionBar.k6 {
         g2Var.updateColors();
         this.f3111x = g2Var;
         g2Var.setSelected(true);
-        g2Var.setContentDescription(cd.L0(2131754486, null));
+        g2Var.setContentDescription(dd.L0(2131754486, null));
         g2Var.setOnClickListener(new View.OnClickListener(this) {
             public final j0 f2990b;
 
@@ -87,7 +87,7 @@ public final class j0 extends c0 implements org.telegram.ui.ActionBar.k6 {
         addView(g2Var, w7.b6.e(38, 38, 21));
         TextView textView = new TextView(context);
         this.f3112y = textView;
-        textView.setText(cd.L0(2131746029, null));
+        textView.setText(dd.L0(2131746029, null));
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(org.telegram.messenger.i0.o());
         textView.setGravity(17);
@@ -131,7 +131,7 @@ public final class j0 extends c0 implements org.telegram.ui.ActionBar.k6 {
         addView(textView, w7.b6.e(-2, 38, 17));
         int i11 = org.telegram.ui.ActionBar.t6.Ci;
         int w02 = org.telegram.ui.ActionBar.t6.w0(i11, p6Var);
-        int w9 = org.telegram.ui.ActionBar.t6.w(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f20929d6, p6Var), org.telegram.ui.ActionBar.t6.r1(0.1f, w02));
+        int w9 = org.telegram.ui.ActionBar.t6.w(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f20930d6, p6Var), org.telegram.ui.ActionBar.t6.r1(0.1f, w02));
         a7.V(textView, i11, p6Var);
         textView.setBackground(org.telegram.ui.ActionBar.t6.b0(w9, org.telegram.ui.ActionBar.t6.r1(0.16f, w02), org.telegram.messenger.i0.L(19.0f), org.telegram.messenger.i0.L(19.0f)));
         Drawable mutate = getContext().getResources().getDrawable(2131232041).mutate();
@@ -157,7 +157,7 @@ public final class j0 extends c0 implements org.telegram.ui.ActionBar.k6 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.f20929d6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.f20930d6));
     }
 
     public final void j() {
@@ -278,12 +278,12 @@ public final class j0 extends c0 implements org.telegram.ui.ActionBar.k6 {
                 for (int i35 = 0; i35 < size3; i35++) {
                     g0 g0Var5 = (g0) arrayList.get(i35);
                     int i36 = iArr[i35];
-                    ru ruVar = g0Var5.f3023a;
-                    ruVar.e = Math.max(org.telegram.messenger.i0.L(34.0f), i36);
+                    su suVar = g0Var5.f3023a;
+                    suVar.e = Math.max(org.telegram.messenger.i0.L(34.0f), i36);
                     LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) g0Var5.getLayoutParams();
                     if (layoutParams2 != null) {
                         int i37 = layoutParams2.width;
-                        int i38 = ruVar.e;
+                        int i38 = suVar.e;
                         if (i37 != i38) {
                             layoutParams2.width = i38;
                             g0Var5.setLayoutParams(layoutParams2);
@@ -296,7 +296,7 @@ public final class j0 extends c0 implements org.telegram.ui.ActionBar.k6 {
             L = ((g0) arrayList.get(0)).f3023a.c();
             L2 = org.telegram.messenger.i0.L(8.0f);
         } else {
-            L = org.telegram.messenger.i0.L(tz.W0 + 18);
+            L = org.telegram.messenger.i0.L(uz.W0 + 18);
             L2 = org.telegram.messenger.i0.L(8.0f);
         }
         int paddingBottom = getPaddingBottom() + getPaddingTop() + L2 + L;
@@ -310,7 +310,7 @@ public final class j0 extends c0 implements org.telegram.ui.ActionBar.k6 {
         int i10 = org.telegram.ui.ActionBar.t6.Ci;
         org.telegram.ui.ActionBar.p6 p6Var = this.f3108r;
         int w02 = org.telegram.ui.ActionBar.t6.w0(i10, p6Var);
-        int i11 = org.telegram.ui.ActionBar.t6.f20929d6;
+        int i11 = org.telegram.ui.ActionBar.t6.f20930d6;
         int w03 = org.telegram.ui.ActionBar.t6.w0(i11, p6Var);
         if (w02 != this.F || w03 != this.G) {
             this.F = w02;

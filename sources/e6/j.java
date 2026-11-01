@@ -43,7 +43,7 @@ public final class j extends n {
                 } catch (JSONException unused) {
                 }
                 mVar.c(b10, jSONObject.toString());
-                mVar.f7388s.a(b10, o10);
+                mVar.f7389s.a(b10, o10);
                 return;
             case 1:
                 g6.m mVar2 = hVar.f6287c;
@@ -68,7 +68,7 @@ public final class j extends n {
                     jSONObject2.putOpt("autoplay", kVar.f3893c);
                     long j10 = kVar.d;
                     if (j10 != -1) {
-                        Pattern pattern = g6.a.f7365a;
+                        Pattern pattern = g6.a.f7366a;
                         jSONObject2.put("currentTime", j10 / 1000.0d);
                     }
                     jSONObject2.put("playbackRate", kVar.e);
@@ -87,7 +87,7 @@ public final class j extends n {
                     jSONObject2.put("requestId", kVar.f3900y);
                 } catch (JSONException e) {
                     g6.b bVar = c6.k.D;
-                    Log.e(bVar.f7367a, bVar.d("Error transforming MediaLoadRequestData into JSONObject", e));
+                    Log.e(bVar.f7368a, bVar.d("Error transforming MediaLoadRequestData into JSONObject", e));
                     jSONObject2 = new JSONObject();
                 }
                 long b11 = mVar2.b();
@@ -97,7 +97,7 @@ public final class j extends n {
                 } catch (JSONException unused2) {
                 }
                 mVar2.c(b11, jSONObject2.toString());
-                mVar2.f7379j.a(b11, o11);
+                mVar2.f7380j.a(b11, o11);
                 return;
             default:
                 g6.m mVar3 = hVar.f6287c;
@@ -110,13 +110,13 @@ public final class j extends n {
                     jSONObject3.put("requestId", b12);
                     jSONObject3.put("type", "SEEK");
                     jSONObject3.put("mediaSessionId", mVar3.p());
-                    Pattern pattern2 = g6.a.f7365a;
+                    Pattern pattern2 = g6.a.f7366a;
                     jSONObject3.put("currentTime", j11 / 1000.0d);
                 } catch (JSONException unused3) {
                 }
                 mVar3.c(b12, jSONObject3.toString());
-                mVar3.f7377g = Long.valueOf(j11);
-                mVar3.f7382m.a(b12, new hf.b(mVar3, o12, false, 20));
+                mVar3.f7378g = Long.valueOf(j11);
+                mVar3.f7383m.a(b12, new hf.b(mVar3, o12, false, 20));
                 return;
         }
     }

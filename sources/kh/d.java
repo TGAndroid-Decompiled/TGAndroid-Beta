@@ -7,49 +7,49 @@ import org.telegram.messenger.i0;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Components.e6;
-import org.telegram.ui.Components.fi0;
+import org.telegram.ui.Components.gi0;
 import org.telegram.ui.Components.gr;
 import rf.o;
 public final class d extends c {
     public final e6 d;
-    public final fi0 e;
-    public final fe.b f11386f;
+    public final gi0 e;
+    public final fe.b f11387f;
     public float h;
 
     public d(View view, p6 p6Var) {
         super(p6Var);
-        fi0 fi0Var = new fi0(view);
-        this.e = fi0Var;
-        fi0Var.d(null, true, false);
-        fi0Var.v = 650.0f;
-        fi0Var.e(false, 0.69f);
-        fi0Var.f26082p.setStrokeWidth(i0.L(1.5f));
-        this.f11386f = new fe.b(view, gr.h, 260L);
+        gi0 gi0Var = new gi0(view);
+        this.e = gi0Var;
+        gi0Var.d(null, true, false);
+        gi0Var.v = 650.0f;
+        gi0Var.e(false, 0.69f);
+        gi0Var.f26453p.setStrokeWidth(i0.L(1.5f));
+        this.f11387f = new fe.b(view, gr.h, 260L);
         e6 e6Var = new e6(true, false, false);
         this.d = e6Var;
         e6Var.x(i0.o());
         e6Var.w(i0.L(13.0f));
-        e6Var.f25695b = 17;
-        int w02 = t6.w0(t6.f21020i6, p6Var);
-        if (this.f11384b != w02) {
-            t6.H1(this.f11383a, w02, false);
-            this.f11384b = w02;
+        e6Var.f25744b = 17;
+        int w02 = t6.w0(t6.f21021i6, p6Var);
+        if (this.f11385b != w02) {
+            t6.H1(this.f11384a, w02, false);
+            this.f11385b = w02;
         }
     }
 
     @Override
     public final void a(int i10) {
-        this.f11383a.setAlpha(i10);
+        this.f11384a.setAlpha(i10);
         this.d.B = i10;
     }
 
     public final float b() {
-        return this.f11386f.e;
+        return this.f11387f.e;
     }
 
     public final void c(int i10) {
         this.d.u(i10);
-        this.e.f26081o = i10;
+        this.e.f26452o = i10;
     }
 
     public final void d(float f7) {
@@ -63,7 +63,7 @@ public final class d extends c {
 
     @Override
     public final void draw(Canvas canvas) {
-        float f7 = this.f11386f.e;
+        float f7 = this.f11387f.e;
         if (f7 < 1.0f) {
             o.b(canvas, this.d, 1.0f - f7);
         }

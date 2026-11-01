@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public final class c extends k1 {
-    public static final AtomicReferenceFieldUpdater f48603n = AtomicReferenceFieldUpdater.newUpdater(c.class, Object.class, "_disposer$volatile");
+    public static final AtomicReferenceFieldUpdater f48614n = AtomicReferenceFieldUpdater.newUpdater(c.class, Object.class, "_disposer$volatile");
     private volatile Object _disposer$volatile;
     public final m e;
-    public o0 f48604f;
+    public o0 f48615f;
     public final e h;
 
     public c(e eVar, m mVar) {
@@ -23,7 +23,7 @@ public final class c extends k1 {
             ea.a F = mVar.F(null, new v(th2, false));
             if (F != null) {
                 mVar.f(F);
-                d dVar = (d) f48603n.get(this);
+                d dVar = (d) f48614n.get(this);
                 if (dVar != null) {
                     dVar.b();
                     return;
@@ -32,10 +32,10 @@ public final class c extends k1 {
             }
             return;
         }
-        AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = e.f48610b;
+        AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = e.f48621b;
         e eVar = this.h;
         if (atomicIntegerFieldUpdater.decrementAndGet(eVar) == 0) {
-            h0[] h0VarArr = eVar.f48611a;
+            h0[] h0VarArr = eVar.f48622a;
             ArrayList arrayList = new ArrayList(h0VarArr.length);
             for (h0 h0Var : h0VarArr) {
                 arrayList.add(h0Var.getCompleted());

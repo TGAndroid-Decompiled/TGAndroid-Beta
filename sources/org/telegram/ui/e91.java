@@ -1,8 +1,7 @@
 package org.telegram.ui;
-public interface e91 {
-    void M1(boolean z10);
-
-    boolean a();
-
-    boolean b1();
+public final class e91 extends org.telegram.messenger.kj {
+    @Override
+    public final boolean k5() {
+        return false;
+    }
 }

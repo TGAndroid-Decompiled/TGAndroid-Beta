@@ -17,7 +17,7 @@ public final class o extends h1 {
             cd.c cVar = mVar.d;
             kotlin.jvm.internal.i.c(cVar, "null cannot be cast to non-null type kotlinx.coroutines.internal.DispatchedContinuation<*>");
             yd.h hVar = (yd.h) cVar;
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = yd.h.f54402n;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = yd.h.f54423n;
             loop0: while (true) {
                 Object obj = atomicReferenceFieldUpdater.get(hVar);
                 ea.a aVar = yd.a.d;

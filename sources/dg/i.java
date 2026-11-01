@@ -26,6 +26,6 @@ public final class i extends g {
     @Override
     public final void a() {
         super.a();
-        this.f5923r = i0.b.f(0.3f, t6.w0(t6.f20929d6, this.f5924s), this.f5918m);
+        this.f5923r = i0.b.f(0.3f, t6.w0(t6.f20930d6, this.f5924s), this.f5918m);
     }
 }

@@ -5,14 +5,14 @@ import b2.t0;
 import b2.x;
 import j$.util.Objects;
 public final class f implements t0 {
-    public final float f50358a;
-    public final e f50359b;
-    public final e f50360c;
+    public final float f50372a;
+    public final e f50373b;
+    public final e f50374c;
 
     public f(float f7, e eVar, e eVar2) {
-        this.f50358a = f7;
-        this.f50359b = eVar;
-        this.f50360c = eVar2;
+        this.f50372a = f7;
+        this.f50373b = eVar;
+        this.f50374c = eVar2;
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class f implements t0 {
             return false;
         }
         f fVar = (f) obj;
-        if (Float.compare(this.f50358a, fVar.f50358a) != 0 || !Objects.equals(this.f50359b, fVar.f50359b) || !Objects.equals(this.f50360c, fVar.f50360c)) {
+        if (Float.compare(this.f50372a, fVar.f50372a) != 0 || !Objects.equals(this.f50373b, fVar.f50373b) || !Objects.equals(this.f50374c, fVar.f50374c)) {
             return false;
         }
         return true;
@@ -38,16 +38,16 @@ public final class f implements t0 {
 
     public final int hashCode() {
         int i10;
-        int floatToIntBits = Float.floatToIntBits(this.f50358a) * 31;
+        int floatToIntBits = Float.floatToIntBits(this.f50372a) * 31;
         int i11 = 0;
-        e eVar = this.f50359b;
+        e eVar = this.f50373b;
         if (eVar != null) {
             i10 = eVar.hashCode();
         } else {
             i10 = 0;
         }
         int i12 = (floatToIntBits + i10) * 31;
-        e eVar2 = this.f50360c;
+        e eVar2 = this.f50374c;
         if (eVar2 != null) {
             i11 = eVar2.hashCode();
         }
@@ -55,7 +55,7 @@ public final class f implements t0 {
     }
 
     public final String toString() {
-        return "ReplayGain Xing/Info: peak=" + this.f50358a + ", field 1=" + this.f50359b + ", field 2=" + this.f50360c;
+        return "ReplayGain Xing/Info: peak=" + this.f50372a + ", field 1=" + this.f50373b + ", field 2=" + this.f50374c;
     }
 
     @Override

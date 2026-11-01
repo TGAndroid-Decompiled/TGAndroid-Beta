@@ -14,14 +14,14 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.dc0;
 import org.telegram.ui.Components.g10;
 import org.telegram.ui.Components.h10;
-import org.telegram.ui.Components.hm0;
+import org.telegram.ui.Components.im0;
 import org.telegram.ui.Components.s20;
 import org.telegram.ui.UsersSelectActivity;
 import org.telegram.ui.cp;
-import org.telegram.ui.iw;
-import org.telegram.ui.ld0;
+import org.telegram.ui.hw;
+import org.telegram.ui.kd0;
 import org.telegram.ui.wo;
-import org.telegram.ui.zy;
+import org.telegram.ui.yy;
 public final class n0 extends EditTextBoldCursor {
     public final int G1;
     public final Object H1;
@@ -36,7 +36,7 @@ public final class n0 extends EditTextBoldCursor {
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         switch (this.G1) {
             case 5:
-                ((hm0) this.H1).getClass();
+                ((im0) this.H1).getClass();
                 return super.dispatchTouchEvent(motionEvent);
             default:
                 return super.dispatchTouchEvent(motionEvent);
@@ -123,7 +123,7 @@ public final class n0 extends EditTextBoldCursor {
                 t0 t0Var = (t0) this.H1;
                 if (i10 == 67 && t0Var.e.length() == 0 && ((t0Var.h.getVisibility() == 0 && t0Var.h.length() > 0) || t0Var.r())) {
                     if (t0Var.r()) {
-                        zf.e0 e0Var = (zf.e0) i0.a.g(1, t0Var.f20834g0);
+                        zf.e0 e0Var = (zf.e0) i0.a.g(1, t0Var.f20835g0);
                         p0 p0Var = t0Var.H;
                         if (p0Var != null) {
                             p0Var.j(e0Var);
@@ -131,13 +131,13 @@ public final class n0 extends EditTextBoldCursor {
                         t0Var.I(e0Var);
                         return true;
                     }
-                    t0Var.f20847s.callOnClick();
+                    t0Var.f20848s.callOnClick();
                     return true;
                 }
                 return super.onKeyDown(i10, keyEvent);
             case 1:
                 i5 i5Var = (i5) this.H1;
-                if (i10 == 67 && length() == 0 && (textView = i5Var.f20430x) != null && textView.getVisibility() == 0) {
+                if (i10 == 67 && length() == 0 && (textView = i5Var.f20431x) != null && textView.getVisibility() == 0) {
                     i5Var.i();
                     return true;
                 }
@@ -147,14 +147,14 @@ public final class n0 extends EditTextBoldCursor {
                 return super.onKeyDown(i10, keyEvent);
             case 3:
                 h10 h10Var = (h10) this.H1;
-                if (i10 == 67 && h10Var.f26588r.length() == 0 && h10Var.d()) {
+                if (i10 == 67 && h10Var.f26635r.length() == 0 && h10Var.d()) {
                     if (!h10Var.d()) {
                         return true;
                     }
                     zf.e0 e0Var2 = (zf.e0) i0.a.g(1, h10Var.F);
                     g10 g10Var = h10Var.H;
                     if (g10Var != null) {
-                        ((iw) g10Var).h(e0Var2);
+                        ((hw) g10Var).h(e0Var2);
                     }
                     h10Var.f(e0Var2);
                     return true;
@@ -186,8 +186,8 @@ public final class n0 extends EditTextBoldCursor {
         switch (this.G1) {
             case 6:
                 if (i10 == 16908322 || i10 == 16908337) {
-                    ((ld0) this.H1).D = true;
-                    postDelayed(new zy(this, 24), 1000L);
+                    ((kd0) this.H1).D = true;
+                    postDelayed(new yy(this, 24), 1000L);
                 }
                 return super.onTextContextMenuItem(i10);
             default:
@@ -210,7 +210,7 @@ public final class n0 extends EditTextBoldCursor {
                     return false;
                 }
                 if (motionEvent.getAction() == 1) {
-                    ((hm0) this.H1).getClass();
+                    ((im0) this.H1).getClass();
                 }
                 return super.onTouchEvent(motionEvent);
             case 7:
@@ -227,10 +227,10 @@ public final class n0 extends EditTextBoldCursor {
                 return super.onTouchEvent(motionEvent);
             case 9:
                 qg.h hVar = (qg.h) this.H1;
-                s20 s20Var2 = hVar.f45545f;
+                s20 s20Var2 = hVar.f45556f;
                 if (s20Var2 != null) {
                     s20Var2.a();
-                    hVar.f45545f = null;
+                    hVar.f45556f = null;
                 }
                 if (motionEvent.getAction() == 0 && !org.telegram.messenger.i0.J3(this)) {
                     hVar.fullScroll(130);
@@ -250,10 +250,10 @@ public final class n0 extends EditTextBoldCursor {
                 return super.onTouchEvent(motionEvent);
             case 11:
                 vh.t6 t6Var = (vh.t6) this.H1;
-                s20 s20Var3 = t6Var.f51974f;
+                s20 s20Var3 = t6Var.f51990f;
                 if (s20Var3 != null) {
                     s20Var3.a();
-                    t6Var.f51974f = null;
+                    t6Var.f51990f = null;
                 }
                 if (motionEvent.getAction() == 0 && !org.telegram.messenger.i0.J3(this)) {
                     t6Var.fullScroll(130);

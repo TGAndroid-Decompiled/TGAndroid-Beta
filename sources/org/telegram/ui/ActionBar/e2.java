@@ -3,17 +3,17 @@ package org.telegram.ui.ActionBar;
 import org.telegram.ui.Components.ua;
 import org.telegram.ui.Components.wb;
 public final class e2 implements ua {
-    public final int f20282a;
-    public final k2 f20283b;
+    public final int f20283a;
+    public final k2 f20284b;
 
     public e2(int i10, k2 k2Var) {
-        this.f20282a = i10;
-        this.f20283b = k2Var;
+        this.f20283a = i10;
+        this.f20284b = k2Var;
     }
 
     @Override
     public final boolean a() {
-        switch (this.f20282a) {
+        switch (this.f20283a) {
             case 0:
                 return true;
             default:
@@ -23,22 +23,22 @@ public final class e2 implements ua {
 
     @Override
     public final void b(wb wbVar) {
-        int i10 = this.f20282a;
+        int i10 = this.f20283a;
     }
 
     @Override
     public final void c(float f7) {
-        int i10 = this.f20282a;
+        int i10 = this.f20283a;
     }
 
     @Override
     public final void d(wb wbVar) {
-        int i10 = this.f20282a;
+        int i10 = this.f20283a;
     }
 
     @Override
     public final boolean e() {
-        switch (this.f20282a) {
+        switch (this.f20283a) {
             case 0:
                 return true;
             default:
@@ -48,20 +48,20 @@ public final class e2 implements ua {
 
     @Override
     public final int f(int i10) {
-        switch (this.f20282a) {
+        switch (this.f20283a) {
             case 0:
-                if (this.f20283b.isSupportEdgeToEdge()) {
-                    return org.telegram.messenger.i0.f16021n;
+                if (this.f20284b.isSupportEdgeToEdge()) {
+                    return org.telegram.messenger.i0.f16167n;
                 }
                 return 0;
             default:
-                return this.f20283b.getBottomInset();
+                return this.f20284b.getBottomInset();
         }
     }
 
     @Override
     public final boolean g(int i10) {
-        switch (this.f20282a) {
+        switch (this.f20283a) {
             case 0:
                 return false;
             default:
@@ -71,7 +71,7 @@ public final class e2 implements ua {
 
     @Override
     public final int h(int i10) {
-        switch (this.f20282a) {
+        switch (this.f20283a) {
             case 0:
                 return 0;
             default:

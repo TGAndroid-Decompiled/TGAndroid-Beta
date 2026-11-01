@@ -8,31 +8,31 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.d20;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.e20;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.jj;
-import org.telegram.messenger.q20;
-import org.telegram.messenger.t10;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.kj;
+import org.telegram.messenger.r20;
+import org.telegram.messenger.u10;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.c11;
 import org.telegram.ui.Components.cc;
 import org.telegram.ui.Components.cv;
+import org.telegram.ui.Components.d11;
 import org.telegram.ui.Components.ec;
 import org.telegram.ui.Components.fc;
-import org.telegram.ui.Components.fw0;
+import org.telegram.ui.Components.gw0;
 import org.telegram.ui.Components.wb;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.a80;
-import org.telegram.ui.f70;
-import org.telegram.ui.sv;
-public final class i6 implements q20 {
+import org.telegram.ui.rv;
+import org.telegram.ui.y60;
+import org.telegram.ui.z70;
+public final class i6 implements r20 {
     public final int f3102a;
     public final int f3103b;
     public final Object f3104c;
@@ -86,25 +86,25 @@ public final class i6 implements q20 {
                 cv cvVar = (cv) obj4;
                 int[] iArr = (int[]) obj3;
                 ArrayList arrayList = (ArrayList) obj2;
-                org.telegram.ui.ActionBar.k2 k2Var = cvVar.f25162j1;
+                org.telegram.ui.ActionBar.k2 k2Var = cvVar.f25243j1;
                 iArr[0] = iArr[0] + 1;
                 if (((Boolean) obj).booleanValue()) {
                     iArr[1] = iArr[1] + 1;
                 }
                 if (iArr[0] == i11 && iArr[1] > 0) {
                     cvVar.dismiss();
-                    wb.g(k2Var, new fw0(k2Var.getFragmentView().getContext(), (TLObject) arrayList.get(0), iArr[1], 2, null, k2Var.getResourceProvider()), 1500).j();
+                    wb.g(k2Var, new gw0(k2Var.getFragmentView().getContext(), (TLObject) arrayList.get(0), iArr[1], 2, null, k2Var.getResourceProvider()), 1500).j();
                     return;
                 }
                 return;
             case 2:
                 LaunchActivity launchActivity = (LaunchActivity) obj4;
-                f70 f70Var = (f70) obj3;
+                y60 y60Var = (y60) obj3;
                 Long l4 = (Long) obj2;
                 TL_stories.TL_storyAlbum tL_storyAlbum = (TL_stories.TL_storyAlbum) obj;
                 Pattern pattern = LaunchActivity.D1;
                 try {
-                    f70Var.run();
+                    y60Var.run();
                 } catch (Exception e) {
                     f8.g(e, true);
                 }
@@ -120,7 +120,7 @@ public final class i6 implements q20 {
                 Bundle bundle = new Bundle();
                 if (l4.longValue() > 0) {
                     bundle.putLong("user_id", l4.longValue());
-                    if (l4.longValue() == d20.i(launchActivity.O).e()) {
+                    if (l4.longValue() == e20.i(launchActivity.O).e()) {
                         z10 = true;
                     }
                     bundle.putBoolean("my_profile", z10);
@@ -132,23 +132,23 @@ public final class i6 implements q20 {
                 return;
             case 3:
                 PhotoViewer photoViewer = (PhotoViewer) obj4;
-                t10 t10Var = (t10) obj3;
-                jj jjVar = (jj) obj2;
+                u10 u10Var = (u10) obj3;
+                kj kjVar = (kj) obj2;
                 String str2 = (String) obj;
                 if (i11 == photoViewer.Q4) {
-                    photoViewer.f33562o5 = str2;
-                    if (t10Var.s() && t10Var.b(jjVar, photoViewer.f33562o5)) {
-                        if (photoViewer.f33553n5) {
-                            photoViewer.f33557o0.S(20);
-                            photoViewer.f33557o0.t(19);
+                    photoViewer.f33569o5 = str2;
+                    if (u10Var.s() && u10Var.b(kjVar, photoViewer.f33569o5)) {
+                        if (photoViewer.f33560n5) {
+                            photoViewer.f33564o0.S(20);
+                            photoViewer.f33564o0.t(19);
                             return;
                         }
-                        photoViewer.f33557o0.S(19);
-                        photoViewer.f33557o0.t(20);
+                        photoViewer.f33564o0.S(19);
+                        photoViewer.f33564o0.t(20);
                         return;
                     }
-                    photoViewer.f33557o0.t(19);
-                    photoViewer.f33557o0.t(20);
+                    photoViewer.f33564o0.t(19);
+                    photoViewer.f33564o0.t(20);
                     return;
                 }
                 return;
@@ -159,7 +159,7 @@ public final class i6 implements q20 {
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
                 if (savedStarGift != null) {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(ecVar.getText());
-                    spannableStringBuilder.append((CharSequence) " ").append((CharSequence) fc.b(cd.L0(2131745237, null), new c11(this.f3103b, context, p6Var, savedStarGift, 19), p6Var, null));
+                    spannableStringBuilder.append((CharSequence) " ").append((CharSequence) fc.b(dd.L0(2131745237, null), new d11(this.f3103b, context, p6Var, savedStarGift, 19), p6Var, null));
                     ecVar.setText(spannableStringBuilder);
                     return;
                 }
@@ -167,18 +167,18 @@ public final class i6 implements q20 {
             default:
                 org.telegram.ui.ActionBar.k2 k2Var2 = (org.telegram.ui.ActionBar.k2) obj4;
                 TLRPC.Chat chat = (TLRPC.Chat) obj3;
-                long j10 = ((TLRPC.Chat) obj2).f19793id;
+                long j10 = ((TLRPC.Chat) obj2).f19794id;
                 boolean booleanValue = ((Boolean) obj).booleanValue();
                 boolean T = org.telegram.messenger.w3.T(chat);
                 int i13 = this.f3103b;
                 if (!T) {
                     org.telegram.ui.ActionBar.x1 x1Var = new org.telegram.ui.ActionBar.x1(3, k2Var2.getContext(), null);
                     x1Var.r(250L);
-                    vp.r1(i13).T(k2Var2.getParentActivity(), chat.f19793id, k2Var2, new sv(x1Var, k2Var2, i13, j10, booleanValue), null);
+                    wp.r1(i13).T(k2Var2.getParentActivity(), chat.f19794id, k2Var2, new rv(x1Var, k2Var2, i13, j10, booleanValue), null);
                     return;
                 }
-                long j11 = chat.f19793id;
-                vp.r1(i13).O2(-j11, j10, false, booleanValue, new a80(k2Var2, j11, 2));
+                long j11 = chat.f19794id;
+                wp.r1(i13).O2(-j11, j10, false, booleanValue, new z70(k2Var2, j11, 2));
                 return;
         }
     }
@@ -191,10 +191,10 @@ public final class i6 implements q20 {
         this.e = arrayList;
     }
 
-    public i6(LaunchActivity launchActivity, f70 f70Var, Long l4, int i10) {
+    public i6(LaunchActivity launchActivity, y60 y60Var, Long l4, int i10) {
         this.f3102a = 2;
         this.f3104c = launchActivity;
-        this.d = f70Var;
+        this.d = y60Var;
         this.e = l4;
         this.f3103b = i10;
     }

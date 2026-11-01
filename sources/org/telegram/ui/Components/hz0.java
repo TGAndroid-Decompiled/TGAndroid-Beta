@@ -1,70 +1,58 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.RectF;
-import android.text.style.ReplacementSpan;
-public final class hz0 extends ReplacementSpan {
-    public final int f26848a;
-    public int f26849b;
-    public final Object f26850c;
+import android.view.View;
+public final class hz0 extends vu0 {
+    public final li.k f26965f0;
+    public final org.telegram.ui.ActionBar.p6 f26966g0;
+    public final fz0 f26967h0;
 
-    public hz0(int i10) {
-        this.f26848a = 0;
-        Paint paint = new Paint(1);
-        this.f26850c = paint;
-        this.f26849b = i10;
-        paint.setColor(org.telegram.ui.ActionBar.t6.r1(0.3f, org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f20899be, false)));
-    }
-
-    public void a(int i10) {
-        org.telegram.ui.on0 on0Var = (org.telegram.ui.on0) this.f26850c;
-        if (on0Var != null) {
-            on0Var.f40308a = i10 / 2.0f;
-            on0Var.d();
-            this.f26849b = i10;
-        }
+    public hz0(Context context, org.telegram.ui.ActionBar.p6 p6Var, fz0 fz0Var) {
+        super(context, null);
+        this.f26966g0 = p6Var;
+        this.f26967h0 = fz0Var;
+        this.f26965f0 = new li.k(23);
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        switch (this.f26848a) {
-            case 0:
-                float L = ((i12 + i14) / 2.0f) + org.telegram.messenger.i0.L(1.33f);
-                RectF rectF = org.telegram.messenger.i0.P;
-                float L2 = org.telegram.messenger.i0.L(6.66f) / 2.0f;
-                rectF.set(f7, L - L2, this.f26849b + f7, L + L2);
-                Paint paint2 = (Paint) this.f26850c;
-                paint2.setColor(org.telegram.ui.ActionBar.t6.r1(0.3f, org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f20899be, false)));
-                canvas.drawRoundRect(rectF, L2, L2, paint2);
-                return;
-            default:
-                org.telegram.ui.on0 on0Var = (org.telegram.ui.on0) this.f26850c;
-                if (on0Var != null) {
-                    int i15 = (i12 + i14) / 2;
-                    float L3 = f7 + org.telegram.messenger.i0.L(5.0f);
-                    int i16 = this.f26849b;
-                    on0Var.setBounds((int) (org.telegram.messenger.i0.L(3.0f) + f7), i15 - this.f26849b, (int) (L3 + i16), i15 + i16);
-                    on0Var.draw(canvas);
-                    return;
-                }
-                return;
-        }
+    public final boolean O() {
+        return false;
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.f26848a) {
-            case 0:
-                return this.f26849b;
-            default:
-                return org.telegram.messenger.i0.L(3.0f) + org.telegram.messenger.i0.L(3.0f) + this.f26849b;
-        }
+    public final boolean P() {
+        return false;
     }
 
-    public hz0(boolean z10, int i10, int i11) {
-        this.f26848a = 1;
-        this.f26849b = org.telegram.messenger.i0.L(21.0f);
-        this.f26850c = z10 ? org.telegram.ui.on0.c(i10, i11) : org.telegram.ui.on0.a(i10, i11);
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        if (view == this.f26967h0) {
+            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+            boolean drawChild = super.drawChild(canvas, view, j10);
+            canvas.save();
+            RectF rectF = org.telegram.messenger.i0.P;
+            rectF.set(0.0f, 0.0f, org.telegram.messenger.i0.L(45.0f), getHeight());
+            this.f26965f0.o(canvas, rectF, 0, 1.0f);
+            canvas.restore();
+            canvas.restore();
+            return drawChild;
+        }
+        return super.drawChild(canvas, view, j10);
+    }
+
+    @Override
+    public final org.telegram.ui.ActionBar.p6 getResourceProvider() {
+        return this.f26966g0;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.f16172q.x, 1073741824);
+        fz0 fz0Var = this.f26967h0;
+        fz0Var.measure(makeMeasureSpec, i11);
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), fz0Var.getMeasuredHeight() + org.telegram.messenger.i0.L(24.0f));
     }
 }

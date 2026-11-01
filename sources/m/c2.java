@@ -7,19 +7,19 @@ import org.telegram.ui.Components.iy;
 import org.telegram.ui.Components.qy;
 import org.telegram.ui.Components.ux;
 public final class c2 implements View.OnTouchListener {
-    public final int f12379a;
-    public final Object f12380b;
+    public final int f12380a;
+    public final Object f12381b;
 
     public c2(Object obj, int i10) {
-        this.f12379a = i10;
-        this.f12380b = obj;
+        this.f12380a = i10;
+        this.f12381b = obj;
     }
 
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
-        switch (this.f12379a) {
+        switch (this.f12380a) {
             case 0:
-                d2 d2Var = (d2) this.f12380b;
+                d2 d2Var = (d2) this.f12381b;
                 a2 a2Var = d2Var.G;
                 Handler handler = d2Var.K;
                 x xVar = d2Var.O;
@@ -36,27 +36,27 @@ public final class c2 implements View.OnTouchListener {
                     return false;
                 }
             case 1:
-                ux uxVar = (ux) this.f12380b;
+                ux uxVar = (ux) this.f12381b;
                 if (motionEvent.getAction() == 0) {
-                    uxVar.F.f31873f = true;
+                    uxVar.F.f31951f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    uxVar.F.f31873f = false;
+                    uxVar.F.f31951f = false;
                 }
                 return false;
             case 2:
-                iy iyVar = (iy) this.f12380b;
+                iy iyVar = (iy) this.f12381b;
                 if (motionEvent.getAction() == 0) {
-                    iyVar.G.f31873f = true;
+                    iyVar.G.f31951f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    iyVar.G.f31873f = false;
+                    iyVar.G.f31951f = false;
                 }
                 return false;
             default:
-                qy qyVar = (qy) this.f12380b;
+                qy qyVar = (qy) this.f12381b;
                 if (motionEvent.getAction() == 0) {
-                    qyVar.Q.f31873f = true;
+                    qyVar.Q.f31951f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    qyVar.Q.f31873f = false;
+                    qyVar.Q.f31951f = false;
                 }
                 return false;
         }

@@ -11,21 +11,21 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 public final class k00 extends Drawable {
-    public final int f27588a;
-    public final Drawable f27589b;
-    public final Paint f27590c;
+    public final int f27677a;
+    public final Drawable f27678b;
+    public final Paint f27679c;
     public final Paint d;
     public boolean e;
-    public final Object f27591f;
+    public final Object f27680f;
 
     public k00(Context context) {
-        this.f27588a = 1;
+        this.f27677a = 1;
         Paint paint = new Paint(1);
-        this.f27590c = paint;
+        this.f27679c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
-        this.f27591f = new t5(new eb0(this, 2), 200L, gr.f26496g, 0);
-        this.f27589b = i0.a.f(context, 2131231171);
+        this.f27680f = new t5(new eb0(this, 2), 200L, gr.f26524g, 0);
+        this.f27678b = i0.a.f(context, 2131231171);
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         paint.setStrokeWidth(org.telegram.messenger.i0.N(1.566f));
@@ -52,16 +52,16 @@ public final class k00 extends Drawable {
 
     @Override
     public final void draw(Canvas canvas) {
-        switch (this.f27588a) {
+        switch (this.f27677a) {
             case 0:
-                Path path = (Path) this.f27591f;
-                Drawable drawable = this.f27589b;
+                Path path = (Path) this.f27680f;
+                Drawable drawable = this.f27678b;
                 if (path != null) {
                     canvas.saveLayerAlpha(getBounds().left, getBounds().top, getBounds().right, getBounds().bottom, 255);
                     drawable.setBounds(getBounds());
                     drawable.draw(canvas);
                     boolean z10 = this.e;
-                    Paint paint = this.f27590c;
+                    Paint paint = this.f27679c;
                     if (z10) {
                         path.rewind();
                         path.moveTo(b(0.4871f), c(0.6025f));
@@ -84,10 +84,10 @@ public final class k00 extends Drawable {
             default:
                 Rect bounds = getBounds();
                 canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
-                Drawable drawable2 = this.f27589b;
+                Drawable drawable2 = this.f27678b;
                 drawable2.setBounds(bounds);
                 drawable2.draw(canvas);
-                float d = ((t5) this.f27591f).d(this.e);
+                float d = ((t5) this.f27680f).d(this.e);
                 if (d > 0.0f) {
                     float N = org.telegram.messenger.i0.N(0.783f);
                     float centerX = (bounds.centerX() - org.telegram.messenger.i0.L(9.0f)) + N;
@@ -106,7 +106,7 @@ public final class k00 extends Drawable {
                     float f11 = L2;
                     float f12 = L;
                     canvas.drawLine(f7, f10, f12, f11, this.d);
-                    Paint paint2 = this.f27590c;
+                    Paint paint2 = this.f27679c;
                     paint2.setAlpha((int) (Math.min(1.0f, d * 10.0f) * 255.0f));
                     canvas.drawLine(f7, f10, f12, f11, paint2);
                 }
@@ -117,9 +117,9 @@ public final class k00 extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        switch (this.f27588a) {
+        switch (this.f27677a) {
             case 0:
-                return this.f27589b.getIntrinsicHeight();
+                return this.f27678b.getIntrinsicHeight();
             default:
                 return org.telegram.messenger.i0.L(24.0f);
         }
@@ -127,9 +127,9 @@ public final class k00 extends Drawable {
 
     @Override
     public final int getIntrinsicWidth() {
-        switch (this.f27588a) {
+        switch (this.f27677a) {
             case 0:
-                return this.f27589b.getIntrinsicWidth();
+                return this.f27678b.getIntrinsicWidth();
             default:
                 return org.telegram.messenger.i0.L(24.0f);
         }
@@ -137,9 +137,9 @@ public final class k00 extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f27588a) {
+        switch (this.f27677a) {
             case 0:
-                return this.f27589b.getOpacity();
+                return this.f27678b.getOpacity();
             default:
                 return -2;
         }
@@ -147,19 +147,19 @@ public final class k00 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        switch (this.f27588a) {
+        switch (this.f27677a) {
             case 0:
-                this.f27589b.setAlpha(i10);
+                this.f27678b.setAlpha(i10);
                 return;
             default:
-                this.f27589b.setAlpha(i10);
+                this.f27678b.setAlpha(i10);
                 return;
         }
     }
 
     @Override
     public void setBounds(int i10, int i11, int i12, int i13) {
-        switch (this.f27588a) {
+        switch (this.f27677a) {
             case 0:
                 super.setBounds(i10, i11, i12, i13);
                 this.e = true;
@@ -172,9 +172,9 @@ public final class k00 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f27588a) {
+        switch (this.f27677a) {
             case 0:
-                this.f27589b.setColorFilter(colorFilter);
+                this.f27678b.setColorFilter(colorFilter);
                 return;
             default:
                 return;
@@ -182,13 +182,13 @@ public final class k00 extends Drawable {
     }
 
     public k00(Context context, int i10, int i11) {
-        this.f27588a = 0;
+        this.f27677a = 0;
         this.e = true;
-        this.f27589b = context.getResources().getDrawable(i10);
+        this.f27678b = context.getResources().getDrawable(i10);
         if (i11 >= 0) {
-            this.f27591f = new Path();
+            this.f27680f = new Path();
             Paint paint = new Paint(1);
-            this.f27590c = paint;
+            this.f27679c = paint;
             paint.setStyle(Paint.Style.STROKE);
             paint.setColor(-16777216);
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
@@ -198,13 +198,13 @@ public final class k00 extends Drawable {
             Paint paint2 = new Paint(1);
             this.d = paint2;
             paint2.setStyle(Paint.Style.FILL);
-            int[] iArr = org.telegram.ui.ActionBar.t6.f21188r8;
+            int[] iArr = org.telegram.ui.ActionBar.t6.f21189r8;
             paint2.setColor(org.telegram.ui.ActionBar.t6.x0(null, iArr[i11 % iArr.length], false));
             paint2.setPathEffect(new CornerPathEffect(org.telegram.messenger.i0.L(1.0f)));
             return;
         }
-        this.f27591f = null;
-        this.f27590c = null;
+        this.f27680f = null;
+        this.f27679c = null;
         this.d = null;
     }
 

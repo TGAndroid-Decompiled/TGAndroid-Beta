@@ -19,22 +19,22 @@ import org.telegram.ui.Components.mt;
 import org.telegram.ui.Components.nc;
 import org.telegram.ui.Components.s9;
 import org.telegram.ui.Components.st;
-import org.telegram.ui.Components.uu0;
+import org.telegram.ui.Components.vu0;
 import org.telegram.ui.Components.vy;
 import org.telegram.ui.Components.w9;
 import org.telegram.ui.Components.wt;
 public final class f extends wt {
     public w9 V;
     public vg.f W;
-    public final org.telegram.ui.ActionBar.p6 f51120a0;
-    public final s9 f51121b0;
-    public final k f51122c0;
+    public final org.telegram.ui.ActionBar.p6 f51135a0;
+    public final s9 f51136b0;
+    public final k f51137c0;
 
-    public f(k kVar, Context context, uu0 uu0Var, int i10, th.b bVar, org.telegram.ui.ActionBar.p6 p6Var, s9 s9Var) {
-        super(context, uu0Var, null, i10, true, bVar);
-        this.f51122c0 = kVar;
-        this.f51120a0 = p6Var;
-        this.f51121b0 = s9Var;
+    public f(k kVar, Context context, vu0 vu0Var, int i10, th.b bVar, org.telegram.ui.ActionBar.p6 p6Var, s9 s9Var) {
+        super(context, vu0Var, null, i10, true, bVar);
+        this.f51137c0 = kVar;
+        this.f51135a0 = p6Var;
+        this.f51136b0 = s9Var;
     }
 
     @Override
@@ -44,7 +44,7 @@ public final class f extends wt {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        k kVar = this.f51122c0;
+        k kVar = this.f51137c0;
         if ((kVar instanceof p) && ((p) kVar).N1) {
             return false;
         }
@@ -56,14 +56,14 @@ public final class f extends wt {
         super.f();
         vy emojiView = getEmojiView();
         if (emojiView != null) {
-            k kVar = this.f51122c0;
+            k kVar = this.f51137c0;
             if (kVar.getEditTextStyle() == 2 || kVar.getEditTextStyle() == 3) {
-                emojiView.f31927w0 = false;
-                emojiView.f31933x2 = false;
+                emojiView.f32005w0 = false;
+                emojiView.f32011x2 = false;
                 emojiView.setShouldDrawBackground(false);
                 if (kVar instanceof nc) {
-                    emojiView.setPadding(0, 0, 0, org.telegram.messenger.i0.f16021n);
-                    emojiView.f31863c = 3;
+                    emojiView.setPadding(0, 0, 0, org.telegram.messenger.i0.f16167n);
+                    emojiView.f31941c = 3;
                 }
                 emojiView.updateColors();
             }
@@ -84,12 +84,12 @@ public final class f extends wt {
         int i11;
         WindowInsets rootWindowInsets;
         st stVar2 = stVar;
-        k kVar = this.f51122c0;
+        k kVar = this.f51137c0;
         tg.i iVar = kVar.d;
-        RectF rectF = kVar.f51365y0;
+        RectF rectF = kVar.f51380y0;
         rectF.set(0.0f, 0.0f, stVar2.getWidth(), org.telegram.messenger.i0.L(29.0f) + stVar2.getHeight());
         int i12 = 0;
-        if (kVar.f51342g0 != null) {
+        if (kVar.f51357g0 != null) {
             if (this.W == null) {
                 if (Build.VERSION.SDK_INT >= 31 && (rootWindowInsets = getRootWindowInsets()) != null) {
                     RoundedCorner roundedCorner = rootWindowInsets.getRoundedCorner(3);
@@ -108,15 +108,15 @@ public final class f extends wt {
                     i10 = 0;
                     i11 = 0;
                 }
-                vg.f c10 = kVar.f51342g0.c(stVar2, null, false);
-                c10.o(w7.b9.i(this.f51120a0));
+                vg.f c10 = kVar.f51357g0.c(stVar2, null, false);
+                c10.o(w7.b9.i(this.f51135a0));
                 this.W = c10;
                 c10.s(org.telegram.messenger.i0.L(29.0f), org.telegram.messenger.i0.L(29.0f), i10, i11, true);
                 vg.f fVar = this.W;
-                fVar.O = true;
+                fVar.R = true;
                 fVar.t(org.telegram.messenger.i0.L(32.0f));
                 vg.f fVar2 = this.W;
-                fVar2.M.f50834g = 0.4f;
+                fVar2.P.f50849g = 0.4f;
                 fVar2.m();
             }
             Rect rect = org.telegram.messenger.i0.Q;
@@ -125,18 +125,18 @@ public final class f extends wt {
             this.W.draw(canvas);
         } else if (kVar.g()) {
             if (this.V == null) {
-                this.V = new w9(this.f51121b0, stVar2, 7, false);
+                this.V = new w9(this.f51136b0, stVar2, 7, false);
             }
-            kVar.h(this.V, canvas, kVar.f51365y0, org.telegram.messenger.i0.L(29.0f), false, 0.0f, -stVar2.getY(), false);
-            iVar.f48759m = org.telegram.messenger.i0.L(29.0f);
+            kVar.h(this.V, canvas, kVar.f51380y0, org.telegram.messenger.i0.L(29.0f), false, 0.0f, -stVar2.getY(), false);
+            iVar.f48773m = org.telegram.messenger.i0.L(29.0f);
             iVar.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, org.telegram.messenger.i0.L(29.0f) + ((int) rectF.bottom));
             iVar.draw(canvas);
         } else {
             Paint paint = kVar.e;
             FrameLayout frameLayout = kVar.J;
-            if (kVar.f51349n0 > 0.0f && kVar.f51357t0 != null && kVar.f51354r0 != null && (bitmap = kVar.f51352q0) != null && !bitmap.isRecycled()) {
-                kVar.f51356s0.reset();
-                kVar.f51356s0.postScale(frameLayout.getWidth() / kVar.f51352q0.getWidth(), frameLayout.getHeight() / kVar.f51352q0.getHeight());
+            if (kVar.f51364n0 > 0.0f && kVar.f51372t0 != null && kVar.f51369r0 != null && (bitmap = kVar.f51367q0) != null && !bitmap.isRecycled()) {
+                kVar.f51371s0.reset();
+                kVar.f51371s0.postScale(frameLayout.getWidth() / kVar.f51367q0.getWidth(), frameLayout.getHeight() / kVar.f51367q0.getHeight());
                 float f7 = 0.0f;
                 float f10 = 0.0f;
                 st stVar3 = stVar2;
@@ -152,15 +152,15 @@ public final class f extends wt {
                     i12++;
                     stVar3 = r12;
                 }
-                kVar.f51356s0.postTranslate(-f7, -f10);
-                kVar.f51354r0.setLocalMatrix(kVar.f51356s0);
-                kVar.f51357t0.setAlpha((int) (kVar.f51349n0 * 255.0f * 0.95f));
-                canvas.drawRoundRect(rectF, 0.0f, 0.0f, kVar.f51357t0);
+                kVar.f51371s0.postTranslate(-f7, -f10);
+                kVar.f51369r0.setLocalMatrix(kVar.f51371s0);
+                kVar.f51372t0.setAlpha((int) (kVar.f51364n0 * 255.0f * 0.95f));
+                canvas.drawRoundRect(rectF, 0.0f, 0.0f, kVar.f51372t0);
             }
-            if (kVar.f51357t0 == null) {
+            if (kVar.f51372t0 == null) {
                 W1 = 128.0f;
             } else {
-                W1 = org.telegram.messenger.i0.W1(kVar.f51349n0, 128, 153) * 0.95f;
+                W1 = org.telegram.messenger.i0.W1(kVar.f51364n0, 128, 153) * 0.95f;
             }
             paint.setAlpha((int) W1);
             canvas.drawRoundRect(rectF, 0.0f, 0.0f, paint);
@@ -169,42 +169,42 @@ public final class f extends wt {
 
     @Override
     public final void p() {
-        this.f51122c0.L.a();
+        this.f51137c0.L.a();
     }
 
     @Override
     public final void q(int i10, int i11) {
-        this.f51122c0.s(i10, i11);
+        this.f51137c0.s(i10, i11);
     }
 
     @Override
     public final boolean t(int i10) {
-        k kVar = this.f51122c0;
-        f fVar = kVar.f51340f;
-        ObjectAnimator objectAnimator = kVar.f51341f0;
-        if (objectAnimator != null && objectAnimator.isRunning() && i10 == kVar.f51335b0) {
+        k kVar = this.f51137c0;
+        f fVar = kVar.f51355f;
+        ObjectAnimator objectAnimator = kVar.f51356f0;
+        if (objectAnimator != null && objectAnimator.isRunning() && i10 == kVar.f51350b0) {
             return false;
         }
         kVar.invalidate();
         if (kVar.W) {
             kVar.W = false;
-            if (kVar.f51333a0 != i10) {
-                ObjectAnimator objectAnimator2 = kVar.f51341f0;
-                if (objectAnimator2 == null || !objectAnimator2.isRunning() || i10 != kVar.f51335b0) {
-                    ObjectAnimator objectAnimator3 = kVar.f51341f0;
+            if (kVar.f51348a0 != i10) {
+                ObjectAnimator objectAnimator2 = kVar.f51356f0;
+                if (objectAnimator2 == null || !objectAnimator2.isRunning() || i10 != kVar.f51350b0) {
+                    ObjectAnimator objectAnimator3 = kVar.f51356f0;
                     if (objectAnimator3 != null) {
                         objectAnimator3.cancel();
                     }
-                    fVar.getEditText().setScrollY(kVar.f51333a0);
+                    fVar.getEditText().setScrollY(kVar.f51348a0);
                     mt editText = fVar.getEditText();
-                    int i11 = kVar.f51333a0;
-                    kVar.f51335b0 = i10;
+                    int i11 = kVar.f51348a0;
+                    kVar.f51350b0 = i10;
                     ObjectAnimator ofInt = ObjectAnimator.ofInt(editText, "scrollY", i11, i10);
-                    kVar.f51341f0 = ofInt;
+                    kVar.f51356f0 = ofInt;
                     ofInt.setDuration(240L);
-                    kVar.f51341f0.setInterpolator(gr.h);
-                    kVar.f51341f0.addListener(new sg.r(this, 13));
-                    kVar.f51341f0.start();
+                    kVar.f51356f0.setInterpolator(gr.h);
+                    kVar.f51356f0.addListener(new sg.r(this, 13));
+                    kVar.f51356f0.start();
                     return false;
                 }
                 return true;
@@ -216,11 +216,11 @@ public final class f extends wt {
 
     @Override
     public final void u() {
-        this.f51122c0.L.e = true;
+        this.f51137c0.L.e = true;
     }
 
     @Override
     public final void y() {
-        this.f51122c0.L.a();
+        this.f51137c0.L.a();
     }
 }

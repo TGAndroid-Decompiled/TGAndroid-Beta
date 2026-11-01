@@ -3,11 +3,11 @@ package org.telegram.ui.Cells;
 import android.graphics.Canvas;
 import android.text.Layout;
 public class t9 extends w9 {
-    public final s9 f23109p0;
+    public final s9 f23110p0;
 
     public t9(th.i6 i6Var, org.telegram.ui.ActionBar.p6 p6Var) {
-        this.f23109p0 = i6Var;
-        this.f23423g0 = p6Var;
+        this.f23110p0 = i6Var;
+        this.f23424g0 = p6Var;
     }
 
     @Override
@@ -17,19 +17,19 @@ public class t9 extends w9 {
     }
 
     public final void W(Canvas canvas) {
-        Layout staticTextLayout = this.f23109p0.getStaticTextLayout();
-        int w02 = org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.Ae, this.f23423g0);
-        this.f23436o.setColor(w02);
-        this.f23438p.setColor(w02);
-        h(canvas, staticTextLayout, this.f23443u, this.v, true, true, 0.0f);
+        Layout staticTextLayout = this.f23110p0.getStaticTextLayout();
+        int w02 = org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.Ae, this.f23424g0);
+        this.f23437o.setColor(w02);
+        this.f23439p.setColor(w02);
+        h(canvas, staticTextLayout, this.f23444u, this.v, true, true, 0.0f);
     }
 
     @Override
     public final void i(int i10, ge.b bVar, boolean z10) {
-        bVar.d = this.f23109p0.getStaticTextLayout();
-        bVar.f7471b = 0.0f;
-        bVar.f7472c = 0.0f;
-        bVar.f7470a = 0;
+        bVar.d = this.f23110p0.getStaticTextLayout();
+        bVar.f7472b = 0.0f;
+        bVar.f7473c = 0.0f;
+        bVar.f7471a = 0;
     }
 
     @Override
@@ -42,10 +42,10 @@ public class t9 extends w9 {
         if (i11 > staticTextLayout.getLineBottom(staticTextLayout.getLineCount() - 1) + 0.0f) {
             i11 = (int) ((staticTextLayout.getLineBottom(staticTextLayout.getLineCount() - 1) + 0.0f) - 1.0f);
         }
-        ge.b bVar = this.f23413a0;
+        ge.b bVar = this.f23414a0;
         Layout layout = (Layout) bVar.d;
         if (layout != null) {
-            int i14 = (int) (i10 - bVar.f7472c);
+            int i14 = (int) (i10 - bVar.f7473c);
             int i15 = 0;
             while (true) {
                 if (i15 < layout.getLineCount()) {
@@ -60,7 +60,7 @@ public class t9 extends w9 {
             }
             if (i15 >= 0) {
                 try {
-                    return bVar.f7470a + layout.getOffsetForHorizontal(i15, i14);
+                    return bVar.f7471a + layout.getOffsetForHorizontal(i15, i14);
                 } catch (Exception e) {
                     org.telegram.messenger.f8.g(e, true);
                 }
@@ -71,7 +71,7 @@ public class t9 extends w9 {
 
     @Override
     public final int m() {
-        Layout staticTextLayout = this.f23109p0.getStaticTextLayout();
+        Layout staticTextLayout = this.f23110p0.getStaticTextLayout();
         return staticTextLayout.getLineBottom(0) - staticTextLayout.getLineTop(0);
     }
 

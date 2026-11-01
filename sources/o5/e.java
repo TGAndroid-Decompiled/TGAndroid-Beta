@@ -4,16 +4,16 @@ import j$.util.DesugarCollections;
 import java.util.ArrayList;
 import java.util.List;
 public final class e {
-    public static final int f14094c = 0;
-    public final String f14095a;
-    public final List f14096b;
+    public static final int f14095c = 0;
+    public final String f14096a;
+    public final List f14097b;
 
     static {
         DesugarCollections.unmodifiableList(new ArrayList());
     }
 
     public e(String str, List list) {
-        this.f14095a = str;
-        this.f14096b = list;
+        this.f14096a = str;
+        this.f14097b = list;
     }
 }

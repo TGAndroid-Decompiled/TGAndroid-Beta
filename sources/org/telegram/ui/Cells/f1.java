@@ -9,11 +9,11 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.jj;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.kj;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.ku0;
+import org.telegram.ui.Components.lu0;
 import org.telegram.ui.Components.zz;
 public abstract class f1 {
     public static String A(int i10) {
@@ -32,8 +32,8 @@ public abstract class f1 {
         return "PAID";
     }
 
-    public static boolean a(jj jjVar) {
-        if (jjVar != null && jj.B0(jjVar.f16337k) == 1271266957) {
+    public static boolean a(kj kjVar) {
+        if (kjVar != null && kj.B0(kjVar.f16690k) == 1271266957) {
             return true;
         }
         return false;
@@ -50,7 +50,7 @@ public abstract class f1 {
     }
 
     public static float c(RecyclerView recyclerView) {
-        int i10 = ku0.f27906l0;
+        int i10 = lu0.f28268l0;
         s4.n0 layoutManager = recyclerView.getLayoutManager();
         if (layoutManager == null || !recyclerView.canScrollVertically(-1)) {
             return 0.0f;
@@ -107,7 +107,7 @@ public abstract class f1 {
     }
 
     public static Integer m(int i10, ArrayList arrayList, int i11, ArrayList arrayList2, int i12) {
-        arrayList.add(cd.L0(i10, null));
+        arrayList.add(dd.L0(i10, null));
         arrayList2.add(Integer.valueOf(i11));
         return Integer.valueOf(i12);
     }
@@ -132,7 +132,7 @@ public abstract class f1 {
     }
 
     public static void r(int i10, ArrayList arrayList, ArrayList arrayList2, Integer num) {
-        arrayList.add(cd.L0(i10, null));
+        arrayList.add(dd.L0(i10, null));
         arrayList2.add(num);
     }
 
@@ -141,7 +141,7 @@ public abstract class f1 {
     }
 
     public static void t(String str, int i10, ArrayList arrayList, int i11, ArrayList arrayList2) {
-        arrayList.add(cd.L0(i10, str));
+        arrayList.add(dd.L0(i10, str));
         arrayList2.add(Integer.valueOf(i11));
     }
 

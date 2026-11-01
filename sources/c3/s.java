@@ -2,7 +2,7 @@ package c3;
 
 import ag.p2;
 import android.animation.ObjectAnimator;
-import org.telegram.messenger.jj;
+import org.telegram.messenger.kj;
 import org.telegram.ui.Components.ab;
 import org.telegram.ui.Components.bb;
 import org.telegram.ui.Components.gl;
@@ -14,13 +14,13 @@ import org.telegram.ui.Components.vs;
 public final class s implements ab {
     public long f3687a;
 
-    public s(jj jjVar) {
-        this.f3687a = jj.B0(jjVar.f16337k);
-        jjVar.f1();
+    public s(kj kjVar) {
+        this.f3687a = kj.B0(kjVar.f16690k);
+        kjVar.f1();
     }
 
     public boolean a(ef.m mVar) {
-        if (mVar.f7055b == this.f3687a && ef.a.c(mVar)) {
+        if (mVar.f7056b == this.f3687a && ef.a.c(mVar)) {
             return true;
         }
         return false;
@@ -30,7 +30,7 @@ public final class s implements ab {
     public void m(bb bbVar, la laVar, ja jaVar, ma maVar) {
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(bbVar, bb.IN_OUT_OFFSET_Y2, bbVar.getHeight());
         ofFloat.setDuration(175L);
-        ofFloat.setInterpolator(vs.f31838c);
+        ofFloat.setInterpolator(vs.f31898c);
         ofFloat.addListener(new bg.f(laVar, jaVar, 15));
         ofFloat.addUpdateListener(new p2(12, maVar, bbVar));
         ofFloat.start();

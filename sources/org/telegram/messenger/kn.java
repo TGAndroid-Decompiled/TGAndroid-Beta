@@ -1,32 +1,32 @@
 package org.telegram.messenger;
 
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class kn implements bs {
-    public final vp f16611a;
-    public final long f16612b;
-    public final int f16613c;
-    public final boolean d;
-    public final TLRPC.InputPeer e;
-    public final long f16614f;
+public final class kn implements Runnable {
+    public final wp f16760a;
+    public final TLRPC.TL_messages_dialogs f16761b;
+    public final ArrayList f16762c;
+    public final TLRPC.messages_Dialogs d;
+    public final int e;
+    public final ArrayList f16763f;
+    public final ArrayList h;
+    public final ArrayList f16764n;
+    public final Runnable f16765r;
 
-    public kn(vp vpVar, long j10, int i10, boolean z10, TLRPC.InputPeer inputPeer, long j11) {
-        this.f16611a = vpVar;
-        this.f16612b = j10;
-        this.f16613c = i10;
-        this.d = z10;
-        this.e = inputPeer;
-        this.f16614f = j11;
+    public kn(wp wpVar, TLRPC.TL_messages_dialogs tL_messages_dialogs, ArrayList arrayList, TLRPC.messages_Dialogs messages_dialogs, int i10, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, Runnable runnable) {
+        this.f16760a = wpVar;
+        this.f16761b = tL_messages_dialogs;
+        this.f16762c = arrayList;
+        this.d = messages_dialogs;
+        this.e = i10;
+        this.f16763f = arrayList2;
+        this.h = arrayList3;
+        this.f16764n = arrayList4;
+        this.f16765r = runnable;
     }
 
     @Override
-    public final void a(int i10) {
-        vp vpVar = this.f16611a;
-        long e = vpVar.getUserConfig().e();
-        long j10 = this.f16612b;
-        if (j10 == e) {
-            vpVar.F1().b();
-        }
-        vpVar.Y(j10, 2, this.f16613c, Math.max(0, i10), this.d, this.e, this.f16614f);
-        vpVar.J(1);
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.kn.run():void");
     }
 }

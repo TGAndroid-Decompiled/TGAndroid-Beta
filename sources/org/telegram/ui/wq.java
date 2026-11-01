@@ -4,35 +4,35 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class wq implements fq {
-    public final int f43349a;
-    public final long f43350b;
-    public final int f43351c;
+    public final int f43145a;
+    public final long f43146b;
+    public final int f43147c;
     public final boolean d;
     public final boolean[] e;
-    public final pr f43352f;
+    public final pr f43148f;
 
     public wq(pr prVar, int i10, long j10, int i11, boolean z10, boolean[] zArr) {
-        this.f43352f = prVar;
-        this.f43349a = i10;
-        this.f43350b = j10;
-        this.f43351c = i11;
+        this.f43148f = prVar;
+        this.f43145a = i10;
+        this.f43146b = j10;
+        this.f43147c = i11;
         this.d = z10;
         this.e = zArr;
     }
 
     @Override
     public final void a(TLRPC.User user) {
-        pr.g0(this.f43352f, user);
+        pr.h0(this.f43148f, user);
     }
 
     @Override
     public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
         TLRPC.ChatParticipant tL_chatParticipant;
         TLRPC.ChannelParticipant tL_channelParticipant;
-        pr prVar = this.f43352f;
+        pr prVar = this.f43148f;
         ArrayList arrayList = prVar.E;
-        long j10 = this.f43350b;
-        int i11 = this.f43349a;
+        long j10 = this.f43146b;
+        int i11 = this.f43145a;
         if (i11 == 0) {
             int i12 = 0;
             while (true) {
@@ -41,7 +41,7 @@ public final class wq implements fq {
                 }
                 TLObject tLObject = (TLObject) arrayList.get(i12);
                 if (tLObject instanceof TLRPC.ChannelParticipant) {
-                    if (org.telegram.messenger.jj.C1(((TLRPC.ChannelParticipant) tLObject).peer) == j10) {
+                    if (org.telegram.messenger.kj.C1(((TLRPC.ChannelParticipant) tLObject).peer) == j10) {
                         if (i10 == 1) {
                             tL_channelParticipant = new TLRPC.TL_channelParticipantAdmin();
                         } else {
@@ -59,7 +59,7 @@ public final class wq implements fq {
                             tL_channelParticipant.peer = tL_peerChannel;
                             tL_peerChannel.channel_id = -j10;
                         }
-                        tL_channelParticipant.date = this.f43351c;
+                        tL_channelParticipant.date = this.f43147c;
                         tL_channelParticipant.flags |= 4;
                         tL_channelParticipant.rank = str;
                         arrayList.set(i12, tL_channelParticipant);
@@ -74,11 +74,11 @@ public final class wq implements fq {
                     tL_chatParticipant.user_id = chatParticipant.user_id;
                     tL_chatParticipant.date = chatParticipant.date;
                     tL_chatParticipant.inviter_id = chatParticipant.inviter_id;
-                    int indexOf = prVar.f40755r.participants.participants.indexOf(chatParticipant);
+                    int indexOf = prVar.f40562r.participants.participants.indexOf(chatParticipant);
                     if (indexOf >= 0) {
-                        prVar.f40755r.participants.participants.set(indexOf, tL_chatParticipant);
+                        prVar.f40562r.participants.participants.set(indexOf, tL_chatParticipant);
                     }
-                    prVar.v0();
+                    prVar.w0();
                 }
                 i12++;
             }
@@ -86,7 +86,7 @@ public final class wq implements fq {
                 this.e[0] = true;
             }
         } else if (i11 == 1 && i10 == 0) {
-            prVar.z0(j10);
+            prVar.A0(j10);
         }
     }
 }

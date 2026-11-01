@@ -1,183 +1,196 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.content.SharedPreferences;
-public final class a81 implements Runnable {
-    public final int f35585a;
-    public final m91 f35586b;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLRPC;
+public final class a81 implements org.telegram.messenger.nc, org.telegram.ui.Components.ik0, org.telegram.ui.Components.z71, org.telegram.ui.ActionBar.u1 {
+    public final int f35713a;
+    public final k91 f35714b;
 
-    public a81(m91 m91Var, int i10) {
-        this.f35585a = i10;
-        this.f35586b = m91Var;
+    public a81(k91 k91Var, int i10) {
+        this.f35713a = i10;
+        this.f35714b = k91Var;
     }
 
     @Override
-    public final void run() {
-        int i10;
-        int i11 = this.f35585a;
-        float f7 = 0.0f;
-        m91 m91Var = this.f35586b;
-        switch (i11) {
-            case 0:
-                m91Var.f39538a0 = false;
-                int i12 = m91Var.X;
-                int i13 = m91Var.Y;
-                org.telegram.ui.ActionBar.r6 r6Var = m91Var.f39596w;
-                int i14 = m91Var.f39575n;
-                if (i14 == 1) {
-                    if (i13 == 0) {
-                        r6Var.f20732c = i12;
-                        org.telegram.ui.ActionBar.t6.t1(false, false);
-                    } else if (i13 == 1) {
-                        r6Var.d = i12;
-                        org.telegram.ui.ActionBar.t6.t1(true, true);
-                        m91Var.f39594v0.g1();
-                        m91Var.W.setHasChanges(m91Var.X0(m91Var.f39575n));
-                        m91Var.q1(true);
-                    }
-                } else if (i14 == 2) {
-                    if (i13 == 0) {
-                        r6Var.f20736j = i12;
-                    } else if (i13 == 1) {
-                        int E0 = org.telegram.ui.ActionBar.t6.E0(org.telegram.ui.ActionBar.t6.Ce);
-                        if (i12 == 0 && E0 != 0) {
-                            r6Var.f20737k = 4294967296L;
-                        } else {
-                            r6Var.f20737k = i12;
-                        }
-                    } else if (i13 == 2) {
-                        int E02 = org.telegram.ui.ActionBar.t6.E0(org.telegram.ui.ActionBar.t6.De);
-                        if (i12 == 0 && E02 != 0) {
-                            r6Var.f20738l = 4294967296L;
-                        } else {
-                            r6Var.f20738l = i12;
-                        }
-                    } else if (i13 == 3) {
-                        int E03 = org.telegram.ui.ActionBar.t6.E0(org.telegram.ui.ActionBar.t6.Ee);
-                        if (i12 == 0 && E03 != 0) {
-                            r6Var.f20739m = 4294967296L;
-                        } else {
-                            r6Var.f20739m = i12;
-                        }
-                    }
-                    org.telegram.ui.ActionBar.t6.t1(true, false);
-                    m91Var.W.setHasChanges(m91Var.X0(m91Var.f39575n));
-                    m91Var.q1(true);
-                } else if (i14 == 3) {
-                    if (i13 == 0) {
-                        r6Var.e = i12;
-                    } else if (i13 == 1) {
-                        r6Var.f20733f = i12;
-                    } else if (i13 == 2) {
-                        int i15 = r6Var.f20734g;
-                        r6Var.f20734g = i12;
-                        if (i15 != 0 && i12 == 0) {
-                            m91Var.f39597w0.s(0);
-                        } else if (i15 == 0 && i12 != 0) {
-                            m91Var.f39597w0.i(0);
-                            m91Var.i1();
-                        }
-                    } else {
-                        r6Var.h = i12;
-                    }
-                    int i16 = m91Var.Y;
-                    if (i16 >= 0) {
-                        m91Var.L0[1].b(i16, i12);
-                    }
-                    org.telegram.ui.ActionBar.t6.t1(true, true);
-                    m91Var.f39594v0.g1();
-                    m91Var.W.setHasChanges(m91Var.X0(m91Var.f39575n));
-                    m91Var.q1(true);
-                }
-                int size = m91Var.f39567j0.size();
-                for (int i17 = 0; i17 < size; i17++) {
-                    org.telegram.ui.ActionBar.c7 c7Var = (org.telegram.ui.ActionBar.c7) m91Var.f39567j0.get(i17);
-                    c7Var.e(m91Var.getThemedColor(c7Var.e), false, false);
-                }
-                m91Var.f39578o0.g1();
-                m91Var.f39594v0.g1();
-                kg.f0 f0Var = m91Var.f39541b0;
-                if (f0Var != null) {
-                    f0Var.invalidate();
-                }
-                m91Var.Y = -1;
-                return;
-            case 1:
-                m91Var.presentFragment(u61.f0(m91Var.getMessagesController().L0(Long.valueOf(-m91Var.K1)), true));
-                return;
-            case 2:
-                m91Var.f39583q1.M1(false);
-                boolean a2 = m91Var.f39537a.a();
-                org.telegram.ui.Components.bi0 bi0Var = m91Var.O1;
-                if (a2) {
-                    i10 = bi0Var.e[0];
+    public void b(float f7, float f10, int i10, View view) {
+        if (view instanceof org.telegram.ui.Cells.q1) {
+            org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) view;
+            boolean y22 = q1Var.y2(f7);
+            k91 k91Var = this.f35714b;
+            if (y22) {
+                if (q1Var.getMessageObject().P3()) {
+                    k91Var.d1(3, true);
+                    return;
                 } else {
-                    i10 = 0;
-                }
-                bi0Var.P(i10);
-                org.telegram.ui.Components.bi0 bi0Var2 = m91Var.O1;
-                if (bi0Var2 != null) {
-                    bi0Var2.start();
-                }
-                m91Var.f1(false);
-                m91Var.Z0();
-                m91Var.m1();
-                if (m91Var.f39567j0 != null) {
-                    for (int i18 = 0; i18 < m91Var.f39567j0.size(); i18++) {
-                        ((org.telegram.ui.ActionBar.c7) m91Var.f39567j0.get(i18)).e(m91Var.getThemedColor(((org.telegram.ui.ActionBar.c7) m91Var.f39567j0.get(i18)).e), false, false);
-                    }
-                }
-                if (m91Var.N1) {
-                    e91 e91Var = m91Var.f39583q1;
-                    if (e91Var != null && e91Var.a()) {
-                        m91Var.S1.setVisibility(0);
-                        m91Var.S1.a(m91Var.f39579o1);
-                    } else {
-                        m91Var.S1.a(0.0f);
-                    }
-                    ValueAnimator valueAnimator = m91Var.Q1;
-                    if (valueAnimator != null) {
-                        valueAnimator.removeAllListeners();
-                        m91Var.Q1.cancel();
-                    }
-                    float f10 = m91Var.f39581p1;
-                    if (m91Var.f39583q1.a()) {
-                        f7 = 1.0f;
-                    }
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-                    m91Var.Q1 = ofFloat;
-                    ofFloat.addUpdateListener(new u01(m91Var, 9));
-                    m91Var.Q1.addListener(new r81(m91Var, 5));
-                    m91Var.Q1.setDuration(250L);
-                    m91Var.Q1.setInterpolator(org.telegram.ui.Components.gr.f26495f);
-                    m91Var.Q1.start();
+                    k91Var.d1(1, true);
                     return;
                 }
+            }
+            k91Var.d1(2, true);
+        }
+    }
+
+    @Override
+    public void e(int i10, int i11) {
+        k91 k91Var = this.f35714b;
+        if (!k91Var.F1) {
+            return;
+        }
+        k91Var.f38778y0.getBackground();
+        float f7 = 1.0f;
+        if (k91Var.C0 != null) {
+            f7 = (k91Var.f38778y0.getScaleX() - 1.0f) / (k91Var.f38781z1 - 1.0f);
+        }
+        k91Var.f38778y0.setTranslationX(i10 * f7);
+        k91Var.f38778y0.setTranslationY(i11 * f7);
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
+        boolean z10;
+        switch (this.f35713a) {
+            case 3:
+                this.f35714b.f38765t0.getActionBarMenuOnItemClick().b(4);
+                return;
+            case 4:
+                this.f35714b.S0(false);
+                return;
+            case 5:
+                k91 k91Var = this.f35714b;
+                org.telegram.ui.ActionBar.r6 r6Var = k91Var.f38771w;
+                if (r6Var.f20737j == 4294967296L) {
+                    r6Var.f20737j = 0L;
+                    r6Var.f20738k = 0L;
+                    r6Var.f20739l = 0L;
+                    r6Var.f20740m = 0L;
+                    k91Var.r1(false);
+                    org.telegram.ui.ActionBar.t6.t1(false, false);
+                }
+                k91Var.f38774x = true;
+                org.telegram.ui.ActionBar.t6.v1(true);
+                k91Var.d1(2, false);
+                return;
+            case 6:
+                k91 k91Var2 = this.f35714b;
+                org.telegram.ui.ActionBar.r6 r6Var2 = k91Var2.f38771w;
+                if (org.telegram.ui.ActionBar.t6.c1() && org.telegram.ui.ActionBar.t6.I.f20814i0.d != 0) {
+                    org.telegram.ui.ActionBar.m6 m6Var = r6Var2.f20751y;
+                    r6Var2.f20737j = m6Var.d;
+                    r6Var2.f20738k = m6Var.e;
+                    r6Var2.f20739l = m6Var.f20592f;
+                    r6Var2.f20740m = m6Var.f20593g;
+                    r6Var2.f20741n = m6Var.h;
+                    String str = m6Var.f20591c;
+                    r6Var2.f20742o = str;
+                    float f7 = m6Var.f20596k;
+                    r6Var2.f20743p = f7;
+                    k91Var2.f38749m1 = f7;
+                    if (str != null && !"c".equals(str)) {
+                        int size = k91Var2.V0.size();
+                        int i11 = 0;
+                        while (true) {
+                            if (i11 < size) {
+                                TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) k91Var2.V0.get(i11);
+                                if (tL_wallPaper.pattern && r6Var2.f20742o.equals(tL_wallPaper.slug)) {
+                                    k91Var2.X0 = tL_wallPaper;
+                                } else {
+                                    i11++;
+                                }
+                            }
+                        }
+                    } else {
+                        k91Var2.X0 = null;
+                    }
+                    k91Var2.f38774x = true;
+                    org.telegram.ui.Components.y71 y71Var = k91Var2.K0[1];
+                    if (k91Var2.X0 != null) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    y71Var.a(z10, true);
+                    k91Var2.r1(false);
+                    org.telegram.ui.ActionBar.t6.t1(false, false);
+                }
+                Drawable background = k91Var2.f38778y0.getBackground();
+                if (background instanceof org.telegram.ui.Components.jb0) {
+                    org.telegram.ui.Components.jb0 jb0Var = (org.telegram.ui.Components.jb0) background;
+                    jb0Var.s(null, 100);
+                    if (org.telegram.ui.ActionBar.t6.I.q()) {
+                        if (k91Var2.f38749m1 < 0.0f) {
+                            k91Var2.f38778y0.getImageReceiver().m0(jb0Var.f27342k);
+                        }
+                        org.telegram.ui.Cells.h0 h0Var = k91Var2.U0;
+                        if (h0Var != null) {
+                            h0Var.setTwoSided(true);
+                        }
+                    } else {
+                        float f10 = k91Var2.f38749m1;
+                        if (f10 < 0.0f) {
+                            k91Var2.f38749m1 = -f10;
+                        }
+                    }
+                }
+                org.telegram.ui.Cells.h0 h0Var2 = k91Var2.U0;
+                if (h0Var2 != null) {
+                    h0Var2.setProgress(k91Var2.f38749m1);
+                }
+                org.telegram.ui.ActionBar.t6.v1(true);
+                k91Var2.d1(2, false);
                 return;
             default:
-                if (m91Var.getParentActivity() != null && m91Var.getParentActivity() != null) {
-                    int i19 = org.telegram.messenger.tz.f18131a;
-                    SharedPreferences.Editor edit = org.telegram.messenger.vp.d1().edit();
-                    int i20 = org.telegram.messenger.tz.S + 1;
-                    org.telegram.messenger.tz.S = i20;
-                    edit.putInt("dayNightWallpaperSwitchHint", i20);
-                    edit.apply();
-                    org.telegram.ui.Components.q30 q30Var = new org.telegram.ui.Components.q30(7, m91Var.getParentActivity(), null, true);
-                    q30Var.setAlpha(0.0f);
-                    q30Var.setVisibility(4);
-                    q30Var.setShowingDuration(4000L);
-                    m91Var.f39573l0.addView(q30Var, w7.b6.d(-2, -2.0f, 51, 4.0f, 0.0f, 4.0f, 0.0f));
-                    if (m91Var.f39583q1.a()) {
-                        q30Var.setText(org.telegram.messenger.cd.L0(2131746893, null));
-                    } else {
-                        q30Var.setText(org.telegram.messenger.cd.L0(2131746892, null));
-                    }
-                    q30Var.d();
-                    q30Var.f(m91Var.P1, true);
-                    q30Var.setExtraTranslationY(-org.telegram.messenger.i0.L(14.0f));
-                    return;
+                k91 k91Var3 = this.f35714b;
+                org.telegram.ui.ActionBar.r6 r6Var3 = k91Var3.f38771w;
+                if (r6Var3.f20737j == 4294967296L) {
+                    r6Var3.f20737j = 0L;
+                    r6Var3.f20738k = 0L;
+                    r6Var3.f20739l = 0L;
+                    r6Var3.f20740m = 0L;
+                    k91Var3.r1(false);
+                    org.telegram.ui.ActionBar.t6.t1(false, false);
                 }
+                k91Var3.f38774x = true;
+                org.telegram.ui.ActionBar.t6.v1(true);
+                k91Var3.d1(2, false);
                 return;
         }
+    }
+
+    @Override
+    public boolean h1(View view) {
+        return false;
+    }
+
+    @Override
+    public void q(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
+        k91 k91Var = this.f35714b;
+        if (!(k91Var.C1 instanceof ke1)) {
+            Drawable t10 = imageReceiver.t();
+            if (z10 && t10 != null) {
+                l81 l81Var = k91Var.f38712a;
+                org.telegram.messenger.i0.q(t10);
+                l81Var.k(k91Var.T0(t10), t10, Float.valueOf(k91Var.f38749m1));
+                if (!z11 && k91Var.G1 && k91Var.f38776x1 == null) {
+                    k91Var.f38778y0.getImageReceiver().A0 = false;
+                    k91Var.n1();
+                    k91Var.f38778y0.getImageReceiver().A0 = true;
+                }
+                k91Var.a1();
+            }
+        }
+    }
+
+    @Override
+    public void j(ImageReceiver imageReceiver) {
+    }
+
+    @Override
+    public void s(int i10, Drawable drawable) {
+    }
+
+    @Override
+    public void q0(View view, float f7, float f10) {
     }
 }

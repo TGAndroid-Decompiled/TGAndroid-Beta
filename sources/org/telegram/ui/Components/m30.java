@@ -4,7 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 import java.util.ArrayList;
 import org.telegram.tgnet.ConnectionsManager;
-public abstract class m30 extends p51 {
+public abstract class m30 extends q51 {
     public final int P;
     public final ArrayList Q;
     public boolean R;
@@ -16,18 +16,18 @@ public abstract class m30 extends p51 {
     public boolean X;
     public int Y;
     public String Z;
-    public String f28265a0;
-    public int f28266b0;
-    public ag.o0 f28267c0;
-    public final boolean[] f28268d0;
+    public String f28362a0;
+    public int f28363b0;
+    public ag.o0 f28364c0;
+    public final boolean[] f28365d0;
 
-    public m30(tk0 tk0Var, Context context, int i10) {
-        super(tk0Var, context, i10, 0, false, null, null);
+    public m30(uk0 uk0Var, Context context, int i10) {
+        super(uk0Var, context, i10, 0, false, null, null);
         this.Q = new ArrayList();
         this.V = 0;
         this.W = -1;
-        this.f28268d0 = new boolean[1];
-        this.f29297w = new d(this, 16);
+        this.f28365d0 = new boolean[1];
+        this.f29640w = new d(this, 16);
         this.P = i10;
     }
 
@@ -60,7 +60,7 @@ public abstract class m30 extends p51 {
     public final void W() {
         th.r4 r4Var = this.S;
         if (r4Var != null && r4Var.I != 0) {
-            ConnectionsManager.getInstance(r4Var.f49633c).cancelRequest(r4Var.I, true);
+            ConnectionsManager.getInstance(r4Var.f49647c).cancelRequest(r4Var.I, true);
             r4Var.I = 0;
         }
         this.R = false;
@@ -68,16 +68,16 @@ public abstract class m30 extends p51 {
             ConnectionsManager.getInstance(this.P).cancelRequest(this.W, true);
             this.W = -1;
         }
-        org.telegram.messenger.i0.r(this.f28267c0);
+        org.telegram.messenger.i0.r(this.f28364c0);
         this.V++;
         this.U = false;
     }
 
     public final void X() {
-        tk0 tk0Var;
-        if (!TextUtils.isEmpty(this.Z) && !this.X && !this.U && (tk0Var = this.d) != null) {
-            for (int i10 = 0; i10 < tk0Var.getChildCount(); i10++) {
-                if (tk0Var.getChildAt(i10) instanceof zz) {
+        uk0 uk0Var;
+        if (!TextUtils.isEmpty(this.Z) && !this.X && !this.U && (uk0Var = this.d) != null) {
+            for (int i10 = 0; i10 < uk0Var.getChildCount(); i10++) {
+                if (uk0Var.getChildAt(i10) instanceof zz) {
                     Z(this.Z);
                     return;
                 }
@@ -87,8 +87,8 @@ public abstract class m30 extends p51 {
 
     public final void Z(String str) {
         this.Z = str;
-        String Y = Y(str, this.f28268d0);
-        if (!TextUtils.equals(this.f28265a0, Y)) {
+        String Y = Y(str, this.f28365d0);
+        if (!TextUtils.equals(this.f28362a0, Y)) {
             this.Q.clear();
             this.X = false;
             this.Y = 0;
@@ -104,7 +104,7 @@ public abstract class m30 extends p51 {
         this.U = true;
         O(true);
         ag.o0 o0Var = new ag.o0(this, i10, Y, 27);
-        this.f28267c0 = o0Var;
+        this.f28364c0 = o0Var;
         org.telegram.messenger.i0.h3(o0Var, 300L);
     }
 }

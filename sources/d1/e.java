@@ -18,7 +18,7 @@ public final class e implements Runnable {
         hf.b bVar = (hf.b) this.f5639b;
         AtomicBoolean atomicBoolean = (AtomicBoolean) this.f5640c;
         synchronized (bVar) {
-            if (atomicBoolean.get() && (wakeLock = (PowerManager.WakeLock) bVar.f7658c) != null) {
+            if (atomicBoolean.get() && (wakeLock = (PowerManager.WakeLock) bVar.f7659c) != null) {
                 wakeLock.release();
             }
         }

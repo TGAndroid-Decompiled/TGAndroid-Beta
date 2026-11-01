@@ -14,47 +14,47 @@ import org.telegram.ui.ActionBar.a7;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.Components.mj0;
+import org.telegram.ui.Components.nj0;
 public final class a0 extends FrameLayout implements k6 {
-    public final Drawable f48262a;
-    public final Rect f48263b;
-    public final Paint f48264c;
+    public final Drawable f48273a;
+    public final Rect f48274b;
+    public final Paint f48275c;
     public final int[] d;
     public final HashMap e;
-    public float f48265f;
+    public float f48276f;
     public float h;
-    public float f48266n;
-    public float f48267r;
-    public float f48268s;
-    public final Path f48269w;
-    public final b0 f48270x;
+    public float f48277n;
+    public float f48278r;
+    public float f48279s;
+    public final Path f48280w;
+    public final b0 f48281x;
 
     public a0(b0 b0Var, Context context) {
         super(context);
-        this.f48270x = b0Var;
+        this.f48281x = b0Var;
         Rect rect = new Rect();
-        this.f48263b = rect;
+        this.f48274b = rect;
         Paint paint = new Paint(1);
-        this.f48264c = paint;
+        this.f48275c = paint;
         this.d = new int[4];
         this.e = new HashMap();
-        this.f48265f = 0.0f;
+        this.f48276f = 0.0f;
         this.h = 0.0f;
-        this.f48266n = 1.0f;
-        this.f48267r = 0.0f;
-        this.f48268s = 0.0f;
-        this.f48269w = new Path();
+        this.f48277n = 1.0f;
+        this.f48278r = 0.0f;
+        this.f48279s = 0.0f;
+        this.f48280w = new Path();
         Drawable mutate = context.getDrawable(2131232670).mutate();
-        this.f48262a = mutate;
+        this.f48273a = mutate;
         int L = org.telegram.messenger.i0.L(7.0f);
         rect.bottom = L;
         rect.right = L;
         rect.top = L;
         rect.left = L;
         int i10 = t6.He;
-        p6 p6Var = b0Var.f48290s;
+        p6 p6Var = b0Var.f48301s;
         a7.y(this, mutate, i10, p6Var, PorterDuff.Mode.MULTIPLY);
-        if (b0Var.f48295y == 2) {
+        if (b0Var.f48306y == 2) {
             paint.setColor(i0.b.f(0.13f, -16777216, -1));
         } else {
             paint.setColor(t6.w0(t6.G8, p6Var));
@@ -69,12 +69,12 @@ public final class a0 extends FrameLayout implements k6 {
     @Override
     public final void invalidate() {
         super.invalidate();
-        b0 b0Var = this.f48270x;
-        mj0 mj0Var = b0Var.f48285n;
-        if (b0Var.f48295y != 1 && (mj0Var == null || mj0Var.getDelegate() == null || !mj0Var.getDelegate().A())) {
+        b0 b0Var = this.f48281x;
+        nj0 nj0Var = b0Var.f48296n;
+        if (b0Var.f48306y != 1 && (nj0Var == null || nj0Var.getDelegate() == null || !nj0Var.getDelegate().A())) {
             return;
         }
-        b0Var.f48284m.f38125f0.invalidate();
+        b0Var.f48295m.f37301f0.invalidate();
     }
 
     @Override
@@ -86,9 +86,9 @@ public final class a0 extends FrameLayout implements k6 {
     public final void updateColors() {
         Paint paint;
         try {
-            b0 b0Var = this.f48270x;
-            if (b0Var.f48295y != 2 && (paint = this.f48264c) != null) {
-                paint.setColor(t6.w0(t6.G8, b0Var.f48290s));
+            b0 b0Var = this.f48281x;
+            if (b0Var.f48306y != 2 && (paint = this.f48275c) != null) {
+                paint.setColor(t6.w0(t6.G8, b0Var.f48301s));
                 invalidate();
             }
         } catch (Exception e) {

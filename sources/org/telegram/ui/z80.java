@@ -1,44 +1,34 @@
 package org.telegram.ui;
 
-import android.graphics.Point;
-import android.os.SystemClock;
-import android.view.View;
-import android.view.ViewTreeObserver;
 import java.util.regex.Pattern;
-public final class z80 implements ViewTreeObserver.OnGlobalLayoutListener {
-    public final int f44049a;
-    public final Object f44050b;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class z80 implements RequestDelegate {
+    public final int f43847a;
+    public final LaunchActivity f43848b;
 
-    public z80(Object obj, int i10) {
-        this.f44049a = i10;
-        this.f44050b = obj;
+    public z80(LaunchActivity launchActivity, int i10) {
+        this.f43847a = i10;
+        this.f43848b = launchActivity;
     }
 
     @Override
-    public final void onGlobalLayout() {
-        int i10 = this.f44049a;
-        Object obj = this.f44050b;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        int i10 = this.f43847a;
+        LaunchActivity launchActivity = this.f43848b;
         switch (i10) {
             case 0:
                 Pattern pattern = LaunchActivity.D1;
-                int measuredHeight = ((View) obj).getMeasuredHeight();
-                StringBuilder l4 = i0.a.l(measuredHeight, "height = ", " displayHeight = ");
-                Point point = org.telegram.messenger.i0.f16026q;
-                i0.a.p(point.y, l4);
-                int i11 = (measuredHeight - org.telegram.messenger.i0.f16021n) - org.telegram.messenger.i0.f16020m;
-                if (i11 > org.telegram.messenger.i0.L(100.0f) && i11 < point.y && org.telegram.messenger.i0.L(100.0f) + i11 > point.y) {
-                    point.y = i11;
-                    if (org.telegram.messenger.v2.f18448a) {
-                        i0.a.p(point.y, new StringBuilder("fix display size y to "));
-                        return;
-                    }
+                if (tLObject != null) {
+                    org.telegram.messenger.i0.g3(new y60(7, launchActivity, (TL_account.Password) tLObject));
                     return;
                 }
                 return;
             default:
-                m91 m91Var = (m91) obj;
-                m91Var.Q = SystemClock.elapsedRealtime() + 1500;
-                m91Var.f39573l0.invalidate();
+                Pattern pattern2 = LaunchActivity.D1;
+                org.telegram.messenger.i0.g3(new y60(3, launchActivity, tLObject));
                 return;
         }
     }

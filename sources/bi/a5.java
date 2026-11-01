@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashSet;
-import org.telegram.messenger.tz;
+import org.telegram.messenger.uz;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.j9;
 import org.telegram.ui.Cells.k9;
@@ -66,7 +66,7 @@ public final class a5 extends c0 implements org.telegram.ui.ActionBar.k6, j9 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.f21028ig));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.f21029ig));
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.G6));
     }
 
@@ -78,7 +78,7 @@ public final class a5 extends c0 implements org.telegram.ui.ActionBar.k6, j9 {
         this.f2847x = null;
         this.f2845s.scrollTo(0, 0);
         String source = getSource();
-        if (!TextUtils.isEmpty(source) && (a2 = u.a(source, org.telegram.messenger.i0.L(tz.W0 + 4), false)) != null) {
+        if (!TextUtils.isEmpty(source) && (a2 = u.a(source, org.telegram.messenger.i0.L(uz.W0 + 4), false)) != null) {
             this.f2847x = a2.f3369a;
         }
         this.f2846w.setImageBitmap(this.f2847x);
@@ -130,7 +130,7 @@ public final class a5 extends c0 implements org.telegram.ui.ActionBar.k6, j9 {
         if (this.f2847x != null && (i3Var = this.D) != null && (textSelectionHelper = i3Var.f3074a.getTextSelectionHelper()) != null && textSelectionHelper.x() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int R = RecyclerView.R(this);
-            if (R >= 0 && R >= textSelectionHelper.f22186p0 && R <= textSelectionHelper.f22189s0) {
+            if (R >= 0 && R >= textSelectionHelper.f22187p0 && R <= textSelectionHelper.f22190s0) {
                 int[] iArr = this.F;
                 j(iArr);
                 canvas.drawRoundRect(iArr[0], iArr[1], iArr[2], iArr[3], org.telegram.messenger.i0.L(4.0f), org.telegram.messenger.i0.L(4.0f), this.f2844r);
@@ -145,7 +145,7 @@ public final class a5 extends c0 implements org.telegram.ui.ActionBar.k6, j9 {
 
     @Override
     public final void updateColors() {
-        int i10 = org.telegram.ui.ActionBar.t6.f21028ig;
+        int i10 = org.telegram.ui.ActionBar.t6.f21029ig;
         org.telegram.ui.ActionBar.p6 p6Var = this.f2843n;
         this.f2844r.setColor(org.telegram.ui.ActionBar.t6.w0(i10, p6Var));
         int w02 = org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.G6, p6Var);

@@ -4,19 +4,19 @@ import g2.c0;
 import java.io.IOException;
 import u2.u;
 public final class d implements y2.g {
-    public final h f11577a;
+    public final h f11578a;
 
     @Override
     public void M(y2.i iVar, long j10, long j11, boolean z10) {
-        this.f11577a.x((y2.o) iVar, j10, j11);
+        this.f11578a.x((y2.o) iVar, j10, j11);
     }
 
     public void a() {
         long j10;
-        h hVar = this.f11577a;
-        synchronized (z2.b.f54546b) {
+        h hVar = this.f11578a;
+        synchronized (z2.b.f54564b) {
             try {
-                if (z2.b.f54547c) {
+                if (z2.b.f54565c) {
                     j10 = z2.b.d;
                 } else {
                     j10 = -9223372036854775807L;
@@ -32,13 +32,13 @@ public final class d implements y2.g {
     @Override
     public k4.d l(y2.i iVar, long j10, long j11, IOException iOException, int i10) {
         y2.o oVar = (y2.o) iVar;
-        h hVar = this.f11577a;
-        a5.a aVar = hVar.f11597q;
-        long j12 = oVar.f54167a;
-        g2.n nVar = oVar.f54168b;
+        h hVar = this.f11578a;
+        a5.a aVar = hVar.f11598q;
+        long j12 = oVar.f54188a;
+        g2.n nVar = oVar.f54189b;
         c0 c0Var = oVar.d;
-        aVar.s(new u(nVar, c0Var.f7284c, c0Var.d, j10, j11, c0Var.f7283b), oVar.f54169c, iOException, true);
-        hVar.f11593m.getClass();
+        aVar.s(new u(nVar, c0Var.f7285c, c0Var.d, j10, j11, c0Var.f7284b), oVar.f54190c, iOException, true);
+        hVar.f11594m.getClass();
         hVar.y(iOException);
         return y2.l.e;
     }
@@ -46,14 +46,14 @@ public final class d implements y2.g {
     @Override
     public void o(y2.i iVar, long j10, long j11) {
         y2.o oVar = (y2.o) iVar;
-        h hVar = this.f11577a;
-        long j12 = oVar.f54167a;
-        g2.n nVar = oVar.f54168b;
+        h hVar = this.f11578a;
+        long j12 = oVar.f54188a;
+        g2.n nVar = oVar.f54189b;
         c0 c0Var = oVar.d;
-        u uVar = new u(nVar, c0Var.f7284c, c0Var.d, j10, j11, c0Var.f7283b);
-        hVar.f11593m.getClass();
-        hVar.f11597q.q(uVar, oVar.f54169c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
-        hVar.K = ((Long) oVar.f54170f).longValue() - j10;
+        u uVar = new u(nVar, c0Var.f7285c, c0Var.d, j10, j11, c0Var.f7284b);
+        hVar.f11594m.getClass();
+        hVar.f11598q.q(uVar, oVar.f54190c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        hVar.K = ((Long) oVar.f54191f).longValue() - j10;
         hVar.z(true);
     }
 

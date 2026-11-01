@@ -2,63 +2,66 @@ package fi;
 
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
-import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.RenderNode;
-import org.telegram.ui.Components.au;
+import android.support.v4.media.session.w;
 import v7.i7;
 public final class c extends i7 {
-    public final RenderNode f7111a = new RenderNode("glass-fade-content");
-    public final RenderNode f7112b = new RenderNode("glass-fade-overlay");
-    public final Paint f7113c;
-    public final Paint d;
-    public final Matrix e;
-    public LinearGradient f7114f;
-    public int f7115g;
-    public int h;
-    public int f7116i;
-    public final f f7117j;
+    public final RenderNode f7109a = w.k();
+    public final Paint f7110b = new Paint(1);
+    public final g f7111c;
 
-    public c(f fVar) {
-        this.f7117j = fVar;
-        Paint paint = new Paint();
-        this.f7113c = paint;
-        this.d = new Paint(1);
-        this.e = new Matrix();
-        this.f7115g = -1;
-        this.h = -1;
-        paint.setBlendMode(au.k());
+    public c(g gVar) {
+        this.f7111c = gVar;
     }
 
     @Override
-    public final void a(android.graphics.Rect r29, android.graphics.RectF r30) {
-        throw new UnsupportedOperationException("Method not decompiled: fi.c.a(android.graphics.Rect, android.graphics.RectF):void");
+    public final void a(Rect rect, RectF rectF) {
+        float f7;
+        g gVar = this.f7111c;
+        if (!gVar.f7130x && this.f7109a.hasDisplayList()) {
+            return;
+        }
+        int width = rect.width();
+        int height = rect.height();
+        int i10 = gVar.f7131y;
+        if (i10 != 1 && i10 != 4) {
+            f7 = width;
+        } else {
+            f7 = height;
+        }
+        float f10 = f7;
+        h hVar = gVar.F;
+        hVar.getClass();
+        LinearGradient k10 = g.k(gVar, hVar, f10, 0, gVar.J, 1);
+        Paint paint = this.f7110b;
+        paint.setShader(k10);
+        this.f7109a.setPosition(0, 0, width, height);
+        this.f7109a.beginRecording().drawRect(0.0f, 0.0f, width, height, paint);
+        this.f7109a.endRecording();
+        paint.setShader(null);
+        gVar.f7130x = false;
     }
 
     @Override
     public final void b() {
-        this.f7111a.discardDisplayList();
-        this.f7112b.discardDisplayList();
-        this.f7115g = -1;
+        this.f7109a.discardDisplayList();
     }
 
     @Override
     public final void c(Canvas canvas) {
-        canvas.drawRenderNode(this.f7111a);
-        canvas.drawRenderNode(this.f7112b);
+        canvas.drawRenderNode(this.f7109a);
     }
 
     @Override
     public final boolean d() {
-        if (this.f7111a.hasDisplayList() && this.f7112b.hasDisplayList()) {
-            return true;
-        }
-        return false;
+        return this.f7109a.hasDisplayList();
     }
 
     @Override
     public final void e(float f7) {
-        this.f7111a.setAlpha(f7);
-        this.f7112b.setAlpha(f7);
+        this.f7109a.setAlpha(f7);
     }
 }

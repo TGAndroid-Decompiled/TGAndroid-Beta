@@ -1,35 +1,45 @@
 package org.telegram.messenger;
-public final class gr implements Runnable {
-    public final int f15756a;
-    public final hs f15757b;
-    public final long f15758c;
-    public final int d;
-    public final int e;
-    public final int f15759f;
-    public final int h;
 
-    public gr(hs hsVar, int i10, int i11, int i12, int i13, long j10) {
-        this.f15756a = 0;
-        this.f15757b = hsVar;
-        this.d = i10;
-        this.e = i11;
-        this.f15759f = i12;
-        this.h = i13;
-        this.f15758c = j10;
+import java.util.Comparator;
+import org.telegram.messenger.support.LongSparseIntArray;
+public final class gr implements Comparator {
+    public final int f15959a;
+    public final LongSparseIntArray f15960b;
+
+    public gr(LongSparseIntArray longSparseIntArray, int i10) {
+        this.f15959a = i10;
+        this.f15960b = longSparseIntArray;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.gr.run():void");
-    }
-
-    public gr(hs hsVar, long j10, int i10, int i11, int i12, int i13, int i14) {
-        this.f15756a = i14;
-        this.f15757b = hsVar;
-        this.f15758c = j10;
-        this.d = i10;
-        this.e = i11;
-        this.f15759f = i12;
-        this.h = i13;
+    public final int compare(Object obj, Object obj2) {
+        Long l4 = (Long) obj;
+        Long l10 = (Long) obj2;
+        switch (this.f15959a) {
+            case 0:
+                long longValue = l4.longValue();
+                LongSparseIntArray longSparseIntArray = this.f15960b;
+                int i10 = longSparseIntArray.get(longValue);
+                int i11 = longSparseIntArray.get(l10.longValue());
+                if (i10 > i11) {
+                    return 1;
+                }
+                if (i10 < i11) {
+                    return -1;
+                }
+                return 0;
+            default:
+                long longValue2 = l4.longValue();
+                LongSparseIntArray longSparseIntArray2 = this.f15960b;
+                int i12 = longSparseIntArray2.get(longValue2);
+                int i13 = longSparseIntArray2.get(l10.longValue());
+                if (i12 < i13) {
+                    return 1;
+                }
+                if (i12 > i13) {
+                    return -1;
+                }
+                return 0;
+        }
     }
 }

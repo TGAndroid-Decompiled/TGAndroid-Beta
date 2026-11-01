@@ -63,11 +63,11 @@ import m4.f0;
 import m4.y;
 import org.telegram.messenger.f8;
 import org.telegram.messenger.i0;
-import org.telegram.messenger.ld;
-import org.telegram.messenger.ms;
-import org.telegram.messenger.mz;
+import org.telegram.messenger.md;
+import org.telegram.messenger.ns;
+import org.telegram.messenger.nz;
 import org.telegram.messenger.w0;
-import org.telegram.ui.Components.bx0;
+import org.telegram.ui.Components.cx0;
 import org.telegram.ui.LaunchActivity;
 import th.m1;
 import u2.g0;
@@ -95,30 +95,30 @@ import z9.x0;
 import z9.y0;
 import z9.z1;
 public class f {
-    public Object f9347a;
-    public Object f9348b;
-    public Object f9349c;
+    public Object f9348a;
+    public Object f9349b;
+    public Object f9350c;
     public Object d;
     public Object e;
-    public Object f9350f;
+    public Object f9351f;
 
     public f(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6) {
-        this.f9347a = obj;
-        this.f9348b = obj2;
-        this.f9349c = obj3;
+        this.f9348a = obj;
+        this.f9349b = obj2;
+        this.f9350c = obj3;
         this.d = obj4;
         this.e = obj5;
-        this.f9350f = obj6;
+        this.f9351f = obj6;
     }
 
     public static void A(Drawable drawable, int i10, PorterDuff.Mode mode) {
         PorterDuffColorFilter h;
-        int[] iArr = l1.f12455a;
+        int[] iArr = l1.f12456a;
         Drawable mutate = drawable.mutate();
         if (mode == null) {
-            mode = q.f12522b;
+            mode = q.f12523b;
         }
-        PorterDuff.Mode mode2 = q.f12522b;
+        PorterDuff.Mode mode2 = q.f12523b;
         synchronized (q.class) {
             h = m2.h(i10, mode);
         }
@@ -128,7 +128,7 @@ public class f {
     public static l0 a(l0 l0Var, y9.e eVar, p3 p3Var) {
         String str;
         f a2 = l0Var.a();
-        String e = ((y9.c) eVar.f54331b).e();
+        String e = ((y9.c) eVar.f54352b).e();
         if (e != null) {
             a2.e = new v0(e);
         } else if (Log.isLoggable("FirebaseCrashlytics", 2)) {
@@ -137,19 +137,19 @@ public class f {
         List r10 = r(((y9.d) ((AtomicMarkableReference) ((ac.a) p3Var.d).f363b).getReference()).a());
         List r11 = r(((y9.d) ((AtomicMarkableReference) ((ac.a) p3Var.e).f363b).getReference()).a());
         if (!r10.isEmpty() || !r11.isEmpty()) {
-            m0 m0Var = (m0) l0Var.f55338c;
-            s1 s1Var = m0Var.f55344a;
+            m0 m0Var = (m0) l0Var.f55356c;
+            s1 s1Var = m0Var.f55362a;
             Boolean bool = m0Var.d;
             t1 t1Var = m0Var.e;
-            List list = m0Var.f55347f;
-            int i10 = m0Var.f55348g;
+            List list = m0Var.f55365f;
+            int i10 = m0Var.f55366g;
             if (s1Var == null) {
                 str = " execution";
             } else {
                 str = "";
             }
             if (str.isEmpty()) {
-                a2.f9349c = new m0(s1Var, r10, r11, bool, t1Var, list, i10);
+                a2.f9350c = new m0(s1Var, r10, r11, bool, t1Var, list, i10);
             } else {
                 throw new IllegalStateException("Missing required properties:".concat(str));
             }
@@ -158,7 +158,7 @@ public class f {
     }
 
     public static a2 c(l0 l0Var, p3 p3Var) {
-        List m10 = ((x) p3Var.f12521f).m();
+        List m10 = ((x) p3Var.f12522f).m();
         ArrayList arrayList = new ArrayList();
         for (int i10 = 0; i10 < m10.size(); i10++) {
             y9.l lVar = (y9.l) m10.get(i10);
@@ -167,16 +167,16 @@ public class f {
             y9.b bVar = (y9.b) lVar;
             String str = bVar.e;
             if (str != null) {
-                String str2 = bVar.f54323b;
+                String str2 = bVar.f54344b;
                 if (str2 != null) {
-                    fVar.f10441b = new x0(str2, str);
-                    String str3 = bVar.f54324c;
+                    fVar.f10442b = new x0(str2, str);
+                    String str3 = bVar.f54345c;
                     if (str3 != null) {
-                        fVar.f10442c = str3;
+                        fVar.f10443c = str3;
                         String str4 = bVar.d;
                         if (str4 != null) {
                             fVar.d = str4;
-                            fVar.e = Long.valueOf(bVar.f54325f);
+                            fVar.e = Long.valueOf(bVar.f54346f);
                             arrayList.add(fVar.e());
                         } else {
                             throw new NullPointerException("Null parameterValue");
@@ -195,7 +195,7 @@ public class f {
             return l0Var;
         }
         f a2 = l0Var.a();
-        a2.f9350f = new y0(arrayList);
+        a2.f9351f = new y0(arrayList);
         return a2.h();
     }
 
@@ -218,7 +218,7 @@ public class f {
 
     public static ColorStateList l(Context context, int i10) {
         int c10 = a3.c(context, 2130968728);
-        return new ColorStateList(new int[][]{a3.f12372b, a3.d, a3.f12373c, a3.f12374f}, new int[]{a3.b(context, 2130968726), i0.b.k(c10, i10), i0.b.k(c10, i10), i10});
+        return new ColorStateList(new int[][]{a3.f12373b, a3.d, a3.f12374c, a3.f12375f}, new int[]{a3.b(context, 2130968726), i0.b.k(c10, i10), i0.b.k(c10, i10), i10});
     }
 
     public static g0 o(f1 f1Var, n0 n0Var, g0 g0Var, b2.l1 l1Var) {
@@ -305,12 +305,12 @@ public class f {
     }
 
     public static boolean t(g0 g0Var, Object obj, boolean z10, int i10, int i11, int i12) {
-        Object obj2 = g0Var.f49875a;
-        int i13 = g0Var.f49876b;
+        Object obj2 = g0Var.f49889a;
+        int i13 = g0Var.f49890b;
         if (!obj2.equals(obj)) {
             return false;
         }
-        if (!z10 || i13 != i10 || g0Var.f49877c != i11) {
+        if (!z10 || i13 != i10 || g0Var.f49891c != i11) {
             if (z10 || i13 != -1 || g0Var.e != i12) {
                 return false;
             }
@@ -320,81 +320,81 @@ public class f {
     }
 
     public void B() {
-        if (((LocationManager) this.f9348b) == null) {
-            this.f9348b = (LocationManager) w0.f19025b.getSystemService("location");
+        if (((LocationManager) this.f9349b) == null) {
+            this.f9349b = (LocationManager) w0.f18945b.getSystemService("location");
         }
         try {
-            ((LocationManager) this.f9348b).requestLocationUpdates("gps", 1L, 0.0f, (ld) this.f9349c);
+            ((LocationManager) this.f9349b).requestLocationUpdates("gps", 1L, 0.0f, (md) this.f9350c);
         } catch (Exception e) {
             f8.g(e, true);
         }
         try {
-            ((LocationManager) this.f9348b).requestLocationUpdates("network", 1L, 0.0f, (ld) this.d);
+            ((LocationManager) this.f9349b).requestLocationUpdates("network", 1L, 0.0f, (md) this.d);
         } catch (Exception e7) {
             f8.g(e7, true);
         }
         try {
-            Location lastKnownLocation = ((LocationManager) this.f9348b).getLastKnownLocation("gps");
-            this.f9350f = lastKnownLocation;
+            Location lastKnownLocation = ((LocationManager) this.f9349b).getLastKnownLocation("gps");
+            this.f9351f = lastKnownLocation;
             if (lastKnownLocation == null) {
-                this.f9350f = ((LocationManager) this.f9348b).getLastKnownLocation("network");
+                this.f9351f = ((LocationManager) this.f9349b).getLastKnownLocation("network");
             }
         } catch (Exception e10) {
             f8.g(e10, true);
         }
-        ms msVar = (ms) this.e;
-        if (msVar != null) {
-            i0.r(msVar);
+        ns nsVar = (ns) this.e;
+        if (nsVar != null) {
+            i0.r(nsVar);
         }
-        ms msVar2 = new ms(this, 15);
-        this.e = msVar2;
-        i0.h3(msVar2, 5000L);
+        ns nsVar2 = new ns(this, 15);
+        this.e = nsVar2;
+        i0.h3(nsVar2, 5000L);
     }
 
     public Task C(String str, String str2, Bundle bundle) {
         int i10;
         try {
             y(str, str2, bundle);
-            j6.a aVar = (j6.a) this.f9349c;
-            n nVar = n.f9701a;
-            b4.d dVar = aVar.f9678c;
+            j6.a aVar = (j6.a) this.f9350c;
+            n nVar = n.f9702a;
+            b4.d dVar = aVar.f9679c;
             if (dVar.h() < 12000000) {
                 if (dVar.i() != 0) {
                     return aVar.a(bundle).continueWithTask(nVar, new hf.b(27, aVar, bundle));
                 }
                 return Tasks.forException(new IOException("MISSING_INSTANCEID_SERVICE"));
             }
-            m j10 = m.j(aVar.f9677b);
+            m j10 = m.j(aVar.f9678b);
             synchronized (j10) {
-                i10 = j10.f9698a;
-                j10.f9698a = i10 + 1;
+                i10 = j10.f9699a;
+                j10.f9699a = i10 + 1;
             }
-            return j10.k(new j6.k(i10, 1, bundle, 1)).continueWith(nVar, j6.b.f9681a);
+            return j10.k(new j6.k(i10, 1, bundle, 1)).continueWith(nVar, j6.b.f9682a);
         } catch (InterruptedException | ExecutionException e) {
             return Tasks.forException(e);
         }
     }
 
     public void D() {
-        if (((LocationManager) this.f9348b) == null) {
+        if (((LocationManager) this.f9349b) == null) {
             return;
         }
-        ms msVar = (ms) this.e;
-        if (msVar != null) {
-            i0.r(msVar);
+        ns nsVar = (ns) this.e;
+        if (nsVar != null) {
+            i0.r(nsVar);
         }
         j();
     }
 
     public void E(boolean z10) {
-        ArrayList arrayList = (ArrayList) this.f9349c;
-        ArrayList arrayList2 = (ArrayList) this.f9348b;
-        ArrayList arrayList3 = (ArrayList) this.f9347a;
+        ArrayList arrayList = (ArrayList) this.f9350c;
+        ArrayList arrayList2 = (ArrayList) this.f9349b;
+        ArrayList arrayList3 = (ArrayList) this.f9348a;
         for (int i10 = 0; i10 < arrayList3.size(); i10++) {
             ((ValueAnimator) arrayList3.get(i10)).cancel();
             if (z10) {
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(((Float) ((ArrayList) this.d).get(i10)).floatValue(), 0.0f);
-                ofFloat.addUpdateListener(new bx0(this, i10, 0));
+                ofFloat.addUpdateListener(new cx0(this, i10, 0));
                 ofFloat.setDuration(100L);
                 ofFloat.start();
             }
@@ -403,7 +403,7 @@ public class f {
             ((ValueAnimator) arrayList2.get(i11)).cancel();
             if (z10) {
                 ValueAnimator ofFloat2 = ValueAnimator.ofFloat(((Float) ((ArrayList) this.e).get(i11)).floatValue(), 0.0f);
-                ofFloat2.addUpdateListener(new bx0(this, i11, 1));
+                ofFloat2.addUpdateListener(new cx0(this, i11, 1));
                 ofFloat2.setDuration(100L);
                 ofFloat2.start();
             }
@@ -411,8 +411,8 @@ public class f {
         for (int i12 = 0; i12 < arrayList.size(); i12++) {
             ((ValueAnimator) arrayList.get(i12)).cancel();
             if (z10) {
-                ValueAnimator ofFloat3 = ValueAnimator.ofFloat(((Float) ((ArrayList) this.f9350f).get(i12)).floatValue(), 0.0f);
-                ofFloat3.addUpdateListener(new bx0(this, i12, 2));
+                ValueAnimator ofFloat3 = ValueAnimator.ofFloat(((Float) ((ArrayList) this.f9351f).get(i12)).floatValue(), 0.0f);
+                ofFloat3.addUpdateListener(new cx0(this, i12, 2));
                 ofFloat3.setDuration(100L);
                 ofFloat3.start();
             }
@@ -423,9 +423,9 @@ public class f {
     }
 
     public void F() {
-        Bitmap bitmap = (Bitmap) this.f9349c;
+        Bitmap bitmap = (Bitmap) this.f9350c;
         RectF rectF = (RectF) this.d;
-        Matrix matrix = (Matrix) this.f9350f;
+        Matrix matrix = (Matrix) this.f9351f;
         BitmapShader bitmapShader = (BitmapShader) this.e;
         if (bitmapShader == null) {
             return;
@@ -440,23 +440,23 @@ public class f {
 
     public void G(o1 o1Var) {
         a5.a aVar = new a5.a(4, 6);
-        if (((n0) this.f9348b).isEmpty()) {
+        if (((n0) this.f9349b).isEmpty()) {
             d(aVar, (g0) this.e, o1Var);
-            if (!Objects.equals((g0) this.f9350f, (g0) this.e)) {
-                d(aVar, (g0) this.f9350f, o1Var);
+            if (!Objects.equals((g0) this.f9351f, (g0) this.e)) {
+                d(aVar, (g0) this.f9351f, o1Var);
             }
-            if (!Objects.equals((g0) this.d, (g0) this.e) && !Objects.equals((g0) this.d, (g0) this.f9350f)) {
+            if (!Objects.equals((g0) this.d, (g0) this.e) && !Objects.equals((g0) this.d, (g0) this.f9351f)) {
                 d(aVar, (g0) this.d, o1Var);
             }
         } else {
-            for (int i10 = 0; i10 < ((n0) this.f9348b).size(); i10++) {
-                d(aVar, (g0) ((n0) this.f9348b).get(i10), o1Var);
+            for (int i10 = 0; i10 < ((n0) this.f9349b).size(); i10++) {
+                d(aVar, (g0) ((n0) this.f9349b).get(i10), o1Var);
             }
-            if (!((n0) this.f9348b).contains((g0) this.d)) {
+            if (!((n0) this.f9349b).contains((g0) this.d)) {
                 d(aVar, (g0) this.d, o1Var);
             }
         }
-        this.f9349c = aVar.d(true);
+        this.f9350c = aVar.d(true);
     }
 
     public void H() {
@@ -465,8 +465,8 @@ public class f {
         boolean z11;
         jf.f fVar = (jf.f) this.e;
         jf.f fVar2 = null;
-        for (jf.f fVar3 : ((HashMap) this.f9347a).values()) {
-            if (fVar3.f9871m || fVar3.f9863b.f11817a != 0) {
+        for (jf.f fVar3 : ((HashMap) this.f9348a).values()) {
+            if (fVar3.f9872m || fVar3.f9864b.f11818a != 0) {
                 if (fVar2 == null || fVar3.d > fVar2.d) {
                     fVar2 = fVar3;
                 }
@@ -476,7 +476,7 @@ public class f {
             this.e = fVar2;
             StringBuilder sb2 = new StringBuilder("onMaxPrioritySourceChanged ");
             if (fVar2 != null) {
-                str = fVar2.f9864c;
+                str = fVar2.f9865c;
             } else {
                 str = null;
             }
@@ -490,54 +490,54 @@ public class f {
                     i0.b3(launchActivity);
                 }
             }
-            if (fVar != null && fVar.f9865f) {
+            if (fVar != null && fVar.f9866f) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            if (fVar2 != null && fVar2.f9865f) {
+            if (fVar2 != null && fVar2.f9866f) {
                 z11 = true;
             } else {
                 z11 = false;
             }
             if (z10 != z11) {
-                y yVar = (y) this.f9350f;
+                y yVar = (y) this.f9351f;
                 if (yVar != null) {
                     try {
-                        synchronized (y.f12992b) {
-                            y.f12993c.remove(yVar.f12994a.f12743i);
+                        synchronized (y.f12993b) {
+                            y.f12994c.remove(yVar.f12995a.f12744i);
                         }
-                        yVar.f12994a.r();
+                        yVar.f12995a.r();
                     } catch (Exception unused) {
                     }
-                    this.f9350f = null;
+                    this.f9351f = null;
                 }
                 if (fVar2 != null) {
-                    m4.s sVar = new m4.s((LaunchActivity) this.d, fVar2.f9870l);
-                    sVar.f12917c = "pip-media-session";
-                    t6.p(!sVar.f12924m);
-                    sVar.f12924m = true;
-                    Context context = sVar.f12915a;
-                    Object obj = y.f12992b;
+                    m4.s sVar = new m4.s((LaunchActivity) this.d, fVar2.f9871l);
+                    sVar.f12918c = "pip-media-session";
+                    t6.p(!sVar.f12925m);
+                    sVar.f12925m = true;
+                    Context context = sVar.f12916a;
+                    Object obj = y.f12993b;
                     int intValue = ((Integer) f0.C.get()).intValue();
                     int i10 = Build.VERSION.SDK_INT;
                     if (i10 < 27) {
                         intValue = Math.max(intValue, (int) TypedValue.applyDimension(1, 320.0f, context.getResources().getDisplayMetrics()));
                     }
-                    e2.d dVar = sVar.f12919g;
+                    e2.d dVar = sVar.f12920g;
                     if (dVar == null) {
                         ?? obj2 = new Object();
                         obj2.f3777c = context;
                         obj2.f3775a = -1;
                         obj2.f3775a = intValue;
                         obj2.f3776b = true;
-                        sVar.f12919g = new g2.j(obj2);
+                        sVar.f12920g = new g2.j(obj2);
                     } else {
-                        sVar.f12919g = new x(dVar, intValue, 10);
+                        sVar.f12920g = new x(dVar, intValue, 10);
                     }
                     if (i10 == 29) {
-                        e2.d dVar2 = sVar.f12919g;
-                        AtomicReference atomicReference = m4.s.f12914n;
+                        e2.d dVar2 = sVar.f12920g;
+                        AtomicReference atomicReference = m4.s.f12915n;
                         i9.a aVar = (i9.a) atomicReference.get();
                         if (aVar == null) {
                             Display defaultDisplay = ((WindowManager) context.getSystemService(WindowManager.class)).getDefaultDisplay();
@@ -552,22 +552,22 @@ public class f {
                             atomicReference.set(aVar2);
                             aVar = aVar2;
                         }
-                        sVar.f12919g = new n4.q(dVar2, aVar);
+                        sVar.f12920g = new n4.q(dVar2, aVar);
                     }
-                    sVar.f12919g = new m4.c(sVar.f12919g, 0);
-                    this.f9350f = new y(sVar.f12915a, sVar.f12917c, sVar.f12916b, sVar.f12920i, sVar.f12921j, sVar.f12922k, sVar.d, sVar.e, sVar.f12918f, sVar.f12919g, sVar.h, sVar.f12923l);
+                    sVar.f12920g = new m4.c(sVar.f12920g, 0);
+                    this.f9351f = new y(sVar.f12916a, sVar.f12918c, sVar.f12917b, sVar.f12921i, sVar.f12922j, sVar.f12923k, sVar.d, sVar.e, sVar.f12919f, sVar.f12920g, sVar.h, sVar.f12924l);
                 }
             }
             if (fVar != null) {
-                lf.e eVar = fVar.f9863b;
-                eVar.f11827n = false;
+                lf.e eVar = fVar.f9864b;
+                eVar.f11828n = false;
                 eVar.h();
-                jf.f fVar4 = eVar.f11823j;
-                ((jf.c) fVar4.f9862a.f9348b).f9838a.remove(eVar);
-                ((jf.c) fVar4.f9862a.f9348b).f9839b.remove(eVar);
-                f fVar5 = fVar4.f9862a;
-                String str2 = fVar4.f9864c;
-                HashMap hashMap = ((jf.c) fVar5.f9348b).f9840c;
+                jf.f fVar4 = eVar.f11824j;
+                ((jf.c) fVar4.f9863a.f9349b).f9839a.remove(eVar);
+                ((jf.c) fVar4.f9863a.f9349b).f9840b.remove(eVar);
+                f fVar5 = fVar4.f9863a;
+                String str2 = fVar4.f9865c;
+                HashMap hashMap = ((jf.c) fVar5.f9349b).f9841c;
                 ArrayList arrayList = (ArrayList) hashMap.get(str2);
                 if (arrayList != null) {
                     arrayList.remove((Object) null);
@@ -577,22 +577,22 @@ public class f {
                 }
             }
             if (fVar2 != null) {
-                y yVar2 = (y) this.f9350f;
+                y yVar2 = (y) this.f9351f;
                 if (yVar2 != null) {
-                    f1 f1Var = yVar2.f12994a.f12754t.f12866a;
-                    i2.i0 i0Var = fVar2.f9870l;
+                    f1 f1Var = yVar2.f12995a.f12755t.f12867a;
+                    i2.i0 i0Var = fVar2.f9871l;
                     if (f1Var != i0Var) {
                         yVar2.a(i0Var);
                     }
                 }
-                ((jf.a) this.f9349c).bringToFront();
-                lf.e eVar2 = fVar2.f9863b;
-                jf.f fVar6 = eVar2.f11823j;
-                ((jf.c) fVar6.f9862a.f9348b).f9838a.add(eVar2);
-                ((jf.c) fVar6.f9862a.f9348b).f9839b.add(eVar2);
-                f fVar7 = fVar6.f9862a;
-                String str3 = fVar6.f9864c;
-                HashMap hashMap2 = ((jf.c) fVar7.f9348b).f9840c;
+                ((jf.a) this.f9350c).bringToFront();
+                lf.e eVar2 = fVar2.f9864b;
+                jf.f fVar6 = eVar2.f11824j;
+                ((jf.c) fVar6.f9863a.f9349b).f9839a.add(eVar2);
+                ((jf.c) fVar6.f9863a.f9349b).f9840b.add(eVar2);
+                f fVar7 = fVar6.f9863a;
+                String str3 = fVar6.f9865c;
+                HashMap hashMap2 = ((jf.c) fVar7.f9349b).f9841c;
                 ArrayList arrayList2 = (ArrayList) hashMap2.get(str3);
                 if (arrayList2 == null) {
                     arrayList2 = new ArrayList();
@@ -602,12 +602,12 @@ public class f {
             } else if (fVar != null && i0.H1((LaunchActivity) this.d)) {
                 ((LaunchActivity) this.d).moveTaskToBack(false);
             }
-            ((jf.a) this.f9349c).invalidate();
+            ((jf.a) this.f9350c).invalidate();
         }
     }
 
     public void b(String str, String str2) {
-        HashMap hashMap = (HashMap) this.f9350f;
+        HashMap hashMap = (HashMap) this.f9351f;
         if (hashMap != null) {
             hashMap.put(str, str2);
             return;
@@ -617,11 +617,11 @@ public class f {
 
     public void d(a5.a aVar, g0 g0Var, o1 o1Var) {
         if (g0Var != null) {
-            if (o1Var.b(g0Var.f49875a) != -1) {
+            if (o1Var.b(g0Var.f49889a) != -1) {
                 aVar.w(g0Var, o1Var);
                 return;
             }
-            o1 o1Var2 = (o1) ((c2) this.f9349c).get(g0Var);
+            o1 o1Var2 = (o1) ((c2) this.f9350c).get(g0Var);
             if (o1Var2 != null) {
                 aVar.w(g0Var, o1Var2);
             }
@@ -630,12 +630,12 @@ public class f {
 
     public l5.h f() {
         String str;
-        if (((String) this.f9347a) == null) {
+        if (((String) this.f9348a) == null) {
             str = " transportName";
         } else {
             str = "";
         }
-        if (((l5.l) this.f9349c) == null) {
+        if (((l5.l) this.f9350c) == null) {
             str = str.concat(" encodedPayload");
         }
         if (((Long) this.d) == null) {
@@ -644,11 +644,11 @@ public class f {
         if (((Long) this.e) == null) {
             str = sc.e.A(str, " uptimeMillis");
         }
-        if (((HashMap) this.f9350f) == null) {
+        if (((HashMap) this.f9351f) == null) {
             str = sc.e.A(str, " autoMetadata");
         }
         if (str.isEmpty()) {
-            return new l5.h((String) this.f9347a, (Integer) this.f9348b, (l5.l) this.f9349c, ((Long) this.d).longValue(), ((Long) this.e).longValue(), (HashMap) this.f9350f);
+            return new l5.h((String) this.f9348a, (Integer) this.f9349b, (l5.l) this.f9350c, ((Long) this.d).longValue(), ((Long) this.e).longValue(), (HashMap) this.f9351f);
         }
         throw new IllegalStateException("Missing required properties:".concat(str));
     }
@@ -656,10 +656,10 @@ public class f {
     public q9.b g() {
         String str;
         String str2;
-        n6.l.h((String) this.f9350f, "setActionToken is required before calling build().");
+        n6.l.h((String) this.f9351f, "setActionToken is required before calling build().");
         new String((String) this.e);
-        v("actionToken", (String) this.f9350f);
-        String str3 = (String) this.f9349c;
+        v("actionToken", (String) this.f9351f);
+        String str3 = (String) this.f9350c;
         String str4 = null;
         if (str3 == null) {
             str = null;
@@ -667,7 +667,7 @@ public class f {
             str = new String(str3);
         }
         if (str == null) {
-            this.f9349c = "AssistAction";
+            this.f9350c = "AssistAction";
             v("name", "AssistAction");
         }
         String str5 = (String) this.d;
@@ -675,7 +675,7 @@ public class f {
             str4 = new String(str5);
         }
         if (str4 == null) {
-            String valueOf = String.valueOf((String) this.f9350f);
+            String valueOf = String.valueOf((String) this.f9351f);
             if (valueOf.length() != 0) {
                 str2 = "https://developers.google.com/actions?invocation=".concat(valueOf);
             } else {
@@ -685,41 +685,41 @@ public class f {
             this.d = str2;
             v("url", str2);
         }
-        n6.l.h((String) this.f9349c, "setObject is required before calling build().");
+        n6.l.h((String) this.f9350c, "setObject is required before calling build().");
         n6.l.h((String) this.d, "setObject is required before calling build().");
-        return new q9.b((String) this.f9348b, (String) this.f9349c, (String) this.d, null, new q9.a(), (String) this.e, (Bundle) this.f9347a);
+        return new q9.b((String) this.f9349b, (String) this.f9350c, (String) this.d, null, new q9.a(), (String) this.e, (Bundle) this.f9348a);
     }
 
     public l0 h() {
         String str;
-        if (((Long) this.f9347a) == null) {
+        if (((Long) this.f9348a) == null) {
             str = " timestamp";
         } else {
             str = "";
         }
-        if (((String) this.f9348b) == null) {
+        if (((String) this.f9349b) == null) {
             str = str.concat(" type");
         }
-        if (((u1) this.f9349c) == null) {
+        if (((u1) this.f9350c) == null) {
             str = sc.e.A(str, " app");
         }
         if (((v1) this.d) == null) {
             str = sc.e.A(str, " device");
         }
         if (str.isEmpty()) {
-            return new l0(((Long) this.f9347a).longValue(), (String) this.f9348b, (u1) this.f9349c, (v1) this.d, (w1) this.e, (z1) this.f9350f);
+            return new l0(((Long) this.f9348a).longValue(), (String) this.f9349b, (u1) this.f9350c, (v1) this.d, (w1) this.e, (z1) this.f9351f);
         }
         throw new IllegalStateException("Missing required properties:".concat(str));
     }
 
     public u0 i() {
         String str;
-        if (((Integer) this.f9348b) == null) {
+        if (((Integer) this.f9349b) == null) {
             str = " batteryVelocity";
         } else {
             str = "";
         }
-        if (((Boolean) this.f9349c) == null) {
+        if (((Boolean) this.f9350c) == null) {
             str = str.concat(" proximityOn");
         }
         if (((Integer) this.d) == null) {
@@ -728,19 +728,19 @@ public class f {
         if (((Long) this.e) == null) {
             str = sc.e.A(str, " ramUsed");
         }
-        if (((Long) this.f9350f) == null) {
+        if (((Long) this.f9351f) == null) {
             str = sc.e.A(str, " diskUsed");
         }
         if (str.isEmpty()) {
-            return new u0((Double) this.f9347a, ((Integer) this.f9348b).intValue(), ((Boolean) this.f9349c).booleanValue(), ((Integer) this.d).intValue(), ((Long) this.e).longValue(), ((Long) this.f9350f).longValue());
+            return new u0((Double) this.f9348a, ((Integer) this.f9349b).intValue(), ((Boolean) this.f9350c).booleanValue(), ((Integer) this.d).intValue(), ((Long) this.e).longValue(), ((Long) this.f9351f).longValue());
         }
         throw new IllegalStateException("Missing required properties:".concat(str));
     }
 
     public void j() {
-        ((LocationManager) this.f9348b).removeUpdates((ld) this.f9349c);
-        ((LocationManager) this.f9348b).removeUpdates((ld) this.d);
-        this.f9350f = null;
+        ((LocationManager) this.f9349b).removeUpdates((md) this.f9350c);
+        ((LocationManager) this.f9349b).removeUpdates((md) this.d);
+        this.f9351f = null;
         this.e = null;
     }
 
@@ -754,16 +754,16 @@ public class f {
                     i0.b3(launchActivity);
                 }
             }
-            y yVar = (y) this.f9350f;
+            y yVar = (y) this.f9351f;
             if (yVar != null) {
-                f1 f1Var = yVar.f12994a.f12754t.f12866a;
-                i2.i0 i0Var = fVar.f9870l;
+                f1 f1Var = yVar.f12995a.f12755t.f12867a;
+                i2.i0 i0Var = fVar.f9871l;
                 if (f1Var != i0Var) {
                     yVar.a(i0Var);
                 }
             }
         }
-        ((jf.a) this.f9349c).invalidate();
+        ((jf.a) this.f9350c).invalidate();
     }
 
     public Task n(Task task) {
@@ -771,10 +771,10 @@ public class f {
     }
 
     public jf.a p() {
-        if (((jf.a) this.f9349c) == null) {
-            this.f9349c = new jf.a((LaunchActivity) this.d);
+        if (((jf.a) this.f9350c) == null) {
+            this.f9350c = new jf.a((LaunchActivity) this.d);
         }
-        return (jf.a) this.f9349c;
+        return (jf.a) this.f9350c;
     }
 
     public ColorStateList s(Context context, int i10) {
@@ -789,19 +789,19 @@ public class f {
             int[] iArr2 = new int[3];
             ColorStateList d = a3.d(context, 2130968734);
             if (d != null && d.isStateful()) {
-                int[] iArr3 = a3.f12372b;
+                int[] iArr3 = a3.f12373b;
                 iArr[0] = iArr3;
                 iArr2[0] = d.getColorForState(iArr3, 0);
                 iArr[1] = a3.e;
                 iArr2[1] = a3.c(context, 2130968727);
-                iArr[2] = a3.f12374f;
+                iArr[2] = a3.f12375f;
                 iArr2[2] = d.getDefaultColor();
             } else {
-                iArr[0] = a3.f12372b;
+                iArr[0] = a3.f12373b;
                 iArr2[0] = a3.b(context, 2130968734);
                 iArr[1] = a3.e;
                 iArr2[1] = a3.c(context, 2130968727);
-                iArr[2] = a3.f12374f;
+                iArr[2] = a3.f12375f;
                 iArr2[2] = a3.c(context, 2130968734);
             }
             return new ColorStateList(iArr, iArr2);
@@ -815,13 +815,13 @@ public class f {
                 return l(context, a3.c(context, 2130968724));
             }
             if (i10 != 2131230844 && i10 != 2131230845) {
-                if (e((int[]) this.f9348b, i10)) {
+                if (e((int[]) this.f9349b, i10)) {
                     return a3.d(context, 2130968729);
                 }
                 if (e((int[]) this.e, i10)) {
                     return r7.a(context, 2131099668);
                 }
-                if (e((int[]) this.f9350f, i10)) {
+                if (e((int[]) this.f9351f, i10)) {
                     return r7.a(context, 2131099667);
                 }
                 if (i10 == 2131230841) {
@@ -838,8 +838,8 @@ public class f {
         n4.q qVar;
         boolean z11;
         boolean equals = str2.equals("crash");
-        x9.q qVar2 = (x9.q) this.f9347a;
-        Context context = qVar2.f53498a;
+        x9.q qVar2 = (x9.q) this.f9348a;
+        Context context = qVar2.f53516a;
         int i10 = context.getResources().getConfiguration().orientation;
         n4.q qVar3 = qVar2.d;
         Stack stack = new Stack();
@@ -854,10 +854,10 @@ public class f {
         }
         ji.f fVar2 = fVar;
         ?? obj = new Object();
-        obj.f9348b = str2;
-        obj.f9347a = Long.valueOf(j10);
-        t1 b10 = u9.d.f50197a.b(context);
-        int i11 = ((t0) b10).f55396c;
+        obj.f9349b = str2;
+        obj.f9348a = Long.valueOf(j10);
+        t1 b10 = u9.d.f50211a.b(context);
+        int i11 = ((t0) b10).f55414c;
         if (i11 > 0) {
             if (i11 != 100) {
                 z11 = true;
@@ -908,11 +908,11 @@ public class f {
                 q0 q0Var = new q0(0L, "0", "0");
                 List a10 = qVar2.a();
                 if (a10 != null) {
-                    obj.f9349c = new m0(new z9.n0(unmodifiableList, c10, null, q0Var, a10), null, null, bool2, b10, a2, i10);
+                    obj.f9350c = new m0(new z9.n0(unmodifiableList, c10, null, q0Var, a10), null, null, bool2, b10, a2, i10);
                     obj.d = qVar2.b(i10);
                     l0 h = obj.h();
                     p3 p3Var = (p3) this.e;
-                    ((ca.b) this.f9348b).d(c(a(h, (y9.e) this.d, p3Var), p3Var), str, equals);
+                    ((ca.b) this.f9349b).d(c(a(h, (y9.e) this.d, p3Var), p3Var), str, equals);
                     return;
                 }
                 throw new NullPointerException("Null binaries");
@@ -923,7 +923,7 @@ public class f {
     }
 
     public void v(String str, String... strArr) {
-        Bundle bundle = (Bundle) this.f9347a;
+        Bundle bundle = (Bundle) this.f9348a;
         String[] strArr2 = (String[]) Arrays.copyOf(strArr, strArr.length);
         if (strArr2.length > 0) {
             int i10 = 0;
@@ -976,7 +976,7 @@ public class f {
         ArrayBlockingQueue arrayBlockingQueue;
         TaskCompletionSource taskCompletionSource;
         String str2;
-        ArrayList b10 = ((ca.b) this.f9348b).b();
+        ArrayList b10 = ((ca.b) this.f9349b).b();
         ArrayList arrayList = new ArrayList();
         int size = b10.size();
         int i10 = 0;
@@ -1000,18 +1000,18 @@ public class f {
         while (i12 < size2) {
             int i13 = i12 + 1;
             x9.b bVar3 = (x9.b) arrayList.get(i12);
-            if (str == null || str.equals(bVar3.f53441b)) {
-                da.a aVar = (da.a) this.f9349c;
-                if (bVar3.f53440a.f55217f == null) {
+            if (str == null || str.equals(bVar3.f53459b)) {
+                da.a aVar = (da.a) this.f9350c;
+                if (bVar3.f53458a.f55235f == null) {
                     try {
-                        str2 = (String) x9.x.a(((ra.c) ((v) this.f9350f).d).d());
+                        str2 = (String) x9.x.a(((ra.c) ((v) this.f9351f).d).d());
                     } catch (Exception e10) {
                         Log.w("FirebaseCrashlytics", "Failed to retrieve Firebase Installation ID.", e10);
                         str2 = null;
                     }
-                    a8 a2 = bVar3.f53440a.a();
+                    a8 a2 = bVar3.f53458a.a();
                     a2.d = str2;
-                    bVar = new x9.b(a2.a(), bVar3.f53441b, bVar3.f53442c);
+                    bVar = new x9.b(a2.a(), bVar3.f53459b, bVar3.f53460c);
                 } else {
                     bVar = bVar3;
                 }
@@ -1026,17 +1026,17 @@ public class f {
                     try {
                         TaskCompletionSource taskCompletionSource2 = new TaskCompletionSource();
                         if (z10) {
-                            ((AtomicInteger) bVar4.f5827i.f53164b).getAndIncrement();
+                            ((AtomicInteger) bVar4.f5827i.f53182b).getAndIncrement();
                             if (bVar4.f5825f.size() < bVar4.e) {
-                                u9.c cVar = u9.c.f50196a;
-                                cVar.b("Enqueueing report: " + bVar.f53441b);
+                                u9.c cVar = u9.c.f50210a;
+                                cVar.b("Enqueueing report: " + bVar.f53459b);
                                 cVar.b("Queue size: " + bVar4.f5825f.size());
                                 try {
                                     arrayBlockingQueue = arrayBlockingQueue2;
                                     try {
                                         taskCompletionSource = taskCompletionSource2;
                                         bVar4.f5826g.execute(new w(bVar4, bVar, taskCompletionSource2, false, 4));
-                                        cVar.b("Closing task for report: " + bVar.f53441b);
+                                        cVar.b("Closing task for report: " + bVar.f53459b);
                                         taskCompletionSource.trySetResult(bVar);
                                     } catch (Throwable th2) {
                                         th = th2;
@@ -1050,11 +1050,11 @@ public class f {
                             } else {
                                 taskCompletionSource = taskCompletionSource2;
                                 bVar4.a();
-                                String str3 = "Dropping report due to queue being full: " + bVar.f53441b;
+                                String str3 = "Dropping report due to queue being full: " + bVar.f53459b;
                                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                                     Log.d("FirebaseCrashlytics", str3, null);
                                 }
-                                ((AtomicInteger) bVar4.f5827i.f53165c).getAndIncrement();
+                                ((AtomicInteger) bVar4.f5827i.f53183c).getAndIncrement();
                                 taskCompletionSource.trySetResult(bVar);
                             }
                         } else {
@@ -1089,9 +1089,9 @@ public class f {
     }
 
     public void z(float f7, float f10, float f11, float f12) {
-        Matrix matrix = (Matrix) this.f9350f;
+        Matrix matrix = (Matrix) this.f9351f;
         matrix.reset();
-        Bitmap bitmap = (Bitmap) this.f9349c;
+        Bitmap bitmap = (Bitmap) this.f9350c;
         matrix.postRotate(f12, bitmap.getWidth() / 2.0f, bitmap.getHeight() / 2.0f);
         matrix.postScale(f11, f11);
         matrix.postTranslate(f7, f10);
@@ -1100,12 +1100,12 @@ public class f {
 
     public f(int i10, int i11) {
         Paint paint = new Paint(1);
-        this.f9347a = paint;
+        this.f9348a = paint;
         this.d = new RectF();
-        this.f9350f = new Matrix();
+        this.f9351f = new Matrix();
         Bitmap createBitmap = Bitmap.createBitmap(Math.max(1, i10), Math.max(1, i11), Bitmap.Config.ARGB_8888);
-        this.f9349c = createBitmap;
-        this.f9348b = new Canvas(createBitmap);
+        this.f9350c = createBitmap;
+        this.f9349b = new Canvas(createBitmap);
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         BitmapShader bitmapShader = new BitmapShader(createBitmap, tileMode, tileMode);
         this.e = bitmapShader;
@@ -1117,12 +1117,12 @@ public class f {
         switch (i10) {
             case 5:
                 Paint paint = new Paint(1);
-                this.f9347a = paint;
+                this.f9348a = paint;
                 this.d = new RectF();
-                this.f9350f = new Matrix();
+                this.f9351f = new Matrix();
                 Bitmap createBitmap = Bitmap.createBitmap(30, 40, Bitmap.Config.ARGB_8888);
-                this.f9349c = createBitmap;
-                this.f9348b = new Canvas(createBitmap);
+                this.f9350c = createBitmap;
+                this.f9349b = new Canvas(createBitmap);
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader = new BitmapShader(createBitmap, tileMode, tileMode);
                 this.e = bitmapShader;
@@ -1130,31 +1130,31 @@ public class f {
                 F();
                 return;
             case 6:
-                this.f9347a = new ArrayList();
-                this.f9348b = new ArrayList();
-                this.f9349c = new ArrayList();
+                this.f9348a = new ArrayList();
+                this.f9349b = new ArrayList();
+                this.f9350c = new ArrayList();
                 this.d = new ArrayList();
                 this.e = new ArrayList();
-                this.f9350f = new ArrayList();
+                this.f9351f = new ArrayList();
                 return;
             case 7:
-                this.f9347a = new Bundle();
-                this.f9348b = "AssistAction";
+                this.f9348a = new Bundle();
+                this.f9349b = "AssistAction";
                 return;
             default:
-                this.f9347a = new int[]{2131230859, 2131230857, 2131230783};
-                this.f9348b = new int[]{2131230807, 2131230842, 2131230814, 2131230809, 2131230810, 2131230813, 2131230812};
-                this.f9349c = new int[]{2131230856, 2131230858, 2131230800, 2131230852, 2131230853, 2131230854, 2131230855};
+                this.f9348a = new int[]{2131230859, 2131230857, 2131230783};
+                this.f9349b = new int[]{2131230807, 2131230842, 2131230814, 2131230809, 2131230810, 2131230813, 2131230812};
+                this.f9350c = new int[]{2131230856, 2131230858, 2131230800, 2131230852, 2131230853, 2131230854, 2131230855};
                 this.d = new int[]{2131230832, 2131230798, 2131230831};
                 this.e = new int[]{2131230850, 2131230860};
-                this.f9350f = new int[]{2131230786, 2131230792, 2131230787, 2131230793};
+                this.f9351f = new int[]{2131230786, 2131230792, 2131230787, 2131230793};
                 return;
         }
     }
 
-    public f(mz mzVar) {
-        this.f9349c = new ld(this, 1);
-        this.d = new ld(this, 1);
-        this.f9347a = mzVar;
+    public f(nz nzVar) {
+        this.f9350c = new md(this, 1);
+        this.d = new md(this, 1);
+        this.f9348a = nzVar;
     }
 }

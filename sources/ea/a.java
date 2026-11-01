@@ -33,7 +33,7 @@ public final class a {
         if (str4 != null) {
             a0Var.t("X-CRASHLYTICS-OS-DISPLAY-VERSION", str4);
         }
-        String str5 = ((v) fVar.f6478i).b().f53443a;
+        String str5 = ((v) fVar.f6478i).b().f53461a;
         if (str5 != null) {
             a0Var.t("X-CRASHLYTICS-INSTALLATION-ID", str5);
         }
@@ -54,7 +54,7 @@ public final class a {
     public JSONObject c(ba.a aVar) {
         String str = this.f6458b;
         int i10 = aVar.f2519c;
-        u9.c cVar = u9.c.f50196a;
+        u9.c cVar = u9.c.f50210a;
         cVar.c("Settings response code was: " + i10);
         if (i10 != 200 && i10 != 201 && i10 != 202 && i10 != 203) {
             String str2 = "Settings request failed; (status: " + i10 + ") from " + str;

@@ -3,7 +3,7 @@ package yd;
 import java.lang.reflect.Method;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 public abstract class c {
-    public static final Method f54396a;
+    public static final Method f54417a;
 
     static {
         Method method;
@@ -12,6 +12,6 @@ public abstract class c {
         } catch (Throwable unused) {
             method = null;
         }
-        f54396a = method;
+        f54417a = method;
     }
 }

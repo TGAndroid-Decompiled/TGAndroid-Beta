@@ -12,9 +12,9 @@ import android.view.WindowManager;
 import org.telegram.messenger.f8;
 import org.telegram.ui.LaunchActivity;
 public final class d3 extends Dialog {
-    public final n3 f20249a;
-    public final c3 f20250b;
-    public final b3 f20251c;
+    public final n3 f20250a;
+    public final c3 f20251b;
+    public final b3 f20252c;
     public final Paint d;
     public boolean e;
 
@@ -22,13 +22,13 @@ public final class d3 extends Dialog {
         super(n3Var.mo30d().getContext(), 2131755352);
         Paint paint = new Paint(1);
         this.d = paint;
-        this.f20249a = n3Var;
+        this.f20250a = n3Var;
         o3 mo30d = n3Var.mo30d();
         b3 b3Var = new b3(this, getContext());
-        this.f20251c = b3Var;
-        paint.setColor(t6.x0(null, t6.f20872a7, false));
+        this.f20252c = b3Var;
+        paint.setColor(t6.x0(null, t6.f20873a7, false));
         c3 c3Var = new c3(mo30d);
-        this.f20250b = c3Var;
+        this.f20251b = c3Var;
         setContentView(c3Var, new ViewGroup.LayoutParams(-1, -1));
         c3Var.addView(b3Var, w7.b6.e(-1, -2, 80));
         c3Var.setClipToPadding(false);
@@ -48,8 +48,8 @@ public final class d3 extends Dialog {
             if (org.telegram.messenger.i0.Q1() || n3Var.g() || org.telegram.messenger.i0.u1(T)) {
                 d3 d3Var = new d3(n3Var);
                 if (n3Var.i(d3Var)) {
-                    c3 c3Var = d3Var.f20250b;
-                    View view = (View) c3Var.f20204a;
+                    c3 c3Var = d3Var.f20251b;
+                    View view = (View) c3Var.f20205a;
                     org.telegram.messenger.i0.E2(view);
                     c3Var.addView(view, w7.b6.e(-1, -1, 119));
                 }
@@ -58,7 +58,7 @@ public final class d3 extends Dialog {
     }
 
     public final void c() {
-        this.f20249a.i(null);
+        this.f20250a.i(null);
         if (!this.e) {
             return;
         }
@@ -72,7 +72,7 @@ public final class d3 extends Dialog {
 
     @Override
     public final void dismiss() {
-        this.f20249a.a(false);
+        this.f20250a.a(false);
     }
 
     @Override
@@ -95,7 +95,7 @@ public final class d3 extends Dialog {
         org.telegram.messenger.i0.m(attributes);
         window.setAttributes(attributes);
         window.setStatusBarColor(0);
-        c3 c3Var = this.f20250b;
+        c3 c3Var = this.f20251b;
         c3Var.setFitsSystemWindows(true);
         c3Var.setSystemUiVisibility(1792);
         c3Var.setPadding(0, 0, 0, 0);

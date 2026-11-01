@@ -143,8 +143,8 @@ public final class j extends b8.b {
                                     f6.i iVar = cVar4.h;
                                     if (iVar != null) {
                                         g6.b bVar4 = f6.i.v;
-                                        Log.i(bVar4.f7367a, bVar4.d("update Cast device to %s", castDevice));
-                                        iVar.f6953o = castDevice;
+                                        Log.i(bVar4.f7368a, bVar4.d("update Cast device to %s", castDevice));
+                                        iVar.f6954o = castDevice;
                                         iVar.b();
                                     }
                                     Iterator it = new HashSet(cVar4.d).iterator();

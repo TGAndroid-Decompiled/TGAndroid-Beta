@@ -1,19 +1,19 @@
 package z9;
 public final class i0 extends l1 {
-    public final String f55308a;
-    public final String f55309b;
-    public final String f55310c;
+    public final String f55326a;
+    public final String f55327b;
+    public final String f55328c;
     public final String d;
     public final String e;
-    public final String f55311f;
+    public final String f55329f;
 
     public i0(String str, String str2, String str3, String str4, String str5, String str6) {
-        this.f55308a = str;
-        this.f55309b = str2;
-        this.f55310c = str3;
+        this.f55326a = str;
+        this.f55327b = str2;
+        this.f55328c = str3;
         this.d = str4;
         this.e = str5;
-        this.f55311f = str6;
+        this.f55329f = str6;
     }
 
     public final boolean equals(Object obj) {
@@ -26,11 +26,11 @@ public final class i0 extends l1 {
         }
         if (obj instanceof l1) {
             i0 i0Var = (i0) ((l1) obj);
-            String str5 = i0Var.f55311f;
+            String str5 = i0Var.f55329f;
             String str6 = i0Var.e;
             String str7 = i0Var.d;
-            String str8 = i0Var.f55310c;
-            if (this.f55308a.equals(i0Var.f55308a) && this.f55309b.equals(i0Var.f55309b) && ((str = this.f55310c) != null ? str.equals(str8) : str8 == null) && ((str2 = this.d) != null ? str2.equals(str7) : str7 == null) && ((str3 = this.e) != null ? str3.equals(str6) : str6 == null) && ((str4 = this.f55311f) != null ? str4.equals(str5) : str5 == null)) {
+            String str8 = i0Var.f55328c;
+            if (this.f55326a.equals(i0Var.f55326a) && this.f55327b.equals(i0Var.f55327b) && ((str = this.f55328c) != null ? str.equals(str8) : str8 == null) && ((str2 = this.d) != null ? str2.equals(str7) : str7 == null) && ((str3 = this.e) != null ? str3.equals(str6) : str6 == null) && ((str4 = this.f55329f) != null ? str4.equals(str5) : str5 == null)) {
                 return true;
             }
         }
@@ -41,9 +41,9 @@ public final class i0 extends l1 {
         int hashCode;
         int hashCode2;
         int hashCode3;
-        int hashCode4 = (((this.f55308a.hashCode() ^ 1000003) * 1000003) ^ this.f55309b.hashCode()) * 1000003;
+        int hashCode4 = (((this.f55326a.hashCode() ^ 1000003) * 1000003) ^ this.f55327b.hashCode()) * 1000003;
         int i10 = 0;
-        String str = this.f55310c;
+        String str = this.f55328c;
         if (str == null) {
             hashCode = 0;
         } else {
@@ -64,7 +64,7 @@ public final class i0 extends l1 {
             hashCode3 = str3.hashCode();
         }
         int i13 = (i12 ^ hashCode3) * 1000003;
-        String str4 = this.f55311f;
+        String str4 = this.f55329f;
         if (str4 != null) {
             i10 = str4.hashCode();
         }
@@ -73,16 +73,16 @@ public final class i0 extends l1 {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("Application{identifier=");
-        sb2.append(this.f55308a);
+        sb2.append(this.f55326a);
         sb2.append(", version=");
-        sb2.append(this.f55309b);
+        sb2.append(this.f55327b);
         sb2.append(", displayVersion=");
-        sb2.append(this.f55310c);
+        sb2.append(this.f55328c);
         sb2.append(", organization=null, installationUuid=");
         sb2.append(this.d);
         sb2.append(", developmentPlatform=");
         sb2.append(this.e);
         sb2.append(", developmentPlatformVersion=");
-        return a1.g.r(sb2, this.f55311f, "}");
+        return a1.g.r(sb2, this.f55329f, "}");
     }
 }

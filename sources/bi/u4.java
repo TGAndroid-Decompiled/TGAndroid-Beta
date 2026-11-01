@@ -5,16 +5,16 @@ import android.graphics.Paint;
 import android.text.Editable;
 import android.text.style.ReplacementSpan;
 import android.view.View;
-import org.telegram.messenger.d20;
-import org.telegram.messenger.tu;
-import org.telegram.messenger.vv;
+import org.telegram.messenger.e20;
+import org.telegram.messenger.uu;
+import org.telegram.messenger.wv;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class u4 extends ReplacementSpan {
     public final TL_iv.textButton f3385a;
-    public tu f3386b;
+    public uu f3386b;
     public View f3387c;
-    public int d = d20.f15147s0;
+    public int d = e20.f15506s0;
     public org.telegram.ui.ActionBar.p6 e;
 
     public u4(TL_iv.textButton textbutton) {
@@ -30,10 +30,10 @@ public final class u4 extends ReplacementSpan {
 
     public final void a(int i10, View view, org.telegram.ui.ActionBar.p6 p6Var) {
         View view2;
-        tu tuVar = this.f3386b;
-        if (tuVar != null && (view2 = this.f3387c) != null) {
-            tuVar.h = null;
-            tuVar.f18107a.f17780a.f(view2);
+        uu uuVar = this.f3386b;
+        if (uuVar != null && (view2 = this.f3387c) != null) {
+            uuVar.h = null;
+            uuVar.f18476a.f18144a.f(view2);
         }
         this.f3387c = view;
         this.d = i10;
@@ -42,15 +42,15 @@ public final class u4 extends ReplacementSpan {
         b();
     }
 
-    public final tu b() {
+    public final uu b() {
         if (this.f3386b == null) {
             int i10 = this.d;
             int L = org.telegram.messenger.i0.L(240.0f);
-            tu tuVar = new tu(new vv(i10, L, this.e), L, this.f3385a, Boolean.FALSE);
-            this.f3386b = tuVar;
+            uu uuVar = new uu(new wv(i10, L, this.e), L, this.f3385a, Boolean.FALSE);
+            this.f3386b = uuVar;
             View view = this.f3387c;
             if (view != null) {
-                tuVar.a(view);
+                uuVar.a(view);
             }
         }
         return this.f3386b;

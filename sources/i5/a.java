@@ -1,15 +1,15 @@
 package i5;
 public final class a {
-    public final Integer f8201a;
-    public final Object f8202b;
-    public final d f8203c;
+    public final Integer f8202a;
+    public final Object f8203b;
+    public final d f8204c;
     public final b d;
 
     public a(Integer num, Object obj, d dVar, b bVar) {
-        this.f8201a = num;
+        this.f8202a = num;
         if (obj != null) {
-            this.f8202b = obj;
-            this.f8203c = dVar;
+            this.f8203b = obj;
+            this.f8204c = dVar;
             this.d = bVar;
             return;
         }
@@ -24,10 +24,10 @@ public final class a {
         if (obj instanceof a) {
             a aVar = (a) obj;
             b bVar2 = aVar.d;
-            Integer num = aVar.f8201a;
-            Integer num2 = this.f8201a;
+            Integer num = aVar.f8202a;
+            Integer num2 = this.f8202a;
             if (num2 != null ? num2.equals(num) : num == null) {
-                if (this.f8202b.equals(aVar.f8202b) && this.f8203c.equals(aVar.f8203c) && ((bVar = this.d) != null ? bVar.equals(bVar2) : bVar2 == null)) {
+                if (this.f8203b.equals(aVar.f8203b) && this.f8204c.equals(aVar.f8204c) && ((bVar = this.d) != null ? bVar.equals(bVar2) : bVar2 == null)) {
                     return true;
                 }
             }
@@ -38,13 +38,13 @@ public final class a {
     public final int hashCode() {
         int hashCode;
         int i10 = 0;
-        Integer num = this.f8201a;
+        Integer num = this.f8202a;
         if (num == null) {
             hashCode = 0;
         } else {
             hashCode = num.hashCode();
         }
-        int hashCode2 = (((((hashCode ^ 1000003) * 1000003) ^ this.f8202b.hashCode()) * 1000003) ^ this.f8203c.hashCode()) * 1000003;
+        int hashCode2 = (((((hashCode ^ 1000003) * 1000003) ^ this.f8203b.hashCode()) * 1000003) ^ this.f8204c.hashCode()) * 1000003;
         b bVar = this.d;
         if (bVar != null) {
             i10 = bVar.hashCode();
@@ -53,6 +53,6 @@ public final class a {
     }
 
     public final String toString() {
-        return "Event{code=" + this.f8201a + ", payload=" + this.f8202b + ", priority=" + this.f8203c + ", productData=" + this.d + "}";
+        return "Event{code=" + this.f8202a + ", payload=" + this.f8203b + ", priority=" + this.f8204c + ", productData=" + this.d + "}";
     }
 }

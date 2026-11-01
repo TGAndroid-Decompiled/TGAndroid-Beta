@@ -11,22 +11,22 @@ import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.tgnet.QuickAckDelegate;
 import org.telegram.tgnet.RequestTimeDelegate;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.yh0;
-public final class p implements org.telegram.ui.ActionBar.u1, RequestTimeDelegate, gp, yh0, QuickAckDelegate {
-    public final int f17388a;
-    public final Object f17389b;
-    public final Object f17390c;
+import org.telegram.ui.wh0;
+public final class p implements org.telegram.ui.ActionBar.u1, RequestTimeDelegate, hp, wh0, QuickAckDelegate {
+    public final int f17541a;
+    public final Object f17542b;
+    public final Object f17543c;
 
     public p(int i10, Object obj, Object obj2) {
-        this.f17388a = i10;
-        this.f17389b = obj;
-        this.f17390c = obj2;
+        this.f17541a = i10;
+        this.f17542b = obj;
+        this.f17543c = obj2;
     }
 
     @Override
     public boolean a(TLRPC.TL_error tL_error) {
-        q0.a aVar = (q0.a) this.f17389b;
-        TLRPC.User user = (TLRPC.User) this.f17390c;
+        q0.a aVar = (q0.a) this.f17542b;
+        TLRPC.User user = (TLRPC.User) this.f17543c;
         if (aVar != null) {
             aVar.accept(user);
         }
@@ -38,20 +38,20 @@ public final class p implements org.telegram.ui.ActionBar.u1, RequestTimeDelegat
 
     @Override
     public void d(Canvas canvas) {
-        uv uvVar = ((nv) this.f17389b).W;
-        AtomicReference atomicReference = uvVar.D;
-        StaticLayout staticLayout = uvVar.f18396b;
-        ArrayList arrayList = uvVar.f18403x;
-        nh.i.g((View) this.f17390c, false, -1, 0, atomicReference, 0, staticLayout, arrayList, canvas, false);
-        org.telegram.ui.Components.o5.drawAnimatedEmojis(canvas, uvVar.f18396b, uvVar.E, 0.0f, arrayList, 0.0f, 0.0f, 0.0f, 1.0f);
+        vv vvVar = ((ov) this.f17542b).W;
+        AtomicReference atomicReference = vvVar.D;
+        StaticLayout staticLayout = vvVar.f18904b;
+        ArrayList arrayList = vvVar.f18911x;
+        nh.i.g((View) this.f17543c, false, -1, 0, atomicReference, 0, staticLayout, arrayList, canvas, false);
+        org.telegram.ui.Components.o5.drawAnimatedEmojis(canvas, vvVar.f18904b, vvVar.E, 0.0f, arrayList, 0.0f, 0.0f, 0.0f, 1.0f);
     }
 
     @Override
     public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
-        switch (this.f17388a) {
+        switch (this.f17541a) {
             case 0:
-                String str = (String) this.f17389b;
-                org.telegram.ui.ActionBar.k2 k2Var = (org.telegram.ui.ActionBar.k2) this.f17390c;
+                String str = (String) this.f17542b;
+                org.telegram.ui.ActionBar.k2 k2Var = (org.telegram.ui.ActionBar.k2) this.f17543c;
                 try {
                     k2Var.getParentActivity().startActivityForResult(new Intent("android.intent.action.VIEW", Uri.parse("market://details?id=" + str)), 500);
                     return;
@@ -60,20 +60,20 @@ public final class p implements org.telegram.ui.ActionBar.u1, RequestTimeDelegat
                     return;
                 }
             default:
-                ((SharedPreferences) this.f17389b).edit().putBoolean("proxycheckstatusip", true).apply();
-                ((mg) this.f17390c).run();
+                ((SharedPreferences) this.f17542b).edit().putBoolean("proxycheckstatusip", true).apply();
+                ((ng) this.f17543c).run();
                 return;
         }
     }
 
     @Override
     public void run(long j10) {
-        i0.g3(new d4((boolean[]) this.f17389b, j10, (org.telegram.ui.Components.ec[]) this.f17390c, 10));
+        i0.g3(new d4((boolean[]) this.f17542b, j10, (org.telegram.ui.Components.ec[]) this.f17543c, 10));
     }
 
     @Override
     public void run() {
-        TLRPC.Message message = (TLRPC.Message) this.f17390c;
-        i0.g3(new ix((qz) this.f17389b, message, message.f19814id, 1));
+        TLRPC.Message message = (TLRPC.Message) this.f17543c;
+        i0.g3(new jx((rz) this.f17542b, message, message.f19815id, 1));
     }
 }

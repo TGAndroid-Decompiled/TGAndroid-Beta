@@ -9,24 +9,24 @@ import android.graphics.RectF;
 import android.text.Layout;
 import android.view.View;
 import android.widget.TextView;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 import org.telegram.ui.Components.bi;
 import org.telegram.ui.Components.k80;
 import org.telegram.ui.Components.t80;
-import org.telegram.ui.s60;
+import org.telegram.ui.r60;
 public final class j6 extends TextView {
     public final int f3123a;
     public Object f3124b;
     public final Object f3125c;
 
-    public j6(Activity activity, org.telegram.ui.Components.voip.x0 x0Var) {
+    public j6(Activity activity, org.telegram.ui.Components.voip.y0 y0Var) {
         super(activity);
         this.f3123a = 7;
         this.f3124b = new RectF();
-        this.f3125c = x0Var;
-        x0Var.a(this);
-        setText(cd.L0(2131743329, null));
-        setContentDescription(cd.L0(2131743329, null));
+        this.f3125c = y0Var;
+        y0Var.a(this);
+        setText(dd.L0(2131743329, null));
+        setContentDescription(dd.L0(2131743329, null));
         setTextColor(-1);
         setTypeface(org.telegram.messenger.i0.o());
         setPadding(org.telegram.messenger.i0.L(14.0f), org.telegram.messenger.i0.L(4.0f), org.telegram.messenger.i0.L(14.0f), org.telegram.messenger.i0.L(4.0f));
@@ -52,7 +52,7 @@ public final class j6 extends TextView {
         switch (i10) {
             case 1:
                 Paint paint = (Paint) this.f3124b;
-                int i11 = org.telegram.ui.ActionBar.t6.f21330z6;
+                int i11 = org.telegram.ui.ActionBar.t6.f21331z6;
                 kg.q0 q0Var = ((kg.p0) obj).e;
                 int i12 = kg.q0.O2;
                 paint.setColor(org.telegram.ui.ActionBar.t6.r1(0.8f, org.telegram.ui.ActionBar.t6.w0(i11, q0Var.I0)));
@@ -75,7 +75,7 @@ public final class j6 extends TextView {
                 int max = Math.max(1, org.telegram.messenger.i0.L(0.66f));
                 Layout layout2 = getLayout();
                 if (layout2 != null) {
-                    paint2.setColor(org.telegram.ui.ActionBar.t6.r1(0.45f, org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f21311y6, ((uh.i) obj).W.f50261c)));
+                    paint2.setColor(org.telegram.ui.ActionBar.t6.r1(0.45f, org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f21312y6, ((uh.i) obj).W.f50275c)));
                     float f10 = L;
                     float f11 = max / 2.0f;
                     float f12 = f10 - f11;
@@ -91,7 +91,7 @@ public final class j6 extends TextView {
                 int max2 = Math.max(1, org.telegram.messenger.i0.L(0.66f));
                 Layout layout3 = getLayout();
                 if (layout3 != null) {
-                    paint3.setColor(org.telegram.ui.ActionBar.t6.r1(0.45f, org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f21311y6, (org.telegram.ui.ActionBar.p6) obj)));
+                    paint3.setColor(org.telegram.ui.ActionBar.t6.r1(0.45f, org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f21312y6, (org.telegram.ui.ActionBar.p6) obj)));
                     float f14 = L2;
                     float f15 = max2 / 2.0f;
                     float f16 = f14 - f15;
@@ -111,11 +111,11 @@ public final class j6 extends TextView {
     public void draw(Canvas canvas) {
         switch (this.f3123a) {
             case 3:
-                ((org.telegram.ui.f) this.f3125c).f37135b.draw(canvas);
+                ((org.telegram.ui.f) this.f3125c).f36932b.draw(canvas);
                 super.draw(canvas);
                 return;
             case 9:
-                ((s60) this.f3125c).h.draw(canvas);
+                ((r60) this.f3125c).h.draw(canvas);
                 super.draw(canvas);
                 return;
             default:
@@ -129,7 +129,7 @@ public final class j6 extends TextView {
         switch (this.f3123a) {
             case 6:
                 super.onDetachedFromWindow();
-                ((t80) this.f3125c).f30502b = -1L;
+                ((t80) this.f3125c).f30574b = -1L;
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -166,7 +166,7 @@ public final class j6 extends TextView {
                 return;
             case 3:
                 super.onDraw(canvas);
-                if (((org.telegram.ui.f) this.f3125c).f37142x) {
+                if (((org.telegram.ui.f) this.f3125c).f36939x) {
                     RectF rectF = org.telegram.messenger.i0.P;
                     rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                     ((org.telegram.ui.Components.voip.g) this.f3124b).a(getMeasuredHeight() / 2.0f, canvas, rectF, null);
@@ -193,24 +193,24 @@ public final class j6 extends TextView {
             case 7:
                 RectF rectF2 = (RectF) this.f3124b;
                 rectF2.set(0.0f, 0.0f, getWidth(), getHeight());
-                org.telegram.ui.Components.voip.x0 x0Var = (org.telegram.ui.Components.voip.x0) this.f3125c;
-                x0Var.d(((View) getParent()).getX() + getX(), ((View) getParent()).getY() + getY());
-                canvas.drawRoundRect(rectF2, org.telegram.messenger.i0.L(16.0f), org.telegram.messenger.i0.L(16.0f), x0Var.b());
+                org.telegram.ui.Components.voip.y0 y0Var = (org.telegram.ui.Components.voip.y0) this.f3125c;
+                y0Var.d(((View) getParent()).getX() + getX(), ((View) getParent()).getY() + getY());
+                canvas.drawRoundRect(rectF2, org.telegram.messenger.i0.L(16.0f), org.telegram.messenger.i0.L(16.0f), y0Var.b());
                 super.onDraw(canvas);
                 return;
             case 8:
                 RectF rectF3 = org.telegram.messenger.i0.P;
                 rectF3.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 Paint[] paintArr = (Paint[]) this.f3124b;
-                org.telegram.ui.Components.voip.e0 e0Var = (org.telegram.ui.Components.voip.e0) this.f3125c;
-                paintArr[e0Var.f31404y].setAlpha(255);
-                canvas.drawRoundRect(rectF3, org.telegram.messenger.i0.L(6.0f), org.telegram.messenger.i0.L(6.0f), paintArr[e0Var.f31404y]);
-                float f7 = e0Var.f31403x;
+                org.telegram.ui.Components.voip.f0 f0Var = (org.telegram.ui.Components.voip.f0) this.f3125c;
+                paintArr[f0Var.f31482y].setAlpha(255);
+                canvas.drawRoundRect(rectF3, org.telegram.messenger.i0.L(6.0f), org.telegram.messenger.i0.L(6.0f), paintArr[f0Var.f31482y]);
+                float f7 = f0Var.f31481x;
                 if (f7 > 0.0f) {
-                    int i10 = e0Var.f31404y;
+                    int i10 = f0Var.f31482y;
                     if (i10 + 1 < paintArr.length) {
                         paintArr[i10 + 1].setAlpha((int) (f7 * 255.0f));
-                        canvas.drawRoundRect(rectF3, org.telegram.messenger.i0.L(6.0f), org.telegram.messenger.i0.L(6.0f), paintArr[e0Var.f31404y + 1]);
+                        canvas.drawRoundRect(rectF3, org.telegram.messenger.i0.L(6.0f), org.telegram.messenger.i0.L(6.0f), paintArr[f0Var.f31482y + 1]);
                     }
                 }
                 super.onDraw(canvas);
@@ -244,19 +244,19 @@ public final class j6 extends TextView {
                 f2Var.G = false;
                 f2Var.K = true;
                 f2Var.H = true;
-                f2Var.f11082r = 1;
-                f2Var.f11086w = 0.98f;
+                f2Var.f11083r = 1;
+                f2Var.f11087w = 0.98f;
                 f2Var.v = 0.98f;
-                f2Var.f11085u = 0.98f;
-                f2Var.f11072g = false;
-                f2Var.f11079o = 0.0f;
-                f2Var.f11087x = 750L;
-                f2Var.f11088y = 750;
+                f2Var.f11086u = 0.98f;
+                f2Var.f11073g = false;
+                f2Var.f11080o = 0.0f;
+                f2Var.f11088x = 750L;
+                f2Var.f11089y = 750;
                 f2Var.c();
                 RectF rectF = org.telegram.messenger.i0.P;
                 rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                ((kg.f2) this.f3124b).f11068a.set(rectF);
-                ((kg.f2) this.f3124b).f11069b.set(rectF);
+                ((kg.f2) this.f3124b).f11069a.set(rectF);
+                ((kg.f2) this.f3124b).f11070b.set(rectF);
                 ((kg.f2) this.f3124b).f();
                 Path path = (Path) this.f3125c;
                 path.reset();
@@ -320,11 +320,11 @@ public final class j6 extends TextView {
         }
     }
 
-    public j6(org.telegram.ui.Components.voip.e0 e0Var, Context context) {
+    public j6(org.telegram.ui.Components.voip.f0 f0Var, Context context) {
         super(context);
         this.f3123a = 8;
-        this.f3125c = e0Var;
-        this.f3124b = new Paint[e0Var.f31398f.length];
+        this.f3125c = f0Var;
+        this.f3124b = new Paint[f0Var.f31476f.length];
         int i10 = 0;
         while (true) {
             Paint[] paintArr = (Paint[]) this.f3124b;
@@ -353,8 +353,8 @@ public final class j6 extends TextView {
                 this.f3124b = k80Var;
                 t80 t80Var = new t80();
                 this.f3125c = t80Var;
-                t80Var.f30521y = k80Var;
-                t80Var.f30518u = 0.65f;
+                t80Var.f30593y = k80Var;
+                t80Var.f30590u = 0.65f;
                 t80Var.k(4.0f);
                 setBackground(t80Var);
                 return;
@@ -378,14 +378,14 @@ public final class j6 extends TextView {
         this.f3124b = new Paint(1);
     }
 
-    public j6(s60 s60Var, Context context) {
+    public j6(r60 r60Var, Context context) {
         super(context);
         this.f3123a = 9;
-        this.f3125c = s60Var;
+        this.f3125c = r60Var;
         org.telegram.ui.Components.voip.g gVar = new org.telegram.ui.Components.voip.g();
         this.f3124b = gVar;
-        gVar.f31440k = false;
-        gVar.f31442m = 2.0f;
+        gVar.f31498k = false;
+        gVar.f31500m = 2.0f;
     }
 
     public j6(org.telegram.ui.f fVar, Context context) {
@@ -394,8 +394,8 @@ public final class j6 extends TextView {
         this.f3125c = fVar;
         org.telegram.ui.Components.voip.g gVar = new org.telegram.ui.Components.voip.g();
         this.f3124b = gVar;
-        gVar.f31440k = false;
-        gVar.f31442m = 2.0f;
+        gVar.f31498k = false;
+        gVar.f31500m = 2.0f;
     }
 
     public j6(uh.i iVar, Context context) {

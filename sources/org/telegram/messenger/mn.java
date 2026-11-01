@@ -1,64 +1,59 @@
 package org.telegram.messenger;
 
-import android.content.Context;
+import java.util.ArrayList;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.z60;
-public final class mn implements Runnable {
-    public final int f16978a = 3;
-    public final int f16979b;
-    public final long f16980c;
-    public final long d;
-    public final Object e;
-    public final Object f16981f;
-    public final Object h;
+import org.telegram.ui.jo0;
+public final class mn implements RequestDelegate {
+    public final int f17157a = 0;
+    public final int f17158b;
+    public final boolean f17159c;
+    public final TLRPC.User d;
+    public final vs e;
+    public final Object f17160f;
 
-    public mn(int i10, Context context, long j10, long j11, org.telegram.ui.ActionBar.z2[] z2VarArr, org.telegram.ui.ActionBar.p6 p6Var) {
-        this.f16979b = i10;
-        this.e = context;
-        this.f16980c = j10;
-        this.d = j11;
-        this.f16981f = z2VarArr;
-        this.h = p6Var;
+    public mn(wp wpVar, int i10, TLRPC.Chat chat, TLRPC.User user, boolean z10) {
+        this.e = wpVar;
+        this.f17158b = i10;
+        this.f17160f = chat;
+        this.d = user;
+        this.f17159c = z10;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.mn.run():void");
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        long j10;
+        switch (this.f17157a) {
+            case 0:
+                wp wpVar = (wp) this.e;
+                TLRPC.Chat chat = (TLRPC.Chat) this.f17160f;
+                wpVar.getClass();
+                if (tL_error == null) {
+                    ArrayList arrayList = new ArrayList();
+                    arrayList.add(Integer.valueOf(this.f17158b));
+                    is messagesStorage = wpVar.getMessagesStorage();
+                    if (chat != null) {
+                        j10 = -chat.f19794id;
+                    } else {
+                        j10 = this.d.f19943id;
+                    }
+                    messagesStorage.c2(j10, arrayList, !this.f17159c, -1, 0, false, null);
+                    wpVar.L3((TLRPC.Updates) tLObject, false);
+                    return;
+                }
+                return;
+            default:
+                i0.g3(new bi.y2((jo0) this.e, (String) this.f17160f, this.f17158b, tLObject, this.f17159c, this.d));
+                return;
+        }
     }
 
-    public mn(vp vpVar, long j10, long j11, TLRPC.InputPeer inputPeer, int i10, int[] iArr) {
-        this.e = vpVar;
-        this.f16980c = j10;
-        this.d = j11;
-        this.f16981f = inputPeer;
-        this.f16979b = i10;
-        this.h = iArr;
-    }
-
-    public mn(hs hsVar, int i10, long j10, String str, long j11, String str2) {
-        this.e = hsVar;
-        this.f16979b = i10;
-        this.f16980c = j10;
-        this.f16981f = str;
-        this.d = j11;
-        this.h = str2;
-    }
-
-    public mn(z60 z60Var, int i10, long j10, long j11, org.telegram.ui.un unVar, org.telegram.ui.ActionBar.p6 p6Var) {
-        this.e = z60Var;
-        this.f16979b = i10;
-        this.f16980c = j10;
-        this.d = j11;
-        this.f16981f = unVar;
-        this.h = p6Var;
-    }
-
-    public mn(th.j0 j0Var, int i10, TLRPC.TL_error tL_error, long j10, long j11, TLRPC.TL_textWithEntities tL_textWithEntities) {
-        this.e = j0Var;
-        this.f16979b = i10;
-        this.f16981f = tL_error;
-        this.f16980c = j10;
-        this.d = j11;
-        this.h = tL_textWithEntities;
+    public mn(jo0 jo0Var, String str, int i10, boolean z10, TLRPC.User user) {
+        this.e = jo0Var;
+        this.f17160f = str;
+        this.f17158b = i10;
+        this.f17159c = z10;
+        this.d = user;
     }
 }

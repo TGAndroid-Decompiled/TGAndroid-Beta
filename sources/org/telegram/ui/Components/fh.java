@@ -18,10 +18,10 @@ public final class fh extends wt {
         super.f();
         vy emojiView = getEmojiView();
         if (emojiView != null) {
-            emojiView.f31927w0 = false;
-            emojiView.f31933x2 = false;
+            emojiView.f32005w0 = false;
+            emojiView.f32011x2 = false;
             emojiView.setShouldDrawBackground(false);
-            emojiView.setBottomInset(org.telegram.messenger.i0.f16021n);
+            emojiView.setBottomInset(org.telegram.messenger.i0.f16167n);
         }
     }
 
@@ -29,7 +29,7 @@ public final class fh extends wt {
     public final void i(ActionMode actionMode, Menu menu) {
         org.telegram.ui.ActionBar.k2 k2Var = this.V.W1;
         if (k2Var instanceof org.telegram.ui.un) {
-            org.telegram.ui.un.t8(menu, ((org.telegram.ui.un) k2Var).h, true, true, true, true);
+            org.telegram.ui.un.x8(menu, ((org.telegram.ui.un) k2Var).h, true, true, true, true);
         }
     }
 
@@ -37,7 +37,7 @@ public final class fh extends wt {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         bi biVar = this.V;
         fh fhVar = biVar.J2;
-        if (!biVar.f24706o3) {
+        if (!biVar.f24797o3) {
             if (motionEvent.getX() > fhVar.getEditText().getLeft() && motionEvent.getX() < fhVar.getEditText().getRight() && motionEvent.getY() > fhVar.getEditText().getTop() && motionEvent.getY() < fhVar.getEditText().getBottom()) {
                 biVar.g1(fhVar.getEditText(), true);
             } else {

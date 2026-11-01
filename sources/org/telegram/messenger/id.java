@@ -1,29 +1,38 @@
 package org.telegram.messenger;
-public final class id implements Runnable {
-    public final int f16115a;
-    public final nd f16116b;
-    public final Integer f16117c;
 
-    public id(nd ndVar, Integer num, int i10) {
-        this.f16115a = i10;
-        this.f16116b = ndVar;
-        this.f16117c = num;
+import android.location.Location;
+public final class id implements q0.a {
+    public final int f16268a;
+    public final od f16269b;
+
+    public id(od odVar, int i10) {
+        this.f16268a = i10;
+        this.f16269b = odVar;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f16115a;
-        Integer num = this.f16117c;
-        nd ndVar = this.f16116b;
-        switch (i10) {
+    public final void accept(Object obj) {
+        switch (this.f16268a) {
             case 0:
-                if (!ndVar.f17083b.isEmpty()) {
-                    i0.g3(new id(ndVar, num, 1));
-                    return;
-                }
+                this.f16269b.m((Location) obj);
                 return;
             default:
-                ndVar.getNotificationCenter().k(76, num);
+                od odVar = this.f16269b;
+                Integer num = (Integer) obj;
+                odVar.getClass();
+                int intValue = num.intValue();
+                if (intValue != 0) {
+                    if (intValue != 1) {
+                        if (intValue == 2) {
+                            Utilities.d.c(new fd(odVar, 4));
+                            return;
+                        }
+                        return;
+                    }
+                    Utilities.d.c(new jd(odVar, num, 0));
+                    return;
+                }
+                Utilities.d.c(new d20(3, odVar, true));
                 return;
         }
     }

@@ -9,7 +9,7 @@ public abstract class a0 {
             return null;
         }
         j1 h = j1.h(null, rootWindowInsets);
-        g1 g1Var = h.f46132a;
+        g1 g1Var = h.f46143a;
         g1Var.r(h);
         g1Var.d(view.getRootView());
         return h;

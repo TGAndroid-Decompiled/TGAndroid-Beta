@@ -4,27 +4,27 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 public final class hr implements Runnable {
-    public final int f26801a;
-    public final lr f26802b;
+    public final int f26907a;
+    public final lr f26908b;
 
     public hr(lr lrVar, int i10) {
-        this.f26801a = i10;
-        this.f26802b = lrVar;
+        this.f26907a = i10;
+        this.f26908b = lrVar;
     }
 
     @Override
     public final void run() {
         View view;
-        switch (this.f26801a) {
+        switch (this.f26907a) {
             case 0:
-                lr lrVar = this.f26802b;
-                if (lrVar.f28169b == null && (view = lrVar.d) != null) {
+                lr lrVar = this.f26908b;
+                if (lrVar.f28246b == null && (view = lrVar.d) != null) {
                     View findFocus = view.findFocus();
                     if (findFocus instanceof EditText) {
-                        lrVar.f28169b = (EditText) findFocus;
+                        lrVar.f28246b = (EditText) findFocus;
                     }
                 }
-                EditText editText = lrVar.f28169b;
+                EditText editText = lrVar.f28246b;
                 if (editText != null) {
                     if (editText.length() != 0 || lrVar.e) {
                         try {
@@ -32,9 +32,9 @@ public final class hr implements Runnable {
                             lrVar.playSoundEffect(0);
                         } catch (Exception unused) {
                         }
-                        lrVar.f28169b.dispatchKeyEvent(new KeyEvent(0, 67));
-                        lrVar.f28169b.dispatchKeyEvent(new KeyEvent(1, 67));
-                        if (lrVar.f28171f) {
+                        lrVar.f28246b.dispatchKeyEvent(new KeyEvent(0, 67));
+                        lrVar.f28246b.dispatchKeyEvent(new KeyEvent(1, 67));
+                        if (lrVar.f28248f) {
                             lrVar.postDelayed(lrVar.h, 50L);
                             return;
                         }
@@ -44,9 +44,9 @@ public final class hr implements Runnable {
                 }
                 return;
             default:
-                lr lrVar2 = this.f26802b;
-                lrVar2.f28172n = false;
-                lrVar2.f28171f = true;
+                lr lrVar2 = this.f26908b;
+                lrVar2.f28249n = false;
+                lrVar2.f28248f = true;
                 lrVar2.h.run();
                 return;
         }

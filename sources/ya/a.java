@@ -4,14 +4,14 @@ public enum a implements ma.c {
     MESSAGE_DELIVERED(1),
     MESSAGE_OPEN(2);
     
-    public final int f54350a;
+    public final int f54371a;
 
     a(int i10) {
-        this.f54350a = i10;
+        this.f54371a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f54350a;
+        return this.f54371a;
     }
 }

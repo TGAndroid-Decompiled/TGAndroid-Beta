@@ -10,9 +10,9 @@ import java.security.PublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
 public final class b {
-    public static final String[] f48127c = {"*", "FCM", "GCM", ""};
-    public final SharedPreferences f48128a;
-    public final String f48129b;
+    public static final String[] f48138c = {"*", "FCM", "GCM", ""};
+    public final SharedPreferences f48139a;
+    public final String f48140b;
 
     public b(l9.h r4) {
         throw new UnsupportedOperationException("Method not decompiled: sa.b.<init>(l9.h):void");
@@ -20,17 +20,17 @@ public final class b {
 
     public final String a() {
         String string;
-        synchronized (this.f48128a) {
-            string = this.f48128a.getString("|S|id", null);
+        synchronized (this.f48139a) {
+            string = this.f48139a.getString("|S|id", null);
         }
         return string;
     }
 
     public final String b() {
         PublicKey publicKey;
-        synchronized (this.f48128a) {
+        synchronized (this.f48139a) {
             String str = null;
-            String string = this.f48128a.getString("|S||P|", null);
+            String string = this.f48139a.getString("|S||P|", null);
             if (string == null) {
                 return null;
             }

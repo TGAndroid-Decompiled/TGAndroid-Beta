@@ -58,7 +58,7 @@ public abstract class bb extends FrameLayout implements org.telegram.ui.ActionBa
 
     public static boolean a() {
         if (!org.telegram.messenger.i0.Q1()) {
-            Point point = org.telegram.messenger.i0.f16026q;
+            Point point = org.telegram.messenger.i0.f16172q;
             if (point.x < point.y) {
                 return false;
             }
@@ -108,7 +108,7 @@ public abstract class bb extends FrameLayout implements org.telegram.ui.ActionBa
         this.inOutOffset = f7;
         updatePosition();
         wb wbVar = this.bulletin;
-        if (wbVar != null && wbVar.f32136k) {
+        if (wbVar != null && wbVar.f32202k) {
             invalidate();
         }
     }
@@ -144,15 +144,15 @@ public abstract class bb extends FrameLayout implements org.telegram.ui.ActionBa
     @Override
     public void dispatchDraw(Canvas canvas) {
         wb wbVar = this.bulletin;
-        if (wbVar != null && wbVar.f32136k) {
+        if (wbVar != null && wbVar.f32202k) {
             if (this.blurVisibilityDrawable == null) {
                 this.blurVisibilityDrawable = new mh.b(new t(this, 16));
             }
             mh.b bVar = this.blurVisibilityDrawable;
-            if (bVar.f13308c == null) {
+            if (bVar.f13309c == null) {
                 bVar.a(getMeasuredWidth(), getMeasuredHeight(), 6.0f, org.telegram.messenger.i0.L(10.0f));
             }
-            this.blurVisibilityDrawable.f13311i = w7.u.b((int) org.telegram.messenger.z20.x(this.inOutOffset, getMeasuredHeight(), 1.0f, 255.0f), 0, 255);
+            this.blurVisibilityDrawable.f13312i = w7.u.b((int) org.telegram.messenger.a30.x(this.inOutOffset, getMeasuredHeight(), 1.0f, 255.0f), 0, 255);
             this.blurVisibilityDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.blurVisibilityDrawable.draw(canvas);
             return;
@@ -169,9 +169,9 @@ public abstract class bb extends FrameLayout implements org.telegram.ui.ActionBa
         if (this.bulletin != null && i10 != 0) {
             this.background.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredBackgroundHeight() - getPaddingBottom());
             if (isTransitionRunning() && (uaVar = this.delegate) != null) {
-                float h = uaVar.h(this.bulletin.f32129a) - getY();
+                float h = uaVar.h(this.bulletin.f32195a) - getY();
                 float measuredHeight = (((View) getParent()).getMeasuredHeight() - getBottomOffset()) - getY();
-                if (!z10 && this.delegate.g(this.bulletin.f32129a)) {
+                if (!z10 && this.delegate.g(this.bulletin.f32195a)) {
                     z11 = true;
                 } else {
                     z11 = false;
@@ -246,14 +246,14 @@ public abstract class bb extends FrameLayout implements org.telegram.ui.ActionBa
         ua uaVar;
         wb wbVar;
         o1.j jVar;
-        if (this.bulletin != null && (((uaVar = this.delegate) == null || uaVar.e()) && (jVar = (wbVar = this.bulletin).d) != null && jVar.f13951f)) {
-            f7 = wbVar.f32140o;
+        if (this.bulletin != null && (((uaVar = this.delegate) == null || uaVar.e()) && (jVar = (wbVar = this.bulletin).d) != null && jVar.f13952f)) {
+            f7 = wbVar.f32206o;
         } else {
             ua uaVar2 = this.delegate;
             if (uaVar2 != null) {
                 wb wbVar2 = this.bulletin;
                 if (wbVar2 != null) {
-                    i10 = wbVar2.f32129a;
+                    i10 = wbVar2.f32195a;
                 } else {
                     i10 = 0;
                 }
@@ -283,7 +283,7 @@ public abstract class bb extends FrameLayout implements org.telegram.ui.ActionBa
         if (uaVar != null) {
             wb wbVar = this.bulletin;
             if (wbVar != null) {
-                i10 = wbVar.f32129a;
+                i10 = wbVar.f32195a;
             } else {
                 i10 = 0;
             }
@@ -328,9 +328,9 @@ public abstract class bb extends FrameLayout implements org.telegram.ui.ActionBa
             this.callbacks.get(i10).d();
         }
         mh.b bVar = this.blurVisibilityDrawable;
-        if (bVar != null && (bitmap = bVar.f13308c) != null) {
+        if (bVar != null && (bitmap = bVar.f13309c) != null) {
             bitmap.recycle();
-            bVar.f13308c = null;
+            bVar.f13309c = null;
         }
     }
 
@@ -423,7 +423,7 @@ public abstract class bb extends FrameLayout implements org.telegram.ui.ActionBa
             if (this.top) {
                 wb wbVar = this.bulletin;
                 if (wbVar != null) {
-                    i11 = wbVar.f32129a;
+                    i11 = wbVar.f32195a;
                 } else {
                     i11 = 0;
                 }

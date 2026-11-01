@@ -11,7 +11,7 @@ public class ShareBroadcastReceiver extends BroadcastReceiver {
             Intent intent2 = new Intent("android.intent.action.SEND");
             intent2.setType("text/plain");
             intent2.putExtra("android.intent.extra.TEXT", dataString);
-            Intent createChooser = Intent.createChooser(intent2, cd.L0(2131745476, null));
+            Intent createChooser = Intent.createChooser(intent2, dd.L0(2131745476, null));
             createChooser.setFlags(268435456);
             context.startActivity(createChooser);
         }

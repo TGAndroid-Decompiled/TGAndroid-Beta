@@ -2,8 +2,8 @@ package bi;
 
 import android.graphics.drawable.Drawable;
 import android.view.View;
-import org.telegram.ui.Components.rn0;
-import org.telegram.ui.Components.t21;
+import org.telegram.ui.Components.sn0;
+import org.telegram.ui.Components.u21;
 import org.telegram.ui.Components.up;
 public final class s0 implements Drawable.Callback {
     public final int f3335a;
@@ -21,19 +21,19 @@ public final class s0 implements Drawable.Callback {
                 ((up) this.f3336b).invalidateSelf();
                 return;
             case 3:
-                ((rn0) this.f3336b).f29969b.run();
+                ((sn0) this.f3336b).f30381b.run();
                 return;
             case 4:
                 ((jh.g) this.f3336b).invalidateSelf();
                 return;
             case 5:
-                ((t21) this.f3336b).invalidateSelf();
+                ((u21) this.f3336b).invalidateSelf();
                 return;
             case 6:
-                ((pg.a) this.f3336b).f44920c.invalidate();
+                ((pg.a) this.f3336b).f44931c.invalidate();
                 return;
             case 7:
-                ((pg.c) this.f3336b).f44945c.invalidate();
+                ((pg.c) this.f3336b).f44956c.invalidate();
                 return;
             case 8:
                 ((rh.p3) this.f3336b).h.invalidate();
@@ -82,10 +82,10 @@ public final class s0 implements Drawable.Callback {
             case 5:
                 return;
             case 6:
-                ((pg.a) this.f3336b).f44920c.invalidate();
+                ((pg.a) this.f3336b).f44931c.invalidate();
                 return;
             case 7:
-                ((pg.c) this.f3336b).f44945c.invalidate();
+                ((pg.c) this.f3336b).f44956c.invalidate();
                 return;
             case 8:
                 return;
@@ -128,10 +128,10 @@ public final class s0 implements Drawable.Callback {
             case 5:
                 return;
             case 6:
-                ((pg.a) this.f3336b).f44920c.invalidate();
+                ((pg.a) this.f3336b).f44931c.invalidate();
                 return;
             case 7:
-                ((pg.c) this.f3336b).f44945c.invalidate();
+                ((pg.c) this.f3336b).f44956c.invalidate();
                 return;
             case 8:
                 return;

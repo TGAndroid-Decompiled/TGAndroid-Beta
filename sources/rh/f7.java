@@ -9,19 +9,19 @@ import android.graphics.RadialGradient;
 import android.graphics.RectF;
 import android.widget.LinearLayout;
 public final class f7 extends LinearLayout {
-    public final Path f46909a;
-    public final Matrix f46910b;
-    public final RadialGradient f46911c;
+    public final Path f46923a;
+    public final Matrix f46924b;
+    public final RadialGradient f46925c;
     public final Paint d;
     public final org.telegram.ui.Components.d5 e;
 
     public f7(Context context, Matrix matrix, RadialGradient radialGradient, Paint paint, org.telegram.ui.Components.d5 d5Var) {
         super(context);
-        this.f46910b = matrix;
-        this.f46911c = radialGradient;
+        this.f46924b = matrix;
+        this.f46925c = radialGradient;
         this.d = paint;
         this.e = d5Var;
-        this.f46909a = new Path();
+        this.f46923a = new Path();
     }
 
     @Override
@@ -29,15 +29,15 @@ public final class f7 extends LinearLayout {
         float L = org.telegram.messenger.i0.L(10.0f);
         RectF rectF = org.telegram.messenger.i0.P;
         rectF.set(0.0f, org.telegram.messenger.i0.L(2.0f) + 1, getWidth(), getHeight() + L);
-        Path path = this.f46909a;
+        Path path = this.f46923a;
         path.rewind();
         path.addRoundRect(rectF, L, L, Path.Direction.CW);
         canvas.save();
         canvas.clipPath(path);
-        Matrix matrix = this.f46910b;
+        Matrix matrix = this.f46924b;
         matrix.reset();
         matrix.postTranslate(getWidth() / 2.0f, org.telegram.messenger.i0.L(100.0f));
-        this.f46911c.setLocalMatrix(matrix);
+        this.f46925c.setLocalMatrix(matrix);
         canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.d);
         canvas.save();
         canvas.translate(getWidth() / 2.0f, org.telegram.messenger.i0.L(100.0f));

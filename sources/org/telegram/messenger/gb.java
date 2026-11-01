@@ -1,3 +1,3 @@
 package org.telegram.messenger;
-public final class gb extends hb {
+public final class gb extends ib {
 }

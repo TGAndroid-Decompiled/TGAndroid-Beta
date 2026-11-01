@@ -5,21 +5,21 @@ import android.text.Spanned;
 import android.view.KeyEvent;
 import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.fj;
+import org.telegram.messenger.gj;
 import org.telegram.messenger.h6;
 import org.telegram.messenger.k6;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.o5;
 import org.telegram.ui.Components.vx;
-import org.telegram.ui.Components.w41;
+import org.telegram.ui.Components.x41;
 public final class i0 implements vx {
-    public final r0 f10015a;
+    public final r0 f10016a;
 
     public i0(r0 r0Var) {
-        this.f10015a = r0Var;
+        this.f10016a = r0Var;
     }
 
     @Override
@@ -59,7 +59,7 @@ public final class i0 implements vx {
 
     @Override
     public final boolean k() {
-        b editText = ((g3) this.f10015a.B0).getEditText();
+        b editText = ((g3) this.f10016a.B0).getEditText();
         if (editText == null || editText.length() == 0) {
             return false;
         }
@@ -72,7 +72,7 @@ public final class i0 implements vx {
         g3 g3Var;
         b editText;
         h6[] h6VarArr;
-        j jVar = this.f10015a.B0;
+        j jVar = this.f10016a.B0;
         if (!(jVar instanceof g3) || (editText = (g3Var = (g3) jVar).getEditText()) == null) {
             return;
         }
@@ -84,7 +84,7 @@ public final class i0 implements vx {
             CharSequence m10 = k6.m(str, g3Var.getFontMetricsInt(), false, null, 0);
             if ((m10 instanceof Spanned) && (h6VarArr = (h6[]) ((Spanned) m10).getSpans(0, m10.length(), h6.class)) != null) {
                 for (h6 h6Var : h6VarArr) {
-                    h6Var.f15839b = 0.85f;
+                    h6Var.f16025b = 0.85f;
                 }
             }
             editText.setText(editText.getText().insert(selectionEnd, m10));
@@ -99,14 +99,14 @@ public final class i0 implements vx {
 
     @Override
     public final void n() {
-        r0 r0Var = this.f10015a;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, r0Var.getContext(), r0Var.f10203z1);
-        String L0 = cd.L0(2131752068, null);
-        org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20134a;
+        r0 r0Var = this.f10016a;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, r0Var.getContext(), r0Var.f10204z1);
+        String L0 = dd.L0(2131752068, null);
+        org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20135a;
         x1Var.R = L0;
-        x1Var.T = cd.L0(2131752069, null);
-        alertDialog$Builder.k(cd.L0(2131752099, null), new ig.c0(this, 11));
-        alertDialog$Builder.h(cd.L0(2131752589, null), null);
+        x1Var.T = dd.L0(2131752069, null);
+        alertDialog$Builder.k(dd.L0(2131752099, null), new ig.c0(this, 11));
+        alertDialog$Builder.h(dd.L0(2131752589, null), null);
         alertDialog$Builder.p();
     }
 
@@ -118,7 +118,7 @@ public final class i0 implements vx {
     @Override
     public final void x(long j10, TLRPC.Document document, String str, boolean z10) {
         o5 o5Var;
-        b editText = ((g3) this.f10015a.B0).getEditText();
+        b editText = ((g3) this.f10016a.B0).getEditText();
         if (editText == null) {
             return;
         }
@@ -158,7 +158,7 @@ public final class i0 implements vx {
     }
 
     @Override
-    public final void o(w41 w41Var) {
+    public final void o(x41 x41Var) {
     }
 
     @Override
@@ -198,7 +198,7 @@ public final class i0 implements vx {
     }
 
     @Override
-    public final void m(View view, TLRPC.Document document, String str, Object obj, fj fjVar, boolean z10, int i10) {
+    public final void m(View view, TLRPC.Document document, String str, Object obj, gj gjVar, boolean z10, int i10) {
     }
 
     @Override

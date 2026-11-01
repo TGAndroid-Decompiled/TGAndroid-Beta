@@ -1,29 +1,72 @@
 package org.telegram.messenger;
+public final class qf implements Runnable {
+    public final int f17768a;
+    public final r20 f17769b;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class qf implements RequestDelegate {
-    public final int f17579a;
-    public final boolean f17580b;
-    public final long f17581c;
-    public final f1 d;
-
-    public qf(f1 f1Var, boolean z10, long j10, int i10) {
-        this.f17579a = i10;
-        this.d = f1Var;
-        this.f17580b = z10;
-        this.f17581c = j10;
+    public qf(r20 r20Var, int i10) {
+        this.f17768a = i10;
+        this.f17769b = r20Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17579a) {
+    public final void run() {
+        int i10 = this.f17768a;
+        r20 r20Var = this.f17769b;
+        switch (i10) {
             case 0:
-                i0.g3(new qg((ui) this.d, tLObject, this.f17580b, this.f17581c, 1));
+                if (r20Var != null) {
+                    r20Var.a(null);
+                    return;
+                }
+                return;
+            case 1:
+                if (r20Var != null) {
+                    r20Var.a(null);
+                    return;
+                }
+                return;
+            case 2:
+                if (r20Var != null) {
+                    r20Var.a(null);
+                    return;
+                }
+                return;
+            case 3:
+                if (r20Var != null) {
+                    r20Var.a(null);
+                    return;
+                }
+                return;
+            case 4:
+                if (r20Var != null) {
+                    r20Var.a(null);
+                    return;
+                }
+                return;
+            case 5:
+                if (r20Var != null) {
+                    r20Var.a(null);
+                    return;
+                }
+                return;
+            case 6:
+                r20Var.a(null);
+                return;
+            case 7:
+                if (r20Var != null) {
+                    r20Var.a(null);
+                    return;
+                }
+                return;
+            case 8:
+                if (r20Var != null) {
+                    r20Var.a(null);
+                    return;
+                }
                 return;
             default:
-                i0.g3(new qg((vp) this.d, tLObject, this.f17580b, this.f17581c, 2));
+                int i11 = ShortcutResultReceiver.f14517a;
+                r20Var.a(Boolean.TRUE);
                 return;
         }
     }

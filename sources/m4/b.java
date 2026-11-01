@@ -7,28 +7,28 @@ import android.os.Build;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicBoolean;
 public final class b {
-    public static final Uri f12697g = Uri.parse("content://androidx.car.app.connection");
-    public final Context f12698a;
-    public final g0 f12699b;
-    public final Executor f12700c;
+    public static final Uri f12698g = Uri.parse("content://androidx.car.app.connection");
+    public final Context f12699a;
+    public final g0 f12700b;
+    public final Executor f12701c;
     public final androidx.mediarouter.app.f d;
     public final AtomicBoolean e;
-    public final AtomicBoolean f12701f;
+    public final AtomicBoolean f12702f;
 
     public b(Context context, g0 g0Var) {
-        this.f12698a = context.getApplicationContext();
-        this.f12699b = g0Var;
+        this.f12699a = context.getApplicationContext();
+        this.f12700b = g0Var;
         Executor e = e2.a.e();
-        this.f12700c = e;
+        this.f12701c = e;
         this.d = new androidx.mediarouter.app.f(this, 6);
         this.e = new AtomicBoolean();
-        this.f12701f = new AtomicBoolean();
+        this.f12702f = new AtomicBoolean();
         e.execute(new a(this, 1));
     }
 
     public static void a(b bVar) {
         androidx.mediarouter.app.f fVar = bVar.d;
-        Context context = bVar.f12698a;
+        Context context = bVar.f12699a;
         IntentFilter intentFilter = new IntentFilter("androidx.car.app.connection.action.CAR_CONNECTION_UPDATED");
         if (Build.VERSION.SDK_INT >= 33) {
             context.registerReceiver(fVar, intentFilter, 2);

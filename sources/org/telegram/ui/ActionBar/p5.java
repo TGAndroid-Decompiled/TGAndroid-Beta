@@ -7,13 +7,13 @@ public final class p5 extends t0 {
     public p0 B0;
     public boolean C0;
     public boolean D0;
-    public final o5 f20654z0;
+    public final o5 f20655z0;
 
     public p5(Context context, o5 o5Var, int i10, int i11, boolean z10, p6 p6Var) {
         super(context, null, i10, i11, z10, p6Var);
         this.C0 = true;
         this.D0 = true;
-        this.f20654z0 = o5Var;
+        this.f20655z0 = o5Var;
         setDelegate(new m5(o5Var));
     }
 
@@ -27,7 +27,7 @@ public final class p5 extends t0 {
 
     @Override
     public final void F(boolean z10) {
-        this.f20654z0.f20625a.w(z10, true);
+        this.f20655z0.f20626a.w(z10, true);
     }
 
     @Override
@@ -45,18 +45,18 @@ public final class p5 extends t0 {
     @Override
     public final t0 N() {
         this.A0 = true;
-        this.f20654z0.f20625a.setSearchItem(this);
+        this.f20655z0.f20626a.setSearchItem(this);
         return this;
     }
 
     @Override
     public final void P(CharSequence charSequence, boolean z10) {
-        this.f20654z0.f20625a.setSearchFieldText(charSequence);
+        this.f20655z0.f20626a.setSearchFieldText(charSequence);
     }
 
     @Override
     public final boolean T(boolean z10) {
-        i5 i5Var = this.f20654z0.f20625a;
+        i5 i5Var = this.f20655z0.f20626a;
         if (i5Var.F) {
             i5Var.j(z10);
             return false;
@@ -72,11 +72,11 @@ public final class p5 extends t0 {
 
     public final void Y(boolean z10, boolean z11) {
         boolean z12 = this.C0;
-        o5 o5Var = this.f20654z0;
+        o5 o5Var = this.f20655z0;
         if (z12 == z10) {
             if (!z10 && !z11 && getVisibility() != 8) {
                 super.setVisibility(8);
-                o5Var.f20628f = true;
+                o5Var.f20629f = true;
                 o5Var.requestLayout();
                 return;
             } else if (z10 && getVisibility() != 0) {
@@ -98,19 +98,19 @@ public final class p5 extends t0 {
         } else if (!z11 || !isLaidOut() || !o5Var.isLaidOut()) {
             super.setVisibility(8);
         }
-        if (!z11 || !o5Var.f20625a.t()) {
-            o5Var.f20628f = true;
+        if (!z11 || !o5Var.f20626a.t()) {
+            o5Var.f20629f = true;
         }
         o5Var.requestLayout();
     }
 
     public o5 getParentMenu() {
-        return this.f20654z0;
+        return this.f20655z0;
     }
 
     @Override
     public EditTextBoldCursor getSearchField() {
-        return this.f20654z0.f20625a.getSearchField();
+        return this.f20655z0.f20626a.getSearchField();
     }
 
     public p0 getSearchListener() {
@@ -119,18 +119,18 @@ public final class p5 extends t0 {
 
     @Override
     public s5 getSubMenuOverlay() {
-        return this.f20654z0.f20625a.getMenuOverlay();
+        return this.f20655z0.f20626a.getMenuOverlay();
     }
 
     @Override
     public b5 getSubMenuOverlayHost() {
-        return this.f20654z0.f20625a;
+        return this.f20655z0.f20626a;
     }
 
     @Override
     public final boolean i() {
-        o5 o5Var = this.f20654z0;
-        if (o5Var.f20626b && !o5Var.f20625a.s()) {
+        o5 o5Var = this.f20655z0;
+        if (o5Var.f20627b && !o5Var.f20626a.s()) {
             return false;
         }
         return true;
@@ -138,24 +138,24 @@ public final class p5 extends t0 {
 
     @Override
     public final void n() {
-        this.f20654z0.f20625a.setSearchFieldText("");
+        this.f20655z0.f20626a.setSearchFieldText("");
     }
 
     @Override
     public void setSearchFieldCaption(CharSequence charSequence) {
-        this.f20654z0.f20625a.setSearchFieldCaption(charSequence);
+        this.f20655z0.f20626a.setSearchFieldCaption(charSequence);
     }
 
     @Override
     public void setSearchFieldHint(CharSequence charSequence) {
-        this.f20654z0.f20625a.setSearchFieldHint(charSequence);
+        this.f20655z0.f20626a.setSearchFieldHint(charSequence);
         setContentDescription(charSequence);
     }
 
     @Override
     public void setVisibility(int i10) {
         boolean z10;
-        o5 o5Var = this.f20654z0;
+        o5 o5Var = this.f20655z0;
         if (o5Var != null && i10 != 4) {
             boolean z11 = false;
             if (i10 == 0) {
@@ -163,8 +163,8 @@ public final class p5 extends t0 {
             } else {
                 z10 = false;
             }
-            i5 i5Var = o5Var.f20625a;
-            if (o5Var.isLaidOut() && i5Var.t() && (!o5Var.f20626b || (i5Var.s() && i5Var.getActionModeFactor() > 0.0f))) {
+            i5 i5Var = o5Var.f20626a;
+            if (o5Var.isLaidOut() && i5Var.t() && (!o5Var.f20627b || (i5Var.s() && i5Var.getActionModeFactor() > 0.0f))) {
                 z11 = true;
             }
             Y(z10, z11);
@@ -180,11 +180,11 @@ public final class p5 extends t0 {
 
     @Override
     public final boolean v() {
-        return this.f20654z0.f20625a.F;
+        return this.f20655z0.f20626a.F;
     }
 
     @Override
     public final boolean w() {
-        return this.f20654z0.f20625a.F;
+        return this.f20655z0.f20626a.F;
     }
 }

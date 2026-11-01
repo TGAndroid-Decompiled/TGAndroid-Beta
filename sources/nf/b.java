@@ -1,8 +1,8 @@
 package nf;
 public final class b {
-    public final ih.c f13750a;
+    public final ih.c f13751a;
 
     public b(ih.c cVar) {
-        this.f13750a = cVar;
+        this.f13751a = cVar;
     }
 }

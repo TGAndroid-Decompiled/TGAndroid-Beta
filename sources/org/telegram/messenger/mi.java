@@ -1,68 +1,122 @@
 package org.telegram.messenger;
-public final class mi implements Runnable {
-    public final ui f16956a;
-    public final long f16957b;
-    public final boolean f16958c;
-    public final int d;
-    public final int e;
-    public final int f16959f;
-    public final long h;
-    public final int f16960n;
 
-    public mi(ui uiVar, long j10, boolean z10, int i10, int i11, int i12, long j11, int i13) {
-        this.f16956a = uiVar;
-        this.f16957b = j10;
-        this.f16958c = z10;
-        this.d = i10;
-        this.e = i11;
-        this.f16959f = i12;
-        this.h = j11;
-        this.f16960n = i13;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+public final class mi implements RequestDelegate {
+    public final int f17124a = 0;
+    public final l00 f17125b;
+    public final long f17126c;
+    public final boolean d;
+    public final m00 e;
+    public final Runnable f17127f;
+    public final Object f17128g;
+    public final Cloneable h;
+    public final Serializable f17129i;
+
+    public mi(vi viVar, l00 l00Var, long j10, a0.h hVar, boolean z10, m00 m00Var, AtomicInteger atomicInteger, Runnable runnable) {
+        this.f17128g = viVar;
+        this.f17125b = l00Var;
+        this.f17126c = j10;
+        this.h = hVar;
+        this.d = z10;
+        this.e = m00Var;
+        this.f17129i = atomicInteger;
+        this.f17127f = runnable;
     }
 
     @Override
-    public final void run() {
-        boolean z10;
-        long j10;
-        int i10;
-        int i11;
-        long j11 = this.f16957b;
-        boolean C = o5.C(j11);
-        boolean z11 = this.f16958c;
-        int i12 = this.d;
-        int i13 = this.e;
-        if (z11 && ((i12 == -1 || (i12 == 0 && i13 == 2)) && !C)) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        Runnable runnable;
+        switch (this.f17124a) {
+            case 0:
+                vi viVar = (vi) this.f17128g;
+                a0.h hVar = (a0.h) this.h;
+                AtomicInteger atomicInteger = (AtomicInteger) this.f17129i;
+                viVar.getClass();
+                m00.a(this.f17125b);
+                if (tL_error == null) {
+                    TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
+                    int i10 = 0;
+                    while (true) {
+                        int size = messages_messages.messages.size();
+                        long j10 = this.f17126c;
+                        if (i10 < size) {
+                            TLRPC.Message message = messages_messages.messages.get(i10);
+                            if (message.dialog_id == 0) {
+                                message.dialog_id = j10;
+                            }
+                            i10++;
+                        } else {
+                            ic.X(messages_messages.messages);
+                            viVar.l(messages_messages.messages, hVar, messages_messages.users, messages_messages.chats, j10, false);
+                            viVar.getMessagesStorage().m1(messages_messages.users, messages_messages.chats, true, true);
+                            viVar.T1(hVar, messages_messages.messages, this.d);
+                        }
+                    }
+                } else {
+                    m00.c(this.e, "messages.getMessages error: " + tL_error.code + " " + tL_error.text);
+                }
+                if (atomicInteger.decrementAndGet() == 0 && (runnable = this.f17127f) != null) {
+                    i0.g3(runnable);
+                    return;
+                }
+                return;
+            default:
+                th.r5 r5Var = (th.r5) this.f17128g;
+                ArrayList arrayList = (ArrayList) this.h;
+                int[] iArr = (int[]) this.f17129i;
+                int i11 = r5Var.f49425a;
+                m00.a(this.f17125b);
+                if (tLObject != null) {
+                    TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject;
+                    for (int i12 = 0; i12 < arrayList.size(); i12++) {
+                        kj kjVar = (kj) arrayList.get(i12);
+                        int i13 = 0;
+                        while (true) {
+                            int size2 = tL_stories_stories.stories.size();
+                            long j11 = this.f17126c;
+                            if (i13 < size2) {
+                                if (tL_stories_stories.stories.get(i13).f20032id == th.r5.e(kjVar)) {
+                                    th.r5.b(i11, j11, kjVar, tL_stories_stories.stories.get(i13));
+                                } else {
+                                    i13++;
+                                }
+                            } else {
+                                TL_stories.TL_storyItemDeleted tL_storyItemDeleted = new TL_stories.TL_storyItemDeleted();
+                                tL_storyItemDeleted.f20032id = th.r5.e(kjVar);
+                                th.r5.b(i11, j11, kjVar, tL_storyItemDeleted);
+                            }
+                        }
+                        if (this.d) {
+                            r5Var.f49426b.f16331a.c(new th.o0(16, r5Var, arrayList));
+                        }
+                    }
+                } else if (tL_error != null) {
+                    m00.c(this.e, "fillMessagesWithStories: getStoriesByID error " + tL_error.code + " " + tL_error.text);
+                }
+                int i14 = iArr[0] - 1;
+                iArr[0] = i14;
+                if (i14 == 0) {
+                    this.f17127f.run();
+                    return;
+                }
+                return;
         }
-        ui uiVar = this.f16956a;
-        long j12 = j11;
-        int i14 = i13;
-        long j13 = this.h;
-        if (z10 || (this.f16959f == 1 && !C)) {
-            uiVar.d0(i14, this.f16960n, j12, j13, false);
-        }
-        if (!z10) {
-            if (!z11) {
-                i10 = i12;
-                uiVar.H1(j12, j13, i14, i10);
-                j10 = j13;
-                j12 = j12;
-                i14 = i14;
-            } else {
-                j10 = j13;
-                i10 = i12;
-            }
-            zs notificationCenter = uiVar.getNotificationCenter();
-            Long valueOf = Long.valueOf(j12);
-            Long valueOf2 = Long.valueOf(j10);
-            if (z11 && i10 == -1) {
-                i11 = 0;
-            } else {
-                i11 = i10;
-            }
-            notificationCenter.k(zs.W, valueOf, valueOf2, Integer.valueOf(i11), Boolean.valueOf(z11), Integer.valueOf(i14));
-        }
+    }
+
+    public mi(th.r5 r5Var, l00 l00Var, ArrayList arrayList, long j10, boolean z10, m00 m00Var, int[] iArr, Runnable runnable) {
+        this.f17128g = r5Var;
+        this.f17125b = l00Var;
+        this.h = arrayList;
+        this.f17126c = j10;
+        this.d = z10;
+        this.e = m00Var;
+        this.f17129i = iArr;
+        this.f17127f = runnable;
     }
 }

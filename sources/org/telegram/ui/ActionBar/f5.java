@@ -17,34 +17,34 @@ import android.view.MotionEvent;
 import android.view.View;
 import java.util.ArrayList;
 import java.util.Arrays;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.d20;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.e20;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.wp;
 import org.telegram.ui.Components.dc;
 import org.telegram.ui.Components.gr;
-import org.telegram.ui.Components.qz0;
+import org.telegram.ui.Components.rz0;
 import org.telegram.ui.Components.u80;
 import org.telegram.ui.nc;
 import vh.k9;
 import vh.l9;
 public final class f5 extends View implements fe.e {
-    public final int f20323a = 1;
-    public Object f20324b;
-    public Object f20325c;
+    public final int f20324a = 1;
+    public Object f20325b;
+    public Object f20326c;
     public final Object d;
     public Object e;
-    public Object f20326f;
+    public Object f20327f;
     public final Object h;
 
     public f5(Context context, p6 p6Var) {
         super(context);
         this.h = p6Var;
-        this.f20324b = new LinearGradient(0.0f, 0.0f, 255.0f, 0.0f, new int[]{-1135603, -404714}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        this.f20325c = new Matrix();
+        this.f20325b = new LinearGradient(0.0f, 0.0f, 255.0f, 0.0f, new int[]{-1135603, -404714}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        this.f20326c = new Matrix();
         this.d = new Paint(1);
         this.e = new Paint(1);
-        this.f20326f = new qz0(cd.L0(2131745054, null), 14.16f, org.telegram.messenger.i0.o());
+        this.f20327f = new rz0(dd.L0(2131745054, null), 14.16f, org.telegram.messenger.i0.o());
     }
 
     public static void a(Canvas canvas, Drawable drawable, float f7, float f10, float f11, float f12) {
@@ -68,14 +68,14 @@ public final class f5 extends View implements fe.e {
     @Override
     public void E(float f7, int i10) {
         if (i10 == 1 && f7 == 1.0f) {
-            this.f20325c = null;
+            this.f20326c = null;
         }
     }
 
     public void b(boolean z10, boolean z11) {
         float f7;
         fe.b bVar = (fe.b) this.e;
-        Drawable drawable = (Drawable) this.f20324b;
+        Drawable drawable = (Drawable) this.f20325b;
         if (drawable == null) {
             if (z10) {
                 bVar.a(true, false);
@@ -94,15 +94,15 @@ public final class f5 extends View implements fe.e {
     }
 
     public void c(Drawable drawable) {
-        fe.f fVar = (fe.f) this.f20326f;
+        fe.f fVar = (fe.f) this.f20327f;
         fVar.b();
         fVar.c(1.0f);
-        this.f20325c = null;
-        Drawable drawable2 = (Drawable) this.f20324b;
+        this.f20326c = null;
+        Drawable drawable2 = (Drawable) this.f20325b;
         if (drawable2 != null) {
             drawable2.setCallback(null);
         }
-        this.f20324b = drawable;
+        this.f20325b = drawable;
         if (drawable != null) {
             drawable.setCallback(this);
             if (!((i5) this.h).G) {
@@ -115,43 +115,43 @@ public final class f5 extends View implements fe.e {
 
     public void d() {
         i5 i5Var = (i5) this.h;
-        setBackground(t6.h0(i5Var.f20416h0, 1, -1));
-        Drawable drawable = (Drawable) this.f20324b;
+        setBackground(t6.h0(i5Var.f20417h0, 1, -1));
+        Drawable drawable = (Drawable) this.f20325b;
         if (drawable instanceof c2) {
-            ((c2) drawable).a(i5Var.f20414f0);
-            ((c2) ((Drawable) this.f20324b)).b(i5Var.f20415g0);
+            ((c2) drawable).a(i5Var.f20415f0);
+            ((c2) ((Drawable) this.f20325b)).b(i5Var.f20416g0);
         } else if (drawable instanceof a5) {
-            ((a5) drawable).f20151j = i5Var.f20414f0;
+            ((a5) drawable).f20152j = i5Var.f20415f0;
         } else if (drawable != null) {
-            drawable.setColorFilter(new PorterDuffColorFilter(i5Var.f20414f0, PorterDuff.Mode.SRC_IN));
+            drawable.setColorFilter(new PorterDuffColorFilter(i5Var.f20415f0, PorterDuff.Mode.SRC_IN));
         }
-        ((Drawable) this.d).setColorFilter(new PorterDuffColorFilter(i5Var.f20415g0, PorterDuff.Mode.SRC_IN));
+        ((Drawable) this.d).setColorFilter(new PorterDuffColorFilter(i5Var.f20416g0, PorterDuff.Mode.SRC_IN));
         invalidate();
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
         float[] fArr;
-        switch (this.f20323a) {
+        switch (this.f20324a) {
             case 1:
-                Matrix matrix = (Matrix) this.f20325c;
+                Matrix matrix = (Matrix) this.f20326c;
                 matrix.reset();
                 matrix.postTranslate(org.telegram.messenger.i0.L(14.0f), 0.0f);
                 matrix.postScale((getWidth() - org.telegram.messenger.i0.L(28.0f)) / 255.0f, 1.0f);
-                LinearGradient linearGradient = (LinearGradient) this.f20324b;
+                LinearGradient linearGradient = (LinearGradient) this.f20325b;
                 linearGradient.setLocalMatrix(matrix);
                 Paint paint = (Paint) this.d;
                 paint.setShader(linearGradient);
-                qz0 qz0Var = (qz0) this.f20326f;
-                float L = qz0Var.f29774c + org.telegram.messenger.i0.L(30.0f);
+                rz0 rz0Var = (rz0) this.f20327f;
+                float L = rz0Var.f30126c + org.telegram.messenger.i0.L(30.0f);
                 Paint paint2 = (Paint) this.e;
-                paint2.setColor(t6.w0(t6.f20930d7, (p6) this.h));
+                paint2.setColor(t6.w0(t6.f20931d7, (p6) this.h));
                 canvas.drawRect(org.telegram.messenger.i0.L(24.0f), (getHeight() / 2.0f) - 1.0f, ((getWidth() - L) / 2.0f) - org.telegram.messenger.i0.L(8.0f), getHeight() / 2.0f, paint2);
                 canvas.drawRect(org.telegram.messenger.i0.L(8.0f) + ((getWidth() + L) / 2.0f), (getHeight() / 2.0f) - 1.0f, getWidth() - org.telegram.messenger.i0.L(24.0f), getHeight() / 2.0f, paint2);
                 RectF rectF = org.telegram.messenger.i0.P;
                 rectF.set((getWidth() - L) / 2.0f, 0.0f, (getWidth() + L) / 2.0f, getHeight());
                 canvas.drawRoundRect(rectF, getHeight() / 2.0f, getHeight() / 2.0f, paint);
-                ((qz0) this.f20326f).c((getWidth() - qz0Var.f29774c) / 2.0f, getHeight() / 2.0f, 1.0f, -1, canvas);
+                ((rz0) this.f20327f).c((getWidth() - rz0Var.f30126c) / 2.0f, getHeight() / 2.0f, 1.0f, -1, canvas);
                 return;
             case 2:
                 ArrayList arrayList = (ArrayList) this.d;
@@ -180,7 +180,7 @@ public final class f5 extends View implements fe.e {
                                 fArr2[i13] = f7 + org.telegram.messenger.i0.L(10.0f);
                             }
                             float[] fArr3 = (float[]) this.e;
-                            fArr3[i13] = fArr3[i13] + q1Var.h.e(false, q1Var.f51782b);
+                            fArr3[i13] = fArr3[i13] + q1Var.h.e(false, q1Var.f51797b);
                         }
                         int size2 = arrayList.size();
                         while (i10 < size2) {
@@ -200,7 +200,7 @@ public final class f5 extends View implements fe.e {
 
     @Override
     public void onAttachedToWindow() {
-        switch (this.f20323a) {
+        switch (this.f20324a) {
             case 2:
                 super.onAttachedToWindow();
                 ArrayList arrayList = (ArrayList) this.d;
@@ -220,7 +220,7 @@ public final class f5 extends View implements fe.e {
 
     @Override
     public void onDetachedFromWindow() {
-        switch (this.f20323a) {
+        switch (this.f20324a) {
             case 2:
                 super.onDetachedFromWindow();
                 ArrayList arrayList = (ArrayList) this.d;
@@ -242,19 +242,19 @@ public final class f5 extends View implements fe.e {
     public void onDraw(Canvas canvas) {
         Canvas canvas2;
         float f7;
-        switch (this.f20323a) {
+        switch (this.f20324a) {
             case 0:
                 float width = getWidth() / 2.0f;
                 float height = getHeight() / 2.0f;
                 float f10 = ((fe.b) this.e).e;
-                float f11 = ((fe.f) this.f20326f).f7031f;
-                Drawable drawable = (Drawable) this.f20325c;
+                float f11 = ((fe.f) this.f20327f).f7032f;
+                Drawable drawable = (Drawable) this.f20326c;
                 if (drawable != null && f11 < 0.5f) {
                     float D = c3.i0.D(f11, 2.0f, 1.0f, 1.0f - f10);
                     canvas2 = canvas;
                     a(canvas2, drawable, width, height, D, 0.0f);
                 } else {
-                    Drawable drawable2 = (Drawable) this.f20324b;
+                    Drawable drawable2 = (Drawable) this.f20325b;
                     if (drawable2 != null && f10 < 1.0f) {
                         float f12 = 1.0f - f10;
                         float f13 = (f11 - 0.5f) * 2.0f;
@@ -282,7 +282,7 @@ public final class f5 extends View implements fe.e {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f20323a) {
+        switch (this.f20324a) {
             case 2:
                 int size = View.MeasureSpec.getSize(i10);
                 int paddingLeft = (size - getPaddingLeft()) - getPaddingRight();
@@ -297,11 +297,11 @@ public final class f5 extends View implements fe.e {
                     i14++;
                     vh.q1 q1Var = (vh.q1) obj;
                     q1Var.d = f7;
-                    float L = q1Var.f51782b + org.telegram.messenger.i0.L(10.0f) + f7;
+                    float L = q1Var.f51797b + org.telegram.messenger.i0.L(10.0f) + f7;
                     if (L > paddingLeft) {
                         i13++;
                         q1Var.d = 0.0f;
-                        f7 = q1Var.f51782b + org.telegram.messenger.i0.L(10.0f) + 0.0f;
+                        f7 = q1Var.f51797b + org.telegram.messenger.i0.L(10.0f) + 0.0f;
                     } else {
                         f7 = L;
                     }
@@ -325,7 +325,7 @@ public final class f5 extends View implements fe.e {
                         fArr2[i15] = f10 + org.telegram.messenger.i0.L(10.0f);
                     }
                     float[] fArr3 = (float[]) this.e;
-                    fArr3[i15] = fArr3[i15] + q1Var2.f51782b;
+                    fArr3[i15] = fArr3[i15] + q1Var2.f51797b;
                 }
                 setMeasuredDimension(size, org.telegram.messenger.m5.D(12.0f, i13 - 1, org.telegram.messenger.m5.D(36.0f, i13, org.telegram.messenger.i0.L(24.0f))));
                 return;
@@ -338,9 +338,9 @@ public final class f5 extends View implements fe.e {
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         vh.q1 q1Var;
-        vh.v0 v0Var;
+        vh.w0 w0Var;
         boolean z10;
-        switch (this.f20323a) {
+        switch (this.f20324a) {
             case 2:
                 ArrayList arrayList = (ArrayList) this.d;
                 int size = arrayList.size();
@@ -350,7 +350,7 @@ public final class f5 extends View implements fe.e {
                         Object obj = arrayList.get(i10);
                         i10++;
                         q1Var = (vh.q1) obj;
-                        if (q1Var.f51784f.contains(motionEvent.getX(), motionEvent.getY())) {
+                        if (q1Var.f51799f.contains(motionEvent.getX(), motionEvent.getY())) {
                         }
                     } else {
                         q1Var = null;
@@ -363,11 +363,11 @@ public final class f5 extends View implements fe.e {
                     i11++;
                     vh.q1 q1Var2 = (vh.q1) obj2;
                     if (q1Var2 != q1Var) {
-                        q1Var2.f51785g.c(false);
+                        q1Var2.f51800g.c(false);
                     }
                 }
                 if (q1Var != null) {
-                    dc dcVar = q1Var.f51785g;
+                    dc dcVar = q1Var.f51800g;
                     if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
                         z10 = true;
                     } else {
@@ -375,8 +375,8 @@ public final class f5 extends View implements fe.e {
                     }
                     dcVar.c(z10);
                 }
-                if (motionEvent.getAction() == 1 && q1Var != null && (v0Var = (vh.v0) this.f20326f) != null) {
-                    v0Var.a(Integer.valueOf(q1Var.f51781a));
+                if (motionEvent.getAction() == 1 && q1Var != null && (w0Var = (vh.w0) this.f20327f) != null) {
+                    w0Var.a(Integer.valueOf(q1Var.f51796a));
                 }
                 if (q1Var == null) {
                     return false;
@@ -389,7 +389,7 @@ public final class f5 extends View implements fe.e {
 
     @Override
     public void setAlpha(float f7) {
-        switch (this.f20323a) {
+        switch (this.f20324a) {
             case 0:
                 super.setAlpha(f7);
                 ((i5) this.h).invalidate();
@@ -402,7 +402,7 @@ public final class f5 extends View implements fe.e {
 
     @Override
     public void setTranslationX(float f7) {
-        switch (this.f20323a) {
+        switch (this.f20324a) {
             case 0:
                 super.setTranslationX(f7);
                 ((i5) this.h).invalidate();
@@ -420,9 +420,9 @@ public final class f5 extends View implements fe.e {
 
     @Override
     public boolean verifyDrawable(Drawable drawable) {
-        switch (this.f20323a) {
+        switch (this.f20324a) {
             case 0:
-                if (drawable != ((Drawable) this.f20324b) && drawable != ((Drawable) this.f20325c) && !super.verifyDrawable(drawable)) {
+                if (drawable != ((Drawable) this.f20325b) && drawable != ((Drawable) this.f20326c) && !super.verifyDrawable(drawable)) {
                     return false;
                 }
                 return true;
@@ -436,7 +436,7 @@ public final class f5 extends View implements fe.e {
         this.h = i5Var;
         gr grVar = gr.h;
         this.e = new fe.b(0, this, grVar, 380L, false);
-        this.f20326f = new fe.f(1, this, grVar, 380L, 1.0f);
+        this.f20327f = new fe.f(1, this, grVar, 380L, 1.0f);
         this.d = context.getDrawable(2131231242).mutate();
         d();
     }
@@ -445,9 +445,9 @@ public final class f5 extends View implements fe.e {
         super(context);
         this.h = u1Var;
         Paint paint = new Paint(1);
-        this.f20324b = paint;
+        this.f20325b = paint;
         TextPaint textPaint = new TextPaint(1);
-        this.f20325c = textPaint;
+        this.f20326c = textPaint;
         paint.setColor(436207615);
         textPaint.setTypeface(org.telegram.messenger.i0.o1("fonts/rcondensedbold.ttf"));
         textPaint.setTextSize(org.telegram.messenger.i0.N(21.3f));
@@ -456,38 +456,38 @@ public final class f5 extends View implements fe.e {
         this.d = arrayList;
         setPadding(0, 0, 0, 0);
         if (u1Var.J0(4)) {
-            vh.r1 r1Var = new vh.r1(this, 4, 2131232199, cd.L0(2131744469, null));
-            int i10 = vh.u1.f51993y1;
-            if (!d20.i(u1Var.f21583a).q()) {
+            vh.r1 r1Var = new vh.r1(this, 4, 2131232199, dd.L0(2131744469, null));
+            int i10 = vh.u1.f52000y1;
+            if (!e20.i(u1Var.f21584a).q()) {
                 Drawable mutate = getContext().getResources().getDrawable(2131232242).mutate();
-                r1Var.f51833j = mutate;
+                r1Var.f51818j = mutate;
                 mutate.setColorFilter(new PorterDuffColorFilter(t6.r1(0.6f, -1), PorterDuff.Mode.SRC_IN));
                 Paint paint2 = new Paint(1);
-                r1Var.f51837n = paint2;
+                r1Var.f51822n = paint2;
                 paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
             }
             arrayList.add(r1Var);
         }
         if (u1Var.J0(0)) {
-            arrayList.add(new vh.r1(this, 0, 2131231647, cd.L0(2131744468, null)));
+            arrayList.add(new vh.r1(this, 0, 2131231647, dd.L0(2131744468, null)));
         }
         if (u1Var.J0(5)) {
-            k9 k9Var = l9.f51460b;
+            k9 k9Var = l9.f51475b;
             vh.r1[] r1VarArr = {null};
             StringBuilder sb2 = new StringBuilder();
-            sb2.append(k9Var == null ? "🌤" : k9Var.f51440c);
+            sb2.append(k9Var == null ? "🌤" : k9Var.f51455c);
             sb2.append(" ");
             sb2.append(k9Var == null ? l9.a() ? "24°C" : "72°F" : k9Var.a());
             CharSequence m10 = org.telegram.messenger.k6.m(sb2.toString(), textPaint.getFontMetricsInt(), false, null, 0);
             SpannableStringBuilder spannableStringBuilder = m10;
-            if (vp.r1(u1Var.f21583a).X5) {
+            if (wp.r1(u1Var.f21584a).X5) {
                 spannableStringBuilder = m10;
                 spannableStringBuilder = m10;
                 if (w7.c6.d("android.permission.ACCESS_COARSE_LOCATION") && k9Var == null) {
                     SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("___");
                     spannableStringBuilder2.setSpan(new u80(org.telegram.messenger.i0.L(68.0f), this), 0, spannableStringBuilder2.length(), 33);
                     r1VarArr[0] = new vh.r1(this, spannableStringBuilder2);
-                    w7.c6.c(2131624117, 2131747318, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new String[]{"android.permission.ACCESS_COARSE_LOCATION"}, new nc(10, new nc(9, new rh.e3(3, this, r1VarArr), false), false));
+                    w7.c6.c(2131624117, 2131747318, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new String[]{"android.permission.ACCESS_COARSE_LOCATION"}, new nc(10, new nc(9, new rh.q2(4, this, r1VarArr), false), false));
                     spannableStringBuilder = spannableStringBuilder2;
                 }
             }
@@ -495,10 +495,10 @@ public final class f5 extends View implements fe.e {
             arrayList.add(r1Var2 == null ? new vh.r1(this, spannableStringBuilder) : r1Var2);
         }
         if (u1Var.J0(1)) {
-            arrayList.add(new vh.r1(this, 1, 2131231188, cd.L0(2131744470, null)));
+            arrayList.add(new vh.r1(this, 1, 2131231188, dd.L0(2131744470, null)));
         }
         if (u1Var.J0(2)) {
-            arrayList.add(new vh.r1(this, 2, 2131231146, cd.L0(2131744467, null)));
+            arrayList.add(new vh.r1(this, 2, 2131231146, dd.L0(2131744467, null)));
         }
         if (u1Var.J0(3)) {
             arrayList.add(new vh.s1(this));

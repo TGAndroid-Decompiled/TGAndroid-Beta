@@ -4,20 +4,20 @@ import android.os.Looper;
 import com.google.android.gms.internal.cast.z;
 import java.util.Locale;
 public final class o {
-    public static final Object f7391i = new Object();
-    public final b f7392a;
-    public final long f7393b;
-    public final String f7394c;
-    public n f7396g;
+    public static final Object f7392i = new Object();
+    public final b f7393a;
+    public final long f7394b;
+    public final String f7395c;
+    public n f7397g;
     public androidx.activity.i h;
     public long e = -1;
-    public long f7395f = 0;
+    public long f7396f = 0;
     public final z d = new z(Looper.getMainLooper(), 0);
 
     public o(long j10, String str) {
-        this.f7393b = j10;
-        this.f7394c = str;
-        this.f7392a = new b("RequestTracker", str);
+        this.f7394b = j10;
+        this.f7395c = str;
+        this.f7393a = new b("RequestTracker", str);
     }
 
     public final void a(long j10, n nVar) {
@@ -25,17 +25,17 @@ public final class o {
         long j11;
         long j12;
         long currentTimeMillis = System.currentTimeMillis();
-        Object obj = f7391i;
+        Object obj = f7392i;
         synchronized (obj) {
-            nVar2 = this.f7396g;
+            nVar2 = this.f7397g;
             j11 = this.e;
-            j12 = this.f7395f;
+            j12 = this.f7396f;
             this.e = j10;
-            this.f7396g = nVar;
-            this.f7395f = currentTimeMillis;
+            this.f7397g = nVar;
+            this.f7396f = currentTimeMillis;
         }
         if (nVar2 != null) {
-            nVar2.s(this.f7394c, j11, j12, currentTimeMillis);
+            nVar2.s(this.f7395c, j11, j12, currentTimeMillis);
         }
         synchronized (obj) {
             try {
@@ -45,7 +45,7 @@ public final class o {
                 }
                 androidx.activity.i iVar2 = new androidx.activity.i(this, 19);
                 this.h = iVar2;
-                this.d.postDelayed(iVar2, this.f7393b);
+                this.d.postDelayed(iVar2, this.f7394b);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -53,7 +53,7 @@ public final class o {
     }
 
     public final void b(long j10, int i10, l lVar) {
-        synchronized (f7391i) {
+        synchronized (f7392i) {
             try {
                 if (c(j10)) {
                     Locale locale = Locale.ROOT;
@@ -67,7 +67,7 @@ public final class o {
 
     public final boolean c(long j10) {
         boolean z10;
-        synchronized (f7391i) {
+        synchronized (f7392i) {
             long j11 = this.e;
             z10 = false;
             if (j11 != -1 && j11 == j10) {
@@ -79,7 +79,7 @@ public final class o {
 
     public final boolean d() {
         boolean z10;
-        synchronized (f7391i) {
+        synchronized (f7392i) {
             if (this.e != -1) {
                 z10 = true;
             } else {
@@ -90,18 +90,18 @@ public final class o {
     }
 
     public final void e(String str, int i10, Object obj) {
-        this.f7392a.b(str, new Object[0]);
-        Object obj2 = f7391i;
+        this.f7393a.b(str, new Object[0]);
+        Object obj2 = f7392i;
         synchronized (obj2) {
             try {
-                if (this.f7396g != null) {
+                if (this.f7397g != null) {
                     long currentTimeMillis = System.currentTimeMillis();
-                    n nVar = this.f7396g;
+                    n nVar = this.f7397g;
                     n6.l.g(nVar);
-                    nVar.y(this.f7394c, this.e, i10, obj, this.f7395f, currentTimeMillis);
+                    nVar.y(this.f7395c, this.e, i10, obj, this.f7396f, currentTimeMillis);
                 }
                 this.e = -1L;
-                this.f7396g = null;
+                this.f7397g = null;
                 synchronized (obj2) {
                     androidx.activity.i iVar = this.h;
                     if (iVar != null) {
@@ -115,7 +115,7 @@ public final class o {
     }
 
     public final boolean f(int i10) {
-        synchronized (f7391i) {
+        synchronized (f7392i) {
             try {
                 if (d()) {
                     Locale locale = Locale.ROOT;

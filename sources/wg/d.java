@@ -5,25 +5,25 @@ import org.telegram.messenger.i0;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.t6;
 public class d implements a {
-    public final p6 f52845a;
-    public c f52846b;
-    public c f52847c;
+    public final p6 f52863a;
+    public c f52864b;
+    public c f52865c;
     public c d;
     public c e;
-    public float f52848f;
+    public float f52866f;
     public float h;
-    public float f52849n;
-    public float f52850r;
+    public float f52867n;
+    public float f52868r;
 
     public d(p6 p6Var) {
-        this.f52845a = p6Var;
+        this.f52863a = p6Var;
         float N = i0.N(1.0f);
         float N2 = i0.N(0.33333334f);
-        this.f52849n = N;
-        this.f52850r = N2;
+        this.f52867n = N;
+        this.f52868r = N2;
         float N3 = i0.N(1.0f);
         float N4 = i0.N(0.6666667f);
-        this.f52848f = N3;
+        this.f52866f = N3;
         this.h = N4;
     }
 
@@ -47,7 +47,7 @@ public class d implements a {
         if (cVar == null) {
             return 0;
         }
-        p6 p6Var = this.f52845a;
+        p6 p6Var = this.f52863a;
         if ((p6Var instanceof th.b) || (p6Var == null ? t6.I.q() : p6Var.a())) {
             z10 = true;
         }
@@ -55,7 +55,7 @@ public class d implements a {
     }
 
     public float b() {
-        return this.f52850r;
+        return this.f52868r;
     }
 
     @Override
@@ -64,11 +64,11 @@ public class d implements a {
     }
 
     public float c() {
-        return this.f52849n;
+        return this.f52867n;
     }
 
     public final void d(int i10, int i11) {
-        this.f52846b = new v(i11, i10, 5);
+        this.f52864b = new v(i11, i10, 5);
     }
 
     public final void e(int i10, int i11) {
@@ -76,7 +76,7 @@ public class d implements a {
     }
 
     public final void f(int i10, int i11) {
-        this.f52847c = new v(i11, i10, 5);
+        this.f52865c = new v(i11, i10, 5);
     }
 
     @Override
@@ -86,7 +86,7 @@ public class d implements a {
 
     @Override
     public int j0() {
-        return a(this.f52846b);
+        return a(this.f52864b);
     }
 
     @Override
@@ -96,7 +96,7 @@ public class d implements a {
 
     @Override
     public int u() {
-        return a(this.f52847c);
+        return a(this.f52865c);
     }
 
     @Override

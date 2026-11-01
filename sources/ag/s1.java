@@ -12,7 +12,7 @@ public final class s1 extends kp {
     public final int getIntrinsicHeight() {
         switch (this.f704i) {
             case 0:
-                return (int) ((this.f27862b * 2.0f) + this.f27861a);
+                return (int) ((this.f27916b * 2.0f) + this.f27915a);
             default:
                 return org.telegram.messenger.i0.L(26.0f);
         }
@@ -22,7 +22,7 @@ public final class s1 extends kp {
     public final int getIntrinsicWidth() {
         switch (this.f704i) {
             case 0:
-                return (int) ((this.f27862b * 2.0f) + this.f27861a);
+                return (int) ((this.f27916b * 2.0f) + this.f27915a);
             default:
                 return org.telegram.messenger.i0.L(26.0f);
         }

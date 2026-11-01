@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 import org.telegram.messenger.i0;
 import org.telegram.messenger.u1;
 import org.telegram.ui.ActionBar.a7;
@@ -101,7 +101,7 @@ public class f extends FrameLayout {
     }
 
     public void b() {
-        int i10 = t6.f21037j5;
+        int i10 = t6.f21038j5;
         TextView textView = this.d;
         p6 p6Var = this.J;
         a7.V(textView, i10, p6Var);
@@ -111,9 +111,9 @@ public class f extends FrameLayout {
         this.h.setProgressColor(t6.w0(i11, p6Var));
         this.H = getContext().getResources().getDrawable(2131232751).mutate();
         int L = i0.L(4.0f);
-        this.I = t6.k0(L, L, L, L, t6.w0(t6.f21001h5, p6Var), t6.w0(t6.f21020i6, p6Var), -16777216);
+        this.I = t6.k0(L, L, L, L, t6.w0(t6.f21002h5, p6Var), t6.w0(t6.f21021i6, p6Var), -16777216);
         eq eqVar = new eq(this.H, this.I, i0.L(3.0f), i0.L(3.0f));
-        eqVar.f25847x = true;
+        eqVar.f25909x = true;
         setBackground(eqVar);
     }
 
@@ -186,8 +186,8 @@ public class f extends FrameLayout {
             } else {
                 LinearLayout linearLayout = (LinearLayout) fVar.e;
                 TextView textView2 = (TextView) fVar.d;
-                TextView textView3 = (TextView) fVar.f10442c;
-                n5 n5Var = (n5) fVar.f10441b;
+                TextView textView3 = (TextView) fVar.f10443c;
+                n5 n5Var = (n5) fVar.f10442b;
                 if (linearLayout.getMeasuredHeight() == 0) {
                     linearLayout.requestLayout();
                 }
@@ -219,7 +219,7 @@ public class f extends FrameLayout {
                     }
                 } else if (i11 == 2) {
                     if (i22 == 0) {
-                        charSequence = h8.Z0(false, i0.a.k(j12, ' ', new StringBuilder("XTR ")), 0.7f, null);
+                        charSequence = h8.a1(false, i0.a.k(j12, ' ', new StringBuilder("XTR ")), 0.7f, null);
                     } else {
                         charSequence = "≈" + u1.i().f(((float) j12) / f7, "USD");
                     }
@@ -229,11 +229,11 @@ public class f extends FrameLayout {
                         charSequence = String.format("%d", Long.valueOf(j12));
                     } else {
                         int i24 = 0;
-                        while (f10 >= 1000.0f && i24 < i0.f16010g0.length - 1) {
+                        while (f10 >= 1000.0f && i24 < i0.f16156g0.length - 1) {
                             f10 /= 1000.0f;
                             i24++;
                         }
-                        charSequence = String.format("%.2f", Float.valueOf(f10)) + i0.f16010g0[i24];
+                        charSequence = String.format("%.2f", Float.valueOf(f10)) + i0.f16156g0[i24];
                     }
                 }
                 n5Var.setText(charSequence);
@@ -242,12 +242,12 @@ public class f extends FrameLayout {
                     if (i22 == 0) {
                         i25 = 2131752251;
                     }
-                    textView3.setText(cd.a0(null, null, i25, aVar.d));
+                    textView3.setText(dd.a0(null, null, i25, aVar.d));
                 } else if (i11 == 2) {
                     if (i22 == 0) {
                         i25 = 2131752249;
                     }
-                    textView3.setText(h8.Z0(false, cd.a0(null, null, i25, aVar.d), 0.7f, null));
+                    textView3.setText(h8.a1(false, dd.a0(null, null, i25, aVar.d), 0.7f, null));
                 } else {
                     textView3.setText(aVar.d);
                 }
@@ -256,7 +256,7 @@ public class f extends FrameLayout {
                 if (i26 >= 0 && t6.f1(i26)) {
                     a7.V(n5Var, aVar.f4162g, p6Var);
                 } else {
-                    z6 z6Var = a7.f20157a;
+                    z6 z6Var = a7.f20158a;
                     n5Var.setTag(2131296709, null);
                     if (t6.D0().q()) {
                         i14 = aVar.f4163i;
@@ -265,7 +265,7 @@ public class f extends FrameLayout {
                     }
                     n5Var.setTextColor(i14);
                 }
-                int i27 = t6.f21037j5;
+                int i27 = t6.f21038j5;
                 a7.V(textView3, i27, p6Var);
                 if (this.E && textView2 != null) {
                     textView2.setVisibility(0);

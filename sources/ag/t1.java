@@ -10,11 +10,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.h20;
+import org.telegram.messenger.i20;
 import org.telegram.messenger.m5;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
@@ -25,11 +25,11 @@ import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Cells.a5;
 import org.telegram.ui.Cells.s8;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.a51;
+import org.telegram.ui.Components.b51;
 import org.telegram.ui.Components.cc;
 import org.telegram.ui.Components.gr;
-import org.telegram.ui.Components.tk0;
-import org.telegram.ui.Components.u51;
+import org.telegram.ui.Components.uk0;
+import org.telegram.ui.Components.v51;
 import org.telegram.ui.LaunchActivity;
 import w7.b6;
 public final class t1 extends org.telegram.ui.ActionBar.k2 {
@@ -73,7 +73,7 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
     public boolean T;
     public l5 f727a;
     public s1 f728b;
-    public u51 f729c;
+    public v51 f729c;
     public zf.m1 d;
     public FrameLayout e;
     public EditTextBoldCursor f730f;
@@ -98,7 +98,7 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
         this.R = false;
     }
 
-    public static void Y(t1 t1Var, TLRPC.TL_error tL_error, TLObject tLObject, int[] iArr, ArrayList arrayList, boolean z10, TLRPC.User user) {
+    public static void Z(t1 t1Var, TLRPC.TL_error tL_error, TLObject tLObject, int[] iArr, ArrayList arrayList, boolean z10, TLRPC.User user) {
         org.telegram.ui.ActionBar.k2 T;
         if (tL_error != null) {
             t1Var.f727a.b(false);
@@ -114,64 +114,64 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
             iArr[0] = i10;
             if (i10 == arrayList.size()) {
                 k.a(t1Var.currentAccount).b();
-                vp messagesController = t1Var.getMessagesController();
-                messagesController.f18885r1.clear();
-                messagesController.f18932w1.clear();
+                wp messagesController = t1Var.getMessagesController();
+                messagesController.f19228r1.clear();
+                messagesController.f19275w1.clear();
                 t1Var.finishFragment();
                 if (z10 && user != null) {
                     org.telegram.ui.ActionBar.k2 T2 = LaunchActivity.T();
                     if (T2 != null) {
-                        cc.a0(T2).Q(2131623989, 36, cd.a0(null, null, 2131752817, h20.p(user))).j();
+                        cc.a0(T2).Q(2131623989, 36, dd.a0(null, null, 2131752817, i20.p(user))).j();
                     }
                 } else if (user != null && (T = LaunchActivity.T()) != null) {
-                    cc.a0(T).Q(2131623989, 36, cd.a0(null, null, 2131752784, h20.p(user))).j();
+                    cc.a0(T).Q(2131623989, 36, dd.a0(null, null, 2131752784, i20.p(user))).j();
                 }
             }
         }
     }
 
-    public static void a0(t1 t1Var, a51 a51Var, final View view) {
-        if (a51Var.f24288g && !t1Var.f734w.h(a51Var)) {
-            int i10 = a51Var.d;
+    public static void b0(t1 t1Var, b51 b51Var, final View view) {
+        if (b51Var.f24639g && !t1Var.f734w.h(b51Var)) {
+            int i10 = b51Var.d;
             if (i10 == U) {
                 x0 x0Var = t1Var.f734w;
                 t1Var.I = true;
                 x0Var.h = true;
-                t1Var.f729c.f30819f3.O(true);
-                t1Var.c0(true);
+                t1Var.f729c.f31183f3.O(true);
+                t1Var.d0(true);
             } else if (i10 == V) {
                 x0 x0Var2 = t1Var.f734w;
                 t1Var.I = false;
                 x0Var2.h = false;
-                t1Var.f729c.f30819f3.O(true);
-                t1Var.c0(true);
+                t1Var.f729c.f31183f3.O(true);
+                t1Var.d0(true);
             } else if (i10 == W) {
                 t1Var.M = null;
-                t1Var.f729c.f30819f3.O(true);
-                t1Var.c0(true);
-            } else if (a51Var.f7680a == 13) {
-                TLRPC.User user = (TLRPC.User) t1Var.N.get(a51Var.f24303x);
+                t1Var.f729c.f31183f3.O(true);
+                t1Var.d0(true);
+            } else if (b51Var.f7681a == 13) {
+                TLRPC.User user = (TLRPC.User) t1Var.N.get(b51Var.f24654x);
                 if (user != null) {
                     if (!user.bot_business) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, t1Var.getParentActivity(), t1Var.resourceProvider);
-                        String L0 = cd.L0(2131752809, null);
-                        org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20134a;
+                        String L0 = dd.L0(2131752809, null);
+                        org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20135a;
                         x1Var.R = L0;
-                        x1Var.T = org.telegram.messenger.i0.W2(cd.L0(2131752810, null));
-                        alertDialog$Builder.k(cd.L0(2131747847, null), null);
+                        x1Var.T = org.telegram.messenger.i0.W2(dd.L0(2131752810, null));
+                        alertDialog$Builder.k(dd.L0(2131747847, null), null);
                         t1Var.showDialog(x1Var);
                         return;
                     }
                     t1Var.M = user;
                     org.telegram.messenger.i0.v1(t1Var.f730f);
-                    t1Var.f729c.f30819f3.O(true);
-                    t1Var.c0(true);
+                    t1Var.f729c.f31183f3.O(true);
+                    t1Var.d0(true);
                 }
             } else if (i10 == X) {
                 boolean z10 = !t1Var.P;
                 t1Var.P = z10;
                 ((s8) view).setChecked(z10);
-                t1Var.f729c.f30819f3.O(true);
+                t1Var.f729c.f31183f3.O(true);
             } else if (i10 == Y) {
                 int i11 = -t1Var.O;
                 t1Var.O = i11;
@@ -181,57 +181,57 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                 boolean z11 = !tL_businessBotRights.reply;
                 tL_businessBotRights.reply = z11;
                 ((org.telegram.ui.Cells.c2) view).c(z11, true);
-                t1Var.f729c.f30819f3.O(true);
-                t1Var.c0(true);
+                t1Var.f729c.f31183f3.O(true);
+                t1Var.d0(true);
             } else if (i10 == f713a0) {
                 TL_account.TL_businessBotRights tL_businessBotRights2 = t1Var.J;
                 boolean z12 = !tL_businessBotRights2.read_messages;
                 tL_businessBotRights2.read_messages = z12;
                 ((org.telegram.ui.Cells.c2) view).c(z12, true);
-                t1Var.f729c.f30819f3.O(true);
-                t1Var.c0(true);
+                t1Var.f729c.f31183f3.O(true);
+                t1Var.d0(true);
             } else if (i10 == f714b0) {
                 TL_account.TL_businessBotRights tL_businessBotRights3 = t1Var.J;
                 boolean z13 = !tL_businessBotRights3.delete_sent_messages;
                 tL_businessBotRights3.delete_sent_messages = z13;
                 ((org.telegram.ui.Cells.c2) view).c(z13, true);
-                t1Var.f729c.f30819f3.O(true);
-                t1Var.c0(true);
+                t1Var.f729c.f31183f3.O(true);
+                t1Var.d0(true);
             } else if (i10 == f715c0) {
                 TL_account.TL_businessBotRights tL_businessBotRights4 = t1Var.J;
                 boolean z14 = !tL_businessBotRights4.delete_received_messages;
                 tL_businessBotRights4.delete_received_messages = z14;
                 ((org.telegram.ui.Cells.c2) view).c(z14, true);
-                t1Var.f729c.f30819f3.O(true);
-                t1Var.c0(true);
+                t1Var.f729c.f31183f3.O(true);
+                t1Var.d0(true);
             } else if (i10 == f716d0) {
                 boolean z15 = !t1Var.Q;
                 t1Var.Q = z15;
                 ((s8) view).setChecked(z15);
-                t1Var.f729c.f30819f3.O(true);
+                t1Var.f729c.f31183f3.O(true);
             } else if (i10 == f717e0) {
                 TL_account.TL_businessBotRights tL_businessBotRights5 = t1Var.J;
                 boolean z16 = !tL_businessBotRights5.edit_name;
                 tL_businessBotRights5.edit_name = z16;
                 ((org.telegram.ui.Cells.c2) view).c(z16, true);
-                t1Var.f729c.f30819f3.O(true);
-                t1Var.c0(true);
+                t1Var.f729c.f31183f3.O(true);
+                t1Var.d0(true);
             } else if (i10 == f718f0) {
                 TL_account.TL_businessBotRights tL_businessBotRights6 = t1Var.J;
                 boolean z17 = !tL_businessBotRights6.edit_bio;
                 tL_businessBotRights6.edit_bio = z17;
                 ((org.telegram.ui.Cells.c2) view).c(z17, true);
-                t1Var.f729c.f30819f3.O(true);
-                t1Var.c0(true);
+                t1Var.f729c.f31183f3.O(true);
+                t1Var.d0(true);
             } else if (i10 == f719g0) {
                 TL_account.TL_businessBotRights tL_businessBotRights7 = t1Var.J;
                 boolean z18 = !tL_businessBotRights7.edit_profile_photo;
                 tL_businessBotRights7.edit_profile_photo = z18;
                 ((org.telegram.ui.Cells.c2) view).c(z18, true);
-                t1Var.f729c.f30819f3.O(true);
-                t1Var.c0(true);
+                t1Var.f729c.f31183f3.O(true);
+                t1Var.d0(true);
             } else if (i10 == f720h0) {
-                t1Var.b0(i10, !t1Var.J.edit_username, new Runnable(t1Var) {
+                t1Var.c0(i10, !t1Var.J.edit_username, new Runnable(t1Var) {
                     public final t1 f602b;
 
                     {
@@ -248,8 +248,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z19 = !tL_businessBotRights8.view_gifts;
                                 tL_businessBotRights8.view_gifts = z19;
                                 ((org.telegram.ui.Cells.c2) view).c(z19, true);
-                                t1Var2.f729c.f30819f3.O(true);
-                                t1Var2.c0(true);
+                                t1Var2.f729c.f31183f3.O(true);
+                                t1Var2.d0(true);
                                 return;
                             case 1:
                                 t1 t1Var3 = this.f602b;
@@ -258,8 +258,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z20 = !tL_businessBotRights9.sell_gifts;
                                 tL_businessBotRights9.sell_gifts = z20;
                                 ((org.telegram.ui.Cells.c2) view).c(z20, true);
-                                t1Var3.f729c.f30819f3.O(true);
-                                t1Var3.c0(true);
+                                t1Var3.f729c.f31183f3.O(true);
+                                t1Var3.d0(true);
                                 return;
                             case 2:
                                 t1 t1Var4 = this.f602b;
@@ -268,8 +268,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z21 = !tL_businessBotRights10.change_gift_settings;
                                 tL_businessBotRights10.change_gift_settings = z21;
                                 ((org.telegram.ui.Cells.c2) view).c(z21, true);
-                                t1Var4.f729c.f30819f3.O(true);
-                                t1Var4.c0(true);
+                                t1Var4.f729c.f31183f3.O(true);
+                                t1Var4.d0(true);
                                 return;
                             case 3:
                                 t1 t1Var5 = this.f602b;
@@ -278,8 +278,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z22 = !tL_businessBotRights11.transfer_and_upgrade_gifts;
                                 tL_businessBotRights11.transfer_and_upgrade_gifts = z22;
                                 ((org.telegram.ui.Cells.c2) view).c(z22, true);
-                                t1Var5.f729c.f30819f3.O(true);
-                                t1Var5.c0(true);
+                                t1Var5.f729c.f31183f3.O(true);
+                                t1Var5.d0(true);
                                 return;
                             case 4:
                                 t1 t1Var6 = this.f602b;
@@ -288,8 +288,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z23 = !tL_businessBotRights12.transfer_stars;
                                 tL_businessBotRights12.transfer_stars = z23;
                                 ((org.telegram.ui.Cells.c2) view).c(z23, true);
-                                t1Var6.f729c.f30819f3.O(true);
-                                t1Var6.c0(true);
+                                t1Var6.f729c.f31183f3.O(true);
+                                t1Var6.d0(true);
                                 return;
                             default:
                                 t1 t1Var7 = this.f602b;
@@ -298,8 +298,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z24 = !tL_businessBotRights13.edit_username;
                                 tL_businessBotRights13.edit_username = z24;
                                 ((org.telegram.ui.Cells.c2) view).c(z24, true);
-                                t1Var7.f729c.f30819f3.O(true);
-                                t1Var7.c0(true);
+                                t1Var7.f729c.f31183f3.O(true);
+                                t1Var7.d0(true);
                                 return;
                         }
                     }
@@ -308,9 +308,9 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                 boolean z19 = !t1Var.R;
                 t1Var.R = z19;
                 ((s8) view).setChecked(z19);
-                t1Var.f729c.f30819f3.O(true);
+                t1Var.f729c.f31183f3.O(true);
             } else if (i10 == f722j0) {
-                t1Var.b0(i10, !t1Var.J.view_gifts, new Runnable(t1Var) {
+                t1Var.c0(i10, !t1Var.J.view_gifts, new Runnable(t1Var) {
                     public final t1 f602b;
 
                     {
@@ -327,8 +327,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z192 = !tL_businessBotRights8.view_gifts;
                                 tL_businessBotRights8.view_gifts = z192;
                                 ((org.telegram.ui.Cells.c2) view).c(z192, true);
-                                t1Var2.f729c.f30819f3.O(true);
-                                t1Var2.c0(true);
+                                t1Var2.f729c.f31183f3.O(true);
+                                t1Var2.d0(true);
                                 return;
                             case 1:
                                 t1 t1Var3 = this.f602b;
@@ -337,8 +337,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z20 = !tL_businessBotRights9.sell_gifts;
                                 tL_businessBotRights9.sell_gifts = z20;
                                 ((org.telegram.ui.Cells.c2) view).c(z20, true);
-                                t1Var3.f729c.f30819f3.O(true);
-                                t1Var3.c0(true);
+                                t1Var3.f729c.f31183f3.O(true);
+                                t1Var3.d0(true);
                                 return;
                             case 2:
                                 t1 t1Var4 = this.f602b;
@@ -347,8 +347,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z21 = !tL_businessBotRights10.change_gift_settings;
                                 tL_businessBotRights10.change_gift_settings = z21;
                                 ((org.telegram.ui.Cells.c2) view).c(z21, true);
-                                t1Var4.f729c.f30819f3.O(true);
-                                t1Var4.c0(true);
+                                t1Var4.f729c.f31183f3.O(true);
+                                t1Var4.d0(true);
                                 return;
                             case 3:
                                 t1 t1Var5 = this.f602b;
@@ -357,8 +357,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z22 = !tL_businessBotRights11.transfer_and_upgrade_gifts;
                                 tL_businessBotRights11.transfer_and_upgrade_gifts = z22;
                                 ((org.telegram.ui.Cells.c2) view).c(z22, true);
-                                t1Var5.f729c.f30819f3.O(true);
-                                t1Var5.c0(true);
+                                t1Var5.f729c.f31183f3.O(true);
+                                t1Var5.d0(true);
                                 return;
                             case 4:
                                 t1 t1Var6 = this.f602b;
@@ -367,8 +367,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z23 = !tL_businessBotRights12.transfer_stars;
                                 tL_businessBotRights12.transfer_stars = z23;
                                 ((org.telegram.ui.Cells.c2) view).c(z23, true);
-                                t1Var6.f729c.f30819f3.O(true);
-                                t1Var6.c0(true);
+                                t1Var6.f729c.f31183f3.O(true);
+                                t1Var6.d0(true);
                                 return;
                             default:
                                 t1 t1Var7 = this.f602b;
@@ -377,14 +377,14 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z24 = !tL_businessBotRights13.edit_username;
                                 tL_businessBotRights13.edit_username = z24;
                                 ((org.telegram.ui.Cells.c2) view).c(z24, true);
-                                t1Var7.f729c.f30819f3.O(true);
-                                t1Var7.c0(true);
+                                t1Var7.f729c.f31183f3.O(true);
+                                t1Var7.d0(true);
                                 return;
                         }
                     }
                 });
             } else if (i10 == f723k0) {
-                t1Var.b0(i10, !t1Var.J.sell_gifts, new Runnable(t1Var) {
+                t1Var.c0(i10, !t1Var.J.sell_gifts, new Runnable(t1Var) {
                     public final t1 f602b;
 
                     {
@@ -401,8 +401,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z192 = !tL_businessBotRights8.view_gifts;
                                 tL_businessBotRights8.view_gifts = z192;
                                 ((org.telegram.ui.Cells.c2) view).c(z192, true);
-                                t1Var2.f729c.f30819f3.O(true);
-                                t1Var2.c0(true);
+                                t1Var2.f729c.f31183f3.O(true);
+                                t1Var2.d0(true);
                                 return;
                             case 1:
                                 t1 t1Var3 = this.f602b;
@@ -411,8 +411,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z20 = !tL_businessBotRights9.sell_gifts;
                                 tL_businessBotRights9.sell_gifts = z20;
                                 ((org.telegram.ui.Cells.c2) view).c(z20, true);
-                                t1Var3.f729c.f30819f3.O(true);
-                                t1Var3.c0(true);
+                                t1Var3.f729c.f31183f3.O(true);
+                                t1Var3.d0(true);
                                 return;
                             case 2:
                                 t1 t1Var4 = this.f602b;
@@ -421,8 +421,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z21 = !tL_businessBotRights10.change_gift_settings;
                                 tL_businessBotRights10.change_gift_settings = z21;
                                 ((org.telegram.ui.Cells.c2) view).c(z21, true);
-                                t1Var4.f729c.f30819f3.O(true);
-                                t1Var4.c0(true);
+                                t1Var4.f729c.f31183f3.O(true);
+                                t1Var4.d0(true);
                                 return;
                             case 3:
                                 t1 t1Var5 = this.f602b;
@@ -431,8 +431,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z22 = !tL_businessBotRights11.transfer_and_upgrade_gifts;
                                 tL_businessBotRights11.transfer_and_upgrade_gifts = z22;
                                 ((org.telegram.ui.Cells.c2) view).c(z22, true);
-                                t1Var5.f729c.f30819f3.O(true);
-                                t1Var5.c0(true);
+                                t1Var5.f729c.f31183f3.O(true);
+                                t1Var5.d0(true);
                                 return;
                             case 4:
                                 t1 t1Var6 = this.f602b;
@@ -441,8 +441,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z23 = !tL_businessBotRights12.transfer_stars;
                                 tL_businessBotRights12.transfer_stars = z23;
                                 ((org.telegram.ui.Cells.c2) view).c(z23, true);
-                                t1Var6.f729c.f30819f3.O(true);
-                                t1Var6.c0(true);
+                                t1Var6.f729c.f31183f3.O(true);
+                                t1Var6.d0(true);
                                 return;
                             default:
                                 t1 t1Var7 = this.f602b;
@@ -451,14 +451,14 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z24 = !tL_businessBotRights13.edit_username;
                                 tL_businessBotRights13.edit_username = z24;
                                 ((org.telegram.ui.Cells.c2) view).c(z24, true);
-                                t1Var7.f729c.f30819f3.O(true);
-                                t1Var7.c0(true);
+                                t1Var7.f729c.f31183f3.O(true);
+                                t1Var7.d0(true);
                                 return;
                         }
                     }
                 });
             } else if (i10 == f724l0) {
-                t1Var.b0(i10, !t1Var.J.change_gift_settings, new Runnable(t1Var) {
+                t1Var.c0(i10, !t1Var.J.change_gift_settings, new Runnable(t1Var) {
                     public final t1 f602b;
 
                     {
@@ -475,8 +475,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z192 = !tL_businessBotRights8.view_gifts;
                                 tL_businessBotRights8.view_gifts = z192;
                                 ((org.telegram.ui.Cells.c2) view).c(z192, true);
-                                t1Var2.f729c.f30819f3.O(true);
-                                t1Var2.c0(true);
+                                t1Var2.f729c.f31183f3.O(true);
+                                t1Var2.d0(true);
                                 return;
                             case 1:
                                 t1 t1Var3 = this.f602b;
@@ -485,8 +485,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z20 = !tL_businessBotRights9.sell_gifts;
                                 tL_businessBotRights9.sell_gifts = z20;
                                 ((org.telegram.ui.Cells.c2) view).c(z20, true);
-                                t1Var3.f729c.f30819f3.O(true);
-                                t1Var3.c0(true);
+                                t1Var3.f729c.f31183f3.O(true);
+                                t1Var3.d0(true);
                                 return;
                             case 2:
                                 t1 t1Var4 = this.f602b;
@@ -495,8 +495,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z21 = !tL_businessBotRights10.change_gift_settings;
                                 tL_businessBotRights10.change_gift_settings = z21;
                                 ((org.telegram.ui.Cells.c2) view).c(z21, true);
-                                t1Var4.f729c.f30819f3.O(true);
-                                t1Var4.c0(true);
+                                t1Var4.f729c.f31183f3.O(true);
+                                t1Var4.d0(true);
                                 return;
                             case 3:
                                 t1 t1Var5 = this.f602b;
@@ -505,8 +505,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z22 = !tL_businessBotRights11.transfer_and_upgrade_gifts;
                                 tL_businessBotRights11.transfer_and_upgrade_gifts = z22;
                                 ((org.telegram.ui.Cells.c2) view).c(z22, true);
-                                t1Var5.f729c.f30819f3.O(true);
-                                t1Var5.c0(true);
+                                t1Var5.f729c.f31183f3.O(true);
+                                t1Var5.d0(true);
                                 return;
                             case 4:
                                 t1 t1Var6 = this.f602b;
@@ -515,8 +515,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z23 = !tL_businessBotRights12.transfer_stars;
                                 tL_businessBotRights12.transfer_stars = z23;
                                 ((org.telegram.ui.Cells.c2) view).c(z23, true);
-                                t1Var6.f729c.f30819f3.O(true);
-                                t1Var6.c0(true);
+                                t1Var6.f729c.f31183f3.O(true);
+                                t1Var6.d0(true);
                                 return;
                             default:
                                 t1 t1Var7 = this.f602b;
@@ -525,14 +525,14 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z24 = !tL_businessBotRights13.edit_username;
                                 tL_businessBotRights13.edit_username = z24;
                                 ((org.telegram.ui.Cells.c2) view).c(z24, true);
-                                t1Var7.f729c.f30819f3.O(true);
-                                t1Var7.c0(true);
+                                t1Var7.f729c.f31183f3.O(true);
+                                t1Var7.d0(true);
                                 return;
                         }
                     }
                 });
             } else if (i10 == m0) {
-                t1Var.b0(i10, !t1Var.J.transfer_and_upgrade_gifts, new Runnable(t1Var) {
+                t1Var.c0(i10, !t1Var.J.transfer_and_upgrade_gifts, new Runnable(t1Var) {
                     public final t1 f602b;
 
                     {
@@ -549,8 +549,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z192 = !tL_businessBotRights8.view_gifts;
                                 tL_businessBotRights8.view_gifts = z192;
                                 ((org.telegram.ui.Cells.c2) view).c(z192, true);
-                                t1Var2.f729c.f30819f3.O(true);
-                                t1Var2.c0(true);
+                                t1Var2.f729c.f31183f3.O(true);
+                                t1Var2.d0(true);
                                 return;
                             case 1:
                                 t1 t1Var3 = this.f602b;
@@ -559,8 +559,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z20 = !tL_businessBotRights9.sell_gifts;
                                 tL_businessBotRights9.sell_gifts = z20;
                                 ((org.telegram.ui.Cells.c2) view).c(z20, true);
-                                t1Var3.f729c.f30819f3.O(true);
-                                t1Var3.c0(true);
+                                t1Var3.f729c.f31183f3.O(true);
+                                t1Var3.d0(true);
                                 return;
                             case 2:
                                 t1 t1Var4 = this.f602b;
@@ -569,8 +569,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z21 = !tL_businessBotRights10.change_gift_settings;
                                 tL_businessBotRights10.change_gift_settings = z21;
                                 ((org.telegram.ui.Cells.c2) view).c(z21, true);
-                                t1Var4.f729c.f30819f3.O(true);
-                                t1Var4.c0(true);
+                                t1Var4.f729c.f31183f3.O(true);
+                                t1Var4.d0(true);
                                 return;
                             case 3:
                                 t1 t1Var5 = this.f602b;
@@ -579,8 +579,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z22 = !tL_businessBotRights11.transfer_and_upgrade_gifts;
                                 tL_businessBotRights11.transfer_and_upgrade_gifts = z22;
                                 ((org.telegram.ui.Cells.c2) view).c(z22, true);
-                                t1Var5.f729c.f30819f3.O(true);
-                                t1Var5.c0(true);
+                                t1Var5.f729c.f31183f3.O(true);
+                                t1Var5.d0(true);
                                 return;
                             case 4:
                                 t1 t1Var6 = this.f602b;
@@ -589,8 +589,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z23 = !tL_businessBotRights12.transfer_stars;
                                 tL_businessBotRights12.transfer_stars = z23;
                                 ((org.telegram.ui.Cells.c2) view).c(z23, true);
-                                t1Var6.f729c.f30819f3.O(true);
-                                t1Var6.c0(true);
+                                t1Var6.f729c.f31183f3.O(true);
+                                t1Var6.d0(true);
                                 return;
                             default:
                                 t1 t1Var7 = this.f602b;
@@ -599,14 +599,14 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z24 = !tL_businessBotRights13.edit_username;
                                 tL_businessBotRights13.edit_username = z24;
                                 ((org.telegram.ui.Cells.c2) view).c(z24, true);
-                                t1Var7.f729c.f30819f3.O(true);
-                                t1Var7.c0(true);
+                                t1Var7.f729c.f31183f3.O(true);
+                                t1Var7.d0(true);
                                 return;
                         }
                     }
                 });
             } else if (i10 == f725n0) {
-                t1Var.b0(i10, !t1Var.J.transfer_stars, new Runnable(t1Var) {
+                t1Var.c0(i10, !t1Var.J.transfer_stars, new Runnable(t1Var) {
                     public final t1 f602b;
 
                     {
@@ -623,8 +623,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z192 = !tL_businessBotRights8.view_gifts;
                                 tL_businessBotRights8.view_gifts = z192;
                                 ((org.telegram.ui.Cells.c2) view).c(z192, true);
-                                t1Var2.f729c.f30819f3.O(true);
-                                t1Var2.c0(true);
+                                t1Var2.f729c.f31183f3.O(true);
+                                t1Var2.d0(true);
                                 return;
                             case 1:
                                 t1 t1Var3 = this.f602b;
@@ -633,8 +633,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z20 = !tL_businessBotRights9.sell_gifts;
                                 tL_businessBotRights9.sell_gifts = z20;
                                 ((org.telegram.ui.Cells.c2) view).c(z20, true);
-                                t1Var3.f729c.f30819f3.O(true);
-                                t1Var3.c0(true);
+                                t1Var3.f729c.f31183f3.O(true);
+                                t1Var3.d0(true);
                                 return;
                             case 2:
                                 t1 t1Var4 = this.f602b;
@@ -643,8 +643,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z21 = !tL_businessBotRights10.change_gift_settings;
                                 tL_businessBotRights10.change_gift_settings = z21;
                                 ((org.telegram.ui.Cells.c2) view).c(z21, true);
-                                t1Var4.f729c.f30819f3.O(true);
-                                t1Var4.c0(true);
+                                t1Var4.f729c.f31183f3.O(true);
+                                t1Var4.d0(true);
                                 return;
                             case 3:
                                 t1 t1Var5 = this.f602b;
@@ -653,8 +653,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z22 = !tL_businessBotRights11.transfer_and_upgrade_gifts;
                                 tL_businessBotRights11.transfer_and_upgrade_gifts = z22;
                                 ((org.telegram.ui.Cells.c2) view).c(z22, true);
-                                t1Var5.f729c.f30819f3.O(true);
-                                t1Var5.c0(true);
+                                t1Var5.f729c.f31183f3.O(true);
+                                t1Var5.d0(true);
                                 return;
                             case 4:
                                 t1 t1Var6 = this.f602b;
@@ -663,8 +663,8 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z23 = !tL_businessBotRights12.transfer_stars;
                                 tL_businessBotRights12.transfer_stars = z23;
                                 ((org.telegram.ui.Cells.c2) view).c(z23, true);
-                                t1Var6.f729c.f30819f3.O(true);
-                                t1Var6.c0(true);
+                                t1Var6.f729c.f31183f3.O(true);
+                                t1Var6.d0(true);
                                 return;
                             default:
                                 t1 t1Var7 = this.f602b;
@@ -673,27 +673,27 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                                 boolean z24 = !tL_businessBotRights13.edit_username;
                                 tL_businessBotRights13.edit_username = z24;
                                 ((org.telegram.ui.Cells.c2) view).c(z24, true);
-                                t1Var7.f729c.f30819f3.O(true);
-                                t1Var7.c0(true);
+                                t1Var7.f729c.f31183f3.O(true);
+                                t1Var7.d0(true);
                                 return;
                         }
                     }
                 });
             } else if (i10 == f726o0) {
-                t1Var.b0(i10, !t1Var.J.manage_stories, new l1(t1Var, 0));
+                t1Var.c0(i10, !t1Var.J.manage_stories, new l1(t1Var, 0));
             }
         }
     }
 
-    public final void b0(int i10, boolean z10, final Runnable runnable) {
+    public final void c0(int i10, boolean z10, final Runnable runnable) {
         if (!this.K && i10 == f720h0 && z10) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, getParentActivity(), getResourceProvider());
-            String L0 = cd.L0(2131752787, null);
-            org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20134a;
+            String L0 = dd.L0(2131752787, null);
+            org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20135a;
             x1Var.R = L0;
-            x1Var.T = org.telegram.messenger.i0.W2(cd.a0(null, null, 2131752788, h20.n(this.M)));
-            alertDialog$Builder.h(cd.L0(2131752589, null), null);
-            alertDialog$Builder.k(cd.L0(2131754284, null), new org.telegram.ui.ActionBar.u1(this) {
+            x1Var.T = org.telegram.messenger.i0.W2(dd.a0(null, null, 2131752788, i20.n(this.M)));
+            alertDialog$Builder.h(dd.L0(2131752589, null), null);
+            alertDialog$Builder.k(dd.L0(2131754284, null), new org.telegram.ui.ActionBar.u1(this) {
                 public final t1 f686b;
 
                 {
@@ -718,12 +718,12 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
             alertDialog$Builder.p();
         } else if (!this.L && z10 && (i10 == f723k0 || i10 == f724l0 || i10 == m0 || i10 == f725n0)) {
             AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(0, getParentActivity(), getResourceProvider());
-            String L02 = cd.L0(2131752787, null);
-            org.telegram.ui.ActionBar.x1 x1Var2 = alertDialog$Builder2.f20134a;
+            String L02 = dd.L0(2131752787, null);
+            org.telegram.ui.ActionBar.x1 x1Var2 = alertDialog$Builder2.f20135a;
             x1Var2.R = L02;
-            x1Var2.T = org.telegram.messenger.i0.W2(cd.a0(null, null, 2131752801, h20.n(this.M)));
-            alertDialog$Builder2.h(cd.L0(2131752589, null), null);
-            alertDialog$Builder2.k(cd.L0(2131754284, null), new org.telegram.ui.ActionBar.u1(this) {
+            x1Var2.T = org.telegram.messenger.i0.W2(dd.a0(null, null, 2131752801, i20.n(this.M)));
+            alertDialog$Builder2.h(dd.L0(2131752589, null), null);
+            alertDialog$Builder2.k(dd.L0(2131754284, null), new org.telegram.ui.ActionBar.u1(this) {
                 public final t1 f686b;
 
                 {
@@ -751,13 +751,6 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
         }
     }
 
-    public final void c0(boolean z10) {
-        if (this.f727a == null) {
-            return;
-        }
-        this.f727a.a(d0(), z10);
-    }
-
     @Override
     public final View createView(Context context) {
         int i10;
@@ -765,10 +758,10 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
         TL_account.TL_businessBotRecipients tL_businessBotRecipients;
         setHasOwnBackground(true);
         this.simpleActionBar.setBackButtonImage(2131231241);
-        this.simpleActionBar.setTitle(cd.L0(2131752783, null));
+        this.simpleActionBar.setTitle(dd.L0(2131752783, null));
         this.simpleActionBar.setActionBarMenuOnItemClick(new e(this, 2));
-        this.f727a = this.simpleActionBar.n(cd.L0(2131745963, null));
-        c0(false);
+        this.f727a = this.simpleActionBar.n(dd.L0(2131745963, null));
+        d0(false);
         FrameLayout frameLayout = new FrameLayout(context);
         new LinearLayout(getParentActivity()).setOrientation(0);
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getParentActivity());
@@ -784,7 +777,7 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
         this.f730f.setPadding(0, 0, 0, 0);
         this.f730f.setSingleLine(true);
         EditTextBoldCursor editTextBoldCursor3 = this.f730f;
-        if (cd.X) {
+        if (dd.X) {
             i10 = 5;
         } else {
             i10 = 3;
@@ -792,7 +785,7 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
         editTextBoldCursor3.setGravity(i10 | 48);
         this.f730f.setInputType(180224);
         this.f730f.setImeOptions(6);
-        this.f730f.setHint(cd.L0(2131752816, null));
+        this.f730f.setHint(dd.L0(2131752816, null));
         a7.w(this.f730f, i12, null);
         this.f730f.setCursorSize(org.telegram.messenger.i0.L(19.0f));
         this.f730f.setCursorWidth(1.5f);
@@ -802,15 +795,15 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
         this.e = frameLayout2;
         frameLayout2.addView(this.f730f, b6.d(-1, -1.0f, 48, 21.0f, 15.0f, 21.0f, 15.0f));
         FrameLayout frameLayout3 = this.e;
-        int i13 = t6.f20929d6;
+        int i13 = t6.f20930d6;
         a7.i(i13, frameLayout3, getResourceProvider());
         View view = new View(context);
         this.h = view;
-        a7.i(t6.f20930d7, view, getResourceProvider());
+        a7.i(t6.f20931d7, view, getResourceProvider());
         FrameLayout frameLayout4 = this.e;
         View view2 = this.h;
-        float f7 = 1.0f / org.telegram.messenger.i0.f16025p;
-        boolean z10 = cd.X;
+        float f7 = 1.0f / org.telegram.messenger.i0.f16171p;
+        boolean z10 = dd.X;
         int i14 = 21;
         if (z10) {
             i11 = 0;
@@ -827,10 +820,10 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
         a7.i(i13, a5Var, getResourceProvider());
         TextView textView = new TextView(context);
         this.f732r = textView;
-        textView.setText(cd.L0(2131752811, null));
+        textView.setText(dd.L0(2131752811, null));
         this.f732r.setTextSize(1, 14.0f);
         TextView textView2 = this.f732r;
-        int i15 = t6.f21330z6;
+        int i15 = t6.f21331z6;
         a7.V(textView2, i15, getResourceProvider());
         this.f731n.addView(this.f732r, b6.e(-2, -2, 17));
         this.f733s = new ImageView(context);
@@ -843,7 +836,7 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
         this.f733s.setTranslationY(org.telegram.messenger.i0.L(8.0f));
         zf.m1 m1Var = new zf.m1(true);
         this.d = m1Var;
-        m1Var.f55575a = new a6.i(this, 3);
+        m1Var.f55593a = new a6.i(this, 3);
         x0 x0Var = new x0(this, new l1(this, 3));
         this.f734w = x0Var;
         TL_account.TL_connectedBot tL_connectedBot = this.H;
@@ -853,18 +846,25 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
             tL_businessBotRecipients = tL_connectedBot.recipients;
         }
         x0Var.i(tL_businessBotRecipients);
-        u51 u51Var = new u51(this, new a(this, 3), new o1(this, 3), null);
-        this.f729c = u51Var;
-        u51Var.r1();
+        v51 v51Var = new v51(this, new a(this, 3), new o1(this, 3), null);
+        this.f729c = v51Var;
+        v51Var.r1();
         this.f729c.setSectionsDrawBackground(true);
-        u51 u51Var2 = this.f729c;
-        u51Var2.f30819f3.f29295r = false;
-        frameLayout.addView(u51Var2, b6.c(-1.0f, -1));
+        v51 v51Var2 = this.f729c;
+        v51Var2.f31183f3.f29638r = false;
+        frameLayout.addView(v51Var2, b6.c(-1.0f, -1));
         this.fragmentView = frameLayout;
         return frameLayout;
     }
 
-    public final boolean d0() {
+    public final void d0(boolean z10) {
+        if (this.f727a == null) {
+            return;
+        }
+        this.f727a.a(e0(), z10);
+    }
+
+    public final boolean e0() {
         boolean z10;
         boolean z11;
         long j10;
@@ -887,7 +887,7 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                 if (user == null) {
                     j10 = 0;
                 } else {
-                    j10 = user.f19942id;
+                    j10 = user.f19943id;
                 }
                 if (tL_connectedBot != null) {
                     j11 = tL_connectedBot.bot_id;
@@ -900,23 +900,23 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
         return false;
     }
 
-    public final void e0() {
+    public final void f0() {
         boolean z10;
         TLRPC.User user;
         TL_account.TL_connectedBot tL_connectedBot;
-        if (!this.f727a.f20547y.f7021f) {
-            if (!d0()) {
+        if (!this.f727a.f20548y.f7022f) {
+            if (!e0()) {
                 finishFragment();
             } else if (this.f734w.k(this.f729c)) {
                 TLRPC.User user2 = this.M;
-                if (user2 != null && ((tL_connectedBot = this.H) == null || tL_connectedBot.bot_id != user2.f19942id)) {
+                if (user2 != null && ((tL_connectedBot = this.H) == null || tL_connectedBot.bot_id != user2.f19943id)) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 ArrayList arrayList = new ArrayList();
                 TL_account.TL_connectedBot tL_connectedBot2 = this.H;
-                if (tL_connectedBot2 != null && ((user = this.M) == null || tL_connectedBot2.bot_id != user.f19942id)) {
+                if (tL_connectedBot2 != null && ((user = this.M) == null || tL_connectedBot2.bot_id != user.f19943id)) {
                     TL_account.updateConnectedBot updateconnectedbot = new TL_account.updateConnectedBot();
                     updateconnectedbot.deleted = true;
                     updateconnectedbot.bot = getMessagesController().n1(this.H.bot_id);
@@ -932,7 +932,7 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
                     arrayList.add(updateconnectedbot2);
                     TL_account.TL_connectedBot tL_connectedBot3 = this.H;
                     if (tL_connectedBot3 != null) {
-                        tL_connectedBot3.bot_id = this.M.f19942id;
+                        tL_connectedBot3.bot_id = this.M.f19943id;
                         tL_connectedBot3.recipients = this.f734w.c();
                         this.H.rights = this.J;
                     }
@@ -949,7 +949,7 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
         }
     }
 
-    public final void f0() {
+    public final void g0() {
         boolean z10;
         float f7;
         float f10;
@@ -997,7 +997,7 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
     }
 
     @Override
-    public final tk0 getListViewForSimpleGlass() {
+    public final uk0 getListViewForSimpleGlass() {
         return this.f729c;
     }
 
@@ -1008,29 +1008,29 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
 
     @Override
     public final boolean onBackPressed(boolean z10) {
-        if (d0()) {
+        if (e0()) {
             if (z10) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-                String L0 = cd.L0(2131743860, null);
-                org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20134a;
+                String L0 = dd.L0(2131743860, null);
+                org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20135a;
                 x1Var.R = L0;
-                x1Var.T = cd.L0(2131752786, null);
-                alertDialog$Builder.k(cd.L0(2131754216, null), new o1(this, 0));
-                alertDialog$Builder.h(cd.L0(2131747596, null), new o1(this, 1));
+                x1Var.T = dd.L0(2131752786, null);
+                alertDialog$Builder.k(dd.L0(2131754216, null), new o1(this, 0));
+                alertDialog$Builder.h(dd.L0(2131747596, null), new o1(this, 1));
                 showDialog(x1Var);
                 return false;
             }
-        } else if (this.M != null || d0() || (this.d.d.isEmpty() && this.d.e.isEmpty())) {
+        } else if (this.M != null || e0() || (this.d.d.isEmpty() && this.d.e.isEmpty())) {
             return super.onBackPressed(z10);
         } else {
             if (z10) {
                 AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(getParentActivity());
-                String L02 = cd.L0(2131752812, null);
-                org.telegram.ui.ActionBar.x1 x1Var2 = alertDialog$Builder2.f20134a;
+                String L02 = dd.L0(2131752812, null);
+                org.telegram.ui.ActionBar.x1 x1Var2 = alertDialog$Builder2.f20135a;
                 x1Var2.R = L02;
-                x1Var2.T = cd.L0(2131752813, null);
-                alertDialog$Builder2.k(cd.L0(2131752814, null), new o1(this, 2));
-                alertDialog$Builder2.h(cd.L0(2131752589, null), null);
+                x1Var2.T = dd.L0(2131752813, null);
+                alertDialog$Builder2.k(dd.L0(2131752814, null), new o1(this, 2));
+                alertDialog$Builder2.h(dd.L0(2131752589, null), null);
                 showDialog(x1Var2);
             }
         }
@@ -1051,7 +1051,7 @@ public final class t1 extends org.telegram.ui.ActionBar.k2 {
         try {
             s1 s1Var = this.f728b;
             if (s1Var != null) {
-                s1Var.b(getThemedColor(t6.f21330z6));
+                s1Var.b(getThemedColor(t6.f21331z6));
                 ImageView imageView = this.f733s;
                 if (imageView != null) {
                     imageView.invalidate();

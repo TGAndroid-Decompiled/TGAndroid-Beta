@@ -24,7 +24,7 @@ public final class tu extends ts {
             return;
         }
         boolean z11 = true;
-        if (arrayList.size() > 3 && org.telegram.messenger.tz.o() != 0) {
+        if (arrayList.size() > 3 && org.telegram.messenger.uz.o() != 0) {
             z10 = false;
         } else {
             z10 = true;
@@ -54,7 +54,7 @@ public final class tu extends ts {
             ArrayList arrayList = this.O;
             if (i10 < arrayList.size()) {
                 vu vuVar = (vu) arrayList.get(i10);
-                vuVar.f31843b.h(canvas, vuVar.f31842a[this.K]);
+                vuVar.f31906b.h(canvas, vuVar.f31905a[this.K]);
                 i10++;
             } else {
                 return;
@@ -68,8 +68,8 @@ public final class tu extends ts {
         if (this.N != null) {
             for (int i10 = 0; i10 < this.N.size(); i10++) {
                 vu vuVar = (vu) this.N.get(i10);
-                o5 o5Var = vuVar.f31844c;
-                if (o5Var != null && (f5Var = (f5) this.P.D.f25161i1.get(o5Var.getDocumentId())) != null && f5Var.f25975k != null && vuVar.f31843b != null) {
+                o5 o5Var = vuVar.f31907c;
+                if (o5Var != null && (f5Var = (f5) this.P.D.f25242i1.get(o5Var.getDocumentId())) != null && f5Var.f26070k != null && vuVar.f31906b != null) {
                     f5Var.setAlpha((int) (vuVar.getAlpha() * 255.0f * f7));
                     float width = ((vuVar.getWidth() - vuVar.getPaddingLeft()) - vuVar.getPaddingRight()) / 2.0f;
                     float height = ((vuVar.getHeight() - vuVar.getPaddingTop()) - vuVar.getPaddingBottom()) / 2.0f;
@@ -93,12 +93,12 @@ public final class tu extends ts {
         while (true) {
             ArrayList arrayList = this.O;
             if (i10 < arrayList.size()) {
-                ((vu) arrayList.get(i10)).f31842a[this.K].a();
+                ((vu) arrayList.get(i10)).f31905a[this.K].a();
                 i10++;
             } else {
                 cv cvVar = this.P.D;
                 Pattern pattern = cv.M1;
-                cvVar.f21586b.invalidate();
+                cvVar.f21587b.invalidate();
                 return;
             }
         }
@@ -112,26 +112,26 @@ public final class tu extends ts {
         arrayList.clear();
         for (int i10 = 0; i10 < this.N.size(); i10++) {
             vu vuVar = (vu) this.N.get(i10);
-            o5 o5Var = vuVar.f31844c;
-            org.telegram.messenger.jc[] jcVarArr = vuVar.f31842a;
-            if (o5Var != null && (f5Var = (f5) cvVar.f25161i1.get(o5Var.getDocumentId())) != null && f5Var.f25975k != null) {
+            o5 o5Var = vuVar.f31907c;
+            org.telegram.messenger.kc[] kcVarArr = vuVar.f31905a;
+            if (o5Var != null && (f5Var = (f5) cvVar.f25242i1.get(o5Var.getDocumentId())) != null && f5Var.f26070k != null) {
                 f5Var.s(j10);
-                ag.c2 c2Var = f5Var.f25975k;
+                ag.c2 c2Var = f5Var.f26070k;
                 int i11 = this.K;
-                org.telegram.messenger.jc e02 = c2Var.e0(jcVarArr[i11], i11);
-                jcVarArr[i11] = e02;
-                e02.f16244c = j10;
+                org.telegram.messenger.kc e02 = c2Var.e0(kcVarArr[i11], i11);
+                kcVarArr[i11] = e02;
+                e02.f16597c = j10;
                 f5Var.setAlpha(255);
                 Rect rect = org.telegram.messenger.i0.Q;
                 rect.set(vuVar.getPaddingLeft() + vuVar.getLeft(), vuVar.getPaddingTop(), vuVar.getRight() - vuVar.getPaddingRight(), vuVar.getMeasuredHeight() - vuVar.getPaddingBottom());
-                jcVarArr[i11].b(rect);
+                kcVarArr[i11].b(rect);
                 int w02 = org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.G6, cvVar.I0);
                 if (w02 != cvVar.L1 || cvVar.K1 == null) {
                     cvVar.L1 = w02;
                     cvVar.K1 = new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN);
                 }
                 f5Var.setColorFilter(cvVar.K1);
-                vuVar.f31843b = f5Var.f25975k;
+                vuVar.f31906b = f5Var.f26070k;
                 arrayList.add(vuVar);
             }
         }

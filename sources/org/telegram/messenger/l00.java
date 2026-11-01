@@ -1,66 +1,28 @@
 package org.telegram.messenger;
+public class l00 {
+    public final String f16858c;
+    public int d;
+    public final m00 e;
+    public long f16857b = -1;
+    public final long f16856a = System.currentTimeMillis();
 
-import java.util.ArrayList;
-public final class l00 {
-    public final String f16660b;
-    public int f16659a = 0;
-    public final ArrayList d = new ArrayList();
-    public final long f16661c = System.currentTimeMillis();
-
-    public l00(String str) {
-        this.f16660b = str;
+    public l00(m00 m00Var, String str) {
+        this.e = m00Var;
+        this.f16858c = str;
+        m00Var.f17022a++;
     }
 
-    public static void a(k00 k00Var) {
-        if (k00Var != null) {
-            if (k00Var.f16501b < 0) {
-                l00 l00Var = k00Var.e;
-                int i10 = l00Var.f16659a;
-                l00Var.f16659a = i10 - 1;
-                k00Var.d = i10;
-            }
-            k00Var.f16501b = System.currentTimeMillis();
+    public String toString() {
+        String q6;
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(this.f16858c);
+        sb2.append(": ");
+        if (this.f16857b < 0) {
+            q6 = "not done";
+        } else {
+            q6 = a1.g.q(new StringBuilder(), this.f16857b - this.f16856a, "ms");
         }
-    }
-
-    public static void b(l00 l00Var) {
-        if (l00Var != null) {
-            ArrayList arrayList = l00Var.d;
-            long currentTimeMillis = System.currentTimeMillis() - l00Var.f16661c;
-            StringBuilder sb2 = new StringBuilder();
-            sb2.append(l00Var.f16660b);
-            sb2.append(" total=");
-            sb2.append(currentTimeMillis);
-            sb2.append("ms\n");
-            for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                if (arrayList.get(i10) != null) {
-                    sb2.append("#");
-                    sb2.append(i10);
-                    int i11 = ((k00) arrayList.get(i10)).d;
-                    for (int i12 = 0; i12 < i11; i12++) {
-                        sb2.append(" ");
-                    }
-                    sb2.append(" ");
-                    sb2.append(arrayList.get(i10));
-                    sb2.append("\n");
-                }
-            }
-            f8.b(sb2.toString());
-        }
-    }
-
-    public static void c(l00 l00Var, String str) {
-        if (l00Var != null) {
-            l00Var.d.add(new k00(l00Var, str));
-        }
-    }
-
-    public static k00 d(l00 l00Var, String str) {
-        if (l00Var != null) {
-            k00 k00Var = new k00(l00Var, str);
-            l00Var.d.add(k00Var);
-            return k00Var;
-        }
-        return null;
+        sb2.append(q6);
+        return sb2.toString();
     }
 }

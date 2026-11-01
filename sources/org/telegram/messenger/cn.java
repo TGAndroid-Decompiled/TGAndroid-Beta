@@ -1,39 +1,52 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
 public final class cn implements Runnable {
-    public final int f15050a;
-    public final Object f15051b;
-    public final Object f15052c;
-    public final Object d;
-    public final Object e;
-    public final Object f15053f;
+    public final int f15183a;
+    public final wp f15184b;
+    public final Runnable f15185c;
+    public final long d;
 
-    public cn(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i10) {
-        this.f15050a = i10;
-        this.f15051b = obj;
-        this.f15052c = obj2;
-        this.d = obj3;
-        this.e = obj4;
-        this.f15053f = obj5;
-    }
-
-    private final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.cn.a():void");
+    public cn(wp wpVar, long j10, Runnable runnable, int i10) {
+        this.f15183a = i10;
+        this.f15184b = wpVar;
+        this.d = j10;
+        this.f15185c = runnable;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.cn.run():void");
+        int i10 = this.f15183a;
+        Runnable runnable = this.f15185c;
+        long j10 = this.d;
+        wp wpVar = this.f15184b;
+        switch (i10) {
+            case 0:
+                wpVar.T2(0, j10, true);
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+            case 1:
+                if (runnable != null) {
+                    wpVar.getClass();
+                    runnable.run();
+                }
+                wpVar.getNotificationCenter().k(300, Long.valueOf(j10), 0L);
+                return;
+            default:
+                wpVar.T2(0, j10, true);
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+        }
     }
 
-    public cn(vp vpVar, TLRPC.TL_error tL_error, TLObject tLObject, Long l4, q20 q20Var) {
-        this.f15050a = 8;
-        this.f15051b = vpVar;
-        this.f15053f = tL_error;
-        this.f15052c = tLObject;
-        this.d = l4;
-        this.e = q20Var;
+    public cn(wp wpVar, Runnable runnable, long j10) {
+        this.f15183a = 1;
+        this.f15184b = wpVar;
+        this.f15185c = runnable;
+        this.d = j10;
     }
 }

@@ -26,22 +26,22 @@ import x7.g8;
 import yc.i;
 import z4.g;
 public final class b implements wd.b, SuccessContinuation, we.b, m {
-    public final int f50193a;
-    public Object f50194b;
-    public Object f50195c;
+    public final int f50207a;
+    public Object f50208b;
+    public Object f50209c;
 
     public b(int i10) {
-        this.f50193a = i10;
+        this.f50207a = i10;
     }
 
     @Override
     public j1 R0(View view, j1 j1Var) {
-        g gVar = (g) this.f50195c;
+        g gVar = (g) this.f50209c;
         j1 g10 = h0.g(view, j1Var);
-        if (g10.f46132a.n()) {
+        if (g10.f46143a.n()) {
             return g10;
         }
-        Rect rect = (Rect) this.f50194b;
+        Rect rect = (Rect) this.f50208b;
         rect.left = g10.b();
         rect.top = g10.d();
         rect.right = g10.c();
@@ -60,8 +60,8 @@ public final class b implements wd.b, SuccessContinuation, we.b, m {
     @Override
     public we.a a(e eVar) {
         int i10;
-        List list = (List) this.f50195c;
-        List list2 = (List) eVar.f13013b;
+        List list = (List) this.f50209c;
+        List list2 = (List) eVar.f13014b;
         if (list2 != null) {
             i10 = list2.size();
         } else {
@@ -73,13 +73,13 @@ public final class b implements wd.b, SuccessContinuation, we.b, m {
             arrayList.addAll(list2);
             list = arrayList;
         }
-        return new i(eVar, (List) this.f50194b, list);
+        return new i(eVar, (List) this.f50208b, list);
     }
 
     public void b() {
-        String str = (String) this.f50194b;
+        String str = (String) this.f50208b;
         try {
-            ca.c cVar = (ca.c) this.f50195c;
+            ca.c cVar = (ca.c) this.f50209c;
             cVar.getClass();
             new File(cVar.f4084b, str).createNewFile();
         } catch (IOException e) {
@@ -90,10 +90,10 @@ public final class b implements wd.b, SuccessContinuation, we.b, m {
     public k0 c(int i10) {
         int i11 = 0;
         while (true) {
-            int[] iArr = (int[]) this.f50194b;
+            int[] iArr = (int[]) this.f50208b;
             if (i11 < iArr.length) {
                 if (i10 == iArr[i11]) {
-                    return ((c1[]) this.f50195c)[i11];
+                    return ((c1[]) this.f50209c)[i11];
                 }
                 i11++;
             } else {
@@ -111,26 +111,26 @@ public final class b implements wd.b, SuccessContinuation, we.b, m {
     @Override
     public Task then(Object obj) {
         ea.c cVar = (ea.c) obj;
-        pb.d dVar = (pb.d) this.f50195c;
+        pb.d dVar = (pb.d) this.f50209c;
         if (cVar == null) {
             Log.w("FirebaseCrashlytics", "Received null app settings at app startup. Cannot send cached reports", null);
             return Tasks.forResult(null);
         }
-        g8 g8Var = (g8) dVar.f44903c;
-        x9.n.b((x9.n) ((g8) dVar.f44903c).f53165c);
-        ((x9.n) g8Var.f53165c).f53477m.w((Executor) this.f50194b, null);
-        ((x9.n) g8Var.f53165c).f53481q.trySetResult(null);
+        g8 g8Var = (g8) dVar.f44914c;
+        x9.n.b((x9.n) ((g8) dVar.f44914c).f53183c);
+        ((x9.n) g8Var.f53183c).f53495m.w((Executor) this.f50208b, null);
+        ((x9.n) g8Var.f53183c).f53499q.trySetResult(null);
         return Tasks.forResult(null);
     }
 
     public String toString() {
-        switch (this.f50193a) {
+        switch (this.f50207a) {
             case 2:
                 try {
-                    if (((wb.b) this.f50195c) == null) {
-                        this.f50195c = ((wb.e) this.f50194b).a();
+                    if (((wb.b) this.f50209c) == null) {
+                        this.f50209c = ((wb.e) this.f50208b).a();
                     }
-                    return ((wb.b) this.f50195c).toString();
+                    return ((wb.b) this.f50209c).toString();
                 } catch (vb.e unused) {
                     return "";
                 }
@@ -140,39 +140,39 @@ public final class b implements wd.b, SuccessContinuation, we.b, m {
     }
 
     public b(int i10, Object obj, Object obj2) {
-        this.f50193a = i10;
-        this.f50194b = obj;
-        this.f50195c = obj2;
+        this.f50207a = i10;
+        this.f50208b = obj;
+        this.f50209c = obj2;
     }
 
     public b(wb.e eVar) {
-        this.f50193a = 2;
-        this.f50194b = eVar;
+        this.f50207a = 2;
+        this.f50208b = eVar;
     }
 
     public b(Context context, int i10) {
-        this.f50193a = i10;
+        this.f50207a = i10;
         switch (i10) {
             case 6:
-                this.f50195c = new AtomicLong(-1L);
-                this.f50194b = new j(context, p6.b.f44848k, new p("mlkit:vision"), com.google.android.gms.common.api.i.f4346c);
+                this.f50209c = new AtomicLong(-1L);
+                this.f50208b = new j(context, p6.b.f44859k, new p("mlkit:vision"), com.google.android.gms.common.api.i.f4346c);
                 return;
             default:
-                this.f50194b = context;
-                this.f50195c = null;
+                this.f50208b = context;
+                this.f50209c = null;
                 return;
         }
     }
 
     public b(pb.d dVar, Executor executor) {
-        this.f50193a = 7;
-        this.f50195c = dVar;
-        this.f50194b = executor;
+        this.f50207a = 7;
+        this.f50209c = dVar;
+        this.f50208b = executor;
     }
 
     public b(g gVar) {
-        this.f50193a = 10;
-        this.f50195c = gVar;
-        this.f50194b = new Rect();
+        this.f50207a = 10;
+        this.f50209c = gVar;
+        this.f50208b = new Rect();
     }
 }

@@ -1,49 +1,39 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class dn implements Runnable {
-    public final int f15283a = 1;
-    public final boolean f15284b;
-    public final boolean f15285c;
-    public final f1 d;
+    public final int f15411a;
+    public final Object f15412b;
+    public final Object f15413c;
+    public final Object d;
     public final Object e;
-    public final Object f15286f;
-    public final Object h;
+    public final Object f15414f;
 
-    public dn(vp vpVar, TLRPC.TL_error tL_error, org.telegram.ui.ActionBar.k2 k2Var, TLRPC.TL_channels_editAdmin tL_channels_editAdmin, boolean z10, boolean z11) {
-        this.d = vpVar;
-        this.e = tL_error;
-        this.f15286f = k2Var;
-        this.h = tL_channels_editAdmin;
-        this.f15284b = z10;
-        this.f15285c = z11;
+    public dn(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i10) {
+        this.f15411a = i10;
+        this.f15412b = obj;
+        this.f15413c = obj2;
+        this.d = obj3;
+        this.e = obj4;
+        this.f15414f = obj5;
+    }
+
+    private final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.dn.a():void");
     }
 
     @Override
     public final void run() {
-        int i10 = this.f15283a;
-        Object obj = this.h;
-        Object obj2 = this.f15286f;
-        Object obj3 = this.e;
-        f1 f1Var = this.d;
-        switch (i10) {
-            case 0:
-                org.telegram.ui.Components.s4.e0(((vp) f1Var).currentAccount, (TLRPC.TL_error) obj3, (org.telegram.ui.ActionBar.k2) obj2, (TLRPC.TL_channels_editAdmin) obj, Boolean.valueOf(this.f15284b), Boolean.valueOf(this.f15285c));
-                return;
-            default:
-                ot.e((ot) f1Var, (ArrayList) obj3, (ArrayList) obj2, this.f15284b, this.f15285c, (CountDownLatch) obj);
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.dn.run():void");
     }
 
-    public dn(ot otVar, ArrayList arrayList, ArrayList arrayList2, boolean z10, boolean z11, CountDownLatch countDownLatch) {
-        this.d = otVar;
-        this.e = arrayList;
-        this.f15286f = arrayList2;
-        this.f15284b = z10;
-        this.f15285c = z11;
-        this.h = countDownLatch;
+    public dn(wp wpVar, TLRPC.TL_error tL_error, TLObject tLObject, Long l4, r20 r20Var) {
+        this.f15411a = 8;
+        this.f15412b = wpVar;
+        this.f15414f = tL_error;
+        this.f15413c = tLObject;
+        this.d = l4;
+        this.e = r20Var;
     }
 }

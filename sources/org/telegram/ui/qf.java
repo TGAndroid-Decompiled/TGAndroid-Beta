@@ -2,39 +2,39 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class qf implements View.OnLongClickListener {
-    public final int f40972a;
-    public final un f40973b;
+    public final int f40765a;
+    public final un f40766b;
 
     public qf(un unVar, int i10) {
-        this.f40972a = i10;
-        this.f40973b = unVar;
+        this.f40765a = i10;
+        this.f40766b = unVar;
     }
 
     @Override
     public final boolean onLongClick(View view) {
-        org.telegram.messenger.jj jjVar;
-        org.telegram.messenger.jj jjVar2;
-        switch (this.f40972a) {
+        org.telegram.messenger.kj kjVar;
+        org.telegram.messenger.kj kjVar2;
+        switch (this.f40765a) {
             case 0:
-                un unVar = this.f40973b;
-                org.telegram.messenger.jj jjVar3 = unVar.f42421t5;
-                if (jjVar3 == null) {
+                un unVar = this.f40766b;
+                org.telegram.messenger.kj kjVar3 = unVar.f42232t5;
+                if (kjVar3 == null) {
                     return false;
                 }
-                if (org.telegram.messenger.i0.g(jjVar3.R0)) {
-                    new org.telegram.ui.Components.cc(org.telegram.ui.Components.ra.a(unVar.getParentActivity()), unVar.f42477xa).k(false).j();
+                if (org.telegram.messenger.i0.g(kjVar3.R0)) {
+                    new org.telegram.ui.Components.cc(org.telegram.ui.Components.ra.a(unVar.getParentActivity()), unVar.f42288xa).k(false).j();
                 }
                 return true;
             case 1:
-                return un.S0(this.f40973b);
+                return un.x1(this.f40766b);
             default:
-                un unVar2 = this.f40973b;
-                int i10 = unVar2.Jb;
-                if (i10 == 1 && (jjVar2 = unVar2.F5) != null) {
-                    unVar2.k(jjVar2.f1(), 0, true, 0, true, 0);
+                un unVar2 = this.f40766b;
+                int i10 = unVar2.Kb;
+                if (i10 == 1 && (kjVar2 = unVar2.F5) != null) {
+                    unVar2.l(kjVar2.f1(), 0, true, 0, true, 0);
                     return true;
-                } else if (unVar2.f42446v5 != null && i10 == 2 && (jjVar = unVar2.D5) != null) {
-                    unVar2.k(jjVar.f1(), 0, true, 0, true, 0);
+                } else if (unVar2.f42257v5 != null && i10 == 2 && (kjVar = unVar2.D5) != null) {
+                    unVar2.l(kjVar.f1(), 0, true, 0, true, 0);
                     return true;
                 } else {
                     return false;

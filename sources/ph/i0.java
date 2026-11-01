@@ -1,8 +1,8 @@
 package ph;
 
 import android.view.View;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.d20;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.e20;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
@@ -11,14 +11,14 @@ import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Components.f6;
 import org.telegram.ui.Components.sf;
 import org.telegram.ui.kn;
-import org.telegram.ui.ns0;
+import org.telegram.ui.ms0;
 public final class i0 implements sf {
-    public final TL_stars.TL_starGiftUnique f45111a;
-    public final k0 f45112b;
+    public final TL_stars.TL_starGiftUnique f45122a;
+    public final k0 f45123b;
 
     public i0(k0 k0Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        this.f45112b = k0Var;
-        this.f45111a = tL_starGiftUnique;
+        this.f45123b = k0Var;
+        this.f45122a = tL_starGiftUnique;
     }
 
     @Override
@@ -59,17 +59,17 @@ public final class i0 implements sf {
     public final void a(CharSequence charSequence) {
         int i10;
         boolean z10;
-        k0 k0Var = this.f45112b;
-        f6 f6Var = k0Var.f45153s1;
-        k0Var.f45144i1.a(this.f45111a, d20.i(k0Var.f21583a).e(), k0Var.f45149o1.getTextWithEntities(), cd.L0(2131749754, null), true);
+        k0 k0Var = this.f45123b;
+        f6 f6Var = k0Var.f45164s1;
+        k0Var.f45155i1.a(this.f45122a, e20.i(k0Var.f21584a).e(), k0Var.f45160o1.getTextWithEntities(), dd.L0(2131749754, null), true);
         int codePointCount = Character.codePointCount(charSequence, 0, charSequence.length());
-        k0Var.f45157w1 = codePointCount;
-        int i11 = k0Var.f45156v1;
+        k0Var.f45168w1 = codePointCount;
+        int i11 = k0Var.f45167v1;
         if (i11 > 0 && (i10 = i11 - codePointCount) <= 15) {
             if (i10 < -9999) {
                 i10 = -9999;
             }
-            String E = cd.E(i10, ',');
+            String E = dd.E(i10, ',');
             if (f6Var.getVisibility() == 0) {
                 z10 = true;
             } else {
@@ -85,14 +85,14 @@ public final class i0 implements sf {
             f6Var.animate().setListener(null).cancel();
             f6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i10 < 0) {
-                a7.Z(f6Var, t6.f21153p7, k0Var.I0);
+                a7.Z(f6Var, t6.f21154p7, k0Var.I0);
                 return;
             } else {
-                a7.Z(f6Var, t6.f21311y6, k0Var.I0);
+                a7.Z(f6Var, t6.f21312y6, k0Var.I0);
                 return;
             }
         }
-        f6Var.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new ns0(this, 25));
+        f6Var.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new ms0(this, 25));
     }
 
     @Override

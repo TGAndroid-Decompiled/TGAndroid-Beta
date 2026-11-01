@@ -2,14 +2,14 @@ package org.telegram.ui.Components;
 
 import java.util.Comparator;
 public final class u20 implements Comparator {
-    public final int f30766a;
-    public final org.telegram.messenger.vp f30767b;
-    public final int f30768c;
+    public final int f30834a;
+    public final org.telegram.messenger.wp f30835b;
+    public final int f30836c;
 
-    public u20(org.telegram.messenger.vp vpVar, int i10, int i11) {
-        this.f30766a = i11;
-        this.f30767b = vpVar;
-        this.f30768c = i10;
+    public u20(org.telegram.messenger.wp wpVar, int i10, int i11) {
+        this.f30834a = i11;
+        this.f30835b = wpVar;
+        this.f30836c = i10;
     }
 
     @Override

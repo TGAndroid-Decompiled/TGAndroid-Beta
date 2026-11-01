@@ -1,13 +1,21 @@
 package org.telegram.messenger;
 public final class hr implements Runnable {
-    public final int f15932a;
-    public final Object f15933b;
-    public final Object f15934c;
+    public final int f16105a;
+    public final is f16106b;
+    public final long f16107c;
+    public final int d;
+    public final int e;
+    public final int f16108f;
+    public final int h;
 
-    public hr(int i10, Object obj, Object obj2) {
-        this.f15932a = i10;
-        this.f15933b = obj;
-        this.f15934c = obj2;
+    public hr(is isVar, int i10, int i11, int i12, int i13, long j10) {
+        this.f16105a = 0;
+        this.f16106b = isVar;
+        this.d = i10;
+        this.e = i11;
+        this.f16108f = i12;
+        this.h = i13;
+        this.f16107c = j10;
     }
 
     @Override
@@ -15,9 +23,13 @@ public final class hr implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.hr.run():void");
     }
 
-    public hr(gw gwVar, hs hsVar) {
-        this.f15932a = 14;
-        this.f15934c = gwVar;
-        this.f15933b = hsVar;
+    public hr(is isVar, long j10, int i10, int i11, int i12, int i13, int i14) {
+        this.f16105a = i14;
+        this.f16106b = isVar;
+        this.f16107c = j10;
+        this.d = i10;
+        this.e = i11;
+        this.f16108f = i12;
+        this.h = i13;
     }
 }

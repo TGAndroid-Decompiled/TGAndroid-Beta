@@ -6,11 +6,11 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.text.style.ImageSpan;
-import org.telegram.messenger.cd;
-import org.telegram.ui.Components.t21;
+import org.telegram.messenger.dd;
+import org.telegram.ui.Components.u21;
 public final class y6 extends ImageSpan {
-    public static t21 f23623b;
-    public final int f23624a = 1;
+    public static u21 f23624b;
+    public final int f23625a = 1;
 
     public y6(Drawable drawable) {
         super(drawable);
@@ -18,14 +18,14 @@ public final class y6 extends ImageSpan {
 
     @Override
     public void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        switch (this.f23624a) {
+        switch (this.f23625a) {
             case 0:
                 Drawable drawable = getDrawable();
                 canvas.save();
                 Paint.FontMetricsInt fontMetricsInt = paint.getFontMetricsInt();
                 int i15 = fontMetricsInt.descent;
                 canvas.translate(f7, ((i13 + i15) - ((i15 - fontMetricsInt.ascent) / 2)) - ((drawable.getBounds().bottom - drawable.getBounds().top) / 2));
-                if (cd.X) {
+                if (dd.X) {
                     canvas.scale(-1.0f, 1.0f, drawable.getIntrinsicWidth() / 2, drawable.getIntrinsicHeight() / 2);
                 }
                 drawable.draw(canvas);
@@ -39,7 +39,7 @@ public final class y6 extends ImageSpan {
 
     @Override
     public int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.f23624a) {
+        switch (this.f23625a) {
             case 0:
                 Rect bounds = getDrawable().getBounds();
                 if (fontMetricsInt != null) {
@@ -63,7 +63,7 @@ public final class y6 extends ImageSpan {
 
     @Override
     public void updateDrawState(TextPaint textPaint) {
-        switch (this.f23624a) {
+        switch (this.f23625a) {
             case 1:
                 float textSize = textPaint.getTextSize() * 0.89f;
                 int i10 = (int) (0.02f * textSize);

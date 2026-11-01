@@ -1,18 +1,18 @@
 package u2;
 public final class e {
-    public final a f49867a;
-    public long f49868b;
-    public long f49869c;
+    public final a f49881a;
+    public long f49882b;
+    public long f49883c;
     public boolean d;
     public boolean e;
-    public boolean f49870f;
-    public boolean f49871g;
+    public boolean f49884f;
+    public boolean f49885g;
     public boolean h;
 
     public e(a aVar) {
         aVar.getClass();
-        this.f49867a = aVar;
+        this.f49881a = aVar;
         this.d = true;
-        this.f49869c = Long.MIN_VALUE;
+        this.f49883c = Long.MIN_VALUE;
     }
 }

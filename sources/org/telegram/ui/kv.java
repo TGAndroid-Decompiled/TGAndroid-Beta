@@ -1,25 +1,41 @@
 package org.telegram.ui;
+public final class kv implements org.telegram.messenger.cs {
+    public final int f39006a;
+    public final zx f39007b;
 
-import org.telegram.tgnet.tl.TL_account;
-public final class kv implements org.telegram.messenger.q20 {
-    public final int f38956a;
-    public final ay f38957b;
-
-    public kv(ay ayVar, int i10) {
-        this.f38956a = i10;
-        this.f38957b = ayVar;
+    public kv(zx zxVar, int i10) {
+        this.f39006a = i10;
+        this.f39007b = zxVar;
     }
 
     @Override
-    public final void a(Object obj) {
-        switch (this.f38956a) {
+    public final void a(int i10) {
+        boolean z10;
+        boolean z11;
+        switch (this.f39006a) {
             case 0:
-                ay ayVar = this.f38957b;
-                ayVar.O1 = (Long) obj;
-                ayVar.f5();
+                zx zxVar = this.f39007b;
+                zxVar.getClass();
+                if (i10 != 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                zxVar.U1 = z10;
+                org.telegram.messenger.wp.e1().edit().putBoolean("askAboutContacts", zxVar.U1).apply();
+                zxVar.u3(false);
                 return;
             default:
-                ay.e0(this.f38957b, (TL_account.TL_birthday) obj);
+                zx zxVar2 = this.f39007b;
+                zxVar2.getClass();
+                if (i10 != 0) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                zxVar2.U1 = z11;
+                org.telegram.messenger.wp.e1().edit().putBoolean("askAboutContacts", zxVar2.U1).commit();
+                zxVar2.u3(false);
                 return;
         }
     }

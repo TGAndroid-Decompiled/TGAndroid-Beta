@@ -1,46 +1,58 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class jr0 extends s4.s0 {
-    public final ar0 f27478a;
-    public final br0 f27479b;
-    public final zt0 f27480c;
+import android.os.Bundle;
+import java.util.ArrayList;
+public final class jr0 extends org.telegram.ui.un {
+    public boolean f27557kd;
+    public final int f27558ld;
+    public final au0 f27559md;
 
-    public jr0(zt0 zt0Var, ar0 ar0Var, br0 br0Var) {
-        this.f27480c = zt0Var;
-        this.f27478a = ar0Var;
-        this.f27479b = br0Var;
+    public jr0(au0 au0Var, Bundle bundle, int i10) {
+        super(bundle);
+        this.f27559md = au0Var;
+        this.f27558ld = i10;
+        this.f27557kd = true;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        boolean z10;
-        if (i10 != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void onTransitionAnimationStart(boolean z10, boolean z11) {
+        au0 au0Var = this.f27559md;
+        mt0 mt0Var = au0Var.U;
+        if (this.f27557kd) {
+            if (this.f42102j0 != null) {
+                Ga("");
+                this.f42102j0.P(mt0Var.f28562x, false);
+            }
+            org.telegram.ui.wk wkVar = this.C1;
+            if (wkVar != null) {
+                wkVar.e(mt0Var.f28563y, false);
+            }
+            org.telegram.messenger.vi mediaDataController = au0Var.f24568x1.getMediaDataController();
+            int classGuid = getClassGuid();
+            sg.o0 o0Var = mt0Var.f28563y;
+            String str = mt0Var.f28562x;
+            ArrayList arrayList = mt0Var.f28558n;
+            ArrayList arrayList2 = mt0Var.h;
+            int i10 = mt0Var.f28561w;
+            boolean z12 = mt0Var.f28560s;
+            mediaDataController.Q0 = o0Var;
+            mediaDataController.f18643d1 = str;
+            boolean[] zArr = mediaDataController.X0;
+            zArr[0] = z12;
+            zArr[1] = true;
+            ArrayList arrayList3 = mediaDataController.Z0;
+            arrayList3.clear();
+            arrayList3.addAll(arrayList2);
+            mediaDataController.f18635a1.clear();
+            mediaDataController.f18635a1.addAll(arrayList);
+            mediaDataController.k2();
+            int[] iArr = mediaDataController.W0;
+            iArr[0] = i10;
+            iArr[1] = 0;
+            mediaDataController.f18645e1 = this.f27558ld;
+            mediaDataController.getNotificationCenter().k(org.telegram.messenger.at.H0, Integer.valueOf(classGuid), 0, Integer.valueOf(mediaDataController.c0()), Long.valueOf(mediaDataController.getUserConfig().e()), Integer.valueOf(mediaDataController.f18645e1), Integer.valueOf(mediaDataController.j0()), Boolean.TRUE);
+            this.f27557kd = false;
         }
-        this.f27480c.f33181d1 = z10;
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        int i12;
-        int i13;
-        zt0 zt0Var = this.f27480c;
-        ot0[] ot0VarArr = zt0Var.f33234v1;
-        br0 br0Var = this.f27479b;
-        ar0 ar0Var = this.f27478a;
-        zt0Var.N(ar0Var, (tk0) recyclerView, br0Var);
-        if (i11 != 0 && ((i13 = zt0Var.m0[0].E) == 0 || i13 == 5)) {
-            ot0VarArr[0].f29177a.isEmpty();
-        }
-        if (i11 != 0 && ((i12 = ar0Var.E) == 0 || zt0.x0(i12))) {
-            zt0.p(ar0Var, ot0VarArr, true);
-        }
-        ar0Var.h.L0(true);
-        if (ar0Var.F != null) {
-            ar0Var.invalidate();
-        }
+        super.onTransitionAnimationStart(z10, z11);
     }
 }

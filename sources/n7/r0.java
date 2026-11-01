@@ -19,12 +19,12 @@ public final class r0 extends s0 {
             }
             throw new ArrayIndexOutOfBoundsException(a1.g.j(i10, i11, "Index > length: ", ", "));
         }
-        return this.f13712b[this.d + i10];
+        return this.f13713b[this.d + i10];
     }
 
     @Override
     public final byte m(int i10) {
-        return this.f13712b[this.d + i10];
+        return this.f13713b[this.d + i10];
     }
 
     @Override
@@ -39,6 +39,6 @@ public final class r0 extends s0 {
 
     @Override
     public final void p(int i10, byte[] bArr) {
-        System.arraycopy(this.f13712b, this.d, bArr, 0, i10);
+        System.arraycopy(this.f13713b, this.d, bArr, 0, i10);
     }
 }

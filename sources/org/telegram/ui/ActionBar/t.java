@@ -2,16 +2,16 @@ package org.telegram.ui.ActionBar;
 
 import org.telegram.ui.Components.gr;
 public final class t implements Runnable {
-    public final boolean f20821a;
-    public final boolean f20822b;
-    public final boolean f20823c;
+    public final boolean f20822a;
+    public final boolean f20823b;
+    public final boolean f20824c;
     public final ActionBarLayout d;
 
     public t(ActionBarLayout actionBarLayout, boolean z10, boolean z11, boolean z12) {
         this.d = actionBarLayout;
-        this.f20821a = z10;
-        this.f20822b = z11;
-        this.f20823c = z12;
+        this.f20822a = z10;
+        this.f20823b = z11;
+        this.f20824c = z12;
     }
 
     @Override
@@ -25,7 +25,7 @@ public final class t implements Runnable {
         }
         Integer num2 = null;
         actionBarLayout.J0 = null;
-        boolean z10 = this.f20821a;
+        boolean z10 = this.f20822a;
         if (z10) {
             actionBarLayout.B0 = System.currentTimeMillis();
         }
@@ -37,8 +37,8 @@ public final class t implements Runnable {
             j10 = 18;
         }
         actionBarLayout.L0 = nanoTime;
-        boolean z11 = this.f20823c;
-        boolean z12 = this.f20822b;
+        boolean z11 = this.f20824c;
+        boolean z12 = this.f20823b;
         if (z12 && z11) {
             f7 = 190.0f;
         } else {
@@ -99,48 +99,48 @@ public final class t implements Runnable {
         }
         if (z11) {
             float a2 = w7.u.a(interpolation, 0.0f, 1.0f);
-            actionBarLayout.f20109s.setAlpha(a2);
+            actionBarLayout.f20110s.setAlpha(a2);
             if (z12) {
                 float f12 = (0.3f * interpolation) + 0.7f;
-                actionBarLayout.f20109s.setScaleX(f12);
-                actionBarLayout.f20109s.setScaleY(f12);
+                actionBarLayout.f20110s.setScaleX(f12);
+                actionBarLayout.f20110s.setScaleY(f12);
                 if (actionBarLayout.J != null) {
                     float f13 = 1.0f - interpolation;
-                    actionBarLayout.f20109s.setTranslationY(org.telegram.messenger.i0.L(40.0f) * f13);
+                    actionBarLayout.f20110s.setTranslationY(org.telegram.messenger.i0.L(40.0f) * f13);
                     actionBarLayout.J.setTranslationY((-org.telegram.messenger.i0.L(70.0f)) * f13);
                     float f14 = (interpolation * 0.05f) + 0.95f;
                     actionBarLayout.J.setScaleX(f14);
                     actionBarLayout.J.setScaleY(f14);
                 }
-                actionBarLayout.f20106r.setAlpha((int) (46.0f * a2));
-                t6.f21198s0.setAlpha((int) (a2 * 255.0f));
-                actionBarLayout.f20109s.invalidate();
+                actionBarLayout.f20107r.setAlpha((int) (46.0f * a2));
+                t6.f21199s0.setAlpha((int) (a2 * 255.0f));
+                actionBarLayout.f20110s.invalidate();
                 actionBarLayout.invalidate();
             } else {
-                actionBarLayout.f20109s.setTranslationX((1.0f - interpolation) * org.telegram.messenger.i0.L(48.0f));
+                actionBarLayout.f20110s.setTranslationX((1.0f - interpolation) * org.telegram.messenger.i0.L(48.0f));
             }
         } else {
             float f15 = 1.0f - interpolation;
             float a10 = w7.u.a(f15, 0.0f, 1.0f);
-            actionBarLayout.f20117w.setAlpha(a10);
+            actionBarLayout.f20118w.setAlpha(a10);
             if (z12) {
                 float f16 = (f15 * 0.1f) + 0.9f;
-                actionBarLayout.f20117w.setScaleX(f16);
-                actionBarLayout.f20117w.setScaleY(f16);
-                actionBarLayout.f20106r.setAlpha((int) (46.0f * a10));
+                actionBarLayout.f20118w.setScaleX(f16);
+                actionBarLayout.f20118w.setScaleY(f16);
+                actionBarLayout.f20107r.setAlpha((int) (46.0f * a10));
                 if (actionBarLayout.J == null) {
-                    t6.f21198s0.setAlpha((int) (a10 * 255.0f));
+                    t6.f21199s0.setAlpha((int) (a10 * 255.0f));
                 }
-                actionBarLayout.f20109s.invalidate();
+                actionBarLayout.f20110s.invalidate();
                 actionBarLayout.invalidate();
             } else {
-                actionBarLayout.f20117w.setTranslationX(org.telegram.messenger.i0.L(48.0f) * interpolation);
+                actionBarLayout.f20118w.setTranslationX(org.telegram.messenger.i0.L(48.0f) * interpolation);
             }
         }
         if (actionBarLayout.K0 < 1.0f) {
             actionBarLayout.g0(z11, false, z12);
         } else {
-            actionBarLayout.G(false);
+            actionBarLayout.F(false);
         }
     }
 }

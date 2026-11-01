@@ -4,10 +4,10 @@ import b2.r0;
 import b2.t0;
 import b2.x;
 public abstract class j implements t0 {
-    public final String f45442a;
+    public final String f45453a;
 
     public j(String str) {
-        this.f45442a = str;
+        this.f45453a = str;
     }
 
     @Override
@@ -21,7 +21,7 @@ public abstract class j implements t0 {
     }
 
     public String toString() {
-        return this.f45442a;
+        return this.f45453a;
     }
 
     @Override

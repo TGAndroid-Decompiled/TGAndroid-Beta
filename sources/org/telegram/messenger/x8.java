@@ -19,19 +19,19 @@ public final class x8 implements g2.h, n7 {
     public final ArrayList E = new ArrayList(1);
     public int F;
     public g2.n G;
-    public m7 f19222a;
-    public Uri f19223b;
-    public long f19224c;
+    public m7 f19410a;
+    public Uri f19411b;
+    public long f19412c;
     public long d;
     public long e;
-    public boolean f19225f;
+    public boolean f19413f;
     public long h;
-    public CountDownLatch f19226n;
-    public RandomAccessFile f19227r;
-    public TLRPC.TL_document f19228s;
-    public Object f19229w;
-    public int f19230x;
-    public File f19231y;
+    public CountDownLatch f19414n;
+    public RandomAccessFile f19415r;
+    public TLRPC.TL_document f19416s;
+    public Object f19417w;
+    public int f19418x;
+    public File f19419y;
 
     public static Uri f(int i10, Object obj, TLRPC.Document document) {
         String r10 = b8.r(null, document);
@@ -44,7 +44,7 @@ public final class x8 implements g2.h, n7 {
             StringBuilder sb2 = new StringBuilder("?account=");
             sb2.append(i10);
             sb2.append("&id=");
-            sb2.append(document.f19799id);
+            sb2.append(document.f19800id);
             sb2.append("&hash=");
             sb2.append(document.access_hash);
             sb2.append("&dc=");
@@ -73,8 +73,8 @@ public final class x8 implements g2.h, n7 {
 
     @Override
     public final void a() {
-        CountDownLatch countDownLatch = this.f19226n;
-        this.f19226n = null;
+        CountDownLatch countDownLatch = this.f19414n;
+        this.f19414n = null;
         if (countDownLatch != null) {
             countDownLatch.countDown();
         }
@@ -105,7 +105,7 @@ public final class x8 implements g2.h, n7 {
                         } finally {
                         }
                     }
-                    fVar.f54149i += i10;
+                    fVar.f54170i += i10;
                 }
             }
         }
@@ -113,24 +113,24 @@ public final class x8 implements g2.h, n7 {
 
     @Override
     public final void close() {
-        f8.d("FileStreamLoadOperation " + this.f19228s.f19799id + " close me=" + this);
-        m7 m7Var = this.f19222a;
+        f8.d("FileStreamLoadOperation " + this.f19416s.f19800id + " close me=" + this);
+        m7 m7Var = this.f19410a;
         if (m7Var != null) {
             Utilities.d.c(new i7(m7Var, this, 0));
         }
-        RandomAccessFile randomAccessFile = this.f19227r;
+        RandomAccessFile randomAccessFile = this.f19415r;
         if (randomAccessFile != null) {
             try {
                 randomAccessFile.close();
             } catch (Exception e) {
                 f8.g(e, true);
             }
-            this.f19227r = null;
+            this.f19415r = null;
         }
-        this.f19223b = null;
-        H.remove(Long.valueOf(this.f19228s.f19799id));
-        if (this.f19225f) {
-            this.f19225f = false;
+        this.f19411b = null;
+        H.remove(Long.valueOf(this.f19416s.f19800id));
+        if (this.f19413f) {
+            this.f19413f = false;
             g2.n nVar = this.G;
             String str = e2.l0.f6165a;
             for (int i10 = 0; i10 < this.F; i10++) {
@@ -138,15 +138,15 @@ public final class x8 implements g2.h, n7 {
             }
             this.G = null;
         }
-        CountDownLatch countDownLatch = this.f19226n;
+        CountDownLatch countDownLatch = this.f19414n;
         if (countDownLatch != null) {
             countDownLatch.countDown();
-            this.f19226n = null;
+            this.f19414n = null;
         }
     }
 
     public final int e() {
-        Integer num = (Integer) ConcurrentMap$EL.getOrDefault(I, Long.valueOf(this.f19228s.f19799id), null);
+        Integer num = (Integer) ConcurrentMap$EL.getOrDefault(I, Long.valueOf(this.f19416s.f19800id), null);
         if (num != null) {
             return num.intValue();
         }
@@ -160,7 +160,7 @@ public final class x8 implements g2.h, n7 {
 
     @Override
     public final Uri getUri() {
-        return this.f19223b;
+        return this.f19411b;
     }
 
     @Override

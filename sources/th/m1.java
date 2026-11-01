@@ -10,18 +10,18 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.k20;
-import org.telegram.messenger.l9;
-import org.telegram.messenger.s20;
-import org.telegram.messenger.sc;
-import org.telegram.messenger.we;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.l20;
+import org.telegram.messenger.m9;
+import org.telegram.messenger.t20;
+import org.telegram.messenger.tc;
+import org.telegram.messenger.xe;
 import w7.b9;
-public final class m1 implements org.telegram.ui.ActionBar.u1, d9.k, e2.j, qa.a, q3.g, l9, k20, s20, Continuation, r9.d, i5.e, wg.c {
-    public final int f49234a;
+public final class m1 implements org.telegram.ui.ActionBar.u1, d9.k, e2.j, qa.a, q3.g, m9, l20, t20, Continuation, r9.d, i5.e, wg.c {
+    public final int f49248a;
 
     public m1(int i10) {
-        this.f49234a = i10;
+        this.f49248a = i10;
     }
 
     @Override
@@ -31,22 +31,22 @@ public final class m1 implements org.telegram.ui.ActionBar.u1, d9.k, e2.j, qa.a,
 
     @Override
     public void accept(Object obj) {
-        ((u2.a1) obj).f49823b.release();
+        ((u2.a1) obj).f49837b.release();
     }
 
     @Override
     public Object apply(Object obj) {
-        switch (this.f49234a) {
+        switch (this.f49248a) {
             case 1:
                 return ((c3.o) obj).b().getClass().getSimpleName();
             case 2:
-                return e9.n0.u(e9.s.x(((u2.e0) obj).q().f49994b, new m1(4)));
+                return e9.n0.u(e9.s.x(((u2.e0) obj).q().f50008b, new m1(4)));
             case 4:
                 return Integer.valueOf(((b2.p1) obj).f2189c);
             case 16:
-                return Long.valueOf(((z3.a) obj).f54553b);
+                return Long.valueOf(((z3.a) obj).f54571b);
             case 17:
-                return Long.valueOf(((z3.a) obj).f54554c);
+                return Long.valueOf(((z3.a) obj).f54572c);
             case 18:
                 return (w3.q) obj;
             case 19:
@@ -54,7 +54,7 @@ public final class m1 implements org.telegram.ui.ActionBar.u1, d9.k, e2.j, qa.a,
                 r1Var.getClass();
                 Bundle bundle = new Bundle();
                 String str = u2.r1.e;
-                e9.x1 x1Var = r1Var.f49994b;
+                e9.x1 x1Var = r1Var.f50008b;
                 ArrayList<? extends Parcelable> arrayList = new ArrayList<>(x1Var.d);
                 e9.l0 listIterator = x1Var.listIterator(0);
                 while (listIterator.hasNext()) {
@@ -65,7 +65,7 @@ public final class m1 implements org.telegram.ui.ActionBar.u1, d9.k, e2.j, qa.a,
             default:
                 ya.e eVar = (ya.e) obj;
                 eVar.getClass();
-                li.k kVar = xa.k.f53550a;
+                li.k kVar = xa.k.f53568a;
                 kVar.getClass();
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 try {
@@ -95,9 +95,9 @@ public final class m1 implements org.telegram.ui.ActionBar.u1, d9.k, e2.j, qa.a,
         Integer num = (Integer) obj;
         if (((Integer) number).intValue() == 0) {
             if (num.intValue() == 0) {
-                return cd.L0(2131748815, null);
+                return dd.L0(2131748815, null);
             }
-            return cd.H(',', "Stars", num.intValue());
+            return dd.H(',', "Stars", num.intValue());
         }
         return "" + num;
     }
@@ -106,7 +106,7 @@ public final class m1 implements org.telegram.ui.ActionBar.u1, d9.k, e2.j, qa.a,
     public int g(org.telegram.ui.ActionBar.p6 p6Var, boolean z10) {
         float f7;
         float f10;
-        switch (this.f49234a) {
+        switch (this.f49248a) {
             case 28:
                 int x02 = org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.G8, false);
                 if (z10) {
@@ -116,12 +116,12 @@ public final class m1 implements org.telegram.ui.ActionBar.u1, d9.k, e2.j, qa.a,
                 }
                 return org.telegram.ui.ActionBar.t6.r1(f7, x02);
             default:
-                if (sc.e(262144)) {
+                if (tc.e(262144)) {
                     f10 = 0.85f;
                 } else {
                     f10 = 0.76f;
                 }
-                return b9.n(f10, org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f20929d6, p6Var), org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.Nl, p6Var));
+                return b9.n(f10, org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f20930d6, p6Var), org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.Nl, p6Var));
         }
     }
 
@@ -139,7 +139,7 @@ public final class m1 implements org.telegram.ui.ActionBar.u1, d9.k, e2.j, qa.a,
     @Override
     public Object l(Object obj) {
         Integer num = (Integer) obj;
-        we weVar = vh.k2.f51379j0;
+        xe xeVar = vh.k2.f51394j0;
         return 0;
     }
 
@@ -148,14 +148,14 @@ public final class m1 implements org.telegram.ui.ActionBar.u1, d9.k, e2.j, qa.a,
         boolean z10;
         File file;
         int i10;
-        switch (this.f49234a) {
+        switch (this.f49248a) {
             case 21:
                 if (task.isSuccessful()) {
                     x9.b bVar = (x9.b) task.getResult();
-                    u9.c cVar = u9.c.f50196a;
-                    cVar.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f53441b);
+                    u9.c cVar = u9.c.f50210a;
+                    cVar.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f53459b);
                     z10 = true;
-                    if (bVar.f53442c.delete()) {
+                    if (bVar.f53460c.delete()) {
                         cVar.b("Deleted report file: " + file.getPath());
                     } else {
                         cVar.d("Crashlytics could not delete report file: " + file.getPath(), null);
@@ -177,6 +177,6 @@ public final class m1 implements org.telegram.ui.ActionBar.u1, d9.k, e2.j, qa.a,
     }
 
     public m1(j2.f fVar) {
-        this.f49234a = 21;
+        this.f49248a = 21;
     }
 }

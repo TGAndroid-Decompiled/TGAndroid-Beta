@@ -14,30 +14,30 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public class bt extends View {
-    public final qz0 f24875a;
-    public final Drawable f24876b;
-    public final ImageReceiver f24877c;
+    public final rz0 f24918a;
+    public final Drawable f24919b;
+    public final ImageReceiver f24920c;
     public final Rect d;
     public final RectF e;
-    public vg.f f24878f;
+    public vg.f f24921f;
 
     public bt(Context context, CharSequence charSequence) {
         super(context);
         this.d = new Rect();
         this.e = new RectF();
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f24877c = imageReceiver;
+        this.f24920c = imageReceiver;
         imageReceiver.J0(org.telegram.messenger.i0.L(22.66f));
-        this.f24875a = new qz0(charSequence, 14.0f, org.telegram.messenger.i0.o());
+        this.f24918a = new rz0(charSequence, 14.0f, org.telegram.messenger.i0.o());
         Drawable f7 = i0.a.f(context, 2131230872);
-        this.f24876b = f7;
+        this.f24919b = f7;
         f7.setColorFilter(new PorterDuffColorFilter(-1711276033, PorterDuff.Mode.SRC_IN));
     }
 
     public final void a(TLRPC.Photo photo, Object obj) {
         TLRPC.PhotoSize w9 = org.telegram.messenger.b8.w(photo.sizes, org.telegram.messenger.i0.L(48.0f), false, null, true);
         TLRPC.PhotoSize w10 = org.telegram.messenger.b8.w(photo.sizes, org.telegram.messenger.i0.L(24.0f), false, w9, false);
-        this.f24877c.r0(org.telegram.messenger.ic.i(w9, photo), "24_24", org.telegram.messenger.ic.i(w10, photo), "24_24", null, 0L, null, obj, 0);
+        this.f24920c.r0(org.telegram.messenger.jc.i(w9, photo), "24_24", org.telegram.messenger.jc.i(w10, photo), "24_24", null, 0L, null, obj, 0);
     }
 
     @Override
@@ -51,27 +51,27 @@ public class bt extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f24877c.P();
+        this.f24920c.P();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f24877c.R();
+        this.f24920c.R();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         float f7;
         int L;
-        ImageReceiver imageReceiver = this.f24877c;
+        ImageReceiver imageReceiver = this.f24920c;
         boolean I = imageReceiver.I();
         if (I) {
             f7 = 30.33f;
         } else {
             f7 = 11.33f;
         }
-        int L2 = org.telegram.messenger.i0.L(19.0f) + ((int) Math.ceil(this.f24875a.f29774c)) + org.telegram.messenger.i0.L(f7);
+        int L2 = org.telegram.messenger.i0.L(19.0f) + ((int) Math.ceil(this.f24918a.f30126c)) + org.telegram.messenger.i0.L(f7);
         int L3 = org.telegram.messenger.i0.L(24.0f);
         int width = (getWidth() - L2) / 2;
         int height = getHeight() / 2;
@@ -80,10 +80,10 @@ public class bt extends View {
         Rect rect = this.d;
         rect.set(width, i10, i11, L3 + i10);
         rect.inset(-org.telegram.messenger.i0.L(4.0f), -org.telegram.messenger.i0.L(4.0f));
-        vg.f fVar = this.f24878f;
+        vg.f fVar = this.f24921f;
         if (fVar != null) {
             fVar.setBounds(rect);
-            this.f24878f.draw(canvas);
+            this.f24921f.draw(canvas);
         }
         if (I) {
             float f10 = height;
@@ -93,8 +93,8 @@ public class bt extends View {
             imageReceiver.A0(rectF);
             imageReceiver.h(canvas, null);
         }
-        this.f24875a.c(width + L, height, 1.0f, -1, canvas);
-        Drawable drawable = this.f24876b;
+        this.f24918a.c(width + L, height, 1.0f, -1, canvas);
+        Drawable drawable = this.f24919b;
         drawable.setBounds(i11 - org.telegram.messenger.i0.L(17.0f), height - org.telegram.messenger.i0.L(6.0f), i11 - org.telegram.messenger.i0.L(5.0f), org.telegram.messenger.i0.L(6.0f) + height);
         drawable.draw(canvas);
     }
@@ -102,11 +102,11 @@ public class bt extends View {
     public void setBlurredBackgroundDrawable(vg.f fVar) {
         fVar.p(org.telegram.messenger.i0.L(4.0f));
         fVar.q(org.telegram.messenger.i0.L(11.0f));
-        this.f24878f = fVar;
+        this.f24921f = fVar;
     }
 
     public void setImage(Bitmap bitmap) {
-        this.f24877c.v0(bitmap);
+        this.f24920c.v0(bitmap);
         invalidate();
     }
 

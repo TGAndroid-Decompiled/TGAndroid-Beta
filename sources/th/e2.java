@@ -14,10 +14,10 @@ public final class e2 extends s6 {
 
     @Override
     public final void b(boolean z10) {
-        v2 v2Var = this.I.f49783z1;
+        v2 v2Var = this.I.f49797z1;
         if (v2Var != null) {
             o7 o7Var = ((f7) v2Var).d;
-            o7Var.f49311i1 = z10;
+            o7Var.f49325i1 = z10;
             o7Var.d0();
         }
     }

@@ -57,7 +57,7 @@ public class i {
                         while (true) {
                             t tVar = (t) atomicReferenceFieldUpdater.get(this);
                             kVar = kVar2;
-                            if (tVar.f54419c >= b10.f54419c) {
+                            if (tVar.f54440c >= b10.f54440c) {
                                 break;
                             } else if (!b10.j()) {
                                 break;

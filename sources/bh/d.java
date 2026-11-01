@@ -66,32 +66,32 @@ import jg.h2;
 import k2.m0;
 import m.p3;
 import n6.l;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.ab;
+import org.telegram.messenger.dd;
 import org.telegram.messenger.f8;
 import org.telegram.messenger.i0;
-import org.telegram.messenger.ia;
-import org.telegram.messenger.za;
+import org.telegram.messenger.ja;
 import org.telegram.ui.ActionBar.i3;
 import org.telegram.ui.ActionBar.k2;
-import org.telegram.ui.Components.b81;
+import org.telegram.ui.Components.c81;
 import org.telegram.ui.Components.gr;
-import org.telegram.ui.Components.lj0;
-import org.telegram.ui.Components.mn0;
+import org.telegram.ui.Components.mj0;
 import org.telegram.ui.Components.nn0;
+import org.telegram.ui.Components.on0;
 import org.telegram.ui.Components.s9;
 import org.telegram.ui.Components.w9;
 import org.telegram.ui.SaveToGallerySettingsActivity;
 import org.telegram.ui.WallpapersListActivity;
 import org.telegram.ui.n01;
 import org.telegram.ui.p01;
-import org.telegram.ui.se1;
-import org.telegram.ui.yn0;
+import org.telegram.ui.qe1;
+import org.telegram.ui.wn0;
 import r9.p;
 import r9.r;
 import vh.b4;
 import vh.d0;
 import z9.s0;
-public final class d implements fe.e, z3.d, za, mn0, n5.b, r9.b, lj0 {
+public final class d implements fe.e, z3.d, ab, nn0, n5.b, r9.b, mj0 {
     public Object f2777a;
     public Object f2778b;
     public Object f2779c;
@@ -157,8 +157,8 @@ public final class d implements fe.e, z3.d, za, mn0, n5.b, r9.b, lj0 {
     }
 
     public void B() {
-        p3 p3Var = (p3) ((fg.i) this.f2777a).f7077b;
-        a0 a0Var = (a0) p3Var.f12519b;
+        p3 p3Var = (p3) ((fg.i) this.f2777a).f7078b;
+        a0 a0Var = (a0) p3Var.f12520b;
         if (a0Var != null) {
             try {
                 i8.g gVar = (i8.g) a0Var.f876c;
@@ -168,14 +168,14 @@ public final class d implements fe.e, z3.d, za, mn0, n5.b, r9.b, lj0 {
                 throw new RuntimeException(e);
             }
         }
-        while (!((LinkedList) p3Var.f12520c).isEmpty() && ((x6.c) ((LinkedList) p3Var.f12520c).getLast()).a() >= 1) {
-            ((LinkedList) p3Var.f12520c).removeLast();
+        while (!((LinkedList) p3Var.f12521c).isEmpty() && ((x6.c) ((LinkedList) p3Var.f12521c).getLast()).a() >= 1) {
+            ((LinkedList) p3Var.f12521c).removeLast();
         }
     }
 
     public void D() {
-        p3 p3Var = (p3) ((fg.i) this.f2777a).f7077b;
-        a0 a0Var = (a0) p3Var.f12519b;
+        p3 p3Var = (p3) ((fg.i) this.f2777a).f7078b;
+        a0 a0Var = (a0) p3Var.f12520b;
         if (a0Var != null) {
             try {
                 i8.g gVar = (i8.g) a0Var.f876c;
@@ -185,13 +185,13 @@ public final class d implements fe.e, z3.d, za, mn0, n5.b, r9.b, lj0 {
                 throw new RuntimeException(e);
             }
         }
-        while (!((LinkedList) p3Var.f12520c).isEmpty() && ((x6.c) ((LinkedList) p3Var.f12520c).getLast()).a() >= 5) {
-            ((LinkedList) p3Var.f12520c).removeLast();
+        while (!((LinkedList) p3Var.f12521c).isEmpty() && ((x6.c) ((LinkedList) p3Var.f12521c).getLast()).a() >= 5) {
+            ((LinkedList) p3Var.f12521c).removeLast();
         }
     }
 
     public void F() {
-        p3 p3Var = (p3) ((fg.i) this.f2777a).f7077b;
+        p3 p3Var = (p3) ((fg.i) this.f2777a).f7078b;
         p3Var.getClass();
         p3Var.h(new x6.c(p3Var, 1));
     }
@@ -211,10 +211,10 @@ public final class d implements fe.e, z3.d, za, mn0, n5.b, r9.b, lj0 {
                     return;
                 }
             }
-            yn0 yn0Var = new yn0(2, false, false, null);
-            yn0Var.f43873y = false;
-            yn0Var.V = new m0(this);
-            k2Var.presentFragment(yn0Var);
+            wn0 wn0Var = new wn0(2, false, false, null);
+            wn0Var.f43140y = false;
+            wn0Var.V = new m0(this);
+            k2Var.presentFragment(wn0Var);
             return;
         }
         Intent intent = new Intent("android.intent.action.PICK");
@@ -384,7 +384,7 @@ public final class d implements fe.e, z3.d, za, mn0, n5.b, r9.b, lj0 {
                     j10 = new BigInteger(replace.substring(0, Math.min(16, replace.length())), 16).longValue();
                 } catch (NumberFormatException e) {
                     g6.b bVar = t6.f4776n;
-                    Log.w(bVar.f7367a, bVar.d("receiverSessionId %s is not valid for hash", str5), e);
+                    Log.w(bVar.f7368a, bVar.d("receiverSessionId %s is not valid for hash", str5), e);
                     j10 = 0;
                 }
                 l10.c();
@@ -1084,7 +1084,7 @@ public final class d implements fe.e, z3.d, za, mn0, n5.b, r9.b, lj0 {
         p01 p01Var = (p01) this.d;
         p01 p01Var2 = (p01) this.f2778b;
         p01 p01Var3 = (p01) this.f2779c;
-        boolean isAttachedToWindow = ((nn0) this.f2777a).isAttachedToWindow();
+        boolean isAttachedToWindow = ((on0) this.f2777a).isAttachedToWindow();
         if (f7 > 0.7f) {
             j10 = (((float) 4089446400L) * ((f7 - 0.7f) / 0.3f)) + ((float) 104857600);
         } else {
@@ -1101,15 +1101,15 @@ public final class d implements fe.e, z3.d, za, mn0, n5.b, r9.b, lj0 {
             p01Var.e(false, isAttachedToWindow);
             i0.Y3(p01Var3, false, 0.8f, true, isAttachedToWindow);
         } else {
-            p01Var3.c(cd.a0("UpToFileSize", null, 2131743849, i0.i0(j10, true, false)), false, true);
+            p01Var3.c(dd.a0("UpToFileSize", null, 2131743849, i0.i0(j10, true, false)), false, true);
             p01Var2.e(false, isAttachedToWindow);
             p01Var3.e(true, isAttachedToWindow);
             p01Var.e(false, isAttachedToWindow);
             i0.Y3(p01Var3, true, 0.8f, true, isAttachedToWindow);
         }
         if (z10) {
-            saveToGallerySettingsActivity.b0().f15093c = j10;
-            saveToGallerySettingsActivity.c0();
+            saveToGallerySettingsActivity.c0().f15449c = j10;
+            saveToGallerySettingsActivity.d0();
         }
     }
 
@@ -1118,19 +1118,19 @@ public final class d implements fe.e, z3.d, za, mn0, n5.b, r9.b, lj0 {
         byte[] bArr2 = (byte[]) this.f2777a;
         SecureRandom secureRandom = new SecureRandom();
         BigInteger bigInteger = new BigInteger(2048, secureRandom);
-        BigInteger bigInteger2 = se1.f41493b;
-        BigInteger bigInteger3 = se1.f41492a;
+        BigInteger bigInteger2 = qe1.f40763b;
+        BigInteger bigInteger3 = qe1.f40762a;
         BigInteger modPow = bigInteger2.modPow(bigInteger, bigInteger3);
         BigInteger bigInteger4 = BigInteger.ONE;
         if (modPow.compareTo(bigInteger4) > 0 && modPow.compareTo(bigInteger3.subtract(bigInteger4)) < 0) {
-            byte[] a2 = se1.a(modPow);
+            byte[] a2 = qe1.a(modPow);
             BigInteger bigInteger5 = new BigInteger(1, bArr);
             if (bigInteger5.compareTo(bigInteger4) > 0 && bigInteger5.compareTo(bigInteger3.subtract(bigInteger4)) < 0) {
-                byte[] a10 = se1.a(bigInteger5.modPow(bigInteger, bigInteger3));
+                byte[] a10 = qe1.a(bigInteger5.modPow(bigInteger, bigInteger3));
                 byte[] bArr3 = new byte[16];
                 secureRandom.nextBytes(bArr3);
-                byte[] b10 = se1.b(new byte[][]{a10, bArr2, bArr3});
-                byte[] b11 = se1.b(new byte[][]{a10, bArr});
+                byte[] b10 = qe1.b(new byte[][]{a10, bArr2, bArr3});
+                byte[] b11 = qe1.b(new byte[][]{a10, bArr});
                 this.d = b10;
                 String[] strArr = {"👋", "👍", "👎", "👌", "👊", "🤟", "🫵", "👏", "🤝", "✍", "💪", "👀", "👅", "🥶", "🤡", "💀", "👽", "😈", "😎", "🤠", "🤩", "😍", "🤯", "🦄", "🐶", "🐷", "🐔", "🐥", "🦊", "🐙", "🐸", "🐳", "🦉", "🦆", "🐢", "🦖", "🐵", "🐝", "🦁", "🐧", "🦋", "🐬", "🦀", "🐌", "🦠", "🐠", "🌵", "💐", "💐", "🎄", "🍄", "🍔", "🍕", "☕", "🍩", "🍪", "🎂", "🍫", "🍭", "🍎", "🥥", "🍒", "🌶", "🥒", "🥦", "🍇", "🍋", "🍓", "🍌", "🍍", "🍆", "🌽", "🍺", "🍷", "🍾", "🍦", "🍰", "🍞", "🍖", "🌭", "🧊", "🍳", "⭐", "☁", "🚀", "🎈", "💎", "💡", "🔑", "❄", "🔎", "👠", "👕", "👗", "👖", "👙", "👜", "👓", "🎀", "💄", "💍", "♠", "❤", "♦", "♣", "🌈", "🌊", "🎃", "👻", "🎁", "🔮", "🎥", "💿", "💻", "📡", "🔉", "⏳", "🔒", "🚗", "🔱", "🔗", "🎲", "🎮", "⚽", "🎳", "🏁", "🏆", "🎸", "💣", "🚽", "🎹", "🎤", "🎨", "🔫", "💊", "💰", "📦", "📅", "📚", "❗", "❓", "💯", "💦", "💤", "🌍", "🏝", "🚂", "🛢", "🛹", "🚢", "✈", "🛎", "🧳", "🌖", "🌞", "🔥", "🏓", "🎰", "🧸", "🪩", "🎭", "👑", "🎩", "🧢", "🔈", "🔋", "🕯", "✏", "💼", "📌", "✂", "🗑", "🛡", "⚙", "🧲", "🪏", "⚖", "🧪", "🚪", "🫧", "🛒", "🪑", "🗿", "🏁", "🏴\u200d☠", "📊", "🥁", "🎧", "🎵", "🧩", "⛳", "🥇", "🥈", "🥈", "🌪", "⛺", "🧭", "🫆", "🧠", "💋"};
                 ArrayList arrayList = new ArrayList(4);
@@ -1139,7 +1139,7 @@ public final class d implements fe.e, z3.d, za, mn0, n5.b, r9.b, lj0 {
                     arrayList.add(strArr[(int) (((b11[i11 + 7] & 255) | ((((((((b11[i11] & 127) << 56) | ((b11[i11 + 1] & 255) << 48)) | ((b11[i11 + 2] & 255) << 40)) | ((b11[i11 + 3] & 255) << 32)) | ((b11[i11 + 4] & 255) << 24)) | ((b11[i11 + 5] & 255) << 16)) | ((b11[i11 + 6] & 255) << 8))) % 200)]);
                 }
                 this.e = arrayList;
-                f8.b("wear-auth: built answer; session " + se1.d(bArr2) + " emojis=" + ((ArrayList) this.e));
+                f8.b("wear-auth: built answer; session " + qe1.d(bArr2) + " emojis=" + ((ArrayList) this.e));
                 byte[] bArr4 = new byte[288];
                 System.arraycopy(bArr2, 0, bArr4, 0, 16);
                 System.arraycopy(bArr3, 0, bArr4, 16, 16);
@@ -1235,7 +1235,7 @@ public final class d implements fe.e, z3.d, za, mn0, n5.b, r9.b, lj0 {
                 Bitmap decodeByteArray = BitmapFactory.decodeByteArray(decode, 0, decode.length);
                 f4.f fVar = (f4.f) hashMap.get(pair.first);
                 fVar.getClass();
-                arrayList2.add(new d2.b(null, null, null, decodeByteArray, fVar.f6834c, 0, fVar.e, fVar.f6833b, 0, Integer.MIN_VALUE, -3.4028235E38f, fVar.f6835f, fVar.f6836g, false, -16777216, fVar.f6838j, 0.0f, 0));
+                arrayList2.add(new d2.b(null, null, null, decodeByteArray, fVar.f6835c, 0, fVar.e, fVar.f6834b, 0, Integer.MIN_VALUE, -3.4028235E38f, fVar.f6836f, fVar.f6837g, false, -16777216, fVar.f6839j, 0.0f, 0));
             }
         }
         for (Map.Entry entry : treeMap.entrySet()) {
@@ -1286,18 +1286,18 @@ public final class d implements fe.e, z3.d, za, mn0, n5.b, r9.b, lj0 {
             if (spannableStringBuilder.length() > 0 && spannableStringBuilder.charAt(spannableStringBuilder.length() - 1) == '\n') {
                 spannableStringBuilder.delete(spannableStringBuilder.length() - 1, spannableStringBuilder.length());
             }
-            float f7 = fVar2.f6834c;
+            float f7 = fVar2.f6835c;
             int i19 = fVar2.d;
             aVar.e = f7;
             aVar.f5648f = i19;
             aVar.f5649g = fVar2.e;
-            aVar.h = fVar2.f6833b;
-            aVar.f5653l = fVar2.f6835f;
-            float f10 = fVar2.f6837i;
+            aVar.h = fVar2.f6834b;
+            aVar.f5653l = fVar2.f6836f;
+            float f10 = fVar2.f6838i;
             int i20 = fVar2.h;
             aVar.f5652k = f10;
             aVar.f5651j = i20;
-            aVar.f5657p = fVar2.f6838j;
+            aVar.f5657p = fVar2.f6839j;
             arrayList2.add(aVar.a());
         }
         return arrayList2;
@@ -1344,7 +1344,7 @@ public final class d implements fe.e, z3.d, za, mn0, n5.b, r9.b, lj0 {
         }
         if (z10) {
             if (((w9) this.f2777a) == null) {
-                this.f2777a = new w9(b4Var.N1, b4Var.I1.getReactionsWindow().f48277c, 0, false);
+                this.f2777a = new w9(b4Var.N1, b4Var.I1.getReactionsWindow().f48288c, 0, false);
             }
             float f12 = -f10;
             float f13 = -f11;
@@ -1379,15 +1379,15 @@ public final class d implements fe.e, z3.d, za, mn0, n5.b, r9.b, lj0 {
 
     public void w(q0.a aVar) {
         fg.i iVar = (fg.i) this.f2777a;
-        ia iaVar = new ia(this, aVar);
+        ja jaVar = new ja(this, aVar);
         iVar.getClass();
         l.d("getMapAsync() must be called on the main thread");
-        p3 p3Var = (p3) iVar.f7077b;
-        a0 a0Var = (a0) p3Var.f12519b;
+        p3 p3Var = (p3) iVar.f7078b;
+        a0 a0Var = (a0) p3Var.f12520b;
         if (a0Var != null) {
-            a0Var.q(iaVar);
+            a0Var.q(jaVar);
         } else {
-            ((ArrayList) p3Var.h).add(iaVar);
+            ((ArrayList) p3Var.h).add(jaVar);
         }
     }
 
@@ -1408,13 +1408,13 @@ public final class d implements fe.e, z3.d, za, mn0, n5.b, r9.b, lj0 {
 
     public void z() {
         fg.i iVar = (fg.i) this.f2777a;
-        p3 p3Var = (p3) iVar.f7077b;
+        p3 p3Var = (p3) iVar.f7078b;
         StrictMode.ThreadPolicy threadPolicy = StrictMode.getThreadPolicy();
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder(threadPolicy).permitAll().build());
         try {
             p3Var.getClass();
             p3Var.h(new x6.c(p3Var, 0));
-            if (((a0) p3Var.f12519b) == null) {
+            if (((a0) p3Var.f12520b) == null) {
                 p3.f(iVar);
             }
         } finally {
@@ -1449,10 +1449,10 @@ public final class d implements fe.e, z3.d, za, mn0, n5.b, r9.b, lj0 {
         this.f2778b = jArr;
     }
 
-    public d(Activity activity, WallpapersListActivity wallpapersListActivity, b81 b81Var) {
+    public d(Activity activity, WallpapersListActivity wallpapersListActivity, c81 c81Var) {
         this.f2778b = activity;
         this.f2779c = wallpapersListActivity;
-        this.d = b81Var;
+        this.d = c81Var;
     }
 
     public d(e eVar) {

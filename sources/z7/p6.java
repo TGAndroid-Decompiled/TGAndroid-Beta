@@ -1,6 +1,6 @@
 package z7;
 public final class p6 implements ja.d {
-    public static final p6 f55049a = new Object();
+    public static final p6 f55067a = new Object();
 
     static {
         sc.e.v(sc.e.n(w.class, new s(1)));

@@ -2,31 +2,31 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class fs implements Runnable {
-    public final int f37338a;
-    public final ns f37339b;
-    public final TLRPC.User f37340c;
+    public final int f37212a;
+    public final ns f37213b;
+    public final TLRPC.User f37214c;
 
     public fs(ns nsVar, TLRPC.User user, int i10) {
-        this.f37338a = i10;
-        this.f37339b = nsVar;
-        this.f37340c = user;
+        this.f37212a = i10;
+        this.f37213b = nsVar;
+        this.f37214c = user;
     }
 
     @Override
     public final void run() {
         String str;
-        switch (this.f37338a) {
+        switch (this.f37212a) {
             case 0:
-                ns nsVar = this.f37339b;
-                TLRPC.User user = this.f37340c;
+                ns nsVar = this.f37213b;
+                TLRPC.User user = this.f37214c;
                 if (user != null && nsVar.M == null && nsVar.N == null) {
                     if (user.phone == null && (str = nsVar.L) != null) {
                         user.phone = af.b.d(str, false);
                     }
-                    nsVar.f40036b.setText(user.first_name);
-                    org.telegram.ui.Cells.k3 k3Var = nsVar.f40036b.d;
+                    nsVar.f39963b.setText(user.first_name);
+                    org.telegram.ui.Cells.k3 k3Var = nsVar.f39963b.d;
                     k3Var.setSelection(k3Var.length());
-                    nsVar.f40037c.setText(user.last_name);
+                    nsVar.f39964c.setText(user.last_name);
                 }
                 TLRPC.UserFull a2 = nsVar.getMessagesController().a2(nsVar.H);
                 if (a2 != null) {
@@ -44,7 +44,7 @@ public final class fs implements Runnable {
                 }
                 return;
             default:
-                ns.Z(this.f37339b, this.f37340c);
+                ns.a0(this.f37213b, this.f37214c);
                 return;
         }
     }

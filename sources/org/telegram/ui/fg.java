@@ -1,54 +1,43 @@
 package org.telegram.ui;
-public final class fg implements q0.a {
-    public final int f37262a;
-    public final un f37263b;
+public final class fg implements org.telegram.messenger.k20 {
+    public final int f37134a;
+    public final un f37135b;
+    public final String f37136c;
 
-    public fg(un unVar, int i10) {
-        this.f37262a = i10;
-        this.f37263b = unVar;
+    public fg(un unVar, String str, int i10) {
+        this.f37134a = i10;
+        this.f37135b = unVar;
+        this.f37136c = str;
     }
 
     @Override
-    public final void accept(Object obj) {
-        switch (this.f37262a) {
+    public final void a(Object obj, Object obj2) {
+        Boolean bool = (Boolean) obj;
+        Boolean bool2 = (Boolean) obj2;
+        switch (this.f37134a) {
             case 0:
-                Integer num = (Integer) obj;
-                un unVar = this.f37263b;
-                unVar.getClass();
-                if (num.intValue() == 0) {
-                    unVar.f42493z1 = 0;
-                    unVar.Vc(true);
-                    unVar.getMessagesController().q3(unVar.f42297j6, unVar.b());
+                if (bool.booleanValue()) {
+                    boolean booleanValue = bool2.booleanValue();
+                    un unVar = this.f37135b;
+                    String str = this.f37136c;
+                    if (booleanValue) {
+                        unVar.getMessagesController().p(str, false);
+                    }
+                    unVar.getParentActivity();
+                    gf.f.m(str);
                     return;
                 }
-                unVar.Vc(true);
-                unVar.k(num.intValue(), 0, false, 0, true, 0);
-                return;
-            case 1:
-                Integer num2 = (Integer) obj;
-                un unVar2 = this.f37263b;
-                unVar2.getClass();
-                if (num2.intValue() == 0) {
-                    unVar2.A1 = 0;
-                    unVar2.Uc(true);
-                    unVar2.getMessagesController().p3(unVar2.f42297j6, unVar2.b());
-                    return;
-                }
-                int i10 = unVar2.A1 - 1;
-                unVar2.A1 = i10;
-                if (i10 <= 0) {
-                    unVar2.getMessagesController().p3(unVar2.f42297j6, unVar2.b());
-                }
-                unVar2.Uc(true);
-                unVar2.k(num2.intValue(), 0, false, 0, true, 0);
                 return;
             default:
-                un unVar3 = this.f37263b;
-                unVar3.getClass();
-                boolean booleanValue = ((Boolean) obj).booleanValue();
-                unVar3.f42448v7 = booleanValue;
-                if (!booleanValue) {
-                    unVar3.C8();
+                un unVar2 = this.f37135b;
+                unVar2.getClass();
+                if (bool.booleanValue()) {
+                    boolean booleanValue2 = bool2.booleanValue();
+                    String str2 = this.f37136c;
+                    if (booleanValue2) {
+                        unVar2.getMessagesController().p(str2, true);
+                    }
+                    gf.f.l(unVar2.getParentActivity(), str2, false, null);
                     return;
                 }
                 return;

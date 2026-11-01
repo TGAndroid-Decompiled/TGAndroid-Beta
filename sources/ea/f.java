@@ -10,9 +10,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import kg.j1;
 import kg.k1;
-import org.telegram.messenger.d20;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.e20;
 import org.telegram.messenger.w0;
+import org.telegram.messenger.wp;
 import org.telegram.ui.ActionBar.t6;
 import x9.v;
 public final class f {
@@ -49,15 +49,15 @@ public final class f {
         Canvas canvas = new Canvas(createBitmap);
         drawable.setBounds(0, 0, intrinsicWidth, minimumHeight);
         drawable.draw(canvas);
-        k1Var.f11142f.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        k1Var.f11143f.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         k1Var.d(0, -intrinsicWidth, 0, intrinsicWidth, 0.0f, minimumHeight);
-        canvas.drawRect(0.0f, 0.0f, intrinsicWidth, minimumHeight, k1Var.f11142f);
-        k1Var.f11142f.setXfermode(null);
-        int[] iArr = k1Var.f11147l;
-        ?? bitmapDrawable = new BitmapDrawable(w0.f19025b.getResources(), createBitmap);
-        bitmapDrawable.f11132b = drawable;
+        canvas.drawRect(0.0f, 0.0f, intrinsicWidth, minimumHeight, k1Var.f11143f);
+        k1Var.f11143f.setXfermode(null);
+        int[] iArr = k1Var.f11148l;
+        ?? bitmapDrawable = new BitmapDrawable(w0.f18945b.getResources(), createBitmap);
+        bitmapDrawable.f11133b = drawable;
         int[] iArr2 = new int[iArr.length];
-        bitmapDrawable.f11131a = iArr2;
+        bitmapDrawable.f11132a = iArr2;
         System.arraycopy(iArr, 0, iArr2, 0, iArr.length);
         return bitmapDrawable;
     }
@@ -71,17 +71,17 @@ public final class f {
 
     public j1 a(j1 j1Var) {
         k1 k1Var = (k1) this.f6474b;
-        int[] iArr = k1Var.f11147l;
+        int[] iArr = k1Var.f11148l;
         int i10 = iArr[0];
-        int[] iArr2 = j1Var.f11131a;
+        int[] iArr2 = j1Var.f11132a;
         if (i10 == iArr2[0] && iArr[1] == iArr2[1] && iArr[2] == iArr2[2] && iArr[3] == iArr2[3]) {
             return j1Var;
         }
-        return c(j1Var.f11132b, k1Var);
+        return c(j1Var.f11133b, k1Var);
     }
 
     public void b() {
-        int i10 = t6.f21333z9;
+        int i10 = t6.f21334z9;
         if (t6.x0(null, i10, false) != this.f6473a) {
             this.f6473a = t6.x0(null, i10, false);
             ((Drawable) this.f6476f).setColorFilter(new PorterDuffColorFilter(this.f6473a, PorterDuff.Mode.MULTIPLY));
@@ -91,7 +91,7 @@ public final class f {
     }
 
     public Paint e() {
-        if (vp.r1(d20.f15147s0).A3()) {
+        if (wp.r1(e20.f15506s0).A3()) {
             if (((Paint) this.d) == null) {
                 this.d = new Paint(1);
             }
@@ -109,12 +109,12 @@ public final class f {
         k1 k1Var = new k1(t6.zk, t6.Ak, t6.Bk, t6.Ck, null);
         this.f6474b = k1Var;
         k1 k1Var2 = new k1(t6.Tk, t6.Uk, -1, -1, null);
-        this.f6475c = k1Var.f11142f;
-        this.f6476f = w0.f19025b.getDrawable(2131232306).mutate();
-        this.f6477g = c(w0.f19025b.getDrawable(2131232361), k1Var);
-        this.f6478i = c(w0.f19025b.getDrawable(2131232361), k1Var2);
-        this.h = c(w0.f19025b.getDrawable(2131232308), k1Var);
-        this.e = w0.f19025b.getDrawable(2131232306).mutate();
+        this.f6475c = k1Var.f11143f;
+        this.f6476f = w0.f18945b.getDrawable(2131232306).mutate();
+        this.f6477g = c(w0.f18945b.getDrawable(2131232361), k1Var);
+        this.f6478i = c(w0.f18945b.getDrawable(2131232361), k1Var2);
+        this.h = c(w0.f18945b.getDrawable(2131232308), k1Var);
+        this.e = w0.f18945b.getDrawable(2131232306).mutate();
         k1Var.a();
         b();
     }

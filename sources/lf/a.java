@@ -15,7 +15,7 @@ public interface a {
 
     Bitmap m();
 
-    void n(Canvas canvas);
+    void o(Canvas canvas);
 
     boolean q();
 

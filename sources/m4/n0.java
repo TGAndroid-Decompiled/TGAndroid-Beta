@@ -14,16 +14,16 @@ import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.jf;
 import org.telegram.messenger.kf;
-import org.telegram.messenger.x20;
-import org.telegram.messenger.yd;
+import org.telegram.messenger.lf;
+import org.telegram.messenger.y20;
+import org.telegram.messenger.zd;
 import org.telegram.ui.Components.a8;
 import v7.p8;
-public final class n0 implements j9.t, v, kf {
-    public Object f12863a;
-    public Object f12864b;
-    public Object f12865c;
+public final class n0 implements j9.t, v, lf {
+    public Object f12864a;
+    public Object f12865b;
+    public Object f12866c;
     public long d;
     public final Object e;
 
@@ -35,22 +35,22 @@ public final class n0 implements j9.t, v, kf {
     public void c(int i10, b2.b1 b1Var) {
         int i11;
         p0 p0Var = (p0) this.e;
-        n1 n1Var = p0Var.h.f12754t;
+        n1 n1Var = p0Var.h.f12755t;
         if (n1Var.n0(20)) {
             i11 = 4;
         } else {
             i11 = 0;
         }
-        if (p0Var.f12889t != i11) {
-            p0Var.f12889t = i11;
-            ((n4.l) p0Var.f12883n.f13526a).f13510a.setFlags(i11 | 3);
+        if (p0Var.f12890t != i11) {
+            p0Var.f12890t = i11;
+            ((n4.l) p0Var.f12884n.f13527a).f13511a.setFlags(i11 | 3);
         }
         p0Var.p0(n1Var);
     }
 
     @Override
     public void e(int i10, p1 p1Var) {
-        Bundle bundle = p1Var.f12898c;
+        Bundle bundle = p1Var.f12899c;
         Bundle bundle2 = Bundle.EMPTY;
         if (!bundle2.isEmpty()) {
             if (bundle.isEmpty()) {
@@ -61,11 +61,11 @@ public final class n0 implements j9.t, v, kf {
                 bundle = bundle3;
             }
         }
-        n4.q qVar = ((p0) this.e).f12883n;
-        String str = p1Var.f12897b;
+        n4.q qVar = ((p0) this.e).f12884n;
+        String str = p1Var.f12898b;
         qVar.getClass();
         if (!TextUtils.isEmpty(str)) {
-            ((n4.l) qVar.f13526a).f13510a.sendSessionEvent(str, bundle);
+            ((n4.l) qVar.f13527a).f13511a.sendSessionEvent(str, bundle);
             return;
         }
         throw new IllegalArgumentException("event cannot be null or empty");
@@ -74,70 +74,70 @@ public final class n0 implements j9.t, v, kf {
     @Override
     public void f(int i10, s1 s1Var, boolean z10, boolean z11, int i11) {
         p0 p0Var = (p0) this.e;
-        p0Var.p0(p0Var.h.f12754t);
+        p0Var.p0(p0Var.h.f12755t);
     }
 
     @Override
     public void i(Throwable th2) {
-        if (this != ((p0) ((n0) this.e).e).f12888s) {
+        if (this != ((p0) ((n0) this.e).e).f12889s) {
             return;
         }
         e2.a.l("MediaSessionLegacyStub", "Failed to load bitmap: " + th2.getMessage());
     }
 
     public void k(long j10, float f7) {
-        File file = (File) this.f12864b;
-        x20 x20Var = (x20) this.f12863a;
-        if (!x20Var.W) {
+        File file = (File) this.f12865b;
+        y20 y20Var = (y20) this.f12864a;
+        if (!y20Var.W) {
             if (j10 < 0) {
                 j10 = file.length();
             }
             long j11 = j10;
-            if (!x20Var.Y && this.d == j11) {
+            if (!y20Var.Y && this.d == j11) {
                 return;
             }
             this.d = j11;
             MediaController mediaController = (MediaController) this.e;
-            jf jfVar = (jf) this.f12865c;
+            kf kfVar = (kf) this.f12866c;
             String[] strArr = MediaController.U1;
-            x20 x20Var2 = jfVar.f16271b;
-            boolean z10 = x20Var2.X;
+            y20 y20Var2 = kfVar.f16624b;
+            boolean z10 = y20Var2.X;
             if (z10) {
-                x20Var2.X = false;
+                y20Var2.X = false;
             }
-            org.telegram.messenger.i0.g3(new yd(mediaController, false, false, jfVar, file, f7, 0L, z10, j11));
+            org.telegram.messenger.i0.g3(new zd(mediaController, false, false, kfVar, file, f7, 0L, z10, j11));
         }
     }
 
     public void l() {
-        ((a8) this.f12865c).dismiss();
+        ((a8) this.f12866c).dismiss();
         this.d = System.currentTimeMillis();
     }
 
     public void m() {
         b2.f fVar;
         p0 p0Var = (p0) this.e;
-        n1 n1Var = p0Var.h.f12754t;
+        n1 n1Var = p0Var.h.f12755t;
         n1Var.J().getClass();
-        n4.q qVar = p0Var.f12883n;
+        n4.q qVar = p0Var.f12884n;
         if (n1Var.n0(21)) {
             fVar = n1Var.H();
         } else {
             fVar = b2.f.f2027i;
         }
-        ((n4.l) qVar.f13526a).f13510a.setPlaybackToLocal(fVar.b());
+        ((n4.l) qVar.f13527a).f13511a.setPlaybackToLocal(fVar.b());
     }
 
     public void n(b2.p0 p0Var) {
         p0 p0Var2 = (p0) this.e;
-        n4.q qVar = p0Var2.f12883n;
+        n4.q qVar = p0Var2.f12884n;
         u();
         if (p0Var == null) {
-            ((n4.l) qVar.f13526a).f13510a.setRatingType(0);
+            ((n4.l) qVar.f13527a).f13511a.setRatingType(0);
         } else {
-            ((n4.l) qVar.f13526a).f13510a.setRatingType(o.e(p0Var.d.f2252i));
+            ((n4.l) qVar.f13527a).f13511a.setRatingType(o.e(p0Var.d.f2252i));
         }
-        p0Var2.p0(p0Var2.h.f12754t);
+        p0Var2.p0(p0Var2.h.f12755t);
     }
 
     public void o(int r3, m4.n1 r4, m4.n1 r5) {
@@ -148,25 +148,25 @@ public final class n0 implements j9.t, v, kf {
     public void onSuccess(Object obj) {
         Bitmap bitmap = (Bitmap) obj;
         p0 p0Var = (p0) ((n0) this.e).e;
-        if (this != p0Var.f12888s) {
+        if (this != p0Var.f12889s) {
             return;
         }
-        p0.f0(p0Var.f12883n, o.b((b2.s0) this.f12863a, (String) this.f12864b, (Uri) this.f12865c, this.d, bitmap));
+        p0.f0(p0Var.f12884n, o.b((b2.s0) this.f12864a, (String) this.f12865b, (Uri) this.f12866c, this.d, bitmap));
         f0 f0Var = p0Var.h;
-        e2.l0.W(f0Var.f12749o, new z(f0Var, 1));
+        e2.l0.W(f0Var.f12750o, new z(f0Var, 1));
     }
 
     public void p(b2.s0 s0Var) {
         p0 p0Var = (p0) this.e;
-        n4.q qVar = p0Var.f12883n;
-        if (!TextUtils.equals(((n4.f) ((n4.u) qVar.f13527b).f13534a).f13495a.getQueueTitle(), s0Var.f2247a)) {
-            ((n4.l) qVar.f13526a).f13510a.setQueueTitle((p0Var.f12893y.a(17) && p0Var.h.f12754t.s().a(17)) ? null : null);
+        n4.q qVar = p0Var.f12884n;
+        if (!TextUtils.equals(((n4.f) ((n4.u) qVar.f13528b).f13535a).f13496a.getQueueTitle(), s0Var.f2247a)) {
+            ((n4.l) qVar.f13527a).f13511a.setQueueTitle((p0Var.f12894y.a(17) && p0Var.h.f12755t.s().a(17)) ? null : null);
         }
     }
 
     public void q(int i10) {
-        n4.q qVar = ((p0) this.e).f12883n;
-        int i11 = o.f12868a;
+        n4.q qVar = ((p0) this.e).f12884n;
+        int i11 = o.f12869a;
         int i12 = 0;
         if (i10 != 0) {
             if (i10 != 1) {
@@ -179,37 +179,37 @@ public final class n0 implements j9.t, v, kf {
                 i12 = 1;
             }
         }
-        n4.l lVar = (n4.l) qVar.f13526a;
-        if (lVar.f13516j != i12) {
-            lVar.f13516j = i12;
+        n4.l lVar = (n4.l) qVar.f13527a;
+        if (lVar.f13517j != i12) {
+            lVar.f13517j = i12;
             synchronized (lVar.d) {
-                for (int beginBroadcast = lVar.f13513f.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
+                for (int beginBroadcast = lVar.f13514f.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
                     try {
-                        ((n4.b) lVar.f13513f.getBroadcastItem(beginBroadcast)).c(i12);
+                        ((n4.b) lVar.f13514f.getBroadcastItem(beginBroadcast)).c(i12);
                     } catch (RemoteException | SecurityException e) {
                         e2.a.d("MediaSessionCompat", "Dead object in setRepeatMode.", e);
                     }
                 }
-                lVar.f13513f.finishBroadcast();
+                lVar.f13514f.finishBroadcast();
             }
         }
     }
 
     public void r(boolean z10) {
-        n4.q qVar = ((p0) this.e).f12883n;
-        int i10 = o.f12868a;
-        n4.l lVar = (n4.l) qVar.f13526a;
-        if (lVar.f13517k != z10) {
-            lVar.f13517k = z10 ? 1 : 0;
+        n4.q qVar = ((p0) this.e).f12884n;
+        int i10 = o.f12869a;
+        n4.l lVar = (n4.l) qVar.f13527a;
+        if (lVar.f13518k != z10) {
+            lVar.f13518k = z10 ? 1 : 0;
             synchronized (lVar.d) {
-                for (int beginBroadcast = lVar.f13513f.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
+                for (int beginBroadcast = lVar.f13514f.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
                     try {
-                        ((n4.b) lVar.f13513f.getBroadcastItem(beginBroadcast)).i(z10 ? 1 : 0);
+                        ((n4.b) lVar.f13514f.getBroadcastItem(beginBroadcast)).i(z10 ? 1 : 0);
                     } catch (RemoteException | SecurityException e) {
                         e2.a.d("MediaSessionCompat", "Dead object in setShuffleMode.", e);
                     }
                 }
-                lVar.f13513f.finishBroadcast();
+                lVar.f13514f.finishBroadcast();
             }
         }
     }
@@ -220,7 +220,7 @@ public final class n0 implements j9.t, v, kf {
     }
 
     public void t(int i10) {
-        org.telegram.ui.ActionBar.b1 b1Var = (org.telegram.ui.ActionBar.b1) this.f12864b;
+        org.telegram.ui.ActionBar.b1 b1Var = (org.telegram.ui.ActionBar.b1) this.f12865b;
         if (System.currentTimeMillis() - this.d < 200) {
             org.telegram.messenger.i0.g3(new d3(this, i10, 26));
         } else if (i10 == 0) {
@@ -239,7 +239,7 @@ public final class n0 implements j9.t, v, kf {
         Uri uri3;
         p0 p0Var = (p0) this.e;
         f0 f0Var = p0Var.h;
-        n1 n1Var = f0Var.f12754t;
+        n1 n1Var = f0Var.f12755t;
         b2.p0 S0 = n1Var.S0();
         b2.s0 U0 = n1Var.U0();
         long j11 = -9223372036854775807L;
@@ -258,16 +258,16 @@ public final class n0 implements j9.t, v, kf {
         } else {
             uri = null;
         }
-        if (Objects.equals((b2.s0) this.f12863a, U0) && Objects.equals((String) this.f12864b, str2) && Objects.equals((Uri) this.f12865c, uri) && this.d == j11) {
+        if (Objects.equals((b2.s0) this.f12864a, U0) && Objects.equals((String) this.f12865b, str2) && Objects.equals((Uri) this.f12866c, uri) && this.d == j11) {
             return;
         }
-        this.f12864b = str2;
-        this.f12865c = uri;
-        this.f12863a = U0;
+        this.f12865b = str2;
+        this.f12866c = uri;
+        this.f12864a = U0;
         this.d = j11;
-        j9.y a2 = f0Var.f12747m.a(U0);
+        j9.y a2 = f0Var.f12748m.a(U0);
         if (a2 != null) {
-            p0Var.f12888s = null;
+            p0Var.f12889s = null;
             if (a2.isDone()) {
                 try {
                     bitmap = (Bitmap) p8.a(a2);
@@ -280,25 +280,25 @@ public final class n0 implements j9.t, v, kf {
                 s0Var = U0;
                 n0 n0Var = new n0(this, s0Var, str2, uri2, j10);
                 str2 = str2;
-                p0Var.f12888s = n0Var;
-                Handler handler = f0Var.f12746l;
+                p0Var.f12889s = n0Var;
+                Handler handler = f0Var.f12747l;
                 Objects.requireNonNull(handler);
                 a2.a(new j9.u(0, a2, n0Var), new i2.g0(handler, 1));
-                p0.f0(p0Var.f12883n, o.b(s0Var, str2, uri2, j10, bitmap));
+                p0.f0(p0Var.f12884n, o.b(s0Var, str2, uri2, j10, bitmap));
             }
         }
         j10 = j11;
         uri2 = uri;
         s0Var = U0;
-        p0.f0(p0Var.f12883n, o.b(s0Var, str2, uri2, j10, bitmap));
+        p0.f0(p0Var.f12884n, o.b(s0Var, str2, uri2, j10, bitmap));
     }
 
     public void v(b2.o1 o1Var) {
         p0 p0Var = (p0) this.e;
         f0 f0Var = p0Var.h;
-        n1 n1Var = f0Var.f12754t;
-        if (p0Var.f12893y.a(17) && n1Var.s().a(17) && !o1Var.p()) {
-            int i10 = o.f12868a;
+        n1 n1Var = f0Var.f12755t;
+        if (p0Var.f12894y.a(17) && n1Var.s().a(17) && !o1Var.p()) {
+            int i10 = o.f12869a;
             ArrayList arrayList = new ArrayList();
             b2.n1 n1Var2 = new b2.n1();
             for (int i11 = 0; i11 < o1Var.o(); i11++) {
@@ -312,16 +312,16 @@ public final class n0 implements j9.t, v, kf {
                     arrayList2.add(null);
                     q0Var.run();
                 } else {
-                    j9.y w9 = f0Var.f12747m.w(bArr);
+                    j9.y w9 = f0Var.f12748m.w(bArr);
                     arrayList2.add(w9);
-                    Handler handler = f0Var.f12746l;
+                    Handler handler = f0Var.f12747l;
                     Objects.requireNonNull(handler);
                     w9.a(q0Var, new i2.g0(handler, 1));
                 }
             }
             return;
         }
-        p0.e0(p0Var.f12883n, null);
+        p0.e0(p0Var.f12884n, null);
     }
 
     @Override
@@ -342,24 +342,24 @@ public final class n0 implements j9.t, v, kf {
 
     public n0(p0 p0Var) {
         this.e = p0Var;
-        this.f12863a = b2.s0.L;
-        this.f12864b = "";
+        this.f12864a = b2.s0.L;
+        this.f12865b = "";
         this.d = -9223372036854775807L;
     }
 
     public n0(n0 n0Var, b2.s0 s0Var, String str, Uri uri, long j10) {
         this.e = n0Var;
-        this.f12863a = s0Var;
-        this.f12864b = str;
-        this.f12865c = uri;
+        this.f12864a = s0Var;
+        this.f12865b = str;
+        this.f12866c = uri;
         this.d = j10;
     }
 
-    public n0(MediaController mediaController, x20 x20Var, File file, jf jfVar) {
+    public n0(MediaController mediaController, y20 y20Var, File file, kf kfVar) {
         this.e = mediaController;
-        this.f12863a = x20Var;
-        this.f12864b = file;
-        this.f12865c = jfVar;
+        this.f12864a = y20Var;
+        this.f12865b = file;
+        this.f12866c = kfVar;
         this.d = 0L;
     }
 

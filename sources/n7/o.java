@@ -4,8 +4,8 @@ import j$.util.Objects;
 import java.util.Arrays;
 import java.util.Set;
 public abstract class o extends h implements Set, j$.util.Set {
-    public static final int f13701c = 0;
-    public transient m f13702b;
+    public static final int f13702c = 0;
+    public transient m f13703b;
 
     public static o q(int i10, Object... objArr) {
         if (i10 != 0) {
@@ -55,7 +55,7 @@ public abstract class o extends h implements Set, j$.util.Set {
             Objects.requireNonNull(obj4);
             return new b0(obj4);
         }
-        return y.f13725s;
+        return y.f13726s;
     }
 
     public static int r(int i10) {
@@ -107,18 +107,18 @@ public abstract class o extends h implements Set, j$.util.Set {
     }
 
     public m s() {
-        m mVar = this.f13702b;
+        m mVar = this.f13703b;
         if (mVar == null) {
             m t10 = t();
-            this.f13702b = t10;
+            this.f13703b = t10;
             return t10;
         }
         return mVar;
     }
 
     public m t() {
-        Object[] array = toArray(h.f13673a);
-        i iVar = m.f13692b;
+        Object[] array = toArray(h.f13674a);
+        i iVar = m.f13693b;
         return m.s(array.length, array);
     }
 }

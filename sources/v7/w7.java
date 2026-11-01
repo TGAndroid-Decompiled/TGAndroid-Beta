@@ -8,9 +8,9 @@ public abstract class w7 {
         }
         for (int i10 = 0; i10 < eVarArr.length; i10++) {
             i0.e eVar = eVarArr[i10];
-            char c10 = eVar.f7769a;
+            char c10 = eVar.f7770a;
             i0.e eVar2 = eVarArr2[i10];
-            if (c10 != eVar2.f7769a || eVar.f7770b.length != eVar2.f7770b.length) {
+            if (c10 != eVar2.f7770a || eVar.f7771b.length != eVar2.f7771b.length) {
                 return false;
             }
         }

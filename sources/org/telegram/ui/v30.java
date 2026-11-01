@@ -1,32 +1,42 @@
 package org.telegram.ui;
 
-import android.view.ViewTreeObserver;
-public final class v30 implements ViewTreeObserver.OnPreDrawListener {
-    public final int f42586a;
-    public final b50 f42587b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.graphics.Paint;
+public final class v30 extends AnimatorListenerAdapter {
+    public final int f42400a;
+    public final a50 f42401b;
 
-    public v30(b50 b50Var, int i10) {
-        this.f42586a = i10;
-        this.f42587b = b50Var;
+    public v30(a50 a50Var, int i10) {
+        this.f42400a = i10;
+        this.f42401b = a50Var;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        switch (this.f42586a) {
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        switch (this.f42400a) {
             case 0:
-                b50 b50Var = this.f42587b;
-                b50Var.H1.getViewTreeObserver().removeOnPreDrawListener(this);
-                b50Var.R3.j(null);
-                org.telegram.messenger.i0.a4(b50Var.f36008d4);
-                b50Var.f21586b.requestLayout();
-                return false;
+                a50 a50Var = this.f42401b;
+                a50Var.M1.setVisibility(4);
+                a50Var.N1.setVisibility(4);
+                a50Var.L1.setVisibility(4);
+                return;
+            case 1:
+                this.f42401b.Y1 = null;
+                return;
             default:
-                b50 b50Var2 = this.f42587b;
-                b50Var2.H1.getViewTreeObserver().removeOnPreDrawListener(this);
-                b50Var2.R3.j(null);
-                org.telegram.messenger.i0.a4(b50Var2.f36008d4);
-                b50Var2.f21586b.requestLayout();
-                return false;
+                a50 a50Var2 = this.f42401b;
+                a50Var2.Y2 = null;
+                Paint paint = a50Var2.X2;
+                if (a50Var2.K3 == 3) {
+                    i10 = -1163700;
+                } else {
+                    i10 = -12761513;
+                }
+                paint.setColor(i10);
+                a50Var2.W2.invalidate();
+                return;
         }
     }
 }

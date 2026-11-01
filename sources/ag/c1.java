@@ -13,7 +13,7 @@ public final class c1 extends s4.b0 {
 
     @Override
     public final int k(int i10, View view) {
-        return m5.B(8.0f, ((h1) this.f478r.V).f542s.getPaddingTop() - org.telegram.messenger.i0.f16020m, super.k(i10, view));
+        return m5.B(8.0f, ((h1) this.f478r.V).f542s.getPaddingTop() - org.telegram.messenger.i0.f16166m, super.k(i10, view));
     }
 
     @Override

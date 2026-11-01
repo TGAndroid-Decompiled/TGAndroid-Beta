@@ -6,7 +6,7 @@ public final class jv extends iv {
     public final kv O;
 
     public jv(kv kvVar, Context context, int i10) {
-        super(kvVar.f27930s, context, i10);
+        super(kvVar.f27963s, context, i10);
         this.O = kvVar;
     }
 

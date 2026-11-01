@@ -20,7 +20,7 @@ import m.c3;
 import m.l1;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.kc;
+import org.telegram.messenger.lc;
 import org.telegram.ui.Components.me0;
 import org.telegram.ui.ml;
 import v7.t6;
@@ -51,22 +51,22 @@ public final class c {
                     this.f6119f = new Object();
                 }
                 c3 c3Var = (c3) this.f6119f;
-                c3Var.f12383c = null;
-                c3Var.f12382b = false;
+                c3Var.f12384c = null;
+                c3Var.f12383b = false;
                 c3Var.d = null;
-                c3Var.f12381a = false;
-                WeakHashMap weakHashMap = r0.h0.f46123a;
+                c3Var.f12382a = false;
+                WeakHashMap weakHashMap = r0.h0.f46134a;
                 ColorStateList c10 = r0.z.c(view);
                 if (c10 != null) {
-                    c3Var.f12382b = true;
-                    c3Var.f12383c = c10;
+                    c3Var.f12383b = true;
+                    c3Var.f12384c = c10;
                 }
                 PorterDuff.Mode d = r0.z.d(view);
                 if (d != null) {
-                    c3Var.f12381a = true;
+                    c3Var.f12382a = true;
                     c3Var.d = d;
                 }
-                if (c3Var.f12382b || c3Var.f12381a) {
+                if (c3Var.f12383b || c3Var.f12382a) {
                     m.q.d(background, c3Var, view.getDrawableState());
                     return;
                 }
@@ -99,25 +99,25 @@ public final class c {
         ByteBuffer byteBuffer = (ByteBuffer) this.f6119f;
         byteBuffer.position(0);
         me0 me0Var = (me0) this.f6117b;
-        if (me0Var.f28429f == null) {
+        if (me0Var.f28466f == null) {
             me0Var.a();
         }
-        float[] fArr = me0Var.f28429f;
+        float[] fArr = me0Var.f28466f;
         me0 me0Var2 = (me0) this.f6118c;
-        if (me0Var2.f28429f == null) {
+        if (me0Var2.f28466f == null) {
             me0Var2.a();
         }
-        float[] fArr2 = me0Var2.f28429f;
+        float[] fArr2 = me0Var2.f28466f;
         me0 me0Var3 = (me0) this.d;
-        if (me0Var3.f28429f == null) {
+        if (me0Var3.f28466f == null) {
             me0Var3.a();
         }
-        float[] fArr3 = me0Var3.f28429f;
+        float[] fArr3 = me0Var3.f28466f;
         me0 me0Var4 = (me0) this.e;
-        if (me0Var4.f28429f == null) {
+        if (me0Var4.f28466f == null) {
             me0Var4.a();
         }
-        float[] fArr4 = me0Var4.f28429f;
+        float[] fArr4 = me0Var4.f28466f;
         for (int i10 = 0; i10 < 200; i10++) {
             byteBuffer.put((byte) (fArr2[i10] * 255.0f));
             byteBuffer.put((byte) (fArr3[i10] * 255.0f));
@@ -135,17 +135,17 @@ public final class c {
             String str = l0.f6165a;
             int i11 = 0;
             while (true) {
-                arrayList = vVar.f6803a;
+                arrayList = vVar.f6804a;
                 if (i11 >= arrayList.size()) {
                     break;
                 }
-                ((f2.w) this.f6117b).a(vVar.f6804b, (x) arrayList.get(i11));
+                ((f2.w) this.f6117b).a(vVar.f6805b, (x) arrayList.get(i11));
                 ((ArrayDeque) this.f6118c).push((x) arrayList.get(i11));
                 i11++;
             }
             arrayList.clear();
             f2.v vVar2 = (f2.v) this.f6119f;
-            if (vVar2 != null && vVar2.f6804b == vVar.f6804b) {
+            if (vVar2 != null && vVar2.f6805b == vVar.f6805b) {
                 this.f6119f = null;
             }
             ((ArrayDeque) this.d).push(vVar);
@@ -156,11 +156,11 @@ public final class c {
         throw new UnsupportedOperationException("Method not decompiled: e2.c.f(android.graphics.Bitmap, java.lang.String, int, int, boolean):android.graphics.Bitmap");
     }
 
-    public Bitmap g(kc kcVar) {
-        if (kcVar == null) {
+    public Bitmap g(lc lcVar) {
+        if (lcVar == null) {
             return null;
         }
-        return f(kcVar.f16564c, kcVar.f16562a, kcVar.e, 0, false);
+        return f(lcVar.f16929c, lcVar.f16927a, lcVar.e, 0, false);
     }
 
     public Bitmap h(ImageReceiver imageReceiver) {
@@ -173,7 +173,7 @@ public final class c {
     public ColorStateList i() {
         c3 c3Var = (c3) this.e;
         if (c3Var != null) {
-            return (ColorStateList) c3Var.f12383c;
+            return (ColorStateList) c3Var.f12384c;
         }
         return null;
     }
@@ -190,11 +190,11 @@ public final class c {
         ColorStateList i11;
         View view = (View) this.f6117b;
         Context context = view.getContext();
-        int[] iArr = f.a.f6715z;
+        int[] iArr = f.a.f6716z;
         li.k G = li.k.G(context, attributeSet, iArr, i10);
-        TypedArray typedArray = (TypedArray) G.f12101c;
+        TypedArray typedArray = (TypedArray) G.f12102c;
         View view2 = (View) this.f6117b;
-        r0.h0.i(view2, view2.getContext(), iArr, attributeSet, (TypedArray) G.f12101c, i10);
+        r0.h0.i(view2, view2.getContext(), iArr, attributeSet, (TypedArray) G.f12102c, i10);
         try {
             if (typedArray.hasValue(0)) {
                 this.f6116a = typedArray.getResourceId(0, -1);
@@ -202,14 +202,14 @@ public final class c {
                 Context context2 = view.getContext();
                 int i12 = this.f6116a;
                 synchronized (qVar) {
-                    i11 = qVar.f12524a.i(context2, i12);
+                    i11 = qVar.f12525a.i(context2, i12);
                 }
                 if (i11 != null) {
                     o(i11);
                 }
             }
             if (typedArray.hasValue(1)) {
-                r0.z.f(view, G.v(1));
+                r0.z.f(view, G.u(1));
             }
             if (typedArray.hasValue(2)) {
                 r0.z.g(view, l1.b(typedArray.getInt(2, -1), null));
@@ -234,7 +234,7 @@ public final class c {
         if (qVar != null) {
             Context context = ((View) this.f6117b).getContext();
             synchronized (qVar) {
-                colorStateList = qVar.f12524a.i(context, i10);
+                colorStateList = qVar.f12525a.i(context, i10);
             }
         } else {
             colorStateList = null;
@@ -257,8 +257,8 @@ public final class c {
                 this.d = new Object();
             }
             c3 c3Var = (c3) this.d;
-            c3Var.f12383c = colorStateList;
-            c3Var.f12382b = true;
+            c3Var.f12384c = colorStateList;
+            c3Var.f12383b = true;
         } else {
             this.d = null;
         }
@@ -282,8 +282,8 @@ public final class c {
             this.e = new Object();
         }
         c3 c3Var = (c3) this.e;
-        c3Var.f12383c = colorStateList;
-        c3Var.f12382b = true;
+        c3Var.f12384c = colorStateList;
+        c3Var.f12383b = true;
         b();
     }
 
@@ -293,7 +293,7 @@ public final class c {
         }
         c3 c3Var = (c3) this.e;
         c3Var.d = mode;
-        c3Var.f12381a = true;
+        c3Var.f12382a = true;
         b();
     }
 
@@ -308,14 +308,14 @@ public final class c {
         Object obj2 = this.e;
         this.e = obj;
         if (!obj2.equals(obj)) {
-            i2.i0 i0Var = ((i2.x) this.d).f8114b;
+            i2.i0 i0Var = ((i2.x) this.d).f8115b;
             ((Integer) obj2).getClass();
             Integer num = (Integer) obj;
             int intValue = num.intValue();
             i0Var.F1();
             i0Var.t1(1, 10, num);
             i0Var.t1(2, 10, num);
-            i0Var.f7916m.e(21, new i2.w(intValue, 1));
+            i0Var.f7917m.e(21, new i2.w(intValue, 1));
         }
     }
 

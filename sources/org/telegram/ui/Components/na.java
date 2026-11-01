@@ -1,69 +1,69 @@
 package org.telegram.ui.Components;
 public final class na implements o1.f {
-    public final int f28732a;
-    public final Object f28733b;
+    public final int f28758a;
+    public final Object f28759b;
 
     public na(Object obj, int i10) {
-        this.f28732a = i10;
-        this.f28733b = obj;
+        this.f28758a = i10;
+        this.f28759b = obj;
     }
 
     @Override
     public final void a(o1.j jVar, boolean z10, float f7, float f10) {
-        switch (this.f28732a) {
+        switch (this.f28758a) {
             case 0:
-                wb wbVar = (wb) this.f28733b;
+                wb wbVar = (wb) this.f28759b;
                 if (wbVar.d == jVar) {
                     wbVar.d = null;
                     return;
                 }
                 return;
             case 1:
-                ja jaVar = (ja) this.f28733b;
+                ja jaVar = (ja) this.f28759b;
                 if (!z10) {
                     jaVar.run();
                     return;
                 }
                 return;
             case 2:
-                kk kkVar = (kk) this.f28733b;
-                kkVar.f27792l0 = null;
+                kk kkVar = (kk) this.f28759b;
+                kkVar.f27871l0 = null;
                 kkVar.m0 = 1.0f;
                 kkVar.k0();
                 return;
             case 3:
-                co0 co0Var = (co0) this.f28733b;
-                co0Var.f25114q = false;
-                co0Var.dismiss();
+                do0 do0Var = (do0) this.f28759b;
+                do0Var.f25528q = false;
+                do0Var.dismiss();
                 return;
             case 4:
-                do0 do0Var = (do0) this.f28733b;
-                do0Var.f25479s = false;
-                do0Var.f25478r = false;
+                eo0 eo0Var = (eo0) this.f28759b;
+                eo0Var.f25893s = false;
+                eo0Var.f25892r = false;
                 if (!z10) {
                     jVar.d();
                 }
-                if (jVar == do0Var.f25476f) {
-                    do0Var.f25476f = null;
+                if (jVar == eo0Var.f25890f) {
+                    eo0Var.f25890f = null;
                     return;
                 }
                 return;
             case 5:
-                op0 op0Var = (op0) this.f28733b;
-                op0Var.f29147w1.setVisibility(8);
-                op0Var.f29138r2.setVisibility(8);
-                mp0 mp0Var = op0Var.D1;
-                mp0Var.f28569f = null;
-                mp0Var.f();
-                op0Var.f29142t2 = null;
-                op0Var.E2 = false;
+                pp0 pp0Var = (pp0) this.f28759b;
+                pp0Var.f29502w1.setVisibility(8);
+                pp0Var.f29493r2.setVisibility(8);
+                np0 np0Var = pp0Var.D1;
+                np0Var.f28933f = null;
+                np0Var.f();
+                pp0Var.f29497t2 = null;
+                pp0Var.E2 = false;
                 return;
             default:
-                op0 op0Var2 = ((xo0) this.f28733b).d;
-                op0Var2.f29149x1.setVisibility(8);
-                op0Var2.f29151y1.setVisibility(8);
-                op0Var2.f29136q2.setVisibility(8);
-                op0Var2.f29142t2 = null;
+                pp0 pp0Var2 = ((yo0) this.f28759b).d;
+                pp0Var2.f29504x1.setVisibility(8);
+                pp0Var2.f29506y1.setVisibility(8);
+                pp0Var2.f29491q2.setVisibility(8);
+                pp0Var2.f29497t2 = null;
                 return;
         }
     }

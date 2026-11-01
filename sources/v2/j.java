@@ -29,7 +29,7 @@ public final class j extends a {
 
     @Override
     public final long a() {
-        return this.f50328s + this.E;
+        return this.f50342s + this.E;
     }
 
     @Override
@@ -38,36 +38,36 @@ public final class j extends a {
         boolean z11;
         c1[] c1VarArr;
         long j10;
-        u9.b bVar = this.f50287y;
+        u9.b bVar = this.f50301y;
         bVar.getClass();
         if (this.H == 0) {
             long j11 = this.F;
-            for (c1 c1Var : (c1[]) bVar.f50195c) {
+            for (c1 c1Var : (c1[]) bVar.f50209c) {
                 if (c1Var.H != j11) {
                     c1Var.H = j11;
                     c1Var.B = true;
                 }
             }
             e eVar = this.G;
-            long j12 = this.f50285w;
+            long j12 = this.f50299w;
             long j13 = -9223372036854775807L;
             if (j12 == -9223372036854775807L) {
                 j10 = -9223372036854775807L;
             } else {
                 j10 = j12 - this.F;
             }
-            long j14 = this.f50286x;
+            long j14 = this.f50300x;
             if (j14 != -9223372036854775807L) {
                 j13 = j14 - this.F;
             }
             eVar.b(bVar, j10, j13);
         }
         try {
-            g2.n b10 = this.f50306b.b(this.H);
-            c0 c0Var = this.f50310r;
+            g2.n b10 = this.f50320b.b(this.H);
+            c0 c0Var = this.f50324r;
             c3.l lVar = new c3.l(c0Var, b10.e, c0Var.open(b10));
             while (!this.I) {
-                int f7 = this.G.f50298a.f(lVar, e.f50297w);
+                int f7 = this.G.f50312a.f(lVar, e.f50311w);
                 if (f7 != 1) {
                     z10 = true;
                 } else {
@@ -90,17 +90,17 @@ public final class j extends a {
             if (v0.k(str) && ((i10 > 1 || i11 > 1) && i10 != -1 && i11 != -1)) {
                 k0 c10 = bVar.c(4);
                 int i12 = i10 * i11;
-                long j15 = (this.f50309n - this.h) / i12;
+                long j15 = (this.f50323n - this.h) / i12;
                 for (int i13 = 1; i13 < i12; i13++) {
                     c10.d(0, new e2.x());
                     c10.c(i13 * j15, 0, 0, 0, null);
                 }
             }
-            this.H = lVar.d - this.f50306b.e;
-            l7.a(this.f50310r);
+            this.H = lVar.d - this.f50320b.e;
+            l7.a(this.f50324r);
             this.J = !this.I;
         } catch (Throwable th2) {
-            l7.a(this.f50310r);
+            l7.a(this.f50324r);
             throw th2;
         }
     }

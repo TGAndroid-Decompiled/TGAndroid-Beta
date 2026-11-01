@@ -13,28 +13,28 @@ import java.util.HashMap;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class se extends rf {
     public boolean a2;
-    public float f30227b2;
-    public float f30228c2;
-    public boolean f30229d2;
-    public final ChatActivityEnterView f30230e2;
+    public float f30273b2;
+    public float f30274c2;
+    public boolean f30275d2;
+    public final ChatActivityEnterView f30276e2;
 
     public se(ChatActivityEnterView chatActivityEnterView, Context context, org.telegram.ui.ActionBar.p6 p6Var) {
         super(chatActivityEnterView, context, p6Var);
-        this.f30230e2 = chatActivityEnterView;
+        this.f30276e2 = chatActivityEnterView;
         this.a2 = true;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ChatActivityEnterView chatActivityEnterView = this.f30230e2;
+        ChatActivityEnterView chatActivityEnterView = this.f30276e2;
         View view = chatActivityEnterView.J4;
         if (view != null) {
             setWindowView(view);
             return;
         }
         org.telegram.ui.un unVar = chatActivityEnterView.P2;
-        if (unVar != null && unVar.getParentLayout() != null && ((ActionBarLayout) chatActivityEnterView.P2.getParentLayout()).f20072b) {
+        if (unVar != null && unVar.getParentLayout() != null && ((ActionBarLayout) chatActivityEnterView.P2.getParentLayout()).f20073b) {
             setWindowView(chatActivityEnterView.P2.getParentLayout().getWindow().getDecorView());
         } else {
             setWindowView(chatActivityEnterView.O2.getWindow().getDecorView());
@@ -46,7 +46,7 @@ public final class se extends rf {
         super.onDraw(canvas);
         if (getLayout() != null && this.a2) {
             this.a2 = false;
-            this.f30230e2.F(true);
+            this.f30276e2.F(true);
         }
     }
 
@@ -54,7 +54,7 @@ public final class se extends rf {
     public final void onMeasure(int i10, int i11) {
         boolean z10;
         super.onMeasure(i10, i11);
-        ChatActivityEnterView chatActivityEnterView = this.f30230e2;
+        ChatActivityEnterView chatActivityEnterView = this.f30276e2;
         if (chatActivityEnterView.T != chatActivityEnterView.E0.getLineCount()) {
             boolean z11 = false;
             if (chatActivityEnterView.E0.getLineCount() > 2 && chatActivityEnterView.E0.getText() != null && !TextUtils.isEmpty(chatActivityEnterView.E0.getText().toString().trim())) {
@@ -74,7 +74,7 @@ public final class se extends rf {
     public final boolean onTextContextMenuItem(int i10) {
         ClipData primaryClip;
         if (i10 == 16908322) {
-            ChatActivityEnterView chatActivityEnterView = this.f30230e2;
+            ChatActivityEnterView chatActivityEnterView = this.f30276e2;
             if (chatActivityEnterView.E0 != null) {
                 try {
                     ClipboardManager clipboardManager = (ClipboardManager) chatActivityEnterView.getContext().getSystemService("clipboard");
@@ -90,8 +90,8 @@ public final class se extends rf {
                             ArrayList z10 = bi.l4.z(htmlText, hashMap);
                             if (!z10.isEmpty()) {
                                 if (bi.n5.d(z10, hashMap)) {
-                                    org.telegram.messenger.vp.r1(chatActivityEnterView.Q);
-                                    boolean z11 = org.telegram.messenger.v2.f18448a;
+                                    org.telegram.messenger.wp.r1(chatActivityEnterView.Q);
+                                    boolean z11 = org.telegram.messenger.v2.f18578a;
                                     int max = Math.max(0, chatActivityEnterView.E0.getSelectionStart());
                                     int min = Math.min(chatActivityEnterView.E0.getText().length(), chatActivityEnterView.E0.getSelectionEnd());
                                     chatActivityEnterView.I0(chatActivityEnterView.E0.getText().subSequence(0, Math.min(max, min)), chatActivityEnterView.E0.getText().subSequence(Math.max(max, min), chatActivityEnterView.E0.getText().length()), htmlText);
@@ -107,15 +107,15 @@ public final class se extends rf {
                                 }
                                 int max2 = Math.max(0, chatActivityEnterView.E0.getSelectionStart());
                                 int min2 = Math.min(chatActivityEnterView.E0.getText().length(), chatActivityEnterView.E0.getSelectionEnd());
-                                vh0[] vh0VarArr = (vh0[]) chatActivityEnterView.E0.getText().getSpans(max2, min2, vh0.class);
-                                if (vh0VarArr != null && vh0VarArr.length > 0) {
-                                    vh0[] vh0VarArr2 = (vh0[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), vh0.class);
-                                    for (int i11 = 0; i11 < vh0VarArr2.length; i11++) {
-                                        spannableStringBuilder.removeSpan(vh0VarArr2[i11]);
-                                        spannableStringBuilder.removeSpan(vh0VarArr2[i11].f31258a);
+                                wh0[] wh0VarArr = (wh0[]) chatActivityEnterView.E0.getText().getSpans(max2, min2, wh0.class);
+                                if (wh0VarArr != null && wh0VarArr.length > 0) {
+                                    wh0[] wh0VarArr2 = (wh0[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), wh0.class);
+                                    for (int i11 = 0; i11 < wh0VarArr2.length; i11++) {
+                                        spannableStringBuilder.removeSpan(wh0VarArr2[i11]);
+                                        spannableStringBuilder.removeSpan(wh0VarArr2[i11].f32248a);
                                     }
                                 } else {
-                                    wh0.a(spannableStringBuilder);
+                                    xh0.a(spannableStringBuilder);
                                 }
                                 se seVar = chatActivityEnterView.E0;
                                 seVar.setText(seVar.getText().replace(max2, min2, spannableStringBuilder));
@@ -134,19 +134,19 @@ public final class se extends rf {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        ChatActivityEnterView chatActivityEnterView = this.f30230e2;
+        ChatActivityEnterView chatActivityEnterView = this.f30276e2;
         if (chatActivityEnterView.r()) {
             if (motionEvent.getAction() == 0) {
-                this.f30227b2 = motionEvent.getX();
-                this.f30228c2 = motionEvent.getY();
-                this.f30229d2 = true;
-            } else if (this.f30229d2 && motionEvent.getAction() == 2) {
-                if (Math.abs(motionEvent.getX() - this.f30227b2) > org.telegram.messenger.i0.e || Math.abs(motionEvent.getY() - this.f30228c2) > org.telegram.messenger.i0.e) {
-                    this.f30229d2 = false;
+                this.f30273b2 = motionEvent.getX();
+                this.f30274c2 = motionEvent.getY();
+                this.f30275d2 = true;
+            } else if (this.f30275d2 && motionEvent.getAction() == 2) {
+                if (Math.abs(motionEvent.getX() - this.f30273b2) > org.telegram.messenger.i0.e || Math.abs(motionEvent.getY() - this.f30274c2) > org.telegram.messenger.i0.e) {
+                    this.f30275d2 = false;
                 }
-            } else if (this.f30229d2) {
+            } else if (this.f30275d2) {
                 if (chatActivityEnterView.Z2 != null) {
-                    org.telegram.ui.ActionBar.a7.m(this, 36, org.telegram.ui.ActionBar.t6.f21048jg, chatActivityEnterView.W3);
+                    org.telegram.ui.ActionBar.a7.m(this, 36, org.telegram.ui.ActionBar.t6.f21049jg, chatActivityEnterView.W3);
                     chatActivityEnterView.Z2.b1();
                 }
                 se seVar = chatActivityEnterView.E0;
@@ -155,10 +155,10 @@ public final class se extends rf {
                     chatActivityEnterView.E0.requestFocus();
                 }
             }
-            return this.f30229d2;
+            return this.f30275d2;
         }
         if (motionEvent.getAction() == 0 && chatActivityEnterView.Z2 != null) {
-            org.telegram.ui.ActionBar.a7.m(this, 36, org.telegram.ui.ActionBar.t6.f21048jg, chatActivityEnterView.W3);
+            org.telegram.ui.ActionBar.a7.m(this, 36, org.telegram.ui.ActionBar.t6.f21049jg, chatActivityEnterView.W3);
             chatActivityEnterView.Z2.b1();
         }
         return super.onTouchEvent(motionEvent);
@@ -167,6 +167,6 @@ public final class se extends rf {
     @Override
     public final void setOffsetY(float f7) {
         super.setOffsetY(f7);
-        this.f30230e2.f23817y1.invalidate();
+        this.f30276e2.f23818y1.invalidate();
     }
 }

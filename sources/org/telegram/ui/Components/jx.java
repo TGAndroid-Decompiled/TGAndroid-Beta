@@ -5,15 +5,15 @@ import android.view.View;
 import android.widget.FrameLayout;
 import java.util.HashSet;
 public final class jx extends FrameLayout implements org.telegram.ui.ActionBar.k6 {
-    public int f27507a;
-    public boolean f27508b;
-    public final FrameLayout f27509c;
+    public int f27585a;
+    public boolean f27586b;
+    public final FrameLayout f27587c;
     public final vy d;
 
     public jx(vy vyVar, Context context) {
         super(context);
         this.d = vyVar;
-        org.telegram.ui.ActionBar.z6 z6Var = org.telegram.ui.ActionBar.a7.f20157a;
+        org.telegram.ui.ActionBar.z6 z6Var = org.telegram.ui.ActionBar.a7.f20158a;
         f6 f6Var = new f6(getContext(), false, false, false);
         f6Var.b(0.3f, 250L, gr.h);
         f6Var.setTextSize(org.telegram.messenger.i0.L(14.0f));
@@ -23,7 +23,7 @@ public final class jx extends FrameLayout implements org.telegram.ui.ActionBar.k
         org.telegram.ui.ActionBar.a7.Z(f6Var, i10, p6Var);
         f6Var.setGravity(17);
         FrameLayout frameLayout = new FrameLayout(getContext());
-        this.f27509c = frameLayout;
+        this.f27587c = frameLayout;
         frameLayout.setBackground(org.telegram.ui.ActionBar.j6.e(vyVar.A(org.telegram.ui.ActionBar.t6.Ci), 8.0f));
         frameLayout.addView(f6Var, w7.b6.e(-1, -2, 17));
         addView(frameLayout, w7.b6.c(-1.0f, -1));
@@ -42,14 +42,14 @@ public final class jx extends FrameLayout implements org.telegram.ui.ActionBar.k
     public final void updateColors() {
         try {
             int A = this.d.A(org.telegram.ui.ActionBar.t6.Ci);
-            FrameLayout frameLayout = this.f27509c;
+            FrameLayout frameLayout = this.f27587c;
             if (frameLayout != null) {
-                if (A == this.f27507a) {
-                    if (this.f27508b != org.telegram.ui.ActionBar.t6.I.q()) {
+                if (A == this.f27585a) {
+                    if (this.f27586b != org.telegram.ui.ActionBar.t6.I.q()) {
                     }
                 }
-                this.f27508b = org.telegram.ui.ActionBar.t6.I.q();
-                this.f27507a = A;
+                this.f27586b = org.telegram.ui.ActionBar.t6.I.q();
+                this.f27585a = A;
                 org.telegram.ui.ActionBar.t6.H1(frameLayout.getBackground(), A, false);
                 org.telegram.ui.ActionBar.t6.H1(frameLayout.getBackground(), org.telegram.ui.ActionBar.j6.b(A), true);
                 frameLayout.invalidate();

@@ -1,25 +1,25 @@
 package zf;
 
-import org.telegram.ui.zx;
+import org.telegram.ui.yx;
 public final class e implements Runnable {
-    public final int f55473a;
-    public final m f55474b;
+    public final int f55491a;
+    public final m f55492b;
 
     public e(m mVar, int i10) {
-        this.f55473a = i10;
-        this.f55474b = mVar;
+        this.f55491a = i10;
+        this.f55492b = mVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f55473a) {
+        switch (this.f55491a) {
             case 0:
-                for (zx zxVar : this.f55474b.R.f35794e0) {
-                    ((s4.a0) zxVar.f44239a.getLayoutManager()).f47874u = false;
+                for (yx yxVar : this.f55492b.R.f44137e0) {
+                    ((s4.a0) yxVar.f43733a.getLayoutManager()).f47885u = false;
                 }
                 return;
             default:
-                this.f55474b.K();
+                this.f55492b.K();
                 return;
         }
     }

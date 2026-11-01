@@ -8,16 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 import w7.g0;
 public final class m implements Parcelable.Creator {
-    public final int f46357a;
+    public final int f46368a;
 
     public m(int i10) {
-        this.f46357a = i10;
+        this.f46368a = i10;
     }
 
     @Override
     public final Object createFromParcel(Parcel parcel) {
         Status status = null;
-        switch (this.f46357a) {
+        switch (this.f46368a) {
             case 0:
                 int z10 = g0.z(parcel);
                 boolean z11 = false;
@@ -71,7 +71,7 @@ public final class m implements Parcelable.Creator {
                 return new l(locationRequest, arrayList, z11, z12, str, z13, z14, str2, j10);
             case 1:
                 int z15 = g0.z(parcel);
-                p pVar = r.f46363b;
+                p pVar = r.f46374b;
                 int i10 = 0;
                 int i11 = 0;
                 int i12 = 0;
@@ -131,7 +131,7 @@ public final class m implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f46357a) {
+        switch (this.f46368a) {
             case 0:
                 return new l[i10];
             case 1:

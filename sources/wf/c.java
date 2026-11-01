@@ -4,12 +4,12 @@ import android.graphics.Matrix;
 import android.graphics.RectF;
 import org.telegram.tgnet.SerializedData;
 public final class c {
-    public final RectF f52837a;
-    public final Matrix f52838b;
+    public final RectF f52855a;
+    public final Matrix f52856b;
 
     public c(RectF rectF, Matrix matrix) {
-        this.f52837a = rectF;
-        this.f52838b = matrix;
+        this.f52855a = rectF;
+        this.f52856b = matrix;
     }
 
     public static c a(SerializedData serializedData) {

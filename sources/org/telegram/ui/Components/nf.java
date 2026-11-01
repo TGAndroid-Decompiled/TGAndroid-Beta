@@ -6,20 +6,20 @@ import org.telegram.messenger.camera.CameraController;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class nf implements Runnable {
-    public final ChatActivityEnterView f28784a;
+    public final ChatActivityEnterView f28810a;
 
     public nf(ChatActivityEnterView chatActivityEnterView) {
-        this.f28784a = chatActivityEnterView;
+        this.f28810a = chatActivityEnterView;
     }
 
     @Override
     public final void run() {
         TL_stories.StoryItem storyItem;
-        org.telegram.messenger.jj threadMessage;
+        org.telegram.messenger.kj threadMessage;
         boolean z10;
         boolean z11;
         int i10;
-        ChatActivityEnterView chatActivityEnterView = this.f28784a;
+        ChatActivityEnterView chatActivityEnterView = this.f28810a;
         ee eeVar = chatActivityEnterView.H3;
         Activity activity = chatActivityEnterView.O2;
         sf sfVar = chatActivityEnterView.Z2;
@@ -27,15 +27,15 @@ public final class nf implements Runnable {
             sfVar.C();
             chatActivityEnterView.J3 = true;
             chatActivityEnterView.I3 = false;
-            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f23737k1;
+            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f23738k1;
             if (slideTextView != null) {
                 slideTextView.setAlpha(1.0f);
-                chatActivityEnterView.f23737k1.setTranslationY(0.0f);
+                chatActivityEnterView.f23738k1.setTranslationY(0.0f);
             }
-            org.telegram.messenger.sw swVar = null;
-            chatActivityEnterView.f23690c3 = null;
-            chatActivityEnterView.f23683b3 = null;
-            if (chatActivityEnterView.f23688c1) {
+            org.telegram.messenger.tw twVar = null;
+            chatActivityEnterView.f23691c3 = null;
+            chatActivityEnterView.f23684b3 = null;
+            if (chatActivityEnterView.f23689c1) {
                 if (activity.checkSelfPermission("android.permission.RECORD_AUDIO") == 0) {
                     z10 = true;
                 } else {
@@ -62,12 +62,12 @@ public final class nf implements Runnable {
                         }
                         bg bgVar = chatActivityEnterView.Y0;
                         if (bgVar != null) {
-                            bgVar.f24626a = false;
+                            bgVar.f24726a = false;
                             bgVar.d = 0L;
                             bgVar.e = 0L;
                             bgVar.h = 0L;
-                            bgVar.f24630n = 0L;
-                            bgVar.f24627b = false;
+                            bgVar.f24730n = 0L;
+                            bgVar.f24727b = false;
                             return;
                         }
                         return;
@@ -103,14 +103,14 @@ public final class nf implements Runnable {
                 MediaController B = MediaController.B();
                 int i11 = chatActivityEnterView.Q;
                 long j10 = chatActivityEnterView.Q2;
-                org.telegram.messenger.jj jjVar = chatActivityEnterView.T2;
+                org.telegram.messenger.kj kjVar = chatActivityEnterView.T2;
                 threadMessage = chatActivityEnterView.getThreadMessage();
                 int i12 = chatActivityEnterView.G2;
                 org.telegram.ui.un unVar = chatActivityEnterView.P2;
                 if (unVar != null) {
-                    swVar = unVar.P8();
+                    twVar = unVar.T8();
                 }
-                B.x0(i11, j10, jjVar, threadMessage, storyItem, i12, true, swVar, chatActivityEnterView.getSendMonoForumPeerId(), chatActivityEnterView.getSendMessageSuggestionParams());
+                B.x0(i11, j10, kjVar, threadMessage, storyItem, i12, true, twVar, chatActivityEnterView.getSendMonoForumPeerId(), chatActivityEnterView.getSendMessageSuggestionParams());
                 chatActivityEnterView.F2 = true;
                 chatActivityEnterView.K1(0, true);
                 bg bgVar2 = chatActivityEnterView.Y0;

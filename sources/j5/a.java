@@ -10,26 +10,26 @@ import java.util.regex.Pattern;
 import l5.k;
 import v7.m8;
 public final class a implements k {
-    public static final String f9665c;
+    public static final String f9666c;
     public static final Set d;
     public static final a e;
-    public static final a f9666f;
-    public final String f9667a;
-    public final String f9668b;
+    public static final a f9667f;
+    public final String f9668a;
+    public final String f9669b;
 
     static {
         String a2 = m8.a("hts/frbslgiggolai.o/0clgbthfra=snpoo", "tp:/ieaeogn.ogepscmvc/o/ac?omtjo_rt3");
-        f9665c = a2;
+        f9666c = a2;
         String a10 = m8.a("hts/frbslgigp.ogepscmv/ieo/eaybtho", "tp:/ieaeogn-agolai.o/1frlglgc/aclg");
         String a11 = m8.a("AzSCki82AwsLzKd5O8zo", "IayckHiZRO1EFl1aGoK");
         d = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList(new c("proto"), new c("json"))));
         e = new a(a2, null);
-        f9666f = new a(a10, a11);
+        f9667f = new a(a10, a11);
     }
 
     public a(String str, String str2) {
-        this.f9667a = str;
-        this.f9668b = str2;
+        this.f9668a = str;
+        this.f9669b = str2;
     }
 
     public static a a(byte[] bArr) {

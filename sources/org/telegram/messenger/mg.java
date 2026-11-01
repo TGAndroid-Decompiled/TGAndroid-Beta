@@ -1,178 +1,139 @@
 package org.telegram.messenger;
 
-import android.graphics.drawable.Drawable;
-import j$.util.concurrent.ConcurrentHashMap;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Locale;
+import org.telegram.SQLite.SQLiteCursor;
+import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
 public final class mg implements Runnable {
-    public final int f16949a;
-    public final Object f16950b;
-    public final Object f16951c;
-    public final Object d;
+    public final int f17117a;
+    public final f1 f17118b;
+    public final long f17119c;
+    public final long d;
+    public final int e;
+    public final int f17120f;
 
-    public mg(Object obj, Object obj2, Object obj3, int i10) {
-        this.f16949a = i10;
-        this.f16951c = obj;
-        this.f16950b = obj2;
-        this.d = obj3;
-    }
-
-    private final void a() {
-        b8 b8Var = (b8) this.f16951c;
-        TLRPC.Document document = (TLRPC.Document) this.f16950b;
-        jj jjVar = (jj) this.d;
-        int i10 = 3;
-        if (document == null) {
-            ConcurrentHashMap concurrentHashMap = x8.H;
-        } else {
-            Integer num = (Integer) x8.I.get(Long.valueOf(document.f19799id));
-            if (num != null) {
-                i10 = num.intValue();
-            }
-        }
-        b8Var.Z(document, null, null, null, null, jjVar, null, 0L, i10, b8.M, 0L, false, 0);
-    }
-
-    private final void b() {
-        b8 b8Var = (b8) this.f16951c;
-        bg.h hVar = (bg.h) this.f16950b;
-        m7 m7Var = (m7) this.d;
-        if (((ArrayList) hVar.d).remove(m7Var)) {
-            b8Var.f14746w.remove(m7Var.f16912r);
-            hVar.b(m7Var.f16896j);
-        }
-    }
-
-    private final void c() {
-        k8 k8Var = (k8) this.f16951c;
-        File file = (File) this.f16950b;
-        j8 j8Var = (j8) this.d;
-        k8Var.c();
-        SQLitePreparedStatement sQLitePreparedStatement = null;
-        try {
-            try {
-                sQLitePreparedStatement = k8Var.f16546c.executeFast("REPLACE INTO paths_by_dialog_id VALUES(?, ?, ?, ?)");
-                sQLitePreparedStatement.requery();
-                sQLitePreparedStatement.bindString(1, file.getPath().replace("'", "").replace("\"", ""));
-                sQLitePreparedStatement.bindLong(2, j8Var.f16227a);
-                sQLitePreparedStatement.bindInteger(3, j8Var.f16228b);
-                sQLitePreparedStatement.bindInteger(4, j8Var.f16229c);
-                sQLitePreparedStatement.step();
-                sQLitePreparedStatement.dispose();
-            } catch (Exception e) {
-                f8.g(e, true);
-                if (sQLitePreparedStatement != null) {
-                    sQLitePreparedStatement.dispose();
-                }
-            }
-        } catch (Throwable th2) {
-            if (sQLitePreparedStatement != null) {
-                sQLitePreparedStatement.dispose();
-            }
-            throw th2;
-        }
-    }
-
-    private final void d() {
-        String str = (String) this.f16950b;
-        m7 m7Var = (m7) this.d;
-        hc hcVar = ((rb) this.f16951c).f17713b;
-        HashMap hashMap = hcVar.h;
-        ConcurrentHashMap concurrentHashMap = hcVar.f15858i;
-        vb vbVar = (vb) hashMap.remove(str);
-        if (vbVar != null) {
-            ArrayList arrayList = vbVar.v;
-            hcVar.f15857g.remove(str);
-            ArrayList arrayList2 = new ArrayList();
-            for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                String str2 = (String) vbVar.f18506x.get(i10);
-                String str3 = (String) vbVar.f18507y.get(i10);
-                int intValue = ((Integer) vbVar.f18508z.get(i10)).intValue();
-                ImageReceiver imageReceiver = (ImageReceiver) arrayList.get(i10);
-                int intValue2 = ((Integer) vbVar.f18505w.get(i10)).intValue();
-                vb vbVar2 = (vb) concurrentHashMap.get(str2);
-                if (vbVar2 == null) {
-                    vbVar2 = new vb(hcVar);
-                    vbVar2.f18487a = vbVar.f18487a;
-                    vbVar2.h = vbVar.h;
-                    vbVar2.f18498o = vbVar.f18498o;
-                    vbVar2.f18499p = m7Var.g();
-                    vbVar2.f18493j = vbVar.f18493j;
-                    vbVar2.f18489c = vbVar.f18489c;
-                    vbVar2.d = str2;
-                    vbVar2.f18492i = vbVar.f18492i;
-                    vbVar2.f18496m = intValue;
-                    vbVar2.f18491g = vbVar.f18491g;
-                    vbVar2.f18501r = vbVar.f18501r;
-                    vbVar2.f18504u = new wb(hcVar, vbVar2);
-                    vbVar2.f18490f = str3;
-                    vbVar2.f18495l = vbVar.f18495l;
-                    vbVar2.f18497n = vbVar.f18497n;
-                    concurrentHashMap.put(str2, vbVar2);
-                    hcVar.f15859j.add(hc.n(str2));
-                    arrayList2.add(vbVar2.f18504u);
-                }
-                vbVar2.a(imageReceiver, str2, str3, intValue, intValue2);
-            }
-            for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-                wb wbVar = (wb) arrayList2.get(i11);
-                vb vbVar3 = wbVar.f19079c;
-                if (vbVar3.f18496m == 1) {
-                    hcVar.f15866q.c(wbVar);
-                } else {
-                    com.google.android.gms.internal.cast.c0 c0Var = hcVar.f15865p;
-                    int i12 = vbVar3.f18487a;
-                    if (i12 != 1) {
-                        c0Var.getClass();
-                        wbVar = new ze.b(i12, wbVar);
-                    }
-                    ((ze.a) c0Var.f4585b).execute(wbVar);
-                }
-            }
-        }
-    }
-
-    private final void f() {
-        ((wb) this.f16951c).f19079c.c((Drawable) this.f16950b, (String) this.d);
-    }
-
-    private final void g() {
-        int[] iArr = (int[]) this.f16951c;
-        Runnable runnable = (Runnable) this.d;
-        int i10 = iArr[0] + 1;
-        iArr[0] = i10;
-        if (i10 >= ((int[]) this.f16950b)[0] && runnable != null) {
-            runnable.run();
-        }
-    }
-
-    private final void h() {
-        nd ndVar = (nd) this.f16951c;
-        md mdVar = (md) this.f16950b;
-        md mdVar2 = (md) this.d;
-        ArrayList arrayList = ndVar.I;
-        if (mdVar != null) {
-            arrayList.remove(mdVar);
-        }
-        arrayList.add(mdVar2);
-        ndVar.J.k(mdVar2, mdVar2.f16940a);
-        nd.q();
-        zs.e().k(zs.D4, new Object[0]);
+    public mg(f1 f1Var, long j10, long j11, int i10, int i11, int i12) {
+        this.f17117a = i12;
+        this.f17118b = f1Var;
+        this.f17119c = j10;
+        this.d = j11;
+        this.e = i10;
+        this.f17120f = i11;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.mg.run():void");
-    }
-
-    public mg(TLObject tLObject, q20 q20Var, TLRPC.TL_error tL_error) {
-        this.f16949a = 12;
-        this.d = tLObject;
-        this.f16951c = q20Var;
-        this.f16950b = tL_error;
+        SQLiteCursor queryFinalized;
+        boolean z10;
+        int i10;
+        int i11;
+        long j10;
+        long j11;
+        int i12;
+        int i13;
+        SQLitePreparedStatement executeFast;
+        int i14;
+        switch (this.f17117a) {
+            case 0:
+                vi viVar = (vi) this.f17118b;
+                int i15 = this.f17120f;
+                long j12 = this.f17119c;
+                int i16 = (j12 > 0L ? 1 : (j12 == 0L ? 0 : -1));
+                long j13 = this.d;
+                int i17 = this.e;
+                if (i16 != 0) {
+                    try {
+                        SQLiteDatabase sQLiteDatabase = viVar.getMessagesStorage().f16333b;
+                        Locale locale = Locale.US;
+                        queryFinalized = sQLiteDatabase.queryFinalized("SELECT count, old FROM media_counts_topics WHERE uid = " + j13 + " AND topic_id = " + j12 + " AND type = " + i17 + " LIMIT 1", new Object[0]);
+                    } catch (Exception e) {
+                        e = e;
+                        z10 = true;
+                        f8.g(e, z10);
+                        return;
+                    }
+                } else {
+                    try {
+                        SQLiteDatabase sQLiteDatabase2 = viVar.getMessagesStorage().f16333b;
+                        Locale locale2 = Locale.US;
+                        queryFinalized = sQLiteDatabase2.queryFinalized("SELECT count, old FROM media_counts_v2 WHERE uid = " + j13 + " AND type = " + i17 + " LIMIT 1", new Object[0]);
+                    } catch (Exception e7) {
+                        e = e7;
+                        z10 = true;
+                        f8.g(e, z10);
+                        return;
+                    }
+                }
+                if (queryFinalized.next()) {
+                    i10 = queryFinalized.intValue(0);
+                    i11 = queryFinalized.intValue(1);
+                } else {
+                    i10 = -1;
+                    i11 = 0;
+                }
+                queryFinalized.dispose();
+                if (i10 == -1 && o5.C(j13)) {
+                    SQLiteDatabase sQLiteDatabase3 = viVar.getMessagesStorage().f16333b;
+                    Locale locale3 = Locale.US;
+                    SQLiteCursor queryFinalized2 = sQLiteDatabase3.queryFinalized("SELECT COUNT(mid) FROM media_v4 WHERE uid = " + j13 + " AND type = " + i17 + " LIMIT 1", new Object[0]);
+                    if (queryFinalized2.next()) {
+                        i10 = queryFinalized2.intValue(0);
+                    }
+                    queryFinalized2.dispose();
+                    if (i10 != -1) {
+                        i13 = i10;
+                        i12 = i17;
+                        j11 = j12;
+                        viVar.H1(j13, j11, i12, i13);
+                        j10 = j13;
+                    } else {
+                        j10 = j13;
+                        j11 = j12;
+                        i12 = i17;
+                        i13 = i10;
+                    }
+                    i10 = i13;
+                } else {
+                    j10 = j13;
+                    j11 = j12;
+                    i12 = i17;
+                }
+                i0.g3(new ni(viVar, j10, true, i10, i12, i11, j11, i15));
+                return;
+            case 1:
+                vi viVar2 = (vi) this.f17118b;
+                long j14 = this.d;
+                int i18 = this.e;
+                int i19 = this.f17120f;
+                long j15 = this.f17119c;
+                int i20 = (j15 > 0L ? 1 : (j15 == 0L ? 0 : -1));
+                try {
+                    if (i20 != 0) {
+                        executeFast = viVar2.getMessagesStorage().f16333b.executeFast("REPLACE INTO media_counts_topics VALUES(?, ?, ?, ?, ?)");
+                    } else {
+                        executeFast = viVar2.getMessagesStorage().f16333b.executeFast("REPLACE INTO media_counts_v2 VALUES(?, ?, ?, ?)");
+                    }
+                    executeFast.requery();
+                    executeFast.bindLong(1, j14);
+                    if (i20 != 0) {
+                        executeFast.bindLong(2, j15);
+                        i14 = 3;
+                    } else {
+                        i14 = 2;
+                    }
+                    executeFast.bindInteger(i14, i18);
+                    executeFast.bindInteger(i14 + 1, i19);
+                    executeFast.bindInteger(i14 + 2, 0);
+                    executeFast.step();
+                    executeFast.dispose();
+                    return;
+                } catch (Exception e10) {
+                    f8.g(e10, true);
+                    return;
+                }
+            default:
+                ((is) this.f17118b).e2(-this.f17119c, this.d, this.e, this.f17120f);
+                return;
+        }
     }
 }

@@ -7,12 +7,12 @@ import java.util.List;
 import org.telegram.ui.Cells.f1;
 public final class b extends o6.a {
     public static final Parcelable.Creator<b> CREATOR = new c(0);
-    public final String f54208a;
-    public final List f54209b;
+    public final String f54229a;
+    public final List f54230b;
 
     public b(String str, ArrayList arrayList) {
-        this.f54208a = str;
-        this.f54209b = arrayList;
+        this.f54229a = str;
+        this.f54230b = arrayList;
         n6.l.g(str);
         n6.l.g(arrayList);
     }
@@ -25,13 +25,13 @@ public final class b extends o6.a {
             return false;
         }
         b bVar = (b) obj;
-        List list = bVar.f54209b;
-        String str = bVar.f54208a;
-        String str2 = this.f54208a;
+        List list = bVar.f54230b;
+        String str = bVar.f54229a;
+        String str2 = this.f54229a;
         if (str2 == null ? str != null : !str2.equals(str)) {
             return false;
         }
-        List list2 = this.f54209b;
+        List list2 = this.f54230b;
         if (list2 == null ? list == null : list2.equals(list)) {
             return true;
         }
@@ -41,14 +41,14 @@ public final class b extends o6.a {
     public final int hashCode() {
         int i10;
         int i11 = 0;
-        String str = this.f54208a;
+        String str = this.f54229a;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
         int i12 = (i10 + 31) * 31;
-        List list = this.f54209b;
+        List list = this.f54230b;
         if (list != null) {
             i11 = list.hashCode();
         }
@@ -56,14 +56,14 @@ public final class b extends o6.a {
     }
 
     public final String toString() {
-        return f1.o("CapabilityInfo{", this.f54208a, ", ", String.valueOf(this.f54209b), "}");
+        return f1.o("CapabilityInfo{", this.f54229a, ", ", String.valueOf(this.f54230b), "}");
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.h0.q(parcel, 20293);
-        w7.h0.l(parcel, 2, this.f54208a);
-        w7.h0.p(parcel, 3, this.f54209b);
+        w7.h0.l(parcel, 2, this.f54229a);
+        w7.h0.p(parcel, 3, this.f54230b);
         w7.h0.r(parcel, q6);
     }
 }

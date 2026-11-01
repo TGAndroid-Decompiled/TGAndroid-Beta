@@ -5,7 +5,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.os.SystemClock;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.jj;
+import org.telegram.messenger.kj;
 public final class z5 implements SensorEventListener {
     @Override
     public final void onSensorChanged(SensorEvent sensorEvent) {
@@ -13,33 +13,33 @@ public final class z5 implements SensorEventListener {
         if (f7 <= 0.0f) {
             f7 = 0.1f;
         }
-        if (!org.telegram.messenger.w0.f19032x && org.telegram.messenger.w0.f19031w) {
+        if (!org.telegram.messenger.w0.f18952x && org.telegram.messenger.w0.f18951w) {
             if (f7 > 500.0f) {
                 t6.h = 1.0f;
             } else {
                 t6.h = ((float) Math.ceil((Math.log(f7) * 9.932299613952637d) + 27.05900001525879d)) / 100.0f;
             }
             long j10 = 1800;
-            if (t6.h <= t6.f21163q) {
+            if (t6.h <= t6.f21164q) {
                 MediaController B = MediaController.B();
                 if (B.I) {
                     if (!B.J()) {
-                        jj jjVar = B.f14482u0;
-                        if (jjVar != null && (jj.R4(jjVar.f16337k) || B.f14482u0.h4())) {
+                        kj kjVar = B.f14483u0;
+                        if (kjVar != null && (kj.R4(kjVar.f16690k) || B.f14483u0.h4())) {
                             return;
                         }
                     } else {
                         return;
                     }
                 }
-                if (t6.f21031j) {
-                    t6.f21031j = false;
-                    org.telegram.messenger.i0.r(t6.f21071l);
+                if (t6.f21032j) {
+                    t6.f21032j = false;
+                    org.telegram.messenger.i0.r(t6.f21072l);
                 }
-                if (!t6.f21051k) {
-                    t6.f21051k = true;
-                    androidx.emoji2.text.n nVar = t6.f21089m;
-                    if (Math.abs(t6.f21013i - SystemClock.elapsedRealtime()) < 12000) {
+                if (!t6.f21052k) {
+                    t6.f21052k = true;
+                    androidx.emoji2.text.n nVar = t6.f21090m;
+                    if (Math.abs(t6.f21014i - SystemClock.elapsedRealtime()) < 12000) {
                         j10 = 12000;
                     }
                     org.telegram.messenger.i0.h3(nVar, j10);
@@ -47,14 +47,14 @@ public final class z5 implements SensorEventListener {
                 }
                 return;
             }
-            if (t6.f21051k) {
-                t6.f21051k = false;
-                org.telegram.messenger.i0.r(t6.f21089m);
+            if (t6.f21052k) {
+                t6.f21052k = false;
+                org.telegram.messenger.i0.r(t6.f21090m);
             }
-            if (!t6.f21031j) {
-                t6.f21031j = true;
-                androidx.emoji2.text.n nVar2 = t6.f21071l;
-                if (Math.abs(t6.f21013i - SystemClock.elapsedRealtime()) < 12000) {
+            if (!t6.f21032j) {
+                t6.f21032j = true;
+                androidx.emoji2.text.n nVar2 = t6.f21072l;
+                if (Math.abs(t6.f21014i - SystemClock.elapsedRealtime()) < 12000) {
                     j10 = 12000;
                 }
                 org.telegram.messenger.i0.h3(nVar2, j10);

@@ -1,62 +1,61 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.view.View;
-public final class j11 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f38415a;
-    public final i31 f38416b;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.concurrent.CountDownLatch;
+public final class j11 implements Runnable {
+    public final int f38253a;
+    public final g31 f38254b;
 
-    public j11(i31 i31Var, int i10) {
-        this.f38415a = i10;
-        this.f38416b = i31Var;
+    public j11(g31 g31Var, int i10) {
+        this.f38253a = i10;
+        this.f38254b = g31Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f38415a) {
+    public final void run() {
+        switch (this.f38253a) {
             case 0:
-                i31 i31Var = this.f38416b;
-                i31Var.getClass();
-                i31Var.E(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                g31 g31Var = this.f38254b;
+                g31Var.getClass();
+                HashSet hashSet = sg.e0.f48330a;
+                com.google.android.gms.internal.cast.c0 c0Var = org.telegram.messenger.ic.D().f16258p;
+                if (((CountDownLatch) c0Var.f4586c) == null) {
+                    c0Var.f4586c = new CountDownLatch(1);
+                }
+                sg.e0.f48331b = true;
+                sg.e0.e = false;
+                sg.e0.f48334g = false;
+                org.telegram.messenger.i0.h3(new j11(g31Var, 2), 0L);
                 return;
             case 1:
-                this.f38416b.m();
+                g31 g31Var2 = this.f38254b;
+                ArrayList arrayList = g31Var2.B1;
+                if (arrayList != null) {
+                    arrayList.clear();
+                }
+                ArrayList arrayList2 = g31Var2.C1;
+                if (arrayList2 != null) {
+                    arrayList2.clear();
+                }
+                ArrayList arrayList3 = g31Var2.E1;
+                if (arrayList3 != null) {
+                    arrayList3.clear();
+                }
+                g31Var2.f37322q0.E(true);
                 return;
             case 2:
-                i31 i31Var2 = this.f38416b;
-                View view = i31Var2.f38154t0;
-                if (view != null) {
-                    view.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                }
-                int w9 = org.telegram.ui.ActionBar.t6.w(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.G8, i31Var2.Z0), i0.b.o(-16777216, (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * 255.0f)));
-                View view2 = i31Var2.m0;
-                if (view2 != null) {
-                    view2.getBackground().setColorFilter(new PorterDuffColorFilter(w9, PorterDuff.Mode.MULTIPLY));
-                }
-                org.telegram.ui.Components.bn bnVar = i31Var2.f38140n0;
-                if (bnVar != null) {
-                    bnVar.getBackground().setColorFilter(new PorterDuffColorFilter(w9, PorterDuff.Mode.MULTIPLY));
-                    return;
-                }
+                this.f38254b.V1.start();
+                return;
+            case 3:
+                this.f38254b.B(true, true, true);
                 return;
             default:
-                i31 i31Var3 = this.f38416b;
-                d21 d21Var = i31Var3.f38112a0;
-                float floatValue = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                i31Var3.setTranslationY((1.0f - floatValue) * org.telegram.messenger.i0.L(8.0f));
-                View view3 = i31Var3.m0;
-                if (view3 != null) {
-                    view3.setAlpha(floatValue);
-                }
-                org.telegram.ui.Components.bn bnVar2 = i31Var3.f38140n0;
-                if (bnVar2 != null) {
-                    bnVar2.setAlpha(floatValue * floatValue);
-                }
-                d21Var.setAlpha(floatValue);
-                d21Var.invalidate();
-                i31Var3.invalidate();
+                g31 g31Var3 = this.f38254b;
+                org.telegram.messenger.at e = org.telegram.messenger.at.e();
+                j11 j11Var = g31Var3.S1;
+                e.e.remove(j11Var);
+                org.telegram.messenger.at.e().d(j11Var);
                 return;
         }
     }

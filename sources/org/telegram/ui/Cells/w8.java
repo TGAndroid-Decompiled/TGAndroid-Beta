@@ -6,36 +6,36 @@ import android.graphics.Paint;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 public final class w8 extends FrameLayout {
     public static Paint d;
-    public final TextView f23409a;
-    public int f23410b;
-    public float f23411c;
+    public final TextView f23410a;
+    public int f23411b;
+    public float f23412c;
 
     public w8(Context context) {
         super(context);
         int i10;
         int i11;
-        this.f23411c = 1.0f;
+        this.f23412c = 1.0f;
         if (d == null) {
             d = new Paint(1);
         }
         TextView textView = new TextView(context);
-        this.f23409a = textView;
+        this.f23410a = textView;
         textView.setTextColor(-14606047);
         textView.setTextSize(1, 16.0f);
         textView.setLines(1);
         textView.setMaxLines(1);
         textView.setSingleLine(true);
-        if (cd.X) {
+        if (dd.X) {
             i10 = 5;
         } else {
             i10 = 3;
         }
         textView.setGravity(i10 | 16);
         textView.setPadding(0, 0, 0, org.telegram.messenger.i0.L(3.0f));
-        boolean z10 = cd.X;
+        boolean z10 = dd.X;
         int i12 = (z10 ? 5 : 3) | 48;
         if (z10) {
             i11 = 21;
@@ -47,17 +47,17 @@ public final class w8 extends FrameLayout {
 
     @Override
     public float getAlpha() {
-        return this.f23411c;
+        return this.f23412c;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int measuredWidth;
-        int i10 = this.f23410b;
+        int i10 = this.f23411b;
         if (i10 != 0) {
             d.setColor(i10);
-            d.setAlpha((int) (this.f23411c * 255.0f));
-            if (!cd.X) {
+            d.setAlpha((int) (this.f23412c * 255.0f));
+            if (!dd.X) {
                 measuredWidth = org.telegram.messenger.i0.L(28.0f);
             } else {
                 measuredWidth = getMeasuredWidth() - org.telegram.messenger.i0.L(28.0f);
@@ -73,7 +73,7 @@ public final class w8 extends FrameLayout {
 
     @Override
     public void setAlpha(float f7) {
-        this.f23411c = f7;
+        this.f23412c = f7;
         invalidate();
     }
 }

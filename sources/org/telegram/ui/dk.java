@@ -4,18 +4,18 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 public final class dk extends org.telegram.ui.Cells.s0 {
-    public final un f36788t2;
+    public final un f36622t2;
 
     public dk(Context context, org.telegram.ui.ActionBar.p6 p6Var, un unVar) {
         super(context, p6Var, false);
-        this.f36788t2 = unVar;
+        this.f36622t2 = unVar;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        un unVar = this.f36788t2;
+        un unVar = this.f36622t2;
         if (unVar.P8 == null) {
-            float y3 = ((unVar.f42492z0.getY() + unVar.L9) - getY()) - org.telegram.messenger.i0.L(4.0f);
+            float y3 = ((unVar.f42303z0.getY() + unVar.L9) - getY()) - org.telegram.messenger.i0.L(4.0f);
             if (y3 > 0.0f) {
                 if (y3 < getMeasuredHeight()) {
                     canvas.save();
@@ -34,9 +34,9 @@ public final class dk extends org.telegram.ui.Cells.s0 {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         org.telegram.ui.ActionBar.l lVar;
         if (getAlpha() != 0.0f) {
-            un unVar = this.f36788t2;
+            un unVar = this.f36622t2;
             lVar = ((org.telegram.ui.ActionBar.k2) unVar).actionBar;
-            if (!lVar.u() && !unVar.M9()) {
+            if (!lVar.u() && !unVar.R9()) {
                 return super.onInterceptTouchEvent(motionEvent);
             }
             return false;
@@ -48,9 +48,9 @@ public final class dk extends org.telegram.ui.Cells.s0 {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         org.telegram.ui.ActionBar.l lVar;
         if (getAlpha() != 0.0f) {
-            un unVar = this.f36788t2;
+            un unVar = this.f36622t2;
             lVar = ((org.telegram.ui.ActionBar.k2) unVar).actionBar;
-            if (!lVar.u() && !unVar.M9()) {
+            if (!lVar.u() && !unVar.R9()) {
                 return super.onTouchEvent(motionEvent);
             }
             return false;

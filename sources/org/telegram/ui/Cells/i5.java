@@ -5,15 +5,15 @@ import android.graphics.Canvas;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 import org.telegram.tgnet.TLRPC;
 public final class i5 extends FrameLayout {
-    public final org.telegram.ui.Components.r8 f22033a;
-    public final org.telegram.ui.Components.g9 f22034b;
-    public final org.telegram.ui.ActionBar.u5 f22035c;
+    public final org.telegram.ui.Components.r8 f22034a;
+    public final org.telegram.ui.Components.g9 f22035b;
+    public final org.telegram.ui.ActionBar.u5 f22036c;
     public final org.telegram.ui.ActionBar.u5 d;
     public TLRPC.TL_chatInviteImporter e;
-    public boolean f22036f;
+    public boolean f22037f;
 
     public i5(Context context, final h5 h5Var, boolean z10) {
         super(context);
@@ -31,21 +31,21 @@ public final class i5 extends FrameLayout {
         float f14;
         int i16;
         int L;
-        this.f22033a = new org.telegram.ui.Components.r8((org.telegram.ui.ActionBar.p6) null);
+        this.f22034a = new org.telegram.ui.Components.r8((org.telegram.ui.ActionBar.p6) null);
         org.telegram.ui.Components.g9 g9Var = new org.telegram.ui.Components.g9(getContext());
-        this.f22034b = g9Var;
+        this.f22035b = g9Var;
         org.telegram.ui.ActionBar.u5 u5Var = new org.telegram.ui.ActionBar.u5(getContext());
-        this.f22035c = u5Var;
+        this.f22036c = u5Var;
         org.telegram.ui.ActionBar.u5 u5Var2 = new org.telegram.ui.ActionBar.u5(getContext());
         this.d = u5Var2;
         g9Var.setRoundRadius(org.telegram.messenger.i0.L(23.0f));
-        if (cd.X) {
+        if (dd.X) {
             i10 = 5;
         } else {
             i10 = 3;
         }
         addView(g9Var, w7.b6.d(46, 46.0f, i10, 12.0f, 8.0f, 12.0f, 0.0f));
-        if (cd.X) {
+        if (dd.X) {
             i11 = 5;
         } else {
             i11 = 3;
@@ -55,7 +55,7 @@ public final class i5 extends FrameLayout {
         org.telegram.ui.ActionBar.a7.Y(u5Var, org.telegram.ui.ActionBar.t6.G6, null);
         u5Var.setTextSize(17);
         u5Var.setTypeface(org.telegram.messenger.i0.o());
-        boolean z11 = cd.X;
+        boolean z11 = dd.X;
         if (z11) {
             f7 = 12.0f;
         } else {
@@ -67,16 +67,16 @@ public final class i5 extends FrameLayout {
             f10 = 12.0f;
         }
         addView(u5Var, w7.b6.d(-1, -2.0f, 48, f7, 12.0f, f10, 0.0f));
-        if (cd.X) {
+        if (dd.X) {
             i12 = 5;
         } else {
             i12 = 3;
         }
         u5Var2.setGravity(i12);
         u5Var2.setMaxLines(1);
-        org.telegram.ui.ActionBar.a7.Y(u5Var2, org.telegram.ui.ActionBar.t6.f21311y6, null);
+        org.telegram.ui.ActionBar.a7.Y(u5Var2, org.telegram.ui.ActionBar.t6.f21312y6, null);
         u5Var2.setTextSize(14);
-        boolean z12 = cd.X;
+        boolean z12 = dd.X;
         if (z12) {
             f11 = 12.0f;
         } else {
@@ -91,7 +91,7 @@ public final class i5 extends FrameLayout {
         int L2 = org.telegram.messenger.i0.L(17.0f);
         TextView textView = new TextView(getContext());
         textView.setBackground(org.telegram.ui.ActionBar.j6.f(org.telegram.ui.ActionBar.t6.Ci, 16.0f));
-        if (cd.X) {
+        if (dd.X) {
             i13 = 5;
         } else {
             i13 = 3;
@@ -104,22 +104,22 @@ public final class i5 extends FrameLayout {
         } else {
             i14 = 2131754373;
         }
-        textView.setText(cd.L0(i14, null));
+        textView.setText(dd.L0(i14, null));
         org.telegram.ui.ActionBar.a7.V(textView, org.telegram.ui.ActionBar.t6.Gi, null);
         textView.setTextSize(14.0f);
         textView.setTypeface(org.telegram.messenger.i0.o());
         textView.setOnClickListener(new View.OnClickListener(this) {
-            public final i5 f21921b;
+            public final i5 f21922b;
 
             {
-                this.f21921b = this;
+                this.f21922b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        i5 i5Var = this.f21921b;
+                        i5 i5Var = this.f21922b;
                         h5 h5Var2 = h5Var;
                         if (h5Var2 != null) {
                             TLRPC.TL_chatInviteImporter tL_chatInviteImporter = i5Var.e;
@@ -132,7 +132,7 @@ public final class i5 extends FrameLayout {
                         i5Var.getClass();
                         return;
                     default:
-                        i5 i5Var2 = this.f21921b;
+                        i5 i5Var2 = this.f21922b;
                         h5 h5Var3 = h5Var;
                         if (h5Var3 != null) {
                             TLRPC.TL_chatInviteImporter tL_chatInviteImporter2 = i5Var2.e;
@@ -147,7 +147,7 @@ public final class i5 extends FrameLayout {
                 }
             }
         });
-        boolean z13 = cd.X;
+        boolean z13 = dd.X;
         if (z13) {
             i15 = 5;
         } else {
@@ -167,8 +167,8 @@ public final class i5 extends FrameLayout {
         float measureText = textView.getPaint().measureText(textView.getText().toString()) + (L2 * 2);
         TextView textView2 = new TextView(getContext());
         int L3 = org.telegram.messenger.i0.L(16.0f);
-        textView2.setBackground(org.telegram.ui.ActionBar.t6.k0(L3, L3, L3, L3, 0, org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f21020i6, false), -16777216));
-        if (cd.X) {
+        textView2.setBackground(org.telegram.ui.ActionBar.t6.k0(L3, L3, L3, L3, 0, org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f21021i6, false), -16777216));
+        if (dd.X) {
             i16 = 5;
         } else {
             i16 = 3;
@@ -176,22 +176,22 @@ public final class i5 extends FrameLayout {
         textView2.setGravity(i16 | 16);
         textView2.setMaxLines(1);
         textView2.setPadding(L2, 0, L2, 0);
-        textView2.setText(cd.L0(2131751370, null));
-        org.telegram.ui.ActionBar.a7.V(textView2, org.telegram.ui.ActionBar.t6.f21115n6, null);
+        textView2.setText(dd.L0(2131751370, null));
+        org.telegram.ui.ActionBar.a7.V(textView2, org.telegram.ui.ActionBar.t6.f21116n6, null);
         textView2.setTextSize(14.0f);
         textView2.setTypeface(org.telegram.messenger.i0.o());
         textView2.setOnClickListener(new View.OnClickListener(this) {
-            public final i5 f21921b;
+            public final i5 f21922b;
 
             {
-                this.f21921b = this;
+                this.f21922b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        i5 i5Var = this.f21921b;
+                        i5 i5Var = this.f21922b;
                         h5 h5Var2 = h5Var;
                         if (h5Var2 != null) {
                             TLRPC.TL_chatInviteImporter tL_chatInviteImporter = i5Var.e;
@@ -204,7 +204,7 @@ public final class i5 extends FrameLayout {
                         i5Var.getClass();
                         return;
                     default:
-                        i5 i5Var2 = this.f21921b;
+                        i5 i5Var2 = this.f21922b;
                         h5 h5Var3 = h5Var;
                         if (h5Var3 != null) {
                             TLRPC.TL_chatInviteImporter tL_chatInviteImporter2 = i5Var2.e;
@@ -219,20 +219,20 @@ public final class i5 extends FrameLayout {
                 }
             }
         });
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-2, org.telegram.messenger.i0.L(32.0f), cd.X ? 5 : 3);
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-2, org.telegram.messenger.i0.L(32.0f), dd.X ? 5 : 3);
         layoutParams.topMargin = org.telegram.messenger.i0.L(62.0f);
-        if (cd.X) {
+        if (dd.X) {
             L = 0;
         } else {
             L = (int) (org.telegram.messenger.i0.L(79.0f) + measureText);
         }
         layoutParams.leftMargin = L;
-        layoutParams.rightMargin = cd.X ? (int) (measureText + org.telegram.messenger.i0.L(79.0f)) : 0;
+        layoutParams.rightMargin = dd.X ? (int) (measureText + org.telegram.messenger.i0.L(79.0f)) : 0;
         addView(textView2, layoutParams);
     }
 
     public org.telegram.ui.Components.g9 getAvatarImageView() {
-        return this.f22034b;
+        return this.f22035b;
     }
 
     public TLRPC.TL_chatInviteImporter getImporter() {
@@ -248,8 +248,8 @@ public final class i5 extends FrameLayout {
         float L;
         int i10;
         super.onDraw(canvas);
-        if (this.f22036f) {
-            if (cd.X) {
+        if (this.f22037f) {
+            if (dd.X) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.i0.L(72.0f);
@@ -257,12 +257,12 @@ public final class i5 extends FrameLayout {
             float f7 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (cd.X) {
+            if (dd.X) {
                 i10 = org.telegram.messenger.i0.L(72.0f);
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.t6.f21052k0);
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.t6.f21053k0);
         }
     }
 

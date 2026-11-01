@@ -19,7 +19,7 @@ public final class l implements ViewTreeObserver.OnGlobalFocusChangeListener {
                 ((t) this.f3175b).c0();
                 return;
             case 1:
-                ((k2) this.f3175b).A0();
+                ((k2) this.f3175b).B0();
                 return;
             case 2:
                 d4 d4Var = (d4) this.f3175b;
@@ -28,7 +28,7 @@ public final class l implements ViewTreeObserver.OnGlobalFocusChangeListener {
                 } else {
                     z10 = false;
                 }
-                d4Var.f30821h3 = z10;
+                d4Var.f31185h3 = z10;
                 if (view2 instanceof n1) {
                     d4Var.S3 = (n1) view2;
                     return;

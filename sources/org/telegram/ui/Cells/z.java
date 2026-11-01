@@ -4,26 +4,26 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import org.telegram.ui.Components.ru0;
-public abstract class z extends ViewGroup implements ru0 {
-    public boolean f23630a;
-    public androidx.emoji2.text.j f23631b;
-    public int f23632c;
+import org.telegram.ui.Components.su0;
+public abstract class z extends ViewGroup implements su0 {
+    public boolean f23631a;
+    public androidx.emoji2.text.j f23632b;
+    public int f23633c;
     public mg.c2 d;
     public Runnable e;
 
     public z(Context context) {
         super(context);
-        this.f23630a = false;
-        this.f23631b = null;
-        this.f23632c = 0;
+        this.f23631a = false;
+        this.f23632b = null;
+        this.f23633c = 0;
         this.d = null;
         setWillNotDraw(false);
         setFocusable(true);
         setHapticFeedbackEnabled(true);
     }
 
-    public static float s(Drawable drawable, float f7, float f10, float f11) {
+    public static float r(Drawable drawable, float f7, float f10, float f11) {
         float intrinsicWidth = (drawable.getIntrinsicWidth() * f11) / drawable.getIntrinsicHeight();
         int i10 = (int) f7;
         int i11 = (int) f10;
@@ -69,8 +69,8 @@ public abstract class z extends ViewGroup implements ru0 {
     }
 
     public final void m() {
-        this.f23630a = false;
-        androidx.emoji2.text.j jVar = this.f23631b;
+        this.f23631a = false;
+        androidx.emoji2.text.j jVar = this.f23632b;
         if (jVar != null) {
             removeCallbacks(jVar);
         }
@@ -80,19 +80,19 @@ public abstract class z extends ViewGroup implements ru0 {
         }
     }
 
-    public void p() {
+    public void n() {
         super.invalidate();
     }
 
-    public boolean r() {
+    public boolean p() {
         return true;
     }
 
     public final void w() {
-        if (this.f23630a) {
+        if (this.f23631a) {
             return;
         }
-        this.f23630a = true;
+        this.f23631a = true;
         if (this.d == null) {
             this.d = new mg.c2(this, 17);
         }

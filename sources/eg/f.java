@@ -13,9 +13,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import bi.h1;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.a30;
+import org.telegram.messenger.dd;
 import org.telegram.messenger.i0;
-import org.telegram.messenger.z20;
 import org.telegram.ui.ActionBar.t6;
 import w7.b6;
 public final class f extends FrameLayout {
@@ -90,7 +90,7 @@ public final class f extends FrameLayout {
             }
         });
         imageView.setOnLongClickListener(new h1(this, 3));
-        imageView.setContentDescription(cd.L0(2131754840, null));
+        imageView.setContentDescription(dd.L0(2131754840, null));
         addView(imageView, b6.e(70, 64, 19));
         ImageView imageView2 = new ImageView(context);
         this.f6535c = imageView2;
@@ -134,7 +134,7 @@ public final class f extends FrameLayout {
             }
         });
         imageView2.setVisibility(8);
-        imageView2.setContentDescription(cd.L0(2131754922, null));
+        imageView2.setContentDescription(dd.L0(2131754922, null));
         addView(imageView2, b6.e(70, 64, 19));
         ImageView imageView3 = new ImageView(context);
         this.d = imageView3;
@@ -177,7 +177,7 @@ public final class f extends FrameLayout {
                 }
             }
         });
-        imageView3.setContentDescription(cd.L0(2131754783, null));
+        imageView3.setContentDescription(dd.L0(2131754783, null));
         addView(imageView3, b6.e(70, 64, 21));
         TextPaint textPaint = new TextPaint(1);
         this.h = textPaint;
@@ -280,7 +280,7 @@ public final class f extends FrameLayout {
                 paint3.setAlpha(255);
                 RectF rectF = this.f6538r;
                 rectF.left = (width - i0.L(2.5f)) / 2;
-                rectF.top = z20.y(22.0f, height, 2);
+                rectF.top = a30.y(22.0f, height, 2);
                 rectF.right = (i0.L(2.5f) + width) / 2;
                 rectF.bottom = (i0.L(22.0f) + height) / 2;
                 canvas3.drawRoundRect(rectF, i0.L(2.0f), i0.L(2.0f), paint3);
@@ -310,7 +310,7 @@ public final class f extends FrameLayout {
             }
         } else if (actionMasked != 1 && actionMasked != 3) {
             if (actionMasked == 2) {
-                float z10 = z20.z(this.f6537n, (float) ((((this.f6539s - x10) / i0.f16025p) / 3.141592653589793d) / 1.649999976158142d), 45.0f, -45.0f);
+                float z10 = a30.z(this.f6537n, (float) ((((this.f6539s - x10) / i0.f16171p) / 3.141592653589793d) / 1.649999976158142d), 45.0f, -45.0f);
                 if (Build.VERSION.SDK_INT >= 27) {
                     try {
                         if ((Math.abs(z10 - 45.0f) < 0.001f && Math.abs(this.f6537n - 45.0f) >= 0.001f) || (Math.abs(z10 - (-45.0f)) < 0.001f && Math.abs(this.f6537n - (-45.0f)) >= 0.001f)) {
@@ -361,7 +361,7 @@ public final class f extends FrameLayout {
     public void setMirrored(boolean z10) {
         PorterDuffColorFilter porterDuffColorFilter = null;
         if (z10) {
-            porterDuffColorFilter = new PorterDuffColorFilter(t6.x0(null, t6.f21125ng, false), PorterDuff.Mode.MULTIPLY);
+            porterDuffColorFilter = new PorterDuffColorFilter(t6.x0(null, t6.f21126ng, false), PorterDuff.Mode.MULTIPLY);
         }
         this.e.setColorFilter(porterDuffColorFilter);
     }
@@ -369,7 +369,7 @@ public final class f extends FrameLayout {
     public void setRotated(boolean z10) {
         PorterDuffColorFilter porterDuffColorFilter = null;
         if (z10) {
-            porterDuffColorFilter = new PorterDuffColorFilter(t6.x0(null, t6.f21125ng, false), PorterDuff.Mode.MULTIPLY);
+            porterDuffColorFilter = new PorterDuffColorFilter(t6.x0(null, t6.f21126ng, false), PorterDuff.Mode.MULTIPLY);
         }
         this.d.setColorFilter(porterDuffColorFilter);
     }

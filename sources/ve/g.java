@@ -2,11 +2,11 @@ package ve;
 
 import w7.j8;
 public final class g extends df.c {
-    public final int f50798g;
+    public final int f50812g;
 
     @Override
     public final void a(j8 j8Var) {
-        switch (this.f50798g) {
+        switch (this.f50812g) {
             case 0:
                 j8Var.e(this);
                 return;

@@ -1,22 +1,35 @@
 package org.telegram.messenger;
-public final class vk implements Runnable {
-    public final int f18595a;
-    public final boolean[] f18596b;
 
-    public vk(int i10, boolean[] zArr) {
-        this.f18595a = i10;
-        this.f18596b = zArr;
+import java.util.function.ToLongFunction;
+import org.telegram.ui.p61;
+public final class vk implements ToLongFunction {
+    public final int f18749a;
+
+    public vk(int i10) {
+        this.f18749a = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18595a) {
+    public final long applyAsLong(Object obj) {
+        switch (this.f18749a) {
             case 0:
-                this.f18596b[0] = true;
-                return;
+                return Long.parseLong((String) obj);
+            case 1:
+                return ((ot) obj).e;
+            case 2:
+                return ((ot) obj).e;
+            case 3:
+                return ((kj) obj).Z0();
+            case 4:
+                kj kjVar = ((p61) obj).f40379b;
+                if (kjVar == null) {
+                    return 0L;
+                }
+                return kjVar.f16690k.date;
+            case 5:
+                return ((org.telegram.ui.Wallet.g8) obj).I;
             default:
-                this.f18596b[0] = true;
-                return;
+                return ((org.telegram.ui.Wallet.g8) obj).J;
         }
     }
 }

@@ -5,36 +5,36 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import org.telegram.messenger.j20;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.k20;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
-public final class i0 implements j20 {
-    public final int f34692a;
-    public final j0 f34693b;
-    public final TL_wallet.getTransactions f34694c;
+public final class i0 implements k20 {
+    public final int f34699a;
+    public final j0 f34700b;
+    public final TL_wallet.getTransactions f34701c;
 
     public i0(j0 j0Var, TL_wallet.getTransactions gettransactions, int i10) {
-        this.f34692a = i10;
-        this.f34693b = j0Var;
-        this.f34694c = gettransactions;
+        this.f34699a = i10;
+        this.f34700b = j0Var;
+        this.f34701c = gettransactions;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         boolean z10;
         boolean z11;
-        switch (this.f34692a) {
+        switch (this.f34699a) {
             case 0:
                 TL_wallet.walletTransactions wallettransactions = (TL_wallet.walletTransactions) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                j0 j0Var = this.f34693b;
-                int i10 = j0Var.f34737l.f34776a;
-                j0Var.f34736k = -1;
+                j0 j0Var = this.f34700b;
+                int i10 = j0Var.f34742l.f34781a;
+                j0Var.f34741k = -1;
                 if (wallettransactions != null) {
                     int i11 = 0;
-                    vp.r1(i10).V3(wallettransactions.users, false);
-                    vp.r1(i10).P3(wallettransactions.chats, false);
+                    wp.r1(i10).V3(wallettransactions.users, false);
+                    wp.r1(i10).P3(wallettransactions.chats, false);
                     ArrayList<TL_wallet.walletTransaction> arrayList = wallettransactions.transactions;
                     int size = arrayList.size();
                     while (i11 < size) {
@@ -46,16 +46,16 @@ public final class i0 implements j20 {
                             j0Var.e(wallettransaction2);
                             if (c10 != null) {
                                 c10.set(wallettransaction2);
-                                if (!TextUtils.equals(c10.f20056id, wallettransaction2.f20056id)) {
-                                    c10.f20056id = wallettransaction2.f20056id;
+                                if (!TextUtils.equals(c10.f20057id, wallettransaction2.f20057id)) {
+                                    c10.f20057id = wallettransaction2.f20057id;
                                 }
                             } else {
-                                j0Var.f34730b.add(wallettransaction2);
+                                j0Var.f34735b.add(wallettransaction2);
                             }
                         }
                     }
-                    j0Var.f34733g = wallettransactions.next_offset;
-                    if (wallettransactions.transactions.size() < this.f34694c.limit) {
+                    j0Var.f34738g = wallettransactions.next_offset;
+                    if (wallettransactions.transactions.size() < this.f34701c.limit) {
                         j0Var.h = true;
                     }
                 } else {
@@ -65,19 +65,19 @@ public final class i0 implements j20 {
                 j0Var.i();
                 return;
             default:
-                j0 j0Var2 = this.f34693b;
-                HashMap hashMap = j0Var2.f34732f;
+                j0 j0Var2 = this.f34700b;
+                HashMap hashMap = j0Var2.f34737f;
                 HashSet hashSet = j0Var2.d;
                 TL_wallet.walletTransactions wallettransactions2 = (TL_wallet.walletTransactions) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                int i12 = j0Var2.f34737l.f34776a;
-                ArrayList arrayList2 = j0Var2.f34730b;
-                j0Var2.f34735j = -1;
+                int i12 = j0Var2.f34742l.f34781a;
+                ArrayList arrayList2 = j0Var2.f34735b;
+                j0Var2.f34740j = -1;
                 boolean z12 = false;
-                j0Var2.f34734i = false;
+                j0Var2.f34739i = false;
                 if (wallettransactions2 != null) {
-                    vp.r1(i12).V3(wallettransactions2.users, false);
-                    vp.r1(i12).P3(wallettransactions2.chats, false);
+                    wp.r1(i12).V3(wallettransactions2.users, false);
+                    wp.r1(i12).P3(wallettransactions2.chats, false);
                     ArrayList<TL_wallet.walletTransaction> arrayList3 = wallettransactions2.transactions;
                     int size2 = arrayList3.size();
                     int i13 = 0;
@@ -93,8 +93,8 @@ public final class i0 implements j20 {
                                     j0Var2.e(wallettransaction4);
                                     if (c11 != null) {
                                         boolean z14 = c11.set(wallettransaction4);
-                                        if (!TextUtils.equals(c11.f20056id, wallettransaction4.f20056id)) {
-                                            c11.f20056id = wallettransaction4.f20056id;
+                                        if (!TextUtils.equals(c11.f20057id, wallettransaction4.f20057id)) {
+                                            c11.f20057id = wallettransaction4.f20057id;
                                             z14 = true;
                                         }
                                         if (!z14) {
@@ -158,8 +158,8 @@ public final class i0 implements j20 {
                                     j0Var2.f(wallettransaction7);
                                 }
                             }
-                            j0Var2.f34733g = wallettransactions2.next_offset;
-                            if (wallettransactions2.transactions.size() < this.f34694c.limit) {
+                            j0Var2.f34738g = wallettransactions2.next_offset;
+                            if (wallettransactions2.transactions.size() < this.f34701c.limit) {
                                 z12 = true;
                             }
                             j0Var2.h = z12;

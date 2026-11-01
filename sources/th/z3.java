@@ -15,7 +15,7 @@ public final class z3 extends f3 {
         super(context);
         this.O = f4Var;
         this.N = o7Var;
-        this.f48959x = -1;
+        this.f48973x = -1;
         this.E = new ArrayList();
         this.F = new ArrayList();
         this.G = new ArrayList();
@@ -29,7 +29,7 @@ public final class z3 extends f3 {
         k7 k7Var;
         f4 f4Var = this.O;
         a4 a4Var = f4Var.E;
-        if (!f4Var.f48969x) {
+        if (!f4Var.f48983x) {
             if (a4Var.getCurrentItem() != i10) {
                 try {
                     a4Var.x(i10, false);
@@ -40,11 +40,11 @@ public final class z3 extends f3 {
                 }
             }
             o7 o7Var = this.N;
-            if (o7Var.O0 != null && (k7Var = o7Var.f49333t0) != null) {
+            if (o7Var.O0 != null && (k7Var = o7Var.f49347t0) != null) {
                 if (i10 < 10) {
                     k7Var.c(false);
                 } else if (i10 >= this.E.size() - 10) {
-                    o7Var.f49333t0.c(true);
+                    o7Var.f49347t0.c(true);
                 }
             }
         }

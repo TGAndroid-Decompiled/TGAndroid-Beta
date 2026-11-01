@@ -1,36 +1,29 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_update;
 public final class uw implements Runnable {
-    public final int f18405a;
-    public final qz f18406b;
-    public final TL_update.TL_updateNewChannelMessage f18407c;
-    public final long d;
+    public final int f18483a;
+    public final rz f18484b;
+    public final TL_update.TL_updateNewChannelMessage f18485c;
 
-    public uw(qz qzVar, TL_update.TL_updateNewChannelMessage tL_updateNewChannelMessage, long j10, int i10) {
-        this.f18405a = i10;
-        this.f18406b = qzVar;
-        this.f18407c = tL_updateNewChannelMessage;
-        this.d = j10;
+    public uw(rz rzVar, TL_update.TL_updateNewChannelMessage tL_updateNewChannelMessage, int i10) {
+        this.f18483a = i10;
+        this.f18484b = rzVar;
+        this.f18485c = tL_updateNewChannelMessage;
     }
 
     @Override
     public final void run() {
-        switch (this.f18405a) {
+        switch (this.f18483a) {
             case 0:
-                qz qzVar = this.f18406b;
-                qzVar.getClass();
-                ArrayList arrayList = new ArrayList();
-                arrayList.add(Integer.valueOf(this.f18407c.message.f19814id));
-                qzVar.getMessagesStorage().c2(-this.d, arrayList, true, -1, 0, false, null);
+                wp messagesController = this.f18484b.getMessagesController();
+                TL_update.TL_updateNewChannelMessage tL_updateNewChannelMessage = this.f18485c;
+                messagesController.I3(tL_updateNewChannelMessage.pts, tL_updateNewChannelMessage.pts_count, tL_updateNewChannelMessage.message.peer_id.channel_id);
                 return;
             default:
-                qz qzVar2 = this.f18406b;
-                qzVar2.getClass();
-                ArrayList arrayList2 = new ArrayList();
-                arrayList2.add(Integer.valueOf(this.f18407c.message.f19814id));
-                qzVar2.getMessagesStorage().c2(-this.d, arrayList2, true, -1, 0, false, null);
+                wp messagesController2 = this.f18484b.getMessagesController();
+                TL_update.TL_updateNewChannelMessage tL_updateNewChannelMessage2 = this.f18485c;
+                messagesController2.I3(tL_updateNewChannelMessage2.pts, tL_updateNewChannelMessage2.pts_count, tL_updateNewChannelMessage2.message.peer_id.channel_id);
                 return;
         }
     }

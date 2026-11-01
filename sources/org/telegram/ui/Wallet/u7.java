@@ -13,19 +13,19 @@ import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Components.x60;
 public final class u7 extends ph.c1 {
     public ValueAnimator A0;
-    public TL_wallet.nftItem f35277w0;
-    public h8 f35278x0;
-    public float f35279y0;
-    public boolean f35280z0;
+    public TL_wallet.nftItem f35283w0;
+    public h8 f35284x0;
+    public float f35285y0;
+    public boolean f35286z0;
 
     @Override
     public final void b(x60 x60Var, Canvas canvas, float f7, float f10, float f11) {
-        if (this.f35279y0 == 1.0f) {
+        if (this.f35285y0 == 1.0f) {
             super.b(x60Var, canvas, f7, f10, f11);
             return;
         }
         canvas.save();
-        float f12 = this.f35279y0;
+        float f12 = this.f35285y0;
         canvas.scale(f12, f12, f7 / 2.0f, f10 / 2.0f);
         super.b(x60Var, canvas, f7, f10, f11);
         canvas.restore();
@@ -33,12 +33,12 @@ public final class u7 extends ph.c1 {
 
     @Override
     public final void draw(Canvas canvas) {
-        if (this.f35279y0 == 1.0f) {
+        if (this.f35285y0 == 1.0f) {
             super.draw(canvas);
             return;
         }
         canvas.save();
-        float f7 = this.f35279y0;
+        float f7 = this.f35285y0;
         canvas.scale(f7, f7, getWidth() / 2.0f, getHeight() / 2.0f);
         super.draw(canvas);
         canvas.restore();
@@ -53,15 +53,15 @@ public final class u7 extends ph.c1 {
         float f10;
         boolean drawChild = super.drawChild(canvas, view, j10);
         FrameLayout frameLayout = this.d;
-        if (view == frameLayout && (h8Var = this.f35278x0) != null) {
+        if (view == frameLayout && (h8Var = this.f35284x0) != null) {
             RectF rectF = h8Var.H;
-            Paint paint = h8Var.f34681y;
-            g8 g8Var = h8Var.f34651k1;
+            Paint paint = h8Var.f34688y;
+            g8 g8Var = h8Var.f34658k1;
             if (this == h8Var.l1 && g8Var != null && g8Var.v != null) {
                 paint.setShader(null);
                 paint.setColorFilter(null);
-                float l10 = Utilities.l(h8Var.f34660p1.f34508a);
-                float[] D = h8Var.D(h8Var.f34656n1 % 2.0f);
+                float l10 = Utilities.l(h8Var.f34667p1.f34506a);
+                float[] D = h8Var.D(h8Var.f34663n1 % 2.0f);
                 float f11 = D[0] * l10;
                 float f12 = D[1] * l10;
                 float f13 = D[2] * l10;
@@ -70,16 +70,16 @@ public final class u7 extends ph.c1 {
                 float left2 = g9Var.getLeft() + left + (g9Var.getWidth() / 2.0f);
                 float height = (g9Var.getHeight() / 2.0f) + g9Var.getTop() + frameLayout.getTop();
                 float D2 = c3.i0.D(f13, 0.025f, (0.07f * f12) + 1.0f, (g9Var.getWidth() * 288) / 268.0f);
-                if (f12 > 0.01f && g8Var.f34598w != null) {
+                if (f12 > 0.01f && g8Var.f34604w != null) {
                     float f14 = ((176.0f * D2) / 128.0f) / 2.0f;
                     float L = (org.telegram.messenger.i0.L(2.0f) * f12) + height;
                     rectF.set(left2 - f14, L - f14, left2 + f14, L + f14);
                     paint.setColor(-16777216);
                     paint.setAlpha((int) (60.0f * f12));
-                    canvas.drawBitmap(g8Var.f34598w, (Rect) null, rectF, paint);
+                    canvas.drawBitmap(g8Var.f34604w, (Rect) null, rectF, paint);
                     paint.setColor(-1);
                 }
-                if (g8Var.f34597u == null) {
+                if (g8Var.f34603u == null) {
                     l4 = 0.0f;
                 } else {
                     l4 = Utilities.l(1.4f * f12);
@@ -100,7 +100,7 @@ public final class u7 extends ph.c1 {
                 }
                 if (f15 > 0.01f) {
                     paint.setAlpha((int) (255.0f * f15));
-                    h8Var.r(canvas, g8Var.f34597u, left2, f10, f7, f11, 1.0f, f16, 0.24f, 0.97f);
+                    h8Var.r(canvas, g8Var.f34603u, left2, f10, f7, f11, 1.0f, f16, 0.24f, 0.97f);
                 }
                 paint.setAlpha(i10);
             }
@@ -114,11 +114,11 @@ public final class u7 extends ph.c1 {
         long j10;
         OvershootInterpolator overshootInterpolator;
         super.drawableStateChanged();
-        if (isPressed() == this.f35280z0) {
+        if (isPressed() == this.f35286z0) {
             return;
         }
         boolean isPressed = isPressed();
-        this.f35280z0 = isPressed;
+        this.f35286z0 = isPressed;
         if (isPressed) {
             f7 = 0.96f;
         } else {
@@ -142,7 +142,7 @@ public final class u7 extends ph.c1 {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f35279y0, f7);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f35285y0, f7);
         this.A0 = ofFloat;
         ofFloat.addUpdateListener(new r3(this, 5));
         if (overshootInterpolator != null) {
@@ -153,7 +153,7 @@ public final class u7 extends ph.c1 {
     }
 
     public final void n(float f7) {
-        this.f35279y0 = f7;
+        this.f35285y0 = f7;
         invalidate();
         if (getParent() instanceof View) {
             ((View) getParent()).invalidate();
@@ -165,18 +165,18 @@ public final class u7 extends ph.c1 {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        if (this.f35279y0 == 1.0f) {
+        if (this.f35285y0 == 1.0f) {
             return;
         }
-        setScaleX(getScaleX() * this.f35279y0);
-        setScaleY(getScaleY() * this.f35279y0);
+        setScaleX(getScaleX() * this.f35285y0);
+        setScaleY(getScaleY() * this.f35285y0);
         n(1.0f);
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        h8 h8Var = this.f35278x0;
+        h8 h8Var = this.f35284x0;
         if (h8Var != null) {
             h8Var.i(this);
         }
@@ -184,7 +184,7 @@ public final class u7 extends ph.c1 {
 
     @Override
     public final void onDetachedFromWindow() {
-        h8 h8Var = this.f35278x0;
+        h8 h8Var = this.f35284x0;
         if (h8Var != null) {
             h8Var.h.remove(this);
         }

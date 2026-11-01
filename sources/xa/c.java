@@ -1,6 +1,6 @@
 package xa;
 public final class c implements ja.d {
-    public static final c f53535a = new Object();
+    public static final c f53553a = new Object();
 
     static {
         ja.c.c("messagingClientEventExtension");

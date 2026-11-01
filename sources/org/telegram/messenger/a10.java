@@ -1,52 +1,44 @@
 package org.telegram.messenger;
+public final class a10 implements Runnable {
+    public final int f14548a;
+    public final u10 f14549b;
+    public final String f14550c;
+    public final kj d;
+    public final long e;
+    public final int f14551f;
 
-import android.icu.text.Collator;
-import java.util.Comparator;
-import java.util.List;
-public final class a10 implements Comparator {
-    public final int f14555a;
-    public final Object f14556b;
-
-    public a10(Object obj, int i10) {
-        this.f14555a = i10;
-        this.f14556b = obj;
+    public a10(u10 u10Var, String str, kj kjVar, long j10, int i10, int i11) {
+        this.f14548a = i11;
+        this.f14549b = u10Var;
+        this.f14550c = str;
+        this.d = kjVar;
+        this.e = j10;
+        this.f14551f = i10;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        switch (this.f14555a) {
+    public final void run() {
+        switch (this.f14548a) {
             case 0:
-                return t10.a((Collator) this.f14556b, (m10) obj, (m10) obj2);
+                u10 u10Var = this.f14549b;
+                kj kjVar = this.d;
+                long j10 = this.e;
+                int i10 = this.f14551f;
+                ks.d(this.f14550c, new d10(u10Var, kjVar, j10, i10), new d10(u10Var, kjVar, j10, i10), false);
+                return;
             default:
-                zc zcVar = (zc) this.f14556b;
-                zc zcVar2 = (zc) obj;
-                zc zcVar3 = (zc) obj2;
-                if (zcVar2 != zcVar) {
-                    if (zcVar3 != zcVar) {
-                        List list = t10.M;
-                        int indexOf = list.indexOf(zcVar2.f19498f);
-                        int indexOf2 = list.indexOf(zcVar3.f19498f);
-                        if (indexOf >= 0 && indexOf2 >= 0) {
-                            return indexOf - indexOf2;
-                        }
-                        if (indexOf < 0) {
-                            if (indexOf2 < 0) {
-                                int i10 = zcVar2.f19502k;
-                                int i11 = zcVar3.f19502k;
-                                if (i10 == i11) {
-                                    return zcVar2.f19495a.compareTo(zcVar3.f19495a);
-                                }
-                                if (i10 <= i11) {
-                                    if (i10 >= i11) {
-                                        return 0;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    return 1;
+                u10 u10Var2 = this.f14549b;
+                u10Var2.getClass();
+                String str = this.f14550c;
+                if (str == null) {
+                    str = "und";
                 }
-                return -1;
+                kj kjVar2 = this.d;
+                kjVar2.f16690k.originalLanguage = str;
+                u10Var2.getMessagesStorage().X1(this.e, kjVar2.f16690k);
+                u10Var2.f18356w.remove(Integer.valueOf(this.f14551f));
+                u10Var2.f(kjVar2);
+                return;
         }
     }
 }

@@ -4,15 +4,15 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 public final class e00 extends AnimatorListenerAdapter {
-    public final int f25582a;
+    public final int f25652a;
 
     public e00(int i10) {
-        this.f25582a = i10;
+        this.f25652a = i10;
     }
 
     @Override
     public void onAnimationEnd(Animator animator) {
-        switch (this.f25582a) {
+        switch (this.f25652a) {
             case 0:
                 return;
             default:
@@ -24,10 +24,10 @@ public final class e00 extends AnimatorListenerAdapter {
     @Override
     public void onAnimationEnd(Animator animator, boolean z10) {
         View view;
-        switch (this.f25582a) {
+        switch (this.f25652a) {
             case 1:
                 jf.f fVar = th.w0.Z.L;
-                if (fVar == null || (view = fVar.f9868j) == null) {
+                if (fVar == null || (view = fVar.f9869j) == null) {
                     return;
                 }
                 fVar.e(view);

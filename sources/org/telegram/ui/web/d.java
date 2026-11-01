@@ -11,9 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import w7.b6;
 public final class d extends FrameLayout {
-    public final ImageView f43013a;
-    public final TextView f43014b;
-    public final ImageView f43015c;
+    public final ImageView f42815a;
+    public final TextView f42816b;
+    public final ImageView f42817c;
     public final Paint d;
     public boolean e;
 
@@ -21,17 +21,17 @@ public final class d extends FrameLayout {
         super(context);
         this.d = new Paint(1);
         ImageView imageView = new ImageView(context);
-        this.f43013a = imageView;
+        this.f42815a = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setImageResource(2131231776);
         addView(imageView, b6.d(32, 32.0f, 19, 10.0f, 8.0f, 8.0f, 8.0f));
         TextView textView = new TextView(context);
-        this.f43014b = textView;
+        this.f42816b = textView;
         textView.setTextSize(1, 16.0f);
         addView(textView, b6.d(-1, -2.0f, 19, 64.0f, 8.0f, 64.0f, 8.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f43015c = imageView2;
+        this.f42817c = imageView2;
         imageView2.setScaleType(scaleType);
         imageView2.setImageResource(2131231767);
         addView(imageView2, b6.d(32, 32.0f, 21, 8.0f, 8.0f, 10.0f, 8.0f));
@@ -51,7 +51,7 @@ public final class d extends FrameLayout {
     }
 
     public void setAsShowMore(j jVar) {
-        ImageView imageView = this.f43013a;
+        ImageView imageView = this.f42815a;
         imageView.setImageResource(2131230871);
         imageView.setColorFilter(new PorterDuffColorFilter(jVar.H, PorterDuff.Mode.SRC_IN));
     }

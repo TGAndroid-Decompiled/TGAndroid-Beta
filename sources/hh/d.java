@@ -3,11 +3,11 @@ package hh;
 import android.view.View;
 import r0.j1;
 public interface d {
-    void P();
+    void Q();
 
-    View R();
+    View S();
 
-    void l(j1 j1Var);
+    void m(j1 j1Var);
 
-    void w();
+    void x();
 }

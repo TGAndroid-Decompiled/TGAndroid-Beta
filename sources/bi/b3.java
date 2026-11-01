@@ -3,7 +3,7 @@ package bi;
 import android.view.TextureView;
 import android.view.View;
 import org.telegram.SQLite.SQLitePreparedStatement;
-import org.telegram.messenger.hs;
+import org.telegram.messenger.is;
 import org.telegram.ui.Cells.j9;
 public final class b3 implements Runnable {
     public final int f2862a;
@@ -35,22 +35,22 @@ public final class b3 implements Runnable {
                 d4.N1(((s3) this.e).f3343b, this.f2863b, this.f2864c, this.d);
                 return;
             case 2:
-                hs hsVar = (hs) this.e;
+                is isVar = (is) this.e;
                 int i10 = this.f2863b;
                 int i11 = this.f2864c;
                 int i12 = this.d;
-                hsVar.getClass();
+                isVar.getClass();
                 SQLitePreparedStatement sQLitePreparedStatement = null;
                 try {
                     try {
-                        sQLitePreparedStatement = hsVar.f15940b.executeFast("REPLACE INTO messages_seq VALUES(?, ?, ?)");
+                        sQLitePreparedStatement = isVar.f16333b.executeFast("REPLACE INTO messages_seq VALUES(?, ?, ?)");
                         sQLitePreparedStatement.requery();
                         sQLitePreparedStatement.bindInteger(1, i10);
                         sQLitePreparedStatement.bindInteger(2, i11);
                         sQLitePreparedStatement.bindInteger(3, i12);
                         sQLitePreparedStatement.step();
                     } catch (Exception e) {
-                        hsVar.o(e, true);
+                        isVar.o(e, true);
                         if (sQLitePreparedStatement == null) {
                             return;
                         }
@@ -64,16 +64,16 @@ public final class b3 implements Runnable {
                     throw th2;
                 }
             default:
-                vh.w wVar = (vh.w) ((kg.j2) this.e).f11134b;
-                vh.n5 n5Var = wVar.f52081n;
+                vh.w wVar = (vh.w) ((kg.j2) this.e).f11135b;
+                vh.n5 n5Var = wVar.f52097n;
                 if (n5Var != null) {
-                    int i13 = n5Var.f51537k0;
+                    int i13 = n5Var.f51552k0;
                     int i14 = this.f2863b;
                     int i15 = this.f2864c;
                     int i16 = this.d;
-                    if (i13 != i14 || n5Var.f51539l0 != i15 || n5Var.Q != i16) {
-                        n5Var.f51537k0 = i14;
-                        n5Var.f51539l0 = i15;
+                    if (i13 != i14 || n5Var.f51554l0 != i15 || n5Var.Q != i16) {
+                        n5Var.f51552k0 = i14;
+                        n5Var.f51554l0 = i15;
                         n5Var.Q = i16;
                         TextureView textureView = wVar.e;
                         if (textureView != null) {

@@ -13,24 +13,24 @@ import android.graphics.SweepGradient;
 import android.os.Build;
 import java.util.HashMap;
 public abstract class t {
-    public static Bitmap f45738a;
-    public static BitmapShader f45739b;
-    public static final Paint f45740c = new Paint(2);
+    public static Bitmap f45749a;
+    public static BitmapShader f45750b;
+    public static final Paint f45751c = new Paint(2);
     public static final Paint d = new Paint(3);
     public static final RectF e = new RectF();
-    public static final Matrix f45741f = new Matrix();
-    public static final HashMap f45742g = new HashMap();
+    public static final Matrix f45752f = new Matrix();
+    public static final HashMap f45753g = new HashMap();
     public static final SweepGradient[] h = new SweepGradient[4];
-    public static int f45743i = -1;
-    public static final Paint f45744j = new Paint(2);
-    public static final Rect f45745k = new Rect();
-    public static final RectF f45746l = new RectF();
-    public static final int[] f45747m = new int[4];
-    public static final int[] f45748n = new int[4];
-    public static final float[] f45749o = new float[4];
-    public static final float[] f45750p = new float[4];
+    public static int f45754i = -1;
+    public static final Paint f45755j = new Paint(2);
+    public static final Rect f45756k = new Rect();
+    public static final RectF f45757l = new RectF();
+    public static final int[] f45758m = new int[4];
+    public static final int[] f45759n = new int[4];
+    public static final float[] f45760o = new float[4];
+    public static final float[] f45761p = new float[4];
 
-    public static boolean a(Canvas canvas, RectF rectF, float f7, int i10, float f10) {
+    public static boolean a(float f7, float f10, int i10, Canvas canvas, RectF rectF) {
         float f11;
         boolean z10;
         boolean z11;
@@ -50,13 +50,13 @@ public abstract class t {
             if (f10 <= 0.004f) {
                 return true;
             }
-            int i13 = f45743i;
+            int i13 = f45754i;
             SweepGradient[] sweepGradientArr = h;
-            float[][] fArr = y0.f46091a;
+            float[][] fArr = y0.f46102a;
             int i14 = 4;
-            HashMap hashMap = f45742g;
+            HashMap hashMap = f45753g;
             if (i13 != 1) {
-                f45743i = 1;
+                f45754i = 1;
                 hashMap.clear();
                 int i15 = 0;
                 while (i15 < i14) {
@@ -228,10 +228,10 @@ public abstract class t {
                     } else {
                         i12 = 1;
                     }
-                    int[] iArr2 = f45747m;
+                    int[] iArr2 = f45758m;
                     iArr2[0] = 0;
                     float f31 = ceil;
-                    float[] fArr6 = f45749o;
+                    float[] fArr6 = f45760o;
                     fArr6[0] = f12 - f31;
                     if (z10) {
                         iArr2[1] = ceil + ceil2;
@@ -242,9 +242,9 @@ public abstract class t {
                     }
                     iArr2[i11] = width;
                     fArr6[i11] = f14 + f31;
-                    int[] iArr3 = f45748n;
+                    int[] iArr3 = f45759n;
                     iArr3[0] = 0;
-                    float[] fArr7 = f45750p;
+                    float[] fArr7 = f45761p;
                     fArr7[0] = f13 - f31;
                     if (z12) {
                         iArr3[1] = ceil + ceil2;
@@ -255,9 +255,10 @@ public abstract class t {
                     }
                     iArr3[i12] = height;
                     fArr7[i12] = f24 + f31;
-                    Paint paint3 = f45744j;
+                    Paint paint3 = f45755j;
                     paint3.setAlpha((int) (Math.min(1.0f, f10) * 255.0f));
-                    for (int i24 = 0; i24 < i12; i24++) {
+                    int i24 = 0;
+                    while (i24 < i12) {
                         int i25 = 0;
                         while (i25 < i11) {
                             int i26 = iArr2[i25];
@@ -266,19 +267,20 @@ public abstract class t {
                             int i29 = iArr2[i28];
                             int i30 = i24 + 1;
                             int i31 = iArr3[i30];
-                            int[] iArr4 = iArr3;
-                            Rect rect = f45745k;
+                            int i32 = i24;
+                            Rect rect = f45756k;
                             rect.set(i26, i27, i29, i31);
                             float f34 = fArr6[i25];
-                            float f35 = fArr7[i24];
+                            float f35 = fArr7[i32];
                             float f36 = fArr6[i28];
                             float f37 = fArr7[i30];
-                            RectF rectF6 = f45746l;
+                            RectF rectF6 = f45757l;
                             rectF6.set(f34, f35, f36, f37);
                             canvas.drawBitmap(bitmap, rect, rectF6, paint3);
-                            iArr3 = iArr4;
                             i25 = i28;
+                            i24 = i32;
                         }
+                        i24++;
                     }
                 } else {
                     return z16;
@@ -294,39 +296,39 @@ public abstract class t {
         float f11 = rectF.top;
         RectF rectF2 = e;
         rectF2.set(f10, f11, rectF.right, Math.min(rectF.height(), org.telegram.messenger.i0.L(40.0f)) + f11);
-        Paint paint = f45740c;
+        Paint paint = f45751c;
         paint.setAlpha((int) (Math.max(0.0f, Math.min(1.0f, f7)) * 255.0f * 0.3125f));
         canvas.drawBitmap(d(), (Rect) null, rectF2, paint);
     }
 
     public static void c(Canvas canvas, RectF rectF, float f7, float f10) {
         Bitmap d10 = d();
-        BitmapShader bitmapShader = f45739b;
+        BitmapShader bitmapShader = f45750b;
         Paint paint = d;
         if (bitmapShader == null) {
             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
             BitmapShader bitmapShader2 = new BitmapShader(d10, tileMode, tileMode);
-            f45739b = bitmapShader2;
+            f45750b = bitmapShader2;
             paint.setShader(bitmapShader2);
         }
         float width = rectF.width() / d10.getWidth();
         float min = Math.min(rectF.height(), org.telegram.messenger.i0.L(40.0f)) / d10.getHeight();
-        Matrix matrix = f45741f;
+        Matrix matrix = f45752f;
         matrix.setScale(width, min);
         matrix.postTranslate(rectF.left, rectF.top);
-        f45739b.setLocalMatrix(matrix);
+        f45750b.setLocalMatrix(matrix);
         paint.setAlpha((int) (Math.max(0.0f, Math.min(1.0f, f10)) * 255.0f * 0.3125f));
         canvas.drawRoundRect(rectF, f7, f7, paint);
     }
 
     public static Bitmap d() {
-        if (f45738a == null) {
+        if (f45749a == null) {
             int[] iArr = new int[64];
             for (int i10 = 0; i10 < 64; i10++) {
                 iArr[i10] = (((int) (((1.0f - ((i10 + 0.5f) / 64.0f)) * 64.0f) + 0.5f)) << 24) | 16777215;
             }
-            f45738a = Bitmap.createBitmap(iArr, 1, 64, Bitmap.Config.ARGB_8888);
+            f45749a = Bitmap.createBitmap(iArr, 1, 64, Bitmap.Config.ARGB_8888);
         }
-        return f45738a;
+        return f45749a;
     }
 }

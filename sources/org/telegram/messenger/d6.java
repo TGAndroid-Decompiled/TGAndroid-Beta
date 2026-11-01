@@ -19,31 +19,31 @@ import java.security.KeyStoreException;
 import java.util.ArrayList;
 import javax.crypto.Cipher;
 public abstract class d6 {
-    public static double f15184a;
-    public static long f15185b;
-    public static final String[] f15186c = {"bluestacks", "memuhyperv", "virtualbox"};
+    public static double f15299a;
+    public static long f15300b;
+    public static final String[] f15301c = {"bluestacks", "memuhyperv", "virtualbox"};
     public static KeyStore d;
     public static KeyPairGenerator e;
-    public static Boolean f15187f;
-    public static Boolean f15188g;
+    public static Boolean f15302f;
+    public static Boolean f15303g;
     public static int h;
-    public static SharedPreferences f15189i;
+    public static SharedPreferences f15304i;
 
     public static boolean a() {
-        Boolean bool = f15187f;
+        Boolean bool = f15302f;
         if (bool != null) {
             return bool.booleanValue();
         }
         try {
             Cipher.getInstance("RSA/ECB/OAEPWithSHA-256AndMGF1Padding").init(2, d.getKey("tmessages_passcode", null));
-            f15187f = Boolean.FALSE;
+            f15302f = Boolean.FALSE;
             return false;
         } catch (KeyPermanentlyInvalidatedException unused) {
-            f15187f = Boolean.TRUE;
+            f15302f = Boolean.TRUE;
             return true;
         } catch (Exception e7) {
             f8.g(e7, true);
-            f15187f = Boolean.FALSE;
+            f15302f = Boolean.FALSE;
             return false;
         }
     }
@@ -84,7 +84,7 @@ public abstract class d6 {
                 i10++;
                 String str = (String) obj;
                 for (int i11 = 0; i11 < 3; i11++) {
-                    if (str.toLowerCase().contains(f15186c[i11])) {
+                    if (str.toLowerCase().contains(f15301c[i11])) {
                         return true;
                     }
                 }
@@ -95,10 +95,10 @@ public abstract class d6 {
 
     public static synchronized long d() {
         synchronized (d6.class) {
-            if (f15185b != 0 && SystemClock.elapsedRealtime() - f15185b <= 60000) {
-                return (long) f15184a;
+            if (f15300b != 0 && SystemClock.elapsedRealtime() - f15300b <= 60000) {
+                return (long) f15299a;
             }
-            return y2.f.c(w0.f19025b).a();
+            return y2.f.c(w0.f18945b).a();
         }
     }
 
@@ -121,7 +121,7 @@ public abstract class d6 {
     public static boolean f() {
         try {
             Class cls = Integer.TYPE;
-            if (((Integer) AppOpsManager.class.getMethod("checkOpNoThrow", cls, cls, String.class).invoke((AppOpsManager) w0.f19025b.getSystemService("appops"), 10020, Integer.valueOf(Process.myUid()), w0.f19025b.getPackageName())).intValue() == 0) {
+            if (((Integer) AppOpsManager.class.getMethod("checkOpNoThrow", cls, cls, String.class).invoke((AppOpsManager) w0.f18945b.getSystemService("appops"), 10020, Integer.valueOf(Process.myUid()), w0.f18945b.getPackageName())).intValue() == 0) {
                 return true;
             }
             return false;
@@ -153,7 +153,7 @@ public abstract class d6 {
 
     public static boolean j() {
         int intValue;
-        Boolean bool = f15188g;
+        Boolean bool = f15303g;
         if (bool != null) {
             return bool.booleanValue();
         }
@@ -162,13 +162,13 @@ public abstract class d6 {
             declaredField.setAccessible(true);
             intValue = ((Integer) declaredField.get(null)).intValue();
         } catch (Exception unused) {
-            f15188g = Boolean.FALSE;
+            f15303g = Boolean.FALSE;
         }
         if (intValue < 100000) {
             return false;
         }
         h = intValue - 90000;
-        f15188g = Boolean.TRUE;
-        return f15188g.booleanValue();
+        f15303g = Boolean.TRUE;
+        return f15303g.booleanValue();
     }
 }

@@ -3,48 +3,48 @@ package jg;
 import android.content.DialogInterface;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.d6;
-import org.telegram.ui.Components.i01;
-import org.telegram.ui.b50;
+import org.telegram.ui.Components.j01;
+import org.telegram.ui.a50;
 public final class z implements DialogInterface.OnDismissListener {
-    public final int f10380a;
+    public final int f10381a;
 
     public z(int i10) {
-        this.f10380a = i10;
+        this.f10381a = i10;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f10380a) {
+        switch (this.f10381a) {
             case 0:
-                MediaController.f14436f2 = false;
+                MediaController.f14437f2 = false;
                 return;
             case 1:
-                org.telegram.ui.b.f35913a = false;
+                org.telegram.ui.b.f35871a = false;
                 return;
             case 2:
                 return;
             case 3:
-                d6.f15189i.edit().putInt("dismissed_count", d6.f15189i.getInt("dismissed_count", 0) + 1).apply();
+                d6.f15304i.edit().putInt("dismissed_count", d6.f15304i.getInt("dismissed_count", 0) + 1).apply();
                 return;
             case 4:
-                int i10 = i01.e;
+                int i10 = j01.e;
                 return;
             case 5:
-                b50 b50Var = b50.f35989u5;
+                a50 a50Var = a50.f35573u5;
                 return;
             case 6:
                 return;
             case 7:
-                org.telegram.utils.twidget.p.f44435i = false;
+                org.telegram.utils.twidget.p.f44446i = false;
                 return;
             default:
-                int i11 = vh.u1.f51993y1;
+                int i11 = vh.u1.f52000y1;
                 return;
         }
     }
 
     public z(boolean[] zArr) {
-        this.f10380a = 2;
+        this.f10381a = 2;
     }
 
     private final void a(DialogInterface dialogInterface) {

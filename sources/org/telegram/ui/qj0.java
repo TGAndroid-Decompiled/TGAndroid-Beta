@@ -1,59 +1,50 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-public final class qj0 implements TextWatcher {
-    public final int f40996a;
-    public final PasscodeActivity f40997b;
+import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_account;
+public final class qj0 implements org.telegram.messenger.k20 {
+    public final int f40801a;
+    public final PasskeysActivity f40802b;
 
-    public qj0(PasscodeActivity passcodeActivity, int i10) {
-        this.f40996a = i10;
-        this.f40997b = passcodeActivity;
+    public qj0(PasskeysActivity passkeysActivity, int i10) {
+        this.f40801a = i10;
+        this.f40802b = passkeysActivity;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i10 = this.f40996a;
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        switch (this.f40996a) {
+    public final void a(Object obj, Object obj2) {
+        int i10 = this.f40801a;
+        PasskeysActivity passkeysActivity = this.f40802b;
+        switch (i10) {
             case 0:
-                PasscodeActivity passcodeActivity = this.f40997b;
-                lj0 lj0Var = passcodeActivity.S;
-                if (passcodeActivity.R) {
-                    passcodeActivity.f33421n.removeCallbacks(lj0Var);
-                    lj0Var.run();
-                    return;
+                ArrayList arrayList = (ArrayList) obj;
+                org.telegram.ui.Components.q51 q51Var = (org.telegram.ui.Components.q51) obj2;
+                ArrayList arrayList2 = passkeysActivity.f33435b;
+                passkeysActivity.addPasskeyRow = -1;
+                String L0 = org.telegram.messenger.dd.L0(2131747645, null);
+                org.telegram.ui.Components.b51 b51Var = new org.telegram.ui.Components.b51(2);
+                b51Var.f24643l = L0;
+                b51Var.f24642k = 2131624111;
+                arrayList.add(b51Var);
+                for (int i11 = 0; i11 < arrayList2.size(); i11++) {
+                    e50 e50Var = new e50(passkeysActivity, 16);
+                    int i12 = sj0.f41381b;
+                    org.telegram.ui.Components.b51 K = org.telegram.ui.Components.b51.K(sj0.class);
+                    K.G = (TL_account.Passkey) arrayList2.get(i11);
+                    K.D = e50Var;
+                    arrayList.add(K);
                 }
+                if (arrayList2.size() + 1 <= ((org.telegram.messenger.l0) passkeysActivity.getMessagesController().f19300y7.f18051z.f10701a).f16855c) {
+                    passkeysActivity.addPasskeyRow = arrayList.size();
+                    org.telegram.ui.Components.b51 c10 = org.telegram.ui.Components.b51.c(-1, 2131231844, org.telegram.messenger.dd.L0(2131747666, null));
+                    c10.f24648q = true;
+                    arrayList.add(c10);
+                }
+                arrayList.add(org.telegram.ui.Components.b51.C(org.telegram.messenger.i0.G2(org.telegram.messenger.i0.T2(org.telegram.messenger.dd.L0(2131747651, null), new kg0(passkeysActivity, 4)), true)));
                 return;
             default:
-                PasscodeActivity passcodeActivity2 = this.f40997b;
-                lj0 lj0Var2 = passcodeActivity2.S;
-                if (passcodeActivity2.R) {
-                    passcodeActivity2.f33421n.removeCallbacks(lj0Var2);
-                    lj0Var2.run();
-                    return;
-                }
+                PasskeysActivity.Z(passkeysActivity, (TL_account.Passkey) obj, (String) obj2);
                 return;
         }
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f40996a;
-    }
-
-    private final void a(Editable editable) {
-    }
-
-    private final void b(Editable editable) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

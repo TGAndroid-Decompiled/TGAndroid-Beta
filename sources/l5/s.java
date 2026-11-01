@@ -11,23 +11,23 @@ import java.util.concurrent.Executor;
 import ph.x1;
 public final class s {
     public static volatile j e;
-    public final u5.a f11685a;
-    public final u5.a f11686b;
-    public final q5.c f11687c;
+    public final u5.a f11686a;
+    public final u5.a f11687b;
+    public final q5.c f11688c;
     public final ea.d d;
 
     public s(u5.a aVar, u5.a aVar2, q5.c cVar, ea.d dVar, ji.f fVar) {
-        this.f11685a = aVar;
-        this.f11686b = aVar2;
-        this.f11687c = cVar;
+        this.f11686a = aVar;
+        this.f11687b = aVar2;
+        this.f11688c = cVar;
         this.d = dVar;
-        ((Executor) fVar.f10441b).execute(new x1(fVar, 4));
+        ((Executor) fVar.f10442b).execute(new x1(fVar, 4));
     }
 
     public static s a() {
         j jVar = e;
         if (jVar != null) {
-            return (s) jVar.f11670f.get();
+            return (s) jVar.f11671f.get();
         }
         throw new IllegalStateException("Not initialized!");
     }
@@ -39,7 +39,7 @@ public final class s {
                     if (e == null) {
                         ?? obj = new Object();
                         context.getClass();
-                        obj.f10520a = context;
+                        obj.f10521a = context;
                         e = obj.b();
                     }
                 } catch (Throwable th2) {
@@ -61,8 +61,8 @@ public final class s {
         kVar.getClass();
         a2.f875b = "cct";
         j5.a aVar = (j5.a) kVar;
-        String str = aVar.f9667a;
-        String str2 = aVar.f9668b;
+        String str = aVar.f9668a;
+        String str2 = aVar.f9669b;
         if (str2 == null && str == null) {
             bytes = null;
         } else {

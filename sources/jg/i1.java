@@ -4,33 +4,33 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
-import org.telegram.messenger.tz;
+import org.telegram.messenger.uz;
 import org.telegram.ui.ActionBar.c5;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.t6;
 import vh.s3;
 public final class i1 implements p6 {
-    public final TextPaint f10016a;
-    public final TextPaint f10017b;
-    public final TextPaint f10018c;
+    public final TextPaint f10017a;
+    public final TextPaint f10018b;
+    public final TextPaint f10019c;
     public final Paint d;
     public final Paint e;
-    public final s3 f10019f;
+    public final s3 f10020f;
 
     public i1(s3 s3Var) {
-        this.f10019f = s3Var;
+        this.f10020f = s3Var;
         TextPaint textPaint = new TextPaint();
-        this.f10016a = textPaint;
+        this.f10017a = textPaint;
         TextPaint textPaint2 = new TextPaint();
-        this.f10017b = textPaint2;
+        this.f10018b = textPaint2;
         TextPaint textPaint3 = new TextPaint();
-        this.f10018c = textPaint3;
+        this.f10019c = textPaint3;
         new Paint(3);
         this.d = new Paint(3);
         Paint paint = new Paint(3);
         this.e = paint;
-        textPaint.setTextSize(org.telegram.messenger.i0.L(Math.max(16, tz.W0) - 2));
-        textPaint2.setTextSize(org.telegram.messenger.i0.L(Math.max(16, tz.W0) - 2));
+        textPaint.setTextSize(org.telegram.messenger.i0.L(Math.max(16, uz.W0) - 2));
+        textPaint2.setTextSize(org.telegram.messenger.i0.L(Math.max(16, uz.W0) - 2));
         textPaint3.setTextSize(org.telegram.messenger.i0.L(15.0f));
         textPaint3.setTypeface(org.telegram.messenger.i0.o());
         paint.setColor(352321536);
@@ -38,7 +38,7 @@ public final class i1 implements p6 {
 
     @Override
     public final boolean a() {
-        return this.f10019f.B0;
+        return this.f10020f.B0;
     }
 
     @Override
@@ -48,7 +48,7 @@ public final class i1 implements p6 {
 
     @Override
     public final ColorFilter c() {
-        return t6.f21256v3;
+        return t6.f21257v3;
     }
 
     @Override
@@ -89,15 +89,15 @@ public final class i1 implements p6 {
         }
         switch (c10) {
             case 0:
-                return this.f10017b;
+                return this.f10018b;
             case 1:
-                return this.f10018c;
+                return this.f10019c;
             case 2:
                 return this.e;
             case 3:
                 return this.d;
             case 4:
-                return this.f10016a;
+                return this.f10017a;
             default:
                 return t6.V0(str);
         }
@@ -105,7 +105,7 @@ public final class i1 implements p6 {
 
     @Override
     public final boolean e() {
-        return tz.H0;
+        return uz.H0;
     }
 
     @Override
@@ -120,7 +120,7 @@ public final class i1 implements p6 {
 
     @Override
     public final Drawable getDrawable(String str) {
-        s3 s3Var = this.f10019f;
+        s3 s3Var = this.f10020f;
         i1 i1Var = s3Var.D0;
         if (str.equals("drawableMsgIn")) {
             if (s3Var.E0 == null) {
@@ -170,7 +170,7 @@ public final class i1 implements p6 {
 
     @Override
     public final int h(int i10) {
-        return this.f10019f.C0.get(i10, t6.x0(null, i10, false));
+        return this.f10020f.C0.get(i10, t6.x0(null, i10, false));
     }
 
     @Override

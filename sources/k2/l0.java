@@ -2,9 +2,9 @@ package k2;
 
 import android.content.Context;
 public final class l0 {
-    public final Context f10697a;
-    public q0 f10698b;
-    public x0 f10699c;
+    public final Context f10698a;
+    public q0 f10699b;
+    public x0 f10700c;
     public b d;
     public final float e;
 
@@ -15,10 +15,10 @@ public final class l0 {
         } else {
             context2 = null;
         }
-        this.f10697a = context2;
-        this.f10699c = x0.f10809a;
+        this.f10698a = context2;
+        this.f10700c = x0.f10810a;
         if (context == null) {
-            this.d = b.f10601f;
+            this.d = b.f10602f;
         }
         this.e = 8.0f;
     }

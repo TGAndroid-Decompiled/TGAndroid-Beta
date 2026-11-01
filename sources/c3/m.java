@@ -93,10 +93,10 @@ public final class m implements r {
                 return;
             case 12:
                 ?? obj = new Object();
-                obj.f10856c = 0;
+                obj.f10857c = 0;
                 obj.d = -1L;
-                obj.f10857f = -1;
-                obj.f10858g = -1L;
+                obj.f10858f = -1;
+                obj.f10859g = -1L;
                 arrayList.add(obj);
                 return;
             case 13:

@@ -6,20 +6,20 @@ import ra.j;
 public final class d {
     public static final long d = TimeUnit.HOURS.toMillis(24);
     public static final long e = TimeUnit.MINUTES.toMillis(30);
-    public final j f48582a;
-    public long f48583b;
-    public int f48584c;
+    public final j f48593a;
+    public long f48594b;
+    public int f48595c;
 
     public d() {
         if (hb.a.d == null) {
-            Pattern pattern = j.f46476c;
+            Pattern pattern = j.f46487c;
             hb.a.d = new hb.a(22);
         }
         hb.a aVar = hb.a.d;
         if (j.d == null) {
             j.d = new j(aVar);
         }
-        this.f48582a = j.d;
+        this.f48593a = j.d;
     }
 
     public final synchronized long a(int i10) {
@@ -32,16 +32,16 @@ public final class d {
         if (!z10) {
             return d;
         }
-        double pow = Math.pow(2.0d, this.f48584c);
-        this.f48582a.getClass();
+        double pow = Math.pow(2.0d, this.f48595c);
+        this.f48593a.getClass();
         return (long) Math.min(pow + ((long) (Math.random() * 1000.0d)), e);
     }
 
     public final synchronized boolean b() {
         boolean z10;
-        if (this.f48584c != 0) {
-            this.f48582a.f46477a.getClass();
-            if (System.currentTimeMillis() <= this.f48583b) {
+        if (this.f48595c != 0) {
+            this.f48593a.f46488a.getClass();
+            if (System.currentTimeMillis() <= this.f48594b) {
                 z10 = false;
             }
         }
@@ -50,15 +50,15 @@ public final class d {
     }
 
     public final synchronized void c() {
-        this.f48584c = 0;
+        this.f48595c = 0;
     }
 
     public final synchronized void d(int i10) {
         if ((i10 < 200 || i10 >= 300) && i10 != 401 && i10 != 404) {
-            this.f48584c++;
+            this.f48595c++;
             long a2 = a(i10);
-            this.f48582a.f46477a.getClass();
-            this.f48583b = System.currentTimeMillis() + a2;
+            this.f48593a.f46488a.getClass();
+            this.f48594b = System.currentTimeMillis() + a2;
             return;
         }
         c();

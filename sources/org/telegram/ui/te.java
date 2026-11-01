@@ -4,46 +4,46 @@ import android.app.Activity;
 import android.net.Uri;
 import android.text.TextUtils;
 public final class te implements Runnable {
-    public final int f41821a;
-    public final un f41822b;
-    public final String f41823c;
+    public final int f41625a;
+    public final un f41626b;
+    public final String f41627c;
 
     public te(un unVar, String str, int i10) {
-        this.f41821a = i10;
-        this.f41822b = unVar;
-        this.f41823c = str;
+        this.f41625a = i10;
+        this.f41626b = unVar;
+        this.f41627c = str;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f41821a;
-        String str = this.f41823c;
-        un unVar = this.f41822b;
+        int i10 = this.f41625a;
+        String str = this.f41627c;
+        un unVar = this.f41626b;
         switch (i10) {
             case 0:
-                un.F0(unVar, str);
+                un.n0(unVar, str);
                 return;
             case 1:
-                un.x0(unVar, str);
+                un.z1(unVar, str);
                 return;
             case 2:
-                h4.d(str, unVar.currentAccount, unVar.l1, null, unVar.f42477xa);
+                h4.d(str, unVar.currentAccount, unVar.l1, null, unVar.f42288xa);
                 return;
             case 3:
                 if (str != null) {
                     unVar.getClass();
                     if (str.length() != 0) {
-                        unVar.getMessagesController().x4(str, unVar.f42243f);
+                        unVar.getMessagesController().x4(str, unVar.f42054f);
                         return;
                     }
                 }
-                unVar.getSendMessagesHelper().r0(org.telegram.messenger.oz.b("/start", unVar.f42297j6, null, null, null, false, null, null, null, true, 0, 0, null, false));
+                unVar.getSendMessagesHelper().r0(org.telegram.messenger.pz.b("/start", unVar.f42108j6, null, null, null, false, null, null, null, true, 0, 0, null, false));
                 return;
             case 4:
-                unVar.Ba(str);
+                unVar.Ga(str);
                 return;
             case 5:
-                unVar.ta(str, false);
+                unVar.ya(str, false);
                 return;
             case 6:
                 Activity parentActivity = unVar.getParentActivity();
@@ -51,10 +51,10 @@ public final class te implements Runnable {
                 return;
             case 7:
                 org.telegram.messenger.i0.g(str);
-                org.telegram.messenger.z20.r(null, 2131747311, org.telegram.ui.Components.cc.a0(unVar));
+                org.telegram.messenger.a30.r(null, 2131747311, org.telegram.ui.Components.cc.a0(unVar));
                 return;
             case 8:
-                un.I0(unVar, str);
+                un.i1(unVar, str);
                 return;
             case 9:
                 Activity parentActivity2 = unVar.getParentActivity();
@@ -62,7 +62,7 @@ public final class te implements Runnable {
                 return;
             case 10:
                 org.telegram.messenger.i0.g(str);
-                org.telegram.messenger.z20.r(null, 2131747311, org.telegram.ui.Components.cc.a0(unVar));
+                org.telegram.messenger.a30.r(null, 2131747311, org.telegram.ui.Components.cc.a0(unVar));
                 return;
             case 11:
                 unVar.getClass();

@@ -23,7 +23,7 @@ public final class e {
         if (fVar == fVar2) {
             ac.a aVar = (ac.a) this.e.f876c;
             int i11 = this.f4113b;
-            return ((String) aVar.f363b).substring(i11, i10 + i11).getBytes(((wb.d) aVar.f364c).f52782a[this.f4114c].charset()).length;
+            return ((String) aVar.f363b).substring(i11, i10 + i11).getBytes(((wb.d) aVar.f364c).f52800a[this.f4114c].charset()).length;
         }
         return i10;
     }
@@ -35,7 +35,7 @@ public final class e {
         sb2.append(fVar);
         sb2.append('(');
         if (fVar == ac.f.ECI) {
-            sb2.append(((wb.d) aVar.f364c).f52782a[this.f4114c].charset().displayName());
+            sb2.append(((wb.d) aVar.f364c).f52800a[this.f4114c].charset().displayName());
         } else {
             int i10 = this.d;
             int i11 = this.f4113b;

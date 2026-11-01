@@ -1,21 +1,85 @@
 package org.telegram.ui;
 
 import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 public final class m21 extends FrameLayout {
-    public FrameLayout f39459a;
-    public org.telegram.ui.Cells.y3 f39460b;
-    public kg.x0 f39461c;
-    public String d;
+    public final TextView f39417a;
+    public final org.telegram.ui.Components.fi0 f39418b;
+    public final ImageView f39419c;
+    public float d;
     public ValueAnimator e;
-    public float f39462f;
-    public Boolean h;
-    public ValueAnimator f39463n;
+    public final g31 f39420f;
+
+    public m21(g31 g31Var, Context context, boolean z10) {
+        super(context);
+        int i10;
+        this.f39420f = g31Var;
+        LinearLayout f7 = org.telegram.messenger.m5.f(context, 0);
+        if (z10) {
+            i10 = 3;
+        } else {
+            i10 = 17;
+        }
+        addView(f7, w7.b6.e(-2, -2, i10));
+        ?? imageView = new ImageView(context);
+        this.f39418b = imageView;
+        imageView.f(2131624312, 20, 20, null);
+        int i11 = org.telegram.ui.ActionBar.t6.If;
+        org.telegram.ui.ActionBar.p6 p6Var = g31Var.Z0;
+        org.telegram.ui.ActionBar.a7.t(imageView, i11, p6Var, PorterDuff.Mode.SRC_ATOP);
+        f7.addView((View) imageView, w7.b6.o(20, 20));
+        TextView textView = new TextView(context);
+        this.f39417a = textView;
+        org.telegram.ui.ActionBar.a7.V(textView, i11, p6Var);
+        textView.setTypeface(org.telegram.messenger.i0.o());
+        textView.setTextSize(1, 14.0f);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setLines(1);
+        textView.setMaxLines(1);
+        textView.setSingleLine(true);
+        f7.addView(textView, w7.b6.r(-2, -2, 17));
+        ImageView imageView2 = new ImageView(context);
+        this.f39419c = imageView2;
+        imageView2.setImageResource(2131232095);
+        imageView2.setScaleType(ImageView.ScaleType.CENTER);
+        org.telegram.ui.ActionBar.a7.t(imageView2, org.telegram.ui.ActionBar.t6.Kf, p6Var, PorterDuff.Mode.MULTIPLY);
+        addView(imageView2, w7.b6.e(24, 24, 21));
+    }
+
+    public final void a(String str, boolean z10) {
+        this.f39417a.setText(str);
+        b(z10);
+    }
+
+    public final void b(boolean z10) {
+        float f7;
+        ValueAnimator valueAnimator = this.e;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.e = null;
+        }
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        this.d = f7;
+        float L = (1.0f - this.d) * org.telegram.messenger.i0.L(-8.0f);
+        org.telegram.ui.Components.fi0 fi0Var = this.f39418b;
+        fi0Var.setTranslationX(L);
+        this.f39417a.setTranslationX((1.0f - this.d) * org.telegram.messenger.i0.L(-8.0f));
+        fi0Var.setAlpha(this.d);
+    }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        setPadding(org.telegram.messenger.i0.L(5.0f), org.telegram.messenger.i0.L(8.0f), org.telegram.messenger.i0.L(5.0f), org.telegram.messenger.i0.L(8.0f));
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(getPaddingBottom() + getPaddingTop() + org.telegram.messenger.i0.L(44.0f), 1073741824));
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(30.0f), 1073741824));
     }
 }

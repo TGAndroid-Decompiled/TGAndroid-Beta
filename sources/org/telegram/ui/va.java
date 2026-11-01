@@ -1,14 +1,14 @@
 package org.telegram.ui;
-public final class va implements org.telegram.ui.Components.uj0, ei.n {
-    public final sb f42691a;
+public final class va implements org.telegram.ui.Components.vj0, ei.n {
+    public final sb f42463a;
 
     @Override
     public void g() {
-        this.f42691a.g1();
+        this.f42463a.h1();
     }
 
     @Override
     public void j(int i10) {
-        sb.b0(this.f42691a, i10);
+        sb.c0(this.f42463a, i10);
     }
 }

@@ -11,8 +11,8 @@ import android.graphics.drawable.shapes.RectShape;
 import android.graphics.drawable.shapes.RoundRectShape;
 import android.util.StateSet;
 public abstract class j6 {
-    public static final int f20446a = t6.f20929d6;
-    public static float[] f20447b;
+    public static final int f20447a = t6.f20930d6;
+    public static float[] f20448b;
 
     public static float[] a(float... fArr) {
         if (fArr.length == 0) {
@@ -25,11 +25,11 @@ public abstract class j6 {
         float f7;
         float f10;
         float f11;
-        if (f20447b == null) {
-            f20447b = new float[3];
+        if (f20448b == null) {
+            f20448b = new float[3];
         }
-        Color.colorToHSV(i10, f20447b);
-        float[] fArr = f20447b;
+        Color.colorToHSV(i10, f20448b);
+        float[] fArr = f20448b;
         float f12 = fArr[1];
         if (f12 > 0.01f) {
             if (t6.I.q()) {
@@ -38,7 +38,7 @@ public abstract class j6 {
                 f10 = -0.25f;
             }
             fArr[1] = Math.min(1.0f, Math.max(0.0f, f12 + f10));
-            float[] fArr2 = f20447b;
+            float[] fArr2 = f20448b;
             float f13 = fArr2[2];
             if (t6.I.q()) {
                 f11 = 0.05f;
@@ -55,19 +55,19 @@ public abstract class j6 {
             }
             fArr[2] = Math.min(1.0f, Math.max(0.0f, f14 + f7));
         }
-        return Color.HSVToColor(127, f20447b);
+        return Color.HSVToColor(127, f20448b);
     }
 
     public static org.telegram.ui.Cells.y c(i6 i6Var, int i10) {
         ColorStateList colorStateList = new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i10});
         ?? drawable = new Drawable();
-        drawable.f20434b = -1.0f;
-        if (i6.f20432c == null) {
+        drawable.f20435b = -1.0f;
+        if (i6.f20433c == null) {
             Paint paint = new Paint(1);
-            i6.f20432c = paint;
+            i6.f20433c = paint;
             paint.setColor(-1);
         }
-        drawable.f20433a = i6.f20432c;
+        drawable.f20434a = i6.f20433c;
         return new RippleDrawable(colorStateList, i6Var, drawable);
     }
 

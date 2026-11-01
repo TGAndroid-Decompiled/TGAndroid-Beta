@@ -5,15 +5,15 @@ import android.graphics.Canvas;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 import org.telegram.messenger.i0;
 import org.telegram.ui.ActionBar.a7;
 import org.telegram.ui.ActionBar.t6;
 import w7.b6;
 public final class k extends LinearLayout {
-    public final TextView f50256a;
-    public final TextView f50257b;
-    public boolean f50258c;
+    public final TextView f50270a;
+    public final TextView f50271b;
+    public boolean f50272c;
 
     public k(Context context) {
         super(context);
@@ -21,10 +21,10 @@ public final class k extends LinearLayout {
         setPadding(i0.L(22.0f), 0, i0.L(22.0f), 0);
         setOrientation(1);
         TextView textView = new TextView(context);
-        this.f50256a = textView;
+        this.f50270a = textView;
         textView.setTextSize(1, 16.0f);
-        a7.V(textView, t6.f21037j5, null);
-        if (cd.X) {
+        a7.V(textView, t6.f21038j5, null);
+        if (dd.X) {
             i10 = 5;
         } else {
             i10 = 3;
@@ -32,18 +32,18 @@ public final class k extends LinearLayout {
         textView.setGravity(i10);
         addView(textView, b6.t(-1, -2, 51, 0, 7, 0, 0));
         TextView textView2 = new TextView(context);
-        this.f50257b = textView2;
+        this.f50271b = textView2;
         textView2.setTextSize(1, 13.0f);
-        a7.V(textView2, t6.f21169q5, null);
-        textView2.setGravity(cd.X ? 5 : 3);
+        a7.V(textView2, t6.f21170q5, null);
+        textView2.setGravity(dd.X ? 5 : 3);
         addView(textView2, b6.t(-1, -2, 51, 0, 4, 0, 0));
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (this.f50258c) {
-            canvas.drawRect(getPaddingLeft(), getHeight() - 1, getWidth(), getHeight(), t6.f21052k0);
+        if (this.f50272c) {
+            canvas.drawRect(getPaddingLeft(), getHeight() - 1, getWidth(), getHeight(), t6.f21053k0);
         }
     }
 

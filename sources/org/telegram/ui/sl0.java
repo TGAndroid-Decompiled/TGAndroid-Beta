@@ -1,63 +1,19 @@
 package org.telegram.ui;
 
-import android.widget.FrameLayout;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-public final class sl0 implements OnCompleteListener, org.telegram.ui.ActionBar.u1, qt {
-    public final int f41539a;
-    public final sm0 f41540b;
+import org.telegram.tgnet.RequestDelegate;
+public final class sl0 implements RequestDelegate {
+    public final int f41388a;
+    public final Object f41389b;
+    public final Object f41390c;
 
-    public sl0(sm0 sm0Var, int i10) {
-        this.f41539a = i10;
-        this.f41540b = sm0Var;
+    public sl0(int i10, Object obj, Object obj2) {
+        this.f41388a = i10;
+        this.f41389b = obj;
+        this.f41390c = obj2;
     }
 
     @Override
-    public void c(nt ntVar) {
-        switch (this.f41539a) {
-            case 2:
-                sm0 sm0Var = this.f41540b;
-                sm0Var.A0 = ntVar;
-                sm0Var.f41559f[4].setText(ntVar.f40047a);
-                return;
-            default:
-                sm0 sm0Var2 = this.f41540b;
-                sm0Var2.A0 = ntVar;
-                sm0Var2.f41559f[4].setText(ntVar.f40047a);
-                sm0Var2.B0 = ntVar.d;
-                return;
-        }
-    }
-
-    @Override
-    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
-        switch (this.f41539a) {
-            case 1:
-                sm0 sm0Var = this.f41540b;
-                sm0Var.N0(sm0Var.R0[0]);
-                return;
-            case 2:
-            default:
-                sm0 sm0Var2 = this.f41540b;
-                sm0Var2.I0(true);
-                sm0Var2.E0();
-                return;
-            case 3:
-                this.f41540b.F0(true);
-                return;
-        }
-    }
-
-    @Override
-    public void onComplete(Task task) {
-        if (task.isSuccessful()) {
-            FrameLayout frameLayout = this.f41540b.O;
-            if (frameLayout != null) {
-                frameLayout.setVisibility(0);
-                return;
-            }
-            return;
-        }
-        org.telegram.messenger.f8.e("isReadyToPay failed", task.getException());
+    public final void run(org.telegram.tgnet.TLObject r10, org.telegram.tgnet.TLRPC.TL_error r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.sl0.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
     }
 }

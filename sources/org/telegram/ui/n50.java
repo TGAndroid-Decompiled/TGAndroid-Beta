@@ -1,36 +1,93 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class n50 extends org.telegram.ui.Components.l10 {
-    public final v50 f39829r;
+import android.view.KeyEvent;
+import android.view.View;
+import java.util.ArrayList;
+public final class n50 implements View.OnKeyListener {
+    public final int f39699a;
+    public boolean f39700b;
+    public final org.telegram.ui.ActionBar.k2 f39701c;
 
-    public n50(v50 v50Var, Context context, int i10) {
-        super(context, i10);
-        this.f39829r = v50Var;
+    public n50(int i10, org.telegram.ui.ActionBar.k2 k2Var) {
+        this.f39699a = i10;
+        this.f39701c = k2Var;
     }
 
     @Override
-    public final void a(org.telegram.ui.Components.s20 s20Var) {
-        super.a(s20Var);
-        v50.d0(this.f39829r);
-    }
-
-    @Override
-    public final void b() {
-        super.b();
-        v50.d0(this.f39829r);
-    }
-
-    @Override
-    public final void c(org.telegram.ui.Components.s20 s20Var) {
-        v50 v50Var = this.f39829r;
-        if (s20Var == v50Var.X) {
-            v50Var.X = null;
+    public final boolean onKey(View view, int i10, KeyEvent keyEvent) {
+        int i11 = this.f39699a;
+        org.telegram.ui.ActionBar.k2 k2Var = this.f39701c;
+        boolean z10 = true;
+        switch (i11) {
+            case 0:
+                u50 u50Var = (u50) k2Var;
+                if (i10 == 67) {
+                    if (keyEvent.getAction() == 0) {
+                        if (u50Var.f41808f.f26635r.length() != 0) {
+                            z10 = false;
+                        }
+                        this.f39700b = z10;
+                    } else if (keyEvent.getAction() == 1 && this.f39700b && !u50Var.f41801a0.isEmpty()) {
+                        u50Var.h.c((org.telegram.ui.Components.s20) i0.a.g(1, u50Var.f41801a0));
+                        u50Var.x0();
+                        u50Var.p0();
+                        return true;
+                    }
+                }
+                return false;
+            default:
+                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) k2Var;
+                ArrayList arrayList = usersSelectActivity.O;
+                if (i10 == 67) {
+                    if (keyEvent.getAction() == 0) {
+                        if (usersSelectActivity.f34155c.length() != 0) {
+                            z10 = false;
+                        }
+                        this.f39700b = z10;
+                    } else if (keyEvent.getAction() == 1 && this.f39700b && !arrayList.isEmpty()) {
+                        org.telegram.ui.Components.s20 s20Var = (org.telegram.ui.Components.s20) i0.a.g(1, arrayList);
+                        usersSelectActivity.f34154b.b(s20Var);
+                        if (usersSelectActivity.f34162y == 2) {
+                            if (s20Var.getUid() == -9223372036854775800L) {
+                                usersSelectActivity.J &= -2;
+                            } else if (s20Var.getUid() == -9223372036854775799L) {
+                                usersSelectActivity.J &= -3;
+                            } else if (s20Var.getUid() == Long.MIN_VALUE) {
+                                usersSelectActivity.J &= -5;
+                            } else if (s20Var.getUid() == -9223372036854775807L) {
+                                usersSelectActivity.J &= -9;
+                            }
+                        } else if (s20Var.getUid() == Long.MIN_VALUE) {
+                            int i12 = org.telegram.messenger.wp.D8;
+                            usersSelectActivity.J &= -2;
+                        } else if (s20Var.getUid() == -9223372036854775807L) {
+                            int i13 = org.telegram.messenger.wp.D8;
+                            usersSelectActivity.J &= -3;
+                        } else if (s20Var.getUid() == -9223372036854775806L) {
+                            int i14 = org.telegram.messenger.wp.D8;
+                            usersSelectActivity.J &= -5;
+                        } else if (s20Var.getUid() == -9223372036854775805L) {
+                            int i15 = org.telegram.messenger.wp.D8;
+                            usersSelectActivity.J &= -9;
+                        } else if (s20Var.getUid() == -9223372036854775804L) {
+                            int i16 = org.telegram.messenger.wp.D8;
+                            usersSelectActivity.J &= -17;
+                        } else if (s20Var.getUid() == -9223372036854775803L) {
+                            int i17 = org.telegram.messenger.wp.D8;
+                            usersSelectActivity.J &= -33;
+                        } else if (s20Var.getUid() == -9223372036854775802L) {
+                            int i18 = org.telegram.messenger.wp.D8;
+                            usersSelectActivity.J &= -65;
+                        } else if (s20Var.getUid() == -9223372036854775801L) {
+                            int i19 = org.telegram.messenger.wp.D8;
+                            usersSelectActivity.J &= -129;
+                        }
+                        usersSelectActivity.d0();
+                        usersSelectActivity.b0();
+                        return true;
+                    }
+                }
+                return false;
         }
-        if (s20Var == v50Var.Y) {
-            v50Var.Y = null;
-        }
-        super.c(s20Var);
-        v50.d0(v50Var);
     }
 }

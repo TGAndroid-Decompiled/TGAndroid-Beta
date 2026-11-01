@@ -10,10 +10,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.HashSet;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.a30;
+import org.telegram.messenger.dd;
 import org.telegram.messenger.i0;
 import org.telegram.messenger.m5;
-import org.telegram.messenger.z20;
 import org.telegram.ui.ActionBar.a7;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.p6;
@@ -21,14 +21,14 @@ import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Components.va0;
 import w7.b6;
 public final class j extends LinearLayout implements k6 {
-    public final p6 f55789a;
-    public final va0 f55790b;
-    public final FrameLayout f55791c;
+    public final p6 f55807a;
+    public final va0 f55808b;
+    public final FrameLayout f55809c;
     public final ImageView d;
     public final TextView e;
-    public final TextView f55792f;
+    public final TextView f55810f;
     public final boolean h;
-    public boolean f55793n;
+    public boolean f55811n;
 
     public j(Context context, p6 p6Var, boolean z10) {
         super(context);
@@ -36,13 +36,13 @@ public final class j extends LinearLayout implements k6 {
         int i11;
         int i12;
         int i13;
-        this.f55789a = p6Var;
+        this.f55807a = p6Var;
         this.h = z10;
         setOrientation(0);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f55791c = frameLayout;
+        this.f55809c = frameLayout;
         va0 va0Var = new va0(1);
-        this.f55790b = va0Var;
+        this.f55808b = va0Var;
         frameLayout.setBackground(va0Var);
         ImageView imageView = new ImageView(context);
         this.d = imageView;
@@ -52,13 +52,13 @@ public final class j extends LinearLayout implements k6 {
         TextView textView = new TextView(context);
         this.e = textView;
         textView.setTextSize(1, 16.0f);
-        TextView f10 = z20.f(f7, textView, b6.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2), context);
-        this.f55792f = f10;
+        TextView f10 = a30.f(f7, textView, b6.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2), context);
+        this.f55810f = f10;
         f10.setGravity(17);
         f10.setMinWidth(i0.L(20.66f));
         f10.setPadding(i0.L(6.33f), 0, i0.L(6.33f), 0);
         f10.setTextSize(1, 16.0f);
-        if (cd.X) {
+        if (dd.X) {
             addView(f10, b6.j(13.33f, 0.0f));
             if (z10) {
                 i12 = 12;
@@ -99,14 +99,14 @@ public final class j extends LinearLayout implements k6 {
         } else {
             i13 = 8;
         }
-        this.f55791c.setVisibility(i13);
+        this.f55809c.setVisibility(i13);
         if (i12 == 0) {
             f7 = i0.L(2.0f);
         } else {
             f7 = 0.0f;
         }
         this.e.setTranslationX(f7);
-        this.f55790b.b(i10, i11);
+        this.f55808b.b(i10, i11);
         this.d.setImageResource(i12);
         setTitle(charSequence);
         setValue(charSequence2);
@@ -139,14 +139,14 @@ public final class j extends LinearLayout implements k6 {
         float f7;
         Typeface typeface;
         int i10;
-        if (this.f55793n != z10) {
-            this.f55793n = z10;
+        if (this.f55811n != z10) {
+            this.f55811n = z10;
             if (z10) {
                 f7 = 13.0f;
             } else {
                 f7 = 16.0f;
             }
-            TextView textView = this.f55792f;
+            TextView textView = this.f55810f;
             textView.setTextSize(1, f7);
             ShapeDrawable shapeDrawable = null;
             if (z10) {
@@ -158,9 +158,9 @@ public final class j extends LinearLayout implements k6 {
             if (z10) {
                 i10 = t6.W8;
             } else {
-                i10 = t6.f21115n6;
+                i10 = t6.f21116n6;
             }
-            p6 p6Var = this.f55789a;
+            p6 p6Var = this.f55807a;
             a7.V(textView, i10, p6Var);
             if (z10) {
                 shapeDrawable = t6.d0(i0.L(10.33f), t6.w0(t6.U8, p6Var));
@@ -176,7 +176,7 @@ public final class j extends LinearLayout implements k6 {
         } else {
             i10 = 8;
         }
-        TextView textView = this.f55792f;
+        TextView textView = this.f55810f;
         textView.setVisibility(i10);
         textView.setText(charSequence);
     }
@@ -187,17 +187,17 @@ public final class j extends LinearLayout implements k6 {
         ShapeDrawable shapeDrawable;
         boolean q6;
         int i11 = t6.G6;
-        p6 p6Var = this.f55789a;
+        p6 p6Var = this.f55807a;
         this.e.setTextColor(t6.w0(i11, p6Var));
-        if (this.f55793n) {
+        if (this.f55811n) {
             i10 = t6.W8;
         } else {
-            i10 = t6.f21115n6;
+            i10 = t6.f21116n6;
         }
         int w02 = t6.w0(i10, p6Var);
-        TextView textView = this.f55792f;
+        TextView textView = this.f55810f;
         textView.setTextColor(w02);
-        if (this.f55793n) {
+        if (this.f55811n) {
             shapeDrawable = t6.d0(i0.L(10.33f), t6.w0(t6.U8, p6Var));
         } else {
             shapeDrawable = null;
@@ -208,6 +208,6 @@ public final class j extends LinearLayout implements k6 {
         } else {
             q6 = t6.I.q();
         }
-        this.f55790b.f31204b = q6;
+        this.f55808b.f31239b = q6;
     }
 }

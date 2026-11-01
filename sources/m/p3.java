@@ -23,33 +23,33 @@ import java.util.LinkedList;
 import java.util.Set;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicMarkableReference;
-import org.telegram.messenger.ia;
+import org.telegram.messenger.ja;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Components.z60;
 import v7.z7;
 import w7.b6;
 public final class p3 implements n5.b {
-    public Object f12518a;
-    public Object f12519b;
-    public Object f12520c;
+    public Object f12519a;
+    public Object f12520b;
+    public Object f12521c;
     public Object d;
     public Object e;
-    public Object f12521f;
+    public Object f12522f;
     public Object h;
 
     public p3(Set set, a0.f fVar, String str, String str2, n8.a aVar) {
         Set unmodifiableSet = set == null ? Collections.EMPTY_SET : DesugarCollections.unmodifiableSet(set);
-        this.f12518a = unmodifiableSet;
+        this.f12519a = unmodifiableSet;
         a0.f fVar2 = fVar == null ? Collections.EMPTY_MAP : fVar;
-        this.f12520c = fVar2;
+        this.f12521c = fVar2;
         this.d = str;
         this.e = str2;
-        this.f12521f = aVar == null ? n8.a.f13732a : aVar;
+        this.f12522f = aVar == null ? n8.a.f13733a : aVar;
         HashSet hashSet = new HashSet(unmodifiableSet);
         Iterator it = fVar2.values().iterator();
         if (!it.hasNext()) {
-            this.f12519b = DesugarCollections.unmodifiableSet(hashSet);
+            this.f12520b = DesugarCollections.unmodifiableSet(hashSet);
             return;
         }
         throw a1.g.h(it);
@@ -58,7 +58,7 @@ public final class p3 implements n5.b {
     public static void f(FrameLayout frameLayout) {
         k6.d dVar = k6.d.d;
         Context context = frameLayout.getContext();
-        int d = dVar.d(context, k6.e.f10935a);
+        int d = dVar.d(context, k6.e.f10936a);
         String c10 = n6.q.c(context, d);
         String b10 = n6.q.b(context, d);
         LinearLayout linearLayout = new LinearLayout(frameLayout.getContext());
@@ -82,18 +82,18 @@ public final class p3 implements n5.b {
 
     public void a() {
         e(null);
-        z60 z60Var = (z60) this.f12520c;
+        z60 z60Var = (z60) this.f12521c;
         if (z60Var != null) {
             z60Var.u();
-            this.f12520c = null;
+            this.f12521c = null;
         }
         this.d = null;
         this.e = null;
-        this.f12521f = null;
+        this.f12522f = null;
     }
 
     public void b(q6 q6Var, ArrayList arrayList) {
-        p6 p6Var = (p6) this.f12519b;
+        p6 p6Var = (p6) this.f12520b;
         LinearLayout linearLayout = (LinearLayout) this.d;
         if (linearLayout != null) {
             linearLayout.removeAllViews();
@@ -105,7 +105,7 @@ public final class p3 implements n5.b {
                 bi.p0 p0Var = (bi.p0) obj;
                 ag.k3 k3Var = new ag.k3(q6Var.getContext(), p0Var, p6Var);
                 k3Var.setPadding(org.telegram.messenger.i0.L(8.0f), 0, org.telegram.messenger.i0.L(12.0f), 0);
-                k3Var.setBackground(t6.a0(t6.w0(t6.f21020i6, p6Var), 0, 0));
+                k3Var.setBackground(t6.a0(t6.w0(t6.f21021i6, p6Var), 0, 0));
                 k3Var.setOnClickListener(new ag.i(this, q6Var, p0Var, 3));
                 ((LinearLayout) this.d).addView(k3Var, b6.o(-1, 48));
             }
@@ -114,23 +114,23 @@ public final class p3 implements n5.b {
 
     public void c(int i10, int i11, float f7, float f10, boolean z10, float[] fArr) {
         float f11;
-        float[] fArr2 = (float[]) this.f12518a;
+        float[] fArr2 = (float[]) this.f12519a;
         float f12 = (i10 - i11) / 0.3902439f;
         if (f12 <= 0.0f || f12 > i10) {
             f12 = i10;
         }
         float f13 = 1.0f;
         Matrix.perspectiveM(fArr2, 0, (float) Math.toDegrees(Math.atan(Math.tan(Math.toRadians(5.199999809265137d)) * (i11 / Math.max(1.0f, f12 / 1.64f))) * 2.0d), i10 / Math.max(1, i11), 0.1f, 20.0f);
-        Matrix.setLookAtM((float[]) this.f12519b, 0, 0.0f, 0.0f, 6.7f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
-        float[] fArr3 = (float[]) this.f12520c;
+        Matrix.setLookAtM((float[]) this.f12520b, 0, 0.0f, 0.0f, 6.7f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+        float[] fArr3 = (float[]) this.f12521c;
         Matrix.setIdentityM(fArr3, 0);
         Matrix.rotateM(fArr3, 0, -f7, 1.0f, 0.0f, 0.0f);
         Matrix.rotateM(fArr3, 0, -f10, 0.0f, 1.0f, 0.0f);
         Matrix.rotateM(fArr3, 0, 90.0f, 0.0f, 1.0f, 0.0f);
         Matrix.translateM(fArr3, 0, -0.02f, 0.0f, 0.0f);
         Matrix.scaleM(fArr3, 0, 0.965f, 0.965f, 0.965f);
-        Matrix.multiplyMM((float[]) this.d, 0, (float[]) this.f12519b, 0, (float[]) this.f12520c, 0);
-        Matrix.multiplyMM((float[]) this.e, 0, (float[]) this.f12518a, 0, (float[]) this.d, 0);
+        Matrix.multiplyMM((float[]) this.d, 0, (float[]) this.f12520b, 0, (float[]) this.f12521c, 0);
+        Matrix.multiplyMM((float[]) this.e, 0, (float[]) this.f12519a, 0, (float[]) this.d, 0);
         if (z10) {
             f11 = 0.0125f;
         } else {
@@ -148,7 +148,7 @@ public final class p3 implements n5.b {
     }
 
     public float d(float f7, float f10, float f11, int i10, int i11, float[] fArr, int i12) {
-        float[] fArr2 = (float[]) this.f12521f;
+        float[] fArr2 = (float[]) this.f12522f;
         fArr2[0] = f7;
         fArr2[1] = f10;
         fArr2[2] = f11;
@@ -187,38 +187,38 @@ public final class p3 implements n5.b {
             return;
         }
         e(q6Var);
-        if (((q6) this.f12521f) == q6Var && a2.equals((ArrayList) this.e) && (z60Var2 = (z60) this.f12520c) != null && z60Var2.D()) {
+        if (((q6) this.f12522f) == q6Var && a2.equals((ArrayList) this.e) && (z60Var2 = (z60) this.f12521c) != null && z60Var2.D()) {
             return;
         }
-        if (((q6) this.f12521f) == q6Var && (z60Var = (z60) this.f12520c) != null && z60Var.D() && ((LinearLayout) this.d) != null) {
+        if (((q6) this.f12522f) == q6Var && (z60Var = (z60) this.f12521c) != null && z60Var.D() && ((LinearLayout) this.d) != null) {
             this.e = a2;
             b(q6Var, a2);
-            ((z60) this.f12520c).O();
+            ((z60) this.f12521c).O();
             return;
         }
         a();
         e(q6Var);
-        this.f12521f = q6Var;
+        this.f12522f = q6Var;
         this.e = a2;
         LinearLayout linearLayout = new LinearLayout(q6Var.getContext());
         this.d = linearLayout;
         linearLayout.setOrientation(1);
         b(q6Var, a2);
-        z60 a10 = ((bi.q0) this.f12518a).a(q6Var.getEditText());
+        z60 a10 = ((bi.q0) this.f12519a).a(q6Var.getEditText());
         a10.Q = true;
-        a10.f32941s = 0;
-        a10.f32942t = false;
+        a10.f33044s = 0;
+        a10.f33045t = false;
         a10.r((LinearLayout) this.d, b6.o(220, -2));
         a10.X = org.telegram.messenger.i0.L(240.0f);
-        a10.f32923i = 3;
+        a10.f33026i = 3;
         a10.a0(-org.telegram.messenger.i0.L(12.0f), 0.0f);
-        a10.f32936p = new a3.d(this, 21);
-        a10.f32916d0 = true;
+        a10.f33039p = new a3.d(this, 21);
+        a10.f33019d0 = true;
         if (a10.D()) {
             a10.C();
         }
         a10.Z();
-        this.f12520c = a10;
+        this.f12521c = a10;
     }
 
     @Override
@@ -226,12 +226,12 @@ public final class p3 implements n5.b {
         t7.u uVar = new t7.u(21);
         oa.d dVar = new oa.d(21);
         ?? obj = new Object();
-        obj.f6466a = (Context) ((zc.a) this.f12518a).get();
-        obj.f6467b = (m5.d) ((zc.a) this.f12519b).get();
-        obj.f6468c = (s5.d) ((zc.a) this.f12520c).get();
+        obj.f6466a = (Context) ((zc.a) this.f12519a).get();
+        obj.f6467b = (m5.d) ((zc.a) this.f12520b).get();
+        obj.f6468c = (s5.d) ((zc.a) this.f12521c).get();
         obj.d = (q5.d) ((q5.d) this.d).get();
         obj.e = (Executor) ((zc.a) this.e).get();
-        obj.f6469f = (t5.c) ((zc.a) this.f12521f).get();
+        obj.f6469f = (t5.c) ((zc.a) this.f12522f).get();
         obj.f6470g = uVar;
         obj.h = dVar;
         obj.f6471i = (s5.c) ((zc.a) this.h).get();
@@ -239,31 +239,31 @@ public final class p3 implements n5.b {
     }
 
     public void h(x6.c cVar) {
-        if (((android.support.v4.media.session.a0) this.f12519b) != null) {
+        if (((android.support.v4.media.session.a0) this.f12520b) != null) {
             cVar.b();
             return;
         }
-        if (((LinkedList) this.f12520c) == null) {
-            this.f12520c = new LinkedList();
+        if (((LinkedList) this.f12521c) == null) {
+            this.f12521c = new LinkedList();
         }
-        ((LinkedList) this.f12520c).add(cVar);
-        this.f12521f = (s9.g) this.d;
+        ((LinkedList) this.f12521c).add(cVar);
+        this.f12522f = (s9.g) this.d;
         ArrayList arrayList = (ArrayList) this.h;
-        Context context = (Context) this.f12518a;
-        if (((android.support.v4.media.session.a0) this.f12519b) == null) {
+        Context context = (Context) this.f12519a;
+        if (((android.support.v4.media.session.a0) this.f12520b) == null) {
             try {
                 synchronized (h8.a.class) {
                     h8.a.b(context);
                 }
                 i8.g Y0 = z7.a(context).Y0(new x6.b(context));
                 if (Y0 != null) {
-                    ((s9.g) this.f12521f).o(new android.support.v4.media.session.a0((fg.i) this.e, Y0));
+                    ((s9.g) this.f12522f).o(new android.support.v4.media.session.a0((fg.i) this.e, Y0));
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {
                         Object obj = arrayList.get(i10);
                         i10++;
-                        ((android.support.v4.media.session.a0) this.f12519b).q((ia) obj);
+                        ((android.support.v4.media.session.a0) this.f12520b).q((ja) obj);
                     }
                     arrayList.clear();
                 }
@@ -275,43 +275,43 @@ public final class p3 implements n5.b {
     }
 
     public p3() {
-        this.f12518a = new float[16];
-        this.f12519b = new float[16];
-        this.f12520c = new float[16];
+        this.f12519a = new float[16];
+        this.f12520b = new float[16];
+        this.f12521c = new float[16];
         this.d = new float[16];
         this.e = new float[16];
-        this.f12521f = new float[4];
+        this.f12522f = new float[4];
         this.h = new float[4];
     }
 
     public p3(bi.q0 q0Var, p6 p6Var) {
-        this.f12518a = q0Var;
-        this.f12519b = p6Var;
+        this.f12519a = q0Var;
+        this.f12520b = p6Var;
     }
 
     public p3(String str, ca.c cVar, xa.n nVar) {
         this.d = new ac.a(this, false);
         this.e = new ac.a(this, true);
-        this.f12521f = new c5.x(21, (short) 0);
+        this.f12522f = new c5.x(21, (short) 0);
         this.h = new AtomicMarkableReference(null, false);
-        this.f12520c = str;
-        this.f12518a = new y9.f(cVar);
-        this.f12519b = nVar;
+        this.f12521c = str;
+        this.f12519a = new y9.f(cVar);
+        this.f12520b = nVar;
     }
 
     public p3(Context context, p6 p6Var) {
         TextPaint textPaint = new TextPaint(1);
-        this.f12518a = textPaint;
+        this.f12519a = textPaint;
         Paint paint = new Paint();
-        this.f12519b = paint;
+        this.f12520b = paint;
         this.e = new Paint();
-        this.f12521f = new SparseArray();
+        this.f12522f = new SparseArray();
         this.h = new HashMap();
         textPaint.setTextSize(org.telegram.messenger.i0.L(12.0f));
         textPaint.setColor(-1);
         textPaint.setTypeface(org.telegram.messenger.i0.o());
         Drawable mutate = context.getDrawable(2131232546).mutate();
-        this.f12520c = mutate;
+        this.f12521c = mutate;
         mutate.setBounds(0, 0, mutate.getIntrinsicWidth(), mutate.getIntrinsicHeight());
         Drawable mutate2 = context.getDrawable(2131231185).mutate();
         this.d = mutate2;

@@ -3,6 +3,6 @@ public abstract class g {
     public static final int f3882a = 0;
 
     static {
-        com.google.android.gms.common.api.d dVar = g6.j.f7375a;
+        com.google.android.gms.common.api.d dVar = g6.j.f7376a;
     }
 }

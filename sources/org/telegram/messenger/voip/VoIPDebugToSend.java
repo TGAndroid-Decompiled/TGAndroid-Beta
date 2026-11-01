@@ -20,7 +20,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.Components.voip.m1;
+import org.telegram.ui.Components.voip.n1;
 public class VoIPDebugToSend {
     private final int currentAccount;
     private final HashMap<Long, Data> pending = new HashMap<>();
@@ -60,7 +60,7 @@ public class VoIPDebugToSend {
 
     public void lambda$done$2(Data data, File file, TL_phone.saveCallDebug savecalldebug) {
         File file2 = new File(data.logPath);
-        Typeface typeface = org.telegram.messenger.i0.f15999a;
+        Typeface typeface = org.telegram.messenger.i0.f16145a;
         try {
             BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(file2));
             GZIPOutputStream gZIPOutputStream = new GZIPOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
@@ -84,11 +84,11 @@ public class VoIPDebugToSend {
     }
 
     public void lambda$done$3(Data data, TL_phone.saveCallDebug savecalldebug, TLObject tLObject, TLRPC.TL_error tL_error) {
-        if (v2.f18448a) {
+        if (v2.f18578a) {
             f8.b("Sent debug logs, response = " + tLObject);
         }
         if ((tLObject instanceof TLRPC.TL_boolFalse) && !TextUtils.isEmpty(data.logPath)) {
-            Utilities.f14522g.c(new n(this, data, new File(a1.g.r(new StringBuilder(), data.logPath, ".gzip")), savecalldebug, 0));
+            Utilities.f14523g.c(new n(this, data, new File(a1.g.r(new StringBuilder(), data.logPath, ".gzip")), savecalldebug, 0));
         }
     }
 
@@ -102,7 +102,7 @@ public class VoIPDebugToSend {
             TLRPC.TL_inputPhoneCall tL_inputPhoneCall = new TLRPC.TL_inputPhoneCall();
             savecalldebug.peer = tL_inputPhoneCall;
             tL_inputPhoneCall.access_hash = remove.access_hash;
-            tL_inputPhoneCall.f19858id = remove.callId;
+            tL_inputPhoneCall.f19859id = remove.callId;
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(savecalldebug, new p(this, remove, savecalldebug, 0));
         }
     }
@@ -110,7 +110,7 @@ public class VoIPDebugToSend {
     public void push(long j10, long j11, Instance.FinalState finalState, String str) {
         if (TextUtils.isEmpty(finalState.debugLog)) {
             try {
-                finalState.debugLog = VoIPService.getStringFromFile(m1.e("" + j10));
+                finalState.debugLog = VoIPService.getStringFromFile(n1.e("" + j10));
             } catch (Exception e) {
                 e.printStackTrace();
             }

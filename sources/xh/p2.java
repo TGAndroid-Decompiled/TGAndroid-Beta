@@ -7,31 +7,31 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 public final class p2 implements Runnable {
-    public final int f53965a;
-    public final Object f53966b;
-    public final Object f53967c;
+    public final int f53984a;
+    public final Object f53985b;
+    public final Object f53986c;
     public final Object d;
     public final Object e;
 
     public p2(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f53965a = i10;
-        this.f53966b = obj;
-        this.f53967c = obj2;
+        this.f53984a = i10;
+        this.f53985b = obj;
+        this.f53986c = obj2;
         this.d = obj3;
         this.e = obj4;
     }
 
     @Override
     public final void run() {
-        switch (this.f53965a) {
+        switch (this.f53984a) {
             case 0:
-                z2.z0((z2) this.f53966b, (Context) this.f53967c, (TLRPC.User) this.d, (TL_payments.connectedBotStarRef) this.e);
+                z2.A0((z2) this.f53985b, (Context) this.f53986c, (TLRPC.User) this.d, (TL_payments.connectedBotStarRef) this.e);
                 return;
             case 1:
-                boolean[] zArr = (boolean[]) this.f53967c;
+                boolean[] zArr = (boolean[]) this.f53986c;
                 org.telegram.ui.web.o oVar = (org.telegram.ui.web.o) this.d;
                 TLRPC.UserFull userFull = (TLRPC.UserFull) this.e;
-                if (!(((TLObject) this.f53966b) instanceof TLRPC.TL_boolTrue)) {
+                if (!(((TLObject) this.f53985b) instanceof TLRPC.TL_boolTrue)) {
                     if (!zArr[0]) {
                         zArr[0] = true;
                         oVar.a(Boolean.TRUE, "cancelled");
@@ -47,35 +47,35 @@ public final class p2 implements Runnable {
                 }
                 return;
             case 2:
-                zf.c cVar = (zf.c) this.f53966b;
-                Location location = (Location) this.f53967c;
+                zf.c cVar = (zf.c) this.f53985b;
+                Location location = (Location) this.f53986c;
                 String str = (String) this.d;
                 ArrayList arrayList = (ArrayList) this.e;
-                ArrayList arrayList2 = cVar.f55454r;
-                cVar.f55453n = false;
+                ArrayList arrayList2 = cVar.f55472r;
+                cVar.f55471n = false;
                 if (location == null) {
                     cVar.F = 0;
                     cVar.h = false;
-                    cVar.f55455s.clear();
+                    cVar.f55473s.clear();
                     cVar.J = false;
-                    cVar.f55458y = str;
+                    cVar.f55476y = str;
                 }
                 arrayList2.clear();
                 arrayList2.addAll(arrayList);
                 cVar.f();
                 return;
             default:
-                zf.c cVar2 = (zf.c) this.f53966b;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f53967c;
+                zf.c cVar2 = (zf.c) this.f53985b;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f53986c;
                 String str2 = (String) this.d;
                 TLObject tLObject = (TLObject) this.e;
-                ArrayList arrayList3 = cVar2.f55455s;
+                ArrayList arrayList3 = cVar2.f55473s;
                 if (tL_error == null) {
                     cVar2.F = 0;
                     cVar2.h = false;
                     arrayList3.clear();
                     cVar2.J = false;
-                    cVar2.f55458y = str2;
+                    cVar2.f55476y = str2;
                     TLRPC.messages_BotResults messages_botresults = (TLRPC.messages_BotResults) tLObject;
                     int size = messages_botresults.results.size();
                     for (int i10 = 0; i10 < size; i10++) {
@@ -93,7 +93,7 @@ public final class p2 implements Runnable {
                                 tL_messageMediaVenue.venue_id = tL_botInlineMessageMediaVenue.venue_id;
                                 tL_messageMediaVenue.provider = tL_botInlineMessageMediaVenue.provider;
                                 tL_messageMediaVenue.query_id = messages_botresults.query_id;
-                                tL_messageMediaVenue.result_id = botInlineResult.f19791id;
+                                tL_messageMediaVenue.result_id = botInlineResult.f19792id;
                                 arrayList3.add(tL_messageMediaVenue);
                             }
                         }

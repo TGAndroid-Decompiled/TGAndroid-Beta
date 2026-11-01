@@ -11,23 +11,23 @@ import java.util.Map;
 import ve.q;
 import ve.s;
 public final class d {
-    public static final LinkedHashSet f48195p = new LinkedHashSet(Arrays.asList(ve.b.class, ve.i.class, ve.h.class, ve.j.class, s.class, ve.n.class, ve.l.class));
-    public static final Map f48196q;
-    public CharSequence f48197a;
+    public static final LinkedHashSet f48206p = new LinkedHashSet(Arrays.asList(ve.b.class, ve.i.class, ve.h.class, ve.j.class, s.class, ve.n.class, ve.l.class));
+    public static final Map f48207q;
+    public CharSequence f48208a;
     public boolean d;
     public boolean h;
-    public final List f48202i;
-    public final we.b f48203j;
-    public final List f48204k;
-    public final c f48205l;
-    public final ArrayList f48207n;
-    public final LinkedHashSet f48208o;
-    public int f48198b = 0;
-    public int f48199c = 0;
+    public final List f48213i;
+    public final we.b f48214j;
+    public final List f48215k;
+    public final c f48216l;
+    public final ArrayList f48218n;
+    public final LinkedHashSet f48219o;
+    public int f48209b = 0;
+    public int f48210c = 0;
     public int e = 0;
-    public int f48200f = 0;
-    public int f48201g = 0;
-    public final LinkedHashMap f48206m = new LinkedHashMap();
+    public int f48211f = 0;
+    public int f48212g = 0;
+    public final LinkedHashMap f48217m = new LinkedHashMap();
 
     static {
         HashMap hashMap = new HashMap();
@@ -38,19 +38,19 @@ public final class d {
         hashMap.put(s.class, new re.a(7));
         hashMap.put(ve.n.class, new re.a(6));
         hashMap.put(ve.l.class, new re.a(5));
-        f48196q = DesugarCollections.unmodifiableMap(hashMap);
+        f48207q = DesugarCollections.unmodifiableMap(hashMap);
     }
 
     public d(ArrayList arrayList, we.b bVar, ArrayList arrayList2) {
         ArrayList arrayList3 = new ArrayList();
-        this.f48207n = arrayList3;
+        this.f48218n = arrayList3;
         LinkedHashSet linkedHashSet = new LinkedHashSet();
-        this.f48208o = linkedHashSet;
-        this.f48202i = arrayList;
-        this.f48203j = bVar;
-        this.f48204k = arrayList2;
+        this.f48219o = linkedHashSet;
+        this.f48213i = arrayList;
+        this.f48214j = bVar;
+        this.f48215k = arrayList2;
         c cVar = new c(0);
-        this.f48205l = cVar;
+        this.f48216l = cVar;
         arrayList3.add(cVar);
         linkedHashSet.add(cVar);
     }
@@ -60,21 +60,21 @@ public final class d {
             e(h());
         }
         h().e().b(aVar.e());
-        this.f48207n.add(aVar);
-        this.f48208o.add(aVar);
+        this.f48218n.add(aVar);
+        this.f48219o.add(aVar);
     }
 
     public final void b(m mVar) {
-        i iVar = mVar.f48250b;
+        i iVar = mVar.f48261b;
         iVar.a();
-        ArrayList arrayList = iVar.f48237c;
+        ArrayList arrayList = iVar.f48248c;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
             ve.m mVar2 = (ve.m) obj;
-            q qVar = mVar.f48249a;
+            q qVar = mVar.f48260a;
             mVar2.g();
             df.c cVar = (df.c) qVar.e;
             mVar2.e = cVar;
@@ -88,8 +88,8 @@ public final class d {
             if (((df.c) mVar2.e) == null) {
                 cVar2.f5878c = mVar2;
             }
-            String str = mVar2.f50808g;
-            LinkedHashMap linkedHashMap = this.f48206m;
+            String str = mVar2.f50822g;
+            LinkedHashMap linkedHashMap = this.f48217m;
             if (!linkedHashMap.containsKey(str)) {
                 linkedHashMap.put(str, mVar2);
             }
@@ -99,9 +99,9 @@ public final class d {
     public final void c() {
         CharSequence subSequence;
         if (this.d) {
-            CharSequence charSequence = this.f48197a;
-            CharSequence subSequence2 = charSequence.subSequence(this.f48198b + 1, charSequence.length());
-            int i10 = 4 - (this.f48199c % 4);
+            CharSequence charSequence = this.f48208a;
+            CharSequence subSequence2 = charSequence.subSequence(this.f48209b + 1, charSequence.length());
+            int i10 = 4 - (this.f48210c % 4);
             StringBuilder sb2 = new StringBuilder(subSequence2.length() + i10);
             for (int i11 = 0; i11 < i10; i11++) {
                 sb2.append(' ');
@@ -109,26 +109,26 @@ public final class d {
             sb2.append(subSequence2);
             subSequence = sb2.toString();
         } else {
-            CharSequence charSequence2 = this.f48197a;
-            subSequence = charSequence2.subSequence(this.f48198b, charSequence2.length());
+            CharSequence charSequence2 = this.f48208a;
+            subSequence = charSequence2.subSequence(this.f48209b, charSequence2.length());
         }
         h().a(subSequence);
     }
 
     public final void d() {
-        if (this.f48197a.charAt(this.f48198b) == '\t') {
-            this.f48198b++;
-            int i10 = this.f48199c;
-            this.f48199c = (4 - (i10 % 4)) + i10;
+        if (this.f48208a.charAt(this.f48209b) == '\t') {
+            this.f48209b++;
+            int i10 = this.f48210c;
+            this.f48210c = (4 - (i10 % 4)) + i10;
             return;
         }
-        this.f48198b++;
-        this.f48199c++;
+        this.f48209b++;
+        this.f48210c++;
     }
 
     public final void e(xe.a aVar) {
         if (h() == aVar) {
-            a1.g.x(1, this.f48207n);
+            a1.g.x(1, this.f48218n);
         }
         if (aVar instanceof m) {
             b((m) aVar);
@@ -143,15 +143,15 @@ public final class d {
     }
 
     public final void g() {
-        int i10 = this.f48198b;
-        int i11 = this.f48199c;
+        int i10 = this.f48209b;
+        int i11 = this.f48210c;
         this.h = true;
-        int length = this.f48197a.length();
+        int length = this.f48208a.length();
         while (true) {
             if (i10 >= length) {
                 break;
             }
-            char charAt = this.f48197a.charAt(i10);
+            char charAt = this.f48208a.charAt(i10);
             if (charAt != '\t') {
                 if (charAt != ' ') {
                     this.h = false;
@@ -166,12 +166,12 @@ public final class d {
             }
         }
         this.e = i10;
-        this.f48200f = i11;
-        this.f48201g = i11 - this.f48199c;
+        this.f48211f = i11;
+        this.f48212g = i11 - this.f48210c;
     }
 
     public final xe.a h() {
-        return (xe.a) i0.a.g(1, this.f48207n);
+        return (xe.a) i0.a.g(1, this.f48218n);
     }
 
     public final void i(java.lang.String r23) {
@@ -180,22 +180,22 @@ public final class d {
 
     public final void j(int i10) {
         int i11;
-        int i12 = this.f48200f;
+        int i12 = this.f48211f;
         if (i10 >= i12) {
-            this.f48198b = this.e;
-            this.f48199c = i12;
+            this.f48209b = this.e;
+            this.f48210c = i12;
         }
-        int length = this.f48197a.length();
+        int length = this.f48208a.length();
         while (true) {
-            i11 = this.f48199c;
-            if (i11 >= i10 || this.f48198b == length) {
+            i11 = this.f48210c;
+            if (i11 >= i10 || this.f48209b == length) {
                 break;
             }
             d();
         }
         if (i11 > i10) {
-            this.f48198b--;
-            this.f48199c = i10;
+            this.f48209b--;
+            this.f48210c = i10;
             this.d = true;
             return;
         }
@@ -205,12 +205,12 @@ public final class d {
     public final void k(int i10) {
         int i11 = this.e;
         if (i10 >= i11) {
-            this.f48198b = i11;
-            this.f48199c = this.f48200f;
+            this.f48209b = i11;
+            this.f48210c = this.f48211f;
         }
-        int length = this.f48197a.length();
+        int length = this.f48208a.length();
         while (true) {
-            int i12 = this.f48198b;
+            int i12 = this.f48209b;
             if (i12 >= i10 || i12 == length) {
                 break;
             }

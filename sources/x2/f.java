@@ -20,14 +20,14 @@ public final class f extends m implements Comparable {
     public final boolean N;
     public final boolean O;
     public final int e;
-    public final boolean f52910f;
+    public final boolean f52928f;
     public final String h;
-    public final j f52911n;
-    public final boolean f52912r;
-    public final int f52913s;
-    public final int f52914w;
-    public final int f52915x;
-    public final int f52916y;
+    public final j f52929n;
+    public final boolean f52930r;
+    public final int f52931s;
+    public final int f52932w;
+    public final int f52933x;
+    public final int f52934y;
 
     public f(int r8, b2.p1 r9, int r10, x2.j r11, int r12, boolean r13, x2.d r14, int r15) {
         throw new UnsupportedOperationException("Method not decompiled: x2.f.<init>(int, b2.p1, int, x2.j, int, boolean, x2.d, int):void");
@@ -44,7 +44,7 @@ public final class f extends m implements Comparable {
         String str;
         f fVar = (f) mVar;
         x xVar = fVar.d;
-        this.f52911n.getClass();
+        this.f52929n.getClass();
         x xVar2 = this.d;
         int i11 = xVar2.K;
         if (i11 != -1 && i11 == xVar.K) {
@@ -59,24 +59,24 @@ public final class f extends m implements Comparable {
     @Override
     public final int compareTo(f fVar) {
         v1 a2;
-        boolean z10 = this.f52912r;
-        boolean z11 = this.f52910f;
+        boolean z10 = this.f52930r;
+        boolean z11 = this.f52928f;
         if (z11 && z10) {
-            a2 = o.f52941l;
+            a2 = o.f52959l;
         } else {
-            a2 = o.f52941l.a();
+            a2 = o.f52959l.a();
         }
-        boolean z12 = fVar.f52912r;
+        boolean z12 = fVar.f52930r;
         int i10 = fVar.K;
         b0 c10 = b0.f6331a.c(z10, z12);
-        Integer valueOf = Integer.valueOf(this.f52914w);
-        Integer valueOf2 = Integer.valueOf(fVar.f52914w);
+        Integer valueOf = Integer.valueOf(this.f52932w);
+        Integer valueOf2 = Integer.valueOf(fVar.f52932w);
         s1 s1Var = s1.f6414c;
-        b0 b10 = c10.b(valueOf, valueOf2, s1Var).a(this.f52913s, fVar.f52913s).a(this.f52915x, fVar.f52915x).b(Integer.valueOf(this.f52916y), Integer.valueOf(fVar.f52916y), s1Var).c(this.H, fVar.H).c(this.E, fVar.E).b(Integer.valueOf(this.F), Integer.valueOf(fVar.F), s1Var).a(this.G, fVar.G).c(z11, fVar.f52910f).b(Integer.valueOf(this.L), Integer.valueOf(fVar.L), s1Var);
-        boolean z13 = this.f52911n.F;
+        b0 b10 = c10.b(valueOf, valueOf2, s1Var).a(this.f52931s, fVar.f52931s).a(this.f52933x, fVar.f52933x).b(Integer.valueOf(this.f52934y), Integer.valueOf(fVar.f52934y), s1Var).c(this.H, fVar.H).c(this.E, fVar.E).b(Integer.valueOf(this.F), Integer.valueOf(fVar.F), s1Var).a(this.G, fVar.G).c(z11, fVar.f52928f).b(Integer.valueOf(this.L), Integer.valueOf(fVar.L), s1Var);
+        boolean z13 = this.f52929n.F;
         int i11 = this.K;
         if (z13) {
-            b10 = b10.b(Integer.valueOf(i11), Integer.valueOf(i10), o.f52941l.a());
+            b10 = b10.b(Integer.valueOf(i11), Integer.valueOf(i10), o.f52959l.a());
         }
         b0 b11 = b10.c(this.M, fVar.M).c(this.N, fVar.N).c(this.O, fVar.O).b(Integer.valueOf(this.I), Integer.valueOf(fVar.I), a2).b(Integer.valueOf(this.J), Integer.valueOf(fVar.J), a2);
         if (Objects.equals(this.h, fVar.h)) {

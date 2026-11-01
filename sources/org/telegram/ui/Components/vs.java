@@ -1,8 +1,8 @@
 package org.telegram.ui.Components;
 public abstract class vs {
-    public static final gr f31836a = new gr(0.39d, 0.575d, 0.565d, 1.0d);
-    public static final gr f31837b = new gr(0.445d, 0.05d, 0.55d, 0.95d);
-    public static final gr f31838c = new gr(0.55d, 0.085d, 0.68d, 0.53d);
+    public static final gr f31896a = new gr(0.39d, 0.575d, 0.565d, 1.0d);
+    public static final gr f31897b = new gr(0.445d, 0.05d, 0.55d, 0.95d);
+    public static final gr f31898c = new gr(0.55d, 0.085d, 0.68d, 0.53d);
     public static final gr d = new gr(0.25d, 0.46d, 0.45d, 0.94d);
     public static final gr e = new gr(0.455d, 0.03d, 0.515d, 0.955d);
 }

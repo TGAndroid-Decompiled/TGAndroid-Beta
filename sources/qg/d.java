@@ -4,32 +4,32 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 import org.telegram.messenger.i0;
 import org.telegram.ui.ActionBar.a7;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.t6;
 import w7.b6;
 public final class d extends FrameLayout {
-    public final p6 f45529a;
-    public final TextView f45530b;
+    public final p6 f45540a;
+    public final TextView f45541b;
 
     public d(Context context, p6 p6Var) {
         super(context);
         int i10;
-        this.f45529a = p6Var;
+        this.f45540a = p6Var;
         a7.i(t6.e7, this, p6Var);
         TextView textView = new TextView(getContext());
-        this.f45530b = textView;
+        this.f45541b = textView;
         sc.e.t(textView, 1, 14.0f);
         a7.V(textView, t6.f7, p6Var);
-        if (cd.X) {
+        if (dd.X) {
             i10 = 5;
         } else {
             i10 = 3;
         }
         textView.setGravity(i10 | 16);
-        addView(textView, b6.d(-1, -1.0f, (cd.X ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
+        addView(textView, b6.d(-1, -1.0f, (dd.X ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
     }
 
     @Override
@@ -38,10 +38,10 @@ public final class d extends FrameLayout {
     }
 
     public void setLetter(CharSequence charSequence) {
-        this.f45530b.setText(charSequence);
+        this.f45541b.setText(charSequence);
     }
 
     public void setTextColor(int i10) {
-        a7.V(this.f45530b, i10, this.f45529a);
+        a7.V(this.f45541b, i10, this.f45540a);
     }
 }

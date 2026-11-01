@@ -3,17 +3,17 @@ package sg;
 import android.content.Context;
 import org.telegram.ui.ActionBar.p6;
 public final class l extends d0 {
-    public final o f48387c2;
+    public final o f48398c2;
 
     public l(o oVar, Context context, p6 p6Var, int i10) {
         super(i10, context, p6Var);
-        this.f48387c2 = oVar;
+        this.f48398c2 = oVar;
     }
 
     @Override
     public final void F(int i10, int i11) {
         if (i11 > i10) {
-            this.f48387c2.E.w0(0, org.telegram.messenger.i0.L(30.0f), null);
+            this.f48398c2.E.w0(0, org.telegram.messenger.i0.L(30.0f), null);
         }
     }
 
@@ -25,6 +25,6 @@ public final class l extends d0 {
             }
             return false;
         }
-        return this.f48387c2.f0();
+        return this.f48398c2.g0();
     }
 }

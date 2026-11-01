@@ -6,25 +6,25 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.widget.TextView;
 public class n5 extends TextView {
-    public int f28683a;
-    public PorterDuffColorFilter f28684b;
-    public k5 f28685c;
+    public int f28667a;
+    public PorterDuffColorFilter f28668b;
+    public k5 f28669c;
 
     public n5(Context context) {
         super(context);
-        this.f28683a = 0;
+        this.f28667a = 0;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f28685c = o5.update(this.f28683a, this, this.f28685c, getLayout());
+        this.f28669c = o5.update(this.f28667a, this, this.f28669c, getLayout());
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        o5.release(this, this.f28685c);
+        o5.release(this, this.f28669c);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class n5 extends TextView {
         } else {
             f7 = 0.0f;
         }
-        if (org.telegram.messenger.cd.X) {
+        if (org.telegram.messenger.dd.X) {
             paddingLeft = getPaddingRight();
         } else {
             paddingLeft = getPaddingLeft();
@@ -52,7 +52,7 @@ public class n5 extends TextView {
             canvas2 = canvas;
             canvas2.translate(f10, f7);
         }
-        o5.drawAnimatedEmojis(canvas2, getLayout(), this.f28685c, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, this.f28684b);
+        o5.drawAnimatedEmojis(canvas2, getLayout(), this.f28669c, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, this.f28668b);
         if (i10 == 0 && f10 == 0.0f) {
             return;
         }
@@ -62,24 +62,24 @@ public class n5 extends TextView {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        this.f28685c = o5.update(this.f28683a, this, this.f28685c, getLayout());
+        this.f28669c = o5.update(this.f28667a, this, this.f28669c, getLayout());
     }
 
     public void setCacheType(int i10) {
-        if (this.f28683a == i10) {
+        if (this.f28667a == i10) {
             return;
         }
-        this.f28683a = i10;
-        this.f28685c = o5.update(i10, this, this.f28685c, getLayout());
+        this.f28667a = i10;
+        this.f28669c = o5.update(i10, this, this.f28669c, getLayout());
     }
 
     public void setEmojiColor(int i10) {
-        this.f28684b = new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN);
+        this.f28668b = new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN);
     }
 
     @Override
     public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
         super.setText(charSequence, bufferType);
-        this.f28685c = o5.update(this.f28683a, this, this.f28685c, getLayout());
+        this.f28669c = o5.update(this.f28667a, this, this.f28669c, getLayout());
     }
 }

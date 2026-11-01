@@ -7,28 +7,28 @@ import android.util.Log;
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
-import org.telegram.ui.Components.hu0;
-import org.telegram.ui.Components.s61;
-import org.telegram.ui.Components.u61;
-import org.telegram.ui.do0;
-import org.telegram.ui.o10;
-public final class w3 implements ig.b1, s61, hu0 {
-    public final Object f52087a;
+import org.telegram.ui.Components.iu0;
+import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.v61;
+import org.telegram.ui.bo0;
+import org.telegram.ui.n10;
+public final class w3 implements ig.b1, t61, iu0 {
+    public final Object f52105a;
 
     public w3(Object obj) {
-        this.f52087a = obj;
+        this.f52105a = obj;
     }
 
     @Override
     public void F(boolean z10) {
-        wh.g gVar = (wh.g) this.f52087a;
+        wh.g gVar = (wh.g) this.f52105a;
         fe.b bVar = gVar.Y;
         if (bVar != null) {
             bVar.a(z10, true);
         }
-        o10 o10Var = gVar.f40421s;
-        if (o10Var != null) {
-            o10Var.invalidate();
+        n10 n10Var = gVar.f40011s;
+        if (n10Var != null) {
+            n10Var.invalidate();
         }
     }
 
@@ -38,15 +38,15 @@ public final class w3 implements ig.b1, s61, hu0 {
 
     @Override
     public float a1() {
-        return i0.a.d(9.66f, ei.b.d(((wh.g) this.f52087a).f52863b0), 0);
+        return i0.a.d(9.66f, ei.b.d(((wh.g) this.f52105a).f52881b0), 0);
     }
 
     public synchronized void b() {
-        ((SharedPreferences) this.f52087a).edit().clear().commit();
+        ((SharedPreferences) this.f52105a).edit().clear().commit();
     }
 
     public void c(ea.d dVar, Thread thread, Throwable th2) {
-        x9.n nVar = (x9.n) this.f52087a;
+        x9.n nVar = (x9.n) this.f52105a;
         synchronized (nVar) {
             String str = "Handling uncaught exception \"" + th2 + "\" from thread " + thread.getName();
             if (Log.isLoggable("FirebaseCrashlytics", 3)) {
@@ -66,33 +66,33 @@ public final class w3 implements ig.b1, s61, hu0 {
 
     @Override
     public void g() {
-        do0 do0Var = ((s7) this.f52087a).f50998y0;
-        if (do0Var != null) {
-            do0Var.invalidate();
+        bo0 bo0Var = ((s7) this.f52105a).f51005y0;
+        if (bo0Var != null) {
+            bo0Var.invalidate();
         }
     }
 
     @Override
     public int g1() {
-        return ((wh.g) this.f52087a).f52864c0;
+        return ((wh.g) this.f52105a).f52882c0;
     }
 
     @Override
     public void j() {
-        s7 s7Var = (s7) this.f52087a;
+        s7 s7Var = (s7) this.f52105a;
         if (s7Var.L0) {
             s7Var.L0 = false;
             return;
         }
         s7Var.T0.b(1);
-        s7Var.z((ig.h) ig.h.f8315a.get(0));
+        s7Var.z((ig.h) ig.h.f8316a.get(0));
     }
 
     @Override
     public boolean k() {
         boolean z10;
-        s7 s7Var = (s7) this.f52087a;
-        if (s7Var.f50986s0 == null) {
+        s7 s7Var = (s7) this.f52105a;
+        if (s7Var.f50993s0 == null) {
             z10 = true;
         } else {
             z10 = false;
@@ -105,8 +105,8 @@ public final class w3 implements ig.b1, s61, hu0 {
 
     @Override
     public void n() {
-        s7 s7Var = (s7) this.f52087a;
-        s7Var.m0.f8469a.B();
+        s7 s7Var = (s7) this.f52105a;
+        s7Var.m0.f8470a.B();
         s7Var.M0.setViewHidden(false);
     }
 
@@ -116,13 +116,13 @@ public final class w3 implements ig.b1, s61, hu0 {
 
     @Override
     public void onStateChanged(boolean z10, int i10) {
-        k4 k4Var = (k4) this.f52087a;
+        k4 k4Var = (k4) this.f52105a;
         i4 i4Var = k4Var.M;
-        u61 u61Var = k4Var.f51433y;
-        if (u61Var == null) {
+        v61 v61Var = k4Var.f51448y;
+        if (v61Var == null) {
             return;
         }
-        if (u61Var.d0()) {
+        if (v61Var.d0()) {
             org.telegram.messenger.i0.g3(i4Var);
         } else {
             org.telegram.messenger.i0.r(i4Var);
@@ -136,11 +136,11 @@ public final class w3 implements ig.b1, s61, hu0 {
 
     @Override
     public void onVideoSizeChanged(int i10, int i11, int i12, float f7) {
-        jg.i2 i2Var = ((k4) this.f52087a).f51431x;
+        jg.i2 i2Var = ((k4) this.f52105a).f51446x;
         if (i2Var != null) {
             float f10 = i10 / i11;
-            if (Math.abs(i2Var.f10028y0 - f10) >= 1.0E-4f) {
-                i2Var.f10028y0 = f10;
+            if (Math.abs(i2Var.f10029y0 - f10) >= 1.0E-4f) {
+                i2Var.f10029y0 = f10;
                 i2Var.requestLayout();
             }
         }
@@ -148,15 +148,15 @@ public final class w3 implements ig.b1, s61, hu0 {
 
     @Override
     public void t() {
-        s7 s7Var = (s7) this.f52087a;
-        if (s7Var.f50986s0 != null) {
+        s7 s7Var = (s7) this.f52105a;
+        if (s7Var.f50993s0 != null) {
             s7Var.A0(null, true);
         }
         s7Var.M0.setViewHidden(true);
     }
 
     public w3() {
-        this.f52087a = new k6.h(2);
+        this.f52105a = new k6.h(2);
     }
 
     @Override
@@ -166,7 +166,7 @@ public final class w3 implements ig.b1, s61, hu0 {
     public w3(Context context) {
         boolean isEmpty;
         SharedPreferences sharedPreferences = context.getSharedPreferences("com.google.android.gms.appid", 0);
-        this.f52087a = sharedPreferences;
+        this.f52105a = sharedPreferences;
         File file = new File(context.getNoBackupFilesDir(), "com.google.android.gms.appid-no-backup");
         if (file.exists()) {
             return;
@@ -206,6 +206,6 @@ public final class w3 implements ig.b1, s61, hu0 {
     }
 
     @Override
-    public void onError(u61 u61Var, Exception exc) {
+    public void onError(v61 v61Var, Exception exc) {
     }
 }

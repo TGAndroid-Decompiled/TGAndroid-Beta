@@ -63,7 +63,7 @@ import org.telegram.messenger.f8;
 import org.telegram.messenger.w0;
 import org.telegram.ui.Components.gr;
 import org.telegram.ui.Components.jh;
-import org.telegram.ui.Components.tk0;
+import org.telegram.ui.Components.uk0;
 import org.telegram.ui.tm;
 import ph.x1;
 import r0.h0;
@@ -175,19 +175,19 @@ public class a implements i, t {
         d dVar3;
         switch (this.f280a) {
             case 24:
-                c9 c9Var = c9.f50417c;
+                c9 c9Var = c9.f50431c;
                 n nVar = (n) this.f282c;
                 ((a8) this.d).h = false;
                 a8 a8Var = (a8) this.d;
-                a8Var.f50387f = Boolean.FALSE;
-                nVar.f53554a = new b8(a8Var);
+                a8Var.f50401f = Boolean.FALSE;
+                nVar.f53572a = new b8(a8Var);
                 try {
                     c9.b();
                     h6 h6Var = new h6(nVar);
                     q5.d dVar4 = new q5.d(9);
                     c9Var.a(dVar4);
-                    HashMap hashMap = new HashMap((HashMap) dVar4.f45487b);
-                    HashMap hashMap2 = new HashMap((HashMap) dVar4.f45488c);
+                    HashMap hashMap = new HashMap((HashMap) dVar4.f45498b);
+                    HashMap hashMap2 = new HashMap((HashMap) dVar4.f45499c);
                     v7.i iVar = (v7.i) dVar4.d;
                     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                     try {
@@ -204,19 +204,19 @@ public class a implements i, t {
                     throw new UnsupportedOperationException("Failed to covert logging to UTF-8 byte array", e);
                 }
             case 25:
-                ja jaVar = ja.f53215c;
+                ja jaVar = ja.f53233c;
                 f fVar = (f) this.f282c;
                 ((a8) this.d).h = false;
                 a8 a8Var2 = (a8) this.d;
-                a8Var2.f50387f = Boolean.FALSE;
-                fVar.f9347a = new j9(a8Var2);
+                a8Var2.f50401f = Boolean.FALSE;
+                fVar.f9348a = new j9(a8Var2);
                 try {
                     ja.b();
                     p7 p7Var = new p7(fVar);
                     q5.d dVar5 = new q5.d(18);
                     jaVar.a(dVar5);
-                    HashMap hashMap3 = new HashMap((HashMap) dVar5.f45487b);
-                    HashMap hashMap4 = new HashMap((HashMap) dVar5.f45488c);
+                    HashMap hashMap3 = new HashMap((HashMap) dVar5.f45498b);
+                    HashMap hashMap4 = new HashMap((HashMap) dVar5.f45499c);
                     d0 d0Var = (d0) dVar5.d;
                     ByteArrayOutputStream byteArrayOutputStream2 = new ByteArrayOutputStream();
                     try {
@@ -233,19 +233,19 @@ public class a implements i, t {
                     throw new UnsupportedOperationException("Failed to covert logging to UTF-8 byte array", e7);
                 }
             default:
-                ag agVar = ag.f54644c;
+                ag agVar = ag.f54662c;
                 p3 p3Var = (p3) this.f282c;
                 ((a8) this.d).h = false;
                 a8 a8Var3 = (a8) this.d;
-                a8Var3.f50387f = Boolean.FALSE;
-                p3Var.f12518a = new xe(a8Var3);
+                a8Var3.f50401f = Boolean.FALSE;
+                p3Var.f12519a = new xe(a8Var3);
                 try {
                     ag.b();
                     ib ibVar = new ib(p3Var);
                     q5.d dVar6 = new q5.d(26);
                     agVar.a(dVar6);
-                    HashMap hashMap5 = new HashMap((HashMap) dVar6.f45487b);
-                    HashMap hashMap6 = new HashMap((HashMap) dVar6.f45488c);
+                    HashMap hashMap5 = new HashMap((HashMap) dVar6.f45498b);
+                    HashMap hashMap6 = new HashMap((HashMap) dVar6.f45499c);
                     x xVar = (x) dVar6.d;
                     ByteArrayOutputStream byteArrayOutputStream3 = new ByteArrayOutputStream();
                     try {
@@ -298,7 +298,7 @@ public class a implements i, t {
             z10 = false;
         }
         this.f281b = i12;
-        for (int i13 = 0; i13 < e.f46506y; i13++) {
+        for (int i13 = 0; i13 < e.f46517y; i13++) {
             if (z10 || ((Bitmap[]) this.d)[i13] == null) {
                 Bitmap bitmap = ((Bitmap[]) this.d)[i13];
                 if (bitmap != null) {
@@ -468,7 +468,7 @@ public class a implements i, t {
         Iterator it = ((CopyOnWriteArrayList) this.d).iterator();
         while (it.hasNext()) {
             j0 j0Var = (j0) it.next();
-            l0.W(j0Var.f49901a, new o0(25, jVar, j0Var.f49902b));
+            l0.W(j0Var.f49915a, new o0(26, jVar, j0Var.f49916b));
         }
     }
 
@@ -542,7 +542,7 @@ public class a implements i, t {
     public void onSuccess(Object obj) {
         List list = (List) obj;
         f0 f0Var = ((m4.p0) this.d).h;
-        Handler handler = f0Var.f12746l;
+        Handler handler = f0Var.f12747l;
         m4.w wVar = (m4.w) this.f282c;
         l0.W(handler, new k2.u(f0Var, wVar, new g3(this, this.f281b, list, wVar, 4)));
     }
@@ -567,10 +567,10 @@ public class a implements i, t {
         int resourceId;
         ImageView imageView = (ImageView) this.f282c;
         Context context = imageView.getContext();
-        int[] iArr = f.a.f6697f;
+        int[] iArr = f.a.f6698f;
         k G = k.G(context, attributeSet, iArr, i10);
-        TypedArray typedArray = (TypedArray) G.f12101c;
-        h0.i(imageView, imageView.getContext(), iArr, attributeSet, (TypedArray) G.f12101c, i10);
+        TypedArray typedArray = (TypedArray) G.f12102c;
+        h0.i(imageView, imageView.getContext(), iArr, attributeSet, (TypedArray) G.f12102c, i10);
         try {
             Drawable drawable = imageView.getDrawable();
             if (drawable == null && (resourceId = typedArray.getResourceId(1, -1)) != -1 && (drawable = r7.b(imageView.getContext(), resourceId)) != null) {
@@ -580,7 +580,7 @@ public class a implements i, t {
                 l1.a(drawable);
             }
             if (typedArray.hasValue(2)) {
-                imageView.setImageTintList(G.v(2));
+                imageView.setImageTintList(G.u(2));
             }
             if (typedArray.hasValue(3)) {
                 imageView.setImageTintMode(l1.b(typedArray.getInt(3, -1), null));
@@ -629,7 +629,7 @@ public class a implements i, t {
     }
 
     public void y(int i10) {
-        z(i10, 200L, gr.f26495f);
+        z(i10, 200L, gr.f26523f);
     }
 
     public void z(int i10, long j10, Interpolator interpolator) {
@@ -683,7 +683,7 @@ public class a implements i, t {
                 this.f282c = new yg.a();
                 return;
             case 19:
-                int i11 = e.f46506y;
+                int i11 = e.f46517y;
                 this.f282c = new rf.x[i11];
                 this.d = new Bitmap[i11];
                 return;
@@ -725,9 +725,9 @@ public class a implements i, t {
         this.f281b = i10;
     }
 
-    public a(tk0 tk0Var) {
+    public a(uk0 uk0Var) {
         this.f280a = 17;
-        this.d = tk0Var;
+        this.d = uk0Var;
     }
 
     @Override
@@ -739,7 +739,7 @@ public class a implements i, t {
         this.f282c = rectF;
         this.f281b = i10;
         try {
-            this.d = File.createTempFile("paint", ".bin", w0.f19025b.getCacheDir());
+            this.d = File.createTempFile("paint", ".bin", w0.f18945b.getCacheDir());
         } catch (Exception e) {
             f8.g(e, true);
         }

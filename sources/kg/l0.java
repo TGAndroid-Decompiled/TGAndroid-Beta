@@ -1,16 +1,16 @@
 package kg;
 public class l0 {
-    public final int f11164a;
-    public final int f11165b;
-    public final String f11166c;
+    public final int f11165a;
+    public final int f11166b;
+    public final String f11167c;
     public final String d;
     public final int e;
-    public boolean f11167f;
+    public boolean f11168f;
 
     public l0(int i10, int i11, int i12, String str, String str2) {
-        this.f11164a = i10;
-        this.f11165b = i11;
-        this.f11166c = str;
+        this.f11165a = i10;
+        this.f11166b = i11;
+        this.f11167c = str;
         this.d = str2;
         this.e = i12;
     }

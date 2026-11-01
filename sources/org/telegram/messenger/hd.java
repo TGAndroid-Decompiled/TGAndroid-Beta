@@ -1,38 +1,52 @@
 package org.telegram.messenger;
 
-import android.location.Location;
-public final class hd implements q0.a {
-    public final int f15875a;
-    public final nd f15876b;
+import java.util.ArrayList;
+public final class hd implements Runnable {
+    public final int f16044a;
+    public final od f16045b;
+    public final nd f16046c;
 
-    public hd(nd ndVar, int i10) {
-        this.f15875a = i10;
-        this.f15876b = ndVar;
+    public hd(od odVar, nd ndVar, int i10) {
+        this.f16044a = i10;
+        this.f16045b = odVar;
+        this.f16046c = ndVar;
     }
 
     @Override
-    public final void accept(Object obj) {
-        switch (this.f15875a) {
+    public final void run() {
+        switch (this.f16044a) {
             case 0:
-                this.f15876b.m((Location) obj);
+                od odVar = this.f16045b;
+                ArrayList arrayList = odVar.I;
+                nd ndVar = this.f16046c;
+                arrayList.remove(ndVar);
+                odVar.J.l(ndVar.f17282a);
+                if (arrayList.isEmpty()) {
+                    od.s();
+                }
+                at.e().k(280, new Object[0]);
+                return;
+            case 1:
+                od odVar2 = this.f16045b;
+                ArrayList arrayList2 = odVar2.I;
+                nd ndVar2 = this.f16046c;
+                arrayList2.remove(ndVar2);
+                odVar2.J.l(ndVar2.f17282a);
+                if (arrayList2.isEmpty()) {
+                    od.s();
+                }
+                at.e().k(280, new Object[0]);
                 return;
             default:
-                nd ndVar = this.f15876b;
-                Integer num = (Integer) obj;
-                ndVar.getClass();
-                int intValue = num.intValue();
-                if (intValue != 0) {
-                    if (intValue != 1) {
-                        if (intValue == 2) {
-                            Utilities.d.c(new ed(ndVar, 4));
-                            return;
-                        }
-                        return;
-                    }
-                    Utilities.d.c(new id(ndVar, num, 0));
-                    return;
+                od odVar3 = this.f16045b;
+                ArrayList arrayList3 = odVar3.I;
+                nd ndVar3 = this.f16046c;
+                arrayList3.remove(ndVar3);
+                odVar3.J.l(ndVar3.f17282a);
+                if (arrayList3.isEmpty()) {
+                    od.s();
                 }
-                Utilities.d.c(new c20(3, ndVar, true));
+                at.e().k(280, new Object[0]);
                 return;
         }
     }

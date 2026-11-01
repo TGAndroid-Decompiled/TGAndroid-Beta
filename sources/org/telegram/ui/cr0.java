@@ -1,45 +1,23 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.ViewPropertyAnimator;
-import android.widget.FrameLayout;
-public final class cr0 extends AnimatorListenerAdapter {
-    public final int f36527a;
-    public final int f36528b;
-    public final PhotoViewer f36529c;
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Bitmap;
+import java.util.ArrayList;
+public final class cr0 extends jg.r0 {
+    public final PhotoViewer X1;
 
-    public cr0(PhotoViewer photoViewer, int i10, int i11) {
-        this.f36527a = i11;
-        this.f36529c = photoViewer;
-        this.f36528b = i10;
+    public cr0(PhotoViewer photoViewer, Context context, Activity activity, int i10, Bitmap bitmap, Bitmap bitmap2, int i11, ArrayList arrayList, org.telegram.messenger.ze zeVar, oo0 oo0Var, org.telegram.ui.ActionBar.p6 p6Var) {
+        super(context, activity, i10, bitmap, bitmap2, i11, arrayList, zeVar, oo0Var, p6Var);
+        this.X1 = photoViewer;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f36527a) {
-            case 0:
-                PhotoViewer photoViewer = this.f36529c;
-                dr0 dr0Var = photoViewer.N1;
-                dr0Var.e.setVisibility(0);
-                FrameLayout frameLayout = dr0Var.f9882r;
-                frameLayout.setVisibility(0);
-                frameLayout.setTranslationY(org.telegram.messenger.i0.L(18.0f));
-                ViewPropertyAnimator translationY = frameLayout.animate().alpha(1.0f).translationY(0.0f);
-                org.telegram.ui.Components.gr grVar = org.telegram.ui.Components.gr.h;
-                org.telegram.messenger.z20.m(translationY, grVar, 320L);
-                dr0Var.f9885x.animate().alpha(1.0f).translationX(0.0f).setInterpolator(grVar).setDuration(320L).start();
-                photoViewer.f33615u4 = this.f36528b;
-                photoViewer.q6 = null;
-                photoViewer.f33563o6 = -1;
-                return;
-            default:
-                int i10 = this.f36528b;
-                PhotoViewer photoViewer2 = this.f36529c;
-                photoViewer2.f33615u4 = i10;
-                photoViewer2.q6 = null;
-                photoViewer2.f33563o6 = -1;
-                return;
+    public final int getPKeyboardHeight() {
+        vh.r2 r2Var = this.X1.K1;
+        if (r2Var != null) {
+            return r2Var.f51832l;
         }
+        return 0;
     }
 }

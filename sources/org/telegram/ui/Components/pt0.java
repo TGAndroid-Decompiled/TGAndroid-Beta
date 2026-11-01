@@ -1,89 +1,151 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.text.StaticLayout;
-import android.text.TextPaint;
 import android.util.SparseArray;
-import android.view.View;
 import java.util.ArrayList;
-import java.util.HashSet;
-public abstract class pt0 extends rs0 {
-    public final HashSet f29424j3;
-    public final ArrayList f29425k3;
-    public final ArrayList f29426l3;
-    public final ArrayList f29427m3;
-    public TextPaint f29428n3;
-    public StaticLayout f29429o3;
-    public float f29430p3;
-    public float f29431q3;
-    public th.w7 f29432r3;
-    public int f29433s3;
-    public final ArrayList f29434t3;
+import java.util.HashMap;
+public final class pt0 {
+    public boolean f29536g;
+    public boolean h;
+    public int f29539k;
+    public int f29541m;
+    public int f29542n;
+    public boolean f29543o;
+    public int f29544p;
+    public boolean f29546r;
+    public int f29548t;
+    public int f29549u;
+    public boolean v;
+    public boolean f29550w;
+    public final ArrayList f29532a = new ArrayList();
+    public final SparseArray[] f29533b = {new SparseArray(), new SparseArray()};
+    public final ArrayList f29534c = new ArrayList();
+    public final HashMap d = new HashMap();
+    public final ArrayList e = new ArrayList();
+    public final int[] f29535f = {0, 0};
+    public final boolean[] f29537i = {false, true};
+    public final int[] f29538j = {0, 0};
+    public boolean f29540l = true;
+    public int f29545q = 0;
+    public final ArrayList f29547s = new ArrayList();
+    public s4.u0 f29551x = new s4.u0();
 
-    public pt0(Context context) {
-        super(context, null);
-        this.f29424j3 = new HashSet();
-        this.f29425k3 = new ArrayList();
-        this.f29426l3 = new ArrayList();
-        this.f29427m3 = new ArrayList();
-        this.f29434t3 = new ArrayList();
-    }
-
-    public abstract boolean A1();
-
-    public abstract boolean B1();
-
-    public boolean C1() {
+    public final boolean a(org.telegram.messenger.kj kjVar, int i10, boolean z10, boolean z11) {
+        SparseArray[] sparseArrayArr = this.f29533b;
+        SparseArray sparseArray = sparseArrayArr[i10];
+        int f12 = kjVar.f1();
+        String str = kjVar.Y;
+        if (sparseArray.indexOfKey(f12) >= 0) {
+            return false;
+        }
+        HashMap hashMap = this.d;
+        ArrayList arrayList = (ArrayList) hashMap.get(str);
+        if (arrayList == null) {
+            arrayList = new ArrayList();
+            hashMap.put(str, arrayList);
+            ArrayList arrayList2 = this.f29534c;
+            if (z10) {
+                arrayList2.add(0, str);
+            } else {
+                arrayList2.add(str);
+            }
+        }
+        ArrayList arrayList3 = this.f29532a;
+        if (z10) {
+            arrayList.add(0, kjVar);
+            arrayList3.add(0, kjVar);
+        } else {
+            arrayList.add(kjVar);
+            arrayList3.add(kjVar);
+        }
+        sparseArrayArr[i10].put(kjVar.f1(), kjVar);
+        int[] iArr = this.f29538j;
+        if (!z11) {
+            if (kjVar.f1() > 0) {
+                iArr[i10] = Math.min(kjVar.f1(), iArr[i10]);
+                this.f29539k = Math.max(kjVar.f1(), this.f29539k);
+            }
+        } else {
+            iArr[i10] = Math.max(kjVar.f1(), iArr[i10]);
+            this.f29539k = Math.min(kjVar.f1(), this.f29539k);
+        }
+        if (!this.v && org.telegram.messenger.kj.L4(kjVar.f16690k)) {
+            this.v = true;
+        }
+        if (!this.f29550w && org.telegram.messenger.kj.S3(kjVar.f16690k)) {
+            this.f29550w = true;
+        }
         return true;
     }
 
-    @Override
-    public void dispatchDraw(android.graphics.Canvas r33) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.pt0.dispatchDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        ak0 movingAdapter = getMovingAdapter();
-        if (C1() && getAdapter() == movingAdapter && A1() && (view instanceof org.telegram.ui.Cells.s7)) {
-            return true;
+    public final org.telegram.messenger.kj b(int i10, int i11) {
+        SparseArray[] sparseArrayArr = this.f29533b;
+        org.telegram.messenger.kj kjVar = (org.telegram.messenger.kj) sparseArrayArr[i11].get(i10);
+        if (kjVar == null) {
+            return null;
         }
-        return super.drawChild(canvas, view, j10);
+        String str = kjVar.Y;
+        HashMap hashMap = this.d;
+        ArrayList arrayList = (ArrayList) hashMap.get(str);
+        if (arrayList == null) {
+            return null;
+        }
+        arrayList.remove(kjVar);
+        this.f29532a.remove(kjVar);
+        sparseArrayArr[i11].remove(kjVar.f1());
+        if (arrayList.isEmpty()) {
+            hashMap.remove(str);
+            this.f29534c.remove(str);
+        }
+        int[] iArr = this.f29535f;
+        int i12 = iArr[i11] - 1;
+        iArr[i11] = i12;
+        if (i12 < 0) {
+            iArr[i11] = 0;
+        }
+        return kjVar;
     }
 
-    public int getAnimateToColumnsCount() {
-        return 3;
+    public final ArrayList c() {
+        if (this.f29546r) {
+            return this.f29547s;
+        }
+        return this.f29532a;
     }
 
-    public float getChangeColumnsProgress() {
-        return 0.0f;
+    public final int d() {
+        if (this.f29546r) {
+            return this.f29548t;
+        }
+        return this.f29541m;
     }
 
-    public int getColumnsCount() {
-        return 3;
+    public final int e() {
+        int[] iArr = this.f29535f;
+        return iArr[0] + iArr[1];
     }
 
-    public SparseArray<Float> getMessageAlphaEnter() {
-        return null;
+    public final void f(int i10, int i11, int i12) {
+        SparseArray[] sparseArrayArr = this.f29533b;
+        org.telegram.messenger.kj kjVar = (org.telegram.messenger.kj) sparseArrayArr[i10].get(i11);
+        if (kjVar != null) {
+            sparseArrayArr[i10].remove(i11);
+            sparseArrayArr[i10].put(i12, kjVar);
+            kjVar.f16690k.f19815id = i12;
+            int[] iArr = this.f29538j;
+            iArr[i10] = Math.min(i12, iArr[i10]);
+        }
     }
 
-    public ak0 getMovingAdapter() {
-        return null;
-    }
-
-    public int getPinchCenterPosition() {
-        return 0;
-    }
-
-    public ak0 getSupportingAdapter() {
-        return null;
-    }
-
-    public rs0 getSupportingListView() {
-        return null;
-    }
-
-    public void z1(org.telegram.ui.Cells.s7 s7Var) {
+    public final void g(boolean z10) {
+        if (this.f29546r != z10) {
+            this.f29546r = z10;
+            if (z10) {
+                this.f29548t = this.f29541m;
+                this.f29549u = this.f29542n;
+                ArrayList arrayList = this.f29547s;
+                arrayList.clear();
+                arrayList.addAll(this.f29532a);
+            }
+        }
     }
 }

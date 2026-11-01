@@ -25,12 +25,12 @@ import java.util.List;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
 public final class jb0 extends Drawable {
-    public static final boolean f27274e0;
-    public static final boolean f27275f0;
+    public static final boolean f27329e0;
+    public static final boolean f27330f0;
     public Matrix A;
     public boolean B;
     public GradientDrawable C;
-    public org.telegram.messenger.l9 D;
+    public org.telegram.messenger.m9 D;
     public boolean E;
     public boolean F;
     public final Runnable G;
@@ -53,36 +53,36 @@ public final class jb0 extends Drawable {
     public Bitmap X;
     public Canvas Y;
     public Paint Z;
-    public final int[] f27276a;
-    public int f27277a0;
-    public long f27278b;
-    public final yg.a f27279b0;
-    public WeakReference f27280c;
-    public Bitmap f27281c0;
+    public final int[] f27331a;
+    public int f27332a0;
+    public long f27333b;
+    public final yg.a f27334b0;
+    public WeakReference f27335c;
+    public Bitmap f27336c0;
     public boolean d;
-    public int f27282d0;
+    public int f27337d0;
     public final gr e;
-    public int f27283f;
-    public boolean f27284g;
+    public int f27338f;
+    public boolean f27339g;
     public float h;
-    public int f27285i;
-    public final RectF f27286j;
-    public Bitmap f27287k;
-    public Bitmap f27288l;
-    public final Bitmap[] f27289m;
-    public final Paint f27290n;
-    public final Paint f27291o;
-    public final Paint f27292p;
-    public int f27293q;
-    public Canvas f27294r;
-    public Canvas f27295s;
-    public boolean f27296t;
-    public Bitmap f27297u;
+    public int f27340i;
+    public final RectF f27341j;
+    public Bitmap f27342k;
+    public Bitmap f27343l;
+    public final Bitmap[] f27344m;
+    public final Paint f27345n;
+    public final Paint f27346o;
+    public final Paint f27347p;
+    public int f27348q;
+    public Canvas f27349r;
+    public Canvas f27350s;
+    public boolean f27351t;
+    public Bitmap f27352u;
     public BitmapShader v;
-    public BitmapShader f27298w;
-    public Bitmap f27299x;
-    public ImageReceiver f27300y;
-    public boolean f27301z;
+    public BitmapShader f27353w;
+    public Bitmap f27354x;
+    public ImageReceiver f27355y;
+    public boolean f27356z;
 
     static {
         boolean z10;
@@ -93,23 +93,23 @@ public final class jb0 extends Drawable {
         } else {
             z10 = false;
         }
-        f27274e0 = z10;
+        f27329e0 = z10;
         if (i10 >= 29) {
             z11 = true;
         }
-        f27275f0 = z11;
+        f27330f0 = z11;
     }
 
     public jb0() {
-        this.f27276a = new int[]{-12423849, -531317, -7888252, -133430};
+        this.f27331a = new int[]{-12423849, -531317, -7888252, -133430};
         this.e = new gr(0.33d, 0.0d, 0.0d, 1.0d);
         this.h = 1.0f;
-        this.f27286j = new RectF();
-        this.f27289m = new Bitmap[3];
-        this.f27290n = new Paint(2);
-        this.f27291o = new Paint(2);
-        this.f27292p = new Paint();
-        this.f27293q = 100;
+        this.f27341j = new RectF();
+        this.f27344m = new Bitmap[3];
+        this.f27345n = new Paint(2);
+        this.f27346o = new Paint(2);
+        this.f27347p = new Paint();
+        this.f27348q = 100;
         this.C = new GradientDrawable();
         this.G = new ib0(this, 0);
         this.J = 1.0f;
@@ -122,13 +122,13 @@ public final class jb0 extends Drawable {
         this.U = -16777216;
         this.V = new yg.a();
         this.W = new yg.a();
-        this.f27279b0 = new yg.a();
+        this.f27334b0 = new yg.a();
         h();
     }
 
     public static int g(int i10, int i11, int i12, int i13) {
         boolean j10 = j(i10, i11, i12, i13);
-        boolean z10 = f27275f0;
+        boolean z10 = f27330f0;
         if (j10) {
             if (!z10) {
                 return Integer.MAX_VALUE;
@@ -161,21 +161,21 @@ public final class jb0 extends Drawable {
 
     public final void a(Canvas canvas, int i10, float f7, float f10, float f11, float f12) {
         List list = this.R;
-        if (list != null && this.f27300y != null && i10 >= 0 && i10 < list.size()) {
+        if (list != null && this.f27355y != null && i10 >= 0 && i10 < list.size()) {
             wf.c cVar = (wf.c) this.R.get(i10);
             canvas.save();
             canvas.translate(f7, f10);
             canvas.scale(f11, f12);
-            canvas.concat(cVar.f52838b);
-            this.f27300y.A0(cVar.f52837a);
-            this.f27300y.h(canvas, null);
+            canvas.concat(cVar.f52856b);
+            this.f27355y.A0(cVar.f52855a);
+            this.f27355y.h(canvas, null);
             canvas.restore();
         }
     }
 
     public final void b(Canvas canvas, RectF rectF, int i10) {
-        if (this.R != null && this.f27297u != null) {
-            a(canvas, i10, rectF.left, rectF.top, rectF.width() / this.f27297u.getWidth(), rectF.height() / this.f27297u.getHeight());
+        if (this.R != null && this.f27352u != null) {
+            a(canvas, i10, rectF.left, rectF.top, rectF.width() / this.f27352u.getWidth(), rectF.height() / this.f27352u.getHeight());
         }
     }
 
@@ -186,17 +186,17 @@ public final class jb0 extends Drawable {
             int i11 = i10 + 1;
             float f7 = i11 / 3.0f;
             if (i10 < 0) {
-                bitmap = this.f27288l;
+                bitmap = this.f27343l;
             } else {
-                bitmap = this.f27289m[i10];
+                bitmap = this.f27344m[i10];
             }
-            Utilities.generateGradient(bitmap, this.f27285i, f7, this.f27276a);
+            Utilities.generateGradient(bitmap, this.f27340i, f7, this.f27331a);
             i10 = i11;
         }
     }
 
     public final Bitmap d() {
-        return this.f27287k;
+        return this.f27342k;
     }
 
     @Override
@@ -209,11 +209,11 @@ public final class jb0 extends Drawable {
         if (e != null) {
             i10 = bounds.top;
         } else {
-            i10 = this.f27283f;
+            i10 = this.f27338f;
         }
         float f7 = i10;
-        int width = this.f27287k.getWidth();
-        int height = this.f27287k.getHeight();
+        int width = this.f27342k.getWidth();
+        int height = this.f27342k.getHeight();
         float width2 = bounds.width();
         float height2 = bounds.height();
         float f10 = width;
@@ -223,45 +223,45 @@ public final class jb0 extends Drawable {
         float f13 = f11 * max;
         float f14 = (width2 - f12) / 2.0f;
         float f15 = (height2 - f13) / 2.0f;
-        if (this.f27284g) {
+        if (this.f27339g) {
             int i11 = bounds.left;
             f14 += i11;
             int i12 = bounds.top;
             f15 += i12;
             canvas.clipRect(i11, i12, bounds.right, bounds.bottom);
         }
-        if (Build.VERSION.SDK_INT >= 28 && this.Q != null && this.f27287k != null && e != null) {
+        if (Build.VERSION.SDK_INT >= 28 && this.Q != null && this.f27342k != null && e != null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        int i13 = this.f27293q;
+        int i13 = this.f27348q;
         float f16 = 1.0f;
-        Paint paint = this.f27290n;
+        Paint paint = this.f27345n;
         float f17 = this.K;
-        Paint paint2 = this.f27291o;
+        Paint paint2 = this.f27346o;
         boolean z11 = z10;
-        RectF rectF = this.f27286j;
+        RectF rectF = this.f27341j;
         if (i13 < 0) {
-            boolean z12 = f27274e0;
+            boolean z12 = f27329e0;
             if (!z11 && (!z12 || e == null)) {
                 canvas.drawColor(i0.b.o(-16777216, (int) (this.L * f17)));
             }
             if (e != null) {
                 if (z12) {
-                    int i14 = (((int) (this.L * this.J)) * (-this.f27293q)) / 100;
-                    if (this.f27297u != null) {
+                    int i14 = (((int) (this.L * this.J)) * (-this.f27348q)) / 100;
+                    if (this.f27352u != null) {
                         Bitmap e7 = e();
-                        yg.a aVar = this.f27279b0;
-                        if (aVar.a(e7) || this.f27281c0 == null || this.f27282d0 != i14) {
-                            int width3 = this.f27297u.getWidth();
-                            int height3 = this.f27297u.getHeight();
-                            this.f27282d0 = i14;
-                            Bitmap bitmap = this.f27281c0;
-                            if (bitmap == null || bitmap.getWidth() != width3 || this.f27281c0.getHeight() != height3) {
-                                this.f27281c0 = Bitmap.createBitmap(width3, height3, Bitmap.Config.ARGB_8888);
+                        yg.a aVar = this.f27334b0;
+                        if (aVar.a(e7) || this.f27336c0 == null || this.f27337d0 != i14) {
+                            int width3 = this.f27352u.getWidth();
+                            int height3 = this.f27352u.getHeight();
+                            this.f27337d0 = i14;
+                            Bitmap bitmap = this.f27336c0;
+                            if (bitmap == null || bitmap.getWidth() != width3 || this.f27336c0.getHeight() != height3) {
+                                this.f27336c0 = Bitmap.createBitmap(width3, height3, Bitmap.Config.ARGB_8888);
                             }
-                            Utilities.applyAlphaInvert(e7, this.f27281c0, i14);
+                            Utilities.applyAlphaInvert(e7, this.f27336c0, i14);
                         }
                         aVar.b(e7);
                     }
@@ -273,9 +273,9 @@ public final class jb0 extends Drawable {
                     float f20 = (width2 - f18) / 2.0f;
                     float f21 = (height2 - f19) / 2.0f;
                     rectF.set(f20, f21, f18 + f20, f19 + f21);
-                    if (this.f27281c0 != null) {
-                        canvas.drawBitmap(this.f27287k, (Rect) null, rectF, paint);
-                        canvas.drawBitmap(this.f27281c0, (Rect) null, rectF, paint);
+                    if (this.f27336c0 != null) {
+                        canvas.drawBitmap(this.f27342k, (Rect) null, rectF, paint);
+                        canvas.drawBitmap(this.f27336c0, (Rect) null, rectF, paint);
                     } else {
                         canvas.drawColor(i0.b.o(-16777216, (int) (this.L * f17)));
                     }
@@ -286,7 +286,7 @@ public final class jb0 extends Drawable {
                     }
                     this.A.reset();
                     this.A.setTranslate(f14, f15 + f7);
-                    float min = 1.0f / Math.min(this.f27287k.getWidth() / bounds.width(), this.f27287k.getHeight() / bounds.height());
+                    float min = 1.0f / Math.min(this.f27342k.getWidth() / bounds.width(), this.f27342k.getHeight() / bounds.height());
                     this.A.preScale(min, min);
                     this.v.setLocalMatrix(this.A);
                     this.A.reset();
@@ -296,16 +296,16 @@ public final class jb0 extends Drawable {
                     float f22 = (width2 - (width5 * max3)) / 2.0f;
                     float f23 = ((height2 - (height5 * max3)) / 2.0f) + f7;
                     this.A.setTranslate((int) f22, (int) f23);
-                    if (!this.f27301z || max3 > 1.4f || max3 < 0.8f) {
+                    if (!this.f27356z || max3 > 1.4f || max3 < 0.8f) {
                         this.A.preScale(max3, max3);
                         f16 = max3;
                     }
-                    this.f27298w.setLocalMatrix(this.A);
+                    this.f27353w.setLocalMatrix(this.A);
                     paint2.setColorFilter(null);
-                    paint2.setAlpha((int) ((Math.abs(this.f27293q) / 100.0f) * this.L * this.J));
+                    paint2.setAlpha((int) ((Math.abs(this.f27348q) / 100.0f) * this.L * this.J));
                     rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
                     if (z11) {
-                        Paint e10 = this.Q.e(this.f27287k, e, this.U, (int) (this.L * this.J), this.f27293q, canvas.isHardwareAccelerated());
+                        Paint e10 = this.Q.e(this.f27342k, e, this.U, (int) (this.L * this.J), this.f27348q, canvas.isHardwareAccelerated());
                         this.Q.d(this.A);
                         this.Q.c(rectF);
                         float f24 = this.I;
@@ -321,7 +321,7 @@ public final class jb0 extends Drawable {
             if (this.I != 0) {
                 this.A.reset();
                 this.A.setTranslate(f14, f15);
-                float min2 = 1.0f / Math.min(this.f27287k.getWidth() / bounds.width(), this.f27287k.getHeight() / bounds.height());
+                float min2 = 1.0f / Math.min(this.f27342k.getWidth() / bounds.width(), this.f27342k.getHeight() / bounds.height());
                 this.A.preScale(min2, min2);
                 this.v.setLocalMatrix(this.A);
                 rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
@@ -341,7 +341,7 @@ public final class jb0 extends Drawable {
                     int alpha = paint.getAlpha();
                     paint.setAlpha((int) (alpha * f17));
                     if (!z11) {
-                        canvas.drawBitmap(this.f27287k, (Rect) null, rectF, paint);
+                        canvas.drawBitmap(this.f27342k, (Rect) null, rectF, paint);
                     }
                     paint.setAlpha(alpha);
                 }
@@ -356,13 +356,13 @@ public final class jb0 extends Drawable {
                 float f30 = (height2 - f28) / 2.0f;
                 rectF.set(f29, f30, f27 + f29, f28 + f30);
                 paint2.setColorFilter(this.H);
-                paint2.setAlpha((int) ((Math.abs(this.f27293q) / 100.0f) * this.L * this.J));
+                paint2.setAlpha((int) ((Math.abs(this.f27348q) / 100.0f) * this.L * this.J));
                 if (z11) {
-                    Paint e11 = this.Q.e(this.f27287k, e, this.U, (int) (this.L * this.J), this.f27293q, canvas.isHardwareAccelerated());
+                    Paint e11 = this.Q.e(this.f27342k, e, this.U, (int) (this.L * this.J), this.f27348q, canvas.isHardwareAccelerated());
                     nb0 nb0Var = this.Q;
-                    RectF rectF2 = nb0Var.f28745j;
-                    rectF2.set(0.0f, 0.0f, nb0Var.f28743g, nb0Var.h);
-                    Matrix matrix = nb0Var.f28744i;
+                    RectF rectF2 = nb0Var.f28771j;
+                    rectF2.set(0.0f, 0.0f, nb0Var.f28769g, nb0Var.h);
+                    Matrix matrix = nb0Var.f28770i;
                     matrix.setRectToRect(rectF2, rectF, Matrix.ScaleToFit.FILL);
                     nb0Var.d(matrix);
                     this.Q.c(rectF);
@@ -370,7 +370,7 @@ public final class jb0 extends Drawable {
                 } else {
                     canvas.drawBitmap(e, (Rect) null, rectF, paint2);
                 }
-                paint2.setAlpha((int) ((Math.abs(this.f27293q) / 100.0f) * this.L * this.J * 0.8f));
+                paint2.setAlpha((int) ((Math.abs(this.f27348q) / 100.0f) * this.L * this.J * 0.8f));
                 b(canvas, rectF, this.S);
             }
         }
@@ -380,20 +380,20 @@ public final class jb0 extends Drawable {
 
     public final Bitmap e() {
         boolean z10;
-        Bitmap bitmap = this.f27297u;
+        Bitmap bitmap = this.f27352u;
         if (bitmap == null) {
             return null;
         }
-        if (this.f27299x == null) {
+        if (this.f27354x == null) {
             return bitmap;
         }
         yg.a aVar = this.V;
         boolean a2 = aVar.a(bitmap);
-        Bitmap bitmap2 = this.f27299x;
+        Bitmap bitmap2 = this.f27354x;
         yg.a aVar2 = this.W;
         boolean a10 = aVar2.a(bitmap2);
         boolean z11 = true;
-        if (this.f27277a0 != this.S) {
+        if (this.f27332a0 != this.S) {
             z10 = true;
         } else {
             z10 = false;
@@ -405,18 +405,18 @@ public final class jb0 extends Drawable {
         if (bitmap3 != null && !z11) {
             return bitmap3;
         }
-        int width = this.f27297u.getWidth();
-        int height = this.f27297u.getHeight();
+        int width = this.f27352u.getWidth();
+        int height = this.f27352u.getHeight();
         Bitmap bitmap4 = this.X;
         if (bitmap4 == null || bitmap4.getWidth() != width || this.X.getHeight() != height) {
             this.X = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
             this.Y = new Canvas(this.X);
         }
-        Bitmap.Config config = this.f27297u.getConfig();
+        Bitmap.Config config = this.f27352u.getConfig();
         if (config == Bitmap.Config.ARGB_8888) {
-            Utilities.copyBitmaps(this.f27297u, this.X);
+            Utilities.copyBitmaps(this.f27352u, this.X);
         } else if (config == Bitmap.Config.ALPHA_8) {
-            Utilities.expandAlphaToBlack(this.f27297u, this.X);
+            Utilities.expandAlphaToBlack(this.f27352u, this.X);
         }
         if (this.Z == null) {
             Paint paint = new Paint(3);
@@ -426,31 +426,31 @@ public final class jb0 extends Drawable {
         Canvas canvas = this.Y;
         Paint paint2 = this.Z;
         int i10 = this.S;
-        if (this.f27299x != null && this.R != null) {
+        if (this.f27354x != null && this.R != null) {
             for (int i11 = 0; i11 < this.R.size(); i11++) {
                 if (i11 != i10) {
                     wf.c cVar = (wf.c) this.R.get(i11);
                     canvas.save();
-                    canvas.concat(cVar.f52838b);
-                    canvas.drawBitmap(this.f27299x, (Rect) null, cVar.f52837a, paint2);
+                    canvas.concat(cVar.f52856b);
+                    canvas.drawBitmap(this.f27354x, (Rect) null, cVar.f52855a, paint2);
                     canvas.restore();
                 }
             }
         }
-        this.f27277a0 = this.S;
-        aVar.b(this.f27297u);
-        aVar2.b(this.f27299x);
+        this.f27332a0 = this.S;
+        aVar.b(this.f27352u);
+        aVar2.b(this.f27354x);
         return this.X;
     }
 
     public final int f() {
-        int[] iArr = this.f27276a;
+        int[] iArr = this.f27331a;
         return g(iArr[0], iArr[1], iArr[2], iArr[3]);
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        Bitmap bitmap = this.f27297u;
+        Bitmap bitmap = this.f27352u;
         if (bitmap != null) {
             return bitmap.getHeight();
         }
@@ -459,7 +459,7 @@ public final class jb0 extends Drawable {
 
     @Override
     public final int getIntrinsicWidth() {
-        Bitmap bitmap = this.f27297u;
+        Bitmap bitmap = this.f27352u;
         if (bitmap != null) {
             return bitmap.getWidth();
         }
@@ -477,21 +477,21 @@ public final class jb0 extends Drawable {
         int i10 = this.O;
         int i11 = this.P;
         Bitmap createBitmap = Bitmap.createBitmap(i10, i11, config);
-        this.f27287k = createBitmap;
+        this.f27342k = createBitmap;
         createBitmap.setHasAlpha(false);
         for (int i12 = 0; i12 < 3; i12++) {
             Bitmap createBitmap2 = Bitmap.createBitmap(i10, i11, Bitmap.Config.ARGB_8888);
-            this.f27289m[i12] = createBitmap2;
+            this.f27344m[i12] = createBitmap2;
             createBitmap2.setHasAlpha(false);
         }
-        this.f27294r = new Canvas(this.f27287k);
+        this.f27349r = new Canvas(this.f27342k);
         Bitmap createBitmap3 = Bitmap.createBitmap(i10, i11, Bitmap.Config.ARGB_8888);
-        this.f27288l = createBitmap3;
+        this.f27343l = createBitmap3;
         createBitmap3.setHasAlpha(false);
-        this.f27295s = new Canvas(this.f27288l);
-        Utilities.generateGradient(this.f27287k, this.f27285i, this.e.getInterpolation(this.h), this.f27276a);
-        if (f27275f0) {
-            Paint paint = this.f27291o;
+        this.f27350s = new Canvas(this.f27343l);
+        Utilities.generateGradient(this.f27342k, this.f27340i, this.e.getInterpolation(this.h), this.f27331a);
+        if (f27330f0) {
+            Paint paint = this.f27346o;
             blendMode = BlendMode.SOFT_LIGHT;
             paint.setBlendMode(blendMode);
         }
@@ -499,12 +499,12 @@ public final class jb0 extends Drawable {
 
     public final void i() {
         invalidateSelf();
-        WeakReference weakReference = this.f27280c;
+        WeakReference weakReference = this.f27335c;
         if (weakReference != null && weakReference.get() != null) {
-            ((View) this.f27280c.get()).invalidate();
+            ((View) this.f27335c.get()).invalidate();
         }
-        if (this.f27296t) {
-            org.telegram.messenger.zs.e().k(org.telegram.messenger.zs.f19636j4, new Object[0]);
+        if (this.f27351t) {
+            org.telegram.messenger.at.e().k(org.telegram.messenger.at.f14732j4, new Object[0]);
             y();
             Runnable runnable = this.G;
             org.telegram.messenger.i0.r(runnable);
@@ -514,7 +514,7 @@ public final class jb0 extends Drawable {
 
     public final void k() {
         this.T = true;
-        ImageReceiver imageReceiver = this.f27300y;
+        ImageReceiver imageReceiver = this.f27355y;
         if (imageReceiver != null) {
             imageReceiver.P();
         }
@@ -522,7 +522,7 @@ public final class jb0 extends Drawable {
 
     public final void l() {
         this.T = false;
-        ImageReceiver imageReceiver = this.f27300y;
+        ImageReceiver imageReceiver = this.f27355y;
         if (imageReceiver != null) {
             imageReceiver.R();
         }
@@ -543,20 +543,20 @@ public final class jb0 extends Drawable {
     }
 
     public final void o(int i10, int i11, int i12, int i13, int i14, boolean z10) {
-        if (this.f27284g && i12 == 0 && i13 == 0) {
+        if (this.f27339g && i12 == 0 && i13 == 0) {
             this.C = new GradientDrawable(f9.d(i14), new int[]{i10, i11});
         } else {
             this.C = null;
         }
-        int[] iArr = this.f27276a;
+        int[] iArr = this.f27331a;
         if (iArr[0] != i10 || iArr[1] != i11 || iArr[2] != i12 || iArr[3] != i13) {
             iArr[0] = i10;
             iArr[1] = i11;
             iArr[2] = i12;
             iArr[3] = i13;
-            Bitmap bitmap = this.f27287k;
+            Bitmap bitmap = this.f27342k;
             if (bitmap != null) {
-                Utilities.generateGradient(bitmap, this.f27285i, this.e.getInterpolation(this.h), iArr);
+                Utilities.generateGradient(bitmap, this.f27340i, this.e.getInterpolation(this.h), iArr);
                 if (z10) {
                     i();
                 }
@@ -565,14 +565,14 @@ public final class jb0 extends Drawable {
     }
 
     public final void p() {
-        if (Build.VERSION.SDK_INT >= 28 && this.Q == null && !org.telegram.messenger.tz.f18168o) {
+        if (Build.VERSION.SDK_INT >= 28 && this.Q == null && !org.telegram.messenger.uz.f18537o) {
             this.Q = new nb0();
         }
     }
 
     public final void q(View view) {
-        this.f27280c = new WeakReference(view);
-        ImageReceiver imageReceiver = this.f27300y;
+        this.f27335c = new WeakReference(view);
+        ImageReceiver imageReceiver = this.f27355y;
         if (imageReceiver != null) {
             imageReceiver.H0(view);
         }
@@ -584,11 +584,11 @@ public final class jb0 extends Drawable {
     }
 
     public final void s(Bitmap bitmap, int i10) {
-        this.f27293q = i10;
-        this.f27297u = bitmap;
+        this.f27348q = i10;
+        this.f27352u = bitmap;
         if (bitmap != null) {
-            boolean z10 = f27275f0;
-            Paint paint = this.f27291o;
+            boolean z10 = f27330f0;
+            Paint paint = this.f27346o;
             if (z10) {
                 if (i10 >= 0) {
                     paint.setBlendMode(BlendMode.SOFT_LIGHT);
@@ -596,17 +596,17 @@ public final class jb0 extends Drawable {
                     paint.setBlendMode(null);
                 }
             }
-            boolean z11 = f27274e0;
+            boolean z11 = f27329e0;
             if (i10 < 0) {
                 if (!z11) {
-                    Bitmap bitmap2 = this.f27287k;
+                    Bitmap bitmap2 = this.f27342k;
                     Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                     this.v = new BitmapShader(bitmap2, tileMode, tileMode);
-                    Bitmap bitmap3 = this.f27297u;
+                    Bitmap bitmap3 = this.f27352u;
                     Shader.TileMode tileMode2 = Shader.TileMode.REPEAT;
-                    this.f27298w = new BitmapShader(bitmap3, tileMode2, tileMode2);
-                    this.f27301z = true;
-                    paint.setShader(new ComposeShader(this.v, this.f27298w, PorterDuff.Mode.DST_IN));
+                    this.f27353w = new BitmapShader(bitmap3, tileMode2, tileMode2);
+                    this.f27356z = true;
+                    paint.setShader(new ComposeShader(this.v, this.f27353w, PorterDuff.Mode.DST_IN));
                     paint.setFilterBitmap(true);
                     this.A = new Matrix();
                     return;
@@ -621,8 +621,8 @@ public final class jb0 extends Drawable {
     @Override
     public final void setAlpha(int i10) {
         this.L = i10;
-        this.f27290n.setAlpha(i10);
-        this.f27291o.setAlpha(i10);
+        this.f27345n.setAlpha(i10);
+        this.f27346o.setAlpha(i10);
     }
 
     public final void t(int i10) {
@@ -632,39 +632,39 @@ public final class jb0 extends Drawable {
     }
 
     public final void u(int i10) {
-        this.f27285i = i10;
+        this.f27340i = i10;
         if (i10 < 0) {
-            this.f27285i = 0;
+            this.f27340i = 0;
         } else if (i10 > 7) {
-            this.f27285i = 7;
+            this.f27340i = 7;
         }
-        Utilities.generateGradient(this.f27287k, this.f27285i, this.e.getInterpolation(this.h), this.f27276a);
+        Utilities.generateGradient(this.f27342k, this.f27340i, this.e.getInterpolation(this.h), this.f27331a);
     }
 
     public final void v(int i10) {
         this.I = i10;
         this.A = new Matrix();
-        Bitmap bitmap = this.f27287k;
+        Bitmap bitmap = this.f27342k;
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
         this.v = bitmapShader;
-        this.f27290n.setShader(bitmapShader);
+        this.f27345n.setShader(bitmapShader);
         i();
     }
 
     public final void w(boolean z10) {
-        if (this.h >= 1.0f && org.telegram.messenger.sc.e(32)) {
+        if (this.h >= 1.0f && org.telegram.messenger.tc.e(32)) {
             this.F = false;
             this.E = false;
             this.B = z10;
             this.h = 0.0f;
-            int i10 = this.f27285i - 1;
-            this.f27285i = i10;
+            int i10 = this.f27340i - 1;
+            this.f27340i = i10;
             if (i10 < 0) {
-                this.f27285i = 7;
+                this.f27340i = 7;
             }
             i();
-            this.f27295s.drawBitmap(this.f27287k, 0.0f, 0.0f, (Paint) null);
+            this.f27350s.drawBitmap(this.f27342k, 0.0f, 0.0f, (Paint) null);
             c();
             return;
         }
@@ -680,7 +680,7 @@ public final class jb0 extends Drawable {
         this.E = true;
         this.h = 0.0f;
         i();
-        Utilities.generateGradient(this.f27288l, this.f27285i, 0.0f, this.f27276a);
+        Utilities.generateGradient(this.f27343l, this.f27340i, 0.0f, this.f27331a);
         c();
     }
 
@@ -692,11 +692,11 @@ public final class jb0 extends Drawable {
         float f11;
         float f12;
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j10 = elapsedRealtime - this.f27278b;
+        long j10 = elapsedRealtime - this.f27333b;
         if (j10 > 20) {
             j10 = 17;
         }
-        this.f27278b = elapsedRealtime;
+        this.f27333b = elapsedRealtime;
         if (j10 > 1) {
             boolean z11 = this.N;
             if (z11 && this.h == 1.0f) {
@@ -705,7 +705,7 @@ public final class jb0 extends Drawable {
             float f13 = this.h;
             if (f13 < 1.0f) {
                 boolean z12 = true;
-                if (!this.f27296t && !this.F) {
+                if (!this.f27351t && !this.F) {
                     z10 = false;
                 } else {
                     z10 = true;
@@ -718,7 +718,7 @@ public final class jb0 extends Drawable {
                     }
                     float f15 = this.h;
                     int i10 = (int) (f15 / 0.125f);
-                    this.f27285i = i10;
+                    this.f27340i = i10;
                     f10 = 1.0f - ((f15 - (i10 * 0.125f)) / 0.125f);
                 } else {
                     boolean z13 = this.F;
@@ -734,9 +734,9 @@ public final class jb0 extends Drawable {
                         } else {
                             c10 = 3;
                         }
-                        org.telegram.messenger.l9 l9Var = this.D;
-                        if (l9Var != null) {
-                            this.h = ((Float) l9Var.l(this)).floatValue();
+                        org.telegram.messenger.m9 m9Var = this.D;
+                        if (m9Var != null) {
+                            this.h = ((Float) m9Var.l(this)).floatValue();
                         } else {
                             float f16 = this.h;
                             float f17 = (float) j10;
@@ -760,16 +760,16 @@ public final class jb0 extends Drawable {
                         }
                         if ((c10 == 0 && f12 > 0.25f) || ((c10 == 1 && f12 > 0.5f) || (c10 == 2 && f12 > 0.75f))) {
                             if (this.E) {
-                                int i11 = this.f27285i + 1;
-                                this.f27285i = i11;
+                                int i11 = this.f27340i + 1;
+                                this.f27340i = i11;
                                 if (i11 > 7) {
-                                    this.f27285i = 0;
+                                    this.f27340i = 0;
                                 }
                             } else {
-                                int i12 = this.f27285i - 1;
-                                this.f27285i = i12;
+                                int i12 = this.f27340i - 1;
+                                this.f27340i = i12;
                                 if (i12 < 0) {
-                                    this.f27285i = 7;
+                                    this.f27340i = 7;
                                 }
                             }
                         }
@@ -786,10 +786,10 @@ public final class jb0 extends Drawable {
                         if (this.E) {
                             f10 = 1.0f - f18;
                             if (this.h >= 1.0f) {
-                                int i13 = this.f27285i + 1;
-                                this.f27285i = i13;
+                                int i13 = this.f27340i + 1;
+                                this.f27340i = i13;
                                 if (i13 > 7) {
-                                    this.f27285i = 0;
+                                    this.f27340i = 0;
                                 }
                                 f10 = 1.0f;
                             }
@@ -798,9 +798,9 @@ public final class jb0 extends Drawable {
                         }
                         z12 = z10;
                     } else {
-                        org.telegram.messenger.l9 l9Var2 = this.D;
-                        if (l9Var2 != null) {
-                            this.h = ((Float) l9Var2.l(this)).floatValue();
+                        org.telegram.messenger.m9 m9Var2 = this.D;
+                        if (m9Var2 != null) {
+                            this.h = ((Float) m9Var2.l(this)).floatValue();
                         } else {
                             float f19 = (float) j10;
                             if (this.B) {
@@ -824,10 +824,10 @@ public final class jb0 extends Drawable {
                         if (this.E) {
                             f10 = 1.0f - f10;
                             if (this.h >= 1.0f) {
-                                int i14 = this.f27285i + 1;
-                                this.f27285i = i14;
+                                int i14 = this.f27340i + 1;
+                                this.f27340i = i14;
                                 if (i14 > 7) {
-                                    this.f27285i = 0;
+                                    this.f27340i = 0;
                                 }
                                 f10 = 1.0f;
                             }
@@ -836,22 +836,22 @@ public final class jb0 extends Drawable {
                     }
                 }
                 if (z12) {
-                    Utilities.generateGradient(this.f27287k, this.f27285i, f10, this.f27276a);
+                    Utilities.generateGradient(this.f27342k, this.f27340i, f10, this.f27331a);
                 } else {
                     int i15 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
-                    Paint paint = this.f27292p;
-                    Bitmap[] bitmapArr = this.f27289m;
+                    Paint paint = this.f27347p;
+                    Bitmap[] bitmapArr = this.f27344m;
                     if (i15 != 0) {
                         int i16 = (int) (f10 / 0.33333334f);
                         if (i16 == 0) {
-                            this.f27294r.drawBitmap(this.f27288l, 0.0f, 0.0f, (Paint) null);
+                            this.f27349r.drawBitmap(this.f27343l, 0.0f, 0.0f, (Paint) null);
                         } else {
-                            this.f27294r.drawBitmap(bitmapArr[i16 - 1], 0.0f, 0.0f, (Paint) null);
+                            this.f27349r.drawBitmap(bitmapArr[i16 - 1], 0.0f, 0.0f, (Paint) null);
                         }
                         paint.setAlpha((int) (((f10 - (i16 * 0.33333334f)) / 0.33333334f) * 255.0f));
-                        this.f27294r.drawBitmap(bitmapArr[i16], 0.0f, 0.0f, paint);
+                        this.f27349r.drawBitmap(bitmapArr[i16], 0.0f, 0.0f, paint);
                     } else {
-                        this.f27294r.drawBitmap(bitmapArr[2], 0.0f, 0.0f, paint);
+                        this.f27349r.drawBitmap(bitmapArr[2], 0.0f, 0.0f, paint);
                     }
                 }
                 i();
@@ -864,15 +864,15 @@ public final class jb0 extends Drawable {
     }
 
     public jb0(int i10, int i11, int i12, int i13, boolean z10, int i14, boolean z11) {
-        this.f27276a = new int[]{-12423849, -531317, -7888252, -133430};
+        this.f27331a = new int[]{-12423849, -531317, -7888252, -133430};
         this.e = new gr(0.33d, 0.0d, 0.0d, 1.0d);
         this.h = 1.0f;
-        this.f27286j = new RectF();
-        this.f27289m = new Bitmap[3];
-        this.f27290n = new Paint(2);
-        this.f27291o = new Paint(2);
-        this.f27292p = new Paint();
-        this.f27293q = 100;
+        this.f27341j = new RectF();
+        this.f27344m = new Bitmap[3];
+        this.f27345n = new Paint(2);
+        this.f27346o = new Paint(2);
+        this.f27347p = new Paint();
+        this.f27348q = 100;
         this.C = new GradientDrawable();
         this.G = new ib0(this, 0);
         this.J = 1.0f;
@@ -885,12 +885,12 @@ public final class jb0 extends Drawable {
         this.U = -16777216;
         this.V = new yg.a();
         this.W = new yg.a();
-        this.f27279b0 = new yg.a();
+        this.f27334b0 = new yg.a();
         if (z11) {
             this.O = 80;
             this.P = 80;
         }
-        this.f27284g = z10;
+        this.f27339g = z10;
         o(i10, i11, i12, i13, i14, false);
         h();
     }

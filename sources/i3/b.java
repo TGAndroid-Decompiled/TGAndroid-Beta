@@ -12,35 +12,35 @@ import e9.n0;
 import e9.x1;
 import java.util.List;
 public final class b implements o {
-    public final x f8142a = new x(4);
-    public final x f8143b = new x(9);
-    public final x f8144c = new x(11);
+    public final x f8143a = new x(4);
+    public final x f8144b = new x(9);
+    public final x f8145c = new x(11);
     public final x d = new x();
     public final c e;
-    public q f8145f;
-    public int f8146g;
+    public q f8146f;
+    public int f8147g;
     public boolean h;
-    public long f8147i;
-    public int f8148j;
-    public int f8149k;
-    public int f8150l;
-    public long f8151m;
-    public boolean f8152n;
-    public a f8153o;
-    public e f8154p;
+    public long f8148i;
+    public int f8149j;
+    public int f8150k;
+    public int f8151l;
+    public long f8152m;
+    public boolean f8153n;
+    public a f8154o;
+    public e f8155p;
 
     public b() {
         ?? hVar = new h(new n());
-        hVar.f8155b = -9223372036854775807L;
-        hVar.f8156c = new long[0];
+        hVar.f8156b = -9223372036854775807L;
+        hVar.f8157c = new long[0];
         hVar.d = new long[0];
         this.e = hVar;
-        this.f8146g = 1;
+        this.f8147g = 1;
     }
 
     @Override
     public final boolean a(p pVar) {
-        x xVar = this.f8142a;
+        x xVar = this.f8143a;
         l lVar = (l) pVar;
         lVar.j(xVar.f6207a, 0, 3, false);
         xVar.N(0);
@@ -65,18 +65,18 @@ public final class b implements o {
 
     @Override
     public final void c(q qVar) {
-        this.f8145f = qVar;
+        this.f8146f = qVar;
     }
 
     @Override
     public final void d(long j10, long j11) {
         if (j10 == 0) {
-            this.f8146g = 1;
+            this.f8147g = 1;
             this.h = false;
         } else {
-            this.f8146g = 3;
+            this.f8147g = 3;
         }
-        this.f8148j = 0;
+        this.f8149j = 0;
     }
 
     @Override
@@ -91,7 +91,7 @@ public final class b implements o {
     }
 
     public final x g(p pVar) {
-        int i10 = this.f8150l;
+        int i10 = this.f8151l;
         x xVar = this.d;
         byte[] bArr = xVar.f6207a;
         if (i10 > bArr.length) {
@@ -99,8 +99,8 @@ public final class b implements o {
         } else {
             xVar.N(0);
         }
-        xVar.M(this.f8150l);
-        pVar.readFully(xVar.f6207a, 0, this.f8150l);
+        xVar.M(this.f8151l);
+        pVar.readFully(xVar.f6207a, 0, this.f8151l);
         return xVar;
     }
 

@@ -2,71 +2,71 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class d5 implements View.OnAttachStateChangeListener {
-    public final int f36617a;
-    public Object f36618b;
+    public final int f36485a;
+    public Object f36486b;
 
     @Override
     public final void onViewAttachedToWindow(View view) {
-        switch (this.f36617a) {
+        switch (this.f36485a) {
             case 0:
-                ((e5) this.f36618b).f36920b.P();
+                ((e5) this.f36486b).f36731b.P();
                 return;
             case 1:
-                ((org.telegram.ui.Components.d5) this.f36618b).a();
+                ((org.telegram.ui.Components.d5) this.f36486b).a();
                 return;
             case 2:
-                org.telegram.messenger.zs.e().c((mt) this.f36618b, 259);
+                org.telegram.messenger.at.e().c((lt) this.f36486b, 259);
                 return;
             case 3:
-                ((o60) this.f36618b).f40151b.P();
+                ((n60) this.f36486b).f39709b.P();
                 return;
             case 4:
-                org.telegram.ui.Components.d5 d5Var = ((on0) this.f36618b).f40313i;
+                org.telegram.ui.Components.d5 d5Var = ((mn0) this.f36486b).f39584i;
                 if (d5Var != null) {
                     d5Var.a();
                     return;
                 }
                 return;
             default:
-                z41 z41Var = (z41) this.f36618b;
-                z41Var.h.a();
-                z41Var.f44016n.a();
+                x41 x41Var = (x41) this.f36486b;
+                x41Var.h.a();
+                x41Var.f43241n.a();
                 return;
         }
     }
 
     @Override
     public final void onViewDetachedFromWindow(View view) {
-        switch (this.f36617a) {
+        switch (this.f36485a) {
             case 0:
-                ((e5) this.f36618b).f36920b.R();
+                ((e5) this.f36486b).f36731b.R();
                 return;
             case 1:
-                ((org.telegram.ui.Components.d5) this.f36618b).b();
+                ((org.telegram.ui.Components.d5) this.f36486b).b();
                 return;
             case 2:
-                org.telegram.messenger.zs.e().n((mt) this.f36618b, 259);
+                org.telegram.messenger.at.e().n((lt) this.f36486b, 259);
                 return;
             case 3:
-                ((o60) this.f36618b).f40151b.R();
+                ((n60) this.f36486b).f39709b.R();
                 return;
             case 4:
-                org.telegram.ui.Components.d5 d5Var = ((on0) this.f36618b).f40313i;
+                org.telegram.ui.Components.d5 d5Var = ((mn0) this.f36486b).f39584i;
                 if (d5Var != null) {
                     d5Var.b();
                     return;
                 }
                 return;
             default:
-                z41 z41Var = (z41) this.f36618b;
-                z41Var.h.b();
-                z41Var.f44016n.b();
+                x41 x41Var = (x41) this.f36486b;
+                x41Var.h.b();
+                x41Var.f43241n.b();
                 return;
         }
     }
 
     public d5(Object obj, int i10) {
-        this.f36617a = i10;
-        this.f36618b = obj;
+        this.f36485a = i10;
+        this.f36486b = obj;
     }
 }

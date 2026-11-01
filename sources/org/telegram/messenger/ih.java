@@ -1,33 +1,46 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
 public final class ih implements Runnable {
-    public final int f16131a;
-    public final ri f16132b;
-    public final ArrayList f16133c;
-    public final String d;
+    public final int f16283a;
+    public final vi f16284b;
+    public final ArrayList f16285c;
 
-    public ih(ri riVar, ArrayList arrayList, String str, int i10) {
-        this.f16131a = i10;
-        this.f16132b = riVar;
-        this.f16133c = arrayList;
-        this.d = str;
+    public ih(vi viVar, ArrayList arrayList, int i10) {
+        this.f16283a = i10;
+        this.f16284b = viVar;
+        this.f16285c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f16131a) {
+        int i10 = this.f16283a;
+        ArrayList arrayList = this.f16285c;
+        vi viVar = this.f16284b;
+        switch (i10) {
             case 0:
-                i0.g3(new ih(this.f16132b, this.f16133c, this.d, 2));
-                return;
-            case 1:
-                ArrayList arrayList = this.f16133c;
-                this.f16132b.c(this.d, arrayList);
+                viVar.getNotificationCenter().k(56, Long.valueOf(kj.B0(((kj) arrayList.get(0)).f16690k)), null, Boolean.TRUE, arrayList, null, 0, -1, Boolean.FALSE);
                 return;
             default:
-                ArrayList arrayList2 = this.f16133c;
-                this.f16132b.c(this.d, arrayList2);
-                return;
+                try {
+                    ArrayList arrayList2 = new ArrayList();
+                    ArrayList arrayList3 = new ArrayList();
+                    a0.h hVar = new a0.h();
+                    a0.h hVar2 = new a0.h();
+                    for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                        try {
+                            is.d((TLRPC.Message) arrayList.get(i11), hVar, hVar2);
+                        } catch (Exception e) {
+                            viVar.getMessagesStorage().o(e, true);
+                        }
+                    }
+                    viVar.getMessagesStorage().K0(hVar, hVar2, arrayList2, arrayList3, 0);
+                    return;
+                } catch (Exception e7) {
+                    f8.g(e7, true);
+                    return;
+                }
         }
     }
 }

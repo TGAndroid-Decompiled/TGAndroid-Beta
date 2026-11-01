@@ -6,17 +6,17 @@ import b2.s0;
 import v7.v6;
 public final class j implements e2.d {
     public static final d9.t e = v6.a(new a3.s(2));
-    public final j9.z f7301a;
-    public final hf.b f7302b;
-    public final int f7303c;
+    public final j9.z f7302a;
+    public final hf.b f7303b;
+    public final int f7304c;
     public final boolean d;
 
     public j(c5.e eVar) {
-        this.f7302b = new hf.b((Context) eVar.f3777c);
+        this.f7303b = new hf.b((Context) eVar.f3777c);
         j9.z zVar = (j9.z) e.get();
         zVar.getClass();
-        this.f7301a = zVar;
-        this.f7303c = eVar.f3775a;
+        this.f7302a = zVar;
+        this.f7304c = eVar.f3775a;
         this.d = eVar.f3776b;
     }
 
@@ -28,13 +28,13 @@ public final class j implements e2.d {
         }
         Uri uri = s0Var.f2257n;
         if (uri != null) {
-            return ((j9.a0) this.f7301a).a(new i(1, this, uri));
+            return ((j9.a0) this.f7302a).a(new i(1, this, uri));
         }
         return null;
     }
 
     @Override
     public final j9.y w(byte[] bArr) {
-        return ((j9.a0) this.f7301a).a(new i(0, this, bArr));
+        return ((j9.a0) this.f7302a).a(new i(0, this, bArr));
     }
 }

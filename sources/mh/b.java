@@ -8,55 +8,55 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.Utilities;
 import w7.u;
 public final class b extends Drawable {
-    public final a f13307b;
-    public Bitmap f13308c;
+    public final a f13308b;
+    public Bitmap f13309c;
     public Canvas d;
     public int e;
-    public float f13309f;
-    public int f13310g;
+    public float f13310f;
+    public int f13311g;
     public int h;
-    public final Paint f13306a = new Paint(2);
-    public int f13311i = 255;
+    public final Paint f13307a = new Paint(2);
+    public int f13312i = 255;
 
     public b(a aVar) {
-        this.f13307b = aVar;
+        this.f13308b = aVar;
     }
 
     public final void a(int i10, int i11, float f7, int i12) {
         int i13 = i12 * 2;
         int i14 = (int) ((i10 + i13) / f7);
         int i15 = (int) ((i11 + i13) / f7);
-        Bitmap bitmap = this.f13308c;
-        if (bitmap != null && bitmap.getWidth() == i14 && this.f13308c.getHeight() == i15) {
-            this.f13308c.eraseColor(0);
+        Bitmap bitmap = this.f13309c;
+        if (bitmap != null && bitmap.getWidth() == i14 && this.f13309c.getHeight() == i15) {
+            this.f13309c.eraseColor(0);
         } else {
-            Bitmap bitmap2 = this.f13308c;
+            Bitmap bitmap2 = this.f13309c;
             if (bitmap2 != null) {
                 bitmap2.recycle();
             }
-            this.f13308c = Bitmap.createBitmap(i14, i15, Bitmap.Config.ARGB_8888);
-            this.d = new Canvas(this.f13308c);
+            this.f13309c = Bitmap.createBitmap(i14, i15, Bitmap.Config.ARGB_8888);
+            this.d = new Canvas(this.f13309c);
         }
-        this.f13309f = f7;
+        this.f13310f = f7;
         this.e = i12;
         this.d.save();
         float f10 = i12 / f7;
         this.d.translate(f10, f10);
         float f11 = 1.0f / f7;
         this.d.scale(f11, f11);
-        this.f13307b.s(this.d, 255);
-        Utilities.stackBlurBitmap(this.f13308c, (int) f10);
+        this.f13308b.r(this.d, 255);
+        Utilities.stackBlurBitmap(this.f13309c, (int) f10);
         this.d.restore();
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        int i10 = this.f13311i;
-        a aVar = this.f13307b;
+        int i10 = this.f13312i;
+        a aVar = this.f13308b;
         if (i10 == 255) {
             canvas.save();
-            canvas.translate(this.f13310g, this.h);
-            aVar.s(canvas, 255);
+            canvas.translate(this.f13311g, this.h);
+            aVar.r(canvas, 255);
             canvas.restore();
         } else if (i10 != 0) {
             double d = i10 / 255.0d;
@@ -65,22 +65,22 @@ public final class b extends Drawable {
             double sqrt = ((-d11) + Math.sqrt((d11 * d11) - (((-d10) * 4.0d) * (-d)))) / ((-2.0d) * d10);
             int b10 = u.b((int) (d10 * sqrt * 255.0d), 0, 255);
             int b11 = u.b((int) (sqrt * 255.0d), 0, 255);
-            if (b11 > 0 && this.f13308c != null) {
-                Paint paint = this.f13306a;
+            if (b11 > 0 && this.f13309c != null) {
+                Paint paint = this.f13307a;
                 paint.setAlpha(b11);
                 canvas.save();
-                int i11 = this.f13310g;
+                int i11 = this.f13311g;
                 int i12 = this.e;
                 canvas.translate(i11 - i12, this.h - i12);
-                float f7 = this.f13309f;
+                float f7 = this.f13310f;
                 canvas.scale(f7, f7);
-                canvas.drawBitmap(this.f13308c, 0.0f, 0.0f, paint);
+                canvas.drawBitmap(this.f13309c, 0.0f, 0.0f, paint);
                 canvas.restore();
             }
             if (b10 > 0) {
                 canvas.save();
-                canvas.translate(this.f13310g, this.h);
-                aVar.s(canvas, b10);
+                canvas.translate(this.f13311g, this.h);
+                aVar.r(canvas, b10);
                 canvas.restore();
             }
         }
@@ -88,7 +88,7 @@ public final class b extends Drawable {
 
     @Override
     public final int getAlpha() {
-        return this.f13311i;
+        return this.f13312i;
     }
 
     @Override
@@ -98,12 +98,12 @@ public final class b extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f13311i = i10;
+        this.f13312i = i10;
     }
 
     @Override
     public final void setBounds(int i10, int i11, int i12, int i13) {
-        this.f13310g = i10;
+        this.f13311g = i10;
         this.h = i11;
         super.setBounds(i10, i11, i12, i13);
     }

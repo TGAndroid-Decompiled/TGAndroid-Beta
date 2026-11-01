@@ -4,11 +4,11 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.Button;
-import org.telegram.messenger.cd;
-import org.telegram.ui.Components.op0;
+import org.telegram.messenger.dd;
+import org.telegram.ui.Components.pp0;
 import org.telegram.ui.Components.zf;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.ay;
+import org.telegram.ui.zx;
 public final class f2 extends zf {
     public final int f2992n0 = 1;
     public final Object f2993o0;
@@ -22,7 +22,7 @@ public final class f2 extends zf {
     public boolean d() {
         switch (this.f2992n0) {
             case 0:
-                return ((k2) this.f2993o0).p0();
+                return ((k2) this.f2993o0).q0();
             case 1:
             case 2:
             default:
@@ -38,12 +38,12 @@ public final class f2 extends zf {
     public final boolean f() {
         switch (this.f2992n0) {
             case 0:
-                if (!((k2) this.f2993o0).L0 && this.f33046r <= 0) {
+                if (!((k2) this.f2993o0).L0 && this.f33142r <= 0) {
                     return false;
                 }
                 return true;
             case 1:
-                if (!((i4) this.f2993o0).W && this.f33046r <= 0) {
+                if (!((i4) this.f2993o0).W && this.f33142r <= 0) {
                     return false;
                 }
                 return true;
@@ -62,12 +62,12 @@ public final class f2 extends zf {
         Object obj = this.f2993o0;
         switch (i10) {
             case 2:
-                return org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.S5, ((op0) obj).I0);
+                return org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.S5, ((pp0) obj).I0);
             case 3:
             default:
                 return super.getFillColor();
             case 4:
-                int i11 = org.telegram.ui.ActionBar.t6.f21125ng;
+                int i11 = org.telegram.ui.ActionBar.t6.f21126ng;
                 Drawable[] drawableArr = PhotoViewer.U8;
                 return ((PhotoViewer) obj).B1(i11);
         }
@@ -92,7 +92,7 @@ public final class f2 extends zf {
         switch (this.f2992n0) {
             case 3:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(cd.G(((ay) this.f2993o0).I2.size(), "AccDescrShareInChats", new Object[0]));
+                accessibilityNodeInfo.setText(dd.G(((zx) this.f2993o0).I2.size(), "AccDescrShareInChats", new Object[0]));
                 accessibilityNodeInfo.setClassName(Button.class.getName());
                 accessibilityNodeInfo.setLongClickable(true);
                 accessibilityNodeInfo.setClickable(true);
@@ -108,14 +108,14 @@ public final class f2 extends zf {
         this.f2993o0 = k2Var;
     }
 
-    public f2(op0 op0Var, Context context, org.telegram.ui.ActionBar.p6 p6Var) {
+    public f2(pp0 pp0Var, Context context, org.telegram.ui.ActionBar.p6 p6Var) {
         super(2131232691, context, p6Var, false);
-        this.f2993o0 = op0Var;
+        this.f2993o0 = pp0Var;
     }
 
-    public f2(ay ayVar, Context context, org.telegram.ui.ActionBar.p6 p6Var) {
+    public f2(zx zxVar, Context context, org.telegram.ui.ActionBar.p6 p6Var) {
         super(2131232691, context, p6Var, false);
-        this.f2993o0 = ayVar;
+        this.f2993o0 = zxVar;
     }
 
     public f2(PhotoViewer photoViewer, Context context, org.telegram.ui.ActionBar.p6 p6Var) {

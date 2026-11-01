@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.Cells.x4;
@@ -29,7 +29,7 @@ public abstract class i0 extends c {
     }
 
     public final TLRPC.TL_messageMediaVenue I(int i10) {
-        ArrayList arrayList = this.f55454r;
+        ArrayList arrayList = this.f55472r;
         if (!arrayList.isEmpty()) {
             i10--;
         }
@@ -42,7 +42,7 @@ public abstract class i0 extends c {
                 size--;
             }
             if (size >= 0) {
-                ArrayList arrayList2 = this.f55455s;
+                ArrayList arrayList2 = this.f55473s;
                 if (size < arrayList2.size()) {
                     return (TLRPC.TL_messageMediaVenue) arrayList2.get(size);
                 }
@@ -56,7 +56,7 @@ public abstract class i0 extends c {
     @Override
     public final int b() {
         int i10;
-        ArrayList arrayList = this.f55454r;
+        ArrayList arrayList = this.f55472r;
         if (!arrayList.isEmpty()) {
             i10 = arrayList.size() + 1;
         } else {
@@ -67,7 +67,7 @@ public abstract class i0 extends c {
                 return i10 + 3;
             }
             boolean isEmpty = arrayList.isEmpty();
-            ArrayList arrayList2 = this.f55455s;
+            ArrayList arrayList2 = this.f55473s;
             if (!isEmpty && !arrayList2.isEmpty()) {
                 i10++;
             }
@@ -78,7 +78,7 @@ public abstract class i0 extends c {
 
     @Override
     public final int d(int i10) {
-        ArrayList arrayList = this.f55454r;
+        ArrayList arrayList = this.f55472r;
         if ((i10 == 0 || i10 == arrayList.size() + 1) && !arrayList.isEmpty()) {
             return 1;
         }
@@ -89,11 +89,11 @@ public abstract class i0 extends c {
     public final void t(s4.c1 c1Var, int i10) {
         int i11;
         int i12;
-        int i13 = c1Var.f47901f;
-        View view = c1Var.f47898a;
+        int i13 = c1Var.f47912f;
+        View view = c1Var.f47909a;
         boolean z10 = true;
         TLRPC.TL_messageMediaVenue tL_messageMediaVenue = null;
-        ArrayList arrayList = this.f55454r;
+        ArrayList arrayList = this.f55472r;
         if (i13 == 0) {
             if (!arrayList.isEmpty()) {
                 i11 = i10 - 1;
@@ -106,11 +106,11 @@ public abstract class i0 extends c {
             } else {
                 if (!this.J) {
                     i12 = i11 - arrayList.size();
-                    if (!this.f55453n && !arrayList.isEmpty()) {
+                    if (!this.f55471n && !arrayList.isEmpty()) {
                         i12--;
                     }
                     if (i12 >= 0) {
-                        ArrayList arrayList2 = this.f55455s;
+                        ArrayList arrayList2 = this.f55473s;
                         if (i12 < arrayList2.size()) {
                             tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) arrayList2.get(i12);
                         }
@@ -119,15 +119,15 @@ public abstract class i0 extends c {
                 i12 = i10;
             }
             x4 x4Var = (x4) view;
-            if (i10 == b() - 1 || (!this.f55453n && !arrayList.isEmpty() && i10 == arrayList.size())) {
+            if (i10 == b() - 1 || (!this.f55471n && !arrayList.isEmpty() && i10 == arrayList.size())) {
                 z10 = false;
             }
             x4Var.b(tL_messageMediaVenue, i12, z10, false);
         } else if (i13 == 1) {
             if (i10 == 0 && !arrayList.isEmpty()) {
-                ((z3) view).setText(cd.L0(2131748762, null));
+                ((z3) view).setText(dd.L0(2131748762, null));
             } else {
-                ((z3) view).setText(cd.L0(2131748314, null));
+                ((z3) view).setText(dd.L0(2131748314, null));
             }
         }
     }

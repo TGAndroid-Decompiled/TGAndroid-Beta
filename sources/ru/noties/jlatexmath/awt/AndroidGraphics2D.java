@@ -29,9 +29,9 @@ public class AndroidGraphics2D implements Graphics2D {
     public void draw(Rectangle2D.Float r92) {
         this.paint.setStyle(Paint.Style.STROKE);
         Canvas canvas = this.canvas;
-        float f7 = r92.f47837x;
-        float f10 = r92.f47838y;
-        canvas.drawRect(f7, f10, f7 + r92.f47836w, f10 + r92.h, this.paint);
+        float f7 = r92.f47848x;
+        float f10 = r92.f47849y;
+        canvas.drawRect(f7, f10, f7 + r92.f47847w, f10 + r92.h, this.paint);
     }
 
     @Override
@@ -55,9 +55,9 @@ public class AndroidGraphics2D implements Graphics2D {
     public void fill(Rectangle2D.Float r92) {
         this.paint.setStyle(Paint.Style.FILL);
         Canvas canvas = this.canvas;
-        float f7 = r92.f47837x;
-        float f10 = r92.f47838y;
-        canvas.drawRect(f7, f10, f7 + r92.f47836w, f10 + r92.h, this.paint);
+        float f7 = r92.f47848x;
+        float f10 = r92.f47849y;
+        canvas.drawRect(f7, f10, f7 + r92.f47847w, f10 + r92.h, this.paint);
     }
 
     @Override
@@ -165,15 +165,15 @@ public class AndroidGraphics2D implements Graphics2D {
     @Override
     public void draw(Line2D.Float r92) {
         this.paint.setStyle(Paint.Style.STROKE);
-        this.canvas.drawLine((float) r92.f47830x1, (float) r92.f47832y1, (float) r92.f47831x2, (float) r92.f47833y2, this.paint);
+        this.canvas.drawLine((float) r92.f47841x1, (float) r92.f47843y1, (float) r92.f47842x2, (float) r92.f47844y2, this.paint);
     }
 
     @Override
     public void draw(RoundRectangle2D.Float r62) {
         this.paint.setStyle(Paint.Style.STROKE);
         RectF rectF = this.rectF;
-        float f7 = r62.f47839x;
-        float f10 = r62.f47840y;
+        float f7 = r62.f47850x;
+        float f10 = r62.f47851y;
         rectF.set(f7, f10, r62.width + f7, r62.height + f10);
         this.canvas.drawRoundRect(this.rectF, r62.arcwidth, r62.archeight, this.paint);
     }

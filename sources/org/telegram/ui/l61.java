@@ -1,25 +1,34 @@
 package org.telegram.ui;
 
+import android.os.Bundle;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class l61 extends iq {
-    public final boolean[] f39072c1;
-    public final u61 f39073d1;
-    public final n61 f39074e1;
+public final class l61 {
+    public TLRPC.User f39105a;
+    public String f39106b;
 
-    public l61(n61 n61Var, long j10, long j11, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z10, boolean[] zArr, u61 u61Var) {
-        super(j10, j11, tL_chatAdminRights, null, tL_chatBannedRights, str, 0, true, z10, null);
-        this.f39074e1 = n61Var;
-        this.f39072c1 = zArr;
-        this.f39073d1 = u61Var;
-    }
-
-    @Override
-    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
-        if (!z10 && z11 && this.f39072c1[0]) {
-            u61 u61Var = this.f39073d1;
-            if (org.telegram.ui.Components.cc.a(u61Var)) {
-                org.telegram.ui.Components.cc.C(this.f39074e1.f39841a.first_name, u61Var).j();
+    public static TLRPC.User a(ArrayList arrayList, long j10) {
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            TLRPC.User user = (TLRPC.User) obj;
+            if (user.f19943id == j10) {
+                return user;
             }
         }
+        return null;
+    }
+
+    public final void b(org.telegram.ui.ActionBar.k2 k2Var) {
+        Bundle bundle = new Bundle();
+        bundle.putLong("user_id", this.f39105a.f19943id);
+        org.telegram.messenger.wp.r1(org.telegram.messenger.e20.f15506s0).U3(this.f39105a, false, false);
+        k2Var.presentFragment(new ProfileActivity(bundle, null));
+    }
+
+    public final void c(final org.telegram.tgnet.TLRPC.ChatFull r17, final org.telegram.ui.s61 r18, final org.telegram.ui.ActionBar.x1[] r19, boolean r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.l61.c(org.telegram.tgnet.TLRPC$ChatFull, org.telegram.ui.s61, org.telegram.ui.ActionBar.x1[], boolean):void");
     }
 }

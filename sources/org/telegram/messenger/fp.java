@@ -1,16 +1,11 @@
 package org.telegram.messenger;
-
-import android.util.Base64;
-import java.util.Arrays;
 public final class fp {
-    public final long f15612a;
-    public final long f15613b;
-    public final byte[] f15614c;
+    public final int f15780a;
+    public final int f15781b;
 
-    public fp(long j10, String str, long j11) {
-        this.f15612a = j10;
-        this.f15613b = j11;
-        this.f15614c = Base64.decode(str, 8);
+    public fp(int i10, int i11) {
+        this.f15780a = i10;
+        this.f15781b = i11;
     }
 
     public final boolean equals(Object obj) {
@@ -18,15 +13,9 @@ public final class fp {
             return false;
         }
         fp fpVar = (fp) obj;
-        if (this.f15612a != fpVar.f15612a || this.f15613b != fpVar.f15613b || !Arrays.equals(this.f15614c, fpVar.f15614c)) {
+        if (this.f15780a != fpVar.f15780a || this.f15781b != fpVar.f15781b) {
             return false;
         }
         return true;
-    }
-
-    public fp(long j10, long j11, byte[] bArr) {
-        this.f15612a = j10;
-        this.f15613b = j11;
-        this.f15614c = bArr;
     }
 }

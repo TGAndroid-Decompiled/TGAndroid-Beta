@@ -4,7 +4,7 @@ public interface t9 {
 
     String P0();
 
-    void X0(org.telegram.messenger.is isVar);
+    void X0(org.telegram.messenger.js jsVar);
 
     boolean i1(String str, k9 k9Var);
 

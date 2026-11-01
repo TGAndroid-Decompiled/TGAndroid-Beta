@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.d20;
-import org.telegram.messenger.dt;
+import org.telegram.messenger.at;
+import org.telegram.messenger.e20;
+import org.telegram.messenger.et;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.hs;
+import org.telegram.messenger.is;
 import org.telegram.messenger.o5;
-import org.telegram.messenger.ot;
+import org.telegram.messenger.pt;
 import org.telegram.messenger.voip.ConferenceCall;
-import org.telegram.messenger.vp;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
@@ -190,18 +190,18 @@ public final class a3 implements Runnable {
         TL_stories.TL_updateStory tL_updateStory2 = (TL_stories.TL_updateStory) this.f462c;
         TLRPC.User user = (TLRPC.User) this.e;
         ArrayList arrayList2 = e5Var.h;
-        ArrayList arrayList3 = e5Var.f48908g;
-        int i12 = e5Var.f48904a;
+        ArrayList arrayList3 = e5Var.f48922g;
+        int i12 = e5Var.f48918a;
         StringBuilder sb2 = new StringBuilder("StoriesController update stories for dialog ");
         long j10 = this.d;
         sb2.append(j10);
         f8.b(sb2.toString());
         e5Var.q0(j10, Collections.singletonList(tL_updateStory2.story), false);
         e5Var.o0(j10, Collections.singletonList(tL_updateStory2.story), true);
-        a0.h hVar = e5Var.f48909i;
+        a0.h hVar = e5Var.f48923i;
         TL_stories.PeerStories peerStories2 = (TL_stories.PeerStories) hVar.f(j10);
         ArrayList arrayList4 = new ArrayList();
-        int i13 = e5Var.f48921u;
+        int i13 = e5Var.f48935u;
         if (peerStories2 != null) {
             TL_stories.StoryItem storyItem3 = tL_updateStory2.story;
             c10 = 1;
@@ -211,7 +211,7 @@ public final class a3 implements Runnable {
                 tL_updateStory = tL_updateStory2;
                 arrayList = arrayList4;
                 storyItem = storyItem3;
-                ot.f17304k0.c(new dt(ot.t(i12), j10, storyItem3.f20031id, 0));
+                pt.f17637k0.c(new et(pt.t(i12), j10, storyItem3.f20032id, 0));
             } else {
                 tL_updateStory = tL_updateStory2;
                 peerStories = peerStories2;
@@ -222,10 +222,10 @@ public final class a3 implements Runnable {
             int i14 = 0;
             while (true) {
                 if (i14 < peerStories.stories.size()) {
-                    if (peerStories.stories.get(i14).f20031id == storyItem.f20031id) {
+                    if (peerStories.stories.get(i14).f20032id == storyItem.f20032id) {
                         if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
                             peerStories.stories.remove(i14);
-                            i0.a.p(storyItem.f20031id, new StringBuilder("StoriesController remove story id="));
+                            i0.a.p(storyItem.f20032id, new StringBuilder("StoriesController remove story id="));
                             storyItem2 = storyItem;
                             z11 = true;
                             z12 = true;
@@ -240,7 +240,7 @@ public final class a3 implements Runnable {
                             if (storyItem2.firstFramePath == null) {
                                 storyItem2.firstFramePath = storyItem4.firstFramePath;
                             }
-                            i0.a.p(storyItem2.f20031id, new StringBuilder("StoriesController update story id="));
+                            i0.a.p(storyItem2.f20032id, new StringBuilder("StoriesController update story id="));
                             z11 = true;
                         }
                     } else {
@@ -266,7 +266,7 @@ public final class a3 implements Runnable {
                 } else {
                     arrayList.add(storyItem2);
                     peerStories.stories.add(storyItem2);
-                    f8.b("StoriesController add new story id=" + storyItem2.f20031id + " total stories count " + peerStories.stories.size());
+                    f8.b("StoriesController add new story id=" + storyItem2.f20032id + " total stories count " + peerStories.stories.size());
                     e5Var.Z(j10, storyItem2);
                     e5Var.g(peerStories);
                     z13 = true;
@@ -280,7 +280,7 @@ public final class a3 implements Runnable {
                     arrayList3.remove(peerStories);
                     arrayList2.remove(peerStories);
                     hVar.l(o5.o(peerStories.peer));
-                    e5Var.f48921u--;
+                    e5Var.f48935u--;
                 } else {
                     Collections.sort(peerStories.stories, e5.X);
                 }
@@ -305,11 +305,11 @@ public final class a3 implements Runnable {
                 TL_stories.TL_peerStories tL_peerStories = new TL_stories.TL_peerStories();
                 tL_peerStories.peer = tL_updateStory2.peer;
                 tL_peerStories.stories.add(tL_updateStory2.story);
-                i0.a.p(tL_updateStory2.story.f20031id, new StringBuilder("StoriesController add new user with story id="));
+                i0.a.p(tL_updateStory2.story.f20032id, new StringBuilder("StoriesController add new user with story id="));
                 long o10 = o5.o(tL_peerStories.peer);
                 e5Var.e0(o10, tL_peerStories);
-                if (o10 != d20.i(d20.f15147s0).f15165n) {
-                    TLRPC.User Z1 = vp.r1(i12).Z1(Long.valueOf(o10));
+                if (o10 != e20.i(e20.f15506s0).f15524n) {
+                    TLRPC.User Z1 = wp.r1(i12).Z1(Long.valueOf(o10));
                     e5Var.g(tL_peerStories);
                     if (Z1 != null && !Z1.stories_hidden) {
                         e5Var.a0(tL_peerStories);
@@ -317,32 +317,32 @@ public final class a3 implements Runnable {
                 }
                 f8.b("StoriesController applyNewStories " + o10);
                 e5Var.q0(o10, tL_peerStories.stories, false);
-                e5Var.f48921u = e5Var.f48921u + 1;
+                e5Var.f48935u = e5Var.f48935u + 1;
                 e5Var.R(j10);
                 z10 = true;
             }
         }
-        if (i10 != e5Var.f48921u) {
-            e5Var.f48912l.edit().putInt("total_stores", e5Var.f48921u).apply();
+        if (i10 != e5Var.f48935u) {
+            e5Var.f48926l.edit().putInt("total_stores", e5Var.f48935u).apply();
         }
         e5Var.v(arrayList3);
         e5Var.v(arrayList2);
         if (z10) {
             if (tL_updateStory2.story instanceof TL_stories.TL_storyItemDeleted) {
-                zs f7 = zs.f(i12);
+                at f7 = at.f(i12);
                 Long valueOf = Long.valueOf(j10);
-                Integer valueOf2 = Integer.valueOf(tL_updateStory2.story.f20031id);
+                Integer valueOf2 = Integer.valueOf(tL_updateStory2.story.f20032id);
                 Object[] objArr = new Object[2];
                 i11 = 0;
                 objArr[0] = valueOf;
                 objArr[c10] = valueOf2;
-                f7.k(zs.f19716w5, objArr);
+                f7.k(at.f14812w5, objArr);
             } else {
                 i11 = 0;
             }
-            zs.f(i12).k(zs.f19709v5, new Object[i11]);
+            at.f(i12).k(at.f14805v5, new Object[i11]);
         }
-        vp.r1(i12).D();
+        wp.r1(i12).D();
     }
 
     @Override
@@ -366,11 +366,11 @@ public final class a3 implements Runnable {
         this.d = j10;
     }
 
-    public a3(r6 r6Var, TLRPC.Chat chat, hs hsVar, long j10) {
+    public a3(r6 r6Var, TLRPC.Chat chat, is isVar, long j10) {
         this.f460a = 27;
         this.f461b = r6Var;
         this.e = chat;
-        this.f462c = hsVar;
+        this.f462c = isVar;
         this.d = j10;
     }
 }

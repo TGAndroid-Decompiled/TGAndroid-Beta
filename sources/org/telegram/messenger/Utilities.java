@@ -17,22 +17,22 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class Utilities {
-    public static final Pattern f14518a = Pattern.compile("[\\-0-9]+");
-    public static final SecureRandom f14519b;
-    public static final d5.a f14520c;
+    public static final Pattern f14519a = Pattern.compile("[\\-0-9]+");
+    public static final SecureRandom f14520b;
+    public static final d5.a f14521c;
     public static volatile r5 d;
     public static volatile r5 e;
-    public static volatile r5 f14521f;
-    public static volatile r5 f14522g;
+    public static volatile r5 f14522f;
+    public static volatile r5 f14523g;
     public static volatile r5 h;
-    public static volatile r5 f14523i;
-    public static volatile r5 f14524j;
-    public static volatile s5 f14525k;
-    public static final char[] f14526l;
+    public static volatile r5 f14524i;
+    public static volatile r5 f14525j;
+    public static volatile s5 f14526k;
+    public static final char[] f14527l;
 
     static {
         SecureRandom secureRandom = new SecureRandom();
-        f14519b = secureRandom;
+        f14520b = secureRandom;
         long nextLong = secureRandom.nextLong();
         ?? random = new Random(0L);
         long a2 = v7.q6.a(nextLong);
@@ -44,15 +44,15 @@ public class Utilities {
             random.f5738a = a11;
             random.f5739b = v7.q6.a(a11);
         }
-        f14520c = random;
+        f14521c = random;
         d = new r5("stageQueue");
         e = new r5("globalQueue");
-        f14521f = new r5("cacheClearQueue");
-        f14522g = new r5("searchQueue");
+        f14522f = new r5("cacheClearQueue");
+        f14523g = new r5("searchQueue");
         h = new r5("phoneBookQueue");
-        f14523i = new r5("themeQueue");
-        f14524j = new r5("externalNetworkQueue");
-        f14526l = "0123456789ABCDEF".toCharArray();
+        f14524i = new r5("themeQueue");
+        f14525j = new r5("externalNetworkQueue");
+        f14527l = "0123456789ABCDEF".toCharArray();
         try {
             FileInputStream fileInputStream = new FileInputStream(new File("/dev/urandom"));
             byte[] bArr = new byte[1024];
@@ -70,7 +70,7 @@ public class Utilities {
             return 0L;
         }
         try {
-            Matcher matcher = f14518a.matcher(str);
+            Matcher matcher = f14519a.matcher(str);
             if (matcher.find()) {
                 j10 = Long.parseLong(matcher.group(0));
             }
@@ -79,14 +79,14 @@ public class Utilities {
         return Long.valueOf(j10);
     }
 
-    public static void B(Runnable runnable, q20... q20VarArr) {
-        if (q20VarArr.length == 0) {
+    public static void B(Runnable runnable, r20... r20VarArr) {
+        if (r20VarArr.length == 0) {
             runnable.run();
             return;
         }
-        e00 e00Var = new e00(new int[]{0}, q20VarArr, runnable, 3);
-        for (q20 q20Var : q20VarArr) {
-            q20Var.a(e00Var);
+        f00 f00Var = new f00(new int[]{0}, r20VarArr, runnable, 3);
+        for (r20 r20Var : r20VarArr) {
+            r20Var.a(f00Var);
         }
     }
 
@@ -224,7 +224,7 @@ public class Utilities {
         for (int i10 = 0; i10 < bArr.length; i10++) {
             byte b10 = bArr[i10];
             int i11 = i10 * 2;
-            char[] cArr2 = f14526l;
+            char[] cArr2 = f14527l;
             cArr[i11] = cArr2[(b10 & 255) >>> 4];
             cArr[i11 + 1] = cArr2[b10 & 15];
         }
@@ -385,9 +385,9 @@ public class Utilities {
         return (float) Math.sqrt((f14 * f14) + (f13 * f13));
     }
 
-    public static void u(int i10, q20... q20VarArr) {
-        if (q20VarArr.length > i10) {
-            q20VarArr[i10].a(new a1(i10, q20VarArr, 13));
+    public static void u(int i10, r20... r20VarArr) {
+        if (r20VarArr.length > i10) {
+            r20VarArr[i10].a(new a1(i10, r20VarArr, 13));
         }
     }
 

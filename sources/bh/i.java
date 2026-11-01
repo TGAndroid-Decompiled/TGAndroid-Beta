@@ -201,7 +201,8 @@ public final class i extends View implements k6 {
             hi.c cVar = new hi.c();
             this.e = cVar;
             cVar.a(t6.x0(null, i10, false));
-            setup(new tg.b(this.e));
+            hi.c cVar2 = this.e;
+            setup(new tg.b(cVar2, cVar2, cVar2));
         }
     }
 

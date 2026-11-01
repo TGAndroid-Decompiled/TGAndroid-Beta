@@ -3,7 +3,7 @@ package yc;
 import java.util.regex.Pattern;
 import ve.r;
 public final class b extends h {
-    public static final Pattern e = i.f54380m;
+    public static final Pattern e = i.f54401m;
 
     @Override
     public final df.c b() {
@@ -13,13 +13,13 @@ public final class b extends h {
             this.d++;
             return gVar;
         }
-        if (this.d < this.f54376c.length()) {
-            String str = this.f54376c;
+        if (this.d < this.f54397c.length()) {
+            String str = this.f54397c;
             int i10 = this.d;
             if (e.matcher(str.substring(i10, i10 + 1)).matches()) {
-                String str2 = this.f54376c;
+                String str2 = this.f54397c;
                 int i11 = this.d;
-                this.f54374a.getClass();
+                this.f54395a.getClass();
                 r rVar = new r(str2.substring(i11, i11 + 1));
                 this.d++;
                 return rVar;

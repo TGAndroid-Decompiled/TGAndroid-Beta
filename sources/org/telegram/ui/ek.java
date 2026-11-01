@@ -34,7 +34,7 @@ public final class ek extends org.telegram.ui.Components.y90 {
 
     @Override
     public final void j() {
-        this.W.Mc();
+        this.W.Rc();
     }
 
     @Override
@@ -42,18 +42,18 @@ public final class ek extends org.telegram.ui.Components.y90 {
         un unVar = this.W;
         if (unVar.getParentActivity() != null && botInlineResult.content != null) {
             if (!botInlineResult.type.equals("video") && !botInlineResult.type.equals("web_player_video")) {
-                unVar.Ma(0, botInlineResult.content.url, null, null, false);
+                unVar.Ra(0, botInlineResult.content.url, null, null, false);
                 return;
             }
-            int[] h12 = org.telegram.messenger.jj.h1(botInlineResult);
-            ii iiVar = unVar.f42217cb;
+            int[] h12 = org.telegram.messenger.kj.h1(botInlineResult);
+            ii iiVar = unVar.f42028cb;
             String str = botInlineResult.title;
             if (str == null) {
                 str = "";
             }
             String str2 = botInlineResult.description;
             String str3 = botInlineResult.content.url;
-            org.telegram.ui.Components.hu.K0(unVar, null, iiVar, str, str2, str3, str3, h12[0], h12[1], -1, unVar.J9());
+            org.telegram.ui.Components.hu.K0(unVar, null, iiVar, str, str2, str3, str3, h12[0], h12[1], -1, unVar.O9());
         }
     }
 
@@ -64,13 +64,13 @@ public final class ek extends org.telegram.ui.Components.y90 {
         mk mkVar = unVar.Z;
         if (mkVar != null) {
             zf.x0 adapter = getAdapter();
-            TLRPC.User user = adapter.f55672w0;
+            TLRPC.User user = adapter.f55690w0;
             if (user != null) {
                 str = user.bot_inline_placeholder;
             } else {
-                String str2 = adapter.f55663q0;
+                String str2 = adapter.f55681q0;
                 if (str2 != null && str2.equals("gif")) {
-                    str = org.telegram.messenger.cd.L0(2131745781, null);
+                    str = org.telegram.messenger.dd.L0(2131745781, null);
                 } else {
                     str = null;
                 }
@@ -80,7 +80,7 @@ public final class ek extends org.telegram.ui.Components.y90 {
             if (aeVar != null) {
                 if (z10) {
                     aeVar.e = true;
-                    aeVar.f31804b = System.currentTimeMillis();
+                    aeVar.f31864b = System.currentTimeMillis();
                     aeVar.invalidateSelf();
                     return;
                 }
@@ -92,20 +92,20 @@ public final class ek extends org.telegram.ui.Components.y90 {
     @Override
     public final void m() {
         un unVar = this.W;
-        if (unVar.p5 && ((getAdapter().R == null || unVar.f42383q5 || unVar.f42395r5) && unVar.h != null && getAdapter().R != null)) {
-            SharedPreferences d12 = org.telegram.messenger.vp.d1();
+        if (unVar.p5 && ((getAdapter().R == null || unVar.f42194q5 || unVar.f42206r5) && unVar.h != null && getAdapter().R != null)) {
+            SharedPreferences d12 = org.telegram.messenger.wp.d1();
             if (!d12.getBoolean("secretbot", false)) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, unVar.getParentActivity(), unVar.f42477xa);
-                String L0 = org.telegram.messenger.cd.L0(2131689472, null);
-                org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20134a;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, unVar.getParentActivity(), unVar.f42288xa);
+                String L0 = org.telegram.messenger.dd.L0(2131689472, null);
+                org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20135a;
                 x1Var.R = L0;
-                x1Var.T = org.telegram.messenger.cd.L0(2131745711, null);
-                alertDialog$Builder.k(org.telegram.messenger.cd.L0(2131747847, null), null);
+                x1Var.T = org.telegram.messenger.dd.L0(2131745711, null);
+                alertDialog$Builder.k(org.telegram.messenger.dd.L0(2131747847, null), null);
                 unVar.showDialog(x1Var);
                 d12.edit().putBoolean("secretbot", true).commit();
             }
         }
-        unVar.Mc();
+        unVar.Rc();
     }
 
     @Override
@@ -113,13 +113,13 @@ public final class ek extends org.telegram.ui.Components.y90 {
         boolean z11;
         if (this.V != z10) {
             un unVar = this.W;
-            org.telegram.ui.Components.sx0 sx0Var = unVar.f42391r1;
+            org.telegram.ui.Components.tx0 tx0Var = unVar.f42202r1;
             if (!unVar.isInPreviewMode() && z10) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            org.telegram.messenger.i0.U3(sx0Var, z11, false);
+            org.telegram.messenger.i0.U3(tx0Var, z11, false);
             this.V = z10;
         }
     }

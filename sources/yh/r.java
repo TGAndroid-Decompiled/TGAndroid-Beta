@@ -1,197 +1,223 @@
 package yh;
 
+import android.os.Bundle;
+import android.view.View;
 import android.widget.FrameLayout;
-import java.util.ArrayList;
-import org.telegram.messenger.cd;
+import java.io.Serializable;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.hs;
 import org.telegram.messenger.i0;
-import org.telegram.messenger.j20;
+import org.telegram.messenger.i20;
+import org.telegram.messenger.jo;
 import org.telegram.messenger.m5;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.p20;
+import org.telegram.messenger.q20;
 import org.telegram.messenger.w3;
-import org.telegram.messenger.zo;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Cells.f1;
-import org.telegram.ui.Components.a51;
+import org.telegram.ui.ActionBar.k2;
+import org.telegram.ui.Cells.s8;
+import org.telegram.ui.Components.b51;
 import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.p51;
-public final class r implements j20 {
-    public final int f54525a;
-    public final a0 f54526b;
+import org.telegram.ui.Components.u70;
+import org.telegram.ui.Components.z60;
+import org.telegram.ui.nb1;
+import org.telegram.ui.un;
+import r0.g1;
+import r0.j1;
+public final class r implements p20, r0.m, q20 {
+    public final int f54528a;
+    public final z f54529b;
 
-    public r(a0 a0Var, int i10) {
-        this.f54525a = i10;
-        this.f54526b = a0Var;
+    public r(z zVar, int i10) {
+        this.f54528a = i10;
+        this.f54529b = zVar;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        String G;
-        String str;
+    public j1 R0(View view, j1 j1Var) {
+        g1 g1Var = j1Var.f46143a;
+        i0.c f7 = g1Var.f(527);
+        z zVar = this.f54529b;
+        zVar.K1 = f7;
+        zVar.L1 = g1Var.f(519);
+        zVar.f54556w1.j(i0.L(56.0f) + zVar.K1.f7767b, zVar.K1.d, false);
+        zVar.f54558y1.invalidate();
+        return j1.f46142b;
+    }
+
+    @Override
+    public Boolean a(b51 b51Var, View view, Integer num, Float f7, Float f10) {
         boolean z10;
-        ArrayList arrayList;
-        int i10 = this.f54525a;
-        boolean z11 = true;
-        int i11 = 0;
-        a0 a0Var = this.f54526b;
-        switch (i10) {
-            case 0:
-                p51 p51Var = (p51) obj2;
-                a0Var.J0((ArrayList) obj, true);
-                return;
-            case 1:
-                TLRPC.Bool bool = (TLRPC.Bool) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                if (tL_error != null) {
-                    f1.s((FrameLayout) a0Var.f21586b, a0Var.I0, tL_error, false);
-                    return;
-                } else {
-                    a0Var.getClass();
-                    return;
-                }
-            case 2:
-                ArrayList arrayList2 = (ArrayList) obj;
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                a0Var.f54446o1.setLoading(false);
-                if (tL_error2 != null) {
-                    f1.s((FrameLayout) a0Var.f21586b, a0Var.I0, tL_error2, false);
-                    return;
-                } else if (arrayList2 != null) {
-                    a0Var.H1 = arrayList2;
-                    if (arrayList2.isEmpty()) {
-                        m5.n(null, 2131751905, new cc((FrameLayout) a0Var.f21586b, a0Var.I0), 2131624066, 36);
-                        return;
-                    }
-                    a0Var.f54451t1.d.f30819f3.O(false);
-                    a0Var.f54443k1.E(2);
-                    return;
-                } else {
-                    return;
-                }
-            case 3:
-                p51 p51Var2 = (p51) obj2;
-                int i12 = a0.M1;
-                a0Var.J0((ArrayList) obj, false);
-                return;
-            case 4:
-                ArrayList arrayList3 = (ArrayList) obj;
-                p51 p51Var3 = (p51) obj2;
-                int i13 = a0.M1;
-                arrayList3.add(a51.E(99, Math.min(i0.L(176.0f) + i0.f16020m, (int) (i0.f16026q.y * 0.25f))));
-                arrayList3.add(a51.E(0, i0.L(56.0f)));
-                String L0 = cd.L0(2131751849, null);
-                a51 a51Var = new a51(39);
-                a51Var.d = 101;
-                a51Var.f24292l = L0;
-                a51Var.f24305z = 0;
-                a51Var.L(a0Var.f54445n1);
-                arrayList3.add(a51Var);
-                arrayList3.add(a51.B(2, cd.L0(2131751848, null)));
-                e0 e0Var = a0Var.D1;
-                if (e0Var.f54483n && e0Var.f54481l == 1 && (arrayList = e0Var.f54479j) != null && arrayList.size() == 1) {
-                    arrayList3.add(a51.t(3, cd.L0(2131751904, null)));
-                    e0Var.c(arrayList3);
-                    arrayList3.add(a51.E(5, i0.L(14.33f)));
-                } else {
-                    int i14 = e0Var.f54481l;
-                    if (i14 > 0) {
-                        int i15 = e0Var.f54485p;
-                        if (i14 == i15) {
-                            G = cd.L0(2131751895, null);
-                        } else {
-                            G = cd.G(i14, "CommunityPendingRequestsRow", new Object[0]);
-                        }
-                        if (i15 > 0) {
-                            str = Integer.toString(i15);
-                        } else {
-                            str = null;
-                        }
-                        int i16 = zh.i.f55788b;
-                        a51 K = a51.K(zh.i.class);
-                        K.d = 100;
-                        K.f24291k = 2131231167;
-                        K.f24292l = G;
-                        K.f24294n = str;
-                        K.B = ((-15497247) << 32) | ((-14899731) & 4294967295L);
-                        K.f24297q = true;
-                        arrayList3.add(K);
-                        arrayList3.add(a51.E(5, i0.L(14.33f)));
-                    }
-                }
-                ji.f x10 = vp.r1(a0Var.f21583a).x(a0Var.l1);
-                ArrayList arrayList4 = (ArrayList) x10.e;
-                ArrayList arrayList5 = (ArrayList) x10.d;
-                ArrayList arrayList6 = (ArrayList) x10.f10442c;
-                ArrayList arrayList7 = (ArrayList) x10.f10441b;
-                if (!arrayList7.isEmpty()) {
-                    arrayList3.add(a51.t(21, cd.L0(2131751878, null)));
-                    int size = arrayList7.size();
-                    int i17 = 0;
-                    while (i17 < size) {
-                        Object obj3 = arrayList7.get(i17);
-                        i17++;
-                        arrayList3.add(b0.i((zo) obj3, a0Var));
-                    }
+        long j10;
+        boolean z11;
+        boolean z12;
+        int i10 = z.M1;
+        Object obj = b51Var.G;
+        boolean z13 = obj instanceof TLRPC.Chat;
+        z zVar = this.f54529b;
+        boolean z14 = true;
+        if (z13) {
+            TLRPC.Chat chat = (TLRPC.Chat) obj;
+            long j11 = -chat.f19794id;
+            boolean V = w3.V(chat);
+            TLRPC.Chat chat2 = zVar.f54546m1;
+            if (chat2 != null && (chat.creator || w3.y(27, chat2))) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            j10 = j11;
+            z12 = V;
+            z11 = false;
+        } else {
+            if (obj instanceof TLRPC.User) {
+                TLRPC.User user = (TLRPC.User) obj;
+                long j12 = user.f19943id;
+                boolean t10 = i20.t(user);
+                TLRPC.Chat chat3 = zVar.f54546m1;
+                if (chat3 != null && ((user.bot && user.bot_can_edit) || w3.y(27, chat3))) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                if (!arrayList6.isEmpty()) {
-                    if (z10) {
-                        arrayList3.add(a51.E(22, i0.L(12.0f)));
-                    }
-                    arrayList3.add(a51.t(23, cd.L0(2131751875, null)));
-                    int size2 = arrayList6.size();
-                    int i18 = 0;
-                    while (i18 < size2) {
-                        Object obj4 = arrayList6.get(i18);
-                        i18++;
-                        arrayList3.add(b0.i((zo) obj4, a0Var));
-                    }
-                    z10 = true;
-                }
-                if (!arrayList5.isEmpty()) {
-                    if (z10) {
-                        arrayList3.add(a51.E(24, i0.L(12.0f)));
-                    }
-                    arrayList3.add(a51.t(25, cd.L0(2131751876, null)));
-                    int size3 = arrayList5.size();
-                    int i19 = 0;
-                    while (i19 < size3) {
-                        Object obj5 = arrayList5.get(i19);
-                        i19++;
-                        arrayList3.add(b0.i((zo) obj5, a0Var));
-                    }
-                } else {
-                    z11 = z10;
-                }
-                if (!arrayList4.isEmpty()) {
-                    if (z11) {
-                        arrayList3.add(a51.E(26, i0.L(12.0f)));
-                    }
-                    arrayList3.add(a51.t(27, cd.L0(2131751873, null)));
-                    int size4 = arrayList4.size();
-                    while (i11 < size4) {
-                        Object obj6 = arrayList4.get(i11);
-                        i11++;
-                        arrayList3.add(b0.i((zo) obj6, a0Var));
-                    }
-                    return;
-                }
+                j10 = j12;
+                z11 = t10;
+                z12 = false;
+            }
+            z14 = false;
+            return Boolean.valueOf(z14);
+        }
+        if (z10) {
+            z60 F = z60.F(zVar.f21590c, null, view);
+            F.c(2131232086, dd.L0(2131751915, null), new jo(zVar, z11, z12, j10, 3), true);
+            F.W(zVar.f54551r1.d.U0(view, true));
+            F.Z();
+            return Boolean.valueOf(z14);
+        }
+        z14 = false;
+        return Boolean.valueOf(z14);
+    }
+
+    @Override
+    public void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        long j10;
+        TLRPC.Chat chat;
+        int i10;
+        int i11 = this.f54528a;
+        z zVar = this.f54529b;
+        switch (i11) {
+            case 0:
+                View view = (View) obj2;
+                Integer num = (Integer) number;
+                Float f7 = (Float) serializable;
+                Float f10 = (Float) serializable2;
+                zVar.L0((b51) obj);
                 return;
+            case 1:
             default:
-                ArrayList arrayList8 = (ArrayList) obj;
-                p51 p51Var4 = (p51) obj2;
-                e0 e0Var2 = a0Var.D1;
-                arrayList8.add(a51.E(99, (int) (i0.f16026q.y * 0.35f)));
-                arrayList8.add(a51.E(0, i0.L(48.0f)));
-                if (w3.w(2, a0Var.f54444m1)) {
-                    arrayList8.add(a51.B(1, i0.G2(i0.T2(cd.L0(2131751894, null), new t(a0Var, 2)), true)));
-                } else {
-                    arrayList8.add(a51.B(1, cd.L0(2131751893, null)));
+                View view2 = (View) obj2;
+                Integer num2 = (Integer) number;
+                Float f11 = (Float) serializable;
+                Float f12 = (Float) serializable2;
+                int i12 = z.M1;
+                zVar.I0((b51) obj);
+                return;
+            case 2:
+                View view3 = (View) obj2;
+                Integer num3 = (Integer) number;
+                Float f13 = (Float) serializable;
+                Float f14 = (Float) serializable2;
+                int i13 = z.M1;
+                zVar.L0((b51) obj);
+                return;
+            case 3:
+                b51 b51Var = (b51) obj;
+                View view4 = (View) obj2;
+                Integer num4 = (Integer) number;
+                Float f15 = (Float) serializable;
+                Float f16 = (Float) serializable2;
+                k2 k2Var = zVar.f54550q1;
+                if (!zVar.I0(b51Var)) {
+                    int i14 = b51Var.d;
+                    boolean z10 = false;
+                    if (i14 == 101) {
+                        zVar.f54547n1 = !zVar.f54547n1;
+                        wp.r1(zVar.f21584a).b5(zVar.l1, zVar.f54547n1);
+                        if (view4 instanceof s8) {
+                            ((s8) view4).getCheckBox().c(zVar.f54547n1, true);
+                            return;
+                        } else {
+                            zVar.f54551r1.d.f31183f3.O(false);
+                            return;
+                        }
+                    } else if (i14 == 100) {
+                        zVar.f54545k1.E(1);
+                        zVar.D1.e();
+                        return;
+                    } else {
+                        Object obj3 = b51Var.G;
+                        if (obj3 instanceof TLRPC.Chat) {
+                            TLRPC.Chat chat2 = (TLRPC.Chat) obj3;
+                            z10 = w3.V(chat2);
+                            j10 = -chat2.f19794id;
+                            chat = chat2;
+                        } else if (obj3 instanceof TLRPC.User) {
+                            j10 = ((TLRPC.User) obj3).f19943id;
+                            chat = null;
+                        } else {
+                            return;
+                        }
+                        int b10 = e0.b(zVar.f21584a, j10);
+                        if (b10 != 1 && b10 != 2) {
+                            if (b10 == 3) {
+                                u70 u70Var = new u70(zVar.getContext(), chat, null, zVar.f54550q1, zVar.I0);
+                                u70Var.f30890p1 = new cc((FrameLayout) zVar.f21587b, zVar.I0);
+                                u70Var.show();
+                                return;
+                            } else if (b10 == 4) {
+                                cc ccVar = new cc((FrameLayout) zVar.f21587b, zVar.I0);
+                                if (z10) {
+                                    i10 = 2131751930;
+                                } else {
+                                    i10 = 2131751927;
+                                }
+                                m5.n(null, i10, ccVar, 2131624006, 36);
+                                return;
+                            } else {
+                                return;
+                            }
+                        }
+                        if (k2Var instanceof un) {
+                            un unVar = (un) k2Var;
+                            TLRPC.Chat chat3 = unVar.e;
+                            TLRPC.User j11 = unVar.j();
+                            if ((chat3 != null && chat3.f19794id == (-j10)) || (j11 != null && j11.f19943id == j10)) {
+                                zVar.dismiss();
+                                return;
+                            }
+                        }
+                        Bundle bundle = new Bundle();
+                        if (j10 > 0) {
+                            bundle.putLong("user_id", j10);
+                        } else {
+                            bundle.putLong("chat_id", -j10);
+                        }
+                        if (w3.c0(chat)) {
+                            if (w3.a(chat)) {
+                                un unVar2 = new un(bundle);
+                                gg.e.a(unVar2, hs.a(j10, wp.r1(zVar.f21584a).f7.getLong(a1.g.l(chat.f19794id, "forumlasttopic"), 1L)));
+                                k2Var.presentFragment(unVar2);
+                            } else {
+                                k2Var.presentFragment(new nb1(bundle));
+                            }
+                        } else {
+                            k2Var.presentFragment(new un(bundle));
+                        }
+                        zVar.dismiss();
+                        return;
+                    }
                 }
-                arrayList8.add(a51.j(2, a0Var.C1));
-                arrayList8.add(a51.t(3, cd.G(e0Var2.f54481l, "CommunityPendingRequestsSuggestedHeader", new Object[0])));
-                e0Var2.c(arrayList8);
                 return;
         }
     }

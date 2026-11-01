@@ -1,80 +1,31 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import android.net.Uri;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class ak0 implements org.telegram.ui.ActionBar.u1, qt, zk0 {
-    public final int f35667a;
-    public final ll0 f35668b;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ak0 implements RequestDelegate {
+    public final int f35800a;
+    public final jl0 f35801b;
 
-    public ak0(ll0 ll0Var, int i10) {
-        this.f35667a = i10;
-        this.f35668b = ll0Var;
+    public ak0(jl0 jl0Var, int i10) {
+        this.f35800a = i10;
+        this.f35801b = jl0Var;
     }
 
     @Override
-    public void c(nt ntVar) {
-        String str;
-        switch (this.f35667a) {
-            case 2:
-                ll0 ll0Var = this.f35668b;
-                ll0Var.Y[5].setText(ntVar.f40047a);
-                ll0Var.f39297s = ntVar.d;
-                return;
-            default:
-                ll0 ll0Var2 = this.f35668b;
-                ll0Var2.Y[0].setText(ntVar.f40047a);
-                if (ll0Var2.U0.indexOf(ntVar.f40047a) != -1) {
-                    ll0Var2.Z0 = true;
-                    String str2 = (String) ll0Var2.V0.get(ntVar.f40047a);
-                    ll0Var2.Y[1].setText(str2);
-                    String str3 = (String) ll0Var2.X0.get(str2);
-                    EditTextBoldCursor editTextBoldCursor = ll0Var2.Y[2];
-                    if (str3 != null) {
-                        str = str3.replace('X', (char) 8211);
-                    } else {
-                        str = null;
-                    }
-                    editTextBoldCursor.setHintText(str);
-                    ll0Var2.Z0 = false;
-                }
-                org.telegram.messenger.i0.h3(new xj0(ll0Var2, 3), 300L);
-                ll0Var2.Y[2].requestFocus();
-                EditTextBoldCursor editTextBoldCursor2 = ll0Var2.Y[2];
-                editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
-                return;
-        }
-    }
-
-    @Override
-    public void d(String str, String str2) {
-        this.f35668b.A1();
-    }
-
-    @Override
-    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
-        switch (this.f35667a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f35800a) {
             case 0:
-                ll0 ll0Var = this.f35668b;
-                try {
-                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + org.telegram.messenger.w0.f19025b.getPackageName()));
-                    ll0Var.getParentActivity().startActivity(intent);
-                    return;
-                } catch (Exception e) {
-                    org.telegram.messenger.f8.g(e, true);
-                    return;
-                }
+                org.telegram.messenger.i0.g3(new pd0(this.f35801b, tL_error, tLObject, false, 13));
+                return;
             case 1:
-                this.f35668b.finishFragment();
+                org.telegram.messenger.i0.g3(new if0(14, this.f35801b, tL_error));
                 return;
             case 2:
-            case 3:
-            default:
-                ll0.e0(this.f35668b);
+                org.telegram.messenger.i0.g3(new vj0(this.f35801b, 5));
                 return;
-            case 4:
-                ll0.h0(this.f35668b);
+            default:
+                org.telegram.messenger.i0.g3(new if0(13, this.f35801b, tLObject));
                 return;
         }
     }

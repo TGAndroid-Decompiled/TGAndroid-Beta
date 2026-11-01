@@ -1,161 +1,225 @@
 package org.telegram.messenger;
 
-import android.app.DownloadManager;
-import android.content.ContentValues;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.text.TextUtils;
-import android.webkit.MimeTypeMap;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.tgnet.TLRPC;
-public final class cf implements us {
-    public c f15011a;
-    public org.telegram.ui.ActionBar.x1 f15012b;
-    public ArrayList f15013c;
-    public HashMap d;
-    public float e;
-    public boolean f15014f;
-    public boolean h;
-    public int f15015n;
-    public CountDownLatch f15016r;
-    public bs f15017s;
-    public boolean f15018w;
+public final class cf implements Runnable {
+    public final int f15141a;
+    public final df f15142b;
 
-    public final void a(java.io.File r28, java.io.File r29, java.lang.String r30) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.cf.a(java.io.File, java.io.File, java.lang.String):void");
-    }
-
-    public final boolean b(jj jjVar) {
-        TLRPC.MessageMedia o12;
-        TLRPC.Photo photo;
-        TLRPC.PhotoSize w9;
-        ?? r22;
-        ?? r62;
-        boolean z10 = false;
-        if (!jjVar.D3() || (o12 = jj.o1(jjVar.f16337k)) == null || (photo = o12.photo) == null || o12.document == null || (w9 = b8.w(photo.sizes, i0.Z0(true), false, null, true)) == null) {
-            return false;
-        }
-        b8.G(this.f15011a.f14863a);
-        File K = b8.K(w9, null, false, true);
-        File K2 = b8.K(o12.document, null, false, true);
-        if (K != null && K.exists()) {
-            r22 = 0;
-        } else {
-            r22 = 1;
-        }
-        if (K2 != null && K2.exists()) {
-            r62 = 0;
-        } else {
-            r62 = 1;
-        }
-        int i10 = r22 + r62;
-        if (i10 > 0) {
-            this.f15016r = new CountDownLatch(i10);
-            i0.g3(new kh(this, (boolean) r22, w9, jjVar, o12.photo, (boolean) r62, o12.document));
-            this.f15016r.await();
-        }
-        if (!this.f15014f) {
-            if (K == null || !K.exists()) {
-                K = b8.K(w9, null, true, true);
-            }
-            if (K2 == null || !K2.exists()) {
-                K2 = b8.K(o12.document, null, true, true);
-            }
-            if (K != null && K.exists() && K2 != null && K2.exists()) {
-                String D = b8.D(K);
-                if (TextUtils.isEmpty(D)) {
-                    D = "jpg";
-                }
-                String mimeTypeFromExtension = MimeTypeMap.getSingleton().getMimeTypeFromExtension(D.toLowerCase());
-                if (TextUtils.isEmpty(mimeTypeFromExtension)) {
-                    mimeTypeFromExtension = "image/jpeg";
-                }
-                String p02 = i0.p0(0, D);
-                if (Build.VERSION.SDK_INT >= 29) {
-                    ContentValues contentValues = new ContentValues();
-                    Uri contentUri = MediaStore.Downloads.getContentUri("external_primary");
-                    contentValues.put("relative_path", new File(Environment.DIRECTORY_DOWNLOADS, "Telegram") + File.separator);
-                    contentValues.put("_display_name", p02);
-                    contentValues.put("mime_type", mimeTypeFromExtension);
-                    Uri insert = w0.f19025b.getContentResolver().insert(contentUri, contentValues);
-                    if (insert != null) {
-                        OutputStream openOutputStream = w0.f19025b.getContentResolver().openOutputStream(insert);
-                        if (openOutputStream != null) {
-                            try {
-                                MediaController.H0(K, K2, openOutputStream, null);
-                                z10 = !this.f15014f;
-                            } catch (Throwable th2) {
-                                try {
-                                    openOutputStream.close();
-                                } catch (Throwable th3) {
-                                    th2.addSuppressed(th3);
-                                }
-                                throw th2;
-                            }
-                        }
-                        if (openOutputStream != null) {
-                            openOutputStream.close();
-                        }
-                        if (z10) {
-                            this.f15015n++;
-                        } else {
-                            try {
-                                w0.f19025b.getContentResolver().delete(insert, null, null);
-                            } catch (Exception unused) {
-                            }
-                        }
-                    }
-                } else {
-                    File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Telegram");
-                    file.mkdirs();
-                    File file2 = new File(file, p02);
-                    if (!file2.exists()) {
-                        file2.createNewFile();
-                    }
-                    FileOutputStream fileOutputStream = new FileOutputStream(file2);
-                    try {
-                        MediaController.H0(K, K2, fileOutputStream, null);
-                        fileOutputStream.close();
-                        if (this.f15014f) {
-                            file2.delete();
-                        } else {
-                            ((DownloadManager) w0.f19025b.getSystemService("download")).addCompletedDownload(file2.getName(), file2.getName(), false, mimeTypeFromExtension, file2.getAbsolutePath(), file2.length(), true);
-                            this.f15015n++;
-                        }
-                    } catch (Throwable th4) {
-                        try {
-                            fileOutputStream.close();
-                        } catch (Throwable th5) {
-                            th4.addSuppressed(th5);
-                        }
-                        throw th4;
-                    }
-                }
-                float size = (100.0f / this.f15013c.size()) + this.e;
-                this.e = size;
-                i0.g3(new af(this, (int) size, 3));
-                return true;
-            }
-        }
-        return true;
+    public cf(df dfVar, int i10) {
+        this.f15141a = i10;
+        this.f15142b = dfVar;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        HashMap hashMap = this.d;
-        if (i10 != zs.Y1 && i10 != zs.Z1) {
-            if (i10 == zs.X1 && hashMap.containsKey((String) objArr[0])) {
-                i0.g3(new af(this, (int) a1.g.c(((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue()), this.f15013c.size(), 100.0f, this.e), 0));
-            }
-        } else if (hashMap.remove((String) objArr[0]) != null) {
-            this.f15016r.countDown();
+    public final void run() {
+        boolean z10;
+        File externalStoragePublicDirectory;
+        File file;
+        String str;
+        int i10;
+        String absolutePath;
+        File file2;
+        switch (this.f15141a) {
+            case 0:
+                df dfVar = this.f15142b;
+                dfVar.f15379s.a(dfVar.f15377n);
+                return;
+            case 1:
+                df dfVar2 = this.f15142b;
+                if (!dfVar2.h) {
+                    dfVar2.f15374b.show();
+                    return;
+                }
+                return;
+            case 2:
+                df dfVar3 = this.f15142b;
+                boolean z11 = dfVar3.f15380w;
+                c cVar = dfVar3.f15373a;
+                ArrayList arrayList = dfVar3.f15375c;
+                try {
+                    try {
+                        if (Build.VERSION.SDK_INT >= 29) {
+                            int size = arrayList.size();
+                            for (int i11 = 0; i11 < size; i11++) {
+                                kj kjVar = (kj) arrayList.get(i11);
+                                if (!dfVar3.b(kjVar)) {
+                                    String str2 = kjVar.f16690k.attachPath;
+                                    TLRPC.Document F0 = kjVar.F0();
+                                    TLRPC.Document document = kjVar.f16650a3;
+                                    if (document != null) {
+                                        str2 = null;
+                                        F0 = document;
+                                    }
+                                    String B = b8.B(F0);
+                                    if (str2 != null && str2.length() > 0 && !new File(str2).exists()) {
+                                        str2 = null;
+                                    }
+                                    if (TextUtils.isEmpty(str2)) {
+                                        b8.G(cVar.f15043a);
+                                        TLRPC.MessageMedia n12 = kj.n1(kjVar);
+                                        TLRPC.Document document2 = kjVar.f16650a3;
+                                        if (document2 != null) {
+                                            file2 = b8.K(document2, null, false, true);
+                                        } else {
+                                            File N = b8.N(kjVar.f16690k, false, true);
+                                            if (n12 instanceof TLRPC.TL_messageMediaDocument) {
+                                                TLRPC.TL_messageMediaDocument tL_messageMediaDocument = (TLRPC.TL_messageMediaDocument) n12;
+                                                if (!tL_messageMediaDocument.alt_documents.isEmpty()) {
+                                                    file2 = b8.K(tL_messageMediaDocument.alt_documents.get(0), null, false, true);
+                                                }
+                                            }
+                                            file2 = N;
+                                        }
+                                        str2 = file2.toString();
+                                    }
+                                    File file3 = new File(str2);
+                                    if (!file3.exists()) {
+                                        dfVar3.f15378r = new CountDownLatch(1);
+                                        i0.g3(new t6(24, dfVar3, kjVar));
+                                        dfVar3.f15378r.await();
+                                    }
+                                    if (!dfVar3.f15376f) {
+                                        if (!file3.exists()) {
+                                            b8.G(cVar.f15043a);
+                                            file3 = b8.K(kjVar.f16690k, null, true, true);
+                                            StringBuilder sb2 = new StringBuilder();
+                                            sb2.append("saving file: correcting path from ");
+                                            sb2.append(str2);
+                                            sb2.append(" to ");
+                                            if (file3 == null) {
+                                                absolutePath = null;
+                                            } else {
+                                                absolutePath = file3.getAbsolutePath();
+                                            }
+                                            sb2.append(absolutePath);
+                                            f8.b(sb2.toString());
+                                        }
+                                        if (file3 != null && file3.exists()) {
+                                            if (z11) {
+                                                i10 = 3;
+                                            } else {
+                                                i10 = 2;
+                                            }
+                                            MediaController.f0(i10, file3, B);
+                                            dfVar3.f15377n++;
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            if (z11) {
+                                externalStoragePublicDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC);
+                            } else {
+                                externalStoragePublicDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+                            }
+                            externalStoragePublicDirectory.mkdir();
+                            int size2 = arrayList.size();
+                            for (int i12 = 0; i12 < size2; i12++) {
+                                kj kjVar2 = (kj) arrayList.get(i12);
+                                if (!dfVar3.b(kjVar2)) {
+                                    TLRPC.Document F02 = kjVar2.F0();
+                                    TLRPC.Document document3 = kjVar2.f16650a3;
+                                    if (document3 != null) {
+                                        F02 = document3;
+                                    }
+                                    String B2 = b8.B(F02);
+                                    File file4 = new File(externalStoragePublicDirectory, B2);
+                                    if (file4.exists()) {
+                                        int lastIndexOf = B2.lastIndexOf(46);
+                                        for (int i13 = 0; i13 < 10; i13++) {
+                                            if (lastIndexOf != -1) {
+                                                str = B2.substring(0, lastIndexOf) + "(" + (i13 + 1) + ")" + B2.substring(lastIndexOf);
+                                            } else {
+                                                str = B2 + "(" + (i13 + 1) + ")";
+                                            }
+                                            file4 = new File(externalStoragePublicDirectory, str);
+                                            if (file4.exists()) {
+                                            }
+                                        }
+                                    }
+                                    if (!file4.exists()) {
+                                        file4.createNewFile();
+                                    }
+                                    String str3 = kjVar2.f16690k.attachPath;
+                                    if (kjVar2.f16650a3 != null) {
+                                        str3 = null;
+                                    }
+                                    if (str3 != null && str3.length() > 0 && !new File(str3).exists()) {
+                                        str3 = null;
+                                    }
+                                    if (kjVar2.f16650a3 != null) {
+                                        b8.G(cVar.f15043a);
+                                        file = b8.K(kjVar2.f16650a3, null, false, true);
+                                    } else {
+                                        if (str3 == null || str3.length() == 0) {
+                                            b8.G(cVar.f15043a);
+                                            str3 = b8.N(kjVar2.f16690k, false, true).toString();
+                                        }
+                                        file = new File(str3);
+                                    }
+                                    if (!file.exists()) {
+                                        dfVar3.f15378r = new CountDownLatch(1);
+                                        i0.g3(new t6(24, dfVar3, kjVar2));
+                                        dfVar3.f15378r.await();
+                                    }
+                                    if (file.exists()) {
+                                        dfVar3.a(file, file4, kjVar2.u1());
+                                        dfVar3.f15377n++;
+                                    }
+                                }
+                            }
+                        }
+                        if (dfVar3.d.isEmpty()) {
+                            i0.g3(new cf(dfVar3, 4));
+                            return;
+                        }
+                        return;
+                    } catch (Exception e) {
+                        e = e;
+                        z10 = true;
+                        f8.g(e, z10);
+                        return;
+                    }
+                } catch (Exception e7) {
+                    e = e7;
+                    z10 = true;
+                }
+                break;
+            case 3:
+                try {
+                    this.f15142b.f15374b.dismiss();
+                    return;
+                } catch (Exception e10) {
+                    f8.g(e10, true);
+                    return;
+                }
+            default:
+                df dfVar4 = this.f15142b;
+                org.telegram.ui.ActionBar.x1 x1Var = dfVar4.f15374b;
+                c cVar2 = dfVar4.f15373a;
+                try {
+                    if (x1Var.isShowing()) {
+                        x1Var.dismiss();
+                    } else {
+                        dfVar4.h = true;
+                    }
+                    if (dfVar4.f15379s != null) {
+                        i0.g3(new cf(dfVar4, 0));
+                    }
+                } catch (Exception e11) {
+                    f8.g(e11, true);
+                }
+                int i14 = cVar2.f15043a;
+                at.f(i14).n(dfVar4, 142);
+                at.f(i14).n(dfVar4, 141);
+                at.f(i14).n(dfVar4, 143);
+                return;
         }
     }
 }

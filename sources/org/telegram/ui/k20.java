@@ -1,15 +1,19 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class k20 extends s4.s0 {
-    public final b50 f38672a;
+import android.view.animation.OvershootInterpolator;
+public final class k20 extends ch.b {
+    public final OvershootInterpolator d;
+    public int e;
+    public final a50 f38636f;
 
-    public k20(b50 b50Var) {
-        this.f38672a = b50Var;
+    public k20(a50 a50Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.f38636f = a50Var;
+        this.d = new OvershootInterpolator(1.5f);
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        this.f38672a.f21586b.invalidate();
+    public final void dispatchDraw(android.graphics.Canvas r41) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.k20.dispatchDraw(android.graphics.Canvas):void");
     }
 }

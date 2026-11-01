@@ -10,107 +10,107 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.eb;
-import org.telegram.messenger.fa;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.fb;
+import org.telegram.messenger.ga;
 import org.telegram.ui.ActionBar.a7;
 import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Cells.x4;
 import org.telegram.ui.Components.g9;
 import org.telegram.ui.Components.xk;
-import org.telegram.ui.sb0;
-import org.telegram.ui.ub0;
-import org.telegram.ui.wu;
+import org.telegram.ui.rb0;
+import org.telegram.ui.tb0;
+import org.telegram.ui.vu;
+import org.telegram.ui.wb0;
 import org.telegram.ui.xb0;
-import org.telegram.ui.yb0;
 import w7.b6;
-public final class l0 implements o0, eb {
-    public final float f12820a;
-    public final Object f12821b;
+public final class l0 implements o0, fb {
+    public final float f12821a;
+    public final Object f12822b;
 
     public l0(Object obj, float f7) {
-        this.f12821b = obj;
-        this.f12820a = f7;
+        this.f12822b = obj;
+        this.f12821a = f7;
     }
 
     @Override
-    public void a(fa faVar) {
+    public void a(ga gaVar) {
         int i10;
         int i11;
         int i12;
         int i13;
-        yb0 yb0Var = (yb0) this.f12821b;
-        ArrayList arrayList = yb0Var.f43799p0;
-        if (faVar.b() instanceof xb0) {
-            yb0Var.V.setVisibility(4);
-            if (!yb0Var.K0) {
-                ImageView imageView = yb0Var.f43780a;
+        xb0 xb0Var = (xb0) this.f12822b;
+        ArrayList arrayList = xb0Var.f43319p0;
+        if (gaVar.b() instanceof wb0) {
+            xb0Var.V.setVisibility(4);
+            if (!xb0Var.K0) {
+                ImageView imageView = xb0Var.f43300a;
                 int i14 = t6.ij;
-                a7.t(imageView, i14, yb0Var.getResourceProvider(), PorterDuff.Mode.MULTIPLY);
-                yb0Var.f43780a.setTag(Integer.valueOf(i14));
-                yb0Var.K0 = true;
+                a7.t(imageView, i14, xb0Var.getResourceProvider(), PorterDuff.Mode.MULTIPLY);
+                xb0Var.f43300a.setTag(Integer.valueOf(i14));
+                xb0Var.K0 = true;
             }
             int i15 = 0;
             while (true) {
                 if (i15 >= arrayList.size()) {
                     break;
                 }
-                sb0 sb0Var = (sb0) arrayList.get(i15);
-                if (sb0Var != null && sb0Var.e == faVar) {
-                    yb0Var.f43802r0 = sb0Var.f41460a;
-                    if (yb0Var.f43804s0) {
-                        yb0Var.f43804s0 = false;
-                        yb0Var.R0();
+                rb0 rb0Var = (rb0) arrayList.get(i15);
+                if (rb0Var != null && rb0Var.e == gaVar) {
+                    xb0Var.f43322r0 = rb0Var.f41029a;
+                    if (xb0Var.f43324s0) {
+                        xb0Var.f43324s0 = false;
+                        xb0Var.S0();
                     }
-                    yb0Var.G.b(((t7.u) org.telegram.messenger.w0.k()).newCameraUpdateLatLngZoom(sb0Var.e.a(), this.f12820a));
+                    xb0Var.G.b(((t7.u) org.telegram.messenger.w0.k()).newCameraUpdateLatLngZoom(rb0Var.e.a(), this.f12821a));
                 } else {
                     i15++;
                 }
             }
-            ub0 ub0Var = yb0Var.f43808w;
-            yb0 yb0Var2 = ub0Var.f42111b;
-            HashMap hashMap = ub0Var.f42110a;
-            xb0 xb0Var = (xb0) faVar.b();
-            if (xb0Var != null && yb0Var2.f43809w0 != xb0Var) {
-                yb0Var2.M0(false);
-                fa faVar2 = yb0Var2.f43807v0;
-                if (faVar2 != null) {
-                    View view = (View) hashMap.get(faVar2);
+            tb0 tb0Var = xb0Var.f43328w;
+            xb0 xb0Var2 = tb0Var.f41610b;
+            HashMap hashMap = tb0Var.f41609a;
+            wb0 wb0Var = (wb0) gaVar.b();
+            if (wb0Var != null && xb0Var2.f43329w0 != wb0Var) {
+                xb0Var2.N0(false);
+                ga gaVar2 = xb0Var2.f43327v0;
+                if (gaVar2 != null) {
+                    View view = (View) hashMap.get(gaVar2);
                     if (view != null) {
-                        ub0Var.removeView(view);
-                        hashMap.remove(faVar2);
+                        tb0Var.removeView(view);
+                        hashMap.remove(gaVar2);
                     }
-                    yb0Var2.f43807v0 = null;
+                    xb0Var2.f43327v0 = null;
                 }
-                yb0Var2.f43809w0 = xb0Var;
-                yb0Var2.f43807v0 = faVar;
-                Context context = ub0Var.getContext();
+                xb0Var2.f43329w0 = wb0Var;
+                xb0Var2.f43327v0 = gaVar;
+                Context context = tb0Var.getContext();
                 FrameLayout frameLayout = new FrameLayout(context);
-                ub0Var.addView(frameLayout, b6.c(114.0f, -2));
+                tb0Var.addView(frameLayout, b6.c(114.0f, -2));
                 FrameLayout frameLayout2 = new FrameLayout(context);
-                yb0Var2.f43811x0 = frameLayout2;
+                xb0Var2.f43331x0 = frameLayout2;
                 frameLayout2.setBackgroundResource(2131232786);
-                FrameLayout frameLayout3 = yb0Var2.f43811x0;
-                a7.y(frameLayout3, frameLayout3.getBackground(), t6.f21001h5, yb0Var2.getResourceProvider(), PorterDuff.Mode.MULTIPLY);
-                frameLayout.addView(yb0Var2.f43811x0, b6.c(71.0f, -2));
-                yb0Var2.f43811x0.setAlpha(0.0f);
-                yb0Var2.f43811x0.setOnClickListener(new wu(17, ub0Var, xb0Var));
+                FrameLayout frameLayout3 = xb0Var2.f43331x0;
+                a7.y(frameLayout3, frameLayout3.getBackground(), t6.f21002h5, xb0Var2.getResourceProvider(), PorterDuff.Mode.MULTIPLY);
+                frameLayout.addView(xb0Var2.f43331x0, b6.c(71.0f, -2));
+                xb0Var2.f43331x0.setAlpha(0.0f);
+                xb0Var2.f43331x0.setOnClickListener(new vu(17, tb0Var, wb0Var));
                 TextView textView = new TextView(context);
                 textView.setTextSize(1, 16.0f);
                 textView.setMaxLines(1);
                 TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
                 textView.setEllipsize(truncateAt);
                 textView.setSingleLine(true);
-                a7.V(textView, t6.G6, yb0Var2.getResourceProvider());
+                a7.V(textView, t6.G6, xb0Var2.getResourceProvider());
                 textView.setTypeface(org.telegram.messenger.i0.o());
-                if (cd.X) {
+                if (dd.X) {
                     i10 = 5;
                 } else {
                     i10 = 3;
                 }
                 textView.setGravity(i10);
-                FrameLayout frameLayout4 = yb0Var2.f43811x0;
-                if (cd.X) {
+                FrameLayout frameLayout4 = xb0Var2.f43331x0;
+                if (dd.X) {
                     i11 = 5;
                 } else {
                     i11 = 3;
@@ -120,40 +120,40 @@ public final class l0 implements o0, eb {
                 l4.setMaxLines(1);
                 l4.setEllipsize(truncateAt);
                 l4.setSingleLine(true);
-                a7.V(l4, t6.A6, yb0Var2.getResourceProvider());
-                if (cd.X) {
+                a7.V(l4, t6.A6, xb0Var2.getResourceProvider());
+                if (dd.X) {
                     i12 = 5;
                 } else {
                     i12 = 3;
                 }
                 l4.setGravity(i12);
-                FrameLayout frameLayout5 = yb0Var2.f43811x0;
-                if (cd.X) {
+                FrameLayout frameLayout5 = xb0Var2.f43331x0;
+                if (dd.X) {
                     i13 = 5;
                 } else {
                     i13 = 3;
                 }
                 frameLayout5.addView(l4, b6.d(-2, -2.0f, i13 | 48, 18.0f, 32.0f, 18.0f, 0.0f));
-                textView.setText(xb0Var.f43532c.title);
-                l4.setText(cd.L0(2131744280, null));
+                textView.setText(wb0Var.f42750c.title);
+                l4.setText(dd.L0(2131744280, null));
                 FrameLayout frameLayout6 = new FrameLayout(context);
-                frameLayout6.setBackground(t6.L(org.telegram.messenger.i0.L(36.0f), x4.a(xb0Var.f43530a)));
+                frameLayout6.setBackground(t6.L(org.telegram.messenger.i0.L(36.0f), x4.a(wb0Var.f42748a)));
                 frameLayout.addView(frameLayout6, b6.d(36, 36.0f, 81, 0.0f, 0.0f, 0.0f, 4.0f));
                 g9 g9Var = new g9(context);
-                g9Var.h(a1.g.r(new StringBuilder("https://ss3.4sqi.net/img/categories_v2/"), xb0Var.f43532c.venue_type, "_64.png"), null, null);
+                g9Var.h(a1.g.r(new StringBuilder("https://ss3.4sqi.net/img/categories_v2/"), wb0Var.f42750c.venue_type, "_64.png"), null, null);
                 frameLayout6.addView(g9Var, b6.e(30, 30, 17));
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                ofFloat.addUpdateListener(new xk(ub0Var, frameLayout6));
+                ofFloat.addUpdateListener(new xk(tb0Var, frameLayout6));
                 ofFloat.setDuration(360L);
                 ofFloat.start();
-                hashMap.put(faVar, frameLayout);
-                yb0Var2.G.c(((t7.u) org.telegram.messenger.w0.k()).newCameraUpdateLatLng(faVar.a()), 300);
+                hashMap.put(gaVar, frameLayout);
+                xb0Var2.G.c(((t7.u) org.telegram.messenger.w0.k()).newCameraUpdateLatLng(gaVar.a()), 300);
             }
         }
     }
 
     @Override
     public void b(w wVar) {
-        ((p0) this.f12821b).h.f12754t.b(this.f12820a);
+        ((p0) this.f12822b).h.f12755t.b(this.f12821a);
     }
 }

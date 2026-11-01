@@ -2,14 +2,14 @@ package org.telegram.ui.ActionBar;
 
 import org.telegram.tgnet.TLObject;
 public final class x5 implements Runnable {
-    public final int f21530a;
-    public final TLObject f21531b;
-    public final int f21532c;
+    public final int f21531a;
+    public final TLObject f21532b;
+    public final int f21533c;
 
     public x5(int i10, int i11, TLObject tLObject) {
-        this.f21530a = i11;
-        this.f21531b = tLObject;
-        this.f21532c = i10;
+        this.f21531a = i11;
+        this.f21532b = tLObject;
+        this.f21533c = i10;
     }
 
     @Override
@@ -18,8 +18,8 @@ public final class x5 implements Runnable {
     }
 
     public x5(int i10, TLObject tLObject) {
-        this.f21530a = 0;
-        this.f21532c = i10;
-        this.f21531b = tLObject;
+        this.f21531a = 0;
+        this.f21533c = i10;
+        this.f21532b = tLObject;
     }
 }

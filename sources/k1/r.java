@@ -1,13 +1,13 @@
 package k1;
 public final class r extends ed.c {
-    public Object f10557a;
-    public Object f10558b;
-    public Object f10559c;
+    public Object f10558a;
+    public Object f10559b;
+    public Object f10560c;
     public kotlin.jvm.internal.p d;
     public z e;
-    public Object f10560f;
+    public Object f10561f;
     public final s h;
-    public int f10561n;
+    public int f10562n;
 
     public r(s sVar, ed.c cVar) {
         super(cVar);
@@ -16,8 +16,8 @@ public final class r extends ed.c {
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        this.f10560f = obj;
-        this.f10561n |= Integer.MIN_VALUE;
+        this.f10561f = obj;
+        this.f10562n |= Integer.MIN_VALUE;
         return this.h.a(null, this);
     }
 }

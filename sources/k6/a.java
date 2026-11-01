@@ -6,17 +6,17 @@ import android.os.Parcelable;
 import java.util.Arrays;
 import w7.h0;
 public final class a extends o6.a {
-    public final int f10925a;
-    public final int f10926b;
-    public final PendingIntent f10927c;
+    public final int f10926a;
+    public final int f10927b;
+    public final PendingIntent f10928c;
     public final String d;
     public static final a e = new a(0);
     public static final Parcelable.Creator<a> CREATOR = new g8.g(16);
 
     public a(int i10, int i11, PendingIntent pendingIntent, String str) {
-        this.f10925a = i10;
-        this.f10926b = i11;
-        this.f10927c = pendingIntent;
+        this.f10926a = i10;
+        this.f10927b = i11;
+        this.f10928c = pendingIntent;
         this.d = str;
     }
 
@@ -89,14 +89,14 @@ public final class a extends o6.a {
     }
 
     public final boolean b() {
-        if (this.f10926b != 0 && this.f10927c != null) {
+        if (this.f10927b != 0 && this.f10928c != null) {
             return true;
         }
         return false;
     }
 
     public final boolean c() {
-        if (this.f10926b == 0) {
+        if (this.f10927b == 0) {
             return true;
         }
         return false;
@@ -110,20 +110,20 @@ public final class a extends o6.a {
             return false;
         }
         a aVar = (a) obj;
-        if (this.f10926b == aVar.f10926b && n6.l.k(this.f10927c, aVar.f10927c) && n6.l.k(this.d, aVar.d)) {
+        if (this.f10927b == aVar.f10927b && n6.l.k(this.f10928c, aVar.f10928c) && n6.l.k(this.d, aVar.d)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f10926b), this.f10927c, this.d});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f10927b), this.f10928c, this.d});
     }
 
     public final String toString() {
         m4.c cVar = new m4.c(this);
-        cVar.u(d(this.f10926b), "statusCode");
-        cVar.u(this.f10927c, "resolution");
+        cVar.u(d(this.f10927b), "statusCode");
+        cVar.u(this.f10928c, "resolution");
         cVar.u(this.d, "message");
         return cVar.toString();
     }
@@ -132,10 +132,10 @@ public final class a extends o6.a {
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = h0.q(parcel, 20293);
         h0.s(parcel, 1, 4);
-        parcel.writeInt(this.f10925a);
+        parcel.writeInt(this.f10926a);
         h0.s(parcel, 2, 4);
-        parcel.writeInt(this.f10926b);
-        h0.k(parcel, 3, this.f10927c, i10);
+        parcel.writeInt(this.f10927b);
+        h0.k(parcel, 3, this.f10928c, i10);
         h0.l(parcel, 4, this.d);
         h0.r(parcel, q6);
     }

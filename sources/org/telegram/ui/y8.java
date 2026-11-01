@@ -29,9 +29,9 @@ public final class y8 extends FragmentContextView {
                 zrVar.i(frameLayout, z10, true);
                 return;
             default:
-                pb1 pb1Var = (pb1) this.Y0;
-                org.telegram.ui.Components.zr zrVar2 = pb1Var.U0;
-                FrameLayout frameLayout2 = pb1Var.F0;
+                nb1 nb1Var = (nb1) this.Y0;
+                org.telegram.ui.Components.zr zrVar2 = nb1Var.U0;
+                FrameLayout frameLayout2 = nb1Var.F0;
                 if (i10 == 0) {
                     z11 = true;
                 } else {
@@ -42,8 +42,8 @@ public final class y8 extends FragmentContextView {
         }
     }
 
-    public y8(pb1 pb1Var, Context context, pb1 pb1Var2) {
-        super(context, pb1Var2, null, false, null);
-        this.Y0 = pb1Var;
+    public y8(nb1 nb1Var, Context context, nb1 nb1Var2) {
+        super(context, nb1Var2, null, false, null);
+        this.Y0 = nb1Var;
     }
 }

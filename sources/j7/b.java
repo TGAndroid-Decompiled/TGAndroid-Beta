@@ -1,13 +1,13 @@
 package j7;
 public abstract class b {
-    public static final k6.c f9702a;
-    public static final k6.c[] f9703b;
+    public static final k6.c f9703a;
+    public static final k6.c[] f9704b;
 
     static {
         k6.c cVar = new k6.c("sms_code_autofill", 2L);
         k6.c cVar2 = new k6.c("sms_code_browser", 2L);
         k6.c cVar3 = new k6.c("sms_retrieve", 1L);
-        f9702a = cVar3;
-        f9703b = new k6.c[]{cVar, cVar2, cVar3, new k6.c("user_consent", 3L)};
+        f9703a = cVar3;
+        f9704b = new k6.c[]{cVar, cVar2, cVar3, new k6.c("user_consent", 3L)};
     }
 }

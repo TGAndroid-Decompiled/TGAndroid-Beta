@@ -6,15 +6,15 @@ import android.graphics.Rect;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import org.telegram.messenger.bj;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.ej;
+import org.telegram.messenger.cj;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.fj;
 import org.telegram.messenger.i0;
 import org.telegram.messenger.m5;
 import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Cells.q1;
 import org.telegram.ui.Cells.z3;
-import org.telegram.ui.Components.ck0;
+import org.telegram.ui.Components.dk0;
 import s4.m0;
 import s4.z0;
 public final class g extends m0 {
@@ -27,19 +27,19 @@ public final class g extends m0 {
     @Override
     public final void c(Rect rect, View view, RecyclerView recyclerView, z0 z0Var) {
         q1 q1Var;
-        ej currentMessagesGroup;
+        fj currentMessagesGroup;
         float[] fArr;
         q1 q1Var2;
-        ej currentMessagesGroup2;
+        fj currentMessagesGroup2;
         float[] fArr2;
         q1 q1Var3;
-        ej currentMessagesGroup3;
+        fj currentMessagesGroup3;
         float[] fArr3;
         int L;
         int L2;
         int L3;
         q1 q1Var4;
-        ej currentMessagesGroup4;
+        fj currentMessagesGroup4;
         float[] fArr4;
         switch (this.f5947a) {
             case 0:
@@ -50,26 +50,26 @@ public final class g extends m0 {
                 rect.bottom = 0;
                 if ((view instanceof q1) && (currentMessagesGroup = (q1Var = (q1) view).getCurrentMessagesGroup()) != null) {
                     ArrayList arrayList = currentMessagesGroup.e;
-                    bj currentPosition = q1Var.getCurrentPosition();
-                    if (currentPosition != null && currentPosition.f14784m != null) {
-                        Point point = i0.f16026q;
+                    cj currentPosition = q1Var.getCurrentPosition();
+                    if (currentPosition != null && currentPosition.f15167m != null) {
+                        Point point = i0.f16172q;
                         float max = Math.max(point.x, point.y) * 0.5f;
                         int extraInsetHeight = q1Var.getExtraInsetHeight();
                         int i11 = 0;
                         while (true) {
-                            if (i11 < currentPosition.f14784m.length) {
+                            if (i11 < currentPosition.f15167m.length) {
                                 extraInsetHeight += (int) Math.ceil(fArr[i11] * max);
                                 i11++;
                             } else {
-                                int round = (Math.round(i0.f16025p * 7.0f) * (currentPosition.d - currentPosition.f14777c)) + extraInsetHeight;
+                                int round = (Math.round(i0.f16171p * 7.0f) * (currentPosition.d - currentPosition.f15160c)) + extraInsetHeight;
                                 int size = arrayList.size();
                                 while (true) {
                                     if (i10 < size) {
-                                        bj bjVar = (bj) arrayList.get(i10);
-                                        byte b10 = bjVar.f14777c;
-                                        byte b11 = currentPosition.f14777c;
-                                        if (b10 == b11 && ((bjVar.f14775a != currentPosition.f14775a || bjVar.f14776b != currentPosition.f14776b || b10 != b11 || bjVar.d != currentPosition.d) && b10 == b11)) {
-                                            round = m5.B(4.0f, (int) Math.ceil(max * bjVar.f14778f), round);
+                                        cj cjVar = (cj) arrayList.get(i10);
+                                        byte b10 = cjVar.f15160c;
+                                        byte b11 = currentPosition.f15160c;
+                                        if (b10 == b11 && ((cjVar.f15158a != currentPosition.f15158a || cjVar.f15159b != currentPosition.f15159b || b10 != b11 || cjVar.d != currentPosition.d) && b10 == b11)) {
+                                            round = m5.B(4.0f, (int) Math.ceil(max * cjVar.f15161f), round);
                                         } else {
                                             i10++;
                                         }
@@ -91,26 +91,26 @@ public final class g extends m0 {
                 rect.bottom = 0;
                 if ((view instanceof q1) && (currentMessagesGroup2 = (q1Var2 = (q1) view).getCurrentMessagesGroup()) != null) {
                     ArrayList arrayList2 = currentMessagesGroup2.e;
-                    bj currentPosition2 = q1Var2.getCurrentPosition();
-                    if (currentPosition2 != null && currentPosition2.f14784m != null) {
-                        Point point2 = i0.f16026q;
+                    cj currentPosition2 = q1Var2.getCurrentPosition();
+                    if (currentPosition2 != null && currentPosition2.f15167m != null) {
+                        Point point2 = i0.f16172q;
                         float max2 = Math.max(point2.x, point2.y) * 0.5f;
                         int extraInsetHeight2 = q1Var2.getExtraInsetHeight();
                         int i13 = 0;
                         while (true) {
-                            if (i13 < currentPosition2.f14784m.length) {
+                            if (i13 < currentPosition2.f15167m.length) {
                                 extraInsetHeight2 += (int) Math.ceil(fArr2[i13] * max2);
                                 i13++;
                             } else {
-                                int round2 = (Math.round(i0.f16025p * 7.0f) * (currentPosition2.d - currentPosition2.f14777c)) + extraInsetHeight2;
+                                int round2 = (Math.round(i0.f16171p * 7.0f) * (currentPosition2.d - currentPosition2.f15160c)) + extraInsetHeight2;
                                 int size2 = arrayList2.size();
                                 while (true) {
                                     if (i12 < size2) {
-                                        bj bjVar2 = (bj) arrayList2.get(i12);
-                                        byte b12 = bjVar2.f14777c;
-                                        byte b13 = currentPosition2.f14777c;
-                                        if (b12 == b13 && ((bjVar2.f14775a != currentPosition2.f14775a || bjVar2.f14776b != currentPosition2.f14776b || b12 != b13 || bjVar2.d != currentPosition2.d) && b12 == b13)) {
-                                            round2 = m5.B(4.0f, (int) Math.ceil(max2 * bjVar2.f14778f), round2);
+                                        cj cjVar2 = (cj) arrayList2.get(i12);
+                                        byte b12 = cjVar2.f15160c;
+                                        byte b13 = currentPosition2.f15160c;
+                                        if (b12 == b13 && ((cjVar2.f15158a != currentPosition2.f15158a || cjVar2.f15159b != currentPosition2.f15159b || b12 != b13 || cjVar2.d != currentPosition2.d) && b12 == b13)) {
+                                            round2 = m5.B(4.0f, (int) Math.ceil(max2 * cjVar2.f15161f), round2);
                                         } else {
                                             i12++;
                                         }
@@ -138,26 +138,26 @@ public final class g extends m0 {
                 rect.bottom = 0;
                 if ((view instanceof q1) && (currentMessagesGroup3 = (q1Var3 = (q1) view).getCurrentMessagesGroup()) != null) {
                     ArrayList arrayList3 = currentMessagesGroup3.e;
-                    bj currentPosition3 = q1Var3.getCurrentPosition();
-                    if (currentPosition3 != null && currentPosition3.f14784m != null) {
-                        Point point3 = i0.f16026q;
+                    cj currentPosition3 = q1Var3.getCurrentPosition();
+                    if (currentPosition3 != null && currentPosition3.f15167m != null) {
+                        Point point3 = i0.f16172q;
                         float max3 = Math.max(point3.x, point3.y) * 0.5f;
                         int extraInsetHeight3 = q1Var3.getExtraInsetHeight();
                         int i15 = 0;
                         while (true) {
-                            if (i15 < currentPosition3.f14784m.length) {
+                            if (i15 < currentPosition3.f15167m.length) {
                                 extraInsetHeight3 += (int) Math.ceil(fArr3[i15] * max3);
                                 i15++;
                             } else {
-                                int round3 = (Math.round(i0.f16025p * 7.0f) * (currentPosition3.d - currentPosition3.f14777c)) + extraInsetHeight3;
+                                int round3 = (Math.round(i0.f16171p * 7.0f) * (currentPosition3.d - currentPosition3.f15160c)) + extraInsetHeight3;
                                 int size3 = arrayList3.size();
                                 while (true) {
                                     if (i14 < size3) {
-                                        bj bjVar3 = (bj) arrayList3.get(i14);
-                                        byte b14 = bjVar3.f14777c;
-                                        byte b15 = currentPosition3.f14777c;
-                                        if (b14 == b15 && ((bjVar3.f14775a != currentPosition3.f14775a || bjVar3.f14776b != currentPosition3.f14776b || b14 != b15 || bjVar3.d != currentPosition3.d) && b14 == b15)) {
-                                            round3 = m5.B(4.0f, (int) Math.ceil(max3 * bjVar3.f14778f), round3);
+                                        cj cjVar3 = (cj) arrayList3.get(i14);
+                                        byte b14 = cjVar3.f15160c;
+                                        byte b15 = currentPosition3.f15160c;
+                                        if (b14 == b15 && ((cjVar3.f15158a != currentPosition3.f15158a || cjVar3.f15159b != currentPosition3.f15159b || b14 != b15 || cjVar3.d != currentPosition3.d) && b14 == b15)) {
+                                            round3 = m5.B(4.0f, (int) Math.ceil(max3 * cjVar3.f15161f), round3);
                                         } else {
                                             i14++;
                                         }
@@ -175,9 +175,9 @@ public final class g extends m0 {
                 }
                 break;
             case 6:
-                ck0 ck0Var = (ck0) recyclerView.T(view);
-                if (ck0Var != null) {
-                    int b16 = ck0Var.b() % 4;
+                dk0 dk0Var = (dk0) recyclerView.T(view);
+                if (dk0Var != null) {
+                    int b16 = dk0Var.b() % 4;
                     int i16 = 0;
                     if (b16 == 0) {
                         L = 0;
@@ -195,9 +195,9 @@ public final class g extends m0 {
                 rect.right = i0.L(4.0f);
                 return;
             case 7:
-                ck0 ck0Var2 = (ck0) recyclerView.T(view);
-                if (ck0Var2 != null) {
-                    int b17 = ck0Var2.b() % 4;
+                dk0 dk0Var2 = (dk0) recyclerView.T(view);
+                if (dk0Var2 != null) {
+                    int b17 = dk0Var2.b() % 4;
                     int i17 = 0;
                     if (b17 == 0) {
                         L2 = 0;
@@ -215,15 +215,15 @@ public final class g extends m0 {
                 rect.right = i0.L(4.0f);
                 return;
             case 8:
-                ck0 ck0Var3 = (ck0) recyclerView.T(view);
-                if (ck0Var3 != null) {
+                dk0 dk0Var3 = (dk0) recyclerView.T(view);
+                if (dk0Var3 != null) {
                     int i18 = 0;
-                    if (ck0Var3.f47901f != 5) {
+                    if (dk0Var3.f47912f != 5) {
                         rect.right = 0;
                         rect.left = 0;
                         return;
                     }
-                    int b18 = ck0Var3.b() % 4;
+                    int b18 = dk0Var3.b() % 4;
                     if (b18 == 0) {
                         L3 = 0;
                     } else {
@@ -250,26 +250,26 @@ public final class g extends m0 {
                 rect.bottom = 0;
                 if ((view instanceof q1) && (currentMessagesGroup4 = (q1Var4 = (q1) view).getCurrentMessagesGroup()) != null) {
                     ArrayList arrayList4 = currentMessagesGroup4.e;
-                    bj currentPosition4 = q1Var4.getCurrentPosition();
-                    if (currentPosition4 != null && currentPosition4.f14784m != null) {
-                        Point point4 = i0.f16026q;
+                    cj currentPosition4 = q1Var4.getCurrentPosition();
+                    if (currentPosition4 != null && currentPosition4.f15167m != null) {
+                        Point point4 = i0.f16172q;
                         float max4 = Math.max(point4.x, point4.y) * 0.5f;
                         int extraInsetHeight4 = q1Var4.getExtraInsetHeight();
                         int i20 = 0;
                         while (true) {
-                            if (i20 < currentPosition4.f14784m.length) {
+                            if (i20 < currentPosition4.f15167m.length) {
                                 extraInsetHeight4 += (int) Math.ceil(fArr4[i20] * max4);
                                 i20++;
                             } else {
-                                int round4 = (Math.round(i0.f16025p * 7.0f) * (currentPosition4.d - currentPosition4.f14777c)) + extraInsetHeight4;
+                                int round4 = (Math.round(i0.f16171p * 7.0f) * (currentPosition4.d - currentPosition4.f15160c)) + extraInsetHeight4;
                                 int size4 = arrayList4.size();
                                 while (true) {
                                     if (i19 < size4) {
-                                        bj bjVar4 = (bj) arrayList4.get(i19);
-                                        byte b19 = bjVar4.f14777c;
-                                        byte b20 = currentPosition4.f14777c;
-                                        if (b19 == b20 && ((bjVar4.f14775a != currentPosition4.f14775a || bjVar4.f14776b != currentPosition4.f14776b || b19 != b20 || bjVar4.d != currentPosition4.d) && b19 == b20)) {
-                                            round4 = m5.B(4.0f, (int) Math.ceil(max4 * bjVar4.f14778f), round4);
+                                        cj cjVar4 = (cj) arrayList4.get(i19);
+                                        byte b19 = cjVar4.f15160c;
+                                        byte b20 = currentPosition4.f15160c;
+                                        if (b19 == b20 && ((cjVar4.f15158a != currentPosition4.f15158a || cjVar4.f15159b != currentPosition4.f15159b || b19 != b20 || cjVar4.d != currentPosition4.d) && b19 == b20)) {
+                                            round4 = m5.B(4.0f, (int) Math.ceil(max4 * cjVar4.f15161f), round4);
                                         } else {
                                             i19++;
                                         }
@@ -362,19 +362,19 @@ public final class g extends m0 {
                     }
                     if (RecyclerView.R(childAt) >= 0 && !(childAt instanceof z3) && !(view instanceof z3)) {
                         int bottom = childAt.getBottom();
-                        if (cd.X) {
+                        if (dd.X) {
                             L = 0.0f;
                         } else {
                             L = i0.L(72.0f);
                         }
                         float f7 = L;
                         float f10 = bottom;
-                        if (cd.X) {
+                        if (dd.X) {
                             i10 = i0.L(72.0f);
                         } else {
                             i10 = 0;
                         }
-                        canvas.drawLine(f7, f10, width - i10, f10, t6.f21052k0);
+                        canvas.drawLine(f7, f10, width - i10, f10, t6.f21053k0);
                     }
                 }
                 return;

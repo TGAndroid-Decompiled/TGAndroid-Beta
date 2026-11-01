@@ -2,12 +2,12 @@ package wd;
 
 import kotlin.jvm.internal.p;
 public final class g implements c {
-    public final c f52815a;
-    public final p f52816b;
+    public final c f52833a;
+    public final p f52834b;
 
     public g(c cVar, p pVar) {
-        this.f52815a = cVar;
-        this.f52816b = pVar;
+        this.f52833a = cVar;
+        this.f52834b = pVar;
     }
 
     @Override

@@ -1,34 +1,36 @@
 package org.telegram.messenger;
 public final class ac implements Runnable {
-    public final int f14598a;
-    public final cc f14599b;
-    public final Boolean f14600c;
+    public final int f14589a;
+    public final dc f14590b;
 
-    public ac(cc ccVar, Boolean bool, int i10) {
-        this.f14598a = i10;
-        this.f14599b = ccVar;
-        this.f14600c = bool;
+    public ac(dc dcVar, int i10) {
+        this.f14589a = i10;
+        this.f14590b = dcVar;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f14598a;
-        Boolean bool = this.f14600c;
-        cc ccVar = this.f14599b;
+        int i10 = this.f14589a;
+        dc dcVar = this.f14590b;
         switch (i10) {
             case 0:
-                ccVar.h.f15870u.remove(ccVar.f14974a.e);
-                i0.g3(new ac(ccVar, bool, 1));
+                ic icVar = dcVar.h;
+                ThreadLocal threadLocal = ic.I;
+                icVar.V(true);
+                return;
+            case 1:
+                dcVar.h.f16263u.remove(dcVar.f15336a.e);
+                i0.g3(new ac(dcVar, 3));
+                return;
+            case 2:
+                ic icVar2 = dcVar.h;
+                ThreadLocal threadLocal2 = ic.I;
+                icVar2.V(true);
                 return;
             default:
-                vb vbVar = ccVar.f14974a;
-                if (bool.booleanValue()) {
-                    zs.f(vbVar.f18498o).k(142, vbVar.e, vbVar.f18499p);
-                    return;
-                } else {
-                    zs.f(vbVar.f18498o).k(143, vbVar.e, 2);
-                    return;
-                }
+                wb wbVar = dcVar.f15336a;
+                at.f(wbVar.f19020o).k(143, wbVar.e, 1);
+                return;
         }
     }
 }

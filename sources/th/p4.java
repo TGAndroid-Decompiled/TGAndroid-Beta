@@ -4,10 +4,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_stories;
 public final class p4 extends TL_stories.StoryItem {
-    public final q4 f49368a;
+    public final q4 f49382a;
 
     public p4(q4 q4Var, long j10, TL_bots.botPreviewMedia botpreviewmedia) {
-        this.f49368a = q4Var;
+        this.f49382a = q4Var;
         this.dialogId = j10;
         TLRPC.MessageMedia messageMedia = botpreviewmedia.media;
         this.media = messageMedia;

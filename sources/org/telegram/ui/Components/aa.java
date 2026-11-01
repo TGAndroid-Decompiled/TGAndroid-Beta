@@ -16,7 +16,7 @@ public abstract class aa extends ha {
     }
 
     @Override
-    public final sk0 L0(tk0 tk0Var) {
+    public final tk0 L0(uk0 uk0Var) {
         return new kg.f(this, 2);
     }
 

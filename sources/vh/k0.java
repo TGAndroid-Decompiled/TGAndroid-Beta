@@ -3,57 +3,57 @@ package vh;
 import java.io.File;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.VideoEncodingService;
-import org.telegram.messenger.jj;
-import org.telegram.messenger.us;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.at;
+import org.telegram.messenger.kj;
+import org.telegram.messenger.vs;
 import org.telegram.tgnet.TLRPC;
-public final class k0 implements us {
-    public final int f51367a;
-    public final File f51368b;
-    public jj f51369c;
+public final class k0 implements vs {
+    public final int f51382a;
+    public final File f51383b;
+    public kj f51384c;
     public final i0 d;
     public final j0 e;
-    public final h0 f51370f;
+    public final h0 f51385f;
 
     public k0(int i10, n5 n5Var, File file, i0 i0Var, j0 j0Var, h0 h0Var) {
-        this.f51367a = i10;
-        this.f51368b = file;
+        this.f51382a = i10;
+        this.f51383b = file;
         this.d = i0Var;
         this.e = j0Var;
-        this.f51370f = h0Var;
-        if (this.f51369c != null) {
+        this.f51385f = h0Var;
+        if (this.f51384c != null) {
             return;
         }
-        zs.f(i10).b(this, zs.a2);
-        zs.f(i10).b(this, zs.f19586b2);
-        zs.f(i10).b(this, zs.f19592c2);
+        at.f(i10).b(this, at.a2);
+        at.f(i10).b(this, at.f14682b2);
+        at.f(i10).b(this, at.f14688c2);
         TLRPC.TL_message tL_message = new TLRPC.TL_message();
-        tL_message.f19814id = 1;
+        tL_message.f19815id = 1;
         tL_message.attachPath = file.getAbsolutePath();
-        this.f51369c = new jj(i10, tL_message, null, false, false);
+        this.f51384c = new kj(i10, tL_message, null, false, false);
         n5Var.s(new ph.h1(this, 21));
     }
 
     public final void a(boolean z10) {
-        if (this.f51369c == null) {
+        if (this.f51384c == null) {
             return;
         }
-        int i10 = this.f51367a;
-        zs.f(i10).n(this, zs.a2);
-        zs.f(i10).n(this, zs.f19586b2);
-        zs.f(i10).n(this, zs.f19592c2);
+        int i10 = this.f51382a;
+        at.f(i10).n(this, at.a2);
+        at.f(i10).n(this, at.f14682b2);
+        at.f(i10).n(this, at.f14688c2);
         if (z10) {
-            MediaController.B().i(this.f51369c);
+            MediaController.B().i(this.f51384c);
         }
-        this.f51369c = null;
+        this.f51384c = null;
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == zs.a2) {
-            jj jjVar = (jj) objArr[0];
-        } else if (i10 == zs.f19586b2) {
-            if (((jj) objArr[0]) == this.f51369c) {
+        if (i10 == at.a2) {
+            kj kjVar = (kj) objArr[0];
+        } else if (i10 == at.f14682b2) {
+            if (((kj) objArr[0]) == this.f51384c) {
                 String str = (String) objArr[1];
                 ((Long) objArr[2]).getClass();
                 long longValue = ((Long) objArr[3]).longValue();
@@ -69,16 +69,16 @@ public final class k0 implements us {
                     a(false);
                 }
             }
-        } else if (i10 == zs.f19592c2 && ((jj) objArr[0]) == this.f51369c) {
+        } else if (i10 == at.f14688c2 && ((kj) objArr[0]) == this.f51384c) {
             a(false);
             try {
-                File file = this.f51368b;
+                File file = this.f51383b;
                 if (file != null) {
                     file.delete();
                 }
             } catch (Exception unused) {
             }
-            this.f51370f.run();
+            this.f51385f.run();
         }
     }
 }

@@ -18,8 +18,8 @@ import java.util.List;
 import n2.u;
 import w7.m8;
 public abstract class c {
-    public static final a0.j f13912a = new a0.j(2);
-    public static final a4.d f13913b = new a4.d(12);
+    public static final a0.j f13913a = new a0.j(2);
+    public static final a4.d f13914b = new a4.d(12);
 
     public static j4.f a(Context context, List list) {
         m8.a("FontProvider.getFontFamilyResult");
@@ -40,20 +40,20 @@ public abstract class c {
     }
 
     public static ProviderInfo b(PackageManager packageManager, d dVar, Resources resources) {
-        a4.d dVar2 = f13913b;
-        a0.j jVar = f13912a;
+        a4.d dVar2 = f13914b;
+        a0.j jVar = f13913a;
         m8.a("FontProvider.getProvider");
         try {
             List list = dVar.d;
-            String str = dVar.f13914a;
-            String str2 = dVar.f13915b;
+            String str = dVar.f13915a;
+            String str2 = dVar.f13916b;
             if (list == null) {
                 list = h0.b.h(resources, 0);
             }
             ?? obj = new Object();
-            obj.f13909a = str;
-            obj.f13910b = str2;
-            obj.f13911c = list;
+            obj.f13910a = str;
+            obj.f13911b = str2;
+            obj.f13912c = list;
             ProviderInfo providerInfo = (ProviderInfo) jVar.a(obj);
             if (providerInfo != null) {
                 return providerInfo;
@@ -108,12 +108,12 @@ public abstract class c {
                 uVar = new u(context, build);
             } else {
                 ?? obj = new Object();
-                obj.f10700a = context.getContentResolver().acquireUnstableContentProviderClient(build);
+                obj.f10701a = context.getContentResolver().acquireUnstableContentProviderClient(build);
                 uVar = obj;
             }
             String[] strArr = {"_id", "file_id", "font_ttc_index", "font_variation_settings", "font_weight", "font_italic", "result_code"};
             m8.a("ContentQueryWrapper.query");
-            Cursor I = uVar.I(build, strArr, new String[]{dVar.f13916c});
+            Cursor I = uVar.I(build, strArr, new String[]{dVar.f13917c});
             Trace.endSection();
             if (I != null && I.getCount() > 0) {
                 int columnIndex = I.getColumnIndex("result_code");

@@ -6,31 +6,31 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import java.util.HashSet;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.j20;
-import org.telegram.messenger.q20;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.xv0;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.k20;
+import org.telegram.messenger.r20;
+import org.telegram.ui.Components.jm0;
+import org.telegram.ui.Components.yv0;
 public final class p1 extends FrameLayout implements org.telegram.ui.ActionBar.k6 {
-    public final org.telegram.ui.ActionBar.p6 f51716a;
-    public final FrameLayout f51717b;
-    public final ImageView f51718c;
-    public final im0 d;
+    public final org.telegram.ui.ActionBar.p6 f51731a;
+    public final FrameLayout f51732b;
+    public final ImageView f51733c;
+    public final jm0 d;
     public final org.telegram.ui.ActionBar.n0 e;
-    public final int f51719f;
+    public final int f51734f;
     public o1 h;
-    public boolean f51720n;
-    public final ImageView f51721r;
-    public boolean f51722s;
-    public boolean f51723w;
-    public j20 f51724x;
+    public boolean f51735n;
+    public final ImageView f51736r;
+    public boolean f51737s;
+    public boolean f51738w;
+    public k20 f51739x;
 
     public p1(Context context, org.telegram.ui.ActionBar.p6 p6Var) {
         super(context);
-        this.f51719f = -1;
-        this.f51716a = p6Var;
+        this.f51734f = -1;
+        this.f51731a = p6Var;
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f51717b = frameLayout;
+        this.f51732b = frameLayout;
         int L = org.telegram.messenger.i0.L(18.0f);
         int i10 = org.telegram.ui.ActionBar.t6.xf;
         Drawable d02 = org.telegram.ui.ActionBar.t6.d0(L, org.telegram.ui.ActionBar.t6.w0(i10, p6Var));
@@ -43,15 +43,15 @@ public final class p1 extends FrameLayout implements org.telegram.ui.ActionBar.k
         FrameLayout frameLayout2 = new FrameLayout(context);
         frameLayout.addView(frameLayout2, w7.b6.d(-1, 40.0f, 51, 38.0f, 0.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f51718c = imageView;
+        this.f51733c = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
-        im0 im0Var = new im0();
-        this.d = im0Var;
-        im0Var.c(0, false, false);
-        int i11 = org.telegram.ui.ActionBar.t6.f21320yf;
-        im0Var.a(org.telegram.ui.ActionBar.t6.w0(i11, p6Var));
-        imageView.setImageDrawable(im0Var);
+        jm0 jm0Var = new jm0();
+        this.d = jm0Var;
+        jm0Var.c(0, false, false);
+        int i11 = org.telegram.ui.ActionBar.t6.f21321yf;
+        jm0Var.a(org.telegram.ui.ActionBar.t6.w0(i11, p6Var));
+        imageView.setImageDrawable(jm0Var);
         frameLayout.addView(imageView, w7.b6.e(36, 36, 51));
         org.telegram.ui.ActionBar.n0 n0Var = new org.telegram.ui.ActionBar.n0(this, context, 10);
         this.e = n0Var;
@@ -64,7 +64,7 @@ public final class p1 extends FrameLayout implements org.telegram.ui.ActionBar.k
         n0Var.setLines(1);
         n0Var.setSingleLine(true);
         n0Var.setImeOptions(268435459);
-        n0Var.setHint(cd.L0(2131745853, null));
+        n0Var.setHint(dd.L0(2131745853, null));
         int i12 = org.telegram.ui.ActionBar.t6.Ai;
         org.telegram.ui.ActionBar.a7.m(n0Var, 30, i12, p6Var);
         org.telegram.ui.ActionBar.a7.m(n0Var, 36, i12, p6Var);
@@ -74,10 +74,10 @@ public final class p1 extends FrameLayout implements org.telegram.ui.ActionBar.k
         frameLayout2.addView(n0Var, w7.b6.d(-1, 40.0f, 51, 0.0f, 0.0f, 28.0f, 0.0f));
         n0Var.addTextChangedListener(new rh.h0(this, 1));
         ImageView imageView2 = new ImageView(context);
-        this.f51721r = imageView2;
+        this.f51736r = imageView2;
         imageView2.setScaleType(scaleType);
         imageView2.setImageDrawable(new org.telegram.ui.ActionBar.h0(p6Var));
-        int i13 = org.telegram.ui.ActionBar.t6.f21020i6;
+        int i13 = org.telegram.ui.ActionBar.t6.f21021i6;
         org.telegram.ui.Cells.y h02 = org.telegram.ui.ActionBar.t6.h0(org.telegram.ui.ActionBar.t6.w0(i13, p6Var), 1, org.telegram.messenger.i0.L(15.0f));
         org.telegram.ui.ActionBar.w6 N2 = org.telegram.ui.ActionBar.a7.N(i13);
         imageView2.setBackground(h02);
@@ -87,21 +87,21 @@ public final class p1 extends FrameLayout implements org.telegram.ui.ActionBar.k
         imageView2.setScaleY(0.7f);
         imageView2.setVisibility(8);
         imageView2.setOnClickListener(new View.OnClickListener(this) {
-            public final p1 f51474b;
+            public final p1 f51489b;
 
             {
-                this.f51474b = this;
+                this.f51489b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f51474b.b();
+                        this.f51489b.b();
                         return;
                     default:
-                        p1 p1Var = this.f51474b;
-                        int i14 = p1Var.d.f27025k;
+                        p1 p1Var = this.f51489b;
+                        int i14 = p1Var.d.f27467k;
                         if (i14 == 1) {
                             p1Var.b();
                             o1 o1Var = p1Var.h;
@@ -121,21 +121,21 @@ public final class p1 extends FrameLayout implements org.telegram.ui.ActionBar.k
         });
         frameLayout.addView(imageView2, w7.b6.e(36, 36, 53));
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final p1 f51474b;
+            public final p1 f51489b;
 
             {
-                this.f51474b = this;
+                this.f51489b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f51474b.b();
+                        this.f51489b.b();
                         return;
                     default:
-                        p1 p1Var = this.f51474b;
-                        int i14 = p1Var.d.f27025k;
+                        p1 p1Var = this.f51489b;
+                        int i14 = p1Var.d.f27467k;
                         if (i14 == 1) {
                             p1Var.b();
                             o1 o1Var = p1Var.h;
@@ -158,11 +158,11 @@ public final class p1 extends FrameLayout implements org.telegram.ui.ActionBar.k
     public final void a(int i10, boolean z10) {
         int i11;
         org.telegram.ui.ActionBar.n0 n0Var;
-        if (this.f51719f == i10 && this.h != null) {
+        if (this.f51734f == i10 && this.h != null) {
             return;
         }
         o1 o1Var = this.h;
-        FrameLayout frameLayout = this.f51717b;
+        FrameLayout frameLayout = this.f51732b;
         if (o1Var != null) {
             frameLayout.removeView(o1Var);
         }
@@ -172,46 +172,46 @@ public final class p1 extends FrameLayout implements org.telegram.ui.ActionBar.k
         } else {
             i11 = 0;
         }
-        o1 o1Var2 = new o1(this, context, i11, this.f51716a, z10);
+        o1 o1Var2 = new o1(this, context, i11, this.f51731a, z10);
         this.h = o1Var2;
         o1Var2.setDontOccupyWidth(org.telegram.messenger.i0.L(16.0f) + ((int) this.e.getPaint().measureText(((Object) n0Var.getHint()) + "")));
-        this.h.setOnScrollIntoOccupiedWidth(new q20(this) {
-            public final p1 f51500b;
+        this.h.setOnScrollIntoOccupiedWidth(new r20(this) {
+            public final p1 f51515b;
 
             {
-                this.f51500b = this;
+                this.f51515b = this;
             }
 
             @Override
             public final void a(Object obj) {
                 switch (r2) {
                     case 0:
-                        p1 p1Var = this.f51500b;
+                        p1 p1Var = this.f51515b;
                         org.telegram.ui.ActionBar.n0 n0Var2 = p1Var.e;
                         n0Var2.animate().cancel();
                         n0Var2.setTranslationX(-Math.max(0, ((Integer) obj).intValue()));
                         p1Var.d(false);
                         return;
                     default:
-                        xv0 xv0Var = (xv0) obj;
-                        p1 p1Var2 = this.f51500b;
+                        yv0 yv0Var = (yv0) obj;
+                        p1 p1Var2 = this.f51515b;
                         o1 o1Var3 = p1Var2.h;
                         if (o1Var3 != null) {
-                            if (o1Var3.getSelectedCategory() == xv0Var) {
+                            if (o1Var3.getSelectedCategory() == yv0Var) {
                                 p1Var2.h.I1(null);
-                                j20 j20Var = p1Var2.f51724x;
-                                if (j20Var != null) {
-                                    j20Var.a(null, -1);
+                                k20 k20Var = p1Var2.f51739x;
+                                if (k20Var != null) {
+                                    k20Var.a(null, -1);
                                     return;
                                 }
                                 return;
                             }
-                            p1Var2.h.I1(xv0Var);
-                            String str = xv0Var.f32548a;
+                            p1Var2.h.I1(yv0Var);
+                            String str = yv0Var.f32916a;
                             int categoryIndex = p1Var2.h.getCategoryIndex();
-                            j20 j20Var2 = p1Var2.f51724x;
-                            if (j20Var2 != null) {
-                                j20Var2.a(str, Integer.valueOf(categoryIndex));
+                            k20 k20Var2 = p1Var2.f51739x;
+                            if (k20Var2 != null) {
+                                k20Var2.a(str, Integer.valueOf(categoryIndex));
                                 return;
                             }
                             return;
@@ -220,43 +220,43 @@ public final class p1 extends FrameLayout implements org.telegram.ui.ActionBar.k
                 }
             }
         });
-        this.h.setOnCategoryClick(new q20(this) {
-            public final p1 f51500b;
+        this.h.setOnCategoryClick(new r20(this) {
+            public final p1 f51515b;
 
             {
-                this.f51500b = this;
+                this.f51515b = this;
             }
 
             @Override
             public final void a(Object obj) {
                 switch (r2) {
                     case 0:
-                        p1 p1Var = this.f51500b;
+                        p1 p1Var = this.f51515b;
                         org.telegram.ui.ActionBar.n0 n0Var2 = p1Var.e;
                         n0Var2.animate().cancel();
                         n0Var2.setTranslationX(-Math.max(0, ((Integer) obj).intValue()));
                         p1Var.d(false);
                         return;
                     default:
-                        xv0 xv0Var = (xv0) obj;
-                        p1 p1Var2 = this.f51500b;
+                        yv0 yv0Var = (yv0) obj;
+                        p1 p1Var2 = this.f51515b;
                         o1 o1Var3 = p1Var2.h;
                         if (o1Var3 != null) {
-                            if (o1Var3.getSelectedCategory() == xv0Var) {
+                            if (o1Var3.getSelectedCategory() == yv0Var) {
                                 p1Var2.h.I1(null);
-                                j20 j20Var = p1Var2.f51724x;
-                                if (j20Var != null) {
-                                    j20Var.a(null, -1);
+                                k20 k20Var = p1Var2.f51739x;
+                                if (k20Var != null) {
+                                    k20Var.a(null, -1);
                                     return;
                                 }
                                 return;
                             }
-                            p1Var2.h.I1(xv0Var);
-                            String str = xv0Var.f32548a;
+                            p1Var2.h.I1(yv0Var);
+                            String str = yv0Var.f32916a;
                             int categoryIndex = p1Var2.h.getCategoryIndex();
-                            j20 j20Var2 = p1Var2.f51724x;
-                            if (j20Var2 != null) {
-                                j20Var2.a(str, Integer.valueOf(categoryIndex));
+                            k20 k20Var2 = p1Var2.f51739x;
+                            if (k20Var2 != null) {
+                                k20Var2.a(str, Integer.valueOf(categoryIndex));
                                 return;
                             }
                             return;
@@ -270,9 +270,9 @@ public final class p1 extends FrameLayout implements org.telegram.ui.ActionBar.k
 
     public final void b() {
         this.e.setText("");
-        j20 j20Var = this.f51724x;
-        if (j20Var != null) {
-            j20Var.a(null, -1);
+        k20 k20Var = this.f51739x;
+        if (k20Var != null) {
+            k20Var.a(null, -1);
         }
         o1 o1Var = this.h;
         if (o1Var != null) {
@@ -281,7 +281,7 @@ public final class p1 extends FrameLayout implements org.telegram.ui.ActionBar.k
     }
 
     public final void c(boolean z10) {
-        this.f51723w = z10;
+        this.f51738w = z10;
         if (z10) {
             this.d.b(2);
         } else {
@@ -293,18 +293,18 @@ public final class p1 extends FrameLayout implements org.telegram.ui.ActionBar.k
         int i10;
         o1 o1Var;
         o1 o1Var2;
-        boolean z11 = this.f51723w;
+        boolean z11 = this.f51738w;
         org.telegram.ui.ActionBar.n0 n0Var = this.e;
         if (z11 && ((n0Var.length() != 0 || ((o1Var2 = this.h) != null && o1Var2.getSelectedCategory() != null)) && !z10)) {
             return;
         }
-        if (n0Var.length() <= 0 && ((o1Var = this.h) == null || o1Var.f24905v3 <= 0.5f || ((o1Var == null || !o1Var.f24900q3) && o1Var.getSelectedCategory() == null))) {
+        if (n0Var.length() <= 0 && ((o1Var = this.h) == null || o1Var.f25280v3 <= 0.5f || ((o1Var == null || !o1Var.f25275q3) && o1Var.getSelectedCategory() == null))) {
             i10 = 0;
         } else {
             i10 = 1;
         }
         this.d.b(i10);
-        this.f51723w = false;
+        this.f51738w = false;
     }
 
     @Override
@@ -315,12 +315,12 @@ public final class p1 extends FrameLayout implements org.telegram.ui.ActionBar.k
     @Override
     public final void updateColors() {
         try {
-            im0 im0Var = this.d;
-            org.telegram.ui.ActionBar.p6 p6Var = this.f51716a;
-            if (im0Var != null) {
-                im0Var.a(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f21320yf, p6Var));
+            jm0 jm0Var = this.d;
+            org.telegram.ui.ActionBar.p6 p6Var = this.f51731a;
+            if (jm0Var != null) {
+                jm0Var.a(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f21321yf, p6Var));
             }
-            ImageView imageView = this.f51718c;
+            ImageView imageView = this.f51733c;
             if (imageView != null) {
                 imageView.invalidate();
             }
@@ -330,7 +330,7 @@ public final class p1 extends FrameLayout implements org.telegram.ui.ActionBar.k
                 n0Var.setCursorColor(org.telegram.ui.ActionBar.t6.w0(i10, p6Var));
                 n0Var.setHandlesColor(org.telegram.ui.ActionBar.t6.w0(i10, p6Var));
             }
-            ImageView imageView2 = this.f51721r;
+            ImageView imageView2 = this.f51736r;
             if (imageView2 != null) {
                 imageView2.invalidate();
             }

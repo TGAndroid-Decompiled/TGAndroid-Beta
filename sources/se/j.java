@@ -1,10 +1,10 @@
 package se;
 public final class j {
-    public final ve.n f48241a;
-    public final int f48242b;
+    public final ve.n f48252a;
+    public final int f48253b;
 
     public j(ve.n nVar, int i10) {
-        this.f48241a = nVar;
-        this.f48242b = i10;
+        this.f48252a = nVar;
+        this.f48253b = i10;
     }
 }

@@ -6,26 +6,26 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.webkit.WebView;
 public final class cu extends WebView {
-    public final int f25158a;
-    public final Context f25159b;
-    public final KeyEvent.Callback f25160c;
+    public final int f25237a;
+    public final Context f25238b;
+    public final KeyEvent.Callback f25239c;
 
     public cu(KeyEvent.Callback callback, Context context, Context context2, int i10) {
         super(context);
-        this.f25158a = i10;
-        this.f25160c = callback;
-        this.f25159b = context2;
+        this.f25237a = i10;
+        this.f25239c = callback;
+        this.f25238b = context2;
     }
 
     @Override
     public void draw(Canvas canvas) {
-        switch (this.f25158a) {
+        switch (this.f25237a) {
             case 1:
-                org.telegram.ui.mr0 mr0Var = (org.telegram.ui.mr0) this.f25160c;
+                org.telegram.ui.lr0 lr0Var = (org.telegram.ui.lr0) this.f25239c;
                 super.draw(canvas);
-                if (jf0.f27345p0.f27354f == this && mr0Var.h.getVisibility() == 0) {
+                if (jf0.f27400p0.f27409f == this && lr0Var.h.getVisibility() == 0) {
                     canvas.drawColor(-16777216);
-                    mr0Var.j(canvas, getWidth(), getHeight());
+                    lr0Var.j(canvas, getWidth(), getHeight());
                     return;
                 }
                 return;
@@ -37,13 +37,13 @@ public final class cu extends WebView {
 
     @Override
     public final void onAttachedToWindow() {
-        switch (this.f25158a) {
+        switch (this.f25237a) {
             case 0:
-                org.telegram.messenger.i0.u(this.f25159b, true);
+                org.telegram.messenger.i0.u(this.f25238b, true);
                 super.onAttachedToWindow();
                 return;
             default:
-                org.telegram.messenger.i0.u(this.f25159b, true);
+                org.telegram.messenger.i0.u(this.f25238b, true);
                 super.onAttachedToWindow();
                 return;
         }
@@ -51,13 +51,13 @@ public final class cu extends WebView {
 
     @Override
     public final void onDetachedFromWindow() {
-        switch (this.f25158a) {
+        switch (this.f25237a) {
             case 0:
-                org.telegram.messenger.i0.u(this.f25159b, false);
+                org.telegram.messenger.i0.u(this.f25238b, false);
                 super.onDetachedFromWindow();
                 return;
             default:
-                org.telegram.messenger.i0.u(this.f25159b, false);
+                org.telegram.messenger.i0.u(this.f25238b, false);
                 super.onDetachedFromWindow();
                 return;
         }
@@ -65,9 +65,9 @@ public final class cu extends WebView {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f25158a) {
+        switch (this.f25237a) {
             case 0:
-                hu huVar = (hu) this.f25160c;
+                hu huVar = (hu) this.f25239c;
                 boolean onTouchEvent = super.onTouchEvent(motionEvent);
                 if (onTouchEvent) {
                     if (motionEvent.getAction() == 1) {

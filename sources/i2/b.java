@@ -6,29 +6,29 @@ public abstract class b implements o1 {
     public boolean E;
     public u2.g0 G;
     public x2.o H;
-    public final int f7808b;
+    public final int f7809b;
     public s1 d;
     public int e;
-    public j2.l f7810f;
+    public j2.l f7811f;
     public e2.g0 h;
-    public int f7811n;
-    public u2.d1 f7812r;
-    public b2.x[] f7813s;
-    public long f7814w;
-    public long f7815x;
-    public final Object f7807a = new Object();
-    public final hf.b f7809c = new hf.b(23, false);
-    public long f7816y = Long.MIN_VALUE;
+    public int f7812n;
+    public u2.d1 f7813r;
+    public b2.x[] f7814s;
+    public long f7815w;
+    public long f7816x;
+    public final Object f7808a = new Object();
+    public final hf.b f7810c = new hf.b(23, false);
+    public long f7817y = Long.MIN_VALUE;
     public b2.o1 F = b2.o1.f2172a;
 
     public b(int i10) {
-        this.f7808b = i10;
+        this.f7809b = i10;
     }
 
     public final int B(long j10) {
-        u2.d1 d1Var = this.f7812r;
+        u2.d1 d1Var = this.f7813r;
         d1Var.getClass();
-        return d1Var.i(j10 - this.f7814w);
+        return d1Var.i(j10 - this.f7815w);
     }
 
     public abstract int C(b2.x xVar);
@@ -46,7 +46,7 @@ public abstract class b implements o1 {
     }
 
     public long h(long j10, long j11) {
-        if (this.f7811n == 1) {
+        if (this.f7812n == 1) {
             if (m() || l()) {
                 return 1000000L;
             }
@@ -62,7 +62,7 @@ public abstract class b implements o1 {
     public abstract String j();
 
     public final boolean k() {
-        if (this.f7816y == Long.MIN_VALUE) {
+        if (this.f7817y == Long.MIN_VALUE) {
             return true;
         }
         return false;
@@ -77,30 +77,30 @@ public abstract class b implements o1 {
     public abstract void p(long j10, boolean z10, boolean z11);
 
     public final int w(hf.b bVar, h2.h hVar, int i10) {
-        u2.d1 d1Var = this.f7812r;
+        u2.d1 d1Var = this.f7813r;
         d1Var.getClass();
         int r10 = d1Var.r(bVar, hVar, i10);
         if (r10 == -4) {
             if (hVar.isEndOfStream()) {
-                this.f7816y = Long.MIN_VALUE;
+                this.f7817y = Long.MIN_VALUE;
                 if (this.D) {
                     return -4;
                 }
                 return -3;
             }
-            long j10 = hVar.e + this.f7814w;
+            long j10 = hVar.e + this.f7815w;
             hVar.e = j10;
-            this.f7816y = Math.max(this.f7816y, j10);
+            this.f7817y = Math.max(this.f7817y, j10);
             return r10;
         }
         if (r10 == -5) {
-            b2.x xVar = (b2.x) bVar.f7658c;
+            b2.x xVar = (b2.x) bVar.f7659c;
             xVar.getClass();
             long j11 = xVar.f2427x;
             if (j11 != Long.MAX_VALUE) {
                 b2.w a2 = xVar.a();
-                a2.f2374w = j11 + this.f7814w;
-                bVar.f7658c = new b2.x(a2);
+                a2.f2374w = j11 + this.f7815w;
+                bVar.f7659c = new b2.x(a2);
             }
         }
         return r10;
@@ -110,20 +110,20 @@ public abstract class b implements o1 {
 
     public final void y(b2.x[] xVarArr, u2.d1 d1Var, long j10, long j11, u2.g0 g0Var) {
         t6.p(!this.D);
-        this.f7812r = d1Var;
+        this.f7813r = d1Var;
         this.G = g0Var;
-        if (this.f7816y == Long.MIN_VALUE) {
-            this.f7816y = j10;
+        if (this.f7817y == Long.MIN_VALUE) {
+            this.f7817y = j10;
         }
-        this.f7813s = xVarArr;
-        this.f7814w = j11;
+        this.f7814s = xVarArr;
+        this.f7815w = j11;
         u(xVarArr, j10, j11, g0Var);
     }
 
     public final void z(long j10, boolean z10, boolean z11) {
         this.D = false;
-        this.f7815x = j10;
-        this.f7816y = j10;
+        this.f7816x = j10;
+        this.f7817y = j10;
         if (!z11) {
             if (B(j10) != 0) {
                 z11 = true;

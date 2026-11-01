@@ -3,15 +3,15 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.ViewGroup;
 import java.util.ArrayList;
-public final class oc extends org.telegram.ui.Components.sk0 {
-    public final Context f40222c;
+public final class oc extends org.telegram.ui.Components.tk0 {
+    public final Context f40128c;
     public final org.telegram.ui.ActionBar.p6 d;
     public final int e;
-    public final qc f40223f;
+    public final qc f40129f;
 
     public oc(qc qcVar, Context context, org.telegram.ui.ActionBar.p6 p6Var, int i10) {
-        this.f40223f = qcVar;
-        this.f40222c = context;
+        this.f40129f = qcVar;
+        this.f40128c = context;
         this.d = p6Var;
         this.e = i10;
     }
@@ -23,37 +23,37 @@ public final class oc extends org.telegram.ui.Components.sk0 {
 
     @Override
     public final int b() {
-        org.telegram.messenger.lp lpVar = org.telegram.messenger.vp.r1(this.e).f18888r4;
-        if (lpVar == null) {
+        org.telegram.messenger.mp mpVar = org.telegram.messenger.wp.r1(this.e).f19231r4;
+        if (mpVar == null) {
             return 0;
         }
-        return lpVar.f16782c.size();
+        return mpVar.f17166c.size();
     }
 
     @Override
     public final void t(s4.c1 c1Var, int i10) {
         boolean z10;
-        pc pcVar = (pc) c1Var.f47898a;
-        org.telegram.ui.ActionBar.a7.i(org.telegram.ui.ActionBar.t6.f20929d6, pcVar, this.d);
-        if (i10 == this.f40223f.e) {
+        pc pcVar = (pc) c1Var.f47909a;
+        org.telegram.ui.ActionBar.a7.i(org.telegram.ui.ActionBar.t6.f20930d6, pcVar, this.d);
+        if (i10 == this.f40129f.e) {
             z10 = true;
         } else {
             z10 = false;
         }
-        pcVar.f40622s = z10;
-        pcVar.f40623w.f(z10, true);
+        pcVar.f40453s = z10;
+        pcVar.f40454w.f(z10, true);
         pcVar.invalidate();
-        org.telegram.messenger.lp lpVar = org.telegram.messenger.vp.r1(this.e).f18888r4;
-        if (lpVar != null) {
-            ArrayList arrayList = lpVar.f16782c;
+        org.telegram.messenger.mp mpVar = org.telegram.messenger.wp.r1(this.e).f19231r4;
+        if (mpVar != null) {
+            ArrayList arrayList = mpVar.f17166c;
             if (i10 >= 0 && i10 < arrayList.size()) {
-                pcVar.a((org.telegram.messenger.kp) arrayList.get(i10));
+                pcVar.a((org.telegram.messenger.lp) arrayList.get(i10));
             }
         }
     }
 
     @Override
     public final s4.c1 w(ViewGroup viewGroup, int i10) {
-        return new s4.c1(new pc(this.f40223f, this.f40222c));
+        return new s4.c1(new pc(this.f40129f, this.f40128c));
     }
 }

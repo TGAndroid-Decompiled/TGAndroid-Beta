@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import org.telegram.tgnet.TLRPC;
-public final class e80 extends op0 {
+public final class e80 extends pp0 {
     public final j80 R2;
 
     public e80(j80 j80Var, Context context, String str, String str2, org.telegram.ui.ActionBar.p6 p6Var) {
@@ -17,14 +17,14 @@ public final class e80 extends op0 {
             return;
         }
         if (hVar != null && hVar.m() == 1) {
-            long j10 = ((TLRPC.Dialog) hVar.n(0)).f19797id;
-            if (j10 != 0 && j10 != org.telegram.messenger.d20.i(this.f21583a).e()) {
-                a02 = org.telegram.messenger.cd.a0(null, null, 2131749194, org.telegram.messenger.vp.r1(this.f21583a).A1(j10, true));
+            long j10 = ((TLRPC.Dialog) hVar.n(0)).f19798id;
+            if (j10 != 0 && j10 != org.telegram.messenger.e20.i(this.f21584a).e()) {
+                a02 = org.telegram.messenger.dd.a0(null, null, 2131749194, org.telegram.messenger.wp.r1(this.f21584a).A1(j10, true));
             } else {
-                a02 = org.telegram.messenger.cd.L0(2131749195, null);
+                a02 = org.telegram.messenger.dd.L0(2131749195, null);
             }
         } else {
-            a02 = org.telegram.messenger.cd.a0(null, null, 2131749197, org.telegram.messenger.cd.G(i10, "Chats", new Object[0]));
+            a02 = org.telegram.messenger.dd.a0(null, null, 2131749197, org.telegram.messenger.dd.G(i10, "Chats", new Object[0]));
         }
         this.R2.e(org.telegram.messenger.i0.W2(a02));
     }

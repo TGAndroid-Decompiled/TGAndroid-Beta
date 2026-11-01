@@ -6,9 +6,9 @@ import java.util.LinkedList;
 public final class i extends com.googlecode.mp4parser.a {
     public static final za.c d;
     public static final za.c e;
-    public String f6861a;
-    public long f6862b;
-    public LinkedList f6863c;
+    public String f6862a;
+    public long f6863b;
+    public LinkedList f6864c;
 
     static {
         le.a aVar = new le.a(i.class, "FileTypeBox.java");
@@ -22,37 +22,37 @@ public final class i extends com.googlecode.mp4parser.a {
 
     @Override
     public final void _parseDetails(ByteBuffer byteBuffer) {
-        this.f6861a = e5.b.d(byteBuffer);
-        this.f6862b = e5.b.i(byteBuffer);
+        this.f6862a = e5.b.d(byteBuffer);
+        this.f6863b = e5.b.i(byteBuffer);
         int remaining = byteBuffer.remaining() / 4;
-        this.f6863c = new LinkedList();
+        this.f6864c = new LinkedList();
         for (int i10 = 0; i10 < remaining; i10++) {
-            this.f6863c.add(e5.b.d(byteBuffer));
+            this.f6864c.add(e5.b.d(byteBuffer));
         }
     }
 
     @Override
     public final void getContent(ByteBuffer byteBuffer) {
-        byteBuffer.put(e5.c.d(this.f6861a));
-        byteBuffer.putInt((int) this.f6862b);
-        for (String str : this.f6863c) {
+        byteBuffer.put(e5.c.d(this.f6862a));
+        byteBuffer.putInt((int) this.f6863b);
+        for (String str : this.f6864c) {
             byteBuffer.put(e5.c.d(str));
         }
     }
 
     @Override
     public final long getContentSize() {
-        return (this.f6863c.size() * 4) + 8;
+        return (this.f6864c.size() * 4) + 8;
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("FileTypeBox[majorBrand=");
         i0.s(le.a.b(d, this, this));
-        sb2.append(this.f6861a);
+        sb2.append(this.f6862a);
         sb2.append(";minorVersion=");
         i0.s(le.a.b(e, this, this));
-        sb2.append(this.f6862b);
-        for (String str : this.f6863c) {
+        sb2.append(this.f6863b);
+        for (String str : this.f6864c) {
             sb2.append(";compatibleBrand=");
             sb2.append(str);
         }

@@ -42,8 +42,8 @@ public class t implements b0 {
                 u uVar = (u) this.f3690c;
                 uVar.f3698k.getClass();
                 hf.b bVar = uVar.f3698k;
-                long[] jArr = (long[]) bVar.f7657b;
-                long[] jArr2 = (long[]) bVar.f7658c;
+                long[] jArr = (long[]) bVar.f7658b;
+                long[] jArr2 = (long[]) bVar.f7659c;
                 int f7 = e2.l0.f(jArr, e2.l0.j((uVar.e * j10) / 1000000, 0L, uVar.f3697j - 1), false);
                 long j12 = 0;
                 if (f7 == -1) {

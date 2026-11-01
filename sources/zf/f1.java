@@ -8,15 +8,15 @@ import java.util.ArrayList;
 import java.util.Timer;
 import org.telegram.messenger.f5;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.ve;
+import org.telegram.messenger.we;
 import org.telegram.ui.ActionBar.a7;
 import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Cells.k6;
 import org.telegram.ui.Cells.p8;
 import org.telegram.ui.Cells.z3;
-import org.telegram.ui.Components.sk0;
+import org.telegram.ui.Components.tk0;
 import org.telegram.ui.Components.zz;
-public abstract class f1 extends sk0 {
+public abstract class f1 extends tk0 {
     public boolean D;
     public int E;
     public int F;
@@ -24,21 +24,21 @@ public abstract class f1 extends sk0 {
     public ArrayList H;
     public String I;
     public int J;
-    public Context f55484c;
+    public Context f55502c;
     public ArrayList d;
     public ArrayList e;
-    public m1 f55485f;
+    public m1 f55503f;
     public a0.h h;
-    public Timer f55486n;
-    public boolean f55487r;
-    public boolean f55488s;
-    public boolean f55489w;
-    public boolean f55490x;
-    public long f55491y;
+    public Timer f55504n;
+    public boolean f55505r;
+    public boolean f55506s;
+    public boolean f55507w;
+    public boolean f55508x;
+    public long f55509y;
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f47901f;
+        int i10 = c1Var.f47912f;
         if (i10 != 0 && i10 != 2 && i10 != 3) {
             return false;
         }
@@ -48,9 +48,9 @@ public abstract class f1 extends sk0 {
     public final Object E(int i10) {
         int size = this.d.size();
         int size2 = this.H.size();
-        m1 m1Var = this.f55485f;
+        m1 m1Var = this.f55503f;
         int size3 = m1Var.e.size();
-        int size4 = m1Var.f55581j.size();
+        int size4 = m1Var.f55599j.size();
         if (i10 >= 0 && i10 < size) {
             return this.d.get(i10);
         }
@@ -65,7 +65,7 @@ public abstract class f1 extends sk0 {
             i11 -= size2 + 1;
         }
         if (i11 >= 0 && i11 < size4) {
-            return m1Var.f55581j.get(i11);
+            return m1Var.f55599j.get(i11);
         }
         int i12 = i11 - size4;
         if (i12 <= 0 || i12 > size3) {
@@ -78,7 +78,7 @@ public abstract class f1 extends sk0 {
 
     public final void G(String str) {
         try {
-            Timer timer = this.f55486n;
+            Timer timer = this.f55504n;
             if (timer != null) {
                 timer.cancel();
             }
@@ -88,20 +88,20 @@ public abstract class f1 extends sk0 {
         this.d.clear();
         this.H.clear();
         this.e.clear();
-        if (this.f55487r) {
-            this.f55485f.g(null, true, false, this.f55488s, this.f55489w, this.f55491y, this.f55490x, 0, 0);
+        if (this.f55505r) {
+            this.f55503f.g(null, true, false, this.f55506s, this.f55507w, this.f55509y, this.f55508x, 0, 0);
         }
         f();
         if (!TextUtils.isEmpty(str)) {
             Timer timer2 = new Timer();
-            this.f55486n = timer2;
-            timer2.schedule(new ve(3, this, str), 200L, 300L);
+            this.f55504n = timer2;
+            timer2.schedule(new we(3, this, str), 200L, 300L);
         }
     }
 
     @Override
     public final int b() {
-        m1 m1Var = this.f55485f;
+        m1 m1Var = this.f55503f;
         this.J = -1;
         int size = this.d.size();
         if (!this.H.isEmpty()) {
@@ -112,7 +112,7 @@ public abstract class f1 extends sk0 {
         if (size2 != 0) {
             size += size2 + 1;
         }
-        int size3 = m1Var.f55581j.size();
+        int size3 = m1Var.f55599j.size();
         if (size3 != 0) {
             return size + size3;
         }
@@ -145,7 +145,7 @@ public abstract class f1 extends sk0 {
     @Override
     public final s4.c1 w(ViewGroup viewGroup, int i10) {
         z3 z3Var;
-        Context context = this.f55484c;
+        Context context = this.f55502c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 3) {
@@ -156,7 +156,7 @@ public abstract class f1 extends sk0 {
                             zz zzVar = new zz(context, null);
                             zzVar.setIsSingleCell(true);
                             zzVar.setViewType(29);
-                            a7.i(t6.f20929d6, zzVar, null);
+                            a7.i(t6.f20930d6, zzVar, null);
                             z3Var = zzVar;
                         }
                     } else {

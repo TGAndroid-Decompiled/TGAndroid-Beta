@@ -6,10 +6,10 @@ import com.google.android.gms.wallet.MaskedWallet;
 import com.google.android.gms.wallet.wobs.CommonWalletObject;
 import com.google.android.gms.wearable.ConnectionConfiguration;
 public final class s implements Parcelable.Creator {
-    public final int f50736a;
+    public final int f50750a;
 
     public s(int i10) {
-        this.f50736a = i10;
+        this.f50750a = i10;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class s implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f50736a) {
+        switch (this.f50750a) {
             case 0:
                 return new m[i10];
             case 1:

@@ -4,9 +4,9 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.view.View;
 import org.telegram.ui.Cells.d8;
-import org.telegram.ui.Components.tk0;
-public abstract class e extends tk0 {
-    public boolean f7683e3;
+import org.telegram.ui.Components.uk0;
+public abstract class e extends uk0 {
+    public boolean f7684e3;
 
     @Override
     public final void J0(Canvas canvas, RectF rectF, long j10) {
@@ -32,7 +32,7 @@ public abstract class e extends tk0 {
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        this.f7683e3 = false;
+        this.f7684e3 = false;
         for (int i10 = 0; i10 < getChildCount(); i10++) {
             if (getChildAt(i10) instanceof d) {
                 d dVar = (d) getChildAt(i10);
@@ -50,10 +50,10 @@ public abstract class e extends tk0 {
 
     @Override
     public final void invalidate() {
-        if (this.f7683e3) {
+        if (this.f7684e3) {
             return;
         }
         super.invalidate();
-        this.f7683e3 = true;
+        this.f7684e3 = true;
     }
 }

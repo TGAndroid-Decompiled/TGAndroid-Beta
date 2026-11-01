@@ -3,20 +3,20 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.tgnet.tl.TL_iv;
 public final class m2 extends z4.a {
-    public final o2 f39457c;
+    public final o2 f39414c;
 
     public m2(o2 o2Var) {
-        this.f39457c = o2Var;
+        this.f39414c = o2Var;
     }
 
     @Override
     public final void a(z4.g gVar, Object obj) {
-        gVar.removeView(((l2) obj).f39027b);
+        gVar.removeView(((l2) obj).f39057b);
     }
 
     @Override
     public final int b() {
-        TL_iv.pageBlockSlideshow pageblockslideshow = this.f39457c.e;
+        TL_iv.pageBlockSlideshow pageblockslideshow = this.f39414c.e;
         if (pageblockslideshow == null) {
             return 0;
         }
@@ -25,7 +25,7 @@ public final class m2 extends z4.a {
 
     @Override
     public final int c(Object obj) {
-        if (this.f39457c.e.items.contains(((l2) obj).f39026a)) {
+        if (this.f39414c.e.items.contains(((l2) obj).f39056a)) {
             return -1;
         }
         return -2;
@@ -34,8 +34,8 @@ public final class m2 extends z4.a {
     @Override
     public final Object e(z4.g gVar, int i10) {
         v2 v2Var;
-        o2 o2Var = this.f39457c;
-        f4 f4Var = o2Var.f40116y;
+        o2 o2Var = this.f39414c;
+        f4 f4Var = o2Var.f40027y;
         h4 h4Var = o2Var.D;
         TL_iv.PageBlock pageBlock = o2Var.e.items.get(i10);
         if (pageBlock instanceof TL_iv.pageBlockPhoto) {
@@ -50,14 +50,14 @@ public final class m2 extends z4.a {
         }
         gVar.addView(v2Var);
         ?? obj = new Object();
-        obj.f39027b = v2Var;
-        obj.f39026a = pageBlock;
+        obj.f39057b = v2Var;
+        obj.f39056a = pageBlock;
         return obj;
     }
 
     @Override
     public final boolean f(View view, Object obj) {
-        if (((l2) obj).f39027b == view) {
+        if (((l2) obj).f39057b == view) {
             return true;
         }
         return false;

@@ -2,22 +2,22 @@ package org.telegram.ui.Wallet;
 
 import android.view.View;
 public final class r1 implements View.OnClickListener {
-    public final int f35108a;
-    public final z2 f35109b;
+    public final int f35114a;
+    public final a3 f35115b;
 
-    public r1(z2 z2Var, int i10) {
-        this.f35108a = i10;
-        this.f35109b = z2Var;
+    public r1(a3 a3Var, int i10) {
+        this.f35114a = i10;
+        this.f35115b = a3Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f35108a) {
+        switch (this.f35114a) {
             case 0:
-                this.f35109b.dismiss();
+                this.f35115b.dismiss();
                 return;
             default:
-                this.f35109b.dismiss();
+                this.f35115b.dismiss();
                 return;
         }
     }

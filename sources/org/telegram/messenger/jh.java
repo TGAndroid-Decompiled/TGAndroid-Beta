@@ -1,17 +1,33 @@
 package org.telegram.messenger;
-public final class jh implements Runnable {
-    public final int f16276a;
-    public final ui f16277b;
-    public final String f16278c;
 
-    public jh(ui uiVar, String str, int i10) {
-        this.f16276a = i10;
-        this.f16277b = uiVar;
-        this.f16278c = str;
+import java.util.ArrayList;
+public final class jh implements Runnable {
+    public final int f16466a;
+    public final si f16467b;
+    public final ArrayList f16468c;
+    public final String d;
+
+    public jh(si siVar, ArrayList arrayList, String str, int i10) {
+        this.f16466a = i10;
+        this.f16467b = siVar;
+        this.f16468c = arrayList;
+        this.d = str;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.jh.run():void");
+        switch (this.f16466a) {
+            case 0:
+                i0.g3(new jh(this.f16467b, this.f16468c, this.d, 2));
+                return;
+            case 1:
+                ArrayList arrayList = this.f16468c;
+                this.f16467b.c(this.d, arrayList);
+                return;
+            default:
+                ArrayList arrayList2 = this.f16468c;
+                this.f16467b.c(this.d, arrayList2);
+                return;
+        }
     }
 }

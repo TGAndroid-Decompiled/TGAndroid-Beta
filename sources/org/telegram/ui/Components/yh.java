@@ -12,7 +12,7 @@ public final class yh extends h10 {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        this.J.g1(this.f26588r, true);
+        this.J.g1(this.f26635r, true);
         return super.onInterceptTouchEvent(motionEvent);
     }
 }

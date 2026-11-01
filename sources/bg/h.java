@@ -87,14 +87,14 @@ public final class h {
     public void c(Canvas canvas, float f7, float f10, float f11) {
         Drawable drawable = (Drawable) this.f2688g;
         m0 m0Var = (m0) this.h;
-        RectF rectF = m0Var.f43092a;
+        RectF rectF = m0Var.f42894a;
         rectF.set(0.0f, 0.0f, f7, f10);
         canvas.saveLayerAlpha(rectF, (int) (f11 * 255.0f), 31);
         e6 e6Var = (e6) this.d;
         float i10 = e6Var.i();
         e6 e6Var2 = (e6) this.e;
         float i11 = e6Var2.i();
-        TextPaint textPaint = e6Var2.f25693a;
+        TextPaint textPaint = e6Var2.f25742a;
         float f12 = i11 * i10;
         canvas.save();
         float f13 = 0.82f * f10;
@@ -110,7 +110,7 @@ public final class h {
         canvas.translate(0.0f, sc.e.z(1.0f, f12, org.telegram.messenger.i0.L(4.0f), (org.telegram.messenger.i0.L(14.0f) * f12) + ((1.0f - m0Var.G) * f13 * f12) + (-org.telegram.messenger.i0.L(1.0f))));
         float T12 = org.telegram.messenger.i0.T1(1.15f, 0.9f, f12) * m0Var.G;
         canvas.scale(T12, T12, 0.0f, 0.0f);
-        e6Var2.u(i0.b.f(d, this.f2684a, t6.x0(null, t6.f21170q7, false)));
+        e6Var2.u(i0.b.f(d, this.f2684a, t6.x0(null, t6.f21171q7, false)));
         if (d > 0.0f) {
             if (this.f2685b != textPaint.getColor()) {
                 int color = textPaint.getColor();
@@ -125,7 +125,7 @@ public final class h {
         e6Var2.draw(canvas);
         canvas.restore();
         rectF.set(f7 - org.telegram.messenger.i0.L(12.0f), 0.0f, f7, f10);
-        m0Var.f43114r0.o(canvas, rectF, 2, 1.0f);
+        m0Var.f42916r0.o(canvas, rectF, 2, 1.0f);
         canvas.restore();
     }
 
@@ -133,7 +133,7 @@ public final class h {
         Canvas canvas;
         Paint paint = (Paint) this.f2688g;
         RectF rectF = (RectF) this.f2687f;
-        int w02 = t6.w0(t6.f20929d6, (p6) this.h);
+        int w02 = t6.w0(t6.f20930d6, (p6) this.h);
         int i12 = (i10 + i11) << 10;
         if (i12 == this.f2684a && !this.f2686c) {
             if (w02 != this.f2685b && (canvas = (Canvas) this.e) != null && ((Bitmap) this.d) != null) {

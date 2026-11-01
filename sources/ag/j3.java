@@ -6,8 +6,8 @@ import android.text.Layout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import org.telegram.messenger.a30;
 import org.telegram.messenger.k6;
-import org.telegram.messenger.z20;
 import org.telegram.ui.h4;
 public final class j3 extends TextView {
     public final int f592a;
@@ -73,7 +73,7 @@ public final class j3 extends TextView {
     public void onDraw(Canvas canvas) {
         switch (this.f592a) {
             case 2:
-                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, h4.f37717s1);
+                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, h4.f37662s1);
                 super.onDraw(canvas);
                 return;
             default:
@@ -162,7 +162,7 @@ public final class j3 extends TextView {
                 return;
             case 26:
                 if (View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
-                    i10 = z20.c(52.0f, View.MeasureSpec.getSize(i10), Integer.MIN_VALUE);
+                    i10 = a30.c(52.0f, View.MeasureSpec.getSize(i10), Integer.MIN_VALUE);
                 }
                 super.onMeasure(i10, i11);
                 return;

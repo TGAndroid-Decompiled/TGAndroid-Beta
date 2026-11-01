@@ -2,32 +2,32 @@ package org.telegram.ui.Wallet;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.q20;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.r20;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.ix0;
+import org.telegram.ui.Components.jx0;
 import org.telegram.ui.Components.wb;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.un;
 public final class n0 implements Runnable {
-    public final int f34920a = 0;
-    public final q20 f34921b;
-    public final long f34922c;
+    public final int f34919a = 0;
+    public final r20 f34920b;
+    public final long f34921c;
     public final long d;
     public final Object e;
-    public final Object f34923f;
+    public final Object f34922f;
     public final Object h;
 
-    public n0(p0 p0Var, String str, h0 h0Var, long j10, long j11, q20 q20Var) {
+    public n0(p0 p0Var, String str, h0 h0Var, long j10, long j11, r20 r20Var) {
         this.e = p0Var;
-        this.f34923f = str;
+        this.f34922f = str;
         this.h = h0Var;
-        this.f34922c = j10;
+        this.f34921c = j10;
         this.d = j11;
-        this.f34921b = q20Var;
+        this.f34920b = r20Var;
     }
 
     @Override
@@ -36,14 +36,14 @@ public final class n0 implements Runnable {
         String str;
         String str2;
         LinkedHashMap linkedHashMap = null;
-        switch (this.f34920a) {
+        switch (this.f34919a) {
             case 0:
                 p0 p0Var = (p0) this.e;
-                String str3 = (String) this.f34923f;
+                String str3 = (String) this.f34922f;
                 h0 h0Var = (h0) this.h;
-                long j10 = this.f34922c;
+                long j10 = this.f34921c;
                 ?? r72 = this.d;
-                q20 q20Var = this.f34921b;
+                r20 r20Var = this.f34920b;
                 ArrayList arrayList2 = new ArrayList();
                 LinkedHashMap linkedHashMap2 = new LinkedHashMap();
                 try {
@@ -67,17 +67,17 @@ public final class n0 implements Runnable {
                     linkedHashMap = linkedHashMap2;
                 }
                 if (!str3.isEmpty() && h0Var != null && !h0Var.d()) {
-                    Object obj = p0.f35000f;
+                    Object obj = p0.f35003f;
                     synchronized (obj) {
                         try {
                             p0Var.c(j10);
                             try {
-                                ix0 r10 = p0Var.r();
+                                jx0 r10 = p0Var.r();
                                 try {
-                                    if (!((LinkedHashMap) r10.e).isEmpty() && r10.f27119a != r72) {
+                                    if (!((LinkedHashMap) r10.e).isEmpty() && r10.f27588a != r72) {
                                         throw new Exception("USER_MISMATCH");
                                     }
-                                    r10.f27119a = r72;
+                                    r10.f27588a = r72;
                                     arrayList = arrayList2;
                                     try {
                                         p0Var.s(r10, str3, linkedHashMap2, arrayList, j10);
@@ -103,7 +103,7 @@ public final class n0 implements Runnable {
                                 try {
                                     ((LinkedHashMap) r10.e).put(str3, p0Var.j(r10, str3, h0Var, arrayList, j10));
                                     linkedHashMap.put(str3, h0Var);
-                                    r10.f27120b = ConnectionsManager.getInstance(p0Var.f35004b).getCurrentTime();
+                                    r10.f27589b = ConnectionsManager.getInstance(p0Var.f35007b).getCurrentTime();
                                     synchronized (obj) {
                                         p0Var.c(j10);
                                         p0Var.v(r10, linkedHashMap);
@@ -131,7 +131,7 @@ public final class n0 implements Runnable {
                                     }
                                     str2 = str;
                                     p0Var.e(arrayList);
-                                    org.telegram.messenger.i0.g3(new ag.a3(p0Var, q20Var, j10, str2, 13));
+                                    org.telegram.messenger.i0.g3(new ag.a3(p0Var, r20Var, j10, str2, 13));
                                     return;
                                 } catch (Throwable th6) {
                                     th = th6;
@@ -146,7 +146,7 @@ public final class n0 implements Runnable {
                                     throw th;
                                 }
                                 p0Var.e(arrayList);
-                                org.telegram.messenger.i0.g3(new ag.a3(p0Var, q20Var, j10, str2, 13));
+                                org.telegram.messenger.i0.g3(new ag.a3(p0Var, r20Var, j10, str2, 13));
                                 return;
                             } catch (Throwable th7) {
                                 th = th7;
@@ -168,40 +168,40 @@ public final class n0 implements Runnable {
                 break;
             default:
                 rh.e4 e4Var = (rh.e4) this.e;
-                q20 q20Var2 = this.f34921b;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f34923f;
+                r20 r20Var2 = this.f34920b;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f34922f;
                 TLObject tLObject = (TLObject) this.h;
-                long j11 = this.f34922c;
+                long j11 = this.f34921c;
                 long j12 = this.d;
-                q20Var2.a(tL_error);
+                r20Var2.a(tL_error);
                 org.telegram.ui.ActionBar.k2 T = LaunchActivity.T();
                 if (T != null) {
                     if (tLObject instanceof TLRPC.Updates) {
                         if (j11 >= 0 && j12 >= 0) {
-                            un ha = un.ha(j11);
-                            ha.whenFullyVisible(new rh.v1(e4Var, ha, j11, 0));
-                            T.presentFragment(ha);
+                            un ma2 = un.ma(j11);
+                            ma2.whenFullyVisible(new rh.v1(e4Var, ma2, j11, 0));
+                            T.presentFragment(ma2);
                         } else {
-                            wb I = cc.a0(T).I(2131624027, cd.L0(2131749906, null), org.telegram.messenger.i0.W2(cd.a0(null, null, 2131749907, e4Var.z1(), org.telegram.messenger.o5.t(j11))));
-                            I.f32145t = true;
+                            wb I = cc.a0(T).I(2131624027, dd.L0(2131749906, null), org.telegram.messenger.i0.W2(dd.a0(null, null, 2131749907, e4Var.z1(), org.telegram.messenger.o5.t(j11))));
+                            I.f32211t = true;
                             I.j();
                         }
                     } else {
                         cc.a0(T).f0(tL_error, false);
                     }
                 }
-                rh.e6.y(e4Var.f21583a, false).P(j11);
-                rh.e6.y(e4Var.f21583a, false).P(j12);
+                rh.e6.y(e4Var.f21584a, false).P(j11);
+                rh.e6.y(e4Var.f21584a, false).P(j12);
                 return;
         }
     }
 
-    public n0(rh.e4 e4Var, q20 q20Var, TLRPC.TL_error tL_error, TLObject tLObject, long j10, long j11) {
+    public n0(rh.e4 e4Var, r20 r20Var, TLRPC.TL_error tL_error, TLObject tLObject, long j10, long j11) {
         this.e = e4Var;
-        this.f34921b = q20Var;
-        this.f34923f = tL_error;
+        this.f34920b = r20Var;
+        this.f34922f = tL_error;
         this.h = tLObject;
-        this.f34922c = j10;
+        this.f34921c = j10;
         this.d = j11;
     }
 }

@@ -6,10 +6,10 @@ import android.hardware.camera2.CaptureResult;
 import android.hardware.camera2.TotalCaptureResult;
 import android.os.SystemClock;
 public final class h extends CameraCaptureSession.CaptureCallback {
-    public final l f12075a;
+    public final l f12076a;
 
     public h(l lVar) {
-        this.f12075a = lVar;
+        this.f12076a = lVar;
     }
 
     @Override
@@ -20,8 +20,8 @@ public final class h extends CameraCaptureSession.CaptureCallback {
         boolean z11;
         boolean z12;
         int i11;
-        l lVar = this.f12075a;
-        p pVar = lVar.f12129j;
+        l lVar = this.f12076a;
+        p pVar = lVar.f12130j;
         if (cameraCaptureSession == lVar.A) {
             if (lVar.Q) {
                 Object tag = captureRequest.getTag();
@@ -61,48 +61,48 @@ public final class h extends CameraCaptureSession.CaptureCallback {
                 long elapsedRealtimeNanos = SystemClock.elapsedRealtimeNanos();
                 if (lVar.Y0 == 0) {
                     lVar.Y0 = l4.longValue();
-                    lVar.f12107a1 = 1L;
+                    lVar.f12108a1 = 1L;
                 } else {
                     long longValue = l4.longValue() - lVar.Z0;
-                    lVar.f12113c1++;
-                    lVar.f12115d1 += longValue;
+                    lVar.f12114c1++;
+                    lVar.f12116d1 += longValue;
                     double d = longValue;
-                    lVar.f12117e1 = (d * d) + lVar.f12117e1;
-                    long j10 = lVar.f12120f1;
+                    lVar.f12118e1 = (d * d) + lVar.f12118e1;
+                    long j10 = lVar.f12121f1;
                     if (j10 == 0 || longValue < j10) {
-                        lVar.f12120f1 = longValue;
+                        lVar.f12121f1 = longValue;
                     }
-                    lVar.f12123g1 = Math.max(lVar.f12123g1, longValue);
+                    lVar.f12124g1 = Math.max(lVar.f12124g1, longValue);
                     if (longValue > 50000000) {
-                        lVar.f12125h1++;
+                        lVar.f12126h1++;
                     }
                     if (longValue > 100000000) {
-                        lVar.f12128i1++;
+                        lVar.f12129i1++;
                     }
-                    lVar.f12107a1++;
+                    lVar.f12108a1++;
                 }
-                long j11 = lVar.f12110b1;
+                long j11 = lVar.f12111b1;
                 if (j11 != 0) {
                     long j12 = elapsedRealtimeNanos - j11;
-                    lVar.f12131j1++;
-                    lVar.f12134k1 += j12;
+                    lVar.f12132j1++;
+                    lVar.f12135k1 += j12;
                     lVar.l1 = Math.max(lVar.l1, j12);
                 }
-                lVar.f12110b1 = elapsedRealtimeNanos;
+                lVar.f12111b1 = elapsedRealtimeNanos;
                 lVar.Z0 = l4.longValue();
                 long longValue2 = l4.longValue() - lVar.Y0;
                 if (longValue2 >= 3000000000L) {
-                    float f7 = (((float) (lVar.f12107a1 - 1)) * 1.0E9f) / ((float) longValue2);
+                    float f7 = (((float) (lVar.f12108a1 - 1)) * 1.0E9f) / ((float) longValue2);
                     s0 s0Var = lVar.J;
                     if (s0Var == null) {
                         i10 = 0;
                     } else {
-                        i10 = s0Var.f12244a;
+                        i10 = s0Var.f12245a;
                     }
                     StringBuilder sb2 = new StringBuilder("camera capture rate: measuredFps=");
                     sb2.append(f7);
                     sb2.append(", requestedFps=");
-                    sb2.append(lVar.h.f12244a);
+                    sb2.append(lVar.h.f12245a);
                     sb2.append(", activeFps=");
                     if (i10 == 0) {
                         valueOf = "unknown";
@@ -120,19 +120,19 @@ public final class h extends CameraCaptureSession.CaptureCallback {
                     sb2.append(", fpsRange=");
                     sb2.append(lVar.K);
                     sb2.append(", sensorIntervalMs={avg=");
-                    sb2.append(l.j(lVar.f12115d1, lVar.f12113c1));
+                    sb2.append(l.j(lVar.f12116d1, lVar.f12114c1));
                     sb2.append(", min=");
-                    sb2.append(((float) lVar.f12120f1) / 1000000.0f);
+                    sb2.append(((float) lVar.f12121f1) / 1000000.0f);
                     sb2.append(", max=");
-                    sb2.append(((float) lVar.f12123g1) / 1000000.0f);
+                    sb2.append(((float) lVar.f12124g1) / 1000000.0f);
                     sb2.append(", jitter=");
-                    sb2.append(l.W(lVar.f12117e1, lVar.f12115d1, lVar.f12113c1));
+                    sb2.append(l.W(lVar.f12118e1, lVar.f12116d1, lVar.f12114c1));
                     sb2.append("}, sensorGaps={over50ms=");
-                    sb2.append(lVar.f12125h1);
+                    sb2.append(lVar.f12126h1);
                     sb2.append(", over100ms=");
-                    sb2.append(lVar.f12128i1);
+                    sb2.append(lVar.f12129i1);
                     sb2.append("}, callbackIntervalMs={avg=");
-                    sb2.append(l.j(lVar.f12134k1, lVar.f12131j1));
+                    sb2.append(l.j(lVar.f12135k1, lVar.f12132j1));
                     sb2.append(", max=");
                     sb2.append(((float) lVar.l1) / 1000000.0f);
                     sb2.append("}");
@@ -140,8 +140,8 @@ public final class h extends CameraCaptureSession.CaptureCallback {
                     lVar.O();
                     lVar.Y0 = l4.longValue();
                     lVar.Z0 = l4.longValue();
-                    lVar.f12107a1 = 1L;
-                    lVar.f12110b1 = elapsedRealtimeNanos;
+                    lVar.f12108a1 = 1L;
+                    lVar.f12111b1 = elapsedRealtimeNanos;
                 }
             }
         }

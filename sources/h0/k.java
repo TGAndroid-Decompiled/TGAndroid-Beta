@@ -2,25 +2,25 @@ package h0;
 
 import c3.i0;
 public final class k {
-    public static final k f7560k;
-    public final float f7561a;
-    public final float f7562b;
-    public final float f7563c;
+    public static final k f7561k;
+    public final float f7562a;
+    public final float f7563b;
+    public final float f7564c;
     public final float d;
     public final float e;
-    public final float f7564f;
-    public final float[] f7565g;
+    public final float f7565f;
+    public final float[] f7566g;
     public final float h;
-    public final float f7566i;
-    public final float f7567j;
+    public final float f7567i;
+    public final float f7568j;
 
     static {
         float f7;
         float[] fArr;
         float j10 = (float) ((b.j() * 63.66197723675813d) / 100.0d);
-        float[] fArr2 = b.f7542c;
+        float[] fArr2 = b.f7543c;
         float f10 = fArr2[0];
-        float[][] fArr3 = b.f7540a;
+        float[][] fArr3 = b.f7541a;
         float[] fArr4 = fArr3[0];
         float f11 = fArr2[1];
         float f12 = fArr4[1] * f11;
@@ -58,19 +58,19 @@ public final class k {
         float f23 = (f22 * 400.0f) / (f22 + 27.13f);
         float f24 = fArr7[2];
         float[] fArr8 = {f21, f23, (400.0f * f24) / (f24 + 27.13f)};
-        f7560k = new k(j11, i0.C(fArr8[2], 0.05f, (fArr8[0] * 2.0f) + fArr8[1], pow), pow, pow, f17, 1.0f, new float[]{(((100.0f / f14) * D) + 1.0f) - D, (((100.0f / f15) * D) + 1.0f) - D, (((100.0f / f16) * D) + 1.0f) - D}, cbrt, (float) Math.pow(cbrt, 0.25d), sqrt);
+        f7561k = new k(j11, i0.C(fArr8[2], 0.05f, (fArr8[0] * 2.0f) + fArr8[1], pow), pow, pow, f17, 1.0f, new float[]{(((100.0f / f14) * D) + 1.0f) - D, (((100.0f / f15) * D) + 1.0f) - D, (((100.0f / f16) * D) + 1.0f) - D}, cbrt, (float) Math.pow(cbrt, 0.25d), sqrt);
     }
 
     public k(float f7, float f10, float f11, float f12, float f13, float f14, float[] fArr, float f15, float f16, float f17) {
-        this.f7564f = f7;
-        this.f7561a = f10;
-        this.f7562b = f11;
-        this.f7563c = f12;
+        this.f7565f = f7;
+        this.f7562a = f10;
+        this.f7563b = f11;
+        this.f7564c = f12;
         this.d = f13;
         this.e = f14;
-        this.f7565g = fArr;
+        this.f7566g = fArr;
         this.h = f15;
-        this.f7566i = f16;
-        this.f7567j = f17;
+        this.f7567i = f16;
+        this.f7568j = f17;
     }
 }

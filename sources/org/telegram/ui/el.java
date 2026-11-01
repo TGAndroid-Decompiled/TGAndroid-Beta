@@ -2,11 +2,11 @@ package org.telegram.ui;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
-public final class el implements org.telegram.ui.Components.lj0 {
-    public final un f37080a;
+public final class el implements org.telegram.ui.Components.mj0 {
+    public final un f36870a;
 
     public el(un unVar) {
-        this.f37080a = unVar;
+        this.f36870a = unVar;
     }
 
     @Override

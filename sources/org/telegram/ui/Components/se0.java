@@ -3,36 +3,36 @@ package org.telegram.ui.Components;
 import android.view.View;
 import org.telegram.ui.PhotoViewer;
 public final class se0 implements Runnable {
-    public final int f30231a;
-    public final ue0 f30232b;
+    public final int f30277a;
+    public final ue0 f30278b;
 
     public se0(ue0 ue0Var, int i10) {
-        this.f30231a = i10;
-        this.f30232b = ue0Var;
+        this.f30277a = i10;
+        this.f30278b = ue0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f30231a) {
+        switch (this.f30277a) {
             case 0:
-                org.telegram.ui.mr0 mr0Var = this.f30232b.f30912a;
-                RadialProgressView radialProgressView = mr0Var.f31238n;
-                View view = mr0Var.f31239r;
+                org.telegram.ui.lr0 lr0Var = this.f30278b.f30946a;
+                RadialProgressView radialProgressView = lr0Var.f31273n;
+                View view = lr0Var.f31274r;
                 radialProgressView.setVisibility(4);
-                if (mr0Var.F) {
-                    mr0Var.F = false;
-                    mr0Var.setPlaybackSpeed(mr0Var.E);
+                if (lr0Var.F) {
+                    lr0Var.F = false;
+                    lr0Var.setPlaybackSpeed(lr0Var.E);
                 }
                 view.setEnabled(true);
                 view.setAlpha(1.0f);
-                PhotoViewer photoViewer = mr0Var.f31235b;
+                PhotoViewer photoViewer = lr0Var.f31270b;
                 if (photoViewer != null) {
                     photoViewer.A0();
                     return;
                 }
                 return;
             default:
-                this.f30232b.f30912a.h.setVisibility(4);
+                this.f30278b.f30946a.h.setVisibility(4);
                 return;
         }
     }

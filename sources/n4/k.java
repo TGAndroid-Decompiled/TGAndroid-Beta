@@ -10,18 +10,18 @@ import java.lang.ref.WeakReference;
 import java.util.AbstractCollection;
 import java.util.ArrayList;
 public final class k extends Binder implements d {
-    public static final int f13508b = 0;
-    public final WeakReference f13509a;
+    public static final int f13509b = 0;
+    public final WeakReference f13510a;
 
     public k(l lVar) {
         attachInterface(this, "android.support.v4.media.session.IMediaSession");
-        this.f13509a = new WeakReference(lVar);
+        this.f13510a = new WeakReference(lVar);
     }
 
     public final void H0(b bVar) {
-        l lVar = (l) this.f13509a.get();
+        l lVar = (l) this.f13510a.get();
         if (lVar != null && bVar != null) {
-            lVar.f13513f.register(bVar, new r("android.media.session.MediaController", Binder.getCallingPid(), Binder.getCallingUid()));
+            lVar.f13514f.register(bVar, new r("android.media.session.MediaController", Binder.getCallingPid(), Binder.getCallingUid()));
             synchronized (lVar.d) {
             }
         }
@@ -52,7 +52,7 @@ public final class k extends Binder implements d {
                                     return true;
                                 }
                                 parcel.enforceInterface("android.support.v4.media.session.IMediaSession");
-                                l lVar = (l) this.f13509a.get();
+                                l lVar = (l) this.f13510a.get();
                                 if (lVar != null && (bundle = lVar.e) != null) {
                                     bundle2 = new Bundle(bundle);
                                 }
@@ -67,9 +67,9 @@ public final class k extends Binder implements d {
                                 return true;
                             }
                             parcel.enforceInterface("android.support.v4.media.session.IMediaSession");
-                            l lVar2 = (l) this.f13509a.get();
+                            l lVar2 = (l) this.f13510a.get();
                             if (lVar2 != null) {
-                                i12 = lVar2.f13517k;
+                                i12 = lVar2.f13518k;
                             }
                             parcel2.getClass();
                             parcel2.writeNoException();
@@ -77,16 +77,16 @@ public final class k extends Binder implements d {
                             return true;
                         }
                         parcel.enforceInterface("android.support.v4.media.session.IMediaSession");
-                        l lVar3 = (l) this.f13509a.get();
+                        l lVar3 = (l) this.f13510a.get();
                         parcel2.getClass();
                         parcel2.writeNoException();
                         parcel2.writeInt(0);
                         return true;
                     }
                     parcel.enforceInterface("android.support.v4.media.session.IMediaSession");
-                    l lVar4 = (l) this.f13509a.get();
+                    l lVar4 = (l) this.f13510a.get();
                     if (lVar4 != null) {
-                        i12 = lVar4.f13516j;
+                        i12 = lVar4.f13517j;
                     }
                     parcel2.getClass();
                     parcel2.writeNoException();
@@ -94,21 +94,21 @@ public final class k extends Binder implements d {
                     return true;
                 }
                 parcel.enforceInterface("android.support.v4.media.session.IMediaSession");
-                l lVar5 = (l) this.f13509a.get();
+                l lVar5 = (l) this.f13510a.get();
                 if (lVar5 != null) {
-                    wVar = lVar5.f13514g;
-                    i iVar = lVar5.f13515i;
+                    wVar = lVar5.f13515g;
+                    i iVar = lVar5.f13516i;
                     if (wVar != null) {
                         float f7 = wVar.d;
-                        long j11 = wVar.f13542n;
-                        int i13 = wVar.f13538a;
-                        long j12 = wVar.f13539b;
+                        long j11 = wVar.f13543n;
+                        int i13 = wVar.f13539a;
+                        long j12 = wVar.f13540b;
                         long j13 = -1;
                         if (j12 != -1 && ((i13 == 3 || i13 == 4 || i13 == 5) && j11 > 0)) {
                             long elapsedRealtime = SystemClock.elapsedRealtime();
                             long j14 = (f7 * ((float) (elapsedRealtime - j11))) + j12;
                             if (iVar != null) {
-                                Bundle bundle3 = iVar.f13506a;
+                                Bundle bundle3 = iVar.f13507a;
                                 if (bundle3.containsKey("android.media.metadata.DURATION")) {
                                     j13 = bundle3.getLong("android.media.metadata.DURATION", 0L);
                                 }
@@ -121,15 +121,15 @@ public final class k extends Binder implements d {
                                 j10 = j14;
                             }
                             ArrayList arrayList = new ArrayList();
-                            long j15 = wVar.f13540c;
+                            long j15 = wVar.f13541c;
                             long j16 = wVar.e;
-                            int i14 = wVar.f13541f;
+                            int i14 = wVar.f13542f;
                             CharSequence charSequence = wVar.h;
-                            AbstractCollection abstractCollection = wVar.f13543r;
+                            AbstractCollection abstractCollection = wVar.f13544r;
                             if (abstractCollection != null) {
                                 arrayList.addAll(abstractCollection);
                             }
-                            wVar = new w(wVar.f13538a, j10, j15, wVar.d, j16, i14, charSequence, elapsedRealtime, arrayList, wVar.f13544s, wVar.f13545w);
+                            wVar = new w(wVar.f13539a, j10, j15, wVar.d, j16, i14, charSequence, elapsedRealtime, arrayList, wVar.f13545s, wVar.f13546w);
                         }
                     }
                 }
@@ -151,13 +151,13 @@ public final class k extends Binder implements d {
                     bVar2 = (b) queryLocalInterface;
                 } else {
                     ?? obj = new Object();
-                    obj.f13491a = readStrongBinder;
+                    obj.f13492a = readStrongBinder;
                     bVar2 = obj;
                 }
             }
-            l lVar6 = (l) this.f13509a.get();
+            l lVar6 = (l) this.f13510a.get();
             if (lVar6 != null && bVar2 != null) {
-                lVar6.f13513f.unregister(bVar2);
+                lVar6.f13514f.unregister(bVar2);
                 Binder.getCallingPid();
                 Binder.getCallingUid();
                 synchronized (lVar6.d) {
@@ -175,7 +175,7 @@ public final class k extends Binder implements d {
                 bVar = (b) queryLocalInterface2;
             } else {
                 ?? obj2 = new Object();
-                obj2.f13491a = readStrongBinder2;
+                obj2.f13492a = readStrongBinder2;
                 bVar = obj2;
             }
         }

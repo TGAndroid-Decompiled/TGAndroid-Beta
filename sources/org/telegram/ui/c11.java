@@ -2,39 +2,39 @@ package org.telegram.ui;
 
 import org.telegram.messenger.MediaController;
 public final class c11 implements Runnable {
-    public final int f36371a;
-    public final i11 f36372b;
+    public final int f36160a;
+    public final h11 f36161b;
 
-    public c11(i11 i11Var, int i10) {
-        this.f36371a = i10;
-        this.f36372b = i11Var;
+    public c11(h11 h11Var, int i10) {
+        this.f36160a = i10;
+        this.f36161b = h11Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f36371a) {
+        switch (this.f36160a) {
             case 0:
-                i11 i11Var = this.f36372b;
-                c11 c11Var = i11Var.Z;
-                org.telegram.ui.Components.u61 u61Var = i11Var.f38095x;
-                if (u61Var != null) {
-                    i11Var.f38083a0 = ((float) u61Var.S()) / ((float) i11Var.f38095x.U());
-                    g11 g11Var = i11Var.N;
-                    if (g11Var != null) {
-                        g11Var.f22647mc = (i11Var.f38095x.U() - i11Var.f38095x.S()) / 1000;
-                        i11Var.N.O3();
-                        org.telegram.ui.Components.qn0 seekBarWaveform = i11Var.N.getSeekBarWaveform();
+                h11 h11Var = this.f36161b;
+                c11 c11Var = h11Var.Z;
+                org.telegram.ui.Components.v61 v61Var = h11Var.f37628x;
+                if (v61Var != null) {
+                    h11Var.f37616a0 = ((float) v61Var.S()) / ((float) h11Var.f37628x.U());
+                    f11 f11Var = h11Var.N;
+                    if (f11Var != null) {
+                        f11Var.f22648mc = (h11Var.f37628x.U() - h11Var.f37628x.S()) / 1000;
+                        h11Var.N.O3();
+                        org.telegram.ui.Components.rn0 seekBarWaveform = h11Var.N.getSeekBarWaveform();
                         if (seekBarWaveform != null) {
-                            float f7 = i11Var.f38083a0;
+                            float f7 = h11Var.f37616a0;
                             seekBarWaveform.J = true;
                             seekBarWaveform.K = f7;
-                            org.telegram.ui.Cells.q1 q1Var = seekBarWaveform.f29698n;
+                            org.telegram.ui.Cells.q1 q1Var = seekBarWaveform.f30037n;
                             if (q1Var != null) {
                                 q1Var.invalidate();
                             }
                         }
                     }
-                    if (i11Var.f38095x.d0()) {
+                    if (h11Var.f37628x.d0()) {
                         org.telegram.messenger.i0.r(c11Var);
                         org.telegram.messenger.i0.h3(c11Var, 16L);
                         return;
@@ -49,13 +49,13 @@ public final class c11 implements Runnable {
                 super/*android.app.Dialog*/.dismiss();
                 return;
             default:
-                i11 i11Var2 = this.f36372b;
-                if (i11Var2.d == null) {
-                    org.telegram.messenger.i0.g3(new c11(i11Var2, 2));
-                    org.telegram.ui.Cells.q1 q1Var2 = i11Var2.O;
+                h11 h11Var2 = this.f36161b;
+                if (h11Var2.d == null) {
+                    org.telegram.messenger.i0.g3(new c11(h11Var2, 2));
+                    org.telegram.ui.Cells.q1 q1Var2 = h11Var2.O;
                     if (q1Var2 != null) {
                         q1Var2.setVisibility(0);
-                        i11Var2.O.invalidate();
+                        h11Var2.O.invalidate();
                     }
                 }
                 MediaController.B().F0();

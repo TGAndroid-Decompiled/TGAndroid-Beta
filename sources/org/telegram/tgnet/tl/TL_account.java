@@ -105,7 +105,7 @@ public class TL_account {
         public static final int constructor = -1738457409;
         public int date;
         public int flags;
-        public String f19999id;
+        public String f20000id;
         public int last_usage_date;
         public String name;
         public long software_emoji_id;
@@ -123,7 +123,7 @@ public class TL_account {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.flags = inputSerializedData.readInt32(z10);
-            this.f19999id = inputSerializedData.readString(z10);
+            this.f20000id = inputSerializedData.readString(z10);
             this.name = inputSerializedData.readString(z10);
             this.date = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 1)) {
@@ -138,7 +138,7 @@ public class TL_account {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1738457409);
             outputSerializedData.writeInt32(this.flags);
-            outputSerializedData.writeString(this.f19999id);
+            outputSerializedData.writeString(this.f20000id);
             outputSerializedData.writeString(this.name);
             outputSerializedData.writeInt32(this.date);
             if (TLObject.hasFlag(this.flags, 1)) {
@@ -2286,12 +2286,12 @@ public class TL_account {
 
     public static class deletePasskey extends TLMethod<TLRPC.Bool> {
         public static final int constructor = -172665281;
-        public String f20000id;
+        public String f20001id;
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-172665281);
-            outputSerializedData.writeString(this.f20000id);
+            outputSerializedData.writeString(this.f20001id);
         }
 
         @Override
@@ -2842,7 +2842,7 @@ public class TL_account {
 
     public static class getRequirementsToContact extends TLObject {
         public static final int constructor = -660962397;
-        public ArrayList<TLRPC.InputUser> f20001id = new ArrayList<>();
+        public ArrayList<TLRPC.InputUser> f20002id = new ArrayList<>();
 
         @Override
         public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
@@ -2851,20 +2851,20 @@ public class TL_account {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.f20001id = Vector.deserialize(inputSerializedData, new q(11), z10);
+            this.f20002id = Vector.deserialize(inputSerializedData, new q(11), z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-660962397);
-            Vector.serialize(outputSerializedData, this.f20001id);
+            Vector.serialize(outputSerializedData, this.f20002id);
         }
     }
 
     public static class getSavedMusicByID extends TLObject {
         public static final int constructor = 1970513129;
         public ArrayList<TLRPC.InputDocument> documents = new ArrayList<>();
-        public TLRPC.InputUser f20002id;
+        public TLRPC.InputUser f20003id;
 
         @Override
         public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
@@ -2874,7 +2874,7 @@ public class TL_account {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1970513129);
-            this.f20002id.serializeToStream(outputSerializedData);
+            this.f20003id.serializeToStream(outputSerializedData);
             Vector.serialize(outputSerializedData, this.documents);
         }
     }
@@ -3101,7 +3101,7 @@ public class TL_account {
 
     public static class inputPasskeyCredentialPublicKey extends TLObject {
         public static final int constructor = 1009235855;
-        public String f20003id;
+        public String f20004id;
         public String raw_id;
         public InputPasskeyResponse response;
 
@@ -3117,7 +3117,7 @@ public class TL_account {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.f20003id = inputSerializedData.readString(z10);
+            this.f20004id = inputSerializedData.readString(z10);
             this.raw_id = inputSerializedData.readString(z10);
             this.response = InputPasskeyResponse.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
         }
@@ -3125,7 +3125,7 @@ public class TL_account {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1009235855);
-            outputSerializedData.writeString(this.f20003id);
+            outputSerializedData.writeString(this.f20004id);
             outputSerializedData.writeString(this.raw_id);
             this.response.serializeToStream(outputSerializedData);
         }
@@ -3800,7 +3800,7 @@ public class TL_account {
 
     public static class saveRingtone extends TLObject {
         public static final int constructor = 1038768899;
-        public TLRPC.InputDocument f20004id;
+        public TLRPC.InputDocument f20005id;
         public boolean unsave;
 
         @Override
@@ -3811,7 +3811,7 @@ public class TL_account {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1038768899);
-            this.f20004id.serializeToStream(outputSerializedData);
+            this.f20005id.serializeToStream(outputSerializedData);
             outputSerializedData.writeBool(this.unsave);
         }
     }

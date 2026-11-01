@@ -72,7 +72,7 @@ public abstract class v implements Iterator {
                         this.d = i12;
                         Object b10 = b(i12);
                         int i13 = this.f6434c + 1;
-                        if (i13 >= jVar.f53199f) {
+                        if (i13 >= jVar.f53217f) {
                             i13 = -1;
                         }
                         this.f6434c = i13;
@@ -89,7 +89,7 @@ public abstract class v implements Iterator {
                         this.d = i14;
                         Object b11 = b(i14);
                         int i15 = this.f6434c + 1;
-                        if (i15 >= dVar.f54680f) {
+                        if (i15 >= dVar.f54698f) {
                             i15 = -1;
                         }
                         this.f6434c = i15;
@@ -136,7 +136,7 @@ public abstract class v implements Iterator {
                     }
                     if (z11) {
                         this.f6433b = i11 + 32;
-                        Object[] objArr = jVar.f53198c;
+                        Object[] objArr = jVar.f53216c;
                         objArr.getClass();
                         jVar.remove(objArr[i12]);
                         this.f6434c--;
@@ -159,7 +159,7 @@ public abstract class v implements Iterator {
                     }
                     if (z12) {
                         this.f6433b = i14 + 32;
-                        Object[] objArr2 = dVar.f54679c;
+                        Object[] objArr2 = dVar.f54697c;
                         objArr2.getClass();
                         dVar.remove(objArr2[i15]);
                         this.f6434c--;

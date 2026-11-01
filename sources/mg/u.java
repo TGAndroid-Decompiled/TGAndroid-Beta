@@ -3,15 +3,15 @@ package mg;
 import org.telegram.ui.Components.ua;
 import org.telegram.ui.Components.wb;
 public final class u implements ua {
-    public final int f13240a;
+    public final int f13241a;
 
     public u(int i10) {
-        this.f13240a = i10;
+        this.f13241a = i10;
     }
 
     @Override
     public final boolean a() {
-        switch (this.f13240a) {
+        switch (this.f13241a) {
             case 0:
                 return true;
             case 1:
@@ -51,22 +51,22 @@ public final class u implements ua {
 
     @Override
     public final void b(wb wbVar) {
-        int i10 = this.f13240a;
+        int i10 = this.f13241a;
     }
 
     @Override
     public final void c(float f7) {
-        int i10 = this.f13240a;
+        int i10 = this.f13241a;
     }
 
     @Override
     public final void d(wb wbVar) {
-        int i10 = this.f13240a;
+        int i10 = this.f13241a;
     }
 
     @Override
     public final boolean e() {
-        switch (this.f13240a) {
+        switch (this.f13241a) {
             case 0:
                 return true;
             case 1:
@@ -108,7 +108,7 @@ public final class u implements ua {
     public final int f(int i10) {
         int i11;
         int L;
-        switch (this.f13240a) {
+        switch (this.f13241a) {
             case 0:
                 return 0;
             case 1:
@@ -124,7 +124,7 @@ public final class u implements ua {
             case 6:
                 return org.telegram.messenger.i0.L(80.0f);
             case 7:
-                i11 = org.telegram.messenger.i0.f16021n;
+                i11 = org.telegram.messenger.i0.f16167n;
                 L = org.telegram.messenger.i0.L(16.0f);
                 break;
             case 8:
@@ -142,11 +142,11 @@ public final class u implements ua {
             case 14:
                 return 0;
             case 15:
-                i11 = org.telegram.messenger.i0.f16021n;
+                i11 = org.telegram.messenger.i0.f16167n;
                 L = org.telegram.messenger.i0.L(64.0f);
                 break;
             default:
-                i11 = org.telegram.messenger.i0.f16021n;
+                i11 = org.telegram.messenger.i0.f16167n;
                 L = org.telegram.messenger.i0.L(60.0f);
                 break;
         }
@@ -155,7 +155,7 @@ public final class u implements ua {
 
     @Override
     public final boolean g(int i10) {
-        switch (this.f13240a) {
+        switch (this.f13241a) {
             case 0:
                 return false;
             case 1:
@@ -195,15 +195,15 @@ public final class u implements ua {
 
     @Override
     public final int h(int i10) {
-        switch (this.f13240a) {
+        switch (this.f13241a) {
             case 0:
-                return org.telegram.messenger.i0.f16020m;
+                return org.telegram.messenger.i0.f16166m;
             case 1:
-                return org.telegram.messenger.i0.f16020m;
+                return org.telegram.messenger.i0.f16166m;
             case 2:
                 return 0;
             case 3:
-                return org.telegram.messenger.i0.f16020m;
+                return org.telegram.messenger.i0.f16166m;
             case 4:
                 return 0;
             case 5:
@@ -219,13 +219,13 @@ public final class u implements ua {
             case 10:
                 return 0;
             case 11:
-                return org.telegram.messenger.i0.f16020m;
+                return org.telegram.messenger.i0.f16166m;
             case 12:
                 return 0;
             case 13:
                 return org.telegram.messenger.i0.L(56.0f);
             case 14:
-                return org.telegram.messenger.i0.f16020m;
+                return org.telegram.messenger.i0.f16166m;
             case 15:
                 return 0;
             default:

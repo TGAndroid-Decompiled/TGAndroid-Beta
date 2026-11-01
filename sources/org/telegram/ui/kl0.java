@@ -1,68 +1,32 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-public final class kl0 extends FrameLayout {
-    public TextView f38883a;
-    public TextView f38884b;
-    public ImageView f38885c;
-    public boolean d;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class kl0 implements RequestDelegate {
+    public final int f38908a;
+    public final qm0 f38909b;
 
-    public final void a(String str, boolean z10) {
-        this.f38883a.setText(str);
-        this.f38884b.setText("");
-        this.d = z10;
-        setWillNotDraw(!z10);
+    public kl0(qm0 qm0Var, int i10) {
+        this.f38908a = i10;
+        this.f38909b = qm0Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float L;
-        int i10;
-        if (this.d) {
-            if (org.telegram.messenger.cd.X) {
-                L = 0.0f;
-            } else {
-                L = org.telegram.messenger.i0.L(20.0f);
-            }
-            float f7 = L;
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (org.telegram.messenger.cd.X) {
-                i10 = org.telegram.messenger.i0.L(20.0f);
-            } else {
-                i10 = 0;
-            }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.t6.f21052k0);
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f38908a) {
+            case 0:
+                org.telegram.messenger.i0.g3(new nl0(this.f38909b, tLObject, 0));
+                return;
+            case 1:
+                org.telegram.messenger.i0.g3(new if0(17, this.f38909b, tL_error));
+                return;
+            case 2:
+                org.telegram.messenger.i0.g3(new nl0(this.f38909b, tLObject, 2));
+                return;
+            default:
+                org.telegram.messenger.i0.g3(new rl0(this.f38909b, tL_error, tLObject, 0));
+                return;
         }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(64.0f) + (this.d ? 1 : 0), 1073741824));
-    }
-
-    public void setChecked(boolean z10) {
-        int i10;
-        ImageView imageView = this.f38885c;
-        if (z10) {
-            i10 = 0;
-        } else {
-            i10 = 4;
-        }
-        imageView.setVisibility(i10);
-    }
-
-    public void setNeedDivider(boolean z10) {
-        this.d = z10;
-        setWillNotDraw(!z10);
-        invalidate();
-    }
-
-    public void setValue(CharSequence charSequence) {
-        this.f38884b.setText(charSequence);
     }
 }

@@ -10,21 +10,21 @@ import java.util.HashSet;
 import org.telegram.ui.Components.vs;
 public final class s extends LinearLayout implements org.telegram.ui.ActionBar.k6 {
     public static final int h = 0;
-    public Paint f22886a;
-    public Paint f22887b;
-    public q f22888c;
+    public Paint f22887a;
+    public Paint f22888b;
+    public q f22889c;
     public TextView d;
     public float e;
-    public boolean f22889f;
+    public boolean f22890f;
 
     public final void a(float f7) {
         this.e = f7;
-        this.f22889f = true;
+        this.f22890f = true;
         TextView textView = this.d;
         int x02 = org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.G6, false);
         int i10 = org.telegram.ui.ActionBar.t6.I6;
         textView.setTextColor(i0.b.f(f7, x02, org.telegram.ui.ActionBar.t6.x0(null, i10, false)));
-        Paint paint = this.f22886a;
+        Paint paint = this.f22887a;
         paint.setColor(i0.b.f(f7, i0.b.o(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.M6, false), 63), org.telegram.ui.ActionBar.t6.x0(null, i10, false)));
         paint.setStrokeWidth(Math.max(2, org.telegram.messenger.i0.L(org.telegram.messenger.i0.T1(0.5f, 2.0f, f7))));
         invalidate();
@@ -53,12 +53,12 @@ public final class s extends LinearLayout implements org.telegram.ui.ActionBar.k
 
     @Override
     public final void draw(Canvas canvas) {
-        Paint paint = this.f22886a;
+        Paint paint = this.f22887a;
         float strokeWidth = paint.getStrokeWidth();
         RectF rectF = org.telegram.messenger.i0.P;
-        q qVar = this.f22888c;
+        q qVar = this.f22889c;
         rectF.set(qVar.getLeft() + strokeWidth, qVar.getTop() + strokeWidth, qVar.getRight() - strokeWidth, qVar.getBottom() - strokeWidth);
-        canvas.drawRoundRect(rectF, org.telegram.messenger.i0.L(18.0f), org.telegram.messenger.i0.L(18.0f), this.f22887b);
+        canvas.drawRoundRect(rectF, org.telegram.messenger.i0.L(18.0f), org.telegram.messenger.i0.L(18.0f), this.f22888b);
         super.draw(canvas);
         canvas.drawRoundRect(rectF, org.telegram.messenger.i0.L(18.0f), org.telegram.messenger.i0.L(18.0f), paint);
     }
@@ -66,7 +66,7 @@ public final class s extends LinearLayout implements org.telegram.ui.ActionBar.k
     @Override
     public final void updateColors() {
         try {
-            if (this.f22889f && this.d != null) {
+            if (this.f22890f && this.d != null) {
                 a(this.e);
             }
         } catch (Exception e) {

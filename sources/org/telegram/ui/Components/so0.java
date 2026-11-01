@@ -1,111 +1,55 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.Button;
-import android.widget.FrameLayout;
-public final class so0 extends FrameLayout {
-    public final int f30305a;
-    public final op0 f30306b;
+import android.util.SparseIntArray;
+public final class so0 extends th.b {
+    public final int f30403g;
 
-    public so0(op0 op0Var, Context context, int i10) {
-        super(context);
-        this.f30305a = i10;
-        this.f30306b = op0Var;
+    public so0(int i10) {
+        this.f30403g = i10;
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.f30305a) {
+    public void k() {
+        switch (this.f30403g) {
             case 0:
-                op0 op0Var = this.f30306b;
-                op0Var.O2.setBounds(0, (int) op0Var.f29128m2, getMeasuredWidth(), getMeasuredHeight());
-                op0Var.O2.draw(canvas);
-                canvas.save();
-                canvas.clipRect(0.0f, op0Var.f29128m2, getMeasuredWidth(), getMeasuredHeight());
-                super.dispatchDraw(canvas);
-                canvas.restore();
+                int i10 = org.telegram.ui.ActionBar.t6.f20873a7;
+                int i11 = org.telegram.ui.ActionBar.t6.f21002h5;
+                int h = h(i11);
+                SparseIntArray sparseIntArray = this.f48805b;
+                sparseIntArray.put(i10, h);
+                sparseIntArray.put(org.telegram.ui.ActionBar.t6.f20931d7, -15264235);
+                sparseIntArray.put(org.telegram.ui.ActionBar.t6.Le, org.telegram.ui.ActionBar.t6.r1(0.45f, -1));
+                sparseIntArray.put(org.telegram.ui.ActionBar.t6.f21020i5, 352321535);
+                sparseIntArray.put(org.telegram.ui.ActionBar.t6.f21286wf, h(i11));
                 return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f30305a) {
-            case 0:
-                op0 op0Var = this.f30306b;
-                so0 so0Var = op0Var.f29122j1;
-                float f7 = op0Var.f29130n2;
-                if (f7 != 0.0f && f7 != so0Var.getTop() + op0Var.f29130n2) {
-                    ValueAnimator valueAnimator = op0Var.f29132o2;
-                    if (valueAnimator != null) {
-                        valueAnimator.cancel();
-                    }
-                    float top = op0Var.f29130n2 - (so0Var.getTop() + op0Var.f29128m2);
-                    op0Var.f29128m2 = top;
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(top, 0.0f);
-                    op0Var.f29132o2 = ofFloat;
-                    ofFloat.addUpdateListener(new r60(this, 17));
-                    op0Var.f29132o2.setInterpolator(gr.f26495f);
-                    op0Var.f29132o2.setDuration(200L);
-                    op0Var.f29132o2.start();
-                    op0Var.f29130n2 = 0.0f;
-                }
-                op0Var.K1[1].setTranslationY((-(so0Var.getMeasuredHeight() - org.telegram.messenger.i0.L(48.0f))) + op0Var.f29128m2 + op0Var.f29126l2 + ((1.0f - getAlpha()) * (so0Var.getMeasuredHeight() - org.telegram.messenger.i0.L(48.0f))));
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f30305a) {
             case 1:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(org.telegram.messenger.cd.G(this.f30306b.M1.m(), "AccDescrShareInChats", new Object[0]));
-                accessibilityNodeInfo.setClassName(Button.class.getName());
-                accessibilityNodeInfo.setLongClickable(true);
-                accessibilityNodeInfo.setClickable(true);
-                return;
             default:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                return;
+            case 2:
+                this.f48805b.put(org.telegram.ui.ActionBar.t6.f20931d7, 352321535);
+                return;
+            case 3:
+                this.f48805b.append(org.telegram.ui.ActionBar.t6.f21002h5, -14671840);
                 return;
         }
     }
 
-    @Override
-    public void setAlpha(float f7) {
-        switch (this.f30305a) {
-            case 0:
-                super.setAlpha(f7);
-                invalidate();
-                return;
-            default:
-                super.setAlpha(f7);
-                return;
-        }
-    }
-
-    @Override
-    public void setVisibility(int i10) {
-        switch (this.f30305a) {
-            case 0:
-                super.setVisibility(i10);
-                if (i10 != 0) {
-                    this.f30306b.K1[1].setTranslationY(0.0f);
-                    return;
-                }
-                return;
-            default:
-                super.setVisibility(i10);
-                return;
-        }
+    public so0() {
+        this.f30403g = 1;
+        this.f48805b.put(org.telegram.ui.ActionBar.t6.f20930d6, -14537933);
+        this.f48805b.put(org.telegram.ui.ActionBar.t6.f21002h5, -14537933);
+        this.f48805b.put(org.telegram.ui.ActionBar.t6.f20873a7, -13616313);
+        this.f48805b.put(org.telegram.ui.ActionBar.t6.e7, -14142917);
+        this.f48805b.put(org.telegram.ui.ActionBar.t6.f7, -8090220);
+        this.f48805b.put(org.telegram.ui.ActionBar.t6.Qi, -14142917);
+        this.f48805b.put(org.telegram.ui.ActionBar.t6.G8, -13616313);
+        this.f48805b.put(org.telegram.ui.ActionBar.t6.H8, -14733761);
+        this.f48805b.put(org.telegram.ui.ActionBar.t6.F8, -1);
+        this.f48805b.put(org.telegram.ui.ActionBar.t6.E8, -1);
+        this.f48805b.put(org.telegram.ui.ActionBar.t6.tj, -231982259);
+        this.f48805b.put(org.telegram.ui.ActionBar.t6.f21260v6, -11683585);
+        this.f48805b.put(org.telegram.ui.ActionBar.t6.f21243u6, -10637330);
+        this.f48805b.put(org.telegram.ui.ActionBar.t6.W6, -12692893);
+        this.f48805b.put(org.telegram.ui.ActionBar.t6.f21022i7, -15033089);
     }
 }

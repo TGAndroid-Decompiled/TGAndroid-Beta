@@ -12,7 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 import org.telegram.messenger.i0;
 import org.telegram.ui.ActionBar.a7;
 import org.telegram.ui.ActionBar.g0;
@@ -69,7 +69,7 @@ public final class b extends LinearLayout {
         switch (this.f832a) {
             case 5:
                 Path path = (Path) this.f834c;
-                if (((c0) this.d).f48812a) {
+                if (((c0) this.d).f48826a) {
                     path.rewind();
                     RectF rectF = i0.P;
                     rectF.set(0.0f, 0.0f, getWidth(), getHeight());
@@ -103,7 +103,7 @@ public final class b extends LinearLayout {
                 RectF rectF = (RectF) this.f833b;
                 Paint paint = (Paint) this.f834c;
                 cq cqVar = (cq) this.d;
-                paint.setColor(t6.w0(t6.f21019i5, cqVar.f25140d0));
+                paint.setColor(t6.w0(t6.f21020i5, cqVar.f25217d0));
                 int left = cqVar.E[0].getLeft() - i0.L(13.0f);
                 float L = i0.L(91.0f);
                 g0 g0Var = cqVar.F;
@@ -145,7 +145,7 @@ public final class b extends LinearLayout {
         super(context);
         this.f832a = 2;
         int i11 = t6.G6;
-        p6 p6Var = c2Var.f21775b;
+        p6 p6Var = c2Var.f21776b;
         t6.w0(i11, p6Var);
         if (i10 != 0) {
             ImageView imageView = new ImageView(context);
@@ -164,7 +164,7 @@ public final class b extends LinearLayout {
         Drawable mutate = getContext().getResources().getDrawable(2131230871).mutate();
         a7.y(this, mutate, i11, p6Var, PorterDuff.Mode.MULTIPLY);
         view.setBackground(mutate);
-        if (cd.X) {
+        if (dd.X) {
             addView(view, b6.t(16, 16, 16, 11, 0, 3, 0));
             addView(f6Var, b6.t(-2, 16, 16, 0, 0, ((ImageView) this.f833b) != null ? 3 : 11, 0));
             View view2 = (ImageView) this.f833b;
@@ -179,7 +179,7 @@ public final class b extends LinearLayout {
             addView(f6Var, b6.t(-2, 16, 16, ((ImageView) this.f833b) == null ? 11 : 0, 0, 3, 0));
             addView(view, b6.t(16, 16, 16, 0, 0, 11, 0));
         }
-        int i12 = t6.f21020i6;
+        int i12 = t6.f21021i6;
         Drawable a02 = t6.a0(t6.w0(i12, p6Var), 16, 16);
         w6 N = a7.N(i12);
         setBackground(a02);
@@ -215,7 +215,7 @@ public final class b extends LinearLayout {
                 TextView textView = new TextView(context);
                 this.f834c = textView;
                 e.t(textView, 1, 20.0f);
-                int i11 = t6.f21037j5;
+                int i11 = t6.f21038j5;
                 a7.V(textView, i11, p6Var);
                 textView.setGravity(17);
                 addView(textView, b6.t(-2, -2, 1, 0, 2, 0, 0));
@@ -240,7 +240,7 @@ public final class b extends LinearLayout {
                 TextView textView3 = new TextView(context);
                 this.f834c = textView3;
                 e.t(textView3, 1, 20.0f);
-                int i12 = t6.f21037j5;
+                int i12 = t6.f21038j5;
                 a7.V(textView3, i12, p6Var);
                 textView3.setGravity(17);
                 addView(textView3, b6.t(-2, -2, 1, 0, 2, 0, 0));

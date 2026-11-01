@@ -38,18 +38,18 @@ public final class j implements ValueAnimator.AnimatorUpdateListener {
                 lg.f fVar = (lg.f) this.f2752f;
                 fVar.getClass();
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                lg.h hVar = ((lg.g) fVar.f11865b).f11866a;
+                lg.h hVar = ((lg.g) fVar.f11866b).f11867a;
                 float f13 = this.f2751c;
                 float f14 = this.f2750b;
                 hVar.d = i0.z(f13, f14, floatValue2, f14);
                 float f15 = this.e;
                 float f16 = this.d;
-                hVar.f11881i = i0.z(f15, f16, floatValue2, f16);
+                hVar.f11882i = i0.z(f15, f16, floatValue2, f16);
                 return;
             default:
                 vh.n nVar2 = (vh.n) this.f2752f;
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                u4 u4Var = nVar2.f52042a;
+                u4 u4Var = nVar2.f52058a;
                 float f17 = this.f2750b;
                 float f18 = this.f2751c;
                 u4Var.setScaleX(org.telegram.messenger.i0.T1(f17, f18, floatValue3));
@@ -58,7 +58,7 @@ public final class j implements ValueAnimator.AnimatorUpdateListener {
                 u4Var.setTranslationY(this.e * floatValue3);
                 float f19 = 1.0f - floatValue3;
                 u4Var.setAlpha(f19);
-                nVar2.f52048s = f19;
+                nVar2.f52064s = f19;
                 nVar2.invalidate();
                 return;
         }

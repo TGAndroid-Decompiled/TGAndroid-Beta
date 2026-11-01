@@ -155,7 +155,7 @@ public final class a {
                         cVar.f4583c.add(this.h.f4708a);
                         if (!DesugarCollections.unmodifiableList(bVar.f5760x).isEmpty()) {
                             g6.b bVar2 = f5740l;
-                            Log.i(bVar2.f7367a, bVar2.d("Setting Route Discovery for appIds: ".concat(String.valueOf(DesugarCollections.unmodifiableList(this.e.f5760x))), new Object[0]));
+                            Log.i(bVar2.f7368a, bVar2.d("Setting Route Discovery for appIds: ".concat(String.valueOf(DesugarCollections.unmodifiableList(this.e.f5760x))), new Object[0]));
                             com.google.android.gms.internal.cast.m mVar = this.h;
                             List<String> unmodifiableList = DesugarCollections.unmodifiableList(this.e.f5760x);
                             mVar.getClass();
@@ -215,7 +215,7 @@ public final class a {
                     Context applicationContext = context.getApplicationContext();
                     e d = d(applicationContext);
                     b castOptions = d.getCastOptions(applicationContext);
-                    ?? jVar = new com.google.android.gms.common.api.j(applicationContext, g6.r.f7402k, com.google.android.gms.common.api.b.f4337k, com.google.android.gms.common.api.i.f4346c);
+                    ?? jVar = new com.google.android.gms.common.api.j(applicationContext, g6.r.f7403k, com.google.android.gms.common.api.b.f4337k, com.google.android.gms.common.api.i.f4346c);
                     try {
                         f5742n = new a(applicationContext, castOptions, d.getAdditionalSessionProviders(applicationContext), new com.google.android.gms.internal.cast.q(applicationContext, p4.y.d(applicationContext), castOptions, jVar), jVar);
                     } catch (d e) {

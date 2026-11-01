@@ -8,9 +8,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import java.util.HashSet;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.t9;
+import org.telegram.messenger.u9;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.a7;
@@ -22,28 +22,28 @@ import org.telegram.ui.Components.f6;
 import rh.h8;
 import w7.b6;
 public final class d extends FrameLayout implements k6 {
-    public final vh.d f45015a;
-    public final f6 f45016b;
-    public final f6 f45017c;
-    public final t9 d;
+    public final vh.d f45026a;
+    public final f6 f45027b;
+    public final f6 f45028c;
+    public final u9 d;
     public final Paint e;
-    public final rf.m f45018f;
+    public final rf.m f45029f;
     public final dq h;
-    public final dq[] f45019n;
+    public final dq[] f45030n;
 
-    public d(Context context, t9 t9Var) {
+    public d(Context context, u9 u9Var) {
         super(context);
         Paint paint = new Paint(1);
         this.e = paint;
-        this.f45018f = new rf.m(new mg.l(this, 19));
+        this.f45029f = new rf.m(new mg.l(this, 19));
         this.h = new dq(2131231117, 0);
-        this.f45019n = new dq[1];
-        this.d = t9Var;
+        this.f45030n = new dq[1];
+        this.d = u9Var;
         setPadding(org.telegram.messenger.i0.L(14.0f), org.telegram.messenger.i0.L(9.0f), org.telegram.messenger.i0.L(14.0f), org.telegram.messenger.i0.L(9.0f));
         paint.setShadowLayer(org.telegram.messenger.i0.L(1.0f), 0.0f, 0.0f, 536870912);
-        paint.setColor(t6.x0(null, t6.f20929d6, false));
+        paint.setColor(t6.x0(null, t6.f20930d6, false));
         vh.d dVar = new vh.d(context, null, true);
-        this.f45015a = dVar;
+        this.f45026a = dVar;
         e6 e6Var = dVar.d;
         e6Var.D = false;
         e6Var.E = true;
@@ -52,14 +52,14 @@ public final class d extends FrameLayout implements k6 {
         e6Var.H = false;
         ?? imageView = new ImageView(context);
         f6 f6Var = new f6(context, false, false, false);
-        this.f45016b = f6Var;
+        this.f45027b = f6Var;
         f6Var.setTextSize(org.telegram.messenger.i0.L(14.0f));
         f6Var.setTypeface(org.telegram.messenger.i0.o());
         a7.Z(f6Var, t6.G6, null);
         f6 f6Var2 = new f6(context, false, false, false);
-        this.f45017c = f6Var2;
+        this.f45028c = f6Var2;
         f6Var2.setTextSize(org.telegram.messenger.i0.L(12.0f));
-        TLRPC.Document document = t9Var.d.sticker;
+        TLRPC.Document document = u9Var.d.sticker;
         if (document != null) {
             imageView.g(44, 44, document);
         }
@@ -75,29 +75,29 @@ public final class d extends FrameLayout implements k6 {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("*");
         spannableStringBuilder.setSpan(this.h, 0, spannableStringBuilder.length(), 33);
         spannableStringBuilder.append((CharSequence) "  ");
-        spannableStringBuilder.append((CharSequence) cd.L0(2131750424, null));
+        spannableStringBuilder.append((CharSequence) dd.L0(2131750424, null));
         spannableStringBuilder.append((CharSequence) "  ");
         spannableStringBuilder.append((CharSequence) h02);
-        this.f45015a.i(spannableStringBuilder, z10, true);
+        this.f45026a.i(spannableStringBuilder, z10, true);
     }
 
     public final void b(boolean z10) {
-        t9 t9Var = this.d;
-        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = t9Var.f18036f;
+        u9 u9Var = this.d;
+        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = u9Var.f18405f;
         if (tL_starGiftAuctionState != null) {
-            this.f45016b.c(cd.a0(null, null, 2131750423, cd.E(tL_starGiftAuctionState.current_round, ','), cd.E(t9Var.f18036f.total_rounds, ',')), z10, true);
+            this.f45027b.c(dd.a0(null, null, 2131750423, dd.E(tL_starGiftAuctionState.current_round, ','), dd.E(u9Var.f18405f.total_rounds, ',')), z10, true);
         }
-        String k10 = i0.a.k(t9Var.e.bid_amount, ',', new StringBuilder("⭐️"));
-        int d = t9Var.d();
-        dq[] dqVarArr = this.f45019n;
-        f6 f6Var = this.f45017c;
+        String k10 = i0.a.k(u9Var.e.bid_amount, ',', new StringBuilder("⭐️"));
+        int d = u9Var.d();
+        dq[] dqVarArr = this.f45030n;
+        f6 f6Var = this.f45028c;
         if (d != 2 && d != 3) {
-            f6Var.c(h8.Z0(false, org.telegram.messenger.i0.W2(cd.a0(null, null, 2131750426, k10, Integer.valueOf(t9Var.f18038i))), 0.66f, dqVarArr), z10, true);
+            f6Var.c(h8.a1(false, org.telegram.messenger.i0.W2(dd.a0(null, null, 2131750426, k10, Integer.valueOf(u9Var.f18407i))), 0.66f, dqVarArr), z10, true);
             a7.Z(f6Var, t6.G6, null);
             return;
         }
-        f6Var.c(h8.Z0(false, org.telegram.messenger.i0.W2(cd.a0(null, null, 2131750425, k10)), 0.66f, dqVarArr), z10, true);
-        a7.Z(f6Var, t6.f21170q7, null);
+        f6Var.c(h8.a1(false, org.telegram.messenger.i0.W2(dd.a0(null, null, 2131750425, k10)), 0.66f, dqVarArr), z10, true);
+        a7.Z(f6Var, t6.f21171q7, null);
     }
 
     @Override
@@ -109,7 +109,7 @@ public final class d extends FrameLayout implements k6 {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f45018f.b();
+        this.f45029f.b();
     }
 
     @Override
@@ -120,7 +120,7 @@ public final class d extends FrameLayout implements k6 {
     @Override
     public final void updateColors() {
         try {
-            this.e.setColor(t6.x0(null, t6.f20929d6, false));
+            this.e.setColor(t6.x0(null, t6.f20930d6, false));
             invalidate();
         } catch (Exception e) {
             f8.g(e, true);

@@ -7,7 +7,7 @@ import android.os.SystemClock;
 import android.util.Log;
 import java.util.concurrent.atomic.AtomicInteger;
 public abstract class d {
-    public static final AtomicInteger f53536a = new AtomicInteger((int) SystemClock.elapsedRealtime());
+    public static final AtomicInteger f53554a = new AtomicInteger((int) SystemClock.elapsedRealtime());
 
     public static xa.g a(com.google.firebase.messaging.FirebaseMessagingService r18, r2.y r19) {
         throw new UnsupportedOperationException("Method not decompiled: xa.d.a(com.google.firebase.messaging.FirebaseMessagingService, r2.y):xa.g");

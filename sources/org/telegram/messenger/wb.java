@@ -1,145 +1,179 @@
 package org.telegram.messenger;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.GradientDrawable;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.bi0;
-import org.telegram.ui.Components.jb0;
-public final class wb implements Runnable {
-    public Thread f19077a;
-    public final Object f19078b = new Object();
-    public final vb f19079c;
-    public boolean d;
-    public final hc e;
+import android.graphics.drawable.Drawable;
+import j$.util.Objects;
+import java.io.File;
+import java.util.ArrayList;
+public final class wb {
+    public final ic A;
+    public Runnable f19010b;
+    public boolean f19011c;
+    public String d;
+    public String e;
+    public String f19012f;
+    public String f19013g;
+    public qw h;
+    public jc f19014i;
+    public Object f19015j;
+    public long f19016k;
+    public int f19017l;
+    public int f19018m;
+    public int f19019n;
+    public int f19020o;
+    public File f19021p;
+    public File f19022q;
+    public File f19023r;
+    public vb f19024s;
+    public dc f19025t;
+    public xb f19026u;
+    public int f19009a = 1;
+    public final ArrayList v = new ArrayList();
+    public final ArrayList f19027w = new ArrayList();
+    public final ArrayList f19028x = new ArrayList();
+    public final ArrayList f19029y = new ArrayList();
+    public final ArrayList f19030z = new ArrayList();
 
-    public wb(hc hcVar, vb vbVar) {
-        this.e = hcVar;
-        this.f19079c = vbVar;
+    public wb(ic icVar) {
+        this.A = icVar;
     }
 
-    public static Bitmap a(Bitmap bitmap, TLRPC.WallPaper wallPaper) {
-        int o10;
-        int i10;
-        if (wallPaper.pattern && wallPaper.settings != null) {
-            Bitmap createBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(createBitmap);
-            TLRPC.WallPaperSettings wallPaperSettings = wallPaper.settings;
-            boolean z10 = true;
-            if (wallPaperSettings.second_background_color == 0) {
-                i10 = i0.V0(wallPaperSettings.background_color, false);
-                canvas.drawColor(i0.b.o(wallPaper.settings.background_color, 255));
-            } else if (wallPaperSettings.third_background_color == 0) {
-                int o11 = i0.b.o(wallPaperSettings.background_color, 255);
-                int o12 = i0.b.o(wallPaper.settings.second_background_color, 255);
-                int w02 = i0.w0(o11, o12);
-                GradientDrawable gradientDrawable = new GradientDrawable(org.telegram.ui.Components.f9.d(wallPaper.settings.rotation), new int[]{o11, o12});
-                gradientDrawable.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
-                gradientDrawable.draw(canvas);
-                i10 = w02;
-            } else {
-                int o13 = i0.b.o(wallPaperSettings.background_color, 255);
-                int o14 = i0.b.o(wallPaper.settings.second_background_color, 255);
-                int o15 = i0.b.o(wallPaper.settings.third_background_color, 255);
-                int i11 = wallPaper.settings.fourth_background_color;
-                if (i11 == 0) {
-                    o10 = 0;
-                } else {
-                    o10 = i0.b.o(i11, 255);
+    public final void a(ImageReceiver imageReceiver, String str, String str2, int i10, int i11) {
+        ArrayList arrayList = this.v;
+        int indexOf = arrayList.indexOf(imageReceiver);
+        ArrayList arrayList2 = this.f19027w;
+        if (indexOf >= 0 && Objects.equals(((ImageReceiver) arrayList.get(indexOf)).Q, str)) {
+            arrayList2.set(indexOf, Integer.valueOf(i11));
+            return;
+        }
+        arrayList.add(imageReceiver);
+        arrayList2.add(Integer.valueOf(i11));
+        this.f19028x.add(str);
+        this.f19029y.add(str2);
+        this.f19030z.add(Integer.valueOf(i10));
+        this.A.f16253k.put(imageReceiver.G(i10), this);
+    }
+
+    public final void b(ImageReceiver imageReceiver) {
+        int i10 = this.f19018m;
+        int i11 = 0;
+        while (i11 < this.v.size()) {
+            ImageReceiver imageReceiver2 = (ImageReceiver) this.v.get(i11);
+            if (imageReceiver2 == null || imageReceiver2 == imageReceiver) {
+                this.v.remove(i11);
+                this.f19027w.remove(i11);
+                this.f19028x.remove(i11);
+                this.f19029y.remove(i11);
+                i10 = ((Integer) this.f19030z.remove(i11)).intValue();
+                if (imageReceiver2 != null) {
+                    this.A.f16253k.remove(imageReceiver2.G(i10));
                 }
-                int g10 = jb0.g(o13, o14, o15, o10);
-                jb0 jb0Var = new jb0();
-                jb0Var.n(o13, o14, o15, o10);
-                jb0Var.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
-                jb0Var.s(bitmap, wallPaper.settings.intensity);
-                jb0Var.draw(canvas);
-                z10 = false;
-                i10 = g10;
+                i11--;
             }
-            if (z10) {
-                Paint paint = new Paint(2);
-                paint.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
-                paint.setAlpha((int) ((wallPaper.settings.intensity / 100.0f) * 255.0f));
-                canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint);
+            i11++;
+        }
+        if (this.v.isEmpty()) {
+            if (this.f19014i != null && !this.A.f16264w.containsKey(this.d)) {
+                jc jcVar = this.f19014i;
+                if (jcVar.f16435f != null) {
+                    b8.G(this.f19020o).e(null, null, null, this.f19014i.f16435f, this.f19013g, null);
+                } else if (jcVar.f16437i != null) {
+                    b8.G(this.f19020o).f(this.f19014i.f16437i);
+                } else if (jcVar.h != null) {
+                    b8.G(this.f19020o).e(null, this.f19014i.h, null, null, null, null);
+                } else if (jcVar.v != null) {
+                    b8.G(this.f19020o).e(null, null, this.f19014i.v, null, null, null);
+                }
             }
-            return createBitmap;
+            xb xbVar = this.f19026u;
+            if (xbVar != null) {
+                if (i10 == 1) {
+                    this.A.f16259q.a(xbVar);
+                } else {
+                    ((ze.a) this.A.f16258p.f4585b).remove(xbVar);
+                    com.google.android.gms.internal.cast.c0 c0Var = this.A.f16258p;
+                    Runnable runnable = this.f19010b;
+                    if (runnable == null) {
+                        c0Var.getClass();
+                    } else {
+                        ((ze.a) c0Var.f4585b).remove(runnable);
+                    }
+                }
+                xb xbVar2 = this.f19026u;
+                synchronized (xbVar2.f19421b) {
+                    try {
+                        xbVar2.d = true;
+                        Thread thread = xbVar2.f19420a;
+                        if (thread != null) {
+                            thread.interrupt();
+                        }
+                    } catch (Exception unused) {
+                    }
+                }
+                this.f19026u = null;
+            }
+            dc dcVar = this.f19025t;
+            if (dcVar != null) {
+                this.A.f16256n.remove(dcVar);
+                this.f19025t.cancel(true);
+                this.f19025t = null;
+            }
+            vb vbVar = this.f19024s;
+            if (vbVar != null) {
+                this.A.f16257o.remove(vbVar);
+                this.f19024s.cancel(true);
+                this.f19024s = null;
+            }
+            String str = this.e;
+            if (str != null) {
+                this.A.f16250g.remove(str);
+            }
+            String str2 = this.e;
+            if (str2 != null) {
+                this.A.h.remove(str2);
+            }
+            String str3 = this.d;
+            if (str3 != null) {
+                this.A.f16251i.remove(str3);
+                this.A.f16252j.remove(ic.n(this.d));
+            }
         }
-        TLRPC.WallPaperSettings wallPaperSettings2 = wallPaper.settings;
-        if (wallPaperSettings2 != null && wallPaperSettings2.blur) {
-            return Utilities.e(bitmap);
-        }
-        return bitmap;
     }
 
-    public final void b(bi0 bi0Var, int i10, int i11, boolean z10, boolean z11) {
-        Bitmap createBitmap;
-        Canvas canvas;
-        int i12;
-        BitmapDrawable bitmapDrawable;
-        if (z10 && z11) {
-            float f7 = i10 * 1.2f;
-            float f10 = i11 * 1.2f;
-            createBitmap = Bitmap.createBitmap((int) f7, (int) f10, Bitmap.Config.ARGB_8888);
-            canvas = new Canvas(createBitmap);
-            canvas.scale(2.0f, 2.0f, f7 / 2.0f, f10 / 2.0f);
+    public final void c(Drawable drawable, String str) {
+        wb wbVar;
+        ic icVar;
+        ArrayList arrayList = this.f19027w;
+        ArrayList arrayList2 = this.v;
+        if (drawable != null) {
+            wbVar = this;
+            i0.g3(new dn(wbVar, drawable, new ArrayList(arrayList2), new ArrayList(arrayList), str, 3));
         } else {
-            createBitmap = Bitmap.createBitmap(i10, i11, Bitmap.Config.ARGB_8888);
-            canvas = new Canvas(createBitmap);
+            wbVar = this;
         }
-        bi0Var.b();
-        Bitmap createBitmap2 = Bitmap.createBitmap(bi0Var.f24753b, bi0Var.f24755c, Bitmap.Config.ARGB_8888);
-        if (z10) {
-            i12 = bi0Var.e[0] - 1;
-        } else {
-            i12 = 0;
-        }
-        bi0Var.C0 = i12;
-        bi0Var.a(createBitmap2);
-        bi0Var.c();
-        canvas.save();
-        if (!z10 || !z11) {
-            canvas.scale(createBitmap2.getWidth() / i10, createBitmap2.getHeight() / i11, i10 / 2.0f, i11 / 2.0f);
-        }
-        Paint paint = new Paint(1);
-        paint.setFilterBitmap(true);
-        if (z10 && z11) {
-            canvas.drawBitmap(createBitmap2, (createBitmap.getWidth() - createBitmap2.getWidth()) / 2.0f, (createBitmap.getHeight() - createBitmap2.getHeight()) / 2.0f, paint);
-            bitmapDrawable = new BitmapDrawable(createBitmap);
-        } else {
-            canvas.drawBitmap(createBitmap2, 0.0f, 0.0f, paint);
-            bitmapDrawable = new BitmapDrawable(createBitmap);
-        }
-        bi0Var.C(false);
-        createBitmap2.recycle();
-        c(bitmapDrawable);
-    }
-
-    public final void c(BitmapDrawable bitmapDrawable) {
-        i0.g3(new t6(17, this, bitmapDrawable));
-    }
-
-    public final void d() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.wb.d():void");
-    }
-
-    @Override
-    public final void run() {
-        try {
-            d();
-            synchronized (this.f19078b) {
-                this.f19077a = null;
+        int i10 = 0;
+        while (true) {
+            int size = arrayList2.size();
+            icVar = wbVar.A;
+            if (i10 >= size) {
+                break;
             }
-            Thread.interrupted();
-        } catch (Throwable th2) {
-            synchronized (this.f19078b) {
-                this.f19077a = null;
-                Thread.interrupted();
-                throw th2;
-            }
+            icVar.f16253k.remove(((ImageReceiver) arrayList2.get(i10)).G(wbVar.f19018m));
+            i10++;
+        }
+        arrayList2.clear();
+        arrayList.clear();
+        String str2 = wbVar.e;
+        if (str2 != null) {
+            icVar.f16250g.remove(str2);
+        }
+        String str3 = wbVar.e;
+        if (str3 != null) {
+            icVar.h.remove(str3);
+        }
+        String str4 = wbVar.d;
+        if (str4 != null) {
+            icVar.f16251i.remove(str4);
+            icVar.f16252j.remove(ic.n(wbVar.d));
         }
     }
 }

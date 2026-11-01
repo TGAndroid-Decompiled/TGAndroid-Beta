@@ -10,8 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
 import java.util.HashSet;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.d20;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.e20;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.t6;
@@ -48,29 +48,29 @@ public final class k3 extends LinearLayout implements k6 {
         int i11 = 22;
         if (i10 == 9) {
             imageView.setImageResource(2131231607);
-            textView.setText(cd.L0(2131742922, null));
-            j3Var.setText(cd.L0(2131742923, null));
+            textView.setText(dd.L0(2131742922, null));
+            j3Var.setText(dd.L0(2131742923, null));
             j3Var.setMaxWidth(Math.min(org.telegram.messenger.i0.L(160.0f), vh.p2.a(j3Var.getText(), j3Var.getPaint())));
         } else if ("hello".equalsIgnoreCase(str)) {
             imageView.setImageResource(2131231607);
-            textView.setText(cd.L0(2131752765, null));
-            j3Var.setText(cd.L0(2131752766, null));
+            textView.setText(dd.L0(2131752765, null));
+            j3Var.setText(dd.L0(2131752766, null));
             j3Var.setMaxWidth(Math.min(org.telegram.messenger.i0.L(160.0f), vh.p2.a(j3Var.getText(), j3Var.getPaint())));
         } else if ("away".equalsIgnoreCase(str)) {
             imageView.setImageResource(2131231604);
-            textView.setText(cd.L0(2131752833, null));
-            j3Var.setText(cd.L0(2131752834, null));
+            textView.setText(dd.L0(2131752833, null));
+            j3Var.setText(dd.L0(2131752834, null));
             j3Var.setMaxWidth(Math.min(org.telegram.messenger.i0.L(160.0f), vh.p2.a(j3Var.getText(), j3Var.getPaint())));
         } else {
             if (i10 == 5) {
                 imageView.setImageResource(2131231615);
-                h3 c10 = i3.f(d20.f15147s0).c(j10);
+                h3 c10 = i3.f(e20.f15506s0).c(j10);
                 String str2 = c10 == null ? str : c10.f552b;
-                textView.setText(cd.L0(2131752667, null));
+                textView.setText(dd.L0(2131752667, null));
                 j3Var.setMaxWidth(org.telegram.messenger.i0.L(208.0f));
                 j3Var.setTextAlignment(2);
                 j3Var.setGravity(3);
-                j3Var.setText(org.telegram.messenger.i0.W2(cd.a0(null, null, 2131752669, str2)));
+                j3Var.setText(org.telegram.messenger.i0.W2(dd.a0(null, null, 2131752669, str2)));
                 j3Var.setPadding(org.telegram.messenger.i0.L(28.0f), 0, 0, 0);
                 j3 j3Var2 = new j3(activity, 0);
                 this.e = j3Var2;
@@ -78,7 +78,7 @@ public final class k3 extends LinearLayout implements k6 {
                 j3Var2.setTextAlignment(2);
                 j3Var2.setGravity(3);
                 j3Var2.setTextSize(1, 13.0f);
-                j3Var2.setText(org.telegram.messenger.i0.W2(cd.L0(2131752668, null)));
+                j3Var2.setText(org.telegram.messenger.i0.W2(dd.L0(2131752668, null)));
                 j3Var2.setPadding(org.telegram.messenger.i0.L(28.0f), 0, 0, 0);
             }
             i11 = 12;

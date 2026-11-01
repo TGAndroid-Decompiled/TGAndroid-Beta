@@ -1,7 +1,7 @@
 package ag;
 
-import org.telegram.messenger.q20;
-public final class m2 implements q20 {
+import org.telegram.messenger.r20;
+public final class m2 implements r20 {
     public final int f638a;
     public final Object f639b;
     public final Object f640c;

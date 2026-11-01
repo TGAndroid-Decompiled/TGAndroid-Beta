@@ -5,7 +5,7 @@ import androidx.fragment.app.j0;
 import androidx.fragment.app.s;
 import kotlin.jvm.internal.i;
 public abstract class c {
-    public static final b f48527a = b.f48526a;
+    public static final b f48538a = b.f48537a;
 
     public static b a(s sVar) {
         while (sVar != null) {
@@ -14,12 +14,12 @@ public abstract class c {
             }
             sVar = sVar.M;
         }
-        return f48527a;
+        return f48538a;
     }
 
     public static void b(a aVar) {
         if (j0.K(3)) {
-            Log.d("FragmentManager", "StrictMode violation in ".concat(aVar.f48525a.getClass().getName()), aVar);
+            Log.d("FragmentManager", "StrictMode violation in ".concat(aVar.f48536a.getClass().getName()), aVar);
         }
     }
 

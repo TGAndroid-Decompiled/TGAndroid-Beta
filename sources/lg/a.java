@@ -16,32 +16,32 @@ public final class a {
     public static final String[] D = {"crownGradient", "pavilionGradient", "lightSweep", "crownSweep", "rightCrownSweep", "leftCrownSweep", "pavilionSweep", "rightPavilionSweep", "leftPavilionSweep"};
     public boolean A;
     public int C;
-    public final float[] f11840m;
-    public final float[] f11841n;
-    public final float[] f11842o;
-    public final float[] f11843p;
-    public final float[] f11844q;
-    public final float[] f11845r;
-    public int f11847t;
-    public int f11848u;
+    public final float[] f11841m;
+    public final float[] f11842n;
+    public final float[] f11843o;
+    public final float[] f11844p;
+    public final float[] f11845q;
+    public final float[] f11846r;
+    public int f11848t;
+    public int f11849u;
     public int v;
-    public final int f11849w;
-    public double f11850x;
-    public float f11851y;
-    public float f11852z;
-    public final int[] f11831a = new int[3];
-    public final int[] f11832b = new int[4];
-    public final int[] f11833c = new int[3];
+    public final int f11850w;
+    public double f11851x;
+    public float f11852y;
+    public float f11853z;
+    public final int[] f11832a = new int[3];
+    public final int[] f11833b = new int[4];
+    public final int[] f11834c = new int[3];
     public final int[] d = new int[3];
     public final int[] e = new int[2];
-    public final int[] f11834f = new int[2];
-    public final int[] f11835g = new int[1];
+    public final int[] f11835f = new int[2];
+    public final int[] f11836g = new int[1];
     public final HashMap h = new HashMap();
-    public final float[] f11836i = new float[16];
-    public final float[] f11837j = new float[16];
-    public final float[] f11838k = new float[16];
-    public final float[] f11839l = new float[42];
-    public float f11846s = 1.0f;
+    public final float[] f11837i = new float[16];
+    public final float[] f11838j = new float[16];
+    public final float[] f11839k = new float[16];
+    public final float[] f11840l = new float[42];
+    public float f11847s = 1.0f;
     public float B = 1.0f;
 
     public a(Context context, int i10) {
@@ -55,25 +55,25 @@ public final class a {
                 } else {
                     str = strArr[i12] + "Vertex";
                 }
-                this.f11831a[i12] = w7.n.a(context, j(context, str), j(context, strArr[i12] + "Fragment"));
+                this.f11832a[i12] = w7.n.a(context, j(context, str), j(context, strArr[i12] + "Fragment"));
             }
             float[] a2 = a(context, "frames");
-            this.f11840m = a2;
+            this.f11841m = a2;
             float[] a10 = a(context, "planes");
-            this.f11841n = a10;
+            this.f11842n = a10;
             float[] a11 = a(context, "anchors");
-            this.f11842o = a11;
+            this.f11843o = a11;
             float[] a12 = a(context, "widths");
-            this.f11843p = a12;
+            this.f11844p = a12;
             float[] a13 = a(context, "facetProjection");
-            this.f11844q = a13;
+            this.f11845q = a13;
             float[] a14 = a(context, "camera");
-            this.f11845r = a14;
+            this.f11846r = a14;
             if (a11.length == 64 && a12.length == 91 && a13.length == 4 && a14.length == 3) {
                 if (a2.length == 60522 && a10.length == 68) {
-                    int[] iArr = this.f11832b;
+                    int[] iArr = this.f11833b;
                     GLES30.glGenVertexArrays(iArr.length, iArr, 0);
-                    int[] iArr2 = this.f11833c;
+                    int[] iArr2 = this.f11834c;
                     GLES20.glGenBuffers(iArr2.length, iArr2, 0);
                     String[] strArr2 = {"vertices", "main", "small"};
                     for (int i13 = 0; i13 < 3; i13++) {
@@ -84,8 +84,8 @@ public final class a {
                             i11 = 2;
                         }
                         this.d[i13] = a15.length / (i11 * 4);
-                        GLES30.glBindVertexArray(this.f11832b[i13]);
-                        GLES20.glBindBuffer(34962, this.f11833c[i13]);
+                        GLES30.glBindVertexArray(this.f11833b[i13]);
+                        GLES20.glBindBuffer(34962, this.f11834c[i13]);
                         FloatBuffer asFloatBuffer = ByteBuffer.allocateDirect(a15.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
                         asFloatBuffer.put(a15).position(0);
                         GLES20.glBufferData(34962, a15.length * 4, asFloatBuffer, 35044);
@@ -95,16 +95,16 @@ public final class a {
                         }
                     }
                     GLES20.glGenFramebuffers(2, this.e, 0);
-                    GLES20.glGenRenderbuffers(2, this.f11834f, 0);
-                    GLES20.glGenTextures(1, this.f11835g, 0);
-                    GLES20.glBindTexture(3553, this.f11835g[0]);
+                    GLES20.glGenRenderbuffers(2, this.f11835f, 0);
+                    GLES20.glGenTextures(1, this.f11836g, 0);
+                    GLES20.glBindTexture(3553, this.f11836g[0]);
                     GLES20.glTexParameteri(3553, 10241, 9729);
                     GLES20.glTexParameteri(3553, 10240, 9729);
                     GLES20.glTexParameteri(3553, 10242, 33071);
                     GLES20.glTexParameteri(3553, 10243, 33071);
                     int[] iArr3 = new int[1];
                     GLES20.glGetIntegerv(36183, iArr3, 0);
-                    this.f11849w = Math.min(i10, iArr3[0]);
+                    this.f11850w = Math.min(i10, iArr3[0]);
                     return;
                 }
                 throw new IllegalStateException("Invalid Swift diamond animation data");
@@ -162,20 +162,20 @@ public final class a {
 
     public final void b() {
         int[] iArr;
-        for (int i10 : this.f11831a) {
+        for (int i10 : this.f11832a) {
             if (i10 != 0) {
                 GLES20.glDeleteProgram(i10);
             }
         }
-        int[] iArr2 = this.f11833c;
+        int[] iArr2 = this.f11834c;
         GLES20.glDeleteBuffers(iArr2.length, iArr2, 0);
-        int[] iArr3 = this.f11832b;
+        int[] iArr3 = this.f11833b;
         GLES30.glDeleteVertexArrays(iArr3.length, iArr3, 0);
-        int[] iArr4 = this.f11835g;
+        int[] iArr4 = this.f11836g;
         GLES20.glDeleteTextures(iArr4.length, iArr4, 0);
         int[] iArr5 = this.e;
         GLES20.glDeleteFramebuffers(iArr5.length, iArr5, 0);
-        int[] iArr6 = this.f11834f;
+        int[] iArr6 = this.f11835f;
         GLES20.glDeleteRenderbuffers(iArr6.length, iArr6, 0);
     }
 
@@ -192,8 +192,8 @@ public final class a {
         int i16;
         if (i10 > 0 && i11 > 0) {
             float max = Math.max(0.0f, Math.min(f12, 0.1f));
-            double d = this.f11850x + max;
-            this.f11850x = d;
+            double d = this.f11851x + max;
+            this.f11851x = d;
             float f18 = (float) d;
             double d10 = (d * 240.0d) % 1440.0d;
             int i17 = (int) d10;
@@ -201,11 +201,11 @@ public final class a {
             int i18 = 0;
             int i19 = 0;
             while (true) {
-                float[] fArr = this.f11839l;
+                float[] fArr = this.f11840l;
                 if (i19 >= fArr.length) {
                     break;
                 }
-                float[] fArr2 = this.f11840m;
+                float[] fArr2 = this.f11841m;
                 float f20 = fArr2[(i17 * 42) + i19];
                 fArr[i19] = i0.z(fArr2[((1 + i17) * 42) + i19], f20, f19, f20);
                 i19++;
@@ -214,7 +214,7 @@ public final class a {
             int max2 = Math.max(1, Math.round(this.B * f21));
             float f22 = i11;
             int max3 = Math.max(1, Math.round(this.B * f22));
-            int i20 = this.f11848u;
+            int i20 = this.f11849u;
             int i21 = 36160;
             int[] iArr = this.e;
             if (max2 == i20 && max3 == this.v) {
@@ -222,13 +222,13 @@ public final class a {
                 i12 = 2;
                 i13 = 0;
             } else {
-                this.f11848u = max2;
+                this.f11849u = max2;
                 this.v = max3;
                 GLES20.glBindFramebuffer(36160, iArr[0]);
                 int i22 = 0;
                 z11 = true;
                 for (int i23 = 2; i22 < i23; i23 = 2) {
-                    int[] iArr2 = this.f11834f;
+                    int[] iArr2 = this.f11835f;
                     int i24 = i18;
                     GLES20.glBindRenderbuffer(36161, iArr2[i22]);
                     if (i22 == 0) {
@@ -236,7 +236,7 @@ public final class a {
                     } else {
                         i14 = 33189;
                     }
-                    GLES30.glRenderbufferStorageMultisample(36161, this.f11849w, i14, max2, max3);
+                    GLES30.glRenderbufferStorageMultisample(36161, this.f11850w, i14, max2, max3);
                     if (i22 == 0) {
                         i15 = 36064;
                     } else {
@@ -251,7 +251,7 @@ public final class a {
                 int i26 = i21;
                 if (GLES20.glCheckFramebufferStatus(i26) == 36053) {
                     GLES20.glBindFramebuffer(i26, iArr[1]);
-                    int[] iArr3 = this.f11835g;
+                    int[] iArr3 = this.f11836g;
                     GLES20.glBindTexture(3553, iArr3[i25]);
                     i12 = 2;
                     GLES20.glTexImage2D(3553, 0, 32856, max2, max3, 0, 6408, 5121, null);
@@ -264,14 +264,14 @@ public final class a {
                     throw new IllegalStateException("Incomplete diamond framebuffer");
                 }
             }
-            float[] fArr3 = this.f11845r;
+            float[] fArr3 = this.f11846r;
             float f23 = f10 + fArr3[i13];
             double d11 = f7;
             int i27 = i12;
             float min = Math.min(90.0f, (360.0f * Math.abs((float) Math.IEEEremainder(d11, 1.5707963267948966d))) / 3.1415927f);
             int min2 = Math.min(89, (int) min);
             float f24 = min - min2;
-            float[] fArr4 = this.f11843p;
+            float[] fArr4 = this.f11844p;
             float f25 = fArr4[min2];
             float f26 = fArr4[min2 + 1];
             if (min2 == 0) {
@@ -288,14 +288,14 @@ public final class a {
             float sin = (float) Math.sin(abs * 2.0f);
             float f28 = 1.0f - ((0.035f * sin) * sin);
             double d12 = f23;
-            this.f11846s = ((1.0f - i((float) ((Math.abs(Math.sin(d12)) - Math.sin(0.25d)) / (Math.sin(0.96d) - Math.sin(0.25d))))) * (((f28 * fArr4[0]) / f27) - 1.0f)) + 1.0f;
-            float[] fArr5 = this.f11836i;
+            this.f11847s = ((1.0f - i((float) ((Math.abs(Math.sin(d12)) - Math.sin(0.25d)) / (Math.sin(0.96d) - Math.sin(0.25d))))) * (((f28 * fArr4[0]) / f27) - 1.0f)) + 1.0f;
+            float[] fArr5 = this.f11837i;
             Matrix.setIdentityM(fArr5, 0);
-            Matrix.rotateM(this.f11836i, 0, -((float) Math.toDegrees(f11)), 0.0f, 0.0f, 1.0f);
-            Matrix.rotateM(this.f11836i, 0, (float) Math.toDegrees(d12), 1.0f, 0.0f, 0.0f);
-            Matrix.rotateM(this.f11836i, 0, (float) Math.toDegrees(d11), 0.0f, 1.0f, 0.0f);
+            Matrix.rotateM(this.f11837i, 0, -((float) Math.toDegrees(f11)), 0.0f, 0.0f, 1.0f);
+            Matrix.rotateM(this.f11837i, 0, (float) Math.toDegrees(d12), 1.0f, 0.0f, 0.0f);
+            Matrix.rotateM(this.f11837i, 0, (float) Math.toDegrees(d11), 0.0f, 1.0f, 0.0f);
             char c10 = 0;
-            Matrix.transposeM(this.f11837j, 0, fArr5, 0);
+            Matrix.transposeM(this.f11838j, 0, fArr5, 0);
             float f29 = 0.0f;
             int i28 = 0;
             float f30 = -1.0f;
@@ -310,18 +310,18 @@ public final class a {
                 i28 = i29 + 1;
                 c10 = 0;
             }
-            float atan2 = (float) Math.atan2(Math.sin(f7 - this.f11851y), Math.cos(f7 - this.f11851y));
+            float atan2 = (float) Math.atan2(Math.sin(f7 - this.f11852y), Math.cos(f7 - this.f11852y));
             if (this.A && max > 0.0f) {
-                f17 = ((float) Math.hypot(atan2, f23 - this.f11852z)) / max;
+                f17 = ((float) Math.hypot(atan2, f23 - this.f11853z)) / max;
             } else {
                 f17 = 0.596f;
             }
-            this.f11851y = f7;
-            this.f11852z = f23;
+            this.f11852y = f7;
+            this.f11853z = f23;
             this.A = z11;
             float i30 = i(((0.41887903f / Math.max(f17, 0.001f)) - 0.06f) / 0.34f) * i(1.0f - (((float) Math.acos(Math.max(-1.0f, Math.min(1.0f, f30)))) / 0.20943952f));
             GLES20.glBindFramebuffer(36160, iArr[0]);
-            GLES20.glViewport(0, 0, this.f11848u, this.v);
+            GLES20.glViewport(0, 0, this.f11849u, this.v);
             GLES20.glDepthMask(true);
             GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
             GLES20.glClear(16640);
@@ -331,7 +331,7 @@ public final class a {
             GLES20.glBlendFunc(1, 771);
             float f32 = f21 / f22;
             float max4 = Math.max(1.0f, 1.0f / f32) * (1.52f / (0.9975f / fArr4[0]));
-            float[] fArr6 = this.f11838k;
+            float[] fArr6 = this.f11839k;
             Matrix.setIdentityM(fArr6, 0);
             float f33 = 1.0f / (f32 * max4);
             fArr6[0] = f33;
@@ -339,7 +339,7 @@ public final class a {
             float f34 = 1.0f / fArr3[i27];
             float f35 = -f34;
             float f36 = f35 / fArr3[1];
-            fArr6[0] = f33 * this.f11846s;
+            fArr6[0] = f33 * this.f11847s;
             float f37 = 0.12f / max4;
             fArr6[9] = f37 * f36;
             fArr6[10] = f35 / 6.0f;
@@ -347,13 +347,13 @@ public final class a {
             fArr6[13] = f37 * f34;
             fArr6[14] = 0.5f * f34;
             fArr6[15] = f34;
-            int[] iArr4 = this.f11831a;
+            int[] iArr4 = this.f11832a;
             h(f18, f29, i30, iArr4[0]);
             GLES20.glDisable(3042);
             GLES20.glEnable(2929);
             GLES20.glEnable(2884);
             GLES20.glDepthFunc(515);
-            int[] iArr5 = this.f11832b;
+            int[] iArr5 = this.f11833b;
             GLES30.glBindVertexArray(iArr5[0]);
             int[] iArr6 = this.d;
             GLES20.glDrawArrays(4, 0, iArr6[0]);
@@ -374,7 +374,7 @@ public final class a {
             }
             GLES20.glBindFramebuffer(36008, iArr[0]);
             GLES20.glBindFramebuffer(36009, iArr[1]);
-            int i33 = this.f11848u;
+            int i33 = this.f11849u;
             int i34 = this.v;
             GLES30.glBlitFramebuffer(0, 0, i33, i34, 0, 0, i33, i34, 16384, 9728);
             if (z10) {
@@ -391,15 +391,15 @@ public final class a {
         GLES20.glViewport(0, 0, i10, i11);
         GLES20.glDisable(3042);
         GLES20.glDisable(2929);
-        int i12 = this.f11831a[2];
-        this.f11847t = i12;
+        int i12 = this.f11832a[2];
+        this.f11848t = i12;
         GLES20.glUseProgram(i12);
         GLES20.glActiveTexture(33984);
-        GLES20.glBindTexture(3553, this.f11835g[0]);
+        GLES20.glBindTexture(3553, this.f11836g[0]);
         GLES20.glUniform1i(e("image"), 0);
         GLES20.glUniform1f(e("opacity"), f7);
         GLES20.glUniform1f(e("white"), f10);
-        GLES30.glBindVertexArray(this.f11832b[3]);
+        GLES30.glBindVertexArray(this.f11833b[3]);
         GLES20.glDrawArrays(4, 0, 3);
         GLES30.glBindVertexArray(0);
         GLES20.glBindBuffer(34962, 0);
@@ -407,11 +407,11 @@ public final class a {
     }
 
     public final int e(String str) {
-        String str2 = this.f11847t + ":" + str;
+        String str2 = this.f11848t + ":" + str;
         HashMap hashMap = this.h;
         Integer num = (Integer) hashMap.get(str2);
         if (num == null) {
-            num = Integer.valueOf(GLES20.glGetUniformLocation(this.f11847t, str));
+            num = Integer.valueOf(GLES20.glGetUniformLocation(this.f11848t, str));
             hashMap.put(str2, num);
         }
         return num.intValue();
@@ -422,32 +422,32 @@ public final class a {
     }
 
     public final void h(float f7, float f10, float f11, int i10) {
-        this.f11847t = i10;
+        this.f11848t = i10;
         GLES20.glUseProgram(i10);
-        f("model", this.f11836i);
-        f("inverseModel", this.f11837j);
-        f("projection", this.f11838k);
+        f("model", this.f11837i);
+        f("inverseModel", this.f11838j);
+        f("projection", this.f11839k);
         k("parameters", f7, 0.72f, 1.0f, 1.0f);
-        GLES20.glUniform4fv(e("u.facetProjection"), 1, this.f11844q, 0);
+        GLES20.glUniform4fv(e("u.facetProjection"), 1, this.f11845q, 0);
         k("appearance", this.C, 0.0f, 0.0f, 0.0f);
         k("referenceCrownFlash", 0.0f, 0.0f, 0.0f, 0.0f);
         k("referencePavilionFlash", 0.0f, 0.0f, 0.0f, 0.0f);
         for (int i11 = 0; i11 < 8; i11++) {
             int e = e("anchors[" + i11 + "].position");
             int i12 = i11 * 8;
-            float[] fArr = this.f11842o;
+            float[] fArr = this.f11843o;
             GLES20.glUniform4fv(e, 1, fArr, i12);
             GLES20.glUniform4fv(e("anchors[" + i11 + "].normal"), 1, fArr, i12 + 4);
         }
-        k("viewport", this.f11848u, this.v, 17.0f, 0.0f);
+        k("viewport", this.f11849u, this.v, 17.0f, 0.0f);
         int e7 = e("u.sparkleShape");
-        float[] fArr2 = this.f11839l;
+        float[] fArr2 = this.f11840l;
         GLES20.glUniform4fv(e7, 1, fArr2, 36);
-        k("sparkleHalo", fArr2[40], f10, this.f11846s, f11);
+        k("sparkleHalo", fArr2[40], f10, this.f11847s, f11);
         for (int i13 = 0; i13 < 9; i13++) {
             GLES20.glUniform4fv(e("u." + D[i13]), 1, fArr2, i13 * 4);
         }
-        GLES20.glUniform4fv(e("planes[0]"), 17, this.f11841n, 0);
+        GLES20.glUniform4fv(e("planes[0]"), 17, this.f11842n, 0);
     }
 
     public final void k(String str, float f7, float f10, float f11, float f12) {

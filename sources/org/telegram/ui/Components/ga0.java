@@ -2,13 +2,13 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.view.View;
-public final class ga0 extends o71 {
-    public final Context f26310a;
-    public final ab0 f26311b;
+public final class ga0 extends p71 {
+    public final Context f26375a;
+    public final ab0 f26376b;
 
     public ga0(ab0 ab0Var, Context context) {
-        this.f26311b = ab0Var;
-        this.f26310a = context;
+        this.f26376b = ab0Var;
+        this.f26375a = context;
     }
 
     @Override
@@ -20,16 +20,16 @@ public final class ga0 extends o71 {
 
     @Override
     public final View d(int i10) {
-        return new ua0(this.f26311b, this.f26310a, i10);
+        return new ua0(this.f26376b, this.f26375a, i10);
     }
 
     @Override
     public final int e() {
-        return this.f26311b.e.f32677a.size();
+        return this.f26376b.e.f32793a.size();
     }
 
     @Override
     public final int h(int i10) {
-        return ((xa0) this.f26311b.e.f32677a.get(i10)).f32452a;
+        return ((xa0) this.f26376b.e.f32793a.get(i10)).f32531a;
     }
 }

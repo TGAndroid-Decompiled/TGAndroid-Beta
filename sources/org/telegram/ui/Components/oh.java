@@ -22,10 +22,10 @@ public final class oh extends y90 {
             case 1:
                 vh.k kVar = (vh.k) this.W;
                 Paint paint = kVar.e;
-                RectF rectF = kVar.f51365y0;
+                RectF rectF = kVar.f51380y0;
                 rectF.set(rect);
                 if (kVar.g()) {
-                    kVar.h(kVar.T, canvas, kVar.f51365y0, f7, false, -kVar.M.getX(), -kVar.M.getY(), false);
+                    kVar.h(kVar.T, canvas, kVar.f51380y0, f7, false, -kVar.M.getX(), -kVar.M.getY(), false);
                     return;
                 }
                 Paint c10 = kVar.T.c(1.0f);

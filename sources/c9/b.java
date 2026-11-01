@@ -1,27 +1,83 @@
 package c9;
 
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.content.Context;
-import android.graphics.SurfaceTexture;
-import org.telegram.messenger.FilesMigrationService;
-public abstract class b {
-    public static Notification.Builder a(Context context, String str) {
-        return new Notification.Builder(context, str);
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.Bundle;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Parcel;
+import android.util.Log;
+public final class b implements ServiceConnection {
+    public b9.c f4070a;
+    public final c f4071b;
+
+    public b(c cVar) {
+        this.f4071b = cVar;
     }
 
-    public static Notification.Builder b(FilesMigrationService filesMigrationService, String str) {
-        return new Notification.Builder(filesMigrationService, str);
+    public static boolean a(b bVar) {
+        if (bVar.f4070a != null) {
+            return true;
+        }
+        return false;
     }
 
-    public static NotificationChannel c(String str) {
-        return new NotificationChannel("Assistant_verifier", str, 2);
+    public final boolean b(Intent intent, Bundle bundle) {
+        boolean z10;
+        b9.c cVar = this.f4070a;
+        if (cVar != null) {
+            b9.a aVar = (b9.a) cVar;
+            Parcel obtain = Parcel.obtain();
+            obtain.writeInterfaceToken("com.google.android.search.verification.api.ISearchActionVerificationService");
+            int i10 = h5.a.f7628a;
+            if (intent == null) {
+                obtain.writeInt(0);
+            } else {
+                obtain.writeInt(1);
+                intent.writeToParcel(obtain, 0);
+            }
+            obtain.writeInt(1);
+            bundle.writeToParcel(obtain, 0);
+            Parcel H0 = aVar.H0(obtain, 1);
+            if (H0.readInt() != 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            H0.recycle();
+            if (z10) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    public static SurfaceTexture d() {
-        return new SurfaceTexture(false);
+    @Override
+    public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+        b9.c aVar;
+        if (this.f4071b.f4072a) {
+            Log.d("SAVerificationClientS", "onServiceConnected");
+        }
+        int i10 = b9.b.f2516a;
+        if (iBinder == null) {
+            aVar = null;
+        } else {
+            IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.search.verification.api.ISearchActionVerificationService");
+            if (queryLocalInterface instanceof b9.c) {
+                aVar = (b9.c) queryLocalInterface;
+            } else {
+                aVar = new b9.a(iBinder);
+            }
+        }
+        this.f4070a = aVar;
     }
 
-    public static void e() {
+    @Override
+    public final void onServiceDisconnected(ComponentName componentName) {
+        this.f4070a = null;
+        if (this.f4071b.f4072a) {
+            Log.d("SAVerificationClientS", "onServiceDisconnected");
+        }
     }
 }

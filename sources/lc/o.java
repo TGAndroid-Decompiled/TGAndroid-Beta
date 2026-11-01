@@ -6,7 +6,7 @@ import java.util.zip.Deflater;
 import java.util.zip.DeflaterOutputStream;
 public final class o extends x {
     public static final byte[] e = {0, 0, -1, -1};
-    public int f11760c;
+    public int f11761c;
     public c5.x d;
 
     public static byte[] a(byte[] r13) {
@@ -14,7 +14,7 @@ public final class o extends x {
     }
 
     public final byte[] b(byte[] bArr) {
-        int i10 = this.f11760c;
+        int i10 = this.f11761c;
         if (i10 == 32768 || bArr.length < i10) {
             try {
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();

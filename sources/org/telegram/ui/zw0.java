@@ -1,37 +1,13 @@
 package org.telegram.ui;
 
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-public final class zw0 extends org.telegram.ui.Components.eq {
-    public final int D;
-
-    public zw0(Drawable drawable, Drawable drawable2, int i10) {
-        super(drawable, drawable2);
-        this.D = i10;
-    }
-
+import android.graphics.Canvas;
+import android.graphics.Paint;
+public final class zw0 extends f00 {
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        int i10 = this.D;
-    }
-
-    public zw0(Drawable drawable, Drawable drawable2, int i10, int i11) {
-        super(drawable, drawable2, i10, i11);
-        this.D = 0;
-    }
-
-    private final void a(ColorFilter colorFilter) {
-    }
-
-    private final void b(ColorFilter colorFilter) {
-    }
-
-    private final void c(ColorFilter colorFilter) {
-    }
-
-    private final void d(ColorFilter colorFilter) {
-    }
-
-    private final void e(ColorFilter colorFilter) {
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        canvas.save();
+        canvas.translate(org.telegram.messenger.i0.L(2.0f), 0.0f);
+        super.draw(canvas, charSequence, i10, i11, f7, i12, i13, i14, paint);
+        canvas.restore();
     }
 }

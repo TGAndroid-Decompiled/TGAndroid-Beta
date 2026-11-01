@@ -23,18 +23,18 @@ import li.s0;
 import li.v0;
 import mg.c2;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.bu;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.ef;
-import org.telegram.messenger.hf;
+import org.telegram.messenger.a30;
+import org.telegram.messenger.cu;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.ff;
 import org.telegram.messenger.i0;
-import org.telegram.messenger.nd;
-import org.telegram.messenger.qi;
-import org.telegram.messenger.sc;
-import org.telegram.messenger.sz;
+import org.telegram.messenger.jf;
+import org.telegram.messenger.od;
+import org.telegram.messenger.ri;
+import org.telegram.messenger.tc;
 import org.telegram.messenger.tz;
-import org.telegram.messenger.we;
-import org.telegram.messenger.z20;
+import org.telegram.messenger.uz;
+import org.telegram.messenger.xe;
 import org.telegram.ui.ActionBar.a7;
 import org.telegram.ui.ActionBar.k2;
 import org.telegram.ui.ActionBar.p6;
@@ -67,33 +67,32 @@ import org.telegram.ui.Cells.y5;
 import org.telegram.ui.Components.CheckBoxBase;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.RadialProgressView;
+import org.telegram.ui.Components.a21;
 import org.telegram.ui.Components.an;
 import org.telegram.ui.Components.bn;
 import org.telegram.ui.Components.db0;
 import org.telegram.ui.Components.dn;
-import org.telegram.ui.Components.du0;
 import org.telegram.ui.Components.en;
 import org.telegram.ui.Components.ep;
 import org.telegram.ui.Components.eq;
+import org.telegram.ui.Components.eu0;
 import org.telegram.ui.Components.fn;
 import org.telegram.ui.Components.g9;
 import org.telegram.ui.Components.gn;
 import org.telegram.ui.Components.hn;
 import org.telegram.ui.Components.j50;
 import org.telegram.ui.Components.jn;
-import org.telegram.ui.Components.nn0;
 import org.telegram.ui.Components.oe0;
+import org.telegram.ui.Components.on0;
 import org.telegram.ui.Components.px;
-import org.telegram.ui.Components.rx0;
 import org.telegram.ui.Components.rz;
-import org.telegram.ui.Components.s71;
-import org.telegram.ui.Components.sk0;
 import org.telegram.ui.Components.sx0;
 import org.telegram.ui.Components.t71;
-import org.telegram.ui.Components.uz;
-import org.telegram.ui.Components.v71;
-import org.telegram.ui.Components.yu0;
-import org.telegram.ui.Components.z11;
+import org.telegram.ui.Components.tk0;
+import org.telegram.ui.Components.tx0;
+import org.telegram.ui.Components.u71;
+import org.telegram.ui.Components.w71;
+import org.telegram.ui.Components.zu0;
 import org.telegram.ui.DataAutoDownloadActivity;
 import org.telegram.ui.DataSettingsActivity;
 import org.telegram.ui.LaunchActivity;
@@ -101,28 +100,28 @@ import org.telegram.ui.NotificationsSettingsActivity;
 import org.telegram.ui.PasscodeActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProxyListActivity;
-import org.telegram.ui.cz0;
-import org.telegram.ui.es0;
-import org.telegram.ui.f50;
+import org.telegram.ui.bz0;
+import org.telegram.ui.ds0;
+import org.telegram.ui.e50;
+import org.telegram.ui.ho0;
 import org.telegram.ui.jf0;
 import org.telegram.ui.jo0;
 import org.telegram.ui.l01;
-import org.telegram.ui.lo0;
+import org.telegram.ui.pj0;
 import org.telegram.ui.rj0;
-import org.telegram.ui.tj0;
-import org.telegram.ui.tt;
+import org.telegram.ui.st;
 import org.telegram.ui.ud;
+import org.telegram.ui.wn0;
 import org.telegram.ui.xd;
-import org.telegram.ui.yn0;
 import s4.c1;
 import s4.o0;
-public final class j extends sk0 {
-    public final int f7079c;
+public final class j extends tk0 {
+    public final int f7080c;
     public final Object d;
     public final Object e;
 
     public j(int i10, Object obj, Object obj2) {
-        this.f7079c = i10;
+        this.f7080c = i10;
         this.e = obj;
         this.d = obj2;
     }
@@ -138,13 +137,13 @@ public final class j extends sk0 {
     private final void I(c1 c1Var, int i10) {
         boolean P1;
         boolean z10;
-        lo0 lo0Var = (lo0) this.e;
-        we weVar = lo0Var.J;
-        ArrayList arrayList = lo0Var.f39343n;
-        ArrayList arrayList2 = lo0Var.f39331c;
-        HashMap hashMap = lo0Var.f39329b;
-        int i11 = c1Var.f47901f;
-        View view = c1Var.f47898a;
+        jo0 jo0Var = (jo0) this.e;
+        xe xeVar = jo0Var.J;
+        ArrayList arrayList = jo0Var.f38498n;
+        ArrayList arrayList2 = jo0Var.f38486c;
+        HashMap hashMap = jo0Var.f38484b;
+        int i11 = c1Var.f47912f;
+        View view = c1Var.f47909a;
         int i12 = -1;
         int i13 = 0;
         if (i11 != 0) {
@@ -156,96 +155,96 @@ public final class j extends sk0 {
                             p8Var.o(2131232326, (CharSequence) arrayList.get(i10), false);
                             return;
                         } else {
-                            p8Var.o(2131232093, cd.L0(2131752067, null), false);
+                            p8Var.o(2131232093, dd.L0(2131752067, null), false);
                             return;
                         }
                     }
                     return;
                 }
-                ef efVar = (ef) weVar.e.get(i10);
+                ff ffVar = (ff) xeVar.e.get(i10);
                 l7 l7Var = (l7) view;
-                l7Var.setPhotoEntry(efVar);
-                l7Var.b(hashMap.containsKey(Integer.valueOf(efVar.C)), false);
+                l7Var.setPhotoEntry(ffVar);
+                l7Var.b(hashMap.containsKey(Integer.valueOf(ffVar.C)), false);
                 l7Var.setTag(Integer.valueOf(i10));
                 return;
             }
             ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
             if (layoutParams != null) {
                 layoutParams.width = -1;
-                layoutParams.height = lo0Var.R;
+                layoutParams.height = jo0Var.R;
                 view.setLayoutParams(layoutParams);
                 return;
             }
             return;
         }
         v5 v5Var = (v5) view;
-        v5Var.setItemSize(lo0Var.R);
+        v5Var.setItemSize(jo0Var.R);
         g9 imageView = v5Var.getImageView();
         v5Var.setTag(Integer.valueOf(i10));
         imageView.r();
-        if (weVar != null) {
-            ef efVar2 = (ef) weVar.e.get(i10);
+        if (xeVar != null) {
+            ff ffVar2 = (ff) xeVar.e.get(i10);
             if (arrayList2.size() > 1) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            v5Var.d(efVar2, z10, true, false, false);
-            int i14 = efVar2.C;
-            if (lo0Var.e) {
+            v5Var.d(ffVar2, z10, true, false, false);
+            int i14 = ffVar2.C;
+            if (jo0Var.e) {
                 i12 = arrayList2.indexOf(Integer.valueOf(i14));
             }
             v5Var.b(i12, hashMap.containsKey(Integer.valueOf(i14)), false);
-            P1 = PhotoViewer.P1(efVar2.I);
+            P1 = PhotoViewer.P1(ffVar2.I);
         } else {
-            hf hfVar = (hf) lo0Var.f39335f.get(i10);
-            v5Var.e(hfVar);
+            jf jfVar = (jf) jo0Var.f38490f.get(i10);
+            v5Var.e(jfVar);
             v5Var.getVideoInfoContainer().setVisibility(4);
-            if (lo0Var.e) {
-                i12 = arrayList2.indexOf(hfVar.B);
+            if (jo0Var.e) {
+                i12 = arrayList2.indexOf(jfVar.B);
             }
-            v5Var.b(i12, hashMap.containsKey(hfVar.B), false);
-            P1 = PhotoViewer.P1(hfVar.g());
+            v5Var.b(i12, hashMap.containsKey(jfVar.B), false);
+            P1 = PhotoViewer.P1(jfVar.g());
         }
         imageView.getImageReceiver().O0(!P1, true);
-        v5Var.getCheckBox().setVisibility((lo0Var.T != 0 || P1) ? 8 : 8);
+        v5Var.getCheckBox().setVisibility((jo0Var.T != 0 || P1) ? 8 : 8);
     }
 
     private final void J(c1 c1Var, int i10) {
         int i11;
         PhotoViewer photoViewer = (PhotoViewer) this.e;
         Context context = (Context) this.d;
-        b6 b6Var = (b6) c1Var.f47898a;
+        b6 b6Var = (b6) c1Var.f47909a;
         int L = i0.L(85.0f);
         if (i10 != 0) {
             i11 = i0.L(6.0f);
         } else {
             i11 = 0;
         }
-        b6Var.f21730f = L;
-        ep epVar = b6Var.f21729c;
-        g9 g9Var = b6Var.f21727a;
+        b6Var.f21731f = L;
+        ep epVar = b6Var.f21730c;
+        g9 g9Var = b6Var.f21728a;
         b1 b1Var = b6Var.e;
         b6Var.h = i11;
-        ((FrameLayout.LayoutParams) b6Var.f21728b.getLayoutParams()).rightMargin = i11;
+        ((FrameLayout.LayoutParams) b6Var.f21729b.getLayoutParams()).rightMargin = i11;
         ((FrameLayout.LayoutParams) g9Var.getLayoutParams()).rightMargin = i11;
         ((FrameLayout.LayoutParams) b1Var.getLayoutParams()).rightMargin = i11;
         g9Var.r();
         Object obj = photoViewer.d.v().get(photoViewer.d.c().get(i10));
-        if (obj instanceof ef) {
-            ef efVar = (ef) obj;
-            int i12 = efVar.C;
-            String str = efVar.I;
-            b6Var.setTag(efVar);
+        if (obj instanceof ff) {
+            ff ffVar = (ff) obj;
+            int i12 = ffVar.C;
+            String str = ffVar.I;
+            b6Var.setTag(ffVar);
             b1Var.setVisibility(4);
-            String str2 = efVar.f19508c;
+            String str2 = ffVar.f14604c;
             if (str2 != null) {
                 g9Var.h(str2, null, context.getResources().getDrawable(2131232449));
             } else if (str != null) {
-                g9Var.s(efVar.J, efVar.K, true);
-                if (efVar.f19507b && !efVar.d()) {
+                g9Var.s(ffVar.J, ffVar.K, true);
+                if (ffVar.f14603b && !ffVar.d()) {
                     b1Var.setVisibility(0);
-                    b6Var.d.setText(i0.g0(efVar.E, false, false));
+                    b6Var.d.setText(i0.g0(ffVar.E, false, false));
                     g9Var.h("vthumb://" + i12 + ":" + str, null, context.getResources().getDrawable(2131232449));
                 } else {
                     g9Var.h("thumb://" + i12 + ":" + str, null, context.getResources().getDrawable(2131232449));
@@ -253,14 +252,14 @@ public final class j extends sk0 {
             } else {
                 g9Var.setImageResource(2131232449);
             }
-            epVar.f25836a.f(-1, true, false);
+            epVar.f25895a.f(-1, true, false);
             epVar.setVisibility(0);
-        } else if (obj instanceof hf) {
-            hf hfVar = (hf) obj;
-            b6Var.setTag(hfVar);
-            b6Var.setImage(hfVar);
+        } else if (obj instanceof jf) {
+            jf jfVar = (jf) obj;
+            b6Var.setTag(jfVar);
+            b6Var.setImage(jfVar);
             b1Var.setVisibility(4);
-            epVar.f25836a.f(-1, true, false);
+            epVar.f25895a.f(-1, true, false);
             epVar.setVisibility(0);
         }
     }
@@ -270,23 +269,23 @@ public final class j extends sk0 {
         ProxyListActivity proxyListActivity = (ProxyListActivity) this.e;
         ArrayList arrayList = proxyListActivity.E;
         ArrayList arrayList2 = proxyListActivity.F;
-        int i11 = c1Var.f47901f;
-        View view = c1Var.f47898a;
+        int i11 = c1Var.f47912f;
+        View view = c1Var.f47909a;
         boolean z11 = true;
         switch (i11) {
             case 1:
                 x9 x9Var = (x9) view;
                 a7.V(x9Var.getTextView(), t6.G6, null);
-                if (i10 == ProxyListActivity.e0(proxyListActivity)) {
-                    String L0 = cd.L0(2131754391, null);
+                if (i10 == ProxyListActivity.f0(proxyListActivity)) {
+                    String L0 = dd.L0(2131754391, null);
                     if (proxyListActivity.D == -1) {
                         z11 = false;
                     }
                     x9Var.b(L0, z11);
                     return;
                 } else if (i10 == proxyListActivity.D) {
-                    a7.V(x9Var.getTextView(), t6.f21153p7, null);
-                    x9Var.b(cd.L0(2131751581, null), false);
+                    a7.V(x9Var.getTextView(), t6.f21154p7, null);
+                    x9Var.b(dd.L0(2131751581, null), false);
                     return;
                 } else {
                     return;
@@ -294,58 +293,58 @@ public final class j extends sk0 {
             case 2:
                 p4 p4Var = (p4) view;
                 if (i10 == proxyListActivity.h) {
-                    p4Var.setText(cd.L0(2131746620, null));
+                    p4Var.setText(dd.L0(2131746620, null));
                     return;
                 }
                 return;
             case 3:
                 t8 t8Var = (t8) view;
-                if (i10 == ProxyListActivity.f0(proxyListActivity)) {
-                    String L02 = cd.L0(2131743809, null);
+                if (i10 == ProxyListActivity.g0(proxyListActivity)) {
+                    String L02 = dd.L0(2131743809, null);
                     boolean z12 = proxyListActivity.d;
-                    if (proxyListActivity.f33964w == -1) {
+                    if (proxyListActivity.f33971w == -1) {
                         z11 = false;
                     }
                     t8Var.f(L02, z12, z11);
                     return;
-                } else if (i10 == proxyListActivity.f33964w) {
-                    t8Var.f(cd.L0(2131743811, null), tz.f18133a1, true);
+                } else if (i10 == proxyListActivity.f33971w) {
+                    t8Var.f(dd.L0(2131743811, null), uz.f18502a1, true);
                     return;
                 } else {
                     return;
                 }
             case 4:
                 b9 b9Var = (b9) view;
-                if (i10 == proxyListActivity.f33966y) {
-                    b9Var.setText(cd.L0(2131746618, null));
+                if (i10 == proxyListActivity.f33973y) {
+                    b9Var.setText(dd.L0(2131746618, null));
                     return;
                 }
                 return;
             case 5:
-                cz0 cz0Var = (cz0) view;
-                sz szVar = (sz) arrayList2.get(i10 - proxyListActivity.f33961n);
-                cz0Var.setProxy(szVar);
-                if (tz.B1 == szVar) {
+                bz0 bz0Var = (bz0) view;
+                tz tzVar = (tz) arrayList2.get(i10 - proxyListActivity.f33968n);
+                bz0Var.setProxy(tzVar);
+                if (uz.B1 == tzVar) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                cz0Var.setChecked(z10);
-                boolean contains = arrayList.contains(arrayList2.get(i10 - proxyListActivity.f33961n));
-                cz0Var.h = contains;
-                cz0Var.f36577f.a(contains, false);
-                cz0Var.a(!arrayList.isEmpty(), false);
+                bz0Var.setChecked(z10);
+                boolean contains = arrayList.contains(arrayList2.get(i10 - proxyListActivity.f33968n));
+                bz0Var.h = contains;
+                bz0Var.f36138f.a(contains, false);
+                bz0Var.a(!arrayList.isEmpty(), false);
                 return;
             case 6:
-                if (i10 == proxyListActivity.f33965x) {
-                    yu0 yu0Var = (yu0) view;
-                    ArrayList arrayList3 = new ArrayList(bu.d);
+                if (i10 == proxyListActivity.f33972x) {
+                    zu0 zu0Var = (zu0) view;
+                    ArrayList arrayList3 = new ArrayList(cu.d);
                     String[] strArr = new String[arrayList3.size()];
                     for (int i12 = 0; i12 < arrayList3.size(); i12++) {
-                        strArr[i12] = cd.a0(null, null, 2131746617, arrayList3.get(i12));
+                        strArr[i12] = dd.a0(null, null, 2131746617, arrayList3.get(i12));
                     }
-                    yu0Var.setCallback(new z11(25));
-                    yu0Var.b(tz.f18136b1, null, strArr);
+                    zu0Var.setCallback(new a21(25));
+                    zu0Var.b(uz.f18505b1, null, strArr);
                     return;
                 }
                 return;
@@ -359,18 +358,18 @@ public final class j extends sk0 {
         String L02;
         boolean z10;
         String L03;
-        boolean d = j50.d(l01.c0((l01) this.e));
-        int i11 = c1Var.f47901f;
+        boolean d = j50.d(l01.d0((l01) this.e));
+        int i11 = c1Var.f47912f;
         if (i11 == 0) {
-            p4 p4Var = (p4) c1Var.f47898a;
+            p4 p4Var = (p4) c1Var.f47909a;
             if (i10 == 0) {
-                L03 = cd.L0(2131746005, null);
+                L03 = dd.L0(2131746005, null);
             } else {
-                L03 = cd.L0(2131746009, null);
+                L03 = dd.L0(2131746009, null);
             }
             p4Var.setText(L03);
         } else if (i11 == 1) {
-            t8 t8Var = (t8) c1Var.f47898a;
+            t8 t8Var = (t8) c1Var.f47909a;
             if (i10 != 1 && !d) {
                 z10 = false;
             } else {
@@ -378,40 +377,40 @@ public final class j extends sk0 {
             }
             t8Var.setEnabled(z10);
             if (i10 == 1) {
-                t8Var.f(cd.L0(2131746001, null), d, false);
+                t8Var.f(dd.L0(2131746001, null), d, false);
                 return;
             }
-            String L04 = cd.L0(2131746008, null);
-            mi.a aVar = mi.e.f13389i;
+            String L04 = dd.L0(2131746008, null);
+            mi.a aVar = mi.e.f13390i;
             aVar.a();
             t8Var.f(L04, aVar.d, false);
         } else if (i11 == 2) {
-            x9 x9Var = (x9) c1Var.f47898a;
+            x9 x9Var = (x9) c1Var.f47909a;
             x9Var.setEnabled(d);
             if (i10 == 2) {
-                x9Var.c(cd.L0(2131746003, null), a1.g.p(new StringBuilder(), ((v0) mi.e.e.a()).f12297a, "p"), false, true);
+                x9Var.c(dd.L0(2131746003, null), a1.g.p(new StringBuilder(), ((v0) mi.e.e.a()).f12298a, "p"), false, true);
             } else if (i10 == 3) {
-                String L05 = cd.L0(2131746013, null);
-                r0 r0Var = (r0) mi.e.f13387f.a();
-                if (r0Var == r0.f12236a) {
-                    L02 = cd.L0(2131746012, null);
-                } else if (r0Var == r0.f12237b) {
-                    L02 = cd.L0(2131746010, null);
+                String L05 = dd.L0(2131746013, null);
+                r0 r0Var = (r0) mi.e.f13388f.a();
+                if (r0Var == r0.f12237a) {
+                    L02 = dd.L0(2131746012, null);
+                } else if (r0Var == r0.f12238b) {
+                    L02 = dd.L0(2131746010, null);
                 } else {
-                    L02 = cd.L0(2131746011, null);
+                    L02 = dd.L0(2131746011, null);
                 }
                 x9Var.c(L05, L02, false, true);
             } else if (i10 == 4) {
-                x9Var.c(cd.L0(2131746006, null), a1.g.p(new StringBuilder(), ((s0) mi.e.f13388g.a()).f12244a, " FPS"), false, true);
+                x9Var.c(dd.L0(2131746006, null), a1.g.p(new StringBuilder(), ((s0) mi.e.f13389g.a()).f12245a, " FPS"), false, true);
             } else {
-                x9Var.c(cd.L0(2131746014, null), l01.e0(mi.e.h.a()), false, false);
+                x9Var.c(dd.L0(2131746014, null), l01.f0(mi.e.h.a()), false, false);
             }
         } else {
-            b9 b9Var = (b9) c1Var.f47898a;
+            b9 b9Var = (b9) c1Var.f47909a;
             if (i10 == 6) {
-                L0 = cd.L0(2131746004, null);
+                L0 = dd.L0(2131746004, null);
             } else {
-                L0 = cd.L0(2131746007, null);
+                L0 = dd.L0(2131746007, null);
             }
             b9Var.setText(L0);
         }
@@ -419,9 +418,9 @@ public final class j extends sk0 {
 
     @Override
     public final boolean D(c1 c1Var) {
-        switch (this.f7079c) {
+        switch (this.f7080c) {
             case 0:
-                if (m1.j.d(3)[c1Var.f47901f] == 1) {
+                if (m1.j.d(3)[c1Var.f47912f] == 1) {
                     return true;
                 }
                 return false;
@@ -430,14 +429,14 @@ public final class j extends sk0 {
                 if (b10 == 1) {
                     return true;
                 }
-                if (MediaController.s0(l01.b0((l01) this.e)) && b10 == 2) {
+                if (MediaController.s0(l01.c0((l01) this.e)) && b10 == 2) {
                     return true;
                 }
                 return false;
             case 2:
                 int b11 = c1Var.b();
                 jn jnVar = (jn) this.e;
-                if (b11 != jnVar.f27448u0 && b11 != jnVar.G0 && b11 != jnVar.B0 && b11 != jnVar.F0 && b11 != jnVar.C0 && b11 != jnVar.H0 && b11 != jnVar.D0 && b11 != jnVar.E0 && b11 != jnVar.I0 && b11 != jnVar.J0 && b11 != jnVar.N0.f3775a && b11 != jnVar.M0.f3775a && b11 != jnVar.L0) {
+                if (b11 != jnVar.f27514u0 && b11 != jnVar.G0 && b11 != jnVar.B0 && b11 != jnVar.F0 && b11 != jnVar.C0 && b11 != jnVar.H0 && b11 != jnVar.D0 && b11 != jnVar.E0 && b11 != jnVar.I0 && b11 != jnVar.J0 && b11 != jnVar.N0.f3775a && b11 != jnVar.M0.f3775a && b11 != jnVar.L0) {
                     return false;
                 }
                 return true;
@@ -448,7 +447,7 @@ public final class j extends sk0 {
             case 5:
                 return false;
             case 6:
-                if (c1Var.f47901f == 0) {
+                if (c1Var.f47912f == 0) {
                     return true;
                 }
                 return false;
@@ -459,43 +458,43 @@ public final class j extends sk0 {
             case 9:
                 int b12 = c1Var.b();
                 DataAutoDownloadActivity dataAutoDownloadActivity = (DataAutoDownloadActivity) this.e;
-                if (b12 != DataAutoDownloadActivity.m0(dataAutoDownloadActivity) && b12 != DataAutoDownloadActivity.n0(dataAutoDownloadActivity) && b12 != DataAutoDownloadActivity.f0(dataAutoDownloadActivity) && b12 != DataAutoDownloadActivity.o0(dataAutoDownloadActivity)) {
+                if (b12 != DataAutoDownloadActivity.n0(dataAutoDownloadActivity) && b12 != DataAutoDownloadActivity.o0(dataAutoDownloadActivity) && b12 != DataAutoDownloadActivity.g0(dataAutoDownloadActivity) && b12 != DataAutoDownloadActivity.p0(dataAutoDownloadActivity)) {
                     return false;
                 }
                 return true;
             case 10:
                 int b13 = c1Var.b();
                 DataSettingsActivity dataSettingsActivity = (DataSettingsActivity) this.e;
-                if (b13 != dataSettingsActivity.e && b13 != dataSettingsActivity.f33314f && b13 != dataSettingsActivity.h && b13 != dataSettingsActivity.f33317s && b13 != DataSettingsActivity.b0(dataSettingsActivity) && b13 != dataSettingsActivity.f33318w && b13 != DataSettingsActivity.c0(dataSettingsActivity) && b13 != DataSettingsActivity.d0(dataSettingsActivity) && b13 != dataSettingsActivity.E && b13 != dataSettingsActivity.D && b13 != dataSettingsActivity.F && b13 != dataSettingsActivity.G && b13 != dataSettingsActivity.K && b13 != dataSettingsActivity.J && b13 != dataSettingsActivity.f33315n && b13 != DataSettingsActivity.g0(dataSettingsActivity) && b13 != DataSettingsActivity.e0(dataSettingsActivity) && b13 != DataSettingsActivity.i0(dataSettingsActivity) && b13 != DataSettingsActivity.a0(dataSettingsActivity)) {
+                if (b13 != dataSettingsActivity.e && b13 != dataSettingsActivity.f33321f && b13 != dataSettingsActivity.h && b13 != dataSettingsActivity.f33324s && b13 != DataSettingsActivity.c0(dataSettingsActivity) && b13 != dataSettingsActivity.f33325w && b13 != DataSettingsActivity.d0(dataSettingsActivity) && b13 != DataSettingsActivity.e0(dataSettingsActivity) && b13 != dataSettingsActivity.E && b13 != dataSettingsActivity.D && b13 != dataSettingsActivity.F && b13 != dataSettingsActivity.G && b13 != dataSettingsActivity.K && b13 != dataSettingsActivity.J && b13 != dataSettingsActivity.f33322n && b13 != DataSettingsActivity.h0(dataSettingsActivity) && b13 != DataSettingsActivity.f0(dataSettingsActivity) && b13 != DataSettingsActivity.j0(dataSettingsActivity) && b13 != DataSettingsActivity.b0(dataSettingsActivity)) {
                     return false;
                 }
                 return true;
             case 11:
                 int b14 = c1Var.b();
                 jf0 jf0Var = (jf0) this.e;
-                if (b14 != jf0Var.f38514c && b14 != jf0Var.d && b14 != jf0Var.e && b14 != jf0Var.f38515f && b14 != jf0Var.h && b14 != jf0Var.f38517r) {
+                if (b14 != jf0Var.f38382c && b14 != jf0Var.d && b14 != jf0Var.e && b14 != jf0Var.f38383f && b14 != jf0Var.h && b14 != jf0Var.f38385r) {
                     return false;
                 }
                 return true;
             case 12:
                 int b15 = c1Var.b();
                 NotificationsSettingsActivity notificationsSettingsActivity = (NotificationsSettingsActivity) this.e;
-                if (b15 != notificationsSettingsActivity.f33416y && b15 != notificationsSettingsActivity.D && b15 != notificationsSettingsActivity.E && b15 != notificationsSettingsActivity.K && b15 != notificationsSettingsActivity.M && b15 != notificationsSettingsActivity.S && b15 != notificationsSettingsActivity.N && b15 != notificationsSettingsActivity.L && b15 != notificationsSettingsActivity.R && b15 != notificationsSettingsActivity.F && b15 != notificationsSettingsActivity.G && b15 != notificationsSettingsActivity.O && b15 != notificationsSettingsActivity.f33412r && b15 != notificationsSettingsActivity.f33413s && b15 != notificationsSettingsActivity.T && b15 != notificationsSettingsActivity.J) {
+                if (b15 != notificationsSettingsActivity.f33423y && b15 != notificationsSettingsActivity.D && b15 != notificationsSettingsActivity.E && b15 != notificationsSettingsActivity.K && b15 != notificationsSettingsActivity.M && b15 != notificationsSettingsActivity.S && b15 != notificationsSettingsActivity.N && b15 != notificationsSettingsActivity.L && b15 != notificationsSettingsActivity.R && b15 != notificationsSettingsActivity.F && b15 != notificationsSettingsActivity.G && b15 != notificationsSettingsActivity.O && b15 != notificationsSettingsActivity.f33419r && b15 != notificationsSettingsActivity.f33420s && b15 != notificationsSettingsActivity.T && b15 != notificationsSettingsActivity.J) {
                     return true;
                 }
                 return false;
             case 13:
                 int b16 = c1Var.b();
                 PasscodeActivity passcodeActivity = (PasscodeActivity) this.e;
-                if (b16 != PasscodeActivity.b0(passcodeActivity) && b16 != PasscodeActivity.c0(passcodeActivity) && b16 != passcodeActivity.N && b16 != PasscodeActivity.d0(passcodeActivity) && b16 != PasscodeActivity.e0(passcodeActivity) && b16 != passcodeActivity.J && b16 != passcodeActivity.K) {
+                if (b16 != PasscodeActivity.c0(passcodeActivity) && b16 != PasscodeActivity.d0(passcodeActivity) && b16 != passcodeActivity.N && b16 != PasscodeActivity.e0(passcodeActivity) && b16 != PasscodeActivity.f0(passcodeActivity) && b16 != passcodeActivity.J && b16 != passcodeActivity.K) {
                     return false;
                 }
                 return true;
             case 14:
                 return true;
             case 15:
-                lo0 lo0Var = (lo0) this.e;
-                if (lo0Var.J == null && (!TextUtils.isEmpty(lo0Var.f39355w) ? c1Var.b() >= lo0Var.f39335f.size() : c1Var.f47901f != 3)) {
+                jo0 jo0Var = (jo0) this.e;
+                if (jo0Var.J == null && (!TextUtils.isEmpty(jo0Var.f38510w) ? c1Var.b() >= jo0Var.f38490f.size() : c1Var.f47912f != 3)) {
                     return false;
                 }
                 return true;
@@ -504,7 +503,7 @@ public final class j extends sk0 {
             case 17:
                 int b17 = c1Var.b();
                 ProxyListActivity proxyListActivity = (ProxyListActivity) this.e;
-                if (b17 != ProxyListActivity.f0(proxyListActivity) && b17 != proxyListActivity.f33964w && b17 != ProxyListActivity.e0(proxyListActivity) && b17 != proxyListActivity.D && (b17 < proxyListActivity.f33961n || b17 >= proxyListActivity.f33962r)) {
+                if (b17 != ProxyListActivity.g0(proxyListActivity) && b17 != proxyListActivity.f33971w && b17 != ProxyListActivity.f0(proxyListActivity) && b17 != proxyListActivity.D && (b17 < proxyListActivity.f33968n || b17 >= proxyListActivity.f33969r)) {
                     return false;
                 }
                 return true;
@@ -513,12 +512,12 @@ public final class j extends sk0 {
                 if (b18 == 1) {
                     return true;
                 }
-                if (j50.d(l01.a0((l01) this.e)) && (b18 == 2 || b18 == 3 || b18 == 4 || b18 == 5 || b18 == 8)) {
+                if (j50.d(l01.b0((l01) this.e)) && (b18 == 2 || b18 == 3 || b18 == 4 || b18 == 5 || b18 == 8)) {
                     return true;
                 }
                 return false;
             default:
-                if (c1Var.f47901f != 1) {
+                if (c1Var.f47912f != 1) {
                     return true;
                 }
                 return false;
@@ -528,39 +527,39 @@ public final class j extends sk0 {
     public void E() {
         ProxyListActivity proxyListActivity = (ProxyListActivity) this.e;
         int size = proxyListActivity.E.size();
-        boolean s10 = ProxyListActivity.a0(proxyListActivity).s();
+        boolean s10 = ProxyListActivity.b0(proxyListActivity).s();
         if (size > 0) {
-            ProxyListActivity.b0(proxyListActivity).y(size, s10);
+            ProxyListActivity.c0(proxyListActivity).y(size, s10);
             if (!s10) {
-                ProxyListActivity.c0(proxyListActivity).C();
-                int i10 = proxyListActivity.f33961n;
-                n(i10, proxyListActivity.f33962r - i10, 2);
+                ProxyListActivity.d0(proxyListActivity).C();
+                int i10 = proxyListActivity.f33968n;
+                n(i10, proxyListActivity.f33969r - i10, 2);
             }
         } else if (s10) {
-            ProxyListActivity.d0(proxyListActivity).r();
-            int i11 = proxyListActivity.f33961n;
-            n(i11, proxyListActivity.f33962r - i11, 2);
+            ProxyListActivity.e0(proxyListActivity).r();
+            int i11 = proxyListActivity.f33968n;
+            n(i11, proxyListActivity.f33969r - i11, 2);
         }
     }
 
     public void F() {
         ProxyListActivity proxyListActivity = (ProxyListActivity) this.e;
         proxyListActivity.E.clear();
-        int i10 = proxyListActivity.f33961n;
-        n(i10, proxyListActivity.f33962r - i10, 1);
+        int i10 = proxyListActivity.f33968n;
+        n(i10, proxyListActivity.f33969r - i10, 1);
         E();
     }
 
     public void M(int i10) {
         ProxyListActivity proxyListActivity = (ProxyListActivity) this.e;
         ArrayList arrayList = proxyListActivity.E;
-        int i11 = proxyListActivity.f33961n;
-        if (i10 >= i11 && i10 < proxyListActivity.f33962r) {
-            sz szVar = (sz) proxyListActivity.F.get(i10 - i11);
-            if (arrayList.contains(szVar)) {
-                arrayList.remove(szVar);
+        int i11 = proxyListActivity.f33968n;
+        if (i10 >= i11 && i10 < proxyListActivity.f33969r) {
+            tz tzVar = (tz) proxyListActivity.F.get(i10 - i11);
+            if (arrayList.contains(tzVar)) {
+                arrayList.remove(tzVar);
             } else {
-                arrayList.add(szVar);
+                arrayList.add(tzVar);
             }
             h(i10, 1);
             E();
@@ -569,7 +568,7 @@ public final class j extends sk0 {
 
     @Override
     public final int b() {
-        switch (this.f7079c) {
+        switch (this.f7080c) {
             case 0:
                 return ((l) this.e).E.size();
             case 1:
@@ -579,7 +578,7 @@ public final class j extends sk0 {
             case 3:
                 return ((org.telegram.ui.Components.tz) this.e).h.size();
             case 4:
-                int size = ((uz) this.e).f31098r1.size();
+                int size = ((org.telegram.ui.Components.uz) this.e).f31125r1.size();
                 if (size < 10) {
                     return size + 1;
                 }
@@ -587,49 +586,49 @@ public final class j extends sk0 {
             case 5:
                 return ((oe0) this.e).F;
             case 6:
-                return nd.g() + 1;
+                return od.g() + 1;
             case 7:
-                ArrayList arrayList = ((sx0) this.d).f30382x;
+                ArrayList arrayList = ((tx0) this.d).f30742x;
                 if (arrayList == null) {
                     return 0;
                 }
                 return arrayList.size();
             case 8:
-                return ((v71) this.e).h.size();
+                return ((w71) this.e).h.size();
             case 9:
-                return ((DataAutoDownloadActivity) this.e).f33310y;
+                return ((DataAutoDownloadActivity) this.e).f33317y;
             case 10:
                 return ((DataSettingsActivity) this.e).T;
             case 11:
-                return ((jf0) this.e).f38519w;
+                return ((jf0) this.e).f38387w;
             case 12:
                 return ((NotificationsSettingsActivity) this.e).U;
             case 13:
                 return ((PasscodeActivity) this.e).P;
             case 14:
-                yn0 yn0Var = (yn0) this.e;
-                ArrayList arrayList2 = yn0Var.d;
+                wn0 wn0Var = (wn0) this.e;
+                ArrayList arrayList2 = wn0Var.d;
                 if (arrayList2 != null) {
-                    return (int) Math.ceil(arrayList2.size() / yn0Var.f43867f);
+                    return (int) Math.ceil(arrayList2.size() / wn0Var.f43134f);
                 }
                 return 0;
             case 15:
-                lo0 lo0Var = (lo0) this.e;
-                we weVar = lo0Var.J;
-                if (weVar == null) {
-                    if (lo0Var.f39335f.isEmpty()) {
-                        if (!TextUtils.isEmpty(lo0Var.f39355w) || lo0Var.f39343n.isEmpty()) {
+                jo0 jo0Var = (jo0) this.e;
+                xe xeVar = jo0Var.J;
+                if (xeVar == null) {
+                    if (jo0Var.f38490f.isEmpty()) {
+                        if (!TextUtils.isEmpty(jo0Var.f38510w) || jo0Var.f38498n.isEmpty()) {
                             return 0;
                         }
-                        return lo0Var.f39343n.size() + 2;
+                        return jo0Var.f38498n.size() + 2;
                     }
-                    return lo0Var.f39335f.size() + (!lo0Var.f39350s ? 1 : 0);
+                    return jo0Var.f38490f.size() + (!jo0Var.f38505s ? 1 : 0);
                 }
-                return weVar.e.size();
+                return xeVar.e.size();
             case 16:
                 PhotoViewer photoViewer = (PhotoViewer) this.e;
-                es0 es0Var = photoViewer.d;
-                if (es0Var != null && es0Var.c() != null) {
+                ds0 ds0Var = photoViewer.d;
+                if (ds0Var != null && ds0Var.c() != null) {
                     return photoViewer.d.c().size();
                 }
                 return 0;
@@ -645,35 +644,35 @@ public final class j extends sk0 {
     @Override
     public long c(int i10) {
         int i11;
-        switch (this.f7079c) {
+        switch (this.f7080c) {
             case 3:
-                i11 = ((org.telegram.ui.Components.tz) this.e).f30715k0.get(i10);
+                i11 = ((org.telegram.ui.Components.tz) this.e).f30761k0.get(i10);
                 break;
             case 5:
                 return i10;
             case 7:
-                ArrayList arrayList = ((sx0) this.d).f30382x;
+                ArrayList arrayList = ((tx0) this.d).f30742x;
                 if (arrayList == null) {
                     return 0L;
                 }
-                return ((qi) arrayList.get(i10)).f17590a.hashCode();
+                return ((ri) arrayList.get(i10)).f17936a.hashCode();
             case 8:
-                i11 = ((s71) ((v71) this.e).h.get(i10)).f30173a;
+                i11 = ((t71) ((w71) this.e).h.get(i10)).f30548a;
                 break;
             case 15:
                 return i10;
             case 17:
                 ProxyListActivity proxyListActivity = (ProxyListActivity) this.e;
-                if (i10 == proxyListActivity.f33960f) {
+                if (i10 == proxyListActivity.f33967f) {
                     return -1L;
                 }
-                if (i10 == proxyListActivity.f33963s) {
+                if (i10 == proxyListActivity.f33970s) {
                     return -2L;
                 }
-                if (i10 == ProxyListActivity.e0(proxyListActivity)) {
+                if (i10 == ProxyListActivity.f0(proxyListActivity)) {
                     return -3L;
                 }
-                if (i10 == ProxyListActivity.f0(proxyListActivity)) {
+                if (i10 == ProxyListActivity.g0(proxyListActivity)) {
                     return -4L;
                 }
                 if (i10 == proxyListActivity.h) {
@@ -682,18 +681,18 @@ public final class j extends sk0 {
                 if (i10 == proxyListActivity.D) {
                     return -8L;
                 }
-                if (i10 == proxyListActivity.f33964w) {
+                if (i10 == proxyListActivity.f33971w) {
                     return -9L;
                 }
-                if (i10 == proxyListActivity.f33965x) {
+                if (i10 == proxyListActivity.f33972x) {
                     return -10L;
                 }
-                if (i10 == proxyListActivity.f33966y) {
+                if (i10 == proxyListActivity.f33973y) {
                     return -11L;
                 }
-                int i12 = proxyListActivity.f33961n;
-                if (i10 >= i12 && i10 < proxyListActivity.f33962r) {
-                    return ((sz) proxyListActivity.F.get(i10 - i12)).hashCode();
+                int i12 = proxyListActivity.f33968n;
+                if (i10 >= i12 && i10 < proxyListActivity.f33969r) {
+                    return ((tz) proxyListActivity.F.get(i10 - i12)).hashCode();
                 }
                 return -7L;
             default:
@@ -721,9 +720,9 @@ public final class j extends sk0 {
         int i25;
         int i26;
         int i27;
-        switch (this.f7079c) {
+        switch (this.f7080c) {
             case 0:
-                return m1.j.c(((a) ((l) this.e).E.get(i10)).f7058b);
+                return m1.j.c(((a) ((l) this.e).E.get(i10)).f7059b);
             case 1:
                 if (i10 == 0) {
                     return 0;
@@ -739,22 +738,22 @@ public final class j extends sk0 {
             case 2:
                 jn jnVar = (jn) this.e;
                 if (i10 != jnVar.B0 && i10 != jnVar.F0 && i10 != jnVar.G0 && i10 != jnVar.C0 && i10 != jnVar.D0 && i10 != jnVar.E0 && i10 != jnVar.H0 && i10 != jnVar.M0.f3775a && i10 != jnVar.N0.f3775a) {
-                    if (i10 != jnVar.f27432l0 && i10 != jnVar.f27446s0 && i10 != jnVar.f27451w0 && i10 != jnVar.f27437o0) {
-                        if (i10 == jnVar.f27444r0) {
+                    if (i10 != jnVar.f27498l0 && i10 != jnVar.f27512s0 && i10 != jnVar.f27517w0 && i10 != jnVar.f27503o0) {
+                        if (i10 == jnVar.f27510r0) {
                             return 1;
                         }
-                        if (i10 != jnVar.f27449v0 && i10 != jnVar.f27453x0 && i10 != jnVar.f27441q0 && i10 != jnVar.K0) {
-                            if (i10 != jnVar.f27448u0 && i10 != jnVar.I0 && i10 != jnVar.L0) {
+                        if (i10 != jnVar.f27515v0 && i10 != jnVar.f27519x0 && i10 != jnVar.f27507q0 && i10 != jnVar.K0) {
+                            if (i10 != jnVar.f27514u0 && i10 != jnVar.I0 && i10 != jnVar.L0) {
                                 if (i10 == jnVar.m0) {
                                     return 4;
                                 }
-                                if (i10 == jnVar.f27435n0) {
+                                if (i10 == jnVar.f27501n0) {
                                     return 11;
                                 }
-                                if (i10 == jnVar.f27439p0) {
+                                if (i10 == jnVar.f27505p0) {
                                     return 7;
                                 }
-                                if (i10 != jnVar.f27455y0 && i10 != jnVar.f27456z0 && i10 != jnVar.J0) {
+                                if (i10 != jnVar.f27521y0 && i10 != jnVar.f27522z0 && i10 != jnVar.J0) {
                                     if (i10 == jnVar.A0) {
                                         return 8;
                                     }
@@ -794,17 +793,17 @@ public final class j extends sk0 {
                 return 0;
             case 9:
                 DataAutoDownloadActivity dataAutoDownloadActivity = (DataAutoDownloadActivity) this.e;
-                if (i10 == DataAutoDownloadActivity.b0(dataAutoDownloadActivity)) {
+                if (i10 == DataAutoDownloadActivity.c0(dataAutoDownloadActivity)) {
                     return 0;
                 }
-                if (i10 == dataAutoDownloadActivity.f33307s) {
+                if (i10 == dataAutoDownloadActivity.f33314s) {
                     return 1;
                 }
-                if (i10 != dataAutoDownloadActivity.f33306r && i10 != dataAutoDownloadActivity.f33308w) {
-                    if (i10 == DataAutoDownloadActivity.g0(dataAutoDownloadActivity)) {
+                if (i10 != dataAutoDownloadActivity.f33313r && i10 != dataAutoDownloadActivity.f33315w) {
+                    if (i10 == DataAutoDownloadActivity.h0(dataAutoDownloadActivity)) {
                         return 3;
                     }
-                    if (i10 != DataAutoDownloadActivity.m0(dataAutoDownloadActivity) && i10 != DataAutoDownloadActivity.n0(dataAutoDownloadActivity) && i10 != DataAutoDownloadActivity.f0(dataAutoDownloadActivity) && i10 != DataAutoDownloadActivity.o0(dataAutoDownloadActivity)) {
+                    if (i10 != DataAutoDownloadActivity.n0(dataAutoDownloadActivity) && i10 != DataAutoDownloadActivity.o0(dataAutoDownloadActivity) && i10 != DataAutoDownloadActivity.g0(dataAutoDownloadActivity) && i10 != DataAutoDownloadActivity.p0(dataAutoDownloadActivity)) {
                         return 5;
                     }
                     return 4;
@@ -812,14 +811,14 @@ public final class j extends sk0 {
                 return 2;
             case 10:
                 DataSettingsActivity dataSettingsActivity = (DataSettingsActivity) this.e;
-                if (i10 != dataSettingsActivity.f33316r && i10 != dataSettingsActivity.f33319x && i10 != dataSettingsActivity.N && i10 != dataSettingsActivity.P && i10 != dataSettingsActivity.L && i10 != dataSettingsActivity.Q && i10 != dataSettingsActivity.S) {
-                    if (i10 != dataSettingsActivity.d && i10 != dataSettingsActivity.f33320y && i10 != dataSettingsActivity.M && i10 != 0 && i10 != dataSettingsActivity.O && i10 != dataSettingsActivity.I && i10 != dataSettingsActivity.R) {
+                if (i10 != dataSettingsActivity.f33323r && i10 != dataSettingsActivity.f33326x && i10 != dataSettingsActivity.N && i10 != dataSettingsActivity.P && i10 != dataSettingsActivity.L && i10 != dataSettingsActivity.Q && i10 != dataSettingsActivity.S) {
+                    if (i10 != dataSettingsActivity.d && i10 != dataSettingsActivity.f33327y && i10 != dataSettingsActivity.M && i10 != 0 && i10 != dataSettingsActivity.O && i10 != dataSettingsActivity.I && i10 != dataSettingsActivity.R) {
                         if (i10 != dataSettingsActivity.E && i10 != dataSettingsActivity.D && i10 != dataSettingsActivity.F && i10 != dataSettingsActivity.G && i10 != dataSettingsActivity.J && i10 != dataSettingsActivity.K) {
                             if (i10 == dataSettingsActivity.H) {
                                 return 4;
                             }
-                            if (i10 != dataSettingsActivity.e && i10 != dataSettingsActivity.h && i10 != dataSettingsActivity.f33314f && i10 != DataSettingsActivity.g0(dataSettingsActivity) && i10 != DataSettingsActivity.e0(dataSettingsActivity) && i10 != DataSettingsActivity.i0(dataSettingsActivity)) {
-                                if (i10 != dataSettingsActivity.f33317s && i10 != dataSettingsActivity.f33318w && i10 != dataSettingsActivity.f33315n) {
+                            if (i10 != dataSettingsActivity.e && i10 != dataSettingsActivity.h && i10 != dataSettingsActivity.f33321f && i10 != DataSettingsActivity.h0(dataSettingsActivity) && i10 != DataSettingsActivity.f0(dataSettingsActivity) && i10 != DataSettingsActivity.j0(dataSettingsActivity)) {
+                                if (i10 != dataSettingsActivity.f33324s && i10 != dataSettingsActivity.f33325w && i10 != dataSettingsActivity.f33322n) {
                                     return 1;
                                 }
                                 return 6;
@@ -837,11 +836,11 @@ public final class j extends sk0 {
                 if (i10 == 0) {
                     return 0;
                 }
-                if (i10 != jf0Var.f38514c && i10 != jf0Var.d && i10 != jf0Var.e && i10 != jf0Var.f38515f && i10 != jf0Var.h) {
-                    if (i10 == jf0Var.f38516n) {
+                if (i10 != jf0Var.f38382c && i10 != jf0Var.d && i10 != jf0Var.e && i10 != jf0Var.f38383f && i10 != jf0Var.h) {
+                    if (i10 == jf0Var.f38384n) {
                         return 2;
                     }
-                    if (i10 == jf0Var.f38517r) {
+                    if (i10 == jf0Var.f38385r) {
                         return 3;
                     }
                     return 4;
@@ -849,17 +848,17 @@ public final class j extends sk0 {
                 return 1;
             case 12:
                 NotificationsSettingsActivity notificationsSettingsActivity = (NotificationsSettingsActivity) this.e;
-                if (i10 != notificationsSettingsActivity.K && i10 != notificationsSettingsActivity.M && i10 != notificationsSettingsActivity.S && i10 != notificationsSettingsActivity.G && i10 != notificationsSettingsActivity.N && i10 != notificationsSettingsActivity.E && i10 != notificationsSettingsActivity.f33416y && i10 != notificationsSettingsActivity.f33412r) {
+                if (i10 != notificationsSettingsActivity.K && i10 != notificationsSettingsActivity.M && i10 != notificationsSettingsActivity.S && i10 != notificationsSettingsActivity.G && i10 != notificationsSettingsActivity.N && i10 != notificationsSettingsActivity.E && i10 != notificationsSettingsActivity.f33423y && i10 != notificationsSettingsActivity.f33419r) {
                     i11 = notificationsSettingsActivity.inappSoundRow;
                     if (i10 != i11) {
                         i12 = notificationsSettingsActivity.inappVibrateRow;
-                        if (i10 != i12 && i10 != notificationsSettingsActivity.f33415x) {
+                        if (i10 != i12 && i10 != notificationsSettingsActivity.f33422x) {
                             i13 = notificationsSettingsActivity.inappPreviewRow;
                             if (i10 != i13) {
                                 i14 = notificationsSettingsActivity.contactJoinedRow;
                                 if (i10 != i14) {
                                     i15 = notificationsSettingsActivity.pinnedMessageRow;
-                                    if (i10 != i15 && i10 != notificationsSettingsActivity.f33414w) {
+                                    if (i10 != i15 && i10 != notificationsSettingsActivity.f33421w) {
                                         i16 = notificationsSettingsActivity.badgeNumberMutedRow;
                                         if (i10 != i16) {
                                             i17 = notificationsSettingsActivity.badgeNumberMessagesRow;
@@ -885,7 +884,7 @@ public final class j extends sk0 {
                                                                                     i27 = notificationsSettingsActivity.reactionsRow;
                                                                                     if (i10 != i27) {
                                                                                         if (i10 != notificationsSettingsActivity.J && i10 != notificationsSettingsActivity.D && i10 != notificationsSettingsActivity.L && i10 != notificationsSettingsActivity.R && i10 != notificationsSettingsActivity.F && i10 != notificationsSettingsActivity.O && i10 != notificationsSettingsActivity.T) {
-                                                                                            if (i10 == notificationsSettingsActivity.f33413s) {
+                                                                                            if (i10 == notificationsSettingsActivity.f33420s) {
                                                                                                 return 6;
                                                                                             }
                                                                                             return 5;
@@ -915,8 +914,8 @@ public final class j extends sk0 {
                 return 0;
             case 13:
                 PasscodeActivity passcodeActivity = (PasscodeActivity) this.e;
-                if (i10 != PasscodeActivity.b0(passcodeActivity) && i10 != passcodeActivity.N && i10 != passcodeActivity.K && i10 != passcodeActivity.J) {
-                    if (i10 != PasscodeActivity.d0(passcodeActivity) && i10 != PasscodeActivity.c0(passcodeActivity) && i10 != PasscodeActivity.e0(passcodeActivity)) {
+                if (i10 != PasscodeActivity.c0(passcodeActivity) && i10 != passcodeActivity.N && i10 != passcodeActivity.K && i10 != passcodeActivity.J) {
+                    if (i10 != PasscodeActivity.e0(passcodeActivity) && i10 != PasscodeActivity.d0(passcodeActivity) && i10 != PasscodeActivity.f0(passcodeActivity)) {
                         if (i10 != passcodeActivity.H && i10 != passcodeActivity.O && i10 != passcodeActivity.G && i10 != passcodeActivity.L) {
                             if (i10 != passcodeActivity.M && i10 != passcodeActivity.I) {
                                 if (i10 == 0) {
@@ -936,17 +935,17 @@ public final class j extends sk0 {
             case 14:
                 return 0;
             case 15:
-                lo0 lo0Var = (lo0) this.e;
-                if (lo0Var.Y) {
+                jo0 jo0Var = (jo0) this.e;
+                if (jo0Var.Y) {
                     return 2;
                 }
-                if (lo0Var.J == null) {
-                    if (lo0Var.f39335f.isEmpty()) {
-                        if (i10 == lo0Var.f39343n.size()) {
+                if (jo0Var.J == null) {
+                    if (jo0Var.f38490f.isEmpty()) {
+                        if (i10 == jo0Var.f38498n.size()) {
                             return 4;
                         }
                         return 3;
-                    } else if (i10 >= lo0Var.f39335f.size()) {
+                    } else if (i10 >= jo0Var.f38490f.size()) {
                         return 1;
                     }
                 }
@@ -955,16 +954,16 @@ public final class j extends sk0 {
                 return 0;
             case 17:
                 ProxyListActivity proxyListActivity = (ProxyListActivity) this.e;
-                if (i10 != proxyListActivity.f33960f && i10 != proxyListActivity.f33963s) {
-                    if (i10 != ProxyListActivity.e0(proxyListActivity) && i10 != proxyListActivity.D) {
-                        if (i10 != ProxyListActivity.f0(proxyListActivity) && i10 != proxyListActivity.f33964w) {
+                if (i10 != proxyListActivity.f33967f && i10 != proxyListActivity.f33970s) {
+                    if (i10 != ProxyListActivity.f0(proxyListActivity) && i10 != proxyListActivity.D) {
+                        if (i10 != ProxyListActivity.g0(proxyListActivity) && i10 != proxyListActivity.f33971w) {
                             if (i10 == proxyListActivity.h) {
                                 return 2;
                             }
-                            if (i10 == proxyListActivity.f33965x) {
+                            if (i10 == proxyListActivity.f33972x) {
                                 return 6;
                             }
-                            if (i10 >= proxyListActivity.f33961n && i10 < proxyListActivity.f33962r) {
+                            if (i10 >= proxyListActivity.f33968n && i10 < proxyListActivity.f33969r) {
                                 return 5;
                             }
                             return 4;
@@ -1001,30 +1000,30 @@ public final class j extends sk0 {
     @Override
     public void v(c1 c1Var, int i10, List list) {
         boolean contains;
-        switch (this.f7079c) {
+        switch (this.f7080c) {
             case 17:
                 ProxyListActivity proxyListActivity = (ProxyListActivity) this.e;
                 ArrayList arrayList = proxyListActivity.E;
-                int i11 = c1Var.f47901f;
-                View view = c1Var.f47898a;
+                int i11 = c1Var.f47912f;
+                View view = c1Var.f47909a;
                 if (i11 == 5 && !list.isEmpty()) {
-                    cz0 cz0Var = (cz0) view;
-                    if (list.contains(1) && (contains = arrayList.contains(proxyListActivity.F.get(i10 - proxyListActivity.f33961n))) != cz0Var.h) {
-                        cz0Var.h = contains;
-                        cz0Var.f36577f.a(contains, true);
+                    bz0 bz0Var = (bz0) view;
+                    if (list.contains(1) && (contains = arrayList.contains(proxyListActivity.F.get(i10 - proxyListActivity.f33968n))) != bz0Var.h) {
+                        bz0Var.h = contains;
+                        bz0Var.f36138f.a(contains, true);
                     }
                     if (list.contains(2)) {
-                        cz0Var.a(!arrayList.isEmpty(), true);
+                        bz0Var.a(!arrayList.isEmpty(), true);
                         return;
                     }
                     return;
-                } else if (c1Var.f47901f == 3 && list.contains(0)) {
+                } else if (c1Var.f47912f == 3 && list.contains(0)) {
                     t8 t8Var = (t8) view;
-                    if (i10 == ProxyListActivity.f0(proxyListActivity)) {
+                    if (i10 == ProxyListActivity.g0(proxyListActivity)) {
                         t8Var.setChecked(proxyListActivity.d);
                         return;
-                    } else if (i10 == proxyListActivity.f33964w) {
-                        t8Var.setChecked(tz.f18133a1);
+                    } else if (i10 == proxyListActivity.f33971w) {
+                        t8Var.setChecked(uz.f18502a1);
                         return;
                     } else {
                         return;
@@ -1049,7 +1048,7 @@ public final class j extends sk0 {
         hn hnVar;
         w5 w5Var;
         FrameLayout frameLayout2;
-        yu0 yu0Var;
+        zu0 zu0Var;
         View c7Var;
         a9 a9Var;
         View p4Var;
@@ -1063,7 +1062,7 @@ public final class j extends sk0 {
         View c7Var2;
         x9 x9Var2;
         View v4Var;
-        int i13 = this.f7079c;
+        int i13 = this.f7080c;
         int i14 = 8;
         Object obj = this.e;
         Object obj2 = this.d;
@@ -1080,12 +1079,12 @@ public final class j extends sk0 {
                         TextPaint textPaint = new TextPaint(1);
                         frameLayout3.h = textPaint;
                         textPaint.setTextSize(i0.L(16.0f));
-                        nn0 nn0Var = new nn0(context);
-                        frameLayout3.f7080a = nn0Var;
-                        nn0Var.setReportChanges(true);
-                        nn0Var.setDelegate(new a6.i(frameLayout3, 22));
-                        nn0Var.setImportantForAccessibility(2);
-                        frameLayout3.addView(nn0Var, w7.b6.d(-1, 38.0f, 83, 5.0f, 29.0f, 47.0f, 0.0f));
+                        on0 on0Var = new on0(context);
+                        frameLayout3.f7081a = on0Var;
+                        on0Var.setReportChanges(true);
+                        on0Var.setDelegate(new a6.i(frameLayout3, 22));
+                        on0Var.setImportantForAccessibility(2);
+                        frameLayout3.addView(on0Var, w7.b6.d(-1, 38.0f, 83, 5.0f, 29.0f, 47.0f, 0.0f));
                         frameLayout = frameLayout3;
                     }
                 } else {
@@ -1111,17 +1110,17 @@ public final class j extends sk0 {
             case 2:
                 Context context3 = (Context) obj2;
                 jn jnVar = (jn) obj;
-                boolean z10 = jnVar.f27434n;
-                p6 p6Var6 = jnVar.f30946a;
+                boolean z10 = jnVar.f27500n;
+                p6 p6Var6 = jnVar.f30963a;
                 switch (i10) {
                     case 0:
                         i11 = -2;
-                        gnVar = new p4((Context) obj2, t6.L6, 21, 15, false, jnVar.f30946a);
+                        gnVar = new p4((Context) obj2, t6.L6, 21, 15, false, jnVar.f30963a);
                         break;
                     case 1:
                         i11 = -2;
                         View c7Var3 = new c7(context3, (f1) null);
-                        new eq(new ColorDrawable(t6.w0(t6.f20872a7, p6Var6)), t6.Y0(context3, 2131231230, t6.f20892b7)).f25847x = true;
+                        new eq(new ColorDrawable(t6.w0(t6.f20873a7, p6Var6)), t6.Y0(context3, 2131231230, t6.f20893b7)).f25909x = true;
                         gnVar = c7Var3;
                         break;
                     case 2:
@@ -1135,34 +1134,34 @@ public final class j extends sk0 {
                     case 4:
                     case 11:
                         i11 = -2;
-                        en enVar = new en(this, (Context) obj2, jnVar.I ? 1 : 0, jnVar.f30946a, i10);
+                        en enVar = new en(this, (Context) obj2, jnVar.I ? 1 : 0, jnVar.f30963a, i10);
                         if (i10 == 11 && !z10) {
                             enVar.setTextRight(98);
                             enVar.a().setOnClickListener(new View.OnClickListener(this) {
-                                public final fg.j f25107b;
+                                public final fg.j f25187b;
 
                                 {
-                                    this.f25107b = this;
+                                    this.f25187b = this;
                                 }
 
                                 @Override
                                 public final void onClick(View view) {
                                     switch (r2) {
                                         case 0:
-                                            jn.R((jn) this.f25107b.e, -2);
+                                            jn.R((jn) this.f25187b.e, -2);
                                             return;
                                         case 1:
-                                            jn.R((jn) this.f25107b.e, -3);
+                                            jn.R((jn) this.f25187b.e, -3);
                                             return;
                                         default:
-                                            ((jn) this.f25107b.e).a0(view, (org.telegram.ui.Cells.e6) view.getParent(), true);
+                                            ((jn) this.f25187b.e).a0(view, (org.telegram.ui.Cells.e6) view.getParent(), true);
                                             return;
                                     }
                                 }
                             });
                         }
                         enVar.c();
-                        enVar.setIconsColor(t6.f21135o7);
+                        enVar.setIconsColor(t6.f21136o7);
                         enVar.b(new fn(this, enVar, i10));
                         gnVar = enVar;
                         break;
@@ -1171,47 +1170,47 @@ public final class j extends sk0 {
                         Context context4 = (Context) obj2;
                         boolean z11 = jnVar.I;
                         ?? r42 = new View.OnClickListener(this) {
-                            public final fg.j f25107b;
+                            public final fg.j f25187b;
 
                             {
-                                this.f25107b = this;
+                                this.f25187b = this;
                             }
 
                             @Override
                             public final void onClick(View view) {
                                 switch (r2) {
                                     case 0:
-                                        jn.R((jn) this.f25107b.e, -2);
+                                        jn.R((jn) this.f25187b.e, -2);
                                         return;
                                     case 1:
-                                        jn.R((jn) this.f25107b.e, -3);
+                                        jn.R((jn) this.f25187b.e, -3);
                                         return;
                                     default:
-                                        ((jn) this.f25107b.e).a0(view, (org.telegram.ui.Cells.e6) view.getParent(), true);
+                                        ((jn) this.f25187b.e).a0(view, (org.telegram.ui.Cells.e6) view.getParent(), true);
                                         return;
                                 }
                             }
                         };
-                        p6 p6Var7 = jnVar.f30946a;
+                        p6 p6Var7 = jnVar.f30963a;
                         i12 = -2;
                         hn hnVar2 = new hn(this, context4, z11 ? 1 : 0, r42, p6Var7);
                         if (!z10) {
                             hnVar2.setTextRight(140);
                             hnVar2.a().setOnClickListener(new ud(24, this, hnVar2));
                         }
-                        int i15 = t6.f21135o7;
+                        int i15 = t6.f21136o7;
                         hnVar2.setIconsColor(i15);
-                        ep epVar = hnVar2.f21863r;
+                        ep epVar = hnVar2.f21864r;
                         if (epVar != null) {
                             epVar.getCheckBoxBase().i(i0.L(6.0f));
                             CheckBoxBase checkBoxBase = epVar.getCheckBoxBase();
-                            float f7 = hnVar2.f21858a.e;
-                            if (checkBoxBase.f23924w != f7) {
-                                checkBoxBase.f23924w = f7;
+                            float f7 = hnVar2.f21859a.e;
+                            if (checkBoxBase.f23925w != f7) {
+                                checkBoxBase.f23925w = f7;
                                 checkBoxBase.b();
                             }
                         }
-                        hnVar2.getCheckBox().b(-1, i15, t6.f21059k7);
+                        hnVar2.getCheckBox().b(-1, i15, t6.f21060k7);
                         hnVar2.b(new u2(this, hnVar2, false, 4));
                         hnVar2.setShowNextButton(true);
                         EditTextBoldCursor textView = hnVar2.getTextView();
@@ -1233,29 +1232,29 @@ public final class j extends sk0 {
                         if (!z10) {
                             gnVar2.setTextRight(98);
                             gnVar2.a().setOnClickListener(new View.OnClickListener(this) {
-                                public final fg.j f25107b;
+                                public final fg.j f25187b;
 
                                 {
-                                    this.f25107b = this;
+                                    this.f25187b = this;
                                 }
 
                                 @Override
                                 public final void onClick(View view) {
                                     switch (r2) {
                                         case 0:
-                                            jn.R((jn) this.f25107b.e, -2);
+                                            jn.R((jn) this.f25187b.e, -2);
                                             return;
                                         case 1:
-                                            jn.R((jn) this.f25107b.e, -3);
+                                            jn.R((jn) this.f25187b.e, -3);
                                             return;
                                         default:
-                                            ((jn) this.f25107b.e).a0(view, (org.telegram.ui.Cells.e6) view.getParent(), true);
+                                            ((jn) this.f25187b.e).a0(view, (org.telegram.ui.Cells.e6) view.getParent(), true);
                                             return;
                                     }
                                 }
                             });
                         }
-                        gnVar2.setIconsColor(t6.f21135o7);
+                        gnVar2.setIconsColor(t6.f21136o7);
                         gnVar2.b(new u2(this, gnVar2, false, 3));
                         gnVar = gnVar2;
                         break;
@@ -1299,7 +1298,7 @@ public final class j extends sk0 {
                     ?? frameLayout4 = new FrameLayout(context5);
                     frameLayout4.e = new c2((Object) frameLayout4, 18);
                     TextView textView2 = new TextView(context5);
-                    frameLayout4.f23581a = textView2;
+                    frameLayout4.f23582a = textView2;
                     textView2.setGravity(5);
                     textView2.setTextColor(-1);
                     textView2.setTextSize(1, 12.0f);
@@ -1308,24 +1307,24 @@ public final class j extends sk0 {
                     textView2.setEllipsize(TextUtils.TruncateAt.END);
                     frameLayout4.addView(textView2, w7.b6.d(80, -2.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
                     TextView textView3 = new TextView(context5);
-                    frameLayout4.f23582b = textView3;
-                    a7.V(textView3, t6.f21125ng, p6Var8);
+                    frameLayout4.f23583b = textView3;
+                    a7.V(textView3, t6.f21126ng, p6Var8);
                     textView3.setTextSize(1, 12.0f);
                     textView3.setGravity(5);
                     textView3.setSingleLine(true);
                     frameLayout4.addView(textView3, w7.b6.d(80, -2.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
                     ?? view = new View(context5);
                     Paint paint = new Paint();
-                    view.f25397a = paint;
+                    view.f25472a = paint;
                     Paint paint2 = new Paint(1);
-                    view.f25398b = paint2;
-                    view.f25399c = i0.L(16.0f);
+                    view.f25473b = paint2;
+                    view.f25474c = i0.L(16.0f);
                     view.d = 0;
                     view.e = 0.0f;
-                    view.f25400f = false;
+                    view.f25475f = false;
                     paint.setColor(-11711155);
                     paint2.setColor(-1);
-                    frameLayout4.f23583c = view;
+                    frameLayout4.f23584c = view;
                     frameLayout4.addView(view, w7.b6.d(-1, 40.0f, 19, 96.0f, 0.0f, 24.0f, 0.0f));
                     frameLayout4.setSeekBarDelegate(new px(this, 11));
                     w5Var = frameLayout4;
@@ -1337,25 +1336,25 @@ public final class j extends sk0 {
                 return new c1(w5Var);
             case 6:
                 Context context6 = (Context) obj2;
-                du0 du0Var = (du0) obj;
+                eu0 eu0Var = (eu0) obj;
                 if (i10 != 0) {
                     FrameLayout a5Var = new a5(context6, 23);
                     a5Var.setWillNotDraw(false);
-                    du0Var.l1 = new TextView(context6);
-                    a7.V(du0Var.l1, t6.J5, du0Var.I0);
-                    du0Var.l1.setTextSize(1, 14.0f);
-                    du0Var.l1.setGravity(17);
-                    du0Var.l1.setPadding(0, 0, 0, i0.L(8.0f));
-                    a5Var.addView(du0Var.l1, w7.b6.c(40.0f, -1));
+                    eu0Var.l1 = new TextView(context6);
+                    a7.V(eu0Var.l1, t6.J5, eu0Var.I0);
+                    eu0Var.l1.setTextSize(1, 14.0f);
+                    eu0Var.l1.setGravity(17);
+                    eu0Var.l1.setPadding(0, 0, 0, i0.L(8.0f));
+                    a5Var.addView(eu0Var.l1, w7.b6.c(40.0f, -1));
                     frameLayout2 = a5Var;
                 } else {
-                    frameLayout2 = new v7(54, context6, du0Var.I0, false);
+                    frameLayout2 = new v7(54, context6, eu0Var.I0, false);
                 }
                 return new c1(frameLayout2);
             case 7:
-                return new c1(new rx0((sx0) obj, ((sx0) obj2).getContext()));
+                return new c1(new sx0((tx0) obj, ((tx0) obj2).getContext()));
             case 8:
-                return new c1(new t71((v71) obj, (Context) obj2));
+                return new c1(new u71((w71) obj, (Context) obj2));
             case 9:
                 Context context7 = (Context) obj2;
                 if (i10 != 0) {
@@ -1363,29 +1362,29 @@ public final class j extends sk0 {
                         if (i10 != 2) {
                             if (i10 != 3) {
                                 if (i10 != 4) {
-                                    yu0Var = new b9(context7);
+                                    zu0Var = new b9(context7);
                                 } else {
-                                    yu0Var = new l5(context7);
+                                    zu0Var = new l5(context7);
                                 }
                             } else {
-                                yu0 yu0Var2 = new yu0(context7, null);
-                                yu0Var2.setCallback(new tt(this, 2));
-                                yu0Var = yu0Var2;
+                                zu0 zu0Var2 = new zu0(context7, null);
+                                zu0Var2.setCallback(new st(this, 2));
+                                zu0Var = zu0Var2;
                             }
                         } else {
-                            yu0Var = new p4(context7);
+                            zu0Var = new p4(context7);
                         }
                     } else {
-                        yu0Var = new c7(context7, (f1) null);
+                        zu0Var = new c7(context7, (f1) null);
                     }
                 } else {
                     t8 t8Var2 = new t8(context7);
-                    t8Var2.d(t6.f20985g6, t6.O6, t6.P6, t6.Q6, t6.R6);
+                    t8Var2.d(t6.f20986g6, t6.O6, t6.P6, t6.Q6, t6.R6);
                     t8Var2.setTypeface(i0.o());
                     t8Var2.setHeight(56);
-                    yu0Var = t8Var2;
+                    zu0Var = t8Var2;
                 }
-                return sc.e.o(yu0Var, yu0Var, -1, -2);
+                return sc.e.o(zu0Var, zu0Var, -1, -2);
             case 10:
                 Context context8 = (Context) obj2;
                 if (i10 != 0) {
@@ -1423,7 +1422,7 @@ public final class j extends sk0 {
                                 a9Var = new b9(context9);
                             } else {
                                 View x9Var4 = new x9(context9);
-                                a7.i(t6.f20929d6, x9Var4, null);
+                                a7.i(t6.f20930d6, x9Var4, null);
                                 a9Var = x9Var4;
                             }
                         } else {
@@ -1432,12 +1431,12 @@ public final class j extends sk0 {
                     } else {
                         a9 a9Var2 = new a9(context9);
                         a9Var2.setMultilineDetail(true);
-                        a7.i(t6.f20929d6, a9Var2, null);
+                        a7.i(t6.f20930d6, a9Var2, null);
                         a9Var = a9Var2;
                     }
                 } else {
                     View p4Var2 = new p4(context9);
-                    a7.i(t6.f20929d6, p4Var2, null);
+                    a7.i(t6.f20930d6, p4Var2, null);
                     a9Var = p4Var2;
                 }
                 return sc.e.o(a9Var, a9Var, -1, -2);
@@ -1477,7 +1476,7 @@ public final class j extends sk0 {
                             if (i10 != 4) {
                                 t8Var = new b9(context11);
                             } else {
-                                t8Var = new rj0(context11);
+                                t8Var = new pj0(context11);
                                 t8Var.setTag(-33024);
                             }
                         } else {
@@ -1494,20 +1493,20 @@ public final class j extends sk0 {
                 Context context12 = (Context) obj2;
                 ?? frameLayout5 = new FrameLayout(context12);
                 frameLayout5.e = new Paint();
-                frameLayout5.f21676b = new we[4];
-                frameLayout5.f21675a = new y5[4];
+                frameLayout5.f21677b = new xe[4];
+                frameLayout5.f21676a = new y5[4];
                 for (int i16 = 0; i16 < 4; i16++) {
-                    frameLayout5.f21675a[i16] = new y5((a6) frameLayout5, context12);
-                    frameLayout5.addView(frameLayout5.f21675a[i16]);
-                    frameLayout5.f21675a[i16].setVisibility(4);
-                    frameLayout5.f21675a[i16].setTag(Integer.valueOf(i16));
-                    frameLayout5.f21675a[i16].setOnClickListener(new org.telegram.ui.Cells.a(frameLayout5, 9));
+                    frameLayout5.f21676a[i16] = new y5((a6) frameLayout5, context12);
+                    frameLayout5.addView(frameLayout5.f21676a[i16]);
+                    frameLayout5.f21676a[i16].setVisibility(4);
+                    frameLayout5.f21676a[i16].setTag(Integer.valueOf(i16));
+                    frameLayout5.f21676a[i16].setOnClickListener(new org.telegram.ui.Cells.a(frameLayout5, 9));
                 }
-                frameLayout5.setDelegate(new tj0(this, 1));
+                frameLayout5.setDelegate(new rj0(this, 1));
                 return new c1(frameLayout5);
             case 15:
-                lo0 lo0Var = (lo0) obj;
-                boolean z12 = lo0Var.f39349r0;
+                jo0 jo0Var = (jo0) obj;
+                boolean z12 = jo0Var.f38504r0;
                 Context context13 = (Context) obj2;
                 if (i10 != 0) {
                     if (i10 != 1) {
@@ -1520,8 +1519,8 @@ public final class j extends sk0 {
                                 p8 p8Var2 = new p8(23, context13, true);
                                 p8Var2.setLayoutParams(new o0(-1, -2));
                                 if (z12) {
-                                    a7.Y(p8Var2.f22457a, lo0Var.f39354v0, null);
-                                    a7.t(p8Var2.e, t6.f20976fh, null, PorterDuff.Mode.MULTIPLY);
+                                    a7.Y(p8Var2.f22458a, jo0Var.f38509v0, null);
+                                    a7.t(p8Var2.e, t6.f20977fh, null, PorterDuff.Mode.MULTIPLY);
                                 }
                                 p8Var = p8Var2;
                             }
@@ -1538,9 +1537,9 @@ public final class j extends sk0 {
                     }
                 } else {
                     v5 v5Var = new v5(context13, null);
-                    v5Var.setDelegate(new jo0(this));
+                    v5Var.setDelegate(new ho0(this));
                     FrameLayout checkFrame = v5Var.getCheckFrame();
-                    if (lo0Var.T == 0) {
+                    if (jo0Var.T == 0) {
                         i14 = 0;
                     }
                     checkFrame.setVisibility(i14);
@@ -1553,22 +1552,22 @@ public final class j extends sk0 {
                 new Paint();
                 frameLayout7.setWillNotDraw(false);
                 g9 g9Var = new g9(context14);
-                frameLayout7.f21727a = g9Var;
+                frameLayout7.f21728a = g9Var;
                 g9Var.setRoundRadius(i0.L(4.0f));
                 frameLayout7.addView(g9Var, w7.b6.c(-1.0f, -1));
                 FrameLayout frameLayout8 = new FrameLayout(context14);
-                frameLayout7.f21728b = frameLayout8;
+                frameLayout7.f21729b = frameLayout8;
                 frameLayout7.addView(frameLayout8, w7.b6.e(42, 42, 53));
                 b1 b1Var = new b1(context14);
                 b1Var.d = new Path();
-                b1Var.f9896c = new float[8];
-                b1Var.f9895b = new RectF();
+                b1Var.f9897c = new float[8];
+                b1Var.f9896b = new RectF();
                 b1Var.e = new Paint(1);
                 frameLayout7.e = b1Var;
                 b1Var.setWillNotDraw(false);
                 b1Var.setPadding(i0.L(3.0f), 0, i0.L(3.0f), 0);
                 frameLayout7.addView(b1Var, w7.b6.e(-1, 16, 83));
-                b1Var.addView(z20.e(context14, 2131231464), w7.b6.e(-2, -2, 19));
+                b1Var.addView(a30.e(context14, 2131231464), w7.b6.e(-2, -2, 19));
                 TextView textView4 = new TextView(context14);
                 frameLayout7.d = textView4;
                 textView4.setTextColor(-1);
@@ -1576,13 +1575,13 @@ public final class j extends sk0 {
                 textView4.setImportantForAccessibility(2);
                 b1Var.addView(textView4, w7.b6.d(-2, -2.0f, 19, 18.0f, -0.7f, 0.0f, 0.0f));
                 ep epVar2 = new ep(24, context14, null);
-                frameLayout7.f21729c = epVar2;
+                frameLayout7.f21730c = epVar2;
                 epVar2.setDrawBackgroundAsArc(11);
                 epVar2.b(t6.W9, t6.X9, t6.V9);
                 frameLayout7.addView(epVar2, w7.b6.d(26, 26.0f, 51, 55.0f, 4.0f, 0.0f, 0.0f));
                 epVar2.setVisibility(0);
                 frameLayout7.setFocusable(true);
-                frameLayout8.setOnClickListener(new f50(this, 21));
+                frameLayout8.setOnClickListener(new e50(this, 21));
                 return new c1(frameLayout7);
             case 17:
                 Context context15 = (Context) obj2;
@@ -1592,26 +1591,26 @@ public final class j extends sk0 {
                             if (i10 != 3) {
                                 if (i10 != 4) {
                                     if (i10 != 6) {
-                                        c7Var2 = new cz0((ProxyListActivity) obj, context15);
-                                        a7.i(t6.f20929d6, c7Var2, null);
+                                        c7Var2 = new bz0((ProxyListActivity) obj, context15);
+                                        a7.i(t6.f20930d6, c7Var2, null);
                                     } else {
-                                        c7Var2 = new yu0(context15, null);
-                                        a7.i(t6.f20929d6, c7Var2, null);
+                                        c7Var2 = new zu0(context15, null);
+                                        a7.i(t6.f20930d6, c7Var2, null);
                                     }
                                 } else {
                                     c7Var2 = new b9(context15);
                                 }
                             } else {
                                 c7Var2 = new t8(context15);
-                                a7.i(t6.f20929d6, c7Var2, null);
+                                a7.i(t6.f20930d6, c7Var2, null);
                             }
                         } else {
                             c7Var2 = new p4(context15);
-                            a7.i(t6.f20929d6, c7Var2, null);
+                            a7.i(t6.f20930d6, c7Var2, null);
                         }
                     } else {
                         c7Var2 = new x9(context15);
-                        a7.i(t6.f20929d6, c7Var2, null);
+                        a7.i(t6.f20930d6, c7Var2, null);
                     }
                 } else {
                     c7Var2 = new c7(context15, (f1) null);
@@ -1648,15 +1647,15 @@ public final class j extends sk0 {
     public void y(c1 c1Var) {
         int i10;
         int i11;
-        int i12 = this.f7079c;
+        int i12 = this.f7080c;
         Object obj = this.e;
         switch (i12) {
             case 2:
                 jn jnVar = (jn) obj;
-                ih.g gVar = jnVar.f27433m1;
-                boolean z10 = jnVar.f27434n;
-                int i13 = c1Var.f47901f;
-                View view = c1Var.f47898a;
+                ih.g gVar = jnVar.f27499m1;
+                boolean z10 = jnVar.f27500n;
+                int i13 = c1Var.f47912f;
+                View view = c1Var.f47909a;
                 CharSequence charSequence = "";
                 if (i13 == 4) {
                     e6 e6Var = (e6) view;
@@ -1670,7 +1669,7 @@ public final class j extends sk0 {
                     } else {
                         i11 = 2131746463;
                     }
-                    e6Var.n(charSequence, cd.L0(i11, null), true);
+                    e6Var.n(charSequence, dd.L0(i11, null), true);
                     e6Var.setTag(null);
                     jn.O(jnVar, view, c1Var.b());
                     return;
@@ -1681,7 +1680,7 @@ public final class j extends sk0 {
                     if (charSequence3 != null) {
                         charSequence = charSequence3;
                     }
-                    e6Var2.n(charSequence, cd.L0(2131746464, null), false);
+                    e6Var2.n(charSequence, dd.L0(2131746464, null), false);
                     e6Var2.setTag(null);
                     e6Var2.e.b(gVar.b(-2), false);
                     jn.O(jnVar, view, c1Var.b());
@@ -1690,21 +1689,21 @@ public final class j extends sk0 {
                     int b10 = c1Var.b();
                     e6 e6Var3 = (e6) view;
                     e6Var3.setTag(1);
-                    e6Var3.f21858a.a(jnVar.f27412b0, false);
-                    int i14 = b10 - jnVar.f27447t0;
+                    e6Var3.f21859a.a(jnVar.f27478b0, false);
+                    int i14 = b10 - jnVar.f27513t0;
                     CharSequence charSequence4 = jnVar.K[i14];
                     if (z10) {
                         i10 = 2131744080;
                     } else {
                         i10 = 2131747790;
                     }
-                    e6Var3.n(charSequence4, cd.L0(i10, null), true);
+                    e6Var3.n(charSequence4, dd.L0(i10, null), true);
                     e6Var3.setTag(null);
-                    if (jnVar.f27430k0 == b10) {
+                    if (jnVar.f27496k0 == b10) {
                         EditTextBoldCursor textView = e6Var3.getTextView();
                         textView.requestFocus();
                         i0.J3(textView);
-                        jnVar.f27430k0 = -1;
+                        jnVar.f27496k0 = -1;
                     }
                     if (!z10) {
                         e6Var3.e.b(gVar.b(i14), false);
@@ -1718,7 +1717,7 @@ public final class j extends sk0 {
                     if (charSequence5 != null) {
                         charSequence = charSequence5;
                     }
-                    e6Var4.n(charSequence, cd.L0(2131754474, null), false);
+                    e6Var4.n(charSequence, dd.L0(2131754474, null), false);
                     e6Var4.setTag(null);
                     if (!z10) {
                         e6Var4.e.b(gVar.b(-3), false);
@@ -1729,29 +1728,29 @@ public final class j extends sk0 {
                     return;
                 }
             case 10:
-                if (c1Var.f47901f == 3) {
-                    t8 t8Var = (t8) c1Var.f47898a;
+                if (c1Var.f47912f == 3) {
+                    t8 t8Var = (t8) c1Var.f47909a;
                     int b11 = c1Var.b();
                     DataSettingsActivity dataSettingsActivity = (DataSettingsActivity) obj;
                     if (b11 == dataSettingsActivity.E) {
-                        t8Var.setChecked(tz.E0);
+                        t8Var.setChecked(uz.E0);
                         return;
                     } else if (b11 == dataSettingsActivity.D) {
-                        t8Var.setChecked(tz.B0);
+                        t8Var.setChecked(uz.B0);
                         return;
                     } else if (b11 == dataSettingsActivity.F) {
-                        t8Var.setChecked(tz.C0);
+                        t8Var.setChecked(uz.C0);
                         return;
                     } else if (b11 == dataSettingsActivity.G) {
-                        t8Var.setChecked(tz.D0);
+                        t8Var.setChecked(uz.D0);
                         return;
                     } else if (b11 == dataSettingsActivity.J) {
-                        int i15 = tz.f18131a;
-                        t8Var.setChecked(sc.e(2048));
+                        int i15 = uz.f18500a;
+                        t8Var.setChecked(tc.e(2048));
                         return;
                     } else if (b11 == dataSettingsActivity.K) {
-                        int i16 = tz.f18131a;
-                        t8Var.setChecked(sc.e(1024));
+                        int i16 = uz.f18500a;
+                        t8Var.setChecked(tc.e(1024));
                         return;
                     } else {
                         return;
@@ -1760,14 +1759,14 @@ public final class j extends sk0 {
                 return;
             case 17:
                 ProxyListActivity proxyListActivity = (ProxyListActivity) obj;
-                if (c1Var.f47901f == 3) {
-                    t8 t8Var2 = (t8) c1Var.f47898a;
+                if (c1Var.f47912f == 3) {
+                    t8 t8Var2 = (t8) c1Var.f47909a;
                     int b12 = c1Var.b();
-                    if (b12 == ProxyListActivity.f0(proxyListActivity)) {
+                    if (b12 == ProxyListActivity.g0(proxyListActivity)) {
                         t8Var2.setChecked(proxyListActivity.d);
                         return;
-                    } else if (b12 == proxyListActivity.f33964w) {
-                        t8Var2.setChecked(tz.f18133a1);
+                    } else if (b12 == proxyListActivity.f33971w) {
+                        t8Var2.setChecked(uz.f18502a1);
                         return;
                     } else {
                         return;
@@ -1781,21 +1780,21 @@ public final class j extends sk0 {
 
     @Override
     public void z(c1 c1Var) {
-        switch (this.f7079c) {
+        switch (this.f7080c) {
             case 2:
                 jn jnVar = (jn) this.e;
-                int i10 = c1Var.f47901f;
+                int i10 = c1Var.f47912f;
                 if (i10 == 4 || i10 == 11 || i10 == 5) {
-                    EditTextBoldCursor textView = ((e6) c1Var.f47898a).getTextView();
+                    EditTextBoldCursor textView = ((e6) c1Var.f47909a).getTextView();
                     if (textView.isFocused()) {
                         if (jnVar.I) {
-                            an anVar = jnVar.f27454y;
+                            an anVar = jnVar.f27520y;
                             if (anVar != null) {
                                 anVar.f();
                             }
                             jnVar.c0(true);
                         }
-                        jnVar.f27423g1 = null;
+                        jnVar.f27489g1 = null;
                         textView.clearFocus();
                         i0.v1(textView);
                         return;
@@ -1809,125 +1808,125 @@ public final class j extends sk0 {
     }
 
     public j(l lVar, LaunchActivity launchActivity) {
-        this.f7079c = 0;
+        this.f7080c = 0;
         this.e = lVar;
         this.d = launchActivity;
     }
 
     public j(Context context) {
-        this.f7079c = 19;
+        this.f7080c = 19;
         this.d = context;
         ArrayList arrayList = new ArrayList();
         this.e = arrayList;
         int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
         q2 q2Var = new q2();
-        q2Var.f22812a = cd.L0(2131744196, null);
-        q2Var.f22813b = cd.L0(2131744188, null);
-        q2Var.f22814c = 0;
+        q2Var.f22813a = dd.L0(2131744196, null);
+        q2Var.f22814b = dd.L0(2131744188, null);
+        q2Var.f22815c = 0;
         q2Var.d = 0;
         q2Var.e = true;
-        q2Var.f22815f = false;
-        q2Var.f22816g = 0;
+        q2Var.f22816f = false;
+        q2Var.f22817g = 0;
         q2Var.h = currentTimeMillis;
-        q2Var.f22817i = false;
-        q2Var.f22818j = false;
-        q2Var.f22819k = 2;
+        q2Var.f22818i = false;
+        q2Var.f22819j = false;
+        q2Var.f22820k = 2;
         arrayList.add(q2Var);
         q2 q2Var2 = new q2();
-        q2Var2.f22812a = cd.L0(2131744195, null);
-        q2Var2.f22813b = cd.L0(2131744187, null);
-        q2Var2.f22814c = 1;
+        q2Var2.f22813a = dd.L0(2131744195, null);
+        q2Var2.f22814b = dd.L0(2131744187, null);
+        q2Var2.f22815c = 1;
         q2Var2.d = 2;
         q2Var2.e = false;
-        q2Var2.f22815f = false;
-        q2Var2.f22816g = 0;
+        q2Var2.f22816f = false;
+        q2Var2.f22817g = 0;
         q2Var2.h = currentTimeMillis - 3600;
-        q2Var2.f22817i = false;
-        q2Var2.f22818j = false;
-        q2Var2.f22819k = -1;
+        q2Var2.f22818i = false;
+        q2Var2.f22819j = false;
+        q2Var2.f22820k = -1;
         arrayList.add(q2Var2);
         q2 q2Var3 = new q2();
-        q2Var3.f22812a = cd.L0(2131744194, null);
-        q2Var3.f22813b = cd.L0(2131744186, null);
-        q2Var3.f22814c = 2;
+        q2Var3.f22813a = dd.L0(2131744194, null);
+        q2Var3.f22814b = dd.L0(2131744186, null);
+        q2Var3.f22815c = 2;
         q2Var3.d = 3;
         q2Var3.e = false;
-        q2Var3.f22815f = true;
-        q2Var3.f22816g = 0;
+        q2Var3.f22816f = true;
+        q2Var3.f22817g = 0;
         q2Var3.h = currentTimeMillis - 7200;
-        q2Var3.f22817i = false;
-        q2Var3.f22818j = true;
-        q2Var3.f22819k = -1;
+        q2Var3.f22818i = false;
+        q2Var3.f22819j = true;
+        q2Var3.f22820k = -1;
         arrayList.add(q2Var3);
         q2 q2Var4 = new q2();
-        q2Var4.f22812a = cd.L0(2131744193, null);
-        q2Var4.f22813b = cd.L0(2131744185, null);
-        q2Var4.f22814c = 3;
+        q2Var4.f22813a = dd.L0(2131744193, null);
+        q2Var4.f22814b = dd.L0(2131744185, null);
+        q2Var4.f22815c = 3;
         q2Var4.d = 0;
         q2Var4.e = false;
-        q2Var4.f22815f = false;
-        q2Var4.f22816g = 2;
+        q2Var4.f22816f = false;
+        q2Var4.f22817g = 2;
         q2Var4.h = currentTimeMillis - 10800;
-        q2Var4.f22817i = false;
-        q2Var4.f22818j = false;
-        q2Var4.f22819k = -1;
+        q2Var4.f22818i = false;
+        q2Var4.f22819j = false;
+        q2Var4.f22820k = -1;
         arrayList.add(q2Var4);
         q2 q2Var5 = new q2();
-        q2Var5.f22812a = cd.L0(2131744192, null);
-        q2Var5.f22813b = cd.L0(2131744184, null);
-        q2Var5.f22814c = 4;
+        q2Var5.f22813a = dd.L0(2131744192, null);
+        q2Var5.f22814b = dd.L0(2131744184, null);
+        q2Var5.f22815c = 4;
         q2Var5.d = 0;
         q2Var5.e = false;
-        q2Var5.f22815f = false;
-        q2Var5.f22816g = 1;
+        q2Var5.f22816f = false;
+        q2Var5.f22817g = 1;
         q2Var5.h = currentTimeMillis - 14400;
-        q2Var5.f22817i = false;
-        q2Var5.f22818j = false;
-        q2Var5.f22819k = 2;
+        q2Var5.f22818i = false;
+        q2Var5.f22819j = false;
+        q2Var5.f22820k = 2;
         arrayList.add(q2Var5);
         q2 q2Var6 = new q2();
-        q2Var6.f22812a = cd.L0(2131744191, null);
-        q2Var6.f22813b = cd.L0(2131744183, null);
-        q2Var6.f22814c = 5;
+        q2Var6.f22813a = dd.L0(2131744191, null);
+        q2Var6.f22814b = dd.L0(2131744183, null);
+        q2Var6.f22815c = 5;
         q2Var6.d = 0;
         q2Var6.e = false;
-        q2Var6.f22815f = false;
-        q2Var6.f22816g = 0;
+        q2Var6.f22816f = false;
+        q2Var6.f22817g = 0;
         q2Var6.h = currentTimeMillis - 18000;
-        q2Var6.f22817i = false;
-        q2Var6.f22818j = false;
-        q2Var6.f22819k = -1;
+        q2Var6.f22818i = false;
+        q2Var6.f22819j = false;
+        q2Var6.f22820k = -1;
         arrayList.add(q2Var6);
         q2 q2Var7 = new q2();
-        q2Var7.f22812a = cd.L0(2131744190, null);
-        q2Var7.f22813b = cd.L0(2131744182, null);
-        q2Var7.f22814c = 6;
+        q2Var7.f22813a = dd.L0(2131744190, null);
+        q2Var7.f22814b = dd.L0(2131744182, null);
+        q2Var7.f22815c = 6;
         q2Var7.d = 0;
         q2Var7.e = false;
-        q2Var7.f22815f = false;
-        q2Var7.f22816g = 0;
+        q2Var7.f22816f = false;
+        q2Var7.f22817g = 0;
         q2Var7.h = currentTimeMillis - 21600;
-        q2Var7.f22817i = true;
-        q2Var7.f22818j = false;
-        q2Var7.f22819k = -1;
+        q2Var7.f22818i = true;
+        q2Var7.f22819j = false;
+        q2Var7.f22820k = -1;
         arrayList.add(q2Var7);
         q2 q2Var8 = new q2();
-        q2Var8.f22812a = cd.L0(2131744189, null);
-        q2Var8.f22813b = cd.L0(2131744181, null);
-        q2Var8.f22814c = 0;
+        q2Var8.f22813a = dd.L0(2131744189, null);
+        q2Var8.f22814b = dd.L0(2131744181, null);
+        q2Var8.f22815c = 0;
         q2Var8.d = 0;
         q2Var8.e = false;
-        q2Var8.f22815f = false;
-        q2Var8.f22816g = 0;
+        q2Var8.f22816f = false;
+        q2Var8.f22817g = 0;
         q2Var8.h = currentTimeMillis - 25200;
-        q2Var8.f22817i = true;
-        q2Var8.f22818j = false;
-        q2Var8.f22819k = -1;
+        q2Var8.f22818i = true;
+        q2Var8.f22819j = false;
+        q2Var8.f22820k = -1;
         arrayList.add(q2Var8);
     }
 
     public j(ProxyListActivity proxyListActivity, Context context) {
-        this.f7079c = 17;
+        this.f7080c = 17;
         this.e = proxyListActivity;
         this.d = context;
         C(true);

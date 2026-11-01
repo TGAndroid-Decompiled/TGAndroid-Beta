@@ -1,29 +1,29 @@
 package org.telegram.ui.Components;
-public final class rm extends org.telegram.ui.yr0 {
-    public boolean f29953a;
-    public final int f29954b;
-    public final jn f29955c;
+public final class rm extends org.telegram.ui.xr0 {
+    public boolean f30015a;
+    public final int f30016b;
+    public final jn f30017c;
 
     public rm(jn jnVar, int i10) {
-        this.f29955c = jnVar;
-        this.f29954b = i10;
+        this.f30017c = jnVar;
+        this.f30016b = i10;
     }
 
     @Override
     public final void D() {
-        if (this.f29953a) {
-            this.f29955c.e0(this.f29954b);
+        if (this.f30015a) {
+            this.f30017c.e0(this.f30016b);
         }
     }
 
     @Override
     public final void J() {
-        this.f29955c.h0(this.f29954b, null);
+        this.f30017c.h0(this.f30016b, null);
     }
 
     @Override
     public final void W() {
-        this.f29953a = true;
+        this.f30015a = true;
     }
 
     @Override

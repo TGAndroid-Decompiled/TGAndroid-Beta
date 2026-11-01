@@ -28,23 +28,23 @@ public final class v extends bi {
                 w wVar = (w) obj;
                 v vVar = wVar.L;
                 if (vVar != null && vVar.isShowing()) {
-                    org.telegram.messenger.i0.Z2(wVar.getParentActivity(), w.g0(wVar));
+                    org.telegram.messenger.i0.Z2(wVar.getParentActivity(), w.h0(wVar));
                 }
                 super.L();
                 return;
             case 1:
                 un unVar = (un) obj;
                 v vVar2 = unVar.X1;
-                if (vVar2 != null && (vVar2.isShowing() || this.f24705o2)) {
+                if (vVar2 != null && (vVar2.isShowing() || this.f24796o2)) {
                     Activity parentActivity = unVar.getParentActivity();
                     i10 = ((org.telegram.ui.ActionBar.k2) unVar).classGuid;
                     org.telegram.messenger.i0.Z2(parentActivity, i10);
                 }
                 super.L();
-                unVar.ja(false, true);
+                unVar.oa(false, true);
                 km kmVar = unVar.l1;
                 if (kmVar != null) {
-                    WeakHashMap weakHashMap = r0.h0.f46123a;
+                    WeakHashMap weakHashMap = r0.h0.f46134a;
                     r0.x.c(kmVar);
                     return;
                 }
@@ -78,20 +78,20 @@ public final class v extends bi {
                 }
                 v vVar2 = wVar.L;
                 if (vVar2 != null && vVar2.isShowing()) {
-                    org.telegram.messenger.i0.Z2(wVar.getParentActivity(), w.h0(wVar));
+                    org.telegram.messenger.i0.Z2(wVar.getParentActivity(), w.i0(wVar));
                     return;
                 }
                 return;
             case 1:
                 un unVar = (un) obj;
-                boolean z10 = this.f24705o2;
-                boolean M = this.f24721s2.M();
+                boolean z10 = this.f24796o2;
+                boolean M = this.f24812s2.M();
                 if (!M) {
                     unVar.R3 = false;
                     mk mkVar2 = unVar.Z;
                     if (mkVar2 != null) {
                         if (!z10) {
-                            mkVar2.L();
+                            mkVar2.K();
                         }
                         if (unVar.Z.getEditField() != null) {
                             unVar.Z.getEditField().clearFocus();
@@ -112,10 +112,10 @@ public final class v extends bi {
                         i10 = ((org.telegram.ui.ActionBar.k2) unVar).classGuid;
                         org.telegram.messenger.i0.Z2(parentActivity, i10);
                     }
-                    unVar.ja(false, false);
+                    unVar.oa(false, false);
                     km kmVar = unVar.l1;
                     if (kmVar != null) {
-                        WeakHashMap weakHashMap = r0.h0.f46123a;
+                        WeakHashMap weakHashMap = r0.h0.f46134a;
                         r0.x.c(kmVar);
                         return;
                     }
@@ -127,7 +127,7 @@ public final class v extends bi {
                 return;
             case 3:
                 th.z2 z2Var = (th.z2) obj;
-                v vVar5 = z2Var.f49753r2;
+                v vVar5 = z2Var.f49767r2;
                 if (vVar5 != null) {
                     vVar5.A0(false);
                 }

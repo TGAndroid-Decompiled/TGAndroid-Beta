@@ -17,15 +17,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.at;
 import org.telegram.messenger.b8;
-import org.telegram.messenger.c00;
-import org.telegram.messenger.tz;
-import org.telegram.messenger.ui;
-import org.telegram.messenger.us;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.d00;
+import org.telegram.messenger.uz;
+import org.telegram.messenger.vi;
+import org.telegram.messenger.vs;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.fq;
-public final class k2 extends FrameLayout implements t0, us {
+public final class k2 extends FrameLayout implements t0, vs {
     public static final float[] U = {0.02f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.02f};
     public boolean D;
     public boolean E;
@@ -44,64 +44,64 @@ public final class k2 extends FrameLayout implements t0, us {
     public final TLRPC.Document R;
     public int S;
     public long T;
-    public final c00 f11153a;
-    public final Paint f11154b;
-    public final Paint f11155c;
+    public final d00 f11154a;
+    public final Paint f11155b;
+    public final Paint f11156c;
     public final boolean d;
     public File e;
-    public float f11156f;
+    public float f11157f;
     public final String h;
-    public final ImageReceiver f11157n;
-    public gg.c f11158r;
-    public final int f11159s;
-    public final int f11160w;
-    public boolean f11161x;
-    public boolean f11162y;
+    public final ImageReceiver f11158n;
+    public gg.c f11159r;
+    public final int f11160s;
+    public final int f11161w;
+    public boolean f11162x;
+    public boolean f11163y;
 
-    public k2(android.content.Context r18, org.telegram.messenger.c00 r19, int r20, int r21, org.telegram.ui.ActionBar.p6 r22) {
-        throw new UnsupportedOperationException("Method not decompiled: kg.k2.<init>(android.content.Context, org.telegram.messenger.c00, int, int, org.telegram.ui.ActionBar.p6):void");
+    public k2(android.content.Context r18, org.telegram.messenger.d00 r19, int r20, int r21, org.telegram.ui.ActionBar.p6 r22) {
+        throw new UnsupportedOperationException("Method not decompiled: kg.k2.<init>(android.content.Context, org.telegram.messenger.d00, int, int, org.telegram.ui.ActionBar.p6):void");
     }
 
     public final void a() {
         File file = this.e;
-        if ((file != null && file.exists()) || tz.B0) {
+        if ((file != null && file.exists()) || uz.B0) {
             File file2 = this.e;
             if (file2 != null && file2.exists()) {
-                if ((zs.e().f19749p & 512) != 0) {
-                    gg.c cVar = this.f11158r;
+                if ((at.e().f14845p & 512) != 0) {
+                    gg.c cVar = this.f11159r;
                     if (cVar != null) {
                         org.telegram.messenger.i0.r(cVar);
                     }
                     gg.c cVar2 = new gg.c(this, 27);
-                    this.f11158r = cVar2;
+                    this.f11159r = cVar2;
                     org.telegram.messenger.i0.h3(cVar2, 300L);
                     return;
                 }
                 try {
                     MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
-                    mediaMetadataRetriever.setDataSource(org.telegram.messenger.w0.f19025b, Uri.fromFile(this.e));
+                    mediaMetadataRetriever.setDataSource(org.telegram.messenger.w0.f18945b, Uri.fromFile(this.e));
                     int parseInt = Integer.parseInt(mediaMetadataRetriever.extractMetadata(18));
                     int parseInt2 = Integer.parseInt(mediaMetadataRetriever.extractMetadata(19));
                     mediaMetadataRetriever.release();
-                    this.f11156f = parseInt / parseInt2;
+                    this.f11157f = parseInt / parseInt2;
                 } catch (Exception unused) {
-                    this.f11156f = 0.671f;
+                    this.f11157f = 0.671f;
                 }
             } else {
-                this.f11156f = 0.671f;
+                this.f11157f = 0.671f;
             }
             if (this.E) {
                 b();
             }
         }
-        this.f11158r = null;
+        this.f11159r = null;
     }
 
     public final void b() {
         Uri uri;
-        int i10 = this.f11159s;
-        if ((this.e != null || tz.B0) && this.H == null) {
-            this.I.a(this.f11156f, 0);
+        int i10 = this.f11160s;
+        if ((this.e != null || uz.B0) && this.H == null) {
+            this.I.a(this.f11157f, 0);
             j2 j2Var = new j2(this, 0);
             this.H = j2Var;
             TextureView textureView = this.J;
@@ -114,7 +114,7 @@ public final class k2 extends FrameLayout implements t0, us {
                     StringBuilder sb2 = new StringBuilder("?account=");
                     sb2.append(i10);
                     sb2.append("&id=");
-                    sb2.append(this.R.f19799id);
+                    sb2.append(this.R.f19800id);
                     sb2.append("&hash=");
                     sb2.append(this.R.access_hash);
                     sb2.append("&dc=");
@@ -124,7 +124,7 @@ public final class k2 extends FrameLayout implements t0, us {
                     sb2.append("&mime=");
                     sb2.append(URLEncoder.encode(this.R.mime_type, "UTF-8"));
                     sb2.append("&rid=");
-                    sb2.append(b8.G(i10).F(ui.b0(i10).D));
+                    sb2.append(b8.G(i10).F(vi.b0(i10).D));
                     sb2.append("&name=");
                     sb2.append(URLEncoder.encode(b8.B(this.R), "UTF-8"));
                     sb2.append("&reference=");
@@ -144,7 +144,7 @@ public final class k2 extends FrameLayout implements t0, us {
             }
             this.H.preparePlayer(uri, false, 1.0f);
             if (!this.F) {
-                this.f11157n.Q0();
+                this.f11158n.Q0();
                 textureView.setAlpha(0.0f);
             }
             this.H.seekTo(this.T + 60);
@@ -154,14 +154,14 @@ public final class k2 extends FrameLayout implements t0, us {
 
     public final void c() {
         boolean z10;
-        if (this.f11161x && this.f11162y) {
+        if (this.f11162x && this.f11163y) {
             z10 = true;
         } else {
             z10 = false;
         }
         if (this.D != z10) {
             this.D = z10;
-            ImageReceiver imageReceiver = this.f11157n;
+            ImageReceiver imageReceiver = this.f11158n;
             if (z10) {
                 imageReceiver.P();
             } else {
@@ -172,7 +172,7 @@ public final class k2 extends FrameLayout implements t0, us {
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == zs.Y1) {
+        if (i10 == at.Y1) {
             String str = (String) objArr[0];
             String str2 = this.h;
             if (str2 != null && str2.equals(str)) {
@@ -190,23 +190,23 @@ public final class k2 extends FrameLayout implements t0, us {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f11162y = true;
+        this.f11163y = true;
         c();
         if (!this.F) {
             a();
         }
-        zs.f(this.f11159s).c(this, zs.Y1);
+        at.f(this.f11160s).c(this, at.Y1);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f11162y = false;
+        this.f11163y = false;
         c();
-        zs.f(this.f11159s).n(this, zs.Y1);
+        at.f(this.f11160s).n(this, at.Y1);
         o oVar = this.P;
         if (oVar != null) {
-            HashMap hashMap = (HashMap) oVar.f11205f;
+            HashMap hashMap = (HashMap) oVar.f11206f;
             for (Bitmap bitmap : hashMap.values()) {
                 bitmap.recycle();
             }
@@ -236,21 +236,21 @@ public final class k2 extends FrameLayout implements t0, us {
             this.S = measuredWidth;
             s0 s0Var = this.Q;
             if (s0Var != null) {
-                RectF rectF = (RectF) s0Var.f11264c;
+                RectF rectF = (RectF) s0Var.f11265c;
                 ((Rect) s0Var.e).set(0, 0, getMeasuredWidth(), getMeasuredHeight());
                 rectF.set(org.telegram.messenger.i0.P);
                 rectF.inset(org.telegram.messenger.i0.L(16.0f), org.telegram.messenger.i0.L(16.0f));
             }
             f2 f2Var = this.N;
             if (f2Var != null) {
-                RectF rectF2 = f2Var.f11070c;
-                RectF rectF3 = f2Var.f11068a;
-                int i14 = this.f11160w;
+                RectF rectF2 = f2Var.f11071c;
+                RectF rectF3 = f2Var.f11069a;
+                int i14 = this.f11161w;
                 if (i14 != 6 && i14 != 9 && i14 != 3 && i14 != 7 && i14 != 24 && i14 != 43 && i14 != 11 && i14 != 4) {
                     RectF rectF4 = org.telegram.messenger.i0.P;
                     float width = (int) (rectF4.width() * 0.4f);
                     rectF3.set(rectF4.centerX() - width, rectF4.centerY() - width, rectF4.centerX() + width, rectF4.centerY() + width);
-                    f2Var.f11069b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                    f2Var.f11070b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 } else {
                     rectF3.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                     rectF3.inset(org.telegram.messenger.i0.L(30.0f), org.telegram.messenger.i0.L(30.0f));
@@ -261,9 +261,9 @@ public final class k2 extends FrameLayout implements t0, us {
             }
             d2 d2Var = this.O;
             if (d2Var != null) {
-                RectF rectF5 = d2Var.f11033a;
+                RectF rectF5 = d2Var.f11034a;
                 rectF5.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                d2Var.f11034b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                d2Var.f11035b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 rectF5.inset(org.telegram.messenger.i0.L(100.0f), org.telegram.messenger.i0.L(100.0f));
                 rectF5.offset(0.0f, getMeasuredHeight() * 0.1f);
                 ArrayList arrayList = d2Var.e;
@@ -274,9 +274,9 @@ public final class k2 extends FrameLayout implements t0, us {
             }
             o oVar = this.P;
             if (oVar != null) {
-                ((RectF) oVar.f11206g).set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                ((RectF) oVar.f11207g).set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 ((RectF) this.P.h).set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                ((RectF) this.P.f11206g).inset(org.telegram.messenger.i0.L(0.0f), getMeasuredHeight() * 0.1f);
+                ((RectF) this.P.f11207g).inset(org.telegram.messenger.i0.L(0.0f), getMeasuredHeight() * 0.1f);
                 ArrayList arrayList2 = this.P.e;
                 System.currentTimeMillis();
                 for (int i16 = 0; i16 < arrayList2.size(); i16++) {
@@ -355,14 +355,14 @@ public final class k2 extends FrameLayout implements t0, us {
             }
             this.G = Math.abs(measuredWidth2);
         }
-        if (z10 != this.f11161x) {
-            this.f11161x = z10;
+        if (z10 != this.f11162x) {
+            this.f11162x = z10;
             c();
         }
         if (z12 != this.E) {
             this.E = z12;
-            ImageReceiver imageReceiver = this.f11157n;
-            imageReceiver.f14408t0 = z12;
+            ImageReceiver imageReceiver = this.f11158n;
+            imageReceiver.f14409t0 = z12;
             if (z12) {
                 imageReceiver.P0(false);
                 b();

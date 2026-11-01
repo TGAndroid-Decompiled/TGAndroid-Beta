@@ -5,16 +5,16 @@ import java.lang.Thread;
 import java.util.concurrent.atomic.AtomicBoolean;
 import vh.w3;
 public final class r implements Thread.UncaughtExceptionHandler {
-    public final w3 f53501a;
-    public final ea.d f53502b;
-    public final Thread.UncaughtExceptionHandler f53503c;
+    public final w3 f53519a;
+    public final ea.d f53520b;
+    public final Thread.UncaughtExceptionHandler f53521c;
     public final u9.a d;
     public final AtomicBoolean e = new AtomicBoolean(false);
 
     public r(w3 w3Var, ea.d dVar, Thread.UncaughtExceptionHandler uncaughtExceptionHandler, u9.a aVar) {
-        this.f53501a = w3Var;
-        this.f53502b = dVar;
-        this.f53503c = uncaughtExceptionHandler;
+        this.f53519a = w3Var;
+        this.f53520b = dVar;
+        this.f53521c = uncaughtExceptionHandler;
         this.d = aVar;
     }
 

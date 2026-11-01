@@ -37,24 +37,24 @@ import java.util.List;
 import java.util.WeakHashMap;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.hc;
-import org.telegram.messenger.tz;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.ic;
+import org.telegram.messenger.uz;
+import org.telegram.messenger.wp;
 import org.telegram.ui.Components.g20;
 import org.telegram.ui.Components.gr;
 import org.telegram.ui.Components.wb;
 import org.telegram.ui.Components.x8;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.hf0;
-import org.telegram.ui.my;
-import org.telegram.ui.pf0;
+import org.telegram.ui.gf0;
+import org.telegram.ui.ly;
+import org.telegram.ui.of0;
+import org.telegram.ui.p70;
 import org.telegram.ui.pn;
-import org.telegram.ui.q70;
 import org.telegram.ui.sn;
 public class ActionBarLayout extends FrameLayout implements z4, fg.b {
-    public static Drawable f20066v1;
-    public static Drawable f20067w1;
-    public static Paint f20068x1;
+    public static Drawable f20067v1;
+    public static Drawable f20068w1;
+    public static Paint f20069x1;
     public boolean A0;
     public long B0;
     public boolean C0;
@@ -81,7 +81,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
     public final AccelerateDecelerateInterpolator N;
     public int N0;
     public float O;
-    public q70 O0;
+    public p70 O0;
     public boolean P;
     public v4 P0;
     public boolean Q;
@@ -101,107 +101,107 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
     public boolean X0;
     public Runnable Y0;
     public int Z0;
-    public boolean f20069a;
-    public boolean f20070a0;
-    public boolean f20071a1;
-    public boolean f20072b;
-    public final ArrayList f20073b0;
-    public final Path f20074b1;
-    public Window f20075c;
-    public final ArrayList f20076c0;
-    public final float[] f20077c1;
+    public boolean f20070a;
+    public boolean f20071a0;
+    public boolean f20072a1;
+    public boolean f20073b;
+    public final ArrayList f20074b0;
+    public final Path f20075b1;
+    public Window f20076c;
+    public final ArrayList f20077c0;
+    public final float[] f20078c1;
     public Runnable d;
-    public final x4 f20078d0;
-    public boolean f20079d1;
+    public final x4 f20079d0;
+    public boolean f20080d1;
     public Runnable e;
-    public c5 f20080e0;
-    public final int[] f20081e1;
-    public boolean f20082f;
-    public c5 f20083f0;
-    public boolean f20084f1;
-    public pn f20085g0;
-    public int f20086g1;
+    public c5 f20081e0;
+    public final int[] f20082e1;
+    public boolean f20083f;
+    public c5 f20084f0;
+    public boolean f20085f1;
+    public pn f20086g0;
+    public int f20087g1;
     public boolean h;
-    public final ArrayList f20087h0;
-    public final org.telegram.ui.Components.t5 f20088h1;
-    public ArrayList f20089i0;
-    public boolean f20090i1;
-    public final ArrayList f20091j0;
-    public boolean f20092j1;
-    public int[] f20093k0;
-    public boolean f20094k1;
-    public int[] f20095l0;
+    public final ArrayList f20088h0;
+    public final org.telegram.ui.Components.t5 f20089h1;
+    public ArrayList f20090i0;
+    public boolean f20091i1;
+    public final ArrayList f20092j0;
+    public boolean f20093j1;
+    public int[] f20094k0;
+    public boolean f20095k1;
+    public int[] f20096l0;
     public float l1;
     public int[] m0;
-    public boolean f20096m1;
-    public boolean f20097n;
-    public int[] f20098n0;
-    public AnimatorSet f20099n1;
-    public int f20100o0;
-    public ArrayList f20101o1;
-    public sn f20102p0;
-    public final p f20103p1;
-    public AnimatorSet f20104q0;
-    public boolean f20105q1;
-    public ColorDrawable f20106r;
-    public final e2.f f20107r0;
-    public int f20108r1;
-    public w f20109s;
-    public float f20110s0;
-    public r0.j1 f20111s1;
-    public boolean f20112t0;
-    public i0.c f20113t1;
-    public s6 f20114u0;
-    public i0.c f20115u1;
-    public boolean f20116v0;
-    public w f20117w;
-    public boolean f20118w0;
-    public w f20119x;
-    public int f20120x0;
-    public s3 f20121y;
-    public boolean f20122y0;
-    public boolean f20123z0;
+    public boolean f20097m1;
+    public boolean f20098n;
+    public int[] f20099n0;
+    public AnimatorSet f20100n1;
+    public int f20101o0;
+    public ArrayList f20102o1;
+    public sn f20103p0;
+    public final p f20104p1;
+    public AnimatorSet f20105q0;
+    public boolean f20106q1;
+    public ColorDrawable f20107r;
+    public final e2.f f20108r0;
+    public int f20109r1;
+    public w f20110s;
+    public float f20111s0;
+    public r0.j1 f20112s1;
+    public boolean f20113t0;
+    public i0.c f20114t1;
+    public s6 f20115u0;
+    public i0.c f20116u1;
+    public boolean f20117v0;
+    public w f20118w;
+    public boolean f20119w0;
+    public w f20120x;
+    public int f20121x0;
+    public s3 f20122y;
+    public boolean f20123y0;
+    public boolean f20124z0;
 
     public ActionBarLayout(Context context, boolean z10) {
         super(context);
         this.L = new DecelerateInterpolator(1.5f);
         this.M = new OvershootInterpolator(1.02f);
         this.N = new AccelerateDecelerateInterpolator();
-        this.f20073b0 = new ArrayList();
-        this.f20076c0 = new ArrayList();
+        this.f20074b0 = new ArrayList();
+        this.f20077c0 = new ArrayList();
         x4 x4Var = new x4();
-        x4Var.f21528b = new SparseIntArray();
-        x4Var.f21529c = new int[]{t6.f21139ob, t6.f21191rb, t6.f21209sb, t6.f21228tb, t6.Oc, t6.f21174qb};
-        this.f20078d0 = x4Var;
-        this.f20087h0 = new ArrayList();
-        this.f20091j0 = new ArrayList();
-        this.f20107r0 = new e2.f(null);
+        x4Var.f21529b = new SparseIntArray();
+        x4Var.f21530c = new int[]{t6.f21140ob, t6.f21192rb, t6.f21210sb, t6.f21229tb, t6.Oc, t6.f21175qb};
+        this.f20079d0 = x4Var;
+        this.f20088h0 = new ArrayList();
+        this.f20092j0 = new ArrayList();
+        this.f20108r0 = new e2.f((int[]) null);
         this.W0 = new Rect();
         this.Z0 = -1;
-        this.f20074b1 = new Path();
-        this.f20077c1 = new float[8];
-        this.f20081e1 = new int[2];
-        this.f20088h1 = new org.telegram.ui.Components.t5(this, 280L, gr.h);
-        this.f20101o1 = new ArrayList();
-        this.f20103p1 = new p(this, 2);
+        this.f20075b1 = new Path();
+        this.f20078c1 = new float[8];
+        this.f20082e1 = new int[2];
+        this.f20089h1 = new org.telegram.ui.Components.t5(this, 280L, gr.h);
+        this.f20102o1 = new ArrayList();
+        this.f20104p1 = new p(this, 2);
         i0.c cVar = i0.c.e;
-        this.f20113t1 = cVar;
-        this.f20115u1 = cVar;
+        this.f20114t1 = cVar;
+        this.f20116u1 = cVar;
         this.Q0 = (Activity) context;
         this.R0 = z10;
-        if (f20067w1 == null) {
-            f20067w1 = getResources().getDrawable(2131231620);
-            f20066v1 = getResources().getDrawable(2131231238).mutate();
-            f20068x1 = new Paint();
+        if (f20068w1 == null) {
+            f20068w1 = getResources().getDrawable(2131231620);
+            f20067v1 = getResources().getDrawable(2131231238).mutate();
+            f20069x1 = new Paint();
         }
         mg.l lVar = new mg.l(this, 8);
-        WeakHashMap weakHashMap = r0.h0.f46123a;
+        WeakHashMap weakHashMap = r0.h0.f46134a;
         r0.z.i(this, lVar);
     }
 
     public static void E(ArrayList arrayList, View view) {
         if (view instanceof fg.b) {
-            arrayList.addAll(((fg.b) view).F());
+            arrayList.addAll(((fg.b) view).G());
         }
         if (view instanceof ViewGroup) {
             ViewGroup viewGroup = (ViewGroup) view;
@@ -227,13 +227,13 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
             List list = actionBarLayout.U0;
             list.remove(list.size() - 1);
             actionBarLayout.K("onSlideAnimationEnd");
-            w wVar = actionBarLayout.f20109s;
+            w wVar = actionBarLayout.f20110s;
             wVar.setAlpha(1.0f);
-            w wVar2 = actionBarLayout.f20117w;
-            actionBarLayout.f20109s = wVar2;
-            actionBarLayout.f20117w = wVar;
+            w wVar2 = actionBarLayout.f20118w;
+            actionBarLayout.f20110s = wVar2;
+            actionBarLayout.f20118w = wVar;
             actionBarLayout.bringChildToFront(wVar2);
-            View view = actionBarLayout.f20119x;
+            View view = actionBarLayout.f20120x;
             if (view != null) {
                 actionBarLayout.bringChildToFront(view);
             }
@@ -260,12 +260,12 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
             }
             k2Var3.detachSheets();
         }
-        actionBarLayout.f20117w.setVisibility(4);
+        actionBarLayout.f20118w.setVisibility(4);
         actionBarLayout.Q = false;
         actionBarLayout.T = false;
-        actionBarLayout.f20109s.setTranslationX(0.0f);
-        actionBarLayout.f20117w.setTranslationX(0.0f);
-        actionBarLayout.f20109s.setLayerType(0, null);
+        actionBarLayout.f20110s.setTranslationX(0.0f);
+        actionBarLayout.f20118w.setTranslationX(0.0f);
+        actionBarLayout.f20110s.setLayerType(0, null);
         actionBarLayout.setInnerTranslationX(0.0f);
     }
 
@@ -292,8 +292,8 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
     }
 
     public static boolean y(int i10, int i11, int i12) {
-        if (i10 != t6.f20984g5 && i10 != t6.Oc && i10 != t6.Fe) {
-            if (i10 != t6.f21191rb && i10 != t6.f21209sb && i10 != t6.f21228tb && i10 != t6.Be && i10 != t6.Ce && i10 != t6.De && i10 != t6.Ee) {
+        if (i10 != t6.f20985g5 && i10 != t6.Oc && i10 != t6.Fe) {
+            if (i10 != t6.f21192rb && i10 != t6.f21210sb && i10 != t6.f21229tb && i10 != t6.Be && i10 != t6.Ce && i10 != t6.De && i10 != t6.Ee) {
                 return true;
             }
             if (i11 != 0 && i12 != 0) {
@@ -320,7 +320,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
         }
         int height = rootView.getHeight();
         if (rect.top != 0) {
-            i10 = org.telegram.messenger.i0.f16020m;
+            i10 = org.telegram.messenger.i0.f16166m;
         } else {
             i10 = 0;
         }
@@ -328,7 +328,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
     }
 
     public final boolean C() {
-        if (this.f20092j1 && this.f20094k1) {
+        if (this.f20093j1 && this.f20095k1) {
             return true;
         }
         return false;
@@ -346,21 +346,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
         }
     }
 
-    @Override
-    public final List F() {
-        k2 lastFragment = getLastFragment();
-        if (lastFragment != null) {
-            ArrayList arrayList = new ArrayList();
-            if (lastFragment instanceof fg.b) {
-                arrayList.addAll(((fg.b) lastFragment).F());
-            }
-            E(arrayList, lastFragment.getFragmentView());
-            return arrayList;
-        }
-        return Collections.EMPTY_LIST;
-    }
-
-    public final void G(boolean z10) {
+    public final void F(boolean z10) {
         J();
         M();
         Runnable runnable = this.d;
@@ -381,26 +367,40 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
             this.J0 = null;
         }
         setAlpha(1.0f);
-        this.f20109s.setAlpha(1.0f);
-        this.f20109s.setScaleX(1.0f);
-        this.f20109s.setScaleY(1.0f);
-        this.f20117w.setAlpha(1.0f);
-        this.f20117w.setScaleX(1.0f);
-        this.f20117w.setScaleY(1.0f);
+        this.f20110s.setAlpha(1.0f);
+        this.f20110s.setScaleX(1.0f);
+        this.f20110s.setScaleY(1.0f);
+        this.f20118w.setAlpha(1.0f);
+        this.f20118w.setScaleX(1.0f);
+        this.f20118w.setScaleY(1.0f);
+    }
+
+    @Override
+    public final List G() {
+        k2 lastFragment = getLastFragment();
+        if (lastFragment != null) {
+            ArrayList arrayList = new ArrayList();
+            if (lastFragment instanceof fg.b) {
+                arrayList.addAll(((fg.b) lastFragment).G());
+            }
+            E(arrayList, lastFragment.getFragmentView());
+            return arrayList;
+        }
+        return Collections.EMPTY_LIST;
     }
 
     public final void H() {
         i5 i5Var;
         l lVar;
-        if (!this.f20070a0 && !this.Q && !i() && !this.U0.isEmpty()) {
-            g20 g20Var = g20.f26224d0;
-            if (g20Var != null && g20Var.f26237x) {
+        if (!this.f20071a0 && !this.Q && !i() && !this.U0.isEmpty()) {
+            g20 g20Var = g20.f26296d0;
+            if (g20Var != null && g20Var.f26309x) {
                 g20Var.e(false);
                 return;
             }
             if (!h0() && (lVar = this.D) != null && !lVar.u()) {
                 l lVar2 = this.D;
-                if (lVar2.f20497n0) {
+                if (lVar2.f20498n0) {
                     lVar2.k(true);
                     return;
                 }
@@ -435,7 +435,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
                 animatorSet.cancel();
             }
             this.W = false;
-            this.f20070a0 = false;
+            this.f20071a0 = false;
             this.B0 = 0L;
             this.H = null;
             this.I = null;
@@ -454,9 +454,9 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
         if (runnable != null) {
             runnable.run();
         }
-        ArrayList arrayList = hc.D().f15856f;
+        ArrayList arrayList = ic.D().f16249f;
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            ((org.telegram.ui.Components.s5) arrayList.get(i10)).f30158y0 = 0;
+            ((org.telegram.ui.Components.s5) arrayList.get(i10)).f30211y0 = 0;
         }
         g(str);
     }
@@ -471,7 +471,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
         Runnable runnable;
         if (this.W && (runnable = this.F0) != null) {
             this.W = false;
-            this.f20070a0 = false;
+            this.f20071a0 = false;
             this.B0 = 0L;
             this.H = null;
             this.I = null;
@@ -513,24 +513,24 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
     public final void Q() {
         this.P = false;
         this.Q = true;
-        this.f20117w.setVisibility(0);
+        this.f20118w.setVisibility(0);
         this.V = false;
         k2 k2Var = (k2) sc.e.g(2, this.U0);
         View view = k2Var.fragmentView;
         if (view == null && (view = k2Var.performCreateView(this.Q0)) != null && k2Var.isSupportEdgeToEdge() && k2Var.drawEdgeNavigationBar()) {
             o oVar = new o(k2Var);
-            WeakHashMap weakHashMap = r0.h0.f46123a;
+            WeakHashMap weakHashMap = r0.h0.f46134a;
             r0.z.i(view, oVar);
-            this.f20117w.invalidate();
+            this.f20118w.invalidate();
         }
         ViewGroup viewGroup = (ViewGroup) view.getParent();
         if (viewGroup != null) {
             k2Var.onRemoveFromParent();
             viewGroup.removeView(view);
         }
-        this.f20117w.addView(view);
-        this.f20117w.setShouldHandleBottomInsets(k2Var.getEdgeToEdgeSupportMode());
-        this.f20117w.setDrawNavigationBar(k2Var.drawEdgeNavigationBar());
+        this.f20118w.addView(view);
+        this.f20118w.setShouldHandleBottomInsets(k2Var.getEdgeToEdgeSupportMode());
+        this.f20118w.setDrawNavigationBar(k2Var.drawEdgeNavigationBar());
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
         layoutParams.width = -1;
         layoutParams.height = -1;
@@ -545,18 +545,18 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
             if (this.I0) {
                 k2Var.actionBar.setOccupyStatusBar(false);
             }
-            this.f20117w.addView(k2Var.actionBar);
+            this.f20118w.addView(k2Var.actionBar);
         }
         k2Var.setTitleOverlayTextIfActionBarAttached(this.M0, this.N0, this.O0);
-        k2Var.attachSheets(this.f20117w);
+        k2Var.attachSheets(this.f20118w);
         if (!k2Var.hasOwnBackground && view.getBackground() == null) {
-            a7.i(t6.f20929d6, view, null);
+            a7.i(t6.f20930d6, view, null);
         }
         k2Var.onResume();
-        if (this.f20104q0 != null) {
-            this.f20089i0 = k2Var.getThemeDescriptions();
+        if (this.f20105q0 != null) {
+            this.f20090i0 = k2Var.getThemeDescriptions();
         }
-        this.f20109s.setLayerType(2, null);
+        this.f20110s.setLayerType(2, null);
         ((k2) sc.e.g(1, this.U0)).prepareFragmentToSlide(true, true);
         k2Var.prepareFragmentToSlide(false, true);
     }
@@ -567,7 +567,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
 
     public final boolean S(k2 k2Var, boolean z10) {
         w4 w4Var = new w4(k2Var);
-        w4Var.f21446b = z10;
+        w4Var.f21447b = z10;
         return T(w4Var);
     }
 
@@ -577,8 +577,8 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
 
     public final boolean U(k2 k2Var, boolean z10, boolean z11) {
         w4 w4Var = new w4(k2Var);
-        w4Var.f21446b = z10;
-        w4Var.f21447c = z11;
+        w4Var.f21447b = z10;
+        w4Var.f21448c = z11;
         w4Var.d = true;
         w4Var.e = false;
         return T(w4Var);
@@ -618,7 +618,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
             }
             k2Var.detachSheets();
         }
-        this.f20117w.setVisibility(4);
+        this.f20118w.setVisibility(4);
     }
 
     public final void W(boolean z10, boolean z11) {
@@ -644,8 +644,8 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
             }
             return;
         }
-        this.f20122y0 = true;
-        this.f20123z0 = z10;
+        this.f20123y0 = true;
+        this.f20124z0 = z10;
         this.A0 = z11;
     }
 
@@ -654,8 +654,8 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
     }
 
     public final void Y() {
-        this.f20109s.removeAllViews();
-        this.f20117w.removeAllViews();
+        this.f20110s.removeAllViews();
+        this.f20118w.removeAllViews();
         this.D = null;
         this.H = null;
         this.I = null;
@@ -680,7 +680,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
     @Override
     public final void addView(View view, int i10, ViewGroup.LayoutParams layoutParams) {
         super.addView(view, i10, layoutParams);
-        r0.j1 j1Var = this.f20111s1;
+        r0.j1 j1Var = this.f20112s1;
         if (j1Var != null) {
             o(view, j1Var);
         }
@@ -689,7 +689,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
     public final void b(ArrayList arrayList) {
         if (arrayList != null) {
             int[] iArr = new int[arrayList.size()];
-            this.f20076c0.add(iArr);
+            this.f20077c0.add(iArr);
             int size = arrayList.size();
             for (int i10 = 0; i10 < size; i10++) {
                 iArr[i10] = ((c7) arrayList.get(i10)).c();
@@ -717,9 +717,9 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
                     view = k2Var.performCreateView(activity);
                     if (view != null && k2Var.isSupportEdgeToEdge() && k2Var.drawEdgeNavigationBar()) {
                         o oVar = new o(k2Var);
-                        WeakHashMap weakHashMap = r0.h0.f46123a;
+                        WeakHashMap weakHashMap = r0.h0.f46134a;
                         r0.z.i(view, oVar);
-                        this.f20109s.invalidate();
+                        this.f20110s.invalidate();
                     }
                 } else {
                     ViewGroup viewGroup3 = (ViewGroup) view.getParent();
@@ -729,12 +729,12 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
                     }
                 }
                 if (!k2Var.hasOwnBackground && view.getBackground() == null) {
-                    a7.i(t6.f20929d6, view, null);
+                    a7.i(t6.f20930d6, view, null);
                 }
-                w wVar = this.f20109s;
+                w wVar = this.f20110s;
                 wVar.addView(view, Utilities.j(0, wVar.getChildCount(), 0), w7.b6.c(-1.0f, -1));
-                this.f20109s.setShouldHandleBottomInsets(k2Var.getEdgeToEdgeSupportMode());
-                this.f20109s.setDrawNavigationBar(k2Var.drawEdgeNavigationBar());
+                this.f20110s.setShouldHandleBottomInsets(k2Var.getEdgeToEdgeSupportMode());
+                this.f20110s.setDrawNavigationBar(k2Var.drawEdgeNavigationBar());
                 l lVar = k2Var.actionBar;
                 if (lVar != null && lVar.K) {
                     if (this.I0) {
@@ -744,10 +744,10 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
                     if (viewGroup4 != null) {
                         viewGroup4.removeView(k2Var.actionBar);
                     }
-                    this.f20109s.addView(k2Var.actionBar);
+                    this.f20110s.addView(k2Var.actionBar);
                 }
                 k2Var.setTitleOverlayTextIfActionBarAttached(this.M0, this.N0, this.O0);
-                k2Var.attachSheets(this.f20109s);
+                k2Var.attachSheets(this.f20110s);
                 i10 = 0;
             }
             this.U0.add(i10, k2Var);
@@ -774,9 +774,9 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
                     view3 = k2Var.performCreateView(activity);
                     if (view3 != null && k2Var.isSupportEdgeToEdge() && k2Var.drawEdgeNavigationBar()) {
                         o oVar2 = new o(k2Var);
-                        WeakHashMap weakHashMap2 = r0.h0.f46123a;
+                        WeakHashMap weakHashMap2 = r0.h0.f46134a;
                         r0.z.i(view3, oVar2);
-                        this.f20109s.invalidate();
+                        this.f20110s.invalidate();
                     }
                 } else {
                     ViewGroup viewGroup5 = (ViewGroup) view3.getParent();
@@ -786,11 +786,11 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
                     }
                 }
                 if (!k2Var.hasOwnBackground && view3.getBackground() == null) {
-                    a7.i(t6.f20929d6, view3, null);
+                    a7.i(t6.f20930d6, view3, null);
                 }
-                this.f20109s.addView(view3, w7.b6.c(-1.0f, -1));
-                this.f20109s.setShouldHandleBottomInsets(k2Var.getEdgeToEdgeSupportMode());
-                this.f20109s.setDrawNavigationBar(k2Var.drawEdgeNavigationBar());
+                this.f20110s.addView(view3, w7.b6.c(-1.0f, -1));
+                this.f20110s.setShouldHandleBottomInsets(k2Var.getEdgeToEdgeSupportMode());
+                this.f20110s.setDrawNavigationBar(k2Var.drawEdgeNavigationBar());
                 l lVar3 = k2Var.actionBar;
                 if (lVar3 != null && lVar3.K) {
                     if (this.I0) {
@@ -800,10 +800,10 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
                     if (viewGroup6 != null) {
                         viewGroup6.removeView(k2Var.actionBar);
                     }
-                    this.f20109s.addView(k2Var.actionBar);
+                    this.f20110s.addView(k2Var.actionBar);
                 }
                 k2Var.setTitleOverlayTextIfActionBarAttached(this.M0, this.N0, this.O0);
-                k2Var.attachSheets(this.f20109s);
+                k2Var.attachSheets(this.f20110s);
                 k2Var.onResume();
                 k2Var.onTransitionAnimationEnd(false, true);
                 k2Var.onTransitionAnimationEnd(true, true);
@@ -843,17 +843,17 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
 
     public final void d(ArrayList arrayList) {
         if (arrayList != null) {
-            this.f20087h0.add(arrayList);
+            this.f20088h0.add(arrayList);
             int[] iArr = new int[arrayList.size()];
-            this.f20073b0.add(iArr);
+            this.f20074b0.add(iArr);
             int size = arrayList.size();
             for (int i10 = 0; i10 < size; i10++) {
                 c7 c7Var = (c7) arrayList.get(i10);
                 iArr[i10] = c7Var.c();
-                b7 b7Var = c7Var.f20236g;
-                c7Var.f20236g = null;
+                b7 b7Var = c7Var.f20237g;
+                c7Var.f20237g = null;
                 if (b7Var != null) {
-                    ArrayList arrayList2 = this.f20091j0;
+                    ArrayList arrayList2 = this.f20092j0;
                     if (!arrayList2.contains(b7Var)) {
                         arrayList2.add(b7Var);
                     }
@@ -884,17 +884,17 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
         Canvas canvas2;
         if (this.E != null && v(true) > 0) {
             canvas2 = canvas;
-            canvas2.drawRect(0.0f, getHeight() - (this.E.getMeasuredHeight() + this.f20113t1.d), getWidth(), getHeight(), this.E.getBackgroundPaint());
+            canvas2.drawRect(0.0f, getHeight() - (this.E.getMeasuredHeight() + this.f20114t1.d), getWidth(), getHeight(), this.E.getBackgroundPaint());
         } else {
             canvas2 = canvas;
         }
-        this.f20071a1 = true;
+        this.f20072a1 = true;
         if (this.S0) {
             canvas2.save();
             float L = org.telegram.messenger.i0.L(24.0f);
             RectF rectF = org.telegram.messenger.i0.P;
             rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-            Path path = this.f20074b1;
+            Path path = this.f20075b1;
             path.rewind();
             path.addRoundRect(rectF, L, L, Path.Direction.CW);
             canvas2.clipPath(path);
@@ -941,13 +941,13 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
         if (k2Var == null) {
             return;
         }
-        float x10 = this.f20109s.getX();
+        float x10 = this.f20110s.getX();
         AnimatorSet animatorSet = new AnimatorSet();
         boolean shouldOverrideSlideTransition = k2Var.shouldOverrideSlideTransition(false, z10);
         Property property = View.TRANSLATION_X;
         if (!z10) {
-            x10 = Math.abs(this.f20109s.getMeasuredWidth() - x10);
-            int measuredWidth = (int) ((200.0f / this.f20109s.getMeasuredWidth()) * x10);
+            x10 = Math.abs(this.f20110s.getMeasuredWidth() - x10);
+            int measuredWidth = (int) ((200.0f / this.f20110s.getMeasuredWidth()) * x10);
             if (C()) {
                 i11 = 380;
             } else {
@@ -955,22 +955,22 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
             }
             int max = Math.max(measuredWidth, i11);
             if (!shouldOverrideSlideTransition) {
-                w wVar = this.f20109s;
+                w wVar = this.f20110s;
                 int measuredWidth2 = wVar.getMeasuredWidth();
-                if (this.f20092j1) {
+                if (this.f20093j1) {
                     i12 = org.telegram.messenger.i0.L(56.0f);
                 } else {
                     i12 = 0;
                 }
                 ObjectAnimator ofFloat = ObjectAnimator.ofFloat(wVar, property, measuredWidth2 + i12);
                 long j10 = max;
-                animatorSet.playTogether(ofFloat.setDuration(j10), ObjectAnimator.ofFloat(this, "innerTranslationX", this.f20109s.getMeasuredWidth()).setDuration(j10));
+                animatorSet.playTogether(ofFloat.setDuration(j10), ObjectAnimator.ofFloat(this, "innerTranslationX", this.f20110s.getMeasuredWidth()).setDuration(j10));
                 if (C()) {
                     animatorSet.setInterpolator(gr.h);
                 }
             }
         } else {
-            int measuredWidth3 = (int) ((320.0f / this.f20109s.getMeasuredWidth()) * x10);
+            int measuredWidth3 = (int) ((320.0f / this.f20110s.getMeasuredWidth()) * x10);
             if (C()) {
                 i10 = 320;
             } else {
@@ -978,7 +978,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
             }
             int max2 = Math.max(measuredWidth3, i10);
             if (!shouldOverrideSlideTransition) {
-                ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(this.f20109s, property, 0.0f);
+                ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(this.f20110s, property, 0.0f);
                 long j11 = max2;
                 animatorSet.playTogether(ofFloat2.setDuration(j11), ObjectAnimator.ofFloat(this, "innerTranslationX", 0.0f).setDuration(j11));
                 if (C()) {
@@ -995,7 +995,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
             animatorSet.playTogether(customSlideTransition);
         }
         animatorSet.addListener(new g(this, z10));
-        this.f20099n1 = animatorSet;
+        this.f20100n1 = animatorSet;
         animatorSet.start();
         this.T = true;
     }
@@ -1027,9 +1027,9 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
                         view2 = k2Var2.performCreateView(this.Q0);
                         if (view2 != null && k2Var2.isSupportEdgeToEdge() && k2Var2.drawEdgeNavigationBar()) {
                             o oVar = new o(k2Var2);
-                            WeakHashMap weakHashMap = r0.h0.f46123a;
+                            WeakHashMap weakHashMap = r0.h0.f46134a;
                             r0.z.i(view2, oVar);
-                            this.f20109s.invalidate();
+                            this.f20110s.invalidate();
                         }
                     } else {
                         ViewGroup viewGroup3 = (ViewGroup) view2.getParent();
@@ -1038,24 +1038,24 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
                             viewGroup3.removeView(view2);
                         }
                     }
-                    this.f20109s.addView(view2, w7.b6.c(-1.0f, -1));
-                    this.f20109s.setShouldHandleBottomInsets(k2Var2.getEdgeToEdgeSupportMode());
-                    this.f20109s.setDrawNavigationBar(k2Var2.drawEdgeNavigationBar());
+                    this.f20110s.addView(view2, w7.b6.c(-1.0f, -1));
+                    this.f20110s.setShouldHandleBottomInsets(k2Var2.getEdgeToEdgeSupportMode());
+                    this.f20110s.setDrawNavigationBar(k2Var2.drawEdgeNavigationBar());
                     l lVar2 = k2Var2.actionBar;
                     if (lVar2 != null && lVar2.K) {
                         if (this.I0) {
                             lVar2.setOccupyStatusBar(false);
                         }
                         org.telegram.messenger.i0.E2(k2Var2.actionBar);
-                        this.f20109s.addView(k2Var2.actionBar);
+                        this.f20110s.addView(k2Var2.actionBar);
                     }
                     k2Var2.setTitleOverlayTextIfActionBarAttached(this.M0, this.N0, this.O0);
-                    k2Var2.attachSheets(this.f20109s);
+                    k2Var2.attachSheets(this.f20110s);
                     k2Var2.onResume();
                     k2Var2.onBecomeFullyVisible();
                     this.D = k2Var2.actionBar;
                     if (!k2Var2.hasOwnBackground && view2.getBackground() == null) {
-                        a7.i(t6.f20929d6, view2, null);
+                        a7.i(t6.f20930d6, view2, null);
                     }
                 }
             }
@@ -1069,10 +1069,10 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
     public final void f0(sn snVar) {
         int x02;
         try {
-            int i10 = t6.f20965f5;
-            this.f20093k0 = new int[i10];
+            int i10 = t6.f20966f5;
+            this.f20094k0 = new int[i10];
             for (int i11 = 0; i11 < i10; i11++) {
-                int[] iArr = this.f20093k0;
+                int[] iArr = this.f20094k0;
                 if (snVar != null) {
                     x02 = snVar.h(i11);
                 } else {
@@ -1082,24 +1082,24 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
             }
         } catch (Exception e) {
             f8.g(e, true);
-            this.f20093k0 = null;
+            this.f20094k0 = null;
         }
     }
 
     public final void g(String str) {
-        boolean z10 = org.telegram.messenger.v2.f18448a;
-        ArrayList arrayList = this.f20101o1;
+        boolean z10 = org.telegram.messenger.v2.f18578a;
+        ArrayList arrayList = this.f20102o1;
         StringBuilder i10 = sc.e.i(str, " ");
         i10.append(this.U0.size());
         arrayList.add(0, i10.toString());
-        if (this.f20101o1.size() > 20) {
+        if (this.f20102o1.size() > 20) {
             ArrayList arrayList2 = new ArrayList();
             for (int i11 = 0; i11 < 10; i11++) {
-                arrayList2.add((String) this.f20101o1.get(i11));
+                arrayList2.add((String) this.f20102o1.get(i11));
             }
-            this.f20101o1 = arrayList2;
+            this.f20102o1 = arrayList2;
         }
-        p pVar = this.f20103p1;
+        p pVar = this.f20104p1;
         org.telegram.messenger.i0.r(pVar);
         org.telegram.messenger.i0.h3(pVar, 500L);
     }
@@ -1133,20 +1133,20 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
 
     public float getCurrentPreviewFragmentAlpha() {
         w wVar;
-        if (!this.h && !this.f20070a0 && !this.f20097n) {
+        if (!this.h && !this.f20071a0 && !this.f20098n) {
             return 0.0f;
         }
         k2 k2Var = this.I;
         if (k2Var != null && k2Var.inPreviewMode) {
-            wVar = this.f20117w;
+            wVar = this.f20118w;
         } else {
-            wVar = this.f20109s;
+            wVar = this.f20110s;
         }
         return wVar.getAlpha();
     }
 
     public s3 getDrawerLayoutContainer() {
-        return this.f20121y;
+        return this.f20122y;
     }
 
     @Override
@@ -1168,20 +1168,20 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
 
     public k2 getLastFragmentIncludeMainTabs() {
         k2 lastFragment = getLastFragment();
-        if (lastFragment instanceof pf0) {
-            return ((pf0) lastFragment).b0();
+        if (lastFragment instanceof of0) {
+            return ((of0) lastFragment).c0();
         }
         return lastFragment;
     }
 
     @Override
     public c5 getMessageDrawableOutMediaStart() {
-        return this.f20083f0;
+        return this.f20084f0;
     }
 
     @Override
     public c5 getMessageDrawableOutStart() {
-        return this.f20080e0;
+        return this.f20081e0;
     }
 
     @Override
@@ -1212,18 +1212,18 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
         return null;
     }
 
-    public my getSheetFragment() {
+    public ly getSheetFragment() {
         return w();
     }
 
     @Override
     public float getThemeAnimationValue() {
-        return this.f20110s0;
+        return this.f20111s0;
     }
 
     @Override
     public Window getWindow() {
-        Window window = this.f20075c;
+        Window window = this.f20076c;
         if (window != null) {
             return window;
         }
@@ -1234,19 +1234,19 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
     }
 
     public final void h() {
-        if (this.f20122y0) {
-            W(this.f20123z0, this.A0);
-            this.f20122y0 = false;
-        } else if (this.f20112t0) {
-            y4 y4Var = new y4(this.f20114u0, this.f20120x0, this.f20118w0, true);
-            boolean z10 = this.f20116v0;
+        if (this.f20123y0) {
+            W(this.f20124z0, this.A0);
+            this.f20123y0 = false;
+        } else if (this.f20113t0) {
+            y4 y4Var = new y4(this.f20115u0, this.f20121x0, this.f20119w0, true);
+            boolean z10 = this.f20117v0;
             if (!z10) {
-                y4Var.f21567g = z10;
-                y4Var.f21566f = z10;
+                y4Var.f21568g = z10;
+                y4Var.f21567f = z10;
             }
             f(y4Var, null);
-            this.f20114u0 = null;
-            this.f20112t0 = false;
+            this.f20115u0 = null;
+            this.f20113t0 = false;
         }
     }
 
@@ -1269,19 +1269,19 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
     }
 
     public final boolean i() {
-        if (this.f20070a0) {
+        if (this.f20071a0) {
             return false;
         }
         if (this.W && (this.B0 < System.currentTimeMillis() - 1500 || this.h)) {
-            G(true);
+            F(true);
         }
         return this.W;
     }
 
     public final void j() {
-        this.f20100o0 = 0;
-        this.f20102p0 = null;
-        this.f20093k0 = null;
+        this.f20101o0 = 0;
+        this.f20103p0 = null;
+        this.f20094k0 = null;
     }
 
     public final void k(boolean z10) {
@@ -1302,7 +1302,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
                     org.telegram.messenger.i0.v1(activity.getCurrentFocus());
                 }
                 setInnerTranslationX(0.0f);
-                if (!z11 && (this.h || this.f20070a0 || (z10 && vp.d1().getBoolean("view_animations", true)))) {
+                if (!z11 && (this.h || this.f20071a0 || (z10 && wp.d1().getBoolean("view_animations", true)))) {
                     z12 = true;
                 } else {
                     z12 = false;
@@ -1315,25 +1315,25 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
                     k2Var = null;
                 }
                 if (k2Var != null) {
-                    if (t6.x0(null, t6.f21206s8, false) != -1 && (!k2Var.hasForceLightStatusBar() || t6.D0().q())) {
+                    if (t6.x0(null, t6.f21207s8, false) != -1 && (!k2Var.hasForceLightStatusBar() || t6.D0().q())) {
                         z13 = false;
                     } else {
                         z13 = true;
                     }
                     org.telegram.messenger.i0.o3(activity, z13);
-                    w wVar = this.f20109s;
-                    this.f20109s = this.f20117w;
-                    this.f20117w = wVar;
+                    w wVar = this.f20110s;
+                    this.f20110s = this.f20118w;
+                    this.f20118w = wVar;
                     k2Var.setParentLayout(this);
                     View view = k2Var.fragmentView;
                     if (view == null && (view = k2Var.performCreateView(activity)) != null && k2Var.isSupportEdgeToEdge() && k2Var.drawEdgeNavigationBar()) {
                         o oVar = new o(k2Var);
-                        WeakHashMap weakHashMap = r0.h0.f46123a;
+                        WeakHashMap weakHashMap = r0.h0.f46134a;
                         r0.z.i(view, oVar);
-                        this.f20109s.invalidate();
+                        this.f20110s.invalidate();
                     }
                     if (!this.h) {
-                        this.f20109s.setVisibility(0);
+                        this.f20110s.setVisibility(0);
                         ViewGroup viewGroup = (ViewGroup) view.getParent();
                         if (viewGroup != null) {
                             k2Var.onRemoveFromParent();
@@ -1343,9 +1343,9 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
                                 f8.g(e, true);
                             }
                         }
-                        this.f20109s.addView(view);
-                        this.f20109s.setShouldHandleBottomInsets(k2Var.getEdgeToEdgeSupportMode());
-                        this.f20109s.setDrawNavigationBar(k2Var.drawEdgeNavigationBar());
+                        this.f20110s.addView(view);
+                        this.f20110s.setShouldHandleBottomInsets(k2Var.getEdgeToEdgeSupportMode());
+                        this.f20110s.setDrawNavigationBar(k2Var.drawEdgeNavigationBar());
                         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
                         layoutParams.width = -1;
                         layoutParams.height = -1;
@@ -1360,39 +1360,39 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
                                 lVar.setOccupyStatusBar(false);
                             }
                             org.telegram.messenger.i0.E2(k2Var.actionBar);
-                            this.f20109s.addView(k2Var.actionBar);
+                            this.f20110s.addView(k2Var.actionBar);
                         }
                         k2Var.setTitleOverlayTextIfActionBarAttached(this.M0, this.N0, this.O0);
-                        k2Var.attachSheets(this.f20109s);
+                        k2Var.attachSheets(this.f20110s);
                     }
                     this.H = k2Var;
                     this.I = k2Var2;
                     k2Var.onTransitionAnimationStart(true, true);
                     k2Var2.onTransitionAnimationStart(false, true);
                     k2Var.onResume();
-                    if (this.f20104q0 != null) {
-                        this.f20089i0 = k2Var.getThemeDescriptions();
+                    if (this.f20105q0 != null) {
+                        this.f20090i0 = k2Var.getThemeDescriptions();
                     }
                     this.D = k2Var.actionBar;
                     if (!k2Var.hasOwnBackground && view.getBackground() == null) {
-                        a7.i(t6.f20929d6, view, null);
+                        a7.i(t6.f20930d6, view, null);
                     }
                     if (z12) {
                         this.B0 = System.currentTimeMillis();
                         this.W = true;
                         k2Var2.setRemovingFromStack(true);
                         this.E0 = new li.s(this, k2Var2, k2Var, 18);
-                        if (!this.h && !this.f20070a0) {
+                        if (!this.h && !this.f20071a0) {
                             animatorSet = k2Var2.onCustomTransitionAnimation(false, new p(this, 3));
                         }
                         if (animatorSet == null) {
                             boolean z15 = this.h;
-                            if (!z15 && (this.f20109s.f21419b || this.f20117w.f21419b)) {
+                            if (!z15 && (this.f20110s.f21420b || this.f20118w.f21420b)) {
                                 mg.c2 c2Var = new mg.c2(this, 12);
                                 this.d = c2Var;
                                 org.telegram.messenger.i0.h3(c2Var, 200L);
                             } else {
-                                if (!z15 && !this.f20070a0) {
+                                if (!z15 && !this.f20071a0) {
                                     z14 = false;
                                 } else {
                                     z14 = true;
@@ -1401,8 +1401,8 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
                             }
                         } else {
                             this.K = animatorSet;
-                            wb wbVar = wb.f32128w;
-                            if (wbVar != null && wbVar.f32137l) {
+                            wb wbVar = wb.f32194w;
+                            if (wbVar != null && wbVar.f32203l) {
                                 wbVar.b();
                             }
                         }
@@ -1452,10 +1452,10 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
         k2Var.onFragmentDestroy();
         k2Var.setParentLayout(null);
         this.U0.remove(k2Var);
-        this.f20117w.setVisibility(4);
-        this.f20117w.setTranslationY(0.0f);
-        bringChildToFront(this.f20109s);
-        w wVar = this.f20119x;
+        this.f20118w.setVisibility(4);
+        this.f20118w.setTranslationY(0.0f);
+        bringChildToFront(this.f20110s);
+        w wVar = this.f20120x;
         if (wVar != null) {
             bringChildToFront(wVar);
         }
@@ -1483,8 +1483,8 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
         r0.z0 v0Var;
         boolean z11 = this.S0;
         if (z11) {
-            if ((view instanceof w) && ((w) view).f21427y) {
-                int i18 = j1Var.f46132a.f(8).d;
+            if ((view instanceof w) && ((w) view).f21428y) {
+                int i18 = j1Var.f46143a.f(8).d;
                 if (getParent() instanceof View) {
                     view2 = (View) getParent();
                 } else {
@@ -1496,7 +1496,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
                     i17 = 0;
                 }
                 int max = Math.max(0, i18 - i17);
-                r0.j1 j1Var2 = r0.j1.f46131b;
+                r0.j1 j1Var2 = r0.j1.f46142b;
                 int i19 = Build.VERSION.SDK_INT;
                 if (i19 >= 34) {
                     v0Var = new r0.y0(j1Var2);
@@ -1511,7 +1511,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
                 r0.h0.b(view, v0Var.b());
                 return;
             }
-            r0.h0.b(view, r0.j1.f46131b);
+            r0.h0.b(view, r0.j1.f46142b);
             return;
         }
         boolean z12 = this.T0;
@@ -1521,18 +1521,18 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
         } else {
             z10 = false;
         }
-        i0.c cVar = this.f20113t1;
-        i0.c cVar2 = this.f20115u1;
+        i0.c cVar = this.f20114t1;
+        i0.c cVar2 = this.f20116u1;
         if (view instanceof i3) {
             if (z12) {
                 i15 = 0;
             } else {
-                i15 = cVar.f7765a;
+                i15 = cVar.f7766a;
             }
             if (z10) {
                 i16 = 0;
             } else {
-                i16 = cVar.f7767c;
+                i16 = cVar.f7768c;
             }
             org.telegram.messenger.i0.A3(view, i15, 0, i16, cVar.d);
         } else if (view instanceof w) {
@@ -1544,35 +1544,35 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
             } else {
                 i10 = 0;
             }
-            t3 t3Var = wVar.f21426x;
-            if (t3Var != t3.f20863c) {
+            t3 t3Var = wVar.f21427x;
+            if (t3Var != t3.f20864c) {
                 z13 = false;
             }
             if (!z13 && !z12) {
-                i11 = cVar2.f7765a;
+                i11 = cVar2.f7766a;
             } else {
                 i11 = 0;
             }
             if (!z13 && !z10) {
-                i12 = cVar2.f7767c;
+                i12 = cVar2.f7768c;
             } else {
                 i12 = 0;
             }
             if (z13 && !z12) {
                 i13 = 0;
             } else {
-                i13 = cVar2.f7765a;
+                i13 = cVar2.f7766a;
             }
             if (z13 && !z10) {
                 i14 = 0;
             } else {
-                i14 = cVar2.f7767c;
+                i14 = cVar2.f7768c;
             }
-            if (t3Var == t3.f20861a) {
+            if (t3Var == t3.f20862a) {
                 i10 = Math.max(i10, cVar2.d);
-                r0.h0.b(view, r0.j1.f46131b);
+                r0.h0.b(view, r0.j1.f46142b);
             } else {
-                r0.h0.b(view, j1Var.f46132a.m(i13, 0, i14, i10));
+                r0.h0.b(view, j1Var.f46143a.m(i13, 0, i14, i10));
             }
             view.setPadding(i11, 0, i12, i10);
         }
@@ -1581,7 +1581,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f20069a = true;
+        this.f20070a = true;
     }
 
     @Override
@@ -1603,7 +1603,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f20069a = false;
+        this.f20070a = false;
     }
 
     @Override
@@ -1666,7 +1666,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
         }
         v4 v4Var = this.P0;
         if (v4Var != null) {
-            int[] iArr = this.f20081e1;
+            int[] iArr = this.f20082e1;
             iArr[0] = i10;
             iArr[1] = i11;
             v4Var.e(iArr);
@@ -1676,7 +1676,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
         if (B() <= org.telegram.messenger.i0.L(20.0f)) {
             z10 = false;
         }
-        this.f20079d1 = z10;
+        this.f20080d1 = z10;
         super.onMeasure(i10, i11);
     }
 
@@ -1684,13 +1684,13 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         s sVar;
         boolean z10 = false;
-        if (!i() && !this.C0 && !this.T && !this.f20092j1) {
+        if (!i() && !this.C0 && !this.T && !this.f20093j1) {
             if (this.U0.size() > 1 && ((sVar = this.G) == null || sVar.getLastSheet() == null || !this.G.getLastSheet().s())) {
                 if (motionEvent != null && motionEvent.getAction() == 0) {
                     if (!((k2) sc.e.g(1, this.U0)).isSwipeBackEnabled(motionEvent)) {
                         this.P = false;
                         this.Q = false;
-                        w wVar = this.f20109s;
+                        w wVar = this.f20110s;
                         if (wVar != null) {
                             wVar.setLayerType(0, null);
                             return false;
@@ -1730,11 +1730,11 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
                         }
                         if (C()) {
                             float f7 = max;
-                            this.f20109s.setTranslationX((f7 / getWidth()) * org.telegram.messenger.i0.L(56.0f) * 5);
+                            this.f20110s.setTranslationX((f7 / getWidth()) * org.telegram.messenger.i0.L(56.0f) * 5);
                             setInnerTranslationX((f7 / getWidth()) * org.telegram.messenger.i0.L(56.0f) * 5);
                         } else {
                             float f10 = max;
-                            this.f20109s.setTranslationX(f10);
+                            this.f20110s.setTranslationX(f10);
                             setInnerTranslationX(f10);
                         }
                     }
@@ -1745,7 +1745,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
                     this.U.addMovement(motionEvent);
                     this.U.computeCurrentVelocity(1000);
                     k2 k2Var = (k2) sc.e.g(1, this.U0);
-                    if (!this.h && !this.f20070a0 && !this.Q && k2Var.isSwipeBackEnabled(motionEvent)) {
+                    if (!this.h && !this.f20071a0 && !this.Q && k2Var.isSwipeBackEnabled(motionEvent)) {
                         float xVelocity = this.U.getXVelocity();
                         float yVelocity = this.U.getYVelocity();
                         if (xVelocity >= 3500.0f && xVelocity > Math.abs(yVelocity) && k2Var.canBeginSlide()) {
@@ -1760,10 +1760,10 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
                         }
                     }
                     if (this.Q) {
-                        float x10 = this.f20109s.getX();
+                        float x10 = this.f20110s.getX();
                         float xVelocity2 = this.U.getXVelocity();
                         float yVelocity2 = this.U.getYVelocity();
-                        if (!C() ? x10 < this.f20109s.getMeasuredWidth() / 3.0f : !(x10 >= org.telegram.messenger.i0.L(56.0f) / 2 && xVelocity2 >= -1000.0f)) {
+                        if (!C() ? x10 < this.f20110s.getMeasuredWidth() / 3.0f : !(x10 >= org.telegram.messenger.i0.L(56.0f) / 2 && xVelocity2 >= -1000.0f)) {
                             if (xVelocity2 < 3500.0f || Math.abs(xVelocity2) < Math.abs(yVelocity2)) {
                                 z10 = true;
                             }
@@ -1772,7 +1772,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
                     } else {
                         this.P = false;
                         this.Q = false;
-                        w wVar2 = this.f20109s;
+                        w wVar2 = this.f20110s;
                         if (wVar2 != null) {
                             wVar2.setLayerType(0, null);
                         }
@@ -1785,7 +1785,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
                 } else if (motionEvent == null) {
                     this.P = false;
                     this.Q = false;
-                    w wVar3 = this.f20109s;
+                    w wVar3 = this.f20110s;
                     if (wVar3 != null) {
                         wVar3.setLayerType(0, null);
                     }
@@ -1802,13 +1802,13 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
     }
 
     public final void p(Canvas canvas, int i10, int i11) {
-        if (f20066v1 != null && tz.D1) {
+        if (f20067v1 != null && uz.D1) {
             int i12 = i10 / 2;
-            if (f20066v1.getAlpha() != i12) {
-                f20066v1.setAlpha(i12);
+            if (f20067v1.getAlpha() != i12) {
+                f20067v1.setAlpha(i12);
             }
-            f20066v1.setBounds(0, i11, getMeasuredWidth(), f20066v1.getIntrinsicHeight() + i11);
-            f20066v1.draw(canvas);
+            f20067v1.setBounds(0, i11, getMeasuredWidth(), f20067v1.getIntrinsicHeight() + i11);
+            f20067v1.draw(canvas);
         }
     }
 
@@ -1818,7 +1818,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
 
     public final void r() {
         boolean z10 = true;
-        this.f20097n = true;
+        this.f20098n = true;
         this.h = false;
         k2 k2Var = (k2) sc.e.g(1, this.U0);
         k2Var.fragmentView.setOutlineProvider(null);
@@ -1841,13 +1841,13 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
             performHapticFeedback(3);
         } catch (Exception unused) {
         }
-        this.f20109s.setShouldHandleBottomInsets(k2Var.getEdgeToEdgeSupportMode());
-        this.f20109s.setDrawNavigationBar(k2Var.drawEdgeNavigationBar());
+        this.f20110s.setShouldHandleBottomInsets(k2Var.getEdgeToEdgeSupportMode());
+        this.f20110s.setDrawNavigationBar(k2Var.drawEdgeNavigationBar());
         k2Var.setInPreviewMode(false);
         k2Var.setInMenuMode(false);
         try {
             Activity activity = this.Q0;
-            if (t6.x0(null, t6.f21206s8, false) != -1 && (!k2Var.hasForceLightStatusBar() || t6.D0().q())) {
+            if (t6.x0(null, t6.f21207s8, false) != -1 && (!k2Var.hasForceLightStatusBar() || t6.D0().q())) {
                 z10 = false;
             }
             org.telegram.messenger.i0.o3(activity, z10);
@@ -1880,12 +1880,12 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
 
     @Override
     public void setDrawerLayoutContainer(s3 s3Var) {
-        this.f20121y = s3Var;
+        this.f20122y = s3Var;
     }
 
     @Override
     public void setFragmentPanTranslationOffset(int i10) {
-        w wVar = this.f20109s;
+        w wVar = this.f20110s;
         if (wVar != null) {
             wVar.setFragmentPanTranslationOffset(i10);
         }
@@ -1917,48 +1917,48 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
             FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, org.telegram.messenger.i0.L(76.0f));
             layoutParams.gravity = 87;
             addView(this.E, layoutParams);
-            q3 q3Var = LaunchActivity.I1.f33393y0;
+            q3 q3Var = LaunchActivity.I1.f33400y0;
             if (q3Var != null) {
                 q3Var.setTabsView(this.E);
             }
         }
-        w wVar = this.f20117w;
+        w wVar = this.f20118w;
         if (wVar != null) {
             org.telegram.messenger.i0.E2(wVar);
         }
         w wVar2 = new w(activity, this);
-        this.f20117w = wVar2;
+        this.f20118w = wVar2;
         addView(wVar2);
-        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.f20117w.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.f20118w.getLayoutParams();
         layoutParams2.width = -1;
         layoutParams2.height = -1;
         layoutParams2.gravity = 51;
-        this.f20117w.setLayoutParams(layoutParams2);
-        w wVar3 = this.f20109s;
+        this.f20118w.setLayoutParams(layoutParams2);
+        w wVar3 = this.f20110s;
         if (wVar3 != null) {
             org.telegram.messenger.i0.E2(wVar3);
         }
         w wVar4 = new w(activity, this);
-        this.f20109s = wVar4;
+        this.f20110s = wVar4;
         addView(wVar4);
-        FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) this.f20109s.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) this.f20110s.getLayoutParams();
         layoutParams3.width = -1;
         layoutParams3.height = -1;
         layoutParams3.gravity = 51;
-        this.f20109s.setLayoutParams(layoutParams3);
-        w wVar5 = this.f20119x;
+        this.f20110s.setLayoutParams(layoutParams3);
+        w wVar5 = this.f20120x;
         if (wVar5 != null) {
             org.telegram.messenger.i0.E2(wVar5);
         }
         w wVar6 = new w(activity, this);
-        this.f20119x = wVar6;
-        this.f20088h1.f30443a = wVar6;
+        this.f20120x = wVar6;
+        this.f20089h1.f30528a = wVar6;
         addView(wVar6);
-        FrameLayout.LayoutParams layoutParams4 = (FrameLayout.LayoutParams) this.f20119x.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams4 = (FrameLayout.LayoutParams) this.f20120x.getLayoutParams();
         layoutParams4.width = -1;
         layoutParams4.height = -1;
         layoutParams4.gravity = 51;
-        this.f20119x.setLayoutParams(layoutParams4);
+        this.f20120x.setLayoutParams(layoutParams4);
         s sVar = this.G;
         if (sVar != null) {
             sVar.setParentLayout(this);
@@ -1967,10 +1967,10 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
             if (view == null) {
                 view = sVar2.performCreateView(activity);
             }
-            if (view.getParent() != this.f20119x) {
+            if (view.getParent() != this.f20120x) {
                 org.telegram.messenger.i0.E2(view);
-                this.f20119x.addView(view, w7.b6.c(-1.0f, -1));
-                this.f20119x.setShouldHandleBottomInsets(this.G.getEdgeToEdgeSupportMode());
+                this.f20120x.addView(view, w7.b6.c(-1.0f, -1));
+                this.f20120x.setShouldHandleBottomInsets(this.G.getEdgeToEdgeSupportMode());
             }
             this.G.onResume();
             this.G.onBecomeFullyVisible();
@@ -1986,7 +1986,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
 
     @Override
     public void setInBubbleMode(boolean z10) {
-        this.f20082f = z10;
+        this.f20083f = z10;
     }
 
     public void setInnerTranslationX(float f7) {
@@ -1995,11 +1995,11 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
         int navigationBarColor2;
         this.O = f7;
         invalidate();
-        if (this.U0.size() >= 2 && this.f20109s.getMeasuredWidth() > 0) {
+        if (this.U0.size() >= 2 && this.f20110s.getMeasuredWidth() > 0) {
             if (C()) {
                 measuredWidth = Utilities.l(f7 / (org.telegram.messenger.i0.L(56.0f) * 6));
             } else {
-                measuredWidth = f7 / this.f20109s.getMeasuredWidth();
+                measuredWidth = f7 / this.f20110s.getMeasuredWidth();
             }
             k2 k2Var = (k2) sc.e.g(2, this.U0);
             k2Var.onSlideProgress(false, measuredWidth);
@@ -2013,17 +2013,17 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
 
     @Override
     public void setIsSheet(boolean z10) {
-        this.f20072b = z10;
+        this.f20073b = z10;
     }
 
     @Override
     public void setNavigationBarColor(int i10) {
         boolean z10;
-        if (this.f20108r1 != i10) {
-            this.f20108r1 = i10;
+        if (this.f20109r1 != i10) {
+            this.f20109r1 = i10;
             invalidate();
         }
-        s3 s3Var = this.f20121y;
+        s3 s3Var = this.f20122y;
         if (s3Var != null) {
             s3Var.setInternalNavigationBarColor(i10);
         }
@@ -2056,27 +2056,27 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
     public void setThemeAnimationValue(float f7) {
         boolean z10;
         int alpha;
-        this.f20110s0 = f7;
-        for (int i10 = 0; i10 < this.f20100o0; i10++) {
-            int f10 = i0.b.f(f7, this.m0[i10], this.f20098n0[i10]);
-            sn snVar = this.f20102p0;
+        this.f20111s0 = f7;
+        for (int i10 = 0; i10 < this.f20101o0; i10++) {
+            int f10 = i0.b.f(f7, this.m0[i10], this.f20099n0[i10]);
+            sn snVar = this.f20103p0;
             if (snVar != null) {
-                snVar.i(this.f20095l0[i10], f10);
+                snVar.i(this.f20096l0[i10], f10);
             } else {
-                int i11 = this.f20095l0[i10];
+                int i11 = this.f20096l0[i10];
                 SparseIntArray sparseIntArray = t6.jm;
                 if (sparseIntArray != null) {
                     sparseIntArray.put(i11, f10);
                 }
             }
         }
-        ArrayList arrayList = this.f20087h0;
+        ArrayList arrayList = this.f20088h0;
         int size = arrayList.size();
         int i12 = 0;
         while (i12 < size) {
             ArrayList arrayList2 = (ArrayList) arrayList.get(i12);
-            int[] iArr = (int[]) this.f20073b0.get(i12);
-            int[] iArr2 = (int[]) this.f20076c0.get(i12);
+            int[] iArr = (int[]) this.f20074b0.get(i12);
+            int[] iArr2 = (int[]) this.f20077c0.get(i12);
             int size2 = arrayList2.size();
             int i13 = 0;
             while (i13 < size2) {
@@ -2093,7 +2093,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
                 int argb = Color.argb(Math.min(255, (int) (((alpha2 - alpha) * f7) + Color.alpha(iArr[i13]))), Math.min(255, (int) (((red - red2) * f7) + red2)), Math.min(255, (int) (((green - green2) * f7) + green2)), Math.min(255, (int) (((blue - blue2) * f7) + blue2)));
                 c7 c7Var = (c7) arrayList2.get(i13);
                 int i16 = c7Var.e;
-                p6 p6Var = c7Var.f20242n;
+                p6 p6Var = c7Var.f20243n;
                 if (p6Var != null) {
                     p6Var.i(i16, argb);
                 } else {
@@ -2110,7 +2110,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
             }
             i12++;
         }
-        ArrayList arrayList4 = this.f20091j0;
+        ArrayList arrayList4 = this.f20092j0;
         int size3 = arrayList4.size();
         for (int i17 = 0; i17 < size3; i17++) {
             b7 b7Var = (b7) arrayList4.get(i17);
@@ -2119,34 +2119,34 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
                 b7Var.a(f7);
             }
         }
-        ArrayList arrayList5 = this.f20089i0;
+        ArrayList arrayList5 = this.f20090i0;
         if (arrayList5 != null) {
             int size4 = arrayList5.size();
             for (int i18 = 0; i18 < size4; i18++) {
-                c7 c7Var2 = (c7) this.f20089i0.get(i18);
-                c7Var2.e(t6.w0(c7Var2.e, c7Var2.f20242n), false, false);
+                c7 c7Var2 = (c7) this.f20090i0.get(i18);
+                c7Var2.e(t6.w0(c7Var2.e, c7Var2.f20243n), false, false);
             }
         }
-        pn pnVar = this.f20085g0;
+        pn pnVar = this.f20086g0;
         if (pnVar != null) {
-            sn snVar2 = pnVar.f40690a;
-            snVar2.G.f42492z0.invalidate();
-            snVar2.f41603t.K = f7;
-            snVar2.f41604u.K = f7;
+            sn snVar2 = pnVar.f40502a;
+            snVar2.G.f42303z0.invalidate();
+            snVar2.f41414t.K = f7;
+            snVar2.f41415u.K = f7;
             snVar2.u(f7);
         }
         v4 v4Var = this.P0;
         if (v4Var != null) {
             v4Var.a(f7);
         }
-        z6 z6Var = a7.f20157a;
+        z6 z6Var = a7.f20158a;
         long currentAnimationTimeMillis = AnimationUtils.currentAnimationTimeMillis();
-        if (f7 < 1.0f && currentAnimationTimeMillis == a7.f20159c && f7 == a7.d) {
+        if (f7 < 1.0f && currentAnimationTimeMillis == a7.f20160c && f7 == a7.d) {
             if (getWindowToken() == null) {
                 a7.d0(this, false);
             }
         } else {
-            a7.f20159c = currentAnimationTimeMillis;
+            a7.f20160c = currentAnimationTimeMillis;
             a7.d = f7;
             if (f7 >= 1.0f) {
                 z10 = true;
@@ -2165,14 +2165,14 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
 
     @Override
     public void setWindow(Window window) {
-        this.f20075c = window;
+        this.f20076c = window;
     }
 
     public final k2 t() {
         if (!getFragmentStack().isEmpty()) {
             for (int size = getFragmentStack().size() - 1; size >= 0; size--) {
                 k2 k2Var = (k2) getFragmentStack().get(size);
-                if (k2Var != null && !k2Var.isFinishing() && !k2Var.isRemovingFromStack() && hf0.class.isInstance(k2Var)) {
+                if (k2Var != null && !k2Var.isFinishing() && !k2Var.isRemovingFromStack() && gf0.class.isInstance(k2Var)) {
                     return k2Var;
                 }
             }
@@ -2192,7 +2192,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
         return 0;
     }
 
-    public final my w() {
+    public final ly w() {
         Activity activity = this.Q0;
         if (activity == null) {
             return null;
@@ -2206,11 +2206,11 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
             if (view == null) {
                 view = sVar2.performCreateView(activity);
             }
-            if (view.getParent() != this.f20119x) {
+            if (view.getParent() != this.f20120x) {
                 org.telegram.messenger.i0.E2(view);
-                this.f20119x.addView(view, w7.b6.c(-1.0f, -1));
-                this.f20119x.setShouldHandleBottomInsets(this.G.getEdgeToEdgeSupportMode());
-                this.f20119x.setDrawNavigationBar(this.G.drawEdgeNavigationBar());
+                this.f20120x.addView(view, w7.b6.c(-1.0f, -1));
+                this.f20120x.setShouldHandleBottomInsets(this.G.getEdgeToEdgeSupportMode());
+                this.f20120x.setDrawNavigationBar(this.G.drawEdgeNavigationBar());
             }
             this.G.onResume();
             this.G.onBecomeFullyVisible();
@@ -2219,7 +2219,7 @@ public class ActionBarLayout extends FrameLayout implements z4, fg.b {
     }
 
     public final boolean x() {
-        if (!this.h && !this.f20070a0) {
+        if (!this.h && !this.f20071a0) {
             return false;
         }
         return true;

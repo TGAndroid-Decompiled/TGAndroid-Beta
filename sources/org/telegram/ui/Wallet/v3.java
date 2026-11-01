@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 public final class v3 {
-    public final HashSet f35305a = new HashSet();
-    public final HashMap f35306b = new HashMap();
+    public final HashSet f35309a = new HashSet();
+    public final HashMap f35310b = new HashMap();
 
     public static String c(int i10, String str) {
         if (str.length() <= (i10 * 2) + 1) {
@@ -18,7 +18,7 @@ public final class v3 {
         if (str == null) {
             return null;
         }
-        String str2 = (String) this.f35306b.get(str);
+        String str2 = (String) this.f35310b.get(str);
         if (str2 == null) {
             return str;
         }
@@ -44,7 +44,7 @@ public final class v3 {
         for (ArrayList arrayList3 : hashMap.values()) {
             if (arrayList3.size() == 1) {
                 String str2 = (String) arrayList3.get(0);
-                this.f35306b.put(str2, c(i10, str2));
+                this.f35310b.put(str2, c(i10, str2));
             } else {
                 b(i10 + 1, arrayList3);
             }

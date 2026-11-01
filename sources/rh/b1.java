@@ -3,22 +3,22 @@ package rh;
 import android.graphics.Bitmap;
 import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.ef;
-import org.telegram.messenger.j20;
-import org.telegram.messenger.l20;
-import org.telegram.messenger.us;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.ff;
+import org.telegram.messenger.k20;
+import org.telegram.messenger.m20;
+import org.telegram.messenger.vs;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.ob0;
-import org.telegram.ui.cj0;
-public final class b1 implements l20 {
-    public final int f46672a;
-    public final us f46673b;
+import org.telegram.ui.aj0;
+public final class b1 implements m20 {
+    public final int f46667a;
+    public final vs f46668b;
 
-    public b1(us usVar, int i10) {
-        this.f46672a = i10;
-        this.f46673b = usVar;
+    public b1(vs vsVar, int i10) {
+        this.f46667a = i10;
+        this.f46668b = vsVar;
     }
 
     @Override
@@ -27,14 +27,14 @@ public final class b1 implements l20 {
         int i10;
         vh.r rVar;
         float f7;
-        switch (this.f46672a) {
+        switch (this.f46667a) {
             case 0:
-                ((e4) this.f46673b).p2((View) obj2, (CharSequence) obj, ((Boolean) obj3).booleanValue());
+                ((e4) this.f46668b).p2((View) obj2, (CharSequence) obj, ((Boolean) obj3).booleanValue());
                 return;
             case 1:
-                e4 e4Var = (e4) this.f46673b;
+                e4 e4Var = (e4) this.f46668b;
                 ArrayList arrayList = (ArrayList) obj;
-                j20 j20Var = (j20) obj2;
+                k20 k20Var = (k20) obj2;
                 Runnable runnable = (Runnable) obj3;
                 ph.p3 p3Var = e4Var.O2;
                 if (p3Var != null) {
@@ -51,14 +51,14 @@ public final class b1 implements l20 {
                     tL_inputSavedStarGiftSlug.slug = ((TL_stars.StarGift) obj4).slug;
                     craftstargift.stargift.add(tL_inputSavedStarGiftSlug);
                 }
-                ConnectionsManager.getInstance(e4Var.f21583a).sendRequestTyped(craftstargift, new a3.b(1), new cj0(e4Var, j20Var, arrayList, runnable, 2));
+                ConnectionsManager.getInstance(e4Var.f21584a).sendRequestTyped(craftstargift, new a3.b(1), new aj0(e4Var, k20Var, arrayList, runnable, 2));
                 return;
             default:
-                vh.o8 o8Var = (vh.o8) this.f46673b;
+                vh.o8 o8Var = (vh.o8) this.f46668b;
                 Boolean bool = (Boolean) obj;
                 ArrayList arrayList2 = (ArrayList) obj2;
                 ArrayList arrayList3 = (ArrayList) obj3;
-                if (o8Var.f51622f0 == 0 && arrayList2 != null && !arrayList2.isEmpty() && o8Var.f51653p2 == null && !o8Var.W && o8Var.I()) {
+                if (o8Var.f51637f0 == 0 && arrayList2 != null && !arrayList2.isEmpty() && o8Var.f51668p2 == null && !o8Var.W && o8Var.I()) {
                     o8Var.H1 = null;
                     o8Var.I1 = null;
                     o8Var.J1 = null;
@@ -92,12 +92,12 @@ public final class b1 implements l20 {
                                 return;
                             }
                             vh.c8 c8Var = o8Var.A0;
-                            o8Var.f51686z0 = rVar;
+                            o8Var.f51701z0 = rVar;
                             c8Var.o(rVar);
                             o8Var.I0.setSelected(rVar);
                             int indexOf = vh.r.a().indexOf(rVar);
                             if (indexOf >= 0) {
-                                o8Var.I0.f51945a.v0(indexOf);
+                                o8Var.I0.f51958a.v0(indexOf);
                             }
                             vh.t7 t7Var2 = o8Var.B0;
                             if (t7Var2 != null) {
@@ -118,10 +118,10 @@ public final class b1 implements l20 {
                     int i13 = 0;
                     while (true) {
                         if (i13 < arrayList2.size()) {
-                            vh.n5 l4 = vh.n5.l((ef) arrayList2.get(i13));
+                            vh.n5 l4 = vh.n5.l((ff) arrayList2.get(i13));
                             l4.M0 = (Bitmap) arrayList3.get(i13);
-                            l4.J0 = o8Var.f51671v0;
-                            l4.K0 = o8Var.f51675w0;
+                            l4.J0 = o8Var.f51686v0;
+                            l4.K0 = o8Var.f51690w0;
                             l4.A();
                             if (bool.booleanValue()) {
                                 if (o8Var.A0.l(l4)) {
@@ -155,8 +155,8 @@ public final class b1 implements l20 {
                         } else {
                             z10 = false;
                         }
-                        r4Var2.f51867n0 = -1.0f;
-                        r4Var2.f51868o0 = z10;
+                        r4Var2.f51852n0 = -1.0f;
+                        r4Var2.f51853o0 = z10;
                         r4Var2.invalidate();
                         o8Var.I1 = new ArrayList();
                         o8Var.J1 = new ArrayList();
@@ -168,11 +168,11 @@ public final class b1 implements l20 {
                         o8Var.l0(true);
                         o8Var.e(false);
                         o8Var.J(1, true);
-                        vh.k7 k7Var = o8Var.f51616d1;
+                        vh.k7 k7Var = o8Var.f51631d1;
                         if (k7Var != null) {
                             vh.d0 d0Var = k7Var.h;
-                            if (!k7Var.I && !k7Var.M && (i10 = vp.d1().getInt("multistorieshint", 0)) < 3) {
-                                vp.d1().edit().putInt("multistorieshint", i10 + 1).apply();
+                            if (!k7Var.I && !k7Var.M && (i10 = wp.d1().getInt("multistorieshint", 0)) < 3) {
+                                wp.d1().edit().putInt("multistorieshint", i10 + 1).apply();
                                 org.telegram.messenger.i0.r(d0Var);
                                 k7Var.I = true;
                                 k7Var.invalidate();
@@ -181,8 +181,8 @@ public final class b1 implements l20 {
                         }
                         vh.m2 m2Var = o8Var.M0;
                         if (m2Var != null) {
-                            o8Var.f51641l2 = m2Var.e.e0();
-                            o8Var.f51643m2 = o8Var.M0.getSelectedAlbum();
+                            o8Var.f51656l2 = m2Var.e.e0();
+                            o8Var.f51658m2 = o8Var.M0.getSelectedAlbum();
                             return;
                         }
                         return;
@@ -196,8 +196,8 @@ public final class b1 implements l20 {
                     o8Var.e(false);
                     vh.m2 m2Var2 = o8Var.M0;
                     if (m2Var2 != null) {
-                        o8Var.f51641l2 = m2Var2.e.e0();
-                        o8Var.f51643m2 = o8Var.M0.getSelectedAlbum();
+                        o8Var.f51656l2 = m2Var2.e.e0();
+                        o8Var.f51658m2 = o8Var.M0.getSelectedAlbum();
                         return;
                     }
                     return;

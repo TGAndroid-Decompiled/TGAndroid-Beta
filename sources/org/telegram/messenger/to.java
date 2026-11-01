@@ -1,55 +1,36 @@
 package org.telegram.messenger;
-public final class to implements us {
-    public final int f18091a;
-    public final int f18092b;
-    public final int f18093c;
-    public final long d;
-    public final jp e;
-    public final vp f18094f;
 
-    public to(vp vpVar, int i10, int i11, int i12, long j10, jp jpVar) {
-        this.f18094f = vpVar;
-        this.f18091a = i10;
-        this.f18092b = i11;
-        this.f18093c = i12;
-        this.d = j10;
-        this.e = jpVar;
+import org.telegram.tgnet.TLRPC;
+public final class to extends b3 {
+    public final wp e;
+
+    public to(wp wpVar) {
+        this.e = wpVar;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        int i12 = zs.I;
-        jp jpVar = this.e;
-        int i13 = this.f18091a;
-        vp vpVar = this.f18094f;
-        int i14 = zs.H;
-        if (i10 == i14 && ((Integer) objArr[0]).intValue() == i13) {
-            int intValue = ((Integer) objArr[1]).intValue();
-            boolean booleanValue = ((Boolean) objArr[2]).booleanValue();
-            boolean booleanValue2 = ((Boolean) objArr[3]).booleanValue();
-            int intValue2 = ((Integer) objArr[4]).intValue();
-            int i15 = this.f18092b;
-            if (intValue < i15 / 2 && !booleanValue2 && booleanValue) {
-                int i16 = this.f18093c;
-                if (i16 != 0) {
-                    vpVar.X2(this.d, 0L, false, i15, i16, 0, false, 0, this.f18091a, 3, intValue2, 0, 0L, -1, 0, 0, 0, false, 0, true, false, false, null, 0L);
-                    return;
-                } else {
-                    vpVar.X2(this.d, 0L, false, i15, i16, 0, false, 0, this.f18091a, 2, intValue2, 0, 0L, -1, 0, 0, 0, false, 0, true, false, false, null, 0L);
-                    return;
-                }
-            }
-            vpVar.getNotificationCenter().n(this, i14);
-            vpVar.getNotificationCenter().n(this, i12);
-            if (jpVar != null) {
-                jpVar.g(booleanValue);
-            }
-        } else if (i10 == i12 && ((Integer) objArr[0]).intValue() == i13) {
-            vpVar.getNotificationCenter().n(this, i14);
-            vpVar.getNotificationCenter().n(this, i12);
-            if (jpVar != null) {
-                jpVar.a();
-            }
-        }
+    public final void e(int i10, Object obj, k20 k20Var) {
+        Integer num = (Integer) obj;
+        this.e.getMessagesStorage().f16331a.c(new ro(i10, (z2) k20Var, 0));
+    }
+
+    @Override
+    public final void f(int i10, Object obj, long j10, a3 a3Var) {
+        Integer num = (Integer) obj;
+        TLRPC.TL_help_getAppConfig tL_help_getAppConfig = new TLRPC.TL_help_getAppConfig();
+        tL_help_getAppConfig.hash = (int) j10;
+        this.e.getConnectionsManager().sendRequest(tL_help_getAppConfig, new so(a3Var, 0));
+    }
+
+    @Override
+    public final void g(int i10, Object obj, Object obj2) {
+        Integer num = (Integer) obj;
+        is.a0(i10).f16331a.c(new a1(i10, (TLRPC.TL_help_appConfig) obj2, 5));
+    }
+
+    @Override
+    public final boolean j(Object obj) {
+        Integer num = (Integer) obj;
+        return false;
     }
 }

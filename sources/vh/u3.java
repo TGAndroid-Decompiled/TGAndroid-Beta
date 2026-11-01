@@ -5,17 +5,17 @@ import android.text.Spanned;
 import android.view.KeyEvent;
 import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.fj;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.gj;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.vx;
-import org.telegram.ui.Components.w41;
+import org.telegram.ui.Components.x41;
 public final class u3 implements vx {
-    public final b4 f52012a;
+    public final b4 f52019a;
 
     public u3(b4 b4Var) {
-        this.f52012a = b4Var;
+        this.f52019a = b4Var;
     }
 
     @Override
@@ -55,7 +55,7 @@ public final class u3 implements vx {
 
     @Override
     public final boolean k() {
-        jg.b editText = ((jg.g3) this.f52012a.f50986s0).getEditText();
+        jg.b editText = ((jg.g3) this.f52019a.f50993s0).getEditText();
         if (editText == null || editText.length() == 0) {
             return false;
         }
@@ -68,7 +68,7 @@ public final class u3 implements vx {
         jg.g3 g3Var;
         jg.b editText;
         org.telegram.messenger.h6[] h6VarArr;
-        jg.j jVar = this.f52012a.f50986s0;
+        jg.j jVar = this.f52019a.f50993s0;
         if (!(jVar instanceof jg.g3) || (editText = (g3Var = (jg.g3) jVar).getEditText()) == null) {
             return;
         }
@@ -80,7 +80,7 @@ public final class u3 implements vx {
             CharSequence m10 = org.telegram.messenger.k6.m(str, g3Var.getFontMetricsInt(), false, null, 0);
             if ((m10 instanceof Spanned) && (h6VarArr = (org.telegram.messenger.h6[]) ((Spanned) m10).getSpans(0, m10.length(), org.telegram.messenger.h6.class)) != null) {
                 for (org.telegram.messenger.h6 h6Var : h6VarArr) {
-                    h6Var.f15839b = 0.85f;
+                    h6Var.f16025b = 0.85f;
                 }
             }
             editText.setText(editText.getText().insert(selectionEnd, m10));
@@ -95,14 +95,14 @@ public final class u3 implements vx {
 
     @Override
     public final void n() {
-        b4 b4Var = this.f52012a;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, b4Var.getContext(), b4Var.f50981p1);
-        String L0 = cd.L0(2131752068, null);
-        org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20134a;
+        b4 b4Var = this.f52019a;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, b4Var.getContext(), b4Var.f50988p1);
+        String L0 = dd.L0(2131752068, null);
+        org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20135a;
         x1Var.R = L0;
-        x1Var.T = cd.L0(2131752069, null);
-        alertDialog$Builder.k(cd.L0(2131752099, null), new rh.d0(this, 28));
-        alertDialog$Builder.h(cd.L0(2131752589, null), null);
+        x1Var.T = dd.L0(2131752069, null);
+        alertDialog$Builder.k(dd.L0(2131752099, null), new rh.d0(this, 28));
+        alertDialog$Builder.h(dd.L0(2131752589, null), null);
         alertDialog$Builder.p();
     }
 
@@ -114,7 +114,7 @@ public final class u3 implements vx {
     @Override
     public final void x(long j10, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.o5 o5Var;
-        jg.b editText = ((jg.g3) this.f52012a.f50986s0).getEditText();
+        jg.b editText = ((jg.g3) this.f52019a.f50993s0).getEditText();
         if (editText == null) {
             return;
         }
@@ -125,7 +125,7 @@ public final class u3 implements vx {
         try {
             SpannableString spannableString = new SpannableString(str);
             if (document != null) {
-                o5Var = new org.telegram.ui.Components.o5(document.f19799id, 1.0f, editText.getPaint().getFontMetricsInt());
+                o5Var = new org.telegram.ui.Components.o5(document.f19800id, 1.0f, editText.getPaint().getFontMetricsInt());
                 o5Var.document = document;
             } else {
                 o5Var = new org.telegram.ui.Components.o5(j10, 1.0f, editText.getPaint().getFontMetricsInt());
@@ -155,7 +155,7 @@ public final class u3 implements vx {
     }
 
     @Override
-    public final void o(w41 w41Var) {
+    public final void o(x41 x41Var) {
     }
 
     @Override
@@ -195,7 +195,7 @@ public final class u3 implements vx {
     }
 
     @Override
-    public final void m(View view, TLRPC.Document document, String str, Object obj, fj fjVar, boolean z10, int i10) {
+    public final void m(View view, TLRPC.Document document, String str, Object obj, gj gjVar, boolean z10, int i10) {
     }
 
     @Override

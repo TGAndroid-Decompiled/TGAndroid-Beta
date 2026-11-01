@@ -11,10 +11,10 @@ import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.d20;
+import org.telegram.messenger.e20;
 import org.telegram.messenger.f8;
 import org.telegram.messenger.i0;
-import org.telegram.messenger.tz;
+import org.telegram.messenger.uz;
 import org.telegram.ui.Components.AnimatedFileNative;
 public class VideoFramesRewinder {
     private Frame currentFrame;
@@ -28,7 +28,7 @@ public class VideoFramesRewinder {
     private View parentView;
     private long prepareToMs;
     private float prepareWithSpeed;
-    int f18541w;
+    int f18696w;
     private final Paint paint = new Paint(2);
     private final int[] meta = new int[8];
     private final ArrayList<Frame> freeFrames = new ArrayList<>();
@@ -48,7 +48,7 @@ public class VideoFramesRewinder {
     }
 
     public VideoFramesRewinder() {
-        int o10 = tz.o();
+        int o10 = uz.o();
         if (o10 != 1) {
             if (o10 != 2) {
                 this.maxFramesCount = 100;
@@ -115,7 +115,7 @@ public class VideoFramesRewinder {
         char c11 = 4;
         int i12 = iArr[4];
         int i13 = 0;
-        int min = Math.min(this.f18541w / 4, iArr[0]);
+        int min = Math.min(this.f18696w / 4, iArr[0]);
         int min2 = Math.min(this.h / 4, this.meta[1]);
         int i14 = this.maxFrameSide;
         if (min > i14 || min2 > i14) {
@@ -192,7 +192,7 @@ public class VideoFramesRewinder {
         this.isPreparing = true;
         this.prepareToMs = j10;
         this.prepareWithSpeed = this.lastSpeed;
-        Utilities.f14523i.c(this.prepareRunnable);
+        Utilities.f14524i.c(this.prepareRunnable);
     }
 
     public void clearCurrent() {
@@ -203,7 +203,7 @@ public class VideoFramesRewinder {
     }
 
     public void draw(Canvas canvas, int i10, int i11) {
-        this.f18541w = i10;
+        this.f18696w = i10;
         this.h = i11;
         if (this.mDecoder != null && this.currentFrame != null) {
             canvas.save();
@@ -304,6 +304,6 @@ public class VideoFramesRewinder {
             return;
         }
         this.stop.set(false);
-        this.mDecoder = AnimatedFileNative.a(file.getAbsolutePath(), this.meta, d20.f15147s0, 0L, null, true);
+        this.mDecoder = AnimatedFileNative.a(file.getAbsolutePath(), this.meta, e20.f15506s0, 0L, null, true);
     }
 }

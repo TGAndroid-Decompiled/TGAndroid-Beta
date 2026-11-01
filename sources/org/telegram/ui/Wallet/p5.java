@@ -4,9 +4,9 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class p5 extends FrameLayout {
-    public View f35035a;
-    public float f35036b;
-    public int f35037c;
+    public View f35034a;
+    public float f35035b;
+    public int f35036c;
     public final n5 d;
     public final b6 e;
 
@@ -31,6 +31,6 @@ public final class p5 extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        this.e.S0();
+        this.e.T0();
     }
 }

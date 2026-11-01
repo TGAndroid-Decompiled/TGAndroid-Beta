@@ -3,18 +3,18 @@ package bi;
 import android.text.Editable;
 import java.io.File;
 import java.util.ArrayList;
+import org.telegram.messenger.at;
 import org.telegram.messenger.b8;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.cg;
-import org.telegram.messenger.h20;
-import org.telegram.messenger.hc;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.dg;
+import org.telegram.messenger.i20;
+import org.telegram.messenger.ic;
 import org.telegram.messenger.j8;
-import org.telegram.messenger.jj;
-import org.telegram.messenger.js;
-import org.telegram.messenger.rb;
+import org.telegram.messenger.kj;
+import org.telegram.messenger.ks;
+import org.telegram.messenger.sb;
 import org.telegram.messenger.support.LongSparseIntArray;
-import org.telegram.messenger.vp;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Cells.k9;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
@@ -44,7 +44,7 @@ public final class k0 implements Runnable {
     @Override
     public final void run() {
         j8 E;
-        jj jjVar;
+        kj kjVar;
         int i10;
         int i11;
         ArrayList arrayList;
@@ -71,7 +71,7 @@ public final class k0 implements Runnable {
                 n1 n1Var = (n1) obj3;
                 k9 k9Var = (k9) obj2;
                 m0 m0Var = (m0) obj;
-                n0 n0Var = (n0) ((hf.b) obj4).f7658c;
+                n0 n0Var = (n0) ((hf.b) obj4).f7659c;
                 if (n1Var.length() >= i16 && n1Var.getSelectionStart() != n1Var.getSelectionEnd() && k9Var.j0(m0Var.J(), 0, i15, i16)) {
                     n0Var.d = true;
                     n1Var.setSelection(i16);
@@ -83,7 +83,7 @@ public final class k0 implements Runnable {
                 final m4.w wVar = (m4.w) obj3;
                 final m4.f0 f0Var = (m4.f0) obj2;
                 final m4.h1 h1Var = (m4.h1) obj;
-                xa.n nVar = ((m4.j1) obj4).f12789b;
+                xa.n nVar = ((m4.j1) obj4).f12790b;
                 if (!nVar.M(wVar, i16)) {
                     m4.j1.R0(f0Var, wVar, i15, new m4.t1(-4));
                     return;
@@ -104,31 +104,31 @@ public final class k0 implements Runnable {
                 });
                 return;
             case 2:
-                rb rbVar = (rb) obj4;
+                sb sbVar = (sb) obj4;
                 File file = (File) obj3;
                 String str4 = (String) obj2;
-                rbVar.getClass();
+                sbVar.getClass();
                 if (file != null && ((str4.endsWith(".mp4") || str4.endsWith(".jpg")) && (E = b8.E(obj)) != null)) {
-                    if (obj instanceof jj) {
-                        jjVar = (jj) obj;
+                    if (obj instanceof kj) {
+                        kjVar = (kj) obj;
                     } else {
-                        jjVar = null;
+                        kjVar = null;
                     }
-                    long j10 = E.f16227a;
+                    long j10 = E.f16422a;
                     if (j10 >= 0) {
                         i10 = 1;
-                    } else if (org.telegram.messenger.w3.V(vp.r1(i16).L0(Long.valueOf(-j10)))) {
+                    } else if (org.telegram.messenger.w3.V(wp.r1(i16).L0(Long.valueOf(-j10)))) {
                         i10 = 4;
                     } else {
                         i10 = 2;
                     }
-                    if (js.l(i10, E, jjVar, i16)) {
+                    if (ks.l(i10, E, kjVar, i16)) {
                         org.telegram.messenger.i0.e(file.toString());
                     }
                 }
-                zs.f(i16).k(142, str4, file);
-                hc hcVar = rbVar.f17713b;
-                hcVar.f15868s.c(new cg(hcVar, str4, this.f3131c, file, 5));
+                at.f(i16).k(142, str4, file);
+                ic icVar = sbVar.f18077b;
+                icVar.f16261s.c(new dg(icVar, str4, this.f3131c, file, 5));
                 return;
             case 3:
                 aj ajVar = (aj) obj4;
@@ -140,7 +140,7 @@ public final class k0 implements Runnable {
                     org.telegram.messenger.i0.g3(new ag.g3(ajVar, ajVar.h, new ArrayList(), new ArrayList(), 14));
                     return;
                 }
-                String R0 = cd.D0().R0(lowerCase, true, false);
+                String R0 = dd.D0().R0(lowerCase, true, false);
                 R0 = (lowerCase.equals(R0) || R0.length() == 0) ? null : null;
                 if (R0 != null) {
                     i11 = 1;
@@ -161,14 +161,14 @@ public final class k0 implements Runnable {
                 while (i18 < arrayList2.size()) {
                     org.telegram.messenger.f5 f5Var = (org.telegram.messenger.f5) arrayList2.get(i18);
                     aj ajVar3 = ajVar2;
-                    String lowerCase2 = org.telegram.messenger.i5.m(r62, f5Var.f15513i, f5Var.f15514j).toLowerCase();
+                    String lowerCase2 = org.telegram.messenger.i5.m(r62, f5Var.f15697i, f5Var.f15698j).toLowerCase();
                     ArrayList arrayList5 = arrayList2;
-                    String R02 = cd.D0().R0(lowerCase2, true, r62);
-                    TLRPC.User user = f5Var.f15517m;
+                    String R02 = dd.D0().R0(lowerCase2, true, r62);
+                    TLRPC.User user = f5Var.f15701m;
                     if (user != null) {
                         strArr = strArr2;
                         String lowerCase3 = org.telegram.messenger.i5.m(r62, user.first_name, user.last_name).toLowerCase();
-                        str2 = cd.D0().R0(lowerCase2, true, r62);
+                        str2 = dd.D0().R0(lowerCase2, true, r62);
                         str = lowerCase3;
                     } else {
                         strArr = strArr2;
@@ -185,8 +185,8 @@ public final class k0 implements Runnable {
                         String str5 = strArr[i20];
                         if ((str == null || (!str.startsWith(str5) && !sc.e.y(" ", str5, str))) && (str2 == null || (!str2.startsWith(str5) && !sc.e.y(" ", str5, str2)))) {
                             str3 = str;
-                            TLRPC.User user2 = f5Var.f15517m;
-                            if (user2 != null && (n10 = h20.n(user2)) != null && n10.startsWith(str5)) {
+                            TLRPC.User user2 = f5Var.f15701m;
+                            if (user2 != null && (n10 = i20.n(user2)) != null && n10.startsWith(str5)) {
                                 c10 = 2;
                             } else if (!lowerCase2.startsWith(str5) && !sc.e.y(" ", str5, lowerCase2) && (R02 == null || (!R02.startsWith(str5) && !sc.e.y(" ", str5, R02)))) {
                                 c10 = c11;
@@ -198,18 +198,18 @@ public final class k0 implements Runnable {
                             c10 = 1;
                         }
                         String str6 = lowerCase2;
-                        if (c10 != 0 && (!f5Var.e.isEmpty() || !f5Var.f15512g.isEmpty())) {
+                        if (c10 != 0 && (!f5Var.e.isEmpty() || !f5Var.f15696g.isEmpty())) {
                             if (c10 == 3) {
-                                arrayList4.add(org.telegram.messenger.i0.r0(f5Var.f15513i, f5Var.f15514j, str5));
+                                arrayList4.add(org.telegram.messenger.i0.r0(f5Var.f15697i, f5Var.f15698j, str5));
                             } else if (c10 == 1) {
-                                TLRPC.User user3 = f5Var.f15517m;
+                                TLRPC.User user3 = f5Var.f15701m;
                                 arrayList4.add(org.telegram.messenger.i0.r0(user3.first_name, user3.last_name, str5));
                             } else {
-                                arrayList4.add(org.telegram.messenger.i0.r0("@" + h20.n(f5Var.f15517m), null, "@" + str5));
+                                arrayList4.add(org.telegram.messenger.i0.r0("@" + i20.n(f5Var.f15701m), null, "@" + str5));
                             }
-                            TLRPC.User user4 = f5Var.f15517m;
+                            TLRPC.User user4 = f5Var.f15701m;
                             if (user4 != null) {
-                                longSparseIntArray.put(user4.f19942id, 1);
+                                longSparseIntArray.put(user4.f19943id, 1);
                             }
                             arrayList3.add(f5Var);
                             i18++;
@@ -240,9 +240,9 @@ public final class k0 implements Runnable {
                         arrayList = arrayList6;
                     } else {
                         arrayList = arrayList6;
-                        TLRPC.User Z1 = vp.r1(i16).Z1(Long.valueOf(tL_contact.user_id));
+                        TLRPC.User Z1 = wp.r1(i16).Z1(Long.valueOf(tL_contact.user_id));
                         String lowerCase4 = org.telegram.messenger.i5.m(0, Z1.first_name, Z1.last_name).toLowerCase();
-                        String R03 = cd.D0().R0(lowerCase4, true, false);
+                        String R03 = dd.D0().R0(lowerCase4, true, false);
                         if (lowerCase4.equals(R03)) {
                             R03 = null;
                         }
@@ -255,7 +255,7 @@ public final class k0 implements Runnable {
                                 c12 = 1;
                             } else {
                                 i12 = i21;
-                                String n11 = h20.n(Z1);
+                                String n11 = i20.n(Z1);
                                 if (n11 != null && n11.startsWith(str7)) {
                                     c12 = 2;
                                 }
@@ -264,7 +264,7 @@ public final class k0 implements Runnable {
                                 if (c12 == 1) {
                                     arrayList4.add(org.telegram.messenger.i0.r0(Z1.first_name, Z1.last_name, str7));
                                 } else {
-                                    arrayList4.add(org.telegram.messenger.i0.r0("@" + h20.n(Z1), null, "@" + str7));
+                                    arrayList4.add(org.telegram.messenger.i0.r0("@" + i20.n(Z1), null, "@" + str7));
                                 }
                                 arrayList3.add(Z1);
                                 i21 = i12 + 1;
@@ -284,31 +284,31 @@ public final class k0 implements Runnable {
                 org.telegram.ui.ActionBar.k2 k2Var = (org.telegram.ui.ActionBar.k2) obj3;
                 ArrayList arrayList7 = (ArrayList) obj2;
                 un unVar2 = (un) obj;
-                boolean z11 = ChatAttachAlertPhotoLayout.f23845q1;
-                bi biVar = chatAttachAlertPhotoLayout.f30947b;
-                if (biVar.f24736w1 && !biVar.f24740x1) {
+                boolean z11 = ChatAttachAlertPhotoLayout.f23846q1;
+                bi biVar = chatAttachAlertPhotoLayout.f30964b;
+                if (biVar.f24827w1 && !biVar.f24831x1) {
                     PhotoViewer.v1().N2(null, k2Var, null);
                     PhotoViewer v12 = PhotoViewer.v1();
                     v12.h = 0;
-                    v12.f33547n = false;
+                    v12.f33554n = false;
                     i13 = 3;
                 } else {
                     i13 = i16;
                 }
-                if (biVar.f24744y1) {
+                if (biVar.f24835y1) {
                     i13 = 13;
                 }
                 int i23 = i13;
                 PhotoViewer v13 = PhotoViewer.v1();
-                sl slVar = chatAttachAlertPhotoLayout.f23865h1;
-                if (biVar.f24744y1) {
+                sl slVar = chatAttachAlertPhotoLayout.f23866h1;
+                if (biVar.f24835y1) {
                     unVar = null;
                 } else {
                     unVar = unVar2;
                 }
                 v13.j2(arrayList7, this.f3131c, i23, false, slVar, unVar);
                 PhotoViewer.v1().A2(biVar.H1);
-                if (biVar.f24736w1 && !biVar.f24740x1) {
+                if (biVar.f24827w1 && !biVar.f24831x1) {
                     PhotoViewer.v1().O = false;
                 } else if (biVar.K2 != 0) {
                     PhotoViewer.v1().O = true;
@@ -320,14 +320,14 @@ public final class k0 implements Runnable {
                     }
                     v14.P = z10;
                 }
-                if (biVar.f24740x1) {
+                if (biVar.f24831x1) {
                     PhotoViewer.v1().Z0(null, null, false, biVar.A1);
                 }
                 if (ChatAttachAlertPhotoLayout.U()) {
                     PhotoViewer v15 = PhotoViewer.v1();
                     Editable text = biVar.Z0().getText();
-                    v15.f33572p7 = true;
-                    v15.f33580q7 = text;
+                    v15.f33579p7 = true;
+                    v15.f33587q7 = text;
                     v15.D2(null, text, false, false);
                     v15.w3(null);
                     return;
@@ -345,8 +345,8 @@ public final class k0 implements Runnable {
         this.h = h1Var;
     }
 
-    public k0(rb rbVar, File file, String str, int i10, Object obj, int i11) {
-        this.d = rbVar;
+    public k0(sb sbVar, File file, String str, int i10, Object obj, int i11) {
+        this.d = sbVar;
         this.e = file;
         this.f3132f = str;
         this.f3130b = i10;

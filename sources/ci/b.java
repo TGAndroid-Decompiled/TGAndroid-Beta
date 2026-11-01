@@ -37,15 +37,15 @@ public final class b implements ValueAnimator.AnimatorUpdateListener {
                 q1 q1Var = (q1) this.d;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 if (nVar.f4235l) {
-                    x1Var.f23487h0 = (-nVar.f4242s) * floatValue;
-                    x1Var.f23492i0 = (-nVar.f4243t) * floatValue;
-                    x1Var.f23502k0 = (-nVar.f4244u) * floatValue;
-                    x1Var.f23497j0 = (-nVar.v) * floatValue;
+                    x1Var.f23488h0 = (-nVar.f4242s) * floatValue;
+                    x1Var.f23493i0 = (-nVar.f4243t) * floatValue;
+                    x1Var.f23503k0 = (-nVar.f4244u) * floatValue;
+                    x1Var.f23498j0 = (-nVar.v) * floatValue;
                 } else {
-                    x1Var.f23487h0 = ((-nVar.f4242s) * floatValue) - q1Var.getAnimationOffsetX();
-                    x1Var.f23492i0 = ((-nVar.f4243t) * floatValue) - q1Var.getAnimationOffsetX();
-                    x1Var.f23502k0 = ((-nVar.f4244u) * floatValue) - q1Var.getTranslationY();
-                    x1Var.f23497j0 = ((-nVar.v) * floatValue) - q1Var.getTranslationY();
+                    x1Var.f23488h0 = ((-nVar.f4242s) * floatValue) - q1Var.getAnimationOffsetX();
+                    x1Var.f23493i0 = ((-nVar.f4243t) * floatValue) - q1Var.getAnimationOffsetX();
+                    x1Var.f23503k0 = ((-nVar.f4244u) * floatValue) - q1Var.getTranslationY();
+                    x1Var.f23498j0 = ((-nVar.v) * floatValue) - q1Var.getTranslationY();
                 }
                 q1Var.invalidate();
                 return;
@@ -68,7 +68,7 @@ public final class b implements ValueAnimator.AnimatorUpdateListener {
                     }
                     childAt.setAlpha((f7 * 0.4f) + 0.6f);
                 }
-                float interpolation = gr.f26495f.getInterpolation(r0Var.R0);
+                float interpolation = gr.f26523f.getInterpolation(r0Var.R0);
                 if (view != null && view2 != null) {
                     float f11 = 1.0f - interpolation;
                     float f12 = (f11 * 0.4f) + 0.6f;
@@ -86,10 +86,10 @@ public final class b implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 2:
                 boolean[] zArr = (boolean[]) this.d;
-                z2 z2Var = ((f2) this.f4191b).f48950a;
-                z2Var.f49704e3 = ((Float) ((ValueAnimator) this.f4192c).getAnimatedValue()).floatValue();
+                z2 z2Var = ((f2) this.f4191b).f48964a;
+                z2Var.f49718e3 = ((Float) ((ValueAnimator) this.f4192c).getAnimatedValue()).floatValue();
                 z2Var.invalidate();
-                if (z2Var.f49704e3 > 0.8f && !zArr[0]) {
+                if (z2Var.f49718e3 > 0.8f && !zArr[0]) {
                     zArr[0] = true;
                     z2Var.Z2 = true;
                     try {
@@ -119,7 +119,7 @@ public final class b implements ValueAnimator.AnimatorUpdateListener {
                     }
                     childAt2.setAlpha((f10 * 0.4f) + 0.6f);
                 }
-                float interpolation2 = gr.f26495f.getInterpolation(b4Var.J0);
+                float interpolation2 = gr.f26523f.getInterpolation(b4Var.J0);
                 if (view3 != null && view4 != null) {
                     float f14 = 1.0f - interpolation2;
                     float f15 = (f14 * 0.4f) + 0.6f;

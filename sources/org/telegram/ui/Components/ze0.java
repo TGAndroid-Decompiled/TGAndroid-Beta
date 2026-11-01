@@ -5,9 +5,9 @@ import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import org.telegram.ui.LaunchActivity;
 public final class ze0 extends FrameLayout {
-    public float f33026a;
-    public float f33027b;
-    public boolean f33028c;
+    public float f33122a;
+    public float f33123b;
+    public boolean f33124c;
     public boolean d;
     public final PipRoundVideoView e;
 
@@ -18,12 +18,12 @@ public final class ze0 extends FrameLayout {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        jg.x0 x0Var = org.telegram.ui.ActionBar.t6.f21055k3;
+        jg.x0 x0Var = org.telegram.ui.ActionBar.t6.f21056k3;
         if (x0Var != null) {
             x0Var.setAlpha((int) (getAlpha() * 255.0f));
-            org.telegram.ui.ActionBar.t6.f21055k3.setBounds(org.telegram.messenger.i0.L(1.0f), org.telegram.messenger.i0.L(2.0f), org.telegram.messenger.i0.L(125.0f), org.telegram.messenger.i0.L(125.0f));
-            org.telegram.ui.ActionBar.t6.f21055k3.draw(canvas);
-            org.telegram.ui.ActionBar.t6.S1.setColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f21190ra, false));
+            org.telegram.ui.ActionBar.t6.f21056k3.setBounds(org.telegram.messenger.i0.L(1.0f), org.telegram.messenger.i0.L(2.0f), org.telegram.messenger.i0.L(125.0f), org.telegram.messenger.i0.L(125.0f));
+            org.telegram.ui.ActionBar.t6.f21056k3.draw(canvas);
+            org.telegram.ui.ActionBar.t6.S1.setColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f21191ra, false));
             org.telegram.ui.ActionBar.t6.S1.setAlpha((int) (getAlpha() * 255.0f));
             canvas.drawCircle(org.telegram.messenger.i0.L(63.0f), org.telegram.messenger.i0.L(63.0f), org.telegram.messenger.i0.L(59.5f), org.telegram.ui.ActionBar.t6.S1);
         }
@@ -32,8 +32,8 @@ public final class ze0 extends FrameLayout {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
-            this.f33026a = motionEvent.getRawX();
-            this.f33027b = motionEvent.getRawY();
+            this.f33122a = motionEvent.getRawX();
+            this.f33123b = motionEvent.getRawY();
             this.d = true;
         }
         return true;

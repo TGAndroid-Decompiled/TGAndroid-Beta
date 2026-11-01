@@ -7,19 +7,19 @@ import java.util.concurrent.Executor;
 import r9.r;
 import td.y0;
 public final class i implements r9.d, t {
-    public static final i f11714b = new i(0);
-    public static final i f11715c = new i(1);
+    public static final i f11715b = new i(0);
+    public static final i f11716c = new i(1);
     public static final i d = new i(2);
     public static final i e = new i(3);
-    public final int f11716a;
+    public final int f11717a;
 
     public i(int i10) {
-        this.f11716a = i10;
+        this.f11717a = i10;
     }
 
     @Override
     public Object K(bh.d dVar) {
-        switch (this.f11716a) {
+        switch (this.f11717a) {
             case 0:
                 Object d10 = dVar.d(new r(n9.a.class, Executor.class));
                 kotlin.jvm.internal.i.d(d10, "c.get(Qualified.qualifie…a, Executor::class.java))");

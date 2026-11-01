@@ -8,22 +8,22 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import s4.c1;
 public final class k extends s4.g0 {
-    public final g0 f45671c;
+    public final g0 f45682c;
 
     public k(g0 g0Var) {
-        this.f45671c = g0Var;
+        this.f45682c = g0Var;
     }
 
     @Override
     public final int b() {
-        return this.f45671c.f45725s;
+        return this.f45682c.f45736s;
     }
 
     @Override
     public final int d(int i10) {
-        g0 g0Var = this.f45671c;
-        o oVar = (o) g0Var.f45723n.get(g0Var.f(i10));
-        if (oVar.f45704b != null && i10 == oVar.d) {
+        g0 g0Var = this.f45682c;
+        o oVar = (o) g0Var.f45734n.get(g0Var.f(i10));
+        if (oVar.f45715b != null && i10 == oVar.d) {
             return 0;
         }
         return 1;
@@ -33,27 +33,27 @@ public final class k extends s4.g0 {
     public final void t(c1 c1Var, int i10) {
         String str;
         int i11;
-        g0 g0Var = this.f45671c;
-        o oVar = (o) g0Var.f45723n.get(g0Var.f(i10));
-        int i12 = c1Var.f47901f;
-        View view = c1Var.f47898a;
+        g0 g0Var = this.f45682c;
+        o oVar = (o) g0Var.f45734n.get(g0Var.f(i10));
+        int i12 = c1Var.f47912f;
+        View view = c1Var.f47909a;
         int i13 = 1;
         int i14 = 0;
         if (i12 == 0) {
             n nVar = (n) view;
-            String str2 = oVar.f45704b;
-            if (g0Var.f45727x || oVar.f45703a != 2) {
+            String str2 = oVar.f45715b;
+            if (g0Var.f45738x || oVar.f45714a != 2) {
                 i13 = 0;
             }
-            TextView textView = nVar.f45698b;
-            TextView textView2 = nVar.f45697a;
+            TextView textView = nVar.f45709b;
+            TextView textView2 = nVar.f45708a;
             if (str2 != null) {
                 str = str2.replace('\n', ' ');
             } else {
                 str = null;
             }
             textView2.setText(str);
-            textView2.setTextColor(nVar.f45699c.f45728y);
+            textView2.setTextColor(nVar.f45710c.f45739y);
             if (i13 != 0) {
                 i11 = 0;
             } else {
@@ -73,9 +73,9 @@ public final class k extends s4.g0 {
             }
             return;
         }
-        ArrayList arrayList = oVar.f45705c;
+        ArrayList arrayList = oVar.f45716c;
         int i16 = i10 - oVar.d;
-        if (oVar.f45704b == null) {
+        if (oVar.f45715b == null) {
             i13 = 0;
         }
         ((l) view).set((TLRPC.Document) arrayList.get(i16 - i13));
@@ -84,12 +84,12 @@ public final class k extends s4.g0 {
     @Override
     public final c1 w(ViewGroup viewGroup, int i10) {
         View lVar;
-        g0 g0Var = this.f45671c;
+        g0 g0Var = this.f45682c;
         if (i10 == 0) {
             lVar = new n(g0Var, viewGroup.getContext());
             lVar.setLayoutParams(new s4.o0(-1, org.telegram.messenger.i0.L(44.0f)));
         } else {
-            lVar = new l(viewGroup.getContext(), g0Var.f45719a);
+            lVar = new l(viewGroup.getContext(), g0Var.f45730a);
             lVar.setLayoutParams(new s4.o0(-1, -2));
         }
         return new c1(lVar);

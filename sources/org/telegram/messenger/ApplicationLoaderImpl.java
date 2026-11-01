@@ -12,7 +12,7 @@ import org.telegram.tgnet.TLRPC;
 public class ApplicationLoaderImpl extends w0 {
     @Override
     public final boolean b(Context context) {
-        if (Build.VERSION.SDK_INT >= 26 && !w0.f19025b.getPackageManager().canRequestPackageInstalls()) {
+        if (Build.VERSION.SDK_INT >= 26 && !w0.f18945b.getPackageManager().canRequestPackageInstalls()) {
             org.telegram.ui.Components.s4.j(context, null).show();
             return false;
         }
@@ -38,7 +38,7 @@ public class ApplicationLoaderImpl extends w0 {
 
     @Override
     public final boolean q() {
-        return !TextUtils.isEmpty("https://telegram.org/dl/android/apk-public-beta.json");
+        return !TextUtils.isEmpty("null");
     }
 
     @Override
@@ -46,7 +46,7 @@ public class ApplicationLoaderImpl extends w0 {
         boolean z10 = false;
         try {
             b8.r(null, document);
-            b8.G(d20.f15147s0);
+            b8.G(e20.f15506s0);
             File K = b8.K(document, null, true, true);
             z10 = K.exists();
             if (z10) {

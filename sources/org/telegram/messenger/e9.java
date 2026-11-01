@@ -14,12 +14,12 @@ import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_ephemeral;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.xu0;
-public final class e9 implements l9, Vector.TLDeserializer, OnCompleteListener, org.telegram.ui.ActionBar.u1, xu0 {
-    public final int f15373a;
+import org.telegram.ui.Components.yu0;
+public final class e9 implements m9, Vector.TLDeserializer, OnCompleteListener, org.telegram.ui.ActionBar.u1, yu0 {
+    public final int f15546a;
 
     public e9(int i10) {
-        this.f15373a = i10;
+        this.f15546a = i10;
     }
 
     public static BlendMode b(Object obj) {
@@ -36,7 +36,7 @@ public final class e9 implements l9, Vector.TLDeserializer, OnCompleteListener, 
 
     @Override
     public TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-        switch (this.f15373a) {
+        switch (this.f15546a) {
             case 16:
                 return TLRPC.Peer.TLdeserialize(inputSerializedData, i10, z10);
             case 17:
@@ -57,9 +57,9 @@ public final class e9 implements l9, Vector.TLDeserializer, OnCompleteListener, 
 
     @Override
     public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
-        switch (this.f15373a) {
+        switch (this.f15546a) {
             case 25:
-                int i11 = tz.f18131a;
+                int i11 = uz.f18500a;
                 return;
             default:
                 x1Var.dismiss();
@@ -70,7 +70,7 @@ public final class e9 implements l9, Vector.TLDeserializer, OnCompleteListener, 
     @Override
     public Object l(Object obj) {
         Void r22 = (Void) obj;
-        switch (this.f15373a) {
+        switch (this.f15546a) {
             case 12:
                 return new TLRPC.TL_messageEntityBold();
             case 13:
@@ -85,24 +85,24 @@ public final class e9 implements l9, Vector.TLDeserializer, OnCompleteListener, 
     @Override
     public void m(int i10) {
         if (i10 == 0) {
-            tz.A(3);
+            uz.A(3);
         } else if (i10 == 1) {
-            tz.A(0);
+            uz.A(0);
         } else if (i10 == 2) {
-            tz.A(1);
+            uz.A(1);
         } else if (i10 == 3) {
-            tz.A(2);
+            uz.A(2);
         }
     }
 
     @Override
     public void onComplete(Task task) {
-        tz.f18155j = SystemClock.elapsedRealtime();
+        uz.f18524j = SystemClock.elapsedRealtime();
         if (!task.isSuccessful()) {
-            if (v2.f18448a) {
+            if (v2.f18578a) {
                 f8.b("Failed to get regid");
             }
-            tz.h = "__FIREBASE_FAILED__";
+            uz.h = "__FIREBASE_FAILED__";
             PushListenerController.sendRegistrationToServer(2, null);
             return;
         }
@@ -112,11 +112,11 @@ public final class e9 implements l9, Vector.TLDeserializer, OnCompleteListener, 
         }
     }
 
-    public e9(eu euVar) {
-        this.f15373a = 22;
+    public e9(fu fuVar) {
+        this.f15546a = 22;
     }
 
     @Override
-    public void s() {
+    public void r() {
     }
 }

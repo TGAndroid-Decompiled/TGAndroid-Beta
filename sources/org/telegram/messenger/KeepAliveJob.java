@@ -4,25 +4,25 @@ import android.content.Intent;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.support.JobIntentService;
 public class KeepAliveJob extends JobIntentService {
-    public static volatile CountDownLatch f14426a;
-    public static volatile boolean f14427b;
-    public static final Object f14428c = new Object();
+    public static volatile CountDownLatch f14427a;
+    public static volatile boolean f14428b;
+    public static final Object f14429c = new Object();
     public static final ag.f3 d = new ag.f3(16);
 
     public static void a() {
-        synchronized (f14428c) {
+        synchronized (f14429c) {
             try {
-                if (f14426a != null) {
-                    if (v2.f18448a) {
+                if (f14427a != null) {
+                    if (v2.f18578a) {
                         f8.b("finish keep-alive job");
                     }
-                    f14426a.countDown();
+                    f14427a.countDown();
                 }
-                if (f14427b) {
-                    if (v2.f18448a) {
+                if (f14428b) {
+                    if (v2.f18578a) {
                         f8.b("finish queued keep-alive job");
                     }
-                    f14427b = false;
+                    f14428b = false;
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -32,25 +32,25 @@ public class KeepAliveJob extends JobIntentService {
 
     @Override
     public final void onHandleWork(Intent intent) {
-        synchronized (f14428c) {
+        synchronized (f14429c) {
             try {
-                if (!f14427b) {
+                if (!f14428b) {
                     return;
                 }
-                f14426a = new CountDownLatch(1);
-                if (v2.f18448a) {
+                f14427a = new CountDownLatch(1);
+                if (v2.f18578a) {
                     f8.b("started keep-alive job");
                 }
                 Utilities.e.d(d, 60000L);
                 try {
-                    f14426a.await();
+                    f14427a.await();
                 } catch (Throwable unused) {
                 }
                 Utilities.e.a(d);
-                synchronized (f14428c) {
-                    f14426a = null;
+                synchronized (f14429c) {
+                    f14427a = null;
                 }
-                if (v2.f18448a) {
+                if (v2.f18578a) {
                     f8.b("ended keep-alive job");
                 }
             } catch (Throwable th2) {

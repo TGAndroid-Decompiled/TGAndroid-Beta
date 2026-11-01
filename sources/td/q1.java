@@ -1,19 +1,19 @@
 package td;
 public final class q1 extends ed.i implements ld.p {
-    public v1 f48654b;
-    public q f48655c;
+    public v1 f48665b;
+    public q f48666c;
     public int d;
     public Object e;
-    public final u1 f48656f;
+    public final u1 f48667f;
 
     public q1(cd.c cVar, u1 u1Var) {
         super(cVar);
-        this.f48656f = u1Var;
+        this.f48667f = u1Var;
     }
 
     @Override
     public final cd.c create(Object obj, cd.c cVar) {
-        q1 q1Var = new q1(cVar, this.f48656f);
+        q1 q1Var = new q1(cVar, this.f48667f);
         q1Var.e = obj;
         return q1Var;
     }

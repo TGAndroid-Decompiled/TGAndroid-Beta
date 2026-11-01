@@ -5,7 +5,7 @@ import java.util.LinkedHashMap;
 import kotlin.jvm.internal.i;
 public final class b extends h {
     public b() {
-        this(a.f50283b);
+        this(a.f50297b);
     }
 
     public b(h initialExtras) {

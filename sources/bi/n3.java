@@ -24,7 +24,7 @@ public final class n3 implements k5 {
         d4 d4Var = this.d;
         d4Var.f2929g4.remove(wVar);
         d4Var.f2946s3.remove(this.f3245b);
-        d4Var.f30819f3.O(true);
+        d4Var.f31183f3.O(true);
         d4Var.f2938o3.onContentChanged();
     }
 
@@ -39,10 +39,10 @@ public final class n3 implements k5 {
         wVar.f3416a = 2;
         TL_iv.PageBlock pageBlock = this.f3245b.f2818b;
         if (pageBlock instanceof TL_iv.pageBlockDocument) {
-            ((TL_iv.pageBlockDocument) pageBlock).document_id = document.f19799id;
+            ((TL_iv.pageBlockDocument) pageBlock).document_id = document.f19800id;
         }
         d4Var.f2929g4.remove(wVar);
-        d4Var.f30819f3.O(false);
+        d4Var.f31183f3.O(false);
         d4Var.f2938o3.onContentChanged();
     }
 

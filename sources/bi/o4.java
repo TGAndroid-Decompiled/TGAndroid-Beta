@@ -9,19 +9,19 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
-import org.telegram.messenger.cs;
+import org.telegram.messenger.ds;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.gp;
-import org.telegram.messenger.j20;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.hp;
+import org.telegram.messenger.k20;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.fx0;
+import org.telegram.ui.Components.gx0;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.un;
-public final class o4 implements org.telegram.ui.ActionBar.u1, i5.g, gp, x2.l, cs {
+public final class o4 implements org.telegram.ui.ActionBar.u1, i5.g, hp, x2.l, ds {
     public final int f3264a;
     public final boolean f3265b;
     public final Object f3266c;
@@ -38,7 +38,7 @@ public final class o4 implements org.telegram.ui.ActionBar.u1, i5.g, gp, x2.l, c
 
     @Override
     public boolean a(TLRPC.TL_error tL_error) {
-        return ProfileActivity.e0((ProfileActivity) this.f3266c, (boolean[]) this.d, this.f3265b, (org.telegram.ui.ActionBar.k2) this.e, tL_error);
+        return ProfileActivity.f0((ProfileActivity) this.f3266c, (boolean[]) this.d, this.f3265b, (org.telegram.ui.ActionBar.k2) this.e, tL_error);
     }
 
     @Override
@@ -69,7 +69,7 @@ public final class o4 implements org.telegram.ui.ActionBar.u1, i5.g, gp, x2.l, c
             CountDownLatch countDownLatch = new CountDownLatch(1);
             new Thread(new d1.e(1, bVar, countDownLatch)).start();
             TimeUnit timeUnit = TimeUnit.SECONDS;
-            ExecutorService executorService = x9.x.f53519a;
+            ExecutorService executorService = x9.x.f53537a;
             boolean z11 = false;
             try {
                 long nanos = timeUnit.toNanos(2L);
@@ -162,34 +162,34 @@ public final class o4 implements org.telegram.ui.ActionBar.u1, i5.g, gp, x2.l, c
                 return;
             case 1:
             default:
-                fx0 fx0Var = (fx0) this.f3266c;
-                j20 j20Var = (j20) this.d;
+                gx0 gx0Var = (gx0) this.f3266c;
+                k20 k20Var = (k20) this.d;
                 Context context = (Context) this.e;
                 boolean z11 = this.f3265b;
-                String trim2 = fx0Var.getText().toString().trim();
+                String trim2 = gx0Var.getText().toString().trim();
                 th.b bVar = null;
                 if (!TextUtils.isEmpty(trim2) && !TextUtils.isEmpty(org.telegram.messenger.i0.N3(trim2.toString()))) {
-                    org.telegram.messenger.i0.v1(fx0Var);
+                    org.telegram.messenger.i0.v1(gx0Var);
                     if (!z11) {
                         bVar = new th.b();
                     }
                     org.telegram.ui.ActionBar.x1 x1Var2 = new org.telegram.ui.ActionBar.x1(3, context, bVar);
                     x1Var2.r(250L);
-                    j20Var.a(trim2, new kg.d0(x1Var2, x1Var, fx0Var, 4));
+                    k20Var.a(trim2, new kg.d0(x1Var2, x1Var, gx0Var, 4));
                     return;
                 }
-                fx0Var.setErrorText(".");
-                org.telegram.messenger.i0.F3(-6.0f, fx0Var, null);
+                gx0Var.setErrorText(".");
+                org.telegram.messenger.i0.F3(-6.0f, gx0Var, null);
                 org.telegram.messenger.t2.APP_ERROR.a();
-                org.telegram.messenger.i0.J3(fx0Var);
+                org.telegram.messenger.i0.J3(gx0Var);
                 return;
             case 2:
                 un unVar = (un) this.f3266c;
                 boolean z12 = this.f3265b;
-                ((vp) this.d).G2 = 1;
-                vp.d1().edit().putInt("secretWebpage2", unVar.getMessagesController().G2).commit();
+                ((wp) this.d).G2 = 1;
+                wp.d1().edit().putInt("secretWebpage2", unVar.getMessagesController().G2).commit();
                 unVar.X5 = null;
-                unVar.ob((CharSequence) this.e, z12);
+                unVar.tb((CharSequence) this.e, z12);
                 return;
             case 3:
                 boolean z13 = this.f3265b;
@@ -199,7 +199,7 @@ public final class o4 implements org.telegram.ui.ActionBar.u1, i5.g, gp, x2.l, c
                 if (z13) {
                     try {
                         Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                        intent.setData(Uri.parse("package:" + org.telegram.messenger.w0.f19025b.getPackageName()));
+                        intent.setData(Uri.parse("package:" + org.telegram.messenger.w0.f18945b.getPackageName()));
                         context2.startActivity(intent);
                         return;
                     } catch (Exception e) {
@@ -222,9 +222,9 @@ public final class o4 implements org.telegram.ui.ActionBar.u1, i5.g, gp, x2.l, c
         if (j10 == 0) {
             return;
         }
-        eVar.f54468b = -j10;
-        eVar.f54469c = eVar.getMessagesController().L0(Long.valueOf(j10));
-        eVar.Z(str, this.f3265b);
+        eVar.f54487b = -j10;
+        eVar.f54488c = eVar.getMessagesController().L0(Long.valueOf(j10));
+        eVar.a0(str, this.f3265b);
     }
 
     public o4(Object obj, Object obj2, boolean z10, Object obj3, int i10) {

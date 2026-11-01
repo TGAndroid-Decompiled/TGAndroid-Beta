@@ -1,27 +1,27 @@
 package org.telegram.ui;
 public final class zp implements Runnable {
-    public final int f44208a;
-    public final iq f44209b;
-    public final long f44210c;
+    public final int f44034a;
+    public final iq f44035b;
+    public final long f44036c;
 
     public zp(iq iqVar, long j10, int i10) {
-        this.f44208a = i10;
-        this.f44209b = iqVar;
-        this.f44210c = j10;
+        this.f44034a = i10;
+        this.f44035b = iqVar;
+        this.f44036c = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f44208a) {
+        switch (this.f44034a) {
             case 0:
-                long j10 = this.f44210c;
-                iq iqVar = this.f44209b;
-                iqVar.f38311n = j10;
-                iqVar.f38316r = true;
-                iqVar.r0();
+                long j10 = this.f44036c;
+                iq iqVar = this.f44035b;
+                iqVar.f38137n = j10;
+                iqVar.f38142r = true;
+                iqVar.s0();
                 return;
             default:
-                iq.d0(this.f44209b, this.f44210c);
+                iq.e0(this.f44035b, this.f44036c);
                 return;
         }
     }

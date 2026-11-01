@@ -1,26 +1,25 @@
 package xh;
-public final class o3 implements Runnable {
-    public final int f53945a;
-    public final p3 f53946b;
 
-    public o3(p3 p3Var, int i10) {
-        this.f53945a = i10;
-        this.f53946b = p3Var;
+import android.app.Activity;
+import android.content.Context;
+import org.telegram.ui.LaunchActivity;
+public final class o3 extends org.telegram.ui.ActionBar.k2 {
+    @Override
+    public final Context getContext() {
+        return org.telegram.messenger.i0.W(LaunchActivity.I1);
     }
 
     @Override
-    public final void run() {
-        switch (this.f53945a) {
-            case 0:
-                p3 p3Var = this.f53946b;
-                if (p3Var.f53976x) {
-                    p3Var.d();
-                    return;
-                }
-                return;
-            default:
-                this.f53946b.invalidateSelf();
-                return;
+    public final int getCurrentAccount() {
+        return this.currentAccount;
+    }
+
+    @Override
+    public final Activity getParentActivity() {
+        Activity W = org.telegram.messenger.i0.W(org.telegram.messenger.w0.f18945b);
+        if (W == null) {
+            return LaunchActivity.I1;
         }
+        return W;
     }
 }

@@ -5,11 +5,11 @@ import java.io.InterruptedIOException;
 import java.net.SocketTimeoutException;
 import v7.r6;
 public class w extends k {
-    public final int f7346b;
+    public final int f7347b;
 
     public w() {
         super(2008);
-        this.f7346b = 1;
+        this.f7347b = 1;
     }
 
     public static w a(IOException iOException, int i10) {
@@ -32,7 +32,7 @@ public class w extends k {
 
     public w(String str, int i10) {
         super(str, i10 == 2000 ? 2001 : i10);
-        this.f7346b = 1;
+        this.f7347b = 1;
     }
 
     public w(java.io.IOException r2, int r3, int r4) {
@@ -41,6 +41,6 @@ public class w extends k {
 
     public w(String str, IOException iOException, int i10) {
         super(str, iOException, i10 == 2000 ? 2001 : i10);
-        this.f7346b = 1;
+        this.f7347b = 1;
     }
 }

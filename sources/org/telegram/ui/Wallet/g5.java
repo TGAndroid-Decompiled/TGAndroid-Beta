@@ -1,30 +1,30 @@
 package org.telegram.ui.Wallet;
 
 import java.util.ArrayList;
-import org.telegram.messenger.us;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.at;
+import org.telegram.messenger.vs;
 import org.telegram.tgnet.tl.TL_wallet;
-public final class g5 implements us {
-    public final int f34548a;
-    public final TL_wallet.walletTransaction[] f34549b;
-    public final q4 f34550c;
+public final class g5 implements vs {
+    public final int f34554a;
+    public final TL_wallet.walletTransaction[] f34555b;
+    public final q4 f34556c;
 
     public g5(int i10, TL_wallet.walletTransaction[] wallettransactionArr, q4 q4Var) {
-        this.f34548a = i10;
-        this.f34549b = wallettransactionArr;
-        this.f34550c = q4Var;
+        this.f34554a = i10;
+        this.f34555b = wallettransactionArr;
+        this.f34556c = q4Var;
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         TL_wallet.walletTransaction[] wallettransactionArr;
         TL_wallet.walletTransaction wallettransaction;
-        if (i10 == zs.f19582a4 || i10 == zs.f19588b4) {
-            ArrayList arrayList = k0.x(this.f34548a).B().f34731c;
+        if (i10 == at.f14678a4 || i10 == at.f14684b4) {
+            ArrayList arrayList = k0.x(this.f34554a).B().f34736c;
             int size = arrayList.size();
             int i12 = 0;
             while (true) {
-                wallettransactionArr = this.f34549b;
+                wallettransactionArr = this.f34555b;
                 if (i12 < size) {
                     Object obj = arrayList.get(i12);
                     i12++;
@@ -44,7 +44,7 @@ public final class g5 implements us {
             }
             if (wallettransaction != null) {
                 wallettransactionArr[0] = wallettransaction;
-                this.f34550c.a(wallettransaction);
+                this.f34556c.a(wallettransaction);
             }
         }
     }

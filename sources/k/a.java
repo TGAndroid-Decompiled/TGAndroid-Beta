@@ -10,8 +10,8 @@ import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.Components.bk;
 import org.telegram.ui.Components.t;
 public abstract class a {
-    public boolean f10472a;
-    public Object f10473b;
+    public boolean f10473a;
+    public Object f10474b;
 
     public a(Context context, p6 p6Var, boolean z10) {
         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(2131232562, z10 ? 1 : 0, context, p6Var);
@@ -21,8 +21,8 @@ public abstract class a {
         actionBarPopupWindow$ActionBarPopupWindowLayout.setShownFromBottom(false);
         j(actionBarPopupWindow$ActionBarPopupWindowLayout);
         k1 k1Var = new k1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f10473b = k1Var;
-        k1Var.f20455b = false;
+        this.f10474b = k1Var;
+        k1Var.f20456b = false;
         k1Var.setAnimationStyle(2131755193);
         k1Var.setOutsideTouchable(true);
         k1Var.setClippingEnabled(true);
@@ -37,13 +37,13 @@ public abstract class a {
             public final void onDismiss() {
                 k.a aVar = k.a.this;
                 aVar.k();
-                aVar.f10472a = false;
+                aVar.f10473a = false;
             }
         });
     }
 
     public void a() {
-        k1 k1Var = (k1) this.f10473b;
+        k1 k1Var = (k1) this.f10474b;
         if (k1Var != null) {
             k1Var.dismiss();
         }

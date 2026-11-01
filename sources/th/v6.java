@@ -6,13 +6,13 @@ import android.graphics.Rect;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.d20;
-import org.telegram.messenger.ic;
-import org.telegram.messenger.jj;
-import org.telegram.messenger.ui;
+import org.telegram.messenger.e20;
+import org.telegram.messenger.jc;
+import org.telegram.messenger.kj;
+import org.telegram.messenger.vi;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ly;
+import org.telegram.ui.ky;
 public final class v6 extends q6 {
     public final sg.o0 I;
     public final u6 J;
@@ -22,7 +22,7 @@ public final class v6 extends q6 {
     public final org.telegram.ui.Components.e6 N;
     public boolean O;
 
-    public v6(Context context, s6 s6Var, TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction, ly lyVar) {
+    public v6(Context context, s6 s6Var, TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction, ky kyVar) {
         super(context, s6Var, tL_mediaAreaSuggestedReaction);
         TLRPC.TL_availableReaction tL_availableReaction;
         ArrayList arrayList;
@@ -40,23 +40,23 @@ public final class v6 extends q6 {
         }
         u6Var.c(getScaleX());
         f0Var.e(d);
-        lyVar.getClass();
-        String str = d.f48434f;
-        str = str == null ? jj.U(org.telegram.ui.Components.f5.e(lyVar.f39427b, d.f48435g)) : str;
-        if (str != null && (arrayList = (ArrayList) lyVar.e.get(str)) != null && !arrayList.isEmpty()) {
+        kyVar.getClass();
+        String str = d.f48445f;
+        str = str == null ? kj.U(org.telegram.ui.Components.f5.e(kyVar.f39017b, d.f48446g)) : str;
+        if (str != null && (arrayList = (ArrayList) kyVar.e.get(str)) != null && !arrayList.isEmpty()) {
             int min = Math.min(1, arrayList.size());
             for (int i10 = 0; i10 < min; i10++) {
-                lyVar.l((TLRPC.Document) arrayList.get(i10));
+                kyVar.l((TLRPC.Document) arrayList.get(i10));
             }
         }
-        if (this.I.f48434f != null && (tL_availableReaction = (TLRPC.TL_availableReaction) ui.b0(d20.f15147s0).f18341r.get(this.I.f48434f)) != null) {
-            this.L.q0(ic.b(tL_availableReaction.center_icon), "40_40_lastreactframe", null, "webp", tL_availableReaction, 1);
+        if (this.I.f48445f != null && (tL_availableReaction = (TLRPC.TL_availableReaction) vi.b0(e20.f15506s0).f18670r.get(this.I.f48445f)) != null) {
+            this.L.q0(jc.b(tL_availableReaction.center_icon), "40_40_lastreactframe", null, "webp", tL_availableReaction, 1);
         }
         org.telegram.ui.Components.e6 e6Var = this.N;
-        e6Var.f25695b = 17;
+        e6Var.f25744b = 17;
         e6Var.x(org.telegram.messenger.i0.o1("fonts/rcondensedbold.ttf"));
         this.N.w(org.telegram.messenger.i0.L(18.0f));
-        this.N.M = org.telegram.messenger.i0.f16026q.x;
+        this.N.M = org.telegram.messenger.i0.f16172q.x;
         if (tL_mediaAreaSuggestedReaction.dark) {
             this.J.a();
             this.N.u(-1);
@@ -88,7 +88,7 @@ public final class v6 extends q6 {
         float e = this.M.e(false, f7);
         Rect rect = org.telegram.messenger.i0.Q;
         rect.set((int) centerX, (int) org.telegram.messenger.i0.T1(centerY, f10, e), (int) centerX2, (int) org.telegram.messenger.i0.T1(centerY2, f11, e));
-        if (u6Var.f49523a == 1) {
+        if (u6Var.f49537a == 1) {
             i10 = -1;
         } else {
             i10 = -16777216;
@@ -148,7 +148,7 @@ public final class v6 extends q6 {
     }
 
     public org.telegram.ui.Components.f5 getAnimatedEmojiDrawable() {
-        return this.K.f48328b;
+        return this.K.f48339b;
     }
 
     @Override

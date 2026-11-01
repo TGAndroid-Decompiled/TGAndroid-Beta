@@ -6,9 +6,9 @@ public final class j6 extends t7 {
     public final int G = 0;
     public final Object H;
 
-    public j6(zu zuVar, Context context, y6 y6Var) {
+    public j6(yu yuVar, Context context, y6 y6Var) {
         super(context, y6Var, null, null);
-        this.H = zuVar;
+        this.H = yuVar;
     }
 
     public void f(boolean z10) {
@@ -32,7 +32,7 @@ public final class j6 extends t7 {
     public void onMeasure(int i10, int i11) {
         switch (this.G) {
             case 1:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((((zu) this.H).f26668n1 - org.telegram.ui.ActionBar.l.getCurrentActionBarHeight()) - org.telegram.messenger.i0.f16020m, 1073741824));
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((((yu) this.H).f26726n1 - org.telegram.ui.ActionBar.l.getCurrentActionBarHeight()) - org.telegram.messenger.i0.f16166m, 1073741824));
                 return;
             default:
                 super.onMeasure(i10, i11);
@@ -40,8 +40,8 @@ public final class j6 extends t7 {
         }
     }
 
-    public j6(y6 y6Var, Context context, y6 y6Var2, ei.r rVar, org.telegram.ui.Components.ku0 ku0Var) {
-        super(context, y6Var2, rVar, ku0Var);
+    public j6(y6 y6Var, Context context, y6 y6Var2, ei.r rVar, org.telegram.ui.Components.lu0 lu0Var) {
+        super(context, y6Var2, rVar, lu0Var);
         this.H = y6Var;
     }
 }

@@ -13,10 +13,10 @@ import android.view.MotionEvent;
 import android.view.ViewGroup;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public abstract class bs extends EditTextBoldCursor {
-    public static final org.telegram.ui.Components.ou0 X1;
-    public static final org.telegram.ui.Components.ou0 Y1;
-    public static final org.telegram.ui.Components.ou0 Z1;
-    public static final org.telegram.ui.Components.ou0 a2;
+    public static final org.telegram.ui.Components.pu0 X1;
+    public static final org.telegram.ui.Components.pu0 Y1;
+    public static final org.telegram.ui.Components.pu0 Z1;
+    public static final org.telegram.ui.Components.pu0 a2;
     public float G1;
     public float H1;
     public float I1;
@@ -36,31 +36,31 @@ public abstract class bs extends EditTextBoldCursor {
     public boolean W1;
 
     static {
-        org.telegram.ui.Components.ou0 ou0Var = new org.telegram.ui.Components.ou0(new org.telegram.ui.Cells.m5(9), new org.telegram.ui.Cells.m5(10));
-        ou0Var.f29199c = 100.0f;
-        X1 = ou0Var;
-        org.telegram.ui.Components.ou0 ou0Var2 = new org.telegram.ui.Components.ou0(new org.telegram.ui.Cells.m5(11), new org.telegram.ui.Cells.m5(12));
-        ou0Var2.f29199c = 100.0f;
-        Y1 = ou0Var2;
-        org.telegram.ui.Components.ou0 ou0Var3 = new org.telegram.ui.Components.ou0(new org.telegram.ui.Cells.m5(13), new org.telegram.ui.Cells.m5(14));
-        ou0Var3.f29199c = 100.0f;
-        Z1 = ou0Var3;
-        org.telegram.ui.Components.ou0 ou0Var4 = new org.telegram.ui.Components.ou0(new org.telegram.ui.Cells.m5(15), new org.telegram.ui.Cells.m5(16));
-        ou0Var4.f29199c = 100.0f;
-        a2 = ou0Var4;
+        org.telegram.ui.Components.pu0 pu0Var = new org.telegram.ui.Components.pu0(new org.telegram.ui.Cells.m5(9), new org.telegram.ui.Cells.m5(10));
+        pu0Var.f29554c = 100.0f;
+        X1 = pu0Var;
+        org.telegram.ui.Components.pu0 pu0Var2 = new org.telegram.ui.Components.pu0(new org.telegram.ui.Cells.m5(11), new org.telegram.ui.Cells.m5(12));
+        pu0Var2.f29554c = 100.0f;
+        Y1 = pu0Var2;
+        org.telegram.ui.Components.pu0 pu0Var3 = new org.telegram.ui.Components.pu0(new org.telegram.ui.Cells.m5(13), new org.telegram.ui.Cells.m5(14));
+        pu0Var3.f29554c = 100.0f;
+        Z1 = pu0Var3;
+        org.telegram.ui.Components.pu0 pu0Var4 = new org.telegram.ui.Components.pu0(new org.telegram.ui.Cells.m5(15), new org.telegram.ui.Cells.m5(16));
+        pu0Var4.f29554c = 100.0f;
+        a2 = pu0Var4;
     }
 
     public static void B(o1.j jVar, float f7) {
-        o1.k kVar = jVar.f13957m;
-        if (kVar != null && f7 == ((float) kVar.f13964i)) {
+        o1.k kVar = jVar.f13958m;
+        if (kVar != null && f7 == ((float) kVar.f13965i)) {
             return;
         }
         jVar.d();
         o1.k kVar2 = new o1.k(f7);
         kVar2.b(400.0f);
         kVar2.a(1.0f);
-        kVar2.f13964i = f7;
-        jVar.f13957m = kVar2;
+        kVar2.f13965i = f7;
+        jVar.f13958m = kVar2;
         jVar.h();
     }
 
@@ -74,11 +74,11 @@ public abstract class bs extends EditTextBoldCursor {
         jVar.d();
         if (f7 != 0.0f) {
             o1.k p5 = org.telegram.ui.Cells.f1.p(1.0f, 500.0f, 0.75f);
-            p5.f13964i = 100.0f;
-            jVar.f13957m = p5;
-            jVar.f13949b = 100.0f;
-            jVar.f13950c = true;
-            jVar.f13948a = 4000.0f;
+            p5.f13965i = 100.0f;
+            jVar.f13958m = p5;
+            jVar.f13950b = 100.0f;
+            jVar.f13951c = true;
+            jVar.f13949a = 4000.0f;
             jVar.h();
             return;
         }

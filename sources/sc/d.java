@@ -20,36 +20,36 @@ import java.util.logging.Level;
 import javax.net.ssl.SSLException;
 import p4.r;
 public final class d {
-    public final r f48151a;
-    public final OutputStream f48152b;
-    public final BufferedInputStream f48153c;
+    public final r f48162a;
+    public final OutputStream f48163b;
+    public final BufferedInputStream f48164c;
     public int d;
     public int e;
-    public String f48154f;
-    public int f48155g;
+    public String f48165f;
+    public int f48166g;
     public HashMap h;
-    public HashMap f48156i;
-    public c f48157j;
-    public final String f48158k;
-    public String f48159l;
-    public final j f48160m;
+    public HashMap f48167i;
+    public c f48168j;
+    public final String f48169k;
+    public String f48170l;
+    public final j f48171m;
 
     public d(j jVar, r rVar, InputStream inputStream, OutputStream outputStream, InetAddress inetAddress) {
         String str;
-        this.f48160m = jVar;
-        this.f48151a = rVar;
-        this.f48153c = new BufferedInputStream(inputStream, 8192);
-        this.f48152b = outputStream;
+        this.f48171m = jVar;
+        this.f48162a = rVar;
+        this.f48164c = new BufferedInputStream(inputStream, 8192);
+        this.f48163b = outputStream;
         if (!inetAddress.isLoopbackAddress() && !inetAddress.isAnyLocalAddress()) {
             str = inetAddress.getHostAddress().toString();
         } else {
             str = "127.0.0.1";
         }
-        this.f48158k = str;
+        this.f48169k = str;
         if (!inetAddress.isLoopbackAddress() && !inetAddress.isAnyLocalAddress()) {
             inetAddress.getHostName().getClass();
         }
-        this.f48156i = new HashMap();
+        this.f48167i = new HashMap();
     }
 
     public static void b(String str, Map map) {
@@ -116,9 +116,9 @@ public final class d {
                         b10 = j.b(nextToken);
                     }
                     if (stringTokenizer.hasMoreTokens()) {
-                        this.f48159l = stringTokenizer.nextToken();
+                        this.f48170l = stringTokenizer.nextToken();
                     } else {
-                        this.f48159l = "HTTP/1.1";
+                        this.f48170l = "HTTP/1.1";
                         j.d.log(Level.FINE, "no protocol version specified, strange. Assuming HTTP/1.1.");
                     }
                     String readLine2 = bufferedReader.readLine();
@@ -143,10 +143,10 @@ public final class d {
     public final void c() {
         boolean z10;
         g gVar = g.INTERNAL_ERROR;
-        j jVar = this.f48160m;
-        r rVar = this.f48151a;
-        BufferedInputStream bufferedInputStream = this.f48153c;
-        OutputStream outputStream = this.f48152b;
+        j jVar = this.f48171m;
+        r rVar = this.f48162a;
+        BufferedInputStream bufferedInputStream = this.f48164c;
+        OutputStream outputStream = this.f48163b;
         try {
             try {
                 try {
@@ -179,35 +179,35 @@ public final class d {
                                 bufferedInputStream.skip(this.d);
                             }
                             this.h = new HashMap();
-                            HashMap hashMap = this.f48156i;
+                            HashMap hashMap = this.f48167i;
                             if (hashMap == null) {
-                                this.f48156i = new HashMap();
+                                this.f48167i = new HashMap();
                             } else {
                                 hashMap.clear();
                             }
                             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(bArr, 0, this.e)));
                             HashMap hashMap2 = new HashMap();
-                            a(bufferedReader, hashMap2, this.h, this.f48156i);
-                            String str = this.f48158k;
+                            a(bufferedReader, hashMap2, this.h, this.f48167i);
+                            String str = this.f48169k;
                             if (str != null) {
-                                this.f48156i.put("remote-addr", str);
-                                this.f48156i.put("http-client-ip", str);
+                                this.f48167i.put("remote-addr", str);
+                                this.f48167i.put("http-client-ip", str);
                             }
                             int b10 = e.b((String) hashMap2.get("method"));
-                            this.f48155g = b10;
+                            this.f48166g = b10;
                             if (b10 != 0) {
-                                this.f48154f = (String) hashMap2.get("uri");
-                                this.f48157j = new c(this.f48156i);
-                                String str2 = (String) this.f48156i.get("connection");
-                                if ("HTTP/1.1".equals(this.f48159l) && (str2 == null || !str2.matches("(?i).*close.*"))) {
+                                this.f48165f = (String) hashMap2.get("uri");
+                                this.f48168j = new c(this.f48167i);
+                                String str2 = (String) this.f48167i.get("connection");
+                                if ("HTTP/1.1".equals(this.f48170l) && (str2 == null || !str2.matches("(?i).*close.*"))) {
                                     z10 = true;
                                 } else {
                                     z10 = false;
                                 }
                                 h e = jVar.e(this);
-                                String str3 = (String) this.f48156i.get("accept-encoding");
-                                this.f48157j.l();
-                                e.i(this.f48155g);
+                                String str3 = (String) this.f48167i.get("accept-encoding");
+                                this.f48168j.l();
+                                e.i(this.f48166g);
                                 if (j.g(e) && str3 != null && str3.contains("gzip")) {
                                     z11 = true;
                                 }

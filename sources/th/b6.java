@@ -9,15 +9,15 @@ import android.view.KeyEvent;
 import android.view.View;
 import org.telegram.ui.Components.ew;
 public final class b6 extends View {
-    public Paint f48804a;
-    public boolean f48805b;
-    public ew f48806c;
+    public Paint f48818a;
+    public boolean f48819b;
+    public ew f48820c;
     public org.telegram.ui.Components.t5 d;
     public org.telegram.ui.Components.t5 e;
-    public float f48807f;
+    public float f48821f;
 
     public final void a(boolean z10) {
-        ew ewVar = this.f48806c;
+        ew ewVar = this.f48820c;
         AudioManager audioManager = (AudioManager) getContext().getSystemService("audio");
         int streamMaxVolume = audioManager.getStreamMaxVolume(3);
         int streamVolume = audioManager.getStreamVolume(3);
@@ -36,19 +36,19 @@ public final class b6 extends View {
         }
         audioManager.setStreamVolume(3, streamMaxVolume, 0);
         float f10 = streamMaxVolume / f7;
-        this.f48807f = f10;
-        if (!this.f48805b) {
+        this.f48821f = f10;
+        if (!this.f48819b) {
             this.e.e(true, f10);
         }
         invalidate();
-        this.f48805b = true;
+        this.f48819b = true;
         org.telegram.messenger.i0.r(ewVar);
         org.telegram.messenger.i0.h3(ewVar, 2000L);
     }
 
     public final void b() {
         int i10;
-        ew ewVar = this.f48806c;
+        ew ewVar = this.f48820c;
         AudioManager audioManager = (AudioManager) getContext().getSystemService("audio");
         int streamMaxVolume = audioManager.getStreamMaxVolume(3);
         if (Build.VERSION.SDK_INT >= 28) {
@@ -59,11 +59,11 @@ public final class b6 extends View {
         int streamVolume = audioManager.getStreamVolume(3);
         if (streamVolume <= i10) {
             a(true);
-        } else if (!this.f48805b) {
+        } else if (!this.f48819b) {
             float f7 = streamVolume / streamMaxVolume;
-            this.f48807f = f7;
+            this.f48821f = f7;
             this.e.e(true, f7);
-            this.f48805b = true;
+            this.f48819b = true;
             invalidate();
             org.telegram.messenger.i0.r(ewVar);
             org.telegram.messenger.i0.h3(ewVar, 2000L);
@@ -73,22 +73,22 @@ public final class b6 extends View {
     @Override
     public final void onDraw(Canvas canvas) {
         float f7;
-        Paint paint = this.f48804a;
+        Paint paint = this.f48818a;
         super.onDraw(canvas);
         org.telegram.ui.Components.t5 t5Var = this.e;
-        t5Var.e(false, this.f48807f);
+        t5Var.e(false, this.f48821f);
         org.telegram.ui.Components.t5 t5Var2 = this.d;
-        if (this.f48805b) {
+        if (this.f48819b) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
         t5Var2.e(false, f7);
-        if (t5Var2.f30445c != 0.0f) {
+        if (t5Var2.f30530c != 0.0f) {
             float measuredHeight = getMeasuredHeight() / 2.0f;
-            paint.setAlpha((int) (t5Var2.f30445c * 255.0f));
+            paint.setAlpha((int) (t5Var2.f30530c * 255.0f));
             RectF rectF = org.telegram.messenger.i0.P;
-            rectF.set(0.0f, 0.0f, getMeasuredWidth() * t5Var.f30445c, getMeasuredHeight());
+            rectF.set(0.0f, 0.0f, getMeasuredWidth() * t5Var.f30530c, getMeasuredHeight());
             canvas.drawRoundRect(rectF, measuredHeight, measuredHeight, paint);
         }
     }

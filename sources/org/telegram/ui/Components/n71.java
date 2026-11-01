@@ -1,30 +1,61 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-public final class n71 extends AnimatorListenerAdapter {
-    public boolean f28701a;
-    public final View f28702b;
-    public final float f28703c;
-    public final w71 d;
+import android.content.Context;
+import android.util.SparseIntArray;
+public final class n71 extends w71 {
+    public final x71 f28700t0;
 
-    public n71(w71 w71Var, View view, float f7) {
-        this.d = w71Var;
-        this.f28702b = view;
-        this.f28703c = f7;
+    public n71(x71 x71Var, Context context, boolean z10, int i10, org.telegram.ui.ActionBar.p6 p6Var) {
+        super(i10, context, p6Var, z10);
+        this.f28700t0 = x71Var;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        super.onAnimationCancel(animator);
-        this.f28701a = true;
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        if (!this.f28701a) {
-            this.d.F(this.f28702b, this.f28703c);
+    public final void e(float f7, int i10, int i11) {
+        float f10;
+        int i12;
+        boolean z10;
+        if (f7 < 0.0f) {
+            f10 = 0.0f;
+        } else if (f7 > 1.0f) {
+            f10 = 1.0f;
+        } else {
+            f10 = f7;
         }
+        this.F = i10;
+        SparseIntArray sparseIntArray = this.f32141b0;
+        this.G = sparseIntArray.get(i10);
+        if (f10 > 0.0f) {
+            this.L = i11;
+            this.M = sparseIntArray.get(i11);
+        } else {
+            this.L = -1;
+            this.M = -1;
+        }
+        this.K = f10;
+        this.f32162w.g1();
+        invalidate();
+        c(i10);
+        if (f10 >= 1.0f) {
+            this.L = -1;
+            this.M = -1;
+            this.F = i11;
+            this.G = sparseIntArray.get(i11);
+        }
+        v71 v71Var = this.D;
+        if (v71Var != null) {
+            ((x71) ((n2.u) v71Var).f13481b).s();
+        }
+        if (f7 <= 0.5f) {
+            i12 = i10;
+        } else {
+            i12 = i11;
+        }
+        if (i10 < i11) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.f28700t0.z(i12, z10);
     }
 }

@@ -4,23 +4,23 @@ import android.view.View;
 import android.widget.TextView;
 import java.util.ArrayList;
 public final class z implements View.OnClickListener {
-    public final int f21575a;
-    public final t0 f21576b;
+    public final int f21576a;
+    public final t0 f21577b;
 
     public z(t0 t0Var, int i10) {
-        this.f21575a = i10;
-        this.f21576b = t0Var;
+        this.f21576a = i10;
+        this.f21577b = t0Var;
     }
 
     @Override
     public final void onClick(View view) {
         p0 p0Var;
         k1 k1Var;
-        int i10 = this.f21575a;
-        t0 t0Var = this.f21576b;
+        int i10 = this.f21576a;
+        t0 t0Var = this.f21577b;
         switch (i10) {
             case 0:
-                ArrayList arrayList = t0Var.f20834g0;
+                ArrayList arrayList = t0Var.f20835g0;
                 if (t0Var.e.length() != 0) {
                     t0Var.e.setText("");
                 } else if (t0Var.r()) {
@@ -53,7 +53,7 @@ public final class z implements View.OnClickListener {
                         return;
                     }
                 }
-                y yVar = t0Var.f20828c;
+                y yVar = t0Var.f20829c;
                 if (yVar != null) {
                     yVar.o(((Integer) view.getTag()).intValue());
                     return;
@@ -65,7 +65,7 @@ public final class z implements View.OnClickListener {
                 }
                 return;
             case 2:
-                y yVar2 = t0Var.f20828c;
+                y yVar2 = t0Var.f20829c;
                 if (yVar2 != null) {
                     yVar2.o(((Integer) view.getTag()).intValue());
                     return;
@@ -88,7 +88,7 @@ public final class z implements View.OnClickListener {
                         return;
                     }
                 }
-                y yVar3 = t0Var.f20828c;
+                y yVar3 = t0Var.f20829c;
                 if (yVar3 != null) {
                     yVar3.o(((Integer) view.getTag()).intValue());
                     return;

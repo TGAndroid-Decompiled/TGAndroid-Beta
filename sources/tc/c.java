@@ -13,7 +13,7 @@ public final class c extends h {
             return null;
         }
         ?? cVar = new df.c();
-        cVar.f48596g = i0.m(2, 2, a2);
+        cVar.f48607g = i0.m(2, 2, a2);
         return cVar;
     }
 

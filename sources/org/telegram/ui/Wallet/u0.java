@@ -10,39 +10,39 @@ import android.os.CancellationSignal;
 import android.os.Handler;
 import android.os.Looper;
 import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 import org.telegram.ui.LaunchActivity;
 public final class u0 {
-    public final CountDownLatch f35258a = new CountDownLatch(1);
-    public volatile boolean f35259b;
-    public String f35260c;
+    public final CountDownLatch f35260a = new CountDownLatch(1);
+    public volatile boolean f35261b;
+    public String f35262c;
     public String d;
     public LaunchActivity e;
-    public boolean f35261f;
-    public int f35262g;
+    public boolean f35263f;
+    public int f35264g;
     public CancellationSignal h;
-    public AlertDialog f35263i;
+    public AlertDialog f35265i;
 
     public final void a() {
-        if (!this.f35261f && f()) {
-            this.f35261f = true;
+        if (!this.f35263f && f()) {
+            this.f35263f = true;
             e();
             try {
                 KeyguardManager keyguardManager = (KeyguardManager) this.e.getSystemService("keyguard");
                 Intent intent = null;
                 if (keyguardManager != null) {
-                    intent = keyguardManager.createConfirmDeviceCredentialIntent(cd.L0(2131742996, null), null);
+                    intent = keyguardManager.createConfirmDeviceCredentialIntent(dd.L0(2131742996, null), null);
                 }
                 if (intent == null) {
                     c("AUTH_UNAVAILABLE");
                     return;
                 }
-                int i10 = w7.k6.f52617a;
+                int i10 = w7.k6.f52635a;
                 int i11 = i10 + 1;
-                w7.k6.f52617a = i11;
-                this.f35262g = i10;
+                w7.k6.f52635a = i11;
+                this.f35264g = i10;
                 if (i11 > 22399) {
-                    w7.k6.f52617a = 22336;
+                    w7.k6.f52635a = 22336;
                 }
                 this.e.startActivityForResult(intent, i10);
             } catch (Exception e) {
@@ -56,39 +56,39 @@ public final class u0 {
         FingerprintManager fingerprintManager = (FingerprintManager) this.e.getSystemService("fingerprint");
         if (fingerprintManager != null && fingerprintManager.isHardwareDetected() && fingerprintManager.hasEnrolledFingerprints()) {
             this.h = new CancellationSignal();
-            this.f35263i = new AlertDialog.Builder(this.e).setTitle(cd.L0(2131742996, null)).setMessage(cd.L0(2131743015, null)).setNegativeButton(cd.L0(2131752589, null), new DialogInterface.OnClickListener(this) {
-                public final u0 f35107b;
+            this.f35265i = new AlertDialog.Builder(this.e).setTitle(dd.L0(2131742996, null)).setMessage(dd.L0(2131743015, null)).setNegativeButton(dd.L0(2131752589, null), new DialogInterface.OnClickListener(this) {
+                public final u0 f35113b;
 
                 {
-                    this.f35107b = this;
+                    this.f35113b = this;
                 }
 
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i10) {
                     switch (r2) {
                         case 0:
-                            this.f35107b.c("AUTH_CANCELED");
+                            this.f35113b.c("AUTH_CANCELED");
                             return;
                         default:
-                            this.f35107b.a();
+                            this.f35113b.a();
                             return;
                     }
                 }
-            }).setPositiveButton(cd.L0(2131742991, null), new DialogInterface.OnClickListener(this) {
-                public final u0 f35107b;
+            }).setPositiveButton(dd.L0(2131742991, null), new DialogInterface.OnClickListener(this) {
+                public final u0 f35113b;
 
                 {
-                    this.f35107b = this;
+                    this.f35113b = this;
                 }
 
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i10) {
                     switch (r2) {
                         case 0:
-                            this.f35107b.c("AUTH_CANCELED");
+                            this.f35113b.c("AUTH_CANCELED");
                             return;
                         default:
-                            this.f35107b.a();
+                            this.f35113b.a();
                             return;
                     }
                 }
@@ -105,17 +105,17 @@ public final class u0 {
     }
 
     public final void c(String str) {
-        CountDownLatch countDownLatch = this.f35258a;
+        CountDownLatch countDownLatch = this.f35260a;
         if (countDownLatch.getCount() == 0) {
             return;
         }
-        this.f35260c = str;
+        this.f35262c = str;
         countDownLatch.countDown();
     }
 
     public final void d() {
         this.h = new CancellationSignal();
-        new BiometricPrompt.Builder(this.e).setTitle(cd.L0(2131742996, null)).setAllowedAuthenticators(32783).build().authenticate(this.h, this.e.getMainExecutor(), new t0(this));
+        new BiometricPrompt.Builder(this.e).setTitle(dd.L0(2131742996, null)).setAllowedAuthenticators(32783).build().authenticate(this.h, this.e.getMainExecutor(), new t0(this));
     }
 
     public final void e() {
@@ -128,18 +128,18 @@ public final class u0 {
             org.telegram.messenger.f8.g(e, true);
         }
         try {
-            AlertDialog alertDialog = this.f35263i;
+            AlertDialog alertDialog = this.f35265i;
             if (alertDialog != null) {
                 alertDialog.dismiss();
             }
         } catch (Exception e7) {
             org.telegram.messenger.f8.g(e7, true);
         }
-        this.f35263i = null;
+        this.f35265i = null;
     }
 
     public final boolean f() {
-        if (!this.f35259b && this.f35258a.getCount() != 0) {
+        if (!this.f35261b && this.f35260a.getCount() != 0) {
             return true;
         }
         return false;

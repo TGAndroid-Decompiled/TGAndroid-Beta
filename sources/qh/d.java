@@ -1,13 +1,13 @@
 package qh;
 
-import org.telegram.messenger.j20;
-public final class d implements j20 {
-    public final int f45591a;
-    public final Object f45592b;
+import org.telegram.messenger.k20;
+public final class d implements k20 {
+    public final int f45602a;
+    public final Object f45603b;
 
     public d(Object obj, int i10) {
-        this.f45591a = i10;
-        this.f45592b = obj;
+        this.f45602a = i10;
+        this.f45603b = obj;
     }
 
     @Override

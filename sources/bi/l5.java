@@ -4,12 +4,12 @@ import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.at;
 import org.telegram.messenger.b8;
-import org.telegram.messenger.us;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.vs;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public final class l5 implements us {
+public final class l5 implements vs {
     public int D;
     public volatile String E;
     public String F;
@@ -47,10 +47,10 @@ public final class l5 implements us {
         boolean z10;
         if (!this.f3191x && !this.f3192y) {
             this.E = str;
-            zs f7 = zs.f(this.f3183a);
-            f7.b(this, zs.U1);
-            f7.b(this, zs.V1);
-            f7.b(this, zs.W1);
+            at f7 = at.f(this.f3183a);
+            f7.b(this, at.U1);
+            f7.b(this, at.V1);
+            f7.b(this, at.W1);
             if (this.f3185c) {
                 i10 = 33554432;
             } else if (this.d) {
@@ -99,7 +99,7 @@ public final class l5 implements us {
             TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = new TLRPC.TL_documentAttributeVideo();
             tL_documentAttributeVideo.supports_streaming = true;
             tL_documentAttributeVideo.duration = this.f3187n;
-            tL_documentAttributeVideo.f19800w = this.f3186f;
+            tL_documentAttributeVideo.f19801w = this.f3186f;
             tL_documentAttributeVideo.h = this.h;
             tL_inputMediaUploadedDocument.attributes.add(tL_documentAttributeVideo);
             tL_messages_uploadMedia.media = tL_inputMediaUploadedDocument;
@@ -189,7 +189,7 @@ public final class l5 implements us {
         if (i11 == this.f3183a && !this.f3191x && !this.f3192y) {
             String str = (String) objArr[0];
             if (this.E != null && this.E.equals(str)) {
-                if (i10 == zs.U1) {
+                if (i10 == at.U1) {
                     TLRPC.InputFile inputFile2 = (TLRPC.InputFile) objArr[1];
                     if (this.e && !this.H && !TextUtils.isEmpty(this.F)) {
                         this.G = inputFile2;
@@ -201,7 +201,7 @@ public final class l5 implements us {
                     } else {
                         c(inputFile2, null);
                     }
-                } else if (i10 == zs.V1) {
+                } else if (i10 == at.V1) {
                     if (this.e && this.H && (inputFile = this.G) != null) {
                         c(inputFile, null);
                         return;
@@ -209,7 +209,7 @@ public final class l5 implements us {
                     this.f3192y = true;
                     e();
                     this.f3189s.a();
-                } else if (i10 == zs.W1) {
+                } else if (i10 == at.W1) {
                     long longValue = ((Long) objArr[1]).longValue();
                     long longValue2 = ((Long) objArr[2]).longValue();
                     k5 k5Var = this.f3189s;
@@ -227,10 +227,10 @@ public final class l5 implements us {
     }
 
     public final void e() {
-        zs f7 = zs.f(this.f3183a);
-        f7.n(this, zs.U1);
-        f7.n(this, zs.V1);
-        f7.n(this, zs.W1);
+        at f7 = at.f(this.f3183a);
+        f7.n(this, at.U1);
+        f7.n(this, at.V1);
+        f7.n(this, at.W1);
     }
 
     public l5(int i10, String str, TLRPC.Document document, o3 o3Var) {

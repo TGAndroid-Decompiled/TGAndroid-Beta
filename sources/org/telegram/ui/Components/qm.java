@@ -3,26 +3,26 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class qm extends AnimatorListenerAdapter {
-    public final int f29678a;
-    public final jn f29679b;
+    public final int f29754a;
+    public final jn f29755b;
 
     public qm(jn jnVar, int i10) {
-        this.f29678a = i10;
-        this.f29679b = jnVar;
+        this.f29754a = i10;
+        this.f29755b = jnVar;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f29678a) {
+        switch (this.f29754a) {
             case 0:
-                this.f29679b.E.setTranslationY(0.0f);
+                this.f29755b.E.setTranslationY(0.0f);
                 return;
             case 1:
-                this.f29679b.E.setTranslationY(0.0f);
+                this.f29755b.E.setTranslationY(0.0f);
                 return;
             default:
-                jn jnVar = this.f29679b;
-                jnVar.f27421f1 = false;
+                jn jnVar = this.f29755b;
+                jnVar.f27487f1 = false;
                 jnVar.E.setTranslationY(0.0f);
                 jnVar.d0();
                 return;

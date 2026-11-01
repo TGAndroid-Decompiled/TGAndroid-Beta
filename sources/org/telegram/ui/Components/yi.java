@@ -6,14 +6,14 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
-public final class yi extends ok0 {
-    public final int f32738r = org.telegram.messenger.d20.f15147s0;
-    public final Context f32739s;
-    public final ej f32740w;
+public final class yi extends pk0 {
+    public final int f32850r = org.telegram.messenger.e20.f15506s0;
+    public final Context f32851s;
+    public final ej f32852w;
 
     public yi(ej ejVar, Context context) {
-        this.f32740w = ejVar;
-        this.f32739s = context;
+        this.f32852w = ejVar;
+        this.f32851s = context;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class yi extends ok0 {
     }
 
     @Override
-    public final void G(tk0 tk0Var, float f7, int[] iArr) {
+    public final void G(uk0 uk0Var, float f7, int[] iArr) {
         iArr[0] = 0;
         iArr[1] = 0;
     }
@@ -33,9 +33,9 @@ public final class yi extends ok0 {
             return 1;
         }
         int i11 = i10 - 1;
-        int i12 = this.f32738r;
-        HashMap hashMap = org.telegram.messenger.i5.r(i12).f16061b0;
-        ArrayList arrayList = org.telegram.messenger.i5.r(i12).f16063c0;
+        int i12 = this.f32850r;
+        HashMap hashMap = org.telegram.messenger.i5.r(i12).f16214b0;
+        ArrayList arrayList = org.telegram.messenger.i5.r(i12).f16216c0;
         if (i11 < arrayList.size()) {
             return ((ArrayList) hashMap.get(arrayList.get(i11))).size();
         }
@@ -48,9 +48,9 @@ public final class yi extends ok0 {
             return null;
         }
         int i12 = i10 - 1;
-        int i13 = this.f32738r;
-        HashMap hashMap = org.telegram.messenger.i5.r(i13).f16061b0;
-        ArrayList arrayList = org.telegram.messenger.i5.r(i13).f16063c0;
+        int i13 = this.f32850r;
+        HashMap hashMap = org.telegram.messenger.i5.r(i13).f16214b0;
+        ArrayList arrayList = org.telegram.messenger.i5.r(i13).f16216c0;
         if (i12 < arrayList.size()) {
             ArrayList arrayList2 = (ArrayList) hashMap.get(arrayList.get(i12));
             if (i11 < arrayList2.size()) {
@@ -73,7 +73,7 @@ public final class yi extends ok0 {
 
     @Override
     public final int R() {
-        return org.telegram.messenger.i5.r(this.f32738r).f16063c0.size() + 2;
+        return org.telegram.messenger.i5.r(this.f32850r).f16216c0.size() + 2;
     }
 
     @Override
@@ -84,8 +84,8 @@ public final class yi extends ok0 {
     @Override
     public final boolean V(int i10, int i11, s4.c1 c1Var) {
         if (i10 != 0 && i10 != R() - 1) {
-            int i12 = this.f32738r;
-            if (i11 < ((ArrayList) org.telegram.messenger.i5.r(i12).f16061b0.get(org.telegram.messenger.i5.r(i12).f16063c0.get(i10 - 1))).size()) {
+            int i12 = this.f32850r;
+            if (i11 < ((ArrayList) org.telegram.messenger.i5.r(i12).f16214b0.get(org.telegram.messenger.i5.r(i12).f16216c0.get(i10 - 1))).size()) {
                 return true;
             }
             return false;
@@ -96,8 +96,8 @@ public final class yi extends ok0 {
     @Override
     public final void W(int i10, int i11, s4.c1 c1Var) {
         TLRPC.User user;
-        if (c1Var.f47901f == 0) {
-            dj djVar = (dj) c1Var.f47898a;
+        if (c1Var.f47912f == 0) {
+            dj djVar = (dj) c1Var.f47909a;
             Object O = O(i10, i11);
             boolean z10 = true;
             if (i10 == R() - 2 && i11 == M(i10) - 1) {
@@ -105,10 +105,10 @@ public final class yi extends ok0 {
             }
             if (O instanceof org.telegram.messenger.f5) {
                 org.telegram.messenger.f5 f5Var = (org.telegram.messenger.f5) O;
-                user = f5Var.f15517m;
+                user = f5Var.f15701m;
                 if (user == null) {
-                    djVar.setCurrentId(f5Var.f15508a);
-                    djVar.a(null, org.telegram.messenger.i5.m(0, f5Var.f15513i, f5Var.f15514j), new wi(f5Var, 0), z10);
+                    djVar.setCurrentId(f5Var.f15692a);
+                    djVar.a(null, org.telegram.messenger.i5.m(0, f5Var.f15697i, f5Var.f15698j), new wi(f5Var, 0), z10);
                     user = null;
                 }
             } else {
@@ -117,7 +117,7 @@ public final class yi extends ok0 {
             if (user != null) {
                 djVar.a(user, null, new xi(0, user), z10);
             }
-            boolean containsKey = this.f32740w.f25816x.containsKey(ui.a(O));
+            boolean containsKey = this.f32852w.f25850x.containsKey(ui.a(O));
             ep epVar = djVar.d;
             if (epVar.getVisibility() != 0) {
                 epVar.setVisibility(0);
@@ -129,13 +129,13 @@ public final class yi extends ok0 {
     @Override
     public final void f() {
         X(false);
-        this.f32740w.Q();
+        this.f32852w.Q();
     }
 
     @Override
     public final s4.c1 w(ViewGroup viewGroup, int i10) {
         View djVar;
-        Context context = this.f32739s;
+        Context context = this.f32851s;
         if (i10 != 0) {
             if (i10 != 1) {
                 djVar = new View(context);
@@ -146,7 +146,7 @@ public final class yi extends ok0 {
                 djVar.setTag(-33024);
             }
         } else {
-            djVar = new dj(context, this.f32740w.f30946a);
+            djVar = new dj(context, this.f32852w.f30963a);
         }
         return new s4.c1(djVar);
     }

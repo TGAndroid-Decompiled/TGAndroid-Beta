@@ -9,17 +9,17 @@ import android.text.TextPaint;
 import android.text.style.ReplacementSpan;
 import org.telegram.ui.ActionBar.t6;
 public final class h2 extends ReplacementSpan {
-    public final TextPaint f13129a;
-    public final Paint f13130b;
-    public final RectF f13131c;
+    public final TextPaint f13130a;
+    public final Paint f13131b;
+    public final RectF f13132c;
     public final boolean d;
 
     public h2(int i10, boolean z10) {
         TextPaint textPaint = new TextPaint(1);
-        this.f13129a = textPaint;
+        this.f13130a = textPaint;
         Paint paint = new Paint(1);
-        this.f13130b = paint;
-        this.f13131c = new RectF();
+        this.f13131b = paint;
+        this.f13132c = new RectF();
         this.d = z10;
         textPaint.setTypeface(org.telegram.messenger.i0.o1("fonts/rmono.ttf"));
         textPaint.setTextSize(org.telegram.messenger.i0.L(13.0f));
@@ -29,12 +29,12 @@ public final class h2 extends ReplacementSpan {
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        TextPaint textPaint = this.f13129a;
+        TextPaint textPaint = this.f13130a;
         float measureText = textPaint.measureText(charSequence, i10, i11);
         float f10 = (i12 + i14) / 2.0f;
-        RectF rectF = this.f13131c;
+        RectF rectF = this.f13132c;
         rectF.set(f7, f10 - org.telegram.messenger.i0.L(9.5f), f7 + measureText + org.telegram.messenger.i0.L(8.0f), org.telegram.messenger.i0.L(9.5f) + f10);
-        canvas.drawRoundRect(rectF, org.telegram.messenger.i0.L(6.0f), org.telegram.messenger.i0.L(6.0f), this.f13130b);
+        canvas.drawRoundRect(rectF, org.telegram.messenger.i0.L(6.0f), org.telegram.messenger.i0.L(6.0f), this.f13131b);
         if (this.d) {
             int color = textPaint.getColor();
             int r12 = t6.r1(0.0f, color);
@@ -51,6 +51,6 @@ public final class h2 extends ReplacementSpan {
         if (fontMetricsInt != null) {
             paint.getFontMetricsInt(fontMetricsInt);
         }
-        return org.telegram.messenger.i0.L(11.0f) + ((int) Math.ceil(this.f13129a.measureText(charSequence, i10, i11)));
+        return org.telegram.messenger.i0.L(11.0f) + ((int) Math.ceil(this.f13130a.measureText(charSequence, i10, i11)));
     }
 }

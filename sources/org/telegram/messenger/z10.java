@@ -1,74 +1,71 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.NativeByteBuffer;
-import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLParseException;
-import org.telegram.tgnet.tl.TL_update;
-public final class z10 extends TLObject {
-    public final boolean f19470a;
-    public final long f19471b;
-    public final long f19472c;
-    public final int d;
-    public final String e;
-    public final String f19473f;
-    public final a20 f19474i;
+import org.telegram.tgnet.TLRPC;
+public final class z10 implements Runnable {
+    public final int f19655a;
+    public final a20 f19656b;
+    public final TLObject f19657c;
+    public final x10 d;
+    public final TLRPC.TL_error e;
 
-    public z10(a20 a20Var, NativeByteBuffer nativeByteBuffer) {
-        this.f19474i = a20Var;
-        int readInt32 = nativeByteBuffer.readInt32(true);
-        if (readInt32 == 2058772876) {
-            this.f19471b = nativeByteBuffer.readInt64(true);
-            this.d = nativeByteBuffer.readInt32(true);
-            this.e = nativeByteBuffer.readString(true);
-            this.f19473f = nativeByteBuffer.readString(true);
-        } else if (readInt32 == 2058772877) {
-            this.f19472c = nativeByteBuffer.readInt64(true);
-            this.d = nativeByteBuffer.readInt32(true);
-            this.e = nativeByteBuffer.readString(true);
-            this.f19473f = nativeByteBuffer.readString(true);
-        } else {
-            TLParseException.doThrowOrLog(nativeByteBuffer, "UnconfirmedAuth", readInt32, true);
-        }
+    public z10(a20 a20Var, x10 x10Var, TLObject tLObject, TLRPC.TL_error tL_error, int i10) {
+        this.f19655a = i10;
+        this.f19656b = a20Var;
+        this.d = x10Var;
+        this.f19657c = tLObject;
+        this.e = tL_error;
     }
 
     @Override
-    public final void serializeToStream(OutputSerializedData outputSerializedData) {
-        boolean z10 = this.f19470a;
-        String str = this.f19473f;
-        String str2 = this.e;
-        int i10 = this.d;
-        if (z10) {
-            outputSerializedData.writeInt32(2058772877);
-            outputSerializedData.writeInt64(this.f19472c);
-            outputSerializedData.writeInt32(i10);
-            outputSerializedData.writeString(str2);
-            outputSerializedData.writeString(str);
-            return;
+    public final void run() {
+        boolean z10;
+        boolean z11;
+        switch (this.f19655a) {
+            case 0:
+                b20 b20Var = this.f19656b.f14559i;
+                if ((this.f19657c instanceof TLRPC.TL_boolTrue) && this.e == null) {
+                    z10 = true;
+                } else {
+                    b20Var.getClass();
+                    z10 = false;
+                }
+                this.d.a(Boolean.valueOf(z10));
+                b20Var.getClass();
+                return;
+            case 1:
+                b20 b20Var2 = this.f19656b.f14559i;
+                TLObject tLObject = this.f19657c;
+                boolean z12 = tLObject instanceof TLRPC.Updates;
+                boolean z13 = false;
+                if (z12) {
+                    wp.r1(b20Var2.f14906a).L3((TLRPC.Updates) tLObject, false);
+                }
+                ag.k.a(b20Var2.f14906a).b();
+                if (z12 && this.e == null) {
+                    z13 = true;
+                }
+                this.d.a(Boolean.valueOf(z13));
+                return;
+            default:
+                b20 b20Var3 = this.f19656b.f14559i;
+                if ((this.f19657c instanceof TLRPC.TL_boolTrue) && this.e == null) {
+                    z11 = true;
+                } else {
+                    b20Var3.getClass();
+                    z11 = false;
+                }
+                this.d.a(Boolean.valueOf(z11));
+                b20Var3.getClass();
+                return;
         }
-        outputSerializedData.writeInt32(2058772876);
-        outputSerializedData.writeInt64(this.f19471b);
-        outputSerializedData.writeInt32(i10);
-        outputSerializedData.writeString(str2);
-        outputSerializedData.writeString(str);
     }
 
-    public z10(a20 a20Var, TL_update.TL_updateNewAuthorization tL_updateNewAuthorization) {
-        this.f19474i = a20Var;
-        this.f19471b = tL_updateNewAuthorization.hash;
-        this.d = tL_updateNewAuthorization.date;
-        this.e = tL_updateNewAuthorization.device;
-        this.f19473f = tL_updateNewAuthorization.location;
-    }
-
-    public z10(a20 a20Var, TL_update.TL_updateNewBotConnection tL_updateNewBotConnection) {
-        this.f19474i = a20Var;
-        this.f19470a = true;
-        long j10 = tL_updateNewBotConnection.bot_id;
-        this.f19472c = j10;
-        this.f19471b = j10;
-        this.d = tL_updateNewBotConnection.date;
-        this.e = tL_updateNewBotConnection.device;
-        this.f19473f = tL_updateNewBotConnection.location;
+    public z10(a20 a20Var, TLObject tLObject, x10 x10Var, TLRPC.TL_error tL_error) {
+        this.f19655a = 1;
+        this.f19656b = a20Var;
+        this.f19657c = tLObject;
+        this.d = x10Var;
+        this.e = tL_error;
     }
 }

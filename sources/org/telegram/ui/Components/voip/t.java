@@ -1,43 +1,43 @@
 package org.telegram.ui.Components.voip;
 
 import android.animation.ValueAnimator;
-import org.telegram.ui.b50;
-import org.telegram.ui.y30;
+import org.telegram.ui.a50;
+import org.telegram.ui.x30;
 public final class t implements ValueAnimator.AnimatorUpdateListener {
-    public final int f31661a;
-    public final w f31662b;
+    public final int f31720a;
+    public final x f31721b;
 
-    public t(w wVar, int i10) {
-        this.f31661a = i10;
-        this.f31662b = wVar;
+    public t(x xVar, int i10) {
+        this.f31720a = i10;
+        this.f31721b = xVar;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         float f7;
-        switch (this.f31661a) {
+        switch (this.f31720a) {
             case 0:
-                w wVar = this.f31662b;
-                wVar.getClass();
-                wVar.I0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                wVar.invalidate();
+                x xVar = this.f31721b;
+                xVar.getClass();
+                xVar.I0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                xVar.invalidate();
                 return;
             default:
-                w wVar2 = this.f31662b;
-                wVar2.getClass();
+                x xVar2 = this.f31721b;
+                xVar2.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                wVar2.f31714c = floatValue;
-                b50 b50Var = wVar2.f31723j0;
-                b50Var.f36065q3.setAlpha(1.0f - floatValue);
-                y30 y30Var = b50Var.F1;
-                if (y30Var.getTag() != null) {
+                xVar2.f31794c = floatValue;
+                a50 a50Var = xVar2.f31803j0;
+                a50Var.f35649q3.setAlpha(1.0f - floatValue);
+                x30 x30Var = a50Var.F1;
+                if (x30Var.getTag() != null) {
                     f7 = 1.0f;
                 } else {
                     f7 = 0.0f;
                 }
-                y30Var.setAlpha((1.0f - b50Var.R3.f31714c) * f7);
-                b50Var.G1(b50Var.f36060p2);
-                wVar2.l();
+                x30Var.setAlpha((1.0f - a50Var.R3.f31794c) * f7);
+                a50Var.G1(a50Var.f35644p2);
+                xVar2.l();
                 return;
         }
     }

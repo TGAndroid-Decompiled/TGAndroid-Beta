@@ -15,7 +15,7 @@ public final class t1 extends qg.h {
         super.onLayout(z10, i10, i11, i12, i13);
         int L = org.telegram.messenger.i0.L(78.0f) + getMeasuredHeight();
         v1 v1Var = this.K;
-        v1Var.f13255h2 = L;
-        v1Var.f13254g2.G();
+        v1Var.f13256h2 = L;
+        v1Var.f13255g2.G();
     }
 }

@@ -37,8 +37,8 @@ public final class b implements l {
                 d dVar = (d) this.e;
                 Context context = dVar.e;
                 e eVar = (e) obj;
-                PendingIntent pendingIntent = eVar.f7429a;
-                g gVar = eVar.f7430b;
+                PendingIntent pendingIntent = eVar.f7430a;
+                g gVar = eVar.f7431b;
                 CancellationSignal cancellationSignal = this.f6092b;
                 Executor executor = this.f6093c;
                 h hVar = this.d;
@@ -68,7 +68,7 @@ public final class b implements l {
                         }
                     }
                     if (gVar != null) {
-                        v0.c a2 = f8.a(gVar.f7435a, gVar.f7436b);
+                        v0.c a2 = f8.a(gVar.f7436a, gVar.f7437b);
                         if (a2 instanceof f) {
                             CredentialProviderPlayServicesImpl.Companion.getClass();
                             if (!a1.h.a(cancellationSignal)) {
@@ -92,8 +92,8 @@ public final class b implements l {
                 CancellationSignal cancellationSignal2 = this.f6092b;
                 if (!a1.h.a(cancellationSignal2)) {
                     Intent intent2 = new Intent(context2, HiddenActivity.class);
-                    b1.d.a(bVar.f6726i, intent2, "BEGIN_SIGN_IN");
-                    intent2.putExtra("EXTRA_FLOW_PENDING_INTENT", lVar.f7444a);
+                    b1.d.a(bVar.f6727i, intent2, "BEGIN_SIGN_IN");
+                    intent2.putExtra("EXTRA_FLOW_PENDING_INTENT", lVar.f7445a);
                     try {
                         context2.startActivity(intent2);
                     } catch (Exception unused2) {

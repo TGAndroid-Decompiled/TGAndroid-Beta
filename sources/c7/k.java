@@ -40,8 +40,8 @@ public final class k extends l {
         li.k kVar2 = new li.k(9, false);
         ((li.k) kVar.d).d = kVar2;
         kVar.d = kVar2;
-        kVar2.f12101c = valueOf;
-        kVar2.f12100b = "errorCode";
+        kVar2.f12102c = valueOf;
+        kVar2.f12101b = "errorCode";
         String str = this.f4003b;
         if (str != null) {
             kVar.M(str, "errorMessage");

@@ -32,12 +32,12 @@ public final class w00 extends r7 {
                 if (i10 != 0 && i10 != 2) {
                     if (i10 == 4) {
                         textView.setGravity(51);
-                        org.telegram.ui.ActionBar.a7.V(textView, org.telegram.ui.ActionBar.t6.f21224t7, fragmentContextView.f24050q0);
+                        org.telegram.ui.ActionBar.a7.V(textView, org.telegram.ui.ActionBar.t6.f21225t7, fragmentContextView.f24051q0);
                         textView.setTypeface(org.telegram.messenger.i0.o());
                         textView.setTextSize(1, 15.0f);
                     } else if (i10 == 1 || i10 == 3) {
                         textView.setGravity(19);
-                        org.telegram.ui.ActionBar.a7.V(textView, org.telegram.ui.ActionBar.t6.A7, fragmentContextView.f24050q0);
+                        org.telegram.ui.ActionBar.a7.V(textView, org.telegram.ui.ActionBar.t6.A7, fragmentContextView.f24051q0);
                         textView.setTypeface(org.telegram.messenger.i0.o());
                         textView.setTextSize(1, 14.0f);
                     }
@@ -55,7 +55,7 @@ public final class w00 extends r7 {
                 textView2.setEllipsize(TextUtils.TruncateAt.END);
                 textView2.setGravity(3);
                 textView2.setTextSize(1, 13.0f);
-                org.telegram.ui.ActionBar.a7.V(textView2, org.telegram.ui.ActionBar.t6.f21296x7, this.F.f24050q0);
+                org.telegram.ui.ActionBar.a7.V(textView2, org.telegram.ui.ActionBar.t6.f21297x7, this.F.f24051q0);
                 return textView2;
         }
     }

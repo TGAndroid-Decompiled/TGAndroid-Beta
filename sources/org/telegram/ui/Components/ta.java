@@ -23,7 +23,7 @@ public abstract class ta extends bb {
     public void measureChildWithMargins(View view, int i10, int i11, int i12, int i13) {
         sa saVar = this.button;
         if (saVar != null && view != saVar) {
-            i11 = org.telegram.messenger.z20.D(12.0f, saVar.getMeasuredWidth(), i11);
+            i11 = org.telegram.messenger.a30.D(12.0f, saVar.getMeasuredWidth(), i11);
         }
         super.measureChildWithMargins(view, i10, i11, i12, i13);
         if (view != this.button) {
@@ -60,7 +60,7 @@ public abstract class ta extends bb {
     public void setTimer() {
         pb pbVar = new pb(getContext(), this.resourcesProvider);
         this.timerView = pbVar;
-        pbVar.f29331b = 5000L;
+        pbVar.f29396b = 5000L;
         addView(pbVar, w7.b6.i(20.0f, 20.0f, 8388627, 21.0f, 0.0f, 21.0f, 0.0f));
     }
 

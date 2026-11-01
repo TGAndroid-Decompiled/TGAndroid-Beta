@@ -2,23 +2,23 @@ package vh;
 
 import android.app.Activity;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.d20;
-import org.telegram.messenger.j20;
+import org.telegram.messenger.e20;
+import org.telegram.messenger.k20;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.un;
 public final class r3 extends un {
-    public final j20 f51848jd;
-    public final b4 f51849kd;
+    public final k20 f51833kd;
+    public final b4 f51834ld;
 
-    public r3(b4 b4Var, j20 j20Var) {
+    public r3(b4 b4Var, k20 k20Var) {
         super(null);
-        this.f51849kd = b4Var;
-        this.f51848jd = j20Var;
+        this.f51834ld = b4Var;
+        this.f51833kd = k20Var;
     }
 
     @Override
-    public final boolean J9() {
+    public final boolean O9() {
         return false;
     }
 
@@ -50,24 +50,24 @@ public final class r3 extends un {
                 if (tL_geoPointAddress != null) {
                     tL_mediaAreaGeoPoint3.flags |= 1;
                 }
-                Utilities.e.c(new d1(3, messageMedia, tL_mediaAreaGeoPoint3));
+                Utilities.e.c(new r0(4, messageMedia, tL_mediaAreaGeoPoint3));
                 tL_mediaAreaGeoPoint = tL_mediaAreaGeoPoint3;
             }
             tL_mediaAreaGeoPoint2 = tL_mediaAreaGeoPoint;
         } else {
             return;
         }
-        this.f51848jd.a(messageMedia, tL_mediaAreaGeoPoint2);
+        this.f51833kd.a(messageMedia, tL_mediaAreaGeoPoint2);
     }
 
     @Override
     public final Activity getParentActivity() {
-        return org.telegram.messenger.i0.W(this.f51849kd.getContext());
+        return org.telegram.messenger.i0.W(this.f51834ld.getContext());
     }
 
     @Override
     public final org.telegram.ui.ActionBar.p6 getResourceProvider() {
-        return this.f51849kd.f50981p1;
+        return this.f51834ld.f50988p1;
     }
 
     @Override
@@ -77,6 +77,6 @@ public final class r3 extends un {
 
     @Override
     public final TLRPC.User j() {
-        return d20.i(this.currentAccount).f();
+        return e20.i(this.currentAccount).f();
     }
 }

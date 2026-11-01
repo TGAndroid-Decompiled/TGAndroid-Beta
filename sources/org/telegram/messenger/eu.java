@@ -1,47 +1,26 @@
 package org.telegram.messenger;
+public final class eu implements Runnable {
+    public final int f15644a;
+    public final String f15645b;
+    public final String f15646c;
+    public final long d;
 
-import android.text.TextUtils;
-import org.telegram.messenger.PushListenerController;
-public final class eu implements PushListenerController.IPushListenerServiceProvider {
-    public static final eu f15451b = new Object();
-    public Boolean f15452a;
-
-    @Override
-    public final String getLogTitle() {
-        return "Google Play Services";
+    public eu(int i10, long j10, String str, String str2) {
+        this.f15644a = i10;
+        this.f15645b = str;
+        this.f15646c = str2;
+        this.d = j10;
     }
 
     @Override
-    public final int getPushType() {
-        return 2;
-    }
-
-    @Override
-    public final boolean hasServices() {
-        boolean z10;
-        if (this.f15452a == null) {
-            try {
-                if (k6.d.d.d(w0.f19025b, k6.e.f10935a) == 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                this.f15452a = Boolean.valueOf(z10);
-            } catch (Exception e) {
-                f8.g(e, true);
-                this.f15452a = Boolean.FALSE;
-            }
+    public final void run() {
+        switch (this.f15644a) {
+            case 0:
+                PushListenerController.c(this.d, this.f15645b, this.f15646c);
+                return;
+            default:
+                PushListenerController.h(this.d, this.f15645b, this.f15646c);
+                return;
         }
-        return this.f15452a.booleanValue();
-    }
-
-    @Override
-    public final void onRequestPushToken() {
-        if (!TextUtils.isEmpty(tz.f18147g)) {
-            boolean z10 = v2.f18448a;
-        } else if (v2.f18448a) {
-            f8.b("FCM Registration not found.");
-        }
-        Utilities.e.c(new ms(this, 4));
     }
 }

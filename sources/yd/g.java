@@ -1,9 +1,9 @@
 package yd;
 public final class g extends RuntimeException {
-    public final transient cd.h f54401a;
+    public final transient cd.h f54422a;
 
     public g(cd.h hVar) {
-        this.f54401a = hVar;
+        this.f54422a = hVar;
     }
 
     @Override
@@ -14,6 +14,6 @@ public final class g extends RuntimeException {
 
     @Override
     public final String getLocalizedMessage() {
-        return this.f54401a.toString();
+        return this.f54422a.toString();
     }
 }

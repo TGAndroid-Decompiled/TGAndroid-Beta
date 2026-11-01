@@ -1,12 +1,12 @@
 package g;
 
-import org.telegram.messenger.ui;
+import org.telegram.messenger.vi;
 public final class y {
-    public long f7257a;
-    public boolean f7258b;
+    public long f7258a;
+    public boolean f7259b;
 
     public void a(long j10) {
-        this.f7257a = ui.p(this.f7257a, j10);
+        this.f7258a = vi.p(this.f7258a, j10);
     }
 
     public void b(boolean z10) {

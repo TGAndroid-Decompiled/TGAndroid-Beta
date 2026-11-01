@@ -3,19 +3,19 @@ package zf;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class e0 {
-    public final int f55475a;
-    public final int f55476b;
-    public final String f55477c;
+    public final int f55493a;
+    public final int f55494b;
+    public final String f55495c;
     public final int d;
     public final TLRPC.MessagesFilter e;
-    public TLObject f55478f;
-    public c0 f55479g;
+    public TLObject f55496f;
+    public c0 f55497g;
     public boolean h;
 
     public e0(int i10, int i11, String str) {
         this.h = true;
-        this.f55475a = i10;
-        this.f55477c = str;
+        this.f55493a = i10;
+        this.f55495c = str;
         this.e = null;
         this.d = i11;
     }
@@ -40,8 +40,8 @@ public final class e0 {
 
     public e0(int i10, int i11, TLRPC.MessagesFilter messagesFilter, int i12) {
         this.h = true;
-        this.f55475a = i10;
-        this.f55476b = i11;
+        this.f55493a = i10;
+        this.f55494b = i11;
         this.e = messagesFilter;
         this.d = i12;
     }

@@ -6,5 +6,5 @@ import java.nio.ByteBuffer;
 public interface a1 {
     void p(ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo);
 
-    void s(MediaFormat mediaFormat);
+    void w(MediaFormat mediaFormat);
 }

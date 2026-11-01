@@ -1,8 +1,8 @@
 package ag;
 
 import android.content.SharedPreferences;
-import org.telegram.messenger.vp;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.at;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_account;
 public final class h implements Runnable {
@@ -25,13 +25,13 @@ public final class h implements Runnable {
             case 1:
                 TL_account.disablePeerConnectedBot disablepeerconnectedbot = new TL_account.disablePeerConnectedBot();
                 int i11 = jVar.f570a;
-                disablepeerconnectedbot.peer = vp.r1(i11).i1(jVar.f576s);
+                disablepeerconnectedbot.peer = wp.r1(i11).i1(jVar.f576s);
                 ConnectionsManager.getInstance(i11).sendRequest(disablepeerconnectedbot, null);
-                SharedPreferences.Editor edit = vp.r1(i11).e7.edit();
+                SharedPreferences.Editor edit = wp.r1(i11).e7.edit();
                 SharedPreferences.Editor remove = edit.remove("dialog_botid" + jVar.f576s);
                 SharedPreferences.Editor remove2 = remove.remove("dialog_boturl" + jVar.f576s);
                 remove2.remove("dialog_botflags" + jVar.f576s).apply();
-                zs.f(i11).k(79, Long.valueOf(jVar.f576s));
+                at.f(i11).k(79, Long.valueOf(jVar.f576s));
                 k.a(i11).f597f = false;
                 return;
             default:

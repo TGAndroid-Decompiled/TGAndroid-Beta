@@ -12,11 +12,11 @@ public final class t50 extends j80 {
 
     @Override
     public final void e(SpannableStringBuilder spannableStringBuilder) {
-        c60 c60Var = this.M.f32356c;
-        org.telegram.ui.ActionBar.p2 p2Var = c60Var.f21589c;
-        int i10 = c60.f24989e2;
+        c60 c60Var = this.M.f32426c;
+        org.telegram.ui.ActionBar.p2 p2Var = c60Var.f21590c;
+        int i10 = c60.f25014e2;
         wb Q = new cc(p2Var, c60Var.I0).Q(2131624027, 36, spannableStringBuilder);
-        Q.f32143r = false;
+        Q.f32209r = false;
         Q.k(true);
     }
 }

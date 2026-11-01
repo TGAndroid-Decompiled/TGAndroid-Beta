@@ -1,105 +1,105 @@
 package org.telegram.messenger.voip;
 public final class u implements Runnable {
-    public final int f18707a;
-    public final VoIPService f18708b;
+    public final int f18867a;
+    public final VoIPService f18868b;
 
     public u(VoIPService voIPService, int i10) {
-        this.f18707a = i10;
-        this.f18708b = voIPService;
+        this.f18867a = i10;
+        this.f18868b = voIPService;
     }
 
     @Override
     public final void run() {
-        switch (this.f18707a) {
+        switch (this.f18867a) {
             case 0:
-                VoIPService.J0(this.f18708b);
+                VoIPService.J0(this.f18868b);
                 return;
             case 1:
-                VoIPService.X0(this.f18708b);
+                VoIPService.X0(this.f18868b);
                 return;
             case 2:
-                VoIPService.v0(this.f18708b);
+                VoIPService.v0(this.f18868b);
                 return;
             case 3:
-                VoIPService.J(this.f18708b);
+                VoIPService.J(this.f18868b);
                 return;
             case 4:
-                VoIPService.T(this.f18708b);
+                VoIPService.T(this.f18868b);
                 return;
             case 5:
-                VoIPService.B0(this.f18708b);
+                VoIPService.B0(this.f18868b);
                 return;
             case 6:
-                VoIPService.z(this.f18708b);
+                VoIPService.z(this.f18868b);
                 return;
             case 7:
-                VoIPService.H0(this.f18708b);
+                VoIPService.H0(this.f18868b);
                 return;
             case 8:
-                VoIPService.v1(this.f18708b);
+                VoIPService.v1(this.f18868b);
                 return;
             case 9:
-                VoIPService.B(this.f18708b);
+                VoIPService.B(this.f18868b);
                 return;
             case 10:
-                VoIPService.e(this.f18708b);
+                VoIPService.e(this.f18868b);
                 return;
             case 11:
-                VoIPService.w1(this.f18708b);
+                VoIPService.w1(this.f18868b);
                 return;
             case 12:
-                VoIPService.I(this.f18708b);
+                VoIPService.I(this.f18868b);
                 return;
             case 13:
-                VoIPService.j1(this.f18708b);
+                VoIPService.j1(this.f18868b);
                 return;
             case 14:
-                VoIPService.E(this.f18708b);
+                VoIPService.E(this.f18868b);
                 return;
             case 15:
-                VoIPService.Q0(this.f18708b);
+                VoIPService.Q0(this.f18868b);
                 return;
             case 16:
-                VoIPService.b0(this.f18708b);
+                VoIPService.b0(this.f18868b);
                 return;
             case 17:
-                VoIPService.z0(this.f18708b);
+                VoIPService.z0(this.f18868b);
                 return;
             case 18:
-                VoIPService.t(this.f18708b);
+                VoIPService.t(this.f18868b);
                 return;
             case 19:
-                VoIPService.u(this.f18708b);
+                VoIPService.u(this.f18868b);
                 return;
             case 20:
-                VoIPService.c1(this.f18708b);
+                VoIPService.c1(this.f18868b);
                 return;
             case 21:
-                VoIPService.e1(this.f18708b);
+                VoIPService.e1(this.f18868b);
                 return;
             case 22:
-                VoIPService.O0(this.f18708b);
+                VoIPService.O0(this.f18868b);
                 return;
             case 23:
-                VoIPService.n1(this.f18708b);
+                VoIPService.n1(this.f18868b);
                 return;
             case 24:
-                VoIPService.w(this.f18708b);
+                VoIPService.w(this.f18868b);
                 return;
             case 25:
-                VoIPService.r(this.f18708b);
+                VoIPService.r(this.f18868b);
                 return;
             case 26:
-                VoIPService.P0(this.f18708b);
+                VoIPService.P0(this.f18868b);
                 return;
             case 27:
-                VoIPService.i1(this.f18708b);
+                VoIPService.i1(this.f18868b);
                 return;
             case 28:
-                VoIPService.c(this.f18708b);
+                VoIPService.c(this.f18868b);
                 return;
             default:
-                VoIPService.b1(this.f18708b);
+                VoIPService.b1(this.f18868b);
                 return;
         }
     }

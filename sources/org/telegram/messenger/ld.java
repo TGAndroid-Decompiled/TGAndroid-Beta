@@ -1,89 +1,64 @@
 package org.telegram.messenger;
 
-import android.location.Location;
-import android.location.LocationListener;
-import android.os.Bundle;
 import android.os.SystemClock;
-public final class ld implements LocationListener {
-    public final int f16725a;
-    public final Object f16726b;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class ld implements Runnable {
+    public final int f16930a;
+    public final long f16931b;
+    public final Object f16932c;
 
-    public ld(Object obj, int i10) {
-        this.f16725a = i10;
-        this.f16726b = obj;
+    public ld(Object obj, long j10, int i10) {
+        this.f16930a = i10;
+        this.f16932c = obj;
+        this.f16931b = j10;
     }
 
     @Override
-    public final void onLocationChanged(Location location) {
-        switch (this.f16725a) {
+    public final void run() {
+        int i10 = this.f16930a;
+        long j10 = this.f16931b;
+        Object obj = this.f16932c;
+        switch (i10) {
             case 0:
-                nd ndVar = (nd) this.f16726b;
-                if (location != null) {
-                    Location location2 = ndVar.f17088s;
-                    if (location2 != null && (this == ndVar.h || this == ndVar.f17086n)) {
-                        if (!ndVar.D && location.distanceTo(location2) > 20.0f) {
-                            ndVar.m(location);
-                            ndVar.f17089w = SystemClock.elapsedRealtime() - 25000;
-                            return;
-                        }
+                od odVar = (od) obj;
+                ArrayList arrayList = odVar.f17420b;
+                a0.h hVar = odVar.f17419a;
+                nd ndVar = (nd) hVar.f(j10);
+                hVar.l(j10);
+                if (ndVar != null) {
+                    TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
+                    tL_messages_editMessage.peer = odVar.getMessagesController().i1(ndVar.f17282a);
+                    tL_messages_editMessage.f19878id = ndVar.f17283b;
+                    tL_messages_editMessage.flags |= 16384;
+                    TLRPC.TL_inputMediaGeoLive tL_inputMediaGeoLive = new TLRPC.TL_inputMediaGeoLive();
+                    tL_messages_editMessage.media = tL_inputMediaGeoLive;
+                    tL_inputMediaGeoLive.stopped = true;
+                    tL_inputMediaGeoLive.geo_point = new TLRPC.TL_inputGeoPointEmpty();
+                    odVar.getConnectionsManager().sendRequest(tL_messages_editMessage, new gd(odVar, 0));
+                    arrayList.remove(ndVar);
+                    odVar.l(ndVar, 1);
+                    i0.g3(new hd(odVar, ndVar, 0));
+                    if (arrayList.isEmpty()) {
+                        odVar.r(true);
                         return;
                     }
-                    ndVar.m(location);
                     return;
                 }
                 return;
             default:
-                j2.f fVar = (j2.f) this.f16726b;
-                if (location != null && ((ms) fVar.e) != null) {
-                    if (v2.f18448a) {
-                        f8.b("found location " + location);
-                    }
-                    fVar.f9350f = location;
-                    if (location.getAccuracy() < 100.0f) {
-                        ((mz) fVar.f9347a).F(location);
-                        ms msVar = (ms) fVar.e;
-                        if (msVar != null) {
-                            i0.r(msVar);
-                        }
-                        fVar.j();
-                        return;
-                    }
-                    return;
+                tz tzVar = (tz) obj;
+                tzVar.e = SystemClock.elapsedRealtime();
+                tzVar.f18327c = false;
+                if (j10 == -1) {
+                    tzVar.d = false;
+                    tzVar.f18326b = 0L;
+                } else {
+                    tzVar.f18326b = j10;
+                    tzVar.d = true;
                 }
+                at.e().k(278, tzVar);
                 return;
         }
-    }
-
-    @Override
-    public final void onProviderDisabled(String str) {
-        int i10 = this.f16725a;
-    }
-
-    @Override
-    public final void onProviderEnabled(String str) {
-        int i10 = this.f16725a;
-    }
-
-    @Override
-    public final void onStatusChanged(String str, int i10, Bundle bundle) {
-        int i11 = this.f16725a;
-    }
-
-    private final void a(String str) {
-    }
-
-    private final void b(String str) {
-    }
-
-    private final void c(String str) {
-    }
-
-    private final void d(String str) {
-    }
-
-    private final void e(String str, int i10, Bundle bundle) {
-    }
-
-    private final void f(String str, int i10, Bundle bundle) {
     }
 }

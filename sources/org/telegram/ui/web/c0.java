@@ -2,8 +2,8 @@ package org.telegram.ui.web;
 
 import android.os.Bundle;
 import org.json.JSONObject;
-import org.telegram.ui.ay;
-public final class c0 extends ay {
+import org.telegram.ui.zx;
+public final class c0 extends zx {
     public final boolean[] B4;
     public final x0 C4;
     public final z0 D4;

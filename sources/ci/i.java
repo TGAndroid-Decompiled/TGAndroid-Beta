@@ -10,11 +10,11 @@ import android.widget.TextView;
 import org.telegram.ui.ActionBar.t0;
 import org.telegram.ui.ActionBar.w5;
 import org.telegram.ui.Cells.q1;
+import org.telegram.ui.Components.au0;
 import org.telegram.ui.Components.ns;
 import org.telegram.ui.Components.ps;
-import org.telegram.ui.Components.ss0;
-import org.telegram.ui.Components.voip.v1;
-import org.telegram.ui.Components.zt0;
+import org.telegram.ui.Components.ts0;
+import org.telegram.ui.Components.voip.w1;
 import org.telegram.ui.ProfileActivity;
 import s4.c1;
 import zf.a0;
@@ -40,7 +40,7 @@ public final class i extends AnimatorListenerAdapter {
                 View view = (View) this.f4218c;
                 view.setTranslationY(0.0f);
                 if (view instanceof q1) {
-                    ((q1) view).getTransitionParams().f23491i = false;
+                    ((q1) view).getTransitionParams().f23492i = false;
                     return;
                 }
                 return;
@@ -58,39 +58,39 @@ public final class i extends AnimatorListenerAdapter {
                 o oVar = (o) this.e;
                 View view = (View) this.f4218c;
                 if (view instanceof q1) {
-                    ((q1) view).getTransitionParams().f23491i = false;
+                    ((q1) view).getTransitionParams().f23492i = false;
                 }
                 ((ViewPropertyAnimator) this.d).setListener(null);
-                if (oVar.f47954y.remove(c1Var)) {
+                if (oVar.f47965y.remove(c1Var)) {
                     oVar.u(c1Var);
                     oVar.G();
                     return;
                 }
                 return;
             case 1:
-                ((c1) this.f4217b).f47898a.setAlpha(1.0f);
+                ((c1) this.f4217b).f47909a.setAlpha(1.0f);
                 ((AnimatorSet) this.d).removeAllListeners();
                 ps psVar = (ps) this.e;
                 ns nsVar = (ns) this.f4218c;
-                psVar.d(nsVar.f28882a);
-                psVar.f29418y.remove(nsVar.f28882a);
+                psVar.d(nsVar.f28957a);
+                psVar.f29528y.remove(nsVar.f28957a);
                 psVar.A();
-                psVar.d(nsVar.f28883b);
-                psVar.f29418y.remove(nsVar.f28883b);
+                psVar.d(nsVar.f28958b);
+                psVar.f29528y.remove(nsVar.f28958b);
                 psVar.A();
                 return;
             case 2:
-                ((zt0) this.e).K1 = false;
+                ((au0) this.e).K1 = false;
                 View view2 = (View) this.f4218c;
                 if (view2.getParent() != null) {
-                    ((ss0) this.f4217b).removeView(view2);
+                    ((ts0) this.f4217b).removeView(view2);
                     ((Bitmap) this.d).recycle();
                     return;
                 }
                 return;
             case 3:
-                v1 v1Var = (v1) this.e;
-                TextView[] textViewArr = v1Var.f31690a;
+                w1 w1Var = (w1) this.e;
+                TextView[] textViewArr = w1Var.f31770a;
                 View view3 = (View) this.f4218c;
                 view3.setVisibility(8);
                 view3.setAlpha(1.0f);
@@ -107,16 +107,16 @@ public final class i extends AnimatorListenerAdapter {
                 if (runnable != null) {
                     runnable.run();
                 }
-                v1Var.f31693f = false;
-                CharSequence charSequence = v1Var.e;
+                w1Var.f31773f = false;
+                CharSequence charSequence = w1Var.e;
                 if (charSequence != null) {
                     if (charSequence.equals("timer")) {
-                        v1Var.e(true);
+                        w1Var.e(true);
                     } else {
-                        textViewArr[1].setText(v1Var.e);
-                        v1Var.a(textViewArr[0], textViewArr[1], new w5(this, 9));
+                        textViewArr[1].setText(w1Var.e);
+                        w1Var.a(textViewArr[0], textViewArr[1], new w5(this, 9));
                     }
-                    v1Var.e = null;
+                    w1Var.e = null;
                     return;
                 }
                 return;
@@ -135,20 +135,20 @@ public final class i extends AnimatorListenerAdapter {
                     runnable2.run();
                     return;
                 }
-                profileActivity.f33802e0.setProgressToExpand(0.0f);
-                profileActivity.f33772a.setLayerType(0, null);
+                profileActivity.f33809e0.setProgressToExpand(0.0f);
+                profileActivity.f33779a.setLayerType(0, null);
                 runnable2.run();
                 if (profileActivity.I1 == 2) {
                     profileActivity.I1 = 1;
-                    profileActivity.f33802e0.setForegroundAlpha(1.0f);
+                    profileActivity.f33809e0.setForegroundAlpha(1.0f);
                     profileActivity.X.setVisibility(8);
-                    profileActivity.f33864n0.setAlpha(1.0f);
-                    profileActivity.f33864n0.L();
-                    profileActivity.f33864n0.setVisibility(0);
+                    profileActivity.f33871n0.setAlpha(1.0f);
+                    profileActivity.f33871n0.L();
+                    profileActivity.f33871n0.setVisibility(0);
                 }
                 profileActivity.W4 = null;
                 profileActivity.Y.invalidate();
-                profileActivity.f33822g5 = null;
+                profileActivity.f33829g5 = null;
                 profileActivity.fragmentView.invalidate();
                 return;
             default:
@@ -177,9 +177,9 @@ public final class i extends AnimatorListenerAdapter {
             case 1:
                 ps psVar = (ps) this.e;
                 ns nsVar = (ns) this.f4218c;
-                c1 c1Var = nsVar.f28882a;
+                c1 c1Var = nsVar.f28957a;
                 psVar.getClass();
-                c1 c1Var2 = nsVar.f28883b;
+                c1 c1Var2 = nsVar.f28958b;
                 psVar.getClass();
                 return;
             case 5:

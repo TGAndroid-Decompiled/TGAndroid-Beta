@@ -3,32 +3,32 @@ package j4;
 import e2.k0;
 import e2.l0;
 public final class y {
-    public final int f9654a;
-    public final k0 f9655b;
-    public final e2.x f9656c;
+    public final int f9655a;
+    public final k0 f9656b;
+    public final e2.x f9657c;
     public boolean d;
     public boolean e;
-    public boolean f9657f;
-    public long f9658g;
+    public boolean f9658f;
+    public long f9659g;
     public long h;
-    public long f9659i;
+    public long f9660i;
 
     public y(int i10) {
-        this.f9654a = i10;
+        this.f9655a = i10;
         switch (i10) {
             case 1:
-                this.f9655b = new k0(0L);
-                this.f9658g = -9223372036854775807L;
+                this.f9656b = new k0(0L);
+                this.f9659g = -9223372036854775807L;
                 this.h = -9223372036854775807L;
-                this.f9659i = -9223372036854775807L;
-                this.f9656c = new e2.x();
+                this.f9660i = -9223372036854775807L;
+                this.f9657c = new e2.x();
                 return;
             default:
-                this.f9655b = new k0(0L);
-                this.f9658g = -9223372036854775807L;
+                this.f9656b = new k0(0L);
+                this.f9659g = -9223372036854775807L;
                 this.h = -9223372036854775807L;
-                this.f9659i = -9223372036854775807L;
-                this.f9656c = new e2.x();
+                this.f9660i = -9223372036854775807L;
+                this.f9657c = new e2.x();
                 return;
         }
     }
@@ -61,10 +61,10 @@ public final class y {
     }
 
     public final void a(c3.p pVar) {
-        switch (this.f9654a) {
+        switch (this.f9655a) {
             case 0:
                 byte[] bArr = l0.f6166b;
-                e2.x xVar = this.f9656c;
+                e2.x xVar = this.f9657c;
                 xVar.getClass();
                 xVar.L(bArr.length, bArr);
                 this.d = true;
@@ -72,7 +72,7 @@ public final class y {
                 return;
             default:
                 byte[] bArr2 = l0.f6166b;
-                e2.x xVar2 = this.f9656c;
+                e2.x xVar2 = this.f9657c;
                 xVar2.getClass();
                 xVar2.L(bArr2.length, bArr2);
                 this.d = true;

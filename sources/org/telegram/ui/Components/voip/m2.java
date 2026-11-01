@@ -1,30 +1,22 @@
 package org.telegram.ui.Components.voip;
-public final class m2 implements Runnable {
-    public final int f31538a;
-    public final r2 f31539b;
-    public final int f31540c;
 
-    public m2(r2 r2Var, int i10, int i11) {
-        this.f31538a = i11;
-        this.f31539b = r2Var;
-        this.f31540c = i10;
-    }
+import android.graphics.Canvas;
+import android.view.View;
+import org.telegram.ui.Components.gv0;
+public final class m2 extends View {
+    public gv0 f31611a;
+    public boolean f31612b;
 
     @Override
-    public final void run() {
-        switch (this.f31538a) {
-            case 0:
-                org.telegram.messenger.i0.g3(new m2(this.f31539b, this.f31540c, 2));
-                return;
-            case 1:
-                org.telegram.messenger.i0.g3(new m2(this.f31539b, this.f31540c, 3));
-                return;
-            case 2:
-                this.f31539b.c(this.f31540c);
-                return;
-            default:
-                this.f31539b.a(this.f31540c);
-                return;
+    public final void onDraw(Canvas canvas) {
+        gv0 gv0Var;
+        if (!this.f31612b && (gv0Var = this.f31611a) != null) {
+            gv0Var.b(canvas, this);
         }
+    }
+
+    public void setState(boolean z10) {
+        this.f31612b = z10;
+        invalidate();
     }
 }

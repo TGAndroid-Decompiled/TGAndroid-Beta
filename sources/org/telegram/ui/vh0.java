@@ -1,6 +1,9 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
+import android.text.Layout;
+import android.view.View;
 public interface vh0 {
-    void a(ArrayList arrayList);
+    Layout a();
+
+    View e();
 }

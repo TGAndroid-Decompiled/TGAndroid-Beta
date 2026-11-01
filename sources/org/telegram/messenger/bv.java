@@ -1,65 +1,74 @@
 package org.telegram.messenger;
 
-import android.graphics.Bitmap;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.view.MotionEvent;
-import android.view.VelocityTracker;
 import android.view.View;
-import android.view.ViewConfiguration;
-import android.widget.OverScroller;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-public final class bv extends qu {
-    public final TL_iv.pageBlockMath W;
-    public final Bitmap X;
+public final class bv extends ru {
+    public static Paint f15024d0;
+    public final TL_iv.pageBlockMap W;
+    public final ImageReceiver X;
     public final int Y;
     public final int Z;
-    public final int f14829a0;
-    public final int f14830b0;
-    public final int f14831c0;
-    public int f14832d0;
-    public float f14833e0;
-    public int f14834f0;
-    public boolean f14835g0;
-    public int f14836h0;
-    public final Paint f14837i0;
-    public int f14838j0;
-    public int f14839k0;
-    public VelocityTracker f14840l0;
-    public OverScroller m0;
-    public final mg.c2 f14841n0;
+    public final int f15025a0;
+    public boolean f15026b0;
+    public Drawable f15027c0;
 
-    public bv(vv vvVar, Rect rect, int i10, TL_iv.pageBlockMath pageblockmath) {
-        super(vvVar, rect, i10);
-        bi.u uVar;
-        this.f14837i0 = new Paint(3);
-        this.f14841n0 = new mg.c2(this, 8);
-        this.W = pageblockmath;
-        int i11 = this.f17623c;
-        this.f14829a0 = i11;
-        if (pageblockmath != null && !TextUtils.isEmpty(pageblockmath.source)) {
-            uVar = bi.u.a(pageblockmath.source, i0.L(vvVar.M + 4), false);
-        } else {
-            uVar = null;
+    public bv(wv wvVar, Rect rect, int i10, TL_iv.pageBlockMap pageblockmap) {
+        super(wvVar, rect, i10);
+        ImageReceiver imageReceiver = new ImageReceiver(null);
+        this.X = imageReceiver;
+        this.W = pageblockmap;
+        imageReceiver.f14425z1 = true;
+        int i11 = pageblockmap.f20018w;
+        i11 = i11 <= 0 ? 100 : i11;
+        int i12 = pageblockmap.h;
+        int i13 = i12 > 0 ? i12 : 100;
+        int i14 = this.f17969c;
+        int max = (int) ((i14 / Math.max(1, i11)) * i13);
+        Point point = i0.f16172q;
+        int max2 = (int) (Math.max(point.x, point.y) * 0.55f);
+        if (max > max2) {
+            i14 = (int) ((max2 / Math.max(1, i13)) * i11);
+            max = max2;
         }
-        if (uVar != null) {
-            this.X = uVar.f3369a;
-            this.Y = uVar.f3370b;
-            this.Z = uVar.f3371c;
+        this.Y = i14;
+        this.Z = max;
+        float f7 = i14;
+        float f10 = max;
+        imageReceiver.y0(0.0f, 0.0f, f7, f10);
+        wv wvVar2 = this.f17967a;
+        if (pageblockmap.geo == null) {
+            return;
         }
-        int D = m5.D(0.0f, 2, this.Y);
-        this.f14830b0 = D;
-        this.f14831c0 = Math.max(0, D - i11);
+        int i15 = wvVar2.f19329a;
+        int i16 = wp.r1(i15).f19185m3;
+        this.f15025a0 = i16;
+        float f11 = i0.f16171p;
+        int i17 = (int) (f7 / f11);
+        int i18 = (int) (f10 / f11);
+        int i19 = pageblockmap.zoom;
+        int i20 = i19 <= 0 ? 15 : i19;
+        if (i16 == 2) {
+            imageReceiver.q0(jc.p(c30.b(pageblockmap.geo, i17, i18, i20, Math.min(2, (int) Math.ceil(f11)))), null, null, null, wvVar2.f19330b, 0);
+            return;
+        }
+        TLRPC.GeoPoint geoPoint = pageblockmap.geo;
+        imageReceiver.o0(i0.e0(i15, geoPoint.lat, geoPoint._long, i17, i18, true, i20, -1), null, null, null, 0L);
     }
 
     @Override
     public final int H() {
-        Rect rect = this.f17622b;
-        return m5.D(8.0f, 2, rect.top + this.Z) + rect.bottom;
+        Rect rect = this.f17968b;
+        return rect.top + this.Z + rect.bottom;
     }
 
     @Override
@@ -69,165 +78,132 @@ public final class bv extends qu {
 
     @Override
     public final int J() {
-        Rect rect = this.f17622b;
-        return Math.min(this.f14829a0, this.f14830b0) + rect.left + rect.right;
+        Rect rect = this.f17968b;
+        return rect.left + this.Y + rect.right;
     }
 
     @Override
-    public final boolean P() {
-        if (!this.f14835g0) {
-            OverScroller overScroller = this.m0;
-            if (overScroller == null || overScroller.isFinished()) {
-                return false;
-            }
-            return true;
-        }
-        return true;
+    public final void S() {
+        View view = this.V;
+        ImageReceiver imageReceiver = this.X;
+        imageReceiver.H0(view);
+        imageReceiver.P();
+    }
+
+    @Override
+    public final void U() {
+        this.X.R();
     }
 
     @Override
     public final void V(Canvas canvas) {
         int i10;
-        float f7;
         Canvas canvas2;
-        int i11;
-        int i12;
-        Bitmap bitmap = this.X;
-        if (bitmap == null) {
-            return;
+        Drawable drawable;
+        View view;
+        if (f15024d0 == null) {
+            f15024d0 = new Paint(1);
         }
-        vv vvVar = this.f17621a;
-        if (vvVar.E()) {
-            i10 = org.telegram.ui.ActionBar.t6.Tc;
+        Paint paint = f15024d0;
+        int i11 = org.telegram.ui.ActionBar.t6.f20939df;
+        wv wvVar = this.f17967a;
+        paint.setColor(org.telegram.ui.ActionBar.t6.w0(i11, wvVar.D));
+        boolean Q = Q();
+        boolean D = wvVar.D();
+        int i12 = 0;
+        if (!Q && !D) {
+            i10 = wvVar.S;
         } else {
-            i10 = org.telegram.ui.ActionBar.t6.Sc;
+            i10 = 0;
         }
-        int w02 = org.telegram.ui.ActionBar.t6.w0(i10, vvVar.D);
-        Paint paint = this.f14837i0;
-        paint.setColor(w02);
-        int D = m5.D(8.0f, 2, this.Z);
-        int i13 = this.f14831c0;
-        Rect rect = this.f17622b;
-        if (i13 > 0) {
-            f7 = 0.0f;
-            canvas2 = canvas;
-            canvas2.saveLayerAlpha(-vvVar.S, 0.0f, ((vvVar.C + vvVar.T) - rect.left) - rect.right, D, 255, 31);
-            canvas2.save();
-            canvas2.translate(i0.L(0.0f) - this.f14832d0, i0.L(8.0f));
-        } else {
-            f7 = 0.0f;
-            canvas2 = canvas;
-            canvas2.save();
-            canvas2.translate(((vvVar.C / 2.0f) - rect.left) - (this.Y / 2.0f), i0.L(8.0f));
+        if (!Q && !D) {
+            i12 = wvVar.T;
         }
-        float f10 = f7;
-        canvas2.drawBitmap(bitmap, f10, f10, paint);
-        if (i13 > 0) {
-            canvas2.restore();
+        ImageReceiver imageReceiver = this.X;
+        int i13 = this.Z;
+        int i14 = this.Y;
+        if (D) {
             RectF rectF = i0.P;
-            float f11 = D;
-            rectF.set(-i11, f10, i0.L(12.0f) + (-vvVar.S), f11);
-            vvVar.f19007z.o(canvas2, rectF, 0, 1.0f);
-            rectF.set(i12 - i0.L(12.0f), f10, ((vvVar.C + vvVar.T) - rect.left) - rect.right, f11);
-            vvVar.f19007z.o(canvas2, rectF, 2, 1.0f);
+            rectF.set(0.0f, 0.0f, i14, i13);
+            canvas.drawRoundRect(rectF, i0.L(12.0f), i0.L(12.0f), f15024d0);
+            imageReceiver.J0(i0.L(12.0f));
+            canvas2 = canvas;
+        } else {
+            canvas2 = canvas;
+            canvas2.drawRect(-i10, 0.0f, i14 + i12, i13, f15024d0);
         }
-        canvas2.restore();
+        Drawable drawable2 = org.telegram.ui.ActionBar.t6.S4[wvVar.E() ? 1 : 0];
+        if (drawable2 != null) {
+            int intrinsicWidth = drawable2.getIntrinsicWidth();
+            int intrinsicHeight = drawable2.getIntrinsicHeight();
+            int i15 = (i14 - intrinsicWidth) / 2;
+            int i16 = (i13 - intrinsicHeight) / 2;
+            drawable2.setBounds(i15, i16, intrinsicWidth + i15, intrinsicHeight + i16);
+            drawable2.draw(canvas2);
+        }
+        imageReceiver.y0(-i10, 0.0f, i10 + i14 + i12, i13);
+        imageReceiver.h(canvas2, null);
+        if (this.f15025a0 == 2 && imageReceiver.L()) {
+            if (this.f15027c0 == null && (view = this.V) != null) {
+                this.f15027c0 = view.getContext().getDrawable(2131231645).mutate();
+            }
+            if (this.f15027c0 != null) {
+                int intrinsicWidth2 = (int) (drawable.getIntrinsicWidth() * 0.8f);
+                int intrinsicHeight2 = (int) (this.f15027c0.getIntrinsicHeight() * 0.8f);
+                int i17 = (i14 - intrinsicWidth2) / 2;
+                int i18 = (i13 / 2) - intrinsicHeight2;
+                this.f15027c0.setAlpha((int) (imageReceiver.f14385h1 * 255.0f));
+                this.f15027c0.setBounds(i17, i18, intrinsicWidth2 + i17, intrinsicHeight2 + i18);
+                this.f15027c0.draw(canvas2);
+            }
+        }
     }
 
     @Override
     public final boolean X(MotionEvent motionEvent) {
-        VelocityTracker velocityTracker;
+        boolean z10;
         View view;
-        int i10 = 0;
-        int i11 = this.f14831c0;
-        if (i11 > 0) {
-            int actionMasked = motionEvent.getActionMasked();
-            if (actionMasked == 0) {
-                if (this.f14836h0 == 0 && (view = this.V) != null) {
-                    ViewConfiguration viewConfiguration = ViewConfiguration.get(view.getContext());
-                    this.f14836h0 = viewConfiguration.getScaledTouchSlop();
-                    this.f14838j0 = viewConfiguration.getScaledMinimumFlingVelocity();
-                    this.f14839k0 = viewConfiguration.getScaledMaximumFlingVelocity();
-                }
-                if (this.m0 == null && this.V != null) {
-                    this.m0 = new OverScroller(this.V.getContext());
-                }
-                OverScroller overScroller = this.m0;
-                if (overScroller != null && !overScroller.isFinished()) {
-                    this.m0.forceFinished(true);
-                }
-                this.f14833e0 = motionEvent.getX();
-                this.f14834f0 = this.f14832d0;
-                this.f14835g0 = false;
-                VelocityTracker velocityTracker2 = this.f14840l0;
-                if (velocityTracker2 == null) {
-                    this.f14840l0 = VelocityTracker.obtain();
-                } else {
-                    velocityTracker2.clear();
-                }
-                this.f14840l0.addMovement(motionEvent);
+        int actionMasked = motionEvent.getActionMasked();
+        float x10 = motionEvent.getX();
+        Rect rect = this.f17968b;
+        float f7 = x10 - rect.left;
+        float y3 = motionEvent.getY() - rect.top;
+        if (f7 >= 0.0f && f7 <= this.Y && y3 >= 0.0f && y3 <= this.Z) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (actionMasked == 0) {
+            if (z10) {
+                this.f15026b0 = true;
                 return true;
-            } else if (actionMasked == 2) {
-                VelocityTracker velocityTracker3 = this.f14840l0;
-                if (velocityTracker3 != null) {
-                    velocityTracker3.addMovement(motionEvent);
-                }
-                float x10 = motionEvent.getX() - this.f14833e0;
-                if (!this.f14835g0 && Math.abs(x10) > this.f14836h0) {
-                    this.f14835g0 = true;
-                    Z(true);
-                }
-                if (this.f14835g0) {
-                    int i12 = (int) (this.f14834f0 - x10);
-                    if (i12 >= 0) {
-                        i10 = i12;
-                    }
-                    if (i10 <= i11) {
-                        i11 = i10;
-                    }
-                    if (i11 != this.f14832d0) {
-                        this.f14832d0 = i11;
-                        View view2 = this.V;
-                        if (view2 != null) {
-                            view2.invalidate();
+            }
+        } else if (actionMasked == 1) {
+            if (this.f15026b0) {
+                this.f15026b0 = false;
+                if (z10) {
+                    TL_iv.pageBlockMap pageblockmap = this.W;
+                    if (pageblockmap.geo != null && (view = this.V) != null) {
+                        view.playSoundEffect(0);
+                        try {
+                            TLRPC.GeoPoint geoPoint = pageblockmap.geo;
+                            double d = geoPoint.lat;
+                            double d10 = geoPoint._long;
+                            this.V.getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse("geo:" + d + "," + d10 + "?q=" + d + "," + d10)));
+                            return true;
+                        } catch (Exception e) {
+                            f8.g(e, true);
                             return true;
                         }
                     }
-                    return true;
-                }
-            } else if (actionMasked == 1 || actionMasked == 3) {
-                boolean z10 = this.f14835g0;
-                this.f14835g0 = false;
-                if (z10) {
-                    Z(false);
-                    if (actionMasked == 1 && (velocityTracker = this.f14840l0) != null && this.m0 != null && this.V != null) {
-                        velocityTracker.addMovement(motionEvent);
-                        this.f14840l0.computeCurrentVelocity(1000, this.f14839k0);
-                        float f7 = -this.f14840l0.getXVelocity();
-                        if (Math.abs(f7) > this.f14838j0) {
-                            this.m0.fling(this.f14832d0, 0, (int) f7, 0, 0, this.f14831c0, 0, 0);
-                            this.V.postOnAnimation(this.f14841n0);
-                        }
-                    }
-                }
-                VelocityTracker velocityTracker4 = this.f14840l0;
-                if (velocityTracker4 != null) {
-                    velocityTracker4.recycle();
-                    this.f14840l0 = null;
-                }
-                if (z10 || actionMasked == 1) {
-                    return true;
                 }
             }
+        } else {
+            if (actionMasked == 3) {
+                this.f15026b0 = false;
+            }
+            return this.f15026b0;
         }
         return false;
-    }
-
-    @Override
-    public final void k(SpannableStringBuilder spannableStringBuilder) {
-        TL_iv.pageBlockMath pageblockmath = this.W;
-        if (pageblockmath != null && !TextUtils.isEmpty(pageblockmath.source)) {
-            spannableStringBuilder.append((CharSequence) pageblockmath.source);
-        }
     }
 }

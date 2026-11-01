@@ -12,21 +12,21 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import vh.d0;
 public final class y implements ServiceConnection {
-    public final Context f53589a;
-    public final Intent f53590b;
-    public final ScheduledThreadPoolExecutor f53591c;
+    public final Context f53607a;
+    public final Intent f53608b;
+    public final ScheduledThreadPoolExecutor f53609c;
     public final ArrayDeque d;
     public w e;
-    public boolean f53592f;
+    public boolean f53610f;
 
     public y(Context context) {
         ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(0, new c5.s("Firebase-FirebaseInstanceIdServiceConnection"));
         this.d = new ArrayDeque();
-        this.f53592f = false;
+        this.f53610f = false;
         Context applicationContext = context.getApplicationContext();
-        this.f53589a = applicationContext;
-        this.f53590b = new Intent("com.google.firebase.MESSAGING_EVENT").setPackage(applicationContext.getPackageName());
-        this.f53591c = scheduledThreadPoolExecutor;
+        this.f53607a = applicationContext;
+        this.f53608b = new Intent("com.google.firebase.MESSAGING_EVENT").setPackage(applicationContext.getPackageName());
+        this.f53609c = scheduledThreadPoolExecutor;
     }
 
     public final synchronized void a() {
@@ -61,14 +61,14 @@ public final class y implements ServiceConnection {
                 Log.d("FirebaseMessaging", "new intent queued in the bind-strategy delivery");
             }
             xVar = new x(intent);
-            ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = this.f53591c;
-            xVar.f53588b.getTask().addOnCompleteListener(scheduledThreadPoolExecutor, new wh.b(scheduledThreadPoolExecutor.schedule(new d0(xVar, 27), 20L, TimeUnit.SECONDS), 7));
+            ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = this.f53609c;
+            xVar.f53606b.getTask().addOnCompleteListener(scheduledThreadPoolExecutor, new wh.b(scheduledThreadPoolExecutor.schedule(new d0(xVar, 27), 20L, TimeUnit.SECONDS), 7));
             this.d.add(xVar);
             a();
         } catch (Throwable th2) {
             throw th2;
         }
-        return xVar.f53588b.getTask();
+        return xVar.f53606b.getTask();
     }
 
     public final void c() {
@@ -81,12 +81,12 @@ public final class y implements ServiceConnection {
             if (Log.isLoggable("FirebaseMessaging", 3)) {
                 Log.d("FirebaseMessaging", "onServiceConnected: " + componentName);
             }
-            this.f53592f = false;
+            this.f53610f = false;
             if (!(iBinder instanceof w)) {
                 Log.e("FirebaseMessaging", "Invalid service connection: " + iBinder);
                 ArrayDeque arrayDeque = this.d;
                 while (!arrayDeque.isEmpty()) {
-                    ((x) arrayDeque.poll()).f53588b.trySetResult(null);
+                    ((x) arrayDeque.poll()).f53606b.trySetResult(null);
                 }
                 return;
             }

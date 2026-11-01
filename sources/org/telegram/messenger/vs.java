@@ -1,4 +1,4 @@
 package org.telegram.messenger;
 public interface vs {
-    void a();
+    void didReceivedNotification(int i10, int i11, Object... objArr);
 }

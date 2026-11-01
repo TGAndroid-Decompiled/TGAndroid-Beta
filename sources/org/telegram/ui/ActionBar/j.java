@@ -2,14 +2,14 @@ package org.telegram.ui.ActionBar;
 
 import android.content.Context;
 import android.widget.FrameLayout;
-import org.telegram.ui.uw;
+import org.telegram.ui.tw;
 public final class j extends n {
     public final int d = 0;
     public final FrameLayout e;
 
-    public j(uw uwVar, Context context, ac.a aVar) {
+    public j(tw twVar, Context context, ac.a aVar) {
         super(context, null, aVar);
-        this.e = uwVar;
+        this.e = twVar;
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class j extends n {
                 return;
             default:
                 super.b(mVar);
-                ((uw) this.e).invalidate();
+                ((tw) this.e).invalidate();
                 return;
         }
     }

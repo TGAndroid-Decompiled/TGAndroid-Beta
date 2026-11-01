@@ -5,14 +5,14 @@ import java.util.HashSet;
 import java.util.Iterator;
 import org.telegram.tgnet.ConnectionsManager;
 public final class e3 {
-    public int f15362a;
-    public String f15363b;
-    public String f15364c;
+    public int f15535a;
+    public String f15536b;
+    public String f15537c;
     public HashSet d;
 
     public final void a(String str) {
-        int i10 = this.f15362a;
-        js.e.remove(Integer.valueOf(hashCode()));
+        int i10 = this.f15535a;
+        ks.e.remove(Integer.valueOf(hashCode()));
         HashSet hashSet = this.d;
         int[] iArr = new int[hashSet.size()];
         Iterator it = hashSet.iterator();
@@ -26,6 +26,6 @@ public final class e3 {
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f15362a), this.f15363b, this.f15364c);
+        return Objects.hash(Integer.valueOf(this.f15535a), this.f15536b, this.f15537c);
     }
 }

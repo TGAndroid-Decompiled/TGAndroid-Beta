@@ -12,7 +12,7 @@ public final class r7 extends jg.y0 {
 
     @Override
     public final void invalidate() {
-        View view = this.Q.f49450c;
+        View view = this.Q.f49464c;
         if (view != null) {
             view.invalidate();
         }

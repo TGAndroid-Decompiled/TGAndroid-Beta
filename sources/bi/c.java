@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
-import org.telegram.ui.gj0;
+import org.telegram.ui.ej0;
 public final class c implements View.OnClickListener {
     public final int f2877a;
     public final Object f2878b;
@@ -36,12 +36,12 @@ public final class c implements View.OnClickListener {
         this.f2880f = obj5;
     }
 
-    public c(org.telegram.ui.ActionBar.z2 z2Var, FrameLayout frameLayout, ArrayList arrayList, int[] iArr, gj0 gj0Var) {
+    public c(org.telegram.ui.ActionBar.z2 z2Var, FrameLayout frameLayout, ArrayList arrayList, int[] iArr, ej0 ej0Var) {
         this.f2877a = 11;
         this.f2880f = z2Var;
         this.f2878b = frameLayout;
         this.f2879c = arrayList;
         this.d = iArr;
-        this.e = gj0Var;
+        this.e = ej0Var;
     }
 }

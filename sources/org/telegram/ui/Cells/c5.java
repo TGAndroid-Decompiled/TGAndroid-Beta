@@ -17,18 +17,18 @@ public final class c5 extends org.telegram.ui.Components.g9 {
     public final void onDraw(Canvas canvas) {
         int L;
         e5 e5Var = this.H;
-        if (e5Var.f21853r != null) {
+        if (e5Var.f21854r != null) {
             float L2 = org.telegram.messenger.i0.L(1.0f);
             e5Var.N.F.set(L2, L2, getMeasuredWidth() - L, getMeasuredHeight() - L);
             th.t5 t5Var = e5Var.N;
-            t5Var.f49465a = false;
-            t5Var.f49466b = false;
+            t5Var.f49479a = false;
+            t5Var.f49480b = false;
             t5Var.v = true;
-            t5Var.f49476o = false;
+            t5Var.f49490o = false;
             t5Var.J = this.G;
-            TL_stories.StoryItem storyItem = e5Var.f21853r;
+            TL_stories.StoryItem storyItem = e5Var.f21854r;
             t5Var.d = storyItem;
-            th.w5.h(storyItem.dialogId, canvas, this.f26292a, t5Var);
+            th.w5.h(storyItem.dialogId, canvas, this.f26357a, t5Var);
             return;
         }
         super.onDraw(canvas);

@@ -1,42 +1,49 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.ViewGroup;
-public final class g0 extends AnimatorListenerAdapter {
-    public final int f31446a;
-    public final l0 f31447b;
+import android.animation.ValueAnimator;
+public final class g0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f31504a;
+    public final m0 f31505b;
 
-    public g0(l0 l0Var, int i10) {
-        this.f31446a = i10;
-        this.f31447b = l0Var;
+    public g0(m0 m0Var, int i10) {
+        this.f31504a = i10;
+        this.f31505b = m0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f31446a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f31504a) {
             case 0:
-                super.onAnimationEnd(animator);
-                l0 l0Var = this.f31447b;
-                if (l0Var.getParent() != null) {
-                    ((ViewGroup) l0Var.getParent()).removeView(l0Var);
-                    return;
-                }
+                m0 m0Var = this.f31505b;
+                m0Var.getClass();
+                m0Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                m0Var.invalidate();
                 return;
             case 1:
-                l0 l0Var2 = this.f31447b;
-                if (l0Var2.getParent() != null) {
-                    ((ViewGroup) l0Var2.getParent()).removeView(l0Var2);
-                    return;
-                }
+                m0 m0Var2 = this.f31505b;
+                m0Var2.getClass();
+                m0Var2.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float L = m0Var2.I + org.telegram.messenger.i0.L(28.0f);
+                float L2 = m0Var2.J + org.telegram.messenger.i0.L(52.0f);
+                float f7 = m0Var2.D;
+                m0Var2.G = L - (L * f7);
+                m0Var2.H = L2 - (f7 * L2);
+                m0Var2.invalidate();
+                return;
+            case 2:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                m0 m0Var3 = this.f31505b;
+                m0Var3.E = floatValue;
+                int L3 = (org.telegram.messenger.i0.f16172q.x - org.telegram.messenger.i0.L(36.0f)) - org.telegram.messenger.i0.L(52.0f);
+                k0 k0Var = m0Var3.f31593c;
+                k0Var.getLayoutParams().width = org.telegram.messenger.i0.L(52.0f) + ((int) (L3 * m0Var3.E));
+                k0Var.requestLayout();
                 return;
             default:
-                super.onAnimationEnd(animator);
-                l0 l0Var3 = this.f31447b;
-                if (l0Var3.getParent() != null) {
-                    ((ViewGroup) l0Var3.getParent()).removeView(l0Var3);
-                    return;
-                }
+                m0 m0Var4 = this.f31505b;
+                m0Var4.getClass();
+                m0Var4.f31597s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                m0Var4.e();
                 return;
         }
     }

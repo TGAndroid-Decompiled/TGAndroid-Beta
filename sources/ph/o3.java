@@ -5,20 +5,20 @@ import android.content.Context;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import org.telegram.messenger.j20;
+import org.telegram.messenger.k20;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Cells.p4;
-import org.telegram.ui.Components.p51;
-import org.telegram.ui.Components.tk0;
-import org.telegram.ui.p10;
+import org.telegram.ui.Components.q51;
+import org.telegram.ui.Components.uk0;
+import org.telegram.ui.o10;
 import rh.h8;
-public final class o3 extends p51 {
+public final class o3 extends q51 {
     public final int P;
     public final Object Q;
 
-    public o3(KeyEvent.Callback callback, tk0 tk0Var, Context context, int i10, j20 j20Var, p6 p6Var, int i11) {
-        super(tk0Var, context, i10, 0, false, j20Var, p6Var);
+    public o3(KeyEvent.Callback callback, uk0 uk0Var, Context context, int i10, k20 k20Var, p6 p6Var, int i11) {
+        super(uk0Var, context, i10, 0, false, k20Var, p6Var);
         this.P = i11;
         this.Q = callback;
     }
@@ -32,8 +32,8 @@ public final class o3 extends p51 {
                 super.t(c1Var, i10);
                 th.p1 p1Var = (th.p1) this.Q;
                 if (p1Var.D) {
-                    View view = c1Var.f47898a;
-                    if ((view instanceof th.c0) && (h0Var = (c0Var = (th.c0) view).K) != null && h0Var.f49006a == p1Var.f49095y) {
+                    View view = c1Var.f47909a;
+                    if ((view instanceof th.c0) && (h0Var = (c0Var = (th.c0) view).K) != null && h0Var.f49020a == p1Var.f49109y) {
                         c0Var.c();
                         p1Var.D = false;
                         return;
@@ -78,7 +78,7 @@ public final class o3 extends p51 {
             case 3:
                 wh.g gVar = (wh.g) this.Q;
                 if (i10 == 42) {
-                    p4 p4Var2 = new p4(gVar.getParentActivity(), t6.L6, 21, 0, false, wh.g.A0(gVar));
+                    p4 p4Var2 = new p4(gVar.getParentActivity(), t6.L6, 21, 0, false, wh.g.B0(gVar));
                     p4Var2.setHeight(25);
                     return new s4.c1(p4Var2);
                 }
@@ -97,7 +97,7 @@ public final class o3 extends p51 {
             case 5:
                 xh.z2 z2Var = (xh.z2) this.Q;
                 if (i10 == 42) {
-                    p4 p4Var4 = new p4(z2Var.getParentActivity(), t6.L6, 21, 0, false, xh.z2.G0(z2Var));
+                    p4 p4Var4 = new p4(z2Var.getParentActivity(), t6.L6, 21, 0, false, xh.z2.H0(z2Var));
                     p4Var4.setHeight(25);
                     return new s4.c1(p4Var4);
                 }
@@ -114,8 +114,8 @@ public final class o3 extends p51 {
                 super.y(c1Var);
                 th.p1 p1Var = (th.p1) this.Q;
                 if (p1Var.D) {
-                    View view = c1Var.f47898a;
-                    if ((view instanceof th.c0) && (h0Var = (c0Var = (th.c0) view).K) != null && h0Var.f49006a == p1Var.f49095y) {
+                    View view = c1Var.f47909a;
+                    if ((view instanceof th.c0) && (h0Var = (c0Var = (th.c0) view).K) != null && h0Var.f49020a == p1Var.f49109y) {
                         c0Var.c();
                         p1Var.D = false;
                         return;
@@ -129,9 +129,9 @@ public final class o3 extends p51 {
         }
     }
 
-    public o3(p10 p10Var, tk0 tk0Var, Activity activity, int i10, int i11, j20 j20Var, p6 p6Var, int i12) {
-        super(tk0Var, activity, i10, i11, true, j20Var, p6Var);
+    public o3(o10 o10Var, uk0 uk0Var, Activity activity, int i10, int i11, k20 k20Var, p6 p6Var, int i12) {
+        super(uk0Var, activity, i10, i11, true, k20Var, p6Var);
         this.P = i12;
-        this.Q = p10Var;
+        this.Q = o10Var;
     }
 }

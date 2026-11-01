@@ -5,27 +5,27 @@ import android.graphics.RectF;
 import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Pattern;
-import org.telegram.messenger.cc;
+import org.telegram.messenger.dc;
 import org.telegram.messenger.g4;
-import org.telegram.messenger.ot;
+import org.telegram.messenger.pt;
 import org.telegram.messenger.r5;
-import org.telegram.messenger.ui;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.vi;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.gw;
-import org.telegram.ui.Components.pz0;
+import org.telegram.ui.Components.qz0;
 import org.telegram.ui.Components.s4;
 import org.telegram.ui.Components.tz;
 import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.a41;
 import org.telegram.ui.bp;
-import org.telegram.ui.c41;
-import org.telegram.ui.hl0;
-import org.telegram.ui.me0;
-import org.telegram.ui.mg0;
+import org.telegram.ui.fl0;
+import org.telegram.ui.kg0;
+import org.telegram.ui.le0;
 import org.telegram.ui.oa;
-import org.telegram.ui.sm0;
+import org.telegram.ui.qm0;
 import th.e5;
 public final class c3 implements RequestDelegate {
     public final int f479a;
@@ -47,36 +47,36 @@ public final class c3 implements RequestDelegate {
                 org.telegram.messenger.i0.g3(new f3(0));
                 return;
             case 3:
-                r5 r5Var = g4.f15668s;
+                r5 r5Var = g4.f15853s;
                 return;
             case 4:
                 return;
             case 5:
-                int i10 = cc.f14973i;
+                int i10 = dc.f15335i;
                 return;
             case 6:
-                Pattern pattern = ui.R1;
+                Pattern pattern = vi.R1;
                 return;
             case 7:
                 org.telegram.messenger.i0.g3(new org.telegram.messenger.a(tL_error, 24));
                 return;
             case 8:
-                int i11 = vp.D8;
+                int i11 = wp.D8;
                 return;
             case 9:
-                String str = ot.f17303j0;
+                String str = pt.f17636j0;
                 return;
             case 10:
                 Paint paint = oa.H;
                 return;
             case 11:
-                int i12 = bp.f36287i3;
+                int i12 = bp.f36091i3;
                 return;
             case 12:
                 org.telegram.messenger.i0.g3(new f3(13));
                 return;
             case 13:
-                Pattern pattern2 = s4.f30123a;
+                Pattern pattern2 = s4.f30174a;
                 return;
             case 14:
                 int i13 = gw.H0;
@@ -88,25 +88,25 @@ public final class c3 implements RequestDelegate {
                 org.telegram.messenger.i0.g3(new f3(13));
                 return;
             case 17:
-                int i15 = pz0.e;
+                int i15 = qz0.e;
                 return;
             case 18:
-                int i16 = me0.f39655v0;
+                int i16 = le0.f39232v0;
                 return;
             case 19:
-                org.telegram.messenger.i0.g3(new mg0(tLObject, 5));
+                org.telegram.messenger.i0.g3(new kg0(tLObject, 5));
                 return;
             case 20:
-                int i17 = hl0.R;
+                int i17 = fl0.R;
                 return;
             case 21:
-                List list = sm0.f41544g1;
+                List list = qm0.f40810g1;
                 return;
             case 22:
-                RectF rectF = ProfileActivity.R6;
+                RectF rectF = ProfileActivity.S6;
                 return;
             case 23:
-                int i18 = c41.l1;
+                int i18 = a41.l1;
                 return;
             case 24:
                 org.telegram.messenger.i0.g3(new r5.a(11));
@@ -121,7 +121,7 @@ public final class c3 implements RequestDelegate {
                 org.telegram.messenger.i0.g3(new f3(13));
                 return;
             default:
-                int[] iArr = vh.u0.f51982a0;
+                int[] iArr = vh.v0.f52041a0;
                 return;
         }
     }

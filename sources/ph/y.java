@@ -30,7 +30,7 @@ public final class y extends rh.y3 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (view == this.f47718b) {
+        if (view == this.f47730b) {
             return true;
         }
         return super.drawChild(canvas, view, j10);

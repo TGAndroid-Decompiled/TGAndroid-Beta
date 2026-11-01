@@ -6,19 +6,19 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.db0;
 import org.telegram.ui.Components.hb0;
 import org.telegram.ui.Components.kj;
 import org.telegram.ui.Components.p80;
-import org.telegram.ui.Components.sk0;
+import org.telegram.ui.Components.tk0;
 import org.telegram.ui.Components.zz;
-import org.telegram.ui.u71;
-public final class u3 extends sk0 {
-    public final ArrayList f49513c = new ArrayList();
+import org.telegram.ui.s71;
+public final class u3 extends tk0 {
+    public final ArrayList f49527c = new ArrayList();
     public final y3 d;
 
     public u3(y3 y3Var) {
@@ -27,14 +27,14 @@ public final class u3 extends sk0 {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f47901f == 1) {
+        if (c1Var.f47912f == 1) {
             return true;
         }
         return false;
     }
 
     public final void E() {
-        ArrayList arrayList = this.f49513c;
+        ArrayList arrayList = this.f49527c;
         arrayList.clear();
         y3 y3Var = this.d;
         x3 x3Var = y3Var.E;
@@ -45,16 +45,16 @@ public final class u3 extends sk0 {
         } else {
             arrayList.add(new q3(0));
             if (x3Var != null) {
-                l3 l3Var = x3Var.f49630s;
-                boolean z10 = x3Var.f49621j;
-                if (x3Var.b() <= 0 && (z10 || (!x3Var.e && !x3Var.f49624m))) {
-                    if (!TextUtils.isEmpty(l3Var.f49169c)) {
+                l3 l3Var = x3Var.f49644s;
+                boolean z10 = x3Var.f49635j;
+                if (x3Var.b() <= 0 && (z10 || (!x3Var.e && !x3Var.f49638m))) {
+                    if (!TextUtils.isEmpty(l3Var.f49183c)) {
                         arrayList.add(new q3(7));
                     } else if (z10) {
                         arrayList.add(new q3(5));
                     } else {
-                        int i11 = x3Var.f49615a;
-                        if (i11 > 0 && l3Var.f49168b) {
+                        int i11 = x3Var.f49629a;
+                        if (i11 > 0 && l3Var.f49182b) {
                             arrayList.add(new q3(8));
                         } else if (i11 > 0) {
                             arrayList.add(new q3(10));
@@ -65,9 +65,9 @@ public final class u3 extends sk0 {
                 }
             }
             if (x3Var != null) {
-                ArrayList arrayList2 = x3Var.f49619g;
-                ArrayList arrayList3 = x3Var.f49620i;
-                if (x3Var.f49618f) {
+                ArrayList arrayList2 = x3Var.f49633g;
+                ArrayList arrayList3 = x3Var.f49634i;
+                if (x3Var.f49632f) {
                     while (i10 < arrayList3.size()) {
                         arrayList.add(new q3((TL_stories.StoryReaction) arrayList3.get(i10)));
                         i10++;
@@ -79,17 +79,17 @@ public final class u3 extends sk0 {
                     }
                 }
             }
-            if (x3Var != null && (x3Var.e || x3Var.f49624m)) {
+            if (x3Var != null && (x3Var.e || x3Var.f49638m)) {
                 if (x3Var.b() <= 0) {
                     arrayList.add(new q3(6));
                 } else {
                     arrayList.add(new q3(4));
                 }
-            } else if (x3Var != null && x3Var.f49622k) {
+            } else if (x3Var != null && x3Var.f49636k) {
                 arrayList.add(new q3(11));
             } else if (x3Var != null) {
-                l3 l3Var2 = x3Var.f49630s;
-                if (x3Var.b() < x3Var.f49615a && TextUtils.isEmpty(l3Var2.f49169c) && !l3Var2.f49168b) {
+                l3 l3Var2 = x3Var.f49644s;
+                if (x3Var.b() < x3Var.f49629a && TextUtils.isEmpty(l3Var2.f49183c) && !l3Var2.f49182b) {
                     arrayList.add(new q3(12));
                 }
             }
@@ -100,12 +100,12 @@ public final class u3 extends sk0 {
 
     @Override
     public final int b() {
-        return this.f49513c.size();
+        return this.f49527c.size();
     }
 
     @Override
     public final int d(int i10) {
-        return ((q3) this.f49513c.get(i10)).f49385a;
+        return ((q3) this.f49527c.get(i10)).f49399a;
     }
 
     @Override
@@ -135,14 +135,14 @@ public final class u3 extends sk0 {
         String str2;
         TLRPC.Message message2;
         y3 y3Var = this.d;
-        int i16 = y3Var.f49677w;
-        if (c1Var.f47901f == 1 && i10 >= 0) {
-            ArrayList arrayList = this.f49513c;
+        int i16 = y3Var.f49691w;
+        if (c1Var.f47912f == 1 && i10 >= 0) {
+            ArrayList arrayList = this.f49527c;
             if (i10 < arrayList.size()) {
                 q3 q3Var = (q3) arrayList.get(i10);
-                org.telegram.ui.Cells.q6 q6Var = (org.telegram.ui.Cells.q6) c1Var.f47898a;
-                TL_stories.StoryView storyView = q3Var.f49386b;
-                TL_stories.StoryReaction storyReaction = q3Var.f49387c;
+                org.telegram.ui.Cells.q6 q6Var = (org.telegram.ui.Cells.q6) c1Var.f47909a;
+                TL_stories.StoryView storyView = q3Var.f49400b;
+                TL_stories.StoryReaction storyReaction = q3Var.f49401c;
                 if (storyView != null) {
                     if (storyView instanceof TL_stories.TL_storyViewPublicRepost) {
                         peer = storyView.peer_id;
@@ -162,18 +162,18 @@ public final class u3 extends sk0 {
                 }
                 long o10 = org.telegram.messenger.o5.o(peer);
                 if (o10 >= 0) {
-                    user = vp.r1(i16).Z1(Long.valueOf(o10));
+                    user = wp.r1(i16).Z1(Long.valueOf(o10));
                     j10 = o10;
                     L0 = null;
                 } else {
                     j10 = o10;
-                    L0 = vp.r1(i16).L0(Long.valueOf(-o10));
+                    L0 = wp.r1(i16).L0(Long.valueOf(-o10));
                     user = null;
                 }
-                boolean remove = y3Var.F.f49627p.remove(Long.valueOf(j10));
+                boolean remove = y3Var.F.f49641p.remove(Long.valueOf(j10));
                 if (storyView != null) {
                     TLRPC.Reaction reaction3 = storyView.reaction;
-                    if (reaction3 != null && (str2 = sg.o0.d(reaction3).f48434f) != null && str2.equals("❤")) {
+                    if (reaction3 != null && (str2 = sg.o0.d(reaction3).f48445f) != null && str2.equals("❤")) {
                         j12 = 0;
                         z11 = true;
                     } else {
@@ -200,7 +200,7 @@ public final class u3 extends sk0 {
                             if (e4Var == null) {
                                 storyItem2 = null;
                             } else {
-                                storyItem2 = e4Var.f48902a;
+                                storyItem2 = e4Var.f48916a;
                             }
                             q6Var.c(user3, null, null, z11, j13, storyItem2, true, true, remove);
                         } else {
@@ -213,7 +213,7 @@ public final class u3 extends sk0 {
                         }
                     }
                     if (i10 < arrayList.size() - 1) {
-                        i15 = ((q3) arrayList.get(i10 + 1)).f49385a;
+                        i15 = ((q3) arrayList.get(i10 + 1)).f49399a;
                     } else {
                         i15 = -1;
                     }
@@ -222,7 +222,7 @@ public final class u3 extends sk0 {
                     } else {
                         z12 = true;
                     }
-                    q6Var.f22834a = z12;
+                    q6Var.f22835a = z12;
                     if (y3Var.d(storyView)) {
                         f7 = 1.0f;
                     } else {
@@ -236,7 +236,7 @@ public final class u3 extends sk0 {
                     if (storyReaction instanceof TL_stories.TL_storyReaction) {
                         TL_stories.TL_storyReaction tL_storyReaction = (TL_stories.TL_storyReaction) storyReaction;
                         TLRPC.Reaction reaction4 = tL_storyReaction.reaction;
-                        if (reaction4 != null && (str = sg.o0.d(reaction4).f48434f) != null && str.equals("❤")) {
+                        if (reaction4 != null && (str = sg.o0.d(reaction4).f48445f) != null && str.equals("❤")) {
                             z10 = true;
                         } else {
                             z10 = false;
@@ -263,21 +263,21 @@ public final class u3 extends sk0 {
                             if (e4Var2 == null) {
                                 storyItem = null;
                             } else {
-                                storyItem = e4Var2.f48902a;
+                                storyItem = e4Var2.f48916a;
                             }
                             q6Var.c(user4, L0, null, false, j11, storyItem, true, true, remove);
                         }
                     }
                     boolean z13 = true;
                     if (i10 < arrayList.size() - 1) {
-                        i12 = ((q3) arrayList.get(i10 + 1)).f49385a;
+                        i12 = ((q3) arrayList.get(i10 + 1)).f49399a;
                     } else {
                         i12 = -1;
                     }
                     if (i12 != 1 && i12 != 11 && i12 != i11) {
                         z13 = false;
                     }
-                    q6Var.f22834a = z13;
+                    q6Var.f22835a = z13;
                     q6Var.a(false, 1.0f);
                 }
             }
@@ -289,8 +289,8 @@ public final class u3 extends sk0 {
         int i11;
         p80 p80Var;
         final y3 y3Var = this.d;
-        int i12 = y3Var.f49677w;
-        b bVar = y3Var.f49676s;
+        int i12 = y3Var.f49691w;
+        b bVar = y3Var.f49690s;
         switch (i10) {
             case 0:
                 p80Var = new s3(this, y3Var.getContext(), 0);
@@ -311,14 +311,14 @@ public final class u3 extends sk0 {
                 zz zzVar = new zz(y3Var.getContext(), bVar);
                 zzVar.setIsSingleCell(true);
                 zzVar.setViewType(28);
-                zzVar.f33274x = false;
+                zzVar.f33280x = false;
                 p80Var = zzVar;
                 break;
             case 5:
             case 7:
             case 8:
             case 10:
-                if (y3Var.F.f49621j) {
+                if (y3Var.F.f49635j) {
                     i11 = 12;
                 } else if (i10 != 10 && i10 != 7 && i10 != 8 && i10 != 5) {
                     i11 = 0;
@@ -329,23 +329,23 @@ public final class u3 extends sk0 {
                 nh.p pVar = kjVar.d;
                 if (i10 == 7) {
                     pVar.setVisibility(8);
-                    kjVar.setSubtitle(cd.L0(2131748183, null));
+                    kjVar.setSubtitle(dd.L0(2131748183, null));
                 } else if (i10 == 8) {
                     pVar.setVisibility(8);
-                    kjVar.setSubtitle(cd.L0(2131748239, null));
+                    kjVar.setSubtitle(dd.L0(2131748239, null));
                 } else if (i10 == 10) {
                     pVar.setVisibility(0);
-                    pVar.setText(cd.L0(2131745579, null));
-                    kjVar.setSubtitle(cd.L0(2131745581, null));
-                } else if (y3Var.F.f49621j) {
+                    pVar.setText(dd.L0(2131745579, null));
+                    kjVar.setSubtitle(dd.L0(2131745581, null));
+                } else if (y3Var.F.f49635j) {
                     pVar.setVisibility(8);
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                    spannableStringBuilder.append((CharSequence) org.telegram.messenger.i0.W2(cd.L0(2131750872, null)));
-                    boolean A3 = vp.r1(i12).A3();
+                    spannableStringBuilder.append((CharSequence) org.telegram.messenger.i0.W2(dd.L0(2131750872, null)));
+                    boolean A3 = wp.r1(i12).A3();
                     p80 p80Var2 = kjVar.e;
                     if (!A3) {
                         spannableStringBuilder.append((CharSequence) "\n\n");
-                        spannableStringBuilder.append((CharSequence) org.telegram.messenger.i0.T2(cd.L0(2131750871, null), new Runnable() {
+                        spannableStringBuilder.append((CharSequence) org.telegram.messenger.i0.T2(dd.L0(2131750871, null), new Runnable() {
                             @Override
                             public final void run() {
                                 switch (r2) {
@@ -358,7 +358,7 @@ public final class u3 extends sk0 {
                                 }
                             }
                         }));
-                        String L0 = cd.L0(2131749020, null);
+                        String L0 = dd.L0(2131749020, null);
                         Runnable runnable = new Runnable() {
                             @Override
                             public final void run() {
@@ -376,7 +376,7 @@ public final class u3 extends sk0 {
                         TextView textView = new TextView(kjVar.getContext());
                         textView.setText(L0);
                         int i13 = org.telegram.ui.ActionBar.t6.Gi;
-                        org.telegram.ui.ActionBar.p6 p6Var = kjVar.f25553n;
+                        org.telegram.ui.ActionBar.p6 p6Var = kjVar.f25950n;
                         org.telegram.ui.ActionBar.a7.V(textView, i13, p6Var);
                         textView.setPadding(org.telegram.messenger.i0.L(45.0f), org.telegram.messenger.i0.L(12.0f), org.telegram.messenger.i0.L(45.0f), org.telegram.messenger.i0.L(12.0f));
                         textView.setGravity(17);
@@ -395,19 +395,19 @@ public final class u3 extends sk0 {
                         org.telegram.ui.ActionBar.a7.k(a5Var, k02, N, h, p6Var);
                         w7.e6.b(a5Var, 0.05f, 1.5f);
                         a5Var.addView(textView);
-                        u71 u71Var = kjVar.f25549a;
-                        u71Var.setClipChildren(false);
-                        u71Var.addView(a5Var, w7.b6.t(-2, -2, 1, 0, 28, 0, 4));
+                        s71 s71Var = kjVar.f25946a;
+                        s71Var.setClipChildren(false);
+                        s71Var.addView(a5Var, w7.b6.t(-2, -2, 1, 0, 28, 0, 4));
                     }
                     p80Var2.setText(spannableStringBuilder);
                 } else {
                     pVar.setVisibility(0);
-                    if (y3Var.F.f49618f) {
-                        pVar.setText(cd.L0(2131748191, null));
-                        kjVar.setSubtitle(cd.L0(2131748189, null));
+                    if (y3Var.F.f49632f) {
+                        pVar.setText(dd.L0(2131748191, null));
+                        kjVar.setSubtitle(dd.L0(2131748189, null));
                     } else {
-                        pVar.setText(cd.L0(2131748148, null));
-                        kjVar.setSubtitle(cd.L0(2131748147, null));
+                        pVar.setText(dd.L0(2131748148, null));
+                        kjVar.setSubtitle(dd.L0(2131748147, null));
                     }
                 }
                 kjVar.e(false, false);
@@ -419,14 +419,14 @@ public final class u3 extends sk0 {
                 zzVar2.setIgnoreHeightCheck(true);
                 zzVar2.setItemsCount(20);
                 zzVar2.setViewType(28);
-                zzVar2.f33274x = false;
+                zzVar2.f33280x = false;
                 p80Var = zzVar2;
                 break;
             case 11:
             case 12:
                 p80 p80Var3 = new p80(y3Var.getContext(), null);
                 p80Var3.setTextSize(1, 13.0f);
-                org.telegram.ui.ActionBar.a7.V(p80Var3, org.telegram.ui.ActionBar.t6.f21311y6, bVar);
+                org.telegram.ui.ActionBar.a7.V(p80Var3, org.telegram.ui.ActionBar.t6.f21312y6, bVar);
                 org.telegram.ui.ActionBar.a7.H(p80Var3, org.telegram.ui.ActionBar.t6.J6, bVar);
                 int L2 = org.telegram.messenger.i0.L(16.0f);
                 int L3 = org.telegram.messenger.i0.L(21.0f);
@@ -435,9 +435,9 @@ public final class u3 extends sk0 {
                 p80Var3.setGravity(17);
                 p80Var3.setDisablePaddingsOffsetY(true);
                 if (i10 == 11) {
-                    p80Var3.setText(org.telegram.messenger.i0.T2(cd.L0(2131744472, null), new sg.v(this, 10)));
+                    p80Var3.setText(org.telegram.messenger.i0.T2(dd.L0(2131744472, null), new sg.v(this, 10)));
                 } else {
-                    p80Var3.setText(cd.L0(2131745580, null));
+                    p80Var3.setText(dd.L0(2131745580, null));
                 }
                 p80Var3.setLayoutParams(new s4.o0(-1, -2));
                 p80Var = p80Var3;

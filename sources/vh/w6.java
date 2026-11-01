@@ -13,20 +13,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.h20;
-import org.telegram.messenger.hs;
-import org.telegram.messenger.q20;
-import org.telegram.messenger.us;
-import org.telegram.messenger.vp;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.at;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.i20;
+import org.telegram.messenger.is;
+import org.telegram.messenger.r20;
+import org.telegram.messenger.vs;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.wb;
-import org.telegram.ui.Components.x41;
+import org.telegram.ui.Components.y41;
 import org.telegram.ui.hk;
-public final class w6 extends org.telegram.ui.ActionBar.z2 implements us {
+public final class w6 extends org.telegram.ui.ActionBar.z2 implements vs {
     public static final int U1 = 0;
     public final ArrayList A1;
     public boolean B1;
@@ -39,33 +39,33 @@ public final class w6 extends org.telegram.ui.ActionBar.z2 implements us {
     public final Paint I1;
     public ArrayList J1;
     public e6 K1;
-    public q20 L1;
+    public r20 L1;
     public j6 M1;
-    public q20 N1;
+    public r20 N1;
     public z6 O1;
     public final boolean P1;
     public boolean Q1;
     public boolean R1;
     public BitmapDrawable S1;
     public y6 T1;
-    public hk f52100i1;
-    public TLRPC.InputPeer f52101j1;
-    public final ArrayList f52102k1;
+    public hk f52118i1;
+    public TLRPC.InputPeer f52119j1;
+    public final ArrayList f52120k1;
     public final HashMap l1;
-    public int f52103m1;
-    public final ArrayList f52104n1;
-    public final ArrayList f52105o1;
-    public final HashMap f52106p1;
-    public int f52107q1;
-    public final HashSet f52108r1;
-    public boolean f52109s1;
-    public boolean f52110t1;
-    public boolean f52111u1;
-    public boolean f52112v1;
-    public boolean f52113w1;
-    public boolean f52114x1;
-    public int f52115y1;
-    public int f52116z1;
+    public int f52121m1;
+    public final ArrayList f52122n1;
+    public final ArrayList f52123o1;
+    public final HashMap f52124p1;
+    public int f52125q1;
+    public final HashSet f52126r1;
+    public boolean f52127s1;
+    public boolean f52128t1;
+    public boolean f52129u1;
+    public boolean f52130v1;
+    public boolean f52131w1;
+    public boolean f52132x1;
+    public int f52133y1;
+    public int f52134z1;
 
     public w6(int i10, Context context, org.telegram.ui.ActionBar.p6 p6Var) {
         super(1, context, p6Var, true);
@@ -73,27 +73,27 @@ public final class w6 extends org.telegram.ui.ActionBar.z2 implements us {
         char c10;
         boolean z11 = true;
         ArrayList arrayList = new ArrayList();
-        this.f52102k1 = arrayList;
+        this.f52120k1 = arrayList;
         HashMap hashMap = new HashMap();
         this.l1 = hashMap;
         char c11 = 0;
-        this.f52103m1 = 0;
+        this.f52121m1 = 0;
         ArrayList arrayList2 = new ArrayList();
-        this.f52104n1 = arrayList2;
+        this.f52122n1 = arrayList2;
         ArrayList arrayList3 = new ArrayList();
-        this.f52105o1 = arrayList3;
+        this.f52123o1 = arrayList3;
         HashMap hashMap2 = new HashMap();
-        this.f52106p1 = hashMap2;
-        this.f52107q1 = 0;
-        this.f52108r1 = new HashSet();
-        this.f52109s1 = true;
-        this.f52110t1 = true;
-        this.f52111u1 = false;
-        this.f52112v1 = true;
-        this.f52113w1 = true;
-        this.f52114x1 = false;
-        this.f52115y1 = 0;
-        this.f52116z1 = 1;
+        this.f52124p1 = hashMap2;
+        this.f52125q1 = 0;
+        this.f52126r1 = new HashSet();
+        this.f52127s1 = true;
+        this.f52128t1 = true;
+        this.f52129u1 = false;
+        this.f52130v1 = true;
+        this.f52131w1 = true;
+        this.f52132x1 = false;
+        this.f52133y1 = 0;
+        this.f52134z1 = 1;
         this.A1 = new ArrayList();
         this.D1 = 1;
         this.E1 = 4;
@@ -103,7 +103,7 @@ public final class w6 extends org.telegram.ui.ActionBar.z2 implements us {
         this.P1 = true;
         this.Q1 = false;
         this.H1 = i10;
-        String string = vp.r1(this.f21583a).f7.getString("story_prv_contacts", null);
+        String string = wp.r1(this.f21584a).f7.getString("story_prv_contacts", null);
         if (string != null) {
             String[] split = string.split(",");
             arrayList3.clear();
@@ -114,7 +114,7 @@ public final class w6 extends org.telegram.ui.ActionBar.z2 implements us {
                 }
             }
         }
-        String string2 = vp.r1(this.f21583a).f7.getString("story_prv_grpcontacts", null);
+        String string2 = wp.r1(this.f21584a).f7.getString("story_prv_grpcontacts", null);
         if (string2 != null) {
             String[] split2 = string2.split(";");
             hashMap2.clear();
@@ -146,7 +146,7 @@ public final class w6 extends org.telegram.ui.ActionBar.z2 implements us {
         }
         boolean z12 = z11;
         ?? r23 = c11;
-        String string3 = vp.r1(this.f21583a).f7.getString("story_prv_everyoneexcept", null);
+        String string3 = wp.r1(this.f21584a).f7.getString("story_prv_everyoneexcept", null);
         if (string3 != null) {
             String[] split4 = string3.split(",");
             arrayList.clear();
@@ -157,7 +157,7 @@ public final class w6 extends org.telegram.ui.ActionBar.z2 implements us {
                 }
             }
         }
-        String string4 = vp.r1(this.f21583a).f7.getString("story_prv_grpeveryoneexcept", null);
+        String string4 = wp.r1(this.f21584a).f7.getString("story_prv_grpeveryoneexcept", null);
         if (string4 != null) {
             String[] split5 = string4.split(";");
             hashMap.clear();
@@ -176,7 +176,7 @@ public final class w6 extends org.telegram.ui.ActionBar.z2 implements us {
                 }
             }
         }
-        String string5 = vp.r1(this.f21583a).f7.getString("story_prv_excluded", null);
+        String string5 = wp.r1(this.f21584a).f7.getString("story_prv_excluded", null);
         if (string5 != null) {
             String[] split7 = string5.split(",");
             arrayList2.clear();
@@ -187,16 +187,16 @@ public final class w6 extends org.telegram.ui.ActionBar.z2 implements us {
                 }
             }
         }
-        this.f52107q1 = R0(arrayList3, hashMap2).size();
-        this.f52103m1 = R0(arrayList, hashMap).size();
-        this.f52110t1 = !vp.r1(this.f21583a).f7.getBoolean("story_noforwards", r23);
-        this.f52111u1 = vp.r1(this.f21583a).f7.getBoolean("story_keep", z12);
+        this.f52125q1 = R0(arrayList3, hashMap2).size();
+        this.f52121m1 = R0(arrayList, hashMap).size();
+        this.f52128t1 = !wp.r1(this.f21584a).f7.getBoolean("story_noforwards", r23);
+        this.f52129u1 = wp.r1(this.f21584a).f7.getBoolean("story_keep", z12);
         P0(context);
-        this.f52100i1.setAdapter(new x5(this, context, 0));
-        hs a02 = hs.a0(this.f21583a);
-        a02.f15938a.c(new d1(15, this, a02));
-        vp.r1(this.f21583a).O1().S();
-        vp.r1(this.f21583a).O1().U();
+        this.f52118i1.setAdapter(new x5(this, context, 0));
+        is a02 = is.a0(this.f21584a);
+        a02.f16331a.c(new r0(16, this, a02));
+        wp.r1(this.f21584a).O1().S();
+        wp.r1(this.f21584a).O1().U();
     }
 
     public static void I0(w6 w6Var) {
@@ -220,12 +220,12 @@ public final class w6 extends org.telegram.ui.ActionBar.z2 implements us {
     public static int K0(w6 w6Var, TLRPC.Chat chat) {
         Integer num;
         int i10;
-        TLRPC.ChatFull M0 = vp.r1(w6Var.f21583a).M0(chat.f19793id);
+        TLRPC.ChatFull M0 = wp.r1(w6Var.f21584a).M0(chat.f19794id);
         if (M0 != null && (i10 = M0.participants_count) > 0) {
             return i10;
         }
         HashMap hashMap = w6Var.G1;
-        if (hashMap != null && (num = (Integer) hashMap.get(Long.valueOf(chat.f19793id))) != null) {
+        if (hashMap != null && (num = (Integer) hashMap.get(Long.valueOf(chat.f19794id))) != null) {
             return num.intValue();
         }
         return chat.participants_count;
@@ -246,7 +246,7 @@ public final class w6 extends org.telegram.ui.ActionBar.z2 implements us {
 
     @Override
     public final boolean H() {
-        View currentView = this.f52100i1.getCurrentView();
+        View currentView = this.f52118i1.getCurrentView();
         if (currentView instanceof r6) {
             return ((r6) currentView).S;
         }
@@ -255,16 +255,16 @@ public final class w6 extends org.telegram.ui.ActionBar.z2 implements us {
 
     @Override
     public final void L() {
-        zs.f(this.f21583a).n(this, zs.O);
-        zs.f(this.f21583a).n(this, zs.f19581a3);
-        zs.f(this.f21583a).n(this, zs.f19593c3);
+        at.f(this.f21584a).n(this, at.O);
+        at.f(this.f21584a).n(this, at.f14677a3);
+        at.f(this.f21584a).n(this, at.f14689c3);
         super.L();
     }
 
     public final void L0(boolean z10) {
         View[] viewPages;
-        this.f52112v1 = z10;
-        hk hkVar = this.f52100i1;
+        this.f52130v1 = z10;
+        hk hkVar = this.f52118i1;
         if (hkVar != null) {
             for (View view : hkVar.getViewPages()) {
                 if (view instanceof r6) {
@@ -277,9 +277,9 @@ public final class w6 extends org.telegram.ui.ActionBar.z2 implements us {
     public final void M0() {
         View[] viewPages;
         k6 k6Var;
-        for (View view : this.f52100i1.getViewPages()) {
-            if ((view instanceof r6) && (k6Var = ((r6) view).f51895y) != null) {
-                org.telegram.messenger.i0.v1(k6Var.f51972b);
+        for (View view : this.f52118i1.getViewPages()) {
+            if ((view instanceof r6) && (k6Var = ((r6) view).f51880y) != null) {
+                org.telegram.messenger.i0.v1(k6Var.f51988b);
             }
         }
     }
@@ -287,13 +287,13 @@ public final class w6 extends org.telegram.ui.ActionBar.z2 implements us {
     public final void N0(u6 u6Var, Runnable runnable, boolean z10) {
         ArrayList arrayList = new ArrayList();
         if (this.J1 != null) {
-            vp r12 = vp.r1(this.f21583a);
+            wp r12 = wp.r1(this.f21584a);
             for (int i10 = 0; i10 < this.J1.size(); i10++) {
                 String str = (String) this.J1.get(i10);
                 TLObject e22 = r12.e2(str);
                 if (e22 instanceof TLRPC.User) {
                     TLRPC.User user = (TLRPC.User) e22;
-                    TLRPC.User Z1 = r12.Z1(Long.valueOf(user.f19942id));
+                    TLRPC.User Z1 = r12.Z1(Long.valueOf(user.f19943id));
                     if (Z1 != null) {
                         user = Z1;
                     }
@@ -311,28 +311,28 @@ public final class w6 extends org.telegram.ui.ActionBar.z2 implements us {
                     spannableStringBuilder.append((CharSequence) ", ");
                 }
                 SpannableString spannableString = new SpannableString("@" + ((String) arrayList.get(i11)));
-                spannableString.setSpan(new x41(org.telegram.messenger.i0.o()), 0, spannableString.length(), 33);
+                spannableString.setSpan(new y41(org.telegram.messenger.i0.o()), 0, spannableString.length(), 33);
                 spannableStringBuilder.append((CharSequence) spannableString);
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, getContext(), this.I0);
-            String L0 = cd.L0(2131744515, null);
-            org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20134a;
+            String L0 = dd.L0(2131744515, null);
+            org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20135a;
             x1Var.R = L0;
-            x1Var.T = org.telegram.messenger.i0.J2(cd.L0(2131744514, null), spannableStringBuilder, "%s");
-            alertDialog$Builder.k(cd.L0(2131746758, null), new q5.a(this, u6Var, runnable, 9));
+            x1Var.T = org.telegram.messenger.i0.J2(dd.L0(2131744514, null), spannableStringBuilder, "%s");
+            alertDialog$Builder.k(dd.L0(2131746758, null), new q5.a(this, u6Var, runnable, 9));
             i0.a.s(null, 2131752589, alertDialog$Builder, null);
             return;
         }
-        View view = this.f52100i1.getViewPages()[0];
+        View view = this.f52118i1.getViewPages()[0];
         if (view instanceof r6) {
-            dVar = ((r6) view).f51893w;
+            dVar = ((r6) view).f51878w;
         }
         if (dVar != null) {
             dVar.setLoading(true);
         }
         e6 e6Var = this.K1;
         if (e6Var != null) {
-            e6Var.a(u6Var, this.f52109s1, this.f52110t1, this.f52111u1, this.f52114x1, this.f52101j1, this.f52115y1, new d1(17, dVar, runnable), new d0(dVar, 13));
+            e6Var.a(u6Var, this.f52127s1, this.f52128t1, this.f52129u1, this.f52132x1, this.f52119j1, this.f52133y1, new r0(18, dVar, runnable), new d0(dVar, 13));
         } else {
             runnable.run();
         }
@@ -341,15 +341,15 @@ public final class w6 extends org.telegram.ui.ActionBar.z2 implements us {
     public final ArrayList O0() {
         TLRPC.User Z1;
         ArrayList arrayList = new ArrayList();
-        ArrayList arrayList2 = org.telegram.messenger.i5.r(this.f21583a).f16065e0;
+        ArrayList arrayList2 = org.telegram.messenger.i5.r(this.f21584a).f16218e0;
         if (arrayList2 == null || arrayList2.isEmpty()) {
-            org.telegram.messenger.i5.r(this.f21583a).A(0L, false);
+            org.telegram.messenger.i5.r(this.f21584a).A(0L, false);
         }
-        vp r12 = vp.r1(this.f21583a);
+        wp r12 = wp.r1(this.f21584a);
         if (arrayList2 != null) {
             for (int i10 = 0; i10 < arrayList2.size(); i10++) {
                 TLRPC.TL_contact tL_contact = (TLRPC.TL_contact) arrayList2.get(i10);
-                if (tL_contact != null && (Z1 = r12.Z1(Long.valueOf(tL_contact.user_id))) != null && !h20.B(Z1) && !Z1.bot && Z1.f19942id != 777000) {
+                if (tL_contact != null && (Z1 = r12.Z1(Long.valueOf(tL_contact.user_id))) != null && !i20.B(Z1) && !Z1.bot && Z1.f19943id != 777000) {
                     arrayList.add(Z1);
                 }
             }
@@ -358,25 +358,25 @@ public final class w6 extends org.telegram.ui.ActionBar.z2 implements us {
     }
 
     public final void P0(Context context) {
-        wb.a(this.f21589c, new mg.u(11));
-        zs.f(this.f21583a).c(this, zs.O);
-        zs.f(this.f21583a).c(this, zs.f19581a3);
-        zs.f(this.f21583a).c(this, zs.f19593c3);
-        int i10 = org.telegram.ui.ActionBar.t6.f21001h5;
+        wb.a(this.f21590c, new mg.u(11));
+        at.f(this.f21584a).c(this, at.O);
+        at.f(this.f21584a).c(this, at.f14677a3);
+        at.f(this.f21584a).c(this, at.f14689c3);
+        int i10 = org.telegram.ui.ActionBar.t6.f21002h5;
         this.I1.setColor(org.telegram.ui.ActionBar.t6.w0(i10, this.I0));
         Q(i10);
-        this.f21586b = new d6(this, context);
+        this.f21587b = new d6(this, context);
         hk hkVar = new hk(this, context, 8);
-        this.f52100i1 = hkVar;
-        int i11 = this.f21615t0;
+        this.f52118i1 = hkVar;
+        int i11 = this.f21616t0;
         hkVar.setPadding(i11, 0, i11, 0);
-        this.f21586b.addView(this.f52100i1, w7.b6.e(-1, -1, 119));
+        this.f21587b.addView(this.f52118i1, w7.b6.e(-1, -1, 119));
     }
 
     public final void Q0(boolean z10) {
         View[] viewPages;
         this.Q1 = z10;
-        hk hkVar = this.f52100i1;
+        hk hkVar = this.f52118i1;
         if (hkVar != null) {
             for (View view : hkVar.getViewPages()) {
                 if (view instanceof r6) {
@@ -390,8 +390,8 @@ public final class w6 extends org.telegram.ui.ActionBar.z2 implements us {
 
     public final void S0(int i10) {
         View[] viewPages;
-        this.f52116z1 = i10;
-        hk hkVar = this.f52100i1;
+        this.f52134z1 = i10;
+        hk hkVar = this.f52118i1;
         if (hkVar != null) {
             for (View view : hkVar.getViewPages()) {
                 if (view instanceof r6) {
@@ -410,7 +410,7 @@ public final class w6 extends org.telegram.ui.ActionBar.z2 implements us {
             bitmapDrawable = new BitmapDrawable(bitmap);
         }
         this.S1 = bitmapDrawable;
-        hk hkVar = this.f52100i1;
+        hk hkVar = this.f52118i1;
         if (hkVar != null) {
             for (View view : hkVar.getViewPages()) {
                 if (view instanceof r6) {
@@ -424,90 +424,90 @@ public final class w6 extends org.telegram.ui.ActionBar.z2 implements us {
 
     public final void U0() {
         this.B1 = true;
-        View[] viewPages = this.f52100i1.getViewPages();
+        View[] viewPages = this.f52118i1.getViewPages();
         View view = viewPages[0];
         if (view instanceof r6) {
             r6 r6Var = (r6) view;
-            r6Var.b(r6Var.f51886a);
+            r6Var.b(r6Var.f51871a);
         }
         View view2 = viewPages[1];
         if (view2 instanceof r6) {
             r6 r6Var2 = (r6) view2;
-            r6Var2.b(r6Var2.f51886a);
+            r6Var2.b(r6Var2.f51871a);
         }
     }
 
     public final void V0(TLRPC.InputPeer inputPeer) {
-        this.f52101j1 = inputPeer;
-        this.f52108r1.clear();
-        View[] viewPages = this.f52100i1.getViewPages();
+        this.f52119j1 = inputPeer;
+        this.f52126r1.clear();
+        View[] viewPages = this.f52118i1.getViewPages();
         View view = viewPages[0];
         if (view instanceof r6) {
             r6 r6Var = (r6) view;
-            r6Var.b(r6Var.f51886a);
+            r6Var.b(r6Var.f51871a);
         }
         View view2 = viewPages[1];
         if (view2 instanceof r6) {
             r6 r6Var2 = (r6) view2;
-            r6Var2.b(r6Var2.f51886a);
+            r6Var2.b(r6Var2.f51871a);
         }
     }
 
     public final void W0(u6 u6Var) {
         if (u6Var != null) {
             HashMap hashMap = u6Var.d;
-            int i10 = u6Var.f52017a;
-            ArrayList arrayList = u6Var.f52019c;
+            int i10 = u6Var.f52024a;
+            ArrayList arrayList = u6Var.f52026c;
             this.E1 = i10;
             if (i10 == 2) {
-                ArrayList arrayList2 = this.f52104n1;
+                ArrayList arrayList2 = this.f52122n1;
                 arrayList2.clear();
                 arrayList2.addAll(arrayList);
             } else if (i10 == 3) {
-                ArrayList arrayList3 = this.f52105o1;
+                ArrayList arrayList3 = this.f52123o1;
                 arrayList3.clear();
                 arrayList3.addAll(arrayList);
-                HashMap hashMap2 = this.f52106p1;
+                HashMap hashMap2 = this.f52124p1;
                 hashMap2.clear();
                 hashMap2.putAll(hashMap);
-                this.f52107q1 = R0(arrayList3, hashMap2).size();
+                this.f52125q1 = R0(arrayList3, hashMap2).size();
             } else if (i10 == 4) {
-                ArrayList arrayList4 = this.f52102k1;
+                ArrayList arrayList4 = this.f52120k1;
                 arrayList4.clear();
                 arrayList4.addAll(arrayList);
                 HashMap hashMap3 = this.l1;
                 hashMap3.clear();
                 hashMap3.putAll(hashMap);
-                this.f52103m1 = R0(arrayList4, hashMap3).size();
+                this.f52121m1 = R0(arrayList4, hashMap3).size();
             }
             if (i10 == 5) {
                 this.F1 = true;
                 this.D1 = 5;
                 ArrayList arrayList5 = this.A1;
                 arrayList5.clear();
-                arrayList5.addAll(u6Var.f52020f);
-                this.f52100i1.setPosition(1);
+                arrayList5.addAll(u6Var.f52027f);
+                this.f52118i1.setPosition(1);
             }
-            View[] viewPages = this.f52100i1.getViewPages();
+            View[] viewPages = this.f52118i1.getViewPages();
             View view = viewPages[0];
             if (view instanceof r6) {
                 r6 r6Var = (r6) view;
-                r6Var.b(r6Var.f51886a);
+                r6Var.b(r6Var.f51871a);
             }
             View view2 = viewPages[1];
             if (view2 instanceof r6) {
                 r6 r6Var2 = (r6) view2;
-                r6Var2.b(r6Var2.f51886a);
+                r6Var2.b(r6Var2.f51871a);
             }
         }
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        hk hkVar = this.f52100i1;
+        hk hkVar = this.f52118i1;
         if (hkVar != null) {
             int i12 = 0;
-            if (i10 == zs.O) {
+            if (i10 == at.O) {
                 View[] viewPages = hkVar.getViewPages();
                 View view = viewPages[0];
                 if (view instanceof r6) {
@@ -517,13 +517,13 @@ public final class w6 extends org.telegram.ui.ActionBar.z2 implements us {
                 if (view2 instanceof r6) {
                     ((r6) view2).h(true);
                 }
-            } else if (i10 == zs.f19581a3) {
+            } else if (i10 == at.f14677a3) {
                 View[] viewPages2 = hkVar.getViewPages();
                 while (i12 < viewPages2.length) {
                     View view3 = viewPages2[i12];
                     if (view3 instanceof r6) {
                         r6 r6Var = (r6) view3;
-                        int i13 = r6Var.f51886a;
+                        int i13 = r6Var.f51871a;
                         if (i13 == 6) {
                             r6Var.a(true);
                         } else if (i13 == 0) {
@@ -532,13 +532,13 @@ public final class w6 extends org.telegram.ui.ActionBar.z2 implements us {
                     }
                     i12++;
                 }
-            } else if (i10 == zs.f19593c3) {
+            } else if (i10 == at.f14689c3) {
                 View[] viewPages3 = hkVar.getViewPages();
                 while (i12 < viewPages3.length) {
                     View view4 = viewPages3[i12];
                     if (view4 instanceof r6) {
                         r6 r6Var2 = (r6) view4;
-                        if (r6Var2.f51886a == 0) {
+                        if (r6Var2.f51871a == 0) {
                             r6Var2.h(true);
                         }
                     }
@@ -551,39 +551,39 @@ public final class w6 extends org.telegram.ui.ActionBar.z2 implements us {
     @Override
     public final void dismiss() {
         u6 u6Var;
-        q20 q20Var = this.L1;
-        ArrayList arrayList = this.f52104n1;
+        r20 r20Var = this.L1;
+        ArrayList arrayList = this.f52122n1;
         HashMap hashMap = this.l1;
-        ArrayList arrayList2 = this.f52102k1;
-        HashMap hashMap2 = this.f52106p1;
-        ArrayList arrayList3 = this.f52105o1;
-        if (q20Var != null) {
+        ArrayList arrayList2 = this.f52120k1;
+        HashMap hashMap2 = this.f52124p1;
+        ArrayList arrayList3 = this.f52123o1;
+        if (r20Var != null) {
             int i10 = this.E1;
             if (i10 == 3) {
-                u6Var = new u6(this.E1, this.f21583a, new ArrayList(R0(arrayList3, hashMap2)));
-                ArrayList arrayList4 = u6Var.f52019c;
+                u6Var = new u6(this.E1, this.f21584a, new ArrayList(R0(arrayList3, hashMap2)));
+                ArrayList arrayList4 = u6Var.f52026c;
                 arrayList4.clear();
                 arrayList4.addAll(arrayList3);
                 HashMap hashMap3 = u6Var.d;
                 hashMap3.clear();
                 hashMap3.putAll(hashMap2);
             } else if (i10 == 4) {
-                u6Var = new u6(this.E1, this.f21583a, new ArrayList(R0(arrayList2, hashMap)));
-                ArrayList arrayList5 = u6Var.f52019c;
+                u6Var = new u6(this.E1, this.f21584a, new ArrayList(R0(arrayList2, hashMap)));
+                ArrayList arrayList5 = u6Var.f52026c;
                 arrayList5.clear();
                 arrayList5.addAll(arrayList2);
                 HashMap hashMap4 = u6Var.d;
                 hashMap4.clear();
                 hashMap4.putAll(hashMap);
             } else if (i10 == 2) {
-                u6Var = new u6(i10, this.f21583a, arrayList);
+                u6Var = new u6(i10, this.f21584a, arrayList);
             } else {
-                u6Var = new u6(i10, this.f21583a, (ArrayList) null);
+                u6Var = new u6(i10, this.f21584a, (ArrayList) null);
             }
             this.L1.a(u6Var);
             this.L1 = null;
         }
-        wb.h(this.f21589c);
+        wb.h(this.f21590c);
         StringBuilder sb2 = new StringBuilder();
         for (Map.Entry entry : hashMap2.entrySet()) {
             if (sb2.length() > 0) {
@@ -602,15 +602,15 @@ public final class w6 extends org.telegram.ui.ActionBar.z2 implements us {
             sb3.append(",");
             sb3.append(TextUtils.join(",", (Iterable) entry2.getValue()));
         }
-        vp.r1(this.f21583a).f7.edit().putString("story_prv_everyoneexcept", TextUtils.join(",", arrayList2)).putString("story_prv_grpeveryoneexcept", sb3.toString()).putString("story_prv_contacts", TextUtils.join(",", arrayList3)).putString("story_prv_grpcontacts", sb2.toString()).putString("story_prv_excluded", TextUtils.join(",", arrayList)).putBoolean("story_noforwards", !this.f52110t1).putBoolean("story_keep", this.f52111u1).apply();
+        wp.r1(this.f21584a).f7.edit().putString("story_prv_everyoneexcept", TextUtils.join(",", arrayList2)).putString("story_prv_grpeveryoneexcept", sb3.toString()).putString("story_prv_contacts", TextUtils.join(",", arrayList3)).putString("story_prv_grpcontacts", sb2.toString()).putString("story_prv_excluded", TextUtils.join(",", arrayList)).putBoolean("story_noforwards", !this.f52128t1).putBoolean("story_keep", this.f52129u1).apply();
         super.dismiss();
     }
 
     @Override
     public final void onBackPressed() {
-        if (this.f52100i1.getCurrentPosition() > 0) {
+        if (this.f52118i1.getCurrentPosition() > 0) {
             M0();
-            hk hkVar = this.f52100i1;
+            hk hkVar = this.f52118i1;
             hkVar.E(hkVar.getCurrentPosition() - 1);
             return;
         }
@@ -621,8 +621,8 @@ public final class w6 extends org.telegram.ui.ActionBar.z2 implements us {
     public final void s0() {
         super.s0();
         try {
-            this.I1.setColor(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f21001h5, this.I0));
-            ViewGroup viewGroup = this.f21586b;
+            this.I1.setColor(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f21002h5, this.I0));
+            ViewGroup viewGroup = this.f21587b;
             if (viewGroup != null) {
                 viewGroup.invalidate();
             }
@@ -633,22 +633,22 @@ public final class w6 extends org.telegram.ui.ActionBar.z2 implements us {
 
     public w6(Context context, org.telegram.ui.ActionBar.p6 p6Var) {
         super(1, context, p6Var, true);
-        this.f52102k1 = new ArrayList();
+        this.f52120k1 = new ArrayList();
         this.l1 = new HashMap();
-        this.f52103m1 = 0;
-        this.f52104n1 = new ArrayList();
-        this.f52105o1 = new ArrayList();
-        this.f52106p1 = new HashMap();
-        this.f52107q1 = 0;
-        this.f52108r1 = new HashSet();
-        this.f52109s1 = true;
-        this.f52110t1 = true;
-        this.f52111u1 = false;
-        this.f52112v1 = true;
-        this.f52113w1 = true;
-        this.f52114x1 = false;
-        this.f52115y1 = 0;
-        this.f52116z1 = 1;
+        this.f52121m1 = 0;
+        this.f52122n1 = new ArrayList();
+        this.f52123o1 = new ArrayList();
+        this.f52124p1 = new HashMap();
+        this.f52125q1 = 0;
+        this.f52126r1 = new HashSet();
+        this.f52127s1 = true;
+        this.f52128t1 = true;
+        this.f52129u1 = false;
+        this.f52130v1 = true;
+        this.f52131w1 = true;
+        this.f52132x1 = false;
+        this.f52133y1 = 0;
+        this.f52134z1 = 1;
         this.A1 = new ArrayList();
         this.D1 = 1;
         this.E1 = 4;
@@ -658,6 +658,6 @@ public final class w6 extends org.telegram.ui.ActionBar.z2 implements us {
         this.P1 = true;
         this.Q1 = false;
         P0(context);
-        this.f52100i1.setAdapter(new x5(this, context, 1));
+        this.f52118i1.setAdapter(new x5(this, context, 1));
     }
 }

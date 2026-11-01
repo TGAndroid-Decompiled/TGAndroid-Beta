@@ -5,9 +5,9 @@ import e9.n0;
 import e9.x1;
 import java.util.List;
 public final class a implements c3.o {
-    public final b f9392a = new b("audio/ac3");
-    public final e2.x f9393b = new e2.x(2786);
-    public boolean f9394c;
+    public final b f9393a = new b("audio/ac3");
+    public final e2.x f9394b = new e2.x(2786);
+    public boolean f9395c;
 
     @Override
     public final boolean a(c3.p pVar) {
@@ -67,15 +67,15 @@ public final class a implements c3.o {
 
     @Override
     public final void c(c3.q qVar) {
-        this.f9392a.f(qVar, new g0(0, 1));
+        this.f9393a.f(qVar, new g0(0, 1));
         qVar.Q0();
         qVar.G1(new c3.t(-9223372036854775807L));
     }
 
     @Override
     public final void d(long j10, long j11) {
-        this.f9394c = false;
-        this.f9392a.e();
+        this.f9395c = false;
+        this.f9393a.e();
     }
 
     @Override
@@ -86,18 +86,18 @@ public final class a implements c3.o {
 
     @Override
     public final int f(c3.p pVar, c3.s sVar) {
-        e2.x xVar = this.f9393b;
+        e2.x xVar = this.f9394b;
         int read = pVar.read(xVar.f6207a, 0, 2786);
         if (read == -1) {
             return -1;
         }
         xVar.N(0);
         xVar.M(read);
-        boolean z10 = this.f9394c;
-        b bVar = this.f9392a;
+        boolean z10 = this.f9395c;
+        b bVar = this.f9393a;
         if (!z10) {
-            bVar.f9414o = 0L;
-            this.f9394c = true;
+            bVar.f9415o = 0L;
+            this.f9395c = true;
         }
         bVar.c(xVar);
         return 0;

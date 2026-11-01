@@ -13,60 +13,60 @@ import org.telegram.tgnet.tl.TL_stories;
 public final class t8 {
     public float A;
     public boolean B;
-    public boolean f30479a;
+    public boolean f30551a;
     public boolean d;
-    public ValueAnimator f30482f;
-    public boolean f30483g;
-    public Runnable f30485j;
-    public int f30486k;
-    public boolean f30487l;
-    public final boolean f30488m;
-    public int f30489n;
-    public int f30490o;
-    public int f30491p;
-    public final View f30493r;
-    public int f30494s;
-    public boolean f30497w;
-    public boolean f30498x;
-    public th.f5 f30499y;
-    public final Random f30500z;
-    public final s8[] f30480b = new s8[3];
-    public final s8[] f30481c = new s8[3];
+    public ValueAnimator f30554f;
+    public boolean f30555g;
+    public Runnable f30557j;
+    public int f30558k;
+    public boolean f30559l;
+    public final boolean f30560m;
+    public int f30561n;
+    public int f30562o;
+    public int f30563p;
+    public final View f30565r;
+    public int f30566s;
+    public boolean f30569w;
+    public boolean f30570x;
+    public th.f5 f30571y;
+    public final Random f30572z;
+    public final s8[] f30552b = new s8[3];
+    public final s8[] f30553c = new s8[3];
     public float e = 1.0f;
     public final Paint h = new Paint(1);
-    public final Paint f30484i = new Paint(1);
-    public int f30492q = org.telegram.messenger.i0.L(1.67f);
-    public float f30495t = 0.8f;
-    public float f30496u = 1.0f;
+    public final Paint f30556i = new Paint(1);
+    public int f30564q = org.telegram.messenger.i0.L(1.67f);
+    public float f30567t = 0.8f;
+    public float f30568u = 1.0f;
     public long v = 220;
 
     public t8(View view, boolean z10) {
-        gr grVar = gr.f26495f;
-        this.f30500z = new Random();
-        this.f30493r = view;
+        gr grVar = gr.f26523f;
+        this.f30572z = new Random();
+        this.f30565r = view;
         for (int i10 = 0; i10 < 3; i10++) {
-            s8[] s8VarArr = this.f30480b;
+            s8[] s8VarArr = this.f30552b;
             ?? obj = new Object();
             s8VarArr[i10] = obj;
             obj.e = new ImageReceiver(view);
-            ImageReceiver imageReceiver = this.f30480b[i10].e;
+            ImageReceiver imageReceiver = this.f30552b[i10].e;
             imageReceiver.J0 = true;
             imageReceiver.J0(org.telegram.messenger.i0.L(12.0f));
-            this.f30480b[i10].f30176a = new r8((org.telegram.ui.ActionBar.p6) null);
-            this.f30480b[i10].f30176a.u(org.telegram.messenger.i0.L(12.0f));
-            s8[] s8VarArr2 = this.f30481c;
+            this.f30552b[i10].f30232a = new r8((org.telegram.ui.ActionBar.p6) null);
+            this.f30552b[i10].f30232a.u(org.telegram.messenger.i0.L(12.0f));
+            s8[] s8VarArr2 = this.f30553c;
             ?? obj2 = new Object();
             s8VarArr2[i10] = obj2;
             obj2.e = new ImageReceiver(view);
-            ImageReceiver imageReceiver2 = this.f30481c[i10].e;
+            ImageReceiver imageReceiver2 = this.f30553c[i10].e;
             imageReceiver2.J0 = true;
             imageReceiver2.J0(org.telegram.messenger.i0.L(12.0f));
-            this.f30481c[i10].f30176a = new r8((org.telegram.ui.ActionBar.p6) null);
-            this.f30481c[i10].f30176a.u(org.telegram.messenger.i0.L(12.0f));
+            this.f30553c[i10].f30232a = new r8((org.telegram.ui.ActionBar.p6) null);
+            this.f30553c[i10].f30232a.u(org.telegram.messenger.i0.L(12.0f));
         }
-        this.f30488m = z10;
-        this.f30484i.setColor(0);
-        this.f30484i.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        this.f30560m = z10;
+        this.f30556i.setColor(0);
+        this.f30556i.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
     public final void a(boolean z10, boolean z11) {
@@ -77,16 +77,16 @@ public final class t8 {
             int i10 = 0;
             boolean z12 = false;
             while (true) {
-                s8VarArr = this.f30480b;
-                s8VarArr2 = this.f30481c;
+                s8VarArr = this.f30552b;
+                s8VarArr2 = this.f30553c;
                 if (i10 >= 3) {
                     break;
                 }
                 s8VarArr3[i10] = s8VarArr[i10];
                 s8 s8Var = s8VarArr[i10];
-                long j10 = s8Var.f30180g;
+                long j10 = s8Var.f30236g;
                 s8 s8Var2 = s8VarArr2[i10];
-                if (j10 != s8Var2.f30180g) {
+                if (j10 != s8Var2.f30236g) {
                     z12 = true;
                 } else {
                     s8Var.d = s8Var2.d;
@@ -101,25 +101,25 @@ public final class t8 {
                 int i12 = 0;
                 while (true) {
                     if (i12 < 3) {
-                        if (s8VarArr[i12].f30180g == s8VarArr2[i11].f30180g) {
+                        if (s8VarArr[i12].f30236g == s8VarArr2[i11].f30236g) {
                             s8VarArr3[i12] = null;
                             if (i11 == i12) {
                                 s8 s8Var3 = s8VarArr2[i11];
-                                s8Var3.f30181i = -1;
-                                org.telegram.ui.Cells.g4 g4Var = s8Var3.f30177b;
+                                s8Var3.f30237i = -1;
+                                org.telegram.ui.Cells.g4 g4Var = s8Var3.f30233b;
                                 s8 s8Var4 = s8VarArr[i11];
-                                s8Var3.f30177b = s8Var4.f30177b;
-                                s8Var4.f30177b = g4Var;
+                                s8Var3.f30233b = s8Var4.f30233b;
+                                s8Var4.f30233b = g4Var;
                             } else {
                                 s8 s8Var5 = s8VarArr2[i11];
-                                s8Var5.f30181i = 2;
-                                s8Var5.f30182j = i12;
+                                s8Var5.f30237i = 2;
+                                s8Var5.f30238j = i12;
                             }
                         } else {
                             i12++;
                         }
                     } else {
-                        s8VarArr2[i11].f30181i = 0;
+                        s8VarArr2[i11].f30237i = 0;
                         break;
                     }
                 }
@@ -127,29 +127,29 @@ public final class t8 {
             for (int i13 = 0; i13 < 3; i13++) {
                 s8 s8Var6 = s8VarArr3[i13];
                 if (s8Var6 != null) {
-                    s8Var6.f30181i = 1;
+                    s8Var6.f30237i = 1;
                 }
             }
-            ValueAnimator valueAnimator = this.f30482f;
+            ValueAnimator valueAnimator = this.f30554f;
             if (valueAnimator != null) {
                 valueAnimator.removeAllListeners();
-                this.f30482f.cancel();
-                if (this.f30497w) {
+                this.f30554f.cancel();
+                if (this.f30569w) {
                     k();
-                    this.f30497w = false;
+                    this.f30569w = false;
                 }
             }
             this.e = 0.0f;
             if (z11) {
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                this.f30482f = ofFloat;
+                this.f30554f = ofFloat;
                 ofFloat.addUpdateListener(new a6(this, 4));
-                this.f30482f.addListener(new w5(this, 5));
-                this.f30482f.setDuration(this.v);
-                this.f30482f.setInterpolator(gr.f26495f);
-                this.f30482f.start();
+                this.f30554f.addListener(new w5(this, 5));
+                this.f30554f.setDuration(this.v);
+                this.f30554f.setInterpolator(gr.f26523f);
+                this.f30554f.start();
             } else {
-                this.f30497w = true;
+                this.f30569w = true;
             }
             d();
             return;
@@ -160,11 +160,11 @@ public final class t8 {
 
     public final int b() {
         float f7;
-        int i10 = this.f30494s;
+        int i10 = this.f30566s;
         if (i10 != 0) {
             return i10;
         }
-        int i11 = this.f30486k;
+        int i11 = this.f30558k;
         if (i11 != 4 && i11 != 10) {
             f7 = 24.0f;
         } else {
@@ -177,7 +177,7 @@ public final class t8 {
         boolean z10;
         float f7;
         int L;
-        int i10 = this.f30486k;
+        int i10 = this.f30558k;
         int i11 = 0;
         if (i10 != 4 && i10 != 10) {
             z10 = false;
@@ -187,9 +187,9 @@ public final class t8 {
         if (i10 == 11) {
             L = org.telegram.messenger.i0.L(12.0f);
         } else {
-            int i12 = this.f30494s;
+            int i12 = this.f30566s;
             if (i12 != 0) {
-                L = (int) (i12 * this.f30495t);
+                L = (int) (i12 * this.f30567t);
             } else {
                 if (z10) {
                     f7 = 24.0f;
@@ -201,7 +201,7 @@ public final class t8 {
         }
         int i13 = 0;
         for (int i14 = 0; i14 < 3; i14++) {
-            if (this.f30480b[i14].f30180g != 0) {
+            if (this.f30552b[i14].f30236g != 0) {
                 i13++;
             }
         }
@@ -213,7 +213,7 @@ public final class t8 {
     }
 
     public final void d() {
-        View view = this.f30493r;
+        View view = this.f30565r;
         if (view != null) {
             view.invalidate();
         }
@@ -223,8 +223,8 @@ public final class t8 {
         if (!this.B) {
             this.B = true;
             for (int i10 = 0; i10 < 3; i10++) {
-                this.f30480b[i10].e.P();
-                this.f30481c[i10].e.P();
+                this.f30552b[i10].e.P();
+                this.f30553c[i10].e.P();
             }
         }
     }
@@ -234,10 +234,10 @@ public final class t8 {
             this.B = false;
             this.d = false;
             for (int i10 = 0; i10 < 3; i10++) {
-                this.f30480b[i10].e.R();
-                this.f30481c[i10].e.R();
+                this.f30552b[i10].e.R();
+                this.f30553c[i10].e.R();
             }
-            if (this.f30486k == 3) {
+            if (this.f30558k == 3) {
                 org.telegram.ui.ActionBar.t6.G0().a(0.0f);
             }
         }
@@ -251,20 +251,20 @@ public final class t8 {
         r8 r8Var;
         r8 r8Var2;
         for (int i11 = 0; i11 < 3; i11++) {
-            s8 s8Var = this.f30480b[i11];
-            if (s8Var != null && (r8Var2 = s8Var.f30176a) != null) {
+            s8 s8Var = this.f30552b[i11];
+            if (s8Var != null && (r8Var2 = s8Var.f30232a) != null) {
                 r8Var2.u(i10);
             }
-            s8 s8Var2 = this.f30481c[i11];
-            if (s8Var2 != null && (r8Var = s8Var2.f30176a) != null) {
+            s8 s8Var2 = this.f30553c[i11];
+            if (s8Var2 != null && (r8Var = s8Var2.f30232a) != null) {
                 r8Var.u(i10);
             }
         }
     }
 
     public final void i(int i10) {
-        this.f30489n = i10;
-        View view = this.f30493r;
+        this.f30561n = i10;
+        View view = this.f30565r;
         if (view != null) {
             view.requestLayout();
         }
@@ -273,10 +273,10 @@ public final class t8 {
     public final void j(int i10, int i11, TLObject tLObject) {
         TLRPC.User user;
         TLRPC.Chat chat;
-        s8[] s8VarArr = this.f30481c;
+        s8[] s8VarArr = this.f30553c;
         s8 s8Var = s8VarArr[i10];
-        s8Var.f30180g = 0L;
-        s8Var.f30179f = null;
+        s8Var.f30236g = 0L;
+        s8Var.f30235f = null;
         if (tLObject == null) {
             s8Var.e.w0(null);
             d();
@@ -286,22 +286,22 @@ public final class t8 {
         s8Var.h = tLObject;
         if (tLObject instanceof TLRPC.GroupCallParticipant) {
             TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) tLObject;
-            s8Var.f30179f = groupCallParticipant;
-            long C1 = org.telegram.messenger.jj.C1(groupCallParticipant.peer);
+            s8Var.f30235f = groupCallParticipant;
+            long C1 = org.telegram.messenger.kj.C1(groupCallParticipant.peer);
             if (org.telegram.messenger.o5.E(C1)) {
-                user = org.telegram.messenger.vp.r1(i11).Z1(Long.valueOf(C1));
-                s8VarArr[i10].f30176a.r(user);
+                user = org.telegram.messenger.wp.r1(i11).Z1(Long.valueOf(C1));
+                s8VarArr[i10].f30232a.r(user);
                 chat = null;
             } else {
-                TLRPC.Chat L0 = org.telegram.messenger.vp.r1(i11).L0(Long.valueOf(-C1));
-                s8VarArr[i10].f30176a.q(L0);
+                TLRPC.Chat L0 = org.telegram.messenger.wp.r1(i11).L0(Long.valueOf(-C1));
+                s8VarArr[i10].f30232a.q(L0);
                 chat = L0;
                 user = null;
             }
-            if (this.f30486k == 4) {
-                if (C1 == org.telegram.messenger.d20.i(org.telegram.messenger.c.a(i11).f14863a).e()) {
+            if (this.f30558k == 4) {
+                if (C1 == org.telegram.messenger.e20.i(org.telegram.messenger.c.a(i11).f15043a).e()) {
                     s8VarArr[i10].d = 0L;
-                } else if (this.f30488m) {
+                } else if (this.f30560m) {
                     s8VarArr[i10].d = groupCallParticipant.lastActiveDate;
                 } else {
                     s8VarArr[i10].d = groupCallParticipant.active_date;
@@ -309,28 +309,28 @@ public final class t8 {
             } else {
                 s8VarArr[i10].d = groupCallParticipant.active_date;
             }
-            s8VarArr[i10].f30180g = C1;
+            s8VarArr[i10].f30236g = C1;
         } else if (tLObject instanceof TLRPC.User) {
             TLRPC.User user2 = (TLRPC.User) tLObject;
-            if (user2.self && this.f30479a) {
-                s8Var.f30176a.g(1);
-                s8VarArr[i10].f30176a.f29871p = 0.6f;
+            if (user2.self && this.f30551a) {
+                s8Var.f30232a.g(1);
+                s8VarArr[i10].f30232a.f29927p = 0.6f;
             } else {
-                s8Var.f30176a.g(0);
-                r8 r8Var = s8VarArr[i10].f30176a;
-                r8Var.f29871p = 1.0f;
+                s8Var.f30232a.g(0);
+                r8 r8Var = s8VarArr[i10].f30232a;
+                r8Var.f29927p = 1.0f;
                 r8Var.r(user2);
             }
-            s8VarArr[i10].f30180g = user2.f19942id;
+            s8VarArr[i10].f30236g = user2.f19943id;
             user = user2;
             chat = null;
         } else if (tLObject instanceof TLRPC.Chat) {
             chat = (TLRPC.Chat) tLObject;
-            s8Var.f30176a.g(0);
-            r8 r8Var2 = s8VarArr[i10].f30176a;
-            r8Var2.f29871p = 1.0f;
+            s8Var.f30232a.g(0);
+            r8 r8Var2 = s8VarArr[i10].f30232a;
+            r8Var2.f29927p = 1.0f;
             r8Var2.q(chat);
-            s8VarArr[i10].f30180g = -chat.f19793id;
+            s8VarArr[i10].f30236g = -chat.f19794id;
             user = null;
         } else {
             user = null;
@@ -339,30 +339,30 @@ public final class t8 {
         int b10 = b();
         if (tLObject instanceof TL_stories.StoryItem) {
             TL_stories.StoryItem storyItem = (TL_stories.StoryItem) tLObject;
-            s8VarArr[i10].f30180g = storyItem.f20031id;
+            s8VarArr[i10].f30236g = storyItem.f20032id;
             TLRPC.MessageMedia messageMedia = storyItem.media;
             TLRPC.Document document = messageMedia.document;
             if (document != null) {
                 TLRPC.PhotoSize w9 = org.telegram.messenger.b8.w(document.thumbs, 50, true, null, false);
-                s8VarArr[i10].e.r0(org.telegram.messenger.ic.c(org.telegram.messenger.b8.w(storyItem.media.document.thumbs, 50, true, w9, true), storyItem.media.document), a1.g.i(b10, b10, "_"), org.telegram.messenger.ic.c(w9, storyItem.media.document), a1.g.i(b10, b10, "_"), null, 0L, null, storyItem, 0);
+                s8VarArr[i10].e.r0(org.telegram.messenger.jc.c(org.telegram.messenger.b8.w(storyItem.media.document.thumbs, 50, true, w9, true), storyItem.media.document), a1.g.i(b10, b10, "_"), org.telegram.messenger.jc.c(w9, storyItem.media.document), a1.g.i(b10, b10, "_"), null, 0L, null, storyItem, 0);
             } else {
                 TLRPC.Photo photo = messageMedia.photo;
                 if (photo != null) {
                     TLRPC.PhotoSize w10 = org.telegram.messenger.b8.w(photo.sizes, 50, true, null, false);
-                    s8VarArr[i10].e.r0(org.telegram.messenger.ic.i(org.telegram.messenger.b8.w(storyItem.media.photo.sizes, 50, true, w10, true), storyItem.media.photo), a1.g.i(b10, b10, "_"), org.telegram.messenger.ic.i(w10, storyItem.media.photo), a1.g.i(b10, b10, "_"), null, 0L, null, storyItem, 0);
+                    s8VarArr[i10].e.r0(org.telegram.messenger.jc.i(org.telegram.messenger.b8.w(storyItem.media.photo.sizes, 50, true, w10, true), storyItem.media.photo), a1.g.i(b10, b10, "_"), org.telegram.messenger.jc.i(w10, storyItem.media.photo), a1.g.i(b10, b10, "_"), null, 0L, null, storyItem, 0);
                 }
             }
         } else if (user != null) {
-            if (user.self && this.f30479a) {
+            if (user.self && this.f30551a) {
                 s8 s8Var2 = s8VarArr[i10];
-                s8Var2.e.w0(s8Var2.f30176a);
+                s8Var2.e.w0(s8Var2.f30232a);
             } else {
                 s8 s8Var3 = s8VarArr[i10];
-                s8Var3.e.i0(user, s8Var3.f30176a, null);
+                s8Var3.e.i0(user, s8Var3.f30232a, null);
             }
         } else {
             s8 s8Var4 = s8VarArr[i10];
-            s8Var4.e.i0(chat, s8Var4.f30176a, null);
+            s8Var4.e.i0(chat, s8Var4.f30232a, null);
         }
         s8VarArr[i10].e.J0(b10 / 2);
         float f7 = b10;
@@ -372,9 +372,9 @@ public final class t8 {
 
     public final void k() {
         for (int i10 = 0; i10 < 3; i10++) {
-            s8[] s8VarArr = this.f30480b;
+            s8[] s8VarArr = this.f30552b;
             s8 s8Var = s8VarArr[i10];
-            s8[] s8VarArr2 = this.f30481c;
+            s8[] s8VarArr2 = this.f30553c;
             s8VarArr[i10] = s8VarArr2[i10];
             s8VarArr2[i10] = s8Var;
         }

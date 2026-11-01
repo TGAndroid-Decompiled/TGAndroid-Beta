@@ -4,16 +4,16 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.Calendar;
 public final class h0 {
-    public int f15798c;
-    public final ArrayList f15796a = new ArrayList();
-    public String f15797b = "";
+    public int f15993c;
+    public final ArrayList f15991a = new ArrayList();
+    public String f15992b = "";
     public boolean d = true;
 
     public final String a(boolean z10) {
-        int indexOf = this.f15797b.indexOf(58);
+        int indexOf = this.f15992b.indexOf(58);
         if (indexOf >= 0) {
-            String substring = this.f15797b.substring(0, indexOf);
-            if (this.f15798c == 20) {
+            String substring = this.f15992b.substring(0, indexOf);
+            if (this.f15993c == 20) {
                 String[] split = substring.substring(2).split(";");
                 if (z10) {
                     return split[0];
@@ -36,12 +36,12 @@ public final class h0 {
 
     public final String[] b() {
         byte[] H;
-        int indexOf = this.f15797b.indexOf(58);
+        int indexOf = this.f15992b.indexOf(58);
         if (indexOf < 0) {
             return new String[0];
         }
-        String substring = this.f15797b.substring(0, indexOf);
-        String substring2 = this.f15797b.substring(indexOf + 1);
+        String substring = this.f15992b.substring(0, indexOf);
+        String substring2 = this.f15992b.substring(indexOf + 1);
         String str = null;
         String str2 = "UTF-8";
         for (String str3 : substring.split(";")) {
@@ -69,15 +69,15 @@ public final class h0 {
     public final String c(boolean z10) {
         byte[] H;
         StringBuilder sb2 = new StringBuilder();
-        int indexOf = this.f15797b.indexOf(58);
+        int indexOf = this.f15992b.indexOf(58);
         if (indexOf < 0) {
             return "";
         }
         if (sb2.length() > 0) {
             sb2.append(", ");
         }
-        String substring = this.f15797b.substring(0, indexOf);
-        String substring2 = this.f15797b.substring(indexOf + 1);
+        String substring = this.f15992b.substring(0, indexOf);
+        String substring2 = this.f15992b.substring(indexOf + 1);
         String str = null;
         String str2 = "UTF-8";
         for (String str3 : substring.split(";")) {
@@ -114,7 +114,7 @@ public final class h0 {
             }
         }
         if (z10) {
-            int i11 = this.f15798c;
+            int i11 = this.f15993c;
             if (i11 == 0) {
                 return af.b.c().b(sb2.toString());
             }
@@ -127,7 +127,7 @@ public final class h0 {
                         calendar.set(1, Utilities.z(split4[0]).intValue());
                         calendar.set(2, Utilities.z(split4[1]).intValue() - 1);
                         calendar.set(5, Utilities.z(split4[2]).intValue());
-                        return cd.D0().C0().format(calendar.getTime());
+                        return dd.D0().C0().format(calendar.getTime());
                     }
                 }
             }

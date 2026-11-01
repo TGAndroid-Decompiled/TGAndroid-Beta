@@ -6,16 +6,16 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.ui.Wallet.x5;
 public final class g1 extends b0 {
-    public final x5 f47934r;
+    public final x5 f47945r;
 
     public g1(x5 x5Var, Context context) {
         super(context);
-        this.f47934r = x5Var;
+        this.f47945r = x5Var;
     }
 
     @Override
     public final void g(View view, x0 x0Var) {
-        RecyclerView recyclerView = this.f47934r.f35382a;
+        RecyclerView recyclerView = this.f47945r.f35388a;
         if (recyclerView != null) {
             n0 layoutManager = recyclerView.getLayoutManager();
             layoutManager.getClass();
@@ -24,7 +24,7 @@ public final class g1 extends b0 {
             int i11 = iArr[1];
             int m10 = m(Math.max(Math.abs(i10), Math.abs(i11)));
             if (m10 > 0) {
-                x0Var.b(i10, i11, m10, this.f47884j);
+                x0Var.b(i10, i11, m10, this.f47895j);
             }
         }
     }

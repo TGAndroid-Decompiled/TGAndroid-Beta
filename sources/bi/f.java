@@ -1,7 +1,7 @@
 package bi;
 
-import org.telegram.messenger.d20;
-import org.telegram.ui.kh0;
+import org.telegram.messenger.e20;
+import org.telegram.ui.ih0;
 public final class f implements Runnable {
     public final int f2987a;
     public final t f2988b;
@@ -17,9 +17,9 @@ public final class f implements Runnable {
             case 0:
                 t tVar = this.f2988b;
                 tVar.J(true, 2147483646, 0, 0L, false);
-                kh0 kh0Var = tVar.O;
-                if (kh0Var != null) {
-                    kh0Var.g(false);
+                ih0 ih0Var = tVar.O;
+                if (ih0Var != null) {
+                    ih0Var.g(false);
                     tVar.O = null;
                     return;
                 }
@@ -27,17 +27,17 @@ public final class f implements Runnable {
             case 1:
                 t tVar2 = this.f2988b;
                 tVar2.J(false, 0, 0, 0L, false);
-                kh0 kh0Var2 = tVar2.O;
-                if (kh0Var2 != null) {
-                    kh0Var2.g(true);
+                ih0 ih0Var2 = tVar2.O;
+                if (ih0Var2 != null) {
+                    ih0Var2.g(true);
                     tVar2.O = null;
                     return;
                 }
                 return;
             case 2:
                 t tVar3 = this.f2988b;
-                if (!d20.i(tVar3.f3349n).q()) {
-                    new kg.i1(tVar3.f30947b.W1, tVar3.getContext(), tVar3.f3349n, 43, true).show();
+                if (!e20.i(tVar3.f3349n).q()) {
+                    new kg.i1(tVar3.f30964b.W1, tVar3.getContext(), tVar3.f3349n, 43, true).show();
                     return;
                 }
                 return;

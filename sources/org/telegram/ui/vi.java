@@ -15,7 +15,7 @@ public final class vi extends org.telegram.ui.Components.xn {
         super.onLayout(z10, i10, i11, i12, i13);
         float y3 = getY();
         un unVar = this.M;
-        float y10 = unVar.f42245f1.getY() + y3;
+        float y10 = unVar.f42056f1.getY() + y3;
         this.J = unVar.l1.getBackgroundSizeY();
         this.I = y10;
     }

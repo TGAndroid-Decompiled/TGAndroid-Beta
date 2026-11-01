@@ -10,32 +10,32 @@ import android.graphics.Shader;
 import android.view.MotionEvent;
 import android.view.View;
 public final class l extends View {
-    public final Paint f8354a;
-    public final Paint f8355b;
-    public float f8356c;
+    public final Paint f8355a;
+    public final Paint f8356b;
+    public float f8357c;
     public final u d;
 
     public l(u uVar, Context context) {
         super(context);
         this.d = uVar;
-        this.f8354a = new Paint(1);
+        this.f8355a = new Paint(1);
         Paint paint = new Paint(1);
-        this.f8355b = paint;
+        this.f8356b = paint;
         paint.setColor(-1);
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
         paint.setStrokeWidth(org.telegram.messenger.i0.L(3.0f));
     }
 
     public final void a() {
-        this.f8354a.setShader(new LinearGradient(0.0f, 0.0f, getWidth(), 0.0f, new int[]{0, this.d.f8476m1}, (float[]) null, Shader.TileMode.CLAMP));
+        this.f8355a.setShader(new LinearGradient(0.0f, 0.0f, getWidth(), 0.0f, new int[]{0, this.d.f8477m1}, (float[]) null, Shader.TileMode.CLAMP));
     }
 
     public final void b(float f7) {
         float L = org.telegram.messenger.i0.L(6.0f);
-        float a2 = w7.u.a(((f7 - L) + (org.telegram.messenger.i0.L(13.0f) - (this.f8355b.getStrokeWidth() / 2.0f))) / (getWidth() - (L * 2.0f)), 0.0f, 1.0f);
-        this.f8356c = a2;
+        float a2 = w7.u.a(((f7 - L) + (org.telegram.messenger.i0.L(13.0f) - (this.f8356b.getStrokeWidth() / 2.0f))) / (getWidth() - (L * 2.0f)), 0.0f, 1.0f);
+        this.f8357c = a2;
         u uVar = this.d;
-        uVar.I0(i0.b.o(uVar.f8476m1, (int) (a2 * 255.0f)), 1);
+        uVar.I0(i0.b.o(uVar.f8477m1, (int) (a2 * 255.0f)), 1);
         invalidate();
     }
 
@@ -56,13 +56,13 @@ public final class l extends View {
         jg.n1.z1(canvas, rectF, org.telegram.messenger.i0.L(6.0f));
         canvas.restore();
         rectF.set(L, f7, getWidth() - L, f10);
-        canvas.drawRoundRect(rectF, org.telegram.messenger.i0.L(16.0f), org.telegram.messenger.i0.L(16.0f), this.f8354a);
+        canvas.drawRoundRect(rectF, org.telegram.messenger.i0.L(16.0f), org.telegram.messenger.i0.L(16.0f), this.f8355a);
         float L2 = org.telegram.messenger.i0.L(13.0f);
-        Paint paint = this.f8355b;
+        Paint paint = this.f8356b;
         float strokeWidth = L2 - (paint.getStrokeWidth() / 2.0f);
-        float max = Math.max(L + strokeWidth, (((getWidth() - (2.0f * L)) * this.f8356c) + L) - strokeWidth);
+        float max = Math.max(L + strokeWidth, (((getWidth() - (2.0f * L)) * this.f8357c) + L) - strokeWidth);
         canvas.drawCircle(max, height, L2, paint);
-        jg.n1.A1(max, height, strokeWidth, i0.b.o(uVar.f8476m1, (int) (this.f8356c * 255.0f)), canvas);
+        jg.n1.A1(max, height, strokeWidth, i0.b.o(uVar.f8477m1, (int) (this.f8357c * 255.0f)), canvas);
     }
 
     @Override

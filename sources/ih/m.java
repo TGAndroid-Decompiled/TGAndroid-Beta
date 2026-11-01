@@ -6,43 +6,43 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Components.a51;
-import org.telegram.ui.Components.p51;
-import org.telegram.ui.Components.tk0;
-import org.telegram.ui.Components.u51;
-import org.telegram.ui.Components.z41;
-import org.telegram.ui.qg0;
-public final class m extends z41 {
-    public static final int f8561b = 0;
+import org.telegram.ui.Components.b51;
+import org.telegram.ui.Components.q51;
+import org.telegram.ui.Components.uk0;
+import org.telegram.ui.Components.v51;
+import org.telegram.ui.og0;
+public final class m extends a51 {
+    public static final int f8562b = 0;
 
     static {
-        z41.h(new z41());
+        a51.h(new a51());
     }
 
     @Override
-    public final void b(View view, a51 a51Var, boolean z10, p51 p51Var, u51 u51Var) {
-        qg0 qg0Var = (qg0) view;
-        qg0Var.a((TLObject) a51Var.G, a51Var.f24305z, true);
-        qg0Var.setOnClickListener(a51Var.D);
+    public final void b(View view, b51 b51Var, boolean z10, q51 q51Var, v51 v51Var) {
+        og0 og0Var = (og0) view;
+        og0Var.a((TLObject) b51Var.G, b51Var.f24656z, true);
+        og0Var.setOnClickListener(b51Var.D);
     }
 
     @Override
-    public final boolean c(a51 a51Var, a51 a51Var2) {
-        if (a51Var.B == a51Var2.B) {
+    public final boolean c(b51 b51Var, b51 b51Var2) {
+        if (b51Var.B == b51Var2.B) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final View d(Context context, tk0 tk0Var, int i10, p6 p6Var) {
-        qg0 qg0Var = new qg0(context);
-        qg0Var.setBackground(t6.N0(false));
-        return qg0Var;
+    public final View d(Context context, uk0 uk0Var, int i10, p6 p6Var) {
+        og0 og0Var = new og0(context);
+        og0Var.setBackground(t6.N0(false));
+        return og0Var;
     }
 
     @Override
-    public final boolean e(a51 a51Var, a51 a51Var2) {
-        if (a51Var.B == a51Var2.B) {
+    public final boolean e(b51 b51Var, b51 b51Var2) {
+        if (b51Var.B == b51Var2.B) {
             return true;
         }
         return false;

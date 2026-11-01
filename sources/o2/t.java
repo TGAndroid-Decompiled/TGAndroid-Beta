@@ -16,20 +16,20 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public final class t implements c3.o {
-    public static final Pattern f14069i = Pattern.compile("LOCAL:([^,]+)");
-    public static final Pattern f14070j = Pattern.compile("MPEGTS:(-?\\d+)");
-    public final String f14071a;
-    public final k0 f14072b;
+    public static final Pattern f14070i = Pattern.compile("LOCAL:([^,]+)");
+    public static final Pattern f14071j = Pattern.compile("MPEGTS:(-?\\d+)");
+    public final String f14072a;
+    public final k0 f14073b;
     public final z3.k d;
     public final boolean e;
-    public c3.q f14074f;
+    public c3.q f14075f;
     public int h;
-    public final x f14073c = new x();
-    public byte[] f14075g = new byte[1024];
+    public final x f14074c = new x();
+    public byte[] f14076g = new byte[1024];
 
     public t(String str, k0 k0Var, z3.k kVar, boolean z10) {
-        this.f14071a = str;
-        this.f14072b = k0Var;
+        this.f14072a = str;
+        this.f14073b = k0Var;
         this.d = kVar;
         this.e = z10;
     }
@@ -37,15 +37,15 @@ public final class t implements c3.o {
     @Override
     public final boolean a(c3.p pVar) {
         c3.l lVar = (c3.l) pVar;
-        lVar.j(this.f14075g, 0, 6, false);
-        byte[] bArr = this.f14075g;
-        x xVar = this.f14073c;
+        lVar.j(this.f14076g, 0, 6, false);
+        byte[] bArr = this.f14076g;
+        x xVar = this.f14074c;
         xVar.L(6, bArr);
         if (i4.i.a(xVar)) {
             return true;
         }
-        lVar.j(this.f14075g, 6, 3, false);
-        xVar.L(9, this.f14075g);
+        lVar.j(this.f14076g, 6, 3, false);
+        xVar.L(9, this.f14076g);
         return i4.i.a(xVar);
     }
 
@@ -54,7 +54,7 @@ public final class t implements c3.o {
         if (this.e) {
             qVar = new ac.a(qVar, this.d);
         }
-        this.f14074f = qVar;
+        this.f14075f = qVar;
         qVar.G1(new c3.t(-9223372036854775807L));
     }
 
@@ -73,19 +73,19 @@ public final class t implements c3.o {
     public final int f(c3.p pVar, c3.s sVar) {
         String n10;
         int length;
-        this.f14074f.getClass();
+        this.f14075f.getClass();
         int length2 = (int) pVar.getLength();
         int i10 = this.h;
-        byte[] bArr = this.f14075g;
+        byte[] bArr = this.f14076g;
         if (i10 == bArr.length) {
             if (length2 != -1) {
                 length = length2;
             } else {
                 length = bArr.length;
             }
-            this.f14075g = Arrays.copyOf(bArr, (length * 3) / 2);
+            this.f14076g = Arrays.copyOf(bArr, (length * 3) / 2);
         }
-        byte[] bArr2 = this.f14075g;
+        byte[] bArr2 = this.f14076g;
         int i11 = this.h;
         int read = pVar.read(bArr2, i11, bArr2.length - i11);
         if (read != -1) {
@@ -95,7 +95,7 @@ public final class t implements c3.o {
                 return 0;
             }
         }
-        x xVar = new x(this.f14075g);
+        x xVar = new x(this.f14076g);
         i4.i.d(xVar);
         String n11 = xVar.n(StandardCharsets.UTF_8);
         long j10 = 0;
@@ -104,9 +104,9 @@ public final class t implements c3.o {
             Matcher matcher = null;
             if (!TextUtils.isEmpty(n11)) {
                 if (n11.startsWith("X-TIMESTAMP-MAP")) {
-                    Matcher matcher2 = f14069i.matcher(n11);
+                    Matcher matcher2 = f14070i.matcher(n11);
                     if (matcher2.find()) {
-                        Matcher matcher3 = f14070j.matcher(n11);
+                        Matcher matcher3 = f14071j.matcher(n11);
                         if (matcher3.find()) {
                             String group = matcher2.group(1);
                             group.getClass();
@@ -129,14 +129,14 @@ public final class t implements c3.o {
                     String n12 = xVar.n(StandardCharsets.UTF_8);
                     if (n12 == null) {
                         break;
-                    } else if (i4.i.f8200a.matcher(n12).matches()) {
+                    } else if (i4.i.f8201a.matcher(n12).matches()) {
                         do {
                             n10 = xVar.n(StandardCharsets.UTF_8);
                             if (n10 != null) {
                             }
                         } while (!n10.isEmpty());
                     } else {
-                        Matcher matcher4 = i4.h.f8197a.matcher(n12);
+                        Matcher matcher4 = i4.h.f8198a.matcher(n12);
                         if (matcher4.matches()) {
                             matcher = matcher4;
                             break;
@@ -151,11 +151,11 @@ public final class t implements c3.o {
                 group3.getClass();
                 long c10 = i4.i.c(group3);
                 String str2 = e2.l0.f6165a;
-                long b10 = this.f14072b.b(e2.l0.a0((j10 + c10) - j11, 90000L, 1000000L, RoundingMode.DOWN) % 8589934592L);
+                long b10 = this.f14073b.b(e2.l0.a0((j10 + c10) - j11, 90000L, 1000000L, RoundingMode.DOWN) % 8589934592L);
                 c3.k0 g10 = g(b10 - c10);
-                byte[] bArr3 = this.f14075g;
+                byte[] bArr3 = this.f14076g;
                 int i13 = this.h;
-                x xVar2 = this.f14073c;
+                x xVar2 = this.f14074c;
                 xVar2.L(i13, bArr3);
                 g10.d(this.h, xVar2);
                 g10.c(b10, 1, this.h, 0, null);
@@ -165,13 +165,13 @@ public final class t implements c3.o {
     }
 
     public final c3.k0 g(long j10) {
-        c3.k0 I1 = this.f14074f.I1(0, 3);
+        c3.k0 I1 = this.f14075f.I1(0, 3);
         w wVar = new w();
         wVar.f2370r = v0.n("text/vtt");
-        wVar.d = this.f14071a;
+        wVar.d = this.f14072a;
         wVar.f2374w = j10;
         i0.a.r(wVar, I1);
-        this.f14074f.Q0();
+        this.f14075f.Q0();
         return I1;
     }
 

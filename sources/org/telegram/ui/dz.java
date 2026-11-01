@@ -1,32 +1,28 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
-import android.widget.TextView;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class dz implements TextView.OnEditorActionListener {
-    public final int f36873a;
-    public final AlertDialog$Builder f36874b;
+import android.content.DialogInterface;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class dz implements DialogInterface.OnDismissListener {
+    public final int f36698a;
+    public final EditTextBoldCursor f36699b;
 
-    public dz(AlertDialog$Builder alertDialog$Builder, int i10) {
-        this.f36873a = i10;
-        this.f36874b = alertDialog$Builder;
+    public dz(EditTextBoldCursor editTextBoldCursor, int i10) {
+        this.f36698a = i10;
+        this.f36699b = editTextBoldCursor;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        switch (this.f36873a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f36698a) {
             case 0:
-                org.telegram.messenger.i0.v1(textView);
-                this.f36874b.f20134a.d(-1).callOnClick();
-                return false;
+                org.telegram.messenger.i0.v1(this.f36699b);
+                return;
             case 1:
-                org.telegram.messenger.i0.v1(textView);
-                this.f36874b.f20134a.d(-1).callOnClick();
-                return false;
+                org.telegram.messenger.i0.v1(this.f36699b);
+                return;
             default:
-                org.telegram.messenger.i0.v1(textView);
-                this.f36874b.f20134a.d(-1).callOnClick();
-                return false;
+                org.telegram.messenger.i0.v1(this.f36699b);
+                return;
         }
     }
 }

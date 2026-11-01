@@ -2,15 +2,15 @@ package w7;
 
 import java.util.AbstractMap;
 public final class ta extends qa {
-    public final ua f52703c;
+    public final ua f52721c;
 
     public ta(ua uaVar) {
-        this.f52703c = uaVar;
+        this.f52721c = uaVar;
     }
 
     @Override
     public final Object get(int i10) {
-        ua uaVar = this.f52703c;
+        ua uaVar = this.f52721c;
         n8.a(i10, uaVar.e);
         Object[] objArr = uaVar.d;
         int i11 = i10 + i10;
@@ -23,6 +23,6 @@ public final class ta extends qa {
 
     @Override
     public final int size() {
-        return this.f52703c.e;
+        return this.f52721c.e;
     }
 }

@@ -1,6 +1,6 @@
 package bi;
 
-import org.telegram.ui.kh0;
+import org.telegram.ui.ih0;
 public final class o1 implements Runnable {
     public final int f3254a;
     public final k2 f3255b;
@@ -14,7 +14,7 @@ public final class o1 implements Runnable {
     public final void run() {
         switch (this.f3254a) {
             case 0:
-                this.f3255b.F0();
+                this.f3255b.G0();
                 return;
             case 1:
                 k2 k2Var = this.f3255b;
@@ -38,24 +38,24 @@ public final class o1 implements Runnable {
                 }
                 return;
             case 4:
-                k2.Z(this.f3255b);
+                k2.a0(this.f3255b);
                 return;
             case 5:
                 k2 k2Var4 = this.f3255b;
-                k2Var4.w0(2147483646, 0, true);
-                kh0 kh0Var = k2Var4.O0;
-                if (kh0Var != null) {
-                    kh0Var.g(false);
+                k2Var4.x0(2147483646, 0, true);
+                ih0 ih0Var = k2Var4.O0;
+                if (ih0Var != null) {
+                    ih0Var.g(false);
                     k2Var4.O0 = null;
                     return;
                 }
                 return;
             default:
                 k2 k2Var5 = this.f3255b;
-                k2Var5.w0(0, 0, false);
-                kh0 kh0Var2 = k2Var5.O0;
-                if (kh0Var2 != null) {
-                    kh0Var2.g(true);
+                k2Var5.x0(0, 0, false);
+                ih0 ih0Var2 = k2Var5.O0;
+                if (ih0Var2 != null) {
+                    ih0Var2.g(true);
                     k2Var5.O0 = null;
                     return;
                 }

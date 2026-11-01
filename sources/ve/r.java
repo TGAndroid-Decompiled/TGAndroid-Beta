@@ -2,10 +2,10 @@ package ve;
 
 import w7.j8;
 public final class r extends df.c {
-    public String f50811g;
+    public String f50825g;
 
     public r(String str) {
-        this.f50811g = str;
+        this.f50825g = str;
     }
 
     @Override
@@ -15,6 +15,6 @@ public final class r extends df.c {
 
     @Override
     public final String f() {
-        return "literal=" + this.f50811g;
+        return "literal=" + this.f50825g;
     }
 }

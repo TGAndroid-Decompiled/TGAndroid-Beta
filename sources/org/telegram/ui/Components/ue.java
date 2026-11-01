@@ -3,15 +3,15 @@ package org.telegram.ui.Components;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 public final class ue implements TextWatcher {
-    public boolean f30908a;
-    public boolean f30909b;
-    public String f30910c;
+    public boolean f30942a;
+    public boolean f30943b;
+    public String f30944c;
     public boolean d;
     public boolean e;
-    public final ChatActivityEnterView f30911f;
+    public final ChatActivityEnterView f30945f;
 
     public ue(ChatActivityEnterView chatActivityEnterView) {
-        this.f30911f = chatActivityEnterView;
+        this.f30945f = chatActivityEnterView;
     }
 
     @Override
@@ -21,8 +21,8 @@ public final class ue implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        if (!this.d && this.f30911f.F2) {
-            this.f30910c = charSequence.toString();
+        if (!this.d && this.f30945f.F2) {
+            this.f30944c = charSequence.toString();
         }
     }
 
@@ -37,10 +37,10 @@ public final class ue implements TextWatcher {
         boolean z15;
         boolean z16;
         if (!this.d) {
-            ChatActivityEnterView chatActivityEnterView = this.f30911f;
+            ChatActivityEnterView chatActivityEnterView = this.f30945f;
             gf gfVar = chatActivityEnterView.U0;
             if (gfVar == null) {
-                currentPage = org.telegram.messenger.vp.c1().getInt("selected_page", 0);
+                currentPage = org.telegram.messenger.wp.c1().getInt("selected_page", 0);
             } else {
                 currentPage = gfVar.getCurrentPage();
             }
@@ -93,7 +93,7 @@ public final class ue implements TextWatcher {
                 return;
             }
             if (chatActivityEnterView.B2 && !chatActivityEnterView.C0 && !chatActivityEnterView.D0 && !chatActivityEnterView.R2 && !chatActivityEnterView.X1 && chatActivityEnterView.Z1 == null && i12 > i11 && charSequence.length() > 0 && charSequence.length() == i10 + i12 && charSequence.charAt(charSequence.length() - 1) == '\n') {
-                this.f30909b = true;
+                this.f30943b = true;
             }
             chatActivityEnterView.X1 = false;
             chatActivityEnterView.F(true);
@@ -112,9 +112,9 @@ public final class ue implements TextWatcher {
                 sfVar.V0(charSequence, z11, false);
             }
             if (chatActivityEnterView.S2 != 2 && i12 - i11 > 1) {
-                this.f30908a = true;
+                this.f30942a = true;
             }
-            if (chatActivityEnterView.Z1 == null && !chatActivityEnterView.f23720h2 && n12.length() != 0 && chatActivityEnterView.C2 < System.currentTimeMillis() - 5000 && !chatActivityEnterView.R2) {
+            if (chatActivityEnterView.Z1 == null && !chatActivityEnterView.f23721h2 && n12.length() != 0 && chatActivityEnterView.C2 < System.currentTimeMillis() - 5000 && !chatActivityEnterView.R2) {
                 chatActivityEnterView.C2 = System.currentTimeMillis();
                 sf sfVar2 = chatActivityEnterView.Z2;
                 if (sfVar2 != null) {

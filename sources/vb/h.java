@@ -1,7 +1,7 @@
 package vb;
 public abstract class h extends Exception {
-    public static final boolean f50760a;
-    public static final StackTraceElement[] f50761b;
+    public static final boolean f50774a;
+    public static final StackTraceElement[] f50775b;
 
     static {
         boolean z10;
@@ -10,8 +10,8 @@ public abstract class h extends Exception {
         } else {
             z10 = false;
         }
-        f50760a = z10;
-        f50761b = new StackTraceElement[0];
+        f50774a = z10;
+        f50775b = new StackTraceElement[0];
     }
 
     @Override

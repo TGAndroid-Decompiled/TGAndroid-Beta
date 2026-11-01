@@ -23,9 +23,9 @@ public abstract class d0 {
                 g2.l lVar = new g2.l(c0Var, nVar2);
                 try {
                     byte[] b10 = f9.f.b(lVar);
-                    u2.u uVar = new u2.u(nVar, c0Var.f7284c, c0Var.d, SystemClock.elapsedRealtime(), 0L, b10.length);
+                    u2.u uVar = new u2.u(nVar, c0Var.f7285c, c0Var.d, SystemClock.elapsedRealtime(), 0L, b10.length);
                     m4.c cVar = new m4.c(b10, 3);
-                    cVar.f12706c = uVar;
+                    cVar.f12707c = uVar;
                     n2.w wVar = new n2.w(cVar);
                     String str2 = e2.l0.f6165a;
                     try {
@@ -34,7 +34,7 @@ public abstract class d0 {
                     }
                     return wVar;
                 } catch (g2.y e) {
-                    int i11 = e.f7347c;
+                    int i11 = e.f7348c;
                     String str3 = null;
                     if ((i11 == 307 || i11 == 308) && i10 < 5 && (map2 = e.d) != null && (list = (List) map2.get("Location")) != null && !list.isEmpty()) {
                         str3 = (String) list.get(0);
@@ -54,7 +54,7 @@ public abstract class d0 {
                     }
                 }
             } catch (Exception e7) {
-                throw new n2.x(nVar, c0Var.f7284c, c0Var.f7282a.getResponseHeaders(), c0Var.f7283b, e7);
+                throw new n2.x(nVar, c0Var.f7285c, c0Var.f7283a.getResponseHeaders(), c0Var.f7284b, e7);
             }
         }
     }

@@ -10,9 +10,9 @@ public abstract class d {
         i.e(th2, "<this>");
         i.e(exception, "exception");
         if (th2 != exception) {
-            Integer num = hd.a.f7650a;
+            Integer num = hd.a.f7651a;
             if (num != null && num.intValue() < 19) {
-                Method method = gd.a.f7469a;
+                Method method = gd.a.f7470a;
                 if (method != null) {
                     method.invoke(th2, exception);
                     return;

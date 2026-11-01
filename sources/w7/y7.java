@@ -101,7 +101,7 @@ public abstract class y7 {
 
     public static ActionMode.Callback d(ActionMode.Callback callback) {
         if ((callback instanceof u0.j) && Build.VERSION.SDK_INT >= 26) {
-            return ((u0.j) callback).f49810a;
+            return ((u0.j) callback).f49824a;
         }
         return callback;
     }

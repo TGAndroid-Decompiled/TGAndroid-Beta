@@ -1,49 +1,48 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.graphics.drawable.Drawable;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.SurfaceView;
 import android.view.View;
-public final class mp0 implements Runnable {
-    public final PhotoViewer f39745a;
-    public final View f39746b;
-    public final pq0 f39747c;
-    public final float d;
-    public final float e;
-    public final AnimatorSet f39748f;
+import android.widget.ImageView;
+public final class mp0 extends AnimatorListenerAdapter {
+    public final int f39597a;
+    public final View f39598b;
+    public final PhotoViewer f39599c;
 
-    public mp0(PhotoViewer photoViewer, View view, pq0 pq0Var, float f7, float f10, AnimatorSet animatorSet) {
-        this.f39745a = photoViewer;
-        this.f39746b = view;
-        this.f39747c = pq0Var;
-        this.d = f7;
-        this.e = f10;
-        this.f39748f = animatorSet;
+    public mp0(PhotoViewer photoViewer, View view, int i10) {
+        this.f39597a = i10;
+        this.f39599c = photoViewer;
+        this.f39598b = view;
     }
 
     @Override
-    public final void run() {
-        Drawable[] drawableArr = PhotoViewer.U8;
-        View view = this.f39746b;
-        pq0 pq0Var = this.f39747c;
-        view.setOutlineProvider(pq0Var);
-        view.setClipToOutline(true);
-        PhotoViewer photoViewer = this.f39745a;
-        photoViewer.f33643x3.setOutlineProvider(pq0Var);
-        photoViewer.f33643x3.setClipToOutline(true);
-        zr0 zr0Var = photoViewer.E2;
-        if (zr0Var != null) {
-            zr0Var.setOutlineProvider(pq0Var);
-            photoViewer.E2.setClipToOutline(true);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f39597a) {
+            case 0:
+                PhotoViewer photoViewer = this.f39599c;
+                photoViewer.B3 = false;
+                this.f39598b.setOutlineProvider(null);
+                ImageView imageView = photoViewer.f33650x3;
+                if (imageView != null) {
+                    imageView.setOutlineProvider(null);
+                }
+                yr0 yr0Var = photoViewer.E2;
+                if (yr0Var != null) {
+                    yr0Var.setOutlineProvider(null);
+                }
+                SurfaceView surfaceView = photoViewer.C2;
+                if (surfaceView != null) {
+                    surfaceView.setVisibility(0);
+                    return;
+                }
+                return;
+            default:
+                PhotoViewer photoViewer2 = this.f39599c;
+                photoViewer2.B3 = false;
+                photoViewer2.f33516i4.run();
+                org.telegram.messenger.i0.h3(new if0(25, this, this.f39598b), 100L);
+                return;
         }
-        photoViewer.f33643x3.setTranslationY(this.d);
-        float f7 = this.e;
-        view.setTranslationY(f7);
-        zr0 zr0Var2 = photoViewer.E2;
-        if (zr0Var2 != null) {
-            zr0Var2.setTranslationY(f7);
-        }
-        photoViewer.Y5 = 0.0f;
-        photoViewer.f33470e0.invalidate();
-        this.f39748f.start();
     }
 }

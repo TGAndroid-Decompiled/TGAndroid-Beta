@@ -1,549 +1,104 @@
 package org.telegram.messenger;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.graphics.Point;
 import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.Layout;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.StaticLayout;
-import android.text.TextUtils;
-import android.text.style.CharacterStyle;
-import android.view.MotionEvent;
-import android.view.VelocityTracker;
-import android.view.View;
-import android.view.ViewConfiguration;
-import android.widget.OverScroller;
+import java.io.File;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.qz0;
-public final class ev extends qu {
-    public final uv W;
-    public final uv[] X;
-    public final int Y;
-    public final int Z;
-    public final int f15453a0;
-    public int f15454b0;
-    public float f15455c0;
-    public int f15456d0;
-    public boolean f15457e0;
-    public boolean f15458f0;
-    public int f15459g0;
-    public final Paint f15460h0;
-    public final Path f15461i0;
-    public final qz0 f15462j0;
-    public Drawable f15463k0;
-    public int f15464l0;
-    public boolean m0;
-    public final String f15465n0;
-    public final SpannableString f15466o0;
-    public final String f15467p0;
-    public final int f15468q0;
-    public int f15469r0;
-    public int f15470s0;
-    public VelocityTracker f15471t0;
-    public OverScroller f15472u0;
-    public final mg.c2 f15473v0;
+public final class ev extends dv {
+    public final TL_iv.pageBlockPhoto f15647q0;
+    public final TLRPC.Photo f15648r0;
+    public final TLRPC.PhotoSize f15649s0;
+    public final TLRPC.TL_photoStrippedSize f15650t0;
 
-    public ev(vv vvVar, Rect rect, int i10, TL_iv.pageBlockPreformatted pageblockpreformatted, ev evVar) {
-        super(vvVar, rect, i10);
+    public ev(wv wvVar, Rect rect, int i10, TL_iv.pageBlockPhoto pageblockphoto, boolean z10) {
+        super(wvVar, rect, i10, z10);
         int i11;
-        qz0 qz0Var;
-        int i12;
-        this.f15460h0 = new Paint(1);
-        this.f15461i0 = new Path();
-        this.f15473v0 = new mg.c2(this, 9);
-        this.Y = this.f17623c;
-        this.f15467p0 = pageblockpreformatted.language;
-        String x10 = vv.x(pageblockpreformatted.text);
-        this.f15465n0 = x10;
-        if (x10 == null) {
-            this.f15465n0 = "";
-        }
-        SpannableString spannableString = new SpannableString(this.f15465n0);
-        this.f15466o0 = spannableString;
-        int length = this.f15465n0.length();
-        if (length > 500) {
-            i11 = 3;
-        } else if (length > 220) {
-            i11 = 2;
-        } else if (length > 80) {
-            i11 = 1;
+        this.f15647q0 = pageblockphoto;
+        TLRPC.Photo v = wvVar.v(pageblockphoto.photo_id);
+        this.f15648r0 = v;
+        if (v != null) {
+            this.f15649s0 = b8.w(v.sizes, i0.Z0(false), false, null, false);
+            this.f15650t0 = b8.R(v.sizes);
         } else {
-            i11 = 0;
+            this.f15649s0 = null;
+            this.f15650t0 = null;
         }
-        this.f15468q0 = i11;
-        if (spannableString.length() > 0) {
-            rv rvVar = new rv(this.f17621a, 8, false);
-            rvVar.e = i11;
-            spannableString.setSpan(rvVar, 0, spannableString.length(), 33);
-            spannableString.setSpan(new nu(pageblockpreformatted.text, 0), 0, spannableString.length(), 33);
-            if (evVar != null) {
-                CharSequence charSequence = evVar.f15466o0;
-                if (charSequence instanceof di.g) {
-                    di.g gVar = (di.g) charSequence;
-                    if (!gVar.f5961a) {
-                        charSequence = gVar.f5962b;
-                    }
-                }
-                if (charSequence != null && charSequence.length() > 0 && this.f15465n0.length() >= charSequence.length()) {
-                    if (charSequence instanceof di.g) {
-                        ((di.g) charSequence).f5962b = null;
-                    }
-                    SpannableStringBuilder append = new SpannableStringBuilder(charSequence).append((CharSequence) this.f15465n0.substring(charSequence.length()));
-                    for (rv rvVar2 : (rv[]) append.getSpans(0, append.length(), rv.class)) {
-                        append.removeSpan(rvVar2);
-                    }
-                    rv rvVar3 = new rv(this.f17621a, 8, false);
-                    rvVar3.e = this.f15468q0;
-                    append.setSpan(rvVar3, 0, append.length(), 33);
-                    di.i[] iVarArr = (di.i[]) append.getSpans(0, append.length(), di.i.class);
-                    for (int i13 = 0; i13 < iVarArr.length; i13++) {
-                        int spanStart = append.getSpanStart(iVarArr[i13]);
-                        int spanStart2 = append.getSpanStart(iVarArr[i13]);
-                        append.removeSpan(iVarArr[i13]);
-                        append.setSpan(iVarArr[i13], spanStart, spanStart2, 33);
-                    }
-                    ?? fVar = new di.f(this.f15466o0);
-                    fVar.f5962b = append;
-                    this.f15466o0 = fVar;
-                }
+        TLRPC.PhotoSize photoSize = this.f15649s0;
+        if (photoSize != null) {
+            i11 = photoSize.f19819w;
+        } else {
+            i11 = 100;
+        }
+        int i12 = photoSize != null ? photoSize.h : 100;
+        int i13 = this.f17969c;
+        int max = (int) ((i13 / Math.max(1, i11)) * i12);
+        Point point = i0.f16172q;
+        int max2 = (int) (Math.max(point.x, point.y) * 0.55f);
+        if (max > max2) {
+            i13 = (int) ((max2 / Math.max(1, i12)) * i11);
+            max = max2;
+        }
+        this.f15435b0 = i13;
+        this.f15436c0 = max;
+        l0();
+    }
+
+    @Override
+    public final void i0(boolean z10) {
+        TLRPC.PhotoSize photoSize;
+        jc jcVar;
+        TLRPC.Photo photo = this.f15648r0;
+        if (photo != null && (photoSize = this.f15649s0) != null) {
+            TLRPC.TL_photoStrippedSize tL_photoStrippedSize = this.f15650t0;
+            if (tL_photoStrippedSize != null) {
+                jcVar = jc.i(tL_photoStrippedSize, photo);
+            } else {
+                jcVar = null;
             }
-            if (!TextUtils.isEmpty(pageblockpreformatted.language)) {
-                SpannableString spannableString2 = this.f15466o0;
-                di.l.c(spannableString2, spannableString2.length(), pageblockpreformatted.language);
+            jc jcVar2 = jcVar;
+            wv wvVar = this.f17967a;
+            ImageReceiver imageReceiver = this.X;
+            if (z10) {
+                imageReceiver.u0(null, null, jc.i(photoSize, photo), null, jcVar2, "b1", null, photoSize.size, null, wvVar.f19330b, 1);
+            } else {
+                imageReceiver.u0(null, null, null, null, jcVar2, "b1", null, photoSize.size, null, wvVar.f19330b, 1);
             }
         }
-        uv uvVar = new uv(vvVar, this.f15466o0, i0.L(5000.0f), Layout.Alignment.ALIGN_NORMAL, 1.22f);
-        this.W = uvVar;
-        this.X = new uv[]{uvVar};
-        if (!TextUtils.isEmpty(this.f15467p0)) {
-            this.f15462j0 = new qz0(this.f15467p0, Math.max(8, tz.W0 - 4), null);
-        }
-        int L = i0.L(14.0f);
-        if (this.f15462j0 != null) {
-            i12 = i0.L(12.0f) + ((int) Math.ceil(qz0Var.f29774c));
-        } else {
-            i12 = 0;
-        }
-        int max = Math.max(i0.L(28.0f) + L + i12, (i0.L(14.0f) * 2) + Math.max(0, uvVar.h - uvVar.f18398f));
-        this.Z = max;
-        int max2 = Math.max(0, max - this.Y);
-        this.f15453a0 = max2;
-        if (evVar != null) {
-            this.f15454b0 = Utilities.j(evVar.f15454b0, max2, 0);
-        }
     }
 
     @Override
-    public final int H() {
-        Rect rect = this.f17622b;
-        return k0() + m5.D(6.0f, 2, rect.top) + rect.bottom;
-    }
-
-    @Override
-    public final int I() {
-        return J();
-    }
-
-    @Override
-    public final int J() {
-        Rect rect = this.f17622b;
-        return Math.min(this.Y, this.Z) + rect.left + rect.right;
-    }
-
-    @Override
-    public final org.telegram.ui.Cells.u9[] K() {
-        return this.X;
-    }
-
-    @Override
-    public final boolean P() {
-        if (!this.f15457e0) {
-            OverScroller overScroller = this.f15472u0;
-            if (overScroller == null || overScroller.isFinished()) {
+    public final boolean k0() {
+        TLRPC.PhotoSize photoSize = this.f15649s0;
+        if (photoSize != null) {
+            wv wvVar = this.f17967a;
+            b8.G(wvVar.f19329a);
+            File K = b8.K(photoSize, null, true, true);
+            b8.G(wvVar.f19329a);
+            File K2 = b8.K(photoSize, null, false, true);
+            if (!K.exists() && (K2 == null || !K2.exists())) {
                 return false;
             }
-            return true;
         }
         return true;
     }
 
     @Override
-    public final void S() {
-        this.W.i(this.V);
+    public final TL_iv.PageBlock m0() {
+        return this.f15647q0;
     }
 
     @Override
-    public final void U() {
-        this.W.f(this.V);
+    public final String n0() {
+        return b8.r(null, this.f15649s0);
     }
 
     @Override
-    public final void V(Canvas canvas) {
-        canvas.save();
-        canvas.translate(0.0f, i0.L(6.0f));
-        h0(canvas);
-        j0(canvas, false, 0, 0.0f);
-        i0(canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final void W(Canvas canvas, int i10, float f7) {
-        StaticLayout staticLayout = this.W.f18396b;
-        if (staticLayout != null && i10 >= 0 && i10 < staticLayout.getLineCount()) {
-            canvas.save();
-            canvas.translate(0.0f, i0.L(6.0f));
-            h0(canvas);
-            j0(canvas, true, i10, f7);
-            i0(canvas);
-            canvas.restore();
-            return;
-        }
-        V(canvas);
-    }
-
-    @Override
-    public final boolean X(MotionEvent motionEvent) {
-        VelocityTracker velocityTracker;
-        View view;
-        int actionMasked = motionEvent.getActionMasked();
-        float L = i0.L(14.0f) - this.f15454b0;
-        float m0 = m0() + i0.L(6.0f);
-        if (actionMasked == 0 && o0(motionEvent.getX(), motionEvent.getY() - i0.L(6.0f))) {
-            this.m0 = true;
-            View view2 = this.V;
-            if (view2 != null) {
-                view2.invalidate();
-                return true;
-            }
-        } else {
-            int i10 = 0;
-            if (this.m0) {
-                if (actionMasked == 2 && !o0(motionEvent.getX(), motionEvent.getY() - i0.L(6.0f))) {
-                    this.m0 = false;
-                    View view3 = this.V;
-                    if (view3 != null) {
-                        view3.invalidate();
-                        return true;
-                    }
-                } else if (actionMasked == 1 || actionMasked == 3) {
-                    this.m0 = false;
-                    View view4 = this.V;
-                    if (view4 != null) {
-                        view4.invalidate();
-                    }
-                    org.telegram.ui.Cells.l1 l1Var = this.f17621a.F;
-                    if (actionMasked == 1 && l1Var != null) {
-                        l1Var.J1(this.f15465n0, this.f15467p0);
-                        return true;
-                    }
-                }
-            } else {
-                uv uvVar = this.W;
-                if (actionMasked == 0) {
-                    if (this.f15459g0 == 0 && (view = this.V) != null) {
-                        ViewConfiguration viewConfiguration = ViewConfiguration.get(view.getContext());
-                        this.f15459g0 = viewConfiguration.getScaledTouchSlop();
-                        this.f15469r0 = viewConfiguration.getScaledMinimumFlingVelocity();
-                        this.f15470s0 = viewConfiguration.getScaledMaximumFlingVelocity();
-                    }
-                    if (this.f15472u0 == null && this.V != null) {
-                        this.f15472u0 = new OverScroller(this.V.getContext());
-                    }
-                    OverScroller overScroller = this.f15472u0;
-                    if (overScroller != null && !overScroller.isFinished()) {
-                        this.f15472u0.forceFinished(true);
-                    }
-                    this.f15455c0 = motionEvent.getX();
-                    this.f15456d0 = this.f15454b0;
-                    this.f15457e0 = false;
-                    VelocityTracker velocityTracker2 = this.f15471t0;
-                    if (velocityTracker2 == null) {
-                        this.f15471t0 = VelocityTracker.obtain();
-                    } else {
-                        velocityTracker2.clear();
-                    }
-                    this.f15471t0.addMovement(motionEvent);
-                    motionEvent.offsetLocation(-L, -m0);
-                    this.f15458f0 = uvVar.t(motionEvent);
-                    motionEvent.offsetLocation(L, m0);
-                    return true;
-                } else if (actionMasked == 2) {
-                    VelocityTracker velocityTracker3 = this.f15471t0;
-                    if (velocityTracker3 != null) {
-                        velocityTracker3.addMovement(motionEvent);
-                    }
-                    float x10 = motionEvent.getX() - this.f15455c0;
-                    boolean z10 = this.f15457e0;
-                    int i11 = this.f15453a0;
-                    if (!z10 && i11 > 0 && Math.abs(x10) > this.f15459g0) {
-                        this.f15457e0 = true;
-                        Z(true);
-                        if (this.f15458f0) {
-                            MotionEvent obtain = MotionEvent.obtain(motionEvent);
-                            obtain.setAction(3);
-                            obtain.offsetLocation(-L, -m0);
-                            uvVar.t(obtain);
-                            obtain.recycle();
-                            this.f15458f0 = false;
-                        }
-                    }
-                    if (this.f15457e0) {
-                        int i12 = (int) (this.f15456d0 - x10);
-                        if (i12 >= 0) {
-                            i10 = i12;
-                        }
-                        if (i10 <= i11) {
-                            i11 = i10;
-                        }
-                        if (i11 != this.f15454b0) {
-                            this.f15454b0 = i11;
-                            Y(this.S, this.T, this.U);
-                            View view5 = this.V;
-                            if (view5 != null) {
-                                view5.invalidate();
-                                return true;
-                            }
-                        }
-                    } else {
-                        return this.f15458f0;
-                    }
-                } else {
-                    if (actionMasked == 1 || actionMasked == 3) {
-                        boolean z11 = this.f15457e0;
-                        this.f15457e0 = false;
-                        if (z11) {
-                            Z(false);
-                            if (actionMasked == 1 && (velocityTracker = this.f15471t0) != null && this.f15472u0 != null && this.V != null) {
-                                velocityTracker.addMovement(motionEvent);
-                                this.f15471t0.computeCurrentVelocity(1000, this.f15470s0);
-                                float f7 = -this.f15471t0.getXVelocity();
-                                if (Math.abs(f7) > this.f15469r0) {
-                                    this.f15472u0.fling(this.f15454b0, 0, (int) f7, 0, 0, this.f15453a0, 0, 0);
-                                    this.V.postOnAnimation(this.f15473v0);
-                                }
-                            }
-                        }
-                        if (!z11 && this.f15458f0) {
-                            motionEvent.offsetLocation(-L, -m0);
-                            uvVar.t(motionEvent);
-                            motionEvent.offsetLocation(L, m0);
-                        }
-                        this.f15458f0 = false;
-                        VelocityTracker velocityTracker4 = this.f15471t0;
-                        if (velocityTracker4 != null) {
-                            velocityTracker4.recycle();
-                            this.f15471t0 = null;
-                        }
-                        if (z11 || actionMasked == 1) {
-                        }
-                    }
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public final void Y(int i10, int i11, int i12) {
-        this.S = i10;
-        this.T = i11;
-        this.U = i12;
-        int L = (i0.L(14.0f) + i10) - this.f15454b0;
-        uv uvVar = this.W;
-        uvVar.f18397c = L - uvVar.f18398f;
-        uvVar.d = m0() + i0.L(6.0f) + i11;
-        uvVar.e = i12;
-    }
-
-    @Override
-    public final Layout a() {
-        return this.W.f18396b;
-    }
-
-    public final void h0(Canvas canvas) {
-        int i10;
-        vv vvVar = this.f17621a;
-        if (vvVar.E()) {
-            i10 = org.telegram.ui.ActionBar.t6.ml;
-        } else {
-            i10 = org.telegram.ui.ActionBar.t6.ll;
-        }
-        int w02 = org.telegram.ui.ActionBar.t6.w0(i10, vvVar.D);
-        Paint paint = this.f15460h0;
-        paint.setColor(w02);
-        RectF rectF = i0.P;
-        rectF.set(0.0f, 0.0f, l0(), k0());
-        canvas.drawRoundRect(rectF, i0.L(12.0f), i0.L(12.0f), paint);
-    }
-
-    public final void i0(Canvas canvas) {
-        int i10;
-        Canvas canvas2;
-        int i11;
-        vv vvVar = this.f17621a;
-        if (vvVar.E()) {
-            i10 = org.telegram.ui.ActionBar.t6.Tc;
-        } else {
-            i10 = org.telegram.ui.ActionBar.t6.Sc;
-        }
-        int r12 = org.telegram.ui.ActionBar.t6.r1(0.5f, org.telegram.ui.ActionBar.t6.w0(i10, vvVar.D));
-        qz0 qz0Var = this.f15462j0;
-        if (qz0Var != null) {
-            qz0Var.f29784p = l0() - i0.L(54.0f);
-            canvas2 = canvas;
-            this.f15462j0.c(i0.L(14.0f), i0.L(17.0f), 1.0f, r12, canvas2);
-        } else {
-            canvas2 = canvas;
-        }
-        if (this.f15463k0 == null) {
-            this.f15463k0 = i0.a.f(w0.f19025b, 2131232102);
-        }
-        if (this.f15464l0 != r12) {
-            Drawable drawable = this.f15463k0;
-            this.f15464l0 = r12;
-            drawable.setColorFilter(new PorterDuffColorFilter(r12, PorterDuff.Mode.SRC_IN));
-        }
-        Drawable drawable2 = this.f15463k0;
-        if (this.m0) {
-            i11 = 128;
-        } else {
-            i11 = 255;
-        }
-        drawable2.setAlpha(i11);
-        int l02 = l0() - i0.L(10.0f);
-        int n02 = n0();
-        this.f15463k0.setBounds(l02 - i0.L(18.0f), n02, l02, i0.L(18.0f) + n02);
-        this.f15463k0.draw(canvas2);
-    }
-
-    public final void j0(Canvas canvas, boolean z10, int i10, float f7) {
-        boolean z11;
-        float f10;
-        int l02 = l0();
-        int k02 = k0();
-        int i11 = this.f15453a0;
-        if (i11 > 0) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        canvas.save();
-        Path path = this.f15461i0;
-        path.rewind();
-        RectF rectF = i0.P;
-        float f11 = l02;
-        float f12 = k02;
-        rectF.set(0.0f, 0.0f, f11, f12);
-        path.addRoundRect(rectF, i0.L(12.0f), i0.L(12.0f), Path.Direction.CW);
-        canvas.clipPath(path);
-        if (z11) {
-            canvas.saveLayerAlpha(0.0f, 0.0f, f11, f12, 255, 31);
-        }
-        canvas.save();
-        canvas.translate(i0.L(14.0f) - this.f15454b0, m0());
-        uv uvVar = this.W;
-        if (z10) {
-            uvVar.m(canvas, i10, f7);
-        } else {
-            uvVar.d(canvas, uvVar.S);
-        }
-        canvas.restore();
-        if (z11) {
-            if (this.f15462j0 != null) {
-                f10 = i0.L(30.0f);
-            } else {
-                f10 = 0.0f;
-            }
-            int i12 = this.f15454b0;
-            vv vvVar = this.f17621a;
-            if (i12 > 0) {
-                rectF.set(0.0f, f10, i0.L(14.0f), f12);
-                vvVar.f19007z.o(canvas, rectF, 0, Math.min(1.0f, this.f15454b0 / i0.L(14.0f)));
-            }
-            if (this.f15454b0 < i11) {
-                rectF.set(l02 - i0.L(14.0f), f10, f11, f12);
-                vvVar.f19007z.o(canvas, rectF, 2, Math.min(1.0f, (i11 - this.f15454b0) / i0.L(14.0f)));
-            }
-            canvas.restore();
-        }
-        canvas.restore();
-    }
-
-    @Override
-    public final void k(SpannableStringBuilder spannableStringBuilder) {
-        qu.l(spannableStringBuilder, this.W, this.X);
-    }
-
-    public final int k0() {
-        return i0.L(12.0f) + this.W.f18396b.getHeight() + m0();
-    }
-
-    public final int l0() {
-        int i10 = this.f17621a.C;
-        Rect rect = this.f17622b;
-        return (i10 - rect.left) - rect.right;
-    }
-
-    public final int m0() {
-        float f7;
-        if (this.f15462j0 != null) {
-            f7 = 32.0f;
-        } else {
-            f7 = 12.0f;
-        }
-        return i0.L(f7);
-    }
-
-    public final int n0() {
-        uv uvVar;
-        StaticLayout staticLayout;
-        if (this.f15462j0 == null && (staticLayout = (uvVar = this.W).f18396b) != null && staticLayout.getLineCount() != 0) {
-            return Math.round(((uvVar.f18396b.getLineBaseline(0) + m0()) - (i0.L(Math.max(Math.min(10, tz.W0 - 2), (tz.W0 - 2) - this.f15468q0)) * 0.36f)) - (i0.L(18.0f) / 2.0f));
-        }
-        return i0.L(8.0f);
-    }
-
-    public final boolean o0(float f7, float f10) {
-        int l02 = l0();
-        if (f7 >= l02 - i0.L(38.0f) && f7 <= l02 && f10 >= 0.0f) {
-            if (f10 <= i0.L(26.0f) + n0()) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean u(CharacterStyle characterStyle, int i10, hu huVar) {
-        uv uvVar = this.W;
-        if (uvVar.o(characterStyle, huVar)) {
-            Rect rect = this.f17622b;
-            huVar.e = ((i0.L(14.0f) + rect.left) - this.f15454b0) - uvVar.f18398f;
-            huVar.f15956f = m0() + i0.L(6.0f) + i10 + rect.top;
+    public final boolean q0() {
+        TL_iv.pageBlockPhoto pageblockphoto = this.f15647q0;
+        if (pageblockphoto != null && pageblockphoto.spoiler) {
             return true;
         }
         return false;
-    }
-
-    @Override
-    public final CharSequence y() {
-        CharSequence y3 = super.y();
-        String str = this.f15467p0;
-        if (!TextUtils.isEmpty(str)) {
-            String b10 = gj.b(str);
-            if (!TextUtils.isEmpty(b10)) {
-                return TextUtils.concat(y3, " (", b10, ")");
-            }
-        }
-        return y3;
     }
 }

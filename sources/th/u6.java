@@ -10,22 +10,22 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.ui.Components.gr;
 public final class u6 extends Drawable {
-    public int f49523a;
-    public final View f49524b;
-    public final Paint f49525c;
+    public int f49537a;
+    public final View f49538b;
+    public final Paint f49539c;
     public final Paint d;
-    public final org.telegram.ui.Components.t5 f49527g;
+    public final org.telegram.ui.Components.t5 f49541g;
     public boolean h;
-    public Paint f49528i;
+    public Paint f49542i;
     public int e = 255;
-    public final float[] f49526f = new float[15];
-    public final Path f49529j = new Path();
+    public final float[] f49540f = new float[15];
+    public final Path f49543j = new Path();
 
     public u6(View view) {
-        this.f49524b = view;
-        this.f49527g = new org.telegram.ui.Components.t5(view, 350L, gr.h);
+        this.f49538b = view;
+        this.f49541g = new org.telegram.ui.Components.t5(view, 350L, gr.h);
         Paint paint = new Paint(1);
-        this.f49525c = paint;
+        this.f49539c = paint;
         paint.setShadowLayer(org.telegram.messenger.i0.L(4.0f), 0.0f, 0.0f, 1593835520);
         Paint paint2 = new Paint(1);
         this.d = paint2;
@@ -33,10 +33,10 @@ public final class u6 extends Drawable {
     }
 
     public final void a() {
-        int i10 = this.f49523a + 1;
-        this.f49523a = i10;
+        int i10 = this.f49537a + 1;
+        this.f49537a = i10;
         if (i10 >= 2) {
-            this.f49523a = 0;
+            this.f49537a = 0;
         }
     }
 
@@ -49,14 +49,14 @@ public final class u6 extends Drawable {
             } else {
                 f7 = 0.0f;
             }
-            this.f49527g.e(true, f7);
+            this.f49541g.e(true, f7);
             return;
         }
-        this.f49524b.invalidate();
+        this.f49538b.invalidate();
     }
 
     public final void c(float f7) {
-        this.f49525c.setShadowLayer(org.telegram.messenger.i0.L(2.0f) / f7, 0.0f, org.telegram.messenger.i0.N(0.7f) / f7, i0.b.o(-16777216, 45));
+        this.f49539c.setShadowLayer(org.telegram.messenger.i0.L(2.0f) / f7, 0.0f, org.telegram.messenger.i0.N(0.7f) / f7, i0.b.o(-16777216, 45));
     }
 
     @Override
@@ -66,7 +66,7 @@ public final class u6 extends Drawable {
         int i10;
         int i11;
         int i12;
-        float[] fArr = this.f49526f;
+        float[] fArr = this.f49540f;
         int i13 = 0;
         fArr[0] = getBounds().centerX();
         int i14 = 1;
@@ -92,35 +92,35 @@ public final class u6 extends Drawable {
         } else {
             f7 = 0.0f;
         }
-        float e = this.f49527g.e(false, f7);
-        int i18 = this.f49523a;
+        float e = this.f49541g.e(false, f7);
+        int i18 = this.f49537a;
         Paint paint2 = this.d;
         if (i18 == 0) {
             paint2.setColor(-1);
         } else if (i18 == 1) {
-            if (this.f49528i == null) {
+            if (this.f49542i == null) {
                 Paint paint3 = new Paint(1);
-                this.f49528i = paint3;
+                this.f49542i = paint3;
                 paint3.setColor(-16777216);
-                this.f49528i.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-                this.f49528i.setStrokeWidth(org.telegram.messenger.i0.L(3.0f));
+                this.f49542i.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+                this.f49542i.setStrokeWidth(org.telegram.messenger.i0.L(3.0f));
             }
             paint2.setColor(i0.b.o(-16777216, 127));
         }
-        if (this.e == 255 && this.f49523a != 1) {
+        if (this.e == 255 && this.f49537a != 1) {
             canvas.save();
         } else {
             canvas.saveLayerAlpha(getBounds().left - (getBounds().width() * 0.2f), getBounds().top, (getBounds().width() * 0.2f) + getBounds().right, (getBounds().height() * 0.2f) + getBounds().bottom, this.e, 31);
         }
-        Path path = this.f49529j;
+        Path path = this.f49543j;
         path.rewind();
         int i19 = 0;
         while (i19 < i15) {
-            if (this.f49523a == i14 && i19 == 0) {
+            if (this.f49537a == i14 && i19 == 0) {
                 i11 = i15;
             } else {
                 if (i19 == 0) {
-                    paint = this.f49525c;
+                    paint = this.f49539c;
                 } else {
                     paint = paint2;
                 }

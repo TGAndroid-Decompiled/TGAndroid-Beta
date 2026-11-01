@@ -1,21 +1,21 @@
 package vh;
 public final class l implements Runnable {
-    public final int f51441a;
-    public final e8 f51442b;
+    public final int f51456a;
+    public final e8 f51457b;
 
     public l(e8 e8Var, int i10) {
-        this.f51441a = i10;
-        this.f51442b = e8Var;
+        this.f51456a = i10;
+        this.f51457b = e8Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f51441a) {
+        switch (this.f51456a) {
             case 0:
-                this.f51442b.n();
+                this.f51457b.n();
                 return;
             case 1:
-                e8 e8Var = this.f51442b;
+                e8 e8Var = this.f51457b;
                 e8Var.J0 = false;
                 e8Var.K0 = Integer.MIN_VALUE;
                 e8Var.invalidate();
@@ -23,7 +23,7 @@ public final class l implements Runnable {
                 e8Var.S0.setVisibility(0);
                 return;
             default:
-                o8 o8Var = this.f51442b.R1;
+                o8 o8Var = this.f51457b.R1;
                 d8 d8Var = o8Var.X0;
                 if (d8Var != null) {
                     d8Var.O = false;

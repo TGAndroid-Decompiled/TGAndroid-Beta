@@ -1,7 +1,7 @@
 package th;
 
-import org.telegram.ui.sh0;
-public final class t2 extends sh0 {
+import org.telegram.ui.qh0;
+public final class t2 extends qh0 {
     @Override
     public final org.telegram.ui.ActionBar.p6 getResourceProvider() {
         return new b();

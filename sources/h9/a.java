@@ -29,14 +29,14 @@ import java.util.Map;
 import java.util.Set;
 import v7.r6;
 public final class a {
-    public static final o0 f7640f;
-    public static final d9.a f7641g;
+    public static final o0 f7641f;
+    public static final d9.a f7642g;
     public static final HashMap h;
-    public static final a f7642i;
-    public static final i f7643j;
-    public final String f7644a;
-    public final String f7645b;
-    public final o0 f7646c;
+    public static final a f7643i;
+    public static final i f7644j;
+    public final String f7645a;
+    public final String f7646b;
+    public final o0 f7647c;
     public String d;
     public int e;
 
@@ -70,13 +70,13 @@ public final class a {
             }
             o0Var = new o0(aVar.d(true), i10);
         }
-        f7640f = o0Var;
+        f7641f = o0Var;
         b bVar = b.d;
         b bVar2 = b.e;
         bVar2.getClass();
         c cVar = new c(bVar2);
         bVar.getClass();
-        f7641g = new d9.a(new d9.a(new d9.a(bVar, cVar), new e(' ', 1)), d9.i.b("()<>@,;:\\\"/[]?=").d());
+        f7642g = new d9.a(new d9.a(new d9.a(bVar, cVar), new e(' ', 1)), d9.i.b("()<>@,;:\\\"/[]?=").d());
         d9.i.b("\"\\\r").d().getClass();
         d9.i.b(" \t\r\n");
         h = new HashMap();
@@ -150,7 +150,7 @@ public final class a {
         b("application", "javascript");
         a("application", "jose");
         a("application", "jose+json");
-        f7642i = b("application", "json");
+        f7643i = b("application", "json");
         a("application", "jwt");
         b("application", "manifest+json");
         a("application", "vnd.google-earth.kml+xml");
@@ -196,13 +196,13 @@ public final class a {
         a("font", "ttf");
         a("font", "woff");
         a("font", "woff2");
-        f7643j = new i(new com.google.android.gms.internal.clearcut.e("; ", 1), 18);
+        f7644j = new i(new com.google.android.gms.internal.clearcut.e("; ", 1), 18);
     }
 
     public a(String str, String str2, o0 o0Var) {
-        this.f7644a = str;
-        this.f7645b = str2;
-        this.f7646c = o0Var;
+        this.f7645a = str;
+        this.f7646b = str2;
+        this.f7647c = o0Var;
     }
 
     public static void a(String str, String str2) {
@@ -211,21 +211,21 @@ public final class a {
     }
 
     public static a b(String str, String str2) {
-        a aVar = new a(str, str2, f7640f);
+        a aVar = new a(str, str2, f7641f);
         h.put(aVar, aVar);
         StandardCharsets.UTF_8.getClass();
         return aVar;
     }
 
     public final m1 c() {
-        return new m1(this.f7646c.b(), new l(new d2.c(10), 13));
+        return new m1(this.f7647c.b(), new l(new d2.c(10), 13));
     }
 
     public final boolean equals(Object obj) {
         if (obj != this) {
             if (obj instanceof a) {
                 a aVar = (a) obj;
-                if (this.f7644a.equals(aVar.f7644a) && this.f7645b.equals(aVar.f7645b) && c().equals(aVar.c())) {
+                if (this.f7645a.equals(aVar.f7645a) && this.f7646b.equals(aVar.f7646b) && c().equals(aVar.c())) {
                     return true;
                 }
                 return false;
@@ -238,7 +238,7 @@ public final class a {
     public final int hashCode() {
         int i10 = this.e;
         if (i10 == 0) {
-            int hashCode = Arrays.hashCode(new Object[]{this.f7644a, this.f7645b, c()});
+            int hashCode = Arrays.hashCode(new Object[]{this.f7645a, this.f7646b, c()});
             this.e = hashCode;
             return hashCode;
         }
@@ -249,14 +249,14 @@ public final class a {
         String str = this.d;
         if (str == null) {
             StringBuilder sb2 = new StringBuilder();
-            sb2.append(this.f7644a);
+            sb2.append(this.f7645a);
             sb2.append('/');
-            sb2.append(this.f7645b);
-            o0 o0Var = this.f7646c;
+            sb2.append(this.f7646b);
+            o0 o0Var = this.f7647c;
             if (o0Var.f6393f != 0) {
                 sb2.append("; ");
                 Collection a2 = new q1(o0Var, new l(new d2.c(9), 13)).a();
-                i iVar = f7643j;
+                i iVar = f7644j;
                 iVar.getClass();
                 try {
                     iVar.l0(sb2, a2.iterator());

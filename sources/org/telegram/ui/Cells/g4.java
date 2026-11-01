@@ -3,31 +3,31 @@ package org.telegram.ui.Cells;
 import android.view.View;
 import org.telegram.ui.Components.gr;
 public final class g4 {
-    public float f21913a;
-    public float f21914b;
-    public float f21915c;
+    public float f21914a;
+    public float f21915b;
+    public float f21916c;
     public boolean e;
-    public final org.telegram.ui.Components.m9 f21916f;
-    public final org.telegram.ui.Components.m9 f21917g;
+    public final org.telegram.ui.Components.m9 f21917f;
+    public final org.telegram.ui.Components.m9 f21918g;
     public boolean h;
-    public int f21918i;
+    public int f21919i;
     public float d = 0.0f;
-    public float f21919j = 0.0f;
+    public float f21920j = 0.0f;
 
     public g4(int i10, int i11) {
         org.telegram.ui.Components.m9 m9Var = new org.telegram.ui.Components.m9(6);
-        this.f21916f = m9Var;
+        this.f21917f = m9Var;
         org.telegram.ui.Components.m9 m9Var2 = new org.telegram.ui.Components.m9(8);
-        this.f21917g = m9Var2;
+        this.f21918g = m9Var2;
         float f7 = i10;
-        m9Var.f28380a = f7;
+        m9Var.f28417a = f7;
         float f10 = i11;
-        m9Var.f28381b = f10;
-        m9Var2.f28380a = f7;
-        m9Var2.f28381b = f10;
+        m9Var.f28418b = f10;
+        m9Var2.f28417a = f7;
+        m9Var2.f28418b = f10;
         m9Var.b();
         m9Var2.b();
-        int i12 = org.telegram.ui.ActionBar.t6.f20957eh;
+        int i12 = org.telegram.ui.ActionBar.t6.f20958eh;
         m9Var.d.setColor(i0.b.o(org.telegram.ui.ActionBar.t6.x0(null, i12, false), 38));
         m9Var2.d.setColor(i0.b.o(org.telegram.ui.ActionBar.t6.x0(null, i12, false), 38));
     }
@@ -37,8 +37,8 @@ public final class g4 {
     }
 
     public final float b() {
-        float interpolation = gr.f26496g.getInterpolation(this.d);
-        return c3.i0.z(1.0f, interpolation, 1.0f, ((this.f21913a * 0.2f) + 0.9f) * interpolation);
+        float interpolation = gr.f26524g.getInterpolation(this.d);
+        return c3.i0.z(1.0f, interpolation, 1.0f, ((this.f21914a * 0.2f) + 0.9f) * interpolation);
     }
 
     public final void c(double d) {
@@ -52,13 +52,13 @@ public final class g4 {
         } else if (f7 >= 0.0f) {
             f10 = f7;
         }
-        this.f21914b = f10;
-        this.f21915c = (f10 - this.f21913a) / 200.0f;
+        this.f21915b = f10;
+        this.f21916c = (f10 - this.f21914a) / 200.0f;
     }
 
     public final void d(int i10) {
         this.h = true;
-        this.f21916f.d.setColor(i10);
+        this.f21917f.d.setColor(i10);
     }
 
     public final void e(View view, boolean z10) {
@@ -69,18 +69,18 @@ public final class g4 {
     }
 
     public final void f() {
-        float f7 = this.f21914b;
-        float f10 = this.f21913a;
+        float f7 = this.f21915b;
+        float f10 = this.f21914a;
         if (f7 != f10) {
-            float f11 = this.f21915c;
+            float f11 = this.f21916c;
             float f12 = (16.0f * f11) + f10;
-            this.f21913a = f12;
+            this.f21914a = f12;
             if (f11 > 0.0f) {
                 if (f12 > f7) {
-                    this.f21913a = f7;
+                    this.f21914a = f7;
                 }
             } else if (f12 < f7) {
-                this.f21913a = f7;
+                this.f21914a = f7;
             }
         }
         boolean z10 = this.e;

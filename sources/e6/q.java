@@ -22,7 +22,7 @@ public final class q {
                 if (i10 != 0) {
                     g6.b bVar = cVar.f6261a;
                     String str = a2.f4335b;
-                    Log.w(bVar.f7367a, bVar.d("Error fetching queue item ids, statusCode=" + i10 + ", statusMessage=" + str, new Object[0]));
+                    Log.w(bVar.f7368a, bVar.d("Error fetching queue item ids, statusCode=" + i10 + ", statusMessage=" + str, new Object[0]));
                 }
                 cVar.f6269l = null;
                 if (!cVar.h.isEmpty()) {
@@ -40,7 +40,7 @@ public final class q {
                 if (i11 != 0) {
                     g6.b bVar2 = cVar2.f6261a;
                     String str2 = a10.f4335b;
-                    Log.w(bVar2.f7367a, bVar2.d("Error fetching queue items, statusCode=" + i11 + ", statusMessage=" + str2, new Object[0]));
+                    Log.w(bVar2.f7368a, bVar2.d("Error fetching queue items, statusCode=" + i11 + ", statusMessage=" + str2, new Object[0]));
                 }
                 cVar2.f6268k = null;
                 if (!cVar2.h.isEmpty()) {

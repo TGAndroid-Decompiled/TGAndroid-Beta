@@ -12,19 +12,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 public final class uc0 extends FrameLayout {
-    public final int f30902a = 1;
-    public final Object f30903b;
-    public final Object f30904c;
+    public final int f30936a = 1;
+    public final Object f30937b;
+    public final Object f30938c;
     public final Object d;
     public Object e;
-    public Object f30905f;
+    public Object f30939f;
     public Object h;
 
     public uc0(zc0 zc0Var, Context context) {
         super(context);
         this.h = zc0Var;
-        this.f30903b = new ArrayList(4);
-        this.f30904c = new ArrayList(4);
+        this.f30937b = new ArrayList(4);
+        this.f30938c = new ArrayList(4);
         this.d = new StringBuilder(4);
         for (int i10 = 0; i10 < 4; i10++) {
             TextView textView = new TextView(context);
@@ -36,7 +36,7 @@ public final class uc0 extends FrameLayout {
             textView.setPivotX(org.telegram.messenger.i0.L(25.0f));
             textView.setPivotY(org.telegram.messenger.i0.L(25.0f));
             addView(textView, w7.b6.e(50, 50, 51));
-            ((ArrayList) this.f30903b).add(textView);
+            ((ArrayList) this.f30937b).add(textView);
             TextView textView2 = new TextView(context);
             textView2.setTextColor(-1);
             textView2.setTypeface(org.telegram.messenger.i0.o());
@@ -47,21 +47,21 @@ public final class uc0 extends FrameLayout {
             textView2.setPivotX(org.telegram.messenger.i0.L(25.0f));
             textView2.setPivotY(org.telegram.messenger.i0.L(25.0f));
             addView(textView2, w7.b6.e(50, 50, 51));
-            ((ArrayList) this.f30904c).add(textView2);
+            ((ArrayList) this.f30938c).add(textView2);
         }
     }
 
     public static void a(uc0 uc0Var, boolean z10) {
-        ArrayList arrayList = (ArrayList) uc0Var.f30904c;
-        ArrayList arrayList2 = (ArrayList) uc0Var.f30903b;
+        ArrayList arrayList = (ArrayList) uc0Var.f30938c;
+        ArrayList arrayList2 = (ArrayList) uc0Var.f30937b;
         StringBuilder sb2 = (StringBuilder) uc0Var.d;
         if (sb2.length() == 0) {
             return;
         }
-        le leVar = (le) uc0Var.f30905f;
+        le leVar = (le) uc0Var.f30939f;
         if (leVar != null) {
             org.telegram.messenger.i0.r(leVar);
-            uc0Var.f30905f = null;
+            uc0Var.f30939f = null;
         }
         AnimatorSet animatorSet = (AnimatorSet) uc0Var.e;
         if (animatorSet != null) {
@@ -105,8 +105,8 @@ public final class uc0 extends FrameLayout {
     }
 
     public void b(String str) {
-        ArrayList arrayList = (ArrayList) this.f30904c;
-        ArrayList arrayList2 = (ArrayList) this.f30903b;
+        ArrayList arrayList = (ArrayList) this.f30938c;
+        ArrayList arrayList2 = (ArrayList) this.f30937b;
         StringBuilder sb2 = (StringBuilder) this.d;
         if (sb2.length() == 4) {
             return;
@@ -150,12 +150,12 @@ public final class uc0 extends FrameLayout {
                 arrayList3.add(ObjectAnimator.ofFloat(textView4, property3, 0.0f));
             }
         }
-        le leVar = (le) this.f30905f;
+        le leVar = (le) this.f30939f;
         if (leVar != null) {
             org.telegram.messenger.i0.r(leVar);
         }
         le leVar2 = new le(this, length, 2);
-        this.f30905f = leVar2;
+        this.f30939f = leVar2;
         org.telegram.messenger.i0.h3(leVar2, 1500L);
         for (int i11 = 0; i11 < length; i11++) {
             TextView textView5 = (TextView) arrayList2.get(i11);
@@ -193,7 +193,7 @@ public final class uc0 extends FrameLayout {
         int i10;
         float f7;
         float f10;
-        ImageView imageView = (ImageView) this.f30904c;
+        ImageView imageView = (ImageView) this.f30938c;
         if (z10) {
             i10 = 0;
         } else {
@@ -201,7 +201,7 @@ public final class uc0 extends FrameLayout {
         }
         imageView.setVisibility(i10);
         TextView textView = (TextView) this.d;
-        boolean z11 = org.telegram.messenger.cd.X;
+        boolean z11 = org.telegram.messenger.dd.X;
         if (!z11 && z10) {
             f7 = 53.0f;
         } else {
@@ -217,11 +217,11 @@ public final class uc0 extends FrameLayout {
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f30902a) {
+        switch (this.f30936a) {
             case 1:
                 super.dispatchDraw(canvas);
-                Paint paint = (Paint) this.f30905f;
-                paint.setColor(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f20930d7, (org.telegram.ui.ActionBar.p6) this.f30903b));
+                Paint paint = (Paint) this.f30939f;
+                paint.setColor(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f20931d7, (org.telegram.ui.ActionBar.p6) this.f30937b));
                 canvas.drawRect(0.0f, getHeight() - org.telegram.messenger.i0.f1(), getWidth(), getHeight(), paint);
                 return;
             default:
@@ -236,14 +236,14 @@ public final class uc0 extends FrameLayout {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f30902a) {
+        switch (this.f30936a) {
             case 0:
-                ArrayList arrayList = (ArrayList) this.f30904c;
-                ArrayList arrayList2 = (ArrayList) this.f30903b;
-                le leVar = (le) this.f30905f;
+                ArrayList arrayList = (ArrayList) this.f30938c;
+                ArrayList arrayList2 = (ArrayList) this.f30937b;
+                le leVar = (le) this.f30939f;
                 if (leVar != null) {
                     org.telegram.messenger.i0.r(leVar);
-                    this.f30905f = null;
+                    this.f30939f = null;
                 }
                 AnimatorSet animatorSet = (AnimatorSet) this.e;
                 if (animatorSet != null) {
@@ -279,7 +279,7 @@ public final class uc0 extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f30902a) {
+        switch (this.f30936a) {
             case 1:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(56.0f), 1073741824));
                 return;
@@ -291,24 +291,24 @@ public final class uc0 extends FrameLayout {
 
     public uc0(Context context, org.telegram.ui.ActionBar.p6 p6Var) {
         super(context);
-        this.f30905f = new Paint(1);
-        this.f30903b = p6Var;
+        this.f30939f = new Paint(1);
+        this.f30937b = p6Var;
         TextView textView = new TextView(context);
         this.d = textView;
-        org.telegram.messenger.z20.n(textView, 1, 20.0f);
-        textView.setGravity(org.telegram.messenger.cd.X ? 5 : 3);
-        org.telegram.ui.ActionBar.a7.V(textView, org.telegram.ui.ActionBar.t6.f21037j5, p6Var);
-        boolean z10 = org.telegram.messenger.cd.X;
+        org.telegram.messenger.a30.n(textView, 1, 20.0f);
+        textView.setGravity(org.telegram.messenger.dd.X ? 5 : 3);
+        org.telegram.ui.ActionBar.a7.V(textView, org.telegram.ui.ActionBar.t6.f21038j5, p6Var);
+        boolean z10 = org.telegram.messenger.dd.X;
         addView(textView, w7.b6.d(-1, -2.0f, 23, z10 ? 16.0f : 53.0f, 0.0f, z10 ? 53.0f : 16.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f30904c = imageView;
+        this.f30938c = imageView;
         org.telegram.ui.ActionBar.c2 c2Var = new org.telegram.ui.ActionBar.c2(false);
         this.e = c2Var;
         imageView.setImageDrawable(c2Var);
         c2Var.a(-1);
         c2Var.b(-1);
-        c2Var.f20202k = 220.0f;
-        addView(imageView, w7.b6.d(24, 24.0f, (org.telegram.messenger.cd.X ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
+        c2Var.f20203k = 220.0f;
+        addView(imageView, w7.b6.d(24, 24.0f, (org.telegram.messenger.dd.X ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
         imageView.setOnClickListener(new rh.s(this, 22));
     }
 }

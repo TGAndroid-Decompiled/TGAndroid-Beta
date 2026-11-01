@@ -1,20 +1,20 @@
 package rh;
 
-import org.telegram.messenger.q20;
-public final class n4 implements q20 {
-    public final int f47251a = 1;
-    public final e6 f47252b;
-    public final int f47253c;
-    public final q20 d;
+import org.telegram.messenger.r20;
+public final class n4 implements r20 {
+    public final int f47262a = 1;
+    public final e6 f47263b;
+    public final int f47264c;
+    public final r20 d;
     public final boolean[] e;
-    public final q20 f47254f;
+    public final r20 f47265f;
 
-    public n4(e6 e6Var, int i10, q20 q20Var, boolean[] zArr, q20 q20Var2) {
-        this.f47252b = e6Var;
-        this.f47253c = i10;
-        this.d = q20Var;
+    public n4(e6 e6Var, int i10, r20 r20Var, boolean[] zArr, r20 r20Var2) {
+        this.f47263b = e6Var;
+        this.f47264c = i10;
+        this.d = r20Var;
         this.e = zArr;
-        this.f47254f = q20Var2;
+        this.f47265f = r20Var2;
     }
 
     @Override
@@ -22,55 +22,55 @@ public final class n4 implements q20 {
         String str;
         String str2;
         Boolean bool = (Boolean) obj;
-        switch (this.f47251a) {
+        switch (this.f47262a) {
             case 0:
                 this.e[0] = true;
-                if (this.f47253c > 0) {
-                    this.f47252b.R();
+                if (this.f47264c > 0) {
+                    this.f47263b.R();
                 }
-                q20 q20Var = this.d;
-                if (q20Var != null) {
+                r20 r20Var = this.d;
+                if (r20Var != null) {
                     if (bool.booleanValue()) {
                         str = "paid";
                     } else {
                         str = "failed";
                     }
-                    q20Var.a(str);
+                    r20Var.a(str);
                 }
-                q20 q20Var2 = this.f47254f;
-                if (q20Var2 != null) {
-                    q20Var2.a(Boolean.TRUE);
+                r20 r20Var2 = this.f47265f;
+                if (r20Var2 != null) {
+                    r20Var2.a(Boolean.TRUE);
                     return;
                 }
                 return;
             default:
-                if (this.f47253c > 0) {
-                    this.f47252b.R();
+                if (this.f47264c > 0) {
+                    this.f47263b.R();
                 }
-                q20 q20Var3 = this.d;
-                if (q20Var3 != null) {
-                    q20Var3.a(Boolean.TRUE);
+                r20 r20Var3 = this.d;
+                if (r20Var3 != null) {
+                    r20Var3.a(Boolean.TRUE);
                 }
                 this.e[0] = true;
-                q20 q20Var4 = this.f47254f;
-                if (q20Var4 != null) {
+                r20 r20Var4 = this.f47265f;
+                if (r20Var4 != null) {
                     if (bool.booleanValue()) {
                         str2 = "paid";
                     } else {
                         str2 = "failed";
                     }
-                    q20Var4.a(str2);
+                    r20Var4.a(str2);
                     return;
                 }
                 return;
         }
     }
 
-    public n4(e6 e6Var, boolean[] zArr, int i10, q20 q20Var, q20 q20Var2) {
-        this.f47252b = e6Var;
+    public n4(e6 e6Var, boolean[] zArr, int i10, r20 r20Var, r20 r20Var2) {
+        this.f47263b = e6Var;
         this.e = zArr;
-        this.f47253c = i10;
-        this.d = q20Var;
-        this.f47254f = q20Var2;
+        this.f47264c = i10;
+        this.d = r20Var;
+        this.f47265f = r20Var2;
     }
 }

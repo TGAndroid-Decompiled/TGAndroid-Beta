@@ -1,29 +1,26 @@
 package org.telegram.ui;
+public final class ef implements Runnable {
+    public final int f36815a;
+    public final un f36816b;
+    public final long f36817c;
+    public final long d;
 
-import android.graphics.RectF;
-import android.view.View;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.function.ToIntFunction;
-public final class ef implements ToIntFunction {
-    public final int f37043a;
-    public final Object f37044b;
-
-    public ef(Object obj, int i10) {
-        this.f37043a = i10;
-        this.f37044b = obj;
+    public ef(un unVar, long j10, long j11, int i10) {
+        this.f36815a = i10;
+        this.f36816b = unVar;
+        this.f36817c = j10;
+        this.d = j11;
     }
 
     @Override
-    public final int applyAsInt(Object obj) {
-        int i10 = this.f37043a;
-        Object obj2 = this.f37044b;
-        switch (i10) {
+    public final void run() {
+        switch (this.f36815a) {
             case 0:
-                return ((Integer) ((HashMap) obj2).get((View) obj)).intValue();
+                un.Z(this.f36816b, this.f36817c, this.d);
+                return;
             default:
-                RectF rectF = ProfileActivity.R6;
-                return ((Integer) ((ArrayList) obj2).get(((Integer) obj).intValue())).intValue();
+                un.k1(this.f36816b, this.f36817c, this.d);
+                return;
         }
     }
 }

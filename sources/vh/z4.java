@@ -2,10 +2,10 @@ package vh;
 
 import org.telegram.messenger.ImageReceiver;
 public abstract class z4 {
-    public final String f52251a;
+    public final String f52269a;
 
     public z4(String str) {
-        this.f52251a = str;
+        this.f52269a = str;
     }
 
     public abstract String a();

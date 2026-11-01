@@ -13,9 +13,9 @@ import m2.t;
 import t7.u;
 import w7.l;
 public final class c extends l {
-    public final x f47858a = new x();
-    public final g f47859b = new g();
-    public k0 f47860c;
+    public final x f47869a = new x();
+    public final g f47870b = new g();
+    public k0 f47871c;
 
     @Override
     public final u0 b(l3.a aVar, ByteBuffer byteBuffer) {
@@ -30,17 +30,17 @@ public final class c extends l {
         boolean z16;
         long j11;
         long j12;
-        k0 k0Var = this.f47860c;
-        if (k0Var == null || aVar.f11637r != k0Var.e()) {
+        k0 k0Var = this.f47871c;
+        if (k0Var == null || aVar.f11638r != k0Var.e()) {
             k0 k0Var2 = new k0(aVar.e);
-            this.f47860c = k0Var2;
-            k0Var2.a(aVar.e - aVar.f11637r);
+            this.f47871c = k0Var2;
+            k0Var2.a(aVar.e - aVar.f11638r);
         }
         byte[] array = byteBuffer.array();
         int limit = byteBuffer.limit();
-        x xVar = this.f47858a;
+        x xVar = this.f47869a;
         xVar.L(limit, array);
-        g gVar = this.f47859b;
+        g gVar = this.f47870b;
         gVar.b0(limit, array);
         gVar.f0(39);
         long i10 = (gVar.i(1) << 32) | gVar.i(32);
@@ -55,12 +55,12 @@ public final class c extends l {
                         if (i12 != 6) {
                             obj = null;
                         } else {
-                            k0 k0Var3 = this.f47860c;
+                            k0 k0Var3 = this.f47871c;
                             long d = a.d(i10, xVar);
                             obj = new a(d, 1, k0Var3.b(d));
                         }
                     } else {
-                        k0 k0Var4 = this.f47860c;
+                        k0 k0Var4 = this.f47871c;
                         xVar.C();
                         if ((xVar.A() & 128) != 0) {
                             z13 = true;

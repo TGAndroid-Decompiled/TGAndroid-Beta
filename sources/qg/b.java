@@ -4,7 +4,7 @@ import android.content.Context;
 import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
 import android.text.TextUtils;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 import org.telegram.messenger.i0;
 import org.telegram.messenger.k6;
 import org.telegram.tgnet.TLRPC;
@@ -14,28 +14,28 @@ import org.telegram.ui.Components.ep;
 import ph.x1;
 import w7.b6;
 public final class b extends og.d {
-    public final ep f45521s;
-    public TLRPC.TL_help_country f45522w;
-    public final TextPaint f45523x;
-    public final x1 f45524y;
+    public final ep f45532s;
+    public TLRPC.TL_help_country f45533w;
+    public final TextPaint f45534x;
+    public final x1 f45535y;
 
     public b(Context context, p6 p6Var) {
         super(context, p6Var);
         int i10;
         TextPaint textPaint = new TextPaint();
-        this.f45523x = textPaint;
-        this.f45524y = new x1(this, 1);
+        this.f45534x = textPaint;
+        this.f45535y = new x1(this, 1);
         textPaint.setTextSize(i0.L(20.0f));
-        this.f14179f.setVisibility(8);
-        this.f14178c.setVisibility(8);
+        this.f14180f.setVisibility(8);
+        this.f14179c.setVisibility(8);
         ep epVar = new ep(21, context, p6Var);
-        this.f45521s = epVar;
-        epVar.b(t6.B5, t6.f21039j7, t6.C5);
+        this.f45532s = epVar;
+        epVar.b(t6.B5, t6.f21040j7, t6.C5);
         epVar.setDrawUnchecked(true);
         epVar.setDrawBackgroundAsArc(10);
         addView(epVar);
         epVar.a(false, false);
-        if (cd.X) {
+        if (dd.X) {
             i10 = 5;
         } else {
             i10 = 3;
@@ -55,7 +55,7 @@ public final class b extends og.d {
 
     @Override
     public final void c(boolean z10, boolean z11) {
-        ep epVar = this.f45521s;
+        ep epVar = this.f45532s;
         if (epVar.getVisibility() == 0) {
             epVar.a(z10, z11);
         }
@@ -71,7 +71,7 @@ public final class b extends og.d {
         float f12;
         float f13;
         float f14;
-        boolean z10 = cd.X;
+        boolean z10 = dd.X;
         int i12 = 3;
         if (z10) {
             i10 = 5;
@@ -90,7 +90,7 @@ public final class b extends og.d {
             f10 = 20.0f;
         }
         this.d.setLayoutParams(b6.d(-1, -2.0f, i13, f7, 0.0f, f10, 0.0f));
-        boolean z11 = cd.X;
+        boolean z11 = dd.X;
         if (z11) {
             i11 = 5;
         } else {
@@ -108,7 +108,7 @@ public final class b extends og.d {
             f12 = 20.0f;
         }
         this.e.setLayoutParams(b6.d(-1, -2.0f, i14, f11, 0.0f, f12, 0.0f));
-        boolean z12 = cd.X;
+        boolean z12 = dd.X;
         if (z12) {
             i12 = 5;
         }
@@ -123,13 +123,13 @@ public final class b extends og.d {
         } else {
             f14 = 15.0f;
         }
-        this.f14179f.setLayoutParams(b6.d(22, 22.0f, i15, f13, 0.0f, f14, 0.0f));
+        this.f14180f.setLayoutParams(b6.d(22, 22.0f, i15, f13, 0.0f, f14, 0.0f));
     }
 
     public final void f() {
-        TLRPC.TL_help_country tL_help_country = this.f45522w;
+        TLRPC.TL_help_country tL_help_country = this.f45533w;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        CharSequence o10 = k6.o(cd.E0(tL_help_country.iso2), this.f45523x.getFontMetricsInt(), 0, this.f45524y);
+        CharSequence o10 = k6.o(dd.E0(tL_help_country.iso2), this.f45534x.getFontMetricsInt(), 0, this.f45535y);
         if (o10 != null) {
             spannableStringBuilder.append(o10).append((CharSequence) " ");
             spannableStringBuilder.setSpan(new a(16), o10.length(), o10.length() + 1, 0);
@@ -137,7 +137,7 @@ public final class b extends og.d {
             spannableStringBuilder.append((CharSequence) " ");
             spannableStringBuilder.setSpan(new a(34), 0, 1, 0);
         }
-        String i02 = cd.i0(2131750530, tL_help_country.iso2);
+        String i02 = dd.i0(2131750530, tL_help_country.iso2);
         if (TextUtils.isEmpty(i02)) {
             i02 = tL_help_country.default_name;
         }
@@ -146,7 +146,7 @@ public final class b extends og.d {
     }
 
     public TLRPC.TL_help_country getCountry() {
-        return this.f45522w;
+        return this.f45533w;
     }
 
     @Override

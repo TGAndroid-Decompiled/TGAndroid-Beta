@@ -50,7 +50,7 @@ public final class a {
 
     public a(u9.b bVar) {
         this.f3730a = 5;
-        Context context = (Context) bVar.f50194b;
+        Context context = (Context) bVar.f50208b;
         int e = x9.h.e(context, "com.google.firebase.crashlytics.unity_version", "string");
         if (e != 0) {
             this.f3731b = "Unity";

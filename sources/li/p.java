@@ -4,9 +4,9 @@ import android.os.SystemClock;
 import java.util.concurrent.atomic.AtomicLong;
 import org.telegram.messenger.f8;
 public final class p {
-    public static final AtomicLong f12221c = new AtomicLong(1);
-    public final long f12222a = f12221c.getAndIncrement();
-    public final long f12223b = SystemClock.elapsedRealtime();
+    public static final AtomicLong f12222c = new AtomicLong(1);
+    public final long f12223a = f12222c.getAndIncrement();
+    public final long f12224b = SystemClock.elapsedRealtime();
 
     public final void a(String str, Throwable th2) {
         f8.d(c() + str + ": " + th2);
@@ -18,6 +18,6 @@ public final class p {
     }
 
     public final String c() {
-        return "RoundVideo[" + this.f12222a + "] t+" + (SystemClock.elapsedRealtime() - this.f12223b) + "ms [" + Thread.currentThread().getName() + "] ";
+        return "RoundVideo[" + this.f12223a + "] t+" + (SystemClock.elapsedRealtime() - this.f12224b) + "ms [" + Thread.currentThread().getName() + "] ";
     }
 }

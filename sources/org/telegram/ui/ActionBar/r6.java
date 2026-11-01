@@ -5,35 +5,35 @@ import android.text.TextUtils;
 import android.util.SparseIntArray;
 import java.io.File;
 import java.util.Locale;
-import org.telegram.messenger.z20;
+import org.telegram.messenger.a30;
 import org.telegram.tgnet.TLRPC;
 public final class r6 {
-    public int f20730a;
-    public s6 f20731b;
-    public int f20732c;
+    public int f20731a;
+    public s6 f20732b;
+    public int f20733c;
     public int d;
     public int e;
-    public int f20733f;
-    public int f20734g;
+    public int f20734f;
+    public int f20735g;
     public int h;
-    public boolean f20735i;
-    public long f20736j;
-    public long f20737k;
-    public long f20738l;
-    public long f20739m;
-    public float f20742p;
-    public boolean f20743q;
-    public TLRPC.TL_theme f20744r;
-    public TLRPC.TL_wallPaper f20745s;
-    public int f20746t;
-    public String f20747u;
+    public boolean f20736i;
+    public long f20737j;
+    public long f20738k;
+    public long f20739l;
+    public long f20740m;
+    public float f20743p;
+    public boolean f20744q;
+    public TLRPC.TL_theme f20745r;
+    public TLRPC.TL_wallPaper f20746s;
+    public int f20747t;
+    public String f20748u;
     public String v;
-    public TLRPC.InputFile f20748w;
-    public TLRPC.InputFile f20749x;
-    public m6 f20750y;
-    public boolean f20751z;
-    public int f20740n = 45;
-    public String f20741o = "";
+    public TLRPC.InputFile f20749w;
+    public TLRPC.InputFile f20750x;
+    public m6 f20751y;
+    public boolean f20752z;
+    public int f20741n = 45;
+    public String f20742o = "";
     public final float[] A = new float[3];
 
     public static int a(SparseIntArray sparseIntArray, int... iArr) {
@@ -72,11 +72,11 @@ public final class r6 {
     }
 
     public static void h(SparseIntArray sparseIntArray) {
-        for (int i10 = t6.f21120nb; i10 < t6.f21246ub; i10++) {
+        for (int i10 = t6.f21121nb; i10 < t6.f21247ub; i10++) {
             sparseIntArray.delete(i10);
             sparseIntArray.put(i10, t6.em[i10]);
         }
-        for (int i11 = t6.f21264vb; i11 < t6.Hc; i11++) {
+        for (int i11 = t6.f21265vb; i11 < t6.Hc; i11++) {
             sparseIntArray.delete(i11);
             sparseIntArray.put(i11, t6.em[i11]);
         }
@@ -95,7 +95,7 @@ public final class r6 {
         if (f10 <= 0.0f) {
             fArr[0] = f7;
         }
-        fArr[1] = z20.z(f10, 0.6f, 1.0f, 0.0f);
+        fArr[1] = a30.z(f10, 0.6f, 1.0f, 0.0f);
         fArr[2] = Math.max(0.0f, Math.min(1.0f, fArr[2] - 0.05f));
         return Color.HSVToColor(30, fArr);
     }
@@ -105,24 +105,24 @@ public final class r6 {
     }
 
     public final File e() {
-        if (this.f20730a < 100) {
-            if (TextUtils.isEmpty(this.f20741o)) {
+        if (this.f20731a < 100) {
+            if (TextUtils.isEmpty(this.f20742o)) {
                 return null;
             }
             File h = org.telegram.messenger.w0.h();
             Locale locale = Locale.US;
-            String m10 = this.f20731b.m();
-            int i10 = this.f20730a;
-            String str = this.f20741o;
+            String m10 = this.f20732b.m();
+            int i10 = this.f20731a;
+            String str = this.f20742o;
             return new File(h, m10 + "_" + i10 + "_" + str + "_v5.jpg");
-        } else if (TextUtils.isEmpty(this.f20741o)) {
+        } else if (TextUtils.isEmpty(this.f20742o)) {
             return null;
         } else {
             File h10 = org.telegram.messenger.w0.h();
             Locale locale2 = Locale.US;
-            String m11 = this.f20731b.m();
-            int i11 = this.f20730a;
-            String str2 = this.f20741o;
+            String m11 = this.f20732b.m();
+            int i11 = this.f20731a;
+            String str2 = this.f20742o;
             return new File(h10, m11 + "_" + i11 + "_" + str2 + "_v8_debug.jpg");
         }
     }
@@ -137,7 +137,7 @@ public final class r6 {
         if (!z10) {
             f10 = 0.0f;
         }
-        fArr[2] = z20.z(f11, f10, 1.0f, 0.0f);
+        fArr[2] = a30.z(f11, f10, 1.0f, 0.0f);
         return Color.HSVToColor(51, fArr);
     }
 

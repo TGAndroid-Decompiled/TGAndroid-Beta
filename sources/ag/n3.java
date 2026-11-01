@@ -7,9 +7,9 @@ import j$.time.ZoneId;
 import j$.time.format.TextStyle;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.vp;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.at;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
@@ -109,7 +109,7 @@ public final class n3 {
                 return null;
             }
             TLRPC.TL_timezone tL_timezone = (TLRPC.TL_timezone) arrayList.get(i10);
-            if (TextUtils.equals(tL_timezone.f19933id, str)) {
+            if (TextUtils.equals(tL_timezone.f19934id, str)) {
                 return tL_timezone;
             }
             i10++;
@@ -132,7 +132,7 @@ public final class n3 {
             return "";
         }
         if (z10) {
-            String displayName = of2.getRules().getOffset(Instant.now()).getDisplayName(TextStyle.FULL, cd.D0().f15003y);
+            String displayName = of2.getRules().getOffset(Instant.now()).getDisplayName(TextStyle.FULL, dd.D0().f15365y);
             str2 = "GMT";
             if (displayName.length() != 1 || displayName.charAt(0) != 'Z') {
                 str2 = "GMT".concat(displayName);
@@ -153,7 +153,7 @@ public final class n3 {
         if (!this.f657b && !this.f658c) {
             this.f657b = true;
             int i10 = this.f656a;
-            SharedPreferences sharedPreferences = vp.r1(i10).f7;
+            SharedPreferences sharedPreferences = wp.r1(i10).f7;
             TLRPC.help_timezonesList help_timezoneslist = null;
             String string = sharedPreferences.getString("timezones", null);
             int i11 = 0;
@@ -166,7 +166,7 @@ public final class n3 {
             if (help_timezoneslist != null) {
                 arrayList.addAll(help_timezoneslist.timezones);
             }
-            zs.f(i10).k(zs.f19680r3, new Object[0]);
+            at.f(i10).k(at.f14776r3, new Object[0]);
             TLRPC.TL_help_getTimezonesList tL_help_getTimezonesList = new TLRPC.TL_help_getTimezonesList();
             if (help_timezoneslist != null) {
                 i11 = help_timezoneslist.hash;

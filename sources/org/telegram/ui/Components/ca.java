@@ -4,21 +4,21 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 import android.view.View;
-public final class ca extends uu0 {
-    public final boolean f25034f0;
-    public final boolean f25035g0;
-    public final ha f25036h0;
+public final class ca extends vu0 {
+    public final boolean f25069f0;
+    public final boolean f25070g0;
+    public final ha f25071h0;
 
     public ca(ha haVar, Context context, boolean z10, boolean z11) {
         super(context, null);
-        this.f25036h0 = haVar;
-        this.f25034f0 = z10;
-        this.f25035g0 = z11;
+        this.f25071h0 = haVar;
+        this.f25069f0 = z10;
+        this.f25070g0 = z11;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        ha haVar = this.f25036h0;
+        ha haVar = this.f25071h0;
         haVar.W0(canvas, this);
         super.dispatchDraw(canvas);
         haVar.V0(canvas, this);
@@ -28,8 +28,8 @@ public final class ca extends uu0 {
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
             float y3 = motionEvent.getY();
-            ha haVar = this.f25036h0;
-            if (y3 < haVar.f21612r0.getBounds().top) {
+            ha haVar = this.f25071h0;
+            if (y3 < haVar.f21613r0.getBounds().top) {
                 haVar.dismiss();
             }
         }
@@ -38,8 +38,8 @@ public final class ca extends uu0 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (!this.f25035g0) {
-            this.f25036h0.getClass();
+        if (!this.f25070g0) {
+            this.f25071h0.getClass();
         }
         return super.drawChild(canvas, view, j10);
     }
@@ -56,11 +56,11 @@ public final class ca extends uu0 {
         int i13;
         wt wtVar;
         int size = View.MeasureSpec.getSize(i11);
-        ha haVar = this.f25036h0;
-        haVar.f26668n1 = size;
+        ha haVar = this.f25071h0;
+        haVar.f26726n1 = size;
         haVar.S0(i10, i11);
-        if (this.f25034f0) {
-            i11 = View.MeasureSpec.makeMeasureSpec(haVar.f26668n1, 1073741824);
+        if (this.f25069f0) {
+            i11 = View.MeasureSpec.makeMeasureSpec(haVar.f26726n1, 1073741824);
         }
         if (haVar.H1 != null) {
             int size2 = View.MeasureSpec.getSize(i10);
@@ -101,9 +101,9 @@ public final class ca extends uu0 {
                             } else {
                                 f7 = 320.0f;
                             }
-                            childAt.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.i0.L(f7), getPaddingTop() + (size3 - org.telegram.messenger.i0.f16020m)), 1073741824));
+                            childAt.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.i0.L(f7), getPaddingTop() + (size3 - org.telegram.messenger.i0.f16166m)), 1073741824));
                         } else {
-                            childAt.measure(View.MeasureSpec.makeMeasureSpec(size2, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + (size3 - org.telegram.messenger.i0.f16020m), 1073741824));
+                            childAt.measure(View.MeasureSpec.makeMeasureSpec(size2, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + (size3 - org.telegram.messenger.i0.f16166m), 1073741824));
                         }
                     } else {
                         i12 = i10;

@@ -135,7 +135,7 @@ public abstract class w3 {
     public static TLRPC.Chat E(int i10, TLRPC.Chat chat) {
         if (chat != null && chat.linked_monoforum_id != 0) {
             if (chat.monoforum) {
-                return vp.r1(i10).L0(Long.valueOf(chat.linked_monoforum_id));
+                return wp.r1(i10).L0(Long.valueOf(chat.linked_monoforum_id));
             }
             return chat;
         }
@@ -150,7 +150,7 @@ public abstract class w3 {
         if ((peerColor instanceof TLRPC.TL_peerColor) && (peerColor.flags & 1) != 0) {
             return peerColor.color;
         }
-        return (int) (chat.f19793id % 7);
+        return (int) (chat.f19794id % 7);
     }
 
     public static long G(TLRPC.Chat chat) {
@@ -228,83 +228,83 @@ public abstract class w3 {
         if (i10 == 23) {
             if (chat != null && !P(i10, chat)) {
                 if (i0.D1(chat.banned_rights)) {
-                    return cd.a0("AttachGifRestrictedForever", null, 2131753969, new Object[0]);
+                    return dd.a0("AttachGifRestrictedForever", null, 2131753969, new Object[0]);
                 }
-                return cd.a0("AttachGifRestricted", null, 2131753970, cd.v(chat.banned_rights.until_date));
+                return dd.a0("AttachGifRestricted", null, 2131753970, dd.v(chat.banned_rights.until_date));
             }
-            return cd.L0(2131749554, null);
+            return dd.L0(2131749554, null);
         } else if (i10 == 8) {
             if (chat != null && !P(i10, chat)) {
                 if (i0.D1(chat.banned_rights)) {
-                    return cd.a0("AttachStickersRestrictedForever", null, 2131753934, new Object[0]);
+                    return dd.a0("AttachStickersRestrictedForever", null, 2131753934, new Object[0]);
                 }
-                return cd.a0("AttachStickersRestricted", null, 2131753935, cd.v(chat.banned_rights.until_date));
+                return dd.a0("AttachStickersRestricted", null, 2131753935, dd.v(chat.banned_rights.until_date));
             }
-            return cd.L0(2131749548, null);
+            return dd.L0(2131749548, null);
         } else if (i10 == 16) {
             if (chat != null && !P(i10, chat)) {
                 if (i0.D1(chat.banned_rights)) {
-                    return cd.a0("AttachPhotoRestrictedForever", null, 2131753945, new Object[0]);
+                    return dd.a0("AttachPhotoRestrictedForever", null, 2131753945, new Object[0]);
                 }
-                return cd.a0("AttachPhotoRestricted", null, 2131753946, cd.v(chat.banned_rights.until_date));
+                return dd.a0("AttachPhotoRestricted", null, 2131753946, dd.v(chat.banned_rights.until_date));
             }
-            return cd.L0(2131749551, null);
+            return dd.L0(2131749551, null);
         } else if (i10 == 17) {
             if (chat != null && !P(i10, chat)) {
                 if (i0.D1(chat.banned_rights)) {
-                    return cd.a0("AttachVideoRestrictedForever", null, 2131753930, new Object[0]);
+                    return dd.a0("AttachVideoRestrictedForever", null, 2131753930, new Object[0]);
                 }
-                return cd.a0("AttachVideoRestricted", null, 2131753931, cd.v(chat.banned_rights.until_date));
+                return dd.a0("AttachVideoRestricted", null, 2131753931, dd.v(chat.banned_rights.until_date));
             }
-            return cd.L0(2131749547, null);
+            return dd.L0(2131749547, null);
         } else if (i10 == 19) {
             if (chat != null && !P(i10, chat)) {
                 if (i0.D1(chat.banned_rights)) {
-                    return cd.a0("AttachDocumentsRestrictedForever", null, 2131753973, new Object[0]);
+                    return dd.a0("AttachDocumentsRestrictedForever", null, 2131753973, new Object[0]);
                 }
-                return cd.a0("AttachDocumentsRestricted", null, 2131753974, cd.v(chat.banned_rights.until_date));
+                return dd.a0("AttachDocumentsRestricted", null, 2131753974, dd.v(chat.banned_rights.until_date));
             }
-            return cd.L0(2131749556, null);
+            return dd.L0(2131749556, null);
         } else if (i10 == 7) {
             if (chat != null && !P(i10, chat)) {
                 if (i0.D1(chat.banned_rights)) {
-                    return cd.a0("AttachMediaRestrictedForever", null, 2131753955, new Object[0]);
+                    return dd.a0("AttachMediaRestrictedForever", null, 2131753955, new Object[0]);
                 }
-                return cd.a0("AttachMediaRestricted", null, 2131753956, cd.v(chat.banned_rights.until_date));
+                return dd.a0("AttachMediaRestricted", null, 2131753956, dd.v(chat.banned_rights.until_date));
             }
-            return cd.L0(2131749552, null);
+            return dd.L0(2131749552, null);
         } else if (i10 == 18) {
             if (chat != null && !P(i10, chat)) {
                 if (i0.D1(chat.banned_rights)) {
-                    return cd.a0("AttachAudioRestrictedForever", null, 2131753980, new Object[0]);
+                    return dd.a0("AttachAudioRestrictedForever", null, 2131753980, new Object[0]);
                 }
-                return cd.a0("AttachAudioRestricted", null, 2131753981, cd.v(chat.banned_rights.until_date));
+                return dd.a0("AttachAudioRestricted", null, 2131753981, dd.v(chat.banned_rights.until_date));
             }
-            return cd.L0(2131749557, null);
+            return dd.L0(2131749557, null);
         } else if (i10 == 22) {
             if (chat != null && !P(i10, chat)) {
                 if (i0.D1(chat.banned_rights)) {
-                    return cd.a0("AttachPlainRestrictedForever", null, 2131753943, new Object[0]);
+                    return dd.a0("AttachPlainRestrictedForever", null, 2131753943, new Object[0]);
                 }
-                return cd.a0("AttachPlainRestricted", null, 2131753944, cd.v(chat.banned_rights.until_date));
+                return dd.a0("AttachPlainRestricted", null, 2131753944, dd.v(chat.banned_rights.until_date));
             }
-            return cd.L0(2131749550, null);
+            return dd.L0(2131749550, null);
         } else if (i10 == 21) {
             if (chat != null && !P(i10, chat)) {
                 if (i0.D1(chat.banned_rights)) {
-                    return cd.a0("AttachRoundRestrictedForever", null, 2131753938, new Object[0]);
+                    return dd.a0("AttachRoundRestrictedForever", null, 2131753938, new Object[0]);
                 }
-                return cd.a0("AttachRoundRestricted", null, 2131753939, cd.v(chat.banned_rights.until_date));
+                return dd.a0("AttachRoundRestricted", null, 2131753939, dd.v(chat.banned_rights.until_date));
             }
-            return cd.L0(2131749549, null);
+            return dd.L0(2131749549, null);
         } else if (i10 == 20) {
             if (chat != null && !P(i10, chat)) {
                 if (i0.D1(chat.banned_rights)) {
-                    return cd.a0("AttachVoiceRestrictedForever", null, 2131753927, new Object[0]);
+                    return dd.a0("AttachVoiceRestrictedForever", null, 2131753927, new Object[0]);
                 }
-                return cd.a0("AttachVoiceRestricted", null, 2131753928, cd.v(chat.banned_rights.until_date));
+                return dd.a0("AttachVoiceRestricted", null, 2131753928, dd.v(chat.banned_rights.until_date));
             }
-            return cd.L0(2131749546, null);
+            return dd.L0(2131749546, null);
         } else {
             return "";
         }
@@ -324,19 +324,19 @@ public abstract class w3 {
             }
             return j11;
         } else if (chat != null && (tL_chatAdminRights = chat.admin_rights) != null && tL_chatAdminRights.anonymous) {
-            long j12 = chat.f19793id;
+            long j12 = chat.f19794id;
             if (z10) {
                 return -j12;
             }
             return j12;
         } else if (chat != null && V(chat) && !chat.signatures) {
-            long j13 = chat.f19793id;
+            long j13 = chat.f19794id;
             if (z10) {
                 return -j13;
             }
             return j13;
         } else {
-            return d20.i(d20.f15147s0).e();
+            return e20.i(e20.f15506s0).e();
         }
     }
 
@@ -397,7 +397,7 @@ public abstract class w3 {
     }
 
     public static boolean S(int i10, long j10) {
-        return T(vp.r1(i10).L0(Long.valueOf(j10)));
+        return T(wp.r1(i10).L0(Long.valueOf(j10)));
     }
 
     public static boolean T(TLRPC.Chat chat) {
@@ -408,7 +408,7 @@ public abstract class w3 {
     }
 
     public static boolean U(int i10, long j10) {
-        return V(vp.r1(i10).L0(Long.valueOf(j10)));
+        return V(wp.r1(i10).L0(Long.valueOf(j10)));
     }
 
     public static boolean V(TLRPC.Chat chat) {
@@ -430,7 +430,7 @@ public abstract class w3 {
 
     public static boolean X(int i10, TLRPC.Chat chat) {
         TLRPC.Chat L0;
-        if (chat == null || chat.linked_community_id == 0 || (L0 = vp.r1(i10).L0(Long.valueOf(chat.linked_community_id))) == null || !L0.collapsed_in_dialogs) {
+        if (chat == null || chat.linked_community_id == 0 || (L0 = wp.r1(i10).L0(Long.valueOf(chat.linked_community_id))) == null || !L0.collapsed_in_dialogs) {
             return false;
         }
         return true;
@@ -444,7 +444,7 @@ public abstract class w3 {
     }
 
     public static boolean Z(int i10, long j10) {
-        vp r12 = vp.r1(i10);
+        wp r12 = wp.r1(i10);
         TLRPC.Chat L0 = r12.L0(Long.valueOf(j10));
         TLRPC.ChatFull M0 = r12.M0(j10);
         if (n0(L0) && M0 != null && M0.linked_chat_id != 0) {
@@ -454,7 +454,7 @@ public abstract class w3 {
     }
 
     public static boolean a(TLRPC.Chat chat) {
-        if (!tz.f18165n) {
+        if (!uz.f18534n) {
             if (chat == null || !chat.forum_tabs) {
                 return false;
             }
@@ -488,7 +488,7 @@ public abstract class w3 {
     }
 
     public static boolean b0(int i10, long j10) {
-        TLRPC.Chat L0 = vp.r1(i10).L0(Long.valueOf(-j10));
+        TLRPC.Chat L0 = wp.r1(i10).L0(Long.valueOf(-j10));
         if (L0 != null) {
             return L0.forum;
         }
@@ -512,26 +512,26 @@ public abstract class w3 {
 
     public static boolean d0(int i10, long j10) {
         if (j10 > 0) {
-            return f0(i10, vp.r1(i10).Z1(Long.valueOf(j10)));
+            return f0(i10, wp.r1(i10).Z1(Long.valueOf(j10)));
         }
-        return e0(i10, vp.r1(i10).L0(Long.valueOf(-j10)));
+        return e0(i10, wp.r1(i10).L0(Long.valueOf(-j10)));
     }
 
     public static boolean e(int i10, TLRPC.Chat chat, TLRPC.TL_forumTopic tL_forumTopic) {
         TLRPC.Message message;
         TLRPC.Message message2;
         int size;
-        if (tL_forumTopic == null || tL_forumTopic.f19845id != 1) {
+        if (tL_forumTopic == null || tL_forumTopic.f19846id != 1) {
             if (!w(13, chat)) {
                 if (q0(i10, tL_forumTopic) && (message = tL_forumTopic.topMessage) != null && (message2 = tL_forumTopic.topicStartMessage) != null) {
-                    int i11 = message.f19814id - message2.f19814id;
-                    ArrayList<jj> arrayList = tL_forumTopic.groupedMessages;
+                    int i11 = message.f19815id - message2.f19815id;
+                    ArrayList<kj> arrayList = tL_forumTopic.groupedMessages;
                     if (arrayList == null) {
                         size = 0;
                     } else {
                         size = arrayList.size();
                     }
-                    if (i11 > Math.max(1, size) || !jj.v5(tL_forumTopic.from_id, tL_forumTopic.topMessage.from_id)) {
+                    if (i11 > Math.max(1, size) || !kj.v5(tL_forumTopic.from_id, tL_forumTopic.topMessage.from_id)) {
                     }
                 }
             }
@@ -541,7 +541,7 @@ public abstract class w3 {
     }
 
     public static boolean e0(int i10, TLRPC.Chat chat) {
-        if (chat != null && g0(chat.linked_community_id, i10, -chat.f19793id)) {
+        if (chat != null && g0(chat.linked_community_id, i10, -chat.f19794id)) {
             return true;
         }
         return false;
@@ -552,7 +552,7 @@ public abstract class w3 {
     }
 
     public static boolean f0(int i10, TLRPC.User user) {
-        if (user != null && g0(user.linked_community_id, i10, user.f19942id)) {
+        if (user != null && g0(user.linked_community_id, i10, user.f19943id)) {
             return true;
         }
         return false;
@@ -565,7 +565,7 @@ public abstract class w3 {
     public static boolean g0(long j10, int i10, long j11) {
         TLRPC.ChatFull M0;
         ArrayList<TL_communities.CommunityPeer> arrayList;
-        if (j10 != 0 && j11 != 0 && (M0 = vp.r1(i10).M0(j10)) != null && (arrayList = M0.linked_peers) != null) {
+        if (j10 != 0 && j11 != 0 && (M0 = wp.r1(i10).M0(j10)) != null && (arrayList = M0.linked_peers) != null) {
             int size = arrayList.size();
             int i11 = 0;
             while (i11 < size) {
@@ -603,7 +603,7 @@ public abstract class w3 {
 
     public static boolean h0(TLRPC.Chat chat) {
         if (chat != null) {
-            return i0(vp.r1(d20.f15147s0).M0(chat.f19793id));
+            return i0(wp.r1(e20.f15506s0).M0(chat.f19794id));
         }
         return false;
     }
@@ -690,7 +690,7 @@ public abstract class w3 {
     }
 
     public static boolean m0(int i10, long j10) {
-        TLRPC.Chat L0 = vp.r1(i10).L0(Long.valueOf(j10));
+        TLRPC.Chat L0 = wp.r1(i10).L0(Long.valueOf(j10));
         if (T(L0) && L0.megagroup) {
             return true;
         }
@@ -722,7 +722,7 @@ public abstract class w3 {
     }
 
     public static boolean o0(int i10, long j10) {
-        TLRPC.Chat L0 = vp.r1(i10).L0(Long.valueOf(-j10));
+        TLRPC.Chat L0 = wp.r1(i10).L0(Long.valueOf(-j10));
         if (L0 != null) {
             return L0.monoforum;
         }
@@ -754,7 +754,7 @@ public abstract class w3 {
         if (tL_forumTopic != null) {
             if (!tL_forumTopic.my) {
                 TLRPC.Peer peer = tL_forumTopic.from_id;
-                if ((peer instanceof TLRPC.TL_peerUser) && peer.user_id == d20.i(i10).f15165n) {
+                if ((peer instanceof TLRPC.TL_peerUser) && peer.user_id == e20.i(i10).f15524n) {
                     return true;
                 }
                 return false;
@@ -790,7 +790,7 @@ public abstract class w3 {
 
     public static boolean s0(TLRPC.Chat chat) {
         TLRPC.ChatFull M0;
-        if (chat == null || (M0 = vp.r1(d20.f15147s0).M0(chat.f19793id)) == null || M0.boosts_unrestrict <= 0) {
+        if (chat == null || (M0 = wp.r1(e20.f15506s0).M0(chat.f19794id)) == null || M0.boosts_unrestrict <= 0) {
             return false;
         }
         return true;
@@ -814,14 +814,12 @@ public abstract class w3 {
         return w(17, chat);
     }
 
-    public static boolean u0(TLRPC.Chat chat) {
-        if (chat != null) {
-            if ((chat.forum && chat.forum_sidebar) || chat.monoforum) {
-                return true;
-            }
+    public static boolean u0(int i10, TLRPC.User user) {
+        TLRPC.Chat L0;
+        if (user == null || user.linked_community_id == 0 || (L0 = wp.r1(i10).L0(Long.valueOf(user.linked_community_id))) == null || !L0.collapsed_in_dialogs) {
             return false;
         }
-        return false;
+        return true;
     }
 
     public static boolean v(TLRPC.Chat chat) {
@@ -831,12 +829,20 @@ public abstract class w3 {
         return w(20, chat);
     }
 
-    public static boolean v0(int i10, TLRPC.User user) {
-        TLRPC.Chat L0;
-        if (user == null || user.linked_community_id == 0 || (L0 = vp.r1(i10).L0(Long.valueOf(user.linked_community_id))) == null || !L0.collapsed_in_dialogs) {
-            return false;
+    public static boolean v0(TLRPC.ChatFull chatFull, String str) {
+        TLRPC.ChatReactions chatReactions = chatFull.available_reactions;
+        if (chatReactions instanceof TLRPC.TL_chatReactionsAll) {
+            return true;
         }
-        return true;
+        if (chatReactions instanceof TLRPC.TL_chatReactionsSome) {
+            TLRPC.TL_chatReactionsSome tL_chatReactionsSome = (TLRPC.TL_chatReactionsSome) chatReactions;
+            for (int i10 = 0; i10 < tL_chatReactionsSome.reactions.size(); i10++) {
+                if ((tL_chatReactionsSome.reactions.get(i10) instanceof TLRPC.TL_reactionEmoji) && TextUtils.equals(((TLRPC.TL_reactionEmoji) tL_chatReactionsSome.reactions.get(i10)).emoticon, str)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public static boolean w(int i10, TLRPC.Chat chat) {
@@ -877,22 +883,6 @@ public abstract class w3 {
             return false;
         }
         return true;
-    }
-
-    public static boolean w0(TLRPC.ChatFull chatFull, String str) {
-        TLRPC.ChatReactions chatReactions = chatFull.available_reactions;
-        if (chatReactions instanceof TLRPC.TL_chatReactionsAll) {
-            return true;
-        }
-        if (chatReactions instanceof TLRPC.TL_chatReactionsSome) {
-            TLRPC.TL_chatReactionsSome tL_chatReactionsSome = (TLRPC.TL_chatReactionsSome) chatReactions;
-            for (int i10 = 0; i10 < tL_chatReactionsSome.reactions.size(); i10++) {
-                if ((tL_chatReactionsSome.reactions.get(i10) instanceof TLRPC.TL_reactionEmoji) && TextUtils.equals(((TLRPC.TL_reactionEmoji) tL_chatReactionsSome.reactions.get(i10)).emoticon, str)) {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 
     public static boolean x(org.telegram.tgnet.TLRPC.Chat r6, org.telegram.tgnet.TLRPC.ChannelParticipant r7, int r8) {
@@ -972,6 +962,6 @@ public abstract class w3 {
     }
 
     public static boolean z(int i10, int i11, long j10) {
-        return y(i11, E(i10, vp.r1(i10).L0(Long.valueOf(-j10))));
+        return y(i11, E(i10, wp.r1(i10).L0(Long.valueOf(-j10))));
     }
 }

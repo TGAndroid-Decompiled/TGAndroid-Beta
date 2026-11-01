@@ -4,29 +4,29 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class u4 implements RequestDelegate {
-    public final int f18249a;
-    public final i5 f18250b;
+    public final int f18382a;
+    public final i5 f18383b;
 
     public u4(i5 i5Var, int i10) {
-        this.f18249a = i10;
-        this.f18250b = i5Var;
+        this.f18382a = i10;
+        this.f18383b = i5Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f18249a) {
+        switch (this.f18382a) {
             case 0:
                 if (tLObject != null) {
                     TLRPC.TL_help_inviteText tL_help_inviteText = (TLRPC.TL_help_inviteText) tLObject;
                     if (tL_help_inviteText.message.length() != 0) {
-                        i0.g3(new e4(1, this.f18250b, tL_help_inviteText));
+                        i0.g3(new e4(1, this.f18383b, tL_help_inviteText));
                         return;
                     }
                     return;
                 }
                 return;
             case 1:
-                final i5 i5Var = this.f18250b;
+                final i5 i5Var = this.f18383b;
                 i0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -56,7 +56,7 @@ public final class u4 implements RequestDelegate {
                 });
                 return;
             default:
-                final i5 i5Var2 = this.f18250b;
+                final i5 i5Var2 = this.f18383b;
                 i0.g3(new Runnable() {
                     @Override
                     public final void run() {

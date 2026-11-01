@@ -1,10 +1,10 @@
 package pc;
 public final class a {
-    public final String f44905a;
-    public final String f44906b;
+    public final String f44916a;
+    public final String f44917b;
 
     public a(String str, String str2) {
-        this.f44905a = str;
-        this.f44906b = str2;
+        this.f44916a = str;
+        this.f44917b = str2;
     }
 }

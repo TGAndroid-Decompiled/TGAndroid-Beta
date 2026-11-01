@@ -25,10 +25,10 @@ public abstract class a6 extends z4.g {
     public int O0;
     public final ArrayList P0;
     public float Q0;
-    public long f48784w0;
-    public ArrayList f48785x0;
-    public int f48786y0;
-    public final y5 f48787z0;
+    public long f48798w0;
+    public ArrayList f48799x0;
+    public int f48800y0;
+    public final y5 f48801z0;
 
     public a6(int i10, Context context, o7 o7Var, org.telegram.ui.ActionBar.p6 p6Var) {
         super(context);
@@ -39,11 +39,11 @@ public abstract class a6 extends z4.g {
         this.M0 = new ew(qVar, 28);
         this.O0 = -1;
         this.P0 = new ArrayList();
-        this.f48786y0 = i10;
+        this.f48800y0 = i10;
         this.H0 = new x2(context);
         this.N0 = o7Var;
         y5 y5Var = new y5(qVar, context, o7Var, p6Var);
-        this.f48787z0 = y5Var;
+        this.f48801z0 = y5Var;
         setAdapter(y5Var);
         rh.d0 d0Var = new rh.d0(qVar, 16);
         if (this.m0 != null) {
@@ -53,8 +53,8 @@ public abstract class a6 extends z4.g {
         }
         this.m0 = d0Var;
         setChildrenDrawingOrderEnabled(true);
-        this.f54612o0 = 1;
-        this.f54611n0 = 2;
+        this.f54630o0 = 1;
+        this.f54629n0 = 2;
         if (z10) {
             s();
         }
@@ -84,7 +84,7 @@ public abstract class a6 extends z4.g {
         while (true) {
             if (i10 < getChildCount()) {
                 z5 z5Var = (z5) getChildAt(i10);
-                if (z5Var.d && !z5Var.f49786a.f49776x1.d()) {
+                if (z5Var.d && !z5Var.f49800a.f49790x1.d()) {
                     break;
                 }
                 i10++;
@@ -104,15 +104,15 @@ public abstract class a6 extends z4.g {
                     if (!z5Var.d) {
                         this.O0 = -1;
                         z5Var.a(true);
-                        if (this.f48785x0 != null) {
-                            z2 z2Var = z5Var.f49786a;
-                            long j10 = z5Var.f49787b;
-                            ArrayList arrayList = z5Var.f49788c;
-                            z2Var.f49726k1 = j10;
-                            z2Var.f49718i1 = arrayList;
+                        if (this.f48799x0 != null) {
+                            z2 z2Var = z5Var.f49800a;
+                            long j10 = z5Var.f49801b;
+                            ArrayList arrayList = z5Var.f49802c;
+                            z2Var.f49740k1 = j10;
+                            z2Var.f49732i1 = arrayList;
                             z2Var.m0(0);
                         } else {
-                            z5Var.f49786a.S0(0, z5Var.f49787b);
+                            z5Var.f49800a.S0(0, z5Var.f49801b);
                         }
                     }
                 }
@@ -129,13 +129,13 @@ public abstract class a6 extends z4.g {
         boolean z11 = false;
         if (z10) {
             int currentItem = getCurrentItem();
-            ArrayList arrayList = this.f48785x0;
+            ArrayList arrayList = this.f48799x0;
             if (arrayList == null) {
                 arrayList = this.A0;
             }
             if (currentItem < arrayList.size() - 1) {
                 int currentItem2 = getCurrentItem() + 1;
-                if (o7Var.f49290a && Build.VERSION.SDK_INT < 33) {
+                if (o7Var.f49304a && Build.VERSION.SDK_INT < 33) {
                     z11 = true;
                 }
                 x(currentItem2, !z11);
@@ -146,7 +146,7 @@ public abstract class a6 extends z4.g {
             return false;
         }
         int currentItem3 = getCurrentItem() - 1;
-        if (o7Var.f49290a && Build.VERSION.SDK_INT < 33) {
+        if (o7Var.f49304a && Build.VERSION.SDK_INT < 33) {
             z11 = true;
         }
         x(currentItem3, !z11);
@@ -167,8 +167,8 @@ public abstract class a6 extends z4.g {
     }
 
     public long getCurrentDialogId() {
-        if (this.f48785x0 != null) {
-            return this.f48784w0;
+        if (this.f48799x0 != null) {
+            return this.f48798w0;
         }
         if (getCurrentItem() < this.A0.size()) {
             return ((Long) this.A0.get(getCurrentItem())).longValue();

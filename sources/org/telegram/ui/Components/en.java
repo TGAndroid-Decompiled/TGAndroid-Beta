@@ -17,10 +17,10 @@ public final class en extends org.telegram.ui.Cells.e6 {
     @Override
     public final void g(ih.b bVar, ActionMode actionMode) {
         jn jnVar = (jn) this.G.e;
-        if (!jnVar.f27434n && this.F == 11 && bVar.isFocused() && bVar.hasSelection()) {
+        if (!jnVar.f27500n && this.F == 11 && bVar.isFocused() && bVar.hasSelection()) {
             Menu menu = actionMode.getMenu();
             if (menu.findItem(16908321) != null) {
-                org.telegram.ui.un.t8(menu, ((org.telegram.ui.un) jnVar.f30947b.W1).h, false, true, true, true);
+                org.telegram.ui.un.x8(menu, ((org.telegram.ui.un) jnVar.f30964b.W1).h, false, true, true, true);
             }
         }
     }
@@ -37,7 +37,7 @@ public final class en extends org.telegram.ui.Cells.e6 {
 
     @Override
     public final void k(ih.b bVar) {
-        ((jn) this.G.e).f30947b.g1(bVar, true);
+        ((jn) this.G.e).f30964b.g1(bVar, true);
     }
 
     @Override
@@ -59,9 +59,9 @@ public final class en extends org.telegram.ui.Cells.e6 {
             i10++;
         }
         jnVar.l0();
-        jnVar.f27430k0 = (jnVar.f27447t0 + i10) - 1;
-        jnVar.f27445s.setItemAnimator(jnVar.f27450w);
-        jnVar.f27443r.f();
+        jnVar.f27496k0 = (jnVar.f27513t0 + i10) - 1;
+        jnVar.f27511s.setItemAnimator(jnVar.f27516w);
+        jnVar.f27509r.f();
         return true;
     }
 }

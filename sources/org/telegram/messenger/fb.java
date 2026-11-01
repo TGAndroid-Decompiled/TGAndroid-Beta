@@ -1,3 +1,4 @@
 package org.telegram.messenger;
-public final class fb extends hb {
+public interface fb {
+    void a(ga gaVar);
 }

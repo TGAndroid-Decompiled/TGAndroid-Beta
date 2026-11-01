@@ -12,16 +12,16 @@ import org.telegram.ui.Cells.v2;
 import org.telegram.ui.Components.ClippingImageView;
 import org.telegram.ui.Components.PollVotesAlert$UserCell;
 import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.f61;
 import org.telegram.ui.Components.h6;
 import org.telegram.ui.Components.x5;
 import org.telegram.ui.PhotoViewer;
 public final class g extends h6 {
-    public final int f13333b;
+    public final int f13334b;
 
     public g(String str, int i10) {
         super(str, 0);
-        this.f13333b = i10;
+        this.f13334b = i10;
     }
 
     @Override
@@ -29,32 +29,32 @@ public final class g extends h6 {
         double sqrt;
         boolean z10;
         float f10;
-        switch (this.f13333b) {
+        switch (this.f13334b) {
             case 0:
                 j jVar = (j) obj;
                 jVar.G = f7;
-                RectF rectF = jVar.f13366w;
-                RectF rectF2 = jVar.f13365s;
-                float interpolation = 1.0f - h.f13346p.getInterpolation(f7);
-                float interpolation2 = (h.h.getInterpolation(jVar.G) - h.f13339i.getInterpolation(jVar.G)) * i0.L(13.0f);
-                RectF rectF3 = jVar.f13363n;
+                RectF rectF = jVar.f13367w;
+                RectF rectF2 = jVar.f13366s;
+                float interpolation = 1.0f - h.f13347p.getInterpolation(f7);
+                float interpolation2 = (h.h.getInterpolation(jVar.G) - h.f13340i.getInterpolation(jVar.G)) * i0.L(13.0f);
+                RectF rectF3 = jVar.f13364n;
                 RectF rectF4 = jVar.h;
                 rectF3.set(rectF4);
                 rectF3.offset(0.0f, -interpolation2);
-                float g10 = j.g(rectF3.height(), (i0.L(2.0f) * interpolation) + i0.L(i.f13352b), h.f13342l.getInterpolation(jVar.G)) / 2.0f;
-                e eVar = h.f13343m;
+                float g10 = j.g(rectF3.height(), (i0.L(2.0f) * interpolation) + i0.L(i.f13353b), h.f13343l.getInterpolation(jVar.G)) / 2.0f;
+                e eVar = h.f13344m;
                 float g11 = j.g(rectF3.width(), (i0.L(10.0f) * interpolation) + jVar.h(), eVar.getInterpolation(jVar.G));
                 float f11 = g10 * 2.0f;
                 float max = Math.max(g11, f11);
                 float interpolation3 = (eVar.getInterpolation(jVar.G) * Math.min(i0.L(-12.0f) + jVar.F, (max - Math.max(rectF3.width(), f11)) / 2.0f)) + rectF4.centerX() + g10;
-                float interpolation4 = ((rectF4.bottom - g10) - 1.0f) - (h.f13344n.getInterpolation(jVar.G) * ((i0.L(6.0f) * interpolation) + i0.L(38.0f)));
-                RectF rectF5 = jVar.f13364r;
+                float interpolation4 = ((rectF4.bottom - g10) - 1.0f) - (h.f13345n.getInterpolation(jVar.G) * ((i0.L(6.0f) * interpolation) + i0.L(38.0f)));
+                RectF rectF5 = jVar.f13365r;
                 rectF5.left = interpolation3 - max;
                 rectF5.top = interpolation4 - g10;
                 rectF5.right = interpolation3;
                 rectF5.bottom = interpolation4 + g10;
                 if (jVar.Q && !jVar.M) {
-                    float g12 = j.g(i0.L(5.0f), i0.L(3.0f), h.f13345o.getInterpolation(jVar.G));
+                    float g12 = j.g(i0.L(5.0f), i0.L(3.0f), h.f13346o.getInterpolation(jVar.G));
                     float f12 = rectF5.bottom + g12;
                     double width = (rectF3.width() / 2.0f) + g12;
                     double abs = Math.abs(f12 - rectF3.centerY());
@@ -119,7 +119,7 @@ public final class g extends h6 {
                         if (!z10) {
                             path.lineTo((rectF5.height() / 2.0f) + rectF5.left, rectF5.bottom);
                         }
-                        RectF rectF6 = j.f13353b0;
+                        RectF rectF6 = j.f13354b0;
                         float f19 = rectF5.left;
                         rectF6.set(f19, rectF5.top, rectF5.height() + f19, rectF5.bottom);
                         jVar.a(path, rectF6, j.j(f18), -90.0f, false, false);
@@ -162,12 +162,12 @@ public final class g extends h6 {
                 x5 x5Var = (x5) obj;
                 if (x5Var.e != f7) {
                     x5Var.e = f7;
-                    x5Var.f32355g.invalidate();
+                    x5Var.f32425g.invalidate();
                     return;
                 }
                 return;
             case 6:
-                ((ImageReceiver) obj).f14384h1 = f7;
+                ((ImageReceiver) obj).f14385h1 = f7;
                 return;
             case 7:
                 ((ClippingImageView) obj).setAnimationProgress(f7);
@@ -185,28 +185,28 @@ public final class g extends h6 {
                 ((PollVotesAlert$UserCell) obj).setPlaceholderAlpha(f7);
                 return;
             default:
-                ((e61) obj).M0(f7);
+                ((f61) obj).M0(f7);
                 return;
         }
     }
 
     @Override
     public final Object get(Object obj) {
-        switch (this.f13333b) {
+        switch (this.f13334b) {
             case 0:
                 return Float.valueOf(((j) obj).G);
             case 1:
                 return Float.valueOf(((j) obj).H);
             case 2:
-                return Float.valueOf(((t8) obj).f23105s);
+                return Float.valueOf(((t8) obj).f23106s);
             case 3:
                 return Float.valueOf(((u8) obj).h);
             case 4:
-                return Float.valueOf(((d9) obj).f21831f);
+                return Float.valueOf(((d9) obj).f21832f);
             case 5:
                 return Float.valueOf(((x5) obj).e);
             case 6:
-                return Float.valueOf(((ImageReceiver) obj).f14384h1);
+                return Float.valueOf(((ImageReceiver) obj).f14385h1);
             case 7:
                 return Float.valueOf(((ClippingImageView) obj).getAnimationProgress());
             case 8:
@@ -218,7 +218,7 @@ public final class g extends h6 {
             case 11:
                 return Float.valueOf(((PollVotesAlert$UserCell) obj).getPlaceholderAlpha());
             default:
-                return Float.valueOf(((e61) obj).f25729v1);
+                return Float.valueOf(((f61) obj).f26098v1);
         }
     }
 }

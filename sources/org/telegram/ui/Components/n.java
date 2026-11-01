@@ -8,6 +8,6 @@ public final class n extends s4.j {
 
     @Override
     public final void P(s4.c1 c1Var) {
-        this.F.f21586b.invalidate();
+        this.F.f21587b.invalidate();
     }
 }

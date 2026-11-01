@@ -23,18 +23,18 @@ import java.util.concurrent.Executor;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.bg;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.d20;
-import org.telegram.messenger.ef;
-import org.telegram.messenger.h20;
-import org.telegram.messenger.hs;
-import org.telegram.messenger.ic;
-import org.telegram.messenger.jj;
-import org.telegram.messenger.q20;
-import org.telegram.messenger.ui;
-import org.telegram.messenger.vp;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.at;
+import org.telegram.messenger.cg;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.e20;
+import org.telegram.messenger.ff;
+import org.telegram.messenger.i20;
+import org.telegram.messenger.is;
+import org.telegram.messenger.jc;
+import org.telegram.messenger.kj;
+import org.telegram.messenger.r20;
+import org.telegram.messenger.vi;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
@@ -46,18 +46,18 @@ import org.telegram.ui.Components.AnimatedFileNative;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.cc;
 import org.telegram.ui.Components.t90;
-import org.telegram.ui.px0;
+import org.telegram.ui.ox0;
 public final class l5 implements Runnable {
-    public final int f47182a;
-    public final Object f47183b;
-    public final Object f47184c;
+    public final int f47196a;
+    public final Object f47197b;
+    public final Object f47198c;
     public final Object d;
 
     public l5(Object obj, Object obj2, Object obj3, int i10) {
-        this.f47182a = i10;
-        this.f47183b = obj;
+        this.f47196a = i10;
+        this.f47197b = obj;
         this.d = obj2;
-        this.f47184c = obj3;
+        this.f47198c = obj3;
     }
 
     @Override
@@ -82,7 +82,7 @@ public final class l5 implements Runnable {
         TL_stories.StoryItem storyItem2;
         TLRPC.MessageMedia messageMedia2;
         TLRPC.Photo photo;
-        jj jjVar;
+        kj kjVar;
         int f12;
         int[] iArr;
         File file;
@@ -96,7 +96,7 @@ public final class l5 implements Runnable {
         int i13;
         int i14;
         ArrayList arrayList;
-        int i15 = this.f47182a;
+        int i15 = this.f47196a;
         Pair pair = null;
         SQLiteCursor sQLiteCursor2 = null;
         r6 = null;
@@ -108,23 +108,23 @@ public final class l5 implements Runnable {
         ?? r82 = 0;
         boolean z19 = false;
         Object obj = this.d;
-        Object obj2 = this.f47184c;
-        Object obj3 = this.f47183b;
+        Object obj2 = this.f47198c;
+        Object obj3 = this.f47197b;
         switch (i15) {
             case 0:
                 e6 e6Var = (e6) obj3;
                 TLObject tLObject = (TLObject) obj;
                 Runnable runnable = (Runnable) obj2;
                 ArrayList arrayList2 = e6Var.v;
-                boolean[] zArr = e6Var.f46863r;
-                ArrayList[] arrayListArr = e6Var.f46862q;
-                int i16 = e6Var.f46849a;
+                boolean[] zArr = e6Var.f46877r;
+                ArrayList[] arrayListArr = e6Var.f46876q;
+                int i16 = e6Var.f46863a;
                 boolean z20 = !e6Var.e;
-                e6Var.f46851c = System.currentTimeMillis();
+                e6Var.f46865c = System.currentTimeMillis();
                 if (tLObject instanceof TL_stars.StarsStatus) {
                     TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject;
-                    vp.r1(i16).V3(starsStatus.users, false);
-                    vp.r1(i16).P3(starsStatus.chats, false);
+                    wp.r1(i16).V3(starsStatus.users, false);
+                    wp.r1(i16).P3(starsStatus.chats, false);
                     if (arrayListArr[0].isEmpty()) {
                         ArrayList<TL_stars.StarsTransaction> arrayList3 = starsStatus.history;
                         int size = arrayList3.size();
@@ -159,7 +159,7 @@ public final class l5 implements Runnable {
                                     z15 = z10;
                                 }
                                 zArr[i18] = z15;
-                                boolean[] zArr2 = e6Var.f46866u;
+                                boolean[] zArr2 = e6Var.f46880u;
                                 starsStatus = starsStatus3;
                                 if ((starsStatus.flags & 1) == 0) {
                                     z16 = z10;
@@ -168,9 +168,9 @@ public final class l5 implements Runnable {
                                 }
                                 zArr2[i18] = z16;
                                 if (z16) {
-                                    e6Var.f46865t[i18] = z13;
+                                    e6Var.f46879t[i18] = z13;
                                 }
-                                String[] strArr = e6Var.f46864s;
+                                String[] strArr = e6Var.f46878s;
                                 if (zArr2[i18]) {
                                     str = null;
                                 } else {
@@ -190,25 +190,25 @@ public final class l5 implements Runnable {
                     }
                     if (arrayList2.isEmpty()) {
                         arrayList2.addAll(starsStatus.subscriptions);
-                        e6Var.f46868x = z13;
-                        e6Var.f46867w = starsStatus.subscriptions_next_offset;
+                        e6Var.f46882x = z13;
+                        e6Var.f46881w = starsStatus.subscriptions_next_offset;
                         if ((starsStatus.flags & 4) == 0) {
                             z14 = z10;
                         } else {
                             z14 = false;
                         }
-                        e6Var.f46869y = z14;
+                        e6Var.f46883y = z14;
                         z12 = z10;
                     } else {
                         z12 = false;
                     }
-                    long j10 = e6Var.f46852f.amount;
+                    long j10 = e6Var.f46866f.amount;
                     TL_stars.StarsAmount starsAmount = starsStatus.balance;
                     if (j10 != starsAmount.amount) {
                         z20 = z10;
                     }
-                    e6Var.f46852f = starsAmount;
-                    e6Var.f46853g = 0L;
+                    e6Var.f46866f = starsAmount;
+                    e6Var.f46867g = 0L;
                 } else {
                     z10 = true;
                     z11 = false;
@@ -217,13 +217,13 @@ public final class l5 implements Runnable {
                 e6Var.d = false;
                 e6Var.e = z10;
                 if (z20) {
-                    zs.f(i16).k(221, new Object[0]);
+                    at.f(i16).k(221, new Object[0]);
                 }
                 if (z11) {
-                    zs.f(i16).k(222, new Object[0]);
+                    at.f(i16).k(222, new Object[0]);
                 }
                 if (z12) {
-                    zs.f(i16).k(223, new Object[0]);
+                    at.f(i16).k(223, new Object[0]);
                 }
                 if (runnable != null) {
                     runnable.run();
@@ -252,18 +252,18 @@ public final class l5 implements Runnable {
                 th.f2 f2Var = (th.f2) obj3;
                 sg.o0 o0Var = (sg.o0) obj;
                 View view = (View) obj2;
-                th.z2 z2Var = f2Var.f48950a;
-                z2Var.f49701d3 = true;
-                th.y2 y2Var = z2Var.f49776x1;
+                th.z2 z2Var = f2Var.f48964a;
+                z2Var.f49715d3 = true;
+                th.y2 y2Var = z2Var.f49790x1;
                 ImageReceiver imageReceiver = z2Var.U2;
                 boolean[] zArr3 = {false};
-                th.j5 j5Var = z2Var.f49735n0;
+                th.j5 j5Var = z2Var.f49749n0;
                 j5Var.animate().alpha(0.0f).scaleX(0.8f).scaleY(0.8f).setListener(new org.telegram.messenger.x(2, j5Var)).setDuration(150L).start();
                 int L = org.telegram.messenger.i0.L(8.0f);
-                th.j5 j5Var2 = new th.j5(z2Var.getContext(), z2Var.f49710g1);
-                z2Var.f49735n0 = j5Var2;
+                th.j5 j5Var2 = new th.j5(z2Var.getContext(), z2Var.f49724g1);
+                z2Var.f49749n0 = j5Var2;
                 j5Var2.setPadding(L, L, L, L);
-                z2Var.m0.addView(z2Var.f49735n0, w7.b6.e(40, 40, 3));
+                z2Var.m0.addView(z2Var.f49749n0, w7.b6.e(40, 40, 3));
                 org.telegram.ui.Components.f5 f5Var2 = z2Var.X2;
                 if (f5Var2 != null) {
                     f5Var2.n(z2Var);
@@ -278,53 +278,53 @@ public final class l5 implements Runnable {
                     z2Var.V2 = dVar;
                 }
                 z2Var.Y2 = false;
-                if (o0Var.f48435g != 0) {
+                if (o0Var.f48446g != 0) {
                     z2Var.Y2 = true;
-                    org.telegram.ui.Components.f5 f5Var3 = new org.telegram.ui.Components.f5(2, z2Var.f49730l2, o0Var.f48435g);
+                    org.telegram.ui.Components.f5 f5Var3 = new org.telegram.ui.Components.f5(2, z2Var.f49744l2, o0Var.f48446g);
                     z2Var.X2 = f5Var3;
                     f5Var3.a(z2Var);
-                } else if (o0Var.f48434f != null && (tL_availableReaction = (TLRPC.TL_availableReaction) ui.b0(z2Var.f49730l2).f18341r.get(o0Var.f48434f)) != null) {
-                    z2Var.W2.u0(null, null, ic.b(tL_availableReaction.select_animation), "60_60", null, null, null, 0L, null, null, 0);
-                    imageReceiver.q0(ic.b(tL_availableReaction.around_animation), sg.k0.a(), null, null, null, 0);
+                } else if (o0Var.f48445f != null && (tL_availableReaction = (TLRPC.TL_availableReaction) vi.b0(z2Var.f49744l2).f18670r.get(o0Var.f48445f)) != null) {
+                    z2Var.W2.u0(null, null, jc.b(tL_availableReaction.select_animation), "60_60", null, null, null, 0L, null, null, 0);
+                    imageReceiver.q0(jc.b(tL_availableReaction.around_animation), sg.k0.a(), null, null, null, 0);
                     if (imageReceiver.B() != null) {
                         imageReceiver.B().N(0, false, true);
                     }
                 }
-                z2Var.f49735n0.setReaction(o0Var);
-                if (z2Var.f49732m1) {
-                    TL_stories.StoryItem storyItem3 = y2Var.f49661a;
+                z2Var.f49749n0.setReaction(o0Var);
+                if (z2Var.f49746m1) {
+                    TL_stories.StoryItem storyItem3 = y2Var.f49675a;
                     if (storyItem3.sent_reaction == null) {
                         if (storyItem3.views == null) {
                             storyItem3.views = new TL_stories.TL_storyViews();
                         }
-                        TL_stories.StoryItem storyItem4 = y2Var.f49661a;
+                        TL_stories.StoryItem storyItem4 = y2Var.f49675a;
                         TL_stories.StoryViews storyViews = storyItem4.views;
                         storyViews.reactions_count++;
                         sg.q0.b(null, storyItem4.sent_reaction, storyViews);
                         z2Var.i1(true);
                     }
                 }
-                if (o0Var.f48435g != 0 && (f5Var = z2Var.f49735n0.f49108f) != null) {
+                if (o0Var.f48446g != 0 && (f5Var = z2Var.f49749n0.f49122f) != null) {
                     sg.d a2 = sg.d.a(f5Var, false, true);
                     z2Var.V2 = a2;
                     a2.f(z2Var);
                 }
-                z2Var.B1.j0(z2Var.f49726k1, y2Var.f49661a, o0Var);
+                z2Var.B1.j0(z2Var.f49740k1, y2Var.f49675a, o0Var);
                 int[] iArr3 = new int[2];
                 view.getLocationInWindow(iArr3);
                 int[] iArr4 = new int[2];
                 z2Var.getLocationInWindow(iArr4);
-                z2Var.f49708f3 = iArr3[0] - iArr4[0];
-                z2Var.f49712g3 = iArr3[1] - iArr4[1];
-                z2Var.f49716h3 = view.getMeasuredHeight();
+                z2Var.f49722f3 = iArr3[0] - iArr4[0];
+                z2Var.f49726g3 = iArr3[1] - iArr4[1];
+                z2Var.f49730h3 = view.getMeasuredHeight();
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                z2Var.f49704e3 = 0.0f;
+                z2Var.f49718e3 = 0.0f;
                 z2Var.invalidate();
-                th.j5 j5Var3 = z2Var.f49735n0;
+                th.j5 j5Var3 = z2Var.f49749n0;
                 j5Var3.setAllowDrawReaction(false);
                 ImageReceiver imageReceiver2 = j5Var3.e;
-                if (o0Var.f48435g == 0 && (tL_availableReaction2 = (TLRPC.TL_availableReaction) ui.b0(d20.f15147s0).f18341r.get(o0Var.f48434f)) != null) {
-                    imageReceiver2.q0(ic.b(tL_availableReaction2.center_icon), "40_40_nolimit", null, "tgs", tL_availableReaction2, 1);
+                if (o0Var.f48446g == 0 && (tL_availableReaction2 = (TLRPC.TL_availableReaction) vi.b0(e20.f15506s0).f18670r.get(o0Var.f48445f)) != null) {
+                    imageReceiver2.q0(jc.b(tL_availableReaction2.center_icon), "40_40_nolimit", null, "tgs", tL_availableReaction2, 1);
                     imageReceiver2.W(0);
                 }
                 ofFloat.addUpdateListener(new ci.b(f2Var, ofFloat, zArr3, 2));
@@ -336,9 +336,9 @@ public final class l5 implements Runnable {
             case 4:
                 th.u2 u2Var = (th.u2) obj3;
                 org.telegram.ui.ActionBar.p6 p6Var = (org.telegram.ui.ActionBar.p6) obj;
-                th.z2 z2Var2 = u2Var.f49512x;
+                th.z2 z2Var2 = u2Var.f49526x;
                 org.telegram.ui.Components.s4.R(z2Var2.getContext(), null, p6Var, new q5.a(u2Var, (TL_stories.StoryItem) obj2, p6Var, 5));
-                th.u2 u2Var2 = z2Var2.f49696c1;
+                th.u2 u2Var2 = z2Var2.f49710c1;
                 if (u2Var2 != null) {
                     u2Var2.a();
                     return;
@@ -347,29 +347,29 @@ public final class l5 implements Runnable {
             case 5:
                 th.q4 q4Var = (th.q4) obj3;
                 TL_stories.StoryItem storyItem5 = (TL_stories.StoryItem) obj;
-                q20 q20Var = (q20) obj2;
-                for (int i19 = 0; i19 < q4Var.f49636i.size(); i19++) {
-                    jj jjVar2 = (jj) q4Var.f49636i.get(i19);
-                    if (jjVar2 != null && (storyItem = jjVar2.f16341l) != null && (messageMedia = storyItem.media) != null && (document = storyItem5.media.document) != null && (document2 = messageMedia.document) != null && document2.f19799id == document.f19799id) {
-                        q20Var.a(document2);
+                r20 r20Var = (r20) obj2;
+                for (int i19 = 0; i19 < q4Var.f49650i.size(); i19++) {
+                    kj kjVar2 = (kj) q4Var.f49650i.get(i19);
+                    if (kjVar2 != null && (storyItem = kjVar2.f16694l) != null && (messageMedia = storyItem.media) != null && (document = storyItem5.media.document) != null && (document2 = messageMedia.document) != null && document2.f19800id == document.f19800id) {
+                        r20Var.a(document2);
                         return;
                     }
                 }
-                q20Var.a(null);
+                r20Var.a(null);
                 return;
             case 6:
                 th.e5 e5Var = (th.e5) obj3;
                 TLObject tLObject2 = (TLObject) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                int i20 = e5Var.f48904a;
+                int i20 = e5Var.f48918a;
                 e5Var.R = true;
                 if (tLObject2 instanceof TLRPC.TL_boolTrue) {
                     e5Var.S = null;
-                    zs.f(i20).k(197, new Object[0]);
+                    at.f(i20).k(197, new Object[0]);
                     return;
                 } else if (tLObject2 instanceof TL_stories.canSendStoryCount) {
                     e5Var.S = new j4.w(1, ((TL_stories.canSendStoryCount) tLObject2).count_remains, -1L);
-                    zs.f(i20).k(197, new Object[0]);
+                    at.f(i20).k(197, new Object[0]);
                     return;
                 } else {
                     e5Var.n(tL_error);
@@ -378,23 +378,23 @@ public final class l5 implements Runnable {
             case 7:
                 th.p4 p4Var = (th.p4) obj;
                 org.telegram.messenger.g3 g3Var = (org.telegram.messenger.g3) obj2;
-                ArrayList arrayList4 = ((th.q4) obj3).f49636i;
+                ArrayList arrayList4 = ((th.q4) obj3).f49650i;
                 for (int i21 = 0; i21 < arrayList4.size(); i21++) {
-                    jj jjVar3 = (jj) arrayList4.get(i21);
-                    if (jjVar3 != null && (storyItem2 = jjVar3.f16341l) != null && (messageMedia2 = storyItem2.media) != null) {
+                    kj kjVar3 = (kj) arrayList4.get(i21);
+                    if (kjVar3 != null && (storyItem2 = kjVar3.f16694l) != null && (messageMedia2 = storyItem2.media) != null) {
                         TLRPC.MessageMedia messageMedia3 = p4Var.media;
                         TLRPC.Document document3 = messageMedia3.document;
                         if (document3 != null) {
                             TLRPC.Document document4 = messageMedia2.document;
                             if (document4 == null) {
                                 continue;
-                            } else if (document4.f19799id == document3.f19799id) {
+                            } else if (document4.f19800id == document3.f19800id) {
                                 g3Var.a((th.p4) storyItem2);
                                 return;
                             }
                         }
                         TLRPC.Photo photo2 = messageMedia3.photo;
-                        if (photo2 != null && (photo = messageMedia2.photo) != null && photo.f19817id == photo2.f19817id) {
+                        if (photo2 != null && (photo = messageMedia2.photo) != null && photo.f19818id == photo2.f19818id) {
                             g3Var.a((th.p4) storyItem2);
                             return;
                         }
@@ -406,14 +406,14 @@ public final class l5 implements Runnable {
                 th.q4 q4Var2 = (th.q4) obj3;
                 TLObject tLObject3 = (TLObject) obj;
                 Runnable runnable3 = (Runnable) obj2;
-                th.u4 u4Var = q4Var2.f49644q;
+                th.u4 u4Var = q4Var2.f49658q;
                 ArrayList arrayList5 = q4Var2.G;
-                ArrayList arrayList6 = q4Var2.f49636i;
+                ArrayList arrayList6 = q4Var2.f49650i;
                 ArrayList arrayList7 = q4Var2.H;
                 q4Var2.F = 0;
                 q4Var2.C = false;
                 q4Var2.D = true;
-                q4Var2.f49645r = true;
+                q4Var2.f49659r = true;
                 ArrayList arrayList8 = new ArrayList();
                 if (tLObject3 instanceof Vector) {
                     ArrayList arrayList9 = ((Vector) tLObject3).objects;
@@ -442,35 +442,35 @@ public final class l5 implements Runnable {
                     i23++;
                     TL_bots.botPreviewMedia botpreviewmedia = (TL_bots.botPreviewMedia) obj5;
                     int i24 = size3;
-                    jj jjVar4 = new jj(q4Var2.f49633c, new th.p4(q4Var2, q4Var2.d, botpreviewmedia));
+                    kj kjVar4 = new kj(q4Var2.f49647c, new th.p4(q4Var2, q4Var2.d, botpreviewmedia));
                     int i25 = 0;
                     while (true) {
                         if (i25 < arrayList10.size()) {
-                            if (vp.t0(((jj) arrayList10.get(i25)).f16341l.media, botpreviewmedia.media)) {
-                                jjVar = (jj) arrayList10.get(i25);
+                            if (wp.t0(((kj) arrayList10.get(i25)).f16694l.media, botpreviewmedia.media)) {
+                                kjVar = (kj) arrayList10.get(i25);
                             } else {
                                 i25++;
                             }
                         } else {
-                            jjVar = null;
+                            kjVar = null;
                         }
                     }
-                    TLRPC.Message message = jjVar4.f16337k;
-                    if (jjVar == null) {
+                    TLRPC.Message message = kjVar4.f16690k;
+                    if (kjVar == null) {
                         f12 = q4Var2.I;
                         q4Var2.I = f12 + 1;
                     } else {
-                        f12 = jjVar.f1();
+                        f12 = kjVar.f1();
                     }
-                    message.f19814id = f12;
-                    jjVar4.f16341l.f20031id = f12;
-                    jjVar4.f16333j = q4Var2;
-                    jjVar4.r0(false);
+                    message.f19815id = f12;
+                    kjVar4.f16694l.f20032id = f12;
+                    kjVar4.f16686j = q4Var2;
+                    kjVar4.r0(false);
                     if (arrayList7.isEmpty()) {
                         arrayList7.add(new ArrayList());
                     }
-                    ((ArrayList) arrayList7.get(0)).add(Integer.valueOf(jjVar4.f1()));
-                    arrayList6.add(jjVar4);
+                    ((ArrayList) arrayList7.get(0)).add(Integer.valueOf(kjVar4.f1()));
+                    arrayList6.add(kjVar4);
                     size3 = i24;
                 }
                 org.telegram.messenger.i0.r(u4Var);
@@ -482,24 +482,24 @@ public final class l5 implements Runnable {
                 return;
             case 9:
                 th.o7 o7Var = ((th.f7) obj3).d;
-                o7Var.f49319n0.D(o7Var.h, ((th.x4) obj).d, (ArrayList) obj2);
+                o7Var.f49333n0.D(o7Var.h, ((th.x4) obj).d, (ArrayList) obj2);
                 return;
             case 10:
                 th.x7 x7Var = (th.x7) obj3;
                 TLObject tLObject4 = (TLObject) obj;
                 TL_stories.TL_stories_getStoriesViews tL_stories_getStoriesViews = (TL_stories.TL_stories_getStoriesViews) obj2;
-                sg.v vVar = x7Var.f49659f;
-                int i26 = x7Var.f49657b;
-                th.x7.f49655g = System.currentTimeMillis();
+                sg.v vVar = x7Var.f49673f;
+                int i26 = x7Var.f49671b;
+                th.x7.f49669g = System.currentTimeMillis();
                 if (tLObject4 != null) {
                     TL_stories.TL_stories_storyViews tL_stories_storyViews = (TL_stories.TL_stories_storyViews) tLObject4;
-                    vp.r1(i26).V3(tL_stories_storyViews.users, false);
-                    if (!x7Var.d(tL_stories_getStoriesViews.f20039id, tL_stories_storyViews)) {
+                    wp.r1(i26).V3(tL_stories_storyViews.users, false);
+                    if (!x7Var.d(tL_stories_getStoriesViews.f20040id, tL_stories_storyViews)) {
                         x7Var.d = 0;
                         x7Var.e = false;
                         return;
                     }
-                    zs.f(i26).k(324, new Object[0]);
+                    at.f(i26).k(324, new Object[0]);
                 }
                 x7Var.d = 0;
                 if (x7Var.e) {
@@ -511,27 +511,27 @@ public final class l5 implements Runnable {
             case 11:
                 vh.k1 k1Var = (vh.k1) obj3;
                 TLObject tLObject5 = (TLObject) obj;
-                ArrayList arrayList11 = k1Var.f51376w;
+                ArrayList arrayList11 = k1Var.f51391w;
                 vh.l1 l1Var = k1Var.N;
-                ArrayList arrayList12 = k1Var.f51375s;
+                ArrayList arrayList12 = k1Var.f51390s;
                 if (TextUtils.equals((String) obj2, k1Var.H)) {
-                    k1Var.f51378y = 0;
+                    k1Var.f51393y = 0;
                     arrayList12.clear();
                     arrayList11.clear();
                     k1Var.D.clear();
-                    k1Var.f51373n.clear();
-                    k1Var.f51378y++;
+                    k1Var.f51388n.clear();
+                    k1Var.f51393y++;
                     arrayList12.add(null);
                     arrayList11.add(0L);
                     if (tLObject5 instanceof TLRPC.TL_messages_stickers) {
                         TLRPC.TL_messages_stickers tL_messages_stickers = (TLRPC.TL_messages_stickers) tLObject5;
                         arrayList12.addAll(tL_messages_stickers.stickers);
-                        k1Var.f51378y = tL_messages_stickers.stickers.size() + k1Var.f51378y;
+                        k1Var.f51393y = tL_messages_stickers.stickers.size() + k1Var.f51393y;
                     }
                     k1Var.I = k1Var.H;
                     k1Var.f();
-                    vh.b1.z1(l1Var.f51445b, 0, 0);
-                    l1Var.f51447f.c(false);
+                    vh.c1.z1(l1Var.f51460b, 0, 0);
+                    l1Var.f51462f.c(false);
                     l1Var.e.n(false);
                     return;
                 }
@@ -541,25 +541,25 @@ public final class l5 implements Runnable {
                 String str2 = (String) obj2;
                 float f7 = h2Var.K;
                 if (obj != null) {
-                    int min = (int) Math.min(org.telegram.messenger.i0.f16026q.x / 3.0f, org.telegram.messenger.i0.L(330.0f));
-                    if (obj instanceof ef) {
-                        ef efVar = (ef) obj;
+                    int min = (int) Math.min(org.telegram.messenger.i0.f16172q.x / 3.0f, org.telegram.messenger.i0.L(330.0f));
+                    if (obj instanceof ff) {
+                        ff ffVar = (ff) obj;
                         BitmapFactory.Options options = new BitmapFactory.Options();
                         options.inJustDecodeBounds = true;
-                        h2Var.c(efVar, options);
+                        h2Var.c(ffVar, options);
                         vh.n5.C(options, min);
                         options.inPreferredConfig = Bitmap.Config.ARGB_8888;
                         options.inDither = true;
                         options.inJustDecodeBounds = false;
-                        Bitmap c10 = h2Var.c(efVar, options);
+                        Bitmap c10 = h2Var.c(ffVar, options);
                         if (c10 != null && c10.getHeight() / c10.getWidth() < f7) {
-                            if (efVar.T == 0 && efVar.U == 0 && !c10.isRecycled()) {
+                            if (ffVar.T == 0 && ffVar.U == 0 && !c10.isRecycled()) {
                                 iArr2 = w7.l8.b(c10, true);
-                                efVar.T = iArr2[0];
-                                efVar.U = iArr2[1];
+                                ffVar.T = iArr2[0];
+                                ffVar.U = iArr2[1];
                             } else {
-                                int i27 = efVar.T;
-                                if (i27 != 0 && (i10 = efVar.U) != 0) {
+                                int i27 = ffVar.T;
+                                if (i27 != 0 && (i10 = ffVar.U) != 0) {
                                     iArr2 = new int[]{i27, i10};
                                 }
                             }
@@ -592,8 +592,8 @@ public final class l5 implements Runnable {
                 Paint paint = h2Var2.d;
                 if (bitmap != null) {
                     if (str3 != null) {
-                        vh.h2.f51229f0.put(str3, bitmap);
-                        HashMap hashMap = vh.h2.f51228e0;
+                        vh.h2.f51244f0.put(str3, bitmap);
+                        HashMap hashMap = vh.h2.f51243e0;
                         Integer num2 = (Integer) hashMap.get(str3);
                         if (num2 != null) {
                             hashMap.put(str3, Integer.valueOf(num2.intValue() + 1));
@@ -605,7 +605,7 @@ public final class l5 implements Runnable {
                         vh.h2.d(str3);
                         return;
                     }
-                    h2Var2.f51230a = bitmap;
+                    h2Var2.f51245a = bitmap;
                     if (iArr5 == null) {
                         paint.setShader(null);
                         h2Var2.e = null;
@@ -622,14 +622,14 @@ public final class l5 implements Runnable {
             case 14:
                 vh.j2 j2Var = (vh.j2) obj3;
                 TLObject tLObject6 = (TLObject) obj;
-                vp vpVar = (vp) obj2;
-                j2Var.f51307r = true;
+                wp wpVar = (wp) obj2;
+                j2Var.f51322r = true;
                 j2Var.d = false;
                 if (tLObject6 instanceof TLRPC.TL_contacts_resolvedPeer) {
                     TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject6;
-                    vpVar.V3(tL_contacts_resolvedPeer.users, false);
-                    vpVar.P3(tL_contacts_resolvedPeer.chats, false);
-                    hs.a0(j2Var.f51310x.f51380a).m1(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, true, true);
+                    wpVar.V3(tL_contacts_resolvedPeer.users, false);
+                    wpVar.P3(tL_contacts_resolvedPeer.chats, false);
+                    is.a0(j2Var.f51325x.f51395a).m1(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, true, true);
                     j2Var.E();
                     return;
                 }
@@ -637,31 +637,31 @@ public final class l5 implements Runnable {
             case 15:
                 String[] strArr2 = (String[]) obj3;
                 int[][] iArr6 = (int[][]) obj;
-                px0 px0Var = (px0) obj2;
+                ox0 ox0Var = (ox0) obj2;
                 for (int i28 = 0; i28 < strArr2.length; i28++) {
                     String str4 = strArr2[i28];
                     if (str4 != null) {
                         AnimatedFileNative.d(str4, iArr6[i28], 0L);
                     }
                 }
-                org.telegram.messenger.i0.g3(px0Var);
+                org.telegram.messenger.i0.g3(ox0Var);
                 return;
             case 16:
                 AnimatedFileNative.d((String) obj3, ((int[][]) obj)[0], 0L);
-                org.telegram.messenger.i0.g3((px0) obj2);
+                org.telegram.messenger.i0.g3((ox0) obj2);
                 return;
             case 17:
                 vh.r6 r6Var = (vh.r6) obj3;
                 TLObject tLObject7 = (TLObject) obj;
-                vp vpVar2 = (vp) obj2;
+                wp wpVar2 = (wp) obj2;
                 vh.w6 w6Var = r6Var.W;
-                r6Var.f51893w.setLoading(false);
+                r6Var.f51878w.setLoading(false);
                 if (tLObject7 != null) {
                     int i29 = vh.w6.U1;
                     ArrayList O0 = w6Var.O0();
                     for (int i30 = 0; i30 < O0.size(); i30++) {
                         TLRPC.User user = (TLRPC.User) O0.get(i30);
-                        if (user != null && (contains = r6Var.f51888c.contains(Long.valueOf(user.f19942id))) != user.close_friend) {
+                        if (user != null && (contains = r6Var.f51873c.contains(Long.valueOf(user.f19943id))) != user.close_friend) {
                             user.close_friend = contains;
                             if (contains) {
                                 i11 = user.flags2 | 4;
@@ -669,23 +669,23 @@ public final class l5 implements Runnable {
                                 i11 = user.flags2 & (-5);
                             }
                             user.flags2 = i11;
-                            vpVar2.U3(user, false, false);
+                            wpVar2.U3(user, false, false);
                         }
                     }
                 }
                 w6Var.M0();
                 if (w6Var.Q1) {
-                    w6Var.N0(new vh.u6(1, w6Var.f21583a, (ArrayList) null), new th.r2(w6Var, 1), false);
+                    w6Var.N0(new vh.u6(1, w6Var.f21584a, (ArrayList) null), new th.r2(w6Var, 1), false);
                     return;
                 }
                 w6Var.M0();
-                w6Var.f52100i1.E(0);
+                w6Var.f52118i1.E(0);
                 return;
             case 18:
                 ((vh.n5) obj).O0 = (File) obj2;
-                vh.k7 k7Var = ((vh.o8) obj3).f51616d1;
+                vh.k7 k7Var = ((vh.o8) obj3).f51631d1;
                 if (k7Var != null) {
-                    k7Var.f52192b.f30819f3.O(false);
+                    k7Var.f52207b.f31183f3.O(false);
                     return;
                 }
                 return;
@@ -733,22 +733,22 @@ public final class l5 implements Runnable {
             case 22:
                 ArrayList arrayList13 = (ArrayList) obj3;
                 HashMap hashMap2 = (HashMap) obj;
-                q20 q20Var2 = (q20) obj2;
+                r20 r20Var2 = (r20) obj2;
                 ArrayList arrayList14 = new ArrayList();
                 for (int i31 = 0; i31 < arrayList13.size(); i31++) {
                     TLRPC.User user2 = (TLRPC.User) arrayList13.get(i31);
-                    Boolean bool = (Boolean) hashMap2.get(Long.valueOf(user2.f19942id));
+                    Boolean bool = (Boolean) hashMap2.get(Long.valueOf(user2.f19943id));
                     if (bool != null && bool.booleanValue()) {
                         z17 = false;
                     } else {
                         z17 = true;
                     }
                     ?? obj6 = new Object();
-                    obj6.f53863a = user2;
-                    obj6.f53864b = z17;
+                    obj6.f53880a = user2;
+                    obj6.f53881b = z17;
                     arrayList14.add(obj6);
                 }
-                q20Var2.a(arrayList14);
+                r20Var2.a(arrayList14);
                 return;
             case 23:
                 xh.h1 h1Var = (xh.h1) obj2;
@@ -767,20 +767,20 @@ public final class l5 implements Runnable {
                     e2Var.x("emoji_status_access_requested", org.telegram.ui.web.z0.A("cancelled", "status"));
                     return;
                 }
-                new cc(m2Var.f53894q0, m2Var.F).Y(tL_error2).k(true);
+                new cc(m2Var.f53911q0, m2Var.F).Y(tL_error2).k(true);
                 return;
             case 25:
                 TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) obj;
                 org.telegram.messenger.i0.g(connectedbotstarref.url);
-                cc.a0((xh.z2) obj3).I(2131623993, cd.L0(2131754333, null), org.telegram.messenger.i0.W2(cd.a0(null, null, 2131754334, xh.i.I0(connectedbotstarref.commission_permille), h20.p((TLRPC.User) obj2)))).j();
+                cc.a0((xh.z2) obj3).I(2131623993, dd.L0(2131754333, null), org.telegram.messenger.i0.W2(dd.a0(null, null, 2131754334, xh.i.J0(connectedbotstarref.commission_permille), i20.p((TLRPC.User) obj2)))).j();
                 return;
             case 26:
-                xh.z2.C0((xh.z2) obj3, (TLObject) obj, (org.telegram.ui.ActionBar.x1) obj2);
+                xh.z2.D0((xh.z2) obj3, (TLObject) obj, (org.telegram.ui.ActionBar.x1) obj2);
                 return;
             case 27:
-                bg bgVar = (bg) obj2;
-                int i32 = ((zf.z) obj3).f55704s0;
-                vp r12 = vp.r1(i32);
+                cg cgVar = (cg) obj2;
+                int i32 = ((zf.z) obj3).f55722s0;
+                wp r12 = wp.r1(i32);
                 Iterator it2 = ((HashSet) obj).iterator();
                 while (it2.hasNext()) {
                     Pair pair3 = (Pair) it2.next();
@@ -793,10 +793,10 @@ public final class l5 implements Runnable {
                         concurrentHashMap = r12.O;
                     }
                     ConcurrentHashMap concurrentHashMap2 = concurrentHashMap;
-                    hs a02 = hs.a0(i32);
+                    is a02 = is.a0(i32);
                     if (booleanValue) {
                         try {
-                            sQLiteCursor = a02.f15940b.queryFinalized("SELECT outbox_max FROM dialogs WHERE did = " + longValue, new Object[0]);
+                            sQLiteCursor = a02.f16333b.queryFinalized("SELECT outbox_max FROM dialogs WHERE did = " + longValue, new Object[0]);
                             try {
                                 try {
                                     if (sQLiteCursor.next()) {
@@ -829,7 +829,7 @@ public final class l5 implements Runnable {
                             th = th3;
                         }
                     } else {
-                        sQLiteCursor = a02.f15940b.queryFinalized("SELECT last_mid, inbox_max FROM dialogs WHERE did = " + longValue, new Object[0]);
+                        sQLiteCursor = a02.f16333b.queryFinalized("SELECT last_mid, inbox_max FROM dialogs WHERE did = " + longValue, new Object[0]);
                         if (sQLiteCursor.next()) {
                             int intValue = sQLiteCursor.intValue(0);
                             int intValue2 = sQLiteCursor.intValue(1);
@@ -843,7 +843,7 @@ public final class l5 implements Runnable {
                     }
                     concurrentHashMap2.put(l4, Integer.valueOf(i12));
                 }
-                org.telegram.messenger.i0.g3(bgVar);
+                org.telegram.messenger.i0.g3(cgVar);
                 return;
             case 28:
                 ((zf.x) obj3).a((a0.h) obj2, (ArrayList) obj);
@@ -868,14 +868,14 @@ public final class l5 implements Runnable {
                     } else {
                         i14 = 0;
                     }
-                    if (!x0Var.f55661o0 && (arrayList = x0Var.A0) != null && !arrayList.isEmpty()) {
+                    if (!x0Var.f55679o0 && (arrayList = x0Var.A0) != null && !arrayList.isEmpty()) {
                         x0Var.H();
                         t90 t90Var = x0Var.V;
                         if (x0Var.K() > 0) {
                             z19 = true;
                         }
                         t90Var.a(z19);
-                        x0Var.f55661o0 = true;
+                        x0Var.f55679o0 = true;
                     }
                     if (i13 != i14) {
                         x0Var.f();
@@ -888,9 +888,9 @@ public final class l5 implements Runnable {
     }
 
     public l5(s4.g0 g0Var, String str, TLObject tLObject, int i10) {
-        this.f47182a = i10;
-        this.f47183b = g0Var;
-        this.f47184c = str;
+        this.f47196a = i10;
+        this.f47197b = g0Var;
+        this.f47198c = str;
         this.d = tLObject;
     }
 }

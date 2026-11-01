@@ -1,23 +1,34 @@
 package org.telegram.ui;
-public final class g41 implements Runnable {
-    public final int f37420a;
-    public final SessionsActivity f37421b;
-    public final boolean f37422c;
 
-    public g41(SessionsActivity sessionsActivity, boolean z10, int i10) {
-        this.f37420a = i10;
-        this.f37421b = sessionsActivity;
-        this.f37422c = z10;
+import org.telegram.tgnet.tl.TL_account;
+public final class g41 implements org.telegram.messenger.r20 {
+    public final int f37349a;
+    public final SessionsActivity f37350b;
+
+    public g41(SessionsActivity sessionsActivity, int i10) {
+        this.f37349a = i10;
+        this.f37350b = sessionsActivity;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37420a) {
+    public final void a(Object obj) {
+        switch (this.f37349a) {
             case 0:
-                this.f37421b.o0(this.f37422c);
+                TL_account.connectedBots connectedbots = (TL_account.connectedBots) obj;
+                SessionsActivity sessionsActivity = this.f37350b;
+                sessionsActivity.getClass();
+                if (connectedbots != null) {
+                    sessionsActivity.f34044f = connectedbots.connected_bots;
+                    if (sessionsActivity.f34041a != null) {
+                        sessionsActivity.r0();
+                        sessionsActivity.f34041a.f();
+                        return;
+                    }
+                    return;
+                }
                 return;
             default:
-                this.f37421b.o0(this.f37422c);
+                SessionsActivity.a0(this.f37350b, (Boolean) obj);
                 return;
         }
     }

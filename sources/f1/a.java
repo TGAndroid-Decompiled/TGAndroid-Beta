@@ -18,9 +18,9 @@ import java.util.concurrent.Executor;
 import kotlin.jvm.internal.i;
 import mg.c0;
 import org.telegram.messenger.i0;
-import org.telegram.messenger.q20;
-import org.telegram.messenger.qi;
+import org.telegram.messenger.r20;
 import org.telegram.messenger.ri;
+import org.telegram.messenger.si;
 import org.telegram.messenger.t1;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
@@ -33,10 +33,10 @@ import org.telegram.ui.Components.q70;
 import org.telegram.ui.Components.s4;
 import org.telegram.ui.Components.yb0;
 import org.telegram.ui.Stories.ProfileStoriesView;
-import org.telegram.ui.i31;
-import org.telegram.ui.mw0;
-import org.telegram.ui.se0;
-import org.telegram.ui.w50;
+import org.telegram.ui.g31;
+import org.telegram.ui.lw0;
+import org.telegram.ui.re0;
+import org.telegram.ui.v50;
 import r2.y;
 import rh.e6;
 import sg.o0;
@@ -45,47 +45,47 @@ import th.i7;
 import v0.h;
 import v0.m;
 import v0.o;
-public final class a implements OnFailureListener, u1, yb0, n, ri, t1, i7 {
-    public final Object f6721a;
-    public final Object f6722b;
-    public final Object f6723c;
+public final class a implements OnFailureListener, u1, yb0, n, si, t1, i7 {
+    public final Object f6722a;
+    public final Object f6723b;
+    public final Object f6724c;
     public final Object d;
     public final Object e;
 
     public a(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        this.f6721a = obj;
-        this.f6722b = obj2;
-        this.f6723c = obj3;
+        this.f6722a = obj;
+        this.f6723b = obj2;
+        this.f6724c = obj3;
         this.d = obj4;
         this.e = obj5;
     }
 
     @Override
     public void a(g gVar, List list) {
-        i0.g3(new c0((e6) this.f6721a, list, (q70) this.f6722b, (TLRPC.TL_inputStorePaymentStarsGift) this.f6723c, (TL_stars.TL_starsGiftOption) this.d, gVar, (Activity) this.e, 15));
+        i0.g3(new c0((e6) this.f6722a, list, (q70) this.f6723b, (TLRPC.TL_inputStorePaymentStarsGift) this.f6724c, (TL_stars.TL_starsGiftOption) this.d, gVar, (Activity) this.e, 15));
     }
 
     @Override
     public void b(g gVar, List list) {
-        i0.g3(new c0((se0) this.f6721a, gVar, list, (String) this.f6722b, (TLRPC.TL_inputStorePaymentAuthCode) this.f6723c, (TLRPC.TL_payments_canPurchaseStore) this.d, (w50) this.e, 6));
+        i0.g3(new c0((re0) this.f6722a, gVar, list, (String) this.f6723b, (TLRPC.TL_inputStorePaymentAuthCode) this.f6724c, (TLRPC.TL_payments_canPurchaseStore) this.d, (v50) this.e, 6));
     }
 
     @Override
     public void c(String str, ArrayList arrayList) {
         TLRPC.TL_availableReaction tL_availableReaction;
-        i31 i31Var = (i31) this.f6721a;
-        LinkedHashSet linkedHashSet = (LinkedHashSet) this.f6722b;
-        HashMap hashMap = (HashMap) this.f6723c;
+        g31 g31Var = (g31) this.f6722a;
+        LinkedHashSet linkedHashSet = (LinkedHashSet) this.f6723b;
+        HashMap hashMap = (HashMap) this.f6724c;
         ArrayList arrayList2 = (ArrayList) this.d;
         Runnable runnable = (Runnable) this.e;
-        i31Var.getClass();
+        g31Var.getClass();
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             try {
-                if (((qi) arrayList.get(i10)).f17590a.startsWith("animated_")) {
-                    linkedHashSet.add(Long.valueOf(Long.parseLong(((qi) arrayList.get(i10)).f17590a.substring(9))));
+                if (((ri) arrayList.get(i10)).f17936a.startsWith("animated_")) {
+                    linkedHashSet.add(Long.valueOf(Long.parseLong(((ri) arrayList.get(i10)).f17936a.substring(9))));
                 } else {
-                    int i11 = i31Var.W;
-                    if ((i11 == 1 || i11 == 11 || i11 == 2) && (tL_availableReaction = (TLRPC.TL_availableReaction) hashMap.get(((qi) arrayList.get(i10)).f17590a)) != null) {
+                    int i11 = g31Var.W;
+                    if ((i11 == 1 || i11 == 11 || i11 == 2) && (tL_availableReaction = (TLRPC.TL_availableReaction) hashMap.get(((ri) arrayList.get(i10)).f17936a)) != null) {
                         arrayList2.add(o0.c(tL_availableReaction));
                     }
                 }
@@ -97,23 +97,23 @@ public final class a implements OnFailureListener, u1, yb0, n, ri, t1, i7 {
 
     @Override
     public void h(x1 x1Var, int i10) {
-        i3 i3Var = (i3) this.f6721a;
-        ((boolean[]) this.f6722b)[0] = true;
-        i3Var.h(i3Var.f20400x, (h3) this.f6723c, true);
-        ((q20) this.d).a(Boolean.TRUE);
+        i3 i3Var = (i3) this.f6722a;
+        ((boolean[]) this.f6723b)[0] = true;
+        i3Var.h(i3Var.f20401x, (h3) this.f6724c, true);
+        ((r20) this.d).a(Boolean.TRUE);
         ((x1[]) this.e)[0].dismiss();
     }
 
     @Override
     public void j(float f7, Canvas canvas, RectF rectF, boolean z10) {
-        y yVar = (y) this.f6721a;
-        RectF rectF2 = (RectF) this.f6722b;
-        c3 c3Var = (c3) this.f6723c;
+        y yVar = (y) this.f6722a;
+        RectF rectF2 = (RectF) this.f6723b;
+        c3 c3Var = (c3) this.f6724c;
         RectF rectF3 = (RectF) this.d;
         c3 c3Var2 = (c3) this.e;
-        RectF rectF4 = c3Var.f48839m;
+        RectF rectF4 = c3Var.f48853m;
         rectF2.set(rectF4);
-        RectF rectF5 = c3Var2.f48839m;
+        RectF rectF5 = c3Var2.f48853m;
         rectF3.set(rectF5);
         rectF4.set(rectF);
         try {
@@ -125,23 +125,23 @@ public final class a implements OnFailureListener, u1, yb0, n, ri, t1, i7 {
             rectF5.set(centerX - width2, centerY - height, centerX + width2, centerY + height);
         } catch (Exception unused) {
         }
-        int i10 = ProfileStoriesView.f34056s0;
-        ((mw0) yVar.f46290b).a(canvas, c3Var, c3Var2);
+        int i10 = ProfileStoriesView.f34063s0;
+        ((lw0) yVar.f46301b).a(canvas, c3Var, c3Var2);
         rectF4.set(rectF2);
         rectF5.set(rectF3);
     }
 
     @Override
     public void onFailure(Exception e) {
-        m request = (m) this.f6721a;
-        b bVar = (b) this.f6722b;
-        h hVar = (h) this.f6723c;
+        m request = (m) this.f6722a;
+        b bVar = (b) this.f6723b;
+        h hVar = (h) this.f6724c;
         Executor executor = (Executor) this.d;
         CancellationSignal cancellationSignal = (CancellationSignal) this.e;
         i.e(e, "e");
         CredentialProviderPlayServicesImpl.Companion.getClass();
         i.e(request, "request");
-        for (o oVar : request.f50277a) {
+        for (o oVar : request.f50291a) {
         }
         Log.w("GetCredentialController", "Pre-u credman get flow failed; retrying with gis flow");
         new d(bVar.e).g(request, cancellationSignal, executor, hVar);
@@ -149,6 +149,6 @@ public final class a implements OnFailureListener, u1, yb0, n, ri, t1, i7 {
 
     @Override
     public void t(ac0 ac0Var, int i10) {
-        s4.c((vh.d) this.f6721a, (ac0) this.f6722b, (ac0) this.f6723c, (ac0) this.d, (ac0) this.e);
+        s4.c((vh.d) this.f6722a, (ac0) this.f6723b, (ac0) this.f6724c, (ac0) this.d, (ac0) this.e);
     }
 }

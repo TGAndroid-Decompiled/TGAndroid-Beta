@@ -1,111 +1,78 @@
 package yh;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.d20;
-import org.telegram.messenger.vp;
-import org.telegram.messenger.w3;
-import org.telegram.messenger.zo;
+import java.util.ArrayList;
+import org.telegram.messenger.k20;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.p6;
-import org.telegram.ui.Cells.r2;
-import org.telegram.ui.Cells.v2;
-import org.telegram.ui.Components.a51;
-import org.telegram.ui.Components.p51;
-import org.telegram.ui.Components.tk0;
-import org.telegram.ui.Components.u51;
-import org.telegram.ui.Components.z41;
-public final class b0 extends z41 {
-    static {
-        z41.h(new z41());
-    }
+import org.telegram.tgnet.tl.TL_communities;
+public final class b0 implements k20 {
+    public final int f54463a;
+    public final d0 f54464b;
 
-    public static a51 i(zo zoVar, r2 r2Var) {
-        long j10;
-        TLRPC.User user = zoVar.f19570c;
-        if (user != null) {
-            a51 K = a51.K(b0.class);
-            long j11 = user.f19942id;
-            K.B = j11;
-            K.d = (int) (j11 ^ (j11 >>> 32));
-            K.G = user;
-            K.H = r2Var;
-            return K;
-        }
-        TLRPC.Chat chat = zoVar.f19569b;
-        a51 K2 = a51.K(b0.class);
-        if (chat != null) {
-            j10 = -chat.f19793id;
-        } else {
-            j10 = 0;
-        }
-        K2.B = j10;
-        K2.d = (int) (j10 ^ (j10 >>> 32));
-        K2.G = chat;
-        K2.H = r2Var;
-        return K2;
+    public b0(d0 d0Var, int i10) {
+        this.f54463a = i10;
+        this.f54464b = d0Var;
     }
 
     @Override
-    public final void b(View view, a51 a51Var, boolean z10, p51 p51Var, u51 u51Var) {
-        v2 v2Var = (v2) view;
-        v2Var.setDialogCellDelegate((r2) a51Var.H);
-        Object obj = a51Var.G;
-        boolean z11 = true;
-        if (obj instanceof TLRPC.Chat) {
-            TLRPC.Chat chat = (TLRPC.Chat) obj;
-            v2Var.Q0 = w3.e0(d20.f15147s0, chat);
-            TLRPC.Dialog R0 = vp.r1(d20.f15147s0).R0(-chat.f19793id);
-            if (R0 != null) {
-                z11 = false;
-            }
-            v2Var.P0 = z11;
-            if (R0 != null) {
-                v2Var.setCustomMessageWithoutRebuild(null);
-                v2Var.e0(R0, 0, 0);
+    public final void a(Object obj, Object obj2) {
+        switch (this.f54463a) {
+            case 0:
+                TLRPC.Bool bool = (TLRPC.Bool) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                d0 d0Var = this.f54464b;
+                d0Var.f54484q.dismiss();
+                d0Var.f54484q = null;
+                d0Var.f54485r = 0;
+                if (tL_error != null) {
+                    d0Var.f54473c.f0(tL_error, false);
+                    return;
+                }
+                c0 c0Var = d0Var.h;
+                if (c0Var != null) {
+                    c0Var.close();
+                    return;
+                }
                 return;
-            }
-            v2Var.setCustomMessageWithoutRebuild(cd.G(chat.participants_count, "Members", new Object[0]));
-            v2Var.d0(-chat.f19793id, null, 0, false, false);
-        } else if (obj instanceof TLRPC.User) {
-            TLRPC.User user = (TLRPC.User) obj;
-            v2Var.Q0 = w3.f0(d20.f15147s0, user);
-            TLRPC.Dialog R02 = vp.r1(d20.f15147s0).R0(user.f19942id);
-            if (R02 != null) {
-                z11 = false;
-            }
-            v2Var.P0 = z11;
-            if (R02 != null) {
-                v2Var.setCustomMessageWithoutRebuild(null);
-                v2Var.e0(R02, 0, 0);
+            case 1:
+                TL_communities.PeerLinkRequests peerLinkRequests = (TL_communities.PeerLinkRequests) obj;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                d0 d0Var2 = this.f54464b;
+                boolean z10 = false;
+                d0Var2.f54480m = false;
+                if (peerLinkRequests != null) {
+                    ArrayList arrayList = d0Var2.f54477j;
+                    if (arrayList == null) {
+                        d0Var2.f54477j = new ArrayList(peerLinkRequests.requests);
+                    } else {
+                        arrayList.addAll(peerLinkRequests.requests);
+                    }
+                    String str = peerLinkRequests.next_offset;
+                    d0Var2.f54478k = str;
+                    d0Var2.f54479l = peerLinkRequests.total_count;
+                    if (str == null) {
+                        z10 = true;
+                    }
+                    d0Var2.f54481n = z10;
+                    d0Var2.a();
+                    c0 c0Var2 = d0Var2.h;
+                    if (c0Var2 != null) {
+                        c0Var2.b();
+                        return;
+                    }
+                    return;
+                }
                 return;
-            }
-            v2Var.setCustomMessageWithoutRebuild(cd.L0(2131753156, null));
-            v2Var.d0(user.f19942id, null, 0, false, false);
+            default:
+                TLRPC.Bool bool2 = (TLRPC.Bool) obj;
+                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
+                d0 d0Var3 = this.f54464b;
+                if (tL_error3 != null) {
+                    d0Var3.f54473c.f0(tL_error3, false);
+                    return;
+                } else {
+                    d0Var3.getClass();
+                    return;
+                }
         }
-    }
-
-    @Override
-    public final boolean c(a51 a51Var, a51 a51Var2) {
-        if (a51Var.d == a51Var2.d) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final View d(Context context, tk0 tk0Var, int i10, p6 p6Var) {
-        v2 v2Var = new v2(null, context, false, i10, p6Var);
-        v2Var.O0 = true;
-        return v2Var;
-    }
-
-    @Override
-    public final boolean e(a51 a51Var, a51 a51Var2) {
-        if (a51Var.d == a51Var2.d) {
-            return true;
-        }
-        return false;
     }
 }

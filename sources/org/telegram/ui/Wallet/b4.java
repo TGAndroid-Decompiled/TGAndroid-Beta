@@ -24,11 +24,11 @@ public final class b4 extends t80 {
     public final void b(Canvas canvas, Path path) {
         super.b(canvas, path);
         d4 d4Var = this.N;
-        RectF rectF = d4Var.f34385f;
-        if (d4Var.f34402o0 != null) {
+        RectF rectF = d4Var.f34390f;
+        if (d4Var.f34407o0 != null) {
             canvas.saveLayer(rectF, null);
-            d4Var.f34402o0.c((org.telegram.messenger.i0.L(206.0f) - d4Var.f34402o0.k()) / 2.0f, (rectF.bottom - org.telegram.messenger.i0.L(7.0f)) - d4Var.f34402o0.i(), 1.0f, -1, canvas);
-            Shader shader = this.f30520x.getShader();
+            d4Var.f34407o0.c((org.telegram.messenger.i0.L(206.0f) - d4Var.f34407o0.k()) / 2.0f, (rectF.bottom - org.telegram.messenger.i0.L(7.0f)) - d4Var.f34407o0.i(), 1.0f, -1, canvas);
+            Shader shader = this.f30592x.getShader();
             Paint paint = this.M;
             paint.setShader(shader);
             canvas.drawRect(rectF, paint);
@@ -39,6 +39,6 @@ public final class b4 extends t80 {
     @Override
     public final void invalidateSelf() {
         super.invalidateSelf();
-        this.N.f34377a.invalidate();
+        this.N.f34382a.invalidate();
     }
 }

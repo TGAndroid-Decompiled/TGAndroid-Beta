@@ -1,7 +1,7 @@
 package xh;
 
-import org.telegram.messenger.jj;
-public final class b1 extends jj {
+import org.telegram.messenger.kj;
+public final class b1 extends kj {
     @Override
     public final boolean N3() {
         return false;

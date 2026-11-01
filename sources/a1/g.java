@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import kotlin.jvm.internal.i;
 import m1.j;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 import org.telegram.messenger.f8;
 public abstract class g {
     public static float A(float f7, float f10, float f11, float f12) {
@@ -172,7 +172,7 @@ public abstract class g {
     }
 
     public static String m(String str, int i10, StringBuilder sb2) {
-        sb2.append(cd.L0(i10, str));
+        sb2.append(dd.L0(i10, str));
         return sb2.toString();
     }
 

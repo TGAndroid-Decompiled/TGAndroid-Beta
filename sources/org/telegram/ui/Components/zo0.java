@@ -1,74 +1,56 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.widget.FrameLayout;
-public final class zo0 extends AnimatorListenerAdapter {
-    public final int f33137a;
-    public final boolean f33138b;
-    public final op0 f33139c;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
+public final class zo0 implements View.OnTouchListener {
+    public final int f33197a;
+    public final Rect f33198b;
+    public final pp0 f33199c;
 
-    public zo0(op0 op0Var, boolean z10, int i10) {
-        this.f33137a = i10;
-        this.f33139c = op0Var;
-        this.f33138b = z10;
-    }
-
-    @Override
-    public final void onAnimationCancel(Animator animator) {
-        switch (this.f33137a) {
-            case 0:
-                AnimatorSet[] animatorSetArr = this.f33139c.L1;
-                AnimatorSet animatorSet = animatorSetArr[0];
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    animatorSetArr[0] = null;
-                    return;
-                }
+    public zo0(pp0 pp0Var, int i10) {
+        this.f33197a = i10;
+        switch (i10) {
+            case 1:
+                this.f33199c = pp0Var;
+                this.f33198b = new Rect();
                 return;
             default:
-                op0 op0Var = this.f33139c;
-                if (animator.equals(op0Var.f29145v1)) {
-                    op0Var.f29145v1 = null;
-                    return;
-                }
+                this.f33199c = pp0Var;
+                this.f33198b = new Rect();
                 return;
         }
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f33137a) {
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        pp0 pp0Var;
+        org.telegram.ui.ActionBar.k1 k1Var;
+        pp0 pp0Var2;
+        org.telegram.ui.ActionBar.k1 k1Var2;
+        switch (this.f33197a) {
             case 0:
-                op0 op0Var = this.f33139c;
-                AnimatorSet[] animatorSetArr = op0Var.L1;
-                AnimatorSet animatorSet = animatorSetArr[0];
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    if (!this.f33138b) {
-                        op0Var.K1[0].setVisibility(4);
+                if (motionEvent.getActionMasked() == 0 && (k1Var = (pp0Var = this.f33199c).B2) != null && k1Var.isShowing()) {
+                    Rect rect = this.f33198b;
+                    view.getHitRect(rect);
+                    if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        pp0Var.B2.d(true);
+                        return false;
                     }
-                    animatorSetArr[0] = null;
-                    return;
+                    return false;
                 }
-                return;
+                return false;
             default:
-                op0 op0Var2 = this.f33139c;
-                FrameLayout frameLayout = op0Var2.f29129n1;
-                if (animator.equals(op0Var2.f29145v1)) {
-                    if (!this.f33138b) {
-                        op0Var2.f29122j1.setVisibility(4);
-                        FrameLayout frameLayout2 = op0Var2.U1;
-                        if (frameLayout2 != null && frameLayout == null) {
-                            frameLayout2.setVisibility(4);
-                        }
-                        op0Var2.f29127m1.setVisibility(4);
-                    } else if (frameLayout != null) {
-                        frameLayout.setVisibility(4);
+                if (motionEvent.getActionMasked() == 0 && (k1Var2 = (pp0Var2 = this.f33199c).B2) != null && k1Var2.isShowing()) {
+                    Rect rect2 = this.f33198b;
+                    view.getHitRect(rect2);
+                    if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        pp0Var2.B2.d(true);
+                        return false;
                     }
-                    op0Var2.f29145v1 = null;
-                    return;
+                    return false;
                 }
-                return;
+                return false;
         }
     }
 }

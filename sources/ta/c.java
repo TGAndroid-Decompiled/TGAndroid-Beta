@@ -23,13 +23,13 @@ import sc.e;
 public final class c {
     public static final Pattern d = Pattern.compile("[0-9]+s");
     public static final Charset e = Charset.forName("UTF-8");
-    public final Context f48579a;
-    public final qa.b f48580b;
-    public final d f48581c = new d();
+    public final Context f48590a;
+    public final qa.b f48591b;
+    public final d f48592c = new d();
 
     public c(Context context, qa.b bVar) {
-        this.f48579a = context;
-        this.f48580b = bVar;
+        this.f48590a = context;
+        this.f48591b = bVar;
     }
 
     public static URL a(String str) {

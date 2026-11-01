@@ -1,25 +1,25 @@
 package li;
 public final class q implements Runnable {
-    public final int f12227a;
-    public final v f12228b;
+    public final int f12228a;
+    public final v f12229b;
 
     public q(v vVar, int i10) {
-        this.f12227a = i10;
-        this.f12228b = vVar;
+        this.f12228a = i10;
+        this.f12229b = vVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f12227a) {
+        switch (this.f12228a) {
             case 0:
-                v vVar = this.f12228b;
+                v vVar = this.f12229b;
                 if (vVar.W != 0) {
                     vVar.V = true;
                     return;
                 }
                 return;
             default:
-                this.f12228b.c();
+                this.f12229b.c();
                 return;
         }
     }

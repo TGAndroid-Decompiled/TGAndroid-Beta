@@ -1,6 +1,6 @@
 package l5;
 public final class e implements ja.d {
-    public static final e f11653a = new Object();
+    public static final e f11654a = new Object();
 
     static {
         ja.c.c("clientMetrics");

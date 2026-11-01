@@ -14,7 +14,7 @@ public final class e extends g {
 
     @Override
     public final Canvas a() {
-        return this.e.beginRecording(this.f44343c - this.f44341a, this.d - this.f44342b);
+        return this.e.beginRecording(this.f44354c - this.f44352a, this.d - this.f44353b);
     }
 
     @Override

@@ -11,16 +11,16 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.WeakHashMap;
-import org.telegram.messenger.k9;
+import org.telegram.messenger.l9;
 public final class c extends View {
-    public static final long f45572f0 = System.currentTimeMillis();
-    public static final String[] f45573g0 = new String[100];
+    public static final long f45583f0 = System.currentTimeMillis();
+    public static final String[] f45584g0 = new String[100];
     public float D;
     public long E;
     public final RectF F;
     public float G;
     public float H;
-    public final k9 I;
+    public final l9 I;
     public final Path J;
     public float K;
     public final RectF L;
@@ -35,43 +35,43 @@ public final class c extends View {
     public float U;
     public float V;
     public float W;
-    public final k2.m0 f45574a;
-    public long f45575a0;
-    public g0 f45576b;
-    public long f45577b0;
-    public final Paint f45578c;
-    public boolean f45579c0;
+    public final k2.m0 f45585a;
+    public long f45586a0;
+    public g0 f45587b;
+    public long f45588b0;
+    public final Paint f45589c;
+    public boolean f45590c0;
     public final Paint d;
-    public final int[] f45580d0;
+    public final int[] f45591d0;
     public final TextPaint e;
-    public final RectF f45581e0;
-    public final int[] f45582f;
+    public final RectF f45592e0;
+    public final int[] f45593f;
     public final int[] h;
-    public final HashMap f45583n;
-    public final ArrayList f45584r;
-    public final ArrayList f45585s;
-    public final ArrayList f45586w;
-    public float f45587x;
-    public float f45588y;
+    public final HashMap f45594n;
+    public final ArrayList f45595r;
+    public final ArrayList f45596s;
+    public final ArrayList f45597w;
+    public float f45598x;
+    public float f45599y;
 
     public c(Activity activity, k2.m0 m0Var) {
         super(activity);
-        this.f45578c = new Paint(1);
+        this.f45589c = new Paint(1);
         Paint paint = new Paint(1);
         this.d = paint;
         TextPaint textPaint = new TextPaint(1);
         this.e = textPaint;
         new RectF();
-        this.f45582f = new int[2];
+        this.f45593f = new int[2];
         this.h = new int[2];
-        this.f45583n = new HashMap();
-        this.f45584r = new ArrayList();
-        this.f45585s = new ArrayList();
-        this.f45586w = new ArrayList();
+        this.f45594n = new HashMap();
+        this.f45595r = new ArrayList();
+        this.f45596s = new ArrayList();
+        this.f45597w = new ArrayList();
         this.F = new RectF();
         this.G = Float.NaN;
         this.H = -1.0f;
-        this.I = new k9(3);
+        this.I = new l9(3);
         this.J = new Path();
         this.K = Float.NaN;
         this.L = new RectF();
@@ -83,9 +83,9 @@ public final class c extends View {
         this.S = new Paint.FontMetrics();
         this.U = Float.NaN;
         this.W = 0.45f;
-        this.f45580d0 = new int[2];
-        this.f45581e0 = new RectF();
-        this.f45574a = m0Var;
+        this.f45591d0 = new int[2];
+        this.f45592e0 = new RectF();
+        this.f45585a = m0Var;
         textPaint.setTypeface(org.telegram.messenger.i0.o());
         textPaint.setTextSize(org.telegram.messenger.i0.L(10.0f));
         textPaint.setTextAlign(Paint.Align.CENTER);
@@ -93,7 +93,7 @@ public final class c extends View {
     }
 
     public static long b() {
-        return System.currentTimeMillis() - f45572f0;
+        return System.currentTimeMillis() - f45583f0;
     }
 
     public static float c(float[] fArr, long j10) {
@@ -113,26 +113,26 @@ public final class c extends View {
     }
 
     @Override
-    public final void onDraw(android.graphics.Canvas r29) {
+    public final void onDraw(android.graphics.Canvas r30) {
         throw new UnsupportedOperationException("Method not decompiled: qh.c.onDraw(android.graphics.Canvas):void");
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         int i10 = 0;
-        if (this.f45588y >= 0.5f) {
+        if (this.f45599y >= 0.5f) {
             if (this.F.contains(motionEvent.getX(), motionEvent.getY())) {
                 if (motionEvent.getActionMasked() == 1) {
                     int i11 = 0;
                     while (true) {
-                        ArrayList arrayList = this.f45584r;
+                        ArrayList arrayList = this.f45595r;
                         if (i10 >= arrayList.size()) {
                             break;
                         }
                         b bVar = (b) arrayList.get(i10);
                         if (!bVar.d) {
-                            if (Math.abs(motionEvent.getX() - bVar.f45568b) < org.telegram.messenger.i0.L(34.0f) / 2.0f) {
-                                x0 x0Var = ((i0) this.f45574a.f10700a).d;
+                            if (Math.abs(motionEvent.getX() - bVar.f45579b) < org.telegram.messenger.i0.L(34.0f) / 2.0f) {
+                                x0 x0Var = ((i0) this.f45585a.f10701a).d;
                                 ArrayList arrayList2 = x0Var.I;
                                 if (i11 >= 0 && i11 < arrayList2.size()) {
                                     arrayList2.remove(i11);

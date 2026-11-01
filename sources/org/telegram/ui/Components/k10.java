@@ -8,22 +8,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 public final class k10 extends ViewGroup {
-    public AnimatorSet f27599a;
-    public boolean f27600b;
-    public final ArrayList f27601c;
+    public AnimatorSet f27687a;
+    public boolean f27688b;
+    public final ArrayList f27689c;
     public s20 d;
     public final ArrayList e;
-    public int f27602f;
+    public int f27690f;
     public int h;
-    public int f27603n;
-    public final l10 f27604r;
+    public int f27691n;
+    public final l10 f27692r;
 
     public k10(l10 l10Var, Context context) {
         super(context);
-        this.f27604r = l10Var;
-        this.f27601c = new ArrayList();
+        this.f27692r = l10Var;
+        this.f27689c = new ArrayList();
         this.e = new ArrayList();
-        this.f27602f = -1;
+        this.f27690f = -1;
     }
 
     @Override
@@ -48,14 +48,14 @@ public final class k10 extends ViewGroup {
         int L2 = org.telegram.messenger.i0.L(10.0f);
         int L3 = org.telegram.messenger.i0.L(10.0f);
         int i15 = 0;
-        if (!this.f27600b) {
-            this.f27603n = 0;
+        if (!this.f27688b) {
+            this.f27691n = 0;
         }
         int i16 = 0;
         int i17 = 0;
         int i18 = 0;
         while (true) {
-            arrayList = this.f27601c;
+            arrayList = this.f27689c;
             if (i16 >= childCount) {
                 break;
             }
@@ -80,7 +80,7 @@ public final class k10 extends ViewGroup {
                     i18 = i14;
                 }
                 int L4 = org.telegram.messenger.i0.L(13.0f) + i17;
-                if (!this.f27600b) {
+                if (!this.f27688b) {
                     if (contains) {
                         childAt.setTranslationX(org.telegram.messenger.i0.L(13.0f) + i18);
                         childAt.setTranslationY(L3);
@@ -97,11 +97,11 @@ public final class k10 extends ViewGroup {
                             fArr2[i14] = f10;
                             arrayList.add(ObjectAnimator.ofFloat(childAt, View.TRANSLATION_Y, fArr2));
                         }
-                        this.f27603n = Math.max(this.f27603n, L2);
+                        this.f27691n = Math.max(this.f27691n, L2);
                     } else {
                         childAt.setTranslationX(L4);
                         childAt.setTranslationY(L2);
-                        this.f27603n = Math.max(this.f27603n, L2);
+                        this.f27691n = Math.max(this.f27691n, L2);
                     }
                 }
                 if (!contains) {
@@ -116,8 +116,8 @@ public final class k10 extends ViewGroup {
         if (org.telegram.messenger.i0.Q1()) {
             y3 = org.telegram.messenger.i0.L(372.0f) / 3;
         } else {
-            Point point = org.telegram.messenger.i0.f16026q;
-            y3 = org.telegram.messenger.z20.y(158.0f, Math.min(point.x, point.y), 3);
+            Point point = org.telegram.messenger.i0.f16172q;
+            y3 = org.telegram.messenger.a30.y(158.0f, Math.min(point.x, point.y), 3);
         }
         if (L - i17 < y3) {
             L2 += org.telegram.messenger.i0.L(40.0f);
@@ -125,19 +125,19 @@ public final class k10 extends ViewGroup {
         if (L - i18 < y3) {
             L3 += org.telegram.messenger.i0.L(40.0f);
         }
-        boolean z10 = this.f27600b;
-        l10 l10Var = this.f27604r;
+        boolean z10 = this.f27688b;
+        l10 l10Var = this.f27692r;
         if (!z10) {
             int L5 = org.telegram.messenger.i0.L(42.0f) + L3;
-            l10Var.f27968n = L2;
-            if (this.f27599a != null) {
+            l10Var.f28018n = L2;
+            if (this.f27687a != null) {
                 this.h = org.telegram.messenger.i0.L(42.0f) + L2;
-                this.f27599a.playTogether(arrayList);
+                this.f27687a.playTogether(arrayList);
                 i12 = i19;
-                this.f27599a.addListener(new j10(this, i12));
-                this.f27602f = org.telegram.messenger.zs.f(l10Var.f27964a).q(null, this.f27602f, true);
-                this.f27599a.start();
-                this.f27600b = true;
+                this.f27687a.addListener(new j10(this, i12));
+                this.f27690f = org.telegram.messenger.at.f(l10Var.f28014a).q(null, this.f27690f, true);
+                this.f27687a.start();
+                this.f27688b = true;
             } else {
                 i12 = i19;
                 this.h = L5;
@@ -145,7 +145,7 @@ public final class k10 extends ViewGroup {
         } else {
             i12 = i19;
         }
-        int i20 = this.f27603n;
+        int i20 = this.f27691n;
         if (i20 > 0) {
             i13 = org.telegram.messenger.i0.L(40.0f) + i20;
         } else {
@@ -153,7 +153,7 @@ public final class k10 extends ViewGroup {
         }
         l10Var.e = i13;
         setMeasuredDimension(size, this.h);
-        i10 i10Var = l10Var.f27967f;
+        i10 i10Var = l10Var.f28017f;
         if (i10Var != null) {
             i10Var.a(l10Var.e);
         }

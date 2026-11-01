@@ -2,7 +2,7 @@ package td;
 
 import v7.g5;
 public final class i2 implements cd.f, cd.g {
-    public static final i2 f48634a = new Object();
+    public static final i2 f48645a = new Object();
 
     @Override
     public final Object fold(Object obj, ld.p pVar) {

@@ -12,7 +12,7 @@ public final class x5 extends z2 {
 
     @Override
     public final boolean I0() {
-        if (getParent() != null && ((Integer) ((View) getParent()).getTag()).intValue() == this.O3.f49684f.getCurrentItem()) {
+        if (getParent() != null && ((Integer) ((View) getParent()).getTag()).intValue() == this.O3.f49698f.getCurrentItem()) {
             return true;
         }
         return false;
@@ -20,8 +20,8 @@ public final class x5 extends z2 {
 
     @Override
     public final void invalidate() {
-        if (p.f49348c) {
-            p.f49347b.add(this);
+        if (p.f49362c) {
+            p.f49361b.add(this);
         } else {
             super.invalidate();
         }
@@ -29,8 +29,8 @@ public final class x5 extends z2 {
 
     @Override
     public final void invalidate(int i10, int i11, int i12, int i13) {
-        if (p.f49348c) {
-            p.f49347b.add(this);
+        if (p.f49362c) {
+            p.f49361b.add(this);
         } else {
             super.invalidate(i10, i11, i12, i13);
         }

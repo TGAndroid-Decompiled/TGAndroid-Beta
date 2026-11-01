@@ -1,11 +1,11 @@
 package org.telegram.ui.Components;
-public final class nr implements org.telegram.messenger.j20 {
-    public final int f28880a;
-    public final vr f28881b;
+public final class nr implements org.telegram.messenger.k20 {
+    public final int f28955a;
+    public final vr f28956b;
 
     public nr(vr vrVar, int i10) {
-        this.f28880a = i10;
-        this.f28881b = vrVar;
+        this.f28955a = i10;
+        this.f28956b = vrVar;
     }
 
     @Override

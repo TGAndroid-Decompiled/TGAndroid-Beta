@@ -4,7 +4,7 @@ import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.text.style.CharacterStyle;
 import org.telegram.messenger.i0;
-import org.telegram.messenger.tz;
+import org.telegram.messenger.uz;
 import org.telegram.ui.ActionBar.t6;
 public final class i extends CharacterStyle {
     public final String f5965a;
@@ -35,7 +35,7 @@ public final class i extends CharacterStyle {
     @Override
     public final void updateDrawState(TextPaint textPaint) {
         if (this.f5967c) {
-            textPaint.setTextSize(i0.L(tz.W0 - this.f5966b));
+            textPaint.setTextSize(i0.L(uz.W0 - this.f5966b));
         }
         textPaint.setColor(t6.x0(null, t6.Sc, false));
         textPaint.setTypeface(Typeface.MONOSPACE);

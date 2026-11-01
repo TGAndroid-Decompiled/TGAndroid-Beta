@@ -8,11 +8,11 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.y6;
 import org.telegram.ui.Components.eq;
 public final class g implements y6, yg.b {
-    public final int f55492a;
+    public final int f55510a;
 
     @Override
     public Object a(Bitmap bitmap) {
-        switch (this.f55492a) {
+        switch (this.f55510a) {
             case 1:
                 if (bitmap != null && !bitmap.isRecycled()) {
                     Bitmap E = Utilities.E(Math.max(bitmap.getWidth() / 90.0f, bitmap.getHeight() / 120.0f), bitmap);
@@ -40,7 +40,7 @@ public final class g implements y6, yg.b {
     public void d(int i10, View view) {
         Drawable background = view.getBackground();
         if (background instanceof eq) {
-            Drawable drawable = ((eq) background).f25839a;
+            Drawable drawable = ((eq) background).f25901a;
             if (drawable instanceof ColorDrawable) {
                 ((ColorDrawable) drawable).setColor(i10);
                 view.invalidate();

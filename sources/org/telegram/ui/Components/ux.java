@@ -9,29 +9,29 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class ux extends sk0 {
+public final class ux extends tk0 {
     public boolean D;
     public boolean E;
     public final vy F;
-    public final qx f31070c;
+    public final qx f31100c;
     public long d;
     public TLRPC.StickerSet e;
-    public ArrayList f31071f;
+    public ArrayList f31101f;
     public final ArrayList h = new ArrayList();
-    public final ArrayList f31072n = new ArrayList();
-    public final ArrayList f31073r = new ArrayList();
-    public final ArrayList f31074s = new ArrayList();
-    public String f31075w;
-    public String f31076x;
-    public tx f31077y;
+    public final ArrayList f31102n = new ArrayList();
+    public final ArrayList f31103r = new ArrayList();
+    public final ArrayList f31104s = new ArrayList();
+    public String f31105w;
+    public String f31106x;
+    public tx f31107y;
 
     public ux(vy vyVar, Context context) {
         this.F = vyVar;
-        qx qxVar = new qx(context, vyVar.f31865c1, new d(this, 11), new px(this, 0), vyVar.Z1);
-        this.f31070c = qxVar;
+        qx qxVar = new qx(context, vyVar.f31943c1, new d(this, 11), new px(this, 0), vyVar.Z1);
+        this.f31100c = qxVar;
         qxVar.setPadding(org.telegram.messenger.i0.L(10.0f), 0, org.telegram.messenger.i0.L(10.0f), org.telegram.messenger.i0.L(5.0f));
         qxVar.setClipToPadding(false);
-        qxVar.f30819f3.f29295r = false;
+        qxVar.f31183f3.f29638r = false;
         qxVar.setNestedScrollingEnabled(false);
         qxVar.setDrawSelection(false);
         qxVar.setOnTouchListener(new m.c2(this, 1));
@@ -47,16 +47,16 @@ public final class ux extends sk0 {
             str = "";
         }
         String str2 = str;
-        String str3 = uxVar.f31075w;
+        String str3 = uxVar.f31105w;
         if (str3 == null) {
             return;
         }
-        org.telegram.messenger.ui.b0(vyVar.f31865c1).Z1(true, str2, str3, new ag.m2(uxVar, str3, arrayList, runnable, 9), z10);
+        org.telegram.messenger.vi.b0(vyVar.f31943c1).Z1(true, str2, str3, new ag.m2(uxVar, str3, arrayList, runnable, 9), z10);
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f47901f;
+        int i10 = c1Var.f47912f;
         if (i10 != 0 && i10 != 4) {
             return false;
         }
@@ -68,7 +68,7 @@ public final class ux extends sk0 {
         hx hxVar = vyVar.P;
         long j10 = 0;
         if (TextUtils.isEmpty(str)) {
-            this.f31075w = null;
+            this.f31105w = null;
             s4.g0 adapter = hxVar.getAdapter();
             ex exVar = vyVar.R;
             if (adapter != exVar) {
@@ -76,21 +76,21 @@ public final class ux extends sk0 {
                 this.D = false;
             }
             this.d = 0L;
-            vyVar.f31859b.a(false, true);
+            vyVar.f31937b.a(false, true);
             f();
         } else {
-            this.f31075w = str.toLowerCase();
+            this.f31105w = str.toLowerCase();
         }
-        tx txVar = this.f31077y;
+        tx txVar = this.f31107y;
         if (txVar != null) {
             org.telegram.messenger.i0.r(txVar);
         }
-        if (!TextUtils.isEmpty(this.f31075w)) {
-            this.f31072n.clear();
+        if (!TextUtils.isEmpty(this.f31105w)) {
+            this.f31102n.clear();
             this.E = false;
             vyVar.V.e(true);
             tx txVar2 = new tx(this);
-            this.f31077y = txVar2;
+            this.f31107y = txVar2;
             if (z10) {
                 j10 = 300;
             }
@@ -101,12 +101,12 @@ public final class ux extends sk0 {
     @Override
     public final int b() {
         if (this.d != 0) {
-            return this.f31071f.size() + 4;
+            return this.f31101f.size() + 4;
         }
         ArrayList arrayList = this.h;
         boolean isEmpty = arrayList.isEmpty();
-        ArrayList arrayList2 = this.f31074s;
-        ArrayList arrayList3 = this.f31073r;
+        ArrayList arrayList2 = this.f31104s;
+        ArrayList arrayList3 = this.f31103r;
         if (isEmpty && arrayList3.isEmpty() && arrayList2.isEmpty() && !this.D) {
             return this.F.getRecentEmoji().size() + 1;
         }
@@ -133,7 +133,7 @@ public final class ux extends sk0 {
 
     @Override
     public final void f() {
-        this.f31070c.f30819f3.O(false);
+        this.f31100c.f31183f3.O(false);
         super.f();
     }
 
@@ -154,7 +154,7 @@ public final class ux extends sk0 {
                         if (i10 != 5) {
                             jg.l0 l0Var2 = new jg.l0(this, vyVar.getContext(), 17);
                             TextView textView = new TextView(vyVar.getContext());
-                            textView.setText(org.telegram.messenger.cd.L0(2131748230, null));
+                            textView.setText(org.telegram.messenger.dd.L0(2131748230, null));
                             textView.setTextSize(1, 16.0f);
                             int i11 = org.telegram.ui.ActionBar.t6.Af;
                             org.telegram.ui.ActionBar.a7.V(textView, i11, p6Var);
@@ -174,16 +174,16 @@ public final class ux extends sk0 {
                         }
                     } else {
                         ViewGroup.LayoutParams o0Var = new s4.o0(-1, org.telegram.messenger.i0.L(79.0f));
-                        View view2 = this.f31070c;
+                        View view2 = this.f31100c;
                         view2.setLayoutParams(o0Var);
                         l0Var = view2;
                     }
                 } else {
-                    l0Var = new org.telegram.ui.Cells.n8(vyVar.getContext(), true, false, vyVar.Z1, vyVar.f31885i2);
+                    l0Var = new org.telegram.ui.Cells.n8(vyVar.getContext(), true, false, vyVar.Z1, vyVar.f31963i2);
                 }
             } else {
                 View view3 = new View(vyVar.getContext());
-                view3.setLayoutParams(new s4.o0(-1, vyVar.f31861b1));
+                view3.setLayoutParams(new s4.o0(-1, vyVar.f31939b1));
                 l0Var = view3;
             }
         } else {

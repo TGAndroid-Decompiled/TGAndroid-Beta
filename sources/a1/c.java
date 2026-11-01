@@ -50,15 +50,15 @@ import java.util.Collection;
 import java.util.List;
 import n4.q;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.d20;
-import org.telegram.messenger.gs;
+import org.telegram.messenger.at;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.e20;
 import org.telegram.messenger.hs;
 import org.telegram.messenger.i0;
-import org.telegram.messenger.o20;
-import org.telegram.messenger.q20;
-import org.telegram.messenger.vp;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.is;
+import org.telegram.messenger.p20;
+import org.telegram.messenger.r20;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
@@ -70,15 +70,15 @@ import org.telegram.ui.Cells.l5;
 import org.telegram.ui.Cells.p8;
 import org.telegram.ui.Cells.t8;
 import org.telegram.ui.Components.Switch;
-import org.telegram.ui.Components.a51;
+import org.telegram.ui.Components.b51;
 import org.telegram.ui.Components.kt;
 import org.telegram.ui.Components.s4;
 import org.telegram.ui.Components.z60;
-import org.telegram.ui.ay;
-import org.telegram.ui.pb1;
-import org.telegram.ui.ux;
+import org.telegram.ui.nb1;
+import org.telegram.ui.tx;
+import org.telegram.ui.zx;
 import v7.u7;
-public final class c implements OnSuccessListener, i, o20, u1, i5.e, kt, q0, ux, a6, l1, n, fe.e, c3.g, o {
+public final class c implements OnSuccessListener, i, p20, u1, i5.e, kt, q0, tx, a6, l1, n, fe.e, c3.g, o {
     public final int f34a;
     public final Object f35b;
 
@@ -88,12 +88,12 @@ public final class c implements OnSuccessListener, i, o20, u1, i5.e, kt, q0, ux,
     }
 
     @Override
-    public boolean G() {
+    public boolean H() {
         return false;
     }
 
     @Override
-    public boolean N(ay ayVar) {
+    public boolean O(zx zxVar) {
         return false;
     }
 
@@ -108,7 +108,7 @@ public final class c implements OnSuccessListener, i, o20, u1, i5.e, kt, q0, ux,
         String v = f0.f2556b.v((e0) obj);
         kotlin.jvm.internal.i.d(v, "SessionEvents.SESSION_EVENT_ENCODER.encode(value)");
         Log.d("EventGDTLogger", "Session Event: ".concat(v));
-        byte[] bytes = v.getBytes(rd.a.f46479a);
+        byte[] bytes = v.getBytes(rd.a.f46490a);
         kotlin.jvm.internal.i.d(bytes, "this as java.lang.String).getBytes(charset)");
         return bytes;
     }
@@ -142,7 +142,7 @@ public final class c implements OnSuccessListener, i, o20, u1, i5.e, kt, q0, ux,
         switch (this.f34a) {
             case 4:
                 z2 z2Var = (z2) ((ag.e) this.f35b).f489b;
-                i3 f7 = i3.f(z2.f0(z2Var));
+                i3 f7 = i3.f(z2.g0(z2Var));
                 ArrayList arrayList = z2Var.f821b;
                 int i11 = f7.f566a;
                 int i12 = 0;
@@ -163,28 +163,28 @@ public final class c implements OnSuccessListener, i, o20, u1, i5.e, kt, q0, ux,
                         ConnectionsManager.getInstance(i11).sendRequest(tL_messages_deleteQuickReplyShortcut, new c3(1));
                         if ("hello".equals(c10.f552b)) {
                             ConnectionsManager.getInstance(i11).sendRequest(new TL_account.updateBusinessGreetingMessage(), null);
-                            TLRPC.UserFull a2 = vp.r1(i11).a2(d20.i(i11).e());
+                            TLRPC.UserFull a2 = wp.r1(i11).a2(e20.i(i11).e());
                             if (a2 != null) {
                                 a2.flags2 &= -5;
                                 a2.business_greeting_message = null;
-                                hs.a0(i11).j2(a2, true);
+                                is.a0(i11).j2(a2, true);
                             }
                         } else if ("away".equals(c10.f552b)) {
                             ConnectionsManager.getInstance(i11).sendRequest(new TL_account.updateBusinessAwayMessage(), null);
-                            TLRPC.UserFull a22 = vp.r1(i11).a2(d20.i(i11).e());
+                            TLRPC.UserFull a22 = wp.r1(i11).a2(e20.i(i11).e());
                             if (a22 != null) {
                                 a22.flags2 &= -9;
                                 a22.business_away_message = null;
-                                hs.a0(i11).j2(a22, true);
+                                is.a0(i11).j2(a22, true);
                             }
                         }
                     }
                     f7.l();
-                    hs a02 = hs.a0(i11);
-                    a02.f15938a.c(new r0(a02, arrayList, 1));
-                    zs.f(i11).k(121, new Object[0]);
+                    is a02 = is.a0(i11);
+                    a02.f16331a.c(new r0(a02, arrayList, 1));
+                    at.f(i11).k(121, new Object[0]);
                 }
-                z2.b0(z2Var);
+                z2.c0(z2Var);
                 return;
             default:
                 ((n4) this.f35b).run();
@@ -205,7 +205,7 @@ public final class c implements OnSuccessListener, i, o20, u1, i5.e, kt, q0, ux,
                 ((d1) obj).A((d2.d) this.f35b);
                 return;
             case 27:
-                ((d1) obj).m(((i2.c0) this.f35b).f7821a.Q);
+                ((d1) obj).m(((i2.c0) this.f35b).f7822a.Q);
                 return;
             default:
                 ((d1) obj).F((u0) this.f35b);
@@ -221,68 +221,70 @@ public final class c implements OnSuccessListener, i, o20, u1, i5.e, kt, q0, ux,
         r rVar = bVar.f6597a;
         ei.e eVar = bVar.f6601g;
         if (Build.VERSION.SDK_INT >= 31 && eVar != null) {
-            ArrayList arrayList = eVar.f6629a;
-            if (u7.a(i10, 4) || u7.a(i10, 2)) {
-                gi.a e = rVar.e();
-                ViewGroup viewGroup = bVar.f6605l;
-                if (viewGroup != null) {
-                    e.b(viewGroup.getY(), bVar.f6604k.getWidth(), bVar.f6605l.getY() + bVar.f6605l.getHeight());
+            ArrayList arrayList = eVar.f6630a;
+            if (r.f().f6693a) {
+                if (u7.a(i10, 4) || u7.a(i10, 2)) {
+                    gi.a e = rVar.e();
+                    ViewGroup viewGroup = bVar.f6606m;
+                    if (viewGroup != null) {
+                        e.b(viewGroup.getY(), bVar.f6605l.getWidth(), bVar.f6606m.getY() + bVar.f6606m.getHeight());
+                    }
+                    eVar.f6631b = e.f7533b;
+                    while (eVar.f6631b > arrayList.size()) {
+                        arrayList.add(new ei.c(arrayList.size()));
+                    }
+                    for (int i12 = 0; i12 < eVar.f6631b; i12++) {
+                        ei.c cVar = (ei.c) arrayList.get(i12);
+                        cVar.f6608a.set(e.c(i12));
+                        cVar.b(eVar.f6639m, eVar.f6640n, eVar.f6641o);
+                        cVar.c(eVar.f6637k);
+                        int i13 = eVar.f6642p;
+                        int i14 = eVar.f6643q;
+                        int i15 = eVar.f6644r;
+                        int i16 = eVar.f6645s;
+                        cVar.f6625u = i13;
+                        cVar.v = i14;
+                        cVar.f6626w = i15;
+                        cVar.f6627x = i16;
+                    }
                 }
-                eVar.f6630b = e.f7532b;
-                while (eVar.f6630b > arrayList.size()) {
-                    arrayList.add(new ei.c(arrayList.size()));
-                }
-                for (int i12 = 0; i12 < eVar.f6630b; i12++) {
-                    ei.c cVar = (ei.c) arrayList.get(i12);
-                    cVar.f6607a.set(e.c(i12));
-                    cVar.b(eVar.f6638m, eVar.f6639n, eVar.f6640o);
-                    cVar.c(eVar.f6636k);
-                    int i13 = eVar.f6641p;
-                    int i14 = eVar.f6642q;
-                    int i15 = eVar.f6643r;
-                    int i16 = eVar.f6644s;
-                    cVar.f6624u = i13;
-                    cVar.v = i14;
-                    cVar.f6625w = i15;
-                    cVar.f6626x = i16;
-                }
-            }
-            eVar.f6631c = bVar.f6606m;
-            eVar.d = bVar.f6604k;
-            int i17 = 1;
-            if (rVar.f6676j > 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            boolean z11 = !z10;
-            if (eVar.f6637l != z11) {
-                eVar.f6637l = z11;
-                if (!z10) {
-                    i11 = 5;
+                eVar.f6632c = bVar.f6607n;
+                eVar.d = bVar.f6605l;
+                int i17 = 1;
+                if (rVar.f6677j > 0) {
+                    z10 = true;
                 } else {
-                    i11 = 1;
+                    z10 = false;
                 }
-                eVar.f6638m = i11;
-                if (!z10) {
-                    i17 = 10;
+                boolean z11 = !z10;
+                if (eVar.f6638l != z11) {
+                    eVar.f6638l = z11;
+                    if (!z10) {
+                        i11 = 5;
+                    } else {
+                        i11 = 1;
+                    }
+                    eVar.f6639m = i11;
+                    if (!z10) {
+                        i17 = 10;
+                    }
+                    eVar.f6640n = i17;
+                    eVar.f6641o = Math.max(i11, i17);
+                    for (int i18 = 0; i18 < eVar.f6631b; i18++) {
+                        ((ei.c) arrayList.get(i18)).b(eVar.f6639m, eVar.f6640n, eVar.f6641o);
+                    }
+                    eVar.f();
                 }
-                eVar.f6639n = i17;
-                eVar.f6640o = Math.max(i11, i17);
-                for (int i18 = 0; i18 < eVar.f6630b; i18++) {
-                    ((ei.c) arrayList.get(i18)).b(eVar.f6638m, eVar.f6639n, eVar.f6640o);
-                }
+                int i19 = rVar.f6678k;
+                int i20 = rVar.f6679l;
+                eVar.f6646t = i19;
+                eVar.f6647u = i20;
                 eVar.f();
-            }
-            int i19 = rVar.f6677k;
-            int i20 = rVar.f6678l;
-            eVar.f6645t = i19;
-            eVar.f6646u = i20;
-            eVar.f();
-            eVar.e();
-            Runnable runnable = bVar.f6602i;
-            if (runnable != null) {
-                runnable.run();
+                eVar.e();
+                Runnable runnable = bVar.f6603j;
+                if (runnable != null) {
+                    runnable.run();
+                }
             }
         }
     }
@@ -298,18 +300,18 @@ public final class c implements OnSuccessListener, i, o20, u1, i5.e, kt, q0, ux,
         switch (i12) {
             case 2:
                 h2 h2Var = (h2) obj3;
-                a51 a51Var = (a51) obj;
+                b51 b51Var = (b51) obj;
                 View view = (View) obj2;
                 Integer num = (Integer) number;
                 float floatValue = ((Float) serializable).floatValue();
                 Float f7 = (Float) serializable2;
-                int i13 = a51Var.d;
+                int i13 = b51Var.d;
                 if (i13 == -1) {
                     boolean z10 = !h2Var.d;
                     h2Var.d = z10;
                     ((t8) view).setChecked(z10);
-                    h2Var.f546a.f30819f3.O(true);
-                    h2Var.c0(true);
+                    h2Var.f546a.f31183f3.O(true);
+                    h2Var.d0(true);
                     return;
                 } else if (i13 == -2) {
                     ?? k2Var = new org.telegram.ui.ActionBar.k2(null);
@@ -317,21 +319,21 @@ public final class c implements OnSuccessListener, i, o20, u1, i5.e, kt, q0, ux,
                     k2Var.f643c = new ag.e0(h2Var, view);
                     h2Var.presentFragment((org.telegram.ui.ActionBar.k2) k2Var);
                     return;
-                } else if (a51Var.f7680a == 5 && i13 >= 0 && i13 < h2Var.f549f.length) {
-                    if (!cd.X ? floatValue >= view.getMeasuredWidth() - i0.L(76.0f) : floatValue <= i0.L(76.0f)) {
-                        if (h2Var.f549f[a51Var.d].isEmpty()) {
+                } else if (b51Var.f7681a == 5 && i13 >= 0 && i13 < h2Var.f549f.length) {
+                    if (!dd.X ? floatValue >= view.getMeasuredWidth() - i0.L(76.0f) : floatValue <= i0.L(76.0f)) {
+                        if (h2Var.f549f[b51Var.d].isEmpty()) {
                             ((l5) view).setChecked(true);
-                            h2Var.f549f[a51Var.d].add(new g2(0, 1439));
-                            h2Var.b0(a51Var.d);
+                            h2Var.f549f[b51Var.d].add(new g2(0, 1439));
+                            h2Var.c0(b51Var.d);
                         } else {
-                            h2Var.f549f[a51Var.d].clear();
+                            h2Var.f549f[b51Var.d].clear();
                             ((l5) view).setChecked(false);
                         }
-                        ((l5) view).setValue(h2.e0(h2Var.f549f[a51Var.d]));
-                        h2Var.c0(true);
+                        ((l5) view).setValue(h2.f0(h2Var.f549f[b51Var.d]));
+                        h2Var.d0(true);
                         return;
                     }
-                    int i14 = (a51Var.d + 6) % 7;
+                    int i14 = (b51Var.d + 6) % 7;
                     int i15 = 0;
                     for (int i16 = 0; i16 < h2Var.f549f[i14].size(); i16++) {
                         if (((g2) h2Var.f549f[i14].get(i16)).f533b > i15) {
@@ -339,7 +341,7 @@ public final class c implements OnSuccessListener, i, o20, u1, i5.e, kt, q0, ux,
                         }
                     }
                     int max = Math.max(0, i15 - 1439);
-                    int i17 = (a51Var.d + 1) % 7;
+                    int i17 = (b51Var.d + 1) % 7;
                     int i18 = 1440;
                     for (int i19 = 0; i19 < h2Var.f549f[i17].size(); i19++) {
                         if (((g2) h2Var.f549f[i17].get(i19)).f532a < i18) {
@@ -347,8 +349,8 @@ public final class c implements OnSuccessListener, i, o20, u1, i5.e, kt, q0, ux,
                         }
                     }
                     int i20 = i18 + 1439;
-                    CharSequence charSequence = a51Var.f24292l;
-                    ArrayList arrayList = h2Var.f549f[a51Var.d];
+                    CharSequence charSequence = b51Var.f24643l;
+                    ArrayList arrayList = h2Var.f549f[b51Var.d];
                     int i21 = 0;
                     for (int i22 = 0; i22 < 7; i22++) {
                         ArrayList arrayList2 = h2Var.f549f[i22];
@@ -358,7 +360,7 @@ public final class c implements OnSuccessListener, i, o20, u1, i5.e, kt, q0, ux,
                     }
                     j2 j2Var = new j2(charSequence, arrayList, max, i20, 28 - i21);
                     j2Var.f589f = new a3.d(h2Var, 8);
-                    j2Var.h = new f(10, h2Var, a51Var);
+                    j2Var.h = new f(10, h2Var, b51Var);
                     h2Var.presentFragment(j2Var);
                     return;
                 } else {
@@ -366,7 +368,7 @@ public final class c implements OnSuccessListener, i, o20, u1, i5.e, kt, q0, ux,
                 }
             case 3:
                 final j2 j2Var2 = (j2) obj3;
-                a51 a51Var2 = (a51) obj;
+                b51 b51Var2 = (b51) obj;
                 final View view2 = (View) obj2;
                 Integer num2 = (Integer) number;
                 Float f10 = (Float) serializable;
@@ -374,7 +376,7 @@ public final class c implements OnSuccessListener, i, o20, u1, i5.e, kt, q0, ux,
                 int i23 = j2Var2.f588c;
                 int i24 = j2Var2.d;
                 ArrayList arrayList3 = j2Var2.f587b;
-                int i25 = a51Var2.d;
+                int i25 = b51Var2.d;
                 if (i25 == -1) {
                     j2Var2.f591r = !j2Var2.f591r;
                     arrayList3.clear();
@@ -383,16 +385,16 @@ public final class c implements OnSuccessListener, i, o20, u1, i5.e, kt, q0, ux,
                     }
                     t8 t8Var = (t8) view2;
                     boolean z11 = j2Var2.f591r;
-                    a51Var2.e = z11;
+                    b51Var2.e = z11;
                     t8Var.setChecked(z11);
                     boolean z12 = j2Var2.f591r;
                     if (z12) {
-                        i11 = t6.f20966f6;
+                        i11 = t6.f20967f6;
                     } else {
-                        i11 = t6.f20948e6;
+                        i11 = t6.f20949e6;
                     }
                     t8Var.b(t6.x0(null, i11, false), z12);
-                    j2Var2.f590n.f30819f3.O(true);
+                    j2Var2.f590n.f31183f3.O(true);
                     a3.d dVar = j2Var2.f589f;
                     if (dVar != null) {
                         dVar.run();
@@ -400,12 +402,12 @@ public final class c implements OnSuccessListener, i, o20, u1, i5.e, kt, q0, ux,
                     }
                     return;
                 } else if (i25 == -2) {
-                    if (!arrayList3.isEmpty() && !j2Var2.Y()) {
+                    if (!arrayList3.isEmpty() && !j2Var2.Z()) {
                         int i26 = ((g2) i0.a.g(1, arrayList3)).f533b;
                         int j10 = Utilities.j(i26 + 30, i24 - 1, i23);
                         arrayList3.add(new g2(j10, Utilities.j((i26 + 1560) / 2, i24, j10 + 1)));
                     } else {
-                        if (j2Var2.Y()) {
+                        if (j2Var2.Z()) {
                             arrayList3.clear();
                         }
                         int j11 = Utilities.j(480, i24 - 1, i23);
@@ -415,9 +417,9 @@ public final class c implements OnSuccessListener, i, o20, u1, i5.e, kt, q0, ux,
                     if (dVar2 != null) {
                         dVar2.run();
                     }
-                    j2Var2.f590n.f30819f3.O(true);
+                    j2Var2.f590n.f31183f3.O(true);
                     return;
-                } else if (a51Var2.f7680a == 3 && (i10 = i25 / 3) >= 0 && i10 < arrayList3.size()) {
+                } else if (b51Var2.f7681a == 3 && (i10 = i25 / 3) >= 0 && i10 < arrayList3.size()) {
                     int i27 = i10 - 1;
                     if (i27 >= 0) {
                         g2Var = (g2) arrayList3.get(i27);
@@ -431,27 +433,27 @@ public final class c implements OnSuccessListener, i, o20, u1, i5.e, kt, q0, ux,
                     } else {
                         g2Var2 = null;
                     }
-                    int i29 = a51Var2.d % 3;
+                    int i29 = b51Var2.d % 3;
                     if (i29 == 0) {
                         Activity parentActivity = j2Var2.getParentActivity();
-                        String L0 = cd.L0(2131752750, null);
+                        String L0 = dd.L0(2131752750, null);
                         int i30 = g2Var3.f532a;
                         if (g2Var != null) {
                             i23 = g2Var.f533b + 1;
                         }
-                        s4.W(parentActivity, L0, i30, i23, g2Var3.f533b - 1, new q20() {
+                        s4.W(parentActivity, L0, i30, i23, g2Var3.f533b - 1, new r20() {
                             @Override
                             public final void a(Object obj4) {
                                 Integer num3 = (Integer) obj4;
                                 switch (r4) {
                                     case 0:
                                         j2 j2Var3 = j2Var2;
-                                        boolean Z = j2Var3.Z();
+                                        boolean a02 = j2Var3.a0();
                                         int intValue = num3.intValue();
                                         g2Var3.f532a = intValue;
                                         ((p8) view2).w(g2.a(intValue), true);
-                                        if (Z != j2Var3.Z()) {
-                                            j2Var3.f590n.f30819f3.O(true);
+                                        if (a02 != j2Var3.a0()) {
+                                            j2Var3.f590n.f31183f3.O(true);
                                         }
                                         a3.d dVar3 = j2Var3.f589f;
                                         if (dVar3 != null) {
@@ -461,12 +463,12 @@ public final class c implements OnSuccessListener, i, o20, u1, i5.e, kt, q0, ux,
                                         return;
                                     default:
                                         j2 j2Var4 = j2Var2;
-                                        boolean Z2 = j2Var4.Z();
+                                        boolean a03 = j2Var4.a0();
                                         int intValue2 = num3.intValue();
                                         g2Var3.f533b = intValue2;
                                         ((p8) view2).w(g2.a(intValue2), true);
-                                        if (Z2 != j2Var4.Z()) {
-                                            j2Var4.f590n.f30819f3.O(true);
+                                        if (a03 != j2Var4.a0()) {
+                                            j2Var4.f590n.f31183f3.O(true);
                                         }
                                         a3.d dVar4 = j2Var4.f589f;
                                         if (dVar4 != null) {
@@ -480,25 +482,25 @@ public final class c implements OnSuccessListener, i, o20, u1, i5.e, kt, q0, ux,
                         return;
                     } else if (i29 == 1) {
                         Activity parentActivity2 = j2Var2.getParentActivity();
-                        String L02 = cd.L0(2131752756, null);
+                        String L02 = dd.L0(2131752756, null);
                         int i31 = g2Var3.f533b;
                         int i32 = g2Var3.f532a + 1;
                         if (g2Var2 != null) {
                             i24 = g2Var2.f532a - 1;
                         }
-                        s4.W(parentActivity2, L02, i31, i32, i24, new q20() {
+                        s4.W(parentActivity2, L02, i31, i32, i24, new r20() {
                             @Override
                             public final void a(Object obj4) {
                                 Integer num3 = (Integer) obj4;
                                 switch (r4) {
                                     case 0:
                                         j2 j2Var3 = j2Var2;
-                                        boolean Z = j2Var3.Z();
+                                        boolean a02 = j2Var3.a0();
                                         int intValue = num3.intValue();
                                         g2Var3.f532a = intValue;
                                         ((p8) view2).w(g2.a(intValue), true);
-                                        if (Z != j2Var3.Z()) {
-                                            j2Var3.f590n.f30819f3.O(true);
+                                        if (a02 != j2Var3.a0()) {
+                                            j2Var3.f590n.f31183f3.O(true);
                                         }
                                         a3.d dVar3 = j2Var3.f589f;
                                         if (dVar3 != null) {
@@ -508,12 +510,12 @@ public final class c implements OnSuccessListener, i, o20, u1, i5.e, kt, q0, ux,
                                         return;
                                     default:
                                         j2 j2Var4 = j2Var2;
-                                        boolean Z2 = j2Var4.Z();
+                                        boolean a03 = j2Var4.a0();
                                         int intValue2 = num3.intValue();
                                         g2Var3.f533b = intValue2;
                                         ((p8) view2).w(g2.a(intValue2), true);
-                                        if (Z2 != j2Var4.Z()) {
-                                            j2Var4.f590n.f30819f3.O(true);
+                                        if (a03 != j2Var4.a0()) {
+                                            j2Var4.f590n.f31183f3.O(true);
                                         }
                                         a3.d dVar4 = j2Var4.f589f;
                                         if (dVar4 != null) {
@@ -530,7 +532,7 @@ public final class c implements OnSuccessListener, i, o20, u1, i5.e, kt, q0, ux,
                         if (arrayList3.isEmpty()) {
                             arrayList3.add(new g2(0, 1439));
                         }
-                        j2Var2.f590n.f30819f3.O(true);
+                        j2Var2.f590n.f31183f3.O(true);
                         a3.d dVar3 = j2Var2.f589f;
                         if (dVar3 != null) {
                             dVar3.run();
@@ -545,7 +547,7 @@ public final class c implements OnSuccessListener, i, o20, u1, i5.e, kt, q0, ux,
                 }
             case 4:
             default:
-                a51 a51Var3 = (a51) obj;
+                b51 b51Var3 = (b51) obj;
                 View view3 = (View) obj2;
                 Integer num3 = (Integer) number;
                 Float f12 = (Float) serializable;
@@ -559,7 +561,7 @@ public final class c implements OnSuccessListener, i, o20, u1, i5.e, kt, q0, ux,
                 Integer num4 = (Integer) number;
                 Float f14 = (Float) serializable;
                 Float f15 = (Float) serializable2;
-                m3.Y((m3) obj3, (a51) obj, (View) obj2);
+                m3.Z((m3) obj3, (b51) obj, (View) obj2);
                 return;
         }
     }
@@ -634,13 +636,13 @@ public final class c implements OnSuccessListener, i, o20, u1, i5.e, kt, q0, ux,
     }
 
     @Override
-    public boolean y(ay ayVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, pb1 pb1Var) {
+    public boolean z(zx zxVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, nb1 nb1Var) {
         bi.s4 s4Var = (bi.s4) this.f35b;
-        if (arrayList.isEmpty() || ((gs) arrayList.get(0)).f15760a <= 0) {
+        if (arrayList.isEmpty() || ((hs) arrayList.get(0)).f16109a <= 0) {
             return false;
         }
-        s4Var.run(((gs) arrayList.get(0)).f15760a);
-        ayVar.finishFragment();
+        s4Var.run(((hs) arrayList.get(0)).f16109a);
+        zxVar.finishFragment();
         return true;
     }
 

@@ -6,21 +6,21 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 public final class ra extends e9.j2 {
-    public final e9.e f53310b;
+    public final e9.e f53328b;
 
     public ra(e9.e eVar) {
         super(1);
-        this.f53310b = eVar;
+        this.f53328b = eVar;
     }
 
     @Override
     public final void clear() {
-        this.f53310b.clear();
+        this.f53328b.clear();
     }
 
     @Override
     public final boolean contains(Object obj) {
-        Set entrySet = this.f53310b.f6349b.entrySet();
+        Set entrySet = this.f53328b.f6349b.entrySet();
         entrySet.getClass();
         try {
             return entrySet.contains(obj);
@@ -31,12 +31,12 @@ public final class ra extends e9.j2 {
 
     @Override
     public final boolean isEmpty() {
-        return this.f53310b.isEmpty();
+        return this.f53328b.isEmpty();
     }
 
     @Override
     public final Iterator iterator() {
-        return new e9.d(this.f53310b, (byte) 0);
+        return new e9.d(this.f53328b, (byte) 0);
     }
 
     @Override
@@ -47,9 +47,9 @@ public final class ra extends e9.j2 {
         }
         Map.Entry entry = (Map.Entry) obj;
         entry.getClass();
-        f fVar = (f) this.f53310b.e;
+        f fVar = (f) this.f53328b.e;
         Object key = entry.getKey();
-        j jVar = fVar.f53142c;
+        j jVar = fVar.f53160c;
         jVar.getClass();
         try {
             obj2 = jVar.remove(key);
@@ -109,11 +109,11 @@ public final class ra extends e9.j2 {
                     hashSet.add(((Map.Entry) obj).getKey());
                 }
             }
-            f fVar = (f) this.f53310b.e;
-            a aVar = fVar.f53125a;
+            f fVar = (f) this.f53328b.e;
+            a aVar = fVar.f53143a;
             if (aVar == null) {
-                aVar = new a(fVar, fVar.f53142c);
-                fVar.f53125a = aVar;
+                aVar = new a(fVar, fVar.f53160c);
+                fVar.f53143a = aVar;
             }
             return aVar.retainAll(hashSet);
         }
@@ -121,6 +121,6 @@ public final class ra extends e9.j2 {
 
     @Override
     public final int size() {
-        return this.f53310b.f6349b.size();
+        return this.f53328b.f6349b.size();
     }
 }

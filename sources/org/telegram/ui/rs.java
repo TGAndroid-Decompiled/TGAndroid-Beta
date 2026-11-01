@@ -10,22 +10,22 @@ public final class rs extends zf.f1 {
         this.d = new ArrayList();
         this.e = new ArrayList();
         this.H = new ArrayList();
-        this.f55484c = context;
+        this.f55502c = context;
         this.h = hVar;
-        this.f55487r = z10;
-        this.f55488s = z11;
-        this.f55491y = 0;
-        this.f55489w = z12;
-        this.f55490x = true;
+        this.f55505r = z10;
+        this.f55506s = z11;
+        this.f55509y = 0;
+        this.f55507w = z12;
+        this.f55508x = true;
         zf.m1 m1Var = new zf.m1(true);
-        this.f55485f = m1Var;
-        m1Var.f55575a = new zf.d1(this);
+        this.f55503f = m1Var;
+        m1Var.f55593a = new zf.d1(this);
     }
 
     @Override
     public final void F() {
-        if (!this.D && !this.f55485f.e() && b() == 0) {
-            this.K.f33282c.e(false, true);
+        if (!this.D && !this.f55503f.e() && b() == 0) {
+            this.K.f33289c.e(false, true);
         }
     }
 }

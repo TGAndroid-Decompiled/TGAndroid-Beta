@@ -15,23 +15,23 @@ public final class yj extends s4.s {
     @Override
     public final boolean B1(int i10) {
         int i11;
-        org.telegram.messenger.jj jjVar;
-        org.telegram.messenger.ej k92;
+        org.telegram.messenger.kj kjVar;
+        org.telegram.messenger.fj p9;
         byte b10;
         un unVar = this.T;
         fm fmVar = unVar.C0;
         int i12 = fmVar.J;
-        if (i10 >= i12 && i10 < fmVar.K && (i11 = i10 - i12) >= 0 && i11 < fmVar.L().size() && (k92 = unVar.k9((jjVar = (org.telegram.messenger.jj) unVar.C0.L().get(i11)))) != null) {
-            ArrayList arrayList = k92.e;
-            org.telegram.messenger.bj d = k92.d(jjVar);
-            if (d.f14775a != d.f14776b && (b10 = d.f14777c) == d.d && b10 != 0) {
+        if (i10 >= i12 && i10 < fmVar.K && (i11 = i10 - i12) >= 0 && i11 < fmVar.L().size() && (p9 = unVar.p9((kjVar = (org.telegram.messenger.kj) unVar.C0.L().get(i11)))) != null) {
+            ArrayList arrayList = p9.e;
+            org.telegram.messenger.cj d = p9.d(kjVar);
+            if (d.f15158a != d.f15159b && (b10 = d.f15160c) == d.d && b10 != 0) {
                 int size = arrayList.size();
                 for (int i13 = 0; i13 < size; i13++) {
-                    org.telegram.messenger.bj bjVar = (org.telegram.messenger.bj) arrayList.get(i13);
-                    if (bjVar != d) {
-                        byte b11 = bjVar.f14777c;
-                        byte b12 = d.f14777c;
-                        if (b11 <= b12 && bjVar.d >= b12) {
+                    org.telegram.messenger.cj cjVar = (org.telegram.messenger.cj) arrayList.get(i13);
+                    if (cjVar != d) {
+                        byte b11 = cjVar.f15160c;
+                        byte b12 = d.f15160c;
+                        if (b11 <= b12 && cjVar.d >= b12) {
                             return true;
                         }
                     }
@@ -68,7 +68,7 @@ public final class yj extends s4.s {
     @Override
     public final int K() {
         if (this.S) {
-            return (int) ((this.f47988n - this.T.L9) - C());
+            return (int) ((this.f47999n - this.T.L9) - C());
         }
         return super.K();
     }
@@ -80,7 +80,7 @@ public final class yj extends s4.s {
 
     @Override
     public final void b0(hf.e eVar, s4.z0 z0Var) {
-        boolean z10 = org.telegram.messenger.v2.f18448a;
+        boolean z10 = org.telegram.messenger.v2.f18578a;
         try {
             super.b0(eVar, z0Var);
         } catch (Exception e) {
@@ -130,7 +130,7 @@ public final class yj extends s4.s {
     public final void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
         this.T.La = false;
         ci.p pVar = new ci.p(recyclerView.getContext(), 0);
-        pVar.f48045a = i10;
+        pVar.f48056a = i10;
         w0(pVar);
     }
 

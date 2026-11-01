@@ -1,181 +1,98 @@
 package org.telegram.messenger;
 
-import android.graphics.Point;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Rect;
-import java.io.File;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-public final class pv extends cv {
-    public final TL_iv.pageBlockVideo f17482q0;
-    public final TLRPC.Document f17483r0;
-    public final TLRPC.PhotoSize f17484s0;
-    public final TLRPC.TL_photoStrippedSize f17485t0;
-    public final boolean f17486u0;
-    public final boolean f17487v0;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.ui.Components.y51;
+public final class pv extends ru implements Drawable.Callback {
+    public final y51 W;
+    public final int X;
+    public final int Y;
+    public final int Z;
+    public final int f17676a0;
+    public hb.a f17677b0;
+    public Bitmap f17678c0;
 
-    public pv(vv vvVar, Rect rect, int i10, TL_iv.pageBlockVideo pageblockvideo, boolean z10) {
-        super(vvVar, rect, i10, z10);
-        boolean z11;
-        int i11;
-        int i12;
-        this.f17482q0 = pageblockvideo;
-        TLRPC.Document s10 = vvVar.s(pageblockvideo.video_id);
-        this.f17483r0 = s10;
-        boolean K4 = jj.K4(s10);
-        this.f17487v0 = K4;
-        int i13 = 0;
-        if (!K4 && !jj.s3(s10, false)) {
-            z11 = false;
-        } else {
-            z11 = true;
-        }
-        this.f17486u0 = z11;
-        if (s10 != null) {
-            this.f17484s0 = b8.w(s10.thumbs, 320, false, null, true);
-            this.f17485t0 = b8.R(s10.thumbs);
-        } else {
-            this.f17484s0 = null;
-            this.f17485t0 = null;
-        }
-        if (s10 != null) {
-            while (true) {
-                if (i13 < this.f17483r0.attributes.size()) {
-                    TLRPC.DocumentAttribute documentAttribute = this.f17483r0.attributes.get(i13);
-                    if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
-                        i12 = documentAttribute.f19800w;
-                        i11 = documentAttribute.h;
-                        break;
-                    }
-                    i13++;
-                } else {
-                    i11 = 100;
-                    i12 = 100;
-                    break;
-                }
-            }
-            if (i12 <= 0 || i11 <= 0) {
-                TLRPC.PhotoSize photoSize = this.f17484s0;
-                if (photoSize != null) {
-                    i12 = photoSize.f19818w;
-                } else {
-                    i12 = 100;
-                }
-                i11 = photoSize != null ? photoSize.h : 100;
-            }
-            r4 = i12;
-        } else {
-            i11 = 100;
-        }
-        int i14 = this.f17623c;
-        int max = (int) ((i14 / Math.max(1, r4)) * i11);
-        Point point = i0.f16026q;
-        int max2 = (int) (Math.max(point.x, point.y) * 0.55f);
-        if (max > max2) {
-            i14 = (int) ((max2 / Math.max(1, i11)) * r4);
-            max = max2;
-        }
-        this.f15079b0 = i14;
-        this.f15080c0 = max;
-        l0();
+    public pv(wv wvVar, Rect rect, int i10, int i11, int i12) {
+        super(wvVar, rect, i10);
+        this.Z = i11;
+        this.f17676a0 = i12;
+        y51 y51Var = new y51();
+        this.W = y51Var;
+        y51Var.setCallback(this);
+        y51Var.f32736n = dd.L0(2131743856, null);
+        y51Var.f32737o = dd.L0(2131743857, null);
+        y51Var.f32738p = dd.L0(2131743852, null);
+        y51Var.f32732j = new ns(wvVar, 8);
+        int i13 = this.f17969c;
+        this.X = i13;
+        this.Y = y51Var.a(i13);
     }
 
     @Override
-    public final boolean h0() {
-        if (this.f17487v0) {
-            int i10 = tz.f18131a;
-            return sc.e(1024);
-        }
-        int i11 = tz.f18131a;
-        return sc.e(2048);
+    public final int H() {
+        Rect rect = this.f17968b;
+        return rect.top + this.Y + rect.bottom;
     }
 
     @Override
-    public final void i0(boolean z10) {
-        ic icVar;
-        TLRPC.Document document = this.f17483r0;
-        if (document == null) {
-            return;
-        }
-        ic icVar2 = null;
-        TLRPC.TL_photoStrippedSize tL_photoStrippedSize = this.f17485t0;
-        if (tL_photoStrippedSize != null) {
-            icVar = ic.c(tL_photoStrippedSize, document);
-        } else {
-            icVar = null;
-        }
-        TLRPC.PhotoSize photoSize = this.f17484s0;
-        if (photoSize != null) {
-            icVar2 = ic.c(photoSize, document);
-        }
-        ic icVar3 = icVar2;
-        vv vvVar = this.f17621a;
-        ImageReceiver imageReceiver = this.X;
-        if (z10 && this.f17486u0 && (h0() || this.f15089l0)) {
-            imageReceiver.f14408t0 = true;
-            imageReceiver.W(1);
-            imageReceiver.u0(ic.b(document), "g", icVar3, null, icVar, "b1", null, document.size, "mp4", vvVar.f18987b, 1);
-            return;
-        }
-        imageReceiver.u0(null, null, icVar3, null, icVar, "b1", null, document.size, "mp4", vvVar.f18987b, 1);
-    }
-
-    @Override
-    public final boolean j0() {
-        TLRPC.Document document = this.f17483r0;
-        if (document == null) {
-            return false;
-        }
-        if (!this.f17486u0) {
-            return true;
-        }
-        if (!h0() || !b6.q(this.f17621a.f18986a).c(4, document.size)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean k0() {
-        TLRPC.Document document = this.f17483r0;
-        if (document != null) {
-            vv vvVar = this.f17621a;
-            b8.G(vvVar.f18986a);
-            File I = b8.I(document);
-            b8.G(vvVar.f18986a);
-            File K = b8.K(document, null, true, true);
-            if ((I == null || !I.exists()) && (K == null || !K.exists())) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public final TL_iv.PageBlock m0() {
-        return this.f17482q0;
-    }
-
-    @Override
-    public final String n0() {
-        return b8.r(null, this.f17483r0);
-    }
-
-    @Override
-    public final boolean o0() {
-        return this.f17486u0;
-    }
-
-    @Override
-    public final boolean p0() {
-        return this.f17487v0;
-    }
-
-    @Override
-    public final boolean q0() {
-        TL_iv.pageBlockVideo pageblockvideo = this.f17482q0;
-        if (pageblockvideo != null && pageblockvideo.spoiler) {
-            return true;
+    public final boolean X(MotionEvent motionEvent) {
+        View view = this.V;
+        if (view != null) {
+            return this.W.f32731i.a(view, motionEvent);
         }
         return false;
+    }
+
+    public final float h0(org.telegram.ui.Cells.x1 x1Var) {
+        int i10;
+        if (x1Var != null) {
+            wv wvVar = this.f17967a;
+            if (wvVar.f19344s || wvVar.f19346u) {
+                i10 = i0.W1(Math.max(0.0f, Math.min(1.0f, x1Var.L1)), this.P, this.N);
+                return i10;
+            }
+        }
+        i10 = this.N;
+        return i10;
+    }
+
+    public final float i0(org.telegram.ui.Cells.x1 x1Var) {
+        if (x1Var != null) {
+            wv wvVar = this.f17967a;
+            if (wvVar.f19344s || wvVar.f19346u) {
+                return i0.T1(this.O, this.M, Math.max(0.0f, Math.min(1.0f, x1Var.L1)));
+            }
+        }
+        return this.M;
+    }
+
+    @Override
+    public final void invalidateDrawable(Drawable drawable) {
+        View view = this.V;
+        if (view != null) {
+            view.invalidate();
+        }
+    }
+
+    @Override
+    public final void q(Canvas canvas) {
+        Rect rect = this.f17968b;
+        int i10 = rect.left;
+        int i11 = rect.top;
+        y51 y51Var = this.W;
+        y51Var.setBounds(i10, i11, this.X + i10, this.Y + i11);
+        y51Var.draw(canvas);
+    }
+
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+    }
+
+    @Override
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j10) {
     }
 }

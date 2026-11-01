@@ -12,19 +12,19 @@ import android.view.Menu;
 import android.view.MotionEvent;
 import bi.g6;
 import java.util.HashSet;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 import org.telegram.messenger.f8;
 import org.telegram.ui.ActionBar.a7;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Components.mt;
-import org.telegram.ui.ns0;
+import org.telegram.ui.ms0;
 public abstract class d0 extends mt implements k6 {
     public final p6 Y1;
     public final m2.t Z1;
     public Runnable a2;
-    public int f48316b2;
+    public int f48327b2;
 
     public d0(int i10, Context context, p6 p6Var) {
         super(context, p6Var);
@@ -36,19 +36,19 @@ public abstract class d0 extends mt implements k6 {
         setShowSoftInputOnFocus(false);
         setSingleLine(false);
         setMaxLines(50);
-        this.f48316b2 = i10;
+        this.f48327b2 = i10;
         setFilters(new InputFilter[]{new InputFilter.LengthFilter(i10)});
         setTextSize(1, 22.0f);
         setGravity(80);
         setPadding(org.telegram.messenger.i0.L(18.0f), org.telegram.messenger.i0.L(4.0f), org.telegram.messenger.i0.L(18.0f), org.telegram.messenger.i0.L(12.0f));
         a7.V(this, t6.Ie, p6Var);
         a7.H(this, t6.Vc, p6Var);
-        a7.D(this, t6.f21028ig, p6Var);
+        a7.D(this, t6.f21029ig, p6Var);
         int i12 = t6.Je;
         a7.m(this, 34, i12, p6Var);
         a7.E(this, i12, p6Var);
         a7.m(this, 30, t6.Ke, p6Var);
-        a7.m(this, 36, t6.f21048jg, p6Var);
+        a7.m(this, 36, t6.f21049jg, p6Var);
         if (i11 >= 28) {
             setFallbackLineSpacing(false);
         }
@@ -64,7 +64,7 @@ public abstract class d0 extends mt implements k6 {
         if (((b[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), b.class)).length == 0) {
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("x");
             b bVar = new b(this.Y1);
-            ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f48274f, 255);
+            ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f48285f, 255);
             ofInt.addUpdateListener(new a(bVar, this, 0));
             ofInt.setDuration(200L);
             ofInt.start();
@@ -77,23 +77,23 @@ public abstract class d0 extends mt implements k6 {
         b[] bVarArr;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(getText());
         for (b bVar : (b[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), b.class)) {
-            rh.o oVar = new rh.o(24, this, bVar);
+            rh.n nVar = new rh.n(25, this, bVar);
             if (z10) {
                 setCursorVisible(false);
-                ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f48274f, 0);
+                ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f48285f, 0);
                 ofInt.addUpdateListener(new a(bVar, this, 1));
-                ofInt.addListener(new ns0(oVar, 28));
+                ofInt.addListener(new ms0(nVar, 28));
                 ofInt.setDuration(200L);
                 ofInt.start();
             } else {
-                oVar.run();
+                nVar.run();
             }
         }
     }
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (((GestureDetector) this.Z1.f12684b).onTouchEvent(motionEvent) && !isLongClickable()) {
+        if (((GestureDetector) this.Z1.f12685b).onTouchEvent(motionEvent) && !isLongClickable()) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -122,7 +122,7 @@ public abstract class d0 extends mt implements k6 {
     @Override
     public final void o(ActionMode actionMode, Menu menu) {
         menu.clear();
-        menu.add(2131296494, 2131296494, 0, cd.L0(2131751599, null));
+        menu.add(2131296494, 2131296494, 0, dd.L0(2131751599, null));
     }
 
     @Override
@@ -134,8 +134,8 @@ public abstract class d0 extends mt implements k6 {
     }
 
     public void setMaxLength(int i10) {
-        if (this.f48316b2 != i10) {
-            this.f48316b2 = i10;
+        if (this.f48327b2 != i10) {
+            this.f48327b2 = i10;
             setFilters(new InputFilter[]{new InputFilter.LengthFilter(i10)});
         }
     }
@@ -150,7 +150,7 @@ public abstract class d0 extends mt implements k6 {
         try {
             setHintColor(t6.w0(t6.Je, p6Var));
             setCursorColor(t6.w0(t6.Ke, p6Var));
-            setHandlesColor(t6.w0(t6.f21048jg, p6Var));
+            setHandlesColor(t6.w0(t6.f21049jg, p6Var));
             invalidate();
         } catch (Exception e) {
             f8.g(e, true);

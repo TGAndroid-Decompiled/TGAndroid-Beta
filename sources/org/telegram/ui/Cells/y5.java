@@ -11,30 +11,30 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import org.telegram.messenger.z20;
+import org.telegram.messenger.a30;
 import org.telegram.ui.Components.gr;
+import org.telegram.ui.os0;
 import org.telegram.ui.ps0;
-import org.telegram.ui.qs0;
 public final class y5 extends FrameLayout {
-    public final int f23619a = 0;
-    public final org.telegram.ui.Components.g9 f23620b;
-    public final View f23621c;
+    public final int f23620a = 0;
+    public final org.telegram.ui.Components.g9 f23621b;
+    public final View f23622c;
     public final View d;
     public final View e;
-    public final Object f23622f;
+    public final Object f23623f;
 
     public y5(a6 a6Var, Context context) {
         super(context);
-        this.f23622f = a6Var;
+        this.f23623f = a6Var;
         org.telegram.ui.Components.g9 g9Var = new org.telegram.ui.Components.g9(context);
-        this.f23620b = g9Var;
+        this.f23621b = g9Var;
         addView(g9Var, w7.b6.c(-1.0f, -1));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(0);
         linearLayout.setBackgroundResource(2131230867);
         addView(linearLayout, w7.b6.e(-1, 60, 83));
         TextView textView = new TextView(context);
-        this.f23621c = textView;
+        this.f23622c = textView;
         textView.setTextSize(1, 13.0f);
         textView.setTextColor(-1);
         textView.setSingleLine(true);
@@ -42,7 +42,7 @@ public final class y5 extends FrameLayout {
         textView.setEllipsize(truncateAt);
         textView.setMaxLines(1);
         textView.setGravity(80);
-        TextView f7 = z20.f(linearLayout, textView, w7.b6.m(1.0f, 0, -1, 8, 0, 5), context);
+        TextView f7 = a30.f(linearLayout, textView, w7.b6.m(1.0f, 0, -1, 8, 0, 5), context);
         this.d = f7;
         f7.setTextSize(1, 13.0f);
         f7.setTextColor(-1);
@@ -64,28 +64,28 @@ public final class y5 extends FrameLayout {
     @Override
     public void dispatchDraw(Canvas canvas) {
         float f7;
-        ps0 ps0Var;
-        switch (this.f23619a) {
+        os0 os0Var;
+        switch (this.f23620a) {
             case 1:
-                qs0 qs0Var = (qs0) this.f23622f;
-                float[] fArr = qs0Var.Q;
-                if (qs0Var.C == null) {
-                    float f10 = qs0Var.P;
+                ps0 ps0Var = (ps0) this.f23623f;
+                float[] fArr = ps0Var.Q;
+                if (ps0Var.C == null) {
+                    float f10 = ps0Var.P;
                     if (f10 != 1.0f) {
                         float f11 = f10 + 0.07272727f;
-                        qs0Var.P = f11;
+                        ps0Var.P = f11;
                         if (f11 > 1.0f) {
-                            qs0Var.P = 1.0f;
+                            ps0Var.P = 1.0f;
                         } else {
-                            qs0Var.e();
+                            ps0Var.e();
                         }
                     }
                 }
-                float interpolation = gr.f26495f.getInterpolation(qs0Var.P) * qs0Var.A;
+                float interpolation = gr.f26523f.getInterpolation(ps0Var.P) * ps0Var.A;
                 float measuredHeight = getMeasuredHeight();
                 float f12 = 0.0f;
-                if (interpolation != 1.0f && (ps0Var = qs0Var.F) != null) {
-                    ps0Var.a(fArr);
+                if (interpolation != 1.0f && (os0Var = ps0Var.F) != null) {
+                    os0Var.a(fArr);
                     canvas.save();
                     float f13 = 1.0f - interpolation;
                     float f14 = fArr[0] * f13;
@@ -101,7 +101,7 @@ public final class y5 extends FrameLayout {
                     super.dispatchDraw(canvas);
                     f7 = measuredHeight;
                 }
-                qs0Var.c(canvas, 1.0f - interpolation, qs0Var.f41054o - getLeft(), qs0Var.f41055p - getTop(), f12, f7);
+                ps0Var.c(canvas, 1.0f - interpolation, ps0Var.f40601o - getLeft(), ps0Var.f40602p - getTop(), f12, f7);
                 return;
             default:
                 super.dispatchDraw(canvas);
@@ -111,11 +111,11 @@ public final class y5 extends FrameLayout {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f23619a) {
+        switch (this.f23620a) {
             case 0:
-                a6 a6Var = (a6) this.f23622f;
-                org.telegram.ui.Components.g9 g9Var = this.f23620b;
-                if (!g9Var.getImageReceiver().L() || g9Var.getImageReceiver().f14384h1 != 1.0f) {
+                a6 a6Var = (a6) this.f23623f;
+                org.telegram.ui.Components.g9 g9Var = this.f23621b;
+                if (!g9Var.getImageReceiver().L() || g9Var.getImageReceiver().f14385h1 != 1.0f) {
                     a6Var.e.setColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.X9, false));
                     canvas.drawRect(0.0f, 0.0f, g9Var.getMeasuredWidth(), g9Var.getMeasuredHeight(), a6Var.e);
                     return;
@@ -129,7 +129,7 @@ public final class y5 extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f23619a) {
+        switch (this.f23620a) {
             case 0:
                 this.e.drawableHotspotChanged(motionEvent.getX(), motionEvent.getY());
                 return super.onTouchEvent(motionEvent);
@@ -138,17 +138,17 @@ public final class y5 extends FrameLayout {
         }
     }
 
-    public y5(qs0 qs0Var, Context context) {
+    public y5(ps0 ps0Var, Context context) {
         super(context);
-        this.f23622f = qs0Var;
+        this.f23623f = ps0Var;
         new Path();
         new Paint(1);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f23621c = frameLayout;
+        this.f23622c = frameLayout;
         frameLayout.setOutlineProvider(new bi.d2(21));
         frameLayout.setClipToOutline(true);
         org.telegram.ui.Components.g9 g9Var = new org.telegram.ui.Components.g9(context);
-        this.f23620b = g9Var;
+        this.f23621b = g9Var;
         frameLayout.addView(g9Var);
         frameLayout.setWillNotDraw(false);
         org.telegram.ui.k4 k4Var = new org.telegram.ui.k4(context);

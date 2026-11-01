@@ -15,15 +15,15 @@ public final class o90 extends oh.q {
         switch (this.E) {
             case 0:
                 oh.c cVar = (oh.c) this.F;
-                dw0 dw0Var = cVar.N1;
+                ew0 ew0Var = cVar.N1;
                 if (this.e.isEmpty()) {
-                    if (dw0Var.getVisibility() != 4) {
-                        dw0Var.setVisibility(4);
+                    if (ew0Var.getVisibility() != 4) {
+                        ew0Var.setVisibility(4);
                         return;
                     }
                     return;
                 } else if (z11) {
-                    cVar.f25726s1.J.setText("");
+                    cVar.f26095s1.J.setText("");
                     return;
                 } else {
                     super.f(str, z10, z11);
@@ -31,7 +31,7 @@ public final class o90 extends oh.q {
                 }
             default:
                 if (z11) {
-                    kg.q1.Y((kg.q1) this.F).setSearchFieldText("");
+                    kg.q1.Z((kg.q1) this.F).setSearchFieldText("");
                     return;
                 } else {
                     super.f(str, z10, z11);

@@ -2,20 +2,20 @@ package kg;
 
 import android.content.Context;
 import org.telegram.messenger.v2;
-import org.telegram.ui.du0;
+import org.telegram.ui.cu0;
 public final class h extends lg.q {
-    public final int f11097i0;
+    public final int f11098i0;
 
     public h(Context context, int i10, int i11, int i12) {
         super(context, i10, i11);
-        this.f11097i0 = i12;
+        this.f11098i0 = i12;
     }
 
     @Override
     public void h() {
-        switch (this.f11097i0) {
+        switch (this.f11098i0) {
             case 4:
-                boolean z10 = v2.f18448a;
+                boolean z10 = v2.f18578a;
                 return;
             default:
                 return;
@@ -24,7 +24,7 @@ public final class h extends lg.q {
 
     @Override
     public void n() {
-        switch (this.f11097i0) {
+        switch (this.f11098i0) {
             case 5:
                 return;
             default:
@@ -35,7 +35,7 @@ public final class h extends lg.q {
 
     @Override
     public void onAttachedToWindow() {
-        switch (this.f11097i0) {
+        switch (this.f11098i0) {
             case 0:
                 super.onAttachedToWindow();
                 setPaused(false);
@@ -60,7 +60,7 @@ public final class h extends lg.q {
 
     @Override
     public void onDetachedFromWindow() {
-        switch (this.f11097i0) {
+        switch (this.f11098i0) {
             case 0:
                 super.onDetachedFromWindow();
                 setPaused(true);
@@ -83,9 +83,9 @@ public final class h extends lg.q {
         }
     }
 
-    public h(du0 du0Var, Context context, int i10, int i11, Context context2) {
+    public h(cu0 cu0Var, Context context, int i10, int i11, Context context2) {
         super(context, i10, i11);
-        this.f11097i0 = 4;
+        this.f11098i0 = 4;
     }
 
     private final void p() {

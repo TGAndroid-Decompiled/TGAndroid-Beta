@@ -12,8 +12,8 @@ import java.security.MessageDigest;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 public abstract class b0 {
-    public static final ExecutorService f44315a = Executors.newFixedThreadPool(2, new di.n(10));
-    public static File f44316b;
+    public static final ExecutorService f44319a = Executors.newFixedThreadPool(2, new di.n(10));
+    public static File f44320b;
 
     public static synchronized File a(Context context) {
         int i10;
@@ -23,7 +23,7 @@ public abstract class b0 {
         int i12;
         synchronized (b0.class) {
             try {
-                File file = f44316b;
+                File file = f44320b;
                 if (file != null) {
                     return file;
                 }
@@ -123,7 +123,7 @@ public abstract class b0 {
                     fileOutputStream2.write(1);
                     fileOutputStream2.close();
                 }
-                f44316b = file2;
+                f44320b = file2;
                 return file2;
             } catch (Throwable th2) {
                 throw th2;

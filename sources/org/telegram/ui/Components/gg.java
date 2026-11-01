@@ -2,11 +2,11 @@ package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLRPC;
 public interface gg {
-    uu0 D();
+    vu0 F();
 
-    boolean J();
+    boolean K();
 
-    long L();
+    long M();
 
     long a();
 
@@ -18,11 +18,11 @@ public interface gg {
 
     TLRPC.User j();
 
-    void k(int i10, int i11, boolean z10, int i12, boolean z11, int i13);
+    void l(int i10, int i11, boolean z10, int i12, boolean z11, int i13);
 
-    boolean p();
+    boolean q();
 
-    sn q();
+    sn r();
 
-    void r();
+    void s();
 }

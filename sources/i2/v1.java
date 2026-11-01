@@ -2,20 +2,20 @@ package i2;
 
 import v7.t6;
 public final class v1 {
-    public static final v1 f8101c;
+    public static final v1 f8102c;
     public static final v1 d;
     public static final v1 e;
-    public static final v1 f8102f;
-    public final long f8103a;
-    public final long f8104b;
+    public static final v1 f8103f;
+    public final long f8104a;
+    public final long f8105b;
 
     static {
         v1 v1Var = new v1(0L, 0L);
-        f8101c = v1Var;
+        f8102c = v1Var;
         d = new v1(Long.MAX_VALUE, Long.MAX_VALUE);
         e = new v1(Long.MAX_VALUE, 0L);
         new v1(0L, Long.MAX_VALUE);
-        f8102f = v1Var;
+        f8103f = v1Var;
     }
 
     public v1(long j10, long j11) {
@@ -27,8 +27,8 @@ public final class v1 {
         }
         t6.f(z10);
         t6.f(j11 >= 0);
-        this.f8103a = j10;
-        this.f8104b = j11;
+        this.f8104a = j10;
+        this.f8105b = j11;
     }
 
     public final long a(long r17, long r19, long r21) {
@@ -41,7 +41,7 @@ public final class v1 {
         }
         if (obj != null && v1.class == obj.getClass()) {
             v1 v1Var = (v1) obj;
-            if (this.f8103a == v1Var.f8103a && this.f8104b == v1Var.f8104b) {
+            if (this.f8104a == v1Var.f8104a && this.f8105b == v1Var.f8105b) {
                 return true;
             }
         }
@@ -49,6 +49,6 @@ public final class v1 {
     }
 
     public final int hashCode() {
-        return (((int) this.f8103a) * 31) + ((int) this.f8104b);
+        return (((int) this.f8104a) * 31) + ((int) this.f8105b);
     }
 }

@@ -3,17 +3,17 @@ package lc;
 import java.io.UnsupportedEncodingException;
 import java.security.SecureRandom;
 public final class y {
-    public boolean f11799a;
-    public boolean f11800b;
-    public boolean f11801c;
+    public boolean f11800a;
+    public boolean f11801b;
+    public boolean f11802c;
     public boolean d;
     public int e;
-    public boolean f11802f;
-    public byte[] f11803g;
+    public boolean f11803f;
+    public byte[] f11804g;
 
     public static y a(int i10, String str) {
         ?? obj = new Object();
-        obj.f11799a = true;
+        obj.f11800a = true;
         obj.e = 8;
         byte[] bArr = {(byte) ((i10 >> 8) & 255), (byte) (i10 & 255)};
         if (str != null && str.length() != 0) {
@@ -29,7 +29,7 @@ public final class y {
     }
 
     public final int b() {
-        byte[] bArr = this.f11803g;
+        byte[] bArr = this.f11804g;
         if (bArr != null && bArr.length >= 2) {
             return (bArr[1] & 255) | ((bArr[0] & 255) << 8);
         }
@@ -40,7 +40,7 @@ public final class y {
         if (bArr != null && bArr.length == 0) {
             bArr = null;
         }
-        this.f11803g = bArr;
+        this.f11804g = bArr;
     }
 
     public final String toString() {
@@ -51,21 +51,21 @@ public final class y {
         int length;
         StringBuilder t10 = a1.g.t("WebSocketFrame(FIN=");
         String str5 = "0";
-        if (!this.f11799a) {
+        if (!this.f11800a) {
             str = "0";
         } else {
             str = "1";
         }
         t10.append(str);
         t10.append(",RSV1=");
-        if (!this.f11800b) {
+        if (!this.f11801b) {
             str2 = "0";
         } else {
             str2 = "1";
         }
         t10.append(str2);
         t10.append(",RSV2=");
-        if (!this.f11801c) {
+        if (!this.f11802c) {
             str3 = "0";
         } else {
             str3 = "1";
@@ -78,7 +78,7 @@ public final class y {
         t10.append(str5);
         t10.append(",Opcode=");
         int i10 = this.e;
-        SecureRandom secureRandom = k.f11756a;
+        SecureRandom secureRandom = k.f11757a;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -116,7 +116,7 @@ public final class y {
         }
         t10.append(str4);
         t10.append(",Length=");
-        byte[] bArr = this.f11803g;
+        byte[] bArr = this.f11804g;
         if (bArr == null) {
             length = 0;
         } else {
@@ -131,7 +131,7 @@ public final class y {
                     t10.append(",CloseCode=");
                     t10.append(b());
                     t10.append(",Reason=");
-                    byte[] bArr2 = this.f11803g;
+                    byte[] bArr2 = this.f11804g;
                     if (bArr2 != null && bArr2.length >= 3) {
                         try {
                             str6 = new String(bArr2, 2, bArr2.length - 2, "UTF-8");
@@ -148,14 +148,14 @@ public final class y {
                 }
             } else {
                 t10.append(",Payload=");
-                if (this.f11803g == null) {
+                if (this.f11804g == null) {
                     t10.append("null");
-                } else if (this.f11800b) {
+                } else if (this.f11801b) {
                     t10.append("compressed");
                 } else {
                     int i12 = 0;
                     while (true) {
-                        byte[] bArr3 = this.f11803g;
+                        byte[] bArr3 = this.f11804g;
                         if (i12 < bArr3.length) {
                             t10.append(String.format("%02X ", Integer.valueOf(bArr3[i12] & 255)));
                             i12++;
@@ -167,13 +167,13 @@ public final class y {
             }
         } else {
             t10.append(",Payload=");
-            if (this.f11803g == null) {
+            if (this.f11804g == null) {
                 t10.append("null");
-            } else if (this.f11800b) {
+            } else if (this.f11801b) {
                 t10.append("compressed");
             } else {
                 t10.append("\"");
-                byte[] bArr4 = this.f11803g;
+                byte[] bArr4 = this.f11804g;
                 if (bArr4 != null) {
                     try {
                         str6 = new String(bArr4, 0, bArr4.length, "UTF-8");

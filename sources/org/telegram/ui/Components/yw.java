@@ -13,7 +13,7 @@ public final class yw extends uy {
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
         if (i10 == 0) {
-            this.d.f31874f0 = false;
+            this.d.f31952f0 = false;
         }
         super.a(recyclerView, i10);
     }
@@ -26,10 +26,10 @@ public final class yw extends uy {
         super.b(recyclerView, i10, i11);
         ux uxVar = vyVar.S;
         if (uxVar != null && vyVar.P.getAdapter() == uxVar) {
-            ux uxVar2 = uxVar.f31077y.f30694a;
+            ux uxVar2 = uxVar.f31107y.f30727a;
             if (!uxVar2.F.V.F && !uxVar2.E) {
                 if (vwVar.N0() + 20 > uxVar.b()) {
-                    tx txVar = uxVar.f31077y;
+                    tx txVar = uxVar.f31107y;
                     Objects.requireNonNull(txVar);
                     org.telegram.messenger.i0.g3(new aw(txVar, 1));
                 }

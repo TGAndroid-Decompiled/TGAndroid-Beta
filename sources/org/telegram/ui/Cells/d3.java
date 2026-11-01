@@ -12,20 +12,20 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.HashSet;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.at;
+import org.telegram.messenger.dd;
 import org.telegram.tgnet.TLObject;
 import org.telegram.ui.Components.p80;
 public final class d3 extends FrameLayout implements org.telegram.ui.ActionBar.k6 {
-    public final LinearLayout f21809a;
-    public final LinearLayout f21810b;
-    public final org.telegram.ui.Components.n5 f21811c;
+    public final LinearLayout f21810a;
+    public final LinearLayout f21811b;
+    public final org.telegram.ui.Components.n5 f21812c;
     public final p80 d;
     public final ImageView e;
-    public final ImageView f21812f;
+    public final ImageView f21813f;
     public final org.telegram.ui.Components.g9 h;
-    public final org.telegram.ui.Components.u8 f21813n;
-    public boolean f21814r;
+    public final org.telegram.ui.Components.u8 f21814n;
+    public boolean f21815r;
 
     public d3(Context context) {
         super(context);
@@ -36,7 +36,7 @@ public final class d3 extends FrameLayout implements org.telegram.ui.ActionBar.k
         setWillNotDraw(false);
         setPadding(org.telegram.messenger.i0.L(9.0f), org.telegram.messenger.i0.L(5.0f), org.telegram.messenger.i0.L(9.0f), org.telegram.messenger.i0.L(7.0f));
         org.telegram.ui.Components.u8 u8Var = new org.telegram.ui.Components.u8(context, false);
-        this.f21813n = u8Var;
+        this.f21814n = u8Var;
         u8Var.setStepFactor(0.56790125f);
         u8Var.setVisibility(8);
         u8Var.setCount(0);
@@ -44,27 +44,27 @@ public final class d3 extends FrameLayout implements org.telegram.ui.ActionBar.k
         this.h = g9Var;
         g9Var.setVisibility(8);
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f21810b = linearLayout;
+        this.f21811b = linearLayout;
         linearLayout.setOrientation(1);
-        if (cd.X) {
+        if (dd.X) {
             i10 = org.telegram.messenger.i0.L(24.0f);
         } else {
             i10 = 0;
         }
-        if (cd.X) {
+        if (dd.X) {
             L = 0;
         } else {
             L = org.telegram.messenger.i0.L(24.0f);
         }
         linearLayout.setPadding(i10, 0, L, 0);
         org.telegram.ui.Components.n5 n5Var = new org.telegram.ui.Components.n5(context);
-        this.f21811c = n5Var;
+        this.f21812c = n5Var;
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         n5Var.setEllipsize(truncateAt);
         n5Var.setTextSize(1, 14.0f);
         n5Var.setTypeface(org.telegram.messenger.i0.o());
         n5Var.setMaxLines(5);
-        if (cd.X) {
+        if (dd.X) {
             i11 = 5;
         } else {
             i11 = 3;
@@ -76,12 +76,12 @@ public final class d3 extends FrameLayout implements org.telegram.ui.ActionBar.k
         p80Var.setEllipsize(truncateAt);
         p80Var.setMaxLines(5);
         linearLayout.addView(p80Var, w7.b6.p(-1, -2, 0.0f, 48));
-        zs.i(n5Var);
-        zs.i(p80Var);
+        at.i(n5Var);
+        at.i(p80Var);
         LinearLayout linearLayout2 = new LinearLayout(context);
-        this.f21809a = linearLayout2;
+        this.f21810a = linearLayout2;
         linearLayout2.setOrientation(0);
-        if (cd.X) {
+        if (dd.X) {
             linearLayout2.addView(linearLayout, w7.b6.d(-1, -1.0f, 16, 7.0f, 0.0f, 7.0f, 0.0f));
             linearLayout2.addView(u8Var, w7.b6.d(0, -1.0f, 16, 0.0f, 0.0f, -2.0f, 0.0f));
             linearLayout2.addView(g9Var, w7.b6.d(36, 36.0f, 21, 0.0f, 0.0f, -2.0f, 0.0f));
@@ -96,17 +96,17 @@ public final class d3 extends FrameLayout implements org.telegram.ui.ActionBar.k
         ImageView imageView = new ImageView(context);
         this.e = imageView;
         imageView.setImageResource(2131230872);
-        if (cd.X) {
+        if (dd.X) {
             i12 = 3;
         } else {
             i12 = 5;
         }
         addView(imageView, w7.b6.d(16, 16.0f, i12 | 16, 4.0f, 0.0f, 4.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f21812f = imageView2;
+        this.f21813f = imageView2;
         imageView2.setImageResource(2131232095);
         imageView2.setPadding(org.telegram.messenger.i0.L(6.0f), org.telegram.messenger.i0.L(6.0f), org.telegram.messenger.i0.L(6.0f), org.telegram.messenger.i0.L(6.0f));
-        addView(imageView2, w7.b6.d(36, 36.0f, (cd.X ? 3 : 5) | 16, -4.0f, 0.0f, -4.0f, 0.0f));
+        addView(imageView2, w7.b6.d(36, 36.0f, (dd.X ? 3 : 5) | 16, -4.0f, 0.0f, -4.0f, 0.0f));
         imageView2.setVisibility(8);
         setClipToPadding(false);
         setClipChildren(false);
@@ -125,8 +125,8 @@ public final class d3 extends FrameLayout implements org.telegram.ui.ActionBar.k
             size = arrayList.size();
         }
         int min = Math.min(3, size);
-        org.telegram.ui.Components.u8 u8Var = this.f21813n;
-        if (min != u8Var.f30863a.f30489n) {
+        org.telegram.ui.Components.u8 u8Var = this.f21814n;
+        if (min != u8Var.f30897a.f30561n) {
             z10 = true;
         } else {
             z10 = false;
@@ -153,7 +153,7 @@ public final class d3 extends FrameLayout implements org.telegram.ui.ActionBar.k
         }
         layoutParams.width = L;
         if (z10) {
-            this.f21809a.requestLayout();
+            this.f21810a.requestLayout();
         }
         if (arrayList != null) {
             for (int i12 = 0; i12 < 3; i12++) {
@@ -177,13 +177,13 @@ public final class d3 extends FrameLayout implements org.telegram.ui.ActionBar.k
         int i11;
         int i12;
         int i13;
-        this.f21814r = z11;
+        this.f21815r = z11;
         if (TextUtils.isEmpty(charSequence)) {
             i10 = 8;
         } else {
             i10 = 0;
         }
-        org.telegram.ui.Components.n5 n5Var = this.f21811c;
+        org.telegram.ui.Components.n5 n5Var = this.f21812c;
         n5Var.setVisibility(i10);
         n5Var.setText(charSequence);
         n5Var.setCompoundDrawables(null, null, null, null);
@@ -194,13 +194,13 @@ public final class d3 extends FrameLayout implements org.telegram.ui.ActionBar.k
             i11 = 8;
         }
         this.e.setVisibility(i11);
-        this.f21812f.setVisibility(8);
+        this.f21813f.setVisibility(8);
         if (z10) {
             i12 = org.telegram.messenger.i0.L(24.0f);
         } else {
             i12 = 0;
         }
-        boolean z12 = cd.X;
+        boolean z12 = dd.X;
         if (z12) {
             i13 = i12;
         } else {
@@ -209,19 +209,19 @@ public final class d3 extends FrameLayout implements org.telegram.ui.ActionBar.k
         if (z12) {
             i12 = 0;
         }
-        this.f21810b.setPadding(i13, 0, i12, 0);
+        this.f21811b.setPadding(i13, 0, i12, 0);
         updateColors();
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        Point point = org.telegram.messenger.i0.f16026q;
+        Point point = org.telegram.messenger.i0.f16172q;
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(point.y, Integer.MIN_VALUE));
-        LinearLayout linearLayout = this.f21810b;
+        LinearLayout linearLayout = this.f21811b;
         linearLayout.measure(View.MeasureSpec.makeMeasureSpec(linearLayout.getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(point.y, Integer.MIN_VALUE));
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(getPaddingBottom() + getPaddingTop() + linearLayout.getMeasuredHeight(), 1073741824));
-        this.f21812f.setTranslationY((getPaddingBottom() - getPaddingTop()) / 2.0f);
-        this.f21813n.setTranslationY((getPaddingBottom() - getPaddingTop()) / 2.0f);
+        this.f21813f.setTranslationY((getPaddingBottom() - getPaddingTop()) / 2.0f);
+        this.f21814n.setTranslationY((getPaddingBottom() - getPaddingTop()) / 2.0f);
         this.h.setTranslationY((getPaddingBottom() - getPaddingTop()) / 2.0f);
         this.e.setTranslationY((getPaddingBottom() - getPaddingTop()) / 2.0f);
     }
@@ -241,7 +241,7 @@ public final class d3 extends FrameLayout implements org.telegram.ui.ActionBar.k
 
     public void setOnCloseListener(View.OnClickListener onClickListener) {
         this.e.setVisibility(4);
-        ImageView imageView = this.f21812f;
+        ImageView imageView = this.f21813f;
         imageView.setVisibility(0);
         imageView.setOnClickListener(onClickListener);
     }
@@ -249,13 +249,13 @@ public final class d3 extends FrameLayout implements org.telegram.ui.ActionBar.k
     @Override
     public final void updateColors() {
         int i10;
-        if (this.f21814r) {
-            i10 = org.telegram.ui.ActionBar.t6.f21170q7;
+        if (this.f21815r) {
+            i10 = org.telegram.ui.ActionBar.t6.f21171q7;
         } else {
             i10 = org.telegram.ui.ActionBar.t6.G6;
         }
-        this.f21811c.setTextColor(org.telegram.ui.ActionBar.t6.x0(null, i10, false));
-        int i11 = org.telegram.ui.ActionBar.t6.f21311y6;
+        this.f21812c.setTextColor(org.telegram.ui.ActionBar.t6.x0(null, i10, false));
+        int i11 = org.telegram.ui.ActionBar.t6.f21312y6;
         int x02 = org.telegram.ui.ActionBar.t6.x0(null, i11, false);
         p80 p80Var = this.d;
         p80Var.setTextColor(x02);
@@ -264,9 +264,9 @@ public final class d3 extends FrameLayout implements org.telegram.ui.ActionBar.k
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         this.e.setColorFilter(x03, mode);
         int x04 = org.telegram.ui.ActionBar.t6.x0(null, i11, false);
-        ImageView imageView = this.f21812f;
+        ImageView imageView = this.f21813f;
         imageView.setColorFilter(x04, mode);
-        imageView.setBackground(org.telegram.ui.ActionBar.j6.c(null, org.telegram.ui.ActionBar.j6.b(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.j6.f20446a, false))));
+        imageView.setBackground(org.telegram.ui.ActionBar.j6.c(null, org.telegram.ui.ActionBar.j6.b(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.j6.f20447a, false))));
     }
 
     @Override

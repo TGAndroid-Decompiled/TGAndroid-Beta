@@ -9,22 +9,22 @@ import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.wp;
 import org.telegram.ui.Components.cc;
 import org.telegram.ui.Components.l00;
-import org.telegram.ui.Components.oj0;
+import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.s9;
-import org.telegram.ui.Components.uu0;
+import org.telegram.ui.Components.vu0;
 import org.telegram.ui.Components.w9;
 import org.telegram.ui.Components.wb;
-import org.telegram.ui.do0;
+import org.telegram.ui.bo0;
 public final class e8 extends p {
     public final Path Q1;
     public final o8 R1;
 
-    public e8(o8 o8Var, Activity activity, FrameLayout frameLayout, uu0 uu0Var, FrameLayout frameLayout2, th.b bVar, s9 s9Var) {
-        super(activity, frameLayout, uu0Var, frameLayout2, bVar, s9Var);
+    public e8(o8 o8Var, Activity activity, FrameLayout frameLayout, vu0 vu0Var, FrameLayout frameLayout2, th.b bVar, s9 s9Var) {
+        super(activity, frameLayout, vu0Var, frameLayout2, bVar, s9Var);
         this.R1 = o8Var;
         this.Q1 = new Path();
     }
@@ -32,31 +32,31 @@ public final class e8 extends p {
     @Override
     public final boolean e() {
         wb wbVar;
-        if (vp.r1(this.U).A3() || ((wbVar = wb.f32128w) != null && wbVar.f32129a == 2)) {
+        if (wp.r1(this.U).A3() || ((wbVar = wb.f32194w) != null && wbVar.f32195a == 2)) {
             return false;
         }
-        int i10 = vp.r1(this.U).X4;
-        SpannableStringBuilder W2 = org.telegram.messenger.i0.W2(cd.G(Math.round(i10 / vp.r1(this.U).W4), "CaptionPremiumSubtitle", i0.a.i(i10, "")));
+        int i10 = wp.r1(this.U).X4;
+        SpannableStringBuilder W2 = org.telegram.messenger.i0.W2(dd.G(Math.round(i10 / wp.r1(this.U).W4), "CaptionPremiumSubtitle", i0.a.i(i10, "")));
         int indexOf = W2.toString().indexOf("__");
         if (indexOf >= 0) {
             W2.replace(indexOf, indexOf + 2, (CharSequence) "");
             int indexOf2 = W2.toString().indexOf("__");
             if (indexOf2 >= 0) {
                 W2.replace(indexOf2, indexOf2 + 2, (CharSequence) "");
-                W2.setSpan(new l00(org.telegram.ui.ActionBar.t6.Uc, this.f51332a), indexOf, indexOf2, 33);
+                W2.setSpan(new l00(org.telegram.ui.ActionBar.t6.Uc, this.f51347a), indexOf, indexOf2, 33);
                 W2.setSpan(new dh.a(this, 11), indexOf, indexOf2, 33);
             }
         }
-        wb I = new cc(this.R1.f51640l0, this.f51332a).I(2131623970, cd.L0(2131752556, null), W2);
-        I.f32129a = 2;
-        I.f32135j = 5000;
+        wb I = new cc(this.R1.f51655l0, this.f51347a).I(2131623970, dd.L0(2131752556, null), W2);
+        I.f32195a = 2;
+        I.f32201j = 5000;
         I.k(false);
         return true;
     }
 
     @Override
     public final boolean g() {
-        return this.R1.f51658r0.c();
+        return this.R1.f51673r0.c();
     }
 
     @Override
@@ -86,31 +86,31 @@ public final class e8 extends p {
 
     @Override
     public final void i(Bitmap bitmap) {
-        this.R1.f51644n.X(12.0f, bitmap);
+        this.R1.f51659n.X(12.0f, bitmap);
         Utilities.stackBlurBitmap(bitmap, (int) 12.0f);
     }
 
     @Override
     public final boolean l(float f7, float f10) {
         o8 o8Var = this.R1;
-        s7 s7Var = o8Var.f51672v1;
+        s7 s7Var = o8Var.f51687v1;
         if (s7Var != null && s7Var.A0 != null) {
-            e8 e8Var = o8Var.f51613c1;
-            if (!e8Var.f51350o0) {
+            e8 e8Var = o8Var.f51628c1;
+            if (!e8Var.f51365o0) {
                 float x10 = e8Var.getX() + f7;
-                float y3 = o8Var.f51613c1.getY() + f10;
-                float x11 = o8Var.f51640l0.getX() + x10;
-                float y10 = o8Var.f51640l0.getY() + y3;
-                float x12 = x11 - o8Var.f51628h0.getX();
-                float y11 = y10 - o8Var.f51628h0.getY();
-                for (int i10 = 0; i10 < o8Var.f51672v1.A0.getChildCount(); i10++) {
-                    View childAt = o8Var.f51672v1.A0.getChildAt(i10);
+                float y3 = o8Var.f51628c1.getY() + f10;
+                float x11 = o8Var.f51655l0.getX() + x10;
+                float y10 = o8Var.f51655l0.getY() + y3;
+                float x12 = x11 - o8Var.f51643h0.getX();
+                float y11 = y10 - o8Var.f51643h0.getY();
+                for (int i10 = 0; i10 < o8Var.f51687v1.A0.getChildCount(); i10++) {
+                    View childAt = o8Var.f51687v1.A0.getChildAt(i10);
                     if (childAt instanceof jg.j) {
-                        oj0 selectionBounds = ((jg.j) childAt).getSelectionBounds();
+                        pj0 selectionBounds = ((jg.j) childAt).getSelectionBounds();
                         RectF rectF = org.telegram.messenger.i0.P;
-                        float f11 = selectionBounds.f29084a;
-                        float f12 = selectionBounds.f29085b;
-                        rectF.set(f11, f12, selectionBounds.f29086c + f11, selectionBounds.d + f12);
+                        float f11 = selectionBounds.f29439a;
+                        float f12 = selectionBounds.f29440b;
+                        rectF.set(f11, f12, selectionBounds.f29441c + f11, selectionBounds.d + f12);
                         if (rectF.contains(x12, y11)) {
                             return true;
                         }
@@ -123,9 +123,9 @@ public final class e8 extends p {
 
     @Override
     public final void n() {
-        do0 do0Var = this.R1.f51665t0;
-        if (do0Var != null) {
-            do0Var.invalidate();
+        bo0 bo0Var = this.R1.f51680t0;
+        if (bo0Var != null) {
+            bo0Var.invalidate();
         }
     }
 
@@ -134,12 +134,12 @@ public final class e8 extends p {
         boolean z11;
         n5 n5Var;
         o8 o8Var = this.R1;
-        f4 f4Var = o8Var.f51609b1;
+        f4 f4Var = o8Var.f51624b1;
         if (!o8Var.N1 && !z10) {
-            th.e5 O1 = vp.r1(this.U).O1();
+            th.e5 O1 = wp.r1(this.U).O1();
             int A = o8Var.A();
             j4.w o10 = O1.o();
-            if (o10 == null || !o10.a(O1.f48904a, A) || ((n5Var = o8Var.K1) != null && n5Var.f51529g)) {
+            if (o10 == null || !o10.a(O1.f48918a, A) || ((n5Var = o8Var.K1) != null && n5Var.f51544g)) {
                 z11 = true;
                 f4Var.setShareEnabled(z11);
             }

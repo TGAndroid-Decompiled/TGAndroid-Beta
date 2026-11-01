@@ -1,15 +1,15 @@
 package org.telegram.ui.Wallet;
 public final class s9 {
-    public float f35205a;
-    public float f35206b;
-    public float f35207c;
+    public float f35212a;
+    public float f35213b;
+    public float f35214c;
     public float d;
     public float e;
-    public float f35208f;
-    public float f35209g;
+    public float f35215f;
+    public float f35216g;
     public float h;
-    public float f35210i;
-    public float f35211j;
-    public int f35212k;
-    public float f35213l;
+    public float f35217i;
+    public float f35218j;
+    public int f35219k;
+    public float f35220l;
 }

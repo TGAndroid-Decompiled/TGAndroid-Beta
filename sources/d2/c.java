@@ -37,7 +37,7 @@ public final class c implements k, i5.e, r9.d, g2.g, o, p, f0 {
     }
 
     public static di.c a() {
-        InputStream open = w0.f19025b.getAssets().open("grammars.dat");
+        InputStream open = w0.f18945b.getAssets().open("grammars.dat");
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             byte[] bArr = new byte[8192];
@@ -97,7 +97,7 @@ public final class c implements k, i5.e, r9.d, g2.g, o, p, f0 {
                 return aa.b.f361a.v((e2) obj).getBytes(Charset.forName("UTF-8"));
             case 9:
                 String str = (String) obj;
-                d9.a aVar = h9.a.f7641g;
+                d9.a aVar = h9.a.f7642g;
                 aVar.getClass();
                 int length = str.length() - 1;
                 while (true) {
@@ -213,7 +213,7 @@ public final class c implements k, i5.e, r9.d, g2.g, o, p, f0 {
 
     @Override
     public g2.h createDataSource() {
-        return new g2.b(w0.f19025b);
+        return new g2.b(w0.f18945b);
     }
 
     @Override

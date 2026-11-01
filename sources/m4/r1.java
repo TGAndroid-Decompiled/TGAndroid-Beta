@@ -6,16 +6,16 @@ import v7.t6;
 public final class r1 {
     public static final String d;
     public static final String e;
-    public static final String f12910f;
-    public final int f12911a;
-    public final String f12912b;
-    public final Bundle f12913c;
+    public static final String f12911f;
+    public final int f12912a;
+    public final String f12913b;
+    public final Bundle f12914c;
 
     static {
         String str = e2.l0.f6165a;
         d = Integer.toString(0, 36);
         e = Integer.toString(1, 36);
-        f12910f = Integer.toString(2, 36);
+        f12911f = Integer.toString(2, 36);
     }
 
     public r1(int i10) {
@@ -24,11 +24,11 @@ public final class r1 {
 
     public final Bundle a() {
         Bundle bundle = new Bundle();
-        bundle.putInt(d, this.f12911a);
-        bundle.putString(e, this.f12912b);
-        Bundle bundle2 = this.f12913c;
+        bundle.putInt(d, this.f12912a);
+        bundle.putString(e, this.f12913b);
+        Bundle bundle2 = this.f12914c;
         if (!bundle2.isEmpty()) {
-            bundle.putBundle(f12910f, bundle2);
+            bundle.putBundle(f12911f, bundle2);
         }
         return bundle;
     }
@@ -41,14 +41,14 @@ public final class r1 {
             return false;
         }
         r1 r1Var = (r1) obj;
-        if (this.f12911a == r1Var.f12911a && Objects.equals(this.f12912b, r1Var.f12912b)) {
+        if (this.f12912a == r1Var.f12912a && Objects.equals(this.f12913b, r1Var.f12913b)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f12911a), this.f12912b);
+        return Objects.hash(Integer.valueOf(this.f12912a), this.f12913b);
     }
 
     public r1(String str, int i10, Bundle bundle) {
@@ -57,8 +57,8 @@ public final class r1 {
             z10 = false;
         }
         t6.f(z10);
-        this.f12911a = i10;
-        this.f12912b = str;
-        this.f12913c = bundle;
+        this.f12912a = i10;
+        this.f12913b = str;
+        this.f12914c = bundle;
     }
 }

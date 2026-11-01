@@ -17,7 +17,7 @@ public final class br extends s4.a0 {
         switch (this.I) {
             case 7:
                 super.S(eVar, z0Var, cVar);
-                if (((org.telegram.ui.Components.v71) this.J).V) {
+                if (((org.telegram.ui.Components.w71) this.J).V) {
                     cVar.p(false);
                     return;
                 }
@@ -40,13 +40,13 @@ public final class br extends s4.a0 {
     public int W0(s4.z0 z0Var) {
         switch (this.I) {
             case 5:
-                if (((org.telegram.ui.Components.u51) this.J).f30821h3) {
-                    return org.telegram.messenger.i0.f16026q.y;
+                if (((org.telegram.ui.Components.v51) this.J).f31185h3) {
+                    return org.telegram.messenger.i0.f16172q.y;
                 }
                 return super.W0(z0Var);
             case 6:
-                if (((org.telegram.ui.Components.c21) this.J).f30821h3) {
-                    return org.telegram.messenger.i0.f16026q.y;
+                if (((org.telegram.ui.Components.d21) this.J).f31185h3) {
+                    return org.telegram.messenger.i0.f16172q.y;
                 }
                 return super.W0(z0Var);
             default:
@@ -60,7 +60,7 @@ public final class br extends s4.a0 {
         switch (this.I) {
             case 2:
                 super.k1(z10);
-                org.telegram.ui.Components.x90 x90Var = ((org.telegram.ui.Components.y90) this.J).f32665b;
+                org.telegram.ui.Components.x90 x90Var = ((org.telegram.ui.Components.y90) this.J).f32781b;
                 if (z10) {
                     i10 = -1;
                 } else {
@@ -82,7 +82,7 @@ public final class br extends s4.a0 {
         boolean z12;
         switch (this.I) {
             case 1:
-                org.telegram.ui.Components.z60 z60Var = ((rx) ((org.telegram.ui.Components.tz) this.J).J).f41307b.L0;
+                org.telegram.ui.Components.z60 z60Var = ((qx) ((org.telegram.ui.Components.tz) this.J).J).f40919b.L0;
                 if (z60Var != null && z60Var.D()) {
                     i10 = 0;
                 }
@@ -91,13 +91,13 @@ public final class br extends s4.a0 {
             default:
                 return super.m0(i10, eVar, z0Var);
             case 3:
-                org.telegram.ui.Components.mj0 mj0Var = (org.telegram.ui.Components.mj0) this.J;
-                ag.b1 b1Var = mj0Var.f28500b;
+                org.telegram.ui.Components.nj0 nj0Var = (org.telegram.ui.Components.nj0) this.J;
+                ag.b1 b1Var = nj0Var.f28861b;
                 boolean z13 = false;
-                if (i10 < 0 && mj0Var.B0 != 0.0f) {
-                    float pullingLeftProgress = mj0Var.getPullingLeftProgress();
-                    mj0Var.B0 += i10;
-                    float pullingLeftProgress2 = mj0Var.getPullingLeftProgress();
+                if (i10 < 0 && nj0Var.B0 != 0.0f) {
+                    float pullingLeftProgress = nj0Var.getPullingLeftProgress();
+                    nj0Var.B0 += i10;
+                    float pullingLeftProgress2 = nj0Var.getPullingLeftProgress();
                     if (pullingLeftProgress > 1.0f) {
                         z11 = true;
                     } else {
@@ -114,34 +114,34 @@ public final class br extends s4.a0 {
                         } catch (Exception unused) {
                         }
                     }
-                    float f10 = mj0Var.B0;
+                    float f10 = nj0Var.B0;
                     if (f10 < 0.0f) {
                         i10 = (int) f10;
-                        mj0Var.B0 = 0.0f;
+                        nj0Var.B0 = 0.0f;
                     } else {
                         i10 = 0;
                     }
-                    fg.i iVar = mj0Var.S;
+                    fg.i iVar = nj0Var.S;
                     if (iVar != null) {
                         iVar.invalidate();
                     }
                     b1Var.invalidate();
                 }
                 int m0 = super.m0(i10, eVar, z0Var);
-                if (i10 > 0 && m0 == 0 && b1Var.getScrollState() == 1 && mj0Var.q()) {
-                    ValueAnimator valueAnimator = mj0Var.f28541y0;
+                if (i10 > 0 && m0 == 0 && b1Var.getScrollState() == 1 && nj0Var.q()) {
+                    ValueAnimator valueAnimator = nj0Var.f28902y0;
                     if (valueAnimator != null) {
                         valueAnimator.removeAllListeners();
-                        mj0Var.f28541y0.cancel();
+                        nj0Var.f28902y0.cancel();
                     }
-                    int i11 = (mj0Var.getPullingLeftProgress() > 1.0f ? 1 : (mj0Var.getPullingLeftProgress() == 1.0f ? 0 : -1));
+                    int i11 = (nj0Var.getPullingLeftProgress() > 1.0f ? 1 : (nj0Var.getPullingLeftProgress() == 1.0f ? 0 : -1));
                     if (i11 > 0) {
                         f7 = 0.05f;
                     } else {
                         f7 = 0.6f;
                     }
-                    mj0Var.B0 = (i10 * f7) + mj0Var.B0;
-                    float pullingLeftProgress3 = mj0Var.getPullingLeftProgress();
+                    nj0Var.B0 = (i10 * f7) + nj0Var.B0;
+                    float pullingLeftProgress3 = nj0Var.getPullingLeftProgress();
                     if (i11 > 0) {
                         z10 = true;
                     } else {
@@ -156,7 +156,7 @@ public final class br extends s4.a0 {
                         } catch (Exception unused2) {
                         }
                     }
-                    fg.i iVar2 = mj0Var.S;
+                    fg.i iVar2 = nj0Var.S;
                     if (iVar2 != null) {
                         iVar2.invalidate();
                     }
@@ -176,14 +176,14 @@ public final class br extends s4.a0 {
                 }
                 return super.o0(i10, eVar, z0Var);
             case 4:
-                org.telegram.ui.Components.ku0 ku0Var = (org.telegram.ui.Components.ku0) this.J;
-                if (i10 > 0 && ku0Var.N != null) {
+                org.telegram.ui.Components.lu0 lu0Var = (org.telegram.ui.Components.lu0) this.J;
+                if (i10 > 0 && lu0Var.N != null) {
                     int i11 = 0;
                     while (i11 < i10) {
-                        int min = Math.min(i10 - i11, Math.max(1, Math.round((ku0Var.getHeight() - ku0Var.U) * 0.5f)));
-                        float o10 = ku0Var.o();
+                        int min = Math.min(i10 - i11, Math.max(1, Math.round((lu0Var.getHeight() - lu0Var.U) * 0.5f)));
+                        float o10 = lu0Var.o();
                         if (!Float.isInfinite(o10)) {
-                            min = Math.min(min, Math.max(0, Math.round(o10 - ku0Var.U)));
+                            min = Math.min(min, Math.max(0, Math.round(o10 - lu0Var.U)));
                         }
                         if (min != 0) {
                             int o02 = super.o0(min, eVar, z0Var);
@@ -208,13 +208,13 @@ public final class br extends s4.a0 {
         switch (this.I) {
             case 1:
                 org.telegram.ui.Components.nz nzVar = new org.telegram.ui.Components.nz(this, recyclerView.getContext());
-                nzVar.f48045a = i10;
+                nzVar.f48056a = i10;
                 w0(nzVar);
                 return;
             case 7:
-                org.telegram.ui.Components.q71 q71Var = new org.telegram.ui.Components.q71(this, recyclerView.getContext());
-                q71Var.f48045a = i10;
-                w0(q71Var);
+                org.telegram.ui.Components.r71 r71Var = new org.telegram.ui.Components.r71(this, recyclerView.getContext());
+                r71Var.f48056a = i10;
+                w0(r71Var);
                 return;
             default:
                 super.v0(recyclerView, z0Var, i10);
@@ -242,7 +242,7 @@ public final class br extends s4.a0 {
     public void z0(s4.z0 z0Var, int[] iArr) {
         switch (this.I) {
             case 8:
-                iArr[1] = ((StickersActivity) this.J).f34046a.getHeight();
+                iArr[1] = ((StickersActivity) this.J).f34053a.getHeight();
                 return;
             default:
                 super.z0(z0Var, iArr);
@@ -262,9 +262,9 @@ public final class br extends s4.a0 {
         this.J = obj;
     }
 
-    public br(org.telegram.ui.Components.u51 u51Var, int i10) {
+    public br(org.telegram.ui.Components.v51 v51Var, int i10) {
         super(i10, false);
         this.I = 5;
-        this.J = u51Var;
+        this.J = v51Var;
     }
 }

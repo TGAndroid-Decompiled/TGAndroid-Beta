@@ -20,9 +20,9 @@ import java.util.List;
 import v7.x7;
 import v7.y7;
 public final class h extends x7 {
-    public static final Class f7776a;
-    public static final Constructor f7777b;
-    public static final Method f7778c;
+    public static final Class f7777a;
+    public static final Constructor f7778b;
+    public static final Method f7779c;
     public static final Method d;
 
     static {
@@ -43,15 +43,15 @@ public final class h extends x7 {
             method = null;
             method2 = null;
         }
-        f7777b = constructor;
-        f7776a = cls;
-        f7778c = method2;
+        f7778b = constructor;
+        f7777a = cls;
+        f7779c = method2;
         d = method;
     }
 
     public static boolean g(Object obj, ByteBuffer byteBuffer, int i10, int i11, boolean z10) {
         try {
-            return ((Boolean) f7778c.invoke(obj, byteBuffer, Integer.valueOf(i10), null, Integer.valueOf(i11), Boolean.valueOf(z10))).booleanValue();
+            return ((Boolean) f7779c.invoke(obj, byteBuffer, Integer.valueOf(i10), null, Integer.valueOf(i11), Boolean.valueOf(z10))).booleanValue();
         } catch (IllegalAccessException | InvocationTargetException unused) {
             return false;
         }
@@ -59,7 +59,7 @@ public final class h extends x7 {
 
     public static Typeface h(Object obj) {
         try {
-            Object newInstance = Array.newInstance(f7776a, 1);
+            Object newInstance = Array.newInstance(f7777a, 1);
             Array.set(newInstance, 0, obj);
             return (Typeface) d.invoke(null, newInstance);
         } catch (IllegalAccessException | InvocationTargetException unused) {
@@ -74,13 +74,13 @@ public final class h extends x7 {
         MappedByteBuffer mappedByteBuffer;
         FileInputStream fileInputStream;
         try {
-            obj = f7777b.newInstance(null);
+            obj = f7778b.newInstance(null);
         } catch (IllegalAccessException | InstantiationException | InvocationTargetException unused) {
             obj = null;
         }
         if (obj != null) {
-            for (h0.f fVar : eVar.f7544a) {
-                int i11 = fVar.f7548f;
+            for (h0.f fVar : eVar.f7545a) {
+                int i11 = fVar.f7549f;
                 File d10 = y7.d(context);
                 if (d10 != null) {
                     try {
@@ -94,7 +94,7 @@ public final class h extends x7 {
                                 FileChannel channel = fileInputStream.getChannel();
                                 mappedByteBuffer = channel.map(FileChannel.MapMode.READ_ONLY, 0L, channel.size());
                                 fileInputStream.close();
-                                if (mappedByteBuffer != null && g(obj, mappedByteBuffer, fVar.e, fVar.f7546b, fVar.f7547c)) {
+                                if (mappedByteBuffer != null && g(obj, mappedByteBuffer, fVar.e, fVar.f7547b, fVar.f7548c)) {
                                 }
                             } finally {
                                 break;
@@ -117,7 +117,7 @@ public final class h extends x7 {
     public final Typeface b(Context context, o0.h[] hVarArr, int i10) {
         Object obj;
         try {
-            obj = f7777b.newInstance(null);
+            obj = f7778b.newInstance(null);
         } catch (IllegalAccessException | InstantiationException | InvocationTargetException unused) {
             obj = null;
         }
@@ -128,13 +128,13 @@ public final class h extends x7 {
             while (true) {
                 if (i11 < length) {
                     o0.h hVar = hVarArr[i11];
-                    Uri uri = hVar.f13925a;
+                    Uri uri = hVar.f13926a;
                     ByteBuffer byteBuffer = (ByteBuffer) lVar.get(uri);
                     if (byteBuffer == null) {
                         byteBuffer = y7.e(context, uri);
                         lVar.put(uri, byteBuffer);
                     }
-                    if (byteBuffer == null || !g(obj, byteBuffer, hVar.f13926b, hVar.f13927c, hVar.d)) {
+                    if (byteBuffer == null || !g(obj, byteBuffer, hVar.f13927b, hVar.f13928c, hVar.d)) {
                         break;
                     }
                     i11++;

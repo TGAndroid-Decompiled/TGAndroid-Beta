@@ -6,12 +6,12 @@ import androidx.lifecycle.t;
 import androidx.lifecycle.z;
 import b2.u;
 public final class a extends z {
-    public final d f52327l;
-    public t f52328m;
-    public u f52329n;
+    public final d f52345l;
+    public t f52346m;
+    public u f52347n;
 
     public a(d dVar) {
-        this.f52327l = dVar;
+        this.f52345l = dVar;
         if (dVar.f294a == null) {
             dVar.f294a = this;
             return;
@@ -21,7 +21,7 @@ public final class a extends z {
 
     @Override
     public final void f() {
-        d dVar = this.f52327l;
+        d dVar = this.f52345l;
         dVar.f295b = true;
         dVar.d = false;
         dVar.f296c = false;
@@ -31,19 +31,19 @@ public final class a extends z {
 
     @Override
     public final void g() {
-        this.f52327l.f295b = false;
+        this.f52345l.f295b = false;
     }
 
     @Override
     public final void i(a0 a0Var) {
         super.i(a0Var);
-        this.f52328m = null;
-        this.f52329n = null;
+        this.f52346m = null;
+        this.f52347n = null;
     }
 
     public final void k() {
-        t tVar = this.f52328m;
-        u uVar = this.f52329n;
+        t tVar = this.f52346m;
+        u uVar = this.f52347n;
         if (tVar != null && uVar != null) {
             super.i(uVar);
             d(tVar, uVar);
@@ -55,7 +55,7 @@ public final class a extends z {
         sb2.append("LoaderInfo{");
         sb2.append(Integer.toHexString(System.identityHashCode(this)));
         sb2.append(" #0 : ");
-        Class<?> cls = this.f52327l.getClass();
+        Class<?> cls = this.f52345l.getClass();
         sb2.append(cls.getSimpleName());
         sb2.append("{");
         sb2.append(Integer.toHexString(System.identityHashCode(cls)));

@@ -17,7 +17,7 @@ public final class f {
         boolean z10;
         boolean z11;
         ff.b bVar = (ff.b) a0Var.f875b;
-        long j10 = bVar.f7055b;
+        long j10 = bVar.f7056b;
         k6.h hVar = (k6.h) a0Var.d;
         h hVar2 = (h) a0Var.f876c;
         int i10 = hVar2.f6505a;
@@ -28,7 +28,7 @@ public final class f {
             byte[] bArr = new byte[3];
             int i12 = 0;
             while (i12 < 3) {
-                int read = ((ff.a) hVar.f10943b).read(bArr, i12, 3 - i12);
+                int read = ((ff.a) hVar.f10944b).read(bArr, i12, 3 - i12);
                 if (read > 0) {
                     i12 += read;
                 } else {
@@ -41,7 +41,7 @@ public final class f {
             byte[] bArr2 = new byte[4];
             int i13 = 0;
             while (i13 < 4) {
-                int read2 = ((ff.a) hVar.f10943b).read(bArr2, i13, 4 - i13);
+                int read2 = ((ff.a) hVar.f10944b).read(bArr2, i13, 4 - i13);
                 if (read2 > 0) {
                     i13 += read2;
                 } else {
@@ -114,7 +114,7 @@ public final class f {
                 }
             }
         }
-        this.f6499b = (int) (bVar.f7055b - j10);
+        this.f6499b = (int) (bVar.f7056b - j10);
     }
 
     public final String toString() {

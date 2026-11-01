@@ -3,18 +3,18 @@ package vh;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.d20;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.e20;
+import org.telegram.messenger.wp;
 import org.telegram.ui.Components.cc;
 public final class q3 extends u1 {
     public final b4 A1;
-    public final int f51789z1;
+    public final int f51804z1;
 
     public q3(b4 b4Var, Context context, org.telegram.ui.ActionBar.x4 x4Var, int i10) {
         super(context, x4Var, false, false);
         this.A1 = b4Var;
-        this.f51789z1 = i10;
+        this.f51804z1 = i10;
     }
 
     @Override
@@ -27,22 +27,22 @@ public final class q3 extends u1 {
                     i10++;
                 }
             }
-            int i12 = vp.r1(this.f21583a).p5;
-            org.telegram.ui.ActionBar.p2 p2Var = this.f21589c;
-            if (i10 >= i12 && !d20.i(this.f21583a).q()) {
-                String G = cd.G(vp.r1(this.f21583a).f18880q5, "StoryPremiumWidgets2", new Object[0]);
+            int i12 = wp.r1(this.f21584a).p5;
+            org.telegram.ui.ActionBar.p2 p2Var = this.f21590c;
+            if (i10 >= i12 && !e20.i(this.f21584a).q()) {
+                String G = dd.G(wp.r1(this.f21584a).f19223q5, "StoryPremiumWidgets2", new Object[0]);
                 try {
                     p2Var.performHapticFeedback(3);
                 } catch (Exception unused) {
                 }
-                new cc(p2Var, this.I0).I(2131624214, cd.L0(2131749208, null), org.telegram.messenger.i0.R2(G, org.telegram.ui.ActionBar.t6.Uc, 0, new d0(this, 2), this.I0)).k(true);
+                new cc(p2Var, this.I0).I(2131624214, dd.L0(2131749208, null), org.telegram.messenger.i0.R2(G, org.telegram.ui.ActionBar.t6.Uc, 0, new d0(this, 2), this.I0)).k(true);
                 return false;
-            } else if (i10 >= vp.r1(this.f21583a).f18880q5) {
+            } else if (i10 >= wp.r1(this.f21584a).f19223q5) {
                 try {
                     p2Var.performHapticFeedback(3);
                 } catch (Exception unused2) {
                 }
-                new cc(p2Var, this.I0).I(2131623981, cd.L0(2131748988, "LimitReached"), cd.G(vp.r1(this.f21583a).f18880q5, "StoryReactionsWidgetLimit2", new Object[0])).k(true);
+                new cc(p2Var, this.I0).I(2131623981, dd.L0(2131748988, "LimitReached"), dd.G(wp.r1(this.f21584a).f19223q5, "StoryReactionsWidgetLimit2", new Object[0])).k(true);
                 return false;
             }
         }
@@ -77,19 +77,19 @@ public final class q3 extends u1 {
 
     @Override
     public final boolean K0(Runnable runnable) {
-        o8 o8Var = ((s7) this.A1).f51935j2;
-        Activity activity = o8Var.f51607b;
+        o8 o8Var = ((s7) this.A1).f51948j2;
+        Activity activity = o8Var.f51622b;
         if (activity != null) {
             if (Build.VERSION.SDK_INT >= 33) {
                 if (activity.checkSelfPermission("android.permission.READ_MEDIA_AUDIO") != 0) {
                     activity.requestPermissions(new String[]{"android.permission.READ_MEDIA_AUDIO"}, 115);
-                    o8Var.f51685y2 = (org.telegram.utils.twidget.v) runnable;
+                    o8Var.f51700y2 = (org.telegram.utils.twidget.v) runnable;
                     return false;
                 }
                 return true;
             } else if (activity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
                 activity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 115);
-                o8Var.f51685y2 = (org.telegram.utils.twidget.v) runnable;
+                o8Var.f51700y2 = (org.telegram.utils.twidget.v) runnable;
                 return false;
             } else {
                 return true;
@@ -100,6 +100,6 @@ public final class q3 extends u1 {
 
     @Override
     public final void n0() {
-        this.A1.O0(this.f51789z1);
+        this.A1.O0(this.f51804z1);
     }
 }

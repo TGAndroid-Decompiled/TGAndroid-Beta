@@ -4,16 +4,16 @@ import android.text.style.CharacterStyle;
 public final class aj extends gf.e {
     public final int d;
     public final int e;
-    public final org.telegram.ui.Cells.q1 f35659f;
-    public final un f35660g;
+    public final org.telegram.ui.Cells.q1 f35792f;
+    public final un f35793g;
     public final Object h;
 
     public aj(un unVar, int i10, Object obj, org.telegram.ui.Cells.q1 q1Var, int i11) {
         this.d = i11;
-        this.f35660g = unVar;
+        this.f35793g = unVar;
         this.e = i10;
         this.h = obj;
-        this.f35659f = q1Var;
+        this.f35792f = q1Var;
     }
 
     @Override
@@ -39,19 +39,19 @@ public final class aj extends gf.e {
         switch (this.d) {
             case 0:
                 int i10 = this.e;
-                un unVar = this.f35660g;
-                unVar.Rb = i10;
-                unVar.Sb = 1;
-                unVar.Tb = (CharacterStyle) this.h;
-                this.f35659f.invalidate();
+                un unVar = this.f35793g;
+                unVar.Sb = i10;
+                unVar.Tb = 1;
+                unVar.Ub = (CharacterStyle) this.h;
+                this.f35792f.invalidate();
                 return;
             default:
                 int i11 = this.e;
-                un unVar2 = this.f35660g;
-                unVar2.Rb = i11;
-                unVar2.Sb = 3;
-                unVar2.Ub = (String) this.h;
-                this.f35659f.invalidate();
+                un unVar2 = this.f35793g;
+                unVar2.Sb = i11;
+                unVar2.Tb = 3;
+                unVar2.Vb = (String) this.h;
+                this.f35792f.invalidate();
                 return;
         }
     }

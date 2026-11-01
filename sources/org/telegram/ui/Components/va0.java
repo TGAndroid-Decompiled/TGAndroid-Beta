@@ -10,17 +10,17 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 public final class va0 extends Drawable {
-    public final int f31203a;
-    public boolean f31204b;
-    public Object f31205c;
+    public final int f31238a;
+    public boolean f31239b;
+    public Object f31240c;
     public Object d;
     public Object e;
 
     public va0(int i10) {
-        this.f31203a = i10;
+        this.f31238a = i10;
         switch (i10) {
             case 1:
-                this.f31205c = new Paint(1);
+                this.f31240c = new Paint(1);
                 Paint paint = new Paint(1);
                 this.d = paint;
                 this.e = new Matrix();
@@ -33,36 +33,36 @@ public final class va0 extends Drawable {
     }
 
     public void b(int i10, int i11) {
-        ((Paint) this.f31205c).setShader(new LinearGradient(0.0f, 0.0f, 0.0f, org.telegram.messenger.i0.L(28.0f), new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+        ((Paint) this.f31240c).setShader(new LinearGradient(0.0f, 0.0f, 0.0f, org.telegram.messenger.i0.L(28.0f), new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        bi0 bi0Var;
-        switch (this.f31203a) {
+        ci0 ci0Var;
+        switch (this.f31238a) {
             case 0:
-                bi0 bi0Var2 = (bi0) this.d;
-                bi0 bi0Var3 = (bi0) this.f31205c;
+                ci0 ci0Var2 = (ci0) this.d;
+                ci0 ci0Var3 = (ci0) this.f31240c;
                 Rect rect = org.telegram.messenger.i0.Q;
                 rect.set(getBounds().centerX() - org.telegram.messenger.i0.L(12.0f), getBounds().centerY() - org.telegram.messenger.i0.L(12.0f), org.telegram.messenger.i0.L(12.0f) + getBounds().centerX(), org.telegram.messenger.i0.L(12.0f) + getBounds().centerY());
-                if (((bi0) this.e).A()) {
-                    bi0 bi0Var4 = (bi0) this.e;
-                    boolean z10 = this.f31204b;
+                if (((ci0) this.e).A()) {
+                    ci0 ci0Var4 = (ci0) this.e;
+                    boolean z10 = this.f31239b;
                     if (z10) {
-                        bi0Var = bi0Var3;
+                        ci0Var = ci0Var3;
                     } else {
-                        bi0Var = bi0Var2;
+                        ci0Var = ci0Var2;
                     }
-                    if (bi0Var4 != bi0Var) {
+                    if (ci0Var4 != ci0Var) {
                         if (z10) {
-                            bi0Var2 = bi0Var3;
+                            ci0Var2 = ci0Var3;
                         }
-                        this.e = bi0Var2;
-                        bi0Var2.M(bi0Var2.e[0] - 1);
+                        this.e = ci0Var2;
+                        ci0Var2.M(ci0Var2.e[0] - 1);
                     }
                 }
-                ((bi0) this.e).setBounds(rect);
-                ((bi0) this.e).draw(canvas);
+                ((ci0) this.e).setBounds(rect);
+                ((ci0) this.e).draw(canvas);
                 return;
             default:
                 Paint paint = (Paint) this.d;
@@ -72,8 +72,8 @@ public final class va0 extends Drawable {
                 Matrix matrix = (Matrix) this.e;
                 matrix.reset();
                 matrix.postTranslate(rectF.left, rectF.top);
-                canvas.drawRoundRect(rectF, L, L, (Paint) this.f31205c);
-                if (this.f31204b) {
+                canvas.drawRoundRect(rectF, L, L, (Paint) this.f31240c);
+                if (this.f31239b) {
                     float L2 = org.telegram.messenger.i0.L(1.0f);
                     paint.setStrokeWidth(L2);
                     matrix.reset();
@@ -89,7 +89,7 @@ public final class va0 extends Drawable {
 
     @Override
     public int getIntrinsicHeight() {
-        switch (this.f31203a) {
+        switch (this.f31238a) {
             case 0:
                 return org.telegram.messenger.i0.L(24.0f);
             default:
@@ -99,7 +99,7 @@ public final class va0 extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        switch (this.f31203a) {
+        switch (this.f31238a) {
             case 0:
                 return org.telegram.messenger.i0.L(24.0f);
             default:
@@ -109,7 +109,7 @@ public final class va0 extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f31203a) {
+        switch (this.f31238a) {
             case 0:
                 return -2;
             default:
@@ -119,10 +119,10 @@ public final class va0 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        switch (this.f31203a) {
+        switch (this.f31238a) {
             case 0:
-                ((bi0) this.f31205c).setAlpha(i10);
-                ((bi0) this.d).setAlpha(i10);
+                ((ci0) this.f31240c).setAlpha(i10);
+                ((ci0) this.d).setAlpha(i10);
                 return;
             default:
                 return;
@@ -131,10 +131,10 @@ public final class va0 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f31203a) {
+        switch (this.f31238a) {
             case 0:
-                ((bi0) this.f31205c).setColorFilter(colorFilter);
-                ((bi0) this.d).setColorFilter(colorFilter);
+                ((ci0) this.f31240c).setColorFilter(colorFilter);
+                ((ci0) this.d).setColorFilter(colorFilter);
                 return;
             default:
                 return;

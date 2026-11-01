@@ -1,6 +1,6 @@
 package w7;
 public final class l2 implements ja.d {
-    public static final l2 f52623a = new Object();
+    public static final l2 f52641a = new Object();
 
     static {
         sc.e.v(sc.e.l(d.class, new a(1)));

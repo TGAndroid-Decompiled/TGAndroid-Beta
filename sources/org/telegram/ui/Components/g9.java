@@ -15,45 +15,45 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 public class g9 extends View {
-    public qz0 D;
+    public rz0 D;
     public Path E;
     public ColorMatrixColorFilter F;
-    public ImageReceiver f26292a;
-    public ImageReceiver f26293b;
-    public int f26294c;
+    public ImageReceiver f26357a;
+    public ImageReceiver f26358b;
+    public int f26359c;
     public int d;
     public f5 e;
-    public ColorFilter f26295f;
+    public ColorFilter f26360f;
     public r8 h;
-    public boolean f26296n;
-    public boolean f26297r;
-    public boolean f26298s;
-    public boolean f26299w;
-    public boolean f26300x;
-    public ValueAnimator f26301y;
+    public boolean f26361n;
+    public boolean f26362r;
+    public boolean f26363s;
+    public boolean f26364w;
+    public boolean f26365x;
+    public ValueAnimator f26366y;
 
     public g9(Context context) {
         super(context);
-        this.f26294c = -1;
+        this.f26359c = -1;
         this.d = -1;
-        this.f26300x = true;
+        this.f26365x = true;
         ImageReceiver c10 = c();
-        this.f26292a = c10;
-        c10.f14395n1 = 0.0f;
-        c10.f14424z1 = true;
-        c10.f14382g1 = new t(this, 14);
+        this.f26357a = c10;
+        c10.f14396n1 = 0.0f;
+        c10.f14425z1 = true;
+        c10.f14383g1 = new t(this, 14);
     }
 
     public final void a() {
         Bitmap n10;
-        if (this.f26297r && this.f26293b.n() == null && this.f26292a.n() != null && (n10 = this.f26292a.n()) != null && !n10.isRecycled()) {
-            this.f26293b.v0(Utilities.D(n10, false));
+        if (this.f26362r && this.f26358b.n() == null && this.f26357a.n() != null && (n10 = this.f26357a.n()) != null && !n10.isRecycled()) {
+            this.f26358b.v0(Utilities.D(n10, false));
             invalidate();
         }
     }
 
     public final void b() {
-        this.f26292a.f();
+        this.f26357a.f();
     }
 
     public ImageReceiver c() {
@@ -61,22 +61,22 @@ public class g9 extends View {
     }
 
     public final void d() {
-        if (this.f26297r) {
-            if (this.f26293b.n() != null && !this.f26293b.n().isRecycled()) {
-                this.f26293b.n().recycle();
+        if (this.f26362r) {
+            if (this.f26358b.n() != null && !this.f26358b.n().isRecycled()) {
+                this.f26358b.n().recycle();
             }
-            this.f26293b.w0(null);
+            this.f26358b.w0(null);
             a();
         }
     }
 
     public final void e(TLObject tLObject, r8 r8Var) {
-        this.f26292a.i0(tLObject, r8Var, null);
+        this.f26357a.i0(tLObject, r8Var, null);
         d();
     }
 
-    public final void g(int i10, long j10, Object obj, String str, String str2, String str3, org.telegram.messenger.ic icVar, org.telegram.messenger.ic icVar2) {
-        this.f26292a.r0(icVar, str, icVar2, str2, null, j10, str3, obj, i10);
+    public final void g(int i10, long j10, Object obj, String str, String str2, String str3, org.telegram.messenger.jc jcVar, org.telegram.messenger.jc jcVar2) {
+        this.f26357a.r0(jcVar, str, jcVar2, str2, null, j10, str3, obj, i10);
         d();
     }
 
@@ -92,48 +92,48 @@ public class g9 extends View {
     }
 
     public ImageReceiver getImageReceiver() {
-        return this.f26292a;
+        return this.f26357a;
     }
 
     public int[] getRoundRadius() {
-        return this.f26292a.W0;
+        return this.f26357a.W0;
     }
 
     public final void h(String str, String str2, Drawable drawable) {
-        o(org.telegram.messenger.ic.g(str), str2, null, null, drawable, null, 0, null);
+        n(org.telegram.messenger.jc.g(str), str2, null, null, drawable, null, 0, null);
     }
 
-    public final void j(org.telegram.messenger.ic icVar, String str, Drawable drawable, Object obj) {
-        o(icVar, str, null, null, drawable, null, 0, obj);
+    public final void j(org.telegram.messenger.jc jcVar, String str, Drawable drawable, Object obj) {
+        n(jcVar, str, null, null, drawable, null, 0, obj);
     }
 
-    public final void k(org.telegram.messenger.ic icVar, String str, String str2, Drawable drawable, Object obj) {
-        o(icVar, str, null, null, drawable, str2, 0, obj);
+    public final void k(org.telegram.messenger.jc jcVar, String str, String str2, Drawable drawable, Object obj) {
+        n(jcVar, str, null, null, drawable, str2, 0, obj);
     }
 
-    public final void l(org.telegram.messenger.ic icVar, String str, org.telegram.messenger.ic icVar2, String str2, int i10, Object obj) {
-        o(icVar, str, icVar2, str2, null, null, i10, obj);
+    public final void l(org.telegram.messenger.jc jcVar, String str, org.telegram.messenger.jc jcVar2, String str2, int i10, Object obj) {
+        n(jcVar, str, jcVar2, str2, null, null, i10, obj);
     }
 
-    public final void m(org.telegram.messenger.ic icVar, String str, org.telegram.messenger.ic icVar2, String str2, Drawable drawable, Object obj) {
-        this.f26292a.u0(icVar, str, icVar2, str2, null, null, drawable, 0L, null, obj, 1);
+    public final void m(org.telegram.messenger.jc jcVar, String str, org.telegram.messenger.jc jcVar2, String str2, Drawable drawable, Object obj) {
+        this.f26357a.u0(jcVar, str, jcVar2, str2, null, null, drawable, 0L, null, obj, 1);
         d();
     }
 
-    public final void o(org.telegram.messenger.ic icVar, String str, org.telegram.messenger.ic icVar2, String str2, Drawable drawable, String str3, int i10, Object obj) {
-        this.f26292a.r0(icVar, str, icVar2, str2, drawable, i10, str3, obj, 0);
+    public final void n(org.telegram.messenger.jc jcVar, String str, org.telegram.messenger.jc jcVar2, String str2, Drawable drawable, String str3, int i10, Object obj) {
+        this.f26357a.r0(jcVar, str, jcVar2, str2, drawable, i10, str3, obj, 0);
         d();
     }
 
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f26296n = true;
-        if (this.f26300x) {
-            this.f26292a.P();
+        this.f26361n = true;
+        if (this.f26365x) {
+            this.f26357a.P();
         }
-        if (this.f26298s) {
-            this.f26293b.P();
+        if (this.f26363s) {
+            this.f26358b.P();
         }
         f5 f5Var = this.e;
         if (f5Var != null) {
@@ -144,12 +144,12 @@ public class g9 extends View {
     @Override
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f26296n = false;
-        if (this.f26300x) {
-            this.f26292a.R();
+        this.f26361n = false;
+        if (this.f26365x) {
+            this.f26357a.R();
         }
-        if (this.f26298s) {
-            this.f26293b.R();
+        if (this.f26363s) {
+            this.f26358b.R();
         }
         f5 f5Var = this.e;
         if (f5Var != null) {
@@ -164,63 +164,63 @@ public class g9 extends View {
         ColorFilter colorFilter;
         f5 f5Var = this.e;
         if (f5Var != null) {
-            imageReceiver = f5Var.f25975k;
+            imageReceiver = f5Var.f26070k;
         } else {
-            imageReceiver = this.f26292a;
+            imageReceiver = this.f26357a;
         }
         if (imageReceiver != null) {
-            if (f5Var != null && (colorFilter = this.f26295f) != null) {
+            if (f5Var != null && (colorFilter = this.f26360f) != null) {
                 f5Var.setColorFilter(colorFilter);
             }
-            int i11 = this.f26294c;
+            int i11 = this.f26359c;
             if (i11 != -1 && (i10 = this.d) != -1) {
-                if (this.f26299w) {
+                if (this.f26364w) {
                     imageReceiver.y0(0.0f, 0.0f, i11, i10);
-                    if (this.f26298s) {
-                        this.f26293b.y0(0.0f, 0.0f, this.f26294c, this.d);
+                    if (this.f26363s) {
+                        this.f26358b.y0(0.0f, 0.0f, this.f26359c, this.d);
                     }
                 } else {
                     int height = getHeight();
                     int i12 = this.d;
-                    imageReceiver.y0((getWidth() - this.f26294c) / 2, (height - i12) / 2, this.f26294c, i12);
-                    if (this.f26298s) {
+                    imageReceiver.y0((getWidth() - this.f26359c) / 2, (height - i12) / 2, this.f26359c, i12);
+                    if (this.f26363s) {
                         int height2 = getHeight();
                         int i13 = this.d;
-                        this.f26293b.y0((getWidth() - this.f26294c) / 2, (height2 - i13) / 2, this.f26294c, i13);
+                        this.f26358b.y0((getWidth() - this.f26359c) / 2, (height2 - i13) / 2, this.f26359c, i13);
                     }
                 }
             } else {
                 imageReceiver.y0(0.0f, 0.0f, getWidth(), getHeight());
-                if (this.f26298s) {
-                    this.f26293b.y0(0.0f, 0.0f, getWidth(), getHeight());
+                if (this.f26363s) {
+                    this.f26358b.y0(0.0f, 0.0f, getWidth(), getHeight());
                 }
             }
             imageReceiver.h(canvas, null);
-            if (this.f26298s) {
-                this.f26293b.h(canvas, null);
+            if (this.f26363s) {
+                this.f26358b.h(canvas, null);
             }
         }
     }
 
-    public final void p(org.telegram.messenger.ic icVar, String str, Drawable drawable, Object obj) {
-        o(icVar, str, null, null, drawable, null, 0, obj);
+    public final void p(org.telegram.messenger.jc jcVar, String str, Drawable drawable, Object obj) {
+        n(jcVar, str, null, null, drawable, null, 0, obj);
     }
 
-    public final void q(g61 g61Var, org.telegram.messenger.ic icVar, String str, org.telegram.messenger.ic icVar2, org.telegram.messenger.ic icVar3, String str2, int i10, String str3) {
-        if (g61Var != null) {
-            this.f26292a.w0(g61Var);
+    public final void q(h61 h61Var, org.telegram.messenger.jc jcVar, String str, org.telegram.messenger.jc jcVar2, org.telegram.messenger.jc jcVar3, String str2, int i10, String str3) {
+        if (h61Var != null) {
+            this.f26357a.w0(h61Var);
         } else {
-            this.f26292a.u0(icVar, str, icVar2, null, icVar3, str2, null, i10, null, str3, 1);
+            this.f26357a.u0(jcVar, str, jcVar2, null, jcVar3, str2, null, i10, null, str3, 1);
         }
         d();
     }
 
     public final void r() {
-        this.f26292a.G0(0, 0, true);
+        this.f26357a.G0(0, 0, true);
     }
 
     public final void s(int i10, int i11, boolean z10) {
-        this.f26292a.G0(i10, i11, true);
+        this.f26357a.G0(i10, i11, true);
     }
 
     public void setAnimatedEmojiDrawable(f5 f5Var) {
@@ -228,25 +228,25 @@ public class g9 extends View {
         if (f5Var2 == f5Var) {
             return;
         }
-        if (this.f26296n && f5Var2 != null) {
+        if (this.f26361n && f5Var2 != null) {
             f5Var2.n(this);
         }
         this.e = f5Var;
-        if (this.f26296n && f5Var != null) {
+        if (this.f26361n && f5Var != null) {
             f5Var.a(this);
         }
         invalidate();
     }
 
     public void setAspectFit(boolean z10) {
-        this.f26292a.R0 = z10;
+        this.f26357a.R0 = z10;
     }
 
     public void setBlurAllowed(boolean z10) {
-        if (!this.f26296n) {
-            this.f26298s = z10;
+        if (!this.f26361n) {
+            this.f26363s = z10;
             if (z10) {
-                this.f26293b = new ImageReceiver(null);
+                this.f26358b = new ImageReceiver(null);
                 return;
             }
             return;
@@ -259,7 +259,7 @@ public class g9 extends View {
             this.D = null;
             return;
         }
-        this.D = new qz0(charSequence, 16.5f, org.telegram.messenger.i0.o());
+        this.D = new rz0(charSequence, 16.5f, org.telegram.messenger.i0.o());
         if (this.F == null) {
             ColorMatrix colorMatrix = new ColorMatrix();
             colorMatrix.setSaturation(1.2f);
@@ -269,73 +269,73 @@ public class g9 extends View {
     }
 
     public void setColorFilter(ColorFilter colorFilter) {
-        this.f26292a.f14397o1 = colorFilter;
+        this.f26357a.f14398o1 = colorFilter;
     }
 
     public void setEmojiColorFilter(ColorFilter colorFilter) {
-        this.f26295f = colorFilter;
+        this.f26360f = colorFilter;
         invalidate();
     }
 
     public void setHasBlur(boolean z10) {
-        if (z10 && !this.f26298s) {
+        if (z10 && !this.f26363s) {
             throw new IllegalStateException("You should call setBlurAllowed(...) before calling setHasBlur(true)!");
         }
-        this.f26297r = z10;
+        this.f26362r = z10;
         if (!z10) {
-            if (this.f26293b.n() != null && !this.f26293b.n().isRecycled()) {
-                this.f26293b.n().recycle();
+            if (this.f26358b.n() != null && !this.f26358b.n().isRecycled()) {
+                this.f26358b.n().recycle();
             }
-            this.f26293b.w0(null);
+            this.f26358b.w0(null);
         }
         a();
     }
 
     public void setImageBitmap(Bitmap bitmap) {
-        this.f26292a.v0(bitmap);
+        this.f26357a.v0(bitmap);
         d();
     }
 
     public void setImageDrawable(Drawable drawable) {
-        this.f26292a.w0(drawable);
+        this.f26357a.w0(drawable);
         d();
     }
 
     public void setImageResource(int i10) {
-        this.f26292a.w0(getResources().getDrawable(i10));
+        this.f26357a.w0(getResources().getDrawable(i10));
         invalidate();
         d();
     }
 
     public void setLayerNum(int i10) {
-        this.f26292a.E0(i10);
+        this.f26357a.E0(i10);
     }
 
     public void setRoundRadius(int i10) {
-        this.f26292a.J0(i10);
-        if (this.f26298s) {
-            this.f26293b.J0(i10);
+        this.f26357a.J0(i10);
+        if (this.f26363s) {
+            this.f26358b.J0(i10);
         }
         invalidate();
     }
 
     public final void t(int i10, int i11, int i12, int i13) {
-        this.f26292a.K0(i10, i11, i12, i13);
-        if (this.f26298s) {
-            this.f26293b.K0(i10, i11, i12, i13);
+        this.f26357a.K0(i10, i11, i12, i13);
+        if (this.f26363s) {
+            this.f26358b.K0(i10, i11, i12, i13);
         }
         invalidate();
     }
 
     public final void u(int i10, int i11) {
-        this.f26294c = i10;
+        this.f26359c = i10;
         this.d = i11;
         invalidate();
     }
 
     @Override
     public boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f26292a.t() && drawable != this.f26292a.S && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f26357a.t() && drawable != this.f26357a.S && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

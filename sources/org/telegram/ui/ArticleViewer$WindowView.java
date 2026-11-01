@@ -27,25 +27,25 @@ public class ArticleViewer$WindowView extends FrameLayout implements org.telegra
     public int F;
     public boolean G;
     public final h4 H;
-    public final Paint f21630a;
-    public int f21631b;
-    public boolean f21632c;
+    public final Paint f21631a;
+    public int f21632b;
+    public boolean f21633c;
     public boolean d;
     public boolean e;
-    public boolean f21633f;
+    public boolean f21634f;
     public int h;
-    public int f21634n;
-    public int f21635r;
-    public VelocityTracker f21636s;
-    public float f21637w;
-    public float f21638x;
-    public int f21639y;
+    public int f21635n;
+    public int f21636r;
+    public VelocityTracker f21637s;
+    public float f21638w;
+    public float f21639x;
+    public int f21640y;
 
     public ArticleViewer$WindowView(h4 h4Var, Activity activity) {
         super(activity);
         this.H = h4Var;
-        this.f21630a = new Paint();
-        this.f21638x = 1.0f;
+        this.f21631a = new Paint();
+        this.f21639x = 1.0f;
     }
 
     public final boolean a(MotionEvent motionEvent) {
@@ -56,68 +56,68 @@ public class ArticleViewer$WindowView extends FrameLayout implements org.telegra
         l3 l3Var;
         h4 h4Var = this.H;
         u3 u3Var = h4Var.K;
-        if (h4Var.f37747v0 == null && !h4Var.U0 && h4Var.P.getVisibility() != 0 && !h4Var.P0.x()) {
-            if (motionEvent != null && motionEvent.getAction() == 0 && !this.d && !this.f21632c) {
-                this.f21631b = motionEvent.getPointerId(0);
-                this.f21632c = true;
-                this.f21634n = (int) motionEvent.getX();
-                this.f21635r = (int) motionEvent.getY();
-                VelocityTracker velocityTracker = this.f21636s;
+        if (h4Var.f37692v0 == null && !h4Var.U0 && h4Var.P.getVisibility() != 0 && !h4Var.P0.x()) {
+            if (motionEvent != null && motionEvent.getAction() == 0 && !this.d && !this.f21633c) {
+                this.f21632b = motionEvent.getPointerId(0);
+                this.f21633c = true;
+                this.f21635n = (int) motionEvent.getX();
+                this.f21636r = (int) motionEvent.getY();
+                VelocityTracker velocityTracker = this.f21637s;
                 if (velocityTracker != null) {
                     velocityTracker.clear();
                 }
-            } else if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.f21631b) {
-                if (this.f21636s == null) {
-                    this.f21636s = VelocityTracker.obtain();
+            } else if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.f21632b) {
+                if (this.f21637s == null) {
+                    this.f21637s = VelocityTracker.obtain();
                 }
-                int max = Math.max(0, (int) (motionEvent.getX() - this.f21634n));
-                int abs = Math.abs(((int) motionEvent.getY()) - this.f21635r);
-                this.f21636s.addMovement(motionEvent);
-                l3 l3Var2 = h4Var.f37746u0[0];
-                if (l3Var2 != null && l3Var2.f() && (!h4Var.f37746u0[0].e.b(true) || h4Var.f37746u0[0].e.f53788c)) {
+                int max = Math.max(0, (int) (motionEvent.getX() - this.f21635n));
+                int abs = Math.abs(((int) motionEvent.getY()) - this.f21636r);
+                this.f21637s.addMovement(motionEvent);
+                l3 l3Var2 = h4Var.f37691u0[0];
+                if (l3Var2 != null && l3Var2.f() && (!h4Var.f37691u0[0].e.b(true) || h4Var.f37691u0[0].e.f53822c)) {
                     z11 = false;
                 } else {
                     z11 = true;
                 }
                 this.G = z11;
-                if ((u3Var == null || !u3Var.H) && this.f21632c && !this.d && max >= org.telegram.messenger.i0.a1(true, 0.4f) && Math.abs(max) / 3 > abs && this.G) {
+                if ((u3Var == null || !u3Var.H) && this.f21633c && !this.d && max >= org.telegram.messenger.i0.a1(true, 0.4f) && Math.abs(max) / 3 > abs && this.G) {
                     b(motionEvent);
                 } else if (this.d) {
                     h4Var.d = null;
-                    h4Var.f39483f = null;
-                    if (this.e && (l3Var = h4Var.f37746u0[0]) != null) {
+                    h4Var.f39098f = null;
+                    if (this.e && (l3Var = h4Var.f37691u0[0]) != null) {
                         l3Var.setTranslationX(max);
                     } else if (u3Var != null) {
                         u3Var.I = max / getWidth();
-                        u3Var.f41997c.invalidate();
+                        u3Var.f41775c.invalidate();
                         u3Var.u();
                         u3Var.r();
                     } else {
-                        l0 l0Var = h4Var.f37733g0;
+                        l0 l0Var = h4Var.f37678g0;
                         float f7 = max;
                         l0Var.setTranslationX(f7);
                         setInnerTranslationX(f7);
                     }
                 }
-            } else if (motionEvent != null && motionEvent.getPointerId(0) == this.f21631b && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6)) {
-                if (this.f21636s == null) {
-                    this.f21636s = VelocityTracker.obtain();
+            } else if (motionEvent != null && motionEvent.getPointerId(0) == this.f21632b && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6)) {
+                if (this.f21637s == null) {
+                    this.f21637s = VelocityTracker.obtain();
                 }
-                this.f21636s.computeCurrentVelocity(1000);
-                float xVelocity = this.f21636s.getXVelocity();
-                float yVelocity = this.f21636s.getYVelocity();
+                this.f21637s.computeCurrentVelocity(1000);
+                float xVelocity = this.f21637s.getXVelocity();
+                float yVelocity = this.f21637s.getYVelocity();
                 if ((u3Var == null || !u3Var.H) && !this.d && xVelocity >= 3500.0f && xVelocity > Math.abs(yVelocity)) {
                     b(motionEvent);
                 }
                 if (this.d) {
                     boolean z12 = this.e;
                     if (z12) {
-                        view = h4Var.f37746u0[0];
+                        view = h4Var.f37691u0[0];
                     } else {
-                        view = h4Var.f37733g0;
+                        view = h4Var.f37678g0;
                     }
                     if (!z12 && u3Var != null) {
-                        x10 = u3Var.I * u3Var.f41997c.getWidth();
+                        x10 = u3Var.I * u3Var.f41775c.getWidth();
                     } else {
                         x10 = view.getX();
                     }
@@ -131,18 +131,18 @@ public class ArticleViewer$WindowView extends FrameLayout implements org.telegra
                     if (!z10) {
                         x10 = view.getMeasuredWidth() - x10;
                         if (this.e) {
-                            animatorSet.playTogether(ObjectAnimator.ofFloat(h4Var.f37746u0[0], property, view.getMeasuredWidth()));
+                            animatorSet.playTogether(ObjectAnimator.ofFloat(h4Var.f37691u0[0], property, view.getMeasuredWidth()));
                         } else if (u3Var != null) {
                             animatorSet.playTogether(u3Var.l(1.0f));
                         } else {
-                            animatorSet.playTogether(ObjectAnimator.ofFloat(h4Var.f37733g0, property, view.getMeasuredWidth()), ObjectAnimator.ofFloat(this, h4.f37704e1, view.getMeasuredWidth()));
+                            animatorSet.playTogether(ObjectAnimator.ofFloat(h4Var.f37678g0, property, view.getMeasuredWidth()), ObjectAnimator.ofFloat(this, h4.f37649e1, view.getMeasuredWidth()));
                         }
                     } else if (this.e) {
-                        animatorSet.playTogether(ObjectAnimator.ofFloat(h4Var.f37746u0[0], property, 0.0f));
+                        animatorSet.playTogether(ObjectAnimator.ofFloat(h4Var.f37691u0[0], property, 0.0f));
                     } else if (u3Var != null) {
                         animatorSet.playTogether(u3Var.l(0.0f));
                     } else {
-                        animatorSet.playTogether(ObjectAnimator.ofFloat(h4Var.f37733g0, property, 0.0f), ObjectAnimator.ofFloat(this, h4.f37704e1, 0.0f));
+                        animatorSet.playTogether(ObjectAnimator.ofFloat(h4Var.f37678g0, property, 0.0f), ObjectAnimator.ofFloat(this, h4.f37649e1, 0.0f));
                     }
                     animatorSet.setDuration(Math.max((int) ((420.0f / view.getMeasuredWidth()) * x10), 250));
                     animatorSet.setInterpolator(org.telegram.ui.Components.gr.h);
@@ -150,23 +150,23 @@ public class ArticleViewer$WindowView extends FrameLayout implements org.telegra
                     animatorSet.start();
                     h4Var.U0 = true;
                 } else {
-                    this.f21632c = false;
+                    this.f21633c = false;
                     this.d = false;
                     this.e = false;
                 }
-                VelocityTracker velocityTracker2 = this.f21636s;
+                VelocityTracker velocityTracker2 = this.f21637s;
                 if (velocityTracker2 != null) {
                     velocityTracker2.recycle();
-                    this.f21636s = null;
+                    this.f21637s = null;
                 }
             } else if (motionEvent == null) {
-                this.f21632c = false;
+                this.f21633c = false;
                 this.d = false;
                 this.e = false;
-                VelocityTracker velocityTracker3 = this.f21636s;
+                VelocityTracker velocityTracker3 = this.f21637s;
                 if (velocityTracker3 != null) {
                     velocityTracker3.recycle();
-                    this.f21636s = null;
+                    this.f21637s = null;
                 }
                 org.telegram.ui.Cells.k9 k9Var = h4Var.P0;
                 if (k9Var != null && !k9Var.x()) {
@@ -183,13 +183,13 @@ public class ArticleViewer$WindowView extends FrameLayout implements org.telegra
     @Override
     public final void addColorKeys(HashSet hashSet) {
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.Dl));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.f20929d6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.f20930d6));
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.G6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.f21311y6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.f21312y6));
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.J6));
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.K6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.f21058k6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.f20930d7));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.f21059k6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.f20931d7));
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.M6));
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.Id));
     }
@@ -197,29 +197,29 @@ public class ArticleViewer$WindowView extends FrameLayout implements org.telegra
     public final void b(MotionEvent motionEvent) {
         m0 m0Var;
         int color;
-        this.f21632c = false;
+        this.f21633c = false;
         this.d = true;
-        this.f21634n = (int) motionEvent.getX();
+        this.f21635n = (int) motionEvent.getX();
         h4 h4Var = this.H;
-        ArrayList arrayList = h4Var.f37730d0;
-        if (arrayList.size() > 1 && ((m0Var = h4Var.f37734h0) == null || (!m0Var.T && !m0Var.W))) {
+        ArrayList arrayList = h4Var.f37675d0;
+        if (arrayList.size() > 1 && ((m0Var = h4Var.f37679h0) == null || (!m0Var.T && !m0Var.W))) {
             this.e = true;
             this.h = h4Var.J0;
-            h4Var.f37746u0[1].setVisibility(0);
-            h4Var.f37746u0[1].setAlpha(1.0f);
-            h4Var.f37746u0[1].setTranslationX(0.0f);
-            l3 l3Var = h4Var.f37746u0[0];
+            h4Var.f37691u0[1].setVisibility(0);
+            h4Var.f37691u0[1].setAlpha(1.0f);
+            h4Var.f37691u0[1].setTranslationX(0.0f);
+            l3 l3Var = h4Var.f37691u0[0];
             if (h4Var.K == null) {
                 color = 0;
             } else {
-                color = h4Var.f37738l0.getColor();
+                color = h4Var.f37683l0.getColor();
             }
             l3Var.setBackgroundColor(color);
             h4Var.c0(-1, arrayList.get(arrayList.size() - 2), true);
-            if (h4Var.f37733g0.indexOfChild(h4Var.f37746u0[0]) < h4Var.f37733g0.indexOfChild(h4Var.f37746u0[1])) {
-                int indexOfChild = h4Var.f37733g0.indexOfChild(h4Var.f37746u0[0]);
-                h4Var.f37733g0.removeView(h4Var.f37746u0[1]);
-                h4Var.f37733g0.addView(h4Var.f37746u0[1], indexOfChild);
+            if (h4Var.f37678g0.indexOfChild(h4Var.f37691u0[0]) < h4Var.f37678g0.indexOfChild(h4Var.f37691u0[1])) {
+                int indexOfChild = h4Var.f37678g0.indexOfChild(h4Var.f37691u0[0]);
+                h4Var.f37678g0.removeView(h4Var.f37691u0[1]);
+                h4Var.f37678g0.addView(h4Var.f37691u0[1], indexOfChild);
             }
         } else {
             this.e = false;
@@ -239,7 +239,7 @@ public class ArticleViewer$WindowView extends FrameLayout implements org.telegra
         }
         WindowInsets windowInsets2 = h4Var.T;
         h4Var.T = windowInsets;
-        if ((windowInsets2 == null || !windowInsets2.toString().equals(windowInsets.toString())) && (articleViewer$WindowView = h4Var.f37732f0) != null) {
+        if ((windowInsets2 == null || !windowInsets2.toString().equals(windowInsets.toString())) && (articleViewer$WindowView = h4Var.f37677f0) != null) {
             articleViewer$WindowView.requestLayout();
         }
         if (Build.VERSION.SDK_INT >= 28 && (activity = h4Var.L) != null && (displayCutout = activity.getWindow().getDecorView().getRootWindowInsets().getDisplayCutout()) != null && (boundingRects = displayCutout.getBoundingRects()) != null && !boundingRects.isEmpty()) {
@@ -258,13 +258,13 @@ public class ArticleViewer$WindowView extends FrameLayout implements org.telegra
         super.dispatchDraw(canvas);
         h4 h4Var = this.H;
         if (h4Var.T == null && this.D != 0 && this.F != 0) {
-            Paint paint = this.f21630a;
-            paint.setAlpha((int) (h4Var.f37732f0.getAlpha() * 255.0f));
-            int i11 = this.f21639y;
+            Paint paint = this.f21631a;
+            paint.setAlpha((int) (h4Var.f37677f0.getAlpha() * 255.0f));
+            int i11 = this.f21640y;
             if (i11 == 0 && (i10 = this.E) == 0) {
                 canvas.drawRect(i11, i10, i11 + this.D, i10 + this.F, paint);
             } else {
-                canvas.drawRect(i11 - getTranslationX(), this.E, (this.f21639y + this.D) - getTranslationX(), this.E + this.F, paint);
+                canvas.drawRect(i11 - getTranslationX(), this.E, (this.f21640y + this.D) - getTranslationX(), this.E + this.F, paint);
             }
         }
     }
@@ -273,21 +273,21 @@ public class ArticleViewer$WindowView extends FrameLayout implements org.telegra
     public final boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
         if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
             h4 h4Var = this.H;
-            if (h4Var.f37734h0.V.isFocused()) {
-                h4Var.f37734h0.V.clearFocus();
-                org.telegram.messenger.i0.v1(h4Var.f37734h0.V);
+            if (h4Var.f37679h0.V.isFocused()) {
+                h4Var.f37679h0.V.clearFocus();
+                org.telegram.messenger.i0.v1(h4Var.f37679h0.V);
                 return true;
-            } else if (h4Var.f37734h0.f43095b0.isFocused()) {
-                h4Var.f37734h0.f43095b0.clearFocus();
-                org.telegram.messenger.i0.v1(h4Var.f37734h0.f43095b0);
+            } else if (h4Var.f37679h0.f42897b0.isFocused()) {
+                h4Var.f37679h0.f42897b0.clearFocus();
+                org.telegram.messenger.i0.v1(h4Var.f37679h0.f42897b0);
                 return true;
-            } else if (h4Var.f37740o0) {
+            } else if (h4Var.f37685o0) {
                 org.telegram.messenger.i0.v1(this);
                 return true;
             } else {
-                l3 l3Var = h4Var.f37746u0[0];
-                if (l3Var != null && l3Var.f() && h4Var.f37746u0[0].getWebView() != null && h4Var.f37746u0[0].getWebView().canGoBack()) {
-                    h4Var.f37746u0[0].getWebView().goBack();
+                l3 l3Var = h4Var.f37691u0[0];
+                if (l3Var != null && l3Var.f() && h4Var.f37691u0[0].getWebView() != null && h4Var.f37691u0[0].getWebView().canGoBack()) {
+                    h4Var.f37691u0[0].getWebView().goBack();
                     return true;
                 }
                 h4Var.m(true, false);
@@ -302,23 +302,23 @@ public class ArticleViewer$WindowView extends FrameLayout implements org.telegra
         l3 l3Var;
         ArrayList arrayList;
         h4 h4Var = this.H;
-        if (h4Var.R0.f41053n) {
-            motionEvent.offsetLocation(-h4Var.f37733g0.getX(), -h4Var.f37733g0.getY());
+        if (h4Var.R0.f40600n) {
+            motionEvent.offsetLocation(-h4Var.f37678g0.getX(), -h4Var.f37678g0.getY());
             return h4Var.R0.g(motionEvent);
         }
         org.telegram.ui.Cells.v9 n10 = h4Var.P0.n(getContext());
         MotionEvent obtain = MotionEvent.obtain(motionEvent);
-        obtain.offsetLocation(-h4Var.f37733g0.getX(), -h4Var.f37733g0.getY());
+        obtain.offsetLocation(-h4Var.f37678g0.getX(), -h4Var.f37678g0.getY());
         if (!h4Var.P0.x() || !h4Var.P0.n(getContext()).onTouchEvent(obtain)) {
             if (n10.b(motionEvent)) {
-                l3[] l3VarArr = h4Var.f37746u0;
-                if (l3VarArr != null && (l3Var = l3VarArr[0]) != null && l3Var.f() && (arrayList = h4Var.f37730d0) != null && arrayList.size() <= 1) {
+                l3[] l3VarArr = h4Var.f37691u0;
+                if (l3VarArr != null && (l3Var = l3VarArr[0]) != null && l3Var.f() && (arrayList = h4Var.f37675d0) != null && arrayList.size() <= 1) {
                     motionEvent.setAction(1);
                 } else {
                     motionEvent.setAction(3);
                 }
             }
-            if (motionEvent.getAction() == 0 && h4Var.P0.x() && (motionEvent.getY() < h4Var.f37733g0.getTop() || motionEvent.getY() > h4Var.f37733g0.getBottom())) {
+            if (motionEvent.getAction() == 0 && h4Var.P0.x() && (motionEvent.getY() < h4Var.f37678g0.getTop() || motionEvent.getY() > h4Var.f37678g0.getBottom())) {
                 if (h4Var.P0.n(getContext()).onTouchEvent(obtain)) {
                     return super.dispatchTouchEvent(motionEvent);
                 }
@@ -332,21 +332,21 @@ public class ArticleViewer$WindowView extends FrameLayout implements org.telegra
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
         int measuredWidth = getMeasuredWidth();
-        int i10 = (int) this.f21637w;
+        int i10 = (int) this.f21638w;
         int save = canvas.save();
         canvas.clipRect(i10, 0, measuredWidth, getHeight());
         boolean drawChild = super.drawChild(canvas, view, j10);
         canvas.restoreToCount(save);
         if (i10 != 0) {
             h4 h4Var = this.H;
-            if (view == h4Var.f37733g0) {
+            if (view == h4Var.f37678g0) {
                 float f7 = measuredWidth - i10;
                 float min = Math.min(0.8f, f7 / measuredWidth);
                 if (min < 0.0f) {
                     min = 0.0f;
                 }
-                h4Var.f37739n0.setColor(((int) (min * 153.0f)) << 24);
-                canvas.drawRect(0.0f, 0.0f, i10, getHeight(), h4Var.f37739n0);
+                h4Var.f37684n0.setColor(((int) (min * 153.0f)) << 24);
+                canvas.drawRect(0.0f, 0.0f, i10, getHeight(), h4Var.f37684n0);
                 float max = Math.max(0.0f, Math.min(f7 / org.telegram.messenger.i0.L(20.0f), 1.0f));
                 Drawable drawable = h4Var.m0;
                 drawable.setBounds(i10 - drawable.getIntrinsicWidth(), view.getTop(), i10, view.getBottom());
@@ -359,11 +359,11 @@ public class ArticleViewer$WindowView extends FrameLayout implements org.telegra
 
     @Override
     public float getAlpha() {
-        return this.f21638x;
+        return this.f21639x;
     }
 
     public float getInnerTranslationX() {
-        return this.f21637w;
+        return this.f21638w;
     }
 
     @Override
@@ -377,12 +377,12 @@ public class ArticleViewer$WindowView extends FrameLayout implements org.telegra
         super.onDetachedFromWindow();
         h4 h4Var = this.H;
         h4Var.W = false;
-        VideoPlayerHolderBase videoPlayerHolderBase = h4Var.f39488x;
+        VideoPlayerHolderBase videoPlayerHolderBase = h4Var.f39103x;
         if (videoPlayerHolderBase != null) {
             videoPlayerHolderBase.release(null);
-            h4Var.f39488x = null;
+            h4Var.f39103x = null;
         }
-        h4Var.f39489y = null;
+        h4Var.f39104y = null;
     }
 
     @Override
@@ -391,15 +391,15 @@ public class ArticleViewer$WindowView extends FrameLayout implements org.telegra
         float f7;
         int systemWindowInsetRight;
         h4 h4Var = this.H;
-        Paint paint = h4Var.f37749x0;
+        Paint paint = h4Var.f37694x0;
         if (h4Var.K == null) {
             int measuredWidth = getMeasuredWidth();
             float f10 = measuredWidth;
             float measuredHeight2 = getMeasuredHeight();
-            canvas.drawRect(this.f21637w, 0.0f, f10, measuredHeight2, h4Var.f37738l0);
+            canvas.drawRect(this.f21638w, 0.0f, f10, measuredHeight2, h4Var.f37683l0);
             WindowInsets windowInsets = h4Var.T;
             if (windowInsets != null) {
-                canvas.drawRect(this.f21637w, 0.0f, f10, windowInsets.getSystemWindowInsetTop(), paint);
+                canvas.drawRect(this.f21638w, 0.0f, f10, windowInsets.getSystemWindowInsetTop(), paint);
                 if (h4Var.U) {
                     int systemWindowInsetLeft = windowInsets.getSystemWindowInsetLeft();
                     if (systemWindowInsetLeft != 0) {
@@ -408,18 +408,18 @@ public class ArticleViewer$WindowView extends FrameLayout implements org.telegra
                     if (windowInsets.getSystemWindowInsetRight() != 0) {
                         f7 = f10;
                         canvas.drawRect(measuredWidth - systemWindowInsetRight, 0.0f, f7, measuredHeight2, paint);
-                        canvas.drawRect(0.0f, measuredHeight - windowInsets.getStableInsetBottom(), f7, measuredHeight2, h4Var.f37750y0);
+                        canvas.drawRect(0.0f, measuredHeight - windowInsets.getStableInsetBottom(), f7, measuredHeight2, h4Var.f37695y0);
                     }
                 }
                 f7 = f10;
-                canvas.drawRect(0.0f, measuredHeight - windowInsets.getStableInsetBottom(), f7, measuredHeight2, h4Var.f37750y0);
+                canvas.drawRect(0.0f, measuredHeight - windowInsets.getStableInsetBottom(), f7, measuredHeight2, h4Var.f37695y0);
             }
         }
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        HashSet hashSet = h4.f37702c1;
+        HashSet hashSet = h4.f37647c1;
         this.H.getClass();
         if (!a(motionEvent) && !super.onInterceptTouchEvent(motionEvent)) {
             return false;
@@ -436,11 +436,11 @@ public class ArticleViewer$WindowView extends FrameLayout implements org.telegra
         if (h4Var.O0 != i15) {
             int i17 = 0;
             while (true) {
-                l3[] l3VarArr = h4Var.f37746u0;
+                l3[] l3VarArr = h4Var.f37691u0;
                 if (i17 >= l3VarArr.length) {
                     break;
                 }
-                for (Map.Entry entry : l3VarArr[i17].f39039c.f37169n.entrySet()) {
+                for (Map.Entry entry : l3VarArr[i17].f39062c.f36984n.entrySet()) {
                     entry.setValue(-1);
                 }
                 i17++;
@@ -451,13 +451,13 @@ public class ArticleViewer$WindowView extends FrameLayout implements org.telegra
         if (windowInsets != null) {
             int systemWindowInsetLeft = windowInsets.getSystemWindowInsetLeft();
             if (windowInsets.getSystemWindowInsetRight() != 0) {
-                this.f21639y = i15 - this.D;
+                this.f21640y = i15 - this.D;
                 this.E = 0;
             } else if (windowInsets.getSystemWindowInsetLeft() != 0) {
-                this.f21639y = 0;
+                this.f21640y = 0;
                 this.E = 0;
             } else {
-                this.f21639y = 0;
+                this.f21640y = 0;
                 this.E = (i13 - i11) - this.F;
             }
             i14 = windowInsets.getSystemWindowInsetTop();
@@ -465,8 +465,8 @@ public class ArticleViewer$WindowView extends FrameLayout implements org.telegra
         } else {
             i14 = 0;
         }
-        l0 l0Var = h4Var.f37733g0;
-        l0Var.layout(i16, i14, l0Var.getMeasuredWidth() + i16, h4Var.f37733g0.getMeasuredHeight() + i14);
+        l0 l0Var = h4Var.f37678g0;
+        l0Var.layout(i16, i14, l0Var.getMeasuredWidth() + i16, h4Var.f37678g0.getMeasuredHeight() + i14);
         FrameLayout frameLayout = h4Var.P;
         frameLayout.layout(i16, i14, frameLayout.getMeasuredWidth() + i16, h4Var.P.getMeasuredHeight() + i14);
     }
@@ -480,12 +480,12 @@ public class ArticleViewer$WindowView extends FrameLayout implements org.telegra
         if (h4Var.T != null) {
             setMeasuredDimension(size, size2);
             WindowInsets windowInsets = h4Var.T;
-            if (org.telegram.messenger.i0.f16033y) {
-                int i12 = org.telegram.messenger.i0.f16026q.y;
+            if (org.telegram.messenger.i0.f16179y) {
+                int i12 = org.telegram.messenger.i0.f16172q.y;
                 if (size2 > i12) {
                     size2 = i12;
                 }
-                size2 += org.telegram.messenger.i0.f16020m;
+                size2 += org.telegram.messenger.i0.f16166m;
             }
             int systemWindowInsetBottom = size2 - windowInsets.getSystemWindowInsetBottom();
             size -= windowInsets.getSystemWindowInsetLeft() + windowInsets.getSystemWindowInsetRight();
@@ -504,20 +504,20 @@ public class ArticleViewer$WindowView extends FrameLayout implements org.telegra
             setMeasuredDimension(size, size2);
         }
         if (h4Var.K == null) {
-            if (size2 < org.telegram.messenger.i0.f16026q.y - org.telegram.messenger.i0.L(100.0f)) {
+            if (size2 < org.telegram.messenger.i0.f16172q.y - org.telegram.messenger.i0.L(100.0f)) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            h4Var.f37740o0 = z10;
+            h4Var.f37685o0 = z10;
         }
-        h4Var.f37733g0.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        h4Var.f37678g0.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
         h4Var.P.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        HashSet hashSet = h4.f37702c1;
+        HashSet hashSet = h4.f37647c1;
         this.H.getClass();
         if (!a(motionEvent) && !super.onTouchEvent(motionEvent)) {
             return false;
@@ -536,33 +536,33 @@ public class ArticleViewer$WindowView extends FrameLayout implements org.telegra
         boolean z10;
         h4 h4Var = this.H;
         int i10 = (int) (255.0f * f7);
-        h4Var.f37738l0.setAlpha(i10);
-        h4Var.f37749x0.setAlpha(i10);
-        this.f21638x = f7;
-        aa0 aa0Var = h4Var.V0;
-        if (aa0Var != null) {
-            if (h4Var.V && f7 == 1.0f && this.f21637w == 0.0f) {
+        h4Var.f37683l0.setAlpha(i10);
+        h4Var.f37694x0.setAlpha(i10);
+        this.f21639x = f7;
+        z90 z90Var = h4Var.V0;
+        if (z90Var != null) {
+            if (h4Var.V && f7 == 1.0f && this.f21638w == 0.0f) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            aa0Var.c(z10);
+            z90Var.c(z10);
         }
         invalidate();
     }
 
     public void setInnerTranslationX(float f7) {
         boolean z10;
-        this.f21637w = f7;
+        this.f21638w = f7;
         h4 h4Var = this.H;
-        aa0 aa0Var = h4Var.V0;
-        if (aa0Var != null) {
-            if (h4Var.V && this.f21638x == 1.0f && f7 == 0.0f) {
+        z90 z90Var = h4Var.V0;
+        if (z90Var != null) {
+            if (h4Var.V && this.f21639x == 1.0f && f7 == 0.0f) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            aa0Var.c(z10);
+            z90Var.c(z10);
         }
         invalidate();
     }
@@ -585,23 +585,23 @@ public class ArticleViewer$WindowView extends FrameLayout implements org.telegra
         u3 u3Var = h4Var.K;
         try {
             int x03 = org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.Dl, false);
-            if (h4Var.f37746u0 != null) {
+            if (h4Var.f37691u0 != null) {
                 int i13 = 0;
                 while (true) {
-                    l3[] l3VarArr = h4Var.f37746u0;
+                    l3[] l3VarArr = h4Var.f37691u0;
                     if (i13 >= l3VarArr.length) {
                         break;
                     }
                     l3 l3Var3 = l3VarArr[i13];
                     if (l3Var3 != null && (i12 = l3Var3.D) != x03) {
-                        if (l3Var3.f39045x == i12) {
-                            l3Var3.f39045x = x03;
+                        if (l3Var3.f39068x == i12) {
+                            l3Var3.f39068x = x03;
                         }
-                        if (l3Var3.f39046y == i12) {
-                            l3Var3.f39046y = x03;
+                        if (l3Var3.f39069y == i12) {
+                            l3Var3.f39069y = x03;
                         }
                         l3Var3.D = x03;
-                        if (l3Var3.f39041n && (b3Var = l3Var3.f39042r) != null) {
+                        if (l3Var3.f39064n && (b3Var = l3Var3.f39065r) != null) {
                             if (org.telegram.messenger.i0.B(x03) <= 0.721f) {
                                 z10 = true;
                             } else {
@@ -613,51 +613,51 @@ public class ArticleViewer$WindowView extends FrameLayout implements org.telegra
                     i13++;
                 }
             }
-            m0 m0Var = h4Var.f37734h0;
+            m0 m0Var = h4Var.f37679h0;
             if (m0Var != null) {
-                l3[] l3VarArr2 = h4Var.f37746u0;
-                if (l3VarArr2 != null && (l3Var2 = l3VarArr2[0]) != null && org.telegram.messenger.tz.f18189v0) {
+                l3[] l3VarArr2 = h4Var.f37691u0;
+                if (l3VarArr2 != null && (l3Var2 = l3VarArr2[0]) != null && org.telegram.messenger.uz.f18558v0) {
                     i10 = l3Var2.getBackgroundColor();
                 } else {
                     i10 = x03;
                 }
                 m0Var.setMenuColors(i10);
-                m0 m0Var2 = h4Var.f37734h0;
-                l3[] l3VarArr3 = h4Var.f37746u0;
-                if (l3VarArr3 != null && (l3Var = l3VarArr3[0]) != null && org.telegram.messenger.tz.f18189v0) {
+                m0 m0Var2 = h4Var.f37679h0;
+                l3[] l3VarArr3 = h4Var.f37691u0;
+                if (l3VarArr3 != null && (l3Var = l3VarArr3[0]) != null && org.telegram.messenger.uz.f18558v0) {
                     i11 = l3Var.getActionBarColor();
                 } else {
                     i11 = x03;
                 }
                 m0Var2.d(i11, false);
             }
-            Paint paint2 = h4Var.f37738l0;
+            Paint paint2 = h4Var.f37683l0;
             if (paint2 != null) {
                 paint2.setColor(x03);
             }
-            if (h4Var.f37751z0 && (paint = h4Var.f37750y0) != null) {
+            if (h4Var.f37696z0 && (paint = h4Var.f37695y0) != null) {
                 if (u3Var == null) {
-                    x02 = org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f20872a7, true);
+                    x02 = org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f20873a7, true);
                 } else {
-                    x02 = org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f20872a7, false);
+                    x02 = org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f20873a7, false);
                 }
                 paint.setColor(x02);
             }
-            if (u3Var != null && (d3Var = u3Var.e) != null && (c3Var = d3Var.f20250b) != null) {
+            if (u3Var != null && (d3Var = u3Var.e) != null && (c3Var = d3Var.f20251b) != null) {
                 org.telegram.messenger.i0.q3(c3Var, u3Var.f());
             }
-            if (h4Var.f37738l0 != null && h4.f37716r1 != null) {
+            if (h4Var.f37683l0 != null && h4.f37661r1 != null) {
                 h4.e0(h4Var);
             }
-            if (h4Var.f37746u0 != null) {
+            if (h4Var.f37691u0 != null) {
                 int i14 = 0;
                 while (true) {
-                    l3[] l3VarArr4 = h4Var.f37746u0;
+                    l3[] l3VarArr4 = h4Var.f37691u0;
                     if (i14 >= l3VarArr4.length) {
                         break;
                     }
                     l3 l3Var4 = l3VarArr4[i14];
-                    if (l3Var4 != null && (g3Var = l3Var4.f39038b) != null) {
+                    if (l3Var4 != null && (g3Var = l3Var4.f39061b) != null) {
                         for (int i15 = 0; i15 < g3Var.getChildCount(); i15++) {
                             View childAt = g3Var.getChildAt(i15);
                             if ((childAt instanceof s2) && ((s2) childAt).e != null) {
@@ -669,7 +669,7 @@ public class ArticleViewer$WindowView extends FrameLayout implements org.telegra
                     i14++;
                 }
             }
-            ArticleViewer$WindowView articleViewer$WindowView = h4Var.f37732f0;
+            ArticleViewer$WindowView articleViewer$WindowView = h4Var.f37677f0;
             if (articleViewer$WindowView != null) {
                 articleViewer$WindowView.invalidate();
             }

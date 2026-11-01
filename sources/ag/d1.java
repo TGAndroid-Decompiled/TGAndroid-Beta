@@ -8,15 +8,15 @@ import org.telegram.ui.Components.bl;
 import org.telegram.ui.Components.mj;
 import org.telegram.ui.Components.ti;
 import org.telegram.ui.Components.tk;
-import org.telegram.ui.Components.tk0;
 import org.telegram.ui.Components.uh;
+import org.telegram.ui.Components.uk0;
 import org.telegram.ui.Components.zm;
 public final class d1 extends az {
     public final int U;
     public final uh V;
 
-    public d1(uh uhVar, int i10, tk0 tk0Var, int i11) {
-        super(i10, 0, tk0Var);
+    public d1(uh uhVar, int i10, uk0 uk0Var, int i11) {
+        super(i10, 0, uk0Var);
         this.U = i11;
         this.V = uhVar;
     }
@@ -25,7 +25,7 @@ public final class d1 extends az {
     public int[] t(View view, Rect rect) {
         switch (this.U) {
             case 4:
-                int C = this.f47988n - C();
+                int C = this.f47999n - C();
                 int top = (view.getTop() + rect.top) - view.getScrollY();
                 int min = Math.min(0, top);
                 int max = Math.max(0, (rect.height() + top) - C);
@@ -43,27 +43,27 @@ public final class d1 extends az {
         switch (this.U) {
             case 0:
                 c1 c1Var = new c1(this, recyclerView.getContext());
-                c1Var.f48045a = i10;
+                c1Var.f48056a = i10;
                 w0(c1Var);
                 return;
             case 1:
                 ti tiVar = new ti(this, recyclerView.getContext());
-                tiVar.f48045a = i10;
+                tiVar.f48056a = i10;
                 w0(tiVar);
                 return;
             case 2:
                 mj mjVar = new mj(this, recyclerView.getContext());
-                mjVar.f48045a = i10;
+                mjVar.f48056a = i10;
                 w0(mjVar);
                 return;
             case 3:
                 tk tkVar = new tk(this, recyclerView.getContext());
-                tkVar.f48045a = i10;
+                tkVar.f48056a = i10;
                 w0(tkVar);
                 return;
             default:
                 zm zmVar = new zm(this, recyclerView.getContext());
-                zmVar.f48045a = i10;
+                zmVar.f48056a = i10;
                 w0(zmVar);
                 return;
         }

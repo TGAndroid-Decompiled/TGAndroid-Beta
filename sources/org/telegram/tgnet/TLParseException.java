@@ -1,8 +1,8 @@
 package org.telegram.tgnet;
 
+import org.telegram.messenger.at;
 import org.telegram.messenger.f8;
 import org.telegram.messenger.i0;
-import org.telegram.messenger.zs;
 public class TLParseException extends RuntimeException {
     private TLParseException(String str) {
         super(str);
@@ -31,6 +31,6 @@ public class TLParseException extends RuntimeException {
     }
 
     public static void lambda$doThrowOrLog$0(TLParseException tLParseException) {
-        zs.e().k(zs.M5, tLParseException);
+        at.e().k(at.M5, tLParseException);
     }
 }

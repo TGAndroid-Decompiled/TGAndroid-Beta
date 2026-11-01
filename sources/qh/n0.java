@@ -5,25 +5,25 @@ import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import java.nio.ByteBuffer;
-import org.telegram.ui.Components.c11;
+import org.telegram.ui.Components.d11;
 public final class n0 implements Runnable {
-    public final int f45700a;
-    public final x0 f45701b;
-    public final int f45702c;
+    public final int f45711a;
+    public final x0 f45712b;
+    public final int f45713c;
 
     public n0(x0 x0Var, int i10, int i11) {
-        this.f45700a = i11;
-        this.f45701b = x0Var;
-        this.f45702c = i10;
+        this.f45711a = i11;
+        this.f45712b = x0Var;
+        this.f45713c = i10;
     }
 
     @Override
     public final void run() {
         byte[] bArr;
-        switch (this.f45700a) {
+        switch (this.f45711a) {
             case 0:
-                x0 x0Var = this.f45701b;
-                int i10 = this.f45702c;
+                x0 x0Var = this.f45712b;
+                int i10 = this.f45713c;
                 synchronized (x0.class) {
                     if (x0.N9 != null) {
                         bArr = x0.N9;
@@ -62,13 +62,13 @@ public final class n0 implements Runnable {
                 x0.s(iArr, bArr, i10);
                 createBitmap2.setPixels(iArr, 0, i13, 0, 0, i13, i13);
                 createBitmap2.prepareToDraw();
-                org.telegram.messenger.i0.g3(new c11(x0Var, createBitmap2, iArr, i10));
+                org.telegram.messenger.i0.g3(new d11(x0Var, createBitmap2, iArr, i10));
                 return;
             case 1:
-                this.f45701b.F0(this.f45702c);
+                this.f45712b.F0(this.f45713c);
                 return;
             default:
-                this.f45701b.F0(this.f45702c);
+                this.f45712b.F0(this.f45713c);
                 return;
         }
     }

@@ -4,31 +4,31 @@ import java.util.AbstractSet;
 import java.util.Iterator;
 import java.util.Map;
 public final class h extends AbstractSet {
-    public final int f53175a;
-    public final j f53176b;
+    public final int f53193a;
+    public final j f53194b;
 
     public h(j jVar, int i10) {
-        this.f53175a = i10;
-        this.f53176b = jVar;
+        this.f53193a = i10;
+        this.f53194b = jVar;
     }
 
     @Override
     public final void clear() {
-        switch (this.f53175a) {
+        switch (this.f53193a) {
             case 0:
-                this.f53176b.clear();
+                this.f53194b.clear();
                 return;
             default:
-                this.f53176b.clear();
+                this.f53194b.clear();
                 return;
         }
     }
 
     @Override
     public final boolean contains(Object obj) {
-        switch (this.f53175a) {
+        switch (this.f53193a) {
             case 0:
-                j jVar = this.f53176b;
+                j jVar = this.f53194b;
                 Map a2 = jVar.a();
                 if (a2 != null) {
                     return a2.entrySet().contains(obj);
@@ -46,22 +46,22 @@ public final class h extends AbstractSet {
                 }
                 return false;
             default:
-                return this.f53176b.containsKey(obj);
+                return this.f53194b.containsKey(obj);
         }
     }
 
     @Override
     public final Iterator iterator() {
-        switch (this.f53175a) {
+        switch (this.f53193a) {
             case 0:
-                j jVar = this.f53176b;
+                j jVar = this.f53194b;
                 Map a2 = jVar.a();
                 if (a2 != null) {
                     return a2.entrySet().iterator();
                 }
                 return new g(jVar, 1);
             default:
-                j jVar2 = this.f53176b;
+                j jVar2 = this.f53194b;
                 Map a10 = jVar2.a();
                 if (a10 != null) {
                     return a10.keySet().iterator();
@@ -72,9 +72,9 @@ public final class h extends AbstractSet {
 
     @Override
     public final boolean remove(Object obj) {
-        switch (this.f53175a) {
+        switch (this.f53193a) {
             case 0:
-                j jVar = this.f53176b;
+                j jVar = this.f53194b;
                 Map a2 = jVar.a();
                 if (a2 != null) {
                     return a2.entrySet().remove(obj);
@@ -85,18 +85,18 @@ public final class h extends AbstractSet {
                         int d = jVar.d();
                         Object key = entry.getKey();
                         Object value = entry.getValue();
-                        Object obj2 = jVar.f53196a;
+                        Object obj2 = jVar.f53214a;
                         obj2.getClass();
-                        int[] iArr = jVar.f53197b;
+                        int[] iArr = jVar.f53215b;
                         iArr.getClass();
-                        Object[] objArr = jVar.f53198c;
+                        Object[] objArr = jVar.f53216c;
                         objArr.getClass();
                         Object[] objArr2 = jVar.d;
                         objArr2.getClass();
                         int a10 = w7.q8.a(key, value, d, obj2, iArr, objArr, objArr2);
                         if (a10 != -1) {
                             jVar.b(a10, d);
-                            jVar.f53199f--;
+                            jVar.f53217f--;
                             jVar.e += 32;
                             return true;
                         }
@@ -104,12 +104,12 @@ public final class h extends AbstractSet {
                 }
                 return false;
             default:
-                j jVar2 = this.f53176b;
+                j jVar2 = this.f53194b;
                 Map a11 = jVar2.a();
                 if (a11 != null) {
                     return a11.keySet().remove(obj);
                 }
-                if (jVar2.g(obj) == j.f53195s) {
+                if (jVar2.g(obj) == j.f53213s) {
                     return false;
                 }
                 return true;
@@ -118,11 +118,11 @@ public final class h extends AbstractSet {
 
     @Override
     public final int size() {
-        switch (this.f53175a) {
+        switch (this.f53193a) {
             case 0:
-                return this.f53176b.size();
+                return this.f53194b.size();
             default:
-                return this.f53176b.size();
+                return this.f53194b.size();
         }
     }
 }

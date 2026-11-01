@@ -1,62 +1,23 @@
 package org.telegram.ui;
 
-import android.telephony.PhoneNumberUtils;
-import j$.util.function.Predicate$CC;
-import java.util.function.Predicate;
-import org.telegram.tgnet.TLRPC;
-public final class g70 implements Predicate {
-    public final int f37446a;
-    public final Object f37447b;
+import android.view.View;
+public final class g70 extends s4.j {
+    public final LanguageSelectActivity F;
 
-    public g70(Object obj, int i10) {
-        this.f37446a = i10;
-        this.f37447b = obj;
-    }
-
-    public Predicate and(Predicate predicate) {
-        int i10 = this.f37446a;
-        return Predicate$CC.$default$and(this, predicate);
-    }
-
-    public Predicate negate() {
-        switch (this.f37446a) {
-            case 0:
-                return Predicate$CC.$default$negate(this);
-            case 1:
-                return Predicate$CC.$default$negate(this);
-            case 2:
-                return Predicate$CC.$default$negate(this);
-            default:
-                return Predicate$CC.$default$negate(this);
-        }
-    }
-
-    public Predicate or(Predicate predicate) {
-        int i10 = this.f37446a;
-        return Predicate$CC.$default$or(this, predicate);
+    public g70(LanguageSelectActivity languageSelectActivity) {
+        this.F = languageSelectActivity;
     }
 
     @Override
-    public final boolean test(Object obj) {
-        switch (this.f37446a) {
-            case 0:
-                String str = (String) this.f37447b;
-                String str2 = (String) obj;
-                if (str2 != null && str2.equals(str)) {
-                    return true;
-                }
-                return false;
-            case 1:
-                return PhoneNumberUtils.compare((String) this.f37447b, (String) obj);
-            case 2:
-                String str3 = (String) this.f37447b;
-                String str4 = (String) obj;
-                if (str4 != null && str4.equals(str3)) {
-                    return true;
-                }
-                return false;
-            default:
-                return un.f0((un) this.f37447b, (TLRPC.MessageEntity) obj);
+    public final void P(s4.c1 c1Var) {
+        View view;
+        LanguageSelectActivity languageSelectActivity = this.F;
+        languageSelectActivity.f33349b.invalidate();
+        org.telegram.ui.Components.uk0 uk0Var = languageSelectActivity.f33349b;
+        int i10 = uk0Var.C1;
+        if (i10 != -1 && (view = uk0Var.D1) != null) {
+            uk0Var.k1(i10, view);
+            uk0Var.invalidate();
         }
     }
 }

@@ -8,8 +8,8 @@ import android.util.Log;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class q {
-    public static final a0.l f13628a = new a0.l(0);
-    public static Locale f13629b;
+    public static final a0.l f13629a = new a0.l(0);
+    public static Locale f13630b;
 
     public static String a(Context context) {
         String packageName = context.getPackageName();
@@ -140,19 +140,19 @@ public abstract class q {
 
     public static String f(Context context, String str) {
         Resources resources;
-        a0.l lVar = f13628a;
+        a0.l lVar = f13629a;
         synchronized (lVar) {
             try {
-                Locale locale = w7.c0.a(context.getResources().getConfiguration()).f13402a.get(0);
-                if (!locale.equals(f13629b)) {
+                Locale locale = w7.c0.a(context.getResources().getConfiguration()).f13403a.get(0);
+                if (!locale.equals(f13630b)) {
                     lVar.clear();
-                    f13629b = locale;
+                    f13630b = locale;
                 }
                 String str2 = (String) lVar.get(str);
                 if (str2 != null) {
                     return str2;
                 }
-                AtomicBoolean atomicBoolean = k6.g.f10938a;
+                AtomicBoolean atomicBoolean = k6.g.f10939a;
                 try {
                     resources = context.getPackageManager().getResourcesForApplication("com.google.android.gms");
                 } catch (PackageManager.NameNotFoundException unused) {
@@ -167,7 +167,7 @@ public abstract class q {
                         if (TextUtils.isEmpty(string)) {
                             Log.w("GoogleApiAvailability", "Got empty resource: ".concat(str));
                         } else {
-                            f13628a.put(str, string);
+                            f13629a.put(str, string);
                             return string;
                         }
                     }

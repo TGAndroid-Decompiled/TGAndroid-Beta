@@ -1,54 +1,65 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-public final class fu extends hg.b {
-    public final int f37345c;
-    public final int d;
-    public final int e;
-    public final CharSequence f37346f;
-    public final CharSequence f37347g;
-    public final int h;
+import java.util.ArrayList;
+public final class fu implements org.telegram.ui.Components.ek0, org.telegram.ui.ActionBar.u1 {
+    public final iu f37234a;
 
-    public fu(int i10, String str) {
-        super(i10, false);
-        this.f37346f = str;
+    public fu(iu iuVar) {
+        this.f37234a = iuVar;
     }
 
-    public static fu b(CharSequence charSequence, String str) {
-        return new fu(-1, 0, 0, 0, charSequence, str);
-    }
-
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof fu)) {
-            return false;
-        }
-        fu fuVar = (fu) obj;
-        CharSequence charSequence = fuVar.f37346f;
-        int i10 = fuVar.f7680a;
-        int i11 = this.f7680a;
-        if (i10 != i11) {
-            return false;
-        }
-        CharSequence charSequence2 = this.f37346f;
-        if (i11 != 1 && i11 != 4 && i11 != 3 && i11 != 5) {
-            if (i11 != 2) {
-                return true;
+    @Override
+    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
+        int i11;
+        int i12;
+        int i13;
+        iu iuVar = this.f37234a;
+        lu luVar = iuVar.f38189v3;
+        ArrayList arrayList = iuVar.f38180m3;
+        arrayList.clear();
+        int i14 = 0;
+        while (true) {
+            hu[] huVarArr = iuVar.f38181n3;
+            if (i14 >= huVarArr.length) {
+                i11 = ((org.telegram.ui.ActionBar.k2) luVar).currentAccount;
+                org.telegram.messenger.vz.e(i11).l(0);
+                i12 = ((org.telegram.ui.ActionBar.k2) luVar).currentAccount;
+                org.telegram.messenger.vz.e(i12).l(1);
+                i13 = ((org.telegram.ui.ActionBar.k2) luVar).currentAccount;
+                org.telegram.messenger.vz.e(i13).l(2);
+                iuVar.f38172e3 = true;
+                iuVar.C1();
+                iuVar.D1(true);
+                return;
             }
-            if (fuVar.h != this.h || !TextUtils.equals(charSequence2, charSequence) || fuVar.d != this.d || fuVar.e != this.e || fuVar.f37345c != this.f37345c) {
-                return false;
+            hu huVar = huVarArr[i14];
+            if (huVar.f26752c > 0) {
+                arrayList.add(Integer.valueOf(huVar.d));
             }
-            return true;
+            i14++;
         }
-        return TextUtils.equals(charSequence2, charSequence);
     }
 
-    public fu(int i10, int i11, int i12, int i13, CharSequence charSequence, CharSequence charSequence2) {
-        super(2, false);
-        this.h = i10;
-        this.f37345c = i11;
-        this.d = i12;
-        this.e = i13;
-        this.f37346f = charSequence;
-        this.f37347g = charSequence2;
+    @Override
+    public int run() {
+        iu iuVar = this.f37234a;
+        ArrayList arrayList = iuVar.f38177j3;
+        int i10 = 0;
+        while (true) {
+            if (i10 < arrayList.size()) {
+                if (((eu) arrayList.get(i10)).f7681a == 5) {
+                    break;
+                }
+                i10++;
+            } else {
+                i10 = -1;
+                break;
+            }
+        }
+        if (i10 < 0) {
+            return -1;
+        }
+        iuVar.f38174g3.h1(i10, org.telegram.messenger.i0.L(60.0f));
+        return i10;
     }
 }

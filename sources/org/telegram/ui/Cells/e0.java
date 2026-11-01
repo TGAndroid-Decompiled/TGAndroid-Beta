@@ -11,22 +11,22 @@ import android.graphics.Rect;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 public final class e0 extends Drawable {
-    public final Drawable f21836a;
-    public final Paint f21837b;
-    public final Paint f21838c;
+    public final Drawable f21837a;
+    public final Paint f21838b;
+    public final Paint f21839c;
     public final Paint d;
     public int e;
-    public ColorFilter f21839f;
+    public ColorFilter f21840f;
 
     public e0(Context context) {
         Paint paint = new Paint(1);
-        this.f21837b = paint;
+        this.f21838b = paint;
         Paint paint2 = new Paint(1);
-        this.f21838c = paint2;
+        this.f21839c = paint2;
         this.d = new Paint();
         this.e = 255;
         Drawable f7 = i0.a.f(context, 2131232157);
-        this.f21836a = f7;
+        this.f21837a = f7;
         f7.setColorFilter(new PorterDuffColorFilter(-13628751, PorterDuff.Mode.SRC_IN));
         paint.setShader(new RadialGradient(400.0f, 213.0f, 500.0f, -4811527, -9674273, Shader.TileMode.CLAMP));
         paint2.setColor(-1);
@@ -35,7 +35,7 @@ public final class e0 extends Drawable {
     }
 
     public final void a(Canvas canvas, float f7, float f10, float f11, float f12) {
-        Drawable drawable = this.f21836a;
+        Drawable drawable = this.f21837a;
         int intrinsicWidth = drawable.getIntrinsicWidth();
         int intrinsicHeight = drawable.getIntrinsicHeight();
         if (intrinsicWidth > 0 && intrinsicHeight > 0) {
@@ -53,7 +53,7 @@ public final class e0 extends Drawable {
     public final void b(Canvas canvas, Rect rect, float f7, float f10, float f11, float f12, float f13, float f14) {
         float f15 = rect.left;
         float f16 = rect.top;
-        canvas.drawLine((f11 * f7) + f15, (f12 * f10) + f16, (f13 * f7) + f15, (f14 * f10) + f16, this.f21838c);
+        canvas.drawLine((f11 * f7) + f15, (f12 * f10) + f16, (f13 * f7) + f15, (f14 * f10) + f16, this.f21839c);
     }
 
     @Override
@@ -62,7 +62,7 @@ public final class e0 extends Drawable {
         int i10;
         Rect bounds = getBounds();
         if (!bounds.isEmpty() && this.e != 0) {
-            ColorFilter colorFilter = this.f21839f;
+            ColorFilter colorFilter = this.f21840f;
             if (colorFilter != null) {
                 Paint paint = this.d;
                 paint.setColorFilter(colorFilter);
@@ -75,7 +75,7 @@ public final class e0 extends Drawable {
             float width = bounds.width() / 800.0f;
             float height = bounds.height() / 427.0f;
             int i11 = this.e;
-            Paint paint2 = this.f21837b;
+            Paint paint2 = this.f21838b;
             paint2.setAlpha(i11);
             canvas2.save();
             canvas2.translate(bounds.left, bounds.top);
@@ -84,7 +84,7 @@ public final class e0 extends Drawable {
             canvas3.drawRect(0.0f, 0.0f, 800.0f, 427.0f, paint2);
             canvas3.restore();
             int i12 = this.e;
-            Paint paint3 = this.f21838c;
+            Paint paint3 = this.f21839c;
             paint3.setAlpha(i12);
             paint3.setStrokeWidth(Math.min(width, height) * 16.4f);
             b(canvas3, bounds, width, height, 449.809f, 246.04f, 483.703f, 212.418f);
@@ -146,8 +146,8 @@ public final class e0 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        if (this.f21839f != colorFilter) {
-            this.f21839f = colorFilter;
+        if (this.f21840f != colorFilter) {
+            this.f21840f = colorFilter;
             invalidateSelf();
         }
     }

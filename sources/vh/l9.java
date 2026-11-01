@@ -2,8 +2,8 @@ package vh;
 
 import java.util.TimeZone;
 public abstract class l9 {
-    public static String f51459a;
-    public static k9 f51460b;
+    public static String f51474a;
+    public static k9 f51475b;
 
     public static boolean a() {
         String id2 = TimeZone.getDefault().getID();

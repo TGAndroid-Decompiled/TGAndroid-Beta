@@ -4,12 +4,12 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class wm implements vx {
-    public final org.telegram.messenger.q20 f32218a;
-    public final ag.v f32219b;
+    public final org.telegram.messenger.r20 f32281a;
+    public final ag.v f32282b;
 
-    public wm(org.telegram.messenger.q20 q20Var, ag.v vVar) {
-        this.f32218a = q20Var;
-        this.f32219b = vVar;
+    public wm(org.telegram.messenger.r20 r20Var, ag.v vVar) {
+        this.f32281a = r20Var;
+        this.f32282b = vVar;
     }
 
     @Override
@@ -53,9 +53,9 @@ public final class wm implements vx {
     }
 
     @Override
-    public final void m(View view, TLRPC.Document document, String str, Object obj, org.telegram.messenger.fj fjVar, boolean z10, int i10) {
-        this.f32218a.a(new jh.j(obj, document));
-        this.f32219b.a(true);
+    public final void m(View view, TLRPC.Document document, String str, Object obj, org.telegram.messenger.gj gjVar, boolean z10, int i10) {
+        this.f32281a.a(new jh.j(obj, document));
+        this.f32282b.a(true);
     }
 
     @Override
@@ -65,8 +65,8 @@ public final class wm implements vx {
 
     @Override
     public final void x(long j10, TLRPC.Document document, String str, boolean z10) {
-        this.f32218a.a(new jh.j(null, document));
-        this.f32219b.a(true);
+        this.f32281a.a(new jh.j(null, document));
+        this.f32282b.a(true);
     }
 
     @Override
@@ -87,7 +87,7 @@ public final class wm implements vx {
     }
 
     @Override
-    public final void o(w41 w41Var) {
+    public final void o(x41 x41Var) {
     }
 
     @Override

@@ -2,18 +2,18 @@ package yh;
 
 import android.view.View;
 import java.io.Serializable;
-import org.telegram.messenger.fs;
-import org.telegram.messenger.o20;
-import org.telegram.ui.Components.a51;
-import rh.e3;
-public final class b implements o20, fs {
-    public final e f54458a;
+import org.telegram.messenger.gs;
+import org.telegram.messenger.p20;
+import org.telegram.ui.Components.b51;
+import rh.q2;
+public final class b implements p20, gs {
+    public final e f54462a;
 
     @Override
     public void a(String str) {
-        e eVar = this.f54458a;
-        eVar.getMessagesController().L0(Long.valueOf(-eVar.f54468b));
-        eVar.showDialog(new ai.a(eVar.getParentActivity(), null, eVar.f54468b, new e3(16, eVar, str)));
+        e eVar = this.f54462a;
+        eVar.getMessagesController().L0(Long.valueOf(-eVar.f54487b));
+        eVar.showDialog(new ai.a(eVar.getParentActivity(), null, eVar.f54487b, new q2(17, eVar, str)));
     }
 
     @Override
@@ -22,6 +22,6 @@ public final class b implements o20, fs {
         Integer num = (Integer) number;
         Float f7 = (Float) serializable;
         Float f10 = (Float) serializable2;
-        e.Y(this.f54458a, (a51) obj);
+        e.Z(this.f54462a, (b51) obj);
     }
 }

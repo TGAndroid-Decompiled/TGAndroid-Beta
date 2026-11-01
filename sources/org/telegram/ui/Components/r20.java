@@ -3,40 +3,40 @@ package org.telegram.ui.Components;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 public abstract class r20 extends org.telegram.ui.ActionBar.z2 {
-    public z4.g f29803i1;
-    public p20 f29804j1;
-    public LinearLayout f29805k1;
+    public z4.g f29859i1;
+    public p20 f29860j1;
+    public LinearLayout f29861k1;
     public TextView[] l1;
-    public float f29806m1;
-    public int f29807n1;
+    public float f29862m1;
+    public int f29863n1;
 
-    public static void I0(org.telegram.ui.b40 b40Var) {
+    public static void I0(org.telegram.ui.a40 a40Var) {
         TextView textView;
-        TextView[] textViewArr = b40Var.l1;
-        int i10 = b40Var.f29807n1;
+        TextView[] textViewArr = a40Var.l1;
+        int i10 = a40Var.f29863n1;
         TextView textView2 = textViewArr[i10];
         if (i10 < textViewArr.length - 1) {
             textView = textViewArr[i10 + 1];
         } else {
             textView = null;
         }
-        b40Var.f21586b.getMeasuredWidth();
+        a40Var.f21587b.getMeasuredWidth();
         float measuredWidth = (textView2.getMeasuredWidth() / 2) + textView2.getLeft();
-        float measuredWidth2 = (b40Var.f21586b.getMeasuredWidth() / 2) - measuredWidth;
+        float measuredWidth2 = (a40Var.f21587b.getMeasuredWidth() / 2) - measuredWidth;
         if (textView != null) {
-            measuredWidth2 -= (((textView.getMeasuredWidth() / 2) + textView.getLeft()) - measuredWidth) * b40Var.f29806m1;
+            measuredWidth2 -= (((textView.getMeasuredWidth() / 2) + textView.getLeft()) - measuredWidth) * a40Var.f29862m1;
         }
         for (int i11 = 0; i11 < textViewArr.length; i11++) {
-            int i12 = b40Var.f29807n1;
+            int i12 = a40Var.f29863n1;
             float f7 = 0.9f;
             float f10 = 0.7f;
             if (i11 >= i12 && i11 <= i12 + 1) {
                 if (i11 == i12) {
-                    float f11 = b40Var.f29806m1;
+                    float f11 = a40Var.f29862m1;
                     f10 = 1.0f - (0.3f * f11);
                     f7 = 1.0f - (f11 * 0.1f);
                 } else {
-                    float f12 = b40Var.f29806m1;
+                    float f12 = a40Var.f29862m1;
                     f10 = 0.7f + (0.3f * f12);
                     f7 = 0.9f + (f12 * 0.1f);
                 }
@@ -45,7 +45,7 @@ public abstract class r20 extends org.telegram.ui.ActionBar.z2 {
             textViewArr[i11].setScaleX(f7);
             textViewArr[i11].setScaleY(f7);
         }
-        b40Var.f29805k1.setTranslationX(measuredWidth2);
-        b40Var.f29804j1.invalidate();
+        a40Var.f29861k1.setTranslationX(measuredWidth2);
+        a40Var.f29860j1.invalidate();
     }
 }

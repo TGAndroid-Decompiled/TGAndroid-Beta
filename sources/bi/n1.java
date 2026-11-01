@@ -15,14 +15,14 @@ import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.view.inputmethod.InputMethodManager;
 import java.util.HashSet;
-import org.telegram.messenger.d20;
-import org.telegram.messenger.tu;
+import org.telegram.messenger.e20;
+import org.telegram.messenger.uu;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.g51;
+import org.telegram.ui.Components.a01;
+import org.telegram.ui.Components.h51;
 import org.telegram.ui.Components.k80;
 import org.telegram.ui.Components.kt;
 import org.telegram.ui.Components.mt;
-import org.telegram.ui.Components.zz0;
 public final class n1 extends mt implements org.telegram.ui.ActionBar.k6 {
     public long A2;
     public int B2;
@@ -61,7 +61,7 @@ public final class n1 extends mt implements org.telegram.ui.ActionBar.k6 {
     public n1(Context context, org.telegram.ui.ActionBar.p6 p6Var) {
         super(context, p6Var);
         boolean z10;
-        this.f3217b2 = d20.f15147s0;
+        this.f3217b2 = e20.f15506s0;
         this.f3230o2 = -1;
         this.f3231p2 = true;
         this.f3232q2 = new InputFilter() {
@@ -107,7 +107,7 @@ public final class n1 extends mt implements org.telegram.ui.ActionBar.k6 {
     }
 
     @Override
-    public final g51 A(String str) {
+    public final h51 A(String str) {
         return s6.k(str);
     }
 
@@ -308,10 +308,10 @@ public final class n1 extends mt implements org.telegram.ui.ActionBar.k6 {
         Editable text = getText();
         if (text != null) {
             for (u4 u4Var : (u4[]) text.getSpans(0, text.length(), u4.class)) {
-                tu tuVar = u4Var.f3386b;
-                if (tuVar != null && u4Var.f3387c == this) {
-                    tuVar.h = null;
-                    tuVar.f18107a.f17780a.f(this);
+                uu uuVar = u4Var.f3386b;
+                if (uuVar != null && u4Var.f3387c == this) {
+                    uuVar.h = null;
+                    uuVar.f18476a.f18144a.f(this);
                     u4Var.f3387c = null;
                 }
             }
@@ -321,7 +321,7 @@ public final class n1 extends mt implements org.telegram.ui.ActionBar.k6 {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        zz0[] zz0VarArr;
+        a01[] a01VarArr;
         int i10;
         int i11;
         float f7;
@@ -340,15 +340,15 @@ public final class n1 extends mt implements org.telegram.ui.ActionBar.k6 {
                 this.f3227l2 = null;
                 if (text instanceof Spanned) {
                     Spanned spanned = (Spanned) text;
-                    for (zz0 zz0Var : (zz0[]) spanned.getSpans(0, spanned.length(), zz0.class)) {
-                        int i12 = zz0Var.f33277b.f32850a;
+                    for (a01 a01Var : (a01[]) spanned.getSpans(0, spanned.length(), a01.class)) {
+                        int i12 = a01Var.f24261b.f33282a;
                         if ((65536 & i12) != 0) {
-                            int spanStart = spanned.getSpanStart(zz0Var);
-                            int spanEnd = spanned.getSpanEnd(zz0Var);
+                            int spanStart = spanned.getSpanStart(a01Var);
+                            int spanEnd = spanned.getSpanEnd(a01Var);
                             if (spanStart >= 0 && spanEnd > spanStart) {
                                 if (k80Var == null) {
                                     k80Var = new k80(0);
-                                    k80Var.f27685n = false;
+                                    k80Var.f27779n = false;
                                 }
                                 k80Var.d(layout, spanStart, 0.0f);
                                 if ((32768 & i12) != 0) {
@@ -368,13 +368,13 @@ public final class n1 extends mt implements org.telegram.ui.ActionBar.k6 {
                                 } else {
                                     i11 = 0;
                                 }
-                                k80Var.f27686o = i11;
+                                k80Var.f27780o = i11;
                                 layout.getSelectionPath(spanStart, spanEnd, k80Var);
                             }
                         }
                     }
                     if (k80Var != null) {
-                        k80Var.f27685n = true;
+                        k80Var.f27779n = true;
                     }
                     this.f3227l2 = k80Var;
                 }
@@ -457,7 +457,7 @@ public final class n1 extends mt implements org.telegram.ui.ActionBar.k6 {
                 this.C2 = K;
                 if (K != null && this.Z1 != null) {
                     this.D2 = false;
-                    K.b().f18107a.m(true);
+                    K.b().f18476a.m(true);
                     org.telegram.messenger.i0.r(g1Var);
                     org.telegram.messenger.i0.h3(g1Var, ViewConfiguration.getLongPressTimeout());
                     return true;
@@ -477,7 +477,7 @@ public final class n1 extends mt implements org.telegram.ui.ActionBar.k6 {
                         z11 = false;
                     }
                     if (!z11 || z10) {
-                        u4Var.b().f18107a.m(false);
+                        u4Var.b().f18476a.m(false);
                         org.telegram.messenger.i0.r(g1Var);
                     }
                     if (z10) {
@@ -703,7 +703,7 @@ public final class n1 extends mt implements org.telegram.ui.ActionBar.k6 {
                 setLinkTextColor(w04);
             }
             setCursorColor(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.G6, p6Var));
-            setHandlesColor(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f21076l6, p6Var));
+            setHandlesColor(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f21077l6, p6Var));
             boolean h12 = org.telegram.ui.ActionBar.t6.h1();
             androidx.activity.i iVar = this.f3239x2;
             if (!h12) {

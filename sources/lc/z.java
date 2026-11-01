@@ -3,11 +3,11 @@ package lc;
 import java.io.BufferedInputStream;
 import java.io.FilterInputStream;
 public final class z extends FilterInputStream {
-    public final int f11804a;
+    public final int f11805a;
 
     public z(BufferedInputStream bufferedInputStream, int i10) {
         super(bufferedInputStream);
-        this.f11804a = i10;
+        this.f11805a = i10;
     }
 
     public static int a(int i10) {
@@ -41,7 +41,7 @@ public final class z extends FilterInputStream {
 
     @Override
     public int read() {
-        switch (this.f11804a) {
+        switch (this.f11805a) {
             case 1:
                 int read = ((FilterInputStream) this).in.read();
                 if (read == 61) {
@@ -63,7 +63,7 @@ public final class z extends FilterInputStream {
 
     @Override
     public int read(byte[] bArr, int i10, int i11) {
-        switch (this.f11804a) {
+        switch (this.f11805a) {
             case 1:
                 int i12 = 0;
                 for (int i13 = 0; i13 < i11; i13++) {

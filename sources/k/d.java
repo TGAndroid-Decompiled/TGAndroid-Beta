@@ -8,12 +8,12 @@ import java.lang.ref.WeakReference;
 import n4.q;
 import xa.n;
 public final class d extends a implements l.j {
-    public Context f10477c;
+    public Context f10478c;
     public ActionBarContextView d;
     public q e;
-    public WeakReference f10478f;
+    public WeakReference f10479f;
     public boolean h;
-    public l.l f10479n;
+    public l.l f10480n;
 
     @Override
     public final void b() {
@@ -26,7 +26,7 @@ public final class d extends a implements l.j {
 
     @Override
     public final View c() {
-        WeakReference weakReference = this.f10478f;
+        WeakReference weakReference = this.f10479f;
         if (weakReference != null) {
             return (View) weakReference.get();
         }
@@ -35,7 +35,7 @@ public final class d extends a implements l.j {
 
     @Override
     public final l.l d() {
-        return this.f10479n;
+        return this.f10480n;
     }
 
     @Override
@@ -55,7 +55,7 @@ public final class d extends a implements l.j {
 
     @Override
     public final void h() {
-        this.e.C(this, this.f10479n);
+        this.e.C(this, this.f10480n);
     }
 
     @Override
@@ -72,12 +72,12 @@ public final class d extends a implements l.j {
         } else {
             weakReference = null;
         }
-        this.f10478f = weakReference;
+        this.f10479f = weakReference;
     }
 
     @Override
     public final void m(int i10) {
-        n(this.f10477c.getString(i10));
+        n(this.f10478c.getString(i10));
     }
 
     @Override
@@ -87,7 +87,7 @@ public final class d extends a implements l.j {
 
     @Override
     public final void o(int i10) {
-        q(this.f10477c.getString(i10));
+        q(this.f10478c.getString(i10));
     }
 
     @Override
@@ -106,12 +106,12 @@ public final class d extends a implements l.j {
 
     @Override
     public final void r(boolean z10) {
-        this.f10472a = z10;
+        this.f10473a = z10;
         this.d.setTitleOptional(z10);
     }
 
     @Override
     public final boolean u(l.l lVar, MenuItem menuItem) {
-        return ((n) this.e.f13526a).R(this, menuItem);
+        return ((n) this.e.f13527a).R(this, menuItem);
     }
 }

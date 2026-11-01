@@ -3,25 +3,25 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class o30 extends AnimatorListenerAdapter {
-    public final int f28964a;
-    public final q30 f28965b;
+    public final int f29017a;
+    public final q30 f29018b;
 
     public o30(q30 q30Var, int i10) {
-        this.f28964a = i10;
-        this.f28965b = q30Var;
+        this.f29017a = i10;
+        this.f29018b = q30Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         long j10;
-        switch (this.f28964a) {
+        switch (this.f29017a) {
             case 0:
-                q30 q30Var = this.f28965b;
-                q30Var.f29521f = null;
+                q30 q30Var = this.f29018b;
+                q30Var.f29620f = null;
                 if (!q30Var.H) {
                     ho hoVar = new ho(this, 22);
                     q30Var.h = hoVar;
-                    if (q30Var.f29522n == 0) {
+                    if (q30Var.f29621n == 0) {
                         j10 = 10000;
                     } else {
                         j10 = 2000;
@@ -31,8 +31,8 @@ public final class o30 extends AnimatorListenerAdapter {
                 }
                 return;
             case 1:
-                q30 q30Var2 = this.f28965b;
-                q30Var2.f29521f = null;
+                q30 q30Var2 = this.f29018b;
+                q30Var2.f29620f = null;
                 if (!q30Var2.H) {
                     ho hoVar2 = new ho(this, 23);
                     q30Var2.h = hoVar2;
@@ -41,12 +41,12 @@ public final class o30 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                q30 q30Var3 = this.f28965b;
+                q30 q30Var3 = this.f29018b;
                 q30Var3.setVisibility(4);
                 q30Var3.getClass();
                 q30Var3.e = null;
                 q30Var3.d = null;
-                q30Var3.f29521f = null;
+                q30Var3.f29620f = null;
                 return;
         }
     }

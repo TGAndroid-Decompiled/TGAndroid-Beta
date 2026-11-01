@@ -4,20 +4,20 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import oa.d;
 public abstract class a {
-    public static final Pattern f50223a = Pattern.compile("[\\\\&]");
-    public static final Pattern f50224b = Pattern.compile("\\\\[!\"#$%&'()*+,./:;<=>?@\\[\\\\\\]^_`{|}~-]|&(?:#x[a-f0-9]{1,6}|#[0-9]{1,7}|[a-z][a-z0-9]{1,31});", 2);
-    public static final Pattern f50225c;
+    public static final Pattern f50237a = Pattern.compile("[\\\\&]");
+    public static final Pattern f50238b = Pattern.compile("\\\\[!\"#$%&'()*+,./:;<=>?@\\[\\\\\\]^_`{|}~-]|&(?:#x[a-f0-9]{1,6}|#[0-9]{1,7}|[a-z][a-z0-9]{1,31});", 2);
+    public static final Pattern f50239c;
     public static final d d;
 
     static {
         Pattern.compile("(%[a-fA-F0-9]{0,2}|[^:/?#@!$&'()*+,;=a-zA-Z0-9\\-._~])");
-        f50225c = Pattern.compile("[ \t\r\n]+");
+        f50239c = Pattern.compile("[ \t\r\n]+");
         d = new d(22);
     }
 
     public static String a(String str) {
-        if (f50223a.matcher(str).find()) {
-            Matcher matcher = f50224b.matcher(str);
+        if (f50237a.matcher(str).find()) {
+            Matcher matcher = f50238b.matcher(str);
             if (matcher.find()) {
                 StringBuilder sb2 = new StringBuilder(str.length() + 16);
                 int i10 = 0;

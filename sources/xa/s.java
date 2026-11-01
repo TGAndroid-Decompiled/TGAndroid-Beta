@@ -16,24 +16,24 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import org.telegram.ui.ActionBar.p4;
 public final class s {
-    public static final long f53569i = TimeUnit.HOURS.toSeconds(8);
-    public static final int f53570j = 0;
-    public final Context f53571a;
-    public final p4 f53572b;
-    public final j2.f f53573c;
+    public static final long f53587i = TimeUnit.HOURS.toSeconds(8);
+    public static final int f53588j = 0;
+    public final Context f53589a;
+    public final p4 f53590b;
+    public final j2.f f53591c;
     public final FirebaseMessaging d;
-    public final ScheduledThreadPoolExecutor f53574f;
+    public final ScheduledThreadPoolExecutor f53592f;
     public final q h;
     public final a0.f e = new a0.l(0);
-    public boolean f53575g = false;
+    public boolean f53593g = false;
 
     public s(FirebaseMessaging firebaseMessaging, p4 p4Var, q qVar, j2.f fVar, Context context, ScheduledThreadPoolExecutor scheduledThreadPoolExecutor) {
         this.d = firebaseMessaging;
-        this.f53572b = p4Var;
+        this.f53590b = p4Var;
         this.h = qVar;
-        this.f53573c = fVar;
-        this.f53571a = context;
-        this.f53574f = scheduledThreadPoolExecutor;
+        this.f53591c = fVar;
+        this.f53589a = context;
+        this.f53592f = scheduledThreadPoolExecutor;
     }
 
     public static void a(Task task) {
@@ -65,7 +65,7 @@ public final class s {
 
     public final void b(String str) {
         String a2 = this.d.a();
-        j2.f fVar = this.f53573c;
+        j2.f fVar = this.f53591c;
         fVar.getClass();
         Bundle bundle = new Bundle();
         bundle.putString("gcm.topic", "/topics/" + str);
@@ -74,7 +74,7 @@ public final class s {
 
     public final void c(String str) {
         String a2 = this.d.a();
-        j2.f fVar = this.f53573c;
+        j2.f fVar = this.f53591c;
         fVar.getClass();
         Bundle bundle = new Bundle();
         bundle.putString("gcm.topic", "/topics/" + str);
@@ -85,7 +85,7 @@ public final class s {
     public final void e(p pVar) {
         synchronized (this.e) {
             try {
-                String str = pVar.f53562c;
+                String str = pVar.f53580c;
                 if (!this.e.containsKey(str)) {
                     return;
                 }
@@ -104,7 +104,7 @@ public final class s {
     }
 
     public final synchronized void f(boolean z10) {
-        this.f53575g = z10;
+        this.f53593g = z10;
     }
 
     public final boolean g() {
@@ -112,7 +112,7 @@ public final class s {
     }
 
     public final void h(long j10) {
-        this.f53574f.schedule(new u(this, this.f53571a, this.f53572b, Math.min(Math.max(30L, 2 * j10), f53569i)), j10, TimeUnit.SECONDS);
+        this.f53592f.schedule(new u(this, this.f53589a, this.f53590b, Math.min(Math.max(30L, 2 * j10), f53587i)), j10, TimeUnit.SECONDS);
         f(true);
     }
 }

@@ -7,18 +7,18 @@ import java.util.regex.Pattern;
 import li.t0;
 import li.x0;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.gs;
-import org.telegram.messenger.q20;
+import org.telegram.messenger.hs;
+import org.telegram.messenger.r20;
 import org.telegram.messenger.voip.GroupCallMessagesController;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.Components.go;
-import org.telegram.ui.Components.lz0;
+import org.telegram.ui.Components.mz0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ay;
-import org.telegram.ui.pb1;
+import org.telegram.ui.nb1;
 import org.telegram.ui.un;
+import org.telegram.ui.zx;
 import rh.b2;
 import rh.e4;
 import rh.x7;
@@ -45,7 +45,7 @@ public final class h0 implements Runnable {
                 long j10 = this.f121c;
                 long j11 = this.d;
                 String str2 = e2.l0.f6165a;
-                j2.g gVar = ((i2.c0) ((m0) ((hf.b) this.e).f7658c)).f7821a.f7927s;
+                j2.g gVar = ((i2.c0) ((m0) ((hf.b) this.e).f7659c)).f7822a.f7928s;
                 j2.a U = gVar.U();
                 gVar.V(U, 1016, new j2.c(U, str, j11, j10, 16));
                 return;
@@ -54,7 +54,7 @@ public final class h0 implements Runnable {
                 long j12 = this.f121c;
                 long j13 = this.d;
                 String str4 = e2.l0.f6165a;
-                j2.g gVar2 = ((i2.c0) ((k2.w) ((hf.b) this.e).f7658c)).f7821a.f7927s;
+                j2.g gVar2 = ((i2.c0) ((k2.w) ((hf.b) this.e).f7659c)).f7822a.f7928s;
                 j2.a U2 = gVar2.U();
                 gVar2.V(U2, 1008, new j2.c(U2, str3, j13, j12, 4));
                 return;
@@ -63,9 +63,9 @@ public final class h0 implements Runnable {
                 t0 t0Var = (t0) this.f120b;
                 long j14 = this.f121c;
                 long j15 = this.d;
-                synchronized (x0Var.f12311g) {
+                synchronized (x0Var.f12312g) {
                     if (!t0Var.d && !t0Var.e) {
-                        ((lz0) x0Var.e).a(t0Var.f12247a, t0Var.f12248b, j14, j15);
+                        ((mz0) x0Var.e).a(t0Var.f12248a, t0Var.f12249b, j14, j15);
                         return;
                     }
                     return;
@@ -77,21 +77,21 @@ public final class h0 implements Runnable {
                 ((go) this.e).e(this.f121c, this.d, (HashSet) this.f120b);
                 return;
             case 5:
-                ay ayVar = (ay) this.e;
+                zx zxVar = (zx) this.e;
                 long j16 = this.f121c;
                 long j17 = this.d;
-                pb1 pb1Var = (pb1) this.f120b;
-                if (ayVar.C2 != null) {
+                nb1 nb1Var = (nb1) this.f120b;
+                if (zxVar.C2 != null) {
                     ArrayList arrayList = new ArrayList();
-                    arrayList.add(gs.a(j16, j17));
-                    ayVar.C2.y(ayVar, arrayList, null, false, ayVar.J2, ayVar.K2, ayVar.L2, pb1Var);
-                    if (ayVar.f35817i2) {
-                        ayVar.C2 = null;
+                    arrayList.add(hs.a(j16, j17));
+                    zxVar.C2.z(zxVar, arrayList, null, false, zxVar.J2, zxVar.K2, zxVar.L2, nb1Var);
+                    if (zxVar.f44160i2) {
+                        zxVar.C2 = null;
                         return;
                     }
                     return;
                 }
-                ayVar.finishFragment();
+                zxVar.finishFragment();
                 return;
             case 6:
                 LaunchActivity launchActivity = (LaunchActivity) this.e;
@@ -99,21 +99,21 @@ public final class h0 implements Runnable {
                 long j19 = this.d;
                 un unVar = (un) this.f120b;
                 Pattern pattern = LaunchActivity.D1;
-                TLRPC.TL_forumTopic f7 = vp.r1(launchActivity.O).f18891r7.f(j18, j19);
+                TLRPC.TL_forumTopic f7 = wp.r1(launchActivity.O).f19234r7.f(j18, j19);
                 StringBuilder s10 = a1.g.s(j18, "LaunchActivity openForum after load ", " ");
                 s10.append(j19);
                 s10.append(" TL_forumTopic ");
                 s10.append(f7);
                 f8.b(s10.toString());
-                if (launchActivity.f33377q0 != null) {
-                    gg.e.a(unVar, gs.a(-j18, j19));
+                if (launchActivity.f33384q0 != null) {
+                    gg.e.a(unVar, hs.a(-j18, j19));
                     ((ActionBarLayout) launchActivity.M()).R(unVar);
                     return;
                 }
                 return;
             case 7:
                 e4 e4Var = (e4) this.e;
-                x7 x7Var = new x7(e4Var.getContext(), e4Var.I0, this.f121c, 11, null, new a3(e4Var, new boolean[]{false}, this.d, (q20) this.f120b, 17), 0L);
+                x7 x7Var = new x7(e4Var.getContext(), e4Var.I0, this.f121c, 11, null, new a3(e4Var, new boolean[]{false}, this.d, (r20) this.f120b, 17), 0L);
                 x7Var.setOnDismissListener(new b2(e4Var, 1));
                 x7Var.show();
                 return;

@@ -10,7 +10,7 @@ import j$.util.DesugarCollections;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 import org.telegram.messenger.f8;
 import org.telegram.messenger.i0;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
@@ -93,7 +93,7 @@ public abstract class a {
     }
 
     public static String k(long j10, char c10, StringBuilder sb2) {
-        sb2.append(cd.E(j10, c10));
+        sb2.append(dd.E(j10, c10));
         return sb2.toString();
     }
 
@@ -138,7 +138,7 @@ public abstract class a {
     }
 
     public static void s(String str, int i10, AlertDialog$Builder alertDialog$Builder, u1 u1Var) {
-        alertDialog$Builder.h(cd.L0(i10, str), u1Var);
+        alertDialog$Builder.h(dd.L0(i10, str), u1Var);
         alertDialog$Builder.p();
     }
 
@@ -158,7 +158,7 @@ public abstract class a {
     }
 
     public static void w(String str, int i10, AlertDialog$Builder alertDialog$Builder, u1 u1Var) {
-        alertDialog$Builder.k(cd.L0(i10, str), u1Var);
+        alertDialog$Builder.k(dd.L0(i10, str), u1Var);
         alertDialog$Builder.p();
     }
 

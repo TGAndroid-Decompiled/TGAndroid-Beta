@@ -1,29 +1,17 @@
 package org.telegram.ui;
+public final class if0 implements Runnable {
+    public final int f38018a;
+    public final Object f38019b;
+    public final Object f38020c;
 
-import android.view.View;
-public final class if0 implements org.telegram.ui.Components.hk0, org.telegram.ui.ActionBar.u1 {
-    public final jf0 f38255a;
-
-    public if0(jf0 jf0Var) {
-        this.f38255a = jf0Var;
+    public if0(int i10, Object obj, Object obj2) {
+        this.f38018a = i10;
+        this.f38019b = obj;
+        this.f38020c = obj2;
     }
 
     @Override
-    public void b(float f7, float f10, int i10, View view) {
-        jf0.a0(this.f38255a, i10);
-    }
-
-    @Override
-    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
-        jf0.Z(this.f38255a);
-    }
-
-    @Override
-    public boolean h1(View view) {
-        return false;
-    }
-
-    @Override
-    public void q0(View view, float f7, float f10) {
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.if0.run():void");
     }
 }

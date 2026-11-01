@@ -1,10 +1,10 @@
 package ei;
 public final class p {
-    public final hi.c f6662a;
-    public final o f6663b;
+    public final hi.c f6663a;
+    public final o f6664b;
 
     public p(hi.c cVar, o oVar) {
-        this.f6662a = cVar;
-        this.f6663b = oVar;
+        this.f6663a = cVar;
+        this.f6664b = oVar;
     }
 }

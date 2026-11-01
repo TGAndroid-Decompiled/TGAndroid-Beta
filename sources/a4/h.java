@@ -55,7 +55,7 @@ public final class h extends k {
     @Override
     public final void g(i iVar) {
         boolean z10;
-        ByteBuffer byteBuffer = iVar.f7586c;
+        ByteBuffer byteBuffer = iVar.f7587c;
         byteBuffer.getClass();
         byte[] array = byteBuffer.array();
         int limit = byteBuffer.limit();

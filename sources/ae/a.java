@@ -247,7 +247,7 @@ public final class a extends Thread {
                 }
                 p pVar = this.f404b;
                 if (iVar != null) {
-                    pVar.f11444a = iVar;
+                    pVar.f11445a = iVar;
                     iVar2 = iVar3;
                     j12 = -1;
                     j11 = -1;
@@ -280,7 +280,7 @@ public final class a extends Thread {
                         do {
                             iVar2 = null;
                             if (atomicReferenceFieldUpdater.compareAndSet(nVar2, iVar4, null)) {
-                                pVar.f11444a = iVar4;
+                                pVar.f11445a = iVar4;
                                 j12 = -1;
                                 break;
                             }
@@ -292,8 +292,8 @@ public final class a extends Thread {
                     iVar2 = iVar3;
                 }
                 if (j12 == j11) {
-                    i iVar5 = (i) pVar.f11444a;
-                    pVar.f11444a = iVar2;
+                    i iVar5 = (i) pVar.f11445a;
+                    pVar.f11445a = iVar2;
                     return iVar5;
                 } else if (j12 > j10) {
                     j13 = Math.min(j13, j12);

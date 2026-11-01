@@ -1,8 +1,8 @@
 package xh;
 
 import android.os.Bundle;
-import org.telegram.ui.ay;
-public final class a1 extends ay {
+import org.telegram.ui.zx;
+public final class a1 extends zx {
     public final org.telegram.tgnet.e B4;
     public final c1 C4;
 
@@ -13,7 +13,7 @@ public final class a1 extends ay {
     }
 
     @Override
-    public final boolean T3() {
+    public final boolean U3() {
         return true;
     }
 

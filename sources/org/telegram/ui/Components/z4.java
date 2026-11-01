@@ -5,27 +5,27 @@ import java.util.HashSet;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class z4 implements Runnable {
-    public final int f32893a;
-    public final b5 f32894b;
-    public final ArrayList f32895c;
+    public final int f32989a;
+    public final b5 f32990b;
+    public final ArrayList f32991c;
     public final HashSet d;
 
     public z4(b5 b5Var, ArrayList arrayList, HashSet hashSet, int i10) {
-        this.f32893a = i10;
-        this.f32894b = b5Var;
-        this.f32895c = arrayList;
+        this.f32989a = i10;
+        this.f32990b = b5Var;
+        this.f32991c = arrayList;
         this.d = hashSet;
     }
 
     @Override
     public final void run() {
-        switch (this.f32893a) {
+        switch (this.f32989a) {
             case 0:
-                org.telegram.messenger.i0.g3(new z4(this.f32894b, this.f32895c, this.d, 1));
+                org.telegram.messenger.i0.g3(new z4(this.f32990b, this.f32991c, this.d, 1));
                 return;
             default:
-                b5 b5Var = this.f32894b;
-                b5Var.d(this.f32895c);
+                b5 b5Var = this.f32990b;
+                b5Var.d(this.f32991c);
                 HashSet hashSet = this.d;
                 if (!hashSet.isEmpty()) {
                     ArrayList<Long> arrayList = new ArrayList<>(hashSet);

@@ -2,17 +2,17 @@ package w7;
 
 import java.util.Iterator;
 public final class va extends ra {
-    public final transient xa f52721c;
+    public final transient xa f52739c;
     public final transient wa d;
 
     public va(xa xaVar, wa waVar) {
-        this.f52721c = xaVar;
+        this.f52739c = xaVar;
         this.d = waVar;
     }
 
     @Override
     public final boolean contains(Object obj) {
-        if (this.f52721c.get(obj) != null) {
+        if (this.f52739c.get(obj) != null) {
             return true;
         }
         return false;
@@ -30,7 +30,7 @@ public final class va extends ra {
 
     @Override
     public final int size() {
-        this.f52721c.getClass();
+        this.f52739c.getClass();
         return 1;
     }
 }

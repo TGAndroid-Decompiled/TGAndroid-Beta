@@ -40,7 +40,7 @@ public final class b extends i2.b implements Handler.Callback {
             handler = new Handler(looper, this);
         }
         this.K = handler;
-        this.I = a.f47854a;
+        this.I = a.f47865a;
         this.L = new l3.a();
         this.R = -9223372036854775807L;
     }
@@ -74,7 +74,7 @@ public final class b extends i2.b implements Handler.Callback {
                         l3.a aVar2 = this.L;
                         aVar2.clear();
                         aVar2.c(c10.length);
-                        aVar2.f7586c.put(c10);
+                        aVar2.f7587c.put(c10);
                         aVar2.d();
                         u0 a11 = a10.a(aVar2);
                         if (a11 != null) {
@@ -109,9 +109,9 @@ public final class b extends i2.b implements Handler.Callback {
 
     public final void H(u0 u0Var) {
         c0 c0Var = this.J;
-        i0 i0Var = c0Var.f7821a;
-        s0 s0Var = i0Var.f7920o0;
-        r rVar = i0Var.f7916m;
+        i0 i0Var = c0Var.f7822a;
+        s0 s0Var = i0Var.f7921o0;
+        r rVar = i0Var.f7917m;
         r0 a2 = s0Var.a();
         int i10 = 0;
         while (true) {
@@ -122,7 +122,7 @@ public final class b extends i2.b implements Handler.Callback {
             t0VarArr[i10].b(a2);
             i10++;
         }
-        i0Var.f7920o0 = new s0(a2);
+        i0Var.f7921o0 = new s0(a2);
         s0 f12 = i0Var.f1();
         if (!f12.equals(i0Var.Q)) {
             i0Var.Q = f12;
@@ -192,14 +192,14 @@ public final class b extends i2.b implements Handler.Callback {
             if (!this.N && this.Q == null) {
                 l3.a aVar = this.L;
                 aVar.clear();
-                hf.b bVar = this.f7809c;
+                hf.b bVar = this.f7810c;
                 bVar.L();
                 int w9 = w(bVar, aVar, 0);
                 if (w9 == -4) {
                     if (aVar.isEndOfStream()) {
                         this.N = true;
-                    } else if (aVar.e >= this.f7815x) {
-                        aVar.f11637r = this.P;
+                    } else if (aVar.e >= this.f7816x) {
+                        aVar.f11638r = this.P;
                         aVar.d();
                         l lVar = this.M;
                         String str = l0.f6165a;
@@ -213,7 +213,7 @@ public final class b extends i2.b implements Handler.Callback {
                         }
                     }
                 } else if (w9 == -5) {
-                    x xVar = (x) bVar.f7658c;
+                    x xVar = (x) bVar.f7659c;
                     xVar.getClass();
                     this.P = xVar.f2427x;
                 }

@@ -6,18 +6,18 @@ import k6.h;
 import n6.l;
 import s7.i;
 public final class e {
-    public final s7.a f9715a;
+    public final s7.a f9716a;
 
     public e(s7.a aVar) {
         l.g(aVar);
-        this.f9715a = aVar;
+        this.f9716a = aVar;
     }
 
     public final void a(h hVar) {
         try {
-            i iVar = (i) this.f9715a;
+            i iVar = (i) this.f9716a;
             Parcel P0 = iVar.P0();
-            s7.b.c(P0, (x6.a) hVar.f10943b);
+            s7.b.c(P0, (x6.a) hVar.f10944b);
             iVar.T0(P0, 18);
         } catch (RemoteException e) {
             throw new RuntimeException(e);
@@ -30,8 +30,8 @@ public final class e {
             return false;
         }
         try {
-            s7.a aVar = this.f9715a;
-            s7.a aVar2 = ((e) obj).f9715a;
+            s7.a aVar = this.f9716a;
+            s7.a aVar2 = ((e) obj).f9716a;
             i iVar = (i) aVar;
             Parcel P0 = iVar.P0();
             s7.b.c(P0, aVar2);
@@ -48,7 +48,7 @@ public final class e {
 
     public final int hashCode() {
         try {
-            i iVar = (i) this.f9715a;
+            i iVar = (i) this.f9716a;
             Parcel O0 = iVar.O0(iVar.P0(), 17);
             int readInt = O0.readInt();
             O0.recycle();

@@ -4,16 +4,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class ga extends org.telegram.ui.Components.sk0 {
-    public final oa f37496c;
+public final class ga extends org.telegram.ui.Components.tk0 {
+    public final oa f37437c;
 
     public ga(oa oaVar) {
-        this.f37496c = oaVar;
+        this.f37437c = oaVar;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f47901f == 4) {
+        if (c1Var.f47912f == 4) {
             return true;
         }
         return false;
@@ -22,22 +22,22 @@ public final class ga extends org.telegram.ui.Components.sk0 {
     @Override
     public final int b() {
         int i10;
-        oa oaVar = this.f37496c;
-        org.telegram.ui.Components.tk0 tk0Var = oaVar.f40206b;
-        ArrayList arrayList = oaVar.f40212w;
-        if (tk0Var != null) {
-            ArrayList arrayList2 = tk0Var.K2;
+        oa oaVar = this.f37437c;
+        org.telegram.ui.Components.uk0 uk0Var = oaVar.f40111b;
+        ArrayList arrayList = oaVar.f40117w;
+        if (uk0Var != null) {
+            ArrayList arrayList2 = uk0Var.K2;
             if (arrayList2 != null) {
                 arrayList2.clear();
             } else {
-                tk0Var.K2 = new ArrayList();
+                uk0Var.K2 = new ArrayList();
             }
             if (arrayList.size() > 0) {
-                oaVar.f40206b.K2.add(Long.valueOf(org.telegram.messenger.i0.w2(3, arrayList.size() + 3)));
+                oaVar.f40111b.K2.add(Long.valueOf(org.telegram.messenger.i0.w2(3, arrayList.size() + 3)));
             }
         }
-        if (oaVar.f40212w.size() > 0) {
-            i10 = oaVar.f40212w.size() + 2;
+        if (oaVar.f40117w.size() > 0) {
+            i10 = oaVar.f40117w.size() + 2;
         } else {
             i10 = 0;
         }
@@ -69,17 +69,17 @@ public final class ga extends org.telegram.ui.Components.sk0 {
         int i11;
         int i12;
         boolean z10;
-        oa oaVar = this.f37496c;
-        long j10 = oaVar.f40214y;
-        int i13 = c1Var.f47901f;
-        View view = c1Var.f47898a;
+        oa oaVar = this.f37437c;
+        long j10 = oaVar.f40119y;
+        int i13 = c1Var.f47912f;
+        View view = c1Var.f47909a;
         if (i13 != 0) {
             if (i13 != 2) {
                 if (i13 != 3) {
                     if (i13 != 4) {
                         return;
                     }
-                    TLRPC.TL_username tL_username = (TLRPC.TL_username) oaVar.f40212w.get(i10 - 4);
+                    TLRPC.TL_username tL_username = (TLRPC.TL_username) oaVar.f40117w.get(i10 - 4);
                     la laVar = (la) view;
                     if (tL_username.editable) {
                         oaVar.E = laVar;
@@ -91,14 +91,14 @@ public final class ga extends org.telegram.ui.Components.sk0 {
                     } else {
                         z10 = false;
                     }
-                    laVar.a(tL_username, z10, false, oaVar.f40214y);
+                    laVar.a(tL_username, z10, false, oaVar.f40119y);
                     return;
                 }
-                oaVar.f40209n = true;
+                oaVar.f40114n = true;
                 ia iaVar = (ia) view;
                 oaVar.D = iaVar;
-                iaVar.f38218a.setText(oaVar.f40210r);
-                oaVar.f40209n = false;
+                iaVar.f37985a.setText(oaVar.f40115r);
+                oaVar.f40114n = false;
                 return;
             }
             org.telegram.ui.Cells.b9 b9Var = (org.telegram.ui.Cells.b9) view;
@@ -107,7 +107,7 @@ public final class ga extends org.telegram.ui.Components.sk0 {
             } else {
                 i12 = 2131743667;
             }
-            b9Var.setText(org.telegram.messenger.cd.L0(i12, null));
+            b9Var.setText(org.telegram.messenger.dd.L0(i12, null));
             return;
         }
         org.telegram.ui.Cells.p4 p4Var = (org.telegram.ui.Cells.p4) view;
@@ -120,12 +120,12 @@ public final class ga extends org.telegram.ui.Components.sk0 {
         } else {
             i11 = 2131743668;
         }
-        p4Var.setText(org.telegram.messenger.cd.L0(i11, null));
+        p4Var.setText(org.telegram.messenger.dd.L0(i11, null));
     }
 
     @Override
     public final s4.c1 w(ViewGroup viewGroup, int i10) {
-        oa oaVar = this.f37496c;
+        oa oaVar = this.f37437c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {

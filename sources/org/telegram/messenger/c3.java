@@ -4,25 +4,25 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.recaptcha.RecaptchaAction;
 import com.google.android.recaptcha.RecaptchaTasksClient;
 public final class c3 implements OnSuccessListener {
-    public final int f14899a;
-    public final String f14900b;
-    public final String f14901c;
+    public final int f15058a;
+    public final String f15059b;
+    public final String f15060c;
     public final e3 d;
 
     public c3(String str, String str2, e3 e3Var, int i10) {
-        this.f14899a = i10;
-        this.f14900b = str;
-        this.f14901c = str2;
+        this.f15058a = i10;
+        this.f15059b = str;
+        this.f15060c = str2;
         this.d = e3Var;
     }
 
     @Override
     public final void onSuccess(Object obj) {
         RecaptchaAction recaptchaAction;
-        int i10 = this.f14899a;
+        int i10 = this.f15058a;
         e3 e3Var = this.d;
-        String str = this.f14901c;
-        String str2 = this.f14900b;
+        String str = this.f15060c;
+        String str2 = this.f15059b;
         switch (i10) {
             case 0:
                 RecaptchaTasksClient recaptchaTasksClient = (RecaptchaTasksClient) obj;

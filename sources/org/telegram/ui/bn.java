@@ -11,19 +11,19 @@ public final class bn extends gf.e {
     @Override
     public final void c(boolean z10) {
         if (!z10) {
-            org.telegram.messenger.i0.h3(new zj(this.e.f37301a, 9), 250L);
+            org.telegram.messenger.i0.h3(new zj(this.e.f37191a, 8), 250L);
         }
     }
 
     @Override
     public final void d() {
         fn fnVar = this.e;
-        un unVar = fnVar.f37301a;
+        un unVar = fnVar.f37191a;
         org.telegram.ui.Cells.q1 q1Var = this.d;
-        unVar.Rb = q1Var.getMessageObject().f1();
-        un unVar2 = fnVar.f37301a;
-        unVar2.Sb = 2;
-        unVar2.Tb = null;
+        unVar.Sb = q1Var.getMessageObject().f1();
+        un unVar2 = fnVar.f37191a;
+        unVar2.Tb = 2;
+        unVar2.Ub = null;
         q1Var.invalidate();
     }
 }

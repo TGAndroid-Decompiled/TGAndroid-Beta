@@ -1,46 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
-import java.util.Map;
-import org.telegram.messenger.secretmedia.ExtendedDefaultDataSource;
-public final class q61 implements g2.h {
-    public final g2.h f29543a;
-    public final long f29544b;
+import android.content.Context;
+import java.nio.ByteBuffer;
+public final class q61 extends i2.j {
+    public final v61 d;
 
-    public q61(ExtendedDefaultDataSource extendedDefaultDataSource, long j10) {
-        this.f29543a = extendedDefaultDataSource;
-        this.f29544b = j10;
+    public q61(Context context, v61 v61Var) {
+        super(context);
+        this.d = v61Var;
     }
 
     @Override
-    public final void addTransferListener(g2.d0 d0Var) {
-        this.f29543a.addTransferListener(d0Var);
-    }
-
-    @Override
-    public final void close() {
-        this.f29543a.close();
-    }
-
-    @Override
-    public final Map getResponseHeaders() {
-        return this.f29543a.getResponseHeaders();
-    }
-
-    @Override
-    public final Uri getUri() {
-        return this.f29543a.getUri();
-    }
-
-    @Override
-    public final long open(g2.n nVar) {
-        g2.m a2 = nVar.a();
-        a2.f7309b = nVar.e + this.f29544b;
-        return this.f29543a.open(a2.d());
-    }
-
-    @Override
-    public final int read(byte[] bArr, int i10, int i11) {
-        return this.f29543a.read(bArr, i10, i11);
+    public final k2.w0 a(Context context) {
+        k2.t0 t0Var = new k2.t0(context, 0);
+        ?? obj = new Object();
+        obj.f3333f = this.d;
+        ?? obj2 = new Object();
+        obj2.e = new float[0];
+        obj2.f16916a = 3;
+        obj2.d = new float[513];
+        obj2.f16917b = new float[1024];
+        obj2.f16918c = new float[1024];
+        int[] iArr = new int[1024];
+        obj2.h = iArr;
+        iArr[0] = 0;
+        int i10 = 512;
+        int i11 = 1;
+        while (i11 < 1024) {
+            for (int i12 = 0; i12 < i11; i12++) {
+                int[] iArr2 = (int[]) obj2.h;
+                iArr2[i12 + i11] = iArr2[i12] + i10;
+            }
+            i11 <<= 1;
+            i10 >>= 1;
+        }
+        obj2.f16919f = new float[1024];
+        obj2.f16920g = new float[1024];
+        for (int i13 = 0; i13 < 1024; i13++) {
+            double d = (-3.1415927f) / i13;
+            ((float[]) obj2.f16919f)[i13] = (float) Math.sin(d);
+            ((float[]) obj2.f16920g)[i13] = (float) Math.cos(d);
+        }
+        obj.f3332c = obj2;
+        obj.d = new float[1024];
+        obj.f3330a = 0;
+        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(8192);
+        obj.e = allocateDirect;
+        allocateDirect.position(0);
+        t0Var.d = new android.support.v4.media.session.a0(new c2.m[]{new k2.d1(obj)});
+        return t0Var.a();
     }
 }

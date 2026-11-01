@@ -1,6 +1,6 @@
 package org.telegram.ui.Components;
 public class hc {
-    public int f26692a;
-    public boolean f26693b;
-    public long f26694c;
+    public int f26750a;
+    public boolean f26751b;
+    public long f26752c;
 }

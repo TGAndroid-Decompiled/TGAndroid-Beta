@@ -15,7 +15,7 @@ import v7.l7;
 import v7.r6;
 import v7.t6;
 public final class j extends v2.l {
-    public static final AtomicInteger f14000c0 = new AtomicInteger();
+    public static final AtomicInteger f14001c0 = new AtomicInteger();
     public final boolean D;
     public final int E;
     public final g2.h F;
@@ -39,11 +39,11 @@ public final class j extends v2.l {
     public boolean X;
     public n0 Y;
     public boolean Z;
-    public long f14001a0;
-    public boolean f14002b0;
-    public final int f14003w;
-    public final int f14004x;
-    public final Uri f14005y;
+    public long f14002a0;
+    public boolean f14003b0;
+    public final int f14004w;
+    public final int f14005x;
+    public final Uri f14006y;
 
     public j(c cVar, g2.h hVar, g2.n nVar, b2.x xVar, boolean z10, g2.h hVar2, g2.n nVar2, boolean z11, Uri uri, List list, int i10, Object obj, long j10, long j11, long j12, int i11, boolean z12, int i12, boolean z13, boolean z14, k0 k0Var, b2.t tVar, b bVar, q3.i iVar, x xVar2, boolean z15, boolean z16, j2.l lVar) {
         super(hVar, nVar, xVar, i10, obj, j10, j11, j12);
@@ -56,8 +56,8 @@ public final class j extends v2.l {
         } else {
             j13 = -9223372036854775807L;
         }
-        this.f14001a0 = j13;
-        this.f14004x = i12;
+        this.f14002a0 = j13;
+        this.f14005x = i12;
         this.G = nVar2;
         this.F = hVar2;
         if (nVar2 != null) {
@@ -67,7 +67,7 @@ public final class j extends v2.l {
         }
         this.V = z17;
         this.R = z11;
-        this.f14005y = uri;
+        this.f14006y = uri;
         this.I = z14;
         this.K = k0Var;
         this.J = z13;
@@ -77,11 +77,11 @@ public final class j extends v2.l {
         this.H = bVar;
         this.O = iVar;
         this.P = xVar2;
-        this.f14002b0 = z15;
+        this.f14003b0 = z15;
         this.D = z16;
         l0 l0Var = n0.f6390b;
         this.Y = x1.e;
-        this.f14003w = f14000c0.getAndIncrement();
+        this.f14004w = f14001c0.getAndIncrement();
     }
 
     public static byte[] e(String str) {
@@ -110,7 +110,7 @@ public final class j extends v2.l {
         b bVar;
         this.T.getClass();
         if (this.S == null && (bVar = this.H) != null) {
-            c3.o b10 = bVar.f13970a.b();
+            c3.o b10 = bVar.f13971a.b();
             if ((b10 instanceof e0) || (b10 instanceof w3.h)) {
                 this.S = this.H;
                 this.V = false;
@@ -127,7 +127,7 @@ public final class j extends v2.l {
         }
         if (!this.W) {
             if (!this.J) {
-                d(this.f50310r, this.f50306b, this.Q);
+                d(this.f50324r, this.f50320b, this.Q);
             }
             this.X = !this.W;
         }
@@ -167,13 +167,13 @@ public final class j extends v2.l {
                     }
                 } catch (EOFException e) {
                     if ((this.d.f2411f & 16384) != 0) {
-                        this.S.f13970a.d(0L, 0L);
+                        this.S.f13971a.d(0L, 0L);
                         j10 = h.d;
                     } else {
                         throw e;
                     }
                 }
-            } while (this.S.f13970a.f(h, b.f13969f) == 0);
+            } while (this.S.f13971a.f(h, b.f13970f) == 0);
             j10 = h.d;
             this.U = (int) (j10 - nVar.e);
         } catch (Exception unused) {
@@ -185,7 +185,7 @@ public final class j extends v2.l {
     }
 
     public final int f(int i10) {
-        t6.p(!this.f14002b0);
+        t6.p(!this.f14003b0);
         if (i10 >= this.Y.size()) {
             return 0;
         }
@@ -193,7 +193,7 @@ public final class j extends v2.l {
     }
 
     public final boolean g() {
-        if (this.f14001a0 != -9223372036854775807L) {
+        if (this.f14002a0 != -9223372036854775807L) {
             return true;
         }
         return false;

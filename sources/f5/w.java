@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.WeakHashMap;
 import v7.q8;
 public final class w extends com.googlecode.mp4parser.c {
-    public static final za.c f6901f;
+    public static final za.c f6902f;
     public static final za.c h;
     public List e;
 
     static {
         le.a aVar = new le.a(w.class, "TimeToSampleBox.java");
         aVar.e(aVar.d("getEntries", "com.coremedia.iso.boxes.TimeToSampleBox", "", "", "java.util.List"));
-        f6901f = aVar.e(aVar.d("setEntries", "com.coremedia.iso.boxes.TimeToSampleBox", "java.util.List", "entries", "void"));
+        f6902f = aVar.e(aVar.d("setEntries", "com.coremedia.iso.boxes.TimeToSampleBox", "java.util.List", "entries", "void"));
         h = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.TimeToSampleBox", "", "", "java.lang.String"));
         new WeakHashMap();
     }
@@ -33,8 +33,8 @@ public final class w extends com.googlecode.mp4parser.c {
         i(byteBuffer);
         byteBuffer.putInt(this.e.size());
         for (v vVar : this.e) {
-            byteBuffer.putInt((int) vVar.f6899a);
-            byteBuffer.putInt((int) vVar.f6900b);
+            byteBuffer.putInt((int) vVar.f6900a);
+            byteBuffer.putInt((int) vVar.f6901b);
         }
     }
 

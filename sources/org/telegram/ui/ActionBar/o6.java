@@ -16,22 +16,22 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.d00;
-import org.telegram.messenger.d20;
+import org.telegram.messenger.at;
+import org.telegram.messenger.e00;
+import org.telegram.messenger.e20;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.us;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.vs;
 import org.telegram.ui.Components.f9;
 import org.telegram.ui.Components.jb0;
-public final class o6 implements us {
-    public static o6 f20629c;
-    public int f20630a;
-    public HashMap f20631b;
+public final class o6 implements vs {
+    public static o6 f20630c;
+    public int f20631a;
+    public HashMap f20632b;
 
     public static void a(boolean z10) {
         String str;
         ArrayList arrayList;
-        if (f20629c != null && !z10) {
+        if (f20630c != null && !z10) {
             return;
         }
         ArrayList arrayList2 = null;
@@ -54,11 +54,11 @@ public final class o6 implements us {
                 str = "Blue";
             }
             s6 s6Var = (s6) t6.H.get(str);
-            if (s6Var != null && (arrayList = s6Var.f20804b0) != null && !arrayList.isEmpty()) {
-                int size = s6Var.f20804b0.size();
+            if (s6Var != null && (arrayList = s6Var.f20805b0) != null && !arrayList.isEmpty()) {
+                int size = s6Var.f20805b0.size();
                 for (int i11 = 0; i11 < size; i11++) {
-                    r6 r6Var = (r6) s6Var.f20804b0.get(i11);
-                    if (r6Var.f20730a != t6.f21108n && !TextUtils.isEmpty(r6Var.f20741o)) {
+                    r6 r6Var = (r6) s6Var.f20805b0.get(i11);
+                    if (r6Var.f20731a != t6.f21109n && !TextUtils.isEmpty(r6Var.f20742o)) {
                         if (arrayList2 == null) {
                             arrayList2 = new ArrayList();
                         }
@@ -68,11 +68,11 @@ public final class o6 implements us {
             }
         }
         ?? obj = new Object();
-        obj.f20630a = d20.f15147s0;
+        obj.f20631a = e20.f15506s0;
         if (arrayList2 != null) {
             Utilities.e.c(new mh.k(26, obj, arrayList2));
         }
-        f20629c = obj;
+        f20630c = obj;
     }
 
     public static Bitmap b(Bitmap bitmap, boolean z10, File file, r6 r6Var) {
@@ -88,12 +88,12 @@ public final class o6 implements us {
             if (e == null) {
                 return null;
             }
-            s6 s6Var = r6Var.f20731b;
+            s6 s6Var = r6Var.f20732b;
             SparseIntArray T0 = t6.T0(null, s6Var.d, null);
             t6.H(T0, s6Var);
-            int i13 = r6Var.f20732c;
-            int i14 = (int) r6Var.f20736j;
-            long j10 = r6Var.f20737k;
+            int i13 = r6Var.f20733c;
+            int i14 = (int) r6Var.f20737j;
+            long j10 = r6Var.f20738k;
             int i15 = (int) j10;
             if (i15 == 0 && j10 == 0) {
                 if (i14 != 0) {
@@ -106,12 +106,12 @@ public final class o6 implements us {
             } else {
                 i13 = 0;
             }
-            long j11 = r6Var.f20738l;
+            long j11 = r6Var.f20739l;
             int i17 = (int) j11;
             if (i17 == 0 && j11 == 0 && (i12 = T0.get(t6.De)) != 0) {
                 i17 = t6.C(s6Var, i13, i12);
             }
-            long j12 = r6Var.f20739m;
+            long j12 = r6Var.f20740m;
             int i18 = (int) j12;
             if (i18 == 0 && j12 == 0 && (i11 = T0.get(t6.Ee)) != 0) {
                 i18 = t6.C(s6Var, i13, i11);
@@ -122,7 +122,7 @@ public final class o6 implements us {
             if (i17 != 0) {
                 V0 = jb0.g(i14, i15, i17, i18);
             } else if (i15 != 0) {
-                Drawable f9Var = new f9(f9.d(r6Var.f20740n), new int[]{i14, i15});
+                Drawable f9Var = new f9(f9.d(r6Var.f20741n), new int[]{i14, i15});
                 V0 = org.telegram.messenger.i0.V0(org.telegram.messenger.i0.w0(i14, i15), false);
                 drawable = f9Var;
             } else {
@@ -130,11 +130,11 @@ public final class o6 implements us {
                 V0 = org.telegram.messenger.i0.V0(i14, false);
             }
             if (bitmap == null) {
-                Point point = org.telegram.messenger.i0.f16026q;
+                Point point = org.telegram.messenger.i0.f16172q;
                 int min = Math.min(point.x, point.y);
                 int max = Math.max(point.x, point.y);
                 if (z10) {
-                    n12 = d00.f(file, min, max, 2);
+                    n12 = e00.f(file, min, max, 2);
                 } else {
                     n12 = t6.n1(new FileInputStream(file), 0);
                 }
@@ -150,7 +150,7 @@ public final class o6 implements us {
                     drawable.draw(canvas);
                     Paint paint = new Paint(2);
                     paint.setColorFilter(new PorterDuffColorFilter(V0, PorterDuff.Mode.SRC_IN));
-                    paint.setAlpha((int) (Math.abs(r6Var.f20742p) * 255.0f));
+                    paint.setAlpha((int) (Math.abs(r6Var.f20743p) * 255.0f));
                     canvas.drawBitmap(bitmap2, 0.0f, 0.0f, paint);
                     createBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(e));
                     return bitmap2;
@@ -172,14 +172,14 @@ public final class o6 implements us {
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        HashMap hashMap = this.f20631b;
+        HashMap hashMap = this.f20632b;
         if (hashMap != null) {
-            if (i10 == zs.Y1) {
+            if (i10 == at.Y1) {
                 n6 n6Var = (n6) hashMap.remove((String) objArr[0]);
                 if (n6Var != null) {
                     Utilities.e.c(new mh.k(27, this, n6Var));
                 }
-            } else if (i10 == zs.Z1 && hashMap.remove((String) objArr[0]) != null) {
+            } else if (i10 == at.Z1 && hashMap.remove((String) objArr[0]) != null) {
                 org.telegram.messenger.i0.g3(new ag.j0((Object) this, (Object) null, false, 10));
             }
         }

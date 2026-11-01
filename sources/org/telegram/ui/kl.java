@@ -34,7 +34,7 @@ public final class kl extends org.telegram.ui.ActionBar.u5 {
         switch (this.M0) {
             case 2:
                 super.onAttachedToWindow();
-                ((rn0) this.N0).f41255s.a();
+                ((pn0) this.N0).f40509s.a();
                 return;
             default:
                 super.onAttachedToWindow();
@@ -47,7 +47,7 @@ public final class kl extends org.telegram.ui.ActionBar.u5 {
         switch (this.M0) {
             case 2:
                 super.onDetachedFromWindow();
-                ((rn0) this.N0).f41255s.b();
+                ((pn0) this.N0).f40509s.b();
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -62,7 +62,7 @@ public final class kl extends org.telegram.ui.ActionBar.u5 {
                 int rightDrawableX = getRightDrawableX();
                 super.onDraw(canvas);
                 if (rightDrawableX != getRightDrawableX()) {
-                    ((ProfileActivity) this.N0).p5();
+                    ((ProfileActivity) this.N0).q5();
                     return;
                 }
                 return;
@@ -79,13 +79,13 @@ public final class kl extends org.telegram.ui.ActionBar.u5 {
                 ProfileActivity profileActivity = (ProfileActivity) this.N0;
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 if (isFocusable()) {
-                    if (profileActivity.h != null || profileActivity.f33863n != null) {
+                    if (profileActivity.h != null || profileActivity.f33870n != null) {
                         StringBuilder sb2 = new StringBuilder(getText());
-                        if (profileActivity.f33863n != null) {
+                        if (profileActivity.f33870n != null) {
                             if (sb2.length() > 0) {
                                 sb2.append(", ");
                             }
-                            sb2.append(profileActivity.f33863n);
+                            sb2.append(profileActivity.f33870n);
                         }
                         if (profileActivity.h != null) {
                             if (sb2.length() > 0) {
@@ -111,7 +111,7 @@ public final class kl extends org.telegram.ui.ActionBar.u5 {
             case 3:
                 ProfileActivity profileActivity = (ProfileActivity) this.N0;
                 profileActivity.D5 = i10;
-                super.setTextColor(i0.b.f(profileActivity.A5, i10, org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.G6, profileActivity.f33950z0)));
+                super.setTextColor(i0.b.f(profileActivity.A5, i10, org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.G6, profileActivity.f33957z0)));
                 return;
             default:
                 super.setTextColor(i10);
@@ -127,7 +127,7 @@ public final class kl extends org.telegram.ui.ActionBar.u5 {
                 super.setTranslationY(f7);
                 un unVar = (un) this.N0;
                 if (this == unVar.R2[0] && unVar.V2[1] != null) {
-                    if (unVar.f42183a5 && f7 < 0.0f) {
+                    if (unVar.f41993a5 && f7 < 0.0f) {
                         unVar.N2.setTranslationY(f7 / 2.0f);
                         return;
                     } else {

@@ -6,7 +6,7 @@ public final class yk extends oo {
     public final void onBecomeFullyVisible() {
         super.onBecomeFullyVisible();
         if (!this.T0) {
-            m0();
+            n0();
             this.T0 = true;
         }
     }

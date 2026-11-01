@@ -1,52 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Typeface;
+import android.net.Uri;
 import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public final class d51 extends MetricAffectingSpan {
-    public final CharSequence f25340a;
-    public final int f25341b;
-    public final int f25342c;
-    public final byte d;
-    public final yz0 e;
+import android.text.style.URLSpan;
+import android.view.View;
+public final class d51 extends URLSpan {
+    public final zz0 f25411a;
 
-    public d51(CharSequence charSequence, int i10, int i11, byte b10, yz0 yz0Var) {
-        this.f25340a = charSequence;
-        this.f25341b = i10;
-        this.f25342c = i11;
-        this.d = b10;
-        this.e = yz0Var;
+    public d51(String str, zz0 zz0Var) {
+        super(str != null ? str.replace((char) 8238, ' ') : str);
+        this.f25411a = zz0Var;
+    }
+
+    @Override
+    public final void onClick(View view) {
+        gf.f.o(view.getContext(), Uri.parse(getURL()));
     }
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setTextSize(org.telegram.messenger.i0.L(org.telegram.messenger.tz.W0 - 1));
-        byte b10 = this.d;
-        if (b10 == 2) {
-            textPaint.setColor(-1);
-        } else if (b10 == 1) {
-            textPaint.setColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.Tc, false));
-        } else {
-            textPaint.setColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.Sc, false));
+        super.updateDrawState(textPaint);
+        zz0 zz0Var = this.f25411a;
+        if (zz0Var != null) {
+            zz0Var.a(textPaint);
         }
-        yz0 yz0Var = this.e;
-        if (yz0Var != null) {
-            yz0Var.a(textPaint);
-            return;
-        }
-        textPaint.setTypeface(Typeface.MONOSPACE);
-        textPaint.setUnderlineText(false);
-    }
-
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        textPaint.setTextSize(org.telegram.messenger.i0.L(org.telegram.messenger.tz.W0 - 1));
-        textPaint.setFlags(textPaint.getFlags() | 128);
-        yz0 yz0Var = this.e;
-        if (yz0Var != null) {
-            yz0Var.a(textPaint);
-        } else {
-            textPaint.setTypeface(Typeface.MONOSPACE);
-        }
+        textPaint.setUnderlineText(true);
     }
 }

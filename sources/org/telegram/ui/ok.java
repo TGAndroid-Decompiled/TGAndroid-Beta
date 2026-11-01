@@ -7,13 +7,13 @@ import android.graphics.drawable.Drawable;
 import android.widget.TextView;
 public final class ok extends org.telegram.ui.Components.qc {
     public org.telegram.ui.Cells.y e;
-    public int f40282f;
+    public int f40182f;
     public final boolean h;
-    public final un f40283n;
+    public final un f40183n;
 
     public ok(un unVar, Context context, boolean z10) {
         super(context);
-        this.f40283n = unVar;
+        this.f40183n = unVar;
         this.h = z10;
     }
 
@@ -21,18 +21,18 @@ public final class ok extends org.telegram.ui.Components.qc {
     public final void d() {
         int i10;
         try {
-            int themedColor = this.f40283n.getThemedColor(org.telegram.ui.ActionBar.t6.f21067kf);
+            int themedColor = this.f40183n.getThemedColor(org.telegram.ui.ActionBar.t6.f21068kf);
             if (this.e != null) {
                 Drawable background = getBackground();
                 Drawable drawable = this.e;
                 if (background == drawable) {
-                    if (themedColor != this.f40282f) {
+                    if (themedColor != this.f40182f) {
                         org.telegram.ui.ActionBar.t6.H1(drawable, themedColor & 436207615, true);
                     }
-                    if (getImageView() != null && (themedColor != this.f40282f || getImageView().getColorFilter() == null)) {
+                    if (getImageView() != null && (themedColor != this.f40182f || getImageView().getColorFilter() == null)) {
                         getImageView().setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
                     }
-                    this.f40282f = themedColor;
+                    this.f40182f = themedColor;
                     if (getTextView() == null && getTextView().getCurrentTextColor() != themedColor) {
                         getTextView().setTextColor(themedColor);
                         return;
@@ -51,7 +51,7 @@ public final class ok extends org.telegram.ui.Components.qc {
             if (getImageView() != null) {
                 getImageView().setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
             }
-            this.f40282f = themedColor;
+            this.f40182f = themedColor;
             if (getTextView() == null) {
             }
         } catch (Exception e) {

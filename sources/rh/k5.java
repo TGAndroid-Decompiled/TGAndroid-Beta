@@ -2,70 +2,70 @@ package rh;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.telegram.messenger.vp;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.at;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_stars;
 public final class k5 implements Runnable {
-    public final int f47157a;
-    public final e6 f47158b;
-    public final TLObject f47159c;
+    public final int f47171a;
+    public final e6 f47172b;
+    public final TLObject f47173c;
 
     public k5(e6 e6Var, TLObject tLObject, int i10) {
-        this.f47157a = i10;
-        this.f47158b = e6Var;
-        this.f47159c = tLObject;
+        this.f47171a = i10;
+        this.f47172b = e6Var;
+        this.f47173c = tLObject;
     }
 
     @Override
     public final void run() {
         boolean z10;
-        switch (this.f47157a) {
+        switch (this.f47171a) {
             case 0:
-                e6 e6Var = this.f47158b;
-                int i10 = e6Var.f46849a;
+                e6 e6Var = this.f47172b;
+                int i10 = e6Var.f46863a;
                 e6Var.A = false;
-                TLObject tLObject = this.f47159c;
+                TLObject tLObject = this.f47173c;
                 if (tLObject instanceof TL_stars.StarsStatus) {
                     TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject;
-                    vp.r1(i10).V3(starsStatus.users, false);
-                    vp.r1(i10).P3(starsStatus.chats, false);
-                    e6Var.f46870z.addAll(starsStatus.subscriptions);
+                    wp.r1(i10).V3(starsStatus.users, false);
+                    wp.r1(i10).P3(starsStatus.chats, false);
+                    e6Var.f46884z.addAll(starsStatus.subscriptions);
                     e6Var.i0(starsStatus.balance);
-                    zs.f(i10).k(223, new Object[0]);
+                    at.f(i10).k(223, new Object[0]);
                     return;
                 }
                 return;
             case 1:
-                e6 e6Var2 = this.f47158b;
-                int i11 = e6Var2.f46849a;
-                e6Var2.f46868x = false;
-                TLObject tLObject2 = this.f47159c;
+                e6 e6Var2 = this.f47172b;
+                int i11 = e6Var2.f46863a;
+                e6Var2.f46882x = false;
+                TLObject tLObject2 = this.f47173c;
                 if (tLObject2 instanceof TL_stars.StarsStatus) {
                     TL_stars.StarsStatus starsStatus2 = (TL_stars.StarsStatus) tLObject2;
-                    vp.r1(i11).V3(starsStatus2.users, false);
-                    vp.r1(i11).P3(starsStatus2.chats, false);
+                    wp.r1(i11).V3(starsStatus2.users, false);
+                    wp.r1(i11).P3(starsStatus2.chats, false);
                     e6Var2.v.addAll(starsStatus2.subscriptions);
                     if ((starsStatus2.flags & 4) == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    e6Var2.f46869y = z10;
-                    e6Var2.f46867w = starsStatus2.subscriptions_next_offset;
+                    e6Var2.f46883y = z10;
+                    e6Var2.f46881w = starsStatus2.subscriptions_next_offset;
                     e6Var2.i0(starsStatus2.balance);
-                    zs.f(i11).k(223, new Object[0]);
+                    at.f(i11).k(223, new Object[0]);
                     return;
                 }
                 return;
             case 2:
                 ArrayList arrayList = new ArrayList();
                 final ArrayList arrayList2 = new ArrayList();
-                TLObject tLObject3 = this.f47159c;
+                TLObject tLObject3 = this.f47173c;
                 boolean z11 = tLObject3 instanceof Vector;
-                final e6 e6Var3 = this.f47158b;
+                final e6 e6Var3 = this.f47172b;
                 if (z11) {
                     ArrayList<T> arrayList3 = ((Vector) tLObject3).objects;
                     int size = arrayList3.size();
@@ -82,11 +82,11 @@ public final class k5 implements Runnable {
                             }
                         }
                     }
-                    e6Var3.f46854i = true;
+                    e6Var3.f46868i = true;
                 }
-                e6Var3.f46855j = arrayList;
+                e6Var3.f46869j = arrayList;
                 e6Var3.h = false;
-                zs.f(e6Var3.f46849a).k(218, new Object[0]);
+                at.f(e6Var3.f46863a).k(218, new Object[0]);
                 if (!arrayList2.isEmpty()) {
                     Runnable runnable = new Runnable() {
                         @Override
@@ -154,15 +154,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var6 = e6Var5;
-                                                                            if (e6Var6.f46858m != null) {
-                                                                                for (int i18 = 0; i18 < e6Var6.f46858m.size(); i18++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) e6Var6.f46858m.get(i18);
+                                                                            if (e6Var6.f46872m != null) {
+                                                                                for (int i18 = 0; i18 < e6Var6.f46872m.size(); i18++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) e6Var6.f46872m.get(i18);
                                                                                     if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
                                                                                         tL_starsGiftOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var6.f46849a).k(219, new Object[0]);
+                                                                            at.f(e6Var6.f46863a).k(219, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             int i19 = gVar.f3785a;
@@ -195,15 +195,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var7 = e6Var5;
-                                                                            if (e6Var7.f46861p != null) {
-                                                                                for (int i22 = 0; i22 < e6Var7.f46861p.size(); i22++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var7.f46861p.get(i22);
+                                                                            if (e6Var7.f46875p != null) {
+                                                                                for (int i22 = 0; i22 < e6Var7.f46875p.size(); i22++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var7.f46875p.get(i22);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var7.f46849a).k(220, new Object[0]);
+                                                                            at.f(e6Var7.f46863a).k(220, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             int i23 = gVar.f3785a;
@@ -236,15 +236,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var8 = e6Var5;
-                                                                            if (e6Var8.f46855j != null) {
-                                                                                for (int i26 = 0; i26 < e6Var8.f46855j.size(); i26++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46855j.get(i26);
+                                                                            if (e6Var8.f46869j != null) {
+                                                                                for (int i26 = 0; i26 < e6Var8.f46869j.size(); i26++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46869j.get(i26);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var8.f46849a).k(218, new Object[0]);
+                                                                            at.f(e6Var8.f46863a).k(218, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -294,15 +294,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var62 = e6Var6;
-                                                                            if (e6Var62.f46858m != null) {
-                                                                                for (int i18 = 0; i18 < e6Var62.f46858m.size(); i18++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) e6Var62.f46858m.get(i18);
+                                                                            if (e6Var62.f46872m != null) {
+                                                                                for (int i18 = 0; i18 < e6Var62.f46872m.size(); i18++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) e6Var62.f46872m.get(i18);
                                                                                     if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
                                                                                         tL_starsGiftOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var62.f46849a).k(219, new Object[0]);
+                                                                            at.f(e6Var62.f46863a).k(219, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             int i19 = gVar.f3785a;
@@ -335,15 +335,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var7 = e6Var6;
-                                                                            if (e6Var7.f46861p != null) {
-                                                                                for (int i22 = 0; i22 < e6Var7.f46861p.size(); i22++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var7.f46861p.get(i22);
+                                                                            if (e6Var7.f46875p != null) {
+                                                                                for (int i22 = 0; i22 < e6Var7.f46875p.size(); i22++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var7.f46875p.get(i22);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var7.f46849a).k(220, new Object[0]);
+                                                                            at.f(e6Var7.f46863a).k(220, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             int i23 = gVar.f3785a;
@@ -376,15 +376,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var8 = e6Var6;
-                                                                            if (e6Var8.f46855j != null) {
-                                                                                for (int i26 = 0; i26 < e6Var8.f46855j.size(); i26++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46855j.get(i26);
+                                                                            if (e6Var8.f46869j != null) {
+                                                                                for (int i26 = 0; i26 < e6Var8.f46869j.size(); i26++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46869j.get(i26);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var8.f46849a).k(218, new Object[0]);
+                                                                            at.f(e6Var8.f46863a).k(218, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -434,15 +434,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var62 = e6Var7;
-                                                                            if (e6Var62.f46858m != null) {
-                                                                                for (int i18 = 0; i18 < e6Var62.f46858m.size(); i18++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) e6Var62.f46858m.get(i18);
+                                                                            if (e6Var62.f46872m != null) {
+                                                                                for (int i18 = 0; i18 < e6Var62.f46872m.size(); i18++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) e6Var62.f46872m.get(i18);
                                                                                     if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
                                                                                         tL_starsGiftOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var62.f46849a).k(219, new Object[0]);
+                                                                            at.f(e6Var62.f46863a).k(219, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             int i19 = gVar.f3785a;
@@ -475,15 +475,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var72 = e6Var7;
-                                                                            if (e6Var72.f46861p != null) {
-                                                                                for (int i22 = 0; i22 < e6Var72.f46861p.size(); i22++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46861p.get(i22);
+                                                                            if (e6Var72.f46875p != null) {
+                                                                                for (int i22 = 0; i22 < e6Var72.f46875p.size(); i22++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46875p.get(i22);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var72.f46849a).k(220, new Object[0]);
+                                                                            at.f(e6Var72.f46863a).k(220, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             int i23 = gVar.f3785a;
@@ -516,15 +516,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var8 = e6Var7;
-                                                                            if (e6Var8.f46855j != null) {
-                                                                                for (int i26 = 0; i26 < e6Var8.f46855j.size(); i26++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46855j.get(i26);
+                                                                            if (e6Var8.f46869j != null) {
+                                                                                for (int i26 = 0; i26 < e6Var8.f46869j.size(); i26++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46869j.get(i26);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var8.f46849a).k(218, new Object[0]);
+                                                                            at.f(e6Var8.f46863a).k(218, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -598,15 +598,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var62 = e6Var52;
-                                                                            if (e6Var62.f46858m != null) {
-                                                                                for (int i18 = 0; i18 < e6Var62.f46858m.size(); i18++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) e6Var62.f46858m.get(i18);
+                                                                            if (e6Var62.f46872m != null) {
+                                                                                for (int i18 = 0; i18 < e6Var62.f46872m.size(); i18++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) e6Var62.f46872m.get(i18);
                                                                                     if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
                                                                                         tL_starsGiftOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var62.f46849a).k(219, new Object[0]);
+                                                                            at.f(e6Var62.f46863a).k(219, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             int i19 = gVar.f3785a;
@@ -639,15 +639,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var72 = e6Var52;
-                                                                            if (e6Var72.f46861p != null) {
-                                                                                for (int i22 = 0; i22 < e6Var72.f46861p.size(); i22++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46861p.get(i22);
+                                                                            if (e6Var72.f46875p != null) {
+                                                                                for (int i22 = 0; i22 < e6Var72.f46875p.size(); i22++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46875p.get(i22);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var72.f46849a).k(220, new Object[0]);
+                                                                            at.f(e6Var72.f46863a).k(220, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             int i23 = gVar.f3785a;
@@ -680,15 +680,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var8 = e6Var52;
-                                                                            if (e6Var8.f46855j != null) {
-                                                                                for (int i26 = 0; i26 < e6Var8.f46855j.size(); i26++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46855j.get(i26);
+                                                                            if (e6Var8.f46869j != null) {
+                                                                                for (int i26 = 0; i26 < e6Var8.f46869j.size(); i26++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46869j.get(i26);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var8.f46849a).k(218, new Object[0]);
+                                                                            at.f(e6Var8.f46863a).k(218, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -738,15 +738,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var62 = e6Var6;
-                                                                            if (e6Var62.f46858m != null) {
-                                                                                for (int i18 = 0; i18 < e6Var62.f46858m.size(); i18++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) e6Var62.f46858m.get(i18);
+                                                                            if (e6Var62.f46872m != null) {
+                                                                                for (int i18 = 0; i18 < e6Var62.f46872m.size(); i18++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) e6Var62.f46872m.get(i18);
                                                                                     if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
                                                                                         tL_starsGiftOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var62.f46849a).k(219, new Object[0]);
+                                                                            at.f(e6Var62.f46863a).k(219, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             int i19 = gVar.f3785a;
@@ -779,15 +779,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var72 = e6Var6;
-                                                                            if (e6Var72.f46861p != null) {
-                                                                                for (int i22 = 0; i22 < e6Var72.f46861p.size(); i22++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46861p.get(i22);
+                                                                            if (e6Var72.f46875p != null) {
+                                                                                for (int i22 = 0; i22 < e6Var72.f46875p.size(); i22++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46875p.get(i22);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var72.f46849a).k(220, new Object[0]);
+                                                                            at.f(e6Var72.f46863a).k(220, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             int i23 = gVar.f3785a;
@@ -820,15 +820,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var8 = e6Var6;
-                                                                            if (e6Var8.f46855j != null) {
-                                                                                for (int i26 = 0; i26 < e6Var8.f46855j.size(); i26++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46855j.get(i26);
+                                                                            if (e6Var8.f46869j != null) {
+                                                                                for (int i26 = 0; i26 < e6Var8.f46869j.size(); i26++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46869j.get(i26);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var8.f46849a).k(218, new Object[0]);
+                                                                            at.f(e6Var8.f46863a).k(218, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -878,15 +878,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var62 = e6Var7;
-                                                                            if (e6Var62.f46858m != null) {
-                                                                                for (int i18 = 0; i18 < e6Var62.f46858m.size(); i18++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) e6Var62.f46858m.get(i18);
+                                                                            if (e6Var62.f46872m != null) {
+                                                                                for (int i18 = 0; i18 < e6Var62.f46872m.size(); i18++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) e6Var62.f46872m.get(i18);
                                                                                     if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
                                                                                         tL_starsGiftOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var62.f46849a).k(219, new Object[0]);
+                                                                            at.f(e6Var62.f46863a).k(219, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             int i19 = gVar.f3785a;
@@ -919,15 +919,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var72 = e6Var7;
-                                                                            if (e6Var72.f46861p != null) {
-                                                                                for (int i22 = 0; i22 < e6Var72.f46861p.size(); i22++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46861p.get(i22);
+                                                                            if (e6Var72.f46875p != null) {
+                                                                                for (int i22 = 0; i22 < e6Var72.f46875p.size(); i22++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46875p.get(i22);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var72.f46849a).k(220, new Object[0]);
+                                                                            at.f(e6Var72.f46863a).k(220, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             int i23 = gVar.f3785a;
@@ -960,15 +960,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var8 = e6Var7;
-                                                                            if (e6Var8.f46855j != null) {
-                                                                                for (int i26 = 0; i26 < e6Var8.f46855j.size(); i26++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46855j.get(i26);
+                                                                            if (e6Var8.f46869j != null) {
+                                                                                for (int i26 = 0; i26 < e6Var8.f46869j.size(); i26++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46869j.get(i26);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var8.f46849a).k(218, new Object[0]);
+                                                                            at.f(e6Var8.f46863a).k(218, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -1042,15 +1042,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var62 = e6Var52;
-                                                                            if (e6Var62.f46858m != null) {
-                                                                                for (int i182 = 0; i182 < e6Var62.f46858m.size(); i182++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) e6Var62.f46858m.get(i182);
+                                                                            if (e6Var62.f46872m != null) {
+                                                                                for (int i182 = 0; i182 < e6Var62.f46872m.size(); i182++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) e6Var62.f46872m.get(i182);
                                                                                     if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
                                                                                         tL_starsGiftOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var62.f46849a).k(219, new Object[0]);
+                                                                            at.f(e6Var62.f46863a).k(219, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             int i19 = gVar.f3785a;
@@ -1083,15 +1083,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var72 = e6Var52;
-                                                                            if (e6Var72.f46861p != null) {
-                                                                                for (int i22 = 0; i22 < e6Var72.f46861p.size(); i22++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46861p.get(i22);
+                                                                            if (e6Var72.f46875p != null) {
+                                                                                for (int i22 = 0; i22 < e6Var72.f46875p.size(); i22++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46875p.get(i22);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var72.f46849a).k(220, new Object[0]);
+                                                                            at.f(e6Var72.f46863a).k(220, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             int i23 = gVar.f3785a;
@@ -1124,15 +1124,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var8 = e6Var52;
-                                                                            if (e6Var8.f46855j != null) {
-                                                                                for (int i26 = 0; i26 < e6Var8.f46855j.size(); i26++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46855j.get(i26);
+                                                                            if (e6Var8.f46869j != null) {
+                                                                                for (int i26 = 0; i26 < e6Var8.f46869j.size(); i26++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46869j.get(i26);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var8.f46849a).k(218, new Object[0]);
+                                                                            at.f(e6Var8.f46863a).k(218, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -1182,15 +1182,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var622 = e6Var62;
-                                                                            if (e6Var622.f46858m != null) {
-                                                                                for (int i182 = 0; i182 < e6Var622.f46858m.size(); i182++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) e6Var622.f46858m.get(i182);
+                                                                            if (e6Var622.f46872m != null) {
+                                                                                for (int i182 = 0; i182 < e6Var622.f46872m.size(); i182++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) e6Var622.f46872m.get(i182);
                                                                                     if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
                                                                                         tL_starsGiftOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var622.f46849a).k(219, new Object[0]);
+                                                                            at.f(e6Var622.f46863a).k(219, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             int i19 = gVar.f3785a;
@@ -1223,15 +1223,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var72 = e6Var62;
-                                                                            if (e6Var72.f46861p != null) {
-                                                                                for (int i22 = 0; i22 < e6Var72.f46861p.size(); i22++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46861p.get(i22);
+                                                                            if (e6Var72.f46875p != null) {
+                                                                                for (int i22 = 0; i22 < e6Var72.f46875p.size(); i22++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46875p.get(i22);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var72.f46849a).k(220, new Object[0]);
+                                                                            at.f(e6Var72.f46863a).k(220, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             int i23 = gVar.f3785a;
@@ -1264,15 +1264,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var8 = e6Var62;
-                                                                            if (e6Var8.f46855j != null) {
-                                                                                for (int i26 = 0; i26 < e6Var8.f46855j.size(); i26++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46855j.get(i26);
+                                                                            if (e6Var8.f46869j != null) {
+                                                                                for (int i26 = 0; i26 < e6Var8.f46869j.size(); i26++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46869j.get(i26);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var8.f46849a).k(218, new Object[0]);
+                                                                            at.f(e6Var8.f46863a).k(218, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -1322,15 +1322,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var622 = e6Var7;
-                                                                            if (e6Var622.f46858m != null) {
-                                                                                for (int i182 = 0; i182 < e6Var622.f46858m.size(); i182++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) e6Var622.f46858m.get(i182);
+                                                                            if (e6Var622.f46872m != null) {
+                                                                                for (int i182 = 0; i182 < e6Var622.f46872m.size(); i182++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) e6Var622.f46872m.get(i182);
                                                                                     if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
                                                                                         tL_starsGiftOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var622.f46849a).k(219, new Object[0]);
+                                                                            at.f(e6Var622.f46863a).k(219, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             int i19 = gVar.f3785a;
@@ -1363,15 +1363,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var72 = e6Var7;
-                                                                            if (e6Var72.f46861p != null) {
-                                                                                for (int i22 = 0; i22 < e6Var72.f46861p.size(); i22++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46861p.get(i22);
+                                                                            if (e6Var72.f46875p != null) {
+                                                                                for (int i22 = 0; i22 < e6Var72.f46875p.size(); i22++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46875p.get(i22);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var72.f46849a).k(220, new Object[0]);
+                                                                            at.f(e6Var72.f46863a).k(220, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             int i23 = gVar.f3785a;
@@ -1404,15 +1404,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var8 = e6Var7;
-                                                                            if (e6Var8.f46855j != null) {
-                                                                                for (int i26 = 0; i26 < e6Var8.f46855j.size(); i26++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46855j.get(i26);
+                                                                            if (e6Var8.f46869j != null) {
+                                                                                for (int i26 = 0; i26 < e6Var8.f46869j.size(); i26++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46869j.get(i26);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var8.f46849a).k(218, new Object[0]);
+                                                                            at.f(e6Var8.f46863a).k(218, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -1428,7 +1428,7 @@ public final class k5 implements Runnable {
                         }
                     };
                     if (!org.telegram.messenger.u1.i().k()) {
-                        org.telegram.messenger.u1.i().f18219i.add(runnable);
+                        org.telegram.messenger.u1.i().f18347i.add(runnable);
                         return;
                     } else {
                         runnable.run();
@@ -1439,9 +1439,9 @@ public final class k5 implements Runnable {
             case 3:
                 ArrayList arrayList4 = new ArrayList();
                 final ArrayList arrayList5 = new ArrayList();
-                TLObject tLObject4 = this.f47159c;
+                TLObject tLObject4 = this.f47173c;
                 boolean z12 = tLObject4 instanceof Vector;
-                final e6 e6Var4 = this.f47158b;
+                final e6 e6Var4 = this.f47172b;
                 if (z12) {
                     ArrayList<T> arrayList6 = ((Vector) tLObject4).objects;
                     int size2 = arrayList6.size();
@@ -1458,11 +1458,11 @@ public final class k5 implements Runnable {
                             }
                         }
                     }
-                    e6Var4.f46857l = true;
+                    e6Var4.f46871l = true;
                 }
-                e6Var4.f46858m = arrayList4;
-                e6Var4.f46856k = false;
-                zs.f(e6Var4.f46849a).k(219, new Object[0]);
+                e6Var4.f46872m = arrayList4;
+                e6Var4.f46870k = false;
+                at.f(e6Var4.f46863a).k(219, new Object[0]);
                 if (!arrayList5.isEmpty()) {
                     Runnable runnable2 = new Runnable() {
                         @Override
@@ -1530,15 +1530,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var622 = e6Var52;
-                                                                            if (e6Var622.f46858m != null) {
-                                                                                for (int i182 = 0; i182 < e6Var622.f46858m.size(); i182++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46858m.get(i182);
+                                                                            if (e6Var622.f46872m != null) {
+                                                                                for (int i182 = 0; i182 < e6Var622.f46872m.size(); i182++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46872m.get(i182);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var622.f46849a).k(219, new Object[0]);
+                                                                            at.f(e6Var622.f46863a).k(219, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             int i19 = gVar.f3785a;
@@ -1571,15 +1571,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var72 = e6Var52;
-                                                                            if (e6Var72.f46861p != null) {
-                                                                                for (int i22 = 0; i22 < e6Var72.f46861p.size(); i22++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46861p.get(i22);
+                                                                            if (e6Var72.f46875p != null) {
+                                                                                for (int i22 = 0; i22 < e6Var72.f46875p.size(); i22++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46875p.get(i22);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var72.f46849a).k(220, new Object[0]);
+                                                                            at.f(e6Var72.f46863a).k(220, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             int i23 = gVar.f3785a;
@@ -1612,15 +1612,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var8 = e6Var52;
-                                                                            if (e6Var8.f46855j != null) {
-                                                                                for (int i26 = 0; i26 < e6Var8.f46855j.size(); i26++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46855j.get(i26);
+                                                                            if (e6Var8.f46869j != null) {
+                                                                                for (int i26 = 0; i26 < e6Var8.f46869j.size(); i26++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46869j.get(i26);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var8.f46849a).k(218, new Object[0]);
+                                                                            at.f(e6Var8.f46863a).k(218, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -1670,15 +1670,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var622 = e6Var62;
-                                                                            if (e6Var622.f46858m != null) {
-                                                                                for (int i182 = 0; i182 < e6Var622.f46858m.size(); i182++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46858m.get(i182);
+                                                                            if (e6Var622.f46872m != null) {
+                                                                                for (int i182 = 0; i182 < e6Var622.f46872m.size(); i182++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46872m.get(i182);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var622.f46849a).k(219, new Object[0]);
+                                                                            at.f(e6Var622.f46863a).k(219, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             int i19 = gVar.f3785a;
@@ -1711,15 +1711,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var72 = e6Var62;
-                                                                            if (e6Var72.f46861p != null) {
-                                                                                for (int i22 = 0; i22 < e6Var72.f46861p.size(); i22++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46861p.get(i22);
+                                                                            if (e6Var72.f46875p != null) {
+                                                                                for (int i22 = 0; i22 < e6Var72.f46875p.size(); i22++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46875p.get(i22);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var72.f46849a).k(220, new Object[0]);
+                                                                            at.f(e6Var72.f46863a).k(220, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             int i23 = gVar.f3785a;
@@ -1752,15 +1752,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var8 = e6Var62;
-                                                                            if (e6Var8.f46855j != null) {
-                                                                                for (int i26 = 0; i26 < e6Var8.f46855j.size(); i26++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46855j.get(i26);
+                                                                            if (e6Var8.f46869j != null) {
+                                                                                for (int i26 = 0; i26 < e6Var8.f46869j.size(); i26++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46869j.get(i26);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var8.f46849a).k(218, new Object[0]);
+                                                                            at.f(e6Var8.f46863a).k(218, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -1810,15 +1810,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var622 = e6Var7;
-                                                                            if (e6Var622.f46858m != null) {
-                                                                                for (int i182 = 0; i182 < e6Var622.f46858m.size(); i182++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46858m.get(i182);
+                                                                            if (e6Var622.f46872m != null) {
+                                                                                for (int i182 = 0; i182 < e6Var622.f46872m.size(); i182++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46872m.get(i182);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var622.f46849a).k(219, new Object[0]);
+                                                                            at.f(e6Var622.f46863a).k(219, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             int i19 = gVar.f3785a;
@@ -1851,15 +1851,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var72 = e6Var7;
-                                                                            if (e6Var72.f46861p != null) {
-                                                                                for (int i22 = 0; i22 < e6Var72.f46861p.size(); i22++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46861p.get(i22);
+                                                                            if (e6Var72.f46875p != null) {
+                                                                                for (int i22 = 0; i22 < e6Var72.f46875p.size(); i22++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46875p.get(i22);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var72.f46849a).k(220, new Object[0]);
+                                                                            at.f(e6Var72.f46863a).k(220, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             int i23 = gVar.f3785a;
@@ -1892,15 +1892,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var8 = e6Var7;
-                                                                            if (e6Var8.f46855j != null) {
-                                                                                for (int i26 = 0; i26 < e6Var8.f46855j.size(); i26++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46855j.get(i26);
+                                                                            if (e6Var8.f46869j != null) {
+                                                                                for (int i26 = 0; i26 < e6Var8.f46869j.size(); i26++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46869j.get(i26);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var8.f46849a).k(218, new Object[0]);
+                                                                            at.f(e6Var8.f46863a).k(218, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -1974,15 +1974,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var622 = e6Var52;
-                                                                            if (e6Var622.f46858m != null) {
-                                                                                for (int i182 = 0; i182 < e6Var622.f46858m.size(); i182++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46858m.get(i182);
+                                                                            if (e6Var622.f46872m != null) {
+                                                                                for (int i182 = 0; i182 < e6Var622.f46872m.size(); i182++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46872m.get(i182);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var622.f46849a).k(219, new Object[0]);
+                                                                            at.f(e6Var622.f46863a).k(219, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             int i19 = gVar.f3785a;
@@ -2015,15 +2015,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var72 = e6Var52;
-                                                                            if (e6Var72.f46861p != null) {
-                                                                                for (int i22 = 0; i22 < e6Var72.f46861p.size(); i22++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46861p.get(i22);
+                                                                            if (e6Var72.f46875p != null) {
+                                                                                for (int i22 = 0; i22 < e6Var72.f46875p.size(); i22++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46875p.get(i22);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var72.f46849a).k(220, new Object[0]);
+                                                                            at.f(e6Var72.f46863a).k(220, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             int i23 = gVar.f3785a;
@@ -2056,15 +2056,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var8 = e6Var52;
-                                                                            if (e6Var8.f46855j != null) {
-                                                                                for (int i26 = 0; i26 < e6Var8.f46855j.size(); i26++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46855j.get(i26);
+                                                                            if (e6Var8.f46869j != null) {
+                                                                                for (int i26 = 0; i26 < e6Var8.f46869j.size(); i26++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46869j.get(i26);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var8.f46849a).k(218, new Object[0]);
+                                                                            at.f(e6Var8.f46863a).k(218, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -2114,15 +2114,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var622 = e6Var62;
-                                                                            if (e6Var622.f46858m != null) {
-                                                                                for (int i182 = 0; i182 < e6Var622.f46858m.size(); i182++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46858m.get(i182);
+                                                                            if (e6Var622.f46872m != null) {
+                                                                                for (int i182 = 0; i182 < e6Var622.f46872m.size(); i182++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46872m.get(i182);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var622.f46849a).k(219, new Object[0]);
+                                                                            at.f(e6Var622.f46863a).k(219, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             int i19 = gVar.f3785a;
@@ -2155,15 +2155,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var72 = e6Var62;
-                                                                            if (e6Var72.f46861p != null) {
-                                                                                for (int i22 = 0; i22 < e6Var72.f46861p.size(); i22++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46861p.get(i22);
+                                                                            if (e6Var72.f46875p != null) {
+                                                                                for (int i22 = 0; i22 < e6Var72.f46875p.size(); i22++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46875p.get(i22);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var72.f46849a).k(220, new Object[0]);
+                                                                            at.f(e6Var72.f46863a).k(220, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             int i23 = gVar.f3785a;
@@ -2196,15 +2196,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var8 = e6Var62;
-                                                                            if (e6Var8.f46855j != null) {
-                                                                                for (int i26 = 0; i26 < e6Var8.f46855j.size(); i26++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46855j.get(i26);
+                                                                            if (e6Var8.f46869j != null) {
+                                                                                for (int i26 = 0; i26 < e6Var8.f46869j.size(); i26++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46869j.get(i26);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var8.f46849a).k(218, new Object[0]);
+                                                                            at.f(e6Var8.f46863a).k(218, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -2254,15 +2254,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var622 = e6Var7;
-                                                                            if (e6Var622.f46858m != null) {
-                                                                                for (int i182 = 0; i182 < e6Var622.f46858m.size(); i182++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46858m.get(i182);
+                                                                            if (e6Var622.f46872m != null) {
+                                                                                for (int i182 = 0; i182 < e6Var622.f46872m.size(); i182++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46872m.get(i182);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var622.f46849a).k(219, new Object[0]);
+                                                                            at.f(e6Var622.f46863a).k(219, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             int i19 = gVar.f3785a;
@@ -2295,15 +2295,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var72 = e6Var7;
-                                                                            if (e6Var72.f46861p != null) {
-                                                                                for (int i22 = 0; i22 < e6Var72.f46861p.size(); i22++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46861p.get(i22);
+                                                                            if (e6Var72.f46875p != null) {
+                                                                                for (int i22 = 0; i22 < e6Var72.f46875p.size(); i22++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46875p.get(i22);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var72.f46849a).k(220, new Object[0]);
+                                                                            at.f(e6Var72.f46863a).k(220, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             int i23 = gVar.f3785a;
@@ -2336,15 +2336,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var8 = e6Var7;
-                                                                            if (e6Var8.f46855j != null) {
-                                                                                for (int i26 = 0; i26 < e6Var8.f46855j.size(); i26++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46855j.get(i26);
+                                                                            if (e6Var8.f46869j != null) {
+                                                                                for (int i26 = 0; i26 < e6Var8.f46869j.size(); i26++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46869j.get(i26);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var8.f46849a).k(218, new Object[0]);
+                                                                            at.f(e6Var8.f46863a).k(218, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -2418,15 +2418,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var622 = e6Var52;
-                                                                            if (e6Var622.f46858m != null) {
-                                                                                for (int i182 = 0; i182 < e6Var622.f46858m.size(); i182++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46858m.get(i182);
+                                                                            if (e6Var622.f46872m != null) {
+                                                                                for (int i182 = 0; i182 < e6Var622.f46872m.size(); i182++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46872m.get(i182);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var622.f46849a).k(219, new Object[0]);
+                                                                            at.f(e6Var622.f46863a).k(219, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             int i19 = gVar.f3785a;
@@ -2459,15 +2459,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var72 = e6Var52;
-                                                                            if (e6Var72.f46861p != null) {
-                                                                                for (int i22 = 0; i22 < e6Var72.f46861p.size(); i22++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46861p.get(i22);
+                                                                            if (e6Var72.f46875p != null) {
+                                                                                for (int i22 = 0; i22 < e6Var72.f46875p.size(); i22++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46875p.get(i22);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var72.f46849a).k(220, new Object[0]);
+                                                                            at.f(e6Var72.f46863a).k(220, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             int i23 = gVar.f3785a;
@@ -2500,15 +2500,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var8 = e6Var52;
-                                                                            if (e6Var8.f46855j != null) {
-                                                                                for (int i26 = 0; i26 < e6Var8.f46855j.size(); i26++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46855j.get(i26);
+                                                                            if (e6Var8.f46869j != null) {
+                                                                                for (int i26 = 0; i26 < e6Var8.f46869j.size(); i26++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46869j.get(i26);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var8.f46849a).k(218, new Object[0]);
+                                                                            at.f(e6Var8.f46863a).k(218, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -2558,15 +2558,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var622 = e6Var62;
-                                                                            if (e6Var622.f46858m != null) {
-                                                                                for (int i182 = 0; i182 < e6Var622.f46858m.size(); i182++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46858m.get(i182);
+                                                                            if (e6Var622.f46872m != null) {
+                                                                                for (int i182 = 0; i182 < e6Var622.f46872m.size(); i182++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46872m.get(i182);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var622.f46849a).k(219, new Object[0]);
+                                                                            at.f(e6Var622.f46863a).k(219, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             int i19 = gVar.f3785a;
@@ -2599,15 +2599,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var72 = e6Var62;
-                                                                            if (e6Var72.f46861p != null) {
-                                                                                for (int i22 = 0; i22 < e6Var72.f46861p.size(); i22++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46861p.get(i22);
+                                                                            if (e6Var72.f46875p != null) {
+                                                                                for (int i22 = 0; i22 < e6Var72.f46875p.size(); i22++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46875p.get(i22);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var72.f46849a).k(220, new Object[0]);
+                                                                            at.f(e6Var72.f46863a).k(220, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             int i23 = gVar.f3785a;
@@ -2640,15 +2640,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var8 = e6Var62;
-                                                                            if (e6Var8.f46855j != null) {
-                                                                                for (int i26 = 0; i26 < e6Var8.f46855j.size(); i26++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46855j.get(i26);
+                                                                            if (e6Var8.f46869j != null) {
+                                                                                for (int i26 = 0; i26 < e6Var8.f46869j.size(); i26++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46869j.get(i26);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var8.f46849a).k(218, new Object[0]);
+                                                                            at.f(e6Var8.f46863a).k(218, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -2698,15 +2698,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var622 = e6Var7;
-                                                                            if (e6Var622.f46858m != null) {
-                                                                                for (int i182 = 0; i182 < e6Var622.f46858m.size(); i182++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46858m.get(i182);
+                                                                            if (e6Var622.f46872m != null) {
+                                                                                for (int i182 = 0; i182 < e6Var622.f46872m.size(); i182++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46872m.get(i182);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var622.f46849a).k(219, new Object[0]);
+                                                                            at.f(e6Var622.f46863a).k(219, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             int i19 = gVar.f3785a;
@@ -2739,15 +2739,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var72 = e6Var7;
-                                                                            if (e6Var72.f46861p != null) {
-                                                                                for (int i22 = 0; i22 < e6Var72.f46861p.size(); i22++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46861p.get(i22);
+                                                                            if (e6Var72.f46875p != null) {
+                                                                                for (int i22 = 0; i22 < e6Var72.f46875p.size(); i22++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46875p.get(i22);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var72.f46849a).k(220, new Object[0]);
+                                                                            at.f(e6Var72.f46863a).k(220, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             int i23 = gVar.f3785a;
@@ -2780,15 +2780,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var8 = e6Var7;
-                                                                            if (e6Var8.f46855j != null) {
-                                                                                for (int i26 = 0; i26 < e6Var8.f46855j.size(); i26++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46855j.get(i26);
+                                                                            if (e6Var8.f46869j != null) {
+                                                                                for (int i26 = 0; i26 < e6Var8.f46869j.size(); i26++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46869j.get(i26);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var8.f46849a).k(218, new Object[0]);
+                                                                            at.f(e6Var8.f46863a).k(218, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -2804,7 +2804,7 @@ public final class k5 implements Runnable {
                         }
                     };
                     if (!org.telegram.messenger.u1.i().k()) {
-                        org.telegram.messenger.u1.i().f18219i.add(runnable2);
+                        org.telegram.messenger.u1.i().f18347i.add(runnable2);
                         return;
                     } else {
                         runnable2.run();
@@ -2815,9 +2815,9 @@ public final class k5 implements Runnable {
             case 4:
                 ArrayList arrayList7 = new ArrayList();
                 final ArrayList arrayList8 = new ArrayList();
-                TLObject tLObject5 = this.f47159c;
+                TLObject tLObject5 = this.f47173c;
                 boolean z13 = tLObject5 instanceof Vector;
-                final e6 e6Var5 = this.f47158b;
+                final e6 e6Var5 = this.f47172b;
                 if (z13) {
                     ArrayList<T> arrayList9 = ((Vector) tLObject5).objects;
                     int size3 = arrayList9.size();
@@ -2834,11 +2834,11 @@ public final class k5 implements Runnable {
                             }
                         }
                     }
-                    e6Var5.f46860o = true;
+                    e6Var5.f46874o = true;
                 }
-                e6Var5.f46861p = arrayList7;
-                e6Var5.f46859n = false;
-                zs.f(e6Var5.f46849a).k(220, new Object[0]);
+                e6Var5.f46875p = arrayList7;
+                e6Var5.f46873n = false;
+                at.f(e6Var5.f46863a).k(220, new Object[0]);
                 if (!arrayList8.isEmpty()) {
                     Runnable runnable3 = new Runnable() {
                         @Override
@@ -2906,15 +2906,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var622 = e6Var52;
-                                                                            if (e6Var622.f46858m != null) {
-                                                                                for (int i182 = 0; i182 < e6Var622.f46858m.size(); i182++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46858m.get(i182);
+                                                                            if (e6Var622.f46872m != null) {
+                                                                                for (int i182 = 0; i182 < e6Var622.f46872m.size(); i182++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46872m.get(i182);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var622.f46849a).k(219, new Object[0]);
+                                                                            at.f(e6Var622.f46863a).k(219, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             int i19 = gVar.f3785a;
@@ -2947,15 +2947,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var72 = e6Var52;
-                                                                            if (e6Var72.f46861p != null) {
-                                                                                for (int i22 = 0; i22 < e6Var72.f46861p.size(); i22++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46861p.get(i22);
+                                                                            if (e6Var72.f46875p != null) {
+                                                                                for (int i22 = 0; i22 < e6Var72.f46875p.size(); i22++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46875p.get(i22);
                                                                                     if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var72.f46849a).k(220, new Object[0]);
+                                                                            at.f(e6Var72.f46863a).k(220, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             int i23 = gVar.f3785a;
@@ -2988,15 +2988,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var8 = e6Var52;
-                                                                            if (e6Var8.f46855j != null) {
-                                                                                for (int i26 = 0; i26 < e6Var8.f46855j.size(); i26++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46855j.get(i26);
+                                                                            if (e6Var8.f46869j != null) {
+                                                                                for (int i26 = 0; i26 < e6Var8.f46869j.size(); i26++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46869j.get(i26);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var8.f46849a).k(218, new Object[0]);
+                                                                            at.f(e6Var8.f46863a).k(218, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -3046,15 +3046,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var622 = e6Var62;
-                                                                            if (e6Var622.f46858m != null) {
-                                                                                for (int i182 = 0; i182 < e6Var622.f46858m.size(); i182++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46858m.get(i182);
+                                                                            if (e6Var622.f46872m != null) {
+                                                                                for (int i182 = 0; i182 < e6Var622.f46872m.size(); i182++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46872m.get(i182);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var622.f46849a).k(219, new Object[0]);
+                                                                            at.f(e6Var622.f46863a).k(219, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             int i19 = gVar.f3785a;
@@ -3087,15 +3087,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var72 = e6Var62;
-                                                                            if (e6Var72.f46861p != null) {
-                                                                                for (int i22 = 0; i22 < e6Var72.f46861p.size(); i22++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46861p.get(i22);
+                                                                            if (e6Var72.f46875p != null) {
+                                                                                for (int i22 = 0; i22 < e6Var72.f46875p.size(); i22++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46875p.get(i22);
                                                                                     if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var72.f46849a).k(220, new Object[0]);
+                                                                            at.f(e6Var72.f46863a).k(220, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             int i23 = gVar.f3785a;
@@ -3128,15 +3128,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var8 = e6Var62;
-                                                                            if (e6Var8.f46855j != null) {
-                                                                                for (int i26 = 0; i26 < e6Var8.f46855j.size(); i26++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46855j.get(i26);
+                                                                            if (e6Var8.f46869j != null) {
+                                                                                for (int i26 = 0; i26 < e6Var8.f46869j.size(); i26++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46869j.get(i26);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var8.f46849a).k(218, new Object[0]);
+                                                                            at.f(e6Var8.f46863a).k(218, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -3186,15 +3186,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var622 = e6Var7;
-                                                                            if (e6Var622.f46858m != null) {
-                                                                                for (int i182 = 0; i182 < e6Var622.f46858m.size(); i182++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46858m.get(i182);
+                                                                            if (e6Var622.f46872m != null) {
+                                                                                for (int i182 = 0; i182 < e6Var622.f46872m.size(); i182++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46872m.get(i182);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var622.f46849a).k(219, new Object[0]);
+                                                                            at.f(e6Var622.f46863a).k(219, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             int i19 = gVar.f3785a;
@@ -3227,15 +3227,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var72 = e6Var7;
-                                                                            if (e6Var72.f46861p != null) {
-                                                                                for (int i22 = 0; i22 < e6Var72.f46861p.size(); i22++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46861p.get(i22);
+                                                                            if (e6Var72.f46875p != null) {
+                                                                                for (int i22 = 0; i22 < e6Var72.f46875p.size(); i22++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46875p.get(i22);
                                                                                     if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var72.f46849a).k(220, new Object[0]);
+                                                                            at.f(e6Var72.f46863a).k(220, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             int i23 = gVar.f3785a;
@@ -3268,15 +3268,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var8 = e6Var7;
-                                                                            if (e6Var8.f46855j != null) {
-                                                                                for (int i26 = 0; i26 < e6Var8.f46855j.size(); i26++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46855j.get(i26);
+                                                                            if (e6Var8.f46869j != null) {
+                                                                                for (int i26 = 0; i26 < e6Var8.f46869j.size(); i26++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46869j.get(i26);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var8.f46849a).k(218, new Object[0]);
+                                                                            at.f(e6Var8.f46863a).k(218, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -3350,15 +3350,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var622 = e6Var522;
-                                                                            if (e6Var622.f46858m != null) {
-                                                                                for (int i182 = 0; i182 < e6Var622.f46858m.size(); i182++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46858m.get(i182);
+                                                                            if (e6Var622.f46872m != null) {
+                                                                                for (int i182 = 0; i182 < e6Var622.f46872m.size(); i182++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46872m.get(i182);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var622.f46849a).k(219, new Object[0]);
+                                                                            at.f(e6Var622.f46863a).k(219, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             int i19 = gVar.f3785a;
@@ -3391,15 +3391,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var72 = e6Var522;
-                                                                            if (e6Var72.f46861p != null) {
-                                                                                for (int i22 = 0; i22 < e6Var72.f46861p.size(); i22++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46861p.get(i22);
+                                                                            if (e6Var72.f46875p != null) {
+                                                                                for (int i22 = 0; i22 < e6Var72.f46875p.size(); i22++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46875p.get(i22);
                                                                                     if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var72.f46849a).k(220, new Object[0]);
+                                                                            at.f(e6Var72.f46863a).k(220, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             int i23 = gVar.f3785a;
@@ -3432,15 +3432,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var8 = e6Var522;
-                                                                            if (e6Var8.f46855j != null) {
-                                                                                for (int i26 = 0; i26 < e6Var8.f46855j.size(); i26++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46855j.get(i26);
+                                                                            if (e6Var8.f46869j != null) {
+                                                                                for (int i26 = 0; i26 < e6Var8.f46869j.size(); i26++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46869j.get(i26);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var8.f46849a).k(218, new Object[0]);
+                                                                            at.f(e6Var8.f46863a).k(218, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -3490,15 +3490,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var622 = e6Var62;
-                                                                            if (e6Var622.f46858m != null) {
-                                                                                for (int i182 = 0; i182 < e6Var622.f46858m.size(); i182++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46858m.get(i182);
+                                                                            if (e6Var622.f46872m != null) {
+                                                                                for (int i182 = 0; i182 < e6Var622.f46872m.size(); i182++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46872m.get(i182);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var622.f46849a).k(219, new Object[0]);
+                                                                            at.f(e6Var622.f46863a).k(219, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             int i19 = gVar.f3785a;
@@ -3531,15 +3531,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var72 = e6Var62;
-                                                                            if (e6Var72.f46861p != null) {
-                                                                                for (int i22 = 0; i22 < e6Var72.f46861p.size(); i22++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46861p.get(i22);
+                                                                            if (e6Var72.f46875p != null) {
+                                                                                for (int i22 = 0; i22 < e6Var72.f46875p.size(); i22++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46875p.get(i22);
                                                                                     if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var72.f46849a).k(220, new Object[0]);
+                                                                            at.f(e6Var72.f46863a).k(220, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             int i23 = gVar.f3785a;
@@ -3572,15 +3572,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var8 = e6Var62;
-                                                                            if (e6Var8.f46855j != null) {
-                                                                                for (int i26 = 0; i26 < e6Var8.f46855j.size(); i26++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46855j.get(i26);
+                                                                            if (e6Var8.f46869j != null) {
+                                                                                for (int i26 = 0; i26 < e6Var8.f46869j.size(); i26++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46869j.get(i26);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var8.f46849a).k(218, new Object[0]);
+                                                                            at.f(e6Var8.f46863a).k(218, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -3630,15 +3630,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var622 = e6Var7;
-                                                                            if (e6Var622.f46858m != null) {
-                                                                                for (int i182 = 0; i182 < e6Var622.f46858m.size(); i182++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46858m.get(i182);
+                                                                            if (e6Var622.f46872m != null) {
+                                                                                for (int i182 = 0; i182 < e6Var622.f46872m.size(); i182++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46872m.get(i182);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var622.f46849a).k(219, new Object[0]);
+                                                                            at.f(e6Var622.f46863a).k(219, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             int i19 = gVar.f3785a;
@@ -3671,15 +3671,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var72 = e6Var7;
-                                                                            if (e6Var72.f46861p != null) {
-                                                                                for (int i22 = 0; i22 < e6Var72.f46861p.size(); i22++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46861p.get(i22);
+                                                                            if (e6Var72.f46875p != null) {
+                                                                                for (int i22 = 0; i22 < e6Var72.f46875p.size(); i22++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46875p.get(i22);
                                                                                     if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var72.f46849a).k(220, new Object[0]);
+                                                                            at.f(e6Var72.f46863a).k(220, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             int i23 = gVar.f3785a;
@@ -3712,15 +3712,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var8 = e6Var7;
-                                                                            if (e6Var8.f46855j != null) {
-                                                                                for (int i26 = 0; i26 < e6Var8.f46855j.size(); i26++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46855j.get(i26);
+                                                                            if (e6Var8.f46869j != null) {
+                                                                                for (int i26 = 0; i26 < e6Var8.f46869j.size(); i26++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46869j.get(i26);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var8.f46849a).k(218, new Object[0]);
+                                                                            at.f(e6Var8.f46863a).k(218, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -3794,15 +3794,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var622 = e6Var522;
-                                                                            if (e6Var622.f46858m != null) {
-                                                                                for (int i182 = 0; i182 < e6Var622.f46858m.size(); i182++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46858m.get(i182);
+                                                                            if (e6Var622.f46872m != null) {
+                                                                                for (int i182 = 0; i182 < e6Var622.f46872m.size(); i182++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46872m.get(i182);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var622.f46849a).k(219, new Object[0]);
+                                                                            at.f(e6Var622.f46863a).k(219, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             int i19 = gVar.f3785a;
@@ -3835,15 +3835,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var72 = e6Var522;
-                                                                            if (e6Var72.f46861p != null) {
-                                                                                for (int i22 = 0; i22 < e6Var72.f46861p.size(); i22++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46861p.get(i22);
+                                                                            if (e6Var72.f46875p != null) {
+                                                                                for (int i22 = 0; i22 < e6Var72.f46875p.size(); i22++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46875p.get(i22);
                                                                                     if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var72.f46849a).k(220, new Object[0]);
+                                                                            at.f(e6Var72.f46863a).k(220, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             int i23 = gVar.f3785a;
@@ -3876,15 +3876,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var8 = e6Var522;
-                                                                            if (e6Var8.f46855j != null) {
-                                                                                for (int i26 = 0; i26 < e6Var8.f46855j.size(); i26++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46855j.get(i26);
+                                                                            if (e6Var8.f46869j != null) {
+                                                                                for (int i26 = 0; i26 < e6Var8.f46869j.size(); i26++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46869j.get(i26);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var8.f46849a).k(218, new Object[0]);
+                                                                            at.f(e6Var8.f46863a).k(218, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -3934,15 +3934,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var622 = e6Var62;
-                                                                            if (e6Var622.f46858m != null) {
-                                                                                for (int i182 = 0; i182 < e6Var622.f46858m.size(); i182++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46858m.get(i182);
+                                                                            if (e6Var622.f46872m != null) {
+                                                                                for (int i182 = 0; i182 < e6Var622.f46872m.size(); i182++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46872m.get(i182);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var622.f46849a).k(219, new Object[0]);
+                                                                            at.f(e6Var622.f46863a).k(219, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             int i19 = gVar.f3785a;
@@ -3975,15 +3975,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var72 = e6Var62;
-                                                                            if (e6Var72.f46861p != null) {
-                                                                                for (int i22 = 0; i22 < e6Var72.f46861p.size(); i22++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46861p.get(i22);
+                                                                            if (e6Var72.f46875p != null) {
+                                                                                for (int i22 = 0; i22 < e6Var72.f46875p.size(); i22++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46875p.get(i22);
                                                                                     if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var72.f46849a).k(220, new Object[0]);
+                                                                            at.f(e6Var72.f46863a).k(220, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             int i23 = gVar.f3785a;
@@ -4016,15 +4016,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var8 = e6Var62;
-                                                                            if (e6Var8.f46855j != null) {
-                                                                                for (int i26 = 0; i26 < e6Var8.f46855j.size(); i26++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46855j.get(i26);
+                                                                            if (e6Var8.f46869j != null) {
+                                                                                for (int i26 = 0; i26 < e6Var8.f46869j.size(); i26++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46869j.get(i26);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var8.f46849a).k(218, new Object[0]);
+                                                                            at.f(e6Var8.f46863a).k(218, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -4074,15 +4074,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var622 = e6Var7;
-                                                                            if (e6Var622.f46858m != null) {
-                                                                                for (int i182 = 0; i182 < e6Var622.f46858m.size(); i182++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46858m.get(i182);
+                                                                            if (e6Var622.f46872m != null) {
+                                                                                for (int i182 = 0; i182 < e6Var622.f46872m.size(); i182++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) e6Var622.f46872m.get(i182);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var622.f46849a).k(219, new Object[0]);
+                                                                            at.f(e6Var622.f46863a).k(219, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             int i19 = gVar.f3785a;
@@ -4115,15 +4115,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var72 = e6Var7;
-                                                                            if (e6Var72.f46861p != null) {
-                                                                                for (int i22 = 0; i22 < e6Var72.f46861p.size(); i22++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46861p.get(i22);
+                                                                            if (e6Var72.f46875p != null) {
+                                                                                for (int i22 = 0; i22 < e6Var72.f46875p.size(); i22++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) e6Var72.f46875p.get(i22);
                                                                                     if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var72.f46849a).k(220, new Object[0]);
+                                                                            at.f(e6Var72.f46863a).k(220, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             int i23 = gVar.f3785a;
@@ -4156,15 +4156,15 @@ public final class k5 implements Runnable {
                                                                                 }
                                                                             }
                                                                             e6 e6Var8 = e6Var7;
-                                                                            if (e6Var8.f46855j != null) {
-                                                                                for (int i26 = 0; i26 < e6Var8.f46855j.size(); i26++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46855j.get(i26);
+                                                                            if (e6Var8.f46869j != null) {
+                                                                                for (int i26 = 0; i26 < e6Var8.f46869j.size(); i26++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) e6Var8.f46869j.get(i26);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            zs.f(e6Var8.f46849a).k(218, new Object[0]);
+                                                                            at.f(e6Var8.f46863a).k(218, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -4180,7 +4180,7 @@ public final class k5 implements Runnable {
                         }
                     };
                     if (!org.telegram.messenger.u1.i().k()) {
-                        org.telegram.messenger.u1.i().f18219i.add(runnable3);
+                        org.telegram.messenger.u1.i().f18347i.add(runnable3);
                         return;
                     } else {
                         runnable3.run();
@@ -4189,7 +4189,7 @@ public final class k5 implements Runnable {
                 }
                 return;
             default:
-                vp.r1(this.f47158b.f46849a).L3((TLRPC.Updates) this.f47159c, false);
+                wp.r1(this.f47172b.f46863a).L3((TLRPC.Updates) this.f47173c, false);
                 return;
         }
     }

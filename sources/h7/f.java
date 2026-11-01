@@ -7,22 +7,22 @@ import g7.q;
 import kotlin.jvm.internal.i;
 import v7.i5;
 public final class f extends b8.b implements a {
-    public final int f7633b;
-    public final TaskCompletionSource f7634c;
+    public final int f7634b;
+    public final TaskCompletionSource f7635c;
 
     public f(int i10, TaskCompletionSource taskCompletionSource) {
         super(8);
-        this.f7633b = i10;
-        this.f7634c = taskCompletionSource;
+        this.f7634b = i10;
+        this.f7635c = taskCompletionSource;
         attachInterface(this, "com.google.android.gms.identitycredentials.internal.IIdentityCredentialCallbacks");
     }
 
     @Override
     public void F0(Status status, l lVar) {
-        switch (this.f7633b) {
+        switch (this.f7634b) {
             case 1:
                 i.e(status, "status");
-                i5.a(status, lVar, this.f7634c);
+                i5.a(status, lVar, this.f7635c);
                 return;
             default:
                 i.e(status, "status");
@@ -38,10 +38,10 @@ public final class f extends b8.b implements a {
 
     @Override
     public void q0(Status status, g7.e eVar) {
-        switch (this.f7633b) {
+        switch (this.f7634b) {
             case 0:
                 i.e(status, "status");
-                i5.a(status, eVar, this.f7634c);
+                i5.a(status, eVar, this.f7635c);
                 return;
             default:
                 i.e(status, "status");

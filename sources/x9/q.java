@@ -11,35 +11,35 @@ import java.util.Locale;
 import z9.o0;
 import z9.p0;
 public final class q {
-    public static final HashMap f53496f;
-    public static final String f53497g;
-    public final Context f53498a;
-    public final v f53499b;
-    public final a f53500c;
+    public static final HashMap f53514f;
+    public static final String f53515g;
+    public final Context f53516a;
+    public final v f53517b;
+    public final a f53518c;
     public final n4.q d;
     public final ea.d e;
 
     static {
         HashMap hashMap = new HashMap();
-        f53496f = hashMap;
+        f53514f = hashMap;
         i0.o(5, hashMap, "armeabi", 6, "armeabi-v7a");
         i0.o(9, hashMap, "arm64-v8a", 0, "x86");
         hashMap.put("x86_64", 1);
         Locale locale = Locale.US;
-        f53497g = "Crashlytics Android SDK/18.6.0";
+        f53515g = "Crashlytics Android SDK/18.6.0";
     }
 
     public q(Context context, v vVar, a aVar, n4.q qVar, ea.d dVar) {
-        this.f53498a = context;
-        this.f53499b = vVar;
-        this.f53500c = aVar;
+        this.f53516a = context;
+        this.f53517b = vVar;
+        this.f53518c = aVar;
         this.d = qVar;
         this.e = dVar;
     }
 
     public static p0 c(ji.f fVar, int i10) {
-        String str = (String) fVar.f10442c;
-        String str2 = (String) fVar.f10441b;
+        String str = (String) fVar.f10443c;
+        String str2 = (String) fVar.f10442b;
         StackTraceElement[] stackTraceElementArr = (StackTraceElement[]) fVar.d;
         int i11 = 0;
         if (stackTraceElementArr == null) {
@@ -96,10 +96,10 @@ public final class q {
     }
 
     public final List a() {
-        a aVar = this.f53500c;
+        a aVar = this.f53518c;
         String str = aVar.e;
         if (str != null) {
-            return Collections.singletonList(new o0(str, aVar.f53436b, 0L, 0L));
+            return Collections.singletonList(new o0(str, aVar.f53454b, 0L, 0L));
         }
         throw new NullPointerException("Null name");
     }

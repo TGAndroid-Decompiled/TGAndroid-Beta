@@ -3,14 +3,14 @@ package q1;
 import android.widget.EditText;
 import java.lang.ref.WeakReference;
 public final class h extends androidx.emoji2.text.i {
-    public final WeakReference f45406a;
+    public final WeakReference f45417a;
 
     public h(EditText editText) {
-        this.f45406a = new WeakReference(editText);
+        this.f45417a = new WeakReference(editText);
     }
 
     @Override
     public final void a() {
-        i.a((EditText) this.f45406a.get(), 1);
+        i.a((EditText) this.f45417a.get(), 1);
     }
 }

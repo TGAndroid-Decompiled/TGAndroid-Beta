@@ -3,13 +3,13 @@ package bi;
 import android.app.Activity;
 import android.net.Uri;
 import java.util.HashSet;
-import org.telegram.messenger.j20;
-import org.telegram.messenger.jj;
+import org.telegram.messenger.k20;
+import org.telegram.messenger.kj;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.cv0;
-import org.telegram.ui.lo0;
+import org.telegram.ui.Components.dv0;
+import org.telegram.ui.jo0;
 public final class y2 implements Runnable {
     public final int f3461a = 2;
     public final int f3462b;
@@ -42,17 +42,17 @@ public final class y2 implements Runnable {
         this.h = aVar;
     }
 
-    public y2(cv0 cv0Var, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i10, jj jjVar, org.telegram.ui.Cells.q1 q1Var, boolean z10) {
-        this.d = cv0Var;
+    public y2(dv0 dv0Var, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i10, kj kjVar, org.telegram.ui.Cells.q1 q1Var, boolean z10) {
+        this.d = dv0Var;
         this.e = tL_messages_stickerSet;
         this.f3462b = i10;
-        this.f3464f = jjVar;
+        this.f3464f = kjVar;
         this.h = q1Var;
         this.f3463c = z10;
     }
 
-    public y2(lo0 lo0Var, String str, int i10, TLObject tLObject, boolean z10, TLRPC.User user) {
-        this.d = lo0Var;
+    public y2(jo0 jo0Var, String str, int i10, TLObject tLObject, boolean z10, TLRPC.User user) {
+        this.d = jo0Var;
         this.f3464f = str;
         this.f3462b = i10;
         this.e = tLObject;
@@ -60,12 +60,12 @@ public final class y2 implements Runnable {
         this.h = user;
     }
 
-    public y2(org.telegram.ui.Wallet.k0 k0Var, boolean z10, org.telegram.ui.Wallet.h0 h0Var, TL_wallet.proofChallenge proofchallenge, int i10, j20 j20Var) {
+    public y2(org.telegram.ui.Wallet.k0 k0Var, boolean z10, org.telegram.ui.Wallet.h0 h0Var, TL_wallet.proofChallenge proofchallenge, int i10, k20 k20Var) {
         this.d = k0Var;
         this.f3463c = z10;
         this.e = h0Var;
         this.f3464f = proofchallenge;
         this.f3462b = i10;
-        this.h = j20Var;
+        this.h = k20Var;
     }
 }

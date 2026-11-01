@@ -12,9 +12,9 @@ import java.io.Closeable;
 import java.io.IOException;
 import k6.h;
 public abstract class b {
-    public static final char[] f50167a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-    public static Boolean f50168b;
-    public static Boolean f50169c;
+    public static final char[] f50181a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+    public static Boolean f50182b;
+    public static Boolean f50183c;
     public static Boolean d;
     public static Boolean e;
 
@@ -57,7 +57,7 @@ public abstract class b {
                 if (packageInfo != null) {
                     if (!h.Q(packageInfo, false)) {
                         if (h.Q(packageInfo, true)) {
-                            if (!k6.g.a((Context) p5.f10943b)) {
+                            if (!k6.g.a((Context) p5.f10944b)) {
                                 Log.w("GoogleSignatureVerifier", "Test-keys aren't accepted on this build.");
                             }
                         }
@@ -76,14 +76,14 @@ public abstract class b {
 
     public static boolean f(Context context) {
         PackageManager packageManager = context.getPackageManager();
-        if (f50168b == null) {
-            f50168b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
+        if (f50182b == null) {
+            f50182b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
         }
-        if (!f50168b.booleanValue() || Build.VERSION.SDK_INT >= 24) {
-            if (f50169c == null) {
-                f50169c = Boolean.valueOf(context.getPackageManager().hasSystemFeature("cn.google"));
+        if (!f50182b.booleanValue() || Build.VERSION.SDK_INT >= 24) {
+            if (f50183c == null) {
+                f50183c = Boolean.valueOf(context.getPackageManager().hasSystemFeature("cn.google"));
             }
-            if (f50169c.booleanValue()) {
+            if (f50183c.booleanValue()) {
                 if (!d() || Build.VERSION.SDK_INT >= 30) {
                     return true;
                 }

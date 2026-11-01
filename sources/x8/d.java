@@ -17,13 +17,13 @@ import y8.t0;
 import y8.x0;
 import y8.z0;
 public final class d extends b8.b {
-    public volatile int f53428b;
-    public final WearAuthListenerService f53429c;
+    public volatile int f53446b;
+    public final WearAuthListenerService f53447c;
 
     public d(WearAuthListenerService wearAuthListenerService) {
         super("com.google.android.gms.wearable.internal.IWearableListener", 4);
-        this.f53429c = wearAuthListenerService;
-        this.f53428b = -1;
+        this.f53447c = wearAuthListenerService;
+        this.f53446b = -1;
     }
 
     @Override
@@ -114,26 +114,26 @@ public final class d extends b8.b {
 
     public final boolean M0(Runnable runnable, String str, Object obj) {
         if (Log.isLoggable("WearableLS", 3)) {
-            Log.d("WearableLS", String.format("%s: %s %s", str, this.f53429c.f14531a.toString(), obj));
+            Log.d("WearableLS", String.format("%s: %s %s", str, this.f53447c.f14532a.toString(), obj));
         }
         int callingUid = Binder.getCallingUid();
-        if (callingUid != this.f53428b) {
-            if (x0.a(this.f53429c).b() && u6.b.g(callingUid, this.f53429c, "com.google.android.wearable.app.cn")) {
-                this.f53428b = callingUid;
-            } else if (u6.b.e(this.f53429c, callingUid)) {
-                this.f53428b = callingUid;
+        if (callingUid != this.f53446b) {
+            if (x0.a(this.f53447c).b() && u6.b.g(callingUid, this.f53447c, "com.google.android.wearable.app.cn")) {
+                this.f53446b = callingUid;
+            } else if (u6.b.e(this.f53447c, callingUid)) {
+                this.f53446b = callingUid;
             } else {
                 Log.e("WearableLS", "Caller is not GooglePlayServices; caller UID: " + callingUid);
                 return false;
             }
         }
-        synchronized (this.f53429c.f14534f) {
+        synchronized (this.f53447c.f14535f) {
             try {
-                WearAuthListenerService wearAuthListenerService = this.f53429c;
+                WearAuthListenerService wearAuthListenerService = this.f53447c;
                 if (wearAuthListenerService.h) {
                     return false;
                 }
-                wearAuthListenerService.f14532b.post(runnable);
+                wearAuthListenerService.f14533b.post(runnable);
                 return true;
             } catch (Throwable th2) {
                 throw th2;

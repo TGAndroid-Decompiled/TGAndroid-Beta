@@ -6,14 +6,14 @@ import android.view.View;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 public final class u implements View.OnClickListener {
-    public final View f7246a;
-    public final String f7247b;
-    public Method f7248c;
+    public final View f7247a;
+    public final String f7248b;
+    public Method f7249c;
     public Context d;
 
     public u(View view, String str) {
-        this.f7246a = view;
-        this.f7247b = str;
+        this.f7247a = view;
+        this.f7248b = str;
     }
 
     @Override
@@ -21,15 +21,15 @@ public final class u implements View.OnClickListener {
         int id2;
         String str;
         Method method;
-        if (this.f7248c == null) {
-            View view2 = this.f7246a;
+        if (this.f7249c == null) {
+            View view2 = this.f7247a;
             Context context = view2.getContext();
             while (true) {
-                String str2 = this.f7247b;
+                String str2 = this.f7248b;
                 if (context != null) {
                     try {
                         if (!context.isRestricted() && (method = context.getClass().getMethod(str2, View.class)) != null) {
-                            this.f7248c = method;
+                            this.f7249c = method;
                             this.d = context;
                         }
                     } catch (NoSuchMethodException unused) {
@@ -53,7 +53,7 @@ public final class u implements View.OnClickListener {
             }
         }
         try {
-            this.f7248c.invoke(this.d, view);
+            this.f7249c.invoke(this.d, view);
         } catch (IllegalAccessException e) {
             throw new IllegalStateException("Could not execute non-public method for android:onClick", e);
         } catch (InvocationTargetException e7) {

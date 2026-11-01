@@ -10,10 +10,10 @@ import java.util.regex.Pattern;
 import kg.x;
 import mg.i2;
 import org.telegram.messenger.MediaController;
+import org.telegram.messenger.at;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.jj;
+import org.telegram.messenger.kj;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.messenger.zs;
 import org.telegram.ui.ActionBar.k2;
 import org.telegram.ui.Cells.c2;
 import org.telegram.ui.Cells.w;
@@ -23,9 +23,9 @@ import org.telegram.ui.Components.ec;
 import org.telegram.ui.Components.hu;
 import org.telegram.ui.Components.jf0;
 import org.telegram.ui.Components.lr;
-import org.telegram.ui.Components.u61;
-import org.telegram.ui.Components.voip.s0;
-import org.telegram.ui.Components.voip.t1;
+import org.telegram.ui.Components.v61;
+import org.telegram.ui.Components.voip.t0;
+import org.telegram.ui.Components.voip.u1;
 import org.telegram.ui.ExternalActionActivity;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
@@ -34,7 +34,6 @@ import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Wallet.p3;
 import ph.d0;
 import ph.m;
-import rh.t0;
 import th.w0;
 public final class c implements View.OnClickListener {
     public final int f2776a;
@@ -69,35 +68,35 @@ public final class c implements View.OnClickListener {
             case 5:
                 if (!MediaController.B().A0) {
                     if (MediaController.B().H()) {
-                        MediaController.B().S(MediaController.B().f14482u0);
+                        MediaController.B().S(MediaController.B().f14483u0);
                         return;
                     } else {
-                        MediaController.B().R(MediaController.B().f14482u0, true);
+                        MediaController.B().R(MediaController.B().f14483u0, true);
                         return;
                     }
                 }
                 return;
             case 6:
-                int i13 = cq.f25133f0;
+                int i13 = cq.f25210f0;
                 return;
             case 7:
-                int i14 = lr.f28167x;
+                int i14 = lr.f28244x;
                 return;
             case 8:
                 float[] fArr = FragmentContextView.W0;
                 MediaController B = MediaController.B();
-                u61 u61Var = B.E0;
-                if (u61Var != null) {
-                    u61Var.s0(false);
+                v61 v61Var = B.E0;
+                if (v61Var != null) {
+                    v61Var.s0(false);
                 }
                 B.n0();
                 B.m();
-                jj jjVar = B.f14482u0;
-                if (jjVar != null) {
-                    zs f7 = zs.f(jjVar.I1);
-                    jj jjVar2 = B.f14482u0;
-                    if (jjVar2 != null) {
-                        i10 = jjVar2.f1();
+                kj kjVar = B.f14483u0;
+                if (kjVar != null) {
+                    at f7 = at.f(kjVar.I1);
+                    kj kjVar2 = B.f14483u0;
+                    if (kjVar2 != null) {
+                        i10 = kjVar2.f1();
                     } else {
                         i10 = 0;
                     }
@@ -106,7 +105,7 @@ public final class c implements View.OnClickListener {
                 }
                 return;
             case 9:
-                jf0 jf0Var = jf0.f27345p0;
+                jf0 jf0Var = jf0.f27400p0;
                 hu huVar = jf0Var.U;
                 if (huVar != null) {
                     huVar.I0();
@@ -120,7 +119,7 @@ public final class c implements View.OnClickListener {
                 jf0.b(false);
                 return;
             case 10:
-                s0.b();
+                t0.b();
                 return;
             case 11:
                 ((c2) view).c(!c2Var.b(), true);
@@ -131,14 +130,14 @@ public final class c implements View.OnClickListener {
                     sharedInstance.hangUp();
                     return;
                 } else {
-                    t1.a();
+                    u1.a();
                     return;
                 }
             case 13:
                 i2.l1(0, null);
                 return;
             case 14:
-                ArrayList arrayList = ExternalActionActivity.f33321y;
+                ArrayList arrayList = ExternalActionActivity.f33328y;
                 return;
             case 15:
                 return;
@@ -148,7 +147,7 @@ public final class c implements View.OnClickListener {
             case 17:
                 return;
             case 18:
-                RectF rectF = ProfileActivity.R6;
+                RectF rectF = ProfileActivity.S6;
                 try {
                     view.getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://fragment.com")));
                     return;
@@ -160,16 +159,16 @@ public final class c implements View.OnClickListener {
                 int i15 = p3.W;
                 return;
             case 20:
-                int i16 = m.f45213s2;
+                int i16 = m.f45224s2;
                 return;
             case 21:
-                ec[] ecVarArr = ph.w.f45335h2;
+                ec[] ecVarArr = ph.w.f45346h2;
                 return;
             case 22:
                 int i17 = d0.Y1;
                 return;
             case 23:
-                int i18 = t0.f47470s2;
+                int i18 = rh.t0.f47482s2;
                 return;
             case 24:
                 int i19 = sg.f.e;
@@ -184,7 +183,7 @@ public final class c implements View.OnClickListener {
                 PhotoViewer.v1().k0(1.0f, 0.0f, 0.0f, false);
                 return;
             default:
-                int i21 = xh.k.f53834n;
+                int i21 = xh.k.f53852n;
                 return;
         }
     }

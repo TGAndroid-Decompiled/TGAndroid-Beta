@@ -1,13 +1,13 @@
 package q3;
 public final class h {
-    public final int f45437a;
-    public final int f45438b;
-    public final boolean f45439c;
+    public final int f45448a;
+    public final int f45449b;
+    public final boolean f45450c;
 
     public h(int i10, int i11, boolean z10) {
-        this.f45437a = i10;
-        this.f45438b = i11;
-        this.f45439c = z10;
+        this.f45448a = i10;
+        this.f45449b = i11;
+        this.f45450c = z10;
     }
 
     public static h a(int i10) {
@@ -15,8 +15,8 @@ public final class h {
     }
 
     public h(int i10, boolean z10, int i11) {
-        this.f45437a = i10;
-        this.f45439c = z10;
-        this.f45438b = i11;
+        this.f45448a = i10;
+        this.f45450c = z10;
+        this.f45449b = i11;
     }
 }

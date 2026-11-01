@@ -7,11 +7,11 @@ import e2.x;
 import java.nio.charset.StandardCharsets;
 import u2.z0;
 public abstract class c {
-    public static final byte[] f52342a;
+    public static final byte[] f52360a;
 
     static {
         String str = l0.f6165a;
-        f52342a = "OpusHead".getBytes(StandardCharsets.UTF_8);
+        f52360a = "OpusHead".getBytes(StandardCharsets.UTF_8);
     }
 
     public static void a(x xVar) {

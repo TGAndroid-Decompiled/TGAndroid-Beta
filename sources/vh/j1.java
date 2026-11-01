@@ -3,11 +3,11 @@ package vh;
 import android.content.Context;
 import org.telegram.ui.Components.mv;
 public final class j1 extends mv {
-    public final l1 f51303g0;
+    public final l1 f51318g0;
 
     public j1(l1 l1Var, Context context, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(context, p6Var, false, false, false, true, 0, null, org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f21259v6, p6Var), false);
-        this.f51303g0 = l1Var;
+        super(context, p6Var, false, false, false, true, 0, null, org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f21260v6, p6Var), false);
+        this.f51318g0 = l1Var;
     }
 
     @Override
@@ -15,17 +15,17 @@ public final class j1 extends mv {
         int i11;
         int paddingTop;
         o1 o1Var;
-        l1 l1Var = this.f51303g0;
-        b1 b1Var = l1Var.f51445b;
-        k1 k1Var = l1Var.f51446c;
-        p1 p1Var = l1Var.f51447f;
+        l1 l1Var = this.f51318g0;
+        c1 c1Var = l1Var.f51460b;
+        k1 k1Var = l1Var.f51461c;
+        p1 p1Var = l1Var.f51462f;
         int i12 = 0;
         if (this.d) {
             return false;
         }
         if (p1Var != null && (o1Var = p1Var.h) != null) {
             if (o1Var.getSelectedCategory() != null) {
-                b1.z1(b1Var, 0, 0);
+                c1.z1(c1Var, 0, 0);
                 p1Var.h.I1(null);
             }
             p1Var.h.G1();
@@ -47,15 +47,15 @@ public final class j1 extends mv {
             }
         }
         if (i11 >= 0) {
-            float f7 = l1Var.f51448n;
+            float f7 = l1Var.f51463n;
             if (f7 >= 0.0f) {
-                paddingTop = b1Var.getPaddingTop();
+                paddingTop = c1Var.getPaddingTop();
             } else {
                 f7 = l1Var.b();
-                l1Var.f51448n = f7;
-                paddingTop = b1Var.getPaddingTop();
+                l1Var.f51463n = f7;
+                paddingTop = c1Var.getPaddingTop();
             }
-            b1.z1(b1Var, i11, ((int) (f7 + paddingTop)) - org.telegram.messenger.i0.L(102.0f));
+            c1.z1(c1Var, i11, ((int) (f7 + paddingTop)) - org.telegram.messenger.i0.L(102.0f));
         }
         return true;
     }

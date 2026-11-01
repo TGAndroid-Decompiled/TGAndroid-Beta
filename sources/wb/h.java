@@ -3,9 +3,9 @@ package wb;
 import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
 public abstract class h {
-    public static final Charset f52793a = Charset.defaultCharset();
-    public static final Charset f52794b;
-    public static final Charset f52795c;
+    public static final Charset f52811a = Charset.defaultCharset();
+    public static final Charset f52812b;
+    public static final Charset f52813c;
     public static final boolean d;
 
     static {
@@ -18,19 +18,19 @@ public abstract class h {
         } catch (UnsupportedCharsetException unused) {
             charset = null;
         }
-        f52794b = charset;
+        f52812b = charset;
         try {
             charset2 = Charset.forName("GB2312");
         } catch (UnsupportedCharsetException unused2) {
             charset2 = null;
         }
-        f52795c = charset2;
+        f52813c = charset2;
         try {
             charset3 = Charset.forName("EUC_JP");
         } catch (UnsupportedCharsetException unused3) {
         }
-        Charset charset4 = f52794b;
-        if ((charset4 != null && charset4.equals(f52793a)) || (charset3 != null && charset3.equals(f52793a))) {
+        Charset charset4 = f52812b;
+        if ((charset4 != null && charset4.equals(f52811a)) || (charset3 != null && charset3.equals(f52811a))) {
             z10 = true;
         } else {
             z10 = false;

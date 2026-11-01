@@ -1,108 +1,202 @@
 package org.telegram.messenger;
 
+import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicReference;
+import org.telegram.SQLite.SQLiteCursor;
+import org.telegram.SQLite.SQLiteDatabase;
+import org.telegram.tgnet.NativeByteBuffer;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.a80;
-public final class n9 implements j20 {
-    public final int f17065a;
-    public final f1 f17066b;
-    public final Object f17067c;
+import org.telegram.ui.z70;
+public final class n9 implements Runnable {
+    public final int f17273a;
+    public final long f17274b;
+    public final long f17275c;
     public final Object d;
     public final Object e;
+    public final Object f17276f;
 
-    public n9(f1 f1Var, Object obj, Object obj2, Object obj3, int i10) {
-        this.f17065a = i10;
-        this.f17066b = f1Var;
-        this.f17067c = obj;
-        this.d = obj2;
-        this.e = obj3;
+    public n9(Object obj, Serializable serializable, long j10, long j11, Object obj2, int i10) {
+        this.f17273a = i10;
+        this.d = obj;
+        this.e = serializable;
+        this.f17274b = j10;
+        this.f17275c = j11;
+        this.f17276f = obj2;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        Integer num;
-        int i10 = this.f17065a;
-        Object obj3 = this.e;
-        Object obj4 = this.d;
-        Object obj5 = this.f17067c;
-        f1 f1Var = this.f17066b;
-        switch (i10) {
+    public final void run() {
+        int i10 = 0;
+        switch (this.f17273a) {
             case 0:
-                x9 x9Var = (x9) f1Var;
-                a80 a80Var = (a80) obj5;
-                u9 u9Var = (u9) obj4;
-                TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = (TLRPC.TL_payments_getPaymentForm) obj3;
-                TLRPC.PaymentForm paymentForm = (TLRPC.PaymentForm) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                if (tL_error != null) {
-                    a80Var.a(Boolean.FALSE, tL_error.text);
-                    u9Var.f18272f = false;
-                    return;
-                } else if (!(paymentForm instanceof TLRPC.TL_payments_paymentFormStarGift)) {
-                    a80Var.a(Boolean.FALSE, "NO_PAYMENT_FORM");
-                    u9Var.f18272f = false;
+                y9 y9Var = (y9) this.d;
+                z70 z70Var = (z70) this.e;
+                long j10 = this.f17274b;
+                ph.l lVar = (ph.l) this.f17276f;
+                long j11 = this.f17275c;
+                if (!rh.e6.y(y9Var.currentAccount, false).e) {
+                    z70Var.a(Boolean.FALSE, "NO_BALANCE");
                     return;
                 } else {
-                    TL_stars.TL_payments_sendStarsForm tL_payments_sendStarsForm = new TL_stars.TL_payments_sendStarsForm();
-                    tL_payments_sendStarsForm.form_id = ((TLRPC.TL_payments_paymentFormStarGift) paymentForm).form_id;
-                    tL_payments_sendStarsForm.invoice = tL_payments_getPaymentForm.invoice;
-                    x9Var.getConnectionsManager().sendRequestTyped(tL_payments_sendStarsForm, new a3.b(1), new o9(x9Var, u9Var, a80Var));
+                    y9Var.k(j10, lVar, j11, z70Var);
                     return;
                 }
             case 1:
-                ui uiVar = (ui) f1Var;
-                si siVar = (si) obj5;
-                ti tiVar = (ti) obj4;
-                q20 q20Var = (q20) obj3;
-                TLRPC.messages_FoundStickers messages_foundstickers = (TLRPC.messages_FoundStickers) obj;
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                uiVar.P1.remove(siVar);
-                if (tiVar == null) {
-                    tiVar = new ti();
-                }
-                ArrayList arrayList = tiVar.f18064a;
-                if (messages_foundstickers instanceof TLRPC.TL_messages_foundStickers) {
-                    TLRPC.TL_messages_foundStickers tL_messages_foundStickers = (TLRPC.TL_messages_foundStickers) messages_foundstickers;
-                    arrayList.addAll(tL_messages_foundStickers.stickers);
-                    if ((tL_messages_foundStickers.flags & 1) != 0) {
-                        num = Integer.valueOf(tL_messages_foundStickers.next_offset);
-                    } else {
-                        num = null;
+                y00 y00Var = (y00) this.d;
+                TLObject tLObject = (TLObject) this.e;
+                TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) this.f17276f;
+                long j12 = this.f17274b;
+                long j13 = this.f17275c;
+                if (tLObject != null) {
+                    TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
+                    tL_forumTopic.totalMessagesCount = messages_messages.count;
+                    y00Var.getMessagesStorage().f2(j12, tL_forumTopic, 16);
+                    if (messages_messages.count == 0 && y00Var.getMessagesController().x2(j12)) {
+                        is messagesStorage = y00Var.getMessagesStorage();
+                        messagesStorage.f16331a.c(new bq(1, j12, j13, messagesStorage));
+                        y00Var.s(-j12, j13);
                     }
-                    tiVar.f18065b = num;
-                }
-                uiVar.Q1.put(siVar, tiVar);
-                q20Var.a(arrayList);
-                return;
-            default:
-                ui uiVar2 = (ui) f1Var;
-                q20 q20Var2 = (q20) obj4;
-                TLRPC.InputStickerSet inputStickerSet = (TLRPC.InputStickerSet) obj3;
-                Boolean bool = (Boolean) obj;
-                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj2;
-                uiVar2.I0.remove((String) obj5);
-                if (q20Var2 != null) {
-                    q20Var2.a(tL_messages_stickerSet);
-                }
-                if (tL_messages_stickerSet != null) {
-                    TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
-                    if (stickerSet != null) {
-                        uiVar2.I.k(tL_messages_stickerSet, stickerSet.f19820id);
-                        uiVar2.N.put(tL_messages_stickerSet.set.short_name.toLowerCase(), tL_messages_stickerSet);
-                        boolean z10 = inputStickerSet instanceof TLRPC.TL_inputStickerSetEmojiDefaultStatuses;
-                        if (z10) {
-                            uiVar2.O = tL_messages_stickerSet;
-                        }
-                        if (z10) {
-                            uiVar2.P = tL_messages_stickerSet;
-                        }
-                    }
-                    uiVar2.U1(tL_messages_stickerSet);
-                    uiVar2.getNotificationCenter().k(64, Long.valueOf(tL_messages_stickerSet.set.f19820id), tL_messages_stickerSet);
+                    at.f(y00Var.currentAccount).k(319, Long.valueOf(-j12), Boolean.TRUE);
                     return;
                 }
                 return;
+            case 2:
+                m7 m7Var = (m7) this.d;
+                long[] jArr = (long[]) this.e;
+                long j14 = this.f17274b;
+                long j15 = this.f17275c;
+                CountDownLatch countDownLatch = (CountDownLatch) this.f17276f;
+                try {
+                    jArr[0] = m7Var.h(j14, j15, m7Var.M);
+                } catch (Throwable th2) {
+                    f8.g(th2, true);
+                    jArr[0] = 0;
+                }
+                if (m7Var.Y == 3) {
+                    jArr[1] = 1;
+                }
+                countDownLatch.countDown();
+                return;
+            case 3:
+                MediaController mediaController = (MediaController) this.d;
+                qe qeVar = (qe) this.e;
+                long j16 = this.f17274b;
+                long j17 = this.f17275c;
+                org.telegram.ui.Components.tf tfVar = (org.telegram.ui.Components.tf) this.f17276f;
+                if (MediaController.cropOpusFile(mediaController.f14459i1.getAbsolutePath(), qeVar.getAbsolutePath(), j16, j17)) {
+                    File file = mediaController.f14459i1;
+                    if (file != null) {
+                        file.delete();
+                    }
+                    mediaController.f14459i1 = qeVar;
+                    mediaController.f14461j1 = j17 - j16;
+                    i0.g3(tfVar);
+                    return;
+                }
+                return;
+            case 4:
+                is isVar = (is) this.d;
+                long j18 = this.f17274b;
+                long j19 = this.f17275c;
+                AtomicReference atomicReference = (AtomicReference) this.e;
+                CountDownLatch countDownLatch2 = (CountDownLatch) this.f17276f;
+                isVar.getClass();
+                SQLiteCursor sQLiteCursor = null;
+                try {
+                    try {
+                        SQLiteDatabase sQLiteDatabase = isVar.f16333b;
+                        sQLiteCursor = sQLiteDatabase.queryFinalized("SELECT data FROM messages_v2 WHERE uid = " + j18 + " AND mid = " + j19 + " LIMIT 1", new Object[0]);
+                        while (sQLiteCursor.next()) {
+                            NativeByteBuffer byteBufferValue = sQLiteCursor.byteBufferValue(0);
+                            if (byteBufferValue != null) {
+                                TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                                byteBufferValue.reuse();
+                                atomicReference.set(TLdeserialize);
+                            }
+                        }
+                        sQLiteCursor.dispose();
+                    } catch (Throwable th3) {
+                        if (sQLiteCursor != null) {
+                            sQLiteCursor.dispose();
+                        }
+                        countDownLatch2.countDown();
+                        throw th3;
+                    }
+                } catch (Exception e) {
+                    isVar.o(e, true);
+                    if (sQLiteCursor != null) {
+                        sQLiteCursor.dispose();
+                    }
+                }
+                countDownLatch2.countDown();
+                return;
+            case 5:
+                ((is) this.d).S1(this.f17274b, this.f17275c, (ArrayList) this.e, (ArrayList) this.f17276f);
+                return;
+            default:
+                y00 y00Var2 = (y00) this.d;
+                long j20 = this.f17274b;
+                ArrayList arrayList = (ArrayList) this.e;
+                long j21 = this.f17275c;
+                a3.h0 h0Var = (a3.h0) this.f17276f;
+                y00Var2.getClass();
+                if (v2.f18578a) {
+                    StringBuilder s10 = a1.g.s(j20, "loaded from cache ", " topics_count=");
+                    if (arrayList != null) {
+                        i10 = arrayList.size();
+                    }
+                    i0.a.p(i10, s10);
+                }
+                y00Var2.u(j20, arrayList, null, true, 0, -1);
+                y00Var2.y(j20, true);
+                if (y00Var2.f(j20, j21) != null) {
+                    h0Var.run();
+                    return;
+                }
+                ArrayList arrayList2 = new ArrayList();
+                new TLRPC.TL_forumTopic().f19846id = (int) j21;
+                y00Var2.v(j20, arrayList2, h0Var);
+                return;
         }
+    }
+
+    public n9(y9 y9Var, z70 z70Var, long j10, ph.l lVar, long j11) {
+        this.f17273a = 0;
+        this.d = y9Var;
+        this.e = z70Var;
+        this.f17274b = j10;
+        this.f17276f = lVar;
+        this.f17275c = j11;
+    }
+
+    public n9(is isVar, long j10, long j11, Serializable serializable, Object obj, int i10) {
+        this.f17273a = i10;
+        this.d = isVar;
+        this.f17274b = j10;
+        this.f17275c = j11;
+        this.e = serializable;
+        this.f17276f = obj;
+    }
+
+    public n9(y00 y00Var, long j10, ArrayList arrayList, long j11, a3.h0 h0Var) {
+        this.f17273a = 6;
+        this.d = y00Var;
+        this.f17274b = j10;
+        this.e = arrayList;
+        this.f17275c = j11;
+        this.f17276f = h0Var;
+    }
+
+    public n9(y00 y00Var, TLObject tLObject, TLRPC.TL_forumTopic tL_forumTopic, long j10, long j11) {
+        this.f17273a = 1;
+        this.d = y00Var;
+        this.e = tLObject;
+        this.f17276f = tL_forumTopic;
+        this.f17274b = j10;
+        this.f17275c = j11;
     }
 }

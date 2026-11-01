@@ -13,7 +13,7 @@ public final class qk extends bh.h {
     public final void setVisibility(int i10) {
         boolean z10;
         super.setVisibility(i10);
-        j6.m mVar = this.L.Xc;
+        j6.m mVar = this.L.Yc;
         boolean z11 = false;
         if (i10 == 0) {
             z10 = true;

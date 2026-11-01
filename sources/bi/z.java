@@ -9,11 +9,11 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.lu;
-import org.telegram.messenger.q20;
-import org.telegram.messenger.vp;
-import org.telegram.messenger.z20;
+import org.telegram.messenger.a30;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.mu;
+import org.telegram.messenger.r20;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_aicompose;
@@ -21,16 +21,16 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.a7;
 import org.telegram.ui.Components.gr;
 import org.telegram.ui.Components.ha;
-import org.telegram.ui.Components.p51;
-import org.telegram.ui.Components.sk0;
+import org.telegram.ui.Components.q51;
 import org.telegram.ui.Components.tk0;
+import org.telegram.ui.Components.uk0;
 public final class z extends ha {
     public final int P1;
-    public final q20 Q1;
-    public p51 R1;
+    public final r20 Q1;
+    public q51 R1;
     public final FrameLayout S1;
     public final FrameLayout T1;
-    public final lu U1;
+    public final mu U1;
     public final FrameLayout V1;
     public final org.telegram.ui.Cells.m3 W1;
     public final vh.d X1;
@@ -38,25 +38,25 @@ public final class z extends ha {
     public int Z1;
     public TL_iv.RichMessage a2;
 
-    public z(int i10, Context context, q20 q20Var, org.telegram.ui.ActionBar.p6 p6Var) {
+    public z(int i10, Context context, r20 r20Var, org.telegram.ui.ActionBar.p6 p6Var) {
         super(context, null, true, false, p6Var);
         this.P1 = i10;
-        this.Q1 = q20Var;
-        int i11 = org.telegram.ui.ActionBar.t6.f20872a7;
+        this.Q1 = r20Var;
+        int i11 = org.telegram.ui.ActionBar.t6.f20873a7;
         w0(i11);
         Q(i11);
         FrameLayout frameLayout = new FrameLayout(context);
         this.S1 = frameLayout;
         TextView textView = new TextView(context);
-        textView.setText(cd.L0(2131754060, null));
+        textView.setText(dd.L0(2131754060, null));
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(org.telegram.messenger.i0.o());
         int i12 = org.telegram.ui.ActionBar.t6.G6;
         a7.V(textView, i12, p6Var);
         textView.setGravity(19);
         frameLayout.addView(textView, w7.b6.d(-1, 56.0f, 51, 22.0f, 6.0f, 56.0f, 0.0f));
-        this.f26680z1 = org.telegram.messenger.i0.L(-8.0f);
-        ImageView e = z20.e(context, 2131231270);
+        this.f26738z1 = org.telegram.messenger.i0.L(-8.0f);
+        ImageView e = a30.e(context, 2131231270);
         e.setScaleType(ImageView.ScaleType.CENTER);
         a7.t(e, i12, p6Var, PorterDuff.Mode.SRC_IN);
         w7.e6.a(e);
@@ -79,9 +79,9 @@ public final class z extends ha {
                         if (!zVar.Y1) {
                             TL_iv.RichMessage richMessage = zVar.a2;
                             if (richMessage != null) {
-                                q20 q20Var2 = zVar.Q1;
-                                if (q20Var2 != null) {
-                                    q20Var2.a(richMessage);
+                                r20 r20Var2 = zVar.Q1;
+                                if (r20Var2 != null) {
+                                    r20Var2.a(richMessage);
                                 }
                                 zVar.dismiss();
                                 return;
@@ -107,20 +107,20 @@ public final class z extends ha {
         frameLayout.addView(e, w7.b6.d(48, 48.0f, 53, 0.0f, 10.0f, 12.0f, 0.0f));
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.T1 = frameLayout2;
-        lu luVar = new lu(i10, context, p6Var);
-        this.U1 = luVar;
-        luVar.setPadding(org.telegram.messenger.i0.L(14.0f), org.telegram.messenger.i0.L(12.0f), org.telegram.messenger.i0.L(14.0f), org.telegram.messenger.i0.L(12.0f));
+        mu muVar = new mu(i10, context, p6Var);
+        this.U1 = muVar;
+        muVar.setPadding(org.telegram.messenger.i0.L(14.0f), org.telegram.messenger.i0.L(12.0f), org.telegram.messenger.i0.L(14.0f), org.telegram.messenger.i0.L(12.0f));
         int L = org.telegram.messenger.i0.L(12.0f);
-        int i13 = org.telegram.ui.ActionBar.t6.f20929d6;
+        int i13 = org.telegram.ui.ActionBar.t6.f20930d6;
         ShapeDrawable d02 = org.telegram.ui.ActionBar.t6.d0(L, org.telegram.ui.ActionBar.t6.w0(i13, p6Var));
         org.telegram.ui.ActionBar.w6 N = a7.N(i13);
-        luVar.setBackground(d02);
-        a7.k(luVar, d02, N, null, p6Var);
-        frameLayout2.addView(luVar, w7.b6.c(-2.0f, -1));
+        muVar.setBackground(d02);
+        a7.k(muVar, d02, N, null, p6Var);
+        frameLayout2.addView(muVar, w7.b6.c(-2.0f, -1));
         frameLayout2.setPadding(org.telegram.messenger.i0.L(12.0f), org.telegram.messenger.i0.L(12.0f), org.telegram.messenger.i0.L(12.0f), 0);
         FrameLayout frameLayout3 = new FrameLayout(context);
         this.V1 = frameLayout3;
-        org.telegram.ui.Cells.m3 m3Var = new org.telegram.ui.Cells.m3(context, cd.L0(2131754058, null), true, false, ((org.telegram.messenger.l0) vp.r1(i10).f18957y7.R.f10700a).f16658c, p6Var);
+        org.telegram.ui.Cells.m3 m3Var = new org.telegram.ui.Cells.m3(context, dd.L0(2131754058, null), true, false, ((org.telegram.messenger.l0) wp.r1(i10).f19300y7.R.f10701a).f16855c, p6Var);
         this.W1 = m3Var;
         org.telegram.ui.Cells.k3 k3Var = m3Var.d;
         k3Var.setImeOptions(6);
@@ -132,9 +132,9 @@ public final class z extends ha {
         k3Var.addTextChangedListener(new y(this));
         frameLayout3.addView(m3Var, w7.b6.c(-2.0f, -1));
         frameLayout3.setPadding(org.telegram.messenger.i0.L(12.0f), 0, org.telegram.messenger.i0.L(12.0f), 0);
-        vh.d i14 = z20.i(24, context, p6Var, true);
+        vh.d i14 = a30.i(24, context, p6Var, true);
         this.X1 = i14;
-        i14.i(cd.L0(2131754059, null), false, true);
+        i14.i(dd.L0(2131754059, null), false, true);
         i14.setOnClickListener(new View.OnClickListener(this) {
             public final z f3443b;
 
@@ -154,9 +154,9 @@ public final class z extends ha {
                         if (!zVar.Y1) {
                             TL_iv.RichMessage richMessage = zVar.a2;
                             if (richMessage != null) {
-                                q20 q20Var2 = zVar.Q1;
-                                if (q20Var2 != null) {
-                                    q20Var2.a(richMessage);
+                                r20 r20Var2 = zVar.Q1;
+                                if (r20Var2 != null) {
+                                    r20Var2.a(richMessage);
                                 }
                                 zVar.dismiss();
                                 return;
@@ -179,33 +179,33 @@ public final class z extends ha {
                 }
             }
         });
-        this.f21586b.addView(i14, w7.b6.d(-1, 48.0f, 87, 12.0f, 12.0f, 12.0f, 12.0f));
-        ((ViewGroup.MarginLayoutParams) i14.getLayoutParams()).leftMargin += this.f21615t0;
-        ((ViewGroup.MarginLayoutParams) i14.getLayoutParams()).rightMargin += this.f21615t0;
+        this.f21587b.addView(i14, w7.b6.d(-1, 48.0f, 87, 12.0f, 12.0f, 12.0f, 12.0f));
+        ((ViewGroup.MarginLayoutParams) i14.getLayoutParams()).leftMargin += this.f21616t0;
+        ((ViewGroup.MarginLayoutParams) i14.getLayoutParams()).rightMargin += this.f21616t0;
         s4.j jVar = new s4.j();
-        jVar.f47927m = false;
+        jVar.f47938m = false;
         jVar.C = false;
         jVar.o(gr.h);
         jVar.n(350L);
-        this.f26666k1.setItemAnimator(jVar);
-        tk0 tk0Var = this.f26666k1;
-        int i15 = this.f21615t0;
-        tk0Var.setPadding(i15, 0, i15, org.telegram.messenger.i0.L(72.0f));
-        this.f26666k1.setClipToPadding(false);
+        this.f26724k1.setItemAnimator(jVar);
+        uk0 uk0Var = this.f26724k1;
+        int i15 = this.f21616t0;
+        uk0Var.setPadding(i15, 0, i15, org.telegram.messenger.i0.L(72.0f));
+        this.f26724k1.setClipToPadding(false);
         this.R1.O(false);
         d1();
     }
 
     @Override
-    public final sk0 L0(tk0 tk0Var) {
-        p51 p51Var = new p51(tk0Var, getContext(), this.P1, 0, true, new ag.a(this, 12), this.I0);
-        this.R1 = p51Var;
-        return p51Var;
+    public final tk0 L0(uk0 uk0Var) {
+        q51 q51Var = new q51(uk0Var, getContext(), this.P1, 0, true, new ag.a(this, 12), this.I0);
+        this.R1 = q51Var;
+        return q51Var;
     }
 
     @Override
     public final CharSequence O0() {
-        return cd.L0(2131754060, null);
+        return dd.L0(2131754060, null);
     }
 
     public final void d1() {

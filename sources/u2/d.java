@@ -2,18 +2,18 @@ package u2;
 
 import i2.v1;
 public final class d implements e0, d0 {
-    public final e0 f49862a;
-    public d0 f49863b;
-    public c[] f49864c = new c[0];
+    public final e0 f49876a;
+    public d0 f49877b;
+    public c[] f49878c = new c[0];
     public long d;
     public long e;
-    public long f49865f;
+    public long f49879f;
     public long h;
-    public g f49866n;
+    public g f49880n;
 
     public d(e0 e0Var, boolean z10, long j10, long j11, int i10) {
         long j12;
-        this.f49862a = e0Var;
+        this.f49876a = e0Var;
         if (z10) {
             j12 = j10;
         } else {
@@ -21,7 +21,7 @@ public final class d implements e0, d0 {
         }
         this.d = j12;
         this.e = -9223372036854775807L;
-        this.f49865f = j10;
+        this.f49879f = j10;
         this.h = j11;
     }
 
@@ -34,7 +34,7 @@ public final class d implements e0, d0 {
 
     @Override
     public final long c() {
-        long c10 = this.f49862a.c();
+        long c10 = this.f49876a.c();
         if (c10 != Long.MIN_VALUE) {
             long j10 = this.h;
             if (j10 == Long.MIN_VALUE || c10 < j10) {
@@ -46,24 +46,24 @@ public final class d implements e0, d0 {
 
     @Override
     public final boolean d() {
-        return this.f49862a.d();
+        return this.f49876a.d();
     }
 
     @Override
     public final void e(e0 e0Var) {
-        if (this.f49866n != null) {
+        if (this.f49880n != null) {
             return;
         }
-        d0 d0Var = this.f49863b;
+        d0 d0Var = this.f49877b;
         d0Var.getClass();
         d0Var.e(this);
     }
 
     @Override
     public final void f() {
-        g gVar = this.f49866n;
+        g gVar = this.f49880n;
         if (gVar == null) {
-            this.f49862a.f();
+            this.f49876a.f();
             return;
         }
         throw gVar;
@@ -73,13 +73,13 @@ public final class d implements e0, d0 {
     public final long g(long j10) {
         c[] cVarArr;
         this.d = -9223372036854775807L;
-        for (c cVar : this.f49864c) {
+        for (c cVar : this.f49878c) {
             if (cVar != null) {
-                cVar.f49833b = false;
+                cVar.f49847b = false;
             }
         }
-        long g10 = this.f49862a.g(j10);
-        long j11 = this.f49865f;
+        long g10 = this.f49876a.g(j10);
+        long j11 = this.f49879f;
         long j12 = this.h;
         long max = Math.max(g10, j11);
         if (j12 != Long.MIN_VALUE) {
@@ -90,13 +90,13 @@ public final class d implements e0, d0 {
 
     @Override
     public final void h(long j10) {
-        this.f49862a.h(j10);
+        this.f49876a.h(j10);
     }
 
     @Override
     public final void j(d0 d0Var, long j10) {
-        this.f49863b = d0Var;
-        this.f49862a.j(this, j10);
+        this.f49877b = d0Var;
+        this.f49876a.j(this, j10);
     }
 
     @Override
@@ -111,9 +111,9 @@ public final class d implements e0, d0 {
             }
             return j10;
         }
-        long k11 = this.f49862a.k();
+        long k11 = this.f49876a.k();
         if (k11 != -9223372036854775807L) {
-            long j11 = this.f49865f;
+            long j11 = this.f49879f;
             long j12 = this.h;
             long max = Math.max(k11, j11);
             if (j12 != Long.MIN_VALUE) {
@@ -129,7 +129,7 @@ public final class d implements e0, d0 {
 
     @Override
     public final boolean m(i2.w0 w0Var) {
-        return this.f49862a.m(w0Var);
+        return this.f49876a.m(w0Var);
     }
 
     @Override
@@ -139,20 +139,20 @@ public final class d implements e0, d0 {
 
     @Override
     public final r1 q() {
-        return this.f49862a.q();
+        return this.f49876a.q();
     }
 
     @Override
     public final void r(f1 f1Var) {
         e0 e0Var = (e0) f1Var;
-        d0 d0Var = this.f49863b;
+        d0 d0Var = this.f49877b;
         d0Var.getClass();
         d0Var.r(this);
     }
 
     @Override
     public final long s() {
-        long s10 = this.f49862a.s();
+        long s10 = this.f49876a.s();
         if (s10 != Long.MIN_VALUE) {
             long j10 = this.h;
             if (j10 == Long.MIN_VALUE || s10 < j10) {
@@ -165,12 +165,12 @@ public final class d implements e0, d0 {
     @Override
     public final long t(long j10, v1 v1Var) {
         long j11;
-        long j12 = this.f49865f;
+        long j12 = this.f49879f;
         if (j10 == j12) {
             return j12;
         }
-        long j13 = e2.l0.j(v1Var.f8103a, 0L, j10 - j12);
-        long j14 = v1Var.f8104b;
+        long j13 = e2.l0.j(v1Var.f8104a, 0L, j10 - j12);
+        long j14 = v1Var.f8105b;
         long j15 = this.h;
         if (j15 == Long.MIN_VALUE) {
             j11 = Long.MAX_VALUE;
@@ -178,14 +178,14 @@ public final class d implements e0, d0 {
             j11 = j15 - j10;
         }
         long j16 = e2.l0.j(j14, 0L, j11);
-        if (j13 != v1Var.f8103a || j16 != v1Var.f8104b) {
+        if (j13 != v1Var.f8104a || j16 != v1Var.f8105b) {
             v1Var = new v1(j13, j16);
         }
-        return this.f49862a.t(j10, v1Var);
+        return this.f49876a.t(j10, v1Var);
     }
 
     @Override
     public final void u(long j10) {
-        this.f49862a.u(j10);
+        this.f49876a.u(j10);
     }
 }

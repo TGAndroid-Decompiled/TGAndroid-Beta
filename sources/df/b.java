@@ -83,18 +83,18 @@ public final class b extends c {
                 StringBuffer stringBuffer = new StringBuffer();
                 h(stringBuffer, this);
                 stringBuffer.append("[off=");
-                long j10 = ((ff.a) ((c) this.f5878c).f5877b).f7055b;
+                long j10 = ((ff.a) ((c) this.f5878c).f5877b).f7056b;
                 ff.a aVar = (ff.a) this.f5877b;
-                stringBuffer.append(j10 - aVar.f7055b);
+                stringBuffer.append(j10 - aVar.f7056b);
                 stringBuffer.append(",pos=");
-                stringBuffer.append(aVar.f7055b);
+                stringBuffer.append(aVar.f7056b);
                 stringBuffer.append(",len=");
                 ff.b bVar = (ff.b) aVar;
-                stringBuffer.append(bVar.e() + bVar.f7055b);
+                stringBuffer.append(bVar.e() + bVar.f7056b);
                 stringBuffer.append("]");
                 return stringBuffer.toString();
             default:
-                return g.q(new StringBuilder("mp4[pos="), ((ff.a) this.f5877b).f7055b, "]");
+                return g.q(new StringBuilder("mp4[pos="), ((ff.a) this.f5877b).f7056b, "]");
         }
     }
 }

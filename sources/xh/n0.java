@@ -13,24 +13,24 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.Components.ei0;
+import org.telegram.ui.Components.fi0;
 import org.telegram.ui.Components.n6;
 import org.telegram.ui.Components.r8;
 public final class n0 extends Drawable implements n6 {
-    public final Paint f53918a;
-    public final Paint f53919b;
-    public final Paint f53920c;
+    public final Paint f53939a;
+    public final Paint f53940b;
+    public final Paint f53941c;
     public final ImageReceiver d;
     public final ImageReceiver e;
-    public final Drawable f53921f;
+    public final Drawable f53942f;
     public int h;
 
     public n0(Context context, TLRPC.User user, TLRPC.User user2) {
         Paint paint = new Paint(1);
-        this.f53918a = paint;
-        this.f53919b = new Paint(1);
+        this.f53939a = paint;
+        this.f53940b = new Paint(1);
         Paint paint2 = new Paint(1);
-        this.f53920c = paint2;
+        this.f53941c = paint2;
         ImageReceiver imageReceiver = new ImageReceiver(null);
         this.d = imageReceiver;
         ImageReceiver imageReceiver2 = new ImageReceiver(null);
@@ -43,7 +43,7 @@ public final class n0 extends Drawable implements n6 {
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint2.setColor(-1);
         Drawable mutate = context.getResources().getDrawable(2131231129).mutate();
-        this.f53921f = mutate;
+        this.f53942f = mutate;
         int x02 = t6.x0(null, t6.L5, false);
         this.h = x02;
         mutate.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
@@ -58,9 +58,9 @@ public final class n0 extends Drawable implements n6 {
     }
 
     @Override
-    public final void a(ei0 ei0Var) {
-        this.e.H0(ei0Var);
-        this.d.H0(ei0Var);
+    public final void a(fi0 fi0Var) {
+        this.e.H0(fi0Var);
+        this.d.H0(fi0Var);
     }
 
     @Override
@@ -80,7 +80,7 @@ public final class n0 extends Drawable implements n6 {
         Rect bounds = getBounds();
         int i10 = t6.L5;
         int x02 = t6.x0(null, i10, false);
-        Paint paint = this.f53919b;
+        Paint paint = this.f53940b;
         paint.setColor(x02);
         float L = org.telegram.messenger.i0.L(136.0f) / 2.0f;
         ImageReceiver imageReceiver = this.d;
@@ -89,10 +89,10 @@ public final class n0 extends Drawable implements n6 {
         float centerX = (bounds.centerX() - L) + org.telegram.messenger.i0.L(41.0f);
         float L2 = org.telegram.messenger.i0.L(16.0f) + bounds.centerY();
         canvas.drawCircle(centerX, L2, org.telegram.messenger.i0.L(14.0f), paint);
-        canvas.drawCircle(centerX, L2, org.telegram.messenger.i0.L(12.0f), this.f53920c);
+        canvas.drawCircle(centerX, L2, org.telegram.messenger.i0.L(12.0f), this.f53941c);
         int x03 = t6.x0(null, i10, false);
         int i11 = this.h;
-        Drawable drawable = this.f53921f;
+        Drawable drawable = this.f53942f;
         if (x03 != i11) {
             this.h = x03;
             drawable.setColorFilter(new PorterDuffColorFilter(x03, PorterDuff.Mode.SRC_IN));
@@ -100,7 +100,7 @@ public final class n0 extends Drawable implements n6 {
         drawable.setBounds((int) (centerX - org.telegram.messenger.i0.L(9.0f)), (int) (L2 - org.telegram.messenger.i0.L(9.0f)), (int) (centerX + org.telegram.messenger.i0.L(9.0f)), (int) (L2 + org.telegram.messenger.i0.L(9.0f)));
         drawable.draw(canvas);
         int centerX2 = bounds.centerX();
-        Paint paint2 = this.f53918a;
+        Paint paint2 = this.f53939a;
         canvas.drawLine(bounds.centerX() - org.telegram.messenger.i0.L(3.33f), bounds.centerY() - org.telegram.messenger.i0.L(7.0f), org.telegram.messenger.i0.L(3.33f) + centerX2, bounds.centerY(), paint2);
         canvas.drawLine(bounds.centerX() - org.telegram.messenger.i0.L(3.33f), org.telegram.messenger.i0.L(7.0f) + bounds.centerY(), org.telegram.messenger.i0.L(3.33f) + bounds.centerX(), bounds.centerY(), paint2);
         ImageReceiver imageReceiver2 = this.e;

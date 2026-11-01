@@ -1,21 +1,66 @@
 package org.telegram.messenger;
 
-import java.util.HashSet;
-public abstract class qt {
-    public static final HashSet f17620a;
+import android.content.SharedPreferences;
+public final class qt {
+    public final int f17814a;
 
-    static {
-        HashSet hashSet = new HashSet();
-        f17620a = hashSet;
-        hashSet.add("com.google.android.projection.gearhead");
-        hashSet.add("com.google.android.mediasimulator");
-        hashSet.add("com.android.car.media");
-        hashSet.add("com.android.car.carlauncher");
-        hashSet.add("com.google.android.car.kitchensink");
-        hashSet.add("com.google.android.wearable.app");
-        hashSet.add("com.google.android.wearable.media.sessions");
-        hashSet.add("com.google.android.googlequicksearchbox");
-        hashSet.add("com.google.android.apps.gsa.staticplugins");
-        hashSet.add("com.google.android.bluetooth");
+    public qt(int i10) {
+        this.f17814a = i10;
+    }
+
+    public final void a(org.telegram.tgnet.TLRPC.NotificationSound r17, android.content.SharedPreferences.Editor r18, long r19, long r21, int r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.qt.a(org.telegram.tgnet.TLRPC$NotificationSound, android.content.SharedPreferences$Editor, long, long, int):void");
+    }
+
+    public final SharedPreferences b() {
+        return wp.r1(this.f17814a).e7;
+    }
+
+    public final int c(int i10, long j10, long j11, String str) {
+        String v = pt.v(j10, j11, true);
+        SharedPreferences b10 = b();
+        if (b10.contains(str + v)) {
+            SharedPreferences b11 = b();
+            return b11.getInt(str + v, i10);
+        }
+        String v10 = pt.v(j10, 0L, true);
+        SharedPreferences b12 = b();
+        return b12.getInt(str + v10, i10);
+    }
+
+    public final long d(long j10, long j11) {
+        String v = pt.v(j10, j11, true);
+        SharedPreferences b10 = b();
+        if (b10.contains("sound_document_id_" + v)) {
+            SharedPreferences b11 = b();
+            return b11.getLong("sound_document_id_" + v, 0L);
+        }
+        String v10 = pt.v(j10, 0L, true);
+        SharedPreferences b12 = b();
+        return b12.getLong("sound_document_id_" + v10, 0L);
+    }
+
+    public final boolean e(long j10, long j11) {
+        String v = pt.v(j10, j11, false);
+        SharedPreferences b10 = b();
+        if (b10.contains("custom_" + v)) {
+            SharedPreferences b11 = b();
+            return b11.getBoolean("custom_" + v, false);
+        }
+        String v10 = pt.v(j10, 0L, false);
+        SharedPreferences b12 = b();
+        return b12.getBoolean("custom_" + v10, false);
+    }
+
+    public final String f(long j10, long j11) {
+        String v = pt.v(j10, j11, false);
+        SharedPreferences b10 = b();
+        if (b10.contains("sound_path_" + v)) {
+            SharedPreferences b11 = b();
+            return b11.getString("sound_path_" + v, null);
+        }
+        String v10 = pt.v(j10, 0L, false);
+        SharedPreferences b12 = b();
+        return b12.getString("sound_path_" + v10, null);
     }
 }

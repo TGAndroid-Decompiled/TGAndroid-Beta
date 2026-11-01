@@ -72,19 +72,19 @@ public final class a extends b {
         while (!k() && this.L < 100000 + j10) {
             h hVar = this.I;
             hVar.clear();
-            hf.b bVar = this.f7809c;
+            hf.b bVar = this.f7810c;
             bVar.L();
             if (w(bVar, hVar, 0) == -4 && !hVar.isEndOfStream()) {
                 long j12 = hVar.e;
                 this.L = j12;
-                if (j12 < this.f7815x) {
+                if (j12 < this.f7816x) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 if (this.K != null && !z10) {
                     hVar.d();
-                    ByteBuffer byteBuffer = hVar.f7586c;
+                    ByteBuffer byteBuffer = hVar.f7587c;
                     String str = l0.f6165a;
                     if (byteBuffer.remaining() != 16) {
                         fArr = null;

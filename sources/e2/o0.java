@@ -47,8 +47,8 @@ public final class o0 implements sb.a {
             }
         }
         int i10 = aVar.e;
-        int i11 = aVar.f14122b;
-        int i12 = aVar.f14123c;
+        int i11 = aVar.f14123b;
+        int i12 = aVar.f14124c;
         int a2 = o6.a(aVar.d);
         long elapsedRealtime = SystemClock.elapsedRealtime();
         int i13 = aVar.e;
@@ -65,12 +65,12 @@ public final class o0 implements sb.a {
             n6.l.g(null);
             throw null;
         }
-        Bitmap bitmap = aVar.f14121a;
+        Bitmap bitmap = aVar.f14122a;
         n6.l.g(bitmap);
         bVar = new x6.b(bitmap);
         try {
             Parcel P0 = kaVar.P0();
-            int i14 = x7.y.f53409a;
+            int i14 = x7.y.f53427a;
             P0.writeStrongBinder(bVar);
             P0.writeInt(1);
             int q6 = w7.h0.q(P0, 20293);
@@ -95,7 +95,7 @@ public final class o0 implements sb.a {
                 Object obj = createTypedArrayList.get(i15);
                 i15++;
                 oa oaVar = (oa) obj;
-                arrayList.add(new qb.a(oaVar.f53280b, oaVar.d, oaVar.f53279a, oaVar.f53281c));
+                arrayList.add(new qb.a(oaVar.f53298b, oaVar.d, oaVar.f53297a, oaVar.f53299c));
             }
             return arrayList;
         } catch (RemoteException e7) {
@@ -131,8 +131,8 @@ public final class o0 implements sb.a {
             return;
         }
         try {
-            IBinder b10 = y6.e.c(context, y6.e.f54188b, "com.google.android.gms.vision.ica").b("com.google.android.gms.vision.label.mlkit.ImageLabelerCreator");
-            int i10 = ma.f53243b;
+            IBinder b10 = y6.e.c(context, y6.e.f54209b, "com.google.android.gms.vision.ica").b("com.google.android.gms.vision.label.mlkit.ImageLabelerCreator");
+            int i10 = ma.f53261b;
             if (b10 == null) {
                 aVar = null;
             } else {
@@ -143,7 +143,7 @@ public final class o0 implements sb.a {
                     aVar = new a9.a(b10, "com.google.mlkit.vision.label.aidls.IImageLabelerCreator", 10);
                 }
             }
-            this.e = ((la) aVar).X0(new x6.b(context), new pa(((rb.a) this.d).f45509a, -1));
+            this.e = ((la) aVar).X0(new x6.b(context), new pa(((rb.a) this.d).f45520a, -1));
         } catch (RemoteException e) {
             throw new fb.a("Failed to create thin image labeler.", e);
         } catch (y6.b unused) {

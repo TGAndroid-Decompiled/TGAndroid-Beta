@@ -2,27 +2,27 @@ package org.telegram.ui.Wallet;
 
 import android.text.TextUtils;
 import java.util.ArrayList;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.q20;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.r20;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.Components.cc;
 import org.telegram.ui.Components.wb;
-public final class p8 implements q20 {
-    public final int f35042a;
-    public final t8 f35043b;
-    public final gf.e f35044c;
+public final class p8 implements r20 {
+    public final int f35041a;
+    public final t8 f35042b;
+    public final gf.e f35043c;
 
     public p8(t8 t8Var, gf.e eVar, int i10) {
-        this.f35042a = i10;
-        this.f35043b = t8Var;
-        this.f35044c = eVar;
+        this.f35041a = i10;
+        this.f35042b = t8Var;
+        this.f35043c = eVar;
     }
 
     @Override
     public final void a(Object obj) {
-        int i10 = this.f35042a;
-        gf.e eVar = this.f35044c;
-        t8 t8Var = this.f35043b;
+        int i10 = this.f35041a;
+        gf.e eVar = this.f35043c;
+        t8 t8Var = this.f35042b;
         String str = (String) obj;
         switch (i10) {
             case 0:
@@ -53,8 +53,8 @@ public final class p8 implements q20 {
                     cc.a0(t8Var).e0(str, false);
                     return;
                 }
-                wb I = cc.a0(t8Var).I(2131623989, cd.L0(2131743217, null), cd.L0(2131743215, null));
-                I.f32135j = 5000;
+                wb I = cc.a0(t8Var).I(2131623989, dd.L0(2131743217, null), dd.L0(2131743215, null));
+                I.f32201j = 5000;
                 I.j();
                 return;
             default:

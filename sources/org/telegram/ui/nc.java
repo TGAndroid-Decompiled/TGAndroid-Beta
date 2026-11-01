@@ -1,13 +1,13 @@
 package org.telegram.ui;
-public final class nc implements org.telegram.messenger.q20 {
-    public final int f39901a;
-    public final boolean f39902b;
-    public final Object f39903c;
+public final class nc implements org.telegram.messenger.r20 {
+    public final int f39847a;
+    public final boolean f39848b;
+    public final Object f39849c;
 
     public nc(int i10, Object obj, boolean z10) {
-        this.f39901a = i10;
-        this.f39903c = obj;
-        this.f39902b = z10;
+        this.f39847a = i10;
+        this.f39849c = obj;
+        this.f39848b = z10;
     }
 
     @Override

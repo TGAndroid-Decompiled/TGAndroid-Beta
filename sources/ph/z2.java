@@ -11,11 +11,11 @@ import org.telegram.ui.ActionBar.w6;
 import org.telegram.ui.Components.dq;
 import w7.e6;
 public final class z2 extends TextView {
-    public final dq f45388a;
+    public final dq f45399a;
 
     public z2(Context context, p6 p6Var) {
         super(context);
-        int i10 = t6.f21313y8;
+        int i10 = t6.f21314y8;
         int w02 = t6.w0(i10, p6Var);
         a7.V(this, i10, p6Var);
         org.telegram.ui.Cells.y b02 = t6.b0(t6.r1(0.08f, w02), t6.r1(0.15f, w02), org.telegram.messenger.i0.L(13.0f), org.telegram.messenger.i0.L(13.0f));
@@ -28,10 +28,10 @@ public final class z2 extends TextView {
         setTypeface(org.telegram.messenger.i0.o());
         e6.a(this);
         dq dqVar = new dq(2131230873, 0);
-        this.f45388a = dqVar;
+        this.f45399a = dqVar;
         dqVar.G = 0.8f;
-        dqVar.f25508r = 0.0f;
-        dqVar.f25509s = org.telegram.messenger.i0.L(1.0f);
+        dqVar.f25568r = 0.0f;
+        dqVar.f25569s = org.telegram.messenger.i0.L(1.0f);
     }
 
     @Override
@@ -46,7 +46,7 @@ public final class z2 extends TextView {
     public void setValue(CharSequence charSequence) {
         SpannableStringBuilder append = new SpannableStringBuilder(charSequence).append((CharSequence) " v");
         int length = append.length();
-        append.setSpan(this.f45388a, append.length() - 1, length, 33);
+        append.setSpan(this.f45399a, append.length() - 1, length, 33);
         setText(append);
     }
 }

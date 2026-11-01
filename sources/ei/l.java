@@ -1,27 +1,27 @@
 package ei;
 
-import org.telegram.ui.Components.in0;
+import org.telegram.ui.Components.jn0;
 public final class l implements Runnable {
-    public int f6657a;
-    public int f6658b;
-    public final in0 f6659c;
+    public int f6658a;
+    public int f6659b;
+    public final jn0 f6660c;
     public final r d;
 
-    public l(r rVar, in0 in0Var) {
+    public l(r rVar, jn0 jn0Var) {
         this.d = rVar;
-        this.f6659c = in0Var;
+        this.f6660c = jn0Var;
     }
 
     @Override
     public final void run() {
-        in0 in0Var = this.f6659c;
-        int scrollX = in0Var.getScrollX();
-        int scrollY = in0Var.getScrollY();
+        jn0 jn0Var = this.f6660c;
+        int scrollX = jn0Var.getScrollX();
+        int scrollY = jn0Var.getScrollY();
         r rVar = this.d;
-        rVar.f6677k += scrollX - this.f6657a;
-        rVar.f6678l += scrollY - this.f6658b;
-        this.f6657a = scrollX;
-        this.f6658b = scrollY;
-        rVar.f6674g++;
+        rVar.f6678k += scrollX - this.f6658a;
+        rVar.f6679l += scrollY - this.f6659b;
+        this.f6658a = scrollX;
+        this.f6659b = scrollY;
+        rVar.f6675g++;
     }
 }

@@ -2,106 +2,214 @@ package org.telegram.messenger;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.Rect;
-import android.text.SpannableStringBuilder;
-import android.text.StaticLayout;
-import android.text.TextUtils;
-import android.text.style.CharacterStyle;
 import android.view.MotionEvent;
 import android.view.View;
+import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.AnimatedArrowDrawable;
-public final class wu extends qu {
-    public final TL_iv.pageBlockDetails W;
-    public final uv X;
-    public final uv[] Y;
-    public final AnimatedArrowDrawable Z;
-    public final Paint f19134a0;
-    public org.telegram.ui.Components.dc f19135b0;
-    public boolean f19136c0;
-    public float f19137d0;
-    public float f19138e0;
+public final class wu extends ru {
+    public static Paint f19327b0;
+    public final boolean W;
+    public final ArrayList X;
+    public final int[] Y;
+    public final int Z;
+    public ku f19328a0;
 
-    public wu(vv vvVar, Rect rect, int i10, TL_iv.pageBlockDetails pageblockdetails, SpannableStringBuilder spannableStringBuilder) {
-        super(vvVar, rect, i10);
-        int i11;
+    public wu(wv wvVar, Rect rect, int i10, TL_iv.pageBlockCollage pageblockcollage, boolean z10) {
+        super(wvVar, rect, i10);
         float f7;
-        this.f19134a0 = new Paint(1);
-        this.W = pageblockdetails;
-        uv uvVar = new uv(vvVar, spannableStringBuilder, i0.a.d(16.0f, this.f17623c - i0.L(53.0f), 0));
-        this.X = uvVar;
-        this.Y = new uv[]{uvVar};
-        if (vvVar.E()) {
-            i11 = org.telegram.ui.ActionBar.t6.sl;
-        } else {
-            i11 = org.telegram.ui.ActionBar.t6.rl;
+        int i11;
+        float f10;
+        int round;
+        float f11;
+        int round2;
+        int i12;
+        ku kuVar;
+        this.X = new ArrayList();
+        this.W = z10;
+        int i13 = 0;
+        for (int i14 = 0; i14 < pageblockcollage.items.size(); i14++) {
+            TL_iv.PageBlock pageBlock = pageblockcollage.items.get(i14);
+            if (pageBlock instanceof TL_iv.pageBlockPhoto) {
+                kuVar = new ku(wvVar, (TL_iv.pageBlockPhoto) pageBlock);
+            } else if (pageBlock instanceof TL_iv.pageBlockVideo) {
+                kuVar = new ku(wvVar, (TL_iv.pageBlockVideo) pageBlock);
+            } else {
+                kuVar = null;
+            }
+            if (kuVar != null) {
+                this.X.add(kuVar);
+            }
         }
-        AnimatedArrowDrawable animatedArrowDrawable = new AnimatedArrowDrawable(org.telegram.ui.ActionBar.t6.w0(i11, vvVar.D));
-        this.Z = animatedArrowDrawable;
-        if (pageblockdetails.open) {
-            f7 = 0.0f;
-        } else {
-            f7 = 1.0f;
+        int i15 = this.f17969c;
+        ArrayList arrayList = this.X;
+        this.Y = new int[arrayList.size()];
+        if (arrayList.isEmpty()) {
+            this.Z = 0;
+            return;
         }
-        animatedArrowDrawable.setAnimationProgress(f7);
+        int i16 = 1;
+        if (arrayList.size() == 1) {
+            ku kuVar2 = (ku) arrayList.get(0);
+            float f12 = kuVar2.E;
+            f12 = f12 <= 0.0f ? 1.0f : f12;
+            int i17 = (int) (i15 / f12);
+            Point point = i0.f16172q;
+            int max = (int) (Math.max(point.x, point.y) * 0.55f);
+            if (i17 > max) {
+                i15 = (int) (max * f12);
+                i17 = max;
+            }
+            kuVar2.l(0, 0, i15, i17);
+            this.Y[0] = 15;
+            this.Z = i17;
+            return;
+        }
+        float[] fArr = new float[arrayList.size()];
+        for (int i18 = 0; i18 < arrayList.size(); i18++) {
+            fArr[i18] = ((ku) arrayList.get(i18)).E;
+        }
+        cj[] e = wv.e(fArr);
+        int i19 = 0;
+        for (cj cjVar : e) {
+            i19 = Math.max(i19, (int) cjVar.d);
+        }
+        int i20 = i19 + 1;
+        float[] fArr2 = new float[i20];
+        for (cj cjVar2 : e) {
+            byte b10 = cjVar2.f15160c;
+            if (b10 == cjVar2.d) {
+                fArr2[b10] = Math.max(fArr2[b10], cjVar2.f15161f);
+            }
+        }
+        int length = e.length;
+        int i21 = 0;
+        while (i21 < length) {
+            cj cjVar3 = e[i21];
+            int i22 = cjVar3.f15160c;
+            byte b11 = cjVar3.d;
+            if (i22 != b11) {
+                int i23 = (b11 - i22) + i16;
+                float[] fArr3 = cjVar3.f15167m;
+                if (fArr3 != null && fArr3.length == i23) {
+                    int i24 = 0;
+                    while (i24 < i23) {
+                        int i25 = cjVar3.f15160c + i24;
+                        fArr2[i25] = Math.max(fArr2[i25], cjVar3.f15167m[i24]);
+                        i24++;
+                        i16 = i16;
+                    }
+                } else {
+                    i12 = i16;
+                    float f13 = cjVar3.f15161f / i23;
+                    while (i22 <= cjVar3.d) {
+                        fArr2[i22] = Math.max(fArr2[i22], f13);
+                        i22++;
+                    }
+                    i21++;
+                    i16 = i12;
+                }
+            }
+            i12 = i16;
+            i21++;
+            i16 = i12;
+        }
+        Point point2 = i0.f16172q;
+        float max2 = Math.max(point2.x, point2.y) * 0.5f;
+        int[] iArr = new int[i19 + 2];
+        float f14 = 0.0f;
+        for (int i26 = 0; i26 <= i19; i26++) {
+            iArr[i26] = Math.round(f14 * max2);
+            f14 += fArr2[i26];
+        }
+        iArr[i20] = Math.round(f14 * max2);
+        if (this.f17967a.D()) {
+            f7 = 3.0f;
+        } else {
+            f7 = 2.0f;
+        }
+        int L = i0.L(f7);
+        int i27 = 0;
+        while (i27 < e.length) {
+            cj cjVar4 = e[i27];
+            int i28 = iArr[cjVar4.f15160c];
+            int i29 = iArr[cjVar4.d + 1] - i28;
+            float f15 = 1000.0f;
+            if (cjVar4.f15164j > 0) {
+                round = Math.round((i11 * i15) / 1000.0f);
+                f10 = 1000.0f;
+            } else {
+                int i30 = i13;
+                int i31 = i30;
+                while (i30 < e.length) {
+                    if (i30 == i27) {
+                        f11 = f15;
+                    } else {
+                        cj cjVar5 = e[i30];
+                        f11 = f15;
+                        byte b12 = cjVar5.f15160c;
+                        byte b13 = cjVar4.f15160c;
+                        if (b12 <= b13 && cjVar5.d >= b13 && cjVar5.f15158a < cjVar4.f15158a) {
+                            i31 += cjVar5.e;
+                        }
+                    }
+                    i30++;
+                    f15 = f11;
+                }
+                f10 = f15;
+                round = Math.round((i31 * i15) / f10);
+            }
+            if ((cjVar4.f15166l & 2) != 0) {
+                round2 = i15 - round;
+            } else {
+                round2 = Math.round((cjVar4.e * i15) / f10) - L;
+            }
+            if ((cjVar4.f15166l & 8) == 0) {
+                i29 -= L;
+            }
+            ((ku) arrayList.get(i27)).l(round, i28, Math.max(0, round2), Math.max(0, i29));
+            this.Y[i27] = cjVar4.f15166l;
+            i27++;
+            i13 = 0;
+        }
+        this.Z = iArr[i20];
     }
 
     @Override
     public final void A(int i10, Rect rect) {
-        Rect rect2 = this.f17622b;
-        int i11 = ((int) this.M) + rect2.top;
-        int i12 = rect2.left;
-        vv vvVar = this.f17621a;
-        rect.set(i12 - vvVar.S, i11, (vvVar.C + vvVar.T) - rect2.right, h0() + i11);
+        if (i10 >= 0) {
+            ArrayList arrayList = this.X;
+            if (i10 < arrayList.size()) {
+                ku kuVar = (ku) arrayList.get(i10);
+                Rect rect2 = this.f17968b;
+                int i11 = rect2.left + kuVar.F;
+                int i12 = ((int) this.M) + rect2.top + kuVar.G;
+                rect.set(i11, i12, kuVar.H + i11, kuVar.I + i12);
+            }
+        }
     }
 
     @Override
     public final int B() {
-        return 1;
-    }
-
-    @Override
-    public final CharSequence D() {
-        int i10;
-        if (this.W.open) {
-            i10 = 2131754882;
-        } else {
-            i10 = 2131754892;
-        }
-        return cd.L0(i10, null);
+        return this.X.size();
     }
 
     @Override
     public final CharSequence E(int i10) {
-        CharSequence charSequence;
-        int i11;
-        CharSequence concat;
-        StaticLayout staticLayout;
-        uv uvVar = this.X;
-        if (uvVar != null && (staticLayout = uvVar.f18396b) != null) {
-            charSequence = qu.g0(staticLayout.getText());
-        } else {
-            charSequence = null;
+        if (i10 >= 0) {
+            ArrayList arrayList = this.X;
+            if (i10 < arrayList.size()) {
+                return ((ku) arrayList.get(i10)).f();
+            }
+            return null;
         }
-        String L0 = cd.L0(2131753987, null);
-        if (this.W.open) {
-            i11 = 2131754882;
-        } else {
-            i11 = 2131754892;
-        }
-        String L02 = cd.L0(i11, null);
-        if (TextUtils.isEmpty(charSequence)) {
-            concat = "";
-        } else {
-            concat = TextUtils.concat(", ", charSequence);
-        }
-        return TextUtils.concat(L0, ", ", L02, concat);
+        return null;
     }
 
     @Override
     public final int H() {
-        Rect rect = this.f17622b;
-        return h0() + rect.top + rect.bottom;
+        return this.Z;
     }
 
     @Override
@@ -111,184 +219,245 @@ public final class wu extends qu {
 
     @Override
     public final int J() {
-        Rect rect = this.f17622b;
-        return i0.L(16.0f) + this.X.r() + i0.L(53.0f) + rect.left + rect.right;
-    }
-
-    @Override
-    public final org.telegram.ui.Cells.u9[] K() {
-        return this.Y;
+        Rect rect = this.f17968b;
+        return rect.left + this.f17969c + rect.right;
     }
 
     @Override
     public final void S() {
-        this.X.i(this.V);
+        ArrayList arrayList = this.X;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            ku kuVar = (ku) obj;
+            View view = this.V;
+            kuVar.S = view;
+            ImageReceiver imageReceiver = kuVar.f16790c;
+            imageReceiver.H0(view);
+            imageReceiver.P();
+            ImageReceiver imageReceiver2 = kuVar.d;
+            imageReceiver2.H0(view);
+            imageReceiver2.P();
+            kuVar.d(view);
+            kuVar.m(view, false);
+        }
     }
 
     @Override
     public final boolean T(int i10, View view) {
-        i0();
-        return true;
+        if (i10 >= 0) {
+            ArrayList arrayList = this.X;
+            if (i10 < arrayList.size()) {
+                return ((ku) arrayList.get(i10)).j(view);
+            }
+            return false;
+        }
+        return false;
     }
 
     @Override
     public final void U() {
-        this.X.f(this.V);
+        ArrayList arrayList = this.X;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            ku kuVar = (ku) obj;
+            kuVar.f16790c.R();
+            kuVar.d.R();
+            kuVar.e = null;
+            b6.q(kuVar.f16788a.f19329a).v(kuVar);
+        }
     }
 
     @Override
     public final void V(Canvas canvas) {
-        float f7;
         int i10;
         int i11;
-        org.telegram.ui.Components.dc dcVar = this.f19135b0;
-        if (dcVar != null) {
-            f7 = dcVar.a(0.02f);
+        float f7;
+        int i12;
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        boolean z13;
+        float f10;
+        int L;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        int i18;
+        int i19;
+        wu wuVar = this;
+        boolean z14 = true;
+        if (f19327b0 == null) {
+            Paint paint = new Paint(1);
+            f19327b0 = paint;
+            paint.setColor(251658240);
+        }
+        boolean Q = wuVar.Q();
+        int L2 = i0.L(2.0f);
+        wv wvVar = wuVar.f17967a;
+        if (!Q && !wvVar.D()) {
+            i10 = wvVar.S - L2;
+        } else {
+            i10 = 0;
+        }
+        if (!Q && !wvVar.D()) {
+            i11 = wvVar.T - L2;
+        } else {
+            i11 = 0;
+        }
+        int i20 = wuVar.f17969c;
+        if (i20 > 0 && (i10 > 0 || i11 > 0)) {
+            f7 = ((i20 + i10) + i11) / i20;
         } else {
             f7 = 1.0f;
         }
-        vv vvVar = this.f17621a;
-        float f10 = -vvVar.S;
-        int i12 = vvVar.C + vvVar.T;
-        Rect rect = this.f17622b;
-        float f11 = (i12 - rect.left) - rect.right;
-        int i13 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
-        if (i13 != 0) {
-            canvas.save();
-            canvas.scale(f7, f7, (f10 + f11) / 2.0f, h0() / 2.0f);
-        }
-        if (vvVar.E()) {
-            i10 = org.telegram.ui.ActionBar.t6.sl;
-        } else {
-            i10 = org.telegram.ui.ActionBar.t6.rl;
-        }
-        int w02 = org.telegram.ui.ActionBar.t6.w0(i10, vvVar.D);
-        AnimatedArrowDrawable animatedArrowDrawable = this.Z;
-        animatedArrowDrawable.f23663a.setColor(w02);
-        animatedArrowDrawable.invalidateSelf();
-        canvas.save();
-        canvas.translate(i0.N(22.6f) + f10, i0.N(21.66f));
-        animatedArrowDrawable.draw(canvas);
-        canvas.restore();
-        canvas.save();
-        canvas.translate(i0.L(53.0f) + f10, i0.L(14.0f));
-        uv uvVar = this.X;
-        uvVar.d(canvas, uvVar.S);
-        canvas.restore();
-        if (i13 != 0) {
-            canvas.restore();
-        }
-        if (!this.W.open && !vvVar.f19001s) {
-            if (vvVar.E()) {
-                i11 = org.telegram.ui.ActionBar.t6.ul;
+        int i21 = 0;
+        while (true) {
+            ArrayList arrayList = wuVar.X;
+            if (i21 < arrayList.size()) {
+                ku kuVar = (ku) arrayList.get(i21);
+                int i22 = kuVar.F;
+                ImageReceiver imageReceiver = kuVar.f16790c;
+                int round = Math.round(i22 * f7) - i10;
+                int round2 = Math.round(kuVar.H * f7);
+                int[] iArr = wuVar.Y;
+                if (iArr != null && i21 < iArr.length) {
+                    i12 = iArr[i21];
+                } else {
+                    i12 = 0;
+                }
+                if ((i12 & 4) != 0) {
+                    z10 = z14;
+                } else {
+                    z10 = false;
+                }
+                if ((i12 & 8) != 0) {
+                    z11 = z14;
+                } else {
+                    z11 = false;
+                }
+                if ((i12 & 1) != 0) {
+                    z12 = z14;
+                } else {
+                    z12 = false;
+                }
+                if ((i12 & 2) != 0) {
+                    z13 = z14;
+                } else {
+                    z13 = false;
+                }
+                if (Q) {
+                    int L3 = i0.L(8.0f);
+                    if (z10 && z12) {
+                        i16 = L3;
+                    } else {
+                        i16 = 0;
+                    }
+                    if (z10 && z13) {
+                        i17 = L3;
+                    } else {
+                        i17 = 0;
+                    }
+                    if (z11 && z13) {
+                        i18 = L3;
+                    } else {
+                        i18 = 0;
+                    }
+                    if (z11 && z12) {
+                        i19 = L3;
+                    } else {
+                        i19 = 0;
+                    }
+                    imageReceiver.K0(i16, i17, i18, i19);
+                    f10 = 1.0f;
+                } else {
+                    int i23 = uz.Y0;
+                    f10 = 1.0f;
+                    if (i23 > 2) {
+                        L = i0.L(i23 - 2);
+                    } else {
+                        L = i0.L(i23);
+                    }
+                    int min = Math.min(i0.L(3.0f), L);
+                    if (wvVar.D()) {
+                        imageReceiver.J0(i0.L(12.0f));
+                    } else {
+                        boolean z15 = wuVar.W;
+                        if (z10 && z12) {
+                            if (z15 && !wvVar.B() && (wvVar.E() || !wvVar.G())) {
+                                i13 = L;
+                            } else {
+                                i13 = min;
+                            }
+                        } else {
+                            i13 = 0;
+                        }
+                        if (z10 && z13) {
+                            if (!z15 || wvVar.B() || (wvVar.E() && wvVar.G())) {
+                                L = min;
+                            }
+                        } else {
+                            L = 0;
+                        }
+                        if (z11 && z13) {
+                            i14 = min;
+                        } else {
+                            i14 = 0;
+                        }
+                        imageReceiver.K0(i13, L, i14, (z11 && z12) ? 0 : 0);
+                    }
+                }
+                float f11 = round;
+                imageReceiver.y0(f11, kuVar.G, round2, kuVar.I);
+                if (!imageReceiver.I() || imageReceiver.f14385h1 != f10) {
+                    canvas.drawRect(f11, kuVar.G, round + round2, i15 + kuVar.I, f19327b0);
+                }
+                kuVar.c(canvas);
+                i21++;
+                z14 = true;
+                wuVar = this;
             } else {
-                i11 = org.telegram.ui.ActionBar.t6.tl;
+                return;
             }
-            int w03 = org.telegram.ui.ActionBar.t6.w0(i11, vvVar.D);
-            Paint paint = this.f19134a0;
-            paint.setColor(w03);
-            canvas.drawRect(f10, h0() - 1.0f, f11, h0(), paint);
         }
     }
 
     @Override
     public final boolean X(MotionEvent motionEvent) {
-        View view;
+        ArrayList arrayList = this.X;
         int actionMasked = motionEvent.getActionMasked();
-        vv vvVar = this.f17621a;
-        if (actionMasked == 0) {
-            this.f19136c0 = true;
-            if (this.f19135b0 == null && (view = vvVar.Q) != null) {
-                this.f19135b0 = new org.telegram.ui.Components.dc(view);
-            }
-            org.telegram.ui.Components.dc dcVar = this.f19135b0;
-            if (dcVar != null) {
-                dcVar.c(true);
-            }
-            return true;
-        } else if (actionMasked == 1) {
-            if (!this.f19136c0) {
-                return false;
-            }
-            this.f19136c0 = false;
-            org.telegram.ui.Components.dc dcVar2 = this.f19135b0;
-            if (dcVar2 != null) {
-                dcVar2.c(false);
-            }
-            View view2 = vvVar.Q;
-            if (view2 != null) {
-                view2.playSoundEffect(0);
-            }
-            i0();
-            return true;
-        } else {
-            if (actionMasked == 3) {
-                this.f19136c0 = false;
-                org.telegram.ui.Components.dc dcVar3 = this.f19135b0;
-                if (dcVar3 != null) {
-                    dcVar3.c(false);
+        Rect rect = this.f17968b;
+        motionEvent.offsetLocation(-rect.left, -rect.top);
+        try {
+            if (actionMasked == 0) {
+                this.f19328a0 = null;
+                for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                    ku kuVar = (ku) arrayList.get(i10);
+                    if (kuVar.g(motionEvent.getX(), motionEvent.getY()) && kuVar.k(this.V, motionEvent)) {
+                        this.f19328a0 = kuVar;
+                        return true;
+                    }
+                }
+            } else {
+                ku kuVar2 = this.f19328a0;
+                if (kuVar2 != null) {
+                    boolean k10 = kuVar2.k(this.V, motionEvent);
+                    if (actionMasked == 1 || actionMasked == 3) {
+                        this.f19328a0 = null;
+                    }
+                    return k10;
                 }
             }
-            return this.f19136c0;
+            return false;
+        } finally {
+            motionEvent.offsetLocation(rect.left, rect.top);
         }
-    }
-
-    @Override
-    public final void Y(int i10, int i11, int i12) {
-        this.S = i10;
-        this.T = i11;
-        this.U = i12;
-        int L = i0.L(53.0f) + (i10 - this.f17621a.S);
-        uv uvVar = this.X;
-        uvVar.f18397c = L - uvVar.f18398f;
-        uvVar.d = i0.L(14.0f) + i11;
-        uvVar.e = i12;
-    }
-
-    public final int h0() {
-        return m5.b(12.66f, this.X.f18396b.getHeight() + i0.L(14.0f), i0.L(27.82f));
-    }
-
-    public final void i0() {
-        float f7;
-        vv vvVar = this.f17621a;
-        vvVar.X();
-        TL_iv.pageBlockDetails pageblockdetails = this.W;
-        boolean z10 = pageblockdetails.open;
-        pageblockdetails.open = !z10;
-        if (!z10) {
-            f7 = 0.0f;
-        } else {
-            f7 = 1.0f;
-        }
-        this.Z.a(f7);
-        vvVar.f19001s = true;
-        vvVar.Q();
-        View view = vvVar.Q;
-        if (view != null) {
-            view.invalidate();
-        }
-        org.telegram.ui.Cells.q1 q1Var = vvVar.E;
-        org.telegram.ui.Cells.l1 l1Var = vvVar.F;
-        if (q1Var != null && l1Var != null) {
-            l1Var.l1(q1Var, true, true);
-        }
-    }
-
-    @Override
-    public final void k(SpannableStringBuilder spannableStringBuilder) {
-        qu.l(spannableStringBuilder, this.X, this.Y);
-    }
-
-    @Override
-    public final boolean u(CharacterStyle characterStyle, int i10, hu huVar) {
-        uv uvVar = this.X;
-        if (uvVar.o(characterStyle, huVar)) {
-            Rect rect = this.f17622b;
-            huVar.e = (i0.L(53.0f) + (rect.left - this.f17621a.S)) - uvVar.f18398f;
-            huVar.f15956f = i0.L(14.0f) + i10 + rect.top;
-            return true;
-        }
-        return false;
     }
 }

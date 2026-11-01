@@ -4,31 +4,31 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.text.TextUtils;
 import java.util.ArrayList;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 public final class g3 extends j1.b {
-    public static final int f20338r = 0;
-    public final RectF f20339o;
-    public final Rect f20340p;
-    public final i3 f20341q;
+    public static final int f20339r = 0;
+    public final RectF f20340o;
+    public final Rect f20341p;
+    public final i3 f20342q;
 
     public g3(i3 i3Var, i3 i3Var2) {
         super(i3Var2);
-        this.f20341q = i3Var;
-        this.f20339o = new RectF();
-        this.f20340p = new Rect();
+        this.f20342q = i3Var;
+        this.f20340o = new RectF();
+        this.f20341p = new Rect();
     }
 
     @Override
     public final int g(float f7, float f10) {
         f3 c10;
-        i3 i3Var = this.f20341q;
-        if (i3Var.f20393b) {
+        i3 i3Var = this.f20342q;
+        if (i3Var.f20394b) {
             ArrayList<h3> tabs = i3Var.getTabs();
             if (!tabs.isEmpty() && (c10 = i3Var.c(tabs.get(0))) != null) {
                 float c11 = c10.c();
-                RectF rectF = this.f20339o;
+                RectF rectF = this.f20340o;
                 i3Var.d(rectF, c11);
-                Rect bounds = c10.f20306l.getBounds();
+                Rect bounds = c10.f20307l.getBounds();
                 if (!bounds.isEmpty() && bounds.contains((int) (f7 - rectF.left), (int) (f10 - rectF.centerY()))) {
                     return 2;
                 }
@@ -44,8 +44,8 @@ public final class g3 extends j1.b {
 
     @Override
     public final void h(ArrayList arrayList) {
-        i3 i3Var = this.f20341q;
-        if (i3Var.f20393b) {
+        i3 i3Var = this.f20342q;
+        if (i3Var.f20394b) {
             ArrayList<h3> tabs = i3Var.getTabs();
             if (tabs.isEmpty() || i3Var.c(tabs.get(0)) == null) {
                 return;
@@ -58,7 +58,7 @@ public final class g3 extends j1.b {
     @Override
     public final boolean k(int i10, int i11) {
         if (i11 == 16) {
-            i3 i3Var = this.f20341q;
+            i3 i3Var = this.f20342q;
             ArrayList<h3> tabs = i3Var.getTabs();
             if (!tabs.isEmpty()) {
                 h3 h3Var = tabs.get(0);
@@ -80,7 +80,7 @@ public final class g3 extends j1.b {
         f3 c10;
         String str;
         String str2;
-        i3 i3Var = this.f20341q;
+        i3 i3Var = this.f20342q;
         ArrayList<h3> tabs = i3Var.getTabs();
         if (tabs.isEmpty()) {
             h3Var = null;
@@ -93,9 +93,9 @@ public final class g3 extends j1.b {
             c10 = i3Var.c(h3Var);
         }
         cVar.i("android.widget.Button");
-        cVar.b(s0.b.f47844c);
+        cVar.b(s0.b.f47855c);
         String str3 = "";
-        Rect rect = this.f20340p;
+        Rect rect = this.f20341p;
         if (c10 == null) {
             rect.set(0, 0, 1, 1);
             cVar.h(rect);
@@ -104,19 +104,19 @@ public final class g3 extends j1.b {
             return;
         }
         float c11 = c10.c();
-        RectF rectF = this.f20339o;
+        RectF rectF = this.f20340o;
         i3Var.d(rectF, c11);
         if (h3Var.b() != null) {
             str3 = h3Var.b();
         }
         if (i10 == 2) {
-            Rect bounds = c10.f20306l.getBounds();
+            Rect bounds = c10.f20307l.getBounds();
             rect.set((int) (rectF.left + bounds.left), (int) (rectF.centerY() + bounds.top), (int) (rectF.left + bounds.right), (int) (rectF.centerY() + bounds.bottom));
             cVar.h(rect);
             if (TextUtils.isEmpty(str3)) {
-                str2 = cd.L0(2131752041, null);
+                str2 = dd.L0(2131752041, null);
             } else {
-                str2 = cd.L0(2131752041, null) + ", " + str3;
+                str2 = dd.L0(2131752041, null) + ", " + str3;
             }
             cVar.j(str2);
             return;
@@ -124,9 +124,9 @@ public final class g3 extends j1.b {
         rect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
         cVar.h(rect);
         if (TextUtils.isEmpty(str3)) {
-            str = cd.L0(2131747833, null);
+            str = dd.L0(2131747833, null);
         } else {
-            str = cd.L0(2131747833, null) + ", " + str3;
+            str = dd.L0(2131747833, null) + ", " + str3;
         }
         cVar.j(str);
     }

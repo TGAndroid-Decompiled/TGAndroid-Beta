@@ -1,158 +1,115 @@
 package org.telegram.ui;
 
-import android.content.ActivityNotFoundException;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.webkit.RenderProcessGoneDetail;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class em0 extends WebViewClient {
-    public final int f37084a;
-    public final Context f37085b;
-    public final sm0 f37086c;
+import android.text.Editable;
+import android.text.TextWatcher;
+import java.util.HashMap;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class em0 implements TextWatcher {
+    public final int f36874a;
+    public final qm0 f36875b;
 
-    public em0(sm0 sm0Var, Context context, int i10) {
-        this.f37084a = i10;
-        this.f37086c = sm0Var;
-        this.f37085b = context;
+    public em0(qm0 qm0Var, int i10) {
+        this.f36874a = i10;
+        this.f36875b = qm0Var;
     }
 
     @Override
-    public final void onPageFinished(WebView webView, String str) {
-        switch (this.f37084a) {
-            case 0:
-                super.onPageFinished(webView, str);
-                sm0 sm0Var = this.f37086c;
-                sm0Var.f41586z0 = false;
-                sm0Var.M0(true, false);
-                sm0Var.P0();
-                return;
-            default:
-                super.onPageFinished(webView, str);
-                sm0 sm0Var2 = this.f37086c;
-                sm0Var2.f41586z0 = false;
-                sm0Var2.M0(true, false);
-                sm0Var2.P0();
-                return;
-        }
-    }
-
-    @Override
-    public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-        int i10 = this.f37084a;
-        sm0 sm0Var = this.f37086c;
-        switch (i10) {
-            case 0:
-                try {
-                    if (!org.telegram.messenger.i0.M1(sm0Var.getParentActivity())) {
-                        return true;
-                    }
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, sm0Var.getParentActivity(), sm0Var.Y0);
-                    org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20134a;
-                    x1Var.R = org.telegram.messenger.cd.L0(2131752104, null);
-                    x1Var.T = org.telegram.messenger.i0.T2(org.telegram.messenger.cd.L0(2131752105, null), new mg0(this, 10));
-                    alertDialog$Builder.k(org.telegram.messenger.cd.L0(2131747847, null), null);
-                    alertDialog$Builder.p();
-                    return true;
-                } catch (Exception e) {
-                    org.telegram.messenger.f8.g(e, true);
-                    return false;
-                }
-            default:
-                try {
-                    if (!org.telegram.messenger.i0.M1(sm0Var.getParentActivity())) {
-                        return true;
-                    }
-                    AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(0, sm0Var.getParentActivity(), sm0Var.Y0);
-                    org.telegram.ui.ActionBar.x1 x1Var2 = alertDialog$Builder2.f20134a;
-                    x1Var2.R = org.telegram.messenger.cd.L0(2131752104, null);
-                    x1Var2.T = org.telegram.messenger.i0.T2(org.telegram.messenger.cd.L0(2131752105, null), new mg0(this, 12));
-                    alertDialog$Builder2.k(org.telegram.messenger.cd.L0(2131747847, null), null);
-                    alertDialog$Builder2.p();
-                    return true;
-                } catch (Exception e7) {
-                    org.telegram.messenger.f8.g(e7, true);
-                    return false;
-                }
-        }
-    }
-
-    @Override
-    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
+    public final void afterTextChanged(Editable editable) {
         boolean z10;
-        Uri parse;
-        int i10 = this.f37084a;
-        Context context = this.f37085b;
-        boolean z11 = false;
-        sm0 sm0Var = this.f37086c;
+        String str;
+        String str2;
+        int i10 = this.f36874a;
+        qm0 qm0Var = this.f36875b;
         switch (i10) {
             case 0:
-                try {
-                    Uri parse2 = Uri.parse(str);
-                    if ("t.me".equals(parse2.getHost())) {
-                        sm0Var.y0();
-                    } else if (!sm0.f41545h1.contains(parse2.getScheme())) {
-                        if (sm0.f41544g1.contains(parse2.getScheme())) {
-                            return false;
-                        }
-                        try {
-                            if (sm0Var.getParentActivity() != null) {
-                                z10 = true;
-                            } else {
-                                z10 = false;
-                            }
-                            if (z10) {
-                                sm0Var.getParentActivity().startActivityForResult(new Intent("android.intent.action.VIEW", parse2), 210);
-                            }
-                        } catch (ActivityNotFoundException unused) {
-                            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context);
-                            org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20134a;
-                            x1Var.R = sm0Var.f41571p0;
-                            x1Var.T = org.telegram.messenger.cd.L0(2131747445, null);
-                            alertDialog$Builder.k(org.telegram.messenger.cd.L0(2131747847, null), null);
-                            alertDialog$Builder.p();
-                        }
-                    }
-                    return true;
-                } catch (Exception unused2) {
-                    return false;
+                if (qm0Var.f40819c0 != 0 && editable.length() == qm0Var.f40819c0) {
+                    qm0Var.G0(false);
+                    return;
                 }
+                return;
             default:
-                sm0Var.D = !str.equals(sm0Var.f41584y);
-                try {
-                    parse = Uri.parse(str);
-                } catch (Exception unused3) {
-                }
-                if ("t.me".equals(parse.getHost())) {
-                    sm0Var.y0();
-                    return true;
-                } else if (sm0.f41545h1.contains(parse.getScheme())) {
-                    return true;
-                } else {
-                    if (!sm0.f41544g1.contains(parse.getScheme())) {
-                        try {
-                            if (sm0Var.getParentActivity() != null) {
-                                z11 = true;
+                HashMap hashMap = qm0Var.f40818c;
+                if (!qm0Var.m0) {
+                    qm0Var.m0 = true;
+                    String d = af.b.d(qm0Var.f40825f[8].getText().toString(), false);
+                    qm0Var.f40825f[8].setText(d);
+                    org.telegram.ui.Components.n30 n30Var = (org.telegram.ui.Components.n30) qm0Var.f40825f[9];
+                    if (d.length() == 0) {
+                        n30Var.setHintText((String) null);
+                        n30Var.setHint(org.telegram.messenger.dd.L0(2131747388, null));
+                    } else {
+                        int i11 = 4;
+                        if (d.length() > 4) {
+                            while (true) {
+                                if (i11 >= 1) {
+                                    String substring = d.substring(0, i11);
+                                    if (((String) hashMap.get(substring)) != null) {
+                                        qm0Var.f40825f[8].setText(substring);
+                                        str = d.substring(i11) + qm0Var.f40825f[9].getText().toString();
+                                        d = substring;
+                                        z10 = true;
+                                    } else {
+                                        i11--;
+                                    }
+                                } else {
+                                    z10 = false;
+                                    str = null;
+                                }
                             }
-                            if (!z11) {
-                                return true;
+                            if (!z10) {
+                                str = d.substring(1) + qm0Var.f40825f[9].getText().toString();
+                                EditTextBoldCursor editTextBoldCursor = qm0Var.f40825f[8];
+                                d = d.substring(0, 1);
+                                editTextBoldCursor.setText(d);
                             }
-                            sm0Var.getParentActivity().startActivityForResult(new Intent("android.intent.action.VIEW", parse), 210);
-                            return true;
-                        } catch (ActivityNotFoundException unused4) {
-                            AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(context);
-                            org.telegram.ui.ActionBar.x1 x1Var2 = alertDialog$Builder2.f20134a;
-                            x1Var2.R = sm0Var.f41571p0;
-                            x1Var2.T = org.telegram.messenger.cd.L0(2131747445, null);
-                            alertDialog$Builder2.k(org.telegram.messenger.cd.L0(2131747847, null), null);
-                            alertDialog$Builder2.p();
-                            return true;
+                        } else {
+                            z10 = false;
+                            str = null;
+                        }
+                        String str3 = (String) hashMap.get(d);
+                        if (str3 != null && qm0Var.f40812a.indexOf(str3) != -1 && (str2 = (String) qm0Var.d.get(d)) != null) {
+                            n30Var.setHintText(str2.replace('X', (char) 8211));
+                            n30Var.setHint((CharSequence) null);
+                        } else {
+                            n30Var.setHintText((String) null);
+                            n30Var.setHint(org.telegram.messenger.dd.L0(2131747388, null));
+                        }
+                        if (!z10) {
+                            EditTextBoldCursor editTextBoldCursor2 = qm0Var.f40825f[8];
+                            editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
+                        }
+                        if (str != null) {
+                            n30Var.requestFocus();
+                            n30Var.setText(str);
+                            n30Var.setSelection(n30Var.length());
                         }
                     }
-                    return super.shouldOverrideUrlLoading(webView, str);
+                    qm0Var.m0 = false;
+                    return;
                 }
+                return;
         }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f36874a;
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f36874a;
+    }
+
+    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

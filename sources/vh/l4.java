@@ -8,23 +8,23 @@ import android.util.SparseArray;
 import android.view.TextureView;
 import org.telegram.messenger.Utilities;
 public final class l4 implements Runnable {
-    public final int f51456a;
-    public final o4 f51457b;
+    public final int f51471a;
+    public final o4 f51472b;
 
     public l4(o4 o4Var, int i10) {
-        this.f51456a = i10;
-        this.f51457b = o4Var;
+        this.f51471a = i10;
+        this.f51472b = o4Var;
     }
 
     @Override
     public final void run() {
         boolean z10;
         r8.n nVar;
-        switch (this.f51456a) {
+        switch (this.f51471a) {
             case 0:
-                o4 o4Var = this.f51457b;
-                if (o4Var.f51594a.get() != null && o4Var.f51597f != null && !o4Var.f51595b.get()) {
-                    TextureView textureView = o4Var.f51597f.getTextureView();
+                o4 o4Var = this.f51472b;
+                if (o4Var.f51609a.get() != null && o4Var.f51612f != null && !o4Var.f51610b.get()) {
+                    TextureView textureView = o4Var.f51612f.getTextureView();
                     if (textureView != null) {
                         int width = textureView.getWidth();
                         int height = textureView.getHeight();
@@ -38,28 +38,28 @@ public final class l4 implements Runnable {
                         boolean z11 = true;
                         int max = Math.max(1, width);
                         int max2 = Math.max(1, height);
-                        Bitmap bitmap = o4Var.f51598g;
-                        if (bitmap == null || max != bitmap.getWidth() || max2 != o4Var.f51598g.getHeight()) {
-                            o4Var.f51598g = Bitmap.createBitmap(max, max2, Bitmap.Config.ARGB_8888);
+                        Bitmap bitmap = o4Var.f51613g;
+                        if (bitmap == null || max != bitmap.getWidth() || max2 != o4Var.f51613g.getHeight()) {
+                            o4Var.f51613g = Bitmap.createBitmap(max, max2, Bitmap.Config.ARGB_8888);
                         }
-                        textureView.getBitmap(o4Var.f51598g);
-                        Bitmap bitmap2 = o4Var.f51598g;
+                        textureView.getBitmap(o4Var.f51613g);
+                        Bitmap bitmap2 = o4Var.f51613g;
                         String str = o4Var.e;
                         m4 m4Var = null;
-                        if (bitmap2 != null && (nVar = (r8.n) o4Var.f51594a.get()) != null && nVar.f46419b.k()) {
+                        if (bitmap2 != null && (nVar = (r8.n) o4Var.f51609a.get()) != null && nVar.f46430b.k()) {
                             int width2 = bitmap2.getWidth();
                             int height2 = bitmap2.getHeight();
                             q5.d dVar = new q5.d(1);
                             int width3 = bitmap2.getWidth();
                             int height3 = bitmap2.getHeight();
                             dVar.d = bitmap2;
-                            a3.l lVar = (a3.l) dVar.f45487b;
+                            a3.l lVar = (a3.l) dVar.f45498b;
                             lVar.f139a = width3;
                             lVar.f140b = height3;
                             SparseArray e12 = nVar.e1(dVar);
                             for (int i10 = 0; i10 < e12.size(); i10++) {
                                 r8.m mVar = (r8.m) e12.valueAt(i10);
-                                String str2 = mVar.f46410b;
+                                String str2 = mVar.f46421b;
                                 Point[] pointArr = mVar.e;
                                 if (str2 != null) {
                                     String trim = str2.trim();
@@ -89,9 +89,9 @@ public final class l4 implements Runnable {
                         }
                         if (z10 == z11) {
                             if (m4Var != null && m4Var2 != null) {
-                                PointF[] pointFArr2 = m4Var.f51480b;
-                                PointF[] pointFArr3 = m4Var2.f51480b;
-                                if (TextUtils.equals(m4Var.f51479a, m4Var2.f51479a)) {
+                                PointF[] pointFArr2 = m4Var.f51495b;
+                                PointF[] pointFArr3 = m4Var2.f51495b;
+                                if (TextUtils.equals(m4Var.f51494a, m4Var2.f51494a)) {
                                     if (pointFArr2 != pointFArr3) {
                                         if (pointFArr2.length == pointFArr3.length) {
                                             for (int i12 = 0; i12 < pointFArr2.length; i12++) {
@@ -104,9 +104,9 @@ public final class l4 implements Runnable {
                             }
                         }
                         o4Var.d = m4Var;
-                        org.telegram.messenger.i0.g3(new d1(8, o4Var, m4Var));
+                        org.telegram.messenger.i0.g3(new r0(9, o4Var, m4Var));
                     }
-                    if (!o4Var.f51595b.get()) {
+                    if (!o4Var.f51610b.get()) {
                         Utilities.e.a(o4Var.h);
                         Utilities.e.d(o4Var.h, o4Var.b());
                         return;
@@ -115,7 +115,7 @@ public final class l4 implements Runnable {
                 }
                 return;
             default:
-                this.f51457b.f51596c.a(null);
+                this.f51472b.f51611c.a(null);
                 return;
         }
     }

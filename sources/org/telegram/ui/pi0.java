@@ -1,26 +1,36 @@
 package org.telegram.ui;
 
-import android.widget.ImageView;
-public final class pi0 extends org.telegram.ui.Cells.p8 {
-    public ImageView W;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+public final class pi0 implements Runnable {
+    public final int f40490a;
+    public final qi0 f40491b;
+    public final String f40492c;
 
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int L;
-        super.onLayout(z10, i10, i11, i12, i13);
-        int i14 = i12 - i10;
-        if (org.telegram.messenger.cd.X) {
-            L = org.telegram.messenger.i0.L(17.0f);
-        } else {
-            L = i14 - org.telegram.messenger.i0.L(41.0f);
-        }
-        int y3 = org.telegram.messenger.z20.y(24.0f, i13 - i11, 2);
-        this.W.layout(L, y3, org.telegram.messenger.i0.L(24.0f) + L, org.telegram.messenger.i0.L(24.0f) + y3);
+    public pi0(qi0 qi0Var, String str, int i10) {
+        this.f40490a = i10;
+        this.f40491b = qi0Var;
+        this.f40492c = str;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        this.W.measure(i10, i11);
+    public final void run() {
+        switch (this.f40490a) {
+            case 0:
+                qi0 qi0Var = this.f40491b;
+                String str = this.f40492c;
+                qi0Var.getClass();
+                org.telegram.messenger.i0.g3(new pi0(qi0Var, str, 1));
+                return;
+            default:
+                qi0 qi0Var2 = this.f40491b;
+                String str2 = this.f40492c;
+                zf.m1 m1Var = qi0Var2.h;
+                int i10 = qi0Var2.f40800n.f33410s;
+                boolean z10 = true;
+                m1Var.g(str2, true, (i10 == 1 || i10 == 3) ? false : false, true, false, 0L, false, 0, 0);
+                Utilities.f14523g.c(new pd0(qi0Var2, str2, new ArrayList(qi0Var2.f40800n.f33412x), 11));
+                return;
+        }
     }
 }

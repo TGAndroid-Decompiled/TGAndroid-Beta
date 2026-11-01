@@ -1,38 +1,51 @@
 package org.telegram.ui.Components;
-public final class av0 implements Runnable {
-    public final int f24468a;
-    public final cv0 f24469b;
 
-    public av0(cv0 cv0Var, int i10) {
-        this.f24468a = i10;
-        this.f24469b = cv0Var;
+import android.os.Bundle;
+import android.widget.LinearLayout;
+public abstract class av0 extends LinearLayout {
+    public boolean a() {
+        return this instanceof org.telegram.ui.vc0;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f24468a) {
-            case 0:
-                cv0 cv0Var = this.f24469b;
-                cv0Var.V0 = false;
-                if (!cv0Var.Y0 && cv0Var.W0) {
-                    cv0Var.C(true);
-                    return;
-                }
-                return;
-            case 1:
-                this.f24469b.V0 = false;
-                return;
-            case 2:
-                cv0 cv0Var2 = this.f24469b;
-                cv0Var2.Y0 = false;
-                if (!cv0Var2.V0 && cv0Var2.W0) {
-                    cv0Var2.C(true);
-                    return;
-                }
-                return;
-            default:
-                this.f24469b.Y0 = false;
-                return;
-        }
+    public boolean b() {
+        return this instanceof org.telegram.ui.vc0;
+    }
+
+    public boolean c(boolean z10) {
+        return true;
+    }
+
+    public String getHeaderName() {
+        return "";
+    }
+
+    public void h(String str) {
+    }
+
+    public void k(Bundle bundle) {
+    }
+
+    public void l(Bundle bundle) {
+    }
+
+    public void d() {
+    }
+
+    public void f() {
+    }
+
+    public void g() {
+    }
+
+    public void i() {
+    }
+
+    public void j() {
+    }
+
+    public void updateColors() {
+    }
+
+    public void m(Bundle bundle, boolean z10) {
     }
 }

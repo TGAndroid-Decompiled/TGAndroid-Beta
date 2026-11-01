@@ -1,50 +1,78 @@
 package org.telegram.ui.Components;
 
 import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-public final class ps0 implements Runnable {
-    public final int f29420a;
-    public final qs0 f29421b;
-    public final String f29422c;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ps0 implements zf.l1, org.telegram.ui.Cells.d5 {
+    public final rs0 f29530a;
 
-    public ps0(qs0 qs0Var, String str, int i10) {
-        this.f29420a = i10;
-        this.f29421b = qs0Var;
-        this.f29422c = str;
+    public ps0(rs0 rs0Var) {
+        this.f29530a = rs0Var;
     }
 
     @Override
-    public final void run() {
-        long j10;
-        switch (this.f29420a) {
-            case 0:
-                qs0 qs0Var = this.f29421b;
-                String str = this.f29422c;
-                qs0Var.getClass();
-                org.telegram.messenger.i0.g3(new ps0(qs0Var, str, 1));
-                return;
-            default:
-                qs0 qs0Var2 = this.f29421b;
-                String str2 = this.f29422c;
-                ArrayList arrayList = null;
-                qs0Var2.f29735f = null;
-                if (!org.telegram.messenger.w3.T(qs0Var2.f29736n) && qs0Var2.f29738s.f33188f1 != null) {
-                    arrayList = new ArrayList(qs0Var2.f29738s.f33188f1.participants.participants);
-                }
-                qs0Var2.f29737r = 2;
-                if (arrayList != null) {
-                    Utilities.f14522g.c(new jg(qs0Var2, str2, arrayList, 22));
-                } else {
-                    qs0Var2.f29737r = 1;
-                }
-                zf.m1 m1Var = qs0Var2.e;
-                if (org.telegram.messenger.w3.T(qs0Var2.f29736n)) {
-                    j10 = qs0Var2.f29736n.f19793id;
-                } else {
-                    j10 = 0;
-                }
-                m1Var.g(str2, false, false, true, false, j10, false, 2, 1);
-                return;
+    public a0.h M() {
+        return null;
+    }
+
+    @Override
+    public boolean Y(int i10) {
+        return true;
+    }
+
+    @Override
+    public boolean c(org.telegram.ui.Cells.e5 e5Var, boolean z10) {
+        int intValue = ((Integer) e5Var.getTag()).intValue();
+        rs0 rs0Var = this.f29530a;
+        TLObject E = rs0Var.E(intValue);
+        if (E instanceof TLRPC.ChannelParticipant) {
+            TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) E;
+            TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = new TLRPC.TL_chatChannelParticipant();
+            tL_chatChannelParticipant.channelParticipant = channelParticipant;
+            tL_chatChannelParticipant.user_id = org.telegram.messenger.kj.C1(channelParticipant.peer);
+            tL_chatChannelParticipant.inviter_id = channelParticipant.inviter_id;
+            tL_chatChannelParticipant.date = channelParticipant.date;
+            return rs0Var.f30084s.F1.h(tL_chatChannelParticipant, true, !z10, e5Var);
         }
+        return false;
+    }
+
+    @Override
+    public void i(int i10) {
+        rs0 rs0Var = this.f29530a;
+        rs0Var.f();
+        if (i10 == 1) {
+            int i11 = rs0Var.f30083r - 1;
+            rs0Var.f30083r = i11;
+            if (i11 == 0) {
+                int i12 = 0;
+                while (true) {
+                    au0 au0Var = rs0Var.f30084s;
+                    ts0[] ts0VarArr = au0Var.m0;
+                    if (i12 < ts0VarArr.length) {
+                        ts0 ts0Var = ts0VarArr[i12];
+                        if (ts0Var.E == 7) {
+                            if (rs0Var.h == 0) {
+                                ts0Var.f30722w.e(false, true);
+                            } else {
+                                au0Var.C(ts0Var.h, 0, null);
+                            }
+                        }
+                        i12++;
+                    } else {
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public a0.h x() {
+        return null;
+    }
+
+    @Override
+    public void c0(ArrayList arrayList) {
     }
 }

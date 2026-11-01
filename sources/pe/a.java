@@ -6,7 +6,7 @@ import ve.r;
 public final class a implements ye.a {
     @Override
     public final int a(b bVar, b bVar2) {
-        if (bVar.f48192g >= 2 && bVar2.f48192g >= 2) {
+        if (bVar.f48203g >= 2 && bVar2.f48203g >= 2) {
             return 2;
         }
         return 0;

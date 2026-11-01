@@ -14,12 +14,12 @@ import j$.util.function.Consumer$CC;
 import java.util.WeakHashMap;
 import java.util.function.Consumer;
 public final class b0 implements Consumer {
-    public final i0 f45570a;
-    public final m f45571b;
+    public final i0 f45581a;
+    public final m f45582b;
 
     public b0(i0 i0Var, m mVar) {
-        this.f45570a = i0Var;
-        this.f45571b = mVar;
+        this.f45581a = i0Var;
+        this.f45582b = mVar;
     }
 
     @Override
@@ -30,15 +30,15 @@ public final class b0 implements Consumer {
         float[] fArr;
         b0 b0Var = this;
         Canvas canvas = (Canvas) obj;
-        i0 i0Var = b0Var.f45570a;
-        c cVar2 = i0Var.f45668y;
+        i0 i0Var = b0Var.f45581a;
+        c cVar2 = i0Var.f45679y;
         RectF rectF = cVar2.M;
         WeakHashMap weakHashMap = cVar2.N;
-        Paint paint = cVar2.f45578c;
+        Paint paint = cVar2.f45589c;
         long b10 = c.b();
         int i10 = 0;
         while (true) {
-            m mVar = b0Var.f45571b;
+            m mVar = b0Var.f45582b;
             if (i10 >= mVar.getChildCount()) {
                 break;
             }
@@ -57,7 +57,7 @@ public final class b0 implements Consumer {
                     f10 = 2.5f;
                 }
                 String key = ((l) childAt).getKey();
-                if (key != null && (fArr = (float[]) cVar2.f45583n.get(key)) != null) {
+                if (key != null && (fArr = (float[]) cVar2.f45594n.get(key)) != null) {
                     float c10 = c.c(fArr, b10);
                     if (c10 > 0.004f) {
                         float translationX = childAt.getTranslationX() + childAt.getLeft();
@@ -82,7 +82,7 @@ public final class b0 implements Consumer {
             cVar2 = cVar;
         }
         if (!i0Var.d.I.isEmpty()) {
-            i0Var.f45668y.invalidate();
+            i0Var.f45679y.invalidate();
         }
     }
 

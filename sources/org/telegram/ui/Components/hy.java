@@ -1,7 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class hy extends bw0 {
+public final class hy extends cw0 {
     public final int G3;
     public final iy H3;
 
@@ -13,7 +13,7 @@ public final class hy extends bw0 {
 
     @Override
     public final boolean D1() {
-        return org.telegram.messenger.sc.e(8200);
+        return org.telegram.messenger.tc.e(8200);
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class hy extends bw0 {
         super.H1(i10);
         iy iyVar = this.H3;
         vy vyVar = iyVar.G;
-        hy hyVar = iyVar.f27127r;
+        hy hyVar = iyVar.f27204r;
         boolean z11 = true;
         if (hyVar.getSelectedCategory() == null) {
             z10 = true;
@@ -43,7 +43,7 @@ public final class hy extends bw0 {
             if (hyVar.getSelectedCategory() != null) {
                 z11 = false;
             }
-            gwVar.f30982o0 = z11;
+            gwVar.f31334o0 = z11;
             gwVar.invalidate();
         }
         iyVar.g(false);

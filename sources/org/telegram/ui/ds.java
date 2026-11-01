@@ -1,21 +1,21 @@
 package org.telegram.ui;
 public final class ds implements Runnable {
-    public final int f36815a;
-    public final ns f36816b;
+    public final int f36674a;
+    public final ns f36675b;
 
     public ds(ns nsVar, int i10) {
-        this.f36815a = i10;
-        this.f36816b = nsVar;
+        this.f36674a = i10;
+        this.f36675b = nsVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f36815a) {
+        switch (this.f36674a) {
             case 0:
-                ns.c0(this.f36816b);
+                ns.d0(this.f36675b);
                 return;
             case 1:
-                ns nsVar = this.f36816b;
+                ns nsVar = this.f36675b;
                 if (nsVar.J) {
                     nsVar.d.d.requestFocus();
                     org.telegram.messenger.i0.J3(nsVar.d.d);
@@ -23,8 +23,8 @@ public final class ds implements Runnable {
                 }
                 return;
             default:
-                ns nsVar2 = this.f36816b;
-                nsVar2.presentFragment(un.ha(nsVar2.H), true);
+                ns nsVar2 = this.f36675b;
+                nsVar2.presentFragment(un.ma(nsVar2.H), true);
                 return;
         }
     }

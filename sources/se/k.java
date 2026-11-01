@@ -2,12 +2,12 @@ package se;
 
 import ve.o;
 public final class k extends xe.a {
-    public final ve.n f48243a;
-    public boolean f48244b;
-    public int f48245c;
+    public final ve.n f48254a;
+    public boolean f48255b;
+    public int f48256c;
 
     public k(ve.n nVar) {
-        this.f48243a = nVar;
+        this.f48254a = nVar;
     }
 
     @Override
@@ -15,15 +15,15 @@ public final class k extends xe.a {
         if (!(aVar instanceof o)) {
             return false;
         }
-        if (this.f48244b && this.f48245c == 1) {
-            this.f48244b = false;
+        if (this.f48255b && this.f48256c == 1) {
+            this.f48255b = false;
         }
         return true;
     }
 
     @Override
     public final ve.a e() {
-        return this.f48243a;
+        return this.f48254a;
     }
 
     @Override
@@ -34,11 +34,11 @@ public final class k extends xe.a {
     @Override
     public final q3.h h(d dVar) {
         if (dVar.h) {
-            this.f48244b = true;
-            this.f48245c = 0;
-        } else if (this.f48244b) {
-            this.f48245c++;
+            this.f48255b = true;
+            this.f48256c = 0;
+        } else if (this.f48255b) {
+            this.f48256c++;
         }
-        return q3.h.a(dVar.f48198b);
+        return q3.h.a(dVar.f48209b);
     }
 }

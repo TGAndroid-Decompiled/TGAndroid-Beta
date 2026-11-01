@@ -3,12 +3,12 @@ package t7;
 import j$.util.Objects;
 import w7.t7;
 public final class k extends d {
-    public final transient Object[] f48548c;
+    public final transient Object[] f48559c;
     public final transient int d;
     public final transient int e;
 
     public k(int i10, int i11, Object[] objArr) {
-        this.f48548c = objArr;
+        this.f48559c = objArr;
         this.d = i10;
         this.e = i11;
     }
@@ -16,7 +16,7 @@ public final class k extends d {
     @Override
     public final Object get(int i10) {
         t7.a(i10, this.e);
-        Object obj = this.f48548c[i10 + i10 + this.d];
+        Object obj = this.f48559c[i10 + i10 + this.d];
         Objects.requireNonNull(obj);
         return obj;
     }

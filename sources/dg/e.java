@@ -46,7 +46,7 @@ public final class e {
             if (i10 == 0) {
                 staticLayoutArr2 = staticLayoutArr3;
             }
-            StaticLayout staticLayout2 = new StaticLayout(charSequence, textPaint, i0.f16026q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            StaticLayout staticLayout2 = new StaticLayout(charSequence, textPaint, i0.f16172q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             staticLayoutArr2[i11] = staticLayout2;
             staticLayout = staticLayout2;
         }
@@ -81,7 +81,7 @@ public final class e {
             if (i10 == 1) {
                 return "≈" + u1.i().f(j10, "USD");
             }
-            return h8.Z0(false, i0.a.k(j10, ' ', new StringBuilder("XTR ")), 0.65f, null);
+            return h8.a1(false, i0.a.k(j10, ' ', new StringBuilder("XTR ")), 0.65f, null);
         } else {
             return i0.o0((int) j10, 0);
         }

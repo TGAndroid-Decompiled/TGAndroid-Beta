@@ -9,26 +9,26 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 public final class u0 implements Application.ActivityLifecycleCallbacks {
-    public static u0 f18205f;
-    public int f18206a;
-    public boolean f18207b = true;
-    public long f18208c = 0;
+    public static u0 f18330f;
+    public int f18331a;
+    public boolean f18332b = true;
+    public long f18333c = 0;
     public final CopyOnWriteArrayList d = new CopyOnWriteArrayList();
     public final ArrayList e = new ArrayList();
 
     public u0(w0 w0Var) {
-        f18205f = this;
+        f18330f = this;
         w0Var.registerActivityLifecycleCallbacks(this);
     }
 
     public final void a(Activity activity) {
-        int i10 = this.f18206a + 1;
-        this.f18206a = i10;
+        int i10 = this.f18331a + 1;
+        this.f18331a = i10;
         if (i10 == 1) {
-            if (SystemClock.elapsedRealtime() - this.f18208c < 200) {
-                this.f18207b = false;
+            if (SystemClock.elapsedRealtime() - this.f18333c < 200) {
+                this.f18332b = false;
             }
-            if (v2.f18448a) {
+            if (v2.f18578a) {
                 f8.b("switch to foreground");
             }
             Iterator it = this.d.iterator();
@@ -71,7 +71,7 @@ public final class u0 implements Application.ActivityLifecycleCallbacks {
     @Override
     public final void onActivityStarted(Activity activity) {
         boolean z10;
-        if (this.f18206a == 0) {
+        if (this.f18331a == 0) {
             z10 = true;
         } else {
             z10 = false;
@@ -84,12 +84,12 @@ public final class u0 implements Application.ActivityLifecycleCallbacks {
 
     @Override
     public final void onActivityStopped(Activity activity) {
-        int i10 = this.f18206a - 1;
-        this.f18206a = i10;
+        int i10 = this.f18331a - 1;
+        this.f18331a = i10;
         if (i10 == 0) {
-            this.f18208c = SystemClock.elapsedRealtime();
-            this.f18207b = true;
-            if (v2.f18448a) {
+            this.f18333c = SystemClock.elapsedRealtime();
+            this.f18332b = true;
+            if (v2.f18578a) {
                 f8.b("switch to background");
             }
             Iterator it = this.d.iterator();

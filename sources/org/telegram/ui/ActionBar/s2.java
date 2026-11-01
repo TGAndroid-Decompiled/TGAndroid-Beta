@@ -9,47 +9,47 @@ import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 public final class s2 extends FrameLayout {
-    public final org.telegram.ui.Components.n5 f20764a;
-    public final ImageView f20765b;
-    public final ImageView f20766c;
+    public final org.telegram.ui.Components.n5 f20765a;
+    public final ImageView f20766b;
+    public final ImageView f20767c;
     public final int d;
     public boolean e;
-    public boolean f20767f;
+    public boolean f20768f;
 
     public s2(int i10, Context context, p6 p6Var) {
         super(context);
         int i11;
         int i12;
-        this.f20767f = false;
+        this.f20768f = false;
         this.d = i10;
         if (i10 != 4) {
             setBackgroundDrawable(t6.M0(p6Var, false));
         }
         ImageView imageView = new ImageView(context);
-        this.f20765b = imageView;
+        this.f20766b = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         a7.t(imageView, t6.J5, p6Var, PorterDuff.Mode.MULTIPLY);
-        if (cd.X) {
+        if (dd.X) {
             i11 = 5;
         } else {
             i11 = 3;
         }
         addView(imageView, w7.b6.e(56, 48, i11 | 16));
         ImageView imageView2 = new ImageView(context);
-        this.f20766c = imageView2;
+        this.f20767c = imageView2;
         imageView2.setScaleType(scaleType);
-        a7.t(imageView2, t6.f21003h7, p6Var, PorterDuff.Mode.SRC_IN);
-        if (cd.X) {
+        a7.t(imageView2, t6.f21004h7, p6Var, PorterDuff.Mode.SRC_IN);
+        if (dd.X) {
             i12 = 3;
         } else {
             i12 = 5;
         }
         addView(imageView2, w7.b6.e(56, 48, i12 | 16));
         org.telegram.ui.Components.n5 n5Var = new org.telegram.ui.Components.n5(context);
-        this.f20764a = n5Var;
+        this.f20765a = n5Var;
         n5Var.setLines(1);
         n5Var.setSingleLine(true);
         n5Var.setGravity(1);
@@ -57,7 +57,7 @@ public final class s2 extends FrameLayout {
         if (i10 != 0 && i10 != 4) {
             if (i10 == 1) {
                 n5Var.setGravity(17);
-                a7.V(n5Var, t6.f21037j5, p6Var);
+                a7.V(n5Var, t6.f21038j5, p6Var);
                 n5Var.setTextSize(1, 14.0f);
                 n5Var.setTypeface(org.telegram.messenger.i0.o());
                 addView(n5Var, w7.b6.c(-1.0f, -1));
@@ -74,9 +74,9 @@ public final class s2 extends FrameLayout {
                 return;
             }
         }
-        a7.V(n5Var, t6.f21037j5, p6Var);
+        a7.V(n5Var, t6.f21038j5, p6Var);
         n5Var.setTextSize(1, 16.0f);
-        addView(n5Var, w7.b6.e(-2, -2, (cd.X ? 5 : 3) | 16));
+        addView(n5Var, w7.b6.e(-2, -2, (dd.X ? 5 : 3) | 16));
     }
 
     public final void a(CharSequence charSequence, int i10, Drawable drawable, boolean z10) {
@@ -85,11 +85,11 @@ public final class s2 extends FrameLayout {
         int L;
         int i11;
         float f11;
-        org.telegram.ui.Components.n5 n5Var = this.f20764a;
+        org.telegram.ui.Components.n5 n5Var = this.f20765a;
         n5Var.setText(charSequence);
         float f12 = 16.0f;
         float f13 = 21.0f;
-        ImageView imageView = this.f20765b;
+        ImageView imageView = this.f20766b;
         if (i10 == 0 && drawable == null) {
             imageView.setVisibility(4);
             if (z10) {
@@ -111,22 +111,22 @@ public final class s2 extends FrameLayout {
         }
         imageView.setVisibility(0);
         if (z10) {
-            if (cd.X) {
+            if (dd.X) {
                 f10 = 21.0f;
             } else {
                 f10 = 72.0f;
             }
             int L3 = org.telegram.messenger.i0.L(f10);
-            if (cd.X) {
+            if (dd.X) {
                 f13 = 72.0f;
             }
             n5Var.setPadding(L3, 0, org.telegram.messenger.i0.L(f13), 0);
-            if (cd.X) {
+            if (dd.X) {
                 L = 0;
             } else {
                 L = org.telegram.messenger.i0.L(5.0f);
             }
-            if (cd.X) {
+            if (dd.X) {
                 i11 = org.telegram.messenger.i0.L(5.0f);
             } else {
                 i11 = 5;
@@ -134,13 +134,13 @@ public final class s2 extends FrameLayout {
             imageView.setPadding(L, 0, i11, 0);
             return;
         }
-        if (cd.X) {
+        if (dd.X) {
             f7 = 16.0f;
         } else {
             f7 = 72.0f;
         }
         int L4 = org.telegram.messenger.i0.L(f7);
-        if (cd.X) {
+        if (dd.X) {
             f12 = 72.0f;
         }
         n5Var.setPadding(L4, 0, org.telegram.messenger.i0.L(f12), 0);
@@ -148,17 +148,17 @@ public final class s2 extends FrameLayout {
     }
 
     public ImageView getImageView() {
-        return this.f20765b;
+        return this.f20766b;
     }
 
     public org.telegram.ui.Components.n5 getTextView() {
-        return this.f20764a;
+        return this.f20765a;
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.f20767f) {
+        if (this.f20768f) {
             accessibilityNodeInfo.setSelected(true);
         }
     }
@@ -186,18 +186,18 @@ public final class s2 extends FrameLayout {
         } else {
             i10 = 0;
         }
-        this.f20766c.setImageResource(i10);
+        this.f20767c.setImageResource(i10);
     }
 
     public void setGravity(int i10) {
-        this.f20764a.setGravity(i10);
+        this.f20765a.setGravity(i10);
     }
 
     public void setIconColor(int i10) {
-        this.f20765b.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
+        this.f20766b.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
     }
 
     public void setTextColor(int i10) {
-        this.f20764a.setTextColor(i10);
+        this.f20765a.setTextColor(i10);
     }
 }

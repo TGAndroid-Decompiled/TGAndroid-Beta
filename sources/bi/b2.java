@@ -8,8 +8,8 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.KeyEvent;
 import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.uu0;
-public final class b2 extends uu0 {
+import org.telegram.ui.Components.vu0;
+public final class b2 extends vu0 {
     public boolean f2858f0;
     public final Paint f2859g0;
     public final RectF f2860h0;
@@ -27,7 +27,7 @@ public final class b2 extends uu0 {
     public final void dispatchDraw(Canvas canvas) {
         k2 k2Var = this.f2861i0;
         Rect rect = k2Var.f3164x;
-        int r12 = org.telegram.ui.ActionBar.t6.r1(k2Var.I, k2Var.getThemedColor(org.telegram.ui.ActionBar.t6.f20929d6));
+        int r12 = org.telegram.ui.ActionBar.t6.r1(k2Var.I, k2Var.getThemedColor(org.telegram.ui.ActionBar.t6.f20930d6));
         Paint paint = this.f2859g0;
         paint.setColor(r12);
         if (k2Var.E && k2Var.f3166y != null) {
@@ -72,7 +72,7 @@ public final class b2 extends uu0 {
         int action = keyEvent.getAction();
         k2 k2Var = this.f2861i0;
         if (action == 0 && keyEvent.getKeyCode() == 47 && keyEvent.isCtrlPressed()) {
-            if (k2Var.u0()) {
+            if (k2Var.v0()) {
                 org.telegram.messenger.m5.n(null, 2131746020, new cc(k2Var.X, k2Var.getResourceProvider()), 2131623989, 36);
                 return true;
             }

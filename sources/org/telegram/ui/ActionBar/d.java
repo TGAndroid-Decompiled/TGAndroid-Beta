@@ -3,7 +3,7 @@ package org.telegram.ui.ActionBar;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import org.telegram.ui.Components.uu0;
+import org.telegram.ui.Components.vu0;
 public final class d extends y {
     public final l h;
 
@@ -17,9 +17,9 @@ public final class d extends y {
         Canvas canvas2;
         l lVar = this.h;
         Paint paint = lVar.M0;
-        if (lVar.L0 && this.f21533a && lVar.f20520x != 0) {
+        if (lVar.L0 && this.f21534a && lVar.f20521x != 0) {
             lVar.N0.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            paint.setColor(lVar.f20520x);
+            paint.setColor(lVar.f20521x);
             canvas2 = canvas;
             lVar.K0.H(canvas2, 0.0f, lVar.N0, paint, true);
         } else {
@@ -31,18 +31,18 @@ public final class d extends y {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        uu0 uu0Var = this.h.K0;
-        if (uu0Var != null) {
-            uu0Var.O.add(this);
+        vu0 vu0Var = this.h.K0;
+        if (vu0Var != null) {
+            vu0Var.O.add(this);
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        uu0 uu0Var = this.h.K0;
-        if (uu0Var != null) {
-            uu0Var.O.remove(this);
+        vu0 vu0Var = this.h.K0;
+        if (vu0Var != null) {
+            vu0Var.O.remove(this);
         }
     }
 
@@ -51,7 +51,7 @@ public final class d extends y {
         super.setAlpha(f7);
         l lVar = this.h;
         lVar.invalidate();
-        Runnable runnable = lVar.f20476c1;
+        Runnable runnable = lVar.f20479d1;
         if (runnable != null) {
             runnable.run();
         }
@@ -60,7 +60,7 @@ public final class d extends y {
     @Override
     public final void setBackgroundColor(int i10) {
         l lVar = this.h;
-        lVar.f20520x = i10;
+        lVar.f20521x = i10;
         if (!lVar.L0) {
             super.setBackgroundColor(i10);
         }

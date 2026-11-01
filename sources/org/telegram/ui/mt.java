@@ -1,28 +1,26 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class mt implements org.telegram.messenger.us {
-    public final int f39763a;
-    public final View f39764b;
+import j$.util.Objects;
+public final class mt {
+    public String f39611a;
+    public String f39612b;
+    public String f39613c;
+    public String d;
 
-    public mt(int i10, View view) {
-        this.f39763a = i10;
-        this.f39764b = view;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && mt.class == obj.getClass()) {
+            mt mtVar = (mt) obj;
+            if (Objects.equals(this.f39611a, mtVar.f39611a) && Objects.equals(this.f39613c, mtVar.f39613c)) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object[] objArr) {
-        switch (this.f39763a) {
-            case 0:
-                org.telegram.ui.Cells.x9 x9Var = (org.telegram.ui.Cells.x9) this.f39764b;
-                if (i10 == 259) {
-                    x9Var.getTextView().invalidate();
-                    return;
-                }
-                return;
-            default:
-                ((org.telegram.ui.ActionBar.q2) this.f39764b).invalidate();
-                return;
-        }
+    public final int hashCode() {
+        return Objects.hash(this.f39611a, this.f39613c);
     }
 }

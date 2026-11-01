@@ -38,23 +38,23 @@ public abstract class qt extends EditText {
     public boolean[] T;
     public boolean U;
     public boolean V;
-    public ArrayList f29739a;
-    public Stack f29740b;
-    public ArrayList f29741c;
+    public ArrayList f29786a;
+    public Stack f29787b;
+    public ArrayList f29788c;
     public boolean d;
     public boolean e;
-    public nh.n f29742f;
+    public nh.n f29789f;
     public boolean h;
-    public Path f29743n;
-    public int f29744r;
-    public int f29745s;
-    public float f29746w;
-    public float f29747x;
-    public boolean f29748y;
+    public Path f29790n;
+    public int f29791r;
+    public int f29792s;
+    public float f29793w;
+    public float f29794x;
+    public boolean f29795y;
 
     public final void d() {
         CharSequence charSequence;
-        zz0[] zz0VarArr;
+        a01[] a01VarArr;
         int i10;
         int i11;
         ot otVar = this.J;
@@ -66,19 +66,19 @@ public abstract class qt extends EditText {
         boolean z10 = false;
         if (charSequence instanceof Spannable) {
             Spannable spannable = (Spannable) charSequence;
-            for (zz0 zz0Var : (zz0[]) spannable.getSpans(0, spannable.length(), zz0.class)) {
-                int spanStart = spannable.getSpanStart(zz0Var);
-                int spanEnd = spannable.getSpanEnd(zz0Var);
-                if (zz0Var.c() && ((spanStart > (i10 = this.f29744r) && spanEnd < this.f29745s) || ((i10 > spanStart && i10 < spanEnd) || ((i11 = this.f29745s) > spanStart && i11 < spanEnd)))) {
+            for (a01 a01Var : (a01[]) spannable.getSpans(0, spannable.length(), a01.class)) {
+                int spanStart = spannable.getSpanStart(a01Var);
+                int spanEnd = spannable.getSpanEnd(a01Var);
+                if (a01Var.c() && ((spanStart > (i10 = this.f29791r) && spanEnd < this.f29792s) || ((i10 > spanStart && i10 < spanEnd) || ((i11 = this.f29792s) > spanStart && i11 < spanEnd)))) {
                     removeCallbacks(otVar);
-                    this.f29748y = false;
+                    this.f29795y = false;
                     z10 = true;
                     break;
                 }
             }
         }
-        if (this.d && !z10 && !this.f29748y) {
-            this.f29748y = true;
+        if (this.d && !z10 && !this.f29795y) {
+            this.f29795y = true;
             postDelayed(otVar, 10000L);
         }
     }
@@ -87,11 +87,11 @@ public abstract class qt extends EditText {
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         boolean z10;
         boolean z11;
-        wh0 wh0Var;
+        xh0 xh0Var;
         boolean z12;
         nh.n nVar;
         int paddingTop = getPaddingTop() - getScrollY();
-        ArrayList arrayList = this.f29741c;
+        ArrayList arrayList = this.f29788c;
         if (arrayList == null) {
             z10 = false;
         } else {
@@ -101,9 +101,9 @@ public abstract class qt extends EditText {
             while (i10 < size) {
                 Object obj = arrayList.get(i10);
                 i10++;
-                sh0 sh0Var = (sh0) obj;
-                e0.h hVar = sh0Var.e.J;
-                if (sh0Var.b() && sh0Var.f30246g.contains(motionEvent.getX(), motionEvent.getY() - paddingTop)) {
+                th0 th0Var = (th0) obj;
+                e0.h hVar = th0Var.e.J;
+                if (th0Var.b() && th0Var.f30661g.contains(motionEvent.getX(), motionEvent.getY() - paddingTop)) {
                     z11 = true;
                 } else {
                     z11 = false;
@@ -114,7 +114,7 @@ public abstract class qt extends EditText {
                     }
                 } else if (motionEvent.getAction() == 1) {
                     if (hVar != null && hVar.f6021c && z11) {
-                        sh0Var.e.e = !wh0Var.e;
+                        th0Var.e.e = !xh0Var.e;
                         g(true);
                         z10 = true;
                     }
@@ -132,7 +132,7 @@ public abstract class qt extends EditText {
             }
         }
         if (!z10) {
-            if (this.e && (nVar = this.f29742f) != null && ((GestureDetector) ((m2.t) nVar.d).f12684b).onTouchEvent(motionEvent)) {
+            if (this.e && (nVar = this.f29789f) != null && ((GestureDetector) ((m2.t) nVar.d).f12685b).onTouchEvent(motionEvent)) {
                 if (motionEvent.getActionMasked() == 1) {
                     MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
                     super.dispatchTouchEvent(obtain);
@@ -154,17 +154,17 @@ public abstract class qt extends EditText {
     }
 
     public final void f() {
-        zz0[] zz0VarArr;
+        a01[] a01VarArr;
         Editable text = getText();
         if (text != null) {
-            for (zz0 zz0Var : (zz0[]) text.getSpans(0, text.length(), zz0.class)) {
-                if (zz0Var.c()) {
+            for (a01 a01Var : (a01[]) text.getSpans(0, text.length(), a01.class)) {
+                if (a01Var.c()) {
                     boolean z10 = this.d;
-                    yz0 yz0Var = zz0Var.f33277b;
+                    zz0 zz0Var = a01Var.f24261b;
                     if (z10) {
-                        yz0Var.f32850a |= 512;
+                        zz0Var.f33282a |= 512;
                     } else {
-                        yz0Var.f32850a &= -513;
+                        zz0Var.f33282a &= -513;
                     }
                 }
             }
@@ -195,9 +195,9 @@ public abstract class qt extends EditText {
             this.T[0] = false;
             this.V = false;
             this.U = true;
-            this.f29741c = wh0.d(this, getLayout(), this.f29741c, this.T);
+            this.f29788c = xh0.d(this, getLayout(), this.f29788c, this.T);
             if (this.V) {
-                this.f29741c = wh0.d(this, getLayout(), this.f29741c, this.T);
+                this.f29788c = xh0.d(this, getLayout(), this.f29788c, this.T);
             }
             this.U = false;
             this.V = false;
@@ -224,12 +224,12 @@ public abstract class qt extends EditText {
             return null;
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(text);
-        uh0[] uh0VarArr = (uh0[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), uh0.class);
-        for (int length = uh0VarArr.length - 1; length >= 0; length--) {
-            uh0 uh0Var = uh0VarArr[length];
-            int spanStart = spannableStringBuilder.getSpanStart(uh0Var);
-            int spanEnd = spannableStringBuilder.getSpanEnd(uh0Var);
-            spannableStringBuilder.removeSpan(uh0Var);
+        vh0[] vh0VarArr = (vh0[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), vh0.class);
+        for (int length = vh0VarArr.length - 1; length >= 0; length--) {
+            vh0 vh0Var = vh0VarArr[length];
+            int spanStart = spannableStringBuilder.getSpanStart(vh0Var);
+            int spanEnd = spannableStringBuilder.getSpanEnd(vh0Var);
+            spannableStringBuilder.removeSpan(vh0Var);
             spannableStringBuilder.delete(spanStart, spanEnd);
         }
         return spannableStringBuilder;
@@ -238,8 +238,8 @@ public abstract class qt extends EditText {
     public final void h() {
         k5 k5Var;
         k5 k5Var2;
-        Stack stack = this.f29740b;
-        ArrayList arrayList = this.f29739a;
+        Stack stack = this.f29787b;
+        ArrayList arrayList = this.f29786a;
         if (arrayList == null) {
             return;
         }
@@ -252,12 +252,12 @@ public abstract class qt extends EditText {
         Layout layout = getLayout();
         if (layout != null && (layout.getText() instanceof Spannable)) {
             if (this.G && (k5Var2 = this.E) != null) {
-                ArrayList arrayList2 = k5Var2.f27636a;
+                ArrayList arrayList2 = k5Var2.f27728a;
                 for (int i10 = 0; i10 < arrayList2.size(); i10++) {
                     ((j5) arrayList2.get(i10)).d.recordPositions = false;
                 }
             }
-            ArrayList arrayList3 = this.f29741c;
+            ArrayList arrayList3 = this.f29788c;
             int i11 = nh.i.A;
             int measuredWidth = getMeasuredWidth();
             Layout layout2 = getLayout();
@@ -266,7 +266,7 @@ public abstract class qt extends EditText {
             }
             nh.i.a(this, layout2, 0, measuredWidth, (Spanned) getText(), stack, arrayList, arrayList3);
             if (this.G && (k5Var = this.E) != null) {
-                ArrayList arrayList4 = k5Var.f27636a;
+                ArrayList arrayList4 = k5Var.f27728a;
                 for (int i12 = 0; i12 < arrayList4.size(); i12++) {
                     ((j5) arrayList4.get(i12)).d.recordPositions = true;
                 }
@@ -277,14 +277,14 @@ public abstract class qt extends EditText {
 
     public final void i(nh.i iVar, float f7, float f10) {
         if (!this.d) {
-            this.f29746w = f7;
-            this.f29747x = f10;
-            this.f29748y = false;
+            this.f29793w = f7;
+            this.f29794x = f10;
+            this.f29795y = false;
             removeCallbacks(this.J);
             j(true, false);
-            iVar.f13852q = new nt(this, 0);
+            iVar.f13853q = new nt(this, 0);
             float sqrt = (float) Math.sqrt(Math.pow(getHeight(), 2.0d) + Math.pow(getWidth(), 2.0d));
-            ArrayList arrayList = this.f29739a;
+            ArrayList arrayList = this.f29786a;
             int size = arrayList.size();
             int i10 = 0;
             while (i10 < size) {
@@ -296,24 +296,24 @@ public abstract class qt extends EditText {
     }
 
     public final void j(boolean z10, boolean z11) {
-        zz0[] zz0VarArr;
+        a01[] a01VarArr;
         this.d = z10;
         Editable text = getText();
         if (text != null) {
-            for (zz0 zz0Var : (zz0[]) text.getSpans(0, text.length(), zz0.class)) {
-                if (zz0Var.c()) {
-                    yz0 yz0Var = zz0Var.f33277b;
+            for (a01 a01Var : (a01[]) text.getSpans(0, text.length(), a01.class)) {
+                if (a01Var.c()) {
+                    zz0 zz0Var = a01Var.f24261b;
                     if (z10) {
-                        yz0Var.f32850a |= 512;
+                        zz0Var.f33282a |= 512;
                     } else {
-                        yz0Var.f32850a &= -513;
+                        zz0Var.f33282a &= -513;
                     }
                 }
             }
         }
         this.h = true;
         setText(text, TextView.BufferType.EDITABLE);
-        setSelection(this.f29744r, this.f29745s);
+        setSelection(this.f29791r, this.f29792s);
         this.h = false;
         if (z11) {
             h();
@@ -358,8 +358,8 @@ public abstract class qt extends EditText {
         int color;
         boolean z10 = this.P;
         Rect rect = this.K;
-        Path path2 = this.f29743n;
-        ArrayList arrayList2 = this.f29739a;
+        Path path2 = this.f29790n;
+        ArrayList arrayList2 = this.f29786a;
         canvas.save();
         if (this.L && getScrollY() != 0) {
             canvas.clipRect(-org.telegram.messenger.i0.L(3.0f), (getScrollY() - super.getExtendedPaddingTop()) - this.O, getMeasuredWidth(), ((getScrollY() + getMeasuredHeight()) + super.getExtendedPaddingBottom()) - this.O);
@@ -382,11 +382,11 @@ public abstract class qt extends EditText {
             path = path2;
         }
         g(false);
-        for (int i13 = 0; i13 < this.f29741c.size(); i13++) {
+        for (int i13 = 0; i13 < this.f29788c.size(); i13++) {
             int width = getWidth();
             int i14 = this.D;
             getPaint();
-            ((sh0) this.f29741c.get(i13)).a(canvas, width, i14);
+            ((th0) this.f29788c.get(i13)).a(canvas, width, i14);
         }
         k(false);
         if (z10) {
@@ -394,7 +394,7 @@ public abstract class qt extends EditText {
                 this.Q = new Canvas();
             }
             tb0 tb0Var = this.Q;
-            tb0Var.f30539a = canvas;
+            tb0Var.f30621a = canvas;
             super.onDraw(tb0Var);
         } else {
             super.onDraw(canvas);
@@ -411,7 +411,7 @@ public abstract class qt extends EditText {
         canvas.restore();
         if (!arrayList.isEmpty()) {
             nh.i iVar = (nh.i) arrayList.get(0);
-            if (iVar.f13848m > 0.0f && iVar.f13849n > 0.0f) {
+            if (iVar.f13849m > 0.0f && iVar.f13850n > 0.0f) {
                 canvas.save();
                 canvas.clipPath(path);
                 path.rewind();
@@ -423,7 +423,7 @@ public abstract class qt extends EditText {
                         this.Q = new Canvas();
                     }
                     tb0 tb0Var2 = this.Q;
-                    tb0Var2.f30539a = canvas;
+                    tb0Var2.f30621a = canvas;
                     super.onDraw(tb0Var2);
                 } else {
                     super.onDraw(canvas);
@@ -443,7 +443,7 @@ public abstract class qt extends EditText {
                 int i15 = rect.top;
                 int i16 = bounds2.bottom;
                 if ((i15 <= i16 && rect.bottom >= bounds2.top) || (bounds2.top <= rect.bottom && i16 >= i15)) {
-                    if (iVar2.f13859y) {
+                    if (iVar2.f13860y) {
                         color = this.D;
                     } else {
                         color = getPaint().getColor();
@@ -468,8 +468,8 @@ public abstract class qt extends EditText {
         if (this.h) {
             return;
         }
-        this.f29744r = i10;
-        this.f29745s = i11;
+        this.f29791r = i10;
+        this.f29792s = i11;
         d();
     }
 
@@ -513,7 +513,7 @@ public abstract class qt extends EditText {
     public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
         if (!this.h) {
             this.d = false;
-            Stack stack = this.f29740b;
+            Stack stack = this.f29787b;
             if (stack != null) {
                 stack.clear();
             }

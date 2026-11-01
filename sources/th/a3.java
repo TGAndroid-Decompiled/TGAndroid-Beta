@@ -2,33 +2,33 @@ package th;
 
 import android.animation.ValueAnimator;
 import android.view.View;
-import org.telegram.messenger.tz;
+import org.telegram.messenger.uz;
 import org.telegram.ui.Stories.ProfileStoriesView;
 public final class a3 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f48776a;
-    public final View f48777b;
-    public final Object f48778c;
+    public final int f48790a;
+    public final View f48791b;
+    public final Object f48792c;
 
     public a3(int i10, View view, Object obj) {
-        this.f48776a = i10;
-        this.f48777b = view;
-        this.f48778c = obj;
+        this.f48790a = i10;
+        this.f48791b = view;
+        this.f48792c = obj;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i10 = this.f48776a;
-        Object obj = this.f48778c;
-        View view = this.f48777b;
+        int i10 = this.f48790a;
+        Object obj = this.f48792c;
+        View view = this.f48791b;
         switch (i10) {
             case 0:
                 ProfileStoriesView profileStoriesView = (ProfileStoriesView) view;
                 boolean[] zArr = (boolean[]) obj;
-                int i11 = ProfileStoriesView.f34056s0;
+                int i11 = ProfileStoriesView.f34063s0;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 if (!zArr[0] && floatValue > 0.2f) {
                     zArr[0] = true;
-                    if (tz.o() > 0) {
+                    if (uz.o() > 0) {
                         org.telegram.messenger.i0.b4(profileStoriesView);
                         org.telegram.messenger.i0.h3(new sg.v(profileStoriesView, 9), 180L);
                     }

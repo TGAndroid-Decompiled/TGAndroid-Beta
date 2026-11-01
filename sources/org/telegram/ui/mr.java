@@ -3,14 +3,14 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class mr implements Runnable {
-    public final int f39753a;
-    public final or f39754b;
-    public final String f39755c;
+    public final int f39603a;
+    public final or f39604b;
+    public final String f39605c;
 
     public mr(or orVar, String str, int i10) {
-        this.f39753a = i10;
-        this.f39754b = orVar;
-        this.f39755c = str;
+        this.f39603a = i10;
+        this.f39604b = orVar;
+        this.f39605c = str;
     }
 
     @Override
@@ -20,31 +20,31 @@ public final class mr implements Runnable {
         fp fpVar;
         boolean z10;
         long j10;
-        switch (this.f39753a) {
+        switch (this.f39603a) {
             case 0:
-                or orVar = this.f39754b;
+                or orVar = this.f39604b;
                 orVar.getClass();
-                org.telegram.messenger.i0.g3(new mr(orVar, this.f39755c, 1));
+                org.telegram.messenger.i0.g3(new mr(orVar, this.f39605c, 1));
                 return;
             default:
-                or orVar2 = this.f39754b;
-                orVar2.f40371n = null;
+                or orVar2 = this.f39604b;
+                orVar2.f40253n = null;
                 pr prVar = orVar2.D;
-                TLRPC.Chat chat = prVar.f40746n;
-                int i10 = prVar.f40728d1;
-                if (!org.telegram.messenger.w3.T(chat) && prVar.f40755r != null) {
-                    arrayList = new ArrayList(prVar.f40755r.participants.participants);
+                TLRPC.Chat chat = prVar.f40553n;
+                int i10 = prVar.f40535d1;
+                if (!org.telegram.messenger.w3.T(chat) && prVar.f40562r != null) {
+                    arrayList = new ArrayList(prVar.f40562r.participants.participants);
                 } else {
                     arrayList = null;
                 }
                 if (i10 == 1) {
-                    arrayList2 = new ArrayList(prVar.getContactsController().f16065e0);
+                    arrayList2 = new ArrayList(prVar.getContactsController().f16218e0);
                 } else {
                     arrayList2 = null;
                 }
-                String str = this.f39755c;
+                String str = this.f39605c;
                 if (arrayList == null && arrayList2 == null) {
-                    orVar2.f40373s = false;
+                    orVar2.f40255s = false;
                     fpVar = null;
                 } else {
                     fpVar = new fp(orVar2, str, arrayList, arrayList2, 3);
@@ -55,7 +55,7 @@ public final class mr implements Runnable {
                 } else {
                     z10 = false;
                 }
-                if (org.telegram.messenger.w3.T(prVar.f40746n)) {
+                if (org.telegram.messenger.w3.T(prVar.f40553n)) {
                     j10 = prVar.M;
                 } else {
                     j10 = 0;

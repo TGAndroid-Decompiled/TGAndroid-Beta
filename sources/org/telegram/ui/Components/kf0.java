@@ -6,26 +6,26 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 public final class kf0 extends Drawable {
-    public final Paint f27741a;
-    public final int f27742b;
-    public boolean f27743c;
+    public final Paint f27834a;
+    public final int f27835b;
+    public boolean f27836c;
     public float d;
     public long e;
-    public View f27744f;
-    public int f27745g = 255;
+    public View f27837f;
+    public int f27838g = 255;
     public float h = 300.0f;
 
     public kf0(int i10) {
-        this.f27742b = org.telegram.messenger.i0.L(i10);
+        this.f27835b = org.telegram.messenger.i0.L(i10);
         Paint paint = new Paint(1);
-        this.f27741a = paint;
+        this.f27834a = paint;
         paint.setColor(-1);
     }
 
     public final void a(boolean z10, boolean z11) {
         float f7;
-        if (this.f27743c != z10) {
-            this.f27743c = z10;
+        if (this.f27836c != z10) {
+            this.f27836c = z10;
             if (!z11) {
                 if (z10) {
                     f7 = 1.0f;
@@ -46,12 +46,12 @@ public final class kf0 extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.f27742b;
+        return this.f27835b;
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f27742b;
+        return this.f27835b;
     }
 
     @Override
@@ -61,11 +61,11 @@ public final class kf0 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f27745g = i10;
+        this.f27838g = i10;
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f27741a.setColorFilter(colorFilter);
+        this.f27834a.setColorFilter(colorFilter);
     }
 }

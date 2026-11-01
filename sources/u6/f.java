@@ -7,9 +7,9 @@ import android.os.WorkSource;
 import android.util.Log;
 import java.lang.reflect.Method;
 public abstract class f {
-    public static final Method f50174a;
-    public static final Method f50175b;
-    public static final Method f50176c;
+    public static final Method f50188a;
+    public static final Method f50189b;
+    public static final Method f50190c;
     public static final Method d;
     public static Boolean e;
 
@@ -25,19 +25,19 @@ public abstract class f {
         } catch (Exception unused) {
             method = null;
         }
-        f50174a = method;
+        f50188a = method;
         try {
             method2 = WorkSource.class.getMethod("add", cls, String.class);
         } catch (Exception unused2) {
             method2 = null;
         }
-        f50175b = method2;
+        f50189b = method2;
         try {
             method3 = WorkSource.class.getMethod("size", null);
         } catch (Exception unused3) {
             method3 = null;
         }
-        f50176c = method3;
+        f50190c = method3;
         try {
             WorkSource.class.getMethod("get", cls);
         } catch (Exception unused4) {
@@ -78,7 +78,7 @@ public abstract class f {
     }
 
     public static void a(WorkSource workSource, int i10, String str) {
-        Method method = f50175b;
+        Method method = f50189b;
         if (method != null) {
             if (str == null) {
                 str = "";
@@ -91,7 +91,7 @@ public abstract class f {
                 return;
             }
         }
-        Method method2 = f50174a;
+        Method method2 = f50188a;
         if (method2 != null) {
             try {
                 method2.invoke(workSource, Integer.valueOf(i10));

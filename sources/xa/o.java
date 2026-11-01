@@ -7,14 +7,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 public final class o {
     public static final long d = TimeUnit.DAYS.toMillis(7);
-    public final String f53557a;
-    public final String f53558b;
-    public final long f53559c;
+    public final String f53575a;
+    public final String f53576b;
+    public final long f53577c;
 
     public o(long j10, String str, String str2) {
-        this.f53557a = str;
-        this.f53558b = str2;
-        this.f53559c = j10;
+        this.f53575a = str;
+        this.f53576b = str2;
+        this.f53577c = j10;
     }
 
     public static String a(long j10, String str, String str2) {

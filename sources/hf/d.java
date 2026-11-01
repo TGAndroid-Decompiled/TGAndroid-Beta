@@ -24,39 +24,39 @@ import org.telegram.ui.Components.cg;
 import sc.h;
 import sc.j;
 public final class d extends j {
-    public static final f f7662l;
-    public static final HashMap f7663m;
+    public static final f f7663l;
+    public static final HashMap f7664m;
     public final ExtendedDefaultDataSourceFactory e;
-    public final d2.c f7664f;
-    public final kb.a f7665g;
+    public final d2.c f7665f;
+    public final kb.a f7666g;
     public final HashMap h;
-    public Pair f7666i;
-    public boolean f7667j;
-    public final AtomicInteger f7668k;
+    public Pair f7667i;
+    public boolean f7668j;
+    public final AtomicInteger f7669k;
 
     static {
         f fVar = new f(new e(Uri.parse("file:///android_asset/cast/default.png"), "image/png", "/assets/default"));
-        f7662l = fVar;
+        f7663l = fVar;
         f[] fVarArr = {fVar};
         HashMap hashMap = new HashMap();
-        f7663m = hashMap;
+        f7664m = hashMap;
         f fVar2 = fVarArr[0];
         hashMap.put(fVar2.d, fVar2);
     }
 
     public d() {
-        this.f48177c = new g0(8);
+        this.f48188c = new g0(8);
         this.h = new HashMap();
-        this.f7666i = null;
-        this.f7667j = false;
-        this.f7668k = new AtomicInteger();
-        this.f7664f = new d2.c(13);
-        this.f7665g = new kb.a(6);
-        this.e = new ExtendedDefaultDataSourceFactory(w0.f19025b, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
+        this.f7667i = null;
+        this.f7668j = false;
+        this.f7669k = new AtomicInteger();
+        this.f7665f = new d2.c(13);
+        this.f7666g = new kb.a(6);
+        this.e = new ExtendedDefaultDataSourceFactory(w0.f18945b, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
     }
 
     public static String i() {
-        int ipAddress = ((WifiManager) w0.f19025b.getSystemService("wifi")).getConnectionInfo().getIpAddress();
+        int ipAddress = ((WifiManager) w0.f18945b.getSystemService("wifi")).getConnectionInfo().getIpAddress();
         if (ipAddress == 0) {
             try {
                 Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
@@ -87,9 +87,9 @@ public final class d extends j {
     @Override
     public final h e(sc.d dVar) {
         String str;
-        int incrementAndGet = this.f7668k.incrementAndGet();
+        int incrementAndGet = this.f7669k.incrementAndGet();
         StringBuilder l4 = i0.a.l(incrementAndGet, "Request ", " ");
-        switch (dVar.f48155g) {
+        switch (dVar.f48166g) {
             case 1:
                 str = "GET";
                 break;
@@ -144,9 +144,9 @@ public final class d extends j {
         }
         l4.append(str);
         l4.append(" ");
-        l4.append(dVar.f48154f);
+        l4.append(dVar.f48165f);
         l4.append(" ");
-        l4.append((String) dVar.f48156i.get("range"));
+        l4.append((String) dVar.f48167i.get("range"));
         Log.d("CAST_SERVER", l4.toString());
         try {
             h k10 = k(dVar);
@@ -170,10 +170,10 @@ public final class d extends j {
 
     public final void h() {
         if (this.h.isEmpty()) {
-            if (this.f7667j) {
+            if (this.f7668j) {
                 try {
-                    j.d(this.f48175a);
-                    g0 g0Var = this.f48177c;
+                    j.d(this.f48186a);
+                    g0 g0Var = this.f48188c;
                     g0Var.getClass();
                     ArrayList arrayList = new ArrayList((List) g0Var.f3651c);
                     int size = arrayList.size();
@@ -182,22 +182,22 @@ public final class d extends j {
                         Object obj = arrayList.get(i10);
                         i10++;
                         sc.a aVar = (sc.a) obj;
-                        j.d(aVar.f48142a);
-                        j.d(aVar.f48143b);
+                        j.d(aVar.f48153a);
+                        j.d(aVar.f48154b);
                     }
-                    Thread thread = this.f48176b;
+                    Thread thread = this.f48187b;
                     if (thread != null) {
                         thread.join();
                     }
                 } catch (Exception e) {
                     j.d.log(Level.SEVERE, "Could not stop all connections", (Throwable) e);
                 }
-                this.f7667j = false;
+                this.f7668j = false;
             }
-        } else if (!this.f7667j) {
+        } else if (!this.f7668j) {
             try {
                 f();
-                this.f7667j = true;
+                this.f7668j = true;
             } catch (IOException e7) {
                 throw new RuntimeException(e7);
             }
@@ -210,16 +210,16 @@ public final class d extends j {
 
     public final void l(File file, String str) {
         if (str != null && file != null) {
-            this.f7666i = new Pair(str, file);
+            this.f7667i = new Pair(str, file);
         } else {
-            Pair pair = this.f7666i;
+            Pair pair = this.f7667i;
             if (pair != null && ((File) pair.second).exists()) {
                 try {
-                    ((File) this.f7666i.second).delete();
+                    ((File) this.f7667i.second).delete();
                 } catch (Exception unused) {
                 }
             }
-            this.f7666i = null;
+            this.f7667i = null;
         }
         h();
     }

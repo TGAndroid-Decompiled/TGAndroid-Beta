@@ -1,78 +1,80 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import java.util.HashSet;
+import java.util.Iterator;
+import org.telegram.messenger.voip.VoIPGroupNotification;
 import org.telegram.tgnet.TLRPC;
-public final class hm implements RequestDelegate {
-    public final int f15914a;
-    public final f1 f15915b;
-    public final long f15916c;
-    public final Object d;
-    public final Object e;
+public final class hm implements Runnable {
+    public final int f16091a;
+    public final wp f16092b;
+    public final a0.h f16093c;
 
-    public hm(vp vpVar, long j10, Object obj, TLObject tLObject, int i10) {
-        this.f15914a = i10;
-        this.f15915b = vpVar;
-        this.f15916c = j10;
-        this.d = obj;
-        this.e = tLObject;
+    public hm(wp wpVar, a0.h hVar, int i10) {
+        this.f16091a = i10;
+        this.f16092b = wpVar;
+        this.f16093c = hVar;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f15914a) {
+    public final void run() {
+        TLRPC.Message message;
+        switch (this.f16091a) {
             case 0:
-                i0.g3(new ym((vp) this.f15915b, tLObject, this.f15916c, (TLRPC.messages_SavedReactionTags) this.d, (TLRPC.TL_messages_getSavedReactionTags) this.e, 2));
+                wp wpVar = this.f16092b;
+                a0.h hVar = this.f16093c;
+                pt notificationsController = wpVar.getNotificationsController();
+                notificationsController.getClass();
+                if (hVar.m() != 0) {
+                    for (int i10 = 0; i10 < hVar.m(); i10++) {
+                        ArrayList arrayList = (ArrayList) hVar.n(i10);
+                        if (arrayList != null) {
+                            for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                                kj kjVar = (kj) arrayList.get(i11);
+                                if (kjVar != null && (message = kjVar.f16690k) != null) {
+                                    TLRPC.MessageAction messageAction = message.action;
+                                    if (messageAction instanceof TLRPC.TL_messageActionConferenceCall) {
+                                        TLRPC.TL_messageActionConferenceCall tL_messageActionConferenceCall = (TLRPC.TL_messageActionConferenceCall) messageAction;
+                                        if (tL_messageActionConferenceCall.active || tL_messageActionConferenceCall.missed) {
+                                            VoIPGroupNotification.hide(w0.f18945b, notificationsController.currentAccount, kjVar.f1());
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    new ArrayList(0);
+                    pt.f17637k0.c(new ir(12, notificationsController, hVar));
+                }
+                y00 y00Var = wpVar.f19234r7;
+                y00Var.getClass();
+                HashSet hashSet = new HashSet();
+                for (int i12 = 0; i12 < hVar.m(); i12++) {
+                    ArrayList arrayList2 = (ArrayList) hVar.n(i12);
+                    for (int i13 = 0; i13 < arrayList2.size(); i13++) {
+                        TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) y00Var.e.f(y00.p(((kj) arrayList2.get(i13)).f1(), -kj.B0(((kj) arrayList2.get(i13)).f16690k)));
+                        if (tL_forumTopic != null) {
+                            tL_forumTopic.topMessage = ((kj) arrayList2.get(i13)).f16690k;
+                            hashSet.add(Long.valueOf(-kj.B0(((kj) arrayList2.get(i13)).f16690k)));
+                        }
+                    }
+                }
+                Iterator it = hashSet.iterator();
+                while (it.hasNext()) {
+                    y00Var.y(((Long) it.next()).longValue(), true);
+                }
                 return;
             case 1:
-                vp vpVar = (vp) this.f15915b;
-                int[] iArr = (int[]) this.d;
-                TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) this.e;
-                if (tL_error == null) {
-                    TLRPC.TL_messages_affectedHistory tL_messages_affectedHistory = (TLRPC.TL_messages_affectedHistory) tLObject;
-                    int i10 = tL_messages_affectedHistory.offset;
-                    long j10 = this.f15916c;
-                    if (i10 > 0) {
-                        vpVar.i0(j10, iArr[0], inputPeer);
-                    }
-                    vpVar.J3(tL_messages_affectedHistory.pts, -1, tL_messages_affectedHistory.pts_count);
-                    hs messagesStorage = vpVar.getMessagesStorage();
-                    messagesStorage.f15938a.c(new cq(messagesStorage, j10, 5));
-                    return;
-                }
+                i0.g3(new hm(this.f16092b, this.f16093c, 0));
                 return;
             default:
-                x00 x00Var = (x00) this.f15915b;
-                org.telegram.ui.ActionBar.k2 k2Var = (org.telegram.ui.ActionBar.k2) this.d;
-                ArrayList arrayList = (ArrayList) this.e;
-                x00Var.getClass();
-                if (tL_error != null) {
-                    boolean equals = "PINNED_TOO_MUCH".equals(tL_error.text);
-                    long j11 = this.f15916c;
-                    if (equals) {
-                        if (k2Var != null) {
-                            x00Var.a(j11, arrayList, true);
-                            i0.g3(new e4(12, x00Var, k2Var));
-                            return;
-                        }
-                        return;
-                    } else if ("PINNED_TOPIC_NOT_MODIFIED".equals(tL_error.text)) {
-                        i0.g3(new kt((Object) x00Var, j11, false, 1));
-                        return;
-                    } else {
-                        return;
-                    }
+                wp wpVar2 = this.f16092b;
+                a0.h hVar2 = this.f16093c;
+                for (int i14 = 0; i14 < hVar2.m(); i14++) {
+                    wpVar2.i5(0, hVar2.j(i14), (ArrayList) hVar2.n(i14));
                 }
+                wpVar2.getNotificationCenter().k(3, new Object[0]);
                 return;
         }
-    }
-
-    public hm(x00 x00Var, org.telegram.ui.ActionBar.k2 k2Var, long j10, ArrayList arrayList) {
-        this.f15914a = 2;
-        this.f15915b = x00Var;
-        this.d = k2Var;
-        this.f15916c = j10;
-        this.e = arrayList;
     }
 }

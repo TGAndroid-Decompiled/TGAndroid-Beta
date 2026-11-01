@@ -8,13 +8,13 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import org.json.JSONObject;
-import org.telegram.messenger.d20;
-import org.telegram.messenger.jj;
+import org.telegram.messenger.e20;
+import org.telegram.messenger.kj;
 import org.telegram.messenger.o5;
-import org.telegram.messenger.q20;
+import org.telegram.messenger.r20;
 import org.telegram.messenger.v2;
-import org.telegram.messenger.vp;
 import org.telegram.messenger.w3;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -22,16 +22,16 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.k2;
 import xh.m2;
 public abstract class k0 {
-    public static HashMap f13177a;
+    public static HashMap f13178a;
 
-    public static void a(long j10, List list, q20 q20Var, q20 q20Var2) {
-        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(d20.f15147s0);
-        vp r12 = vp.r1(d20.f15147s0);
+    public static void a(long j10, List list, r20 r20Var, r20 r20Var2) {
+        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(e20.f15506s0);
+        wp r12 = wp.r1(e20.f15506s0);
         TL_stories.TL_premium_applyBoost tL_premium_applyBoost = new TL_stories.TL_premium_applyBoost();
         tL_premium_applyBoost.peer = r12.i1(-j10);
         tL_premium_applyBoost.flags |= 1;
         tL_premium_applyBoost.slots.addAll(list);
-        connectionsManager.sendRequest(tL_premium_applyBoost, new ag.p0(q20Var2, r12, q20Var, 3), 66);
+        connectionsManager.sendRequest(tL_premium_applyBoost, new ag.p0(r20Var2, r12, r20Var, 3), 66);
     }
 
     public static ArrayList b(int i10, List list) {
@@ -74,23 +74,23 @@ public abstract class k0 {
         return arrayList;
     }
 
-    public static void d(jj jjVar, q20 q20Var, q20 q20Var2) {
-        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(d20.f15147s0);
-        vp r12 = vp.r1(d20.f15147s0);
+    public static void d(kj kjVar, r20 r20Var, r20 r20Var2) {
+        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(e20.f15506s0);
+        wp r12 = wp.r1(e20.f15506s0);
         TLRPC.TL_payments_getGiveawayInfo tL_payments_getGiveawayInfo = new TLRPC.TL_payments_getGiveawayInfo();
-        tL_payments_getGiveawayInfo.msg_id = jjVar.f1();
-        tL_payments_getGiveawayInfo.peer = r12.i1(jj.C1(jjVar.f16337k.peer_id));
-        connectionsManager.sendRequest(tL_payments_getGiveawayInfo, new b0(q20Var2, q20Var, 1));
+        tL_payments_getGiveawayInfo.msg_id = kjVar.f1();
+        tL_payments_getGiveawayInfo.peer = r12.i1(kj.C1(kjVar.f16690k.peer_id));
+        connectionsManager.sendRequest(tL_payments_getGiveawayInfo, new b0(r20Var2, r20Var, 1));
     }
 
     public static ArrayList e(long j10) {
         ArrayList arrayList = new ArrayList();
-        vp r12 = vp.r1(d20.f15147s0);
-        ArrayList arrayList2 = r12.f18950y;
+        wp r12 = wp.r1(e20.f15506s0);
+        ArrayList arrayList2 = r12.f19293y;
         for (int i10 = 0; i10 < arrayList2.size(); i10++) {
             TLRPC.Dialog dialog = (TLRPC.Dialog) arrayList2.get(i10);
-            if (o5.z(dialog.f19797id) && w3.R(r12.L0(Long.valueOf(-dialog.f19797id)))) {
-                long j11 = dialog.f19797id;
+            if (o5.z(dialog.f19798id) && w3.R(r12.L0(Long.valueOf(-dialog.f19798id)))) {
+                long j11 = dialog.f19798id;
                 if ((-j11) != j10) {
                     arrayList.add(r12.i1(j11));
                 }
@@ -100,11 +100,11 @@ public abstract class k0 {
     }
 
     public static long f() {
-        return vp.r1(d20.f15147s0).f18849n0;
+        return wp.r1(e20.f15506s0).f19192n0;
     }
 
     public static int g() {
-        return (int) vp.r1(d20.f15147s0).f18875q0;
+        return (int) wp.r1(e20.f15506s0).f19218q0;
     }
 
     public static boolean h() {
@@ -115,44 +115,44 @@ public abstract class k0 {
     }
 
     public static boolean i() {
-        if (vp.r1(d20.f15147s0).f18884r0 > 0) {
+        if (wp.r1(e20.f15506s0).f19227r0 > 0) {
             return true;
         }
         return false;
     }
 
-    public static int j(int i10, TLRPC.Chat chat, q20 q20Var) {
+    public static int j(int i10, TLRPC.Chat chat, r20 r20Var) {
         Pair pair;
         if (chat == null) {
-            HashMap hashMap = f13177a;
+            HashMap hashMap = f13178a;
             List list = null;
             if (hashMap != null && (pair = (Pair) hashMap.get(Integer.valueOf(i10))) != null && System.currentTimeMillis() - ((Long) pair.first).longValue() < 1800000) {
                 list = (List) pair.second;
             }
             if (list != null) {
-                q20Var.a(list);
+                r20Var.a(list);
                 return -1;
             }
         }
-        vp r12 = vp.r1(i10);
+        wp r12 = wp.r1(i10);
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i10);
         TLRPC.TL_payments_getPremiumGiftCodeOptions tL_payments_getPremiumGiftCodeOptions = new TLRPC.TL_payments_getPremiumGiftCodeOptions();
         if (chat != null) {
             tL_payments_getPremiumGiftCodeOptions.flags = 1;
-            tL_payments_getPremiumGiftCodeOptions.boost_peer = r12.i1(-chat.f19793id);
+            tL_payments_getPremiumGiftCodeOptions.boost_peer = r12.i1(-chat.f19794id);
         }
-        return connectionsManager.sendRequest(tL_payments_getPremiumGiftCodeOptions, new w(chat, i10, q20Var, 0));
+        return connectionsManager.sendRequest(tL_payments_getPremiumGiftCodeOptions, new w(chat, i10, r20Var, 0));
     }
 
-    public static void k(ArrayList arrayList, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.Chat chat, TLRPC.TL_textWithEntities tL_textWithEntities, k2 k2Var, q20 q20Var, q20 q20Var2) {
-        int i10 = d20.f15147s0;
-        HashMap hashMap = f13177a;
+    public static void k(ArrayList arrayList, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.Chat chat, TLRPC.TL_textWithEntities tL_textWithEntities, k2 k2Var, r20 r20Var, r20 r20Var2) {
+        int i10 = e20.f15506s0;
+        HashMap hashMap = f13178a;
         if (hashMap != null) {
             hashMap.remove(Integer.valueOf(i10));
         }
         if (!h()) {
-            vp r12 = vp.r1(d20.f15147s0);
-            ConnectionsManager connectionsManager = ConnectionsManager.getInstance(d20.f15147s0);
+            wp r12 = wp.r1(e20.f15506s0);
+            ConnectionsManager connectionsManager = ConnectionsManager.getInstance(e20.f15506s0);
             TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = new TLRPC.TL_payments_getPaymentForm();
             TLRPC.TL_inputInvoicePremiumGiftCode tL_inputInvoicePremiumGiftCode = new TLRPC.TL_inputInvoicePremiumGiftCode();
             TLRPC.TL_inputStorePaymentPremiumGiftCode tL_inputStorePaymentPremiumGiftCode = new TLRPC.TL_inputStorePaymentPremiumGiftCode();
@@ -173,7 +173,7 @@ public abstract class k0 {
             }
             if (chat != null) {
                 tL_inputStorePaymentPremiumGiftCode.flags |= 1;
-                tL_inputStorePaymentPremiumGiftCode.boost_peer = r12.i1(-chat.f19793id);
+                tL_inputStorePaymentPremiumGiftCode.boost_peer = r12.i1(-chat.f19794id);
             }
             tL_inputStorePaymentPremiumGiftCode.currency = tL_premiumGiftCodeOption.currency;
             tL_inputStorePaymentPremiumGiftCode.amount = tL_premiumGiftCodeOption.amount;
@@ -187,11 +187,11 @@ public abstract class k0 {
                 tL_payments_getPaymentForm.flags |= 1;
             }
             tL_payments_getPaymentForm.invoice = tL_inputInvoicePremiumGiftCode;
-            connectionsManager.sendRequest(tL_payments_getPaymentForm, new z(q20Var2, r12, tL_inputInvoicePremiumGiftCode, k2Var, q20Var, 1));
+            connectionsManager.sendRequest(tL_payments_getPaymentForm, new z(r20Var2, r12, tL_inputInvoicePremiumGiftCode, k2Var, r20Var, 1));
             return;
         }
-        vp r13 = vp.r1(d20.f15147s0);
-        ConnectionsManager connectionsManager2 = ConnectionsManager.getInstance(d20.f15147s0);
+        wp r13 = wp.r1(e20.f15506s0);
+        ConnectionsManager connectionsManager2 = ConnectionsManager.getInstance(e20.f15506s0);
         TLRPC.TL_inputStorePaymentPremiumGiftCode tL_inputStorePaymentPremiumGiftCode2 = new TLRPC.TL_inputStorePaymentPremiumGiftCode();
         tL_inputStorePaymentPremiumGiftCode2.users = new ArrayList<>();
         int size2 = arrayList.size();
@@ -206,7 +206,7 @@ public abstract class k0 {
         }
         if (chat != null) {
             tL_inputStorePaymentPremiumGiftCode2.flags = 1;
-            tL_inputStorePaymentPremiumGiftCode2.boost_peer = r13.i1(-chat.f19793id);
+            tL_inputStorePaymentPremiumGiftCode2.boost_peer = r13.i1(-chat.f19794id);
         }
         if (tL_textWithEntities != null && !TextUtils.isEmpty(tL_textWithEntities.text)) {
             tL_inputStorePaymentPremiumGiftCode2.flags |= 2;
@@ -215,7 +215,7 @@ public abstract class k0 {
         c5.a aVar = new c5.a();
         aVar.f3732c = "inapp";
         aVar.f3731b = tL_premiumGiftCodeOption.store_product;
-        org.telegram.messenger.u1.i().o(Arrays.asList(aVar.a()), new y(tL_inputStorePaymentPremiumGiftCode2, tL_premiumGiftCodeOption, connectionsManager2, q20Var2, q20Var, k2Var, 0));
+        org.telegram.messenger.u1.i().o(Arrays.asList(aVar.a()), new y(tL_inputStorePaymentPremiumGiftCode2, tL_premiumGiftCodeOption, connectionsManager2, r20Var2, r20Var, k2Var, 0));
     }
 
     public static int l(long j10) {
@@ -226,9 +226,9 @@ public abstract class k0 {
     }
 
     public static void m(int i10, ArrayList arrayList) {
-        if (f13177a == null) {
-            f13177a = new HashMap();
+        if (f13178a == null) {
+            f13178a = new HashMap();
         }
-        f13177a.put(Integer.valueOf(i10), new Pair(Long.valueOf(System.currentTimeMillis()), arrayList));
+        f13178a.put(Integer.valueOf(i10), new Pair(Long.valueOf(System.currentTimeMillis()), arrayList));
     }
 }

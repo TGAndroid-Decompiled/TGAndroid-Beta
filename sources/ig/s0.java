@@ -7,60 +7,60 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 public final class s0 {
-    public static final List f8445m;
-    public static final List f8446n;
-    public static final int f8447o;
-    public static final int f8448p;
-    public static final int f8449q;
-    public static final s0[] f8450r;
-    public final SharedPreferences f8451a;
-    public final ArrayList f8452b;
-    public final HashMap f8453c;
+    public static final List f8446m;
+    public static final List f8447n;
+    public static final int f8448o;
+    public static final int f8449p;
+    public static final int f8450q;
+    public static final s0[] f8451r;
+    public final SharedPreferences f8452a;
+    public final ArrayList f8453b;
+    public final HashMap f8454c;
     public List d;
     public boolean e;
-    public int f8454f;
-    public int f8455g;
+    public int f8455f;
+    public int f8456g;
     public int h;
-    public float f8456i;
-    public String f8457j;
-    public boolean f8458k;
-    public boolean f8459l;
+    public float f8457i;
+    public String f8458j;
+    public boolean f8459k;
+    public boolean f8460l;
 
     static {
         List asList = Arrays.asList(-2645892, -8409090, -5926949, -2386514, -4531041);
-        f8445m = asList;
+        f8446m = asList;
         List asList2 = Arrays.asList(-47814, -30208, -10742, -13318311, -10230046, -16087809, -4236558, -16777216, -1);
-        f8446n = asList2;
+        f8447n = asList2;
         int size = asList.size();
-        f8447o = size;
+        f8448o = size;
         int size2 = asList2.size();
-        f8448p = size2;
-        f8449q = size + size2;
-        f8450r = new s0[4];
+        f8449p = size2;
+        f8450q = size + size2;
+        f8451r = new s0[4];
     }
 
     public s0(int i10) {
         List list;
-        int i11 = f8449q;
-        this.f8452b = new ArrayList(i11);
-        HashMap hashMap = new HashMap(h.f8315a.size());
-        this.f8453c = hashMap;
+        int i11 = f8450q;
+        this.f8453b = new ArrayList(i11);
+        HashMap hashMap = new HashMap(h.f8316a.size());
+        this.f8454c = hashMap;
         this.d = new ArrayList(i11);
         int i12 = 0;
-        SharedPreferences sharedPreferences = org.telegram.messenger.w0.f19025b.getSharedPreferences("photo_color_palette_" + i10, 0);
-        this.f8451a = sharedPreferences;
-        this.f8454f = sharedPreferences.getInt("brush", 0);
-        this.f8456i = sharedPreferences.getFloat("weight", 0.5f);
-        this.f8457j = sharedPreferences.getString("typeface", "roboto");
-        this.f8455g = sharedPreferences.getInt("text_alignment", 0);
+        SharedPreferences sharedPreferences = org.telegram.messenger.w0.f18945b.getSharedPreferences("photo_color_palette_" + i10, 0);
+        this.f8452a = sharedPreferences;
+        this.f8455f = sharedPreferences.getInt("brush", 0);
+        this.f8457i = sharedPreferences.getFloat("weight", 0.5f);
+        this.f8458j = sharedPreferences.getString("typeface", "roboto");
+        this.f8456g = sharedPreferences.getInt("text_alignment", 0);
         this.h = sharedPreferences.getInt("text_type", 0);
-        this.f8458k = sharedPreferences.getBoolean("fill_shapes", false);
+        this.f8459k = sharedPreferences.getBoolean("fill_shapes", false);
         int i13 = 0;
-        while (i13 < f8447o) {
-            i13 = c3.i0.j((int) sharedPreferences.getLong(i0.a.i(i13, "color_"), ((Integer) f8445m.get(i13)).intValue()), i13, 1, this.f8452b);
+        while (i13 < f8448o) {
+            i13 = c3.i0.j((int) sharedPreferences.getLong(i0.a.i(i13, "color_"), ((Integer) f8446m.get(i13)).intValue()), i13, 1, this.f8453b);
         }
         while (true) {
-            if (i12 < h.f8315a.size()) {
+            if (i12 < h.f8316a.size()) {
                 hashMap.put(Integer.valueOf(i12), Integer.valueOf((int) sharedPreferences.getLong(i0.a.i(i12, "brush_color_"), ((h) list.get(i12)).c())));
                 i12++;
             } else {
@@ -71,7 +71,7 @@ public final class s0 {
     }
 
     public static s0 e(int i10) {
-        s0[] s0VarArr = f8450r;
+        s0[] s0VarArr = f8451r;
         if (s0VarArr[i10] == null) {
             s0VarArr[i10] = new s0(i10);
         }
@@ -80,29 +80,29 @@ public final class s0 {
 
     public final void a() {
         this.d.clear();
-        this.d.addAll(f8445m);
-        SharedPreferences.Editor edit = this.f8451a.edit();
-        for (int i10 = 0; i10 < h.f8315a.size(); i10++) {
+        this.d.addAll(f8446m);
+        SharedPreferences.Editor edit = this.f8452a.edit();
+        for (int i10 = 0; i10 < h.f8316a.size(); i10++) {
             edit.remove("brush_color_" + i10);
         }
         edit.remove("brush_color_-1");
-        this.f8453c.clear();
+        this.f8454c.clear();
         edit.apply();
         g();
     }
 
     public final int b(int i10) {
-        int i11 = f8449q;
+        int i11 = f8450q;
         if (i10 >= 0 && i10 < i11) {
-            List list = f8446n;
+            List list = f8447n;
             ArrayList arrayList = new ArrayList(list);
-            arrayList.addAll(this.f8452b);
+            arrayList.addAll(this.f8453b);
             if (i10 >= arrayList.size()) {
-                int i12 = f8448p;
+                int i12 = f8449p;
                 if (i10 < i12) {
                     return ((Integer) list.get(i10)).intValue();
                 }
-                return ((Integer) f8445m.get(i10 - i12)).intValue();
+                return ((Integer) f8446m.get(i10 - i12)).intValue();
             }
             return ((Integer) arrayList.get(i10)).intValue();
         }
@@ -111,27 +111,27 @@ public final class s0 {
 
     public final int c() {
         long c10;
-        Integer valueOf = Integer.valueOf(this.f8454f);
-        HashMap hashMap = this.f8453c;
+        Integer valueOf = Integer.valueOf(this.f8455f);
+        HashMap hashMap = this.f8454c;
         Integer num = (Integer) hashMap.get(valueOf);
         if (num == null) {
-            String str = "brush_color_" + this.f8454f;
-            int i10 = this.f8454f;
+            String str = "brush_color_" + this.f8455f;
+            int i10 = this.f8455f;
             if (i10 == -1) {
                 c10 = -1;
             } else {
-                c10 = ((h) h.f8315a.get(i10)).c();
+                c10 = ((h) h.f8316a.get(i10)).c();
             }
-            num = Integer.valueOf((int) this.f8451a.getLong(str, c10));
-            hashMap.put(Integer.valueOf(this.f8454f), num);
+            num = Integer.valueOf((int) this.f8452a.getLong(str, c10));
+            hashMap.put(Integer.valueOf(this.f8455f), num);
         }
         return num.intValue();
     }
 
     public final int d() {
         int c10 = c();
-        ArrayList arrayList = new ArrayList(f8446n);
-        arrayList.addAll(this.f8452b);
+        ArrayList arrayList = new ArrayList(f8447n);
+        arrayList.addAll(this.f8453b);
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             if (((Integer) arrayList.get(i10)).intValue() == c10) {
                 return i10;
@@ -141,7 +141,7 @@ public final class s0 {
     }
 
     public final float f(String str, float f7) {
-        return this.f8451a.getFloat("weight_" + str, f7);
+        return this.f8452a.getFloat("weight_" + str, f7);
     }
 
     public final void g() {
@@ -150,25 +150,25 @@ public final class s0 {
         if (this.d.isEmpty() && !this.e) {
             return;
         }
-        SharedPreferences.Editor edit = this.f8451a.edit();
+        SharedPreferences.Editor edit = this.f8452a.edit();
         if (!this.d.isEmpty()) {
-            for (int i10 = 0; i10 < f8447o; i10++) {
+            for (int i10 = 0; i10 < f8448o; i10++) {
                 String i11 = i0.a.i(i10, "color_");
                 if (i10 < this.d.size()) {
                     list = this.d;
                 } else {
-                    list = f8445m;
+                    list = f8446m;
                 }
                 edit.putLong(i11, ((Integer) list.get(i10)).intValue());
             }
-            ArrayList arrayList = this.f8452b;
+            ArrayList arrayList = this.f8453b;
             arrayList.clear();
             arrayList.addAll(this.d);
             this.d.clear();
         }
         if (this.e) {
-            if (((Integer) this.f8453c.get(Integer.valueOf(this.f8454f))) != null) {
-                edit.putLong("brush_color_" + this.f8454f, num.intValue());
+            if (((Integer) this.f8454c.get(Integer.valueOf(this.f8455f))) != null) {
+                edit.putLong("brush_color_" + this.f8455f, num.intValue());
             }
             this.e = false;
         }
@@ -176,14 +176,14 @@ public final class s0 {
     }
 
     public final void h(int i10, boolean z10) {
-        ArrayList arrayList = new ArrayList(f8446n);
-        Collection collection = this.f8452b;
+        ArrayList arrayList = new ArrayList(f8447n);
+        Collection collection = this.f8453b;
         arrayList.addAll(collection);
         int indexOf = arrayList.indexOf(Integer.valueOf(i10));
-        HashMap hashMap = this.f8453c;
+        HashMap hashMap = this.f8454c;
         if (indexOf != -1) {
             if (z10) {
-                hashMap.put(Integer.valueOf(this.f8454f), Integer.valueOf(b(indexOf)));
+                hashMap.put(Integer.valueOf(this.f8455f), Integer.valueOf(b(indexOf)));
                 this.e = true;
                 return;
             }
@@ -199,7 +199,7 @@ public final class s0 {
             this.d.add((Integer) arrayList2.get(i11));
         }
         int size = this.d.size();
-        List list = f8445m;
+        List list = f8446m;
         if (size < list.size()) {
             for (int size2 = this.d.size(); size2 < list.size(); size2++) {
                 this.d.add((Integer) list.get(size2));
@@ -208,17 +208,17 @@ public final class s0 {
             this.d = this.d.subList(0, list.size());
         }
         if (z10) {
-            hashMap.put(Integer.valueOf(this.f8454f), Integer.valueOf(i10));
+            hashMap.put(Integer.valueOf(this.f8455f), Integer.valueOf(i10));
             this.e = true;
         }
     }
 
     public final void i(int i10, boolean z10) {
-        this.f8454f = i10;
+        this.f8455f = i10;
         if (z10) {
-            this.f8451a.edit().putInt("brush", i10).apply();
+            this.f8452a.edit().putInt("brush", i10).apply();
         }
-        Integer num = (Integer) this.f8453c.get(Integer.valueOf(i10));
+        Integer num = (Integer) this.f8454c.get(Integer.valueOf(i10));
         if (num != null) {
             h(num.intValue(), false);
             g();
@@ -226,12 +226,12 @@ public final class s0 {
     }
 
     public final void j(float f7) {
-        this.f8456i = f7;
-        this.f8451a.edit().putFloat("weight", f7).apply();
+        this.f8457i = f7;
+        this.f8452a.edit().putFloat("weight", f7).apply();
     }
 
     public final void k(String str, float f7) {
-        SharedPreferences.Editor edit = this.f8451a.edit();
+        SharedPreferences.Editor edit = this.f8452a.edit();
         edit.putFloat("weight_" + str, f7).apply();
     }
 }

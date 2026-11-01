@@ -17,36 +17,36 @@ public final class k6 extends dq {
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
         l6 l6Var = this.L;
         FrameLayout.LayoutParams layoutParams = l6Var.P;
-        if (!l6Var.f34856i0) {
-            this.f25511x = 1.0f;
-            if (l6Var.f34844a) {
+        if (!l6Var.f34860i0) {
+            this.f25571x = 1.0f;
+            if (l6Var.f34848a) {
                 float max = Math.max(0.0f, Math.min(1.0f, l6Var.T));
                 int i15 = (max > 0.0f ? 1 : (max == 0.0f ? 0 : -1));
                 if (i15 == 0) {
-                    float intrinsicWidth = this.f25505c.getIntrinsicWidth() * l6Var.f34846b;
-                    float f10 = l6Var.f34846b;
-                    float intrinsicHeight = this.f25505c.getIntrinsicHeight() * f10;
+                    float intrinsicWidth = this.f25565c.getIntrinsicWidth() * l6Var.f34850b;
+                    float f10 = l6Var.f34850b;
+                    float intrinsicHeight = this.f25565c.getIntrinsicHeight() * f10;
                     float f11 = (f10 * f7) + layoutParams.leftMargin;
                     float height = ((l6Var.N.getHeight() / 2.0f) - (intrinsicHeight / 2.0f)) + layoutParams.topMargin;
-                    l6Var.f34852f.set(f11, height, intrinsicWidth + f11, intrinsicHeight + height);
+                    l6Var.f34856f.set(f11, height, intrinsicWidth + f11, intrinsicHeight + height);
                 }
                 if (max < 1.0f) {
-                    if (l6Var.f34855h0 == null) {
-                        l6Var.f34855h0 = new t6(this.f25505c.getIntrinsicWidth(), this.f25505c.getIntrinsicHeight());
+                    if (l6Var.f34859h0 == null) {
+                        l6Var.f34859h0 = new t6(this.f25565c.getIntrinsicWidth(), this.f25565c.getIntrinsicHeight());
                         l6Var.m();
                     }
-                    Drawable drawable = this.f25505c;
-                    l6Var.f34855h0.setBounds(drawable.getBounds());
-                    t6 t6Var = l6Var.f34855h0;
-                    t6Var.f35249i = l6Var.f34853f0.f30445c;
-                    this.f25505c = t6Var;
+                    Drawable drawable = this.f25565c;
+                    l6Var.f34859h0.setBounds(drawable.getBounds());
+                    t6 t6Var = l6Var.f34859h0;
+                    t6Var.f35251i = l6Var.f34857f0.f30530c;
+                    this.f25565c = t6Var;
                     this.d = false;
-                    this.f25511x = 1.0f - max;
+                    this.f25571x = 1.0f - max;
                     super.draw(canvas, charSequence, i10, i11, f7, i12, i13, i14, paint);
-                    this.f25505c = drawable;
+                    this.f25565c = drawable;
                     this.d = true;
                 }
-                this.f25511x = max;
+                this.f25571x = max;
                 if (i15 == 0) {
                     return;
                 }

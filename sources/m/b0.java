@@ -21,8 +21,8 @@ public abstract class b0 {
                 dVar = new j2.k(clipData, 3);
             } else {
                 r0.e eVar = new r0.e();
-                eVar.f46111b = clipData;
-                eVar.f46112c = 3;
+                eVar.f46122b = clipData;
+                eVar.f46123c = 3;
                 dVar = eVar;
             }
             r0.h0.h(textView, dVar.build());
@@ -42,8 +42,8 @@ public abstract class b0 {
             dVar = new j2.k(clipData, 3);
         } else {
             r0.e eVar = new r0.e();
-            eVar.f46111b = clipData;
-            eVar.f46112c = 3;
+            eVar.f46122b = clipData;
+            eVar.f46123c = 3;
             dVar = eVar;
         }
         r0.h0.h(view, dVar.build());

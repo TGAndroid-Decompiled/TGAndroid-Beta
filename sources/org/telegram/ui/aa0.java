@@ -1,109 +1,35 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.view.Window;
-import java.lang.ref.WeakReference;
-public final class aa0 {
-    public final int f35596a;
-    public boolean f35597b;
-    public boolean f35598c;
-    public final Object d;
+import android.content.ComponentName;
+import android.content.Context;
+public enum aa0 {
+    DEFAULT("DefaultIcon", 2131231491, 2131558426, 2131754237, false),
+    VINTAGE("VintageIcon", 2131231486, 2131558419, 2131754233, false),
+    AQUA("AquaIcon", 2131231480, 2131558426, 2131754239, false),
+    PREMIUM("PremiumIcon", 2131231477, 2131558407, 2131754235, true),
+    TURBO("TurboIcon", 2131231483, 2131558414, 2131754234, true),
+    NOX("NoxIcon", 2131558402, 2131558426, 2131754236, true);
+    
+    public final String f35724a;
+    public final int f35725b;
+    public final int f35726c;
+    public final int d;
+    public final boolean e;
+    public ComponentName f35727f;
 
-    public aa0(Object obj, int i10) {
-        this.f35596a = i10;
-        this.d = obj;
+    aa0(String str, int i10, int i11, int i12, boolean z10) {
+        this.f35724a = str;
+        this.f35725b = i10;
+        this.f35726c = i11;
+        this.d = i12;
+        this.e = z10;
     }
 
-    public void a() {
-        if (!this.f35597b) {
-            this.f35597b = true;
-            Runnable runnable = (Runnable) this.d;
-            if (runnable != null) {
-                runnable.run();
-            }
+    public final ComponentName a(Context context) {
+        if (this.f35727f == null) {
+            String packageName = context.getPackageName();
+            this.f35727f = new ComponentName(packageName, "org.telegram.messenger." + this.f35724a);
         }
-    }
-
-    public void b() {
-        switch (this.f35596a) {
-            case 0:
-                c(false);
-                this.f35598c = true;
-                return;
-            default:
-                c(false);
-                this.f35598c = true;
-                return;
-        }
-    }
-
-    public void c(boolean z10) {
-        int i10;
-        int i11;
-        switch (this.f35596a) {
-            case 0:
-                if (this.f35597b != z10 && !this.f35598c) {
-                    this.f35597b = z10;
-                    LaunchActivity launchActivity = (LaunchActivity) ((WeakReference) this.d).get();
-                    if (launchActivity != null) {
-                        int i12 = launchActivity.C1;
-                        if (z10) {
-                            i10 = 1;
-                        } else {
-                            i10 = -1;
-                        }
-                        int i13 = i12 + i10;
-                        launchActivity.C1 = i13;
-                        l0 l0Var = launchActivity.f33389w0;
-                        if (l0Var != null) {
-                            if (i13 > 0) {
-                                i11 = 8;
-                            } else {
-                                i11 = 0;
-                            }
-                            l0Var.setVisibility(i11);
-                        }
-                        launchActivity.getWindow();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                c5.e eVar = (c5.e) this.d;
-                if (this.f35597b != z10 && !this.f35598c) {
-                    this.f35597b = z10;
-                    boolean z11 = true;
-                    if (z10) {
-                        eVar.f3775a++;
-                    } else {
-                        eVar.f3775a--;
-                    }
-                    int i14 = 0;
-                    if (eVar.f3775a <= 0) {
-                        z11 = false;
-                    }
-                    if (eVar.f3776b != z11) {
-                        eVar.f3776b = z11;
-                        Window window = (Window) ((WeakReference) ((mg.l) eVar.f3777c).f13182b).get();
-                        if (window != null) {
-                            View decorView = window.getDecorView();
-                            if (z11) {
-                                i14 = 8;
-                            }
-                            decorView.setVisibility(i14);
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-        }
-    }
-
-    public aa0(LaunchActivity launchActivity, boolean z10) {
-        this.f35596a = 0;
-        this.d = new WeakReference(launchActivity);
+        return this.f35727f;
     }
 }

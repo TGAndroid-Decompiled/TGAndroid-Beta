@@ -8,13 +8,13 @@ import android.os.Parcel;
 import android.os.RemoteException;
 import com.google.android.gms.internal.cast.u;
 public final class b extends AsyncTask {
-    public static final g6.b f6914c = new g6.b("FetchBitmapTask", null);
-    public final e f6915a;
-    public final bh.d f6916b;
+    public static final g6.b f6915c = new g6.b("FetchBitmapTask", null);
+    public final e f6916a;
+    public final bh.d f6917b;
 
     public b(Context context, int i10, int i11, bh.d dVar) {
         e eVar;
-        this.f6916b = dVar;
+        this.f6917b = dVar;
         Context applicationContext = context.getApplicationContext();
         d6.j jVar = new d6.j(this);
         g6.b bVar = com.google.android.gms.internal.cast.d.f4635a;
@@ -33,14 +33,14 @@ public final class b extends AsyncTask {
             e = e;
             com.google.android.gms.internal.cast.d.f4635a.a(e, "Unable to call %s on %s.", "newFetchBitmapTaskImpl", com.google.android.gms.internal.cast.f.class.getSimpleName());
             eVar = null;
-            this.f6915a = eVar;
+            this.f6916a = eVar;
         } catch (d6.d e7) {
             e = e7;
             com.google.android.gms.internal.cast.d.f4635a.a(e, "Unable to call %s on %s.", "newFetchBitmapTaskImpl", com.google.android.gms.internal.cast.f.class.getSimpleName());
             eVar = null;
-            this.f6915a = eVar;
+            this.f6916a = eVar;
         }
-        this.f6915a = eVar;
+        this.f6916a = eVar;
     }
 
     @Override
@@ -48,7 +48,7 @@ public final class b extends AsyncTask {
         Uri uri;
         e eVar;
         Uri[] uriArr = (Uri[]) objArr;
-        if (uriArr.length == 1 && (uri = uriArr[0]) != null && (eVar = this.f6915a) != null) {
+        if (uriArr.length == 1 && (uri = uriArr[0]) != null && (eVar = this.f6916a) != null) {
             try {
                 c cVar = (c) eVar;
                 Parcel P0 = cVar.P0();
@@ -58,7 +58,7 @@ public final class b extends AsyncTask {
                 R0.recycle();
                 return bitmap;
             } catch (RemoteException e) {
-                f6914c.a(e, "Unable to call %s on %s.", "doFetch", e.class.getSimpleName());
+                f6915c.a(e, "Unable to call %s on %s.", "doFetch", e.class.getSimpleName());
             }
         }
         return null;
@@ -67,7 +67,7 @@ public final class b extends AsyncTask {
     @Override
     public final void onPostExecute(Object obj) {
         Bitmap bitmap = (Bitmap) obj;
-        bh.d dVar = this.f6916b;
+        bh.d dVar = this.f6917b;
         if (dVar != null) {
             a aVar = (a) dVar.e;
             if (aVar != null) {

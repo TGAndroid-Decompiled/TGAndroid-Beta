@@ -13,53 +13,53 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 public final class v9 extends Drawable {
-    public float f31197a = 1.0f;
-    public final Paint f31198b = new Paint(1);
-    public final Rect f31199c = new Rect();
+    public float f31232a = 1.0f;
+    public final Paint f31233b = new Paint(1);
+    public final Rect f31234c = new Rect();
     public final Path d = new Path();
     public final float e;
-    public final float f31200f;
-    public final Drawable f31201g;
+    public final float f31235f;
+    public final Drawable f31236g;
     public final float h;
-    public final w9 f31202i;
+    public final w9 f31237i;
 
     public v9(w9 w9Var, float f7, float f10, Drawable drawable, float f11) {
-        this.f31202i = w9Var;
+        this.f31237i = w9Var;
         this.e = f7;
-        this.f31200f = f10;
-        this.f31201g = drawable;
+        this.f31235f = f10;
+        this.f31236g = drawable;
         this.h = f11;
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Bitmap b10;
-        w9 w9Var = this.f31202i;
-        s9 s9Var = w9Var.f32108a;
-        Matrix matrix = w9Var.f32120p;
+        w9 w9Var = this.f31237i;
+        s9 s9Var = w9Var.f32174a;
+        Matrix matrix = w9Var.f32186p;
         Paint paint = null;
         if (s9Var != null && (b10 = s9Var.b()) != null) {
-            if (w9Var.f32119o == null || w9Var.f32118n != b10) {
-                w9Var.f32118n = b10;
+            if (w9Var.f32185o == null || w9Var.f32184n != b10) {
+                w9Var.f32184n = b10;
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader = new BitmapShader(b10, tileMode, tileMode);
-                w9Var.f32119o = bitmapShader;
+                w9Var.f32185o = bitmapShader;
                 w9Var.h.setShader(bitmapShader);
             }
             matrix.reset();
-            matrix.postTranslate((-0.0f) - this.e, (-0.0f) - this.f31200f);
-            View view = s9Var.f30194b;
+            matrix.postTranslate((-0.0f) - this.e, (-0.0f) - this.f31235f);
+            View view = s9Var.f30240b;
             if (view != null) {
-                matrix.preScale(view.getWidth() / b10.getWidth(), s9Var.f30194b.getHeight() / b10.getHeight());
+                matrix.preScale(view.getWidth() / b10.getWidth(), s9Var.f30240b.getHeight() / b10.getHeight());
             }
-            w9Var.f32119o.setLocalMatrix(matrix);
-            w9Var.h.setAlpha((int) (this.f31197a * 255.0f));
+            w9Var.f32185o.setLocalMatrix(matrix);
+            w9Var.h.setAlpha((int) (this.f31232a * 255.0f));
             paint = w9Var.h;
         }
         Paint paint2 = paint;
         Rect bounds = getBounds();
-        Drawable drawable = this.f31201g;
-        Paint paint3 = this.f31198b;
+        Drawable drawable = this.f31236g;
+        Paint paint3 = this.f31233b;
         float f7 = this.h;
         if (paint2 == null && (s9Var == null || !s9Var.c())) {
             if (drawable != null) {
@@ -82,7 +82,7 @@ public final class v9 extends Drawable {
             canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
             drawable.setBounds(bounds);
             drawable.draw(canvas);
-            Rect rect = this.f31199c;
+            Rect rect = this.f31234c;
             if (s9Var != null && s9Var.c()) {
                 canvas.save();
                 getPadding(rect);
@@ -143,7 +143,7 @@ public final class v9 extends Drawable {
 
     @Override
     public final boolean getPadding(Rect rect) {
-        Drawable drawable = this.f31201g;
+        Drawable drawable = this.f31236g;
         if (drawable != null) {
             return drawable.getPadding(rect);
         }
@@ -153,7 +153,7 @@ public final class v9 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f31197a = i10 / 255.0f;
+        this.f31232a = i10 / 255.0f;
     }
 
     @Override

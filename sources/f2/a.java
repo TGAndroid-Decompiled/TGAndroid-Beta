@@ -2,10 +2,10 @@ package f2;
 
 import e2.x;
 public final class a {
-    public String f6727a;
+    public String f6728a;
 
     public a(String str) {
-        this.f6727a = str;
+        this.f6728a = str;
     }
 
     public static a a(x xVar) {

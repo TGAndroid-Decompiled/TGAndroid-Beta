@@ -4,20 +4,20 @@ import java.math.RoundingMode;
 import java.util.Arrays;
 import v7.n7;
 public final class a {
-    public final String f6963a;
-    public final char[] f6964b;
-    public final int f6965c;
+    public final String f6964a;
+    public final char[] f6965b;
+    public final int f6966c;
     public final int d;
     public final int e;
-    public final int f6966f;
-    public final byte[] f6967g;
+    public final int f6967f;
+    public final byte[] f6968g;
     public final boolean h;
 
     public a(String str, char[] cArr, byte[] bArr, boolean z10) {
         str.getClass();
-        this.f6963a = str;
+        this.f6964a = str;
         cArr.getClass();
-        this.f6964b = cArr;
+        this.f6965b = cArr;
         try {
             int length = cArr.length;
             RoundingMode roundingMode = RoundingMode.UNNECESSARY;
@@ -26,11 +26,11 @@ public final class a {
             int numberOfTrailingZeros = Integer.numberOfTrailingZeros(c10);
             int i10 = 1 << (3 - numberOfTrailingZeros);
             this.e = i10;
-            this.f6966f = c10 >> numberOfTrailingZeros;
-            this.f6965c = cArr.length - 1;
-            this.f6967g = bArr;
+            this.f6967f = c10 >> numberOfTrailingZeros;
+            this.f6966c = cArr.length - 1;
+            this.f6968g = bArr;
             boolean[] zArr = new boolean[i10];
-            for (int i11 = 0; i11 < this.f6966f; i11++) {
+            for (int i11 = 0; i11 < this.f6967f; i11++) {
                 int i12 = this.d;
                 RoundingMode roundingMode2 = RoundingMode.CEILING;
                 zArr[n7.b(i11 * 8, i12)] = true;
@@ -44,7 +44,7 @@ public final class a {
     public final boolean equals(Object obj) {
         if (obj instanceof a) {
             a aVar = (a) obj;
-            if (this.h == aVar.h && Arrays.equals(this.f6964b, aVar.f6964b)) {
+            if (this.h == aVar.h && Arrays.equals(this.f6965b, aVar.f6965b)) {
                 return true;
             }
             return false;
@@ -54,7 +54,7 @@ public final class a {
 
     public final int hashCode() {
         int i10;
-        int hashCode = Arrays.hashCode(this.f6964b);
+        int hashCode = Arrays.hashCode(this.f6965b);
         if (this.h) {
             i10 = 1231;
         } else {
@@ -64,7 +64,7 @@ public final class a {
     }
 
     public final String toString() {
-        return this.f6963a;
+        return this.f6964a;
     }
 
     public a(java.lang.String r9, char[] r10) {

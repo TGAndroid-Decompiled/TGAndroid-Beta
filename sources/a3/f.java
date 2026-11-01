@@ -23,7 +23,7 @@ public final class f implements p0 {
         this.f80b = b0Var;
         a0Var.f64l = g0Var;
         ?? obj = new Object();
-        obj.f13527b = this;
+        obj.f13528b = this;
         this.f81c = new g0(obj, a0Var, b0Var);
         this.d = new ArrayDeque();
         this.f82f = new b2.x(new b2.w());
@@ -84,7 +84,7 @@ public final class f implements p0 {
     @Override
     public final void h(a6.i iVar) {
         this.h = iVar;
-        this.f84i = j9.r.f9763a;
+        this.f84i = j9.r.f9764a;
     }
 
     @Override

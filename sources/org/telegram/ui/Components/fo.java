@@ -1,14 +1,14 @@
 package org.telegram.ui.Components;
 public interface fo {
-    void E(int i10);
-
     void dismiss();
 
     void n();
+
+    void s();
 
     void v();
 
     void x();
 
-    void y();
+    void y(int i10);
 }

@@ -33,7 +33,7 @@ public final class b extends o6.a {
         try {
             jSONObject.put("id", this.f3844b);
             long j10 = this.f3843a;
-            Pattern pattern = g6.a.f7365a;
+            Pattern pattern = g6.a.f7366a;
             jSONObject.put("position", j10 / 1000.0d);
             jSONObject.put("isWatched", this.d);
             jSONObject.put("isEmbedded", this.f3846f);

@@ -16,7 +16,7 @@ public final class dc0 extends ec0 {
         n0Var.setSingleLine(true);
         n0Var.setInputType(1);
         n0Var.setTypeface(Typeface.DEFAULT);
-        org.telegram.ui.ActionBar.a7.m(n0Var, 30, org.telegram.ui.ActionBar.t6.f21076l6, null);
+        org.telegram.ui.ActionBar.a7.m(n0Var, 30, org.telegram.ui.ActionBar.t6.f21077l6, null);
         n0Var.setCursorWidth(1.5f);
         n0Var.setPadding(org.telegram.messenger.i0.L(15.0f), 0, org.telegram.messenger.i0.L(15.0f), 0);
         e(n0Var);

@@ -3,10 +3,10 @@ package s4;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 public final class f0 {
-    public final RecyclerView f47926a;
+    public final RecyclerView f47937a;
 
     public f0(RecyclerView recyclerView) {
-        this.f47926a = recyclerView;
+        this.f47937a = recyclerView;
     }
 
     public void a(c1 c1Var, ac.g gVar, ac.g gVar2) {
@@ -15,7 +15,7 @@ public final class f0 {
         boolean z10;
         c1 T;
         int i12;
-        RecyclerView recyclerView = this.f47926a;
+        RecyclerView recyclerView = this.f47937a;
         recyclerView.f1894b.k(c1Var);
         recyclerView.h(c1Var);
         c1Var.q(false);
@@ -23,7 +23,7 @@ public final class f0 {
         f1Var.getClass();
         int i13 = gVar.f385a;
         int i14 = gVar.f386b;
-        View view = c1Var.f47898a;
+        View view = c1Var.f47909a;
         if (gVar2 == null) {
             i10 = view.getLeft();
         } else {
@@ -50,7 +50,7 @@ public final class f0 {
                     }
                 }
             }
-            c1Var.f47903i = (c1Var.h - i18) + (i18 * 1000);
+            c1Var.f47914i = (c1Var.h - i18) + (i18 * 1000);
             f1Var.s(c1Var, gVar);
             z10 = true;
         }
@@ -60,15 +60,15 @@ public final class f0 {
     }
 
     public void b(c1 c1Var) {
-        RecyclerView recyclerView = this.f47926a;
+        RecyclerView recyclerView = this.f47937a;
         n0 n0Var = recyclerView.f1924y;
-        View view = c1Var.f47898a;
+        View view = c1Var.f47909a;
         hf.e eVar = recyclerView.f1894b;
-        q5.d dVar = n0Var.f47978a;
-        m2.t tVar = (m2.t) dVar.f45487b;
-        int indexOfChild = ((RecyclerView) tVar.f12684b).indexOfChild(view);
+        q5.d dVar = n0Var.f47989a;
+        m2.t tVar = (m2.t) dVar.f45498b;
+        int indexOfChild = ((RecyclerView) tVar.f12685b).indexOfChild(view);
         if (indexOfChild >= 0) {
-            if (((c3.g0) dVar.f45488c).H(indexOfChild)) {
+            if (((c3.g0) dVar.f45499c).H(indexOfChild)) {
                 dVar.y(view);
             }
             tVar.J(indexOfChild);

@@ -4,30 +4,30 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class f3 implements RequestDelegate {
-    public final int f15504a;
-    public final q20 f15505b;
+    public final int f15688a;
+    public final r20 f15689b;
 
-    public f3(q20 q20Var, int i10) {
-        this.f15504a = i10;
-        this.f15505b = q20Var;
+    public f3(r20 r20Var, int i10) {
+        this.f15688a = i10;
+        this.f15689b = r20Var;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         TLRPC.ChannelParticipant channelParticipant;
-        switch (this.f15504a) {
+        switch (this.f15688a) {
             case 0:
-                i0.g3(new mg(tLObject, this.f15505b, tL_error));
+                i0.g3(new ng(tLObject, this.f15689b, tL_error));
                 return;
             default:
-                q20 q20Var = this.f15505b;
-                if (q20Var != null) {
+                r20 r20Var = this.f15689b;
+                if (r20Var != null) {
                     if (tLObject instanceof TLRPC.TL_channels_channelParticipant) {
                         channelParticipant = ((TLRPC.TL_channels_channelParticipant) tLObject).participant;
                     } else {
                         channelParticipant = null;
                     }
-                    q20Var.a(channelParticipant);
+                    r20Var.a(channelParticipant);
                     return;
                 }
                 return;

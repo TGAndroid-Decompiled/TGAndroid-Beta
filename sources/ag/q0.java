@@ -28,7 +28,7 @@ public final class q0 implements Runnable {
         AtomicBoolean atomicBoolean = (AtomicBoolean) this.f684c;
         m4.i iVar = (m4.i) this.d;
         AtomicBoolean atomicBoolean2 = (AtomicBoolean) this.e;
-        synchronized (nVar.f53554a) {
+        synchronized (nVar.f53572a) {
             try {
                 if (!atomicBoolean.get()) {
                     nVar.t(iVar);

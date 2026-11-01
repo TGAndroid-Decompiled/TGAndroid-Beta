@@ -1,77 +1,60 @@
 package org.telegram.ui;
 
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class kc1 implements Runnable {
-    public final int f38741a;
-    public final tc1 f38742b;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class kc1 implements RequestDelegate {
+    public final int f38804a;
+    public final rc1 f38805b;
 
-    public kc1(tc1 tc1Var, int i10) {
-        this.f38741a = i10;
-        this.f38742b = tc1Var;
+    public kc1(rc1 rc1Var, int i10) {
+        this.f38804a = i10;
+        this.f38805b = rc1Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f38741a) {
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f38804a) {
             case 0:
-                int i10 = 0;
-                while (true) {
-                    bs[] bsVarArr = this.f38742b.f41812x.f44219f;
-                    if (i10 < bsVarArr.length) {
-                        bsVarArr[i10].z(0.0f);
-                        i10++;
-                    } else {
-                        return;
+                final rc1 rc1Var = this.f38805b;
+                org.telegram.messenger.i0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                rc1.g0(rc1Var, tL_error, tLObject);
+                                return;
+                            default:
+                                rc1.m0(rc1Var, tL_error, tLObject);
+                                return;
+                        }
                     }
-                }
+                });
+                return;
             case 1:
-                tc1 tc1Var = this.f38742b;
-                EditTextBoldCursor editTextBoldCursor = tc1Var.f41808n;
-                if (editTextBoldCursor != null) {
-                    if (editTextBoldCursor.length() != 0) {
-                        tc1Var.f41803f0[2].P(49);
-                        tc1Var.f41803f0[2].T(false, 0.0f);
-                        tc1Var.f41794a.d();
-                        return;
-                    }
-                    tc1Var.J0(true);
-                    return;
-                }
+                org.telegram.messenger.i0.g3(new nc1(this.f38805b, tL_error, 0));
                 return;
             case 2:
-                tc1 tc1Var2 = this.f38742b;
-                EditTextBoldCursor editTextBoldCursor2 = tc1Var2.f41808n;
-                if (editTextBoldCursor2 != null && editTextBoldCursor2.getVisibility() == 0) {
-                    tc1Var2.f41808n.requestFocus();
-                    org.telegram.messenger.i0.J3(tc1Var2.f41808n);
-                    return;
-                }
+                org.telegram.messenger.i0.g3(new nc1(this.f38805b, tL_error, 1));
                 return;
             case 3:
-                tc1 tc1Var3 = this.f38742b;
-                uc0 uc0Var = tc1Var3.f41812x;
-                if (uc0Var != null && uc0Var.getVisibility() == 0) {
-                    tc1Var3.f41812x.f44219f[0].requestFocus();
-                    return;
-                }
-                return;
-            case 4:
-                tc1 tc1Var4 = this.f38742b;
-                if (tc1Var4.f41804g0 != null) {
-                    tc1Var4.J0(false);
-                    return;
-                }
-                return;
-            case 5:
-                tc1.j0(this.f38742b);
-                return;
-            case 6:
-                org.telegram.messenger.i0.h3(new kc1(this.f38742b, 7), 150L);
+                org.telegram.messenger.i0.g3(new nc1(this.f38805b, tL_error, 2));
                 return;
             default:
-                for (bs bsVar : this.f38742b.f41812x.f44219f) {
-                    bsVar.z(0.0f);
-                }
+                final rc1 rc1Var2 = this.f38805b;
+                org.telegram.messenger.i0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                rc1.g0(rc1Var2, tL_error, tLObject);
+                                return;
+                            default:
+                                rc1.m0(rc1Var2, tL_error, tLObject);
+                                return;
+                        }
+                    }
+                });
                 return;
         }
     }

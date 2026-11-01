@@ -1,20 +1,20 @@
 package vh;
 public final class q {
-    public final r f51775a;
-    public final int f51776b;
-    public final int f51777c;
+    public final r f51790a;
+    public final int f51791b;
+    public final int f51792c;
 
     public q(r rVar, int i10, int i11) {
-        this.f51775a = rVar;
-        this.f51776b = i10;
-        this.f51777c = i11;
+        this.f51790a = rVar;
+        this.f51791b = i10;
+        this.f51792c = i11;
     }
 
     public final float a(float f7) {
-        return (f7 / this.f51775a.d[this.f51777c]) * this.f51776b;
+        return (f7 / this.f51790a.d[this.f51792c]) * this.f51791b;
     }
 
     public final float b(float f7) {
-        return (f7 / this.f51775a.d[this.f51777c]) * (this.f51776b + 1);
+        return (f7 / this.f51790a.d[this.f51792c]) * (this.f51791b + 1);
     }
 }

@@ -30,7 +30,7 @@ public final class a2 extends EditTextBoldCursor {
         e6Var.n(0.2f, 160L, gr.h);
         e6Var.w(org.telegram.messenger.i0.L(15.33f));
         e6Var.setCallback(this);
-        e6Var.f25695b = 5;
+        e6Var.f25744b = 5;
     }
 
     @Override
@@ -43,7 +43,7 @@ public final class a2 extends EditTextBoldCursor {
             case 0:
                 super.dispatchDraw(canvas);
                 if (this.I1 < 0) {
-                    i10 = t6.f21153p7;
+                    i10 = t6.f21154p7;
                 } else {
                     i10 = t6.P5;
                 }
@@ -56,7 +56,7 @@ public final class a2 extends EditTextBoldCursor {
             case 1:
                 super.dispatchDraw(canvas);
                 if (this.I1 < 0) {
-                    i11 = t6.f21153p7;
+                    i11 = t6.f21154p7;
                 } else {
                     i11 = t6.P5;
                 }
@@ -69,11 +69,11 @@ public final class a2 extends EditTextBoldCursor {
             case 2:
                 super.dispatchDraw(canvas);
                 if (this.I1 <= 0) {
-                    i12 = t6.f21153p7;
+                    i12 = t6.f21154p7;
                 } else {
                     i12 = t6.P5;
                 }
-                int a11 = this.H1.a(t6.w0(i12, ((kk) this.K1).f30946a), false);
+                int a11 = this.H1.a(t6.w0(i12, ((kk) this.K1).f30963a), false);
                 e6 e6Var3 = this.J1;
                 e6Var3.u(a11);
                 int scrollX = getScrollX();
@@ -85,7 +85,7 @@ public final class a2 extends EditTextBoldCursor {
             default:
                 super.dispatchDraw(canvas);
                 if (this.I1 <= 0) {
-                    i13 = t6.f21153p7;
+                    i13 = t6.f21154p7;
                 } else {
                     i13 = t6.P5;
                 }
@@ -218,7 +218,7 @@ public final class a2 extends EditTextBoldCursor {
         e6Var.n(0.2f, 160L, gr.h);
         e6Var.w(org.telegram.messenger.i0.L(15.33f));
         e6Var.setCallback(this);
-        e6Var.f25695b = 5;
+        e6Var.f25744b = 5;
     }
 
     public a2(kk kkVar, Context context) {
@@ -230,7 +230,7 @@ public final class a2 extends EditTextBoldCursor {
         this.J1 = e6Var;
         e6Var.n(0.2f, 160L, gr.h);
         e6Var.w(org.telegram.messenger.i0.L(15.33f));
-        e6Var.f25695b = 5;
+        e6Var.f25744b = 5;
         e6Var.setCallback(this);
     }
 
@@ -243,7 +243,7 @@ public final class a2 extends EditTextBoldCursor {
         this.J1 = e6Var;
         e6Var.n(0.2f, 160L, gr.h);
         e6Var.w(org.telegram.messenger.i0.L(15.33f));
-        e6Var.f25695b = 5;
+        e6Var.f25744b = 5;
         e6Var.setCallback(this);
     }
 }

@@ -3,7 +3,7 @@ package ag;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
-import org.telegram.messenger.fs;
+import org.telegram.messenger.gs;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.r4;
@@ -62,7 +62,7 @@ public final class a0 implements TextView.OnEditorActionListener {
                 return true;
             default:
                 r4 r4Var = (r4) this.e;
-                fs fsVar = (fs) this.f457f;
+                gs gsVar = (gs) this.f457f;
                 if (i10 != 6) {
                     return false;
                 }
@@ -70,7 +70,7 @@ public final class a0 implements TextView.OnEditorActionListener {
                 if (obj2.length() > this.f455b) {
                     org.telegram.messenger.i0.E3(r4Var);
                 } else {
-                    fsVar.a(obj2);
+                    gsVar.a(obj2);
                     org.telegram.ui.ActionBar.x1 x1Var2 = this.f456c[0];
                     if (x1Var2 != null) {
                         x1Var2.dismiss();

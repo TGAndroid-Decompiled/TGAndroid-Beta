@@ -14,8 +14,8 @@ import android.view.View;
 import android.widget.ScrollView;
 import java.util.ArrayList;
 import java.util.HashSet;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.q20;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.r20;
 import org.telegram.ui.Components.gr;
 import org.telegram.ui.Components.s20;
 public abstract class t6 extends ScrollView implements org.telegram.ui.ActionBar.k6 {
@@ -28,32 +28,32 @@ public abstract class t6 extends ScrollView implements org.telegram.ui.ActionBar
     public float J;
     public int K;
     public boolean L;
-    public final org.telegram.ui.ActionBar.p6 f51971a;
-    public final org.telegram.ui.ActionBar.n0 f51972b;
-    public final int f51973c;
+    public final org.telegram.ui.ActionBar.p6 f51987a;
+    public final org.telegram.ui.ActionBar.n0 f51988b;
+    public final int f51989c;
     public final qg.g d;
     public final ArrayList e;
-    public s20 f51974f;
+    public s20 f51990f;
     public final i6 h;
-    public boolean f51975n;
-    public q20 f51976r;
-    public final org.telegram.ui.Components.t5 f51977s;
-    public final LinearGradient f51978w;
-    public final Paint f51979x;
-    public final Matrix f51980y;
+    public boolean f51991n;
+    public r20 f51992r;
+    public final org.telegram.ui.Components.t5 f51993s;
+    public final LinearGradient f51994w;
+    public final Paint f51995x;
+    public final Matrix f51996y;
 
     public t6(Context context, org.telegram.ui.ActionBar.p6 p6Var, i6 i6Var) {
         super(context);
         int i10;
         this.e = new ArrayList();
         gr grVar = gr.h;
-        this.f51977s = new org.telegram.ui.Components.t5(this, 0L, 300L, grVar);
+        this.f51993s = new org.telegram.ui.Components.t5(this, 0L, 300L, grVar);
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, org.telegram.messenger.i0.L(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, tileMode);
-        this.f51978w = linearGradient;
+        this.f51994w = linearGradient;
         Paint paint = new Paint(1);
-        this.f51979x = paint;
-        this.f51980y = new Matrix();
+        this.f51995x = paint;
+        this.f51996y = new Matrix();
         this.D = new org.telegram.ui.Components.t5(this, 0L, 300L, grVar);
         LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 0.0f, org.telegram.messenger.i0.L(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, tileMode);
         this.E = linearGradient2;
@@ -65,15 +65,15 @@ public abstract class t6 extends ScrollView implements org.telegram.ui.ActionBar
         paint.setXfermode(new PorterDuffXfermode(mode));
         paint2.setShader(linearGradient2);
         paint2.setXfermode(new PorterDuffXfermode(mode));
-        this.f51971a = p6Var;
+        this.f51987a = p6Var;
         this.h = i6Var;
         setVerticalScrollBarEnabled(false);
-        org.telegram.messenger.i0.y3(this, org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f20929d6, false));
+        org.telegram.messenger.i0.y3(this, org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f20930d6, false));
         qg.g gVar = new qg.g(this, context);
         this.d = gVar;
         addView(gVar, w7.b6.c(-2.0f, -1));
         org.telegram.ui.ActionBar.n0 n0Var = new org.telegram.ui.ActionBar.n0(this, context, 11);
-        this.f51972b = n0Var;
+        this.f51988b = n0Var;
         if (Build.VERSION.SDK_INT >= 25) {
             n0Var.setRevealOnFocusHint(false);
         }
@@ -92,15 +92,15 @@ public abstract class t6 extends ScrollView implements org.telegram.ui.ActionBar
         n0Var.setTextIsSelectable(false);
         n0Var.setPadding(0, 0, 0, 0);
         n0Var.setImeOptions(268435462);
-        if (cd.X) {
+        if (dd.X) {
             i10 = 5;
         } else {
             i10 = 3;
         }
         n0Var.setGravity(i10 | 16);
         gVar.addView(n0Var);
-        n0Var.setHintText(cd.L0(2131745853, null));
-        this.f51973c = (int) n0Var.getPaint().measureText(cd.L0(2131745853, null));
+        n0Var.setHintText(dd.L0(2131745853, null));
+        this.f51989c = (int) n0Var.getPaint().measureText(dd.L0(2131745853, null));
         n0Var.addTextChangedListener(new rh.h0(this, 3));
     }
 
@@ -111,12 +111,12 @@ public abstract class t6 extends ScrollView implements org.telegram.ui.ActionBar
         canvas.saveLayerAlpha(0.0f, scrollY2, getWidth(), getHeight() + scrollY, 255, 31);
         super.dispatchDraw(canvas);
         canvas.save();
-        float d = this.f51977s.d(canScrollVertically(-1));
-        Matrix matrix = this.f51980y;
+        float d = this.f51993s.d(canScrollVertically(-1));
+        Matrix matrix = this.f51996y;
         matrix.reset();
         matrix.postTranslate(0.0f, scrollY2);
-        this.f51978w.setLocalMatrix(matrix);
-        Paint paint = this.f51979x;
+        this.f51994w.setLocalMatrix(matrix);
+        Paint paint = this.f51995x;
         paint.setAlpha((int) (d * 255.0f));
         canvas.drawRect(0.0f, scrollY2, getWidth(), org.telegram.messenger.i0.L(8.0f) + scrollY, paint);
         float d10 = this.D.d(canScrollVertically(1));
@@ -156,20 +156,20 @@ public abstract class t6 extends ScrollView implements org.telegram.ui.ActionBar
         }
     }
 
-    public void setOnSearchTextChange(q20 q20Var) {
-        this.f51976r = q20Var;
+    public void setOnSearchTextChange(r20 r20Var) {
+        this.f51992r = r20Var;
     }
 
     public void setText(CharSequence charSequence) {
-        this.f51975n = true;
-        this.f51972b.setText(charSequence);
-        this.f51975n = false;
+        this.f51991n = true;
+        this.f51988b.setText(charSequence);
+        this.f51991n = false;
     }
 
     @Override
     public final void updateColors() {
-        org.telegram.ui.ActionBar.p6 p6Var = this.f51971a;
-        org.telegram.ui.ActionBar.n0 n0Var = this.f51972b;
+        org.telegram.ui.ActionBar.p6 p6Var = this.f51987a;
+        org.telegram.ui.ActionBar.n0 n0Var = this.f51988b;
         if (n0Var != null) {
             try {
                 n0Var.setHintColor(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.Li, p6Var));
@@ -181,7 +181,7 @@ public abstract class t6 extends ScrollView implements org.telegram.ui.ActionBar
                 return;
             }
         }
-        org.telegram.messenger.i0.y3(this, org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f20929d6, false));
+        org.telegram.messenger.i0.y3(this, org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f20930d6, false));
     }
 
     @Override

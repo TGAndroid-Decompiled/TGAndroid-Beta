@@ -1,23 +1,23 @@
 package of;
 
-import org.telegram.messenger.zs;
+import org.telegram.messenger.at;
 public final class a implements Runnable {
-    public final int f14151a;
-    public final c f14152b;
+    public final int f14152a;
+    public final c f14153b;
 
     public a(c cVar, int i10) {
-        this.f14151a = i10;
-        this.f14152b = cVar;
+        this.f14152a = i10;
+        this.f14153b = cVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f14151a) {
+        switch (this.f14152a) {
             case 0:
-                this.f14152b.g(false);
+                this.f14153b.g(false);
                 return;
             default:
-                zs.f(this.f14152b.f14160c).k(307, new Object[0]);
+                at.f(this.f14153b.f14161c).k(307, new Object[0]);
                 return;
         }
     }

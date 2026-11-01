@@ -5,9 +5,9 @@ import e2.x;
 import java.io.EOFException;
 import v7.t6;
 public final class e {
-    public final f f52974a = new f();
-    public final x f52975b = new x(new byte[65025], 0);
-    public int f52976c = -1;
+    public final f f52992a = new f();
+    public final x f52993b = new x(new byte[65025], 0);
+    public int f52994c = -1;
     public int d;
     public boolean e;
 
@@ -18,11 +18,11 @@ public final class e {
         do {
             int i13 = this.d;
             int i14 = i10 + i13;
-            f fVar = this.f52974a;
-            if (i14 >= fVar.f52979c) {
+            f fVar = this.f52992a;
+            if (i14 >= fVar.f52997c) {
                 break;
             }
-            int[] iArr = fVar.f52980f;
+            int[] iArr = fVar.f52998f;
             this.d = i13 + 1;
             i11 = iArr[i14];
             i12 += i11;
@@ -41,18 +41,18 @@ public final class e {
         }
         t6.p(z10);
         boolean z12 = this.e;
-        x xVar = this.f52975b;
+        x xVar = this.f52993b;
         if (z12) {
             this.e = false;
             xVar.K(0);
         }
         while (!this.e) {
-            int i11 = this.f52976c;
-            f fVar = this.f52974a;
+            int i11 = this.f52994c;
+            f fVar = this.f52992a;
             if (i11 < 0) {
                 if (fVar.b(pVar, -1L) && fVar.a(pVar, true)) {
                     int i12 = fVar.d;
-                    if ((fVar.f52977a & 1) == 1 && xVar.f6209c == 0) {
+                    if ((fVar.f52995a & 1) == 1 && xVar.f6209c == 0) {
                         i12 += a(0);
                         i10 = this.d;
                     } else {
@@ -60,20 +60,20 @@ public final class e {
                     }
                     try {
                         pVar.q(i12);
-                        this.f52976c = i10;
+                        this.f52994c = i10;
                     } catch (EOFException unused) {
                     }
                 }
                 return false;
             }
-            int a2 = a(this.f52976c);
-            int i13 = this.f52976c + this.d;
+            int a2 = a(this.f52994c);
+            int i13 = this.f52994c + this.d;
             if (a2 > 0) {
                 xVar.c(xVar.f6209c + a2);
                 try {
                     pVar.readFully(xVar.f6207a, xVar.f6209c, a2);
                     xVar.M(xVar.f6209c + a2);
-                    if (fVar.f52980f[i13 - 1] != 255) {
+                    if (fVar.f52998f[i13 - 1] != 255) {
                         z11 = true;
                     } else {
                         z11 = false;
@@ -83,10 +83,10 @@ public final class e {
                     return false;
                 }
             }
-            if (i13 == fVar.f52979c) {
+            if (i13 == fVar.f52997c) {
                 i13 = -1;
             }
-            this.f52976c = i13;
+            this.f52994c = i13;
         }
         return true;
     }

@@ -8,17 +8,17 @@ import android.view.Window;
 import android.view.WindowManager;
 import java.util.WeakHashMap;
 public final class ra extends Dialog {
-    public final qa f29889a;
-    public final WindowManager.LayoutParams f29890b;
+    public final qa f29967a;
+    public final WindowManager.LayoutParams f29968b;
 
     public ra(Context context, mg.u uVar) {
         super(context);
         org.telegram.messenger.i0.S(getWindow());
         qa qaVar = new qa(this, context);
-        this.f29889a = qaVar;
+        this.f29967a = qaVar;
         setContentView(qaVar, new ViewGroup.LayoutParams(-1, -1));
         t tVar = new t(this, 15);
-        WeakHashMap weakHashMap = r0.h0.f46123a;
+        WeakHashMap weakHashMap = r0.h0.f46134a;
         r0.z.i(qaVar, tVar);
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 30) {
@@ -33,7 +33,7 @@ public final class ra extends Dialog {
             window.setWindowAnimations(2131755178);
             window.setBackgroundDrawable(null);
             WindowManager.LayoutParams attributes = window.getAttributes();
-            this.f29890b = attributes;
+            this.f29968b = attributes;
             attributes.width = -1;
             attributes.height = -1;
             attributes.gravity = 51;
@@ -44,7 +44,7 @@ public final class ra extends Dialog {
                 attributes.layoutInDisplayCutoutMode = 1;
             }
             window.setAttributes(attributes);
-            if (org.telegram.messenger.i0.B(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f20872a7, false)) <= 0.721f) {
+            if (org.telegram.messenger.i0.B(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f20873a7, false)) <= 0.721f) {
                 z10 = false;
             }
             org.telegram.messenger.i0.m3(this, z10);
@@ -53,7 +53,7 @@ public final class ra extends Dialog {
     }
 
     public static qa a(Context context) {
-        return new ra(context, null).f29889a;
+        return new ra(context, null).f29967a;
     }
 
     @Override

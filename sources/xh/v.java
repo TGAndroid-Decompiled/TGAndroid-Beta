@@ -7,17 +7,17 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.at;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.ui.ActionBar.a7;
 import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Components.dq;
-import org.telegram.ui.Components.sk0;
-import org.telegram.ui.el0;
+import org.telegram.ui.Components.tk0;
+import org.telegram.ui.cl0;
 import w7.b6;
-public final class v extends sk0 {
-    public ArrayList f54076c;
+public final class v extends tk0 {
+    public ArrayList f54097c;
     public ArrayList d;
     public ArrayList e;
 
@@ -27,7 +27,7 @@ public final class v extends sk0 {
     }
 
     public final void E(a0.h hVar) {
-        ArrayList arrayList = this.f54076c;
+        ArrayList arrayList = this.f54097c;
         arrayList.clear();
         ArrayList arrayList2 = this.d;
         arrayList2.clear();
@@ -49,26 +49,26 @@ public final class v extends sk0 {
 
     @Override
     public final int b() {
-        return this.f54076c.size();
+        return this.f54097c.size();
     }
 
     @Override
     public final void t(s4.c1 c1Var, int i10) {
-        u uVar = (u) c1Var.f47898a;
-        String str = (String) this.f54076c.get(i10);
+        u uVar = (u) c1Var.f47909a;
+        String str = (String) this.f54097c.get(i10);
         if (((Boolean) this.e.get(i10)).booleanValue()) {
             dq dqVar = new dq(2131231941, 0);
             dqVar.a(t6.A6);
-            dqVar.f25507n = 1;
+            dqVar.f25567n = 1;
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
             spannableStringBuilder.append((CharSequence) " *");
             spannableStringBuilder.setSpan(dqVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
-            uVar.f54064a.setText(spannableStringBuilder);
+            uVar.f54085a.setText(spannableStringBuilder);
         } else {
-            uVar.f54064a.setText(str);
+            uVar.f54085a.setText(str);
         }
-        uVar.f54065b.setText((CharSequence) this.d.get(i10));
-        uVar.f54066c = str;
+        uVar.f54086b.setText((CharSequence) this.d.get(i10));
+        uVar.f54087c = str;
     }
 
     @Override
@@ -77,20 +77,20 @@ public final class v extends sk0 {
         ?? linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(0);
         linearLayout.setPadding(org.telegram.messenger.i0.L(16.0f), org.telegram.messenger.i0.L(8.0f), org.telegram.messenger.i0.L(16.0f), org.telegram.messenger.i0.L(8.0f));
-        el0 el0Var = new el0(context, 5);
-        linearLayout.f54065b = el0Var;
-        zs.i(el0Var);
-        el0Var.setTextSize(1, 16.0f);
+        cl0 cl0Var = new cl0(context, 5);
+        linearLayout.f54086b = cl0Var;
+        at.i(cl0Var);
+        cl0Var.setTextSize(1, 16.0f);
         int i11 = t6.G6;
-        a7.V(el0Var, i11, null);
-        el0Var.setTag(Integer.valueOf(i11));
-        el0Var.setMaxLines(2);
-        el0Var.setEllipsize(TextUtils.TruncateAt.END);
-        linearLayout.addView(el0Var, b6.q(-1, -2, 1.0f, 16, 0, 0, org.telegram.messenger.i0.L(8.0f), 0));
+        a7.V(cl0Var, i11, null);
+        cl0Var.setTag(Integer.valueOf(i11));
+        cl0Var.setMaxLines(2);
+        cl0Var.setEllipsize(TextUtils.TruncateAt.END);
+        linearLayout.addView(cl0Var, b6.q(-1, -2, 1.0f, 16, 0, 0, org.telegram.messenger.i0.L(8.0f), 0));
         TextView textView = new TextView(context);
-        linearLayout.f54064a = textView;
+        linearLayout.f54085a = textView;
         textView.setTextSize(1, 14.0f);
-        int i12 = t6.f21311y6;
+        int i12 = t6.f21312y6;
         a7.V(textView, i12, null);
         textView.setTag(Integer.valueOf(i12));
         linearLayout.addView(textView, b6.p(-2, -2, 0.0f, 16));

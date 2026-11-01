@@ -4,29 +4,29 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.SystemClock;
 public final class p9 {
-    public final float f35045a;
-    public final float f35046b;
-    public final float f35047c;
+    public final float f35044a;
+    public final float f35045b;
+    public final float f35046c;
     public final float d;
     public final float e;
-    public final boolean f35048f;
-    public final long f35049g;
+    public final boolean f35047f;
+    public final long f35048g;
     public final q9 h;
 
     public p9(q9 q9Var, p9 p9Var, float f7, boolean z10) {
         float z11;
         this.h = q9Var;
-        this.f35048f = z10;
-        this.f35046b = f7;
-        this.f35045a = p9Var != null ? p9Var.f35045a : f7;
-        this.f35049g = (p9Var == null || z10) ? SystemClock.uptimeMillis() : p9Var.f35049g;
+        this.f35047f = z10;
+        this.f35045b = f7;
+        this.f35044a = p9Var != null ? p9Var.f35044a : f7;
+        this.f35048g = (p9Var == null || z10) ? SystemClock.uptimeMillis() : p9Var.f35048g;
         float f10 = 0.0f;
         float a2 = (p9Var == null || !z10) ? 0.0f : p9Var.a();
         if (p9Var != null) {
-            float f11 = p9Var.f35047c;
+            float f11 = p9Var.f35046c;
             f10 = c3.i0.z(1.0f, f11, a2, f11);
         }
-        this.f35047c = f10;
+        this.f35046c = f10;
         if (p9Var == null) {
             z11 = q9Var.O;
         } else {
@@ -41,7 +41,7 @@ public final class p9 {
         if (this.h.I >= 1.0f) {
             return 1.0f;
         }
-        return q9.S.getInterpolation(Math.min(1.0f, ((float) (SystemClock.uptimeMillis() - this.f35049g)) / 320.0f));
+        return q9.S.getInterpolation(Math.min(1.0f, ((float) (SystemClock.uptimeMillis() - this.f35048g)) / 320.0f));
     }
 
     public final void b(Canvas canvas, Paint paint, String str, float f7, int i10) {
@@ -49,13 +49,13 @@ public final class p9 {
         float f11;
         float a2 = a();
         float f12 = 1.0f;
-        boolean z10 = this.f35048f;
+        boolean z10 = this.f35047f;
         if (z10) {
             f10 = 0.0f;
         } else {
             f10 = 1.0f;
         }
-        float f13 = this.f35047c;
+        float f13 = this.f35046c;
         float z11 = c3.i0.z(f10, f13, a2, f13);
         if (z11 <= 0.0f) {
             return;
@@ -94,30 +94,30 @@ public final class p9 {
     }
 
     public final float d() {
-        float f7 = this.f35046b;
-        float f10 = this.f35045a;
+        float f7 = this.f35045b;
+        float f10 = this.f35044a;
         return (q9.S.getInterpolation(this.h.I) * (f7 - f10)) + f10;
     }
 
     public p9(q9 q9Var, float f7) {
         this.h = q9Var;
-        this.f35048f = false;
-        this.f35046b = f7;
-        this.f35045a = f7;
-        this.f35047c = 1.0f;
+        this.f35047f = false;
+        this.f35045b = f7;
+        this.f35044a = f7;
+        this.f35046c = 1.0f;
         this.d = 1.0f;
         this.e = 0.0f;
-        this.f35049g = SystemClock.uptimeMillis();
+        this.f35048g = SystemClock.uptimeMillis();
     }
 
     public p9(q9 q9Var, float f7, p9 p9Var) {
         this.h = q9Var;
-        this.f35048f = p9Var.f35048f;
-        this.f35046b = f7;
-        this.f35045a = f7;
-        this.f35047c = p9Var.f35047c;
+        this.f35047f = p9Var.f35047f;
+        this.f35045b = f7;
+        this.f35044a = f7;
+        this.f35046c = p9Var.f35046c;
         this.d = p9Var.d;
         this.e = p9Var.e;
-        this.f35049g = p9Var.f35049g;
+        this.f35048g = p9Var.f35048g;
     }
 }

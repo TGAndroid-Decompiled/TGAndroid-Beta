@@ -9,7 +9,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 import org.telegram.messenger.i0;
 import org.telegram.ui.ActionBar.a7;
 import org.telegram.ui.ActionBar.p6;
@@ -60,7 +60,7 @@ public class d extends FrameLayout {
         addView(textView4, b6.d(-2, -2.0f, 8388629, 16.0f, 0.0f, 16.0f, 0.0f));
         textView4.setVisibility(8);
         textView2.setVisibility(8);
-        textView2.setText(cd.L0(2131742812, null));
+        textView2.setText(dd.L0(2131742812, null));
         Drawable drawable = getContext().getDrawable(2131232439);
         this.h = drawable;
         textView2.setCompoundDrawablesWithIntrinsicBounds(drawable, (Drawable) null, (Drawable) null, (Drawable) null);
@@ -72,7 +72,7 @@ public class d extends FrameLayout {
     }
 
     public final void a() {
-        int i10 = t6.f21037j5;
+        int i10 = t6.f21038j5;
         TextView textView = this.f5888a;
         p6 p6Var = this.f5893r;
         a7.V(textView, i10, p6Var);
@@ -96,9 +96,9 @@ public class d extends FrameLayout {
             j11 += 604800000;
         }
         if (j11 - j10 >= 86400000) {
-            format = cd.D0().B0().format(new Date(j10)) + " — " + cd.D0().B0().format(new Date(j11));
+            format = dd.D0().B0().format(new Date(j10)) + " — " + dd.D0().B0().format(new Date(j11));
         } else {
-            format = cd.D0().B0().format(new Date(j10));
+            format = dd.D0().B0().format(new Date(j10));
         }
         textView.setText(format);
         textView.setVisibility(0);

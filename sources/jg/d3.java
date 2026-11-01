@@ -17,7 +17,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Components.gr;
 import org.telegram.ui.Components.z60;
@@ -29,31 +29,31 @@ public final class d3 extends Dialog {
     public boolean F;
     public s0 G;
     public ph.h1 H;
-    public final int f9931a;
-    public final l0 f9932b;
-    public final z2 f9933c;
+    public final int f9932a;
+    public final l0 f9933b;
+    public final z2 f9934c;
     public final a3 d;
     public final ImageView e;
-    public final b3 f9934f;
+    public final b3 f9935f;
     public final Rect h;
-    public Bitmap f9935n;
-    public BitmapShader f9936r;
-    public Paint f9937s;
-    public Matrix f9938w;
-    public final za0 f9939x;
-    public final za0 f9940y;
+    public Bitmap f9936n;
+    public BitmapShader f9937r;
+    public Paint f9938s;
+    public Matrix f9939w;
+    public final za0 f9940x;
+    public final za0 f9941y;
 
     public d3(Context context, final int i10) {
         super(context, 2131755352);
         th.b bVar = new th.b();
         this.h = new Rect();
         this.F = false;
-        this.f9931a = i10;
+        this.f9932a = i10;
         l0 l0Var = new l0(this, context, 3);
-        this.f9932b = l0Var;
+        this.f9933b = l0Var;
         l0Var.setOnClickListener(new ag.g(this, 10));
         z2 z2Var = new z2(context, 0);
-        this.f9933c = z2Var;
+        this.f9934c = z2Var;
         z2Var.setOrientation(1);
         l0Var.addView(z2Var, b6.d(-2, -2.0f, 17, 8.0f, 8.0f, 8.0f, 8.0f));
         a3 a3Var = new a3(this, context, 0);
@@ -63,11 +63,11 @@ public final class d3 extends Dialog {
         frameLayout.setBackgroundColor(-14737633);
         a3Var.addView(frameLayout, b6.e(-1, 56, 55));
         TextView textView = new TextView(context);
-        textView.setText(cd.L0(2131744652, null));
+        textView.setText(dd.L0(2131744652, null));
         textView.setTextColor(-1);
         sc.e.t(textView, 1, 18.0f);
         TextView l4 = org.telegram.ui.Cells.f1.l(frameLayout, textView, b6.d(-1, -2.0f, 55, 18.0f, 8.33f, 18.0f, 0.0f), context);
-        l4.setText(cd.L0(2131744653, null));
+        l4.setText(dd.L0(2131744653, null));
         l4.setTextColor(-8421505);
         l4.setTextSize(1, 14.0f);
         frameLayout.addView(l4, b6.d(-1, -2.0f, 55, 18.0f, 31.0f, 18.0f, 0.0f));
@@ -78,77 +78,77 @@ public final class d3 extends Dialog {
         this.e = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         a3Var2.addView(imageView, b6.e(-1, -1, 119));
-        b3 b3Var = new b3(this, context, org.telegram.messenger.i0.f16025p);
-        this.f9934f = b3Var;
+        b3 b3Var = new b3(this, context, org.telegram.messenger.i0.f16171p);
+        this.f9935f = b3Var;
         a3Var2.addView(b3Var, b6.e(-2, -2, 17));
         z60 F = z60.F(l0Var, bVar, l0Var);
-        za0 za0Var = new za0(getContext(), 2131624137, cd.L0(2131744663, null), 2131624136, cd.L0(2131744662, null), bVar);
-        this.f9939x = za0Var;
+        za0 za0Var = new za0(getContext(), 2131624137, dd.L0(2131744663, null), 2131624136, dd.L0(2131744662, null), bVar);
+        this.f9940x = za0Var;
         za0Var.setOnClickListener(new View.OnClickListener(this) {
-            public final d3 f10378b;
+            public final d3 f10379b;
 
             {
-                this.f10378b = this;
+                this.f10379b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        d3 d3Var = this.f10378b;
+                        d3 d3Var = this.f10379b;
                         s0 s0Var = d3Var.G;
-                        boolean z10 = s0Var.f10209f;
-                        s0Var.f10209f = !z10;
-                        d3Var.f9939x.a(z10, true);
-                        d3Var.f9934f.b(i10, d3Var.G, true);
+                        boolean z10 = s0Var.f10210f;
+                        s0Var.f10210f = !z10;
+                        d3Var.f9940x.a(z10, true);
+                        d3Var.f9935f.b(i10, d3Var.G, true);
                         return;
                     default:
-                        d3 d3Var2 = this.f10378b;
+                        d3 d3Var2 = this.f10379b;
                         s0 s0Var2 = d3Var2.G;
                         boolean z11 = s0Var2.e;
                         s0Var2.e = !z11;
-                        d3Var2.f9940y.a(z11, true);
-                        d3Var2.f9934f.b(i10, d3Var2.G, true);
+                        d3Var2.f9941y.a(z11, true);
+                        d3Var2.f9935f.b(i10, d3Var2.G, true);
                         return;
                 }
             }
         });
         F.q(za0Var);
-        za0 za0Var2 = new za0(context, 2131624087, cd.L0(2131748909, null), 2131624084, cd.L0(2131748908, null), bVar);
-        this.f9940y = za0Var2;
+        za0 za0Var2 = new za0(context, 2131624087, dd.L0(2131748909, null), 2131624084, dd.L0(2131748908, null), bVar);
+        this.f9941y = za0Var2;
         za0Var2.setOnClickListener(new View.OnClickListener(this) {
-            public final d3 f10378b;
+            public final d3 f10379b;
 
             {
-                this.f10378b = this;
+                this.f10379b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        d3 d3Var = this.f10378b;
+                        d3 d3Var = this.f10379b;
                         s0 s0Var = d3Var.G;
-                        boolean z10 = s0Var.f10209f;
-                        s0Var.f10209f = !z10;
-                        d3Var.f9939x.a(z10, true);
-                        d3Var.f9934f.b(i10, d3Var.G, true);
+                        boolean z10 = s0Var.f10210f;
+                        s0Var.f10210f = !z10;
+                        d3Var.f9940x.a(z10, true);
+                        d3Var.f9935f.b(i10, d3Var.G, true);
                         return;
                     default:
-                        d3 d3Var2 = this.f10378b;
+                        d3 d3Var2 = this.f10379b;
                         s0 s0Var2 = d3Var2.G;
                         boolean z11 = s0Var2.e;
                         s0Var2.e = !z11;
-                        d3Var2.f9940y.a(z11, true);
-                        d3Var2.f9934f.b(i10, d3Var2.G, true);
+                        d3Var2.f9941y.a(z11, true);
+                        d3Var2.f9935f.b(i10, d3Var2.G, true);
                         return;
                 }
             }
         });
         F.q(za0Var2);
         F.k();
-        F.c(2131232356, cd.L0(2131754218, null), new x2(this, 2), false);
-        F.c(2131232107, cd.L0(2131751362, null), new x2(this, 3), true);
+        F.c(2131232356, dd.L0(2131754218, null), new x2(this, 2), false);
+        F.c(2131232107, dd.L0(2131751362, null), new x2(this, 3), true);
         z2Var.addView(F.A, b6.p(-2, -2, 0.0f, 85));
         l0Var.setFitsSystemWindows(true);
         l0Var.setOnApplyWindowInsetsListener(new c3(this));
@@ -194,7 +194,7 @@ public final class d3 extends Dialog {
         }
         this.F = true;
         b(false, new x2(this, 1));
-        this.f9932b.invalidate();
+        this.f9933b.invalidate();
     }
 
     @Override
@@ -208,7 +208,7 @@ public final class d3 extends Dialog {
         Window window = getWindow();
         window.setWindowAnimations(2131755178);
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-1, -1);
-        l0 l0Var = this.f9932b;
+        l0 l0Var = this.f9933b;
         setContentView(l0Var, layoutParams);
         WindowManager.LayoutParams attributes = window.getAttributes();
         attributes.width = -1;

@@ -14,7 +14,7 @@ public abstract class l {
 
     static {
         String str;
-        int i10 = v.f54421a;
+        int i10 = v.f54442a;
         try {
             str = System.getProperty("kotlinx.coroutines.scheduler.default.name");
         } catch (SecurityException unused) {
@@ -25,7 +25,7 @@ public abstract class l {
         }
         f427a = str;
         f428b = yd.a.i("kotlinx.coroutines.scheduler.resolution.ns", 100000L, 1L, Long.MAX_VALUE);
-        int i11 = v.f54421a;
+        int i11 = v.f54442a;
         if (i11 < 2) {
             i11 = 2;
         }

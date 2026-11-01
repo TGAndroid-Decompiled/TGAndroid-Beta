@@ -1,57 +1,21 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.LinearLayout;
-public final class ri0 extends LinearLayout {
-    public boolean f29934a;
+public final class ri0 extends zz {
+    public final wi0 U;
 
-    public ri0(Context context) {
-        super(context);
+    public ri0(wi0 wi0Var, Context context, org.telegram.ui.ActionBar.p6 p6Var) {
+        super(context, p6Var);
+        this.U = wi0Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        ni0 ni0Var = null;
-        if (!this.f29934a) {
-            i12 = 0;
-            for (int i13 = 0; i13 < getChildCount(); i13++) {
-                if (getChildAt(i13) instanceof vi0) {
-                    ni0Var = ((vi0) getChildAt(i13)).e;
-                    if (ni0Var.getAdapter().b() == ni0Var.getChildCount()) {
-                        int childCount = ni0Var.getChildCount();
-                        for (int i14 = 0; i14 < childCount; i14++) {
-                            ni0Var.getChildAt(i14).measure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(1000.0f), 0), i11);
-                            if (ni0Var.getChildAt(i14).getMeasuredWidth() > i12) {
-                                i12 = ni0Var.getChildAt(i14).getMeasuredWidth();
-                            }
-                        }
-                        i12 += org.telegram.messenger.i0.L(16.0f);
-                    }
-                }
-            }
-        } else {
-            i12 = 0;
+    public final int getAdditionalHeight() {
+        da0 da0Var;
+        wi0 wi0Var = this.U;
+        if (!wi0Var.H.isEmpty() && (da0Var = wi0Var.J) != null) {
+            return org.telegram.messenger.i0.L(8.0f) + da0Var.getMeasuredHeight();
         }
-        int size = View.MeasureSpec.getSize(i10);
-        if (size < org.telegram.messenger.i0.L(240.0f)) {
-            size = org.telegram.messenger.i0.L(240.0f);
-        }
-        if (size > org.telegram.messenger.i0.L(280.0f)) {
-            size = org.telegram.messenger.i0.L(280.0f);
-        }
-        if (size < 0) {
-            size = 0;
-        }
-        if (i12 == 0 || i12 >= size) {
-            i12 = size;
-        }
-        if (ni0Var != null) {
-            for (int i15 = 0; i15 < ni0Var.getChildCount(); i15++) {
-                ni0Var.getChildAt(i15).measure(View.MeasureSpec.makeMeasureSpec(i12, 1073741824), i11);
-            }
-        }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(i12, 1073741824), i11);
+        return 0;
     }
 }

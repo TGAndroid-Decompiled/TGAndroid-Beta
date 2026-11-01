@@ -1,41 +1,39 @@
 package org.telegram.ui;
-public final class f20 extends g.o {
-    public final b50 f37160c;
 
-    public f20(b50 b50Var) {
-        this.f37160c = b50Var;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class f20 extends s4.m0 {
+    public final a50 f36979a;
+
+    public f20(a50 a50Var) {
+        this.f36979a = a50Var;
     }
 
     @Override
-    public final int i(int i10) {
-        int i11;
-        v40 v40Var;
-        int i12;
-        int i13;
-        int i14;
-        if (b50.f35991w5) {
-            i11 = 6;
-        } else {
-            i11 = 2;
-        }
-        if (!b50.f35992x5 && i10 >= (i12 = (v40Var = this.f37160c.G1).G) && i10 < (i13 = v40Var.H)) {
-            int i15 = i13 - i12;
-            if (i10 == i13 - 1 && (b50.f35991w5 || i15 % 2 != 0)) {
-                i14 = 2;
-            } else {
-                i14 = 1;
-            }
-            if (b50.f35991w5) {
-                if (i15 == 1) {
-                    return 6;
+    public final void c(Rect rect, View view, RecyclerView recyclerView, s4.z0 z0Var) {
+        int i10;
+        int R = RecyclerView.R(view);
+        if (R >= 0) {
+            rect.setEmpty();
+            u40 u40Var = this.f36979a.G1;
+            int i11 = u40Var.G;
+            if (R >= i11 && R < u40Var.H) {
+                int i12 = R - i11;
+                if (a50.f35575w5) {
+                    i10 = 6;
+                } else {
+                    i10 = 2;
                 }
-                if (i15 != 2) {
-                    return 2;
+                int i13 = i12 % i10;
+                if (i13 == 0) {
+                    rect.right = org.telegram.messenger.i0.L(2.0f);
+                } else if (i13 == i10 - 1) {
+                    rect.left = org.telegram.messenger.i0.L(2.0f);
+                } else {
+                    rect.left = org.telegram.messenger.i0.L(1.0f);
                 }
-                return 3;
             }
-            return i14;
         }
-        return i11;
     }
 }

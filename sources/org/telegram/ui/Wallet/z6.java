@@ -12,7 +12,7 @@ public final class z6 extends lg.g {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.L.f34213y && super.onTouchEvent(motionEvent)) {
+        if (!this.L.f34212y && super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;

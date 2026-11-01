@@ -17,7 +17,7 @@ import b2.z0;
 import java.util.List;
 import li.x0;
 import org.telegram.ui.Components.d50;
-import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.v61;
 public final class z implements d1 {
     public final int f6213a;
     public final Object f6214b;
@@ -69,7 +69,7 @@ public final class z implements d1 {
                 return;
             case 2:
                 x0 x0Var = (x0) this.f6214b;
-                li.p pVar = x0Var.f12316m;
+                li.p pVar = x0Var.f12317m;
                 pVar.b("preview player error: code=" + y0Var.f2437a);
                 x0Var.h(y0Var);
                 return;
@@ -91,11 +91,11 @@ public final class z implements d1 {
             case 2:
                 return;
             default:
-                u61 u61Var = (u61) this.f6214b;
-                if (!u61Var.H && i10 == 3) {
-                    u61Var.H = true;
-                    if (u61Var.G && u61Var.I) {
-                        u61Var.h0();
+                v61 v61Var = (v61) this.f6214b;
+                if (!v61Var.H && i10 == 3) {
+                    v61Var.H = true;
+                    if (v61Var.G && v61Var.I) {
+                        v61Var.h0();
                         return;
                     }
                     return;
@@ -127,14 +127,14 @@ public final class z implements d1 {
             case 1:
                 ki.k kVar = (ki.k) this.f6214b;
                 ki.e eVar = kVar.E;
-                Handler handler = kVar.f11417i;
-                if (kVar.f11429u != z10) {
-                    kVar.f11429u = z10;
+                Handler handler = kVar.f11418i;
+                if (kVar.f11430u != z10) {
+                    kVar.f11430u = z10;
                     handler.removeCallbacks(eVar);
                     if (z10) {
                         handler.post(eVar);
                     }
-                    kVar.f11415f.getClass();
+                    kVar.f11416f.getClass();
                     kVar.m();
                     return;
                 }
@@ -215,7 +215,7 @@ public final class z implements d1 {
             case 2:
                 x0 x0Var = (x0) this.f6214b;
                 if (x0Var.Z == 5) {
-                    d50.n((d50) x0Var.d.f10700a);
+                    d50.n((d50) x0Var.d.f10701a);
                     return;
                 }
                 return;
@@ -249,14 +249,14 @@ public final class z implements d1 {
             case 1:
                 ki.k kVar = (ki.k) this.f6214b;
                 if (i10 == 4 && kVar.G == 5 && (i0Var = kVar.A) != null) {
-                    i0Var.Z0(5, kVar.f11426r);
+                    i0Var.Z0(5, kVar.f11427r);
                     kVar.A.e();
                     return;
                 }
                 return;
             case 2:
                 x0 x0Var = (x0) this.f6214b;
-                li.p pVar = x0Var.f12316m;
+                li.p pVar = x0Var.f12317m;
                 pVar.b("preview playback state=" + i10);
                 if (x0Var.Z == 5 && i10 == 4 && (i0Var2 = x0Var.V) != null) {
                     i0Var2.Z0(5, x0Var.J);

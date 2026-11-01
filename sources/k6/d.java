@@ -20,7 +20,7 @@ import com.google.android.gms.common.api.GoogleApiActivity;
 import n6.q;
 import n6.r;
 public final class d extends e {
-    public static final Object f10934c = new Object();
+    public static final Object f10935c = new Object();
     public static final d d = new Object();
 
     public static AlertDialog f(Activity activity, int i10, r rVar, DialogInterface.OnCancelListener onCancelListener) {
@@ -76,14 +76,14 @@ public final class d extends e {
         n6.l.h(alertDialog, "Cannot display null dialog");
         alertDialog.setOnCancelListener(null);
         alertDialog.setOnDismissListener(null);
-        dialogFragment.f10928a = alertDialog;
-        dialogFragment.f10929b = onCancelListener;
+        dialogFragment.f10929a = alertDialog;
+        dialogFragment.f10930b = onCancelListener;
         dialogFragment.show(fragmentManager, str);
     }
 
     @Override
     public final int c(Context context) {
-        return d(context, e.f10935a);
+        return d(context, e.f10936a);
     }
 
     public final void e(GoogleApiActivity googleApiActivity, int i10, GoogleApiActivity googleApiActivity2) {
@@ -131,10 +131,10 @@ public final class d extends e {
             mVar.f6049f = e0.r.d(e);
             rVar.n(mVar);
             PackageManager packageManager = context.getPackageManager();
-            if (u6.b.f50168b == null) {
-                u6.b.f50168b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
+            if (u6.b.f50182b == null) {
+                u6.b.f50182b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
             }
-            if (u6.b.f50168b.booleanValue()) {
+            if (u6.b.f50182b.booleanValue()) {
                 rVar.F.icon = context.getApplicationInfo().icon;
                 rVar.f6063j = 2;
                 if (u6.b.f(context)) {
@@ -151,7 +151,7 @@ public final class d extends e {
             }
             if (u6.b.d()) {
                 n6.l.j(u6.b.d());
-                synchronized (f10934c) {
+                synchronized (f10935c) {
                 }
                 NotificationChannel notificationChannel = notificationManager.getNotificationChannel("com.google.android.gms.availability");
                 String string = context.getResources().getString(2131689564);
@@ -167,7 +167,7 @@ public final class d extends e {
             if (i10 != 1 && i10 != 2 && i10 != 3) {
                 i11 = 39789;
             } else {
-                g.f10938a.set(false);
+                g.f10939a.set(false);
                 i11 = 10436;
             }
             notificationManager.notify(i11, b10);

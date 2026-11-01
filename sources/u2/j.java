@@ -5,22 +5,22 @@ import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.telegram.ui.tm;
 public final class j implements k0, n2.k {
-    public final Object f49898a;
-    public a5.a f49899b;
-    public n2.j f49900c;
+    public final Object f49912a;
+    public a5.a f49913b;
+    public n2.j f49914c;
     public final l d;
 
     public j(l lVar, Object obj) {
         this.d = lVar;
-        this.f49899b = lVar.b(null);
-        this.f49900c = new n2.j(lVar.d.f13463c, 0, null);
-        this.f49898a = obj;
+        this.f49913b = lVar.b(null);
+        this.f49914c = new n2.j(lVar.d.f13464c, 0, null);
+        this.f49912a = obj;
     }
 
     @Override
     public final void B(int i10, g0 g0Var, u uVar, c0 c0Var, IOException iOException, boolean z10) {
         if (a(i10, g0Var)) {
-            a5.a aVar = this.f49899b;
+            a5.a aVar = this.f49913b;
             c0 c10 = c(c0Var, g0Var);
             aVar.getClass();
             aVar.k(new tm(aVar, uVar, c10, iOException, z10));
@@ -30,14 +30,14 @@ public final class j implements k0, n2.k {
     @Override
     public final void E(int i10, g0 g0Var) {
         if (a(i10, g0Var)) {
-            this.f49900c.e();
+            this.f49914c.e();
         }
     }
 
     @Override
     public final void G(int i10, g0 g0Var, u uVar, c0 c0Var, int i11) {
         if (a(i10, g0Var)) {
-            a5.a aVar = this.f49899b;
+            a5.a aVar = this.f49913b;
             c0 c10 = c(c0Var, g0Var);
             aVar.getClass();
             aVar.k(new mg.i0(aVar, uVar, c10, i11, 11));
@@ -47,14 +47,14 @@ public final class j implements k0, n2.k {
     @Override
     public final void J(int i10, g0 g0Var) {
         if (a(i10, g0Var)) {
-            this.f49900c.b();
+            this.f49914c.b();
         }
     }
 
     @Override
     public final void L(int i10, g0 g0Var, u uVar, c0 c0Var) {
         if (a(i10, g0Var)) {
-            a5.a aVar = this.f49899b;
+            a5.a aVar = this.f49913b;
             c0 c10 = c(c0Var, g0Var);
             aVar.getClass();
             aVar.k(new i0(aVar, uVar, c10, 1));
@@ -63,7 +63,7 @@ public final class j implements k0, n2.k {
 
     public final boolean a(int i10, g0 g0Var) {
         g0 g0Var2;
-        Object obj = this.f49898a;
+        Object obj = this.f49912a;
         l lVar = this.d;
         if (g0Var != null) {
             g0Var2 = lVar.u(obj, g0Var);
@@ -74,13 +74,13 @@ public final class j implements k0, n2.k {
             g0Var2 = null;
         }
         int w9 = lVar.w(i10, obj);
-        a5.a aVar = this.f49899b;
+        a5.a aVar = this.f49913b;
         if (aVar.f281b != w9 || !Objects.equals((g0) aVar.f282c, g0Var2)) {
-            this.f49899b = new a5.a((CopyOnWriteArrayList) lVar.f49819c.d, w9, g0Var2, 22);
+            this.f49913b = new a5.a((CopyOnWriteArrayList) lVar.f49833c.d, w9, g0Var2, 22);
         }
-        n2.j jVar = this.f49900c;
-        if (jVar.f13461a != w9 || !Objects.equals(jVar.f13462b, g0Var2)) {
-            this.f49900c = new n2.j(lVar.d.f13463c, w9, g0Var2);
+        n2.j jVar = this.f49914c;
+        if (jVar.f13462a != w9 || !Objects.equals(jVar.f13463b, g0Var2)) {
+            this.f49914c = new n2.j(lVar.d.f13464c, w9, g0Var2);
             return true;
         }
         return true;
@@ -89,41 +89,41 @@ public final class j implements k0, n2.k {
     @Override
     public final void b(int i10, g0 g0Var, int i11) {
         if (a(i10, g0Var)) {
-            this.f49900c.c(i11);
+            this.f49914c.c(i11);
         }
     }
 
     public final c0 c(c0 c0Var, g0 g0Var) {
-        long j10 = c0Var.f49838f;
+        long j10 = c0Var.f49852f;
         l lVar = this.d;
-        Object obj = this.f49898a;
+        Object obj = this.f49912a;
         long v = lVar.v(obj, j10);
-        long j11 = c0Var.f49839g;
+        long j11 = c0Var.f49853g;
         long v10 = lVar.v(obj, j11);
         if (v == j10 && v10 == j11) {
             return c0Var;
         }
-        return new c0(c0Var.f49835a, c0Var.f49836b, c0Var.f49837c, c0Var.d, c0Var.e, v, v10);
+        return new c0(c0Var.f49849a, c0Var.f49850b, c0Var.f49851c, c0Var.d, c0Var.e, v, v10);
     }
 
     @Override
     public final void j(int i10, g0 g0Var, Exception exc) {
         if (a(i10, g0Var)) {
-            this.f49900c.d(exc);
+            this.f49914c.d(exc);
         }
     }
 
     @Override
     public final void l(int i10, g0 g0Var, oa.d dVar) {
         if (a(i10, g0Var)) {
-            this.f49900c.a(dVar);
+            this.f49914c.a(dVar);
         }
     }
 
     @Override
     public final void n(int i10, g0 g0Var, c0 c0Var) {
         if (a(i10, g0Var)) {
-            a5.a aVar = this.f49899b;
+            a5.a aVar = this.f49913b;
             c0 c10 = c(c0Var, g0Var);
             g0 g0Var2 = (g0) aVar.f282c;
             g0Var2.getClass();
@@ -134,7 +134,7 @@ public final class j implements k0, n2.k {
     @Override
     public final void r(int i10, g0 g0Var, c0 c0Var) {
         if (a(i10, g0Var)) {
-            a5.a aVar = this.f49899b;
+            a5.a aVar = this.f49913b;
             c0 c10 = c(c0Var, g0Var);
             aVar.getClass();
             aVar.k(new org.telegram.ui.web.k0(22, aVar, c10));
@@ -144,7 +144,7 @@ public final class j implements k0, n2.k {
     @Override
     public final void t(int i10, g0 g0Var, u uVar, c0 c0Var) {
         if (a(i10, g0Var)) {
-            a5.a aVar = this.f49899b;
+            a5.a aVar = this.f49913b;
             c0 c10 = c(c0Var, g0Var);
             aVar.getClass();
             aVar.k(new i0(aVar, uVar, c10, 0));

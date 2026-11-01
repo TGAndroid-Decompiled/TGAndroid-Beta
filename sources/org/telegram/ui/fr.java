@@ -4,10 +4,10 @@ import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
 public final class fr implements q0.a {
-    public final int f37335a;
+    public final int f37209a;
 
     public fr(int i10) {
-        this.f37335a = i10;
+        this.f37209a = i10;
     }
 
     @Override
@@ -16,13 +16,13 @@ public final class fr implements q0.a {
         boolean z11;
         long j10;
         boolean z12 = true;
-        switch (this.f37335a) {
+        switch (this.f37209a) {
             case 0:
                 TLRPC.User user = (TLRPC.User) obj;
                 return;
             case 1:
                 View view = (View) obj;
-                boolean z13 = ChatAttachAlertPhotoLayout.f23845q1;
+                boolean z13 = ChatAttachAlertPhotoLayout.f23846q1;
                 if (view instanceof org.telegram.ui.Cells.v5) {
                     org.telegram.ui.Cells.v5 v5Var = (org.telegram.ui.Cells.v5) view;
                     if (v5Var.getPhotoEntry() != null && v5Var.getPhotoEntry().M) {
@@ -42,7 +42,7 @@ public final class fr implements q0.a {
                     } else {
                         j10 = 0;
                     }
-                    if (ChatAttachAlertPhotoLayout.f23847s1.size() <= 1) {
+                    if (ChatAttachAlertPhotoLayout.f23848s1.size() <= 1) {
                         z12 = false;
                     }
                     v5Var.f(j10, z12);
@@ -51,15 +51,15 @@ public final class fr implements q0.a {
                 return;
             case 2:
                 View view2 = (View) obj;
-                if (view2 instanceof org.telegram.ui.Components.qm0) {
-                    ((org.telegram.ui.Components.qm0) view2).a(false, true);
+                if (view2 instanceof org.telegram.ui.Components.rm0) {
+                    ((org.telegram.ui.Components.rm0) view2).a(false, true);
                     return;
                 }
                 return;
             default:
                 View view3 = (View) obj;
-                if (view3 instanceof org.telegram.ui.Components.qm0) {
-                    ((org.telegram.ui.Components.qm0) view3).a(false, true);
+                if (view3 instanceof org.telegram.ui.Components.rm0) {
+                    ((org.telegram.ui.Components.rm0) view3).a(false, true);
                     return;
                 }
                 return;

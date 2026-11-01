@@ -1,39 +1,37 @@
 package org.telegram.ui.Components;
-
-import org.telegram.tgnet.TLRPC;
 public final class bv0 implements Runnable {
-    public final int f24882a;
-    public final TLRPC.Document f24883b;
-    public final int f24884c;
-    public final org.telegram.messenger.jj d;
-    public final org.telegram.ui.Cells.q1 e;
-    public final TLRPC.TL_messages_stickerSet f24885f;
+    public final int f24925a;
+    public final dv0 f24926b;
 
-    public bv0(TLRPC.Document document, int i10, org.telegram.messenger.jj jjVar, org.telegram.ui.Cells.q1 q1Var, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i11) {
-        this.f24882a = i11;
-        this.f24883b = document;
-        this.f24884c = i10;
-        this.d = jjVar;
-        this.e = q1Var;
-        this.f24885f = tL_messages_stickerSet;
+    public bv0(dv0 dv0Var, int i10) {
+        this.f24925a = i10;
+        this.f24926b = dv0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f24882a) {
+        switch (this.f24925a) {
             case 0:
-                TLRPC.Document document = this.f24883b;
-                String r10 = org.telegram.messenger.b8.r(null, document);
-                int i10 = this.f24884c;
-                org.telegram.messenger.b6.q(i10).a(r10, this.d, this.e);
-                org.telegram.messenger.b8.G(i10).X(document, this.f24885f, 1, 1);
+                dv0 dv0Var = this.f24926b;
+                dv0Var.V0 = false;
+                if (!dv0Var.Y0 && dv0Var.W0) {
+                    dv0Var.C(true);
+                    return;
+                }
+                return;
+            case 1:
+                this.f24926b.V0 = false;
+                return;
+            case 2:
+                dv0 dv0Var2 = this.f24926b;
+                dv0Var2.Y0 = false;
+                if (!dv0Var2.V0 && dv0Var2.W0) {
+                    dv0Var2.C(true);
+                    return;
+                }
                 return;
             default:
-                TLRPC.Document document2 = this.f24883b;
-                String r11 = org.telegram.messenger.b8.r(null, document2);
-                int i11 = this.f24884c;
-                org.telegram.messenger.b6.q(i11).a(r11, this.d, this.e);
-                org.telegram.messenger.b8.G(i11).X(document2, this.f24885f, 1, 1);
+                this.f24926b.Y0 = false;
                 return;
         }
     }

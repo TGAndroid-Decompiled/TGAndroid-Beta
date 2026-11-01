@@ -1,38 +1,27 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-public final class kg implements DialogInterface.OnCancelListener {
-    public final int f38792a;
-    public final Object f38793b;
+import org.telegram.tgnet.TLRPC;
+public final class kg implements Runnable {
+    public final int f38873a;
+    public final un f38874b;
+    public final TLRPC.User f38875c;
 
-    public kg(Object obj, int i10) {
-        this.f38792a = i10;
-        this.f38793b = obj;
+    public kg(un unVar, TLRPC.User user, int i10) {
+        this.f38873a = i10;
+        this.f38874b = unVar;
+        this.f38875c = user;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f38792a) {
+    public final void run() {
+        switch (this.f38873a) {
             case 0:
-                un unVar = (un) this.f38793b;
-                unVar.p9 = true;
-                unVar.f42350n9 = 0;
-                unVar.Lb = 0;
-                unVar.Z4 = 0;
-                unVar.C9();
-                unVar.gc(false);
-                return;
-            case 1:
-                oo ooVar = (oo) this.f38793b;
-                ooVar.M0 = false;
-                ooVar.f40316b = null;
-                ooVar.N0 = false;
-                return;
-            case 2:
-                ((qp) this.f38793b).f41024n = null;
+                un unVar = this.f38874b;
+                unVar.getClass();
+                unVar.presentFragment(un.ma(this.f38875c.f19943id));
                 return;
             default:
-                ((ua0) this.f38793b).b();
+                this.f38874b.Ha(this.f38875c);
                 return;
         }
     }

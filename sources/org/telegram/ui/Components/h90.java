@@ -9,34 +9,34 @@ import android.os.SystemClock;
 import android.view.View;
 import android.widget.TextView;
 public final class h90 extends TextView {
-    public final Matrix f26657a;
-    public LinearGradient f26658b;
-    public int f26659c;
+    public final Matrix f26715a;
+    public LinearGradient f26716b;
+    public int f26717c;
     public boolean d;
     public boolean e;
-    public float f26660f;
+    public float f26718f;
     public long h;
-    public final ho f26661n;
-    public boolean f26662r;
-    public int f26663s;
+    public final ho f26719n;
+    public boolean f26720r;
+    public int f26721s;
 
     public h90(Context context) {
         super(context);
-        this.f26657a = new Matrix();
-        this.f26661n = new ho(this, 27);
+        this.f26715a = new Matrix();
+        this.f26719n = new ho(this, 27);
     }
 
     public final void a() {
-        float min = Math.min(org.telegram.messenger.i0.L(10.0f) / this.f26659c, 0.49f);
+        float min = Math.min(org.telegram.messenger.i0.L(10.0f) / this.f26717c, 0.49f);
         int currentTextColor = getCurrentTextColor();
         int i10 = 1048575 & currentTextColor;
-        this.f26658b = new LinearGradient(0.0f, 0.0f, this.f26659c, 0.0f, new int[]{i10, currentTextColor, currentTextColor, i10}, new float[]{0.0f, min, 1.0f - min, 1.0f}, Shader.TileMode.CLAMP);
+        this.f26716b = new LinearGradient(0.0f, 0.0f, this.f26717c, 0.0f, new int[]{i10, currentTextColor, currentTextColor, i10}, new float[]{0.0f, min, 1.0f - min, 1.0f}, Shader.TileMode.CLAMP);
         if (this.d) {
-            getPaint().setShader(this.f26658b);
+            getPaint().setShader(this.f26716b);
         } else {
             getPaint().setShader(null);
         }
-        this.f26658b.setLocalMatrix(this.f26657a);
+        this.f26716b.setLocalMatrix(this.f26715a);
         invalidate();
     }
 
@@ -48,38 +48,38 @@ public final class h90 extends TextView {
         boolean z11;
         int measuredWidth = getMeasuredWidth();
         int L = org.telegram.messenger.i0.L(40.0f);
-        float f10 = this.f26660f;
+        float f10 = this.f26718f;
         float f11 = measuredWidth;
         if (f10 < f11) {
             f7 = w7.u.a(f10 / org.telegram.messenger.i0.L(10.0f), 0.0f, 1.0f);
         } else {
             f7 = 0.0f;
         }
-        Matrix matrix = this.f26657a;
+        Matrix matrix = this.f26715a;
         matrix.reset();
-        float f12 = this.f26659c;
+        float f12 = this.f26717c;
         matrix.postScale(c3.i0.z(1.0f, f7, org.telegram.messenger.i0.L(10.0f) / f12, 1.0f), 1.0f, f12, 0.0f);
-        matrix.postScale(1.0f - (this.f26663s / this.f26659c), 1.0f, 0.0f, 0.0f);
-        matrix.postTranslate(this.f26660f, 0.0f);
-        this.f26658b.setLocalMatrix(matrix);
+        matrix.postScale(1.0f - (this.f26721s / this.f26717c), 1.0f, 0.0f, 0.0f);
+        matrix.postTranslate(this.f26718f, 0.0f);
+        this.f26716b.setLocalMatrix(matrix);
         canvas.save();
-        canvas.translate(-this.f26660f, 0.0f);
+        canvas.translate(-this.f26718f, 0.0f);
         super.onDraw(canvas);
         canvas.restore();
         if (measuredWidth > 0) {
-            float f13 = this.f26660f;
+            float f13 = this.f26718f;
             if (f13 > 0.0f && f13 + getWidth() > f11 && this.d && this.e) {
-                float f14 = -this.f26660f;
+                float f14 = -this.f26718f;
                 float f15 = L;
                 matrix.postTranslate(f14 - ((f14 + f11) + f15), 0.0f);
-                this.f26658b.setLocalMatrix(matrix);
+                this.f26716b.setLocalMatrix(matrix);
                 canvas.save();
-                canvas.translate((-this.f26660f) + f11 + f15, 0.0f);
+                canvas.translate((-this.f26718f) + f11 + f15, 0.0f);
                 super.onDraw(canvas);
                 canvas.restore();
             }
         }
-        if (this.f26660f < 1.0E-4d) {
+        if (this.f26718f < 1.0E-4d) {
             z10 = true;
         } else {
             z10 = false;
@@ -93,20 +93,20 @@ public final class h90 extends TextView {
         }
         this.h = uptimeMillis;
         boolean z12 = this.d;
-        ho hoVar = this.f26661n;
+        ho hoVar = this.f26719n;
         if ((z12 && this.e) || !z10) {
-            float c10 = a1.g.c((float) j10, 1000.0f, org.telegram.messenger.i0.L(60.0f), this.f26660f);
-            this.f26660f = c10;
+            float c10 = a1.g.c((float) j10, 1000.0f, org.telegram.messenger.i0.L(60.0f), this.f26718f);
+            this.f26718f = c10;
             if (c10 > measuredWidth + L) {
                 org.telegram.messenger.i0.r(hoVar);
-                this.f26662r = false;
+                this.f26720r = false;
                 this.e = false;
-                this.f26660f = 0.0f;
+                this.f26718f = 0.0f;
             }
             invalidate();
         }
-        if (this.d && !this.e && !(z11 = this.f26662r) && !z11) {
-            this.f26662r = true;
+        if (this.d && !this.e && !(z11 = this.f26720r) && !z11) {
+            this.f26720r = true;
             org.telegram.messenger.i0.h3(hoVar, 1500L);
         }
     }
@@ -115,8 +115,8 @@ public final class h90 extends TextView {
     public final void onMeasure(int i10, int i11) {
         boolean z10 = false;
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(0, 0), i11);
-        this.f26659c = View.MeasureSpec.getSize(i10);
-        if (getMeasuredWidth() > this.f26659c - this.f26663s) {
+        this.f26717c = View.MeasureSpec.getSize(i10);
+        if (getMeasuredWidth() > this.f26717c - this.f26721s) {
             z10 = true;
         }
         this.d = z10;
@@ -125,15 +125,15 @@ public final class h90 extends TextView {
 
     public void setCustomPaddingRight(int i10) {
         boolean z10;
-        this.f26663s = i10;
-        if (getMeasuredWidth() > this.f26659c - this.f26663s) {
+        this.f26721s = i10;
+        if (getMeasuredWidth() > this.f26717c - this.f26721s) {
             z10 = true;
         } else {
             z10 = false;
         }
         this.d = z10;
         if (z10) {
-            getPaint().setShader(this.f26658b);
+            getPaint().setShader(this.f26716b);
         } else {
             getPaint().setShader(null);
         }
@@ -143,10 +143,10 @@ public final class h90 extends TextView {
     @Override
     public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
         super.setText(charSequence, bufferType);
-        org.telegram.messenger.i0.r(this.f26661n);
-        this.f26662r = false;
+        org.telegram.messenger.i0.r(this.f26719n);
+        this.f26720r = false;
         this.e = false;
-        this.f26660f = 0.0f;
+        this.f26718f = 0.0f;
     }
 
     @Override

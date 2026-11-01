@@ -3,8 +3,8 @@ package dh;
 import android.view.View;
 import java.util.List;
 import org.telegram.messenger.voip.GroupCallMessage;
-import org.telegram.ui.b50;
-import org.telegram.ui.e30;
+import org.telegram.ui.a50;
+import org.telegram.ui.d30;
 import s4.c1;
 import sg.h0;
 import sg.k0;
@@ -34,16 +34,16 @@ public final class i extends s4.j {
             groupCallMessage = (GroupCallMessage) hVar.f5945c.get(b10);
         }
         if (groupCallMessage != null && (o0Var = groupCallMessage.visibleReaction) != null) {
-            View view = c1Var.f47898a;
+            View view = c1Var.f47909a;
             if ((view instanceof d) && (jVar = kVar.X0) != null) {
-                b50 b50Var = ((e30) jVar).f36902a;
-                k0 k0Var = new k0(b50Var.getContext(), null, b50Var.B1, (d) view, null, 0.0f, 0.0f, o0Var, b50Var.f21583a, 1, false);
+                a50 a50Var = ((d30) jVar).f36474a;
+                k0 k0Var = new k0(a50Var.getContext(), null, a50Var.B1, (d) view, null, 0.0f, 0.0f, o0Var, a50Var.f21584a, 1, false);
                 k0.B = k0Var;
-                h0 h0Var = k0Var.f48370i;
+                h0 h0Var = k0Var.f48381i;
                 h0Var.setTag(2131296591, 1);
-                b50Var.f21589c.addView(h0Var);
-                k0Var.f48380s = true;
-                k0Var.f48385y = System.currentTimeMillis();
+                a50Var.f21590c.addView(h0Var);
+                k0Var.f48391s = true;
+                k0Var.f48396y = System.currentTimeMillis();
             }
         }
     }

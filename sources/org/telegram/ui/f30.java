@@ -1,42 +1,71 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import org.telegram.messenger.voip.GroupCallMessage;
-public final class f30 implements dh.b {
-    public final b50 f37165a;
+import android.graphics.Canvas;
+import android.view.View;
+public final class f30 extends org.telegram.ui.Components.wt {
+    public final a50 V;
 
-    public f30(b50 b50Var) {
-        this.f37165a = b50Var;
+    public f30(a50 a50Var, LaunchActivity launchActivity, f40 f40Var, org.telegram.ui.ActionBar.k2 k2Var, org.telegram.ui.ActionBar.p6 p6Var) {
+        super(launchActivity, f40Var, k2Var, 5, true, p6Var);
+        this.V = a50Var;
     }
 
-    public final void a(GroupCallMessage groupCallMessage) {
-        org.telegram.ui.ActionBar.k2 Q = LaunchActivity.Q();
-        if (Q == null) {
-            return;
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        if (view == getEditText()) {
+            canvas.save();
+            a50 a50Var = this.V;
+            a50Var.f35683y1.getEditText().setTranslationY(view.getMeasuredHeight() - a50Var.f35661s5.f7032f);
+            boolean drawChild = super.drawChild(canvas, view, j10);
+            canvas.restore();
+            return drawChild;
         }
-        boolean z10 = Q instanceof ProfileActivity;
-        b50 b50Var = this.f37165a;
-        if (z10 && ((ProfileActivity) Q).a() == groupCallMessage.fromId) {
-            b50Var.dismiss();
-            return;
+        return super.drawChild(canvas, view, j10);
+    }
+
+    @Override
+    public final void f() {
+        super.f();
+        org.telegram.ui.Components.vy emojiView = getEmojiView();
+        if (emojiView != null) {
+            emojiView.f32005w0 = false;
+            emojiView.f32011x2 = false;
+            emojiView.setShouldDrawBackground(false);
+            emojiView.setBottomInset(this.V.f21587b.getPaddingBottom());
         }
-        int R0 = b50Var.R0();
-        Bundle bundle = new Bundle();
-        long j10 = groupCallMessage.fromId;
-        if (j10 > 0) {
-            bundle.putLong("user_id", j10);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        fe.f fVar = this.V.f35661s5;
+        if (fVar.f7032f == 0.0f) {
+            fVar.c(getMeasuredHeight());
         } else {
-            bundle.putLong("chat_id", -j10);
+            fVar.a(getMeasuredHeight());
         }
-        boolean z11 = true;
-        if (groupCallMessage.fromId == org.telegram.messenger.d20.i(b50Var.f36036k1.f14863a).e()) {
-            bundle.putBoolean("my_profile", true);
+    }
+
+    @Override
+    public final void p() {
+        int i10;
+        hh.i iVar = this.V.f35664t3;
+        if (this.e) {
+            i10 = Math.max(0, getEmojiPadding());
+        } else if (this.N) {
+            i10 = Math.max(0, getKeyboardHeight());
+        } else {
+            i10 = 0;
         }
-        ProfileActivity profileActivity = new ProfileActivity(bundle, null);
-        if (R0 > 0 && R0 != Integer.MAX_VALUE) {
-            z11 = false;
+        if (i10 > 0) {
+            iVar.g(i10);
+        } else {
+            iVar.i(false);
         }
-        Q.presentFragment(profileActivity, false, z11);
-        b50Var.dismiss();
+    }
+
+    @Override
+    public final void y() {
+        this.V.f21587b.requestApplyInsets();
     }
 }

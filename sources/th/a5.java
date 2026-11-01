@@ -2,9 +2,9 @@ package th;
 
 import java.util.ArrayList;
 import org.telegram.messenger.b8;
-import org.telegram.messenger.d20;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.e20;
 import org.telegram.messenger.w8;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -13,12 +13,12 @@ import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.tgnet.tl.TL_update;
 public final class a5 implements RequestDelegate {
-    public final int f48782a;
-    public final d5 f48783b;
+    public final int f48796a;
+    public final d5 f48797b;
 
     public a5(d5 d5Var, int i10) {
-        this.f48782a = i10;
-        this.f48783b = d5Var;
+        this.f48796a = i10;
+        this.f48797b = d5Var;
     }
 
     @Override
@@ -33,19 +33,19 @@ public final class a5 implements RequestDelegate {
         ArrayList arrayList;
         int i12;
         int i13;
-        switch (this.f48782a) {
+        switch (this.f48796a) {
             case 0:
-                d5 d5Var = this.f48783b;
+                d5 d5Var = this.f48797b;
                 long j10 = d5Var.J;
-                String str = d5Var.f48879f;
-                boolean z12 = d5Var.f48877b;
-                vh.n5 n5Var = d5Var.f48878c;
-                int i14 = d5Var.M.f48904a;
+                String str = d5Var.f48893f;
+                boolean z12 = d5Var.f48891b;
+                vh.n5 n5Var = d5Var.f48892c;
+                int i14 = d5Var.M.f48918a;
                 if (tLObject instanceof TLRPC.Updates) {
                     d5Var.I = false;
                     TLRPC.Updates updates3 = (TLRPC.Updates) tLObject;
-                    if (n5Var.f51518b0) {
-                        vp.r1(i14).L3(updates3, false);
+                    if (n5Var.f51533b0) {
+                        wp.r1(i14).L3(updates3, false);
                         org.telegram.messenger.i0.g3(new b5(d5Var, 1));
                         return;
                     }
@@ -58,7 +58,7 @@ public final class a5 implements RequestDelegate {
                             storyItem2.attachPath = d5Var.e;
                             storyItem2.firstFramePath = str;
                             storyItem2.justUploaded = !z12;
-                            int i17 = storyItem2.f20031id;
+                            int i17 = storyItem2.f20032id;
                             if (storyItem == null) {
                                 storyItem = storyItem2;
                             } else {
@@ -149,10 +149,10 @@ public final class a5 implements RequestDelegate {
                                             z11 = false;
                                         }
                                         storyItem.pinned = z11;
-                                        storyItem.dialogId = d20.i(i11).f15165n;
+                                        storyItem.dialogId = e20.i(i11).f15524n;
                                         storyItem.attachPath = d5Var.e;
                                         storyItem.firstFramePath = str;
-                                        storyItem.f20031id = tL_updateStoryID.f20051id;
+                                        storyItem.f20032id = tL_updateStoryID.f20052id;
                                         storyItem.justUploaded = !z10;
                                         i15 = i10 + 1;
                                         z12 = z10;
@@ -174,17 +174,17 @@ public final class a5 implements RequestDelegate {
                     TLRPC.Updates updates4 = updates3;
                     boolean z13 = z12;
                     int i22 = i14;
-                    if (d5Var.f48883w) {
+                    if (d5Var.f48897w) {
                         TL_stories.TL_stories_deleteStories tL_stories_deleteStories = new TL_stories.TL_stories_deleteStories();
-                        tL_stories_deleteStories.peer = vp.r1(i22).i1(j10);
-                        tL_stories_deleteStories.f20034id.add(Integer.valueOf(i16));
+                        tL_stories_deleteStories.peer = wp.r1(i22).i1(j10);
+                        tL_stories_deleteStories.f20035id.add(Integer.valueOf(i16));
                         ConnectionsManager.getInstance(i22).sendRequest(tL_stories_deleteStories, new a5(d5Var, 1));
                     } else {
                         if ((i16 == 0 || z13) && storyItem != null) {
                             TL_stories.TL_updateStory tL_updateStory = new TL_stories.TL_updateStory();
-                            tL_updateStory.peer = vp.r1(i22).y1(j10);
+                            tL_updateStory.peer = wp.r1(i22).y1(j10);
                             tL_updateStory.story = storyItem;
-                            org.telegram.messenger.i0.g3(new o0(10, d5Var, tL_updateStory));
+                            org.telegram.messenger.i0.g3(new o0(11, d5Var, tL_updateStory));
                         }
                         TLRPC.MessageMedia messageMedia = storyItem.media;
                         if (messageMedia != null && storyItem.attachPath != null) {
@@ -198,21 +198,21 @@ public final class a5 implements RequestDelegate {
                             }
                         }
                         org.telegram.messenger.i0.g3(new a3.i0(d5Var, j10, storyItem, 29));
-                        vp.r1(i22).K3(updates4.updates, updates4.users, updates4.chats, false, updates4.date);
+                        wp.r1(i22).K3(updates4.updates, updates4.users, updates4.chats, false, updates4.date);
                     }
                 } else if (tLObject instanceof TL_bots.botPreviewMedia) {
                     d5Var.L = (TL_bots.botPreviewMedia) tLObject;
-                } else if (tL_error != null && w8.r(tL_error.text) && n5Var.f51521c0 != null && (d0Var = n5Var.f51523d0) != null) {
+                } else if (tL_error != null && w8.r(tL_error.text) && n5Var.f51536c0 != null && (d0Var = n5Var.f51538d0) != null) {
                     d0Var.a(new c5(d5Var, 0));
-                    n5Var.f51523d0 = null;
+                    n5Var.f51538d0 = null;
                     return;
                 } else if (tL_error != null && !z12) {
-                    org.telegram.messenger.i0.g3(new o0(11, d5Var, tL_error));
+                    org.telegram.messenger.i0.g3(new o0(12, d5Var, tL_error));
                 }
                 org.telegram.messenger.i0.g3(new b5(d5Var, 1));
                 return;
             default:
-                org.telegram.messenger.i0.g3(new m4(this.f48783b.M, 2));
+                org.telegram.messenger.i0.g3(new m4(this.f48797b.M, 2));
                 return;
         }
     }

@@ -6,7 +6,7 @@ import s3.c;
 import sc.e;
 import w7.l;
 public final class a {
-    public static final a f47854a = new Object();
+    public static final a f47865a = new Object();
 
     public final l a(x xVar) {
         String str = xVar.f2423s;

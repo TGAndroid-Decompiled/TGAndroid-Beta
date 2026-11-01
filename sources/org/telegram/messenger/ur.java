@@ -1,66 +1,56 @@
 package org.telegram.messenger;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import java.util.Locale;
+import org.telegram.SQLite.SQLiteDatabase;
+import org.telegram.SQLite.SQLiteException;
 public final class ur implements Runnable {
-    public final int f18388a = 1;
-    public final int f18389b;
-    public final int f18390c;
-    public final int d;
-    public final Object e;
-    public final Object f18391f;
+    public final int f18468a;
+    public final is f18469b;
+    public final ArrayList f18470c;
+    public final long d;
 
-    public ur(int i10, int i11, int i12, Bitmap[] bitmapArr, q20 q20Var) {
-        this.f18389b = i10;
-        this.f18390c = i11;
-        this.d = i12;
-        this.e = bitmapArr;
-        this.f18391f = q20Var;
+    public ur(is isVar, long j10, ArrayList arrayList, int i10) {
+        this.f18468a = i10;
+        this.f18469b = isVar;
+        this.d = j10;
+        this.f18470c = arrayList;
+    }
+
+    private final void a() {
+        ArrayList arrayList = this.f18470c;
+        long j10 = this.d;
+        is isVar = this.f18469b;
+        isVar.getClass();
+        try {
+            String join = TextUtils.join(", ", arrayList);
+            SQLiteDatabase sQLiteDatabase = isVar.f16333b;
+            Locale locale = Locale.US;
+            sQLiteDatabase.executeFast("DELETE FROM topics WHERE did = " + j10 + " AND topic_id IN (" + join + ")").stepThis().dispose();
+            try {
+                SQLiteDatabase sQLiteDatabase2 = isVar.f16333b;
+                sQLiteDatabase2.executeFast("DELETE FROM messages_v2 WHERE uid = " + j10 + " AND mid IN (SELECT mid FROM messages_topics WHERE uid = " + j10 + " AND topic_id IN (" + join + "))").stepThis().dispose();
+            } catch (SQLiteException e) {
+                e.printStackTrace();
+            }
+            SQLiteDatabase sQLiteDatabase3 = isVar.f16333b;
+            Locale locale2 = Locale.US;
+            sQLiteDatabase3.executeFast("DELETE FROM messages_topics WHERE uid = " + j10 + " AND topic_id IN (" + join + ")").stepThis().dispose();
+        } catch (SQLiteException e7) {
+            e7.printStackTrace();
+        }
     }
 
     @Override
     public final void run() {
-        switch (this.f18388a) {
-            case 0:
-                ((hs) this.e).B0(this.f18389b, this.f18390c, this.d, (long[]) this.f18391f);
-                return;
-            default:
-                Bitmap[] bitmapArr = (Bitmap[]) this.e;
-                q20 q20Var = (q20) this.f18391f;
-                Bitmap createBitmap = Bitmap.createBitmap(this.f18389b, this.f18390c, Bitmap.Config.ARGB_8888);
-                Canvas canvas = new Canvas(createBitmap);
-                Path path = new Path();
-                RectF rectF = new RectF();
-                rectF.set(0.0f, 0.0f, createBitmap.getWidth(), createBitmap.getHeight());
-                float f7 = this.d;
-                path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
-                canvas.clipPath(path);
-                for (int i10 = 0; i10 < bitmapArr.length; i10++) {
-                    if (bitmapArr[i10] != null) {
-                        canvas.save();
-                        canvas.translate(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f);
-                        float max = Math.max(createBitmap.getWidth() / bitmapArr[i10].getWidth(), createBitmap.getHeight() / bitmapArr[i10].getHeight());
-                        canvas.scale(max, max);
-                        canvas.translate((-bitmapArr[i10].getWidth()) / 2.0f, (-bitmapArr[i10].getHeight()) / 2.0f);
-                        canvas.drawBitmap(bitmapArr[i10], 0.0f, 0.0f, (Paint) null);
-                        canvas.restore();
-                        i0.z2(bitmapArr[i10]);
-                    }
-                }
-                Utilities.stackBlurBitmap(createBitmap, 1);
-                i0.g3(new vh.d1(4, q20Var, createBitmap));
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ur.run():void");
     }
 
-    public ur(hs hsVar, int i10, int i11, int i12, long[] jArr) {
-        this.e = hsVar;
-        this.f18389b = i10;
-        this.f18390c = i11;
-        this.d = i12;
-        this.f18391f = jArr;
+    public ur(is isVar, ArrayList arrayList, long j10, int i10) {
+        this.f18468a = i10;
+        this.f18469b = isVar;
+        this.f18470c = arrayList;
+        this.d = j10;
     }
 }

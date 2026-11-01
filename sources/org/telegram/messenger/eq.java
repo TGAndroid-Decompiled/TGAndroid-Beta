@@ -1,68 +1,45 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.SQLite.SQLitePreparedStatement;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 public final class eq implements Runnable {
-    public final int f15441a;
-    public final hs f15442b;
-    public final ArrayList f15443c;
-    public final ArrayList d;
+    public final int f15627a = 0;
+    public final boolean f15628b;
+    public final long f15629c;
+    public final int d;
+    public final long e;
+    public final Object f15630f;
+    public final Object h;
+    public final Object f15631n;
+    public final Object f15632r;
+    public final Object f15633s;
 
-    public eq(hs hsVar, ArrayList arrayList, ArrayList arrayList2, int i10) {
-        this.f15441a = i10;
-        this.f15442b = hsVar;
-        this.f15443c = arrayList;
-        this.d = arrayList2;
+    public eq(is isVar, long j10, boolean z10, String str, long j11, int i10, String str2, String str3, String str4) {
+        this.f15630f = isVar;
+        this.f15629c = j10;
+        this.f15628b = z10;
+        this.h = str;
+        this.e = j11;
+        this.d = i10;
+        this.f15631n = str2;
+        this.f15632r = str3;
+        this.f15633s = str4;
     }
 
     @Override
     public final void run() {
-        switch (this.f15441a) {
-            case 0:
-                ArrayList arrayList = this.f15443c;
-                ArrayList arrayList2 = this.d;
-                hs hsVar = this.f15442b;
-                hsVar.getClass();
-                SQLitePreparedStatement sQLitePreparedStatement = null;
-                try {
-                    try {
-                        sQLitePreparedStatement = hsVar.f15940b.executeFast("UPDATE dialogs SET pinned = ? WHERE did = ?");
-                        int size = arrayList.size();
-                        for (int i10 = 0; i10 < size; i10++) {
-                            sQLitePreparedStatement.requery();
-                            sQLitePreparedStatement.bindInteger(1, ((Integer) arrayList2.get(i10)).intValue());
-                            sQLitePreparedStatement.bindLong(2, ((Long) arrayList.get(i10)).longValue());
-                            sQLitePreparedStatement.step();
-                        }
-                        sQLitePreparedStatement.dispose();
-                        return;
-                    } catch (Exception e) {
-                        hsVar.o(e, true);
-                        if (sQLitePreparedStatement != null) {
-                            sQLitePreparedStatement.dispose();
-                            return;
-                        }
-                        return;
-                    }
-                } catch (Throwable th2) {
-                    if (sQLitePreparedStatement != null) {
-                        sQLitePreparedStatement.dispose();
-                    }
-                    throw th2;
-                }
-            default:
-                hs hsVar2 = this.f15442b;
-                hsVar2.getClass();
-                ArrayList arrayList3 = this.f15443c;
-                if (!arrayList3.isEmpty()) {
-                    hsVar2.getMessagesController().V3(arrayList3, true);
-                }
-                ArrayList arrayList4 = this.d;
-                if (!arrayList4.isEmpty()) {
-                    hsVar2.getMessagesController().P3(arrayList4, true);
-                    return;
-                }
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.eq.run():void");
+    }
+
+    public eq(rh.e6 e6Var, TLObject tLObject, Runnable runnable, TLRPC.TL_error tL_error, boolean z10, long j10, int i10, kj kjVar, long j11) {
+        this.f15630f = e6Var;
+        this.h = tLObject;
+        this.f15631n = runnable;
+        this.f15632r = tL_error;
+        this.f15628b = z10;
+        this.f15629c = j10;
+        this.d = i10;
+        this.f15633s = kjVar;
+        this.e = j11;
     }
 }

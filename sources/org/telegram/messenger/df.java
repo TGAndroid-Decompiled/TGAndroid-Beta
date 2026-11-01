@@ -1,73 +1,161 @@
 package org.telegram.messenger;
 
-import android.util.Pair;
+import android.app.DownloadManager;
+import android.content.ContentValues;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.text.TextUtils;
+import android.webkit.MimeTypeMap;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
-import org.telegram.tgnet.ConnectionsManager;
+import java.util.HashMap;
+import java.util.concurrent.CountDownLatch;
 import org.telegram.tgnet.TLRPC;
-public final class df {
-    public final int f15226a;
-    public TLRPC.TL_inputDocument f15227b;
-    public long f15228c = -9223372036854775807L;
-    public final ArrayList d = new ArrayList();
-    public final a e = new a(this, 18);
+public final class df implements vs {
+    public c f15373a;
+    public org.telegram.ui.ActionBar.x1 f15374b;
+    public ArrayList f15375c;
+    public HashMap d;
+    public float e;
+    public boolean f15376f;
+    public boolean h;
+    public int f15377n;
+    public CountDownLatch f15378r;
+    public cs f15379s;
+    public boolean f15380w;
 
-    public df(int i10) {
-        this.f15226a = i10;
+    public final void a(java.io.File r28, java.io.File r29, java.lang.String r30) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.df.a(java.io.File, java.io.File, java.lang.String):void");
     }
 
-    public static void a(df dfVar, long j10, long j11) {
-        ArrayList arrayList = dfVar.d;
-        int i10 = 0;
-        while (i10 < arrayList.size() && ((Long) ((Pair) arrayList.get(i10)).first).longValue() <= j10) {
-            i10++;
+    public final boolean b(kj kjVar) {
+        TLRPC.MessageMedia o12;
+        TLRPC.Photo photo;
+        TLRPC.PhotoSize w9;
+        ?? r22;
+        ?? r62;
+        boolean z10 = false;
+        if (!kjVar.D3() || (o12 = kj.o1(kjVar.f16690k)) == null || (photo = o12.photo) == null || o12.document == null || (w9 = b8.w(photo.sizes, i0.Z0(true), false, null, true)) == null) {
+            return false;
         }
-        arrayList.add(i10, new Pair(Long.valueOf(j10), Long.valueOf(j11)));
-        int max = Math.max(0, i10 - 1);
-        while (max < arrayList.size() - 1) {
-            Pair pair = (Pair) arrayList.get(max);
-            int i11 = max + 1;
-            Pair pair2 = (Pair) arrayList.get(i11);
-            if (((Long) pair.second).longValue() >= ((Long) pair2.first).longValue()) {
-                arrayList.set(max, new Pair((Long) pair.first, Long.valueOf(Math.max(((Long) pair.second).longValue(), ((Long) pair2.second).longValue()))));
-                arrayList.remove(i11);
-            } else {
-                max = i11;
+        b8.G(this.f15373a.f15043a);
+        File K = b8.K(w9, null, false, true);
+        File K2 = b8.K(o12.document, null, false, true);
+        if (K != null && K.exists()) {
+            r22 = 0;
+        } else {
+            r22 = 1;
+        }
+        if (K2 != null && K2.exists()) {
+            r62 = 0;
+        } else {
+            r62 = 1;
+        }
+        int i10 = r22 + r62;
+        if (i10 > 0) {
+            this.f15378r = new CountDownLatch(i10);
+            i0.g3(new lh(this, (boolean) r22, w9, kjVar, o12.photo, (boolean) r62, o12.document));
+            this.f15378r.await();
+        }
+        if (!this.f15376f) {
+            if (K == null || !K.exists()) {
+                K = b8.K(w9, null, true, true);
+            }
+            if (K2 == null || !K2.exists()) {
+                K2 = b8.K(o12.document, null, true, true);
+            }
+            if (K != null && K.exists() && K2 != null && K2.exists()) {
+                String D = b8.D(K);
+                if (TextUtils.isEmpty(D)) {
+                    D = "jpg";
+                }
+                String mimeTypeFromExtension = MimeTypeMap.getSingleton().getMimeTypeFromExtension(D.toLowerCase());
+                if (TextUtils.isEmpty(mimeTypeFromExtension)) {
+                    mimeTypeFromExtension = "image/jpeg";
+                }
+                String p02 = i0.p0(0, D);
+                if (Build.VERSION.SDK_INT >= 29) {
+                    ContentValues contentValues = new ContentValues();
+                    Uri contentUri = MediaStore.Downloads.getContentUri("external_primary");
+                    contentValues.put("relative_path", new File(Environment.DIRECTORY_DOWNLOADS, "Telegram") + File.separator);
+                    contentValues.put("_display_name", p02);
+                    contentValues.put("mime_type", mimeTypeFromExtension);
+                    Uri insert = w0.f18945b.getContentResolver().insert(contentUri, contentValues);
+                    if (insert != null) {
+                        OutputStream openOutputStream = w0.f18945b.getContentResolver().openOutputStream(insert);
+                        if (openOutputStream != null) {
+                            try {
+                                MediaController.H0(K, K2, openOutputStream, null);
+                                z10 = !this.f15376f;
+                            } catch (Throwable th2) {
+                                try {
+                                    openOutputStream.close();
+                                } catch (Throwable th3) {
+                                    th2.addSuppressed(th3);
+                                }
+                                throw th2;
+                            }
+                        }
+                        if (openOutputStream != null) {
+                            openOutputStream.close();
+                        }
+                        if (z10) {
+                            this.f15377n++;
+                        } else {
+                            try {
+                                w0.f18945b.getContentResolver().delete(insert, null, null);
+                            } catch (Exception unused) {
+                            }
+                        }
+                    }
+                } else {
+                    File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Telegram");
+                    file.mkdirs();
+                    File file2 = new File(file, p02);
+                    if (!file2.exists()) {
+                        file2.createNewFile();
+                    }
+                    FileOutputStream fileOutputStream = new FileOutputStream(file2);
+                    try {
+                        MediaController.H0(K, K2, fileOutputStream, null);
+                        fileOutputStream.close();
+                        if (this.f15376f) {
+                            file2.delete();
+                        } else {
+                            ((DownloadManager) w0.f18945b.getSystemService("download")).addCompletedDownload(file2.getName(), file2.getName(), false, mimeTypeFromExtension, file2.getAbsolutePath(), file2.length(), true);
+                            this.f15377n++;
+                        }
+                    } catch (Throwable th4) {
+                        try {
+                            fileOutputStream.close();
+                        } catch (Throwable th5) {
+                            th4.addSuppressed(th5);
+                        }
+                        throw th4;
+                    }
+                }
+                float size = (100.0f / this.f15375c.size()) + this.e;
+                this.e = size;
+                i0.g3(new bf(this, (int) size, 3));
+                return true;
             }
         }
+        return true;
     }
 
-    public final void b() {
-        if (this.f15227b == null) {
-            return;
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        HashMap hashMap = this.d;
+        if (i10 != at.Y1 && i10 != at.Z1) {
+            if (i10 == at.X1 && hashMap.containsKey((String) objArr[0])) {
+                i0.g3(new bf(this, (int) a1.g.c(((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue()), this.f15375c.size(), 100.0f, this.e), 0));
+            }
+        } else if (hashMap.remove((String) objArr[0]) != null) {
+            this.f15378r.countDown();
         }
-        d();
-        this.f15227b = null;
-    }
-
-    public final long c() {
-        ArrayList arrayList = this.d;
-        int size = arrayList.size();
-        long j10 = 0;
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            Pair pair = (Pair) obj;
-            j10 += ((Long) pair.second).longValue() - ((Long) pair.first).longValue();
-        }
-        return j10;
-    }
-
-    public final void d() {
-        i0.r(this.e);
-        if (this.f15227b == null || c() < 3000) {
-            return;
-        }
-        TLRPC.TL_messages_reportMusicListen tL_messages_reportMusicListen = new TLRPC.TL_messages_reportMusicListen();
-        tL_messages_reportMusicListen.f19900id = this.f15227b;
-        tL_messages_reportMusicListen.listened_duration = (int) Math.round(c() / 1000.0d);
-        ConnectionsManager.getInstance(this.f15226a).sendRequest(tL_messages_reportMusicListen, null);
-        this.f15228c = -9223372036854775807L;
-        this.d.clear();
     }
 }

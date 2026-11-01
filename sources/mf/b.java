@@ -9,10 +9,10 @@ import android.provider.Settings;
 import android.view.WindowManager;
 import org.telegram.messenger.i0;
 public abstract class b {
-    public static final int[] f13059a = new int[2];
+    public static final int[] f13060a = new int[2];
 
     public static int a(Context context) {
-        Typeface typeface = i0.f15999a;
+        Typeface typeface = i0.f16145a;
         if (Settings.canDrawOverlays(context)) {
             return 2;
         }
@@ -31,7 +31,7 @@ public abstract class b {
         layoutParams.gravity = 51;
         layoutParams.format = -3;
         if (!z10) {
-            Typeface typeface = i0.f15999a;
+            Typeface typeface = i0.f16145a;
             if (Settings.canDrawOverlays(context)) {
                 if (Build.VERSION.SDK_INT >= 26) {
                     i10 = 2038;

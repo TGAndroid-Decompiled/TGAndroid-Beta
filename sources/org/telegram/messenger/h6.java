@@ -6,15 +6,15 @@ import android.text.TextPaint;
 import android.text.style.ImageSpan;
 import j$.util.Objects;
 public final class h6 extends ImageSpan {
-    public Paint.FontMetricsInt f15838a;
-    public float f15839b;
-    public int f15840c;
+    public Paint.FontMetricsInt f16024a;
+    public float f16025b;
+    public int f16026c;
     public String d;
     public boolean e;
-    public int f15841f;
+    public int f16027f;
     public boolean h;
-    public float f15842n;
-    public float f15843r;
+    public float f16028n;
+    public float f16029r;
 
     public static void a(Paint.FontMetricsInt fontMetricsInt, int i10) {
         int i11 = fontMetricsInt.descent;
@@ -35,19 +35,19 @@ public final class h6 extends ImageSpan {
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
         boolean z10;
-        this.f15842n = a1.g.A(this.f15839b, this.f15840c, 2.0f, f7);
-        this.f15843r = ((i14 - i12) / 2.0f) + i12;
+        this.f16028n = a1.g.A(this.f16025b, this.f16026c, 2.0f, f7);
+        this.f16029r = ((i14 - i12) / 2.0f) + i12;
         boolean z11 = true;
         this.h = true;
-        if (paint.getAlpha() != 255 && k6.f16540n) {
+        if (paint.getAlpha() != 255 && k6.f16574n) {
             getDrawable().setAlpha(paint.getAlpha());
             z10 = true;
         } else {
             z10 = false;
         }
-        float f10 = k6.f16539m;
-        int i15 = this.f15840c;
-        float f11 = f10 - ((i15 - (this.f15839b * i15)) / 2.0f);
+        float f10 = k6.f16573m;
+        int i15 = this.f16026c;
+        float f11 = f10 - ((i15 - (this.f16025b * i15)) / 2.0f);
         if (f11 != 0.0f) {
             canvas.save();
             canvas.translate(0.0f, f11);
@@ -69,7 +69,7 @@ public final class h6 extends ImageSpan {
         }
         if (obj != null && h6.class == obj.getClass()) {
             h6 h6Var = (h6) obj;
-            if (Float.compare(this.f15839b, h6Var.f15839b) == 0 && this.f15840c == h6Var.f15840c && Objects.equals(this.d, h6Var.d)) {
+            if (Float.compare(this.f16025b, h6Var.f16025b) == 0 && this.f16026c == h6Var.f16026c && Objects.equals(this.d, h6Var.d)) {
                 return true;
             }
         }
@@ -119,8 +119,8 @@ public final class h6 extends ImageSpan {
             fontMetricsInt2 = new Paint.FontMetricsInt();
         }
         Paint.FontMetricsInt fontMetricsInt3 = fontMetricsInt2;
-        int i17 = (int) (this.f15839b * this.f15840c);
-        Paint.FontMetricsInt fontMetricsInt4 = this.f15838a;
+        int i17 = (int) (this.f16025b * this.f16026c);
+        Paint.FontMetricsInt fontMetricsInt4 = this.f16024a;
         if (fontMetricsInt4 == null) {
             int size = super.getSize(paint, charSequence, i10, i11, fontMetricsInt3);
             int L = i0.L(8.0f);
@@ -138,7 +138,7 @@ public final class h6 extends ImageSpan {
                 fontMetricsInt3.descent = i14;
                 fontMetricsInt3.bottom = i15;
                 fontMetricsInt3.leading = i16;
-                a(fontMetricsInt3, this.f15841f);
+                a(fontMetricsInt3, this.f16027f);
             }
             return size;
         }
@@ -155,7 +155,7 @@ public final class h6 extends ImageSpan {
             fontMetricsInt3.descent = i14;
             fontMetricsInt3.bottom = i15;
             fontMetricsInt3.leading = i16;
-            a(fontMetricsInt3, this.f15841f);
+            a(fontMetricsInt3, this.f16027f);
         }
         return i17;
     }
@@ -163,7 +163,7 @@ public final class h6 extends ImageSpan {
     @Override
     public final void updateDrawState(TextPaint textPaint) {
         if (getDrawable() instanceof g6) {
-            ((g6) getDrawable()).f15679b = 285212671 & textPaint.getColor();
+            ((g6) getDrawable()).f15864b = 285212671 & textPaint.getColor();
         }
         super.updateDrawState(textPaint);
     }

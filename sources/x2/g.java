@@ -4,7 +4,7 @@ import b2.p1;
 import b2.x;
 public final class g extends m implements Comparable {
     public final int e;
-    public final int f52917f;
+    public final int f52935f;
 
     public g(int i10, p1 p1Var, int i11, j jVar, int i12) {
         super(i10, p1Var, i11);
@@ -16,7 +16,7 @@ public final class g extends m implements Comparable {
         if (i14 != -1 && (i13 = xVar.A) != -1) {
             i15 = i14 * i13;
         }
-        this.f52917f = i15;
+        this.f52935f = i15;
     }
 
     @Override
@@ -32,6 +32,6 @@ public final class g extends m implements Comparable {
 
     @Override
     public final int compareTo(Object obj) {
-        return Integer.compare(this.f52917f, ((g) obj).f52917f);
+        return Integer.compare(this.f52935f, ((g) obj).f52935f);
     }
 }

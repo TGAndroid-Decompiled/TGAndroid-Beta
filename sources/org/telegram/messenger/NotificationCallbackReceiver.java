@@ -8,13 +8,13 @@ public class NotificationCallbackReceiver extends BroadcastReceiver {
     public final void onReceive(Context context, Intent intent) {
         if (intent != null) {
             w0.w();
-            int intExtra = intent.getIntExtra("currentAccount", d20.f15147s0);
-            if (!d20.r(intExtra)) {
+            int intExtra = intent.getIntExtra("currentAccount", e20.f15506s0);
+            if (!e20.r(intExtra)) {
                 return;
             }
             long longExtra = intent.getLongExtra("did", 777000L);
             byte[] byteArrayExtra = intent.getByteArrayExtra("data");
-            i0.g3(new rk(qz.C(intExtra), longExtra, intent.getIntExtra("mid", 0), byteArrayExtra, 10));
+            i0.g3(new sk(rz.C(intExtra), longExtra, intent.getIntExtra("mid", 0), byteArrayExtra, 10));
         }
     }
 }

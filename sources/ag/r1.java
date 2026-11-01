@@ -28,11 +28,11 @@ public final class r1 implements TextView.OnEditorActionListener {
                     if (TextUtils.isEmpty(t1Var.f730f.getText())) {
                         t1Var.D = null;
                         t1Var.d.b();
-                        t1Var.f729c.f30819f3.O(true);
+                        t1Var.f729c.f31183f3.O(true);
                     } else {
                         org.telegram.messenger.i0.g3(l1Var);
                     }
-                    t1Var.f0();
+                    t1Var.g0();
                 }
                 return z10;
             case 1:
@@ -67,7 +67,7 @@ public final class r1 implements TextView.OnEditorActionListener {
             default:
                 rh.i iVar = (rh.i) this.f697b;
                 if (i10 == 5) {
-                    iVar.x0();
+                    iVar.y0();
                     return true;
                 }
                 iVar.getClass();

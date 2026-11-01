@@ -39,13 +39,13 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 import m4.t1;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.at;
+import org.telegram.messenger.dd;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.h20;
+import org.telegram.messenger.i20;
 import org.telegram.messenger.m5;
-import org.telegram.messenger.me;
+import org.telegram.messenger.ne;
 import org.telegram.messenger.x0;
-import org.telegram.messenger.zs;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
@@ -96,14 +96,14 @@ public final class l0 implements Runnable {
         ji.k kVar = (ji.k) this.f143b;
         WebView webView = (WebView) this.f144c;
         b5.h hVar = (b5.h) this.d;
-        synchronized (kVar.f10452a) {
-            if (!kVar.f10469u && kVar.f10463o == webView && kVar.f10464p == hVar && !kVar.f10466r) {
-                if (kVar.f10467s) {
+        synchronized (kVar.f10453a) {
+            if (!kVar.f10470u && kVar.f10464o == webView && kVar.f10465p == hVar && !kVar.f10467r) {
+                if (kVar.f10468s) {
                     f8.d("WEB proxy: Base64 bridge installation timed out again; transport stopped");
                     kVar.q();
                     return;
                 }
-                kVar.f10467s = true;
+                kVar.f10468s = true;
                 f8.d("WEB proxy: Base64 bridge installation timed out; retrying once");
                 kVar.h();
             }
@@ -120,15 +120,15 @@ public final class l0 implements Runnable {
             if (handler.getLooper().getThread().isAlive()) {
                 handler.post(new gg.c(rVar, 20));
             }
-            synchronized (k2.j0.f10672t) {
+            synchronized (k2.j0.f10673t) {
                 try {
                     int i10 = k2.j0.v - 1;
                     k2.j0.v = i10;
                     if (i10 == 0) {
-                        ScheduledExecutorService scheduledExecutorService = k2.j0.f10673u;
+                        ScheduledExecutorService scheduledExecutorService = k2.j0.f10674u;
                         scheduledExecutorService.getClass();
                         scheduledExecutorService.shutdown();
-                        k2.j0.f10673u = null;
+                        k2.j0.f10674u = null;
                     }
                 } finally {
                 }
@@ -137,15 +137,15 @@ public final class l0 implements Runnable {
             if (handler.getLooper().getThread().isAlive()) {
                 handler.post(new gg.c(rVar, 20));
             }
-            synchronized (k2.j0.f10672t) {
+            synchronized (k2.j0.f10673t) {
                 try {
                     int i11 = k2.j0.v - 1;
                     k2.j0.v = i11;
                     if (i11 == 0) {
-                        ScheduledExecutorService scheduledExecutorService2 = k2.j0.f10673u;
+                        ScheduledExecutorService scheduledExecutorService2 = k2.j0.f10674u;
                         scheduledExecutorService2.getClass();
                         scheduledExecutorService2.shutdown();
-                        k2.j0.f10673u = null;
+                        k2.j0.f10674u = null;
                     }
                     throw th2;
                 } finally {
@@ -164,9 +164,9 @@ public final class l0 implements Runnable {
             case 0:
                 b2.x xVar = (b2.x) this.f144c;
                 String str = e2.l0.f6165a;
-                i2.i0 i0Var = ((i2.c0) ((m0) ((hf.b) this.f143b).f7658c)).f7821a;
+                i2.i0 i0Var = ((i2.c0) ((m0) ((hf.b) this.f143b).f7659c)).f7822a;
                 i0Var.S = xVar;
-                j2.g gVar = i0Var.f7927s;
+                j2.g gVar = i0Var.f7928s;
                 j2.a U = gVar.U();
                 gVar.V(U, 1017, new j2.c(U, xVar, (i2.e) this.d, 29));
                 return;
@@ -212,7 +212,7 @@ public final class l0 implements Runnable {
                 if (((TLObject) this.f144c) instanceof TLRPC.TL_boolTrue) {
                     if (arrayList.contains(tL_businessChatLink)) {
                         arrayList.remove(tL_businessChatLink);
-                        zs.f(s0Var.f701a).k(125, new Object[0]);
+                        at.f(s0Var.f701a).k(125, new Object[0]);
                     }
                     s0Var.f();
                     return;
@@ -228,12 +228,12 @@ public final class l0 implements Runnable {
             case 5:
                 j1 j1Var = (j1) this.f143b;
                 TL_account.TL_businessBotRecipients tL_businessBotRecipients = (TL_account.TL_businessBotRecipients) this.d;
-                ag.k.a(j1Var.f21583a).b();
+                ag.k.a(j1Var.f21584a).b();
                 j1Var.dismiss();
                 ((TL_account.TL_connectedBot) this.f144c).recipients = tL_businessBotRecipients;
                 k2 T = LaunchActivity.T();
                 if (T != null) {
-                    cc.a0(T).Q(2131623989, 36, cd.a0(null, null, 2131752784, h20.p(j1Var.Q1))).j();
+                    cc.a0(T).Q(2131623989, 36, dd.a0(null, null, 2131752784, i20.p(j1Var.Q1))).j();
                     return;
                 }
                 return;
@@ -254,7 +254,7 @@ public final class l0 implements Runnable {
                     return;
                 }
             case 7:
-                h2.Y((h2) this.f143b, (TLRPC.TL_error) this.f144c, (TLObject) this.d);
+                h2.Z((h2) this.f143b, (TLRPC.TL_error) this.f144c, (TLObject) this.d);
                 return;
             case 8:
                 n3 n3Var = (n3) this.f143b;
@@ -267,7 +267,7 @@ public final class l0 implements Runnable {
                     SerializedData serializedData = new SerializedData(tLObject4.getObjectSize());
                     tLObject4.serializeToStream(serializedData);
                     sharedPreferences.edit().putString("timezones", Utilities.f(serializedData.toByteArray())).apply();
-                    zs.f(n3Var.f656a).k(214, new Object[0]);
+                    at.f(n3Var.f656a).k(214, new Object[0]);
                 }
                 n3Var.f658c = true;
                 n3Var.f657b = false;
@@ -390,12 +390,12 @@ public final class l0 implements Runnable {
                 return;
             case 18:
                 SpannableString spannableString = (SpannableString) this.f143b;
-                di.l.a(spannableString, spannableString.length(), (com.google.android.gms.internal.play_billing.s0) ((n4.q) this.f144c).f13526a);
+                di.l.a(spannableString, spannableString.length(), (com.google.android.gms.internal.play_billing.s0) ((n4.q) this.f144c).f13527a);
                 ((org.telegram.ui.h0) this.d).run();
                 return;
             case 19:
                 SpannableString spannableString2 = (SpannableString) this.f143b;
-                di.l.a(spannableString2, spannableString2.length(), (com.google.android.gms.internal.play_billing.s0) ((n4.q) this.f144c).f13526a);
+                di.l.a(spannableString2, spannableString2.length(), (com.google.android.gms.internal.play_billing.s0) ((n4.q) this.f144c).f13527a);
                 ((i6) this.d).a(spannableString2);
                 return;
             case 20:
@@ -434,7 +434,7 @@ public final class l0 implements Runnable {
                 k2.u uVar = (k2.u) this.f144c;
                 t1 t1Var = (t1) this.d;
                 try {
-                    if (!(e0Var2.f9758a instanceof j9.a)) {
+                    if (!(e0Var2.f9759a instanceof j9.a)) {
                         uVar.run();
                         e0Var2.m(t1Var);
                         return;
@@ -446,37 +446,37 @@ public final class l0 implements Runnable {
                 }
             case 22:
                 u2.g0 g0Var = (u2.g0) this.d;
-                j2.g gVar2 = ((a1) this.f143b).f7795c;
+                j2.g gVar2 = ((a1) this.f143b).f7796c;
                 x1 f7 = ((e9.k0) this.f144c).f();
                 j2.f fVar2 = gVar2.d;
                 f1 f1Var = gVar2.h;
                 f1Var.getClass();
                 fVar2.getClass();
-                fVar2.f9348b = e9.n0.u(f7);
+                fVar2.f9349b = e9.n0.u(f7);
                 if (!f7.isEmpty()) {
                     fVar2.e = (u2.g0) f7.get(0);
                     g0Var.getClass();
-                    fVar2.f9350f = g0Var;
+                    fVar2.f9351f = g0Var;
                 }
                 if (((u2.g0) fVar2.d) == null) {
-                    fVar2.d = j2.f.o(f1Var, (e9.n0) fVar2.f9348b, (u2.g0) fVar2.e, (l1) fVar2.f9347a);
+                    fVar2.d = j2.f.o(f1Var, (e9.n0) fVar2.f9349b, (u2.g0) fVar2.e, (l1) fVar2.f9348a);
                 }
                 fVar2.G(f1Var.y0());
                 return;
             case 23:
                 Pair pair = (Pair) this.f144c;
-                ((i1) this.f143b).f7937b.h.l(((Integer) pair.first).intValue(), (u2.g0) pair.second, (oa.d) this.d);
+                ((i1) this.f143b).f7938b.h.l(((Integer) pair.first).intValue(), (u2.g0) pair.second, (oa.d) this.d);
                 return;
             case 24:
                 Pair pair2 = (Pair) this.f144c;
-                ((i1) this.f143b).f7937b.h.j(((Integer) pair2.first).intValue(), (u2.g0) pair2.second, (Exception) this.d);
+                ((i1) this.f143b).f7938b.h.j(((Integer) pair2.first).intValue(), (u2.g0) pair2.second, (Exception) this.d);
                 return;
             case 25:
                 b();
                 return;
             case 26:
                 String str4 = e2.l0.f6165a;
-                j2.g gVar3 = ((i2.c0) ((k2.w) ((hf.b) this.f143b).f7658c)).f7821a.f7927s;
+                j2.g gVar3 = ((i2.c0) ((k2.w) ((hf.b) this.f143b).f7659c)).f7822a.f7928s;
                 j2.a U2 = gVar3.U();
                 gVar3.V(U2, 1009, new j2.e(U2, (b2.x) this.f144c, (i2.e) this.d));
                 return;
@@ -486,20 +486,20 @@ public final class l0 implements Runnable {
             case 28:
                 ki.k kVar = (ki.k) this.f143b;
                 byte[] bArr2 = (byte[]) this.d;
-                File file = ((ki.j) this.f144c).f11410b;
+                File file = ((ki.j) this.f144c).f11411b;
                 if (kVar.G == 4) {
                     kVar.B = bArr2;
                     try {
                         kVar.p();
                         if (kVar.e) {
-                            i2.i0 a2 = new i2.n(kVar.f11412a).a();
+                            i2.i0 a2 = new i2.n(kVar.f11413a).a();
                             kVar.A = a2;
                             a2.o0(kVar.F);
                             kVar.A.s0(b2.p0.b(Uri.fromFile(file)));
                             kVar.A.a();
                         }
                         kVar.s(5);
-                        m5.e eVar = kVar.f11415f;
+                        m5.e eVar = kVar.f11416f;
                         long j11 = kVar.j();
                         byte[] bArr3 = kVar.B;
                         if (bArr3 != null) {
@@ -520,12 +520,12 @@ public final class l0 implements Runnable {
                 return;
             default:
                 File file2 = (File) this.d;
-                m4.c cVar = ((ki.k) this.f143b).f11416g;
-                long j12 = ((ki.j) this.f144c).f11409a;
-                synchronized (((e0.h) cVar.f12706c).f6022f) {
-                    ((HashMap) ((e0.h) cVar.f12706c).f6023g).put(Long.valueOf(j12), file2);
+                m4.c cVar = ((ki.k) this.f143b).f11417g;
+                long j12 = ((ki.j) this.f144c).f11410a;
+                synchronized (((e0.h) cVar.f12707c).f6022f) {
+                    ((HashMap) ((e0.h) cVar.f12707c).f6023g).put(Long.valueOf(j12), file2);
                 }
-                ((Handler) ((e0.h) cVar.f12706c).d).post(new x0(cVar, j12, (me) cVar.f12705b, file2, 1));
+                ((Handler) ((e0.h) cVar.f12707c).d).post(new x0(cVar, j12, (ne) cVar.f12706b, file2, 1));
                 return;
         }
     }

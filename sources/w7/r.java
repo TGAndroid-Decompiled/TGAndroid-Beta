@@ -107,13 +107,13 @@ public abstract class r {
                 }
                 mediaCodec3.releaseOutputBuffer(dequeueOutputBuffer, z15);
                 if (z15) {
-                    synchronized (z0Var.f12357b) {
+                    synchronized (z0Var.f12358b) {
                         long elapsedRealtime2 = SystemClock.elapsedRealtime() + 2500;
-                        while (!z0Var.f12365m) {
+                        while (!z0Var.f12366m) {
                             long elapsedRealtime3 = elapsedRealtime2 - SystemClock.elapsedRealtime();
                             if (elapsedRealtime3 > j14) {
                                 try {
-                                    z0Var.f12357b.wait(elapsedRealtime3);
+                                    z0Var.f12358b.wait(elapsedRealtime3);
                                     j14 = 0;
                                 } catch (InterruptedException e) {
                                     Thread.currentThread().interrupt();
@@ -123,17 +123,17 @@ public abstract class r {
                                 throw new IOException("Decoded frame did not arrive");
                             }
                         }
-                        z0Var.f12365m = false;
+                        z0Var.f12366m = false;
                     }
-                    z0Var.f12363k.updateTexImage();
-                    z0Var.f12363k.getTransformMatrix(z0Var.f12358c);
-                    int i16 = z0Var.f12356a;
+                    z0Var.f12364k.updateTexImage();
+                    z0Var.f12364k.getTransformMatrix(z0Var.f12359c);
+                    int i16 = z0Var.f12357a;
                     GLES20.glViewport(0, 0, i16, i16);
-                    GLES20.glUseProgram(z0Var.f12361i);
+                    GLES20.glUseProgram(z0Var.f12362i);
                     GLES20.glActiveTexture(33984);
-                    GLES20.glBindTexture(36197, z0Var.f12362j);
-                    int glGetAttribLocation = GLES20.glGetAttribLocation(z0Var.f12361i, "aPosition");
-                    int glGetAttribLocation2 = GLES20.glGetAttribLocation(z0Var.f12361i, "aTextureCoord");
+                    GLES20.glBindTexture(36197, z0Var.f12363j);
+                    int glGetAttribLocation = GLES20.glGetAttribLocation(z0Var.f12362i, "aPosition");
+                    int glGetAttribLocation2 = GLES20.glGetAttribLocation(z0Var.f12362i, "aTextureCoord");
                     FloatBuffer floatBuffer = z0Var.d;
                     floatBuffer.position(0);
                     GLES20.glVertexAttribPointer(glGetAttribLocation, 2, 5126, false, 16, (Buffer) z0Var.d);
@@ -142,10 +142,10 @@ public abstract class r {
                     GLES20.glVertexAttribPointer(glGetAttribLocation2, 2, 5126, false, 16, (Buffer) z0Var.d);
                     GLES20.glEnableVertexAttribArray(glGetAttribLocation2);
                     z12 = true;
-                    GLES20.glUniformMatrix4fv(GLES20.glGetUniformLocation(z0Var.f12361i, "uTextureMatrix"), 1, false, z0Var.f12358c, 0);
+                    GLES20.glUniformMatrix4fv(GLES20.glGetUniformLocation(z0Var.f12362i, "uTextureMatrix"), 1, false, z0Var.f12359c, 0);
                     GLES20.glDrawArrays(5, 0, 4);
-                    EGLExt.eglPresentationTimeANDROID(z0Var.f12359f, z0Var.h, j16 * 1000);
-                    if (!EGL14.eglSwapBuffers(z0Var.f12359f, z0Var.h)) {
+                    EGLExt.eglPresentationTimeANDROID(z0Var.f12360f, z0Var.h, j16 * 1000);
+                    if (!EGL14.eglSwapBuffers(z0Var.f12360f, z0Var.h)) {
                         throw new IllegalStateException("eglSwapBuffers failed: 0x" + Integer.toHexString(EGL14.eglGetError()));
                     }
                 } else {
@@ -172,7 +172,7 @@ public abstract class r {
                     if (dequeueOutputBuffer2 == -2) {
                         MediaFormat outputFormat = mediaCodec2.getOutputFormat();
                         i17 = li.o.f(outputFormat);
-                        a1Var.s(outputFormat);
+                        a1Var.w(outputFormat);
                     } else if (dequeueOutputBuffer2 >= 0) {
                         ByteBuffer outputBuffer = mediaCodec2.getOutputBuffer(dequeueOutputBuffer2);
                         int i18 = bufferInfo2.flags;

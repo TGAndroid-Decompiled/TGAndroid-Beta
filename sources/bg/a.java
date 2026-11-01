@@ -3,7 +3,7 @@ package bg;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import java.util.ArrayList;
-import org.telegram.messenger.z20;
+import org.telegram.messenger.a30;
 public final class a extends i {
     @Override
     public float getMinDistance() {
@@ -79,7 +79,7 @@ public final class a extends i {
                                 arrayList2 = arrayList3;
                                 f11 = (float) bVar.e;
                             }
-                            float v = z20.v((float) j10, f11, f12, 1.0f) * (i12 - measuredHeight2);
+                            float v = a30.v((float) j10, f11, f12, 1.0f) * (i12 - measuredHeight2);
                             fArr[i17] = f10;
                             fArr[i17 + 1] = v;
                             int i19 = i17 + 3;

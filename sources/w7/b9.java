@@ -1,8 +1,8 @@
 package w7;
 
 import android.graphics.Color;
-import org.telegram.messenger.tz;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.uz;
+import org.telegram.messenger.wp;
 public abstract class b9 {
     public static wg.d a(org.telegram.ui.ActionBar.p6 p6Var) {
         wg.d dVar = new wg.d(p6Var);
@@ -12,11 +12,11 @@ public abstract class b9 {
         dVar.d(285212672, 83886079);
         float N = org.telegram.messenger.i0.N(2.0f);
         float N2 = org.telegram.messenger.i0.N(0.33333334f);
-        dVar.f52849n = N;
-        dVar.f52850r = N2;
+        dVar.f52867n = N;
+        dVar.f52868r = N2;
         float N3 = org.telegram.messenger.i0.N(0.4f);
         float N4 = org.telegram.messenger.i0.N(0.4f);
-        dVar.f52848f = N3;
+        dVar.f52866f = N3;
         dVar.h = N4;
         return dVar;
     }
@@ -29,7 +29,7 @@ public abstract class b9 {
         dVar.d(536870912, 0);
         float N = org.telegram.messenger.i0.N(0.5f);
         float N2 = org.telegram.messenger.i0.N(0.5f);
-        dVar.f52848f = N;
+        dVar.f52866f = N;
         dVar.h = N2;
         return dVar;
     }
@@ -41,11 +41,11 @@ public abstract class b9 {
         } else {
             q6 = org.telegram.ui.ActionBar.t6.I.q();
         }
-        boolean f7 = tz.f();
-        if (f7 && !q6 && ((org.telegram.messenger.j0) vp.r1(i10).f18957y7.B.f11587b).f16204c) {
+        boolean f7 = uz.f();
+        if (f7 && !q6 && ((org.telegram.messenger.j0) wp.r1(i10).f19300y7.B.f11588b).f16393c) {
             f7 = false;
         }
-        if (f7 && q6 && ((org.telegram.messenger.j0) vp.r1(i10).f18957y7.C.f11587b).f16204c) {
+        if (f7 && q6 && ((org.telegram.messenger.j0) wp.r1(i10).f19300y7.C.f11588b).f16393c) {
             return false;
         }
         return f7;
@@ -59,11 +59,11 @@ public abstract class b9 {
         dVar.d(1073741824, 0);
         float N = org.telegram.messenger.i0.N(3.6666667f);
         float N2 = org.telegram.messenger.i0.N(0.6666667f);
-        dVar.f52849n = N;
-        dVar.f52850r = N2;
+        dVar.f52867n = N;
+        dVar.f52868r = N2;
         float N3 = org.telegram.messenger.i0.N(0.5f);
         float N4 = org.telegram.messenger.i0.N(0.5f);
-        dVar.f52848f = N3;
+        dVar.f52866f = N3;
         dVar.h = N4;
         return dVar;
     }
@@ -76,11 +76,11 @@ public abstract class b9 {
         dVar.d(536870912, 0);
         float N = org.telegram.messenger.i0.N(3.3333333f);
         float N2 = org.telegram.messenger.i0.N(0.6666667f);
-        dVar.f52849n = N;
-        dVar.f52850r = N2;
+        dVar.f52867n = N;
+        dVar.f52868r = N2;
         float N3 = org.telegram.messenger.i0.N(1.0f);
         float N4 = org.telegram.messenger.i0.N(0.6666667f);
-        dVar.f52848f = N3;
+        dVar.f52866f = N3;
         dVar.h = N4;
         return dVar;
     }
@@ -93,11 +93,11 @@ public abstract class b9 {
         dVar.d(536870912, 83886079);
         float N = org.telegram.messenger.i0.N(2.667f);
         float N2 = org.telegram.messenger.i0.N(0.85f);
-        dVar.f52849n = N;
-        dVar.f52850r = N2;
+        dVar.f52867n = N;
+        dVar.f52868r = N2;
         float N3 = org.telegram.messenger.i0.N(0.4f);
         float N4 = org.telegram.messenger.i0.N(0.4f);
-        dVar.f52848f = N3;
+        dVar.f52866f = N3;
         dVar.h = N4;
         return dVar;
     }
@@ -108,11 +108,11 @@ public abstract class b9 {
         dVar.f(1157627903, 0);
         dVar.e(587202559, 0);
         dVar.d(939524096, 0);
-        dVar.f52849n = org.telegram.messenger.i0.N(3.5f);
-        dVar.f52850r = 0.0f;
+        dVar.f52867n = org.telegram.messenger.i0.N(3.5f);
+        dVar.f52868r = 0.0f;
         float N = org.telegram.messenger.i0.N(0.6666667f);
         float N2 = org.telegram.messenger.i0.N(0.6666667f);
-        dVar.f52848f = N;
+        dVar.f52866f = N;
         dVar.h = N2;
         return dVar;
     }
@@ -128,7 +128,7 @@ public abstract class b9 {
         dVar.e(352321535, 352321535);
         float N = org.telegram.messenger.i0.N(0.6666667f);
         float N2 = org.telegram.messenger.i0.N(0.6666667f);
-        dVar.f52848f = N;
+        dVar.f52866f = N;
         dVar.h = N2;
         return dVar;
     }
@@ -139,11 +139,11 @@ public abstract class b9 {
         dVar.f(-1, 553648127);
         dVar.e(0, 553648127);
         dVar.d(1207959552, 83886079);
-        dVar.f52849n = org.telegram.messenger.i0.N(0.6666667f);
-        dVar.f52850r = 0.0f;
+        dVar.f52867n = org.telegram.messenger.i0.N(0.6666667f);
+        dVar.f52868r = 0.0f;
         float N = org.telegram.messenger.i0.N(0.67f);
         float N2 = org.telegram.messenger.i0.N(0.67f);
-        dVar.f52848f = N;
+        dVar.f52866f = N;
         dVar.h = N2;
         return dVar;
     }
@@ -154,11 +154,11 @@ public abstract class b9 {
         dVar.f(1157627903, 0);
         dVar.e(587202559, 0);
         dVar.d(637534208, 0);
-        dVar.f52849n = org.telegram.messenger.i0.N(4.0f);
-        dVar.f52850r = 0.0f;
+        dVar.f52867n = org.telegram.messenger.i0.N(4.0f);
+        dVar.f52868r = 0.0f;
         float N = org.telegram.messenger.i0.N(0.6666667f);
         float N2 = org.telegram.messenger.i0.N(0.6666667f);
-        dVar.f52848f = N;
+        dVar.f52866f = N;
         dVar.h = N2;
         return dVar;
     }
@@ -170,11 +170,11 @@ public abstract class b9 {
         dVar.d(805306368, 83886079);
         float N = org.telegram.messenger.i0.N(4.0f);
         float N2 = org.telegram.messenger.i0.N(0.33333334f);
-        dVar.f52849n = N;
-        dVar.f52850r = N2;
+        dVar.f52867n = N;
+        dVar.f52868r = N2;
         float N3 = org.telegram.messenger.i0.N(0.4f);
         float N4 = org.telegram.messenger.i0.N(0.4f);
-        dVar.f52848f = N3;
+        dVar.f52866f = N3;
         dVar.h = N4;
         return dVar;
     }
@@ -187,11 +187,11 @@ public abstract class b9 {
         dVar.d(372454195, 0);
         float N = org.telegram.messenger.i0.N(8.0f);
         float N2 = org.telegram.messenger.i0.N(2.3333333f);
-        dVar.f52849n = N;
-        dVar.f52850r = N2;
+        dVar.f52867n = N;
+        dVar.f52868r = N2;
         float N3 = org.telegram.messenger.i0.N(0.55f);
         float N4 = org.telegram.messenger.i0.N(0.55f);
-        dVar.f52848f = N3;
+        dVar.f52866f = N3;
         dVar.h = N4;
         return dVar;
     }
@@ -222,11 +222,11 @@ public abstract class b9 {
         dVar.d(536870912, 83886079);
         float N = org.telegram.messenger.i0.N(2.667f);
         float N2 = org.telegram.messenger.i0.N(0.85f);
-        dVar.f52849n = N;
-        dVar.f52850r = N2;
+        dVar.f52867n = N;
+        dVar.f52868r = N2;
         float N3 = org.telegram.messenger.i0.N(0.4f);
         float N4 = org.telegram.messenger.i0.N(0.4f);
-        dVar.f52848f = N3;
+        dVar.f52866f = N3;
         dVar.h = N4;
         return dVar;
     }
@@ -239,7 +239,7 @@ public abstract class b9 {
         cVar.d(536870912, 0);
         float N = org.telegram.messenger.i0.N(0.55f);
         float N2 = org.telegram.messenger.i0.N(0.55f);
-        cVar.f52848f = N;
+        cVar.f52866f = N;
         cVar.h = N2;
         return cVar;
     }
@@ -250,9 +250,9 @@ public abstract class b9 {
         dVar.f(0, 0);
         dVar.e(0, 0);
         dVar.d(0, 0);
-        dVar.f52849n = 0.0f;
-        dVar.f52850r = 0.0f;
-        dVar.f52848f = 0.0f;
+        dVar.f52867n = 0.0f;
+        dVar.f52868r = 0.0f;
+        dVar.f52866f = 0.0f;
         dVar.h = 0.0f;
         return dVar;
     }
@@ -263,9 +263,9 @@ public abstract class b9 {
         dVar.f(0, 0);
         dVar.e(0, 0);
         dVar.d(0, 0);
-        dVar.f52849n = 0.0f;
-        dVar.f52850r = 0.0f;
-        dVar.f52848f = 0.0f;
+        dVar.f52867n = 0.0f;
+        dVar.f52868r = 0.0f;
+        dVar.f52866f = 0.0f;
         dVar.h = 0.0f;
         return dVar;
     }

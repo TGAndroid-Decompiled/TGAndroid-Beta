@@ -5,10 +5,10 @@ import android.os.Parcelable;
 import w7.h0;
 public final class c extends o6.a {
     public static final Parcelable.Creator<c> CREATOR = new e6.p(13);
-    public final boolean f7427a;
+    public final boolean f7428a;
 
     public c(boolean z10) {
-        this.f7427a = z10;
+        this.f7428a = z10;
     }
 
     @Override
@@ -16,7 +16,7 @@ public final class c extends o6.a {
         kotlin.jvm.internal.i.e(dest, "dest");
         int q6 = h0.q(dest, 20293);
         h0.s(dest, 1, 4);
-        dest.writeInt(this.f7427a ? 1 : 0);
+        dest.writeInt(this.f7428a ? 1 : 0);
         h0.r(dest, q6);
     }
 }

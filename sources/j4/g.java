@@ -9,35 +9,35 @@ import java.util.concurrent.atomic.AtomicInteger;
 import v7.c8;
 import v7.t6;
 public final class g implements i {
-    public final e2.x f9475a;
-    public final String f9477c;
+    public final e2.x f9476a;
+    public final String f9478c;
     public final int d;
-    public String f9478f;
-    public k0 f9479g;
-    public int f9480i;
-    public int f9481j;
-    public long f9482k;
-    public b2.x f9483l;
-    public int f9484m;
-    public int f9485n;
+    public String f9479f;
+    public k0 f9480g;
+    public int f9481i;
+    public int f9482j;
+    public long f9483k;
+    public b2.x f9484l;
+    public int f9485m;
+    public int f9486n;
     public int h = 0;
-    public long f9488q = -9223372036854775807L;
-    public final AtomicInteger f9476b = new AtomicInteger();
-    public int f9486o = -1;
-    public int f9487p = -1;
+    public long f9489q = -9223372036854775807L;
+    public final AtomicInteger f9477b = new AtomicInteger();
+    public int f9487o = -1;
+    public int f9488p = -1;
     public final String e = "video/mp2t";
 
     public g(String str, int i10, int i11) {
-        this.f9475a = new e2.x(new byte[i11]);
-        this.f9477c = str;
+        this.f9476a = new e2.x(new byte[i11]);
+        this.f9478c = str;
         this.d = i10;
     }
 
     public final boolean a(e2.x xVar, byte[] bArr, int i10) {
-        int min = Math.min(xVar.a(), i10 - this.f9480i);
-        xVar.k(this.f9480i, min, bArr);
-        int i11 = this.f9480i + min;
-        this.f9480i = i11;
+        int min = Math.min(xVar.a(), i10 - this.f9481i);
+        xVar.k(this.f9481i, min, bArr);
+        int i11 = this.f9481i + min;
+        this.f9481i = i11;
         if (i11 == i10) {
             return true;
         }
@@ -50,24 +50,24 @@ public final class g implements i {
         String str = aVar.f3592a;
         int i11 = aVar.f3594c;
         if (i10 != -2147483647 && i11 != -1) {
-            b2.x xVar = this.f9483l;
+            b2.x xVar = this.f9484l;
             if (xVar == null || i11 != xVar.K || i10 != xVar.L || !str.equals(xVar.f2423s)) {
-                b2.x xVar2 = this.f9483l;
+                b2.x xVar2 = this.f9484l;
                 if (xVar2 == null) {
                     a2 = new b2.w();
                 } else {
                     a2 = xVar2.a();
                 }
-                a2.f2356a = this.f9478f;
+                a2.f2356a = this.f9479f;
                 a2.f2369q = v0.n(this.e);
                 a2.f2370r = v0.n(str);
                 a2.J = i11;
                 a2.K = i10;
-                a2.d = this.f9477c;
+                a2.d = this.f9478c;
                 a2.f2359f = this.d;
                 b2.x xVar3 = new b2.x(a2);
-                this.f9483l = xVar3;
-                this.f9479g.b(xVar3);
+                this.f9484l = xVar3;
+                this.f9480g.b(xVar3);
             }
         }
     }
@@ -100,29 +100,29 @@ public final class g implements i {
         int i26;
         int i27;
         int i28;
-        this.f9479g.getClass();
+        this.f9480g.getClass();
         while (xVar.a() > 0) {
             int i29 = this.h;
-            e2.x xVar2 = this.f9475a;
+            e2.x xVar2 = this.f9476a;
             switch (i29) {
                 case 0:
                     while (true) {
                         if (xVar.a() > 0) {
-                            int i30 = this.f9481j << 8;
-                            this.f9481j = i30;
+                            int i30 = this.f9482j << 8;
+                            this.f9482j = i30;
                             int A = i30 | xVar.A();
-                            this.f9481j = A;
+                            this.f9482j = A;
                             int i31 = c3.b.i(A);
-                            this.f9485n = i31;
+                            this.f9486n = i31;
                             if (i31 != 0) {
                                 byte[] bArr = xVar2.f6207a;
-                                int i32 = this.f9481j;
+                                int i32 = this.f9482j;
                                 bArr[0] = (byte) ((i32 >> 24) & 255);
                                 bArr[1] = (byte) ((i32 >> 16) & 255);
                                 bArr[2] = (byte) ((i32 >> 8) & 255);
                                 bArr[3] = (byte) (i32 & 255);
-                                this.f9480i = 4;
-                                this.f9481j = 0;
+                                this.f9481i = 4;
+                                this.f9482j = 0;
                                 if (i31 != 3 && i31 != 4) {
                                     if (i31 == 1) {
                                         this.h = 1;
@@ -144,8 +144,8 @@ public final class g implements i {
                         break;
                     } else {
                         byte[] bArr2 = xVar2.f6207a;
-                        if (this.f9483l == null) {
-                            String str = this.f9478f;
+                        if (this.f9484l == null) {
+                            String str = this.f9479f;
                             a4.g k10 = c3.b.k(bArr2);
                             k10.f0(60);
                             int i33 = c3.b.f3603j[k10.i(6)];
@@ -172,13 +172,13 @@ public final class g implements i {
                             wVar.J = i36;
                             wVar.K = i34;
                             wVar.v = null;
-                            wVar.d = this.f9477c;
+                            wVar.d = this.f9478c;
                             wVar.f2359f = this.d;
                             b2.x xVar3 = new b2.x(wVar);
-                            this.f9483l = xVar3;
-                            this.f9479g.b(xVar3);
+                            this.f9484l = xVar3;
+                            this.f9480g.b(xVar3);
                         }
-                        this.f9484m = c3.b.g(bArr2);
+                        this.f9485m = c3.b.g(bArr2);
                         byte b12 = bArr2[0];
                         if (b12 != -2) {
                             if (b12 != -1) {
@@ -194,9 +194,9 @@ public final class g implements i {
                                 b11 = bArr2[7];
                             }
                             i12 = b11 & 60;
-                            this.f9482k = c8.b(l0.Y(this.f9483l.L, (((i12 >> 2) | i11) + 1) * 32));
+                            this.f9483k = c8.b(l0.Y(this.f9484l.L, (((i12 >> 2) | i11) + 1) * 32));
                             xVar2.N(0);
-                            this.f9479g.d(18, xVar2);
+                            this.f9480g.d(18, xVar2);
                             this.h = 6;
                             break;
                         } else {
@@ -204,9 +204,9 @@ public final class g implements i {
                             b10 = bArr2[4];
                         }
                         i12 = b10 & 252;
-                        this.f9482k = c8.b(l0.Y(this.f9483l.L, (((i12 >> 2) | i11) + 1) * 32));
+                        this.f9483k = c8.b(l0.Y(this.f9484l.L, (((i12 >> 2) | i11) + 1) * 32));
                         xVar2.N(0);
-                        this.f9479g.d(18, xVar2);
+                        this.f9480g.d(18, xVar2);
                         this.h = 6;
                     }
                 case 2:
@@ -218,7 +218,7 @@ public final class g implements i {
                         } else {
                             i15 = 8;
                         }
-                        this.f9486o = k11.i(i15) + 1;
+                        this.f9487o = k11.i(i15) + 1;
                         this.h = 3;
                         break;
                     } else {
@@ -226,7 +226,7 @@ public final class g implements i {
                     }
                 case 3:
                     int i37 = 8;
-                    if (a(xVar, xVar2.f6207a, this.f9486o)) {
+                    if (a(xVar, xVar2.f6207a, this.f9487o)) {
                         a4.g k12 = c3.b.k(xVar2.f6207a);
                         k12.f0(40);
                         int i38 = k12.i(2);
@@ -313,15 +313,15 @@ public final class g implements i {
                             j10 = -9223372036854775807L;
                         }
                         b(new c3.a("audio/vnd.dts.hd;profile=lbr", i20, i21, i39, j10));
-                        this.f9484m = i39;
+                        this.f9485m = i39;
                         if (j10 == -9223372036854775807L) {
                             j11 = 0;
                         } else {
                             j11 = j10;
                         }
-                        this.f9482k = j11;
+                        this.f9483k = j11;
                         xVar2.N(0);
-                        this.f9479g.d(this.f9486o, xVar2);
+                        this.f9480g.d(this.f9487o, xVar2);
                         this.h = 6;
                         break;
                     } else {
@@ -332,11 +332,11 @@ public final class g implements i {
                         a4.g k13 = c3.b.k(xVar2.f6207a);
                         k13.f0(32);
                         int q6 = c3.b.q(k13, c3.b.f3611r) + 1;
-                        this.f9487p = q6;
-                        int i48 = this.f9480i;
+                        this.f9488p = q6;
+                        int i48 = this.f9481i;
                         if (i48 > q6) {
                             int i49 = i48 - q6;
-                            this.f9480i = i48 - i49;
+                            this.f9481i = i48 - i49;
                             xVar.N(xVar.f6208b - i49);
                         }
                         this.h = 5;
@@ -345,7 +345,7 @@ public final class g implements i {
                         break;
                     }
                 case 5:
-                    if (a(xVar, xVar2.f6207a, this.f9487p)) {
+                    if (a(xVar, xVar2.f6207a, this.f9488p)) {
                         byte[] bArr3 = xVar2.f6207a;
                         a4.g k14 = c3.b.k(bArr3);
                         if (k14.i(32) == 1078008818) {
@@ -419,7 +419,7 @@ public final class g implements i {
                         for (int i61 = 0; i61 < i23; i61++) {
                             i60 += c3.b.q(k14, c3.b.f3608o);
                         }
-                        AtomicInteger atomicInteger = this.f9476b;
+                        AtomicInteger atomicInteger = this.f9477b;
                         if (i23 != 0) {
                             atomicInteger.set(c3.b.q(k14, c3.b.f3609p));
                         }
@@ -430,46 +430,46 @@ public final class g implements i {
                         }
                         int i62 = i60 + i25 + i50;
                         c3.a aVar = new c3.a("audio/vnd.dts.uhd;profile=p2", 2, i24, i62, j12);
-                        if (this.f9485n == 3) {
+                        if (this.f9486n == 3) {
                             b(aVar);
                         }
-                        this.f9484m = i62;
+                        this.f9485m = i62;
                         if (j12 == -9223372036854775807L) {
                             j13 = 0;
                         } else {
                             j13 = j12;
                         }
-                        this.f9482k = j13;
+                        this.f9483k = j13;
                         xVar2.N(0);
-                        this.f9479g.d(this.f9487p, xVar2);
+                        this.f9480g.d(this.f9488p, xVar2);
                         this.h = 6;
                         break;
                     } else {
                         continue;
                     }
                 case 6:
-                    int min = Math.min(xVar.a(), this.f9484m - this.f9480i);
-                    this.f9479g.d(min, xVar);
-                    int i63 = this.f9480i + min;
-                    this.f9480i = i63;
-                    if (i63 != this.f9484m) {
+                    int min = Math.min(xVar.a(), this.f9485m - this.f9481i);
+                    this.f9480g.d(min, xVar);
+                    int i63 = this.f9481i + min;
+                    this.f9481i = i63;
+                    if (i63 != this.f9485m) {
                         break;
                     } else {
-                        if (this.f9488q != -9223372036854775807L) {
+                        if (this.f9489q != -9223372036854775807L) {
                             z10 = true;
                         } else {
                             z10 = false;
                         }
                         t6.p(z10);
-                        k0 k0Var = this.f9479g;
-                        long j14 = this.f9488q;
-                        if (this.f9485n == 4) {
+                        k0 k0Var = this.f9480g;
+                        long j14 = this.f9489q;
+                        if (this.f9486n == 4) {
                             i10 = 0;
                         } else {
                             i10 = 1;
                         }
-                        k0Var.c(j14, i10, this.f9484m, 0, null);
-                        this.f9488q += this.f9482k;
+                        k0Var.c(j14, i10, this.f9485m, 0, null);
+                        this.f9489q += this.f9483k;
                         this.h = 0;
                         break;
                     }
@@ -482,24 +482,24 @@ public final class g implements i {
     @Override
     public final void e() {
         this.h = 0;
-        this.f9480i = 0;
-        this.f9481j = 0;
-        this.f9488q = -9223372036854775807L;
-        this.f9476b.set(0);
+        this.f9481i = 0;
+        this.f9482j = 0;
+        this.f9489q = -9223372036854775807L;
+        this.f9477b.set(0);
     }
 
     @Override
     public final void f(c3.q qVar, g0 g0Var) {
         g0Var.b();
         g0Var.c();
-        this.f9478f = (String) g0Var.e;
+        this.f9479f = (String) g0Var.e;
         g0Var.c();
-        this.f9479g = qVar.I1(g0Var.f9491c, 1);
+        this.f9480g = qVar.I1(g0Var.f9492c, 1);
     }
 
     @Override
     public final void h(int i10, long j10) {
-        this.f9488q = j10;
+        this.f9489q = j10;
     }
 
     @Override

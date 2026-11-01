@@ -18,35 +18,35 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.d20;
-import org.telegram.messenger.j20;
-import org.telegram.messenger.mn;
-import org.telegram.messenger.us;
-import org.telegram.messenger.vp;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.at;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.e20;
+import org.telegram.messenger.k20;
+import org.telegram.messenger.nn;
+import org.telegram.messenger.vs;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.Components.a51;
-import org.telegram.ui.Components.bi0;
+import org.telegram.ui.Components.b51;
 import org.telegram.ui.Components.cc;
+import org.telegram.ui.Components.ci0;
 import org.telegram.ui.Components.gr;
-import org.telegram.ui.Components.p51;
 import org.telegram.ui.Components.pb;
+import org.telegram.ui.Components.q51;
 import org.telegram.ui.Components.qb;
-import org.telegram.ui.Components.ro0;
+import org.telegram.ui.Components.so0;
 import org.telegram.ui.Components.ub;
 import org.telegram.ui.Components.wb;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ex0;
-import org.telegram.ui.nb0;
-import org.telegram.ui.w71;
+import org.telegram.ui.dx0;
+import org.telegram.ui.mb0;
+import org.telegram.ui.u71;
 import rh.y8;
-public abstract class j0 extends FrameLayout implements us {
+public abstract class j0 extends FrameLayout implements vs {
     public boolean D;
     public t E;
     public int F;
@@ -67,53 +67,53 @@ public abstract class j0 extends FrameLayout implements us {
     public boolean U;
     public final u V;
     public wb W;
-    public final View f49079a;
-    public qb f49080a0;
-    public final FrameLayout f49081b;
-    public ub f49082b0;
-    public final nb0 f49083c;
-    public pb f49084c0;
+    public final View f49093a;
+    public qb f49094a0;
+    public final FrameLayout f49095b;
+    public ub f49096b0;
+    public final mb0 f49097c;
+    public pb f49098c0;
     public final s4.a0 d;
-    public final u f49085d0;
+    public final u f49099d0;
     public final ph.o3 e;
-    public ValueAnimator f49086e0;
-    public final w71 f49087f;
-    public boolean f49088f0;
-    public final u f49089g0;
+    public ValueAnimator f49100e0;
+    public final u71 f49101f;
+    public boolean f49102f0;
+    public final u f49103g0;
     public final s4.a0 h;
-    public final p51 f49090n;
-    public final ArrayList f49091r;
-    public final ArrayList f49092s;
-    public final HashMap f49093w;
-    public long f49094x;
-    public int f49095y;
+    public final q51 f49104n;
+    public final ArrayList f49105r;
+    public final ArrayList f49106s;
+    public final HashMap f49107w;
+    public long f49108x;
+    public int f49109y;
 
     public j0(Context context, o7 o7Var, ViewGroup viewGroup, View view, FrameLayout frameLayout) {
         super(context);
-        this.f49091r = new ArrayList();
-        this.f49092s = new ArrayList();
-        this.f49093w = new HashMap();
+        this.f49105r = new ArrayList();
+        this.f49106s = new ArrayList();
+        this.f49107w = new HashMap();
         this.F = -1;
         this.G = true;
         this.I = new li.k(23);
-        int i10 = d20.f15147s0;
+        int i10 = e20.f15506s0;
         this.N = i10;
         this.T = new ArrayList();
         final p1 p1Var = (p1) this;
         this.V = new u(p1Var, 0);
-        this.f49085d0 = new u(p1Var, 1);
-        this.f49088f0 = false;
-        this.f49089g0 = new u(p1Var, 2);
-        this.f49079a = view;
-        this.f49081b = frameLayout;
+        this.f49099d0 = new u(p1Var, 1);
+        this.f49102f0 = false;
+        this.f49103g0 = new u(p1Var, 2);
+        this.f49093a = view;
+        this.f49095b = frameLayout;
         view.setAlpha(0.5f);
-        nb0 nb0Var = new nb0(p1Var, context, 4);
-        this.f49083c = nb0Var;
-        nb0Var.setWillNotDraw(false);
+        mb0 mb0Var = new mb0(p1Var, context, 4);
+        this.f49097c = mb0Var;
+        mb0Var.setWillNotDraw(false);
         s4.a0 a0Var = new s4.a0(1, true);
         this.d = a0Var;
-        nb0Var.setLayoutManager(a0Var);
-        ph.o3 o3Var = new ph.o3(p1Var, nb0Var, context, i10, new j20() {
+        mb0Var.setLayoutManager(a0Var);
+        ph.o3 o3Var = new ph.o3(p1Var, mb0Var, context, i10, new k20() {
             @Override
             public final void a(Object obj, Object obj2) {
                 long j10;
@@ -121,10 +121,10 @@ public abstract class j0 extends FrameLayout implements us {
                 int i12 = 0;
                 p1 p1Var2 = p1Var;
                 ArrayList arrayList = (ArrayList) obj;
-                p51 p51Var = (p51) obj2;
+                q51 q51Var = (q51) obj2;
                 switch (i11) {
                     case 0:
-                        ArrayList arrayList2 = p1Var2.f49091r;
+                        ArrayList arrayList2 = p1Var2.f49105r;
                         s0 s0Var = p1Var2.P;
                         if (s0Var == null) {
                             j10 = 0;
@@ -134,9 +134,9 @@ public abstract class j0 extends FrameLayout implements us {
                         p1Var2.H = j10;
                         while (i12 < arrayList2.size()) {
                             h0 h0Var = (h0) arrayList2.get(i12);
-                            if (h0Var.f49007b || !h0Var.e || h0Var.f49010g >= j10) {
-                                int i13 = b0.f48794b;
-                                a51 K = a51.K(b0.class);
+                            if (h0Var.f49021b || !h0Var.e || h0Var.f49024g >= j10) {
+                                int i13 = b0.f48808b;
+                                b51 K = b51.K(b0.class);
                                 K.G = h0Var;
                                 arrayList.add(K);
                             }
@@ -144,10 +144,10 @@ public abstract class j0 extends FrameLayout implements us {
                         }
                         return;
                     default:
-                        ArrayList arrayList3 = p1Var2.f49092s;
+                        ArrayList arrayList3 = p1Var2.f49106s;
                         while (i12 < arrayList3.size()) {
-                            int i14 = f0.f48947b;
-                            a51 K2 = a51.K(f0.class);
+                            int i14 = f0.f48961b;
+                            b51 K2 = b51.K(f0.class);
                             K2.G = (i0) arrayList3.get(i12);
                             arrayList.add(K2);
                             i12++;
@@ -157,33 +157,33 @@ public abstract class j0 extends FrameLayout implements us {
             }
         }, new b(), 2);
         this.e = o3Var;
-        nb0Var.setAdapter(o3Var);
-        o3Var.f29295r = false;
-        nb0Var.setPadding(org.telegram.messenger.i0.L(8.0f), org.telegram.messenger.i0.L(7.5f), org.telegram.messenger.i0.L(8.0f), org.telegram.messenger.i0.L(7.5f));
-        nb0Var.setClipToPadding(false);
-        addView(nb0Var, w7.b6.d(-1, -1.0f, 87, 0.0f, 0.0f, 0.0f, 34.0f));
-        nb0Var.setOnItemClickListener(new org.telegram.ui.Cells.o(p1Var, viewGroup, o7Var, 1));
+        mb0Var.setAdapter(o3Var);
+        o3Var.f29638r = false;
+        mb0Var.setPadding(org.telegram.messenger.i0.L(8.0f), org.telegram.messenger.i0.L(7.5f), org.telegram.messenger.i0.L(8.0f), org.telegram.messenger.i0.L(7.5f));
+        mb0Var.setClipToPadding(false);
+        addView(mb0Var, w7.b6.d(-1, -1.0f, 87, 0.0f, 0.0f, 0.0f, 34.0f));
+        mb0Var.setOnItemClickListener(new org.telegram.ui.Cells.o(p1Var, viewGroup, o7Var, 1));
         x xVar = new x(p1Var);
-        xVar.f47927m = false;
+        xVar.f47938m = false;
         xVar.C = false;
         gr grVar = gr.h;
         xVar.o(grVar);
         xVar.n(280L);
         xVar.D = 14L;
-        nb0Var.setItemAnimator(xVar);
+        mb0Var.setItemAnimator(xVar);
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(2131232058);
         imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         imageView.setRotation(90.0f);
         imageView.setBackground(org.telegram.ui.ActionBar.t6.h0(1090519039, 1, -1));
         imageView.setOnClickListener(new rh.s(p1Var, 11));
-        w71 w71Var = new w71(12, context, null);
-        this.f49087f = w71Var;
-        w71Var.setWillNotDraw(false);
+        u71 u71Var = new u71(12, context, null);
+        this.f49101f = u71Var;
+        u71Var.setWillNotDraw(false);
         s4.a0 a0Var2 = new s4.a0(0, false);
         this.h = a0Var2;
-        w71Var.setLayoutManager(a0Var2);
-        p51 p51Var = new p51(w71Var, context, i10, 0, false, new j20() {
+        u71Var.setLayoutManager(a0Var2);
+        q51 q51Var = new q51(u71Var, context, i10, 0, false, new k20() {
             @Override
             public final void a(Object obj, Object obj2) {
                 long j10;
@@ -191,10 +191,10 @@ public abstract class j0 extends FrameLayout implements us {
                 int i12 = 0;
                 p1 p1Var2 = p1Var;
                 ArrayList arrayList = (ArrayList) obj;
-                p51 p51Var2 = (p51) obj2;
+                q51 q51Var2 = (q51) obj2;
                 switch (i11) {
                     case 0:
-                        ArrayList arrayList2 = p1Var2.f49091r;
+                        ArrayList arrayList2 = p1Var2.f49105r;
                         s0 s0Var = p1Var2.P;
                         if (s0Var == null) {
                             j10 = 0;
@@ -204,9 +204,9 @@ public abstract class j0 extends FrameLayout implements us {
                         p1Var2.H = j10;
                         while (i12 < arrayList2.size()) {
                             h0 h0Var = (h0) arrayList2.get(i12);
-                            if (h0Var.f49007b || !h0Var.e || h0Var.f49010g >= j10) {
-                                int i13 = b0.f48794b;
-                                a51 K = a51.K(b0.class);
+                            if (h0Var.f49021b || !h0Var.e || h0Var.f49024g >= j10) {
+                                int i13 = b0.f48808b;
+                                b51 K = b51.K(b0.class);
                                 K.G = h0Var;
                                 arrayList.add(K);
                             }
@@ -214,10 +214,10 @@ public abstract class j0 extends FrameLayout implements us {
                         }
                         return;
                     default:
-                        ArrayList arrayList3 = p1Var2.f49092s;
+                        ArrayList arrayList3 = p1Var2.f49106s;
                         while (i12 < arrayList3.size()) {
-                            int i14 = f0.f48947b;
-                            a51 K2 = a51.K(f0.class);
+                            int i14 = f0.f48961b;
+                            b51 K2 = b51.K(f0.class);
                             K2.G = (i0) arrayList3.get(i12);
                             arrayList.add(K2);
                             i12++;
@@ -226,28 +226,28 @@ public abstract class j0 extends FrameLayout implements us {
                 }
             }
         }, null);
-        this.f49090n = p51Var;
-        w71Var.setAdapter(p51Var);
-        p51Var.f29295r = false;
-        w71Var.setPadding(org.telegram.messenger.i0.L(8.0f), 0, org.telegram.messenger.i0.L(8.0f), 0);
-        w71Var.setClipToPadding(false);
-        addView(w71Var, w7.b6.d(-1, 26.0f, 87, 0.0f, 0.0f, 0.0f, 9.66f));
-        w71Var.setOnItemClickListener(new rh.d0(p1Var, 12));
+        this.f49104n = q51Var;
+        u71Var.setAdapter(q51Var);
+        q51Var.f29638r = false;
+        u71Var.setPadding(org.telegram.messenger.i0.L(8.0f), 0, org.telegram.messenger.i0.L(8.0f), 0);
+        u71Var.setClipToPadding(false);
+        addView(u71Var, w7.b6.d(-1, 26.0f, 87, 0.0f, 0.0f, 0.0f, 9.66f));
+        u71Var.setOnItemClickListener(new rh.d0(p1Var, 12));
         s4.j jVar = new s4.j();
-        jVar.f47927m = false;
+        jVar.f47938m = false;
         jVar.C = false;
         jVar.o(grVar);
         jVar.n(350L);
-        w71Var.setItemAnimator(jVar);
+        u71Var.setItemAnimator(jVar);
         u(false);
     }
 
     public static Integer a(j0 j0Var, Long l4) {
-        j0Var.f49085d0.run();
+        j0Var.f49099d0.run();
         j0Var.R = l4.longValue();
-        wb I = new cc(j0Var.f49081b, new b()).I(2131624224, j0Var.getStarsToastTitle(), j0Var.getStarsToastSubtitle());
+        wb I = new cc(j0Var.f49095b, new b()).I(2131624224, j0Var.getStarsToastTitle(), j0Var.getStarsToastSubtitle());
         boolean z10 = false;
-        I.f32143r = false;
+        I.f32209r = false;
         I.k(true);
         long j10 = 0;
         j0Var.R = 0L;
@@ -271,7 +271,7 @@ public abstract class j0 extends FrameLayout implements us {
         TLRPC.Peer defaultSendAs = getDefaultSendAs();
         s0 s0Var = this.P;
         if (s0Var != null && s0Var.l()) {
-            TLRPC.GroupCall groupCall = this.P.f49426w;
+            TLRPC.GroupCall groupCall = this.P.f49440w;
             if (groupCall == null) {
                 z10 = false;
             } else {
@@ -282,26 +282,26 @@ public abstract class j0 extends FrameLayout implements us {
             }
         }
         if (defaultSendAs == null) {
-            return d20.i(this.N).e();
+            return e20.i(this.N).e();
         }
         return org.telegram.messenger.o5.o(defaultSendAs);
     }
 
     private int getListViewTop() {
-        nb0 nb0Var = this.f49083c;
-        int height = nb0Var.getHeight();
-        for (int i10 = 0; i10 < nb0Var.getChildCount(); i10++) {
-            height = Math.min(nb0Var.getChildAt(i10).getTop(), height);
+        mb0 mb0Var = this.f49097c;
+        int height = mb0Var.getHeight();
+        for (int i10 = 0; i10 < mb0Var.getChildCount(); i10++) {
+            height = Math.min(mb0Var.getChildAt(i10).getTop(), height);
         }
-        return nb0Var.getHeight() - height;
+        return mb0Var.getHeight() - height;
     }
 
     private CharSequence getStarsToastSubtitle() {
-        return org.telegram.messenger.i0.W2(cd.H(',', "PaidMessageSentSubtitle", Math.max(0, (int) this.R)));
+        return org.telegram.messenger.i0.W2(dd.H(',', "PaidMessageSentSubtitle", Math.max(0, (int) this.R)));
     }
 
     private String getStarsToastTitle() {
-        return cd.L0(2131745043, null);
+        return dd.L0(2131745043, null);
     }
 
     private int getTotalMyStars() {
@@ -317,8 +317,8 @@ public abstract class j0 extends FrameLayout implements us {
     public final void b() {
         this.R = 0L;
         h(getDefaultPeerId());
-        e1 e1Var = ((p1) this).f49354i0.I1;
-        d1 d1Var = e1Var.f48888a;
+        e1 e1Var = ((p1) this).f49368i0.I1;
+        d1 d1Var = e1Var.f48902a;
         d1Var.c(e1Var);
         d1Var.b();
         j();
@@ -331,9 +331,9 @@ public abstract class j0 extends FrameLayout implements us {
         boolean z10 = false;
         int i11 = 0;
         while (true) {
-            arrayList = this.f49091r;
+            arrayList = this.f49105r;
             if (i11 < arrayList.size()) {
-                if (((h0) arrayList.get(i11)).f49006a == i10) {
+                if (((h0) arrayList.get(i11)).f49020a == i10) {
                     h0Var = (h0) arrayList.get(i11);
                     break;
                 }
@@ -345,8 +345,8 @@ public abstract class j0 extends FrameLayout implements us {
             }
         }
         if (h0Var != null) {
-            if (h0Var.f49006a < 0 && h0Var.e) {
-                long j10 = h0Var.f49010g;
+            if (h0Var.f49020a < 0 && h0Var.e) {
+                long j10 = h0Var.f49024g;
                 if (j10 > 0) {
                     this.Q -= j10;
                     j();
@@ -354,12 +354,12 @@ public abstract class j0 extends FrameLayout implements us {
             }
             int i12 = 0;
             while (true) {
-                arrayList2 = this.f49092s;
+                arrayList2 = this.f49106s;
                 if (i12 >= arrayList2.size()) {
                     break;
-                } else if (((i0) arrayList2.get(i12)).f49054f.contains(h0Var)) {
-                    ((i0) arrayList2.get(i12)).f49054f.remove(h0Var);
-                    if (((i0) arrayList2.get(i12)).f49054f.isEmpty()) {
+                } else if (((i0) arrayList2.get(i12)).f49068f.contains(h0Var)) {
+                    ((i0) arrayList2.get(i12)).f49068f.remove(h0Var);
+                    if (((i0) arrayList2.get(i12)).f49068f.isEmpty()) {
                         arrayList2.remove(i12);
                         z10 = true;
                     } else {
@@ -374,8 +374,8 @@ public abstract class j0 extends FrameLayout implements us {
             this.e.O(true);
             if (z10) {
                 ConnectionsManager.getInstance(this.N).getCurrentTime();
-                Collections.sort(arrayList2, new ex0(this, 19));
-                this.f49090n.O(true);
+                Collections.sort(arrayList2, new dx0(this, 19));
+                this.f49104n.O(true);
                 t();
                 u(true);
             }
@@ -387,10 +387,10 @@ public abstract class j0 extends FrameLayout implements us {
         h0 h0Var;
         int i11 = 0;
         while (true) {
-            nb0 nb0Var = this.f49083c;
-            if (i11 < nb0Var.getChildCount()) {
-                View childAt = nb0Var.getChildAt(i11);
-                if ((childAt instanceof c0) && (h0Var = (c0Var = (c0) childAt).K) != null && h0Var.f49006a == i10) {
+            mb0 mb0Var = this.f49097c;
+            if (i11 < mb0Var.getChildCount()) {
+                View childAt = mb0Var.getChildAt(i11);
+                if ((childAt instanceof c0) && (h0Var = (c0Var = (c0) childAt).K) != null && h0Var.f49020a == i10) {
                     return c0Var;
                 }
                 i11++;
@@ -402,7 +402,7 @@ public abstract class j0 extends FrameLayout implements us {
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == zs.H2) {
+        if (i10 == at.H2) {
             int i12 = 0;
             long longValue = ((Long) objArr[0]).longValue();
             TLObject tLObject = (TLObject) objArr[1];
@@ -410,10 +410,10 @@ public abstract class j0 extends FrameLayout implements us {
             if (tLObject instanceof TL_update.TL_updateGroupCallMessage) {
                 TL_update.TL_updateGroupCallMessage tL_updateGroupCallMessage = (TL_update.TL_updateGroupCallMessage) tLObject;
                 TLRPC.InputGroupCall inputGroupCall = this.O;
-                if (inputGroupCall != null && inputGroupCall.f19810id == longValue) {
+                if (inputGroupCall != null && inputGroupCall.f19811id == longValue) {
                     TLRPC.GroupCallMessage groupCallMessage = tL_updateGroupCallMessage.message;
                     int i13 = groupCallMessage.date;
-                    int i14 = groupCallMessage.f19804id;
+                    int i14 = groupCallMessage.f19805id;
                     boolean z10 = groupCallMessage.from_admin;
                     long o10 = org.telegram.messenger.o5.o(groupCallMessage.from_id);
                     TLRPC.GroupCallMessage groupCallMessage2 = tL_updateGroupCallMessage.message;
@@ -422,7 +422,7 @@ public abstract class j0 extends FrameLayout implements us {
             } else if (tLObject instanceof TL_update.TL_updateDeleteGroupCallMessages) {
                 TL_update.TL_updateDeleteGroupCallMessages tL_updateDeleteGroupCallMessages = (TL_update.TL_updateDeleteGroupCallMessages) tLObject;
                 TLRPC.InputGroupCall inputGroupCall2 = this.O;
-                if (inputGroupCall2 != null && inputGroupCall2.f19810id == longValue) {
+                if (inputGroupCall2 != null && inputGroupCall2.f19811id == longValue) {
                     ArrayList<Integer> arrayList = tL_updateDeleteGroupCallMessages.messages;
                     int size = arrayList.size();
                     while (i12 < size) {
@@ -448,15 +448,15 @@ public abstract class j0 extends FrameLayout implements us {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
-        nb0 nb0Var = this.f49083c;
-        if (view == nb0Var) {
-            if (nb0Var.getAlpha() <= 0.0f) {
+        mb0 mb0Var = this.f49097c;
+        if (view == mb0Var) {
+            if (mb0Var.getAlpha() <= 0.0f) {
                 return true;
             }
-            float max = Math.max(0.0f, this.K - nb0Var.getTop()) + nb0Var.getY();
-            canvas.saveLayerAlpha(nb0Var.getX(), nb0Var.getY(), nb0Var.getX() + nb0Var.getWidth(), nb0Var.getY() + nb0Var.getHeight(), 255, 31);
+            float max = Math.max(0.0f, this.K - mb0Var.getTop()) + mb0Var.getY();
+            canvas.saveLayerAlpha(mb0Var.getX(), mb0Var.getY(), mb0Var.getX() + mb0Var.getWidth(), mb0Var.getY() + mb0Var.getHeight(), 255, 31);
             canvas.save();
-            canvas.translate(0.0f, Math.min((nb0Var.getY() + nb0Var.getHeight()) - max, getListViewTop()) * (1.0f - nb0Var.getAlpha()));
+            canvas.translate(0.0f, Math.min((mb0Var.getY() + mb0Var.getHeight()) - max, getListViewTop()) * (1.0f - mb0Var.getAlpha()));
             canvas.clipRect(0.0f, max, getWidth(), getHeight());
             boolean drawChild = super.drawChild(canvas, view, j10);
             canvas.restore();
@@ -464,7 +464,7 @@ public abstract class j0 extends FrameLayout implements us {
             rectF.set(0.0f, max, getWidth(), org.telegram.messenger.i0.L(12.0f) + max);
             li.k kVar = this.I;
             kVar.o(canvas, rectF, 1, 1.0f);
-            rectF.set(0.0f, (nb0Var.getY() + nb0Var.getHeight()) - org.telegram.messenger.i0.L(12.0f), getWidth(), nb0Var.getHeight() + nb0Var.getBottom());
+            rectF.set(0.0f, (mb0Var.getY() + mb0Var.getHeight()) - org.telegram.messenger.i0.L(12.0f), getWidth(), mb0Var.getHeight() + mb0Var.getBottom());
             kVar.o(canvas, rectF, 3, 1.0f);
             canvas.restore();
             return drawChild;
@@ -473,7 +473,7 @@ public abstract class j0 extends FrameLayout implements us {
     }
 
     public final int e(long j10) {
-        return ((Integer) Map.EL.getOrDefault(this.f49093w, Long.valueOf(j10), 0)).intValue();
+        return ((Integer) Map.EL.getOrDefault(this.f49107w, Long.valueOf(j10), 0)).intValue();
     }
 
     public final boolean f() {
@@ -484,22 +484,22 @@ public abstract class j0 extends FrameLayout implements us {
             int i10 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
             int i11 = this.N;
             if (i10 >= 0) {
-                if (j10 == d20.i(i11).e()) {
+                if (j10 == e20.i(i11).e()) {
                     return true;
                 }
                 return false;
             }
             s0 s0Var = this.P;
-            if (s0Var != null && (inputGroupCall = this.O) != null && inputGroupCall.f19810id == s0Var.g() && (groupCall = this.P.f49426w) != null && groupCall.creator) {
+            if (s0Var != null && (inputGroupCall = this.O) != null && inputGroupCall.f19811id == s0Var.g() && (groupCall = this.P.f49440w) != null && groupCall.creator) {
                 return true;
             }
-            return org.telegram.messenger.w3.w(14, vp.r1(i11).L0(Long.valueOf(-this.M)));
+            return org.telegram.messenger.w3.w(14, wp.r1(i11).L0(Long.valueOf(-this.M)));
         }
         return false;
     }
 
     public final boolean g() {
-        return this.f49088f0;
+        return this.f49102f0;
     }
 
     public TLRPC.Peer getDefaultSendAs() {
@@ -507,16 +507,16 @@ public abstract class j0 extends FrameLayout implements us {
     }
 
     public int getListViewContentTop() {
-        nb0 nb0Var = this.f49083c;
-        int height = nb0Var.getHeight();
-        for (int i10 = 0; i10 < nb0Var.getChildCount(); i10++) {
-            height = Math.min(nb0Var.getChildAt(i10).getTop(), height);
+        mb0 mb0Var = this.f49097c;
+        int height = mb0Var.getHeight();
+        for (int i10 = 0; i10 < mb0Var.getChildCount(); i10++) {
+            height = Math.min(mb0Var.getChildAt(i10).getTop(), height);
         }
         return height;
     }
 
     public int getMessagesCount() {
-        return this.f49091r.size();
+        return this.f49105r.size();
     }
 
     public long getStarsCount() {
@@ -537,11 +537,11 @@ public abstract class j0 extends FrameLayout implements us {
         }
         int i11 = 0;
         while (true) {
-            ArrayList arrayList = this.f49091r;
+            ArrayList arrayList = this.f49105r;
             if (i10 < arrayList.size()) {
                 h0 h0Var = (h0) arrayList.get(i10);
-                int i12 = h0Var.f49006a;
-                if (i12 >= 0 && i12 > this.F && (h0Var.f49007b || !h0Var.e || h0Var.f49010g >= j10)) {
+                int i12 = h0Var.f49020a;
+                if (i12 >= 0 && i12 > this.F && (h0Var.f49021b || !h0Var.e || h0Var.f49024g >= j10)) {
                     i11++;
                 }
                 i10++;
@@ -558,7 +558,7 @@ public abstract class j0 extends FrameLayout implements us {
     public abstract void j();
 
     public final void k(boolean z10) {
-        this.f49085d0.run();
+        this.f49099d0.run();
         ArrayList arrayList = new ArrayList();
         if (this.T != null) {
             for (int i10 = 0; i10 < this.T.size(); i10++) {
@@ -571,14 +571,14 @@ public abstract class j0 extends FrameLayout implements us {
                 arrayList.add(tL_messageReactor);
             }
         }
-        long e = d20.i(this.N).e();
+        long e = e20.i(this.N).e();
         TLRPC.Peer defaultSendAs = getDefaultSendAs();
         if (defaultSendAs != null) {
             e = org.telegram.messenger.o5.o(defaultSendAs);
         }
-        ro0 ro0Var = new ro0(2);
+        so0 so0Var = new so0(2);
         int i11 = this.N;
-        y8 y8Var = new y8(getContext(), i11, this.M, null, null, arrayList, !z10, true, e, ro0Var);
+        y8 y8Var = new y8(getContext(), i11, this.M, null, null, arrayList, !z10, true, e, so0Var);
         p1 p1Var = (p1) this;
         y8Var.G1 = p1Var;
         y8Var.I1 = new rh.d0(p1Var, 11);
@@ -594,9 +594,9 @@ public abstract class j0 extends FrameLayout implements us {
         i0 i0Var2;
         int i13 = 0;
         while (true) {
-            ArrayList arrayList = this.f49091r;
+            ArrayList arrayList = this.f49105r;
             if (i13 < arrayList.size()) {
-                if (((h0) arrayList.get(i13)).f49006a != i11) {
+                if (((h0) arrayList.get(i13)).f49020a != i11) {
                     i13++;
                 } else {
                     return;
@@ -606,23 +606,23 @@ public abstract class j0 extends FrameLayout implements us {
                 int currentTime = ConnectionsManager.getInstance(i14).getCurrentTime();
                 ?? obj = new Object();
                 obj.d = i10;
-                obj.f49007b = z10;
-                obj.f49008c = j10;
-                obj.f49009f = tL_textWithEntities;
-                obj.f49010g = j11;
-                obj.f49006a = i11;
+                obj.f49021b = z10;
+                obj.f49022c = j10;
+                obj.f49023f = tL_textWithEntities;
+                obj.f49024g = j11;
+                obj.f49020a = i11;
                 obj.e = TextUtils.isEmpty(tL_textWithEntities.text);
-                int b10 = o.b(i14, (int) obj.f49010g, 0);
+                int b10 = o.b(i14, (int) obj.f49024g, 0);
                 long j13 = 0;
-                int i15 = (obj.f49010g > 0L ? 1 : (obj.f49010g == 0L ? 0 : -1));
-                ArrayList arrayList2 = this.f49092s;
+                int i15 = (obj.f49024g > 0L ? 1 : (obj.f49024g == 0L ? 0 : -1));
+                ArrayList arrayList2 = this.f49106s;
                 boolean z13 = true;
                 if (i15 > 0 && b10 > 0 && currentTime - obj.d <= b10) {
                     int i16 = 0;
                     while (true) {
                         if (i16 < arrayList2.size()) {
                             j12 = j13;
-                            if (((i0) arrayList2.get(i16)).f49052b == j10) {
+                            if (((i0) arrayList2.get(i16)).f49066b == j10) {
                                 i0Var = (i0) arrayList2.get(i16);
                                 break;
                             } else {
@@ -638,25 +638,25 @@ public abstract class j0 extends FrameLayout implements us {
                     if (i0Var == null) {
                         ?? obj2 = new Object();
                         ArrayList arrayList3 = new ArrayList();
-                        obj2.f49054f = arrayList3;
-                        obj2.f49051a = i14;
-                        obj2.f49052b = j10;
+                        obj2.f49068f = arrayList3;
+                        obj2.f49065a = i14;
+                        obj2.f49066b = j10;
                         arrayList3.add(obj);
                         arrayList2.add(0, obj2);
                         z12 = true;
                         i0Var2 = obj2;
                     } else {
-                        i0Var.f49054f.add(obj);
-                        this.f49087f.g1();
+                        i0Var.f49068f.add(obj);
+                        this.f49101f.g1();
                         z12 = false;
                         i0Var2 = i0Var;
                     }
                     i0Var2.c();
                     u(true);
                     m();
-                    Collections.sort(arrayList2, new ex0(this, 19));
+                    Collections.sort(arrayList2, new dx0(this, 19));
                     if (!z11) {
-                        this.f49090n.O(true);
+                        this.f49104n.O(true);
                     }
                     if (z12) {
                         this.h.n0(0);
@@ -665,15 +665,15 @@ public abstract class j0 extends FrameLayout implements us {
                     j12 = 0;
                 }
                 if (!z11 && obj.e) {
-                    long j14 = obj.f49010g;
+                    long j14 = obj.f49024g;
                     if (j14 > j12) {
                         this.Q += j14;
                         j();
                     }
                 }
-                if (obj.f49006a >= 0) {
+                if (obj.f49020a >= 0) {
                     for (int size = arrayList.size() - 1; size >= 0; size--) {
-                        if (obj.f49006a < ((h0) arrayList.get(size)).f49006a) {
+                        if (obj.f49020a < ((h0) arrayList.get(size)).f49020a) {
                             i12 = size + 1;
                             break;
                         }
@@ -687,24 +687,24 @@ public abstract class j0 extends FrameLayout implements us {
                     }
                     this.e.O(true);
                 }
-                if (i12 <= 0 && !z11 && (!this.f49083c.canScrollVertically(1) || obj.f49006a < 0)) {
+                if (i12 <= 0 && !z11 && (!this.f49097c.canScrollVertically(1) || obj.f49020a < 0)) {
                     this.d.h1(0, org.telegram.messenger.i0.L(100.0f));
-                    int i17 = obj.f49006a;
+                    int i17 = obj.f49020a;
                     if (i17 > 0) {
                         this.F = i17;
                     }
                 }
                 invalidate();
                 p1 p1Var = (p1) this;
-                a aVar = p1Var.f49354i0.G1;
+                a aVar = p1Var.f49368i0.G1;
                 if (aVar != null) {
                     aVar.setCount(p1Var.getUnreadMessagesCount());
                 }
-                if (!z11 && i11 > 0 && obj.f49010g > j12) {
+                if (!z11 && i11 > 0 && obj.f49024g > j12) {
                     int i18 = 0;
                     while (true) {
                         if (i18 < this.T.size()) {
-                            if (org.telegram.messenger.o5.o(((TL_phone.groupCallDonor) this.T.get(i18)).peer_id) == obj.f49008c) {
+                            if (org.telegram.messenger.o5.o(((TL_phone.groupCallDonor) this.T.get(i18)).peer_id) == obj.f49022c) {
                                 groupcalldonor = (TL_phone.groupCallDonor) this.T.get(i18);
                                 break;
                             }
@@ -716,14 +716,14 @@ public abstract class j0 extends FrameLayout implements us {
                     }
                     if (groupcalldonor == null) {
                         groupcalldonor = new TL_phone.groupCallDonor();
-                        if (d20.i(i14).e() != obj.f49008c) {
+                        if (e20.i(i14).e() != obj.f49022c) {
                             z13 = false;
                         }
                         groupcalldonor.my = z13;
-                        groupcalldonor.peer_id = vp.r1(i14).y1(obj.f49008c);
+                        groupcalldonor.peer_id = wp.r1(i14).y1(obj.f49022c);
                         groupcalldonor.stars = j12;
                         for (int i19 = 0; i19 < arrayList2.size(); i19++) {
-                            if (((i0) arrayList2.get(i19)).f49052b == obj.f49008c) {
+                            if (((i0) arrayList2.get(i19)).f49066b == obj.f49022c) {
                                 ((i0) arrayList2.get(i19)).b();
                                 groupcalldonor.stars += ((i0) arrayList2.get(i19)).d;
                             }
@@ -731,14 +731,14 @@ public abstract class j0 extends FrameLayout implements us {
                         this.T.add(groupcalldonor);
                     }
                     long j15 = groupcalldonor.stars;
-                    long j16 = obj.f49010g;
+                    long j16 = obj.f49024g;
                     long j17 = j15 + j16;
                     groupcalldonor.stars = j17;
-                    i((int) j17, (int) j16, obj.f49008c);
+                    i((int) j17, (int) j16, obj.f49022c);
                 }
                 t();
                 if (z11) {
-                    u uVar = this.f49089g0;
+                    u uVar = this.f49103g0;
                     org.telegram.messenger.i0.r(uVar);
                     org.telegram.messenger.i0.h3(uVar, 100L);
                 }
@@ -762,7 +762,7 @@ public abstract class j0 extends FrameLayout implements us {
             this.E = null;
         }
         int currentTime = ConnectionsManager.getInstance(this.N).getCurrentTime();
-        ArrayList arrayList = this.f49092s;
+        ArrayList arrayList = this.f49106s;
         int size = arrayList.size();
         int i12 = 0;
         long j10 = Long.MAX_VALUE;
@@ -770,7 +770,7 @@ public abstract class j0 extends FrameLayout implements us {
             Object obj = arrayList.get(i12);
             i12++;
             i0 i0Var = (i0) obj;
-            ArrayList arrayList2 = i0Var.f49054f;
+            ArrayList arrayList2 = i0Var.f49068f;
             int size2 = arrayList2.size();
             int i13 = currentTime;
             int i14 = 0;
@@ -781,10 +781,10 @@ public abstract class j0 extends FrameLayout implements us {
                 h0 h0Var = (h0) obj2;
                 int i16 = currentTime;
                 ArrayList arrayList3 = arrayList;
-                if (h0Var.f49010g > 0) {
+                if (h0Var.f49024g > 0) {
                     i13 = Math.min(i13, h0Var.d);
                     i11 = i16;
-                    i14 = Math.max(i14, o.b(i0Var.f49051a, (int) h0Var.f49010g, 0) + h0Var.d);
+                    i14 = Math.max(i14, o.b(i0Var.f49065a, (int) h0Var.f49024g, 0) + h0Var.d);
                 } else {
                     i11 = i16;
                 }
@@ -808,7 +808,7 @@ public abstract class j0 extends FrameLayout implements us {
         boolean z10;
         TL_phone.groupCallDonor groupcalldonor;
         int i11 = this.N;
-        final int j12 = d20.i(i11).j();
+        final int j12 = e20.i(i11).j();
         final TL_phone.sendGroupCallMessage sendgroupcallmessage = new TL_phone.sendGroupCallMessage();
         sendgroupcallmessage.call = this.O;
         sendgroupcallmessage.message = tL_textWithEntities;
@@ -817,10 +817,10 @@ public abstract class j0 extends FrameLayout implements us {
             sendgroupcallmessage.flags |= 1;
             sendgroupcallmessage.allow_paid_stars = j11;
         }
-        sendgroupcallmessage.random_id = Utilities.f14519b.nextLong();
+        sendgroupcallmessage.random_id = Utilities.f14520b.nextLong();
         sendgroupcallmessage.flags |= 2;
-        sendgroupcallmessage.send_as = vp.r1(i11).i1(j10);
-        ConnectionsManager.getInstance(d20.f15147s0).sendRequest(sendgroupcallmessage, new RequestDelegate() {
+        sendgroupcallmessage.send_as = wp.r1(i11).i1(j10);
+        ConnectionsManager.getInstance(e20.f15506s0).sendRequest(sendgroupcallmessage, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 boolean z11 = tLObject instanceof TLRPC.Updates;
@@ -828,7 +828,7 @@ public abstract class j0 extends FrameLayout implements us {
                 int i13 = j12;
                 if (z11) {
                     TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-                    ArrayList z02 = vp.z0(updates, TL_update.TL_updateMessageID.class);
+                    ArrayList z02 = wp.z0(updates, TL_update.TL_updateMessageID.class);
                     int size = z02.size();
                     int i14 = 0;
                     while (i14 < size) {
@@ -836,8 +836,8 @@ public abstract class j0 extends FrameLayout implements us {
                         i14++;
                         TL_update.TL_updateMessageID tL_updateMessageID = (TL_update.TL_updateMessageID) obj;
                         if (sendgroupcallmessage.random_id == tL_updateMessageID.random_id) {
-                            int i15 = tL_updateMessageID.f20050id;
-                            ArrayList arrayList = j0Var.f49091r;
+                            int i15 = tL_updateMessageID.f20051id;
+                            ArrayList arrayList = j0Var.f49105r;
                             int size2 = arrayList.size();
                             int i16 = 0;
                             while (true) {
@@ -845,17 +845,17 @@ public abstract class j0 extends FrameLayout implements us {
                                     Object obj2 = arrayList.get(i16);
                                     i16++;
                                     h0 h0Var = (h0) obj2;
-                                    if (h0Var.f49006a == i13) {
-                                        h0Var.f49006a = i15;
+                                    if (h0Var.f49020a == i13) {
+                                        h0Var.f49020a = i15;
                                         break;
                                     }
                                 }
                             }
                         }
                     }
-                    vp.r1(j0Var.N).L3(updates, false);
+                    wp.r1(j0Var.N).L3(updates, false);
                 } else if (tL_error != null) {
-                    org.telegram.messenger.i0.g3(new mn(j0Var, i13, tL_error, j11, j10, tL_textWithEntities));
+                    org.telegram.messenger.i0.g3(new nn(j0Var, i13, tL_error, j11, j10, tL_textWithEntities));
                 }
             }
         });
@@ -879,12 +879,12 @@ public abstract class j0 extends FrameLayout implements us {
                 TL_phone.groupCallDonor groupcalldonor2 = new TL_phone.groupCallDonor();
                 groupcalldonor2.my = true;
                 groupcalldonor2.anonymous = false;
-                groupcalldonor2.peer_id = vp.r1(i11).y1(j10);
+                groupcalldonor2.peer_id = wp.r1(i11).y1(j10);
                 groupcalldonor2.stars = j11;
                 this.T.add(groupcalldonor2);
             }
         }
-        int currentTime = ConnectionsManager.getInstance(d20.f15147s0).getCurrentTime();
+        int currentTime = ConnectionsManager.getInstance(e20.f15506s0).getCurrentTime();
         if (j10 != this.M && !f()) {
             i10 = j12;
             z10 = false;
@@ -940,59 +940,59 @@ public abstract class j0 extends FrameLayout implements us {
     public final void p() {
         int[] iArr;
         wb wbVar = this.W;
-        u uVar = this.f49085d0;
-        if (wbVar == null || !wbVar.f32137l) {
+        u uVar = this.f49099d0;
+        if (wbVar == null || !wbVar.f32203l) {
             b bVar = new b();
             qb qbVar = new qb(getContext(), bVar);
-            this.f49080a0 = qbVar;
+            this.f49094a0 = qbVar;
             qbVar.c(2131624224, new String[0]);
-            this.f49080a0.f29623b.setText(getStarsToastTitle());
+            this.f49094a0.f29704b.setText(getStarsToastTitle());
             ub ubVar = new ub(getContext(), bVar, true, false);
-            this.f49082b0 = ubVar;
-            ubVar.e(cd.L0(2131745041, null));
-            this.f49082b0.f30890b = new t((p1) this, 0);
+            this.f49096b0 = ubVar;
+            ubVar.e(dd.L0(2131745041, null));
+            this.f49096b0.f30924b = new t((p1) this, 0);
             pb pbVar = new pb(getContext(), bVar);
-            this.f49084c0 = pbVar;
-            pbVar.f29331b = 5000L;
+            this.f49098c0 = pbVar;
+            pbVar.f29396b = 5000L;
             pbVar.setColor(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.uj, bVar));
-            this.f49082b0.addView(this.f49084c0, w7.b6.d(20, 20.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
-            this.f49082b0.e.setPadding(org.telegram.messenger.i0.L(12.0f), org.telegram.messenger.i0.L(8.0f), org.telegram.messenger.i0.L(30.0f), org.telegram.messenger.i0.L(8.0f));
-            this.f49080a0.setButton(this.f49082b0);
-            wb f7 = wb.f(this.f49081b, this.f49080a0, -1);
+            this.f49096b0.addView(this.f49098c0, w7.b6.d(20, 20.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
+            this.f49096b0.e.setPadding(org.telegram.messenger.i0.L(12.0f), org.telegram.messenger.i0.L(8.0f), org.telegram.messenger.i0.L(30.0f), org.telegram.messenger.i0.L(8.0f));
+            this.f49094a0.setButton(this.f49096b0);
+            wb f7 = wb.f(this.f49095b, this.f49094a0, -1);
             this.W = f7;
-            f7.f32143r = false;
+            f7.f32209r = false;
             f7.k(true);
             this.W.v = uVar;
         }
         this.R++;
         h(getDefaultPeerId());
         i(getTotalMyStars(), (int) this.R, getDefaultPeerId());
-        this.f49080a0.f29623b.setText(getStarsToastTitle());
-        this.f49080a0.f29624c.setText(getStarsToastSubtitle());
-        this.f49084c0.f29331b = 5000L;
+        this.f49094a0.f29704b.setText(getStarsToastTitle());
+        this.f49094a0.f29705c.setText(getStarsToastSubtitle());
+        this.f49098c0.f29396b = 5000L;
         org.telegram.messenger.i0.r(uVar);
         org.telegram.messenger.i0.h3(uVar, 5000L);
         long j10 = this.R;
-        e1 e1Var = ((p1) this).f49354i0.I1;
-        d1 d1Var = e1Var.f48888a;
+        e1 e1Var = ((p1) this).f49368i0.I1;
+        d1 d1Var = e1Var.f48902a;
         d1Var.c(e1Var);
-        if (d1Var.f48871s) {
-            d1Var.f48871s = false;
+        if (d1Var.f48885s) {
+            d1Var.f48885s = false;
             d1Var.a(1.0f, null);
         }
         ArrayList arrayList = d1Var.e;
         while (arrayList.size() > 4) {
-            ((bi0) arrayList.remove(0)).C(true);
+            ((ci0) arrayList.remove(0)).C(true);
         }
-        int[] iArr2 = d1Var.f48868f;
-        bi0 bi0Var = new bi0(iArr2[Utilities.f14520c.nextInt(iArr2.length)], org.telegram.messenger.i0.L(70.0f), org.telegram.messenger.i0.L(70.0f));
-        bi0Var.R(d1Var);
-        bi0Var.J(true);
-        bi0Var.K(0);
-        bi0Var.start();
-        arrayList.add(bi0Var);
+        int[] iArr2 = d1Var.f48882f;
+        ci0 ci0Var = new ci0(iArr2[Utilities.f14521c.nextInt(iArr2.length)], org.telegram.messenger.i0.L(70.0f), org.telegram.messenger.i0.L(70.0f));
+        ci0Var.R(d1Var);
+        ci0Var.J(true);
+        ci0Var.K(0);
+        ci0Var.start();
+        arrayList.add(ci0Var);
         d1Var.invalidate();
-        org.telegram.ui.Components.e6 e6Var = d1Var.f48867c;
+        org.telegram.ui.Components.e6 e6Var = d1Var.f48881c;
         e6Var.a();
         e6Var.t(i0.a.k(j10, ',', new StringBuilder("+")), true, true);
         b1 b1Var = d1Var.d;
@@ -1022,31 +1022,31 @@ public abstract class j0 extends FrameLayout implements us {
         if (inputGroupCall2 == null) {
             j11 = 0;
         } else {
-            j11 = inputGroupCall2.f19810id;
+            j11 = inputGroupCall2.f19811id;
         }
         if (inputGroupCall != null) {
-            j12 = inputGroupCall.f19810id;
+            j12 = inputGroupCall.f19811id;
         }
         if (j11 != j12) {
-            this.f49091r.clear();
+            this.f49105r.clear();
             z10 = true;
             this.e.O(true);
         } else {
             z10 = false;
         }
         TLRPC.InputGroupCall inputGroupCall3 = this.O;
-        int i10 = zs.H2;
+        int i10 = at.H2;
         int i11 = this.N;
         if (inputGroupCall3 != null) {
-            zs.f(i11).n(this, i10);
+            at.f(i11).n(this, i10);
         }
         this.M = j10;
         this.O = inputGroupCall;
         if (inputGroupCall != null) {
-            zs.f(i11).c(this, i10);
+            at.f(i11).c(this, i10);
         }
         if (z10) {
-            this.f49085d0.run();
+            this.f49099d0.run();
             u uVar = this.V;
             if (inputGroupCall == null) {
                 org.telegram.messenger.i0.r(uVar);
@@ -1058,8 +1058,8 @@ public abstract class j0 extends FrameLayout implements us {
     }
 
     public final float s() {
-        nb0 nb0Var = this.f49083c;
-        return Math.max(Math.max(0.0f, this.K - nb0Var.getTop()), getListViewContentTop()) + nb0Var.getY();
+        mb0 mb0Var = this.f49097c;
+        return Math.max(Math.max(0.0f, this.K - mb0Var.getTop()), getListViewContentTop()) + mb0Var.getY();
     }
 
     public void setAllowTouches(boolean z10) {
@@ -1078,13 +1078,13 @@ public abstract class j0 extends FrameLayout implements us {
             z10 = false;
         }
         this.P = s0Var;
-        if (z10 && s0Var != null && (arrayList = s0Var.U) != null && (arrayList2 = s0Var.V) != null && arrayList != (arrayList3 = this.f49091r) && arrayList2 != (arrayList4 = this.f49092s) && arrayList3.isEmpty() && arrayList4.isEmpty()) {
+        if (z10 && s0Var != null && (arrayList = s0Var.U) != null && (arrayList2 = s0Var.V) != null && arrayList != (arrayList3 = this.f49105r) && arrayList2 != (arrayList4 = this.f49106s) && arrayList3.isEmpty() && arrayList4.isEmpty()) {
             arrayList3.addAll(s0Var.U);
             arrayList4.addAll(s0Var.V);
             this.e.O(true);
             ConnectionsManager.getInstance(this.N).getCurrentTime();
-            Collections.sort(arrayList4, new ex0(this, 19));
-            this.f49090n.O(true);
+            Collections.sort(arrayList4, new dx0(this, 19));
+            this.f49104n.O(true);
             u(false);
         }
     }
@@ -1094,14 +1094,14 @@ public abstract class j0 extends FrameLayout implements us {
         i0 i0Var;
         c0 c0Var;
         h0 h0Var;
-        HashMap hashMap = this.f49093w;
+        HashMap hashMap = this.f49107w;
         hashMap.clear();
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = this.T;
         if (arrayList2 != null) {
             arrayList.addAll(arrayList2);
         }
-        Collections.sort(arrayList, new ex0(20));
+        Collections.sort(arrayList, new dx0(20));
         int size = arrayList.size();
         int i10 = 0;
         int i11 = Integer.MIN_VALUE;
@@ -1123,13 +1123,13 @@ public abstract class j0 extends FrameLayout implements us {
         }
         int i15 = 0;
         while (true) {
-            nb0 nb0Var = this.f49083c;
-            if (i15 >= nb0Var.getChildCount()) {
+            mb0 mb0Var = this.f49097c;
+            if (i15 >= mb0Var.getChildCount()) {
                 break;
             }
-            View childAt = nb0Var.getChildAt(i15);
+            View childAt = mb0Var.getChildAt(i15);
             if ((childAt instanceof c0) && (h0Var = (c0Var = (c0) childAt).K) != null) {
-                int e = e(h0Var.f49008c);
+                int e = e(h0Var.f49022c);
                 h0 h0Var2 = c0Var.K;
                 if (e != h0Var2.h) {
                     h0Var2.h = e;
@@ -1140,12 +1140,12 @@ public abstract class j0 extends FrameLayout implements us {
         }
         int i16 = 0;
         while (true) {
-            ArrayList arrayList3 = this.f49091r;
+            ArrayList arrayList3 = this.f49105r;
             if (i16 >= arrayList3.size()) {
                 break;
             }
             h0 h0Var3 = (h0) arrayList3.get(i16);
-            int e7 = e(h0Var3.f49008c);
+            int e7 = e(h0Var3.f49022c);
             if (e7 != h0Var3.h) {
                 h0Var3.h = e7;
             }
@@ -1153,14 +1153,14 @@ public abstract class j0 extends FrameLayout implements us {
         }
         int i17 = 0;
         while (true) {
-            w71 w71Var = this.f49087f;
-            if (i17 >= w71Var.getChildCount()) {
+            u71 u71Var = this.f49101f;
+            if (i17 >= u71Var.getChildCount()) {
                 break;
             }
-            View childAt2 = w71Var.getChildAt(i17);
-            if ((childAt2 instanceof g0) && (i0Var = (g0Var = (g0) childAt2).f48985f) != null) {
-                int e10 = e(i0Var.f49052b);
-                i0 i0Var2 = g0Var.f48985f;
+            View childAt2 = u71Var.getChildAt(i17);
+            if ((childAt2 instanceof g0) && (i0Var = (g0Var = (g0) childAt2).f48999f) != null) {
+                int e10 = e(i0Var.f49066b);
+                i0 i0Var2 = g0Var.f48999f;
                 if (e10 != i0Var2.e) {
                     i0Var2.e = e10;
                     g0Var.set(i0Var2);
@@ -1169,10 +1169,10 @@ public abstract class j0 extends FrameLayout implements us {
             i17++;
         }
         while (true) {
-            ArrayList arrayList4 = this.f49092s;
+            ArrayList arrayList4 = this.f49106s;
             if (i10 < arrayList4.size()) {
                 i0 i0Var3 = (i0) arrayList4.get(i10);
-                int e11 = e(i0Var3.f49052b);
+                int e11 = e(i0Var3.f49066b);
                 if (e11 != i0Var3.e) {
                     i0Var3.e = e11;
                 }
@@ -1188,17 +1188,17 @@ public abstract class j0 extends FrameLayout implements us {
         float L2;
         float L3;
         float L4;
-        ArrayList arrayList = this.f49092s;
+        ArrayList arrayList = this.f49106s;
         if (z10 && this.J == (!arrayList.isEmpty())) {
             return;
         }
         boolean isEmpty = arrayList.isEmpty();
         this.J = !isEmpty;
         float f7 = 1.0f;
-        nb0 nb0Var = this.f49083c;
-        w71 w71Var = this.f49087f;
+        mb0 mb0Var = this.f49097c;
+        u71 u71Var = this.f49101f;
         if (z10) {
-            ViewPropertyAnimator animate = nb0Var.animate();
+            ViewPropertyAnimator animate = mb0Var.animate();
             if (this.J) {
                 L3 = 0.0f;
             } else {
@@ -1207,7 +1207,7 @@ public abstract class j0 extends FrameLayout implements us {
             ViewPropertyAnimator translationY = animate.translationY(L3);
             gr grVar = gr.h;
             translationY.setInterpolator(grVar).setUpdateListener(new qh.e0(this, 11)).setDuration(420L).start();
-            ViewPropertyAnimator animate2 = w71Var.animate();
+            ViewPropertyAnimator animate2 = u71Var.animate();
             if (this.J) {
                 L4 = 0.0f;
             } else {
@@ -1225,17 +1225,17 @@ public abstract class j0 extends FrameLayout implements us {
         } else {
             L = org.telegram.messenger.i0.L(35.0f);
         }
-        nb0Var.setTranslationY(L);
+        mb0Var.setTranslationY(L);
         if (this.J) {
             L2 = 0.0f;
         } else {
             L2 = org.telegram.messenger.i0.L(35.0f);
         }
-        w71Var.setTranslationY(L2);
+        u71Var.setTranslationY(L2);
         if (!this.J) {
             f7 = 0.0f;
         }
-        w71Var.setAlpha(f7);
+        u71Var.setAlpha(f7);
         invalidate();
     }
 }

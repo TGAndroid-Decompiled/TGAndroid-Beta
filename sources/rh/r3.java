@@ -24,13 +24,13 @@ public final class r3 extends ec {
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(org.telegram.messenger.k6.m(str, getPaint().getFontMetricsInt(), false, null, 0));
         SpannableStringBuilder append = spannableStringBuilder.append((CharSequence) " ");
-        String I0 = xh.i.I0(i10);
+        String J0 = xh.i.J0(i10);
         if (b1Var != null) {
             x0Var = new org.telegram.ui.Wallet.x0(this, b1Var, i10, 12);
         } else {
             x0Var = null;
         }
-        append.append((CharSequence) fc.b(I0, x0Var, this.P, null));
+        append.append((CharSequence) fc.b(J0, x0Var, this.P, null));
         setText(spannableStringBuilder);
         this.Q = str;
         this.R = i10;

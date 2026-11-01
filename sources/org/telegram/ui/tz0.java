@@ -2,39 +2,39 @@ package org.telegram.ui;
 
 import android.content.Context;
 public final class tz0 implements Runnable {
-    public final int f41972a;
-    public final org.telegram.ui.ActionBar.k2 f41973b;
-    public final Context f41974c;
-    public final org.telegram.ui.ActionBar.p6 d;
-    public final org.telegram.ui.Components.gi0 e;
+    public final int f41753a;
+    public final org.telegram.messenger.video.a f41754b;
+    public final org.telegram.ui.Components.cc f41755c;
+    public final Context d;
+    public final org.telegram.ui.Components.so0 e;
 
-    public tz0(org.telegram.ui.ActionBar.k2 k2Var, Context context, org.telegram.ui.ActionBar.p6 p6Var, org.telegram.ui.Components.gi0 gi0Var, int i10) {
-        this.f41972a = i10;
-        this.f41973b = k2Var;
-        this.f41974c = context;
-        this.d = p6Var;
-        this.e = gi0Var;
+    public tz0(org.telegram.messenger.video.a aVar, org.telegram.ui.Components.cc ccVar, Context context, org.telegram.ui.Components.so0 so0Var, int i10) {
+        this.f41753a = i10;
+        this.f41754b = aVar;
+        this.f41755c = ccVar;
+        this.d = context;
+        this.e = so0Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f41972a;
-        org.telegram.ui.Components.gi0 gi0Var = this.e;
-        org.telegram.ui.ActionBar.p6 p6Var = this.d;
-        Context context = this.f41974c;
-        org.telegram.ui.ActionBar.k2 k2Var = this.f41973b;
+        int i10 = this.f41753a;
+        org.telegram.ui.Components.so0 so0Var = this.e;
+        Context context = this.d;
+        org.telegram.ui.Components.cc ccVar = this.f41755c;
+        org.telegram.messenger.video.a aVar = this.f41754b;
         switch (i10) {
             case 0:
-                org.telegram.ui.Components.cc.a0(k2Var).c(org.telegram.messenger.i0.R2(org.telegram.messenger.cd.L0(2131754487, null), -1, 2, new ev(context, 4), p6Var)).j();
-                org.telegram.messenger.i0.g3(gi0Var);
+                aVar.run();
+                ccVar.c(org.telegram.messenger.i0.R2(org.telegram.messenger.dd.L0(2131754487, null), -1, 2, new dv(context, 2), so0Var)).j();
                 return;
             case 1:
-                org.telegram.ui.Components.cc.a0(k2Var).c(org.telegram.messenger.i0.R2(org.telegram.messenger.cd.L0(2131754487, null), -1, 2, new ev(context, 3), p6Var)).j();
-                org.telegram.messenger.i0.g3(gi0Var);
+                aVar.run();
+                ccVar.c(org.telegram.messenger.i0.R2(org.telegram.messenger.dd.L0(2131754487, null), -1, 2, new dv(context, 5), so0Var)).j();
                 return;
             default:
-                org.telegram.ui.Components.cc.a0(k2Var).c(org.telegram.messenger.i0.R2(org.telegram.messenger.cd.L0(2131754487, null), -1, 2, new ev(context, 7), p6Var)).j();
-                org.telegram.messenger.i0.g3(gi0Var);
+                aVar.run();
+                ccVar.c(org.telegram.messenger.i0.R2(org.telegram.messenger.dd.L0(2131754487, null), -1, 2, new dv(context, 6), so0Var)).j();
                 return;
         }
     }

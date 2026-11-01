@@ -1,12 +1,12 @@
 package xh;
 public final class q {
-    public boolean f53978a;
-    public boolean f53979b;
-    public boolean f53980c;
+    public boolean f53989a;
+    public boolean f53990b;
+    public boolean f53991c;
     public boolean d;
     public String e;
-    public long f53981f;
-    public int f53982g;
+    public long f53992f;
+    public int f53993g;
     public int h;
-    public String f53983i;
+    public String f53994i;
 }

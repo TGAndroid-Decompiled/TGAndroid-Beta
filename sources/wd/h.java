@@ -1,8 +1,8 @@
 package wd;
 public final class h extends ed.c {
-    public i f52817a;
-    public Object f52818b;
-    public Object f52819c;
+    public i f52835a;
+    public Object f52836b;
+    public Object f52837c;
     public final i d;
     public int e;
 
@@ -13,7 +13,7 @@ public final class h extends ed.c {
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        this.f52819c = obj;
+        this.f52837c = obj;
         this.e |= Integer.MIN_VALUE;
         return this.d.b(null, this);
     }

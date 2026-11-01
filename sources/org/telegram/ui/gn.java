@@ -2,13 +2,13 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class gn extends w7.d6 {
-    public org.telegram.messenger.jj f37597a;
-    public int f37598b = 0;
-    public boolean f37599c = true;
+    public org.telegram.messenger.kj f37527a;
+    public int f37528b = 0;
+    public boolean f37529c = true;
     public int d = 0;
     public int e;
-    public boolean f37600f;
-    public int f37601g;
+    public boolean f37530f;
+    public int f37531g;
     public final un h;
 
     public gn(un unVar) {
@@ -17,30 +17,30 @@ public final class gn extends w7.d6 {
 
     @Override
     public final void a() {
-        org.telegram.messenger.jj jjVar = this.f37597a;
+        org.telegram.messenger.kj kjVar = this.f37527a;
         un unVar = this.h;
-        if (jjVar != null) {
+        if (kjVar != null) {
             unVar.C0.T();
-            int indexOf = unVar.K6.indexOf(this.f37597a) + unVar.C0.J;
+            int indexOf = unVar.K6.indexOf(this.f37527a) + unVar.C0.J;
             if (indexOf >= 0) {
-                unVar.B0.i1(indexOf, (int) ((this.e + this.f37601g) - unVar.L9), this.f37600f);
+                unVar.B0.i1(indexOf, (int) ((this.e + this.f37531g) - unVar.L9), this.f37530f);
             }
         } else {
             unVar.C0.T();
-            unVar.B0.i1(this.f37598b, this.d, this.f37599c);
+            unVar.B0.i1(this.f37528b, this.d, this.f37529c);
         }
-        this.f37597a = null;
+        this.f37527a = null;
         unVar.A3 = true;
-        unVar.sd(false);
+        unVar.xd(false);
         org.telegram.messenger.i0.g3(new rh(this, 10));
     }
 
     @Override
     public final void c() {
         un unVar = this.h;
-        unVar.f42202ba = unVar.getNotificationCenter().q(un.f42175gd, unVar.f42202ba, true);
+        unVar.f42013ba = unVar.getNotificationCenter().q(un.f41985hd, unVar.f42013ba, true);
         uk ukVar = unVar.Pa;
-        if (ukVar.f41053n) {
+        if (ukVar.f40600n) {
             ukVar.d();
         }
     }

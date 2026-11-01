@@ -14,7 +14,7 @@ public final class h {
 
     public h(l9.h hVar, cd.h hVar2, cd.h hVar3, ra.d dVar) {
         hVar.a();
-        Context context = hVar.f11707a;
+        Context context = hVar.f11708a;
         kotlin.jvm.internal.i.d(context, "firebaseApp.applicationContext");
         f0 f0Var = f0.f2555a;
         bb.b a2 = f0.a(hVar);
@@ -28,7 +28,7 @@ public final class h {
 
     public final double a() {
         Double d10;
-        Bundle bundle = (Bundle) this.f5849a.f55432b;
+        Bundle bundle = (Bundle) this.f5849a.f55450b;
         if (bundle.containsKey("firebase_sessions_sampling_rate")) {
             d10 = Double.valueOf(bundle.getDouble("firebase_sessions_sampling_rate"));
         } else {

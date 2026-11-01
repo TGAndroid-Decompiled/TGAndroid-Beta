@@ -1,15 +1,15 @@
 package th;
 
-import org.telegram.messenger.hs;
+import org.telegram.messenger.is;
 public final class v4 implements Runnable {
-    public final int f49541a;
-    public final x4 f49542b;
-    public final hs f49543c;
+    public final int f49555a;
+    public final x4 f49556b;
+    public final is f49557c;
 
-    public v4(x4 x4Var, hs hsVar, int i10) {
-        this.f49541a = i10;
-        this.f49542b = x4Var;
-        this.f49543c = hsVar;
+    public v4(x4 x4Var, is isVar, int i10) {
+        this.f49555a = i10;
+        this.f49556b = x4Var;
+        this.f49557c = isVar;
     }
 
     @Override

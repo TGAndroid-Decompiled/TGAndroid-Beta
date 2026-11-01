@@ -18,7 +18,7 @@ public final class v implements q0.a {
             case 0:
                 ArrayList arrayList = new ArrayList();
                 new ArrayList();
-                ((t1) ((s1) this.f3822b).f17863b).a((g) obj, arrayList);
+                ((t1) ((s1) this.f3822b).f18056b).a((g) obj, arrayList);
                 return;
             case 1:
                 ((h) this.f3822b).a((g) obj);
@@ -32,7 +32,7 @@ public final class v implements q0.a {
                 return;
             default:
                 o0.f fVar2 = (o0.f) obj;
-                synchronized (o0.g.f13924c) {
+                synchronized (o0.g.f13925c) {
                     try {
                         a0.l lVar = o0.g.d;
                         ArrayList arrayList2 = (ArrayList) lVar.get((String) this.f3822b);

@@ -22,14 +22,14 @@ import java.util.HashSet;
 import kg.i1;
 import li.s;
 import org.telegram.messenger.b8;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.d20;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.e20;
 import org.telegram.messenger.i0;
-import org.telegram.messenger.ic;
-import org.telegram.messenger.q20;
+import org.telegram.messenger.jc;
+import org.telegram.messenger.r20;
 import org.telegram.messenger.v2;
-import org.telegram.messenger.vp;
 import org.telegram.messenger.w0;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -48,14 +48,14 @@ import org.telegram.ui.Components.e6;
 import org.telegram.ui.Components.g9;
 import org.telegram.ui.Components.gr;
 import org.telegram.ui.Components.p80;
-import org.telegram.ui.Components.qz0;
-import org.telegram.ui.Components.ro0;
+import org.telegram.ui.Components.rz0;
+import org.telegram.ui.Components.so0;
 import org.telegram.ui.Components.t5;
 import org.telegram.ui.Components.ta;
 import org.telegram.ui.Components.wb;
 import org.telegram.ui.Components.z60;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.c01;
+import org.telegram.ui.b01;
 import w7.b6;
 public class VideoAds {
     private static final LruCache<VideoAdsLocation, VideoAdsCache> cached = new LruCache<>(3);
@@ -116,10 +116,10 @@ public class VideoAds {
             paint.setStrokeJoin(Paint.Join.ROUND);
             paint.setColor(-1);
             e6Var.setCallback(view);
-            e6Var.f25695b = 17;
+            e6Var.f25744b = 17;
             e6Var.w(i0.L(12.0f));
             e6Var.x(i0.o1("fonts/num.otf"));
-            e6Var.M = i0.f16026q.x;
+            e6Var.M = i0.f16172q.x;
             e6Var.u(-1);
             gr grVar = gr.h;
             this.showCrossAnimated = new t5(view, 0L, 420L, grVar);
@@ -337,8 +337,8 @@ public class VideoAds {
         }
         if (tLObject instanceof TLRPC.TL_messages_sponsoredMessages) {
             TLRPC.TL_messages_sponsoredMessages tL_messages_sponsoredMessages = (TLRPC.TL_messages_sponsoredMessages) tLObject;
-            vp.r1(this.currentAccount).V3(tL_messages_sponsoredMessages.users, false);
-            vp.r1(this.currentAccount).P3(tL_messages_sponsoredMessages.chats, false);
+            wp.r1(this.currentAccount).V3(tL_messages_sponsoredMessages.users, false);
+            wp.r1(this.currentAccount).P3(tL_messages_sponsoredMessages.chats, false);
             this.ads.addAll(tL_messages_sponsoredMessages.messages);
             this.start_delay = tL_messages_sponsoredMessages.start_delay;
             this.between_delay = tL_messages_sponsoredMessages.between_delay;
@@ -364,15 +364,15 @@ public class VideoAds {
     }
 
     public void lambda$show$12(z60 z60Var) {
-        if (d20.i(this.currentAccount).q()) {
+        if (e20.i(this.currentAccount).q()) {
             z60Var.u();
             wb wbVar = this.bulletin;
             if (wbVar != null) {
                 wbVar.i(true);
                 this.bulletin.b();
             }
-            this.bulletinFactory.c(cd.L0(2131754488, null)).j();
-            vp.r1(this.currentAccount).o0(true);
+            this.bulletinFactory.c(dd.L0(2131754488, null)).j();
+            wp.r1(this.currentAccount).o0(true);
             return;
         }
         showPremium();
@@ -382,11 +382,11 @@ public class VideoAds {
         int i10 = this.currentAccount;
         long j10 = this.dialogId;
         cc ccVar = this.bulletinFactory;
-        ro0 ro0Var = new ro0();
+        so0 so0Var = new so0();
         d dVar = new d(this, 0);
         Objects.requireNonNull(z60Var);
         a aVar = new a(z60Var, 1);
-        int i11 = c01.f36350s1;
+        int i11 = b01.f35885s1;
         if (context == null) {
             return;
         }
@@ -394,37 +394,37 @@ public class VideoAds {
         byte[] bArr = tL_sponsoredMessage.random_id;
         tL_messages_reportSponsoredMessage.random_id = bArr;
         tL_messages_reportSponsoredMessage.option = new byte[0];
-        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_reportSponsoredMessage, new a70(context, ro0Var, j10, bArr, aVar, ccVar, dVar, i10));
+        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_reportSponsoredMessage, new a70(context, so0Var, j10, bArr, aVar, ccVar, dVar, i10));
     }
 
     public void lambda$show$15(z60 z60Var) {
-        if (d20.i(this.currentAccount).q()) {
+        if (e20.i(this.currentAccount).q()) {
             z60Var.u();
             wb wbVar = this.bulletin;
             if (wbVar != null) {
                 wbVar.i(true);
                 this.bulletin.b();
             }
-            this.bulletinFactory.c(cd.L0(2131754488, null)).j();
-            vp.r1(this.currentAccount).o0(true);
+            this.bulletinFactory.c(dd.L0(2131754488, null)).j();
+            wp.r1(this.currentAccount).o0(true);
             return;
         }
         showPremium();
     }
 
-    public void lambda$show$16(q20 q20Var) {
-        q20Var.a(Boolean.FALSE);
+    public void lambda$show$16(r20 r20Var) {
+        r20Var.a(Boolean.FALSE);
         this.currentMenu = null;
         checkPopupShownCallback();
     }
 
-    public void lambda$show$17(org.telegram.ui.Components.wb r22, final org.telegram.tgnet.TLRPC.TL_sponsoredMessage r23, android.content.Context r24, org.telegram.ui.ActionBar.p6 r25, org.telegram.messenger.video.VideoAds.AdLayout r26, org.telegram.messenger.q20 r27, android.view.View r28) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.VideoAds.lambda$show$17(org.telegram.ui.Components.wb, org.telegram.tgnet.TLRPC$TL_sponsoredMessage, android.content.Context, org.telegram.ui.ActionBar.p6, org.telegram.messenger.video.VideoAds$AdLayout, org.telegram.messenger.q20, android.view.View):void");
+    public void lambda$show$17(org.telegram.ui.Components.wb r22, final org.telegram.tgnet.TLRPC.TL_sponsoredMessage r23, android.content.Context r24, org.telegram.ui.ActionBar.p6 r25, org.telegram.messenger.video.VideoAds.AdLayout r26, org.telegram.messenger.r20 r27, android.view.View r28) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.VideoAds.lambda$show$17(org.telegram.ui.Components.wb, org.telegram.tgnet.TLRPC$TL_sponsoredMessage, android.content.Context, org.telegram.ui.ActionBar.p6, org.telegram.messenger.video.VideoAds$AdLayout, org.telegram.messenger.r20, android.view.View):void");
     }
 
     public void lambda$show$18(TLRPC.TL_sponsoredMessage tL_sponsoredMessage, View view) {
         logSponsoredClicked(tL_sponsoredMessage);
-        gf.f.q(view.getContext(), Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, vp.r1(d20.f15147s0).f18777e6, false);
+        gf.f.q(view.getContext(), Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, wp.r1(e20.f15506s0).f19120e6, false);
     }
 
     public void lambda$show$2(CloseDrawable closeDrawable, View view) {
@@ -433,14 +433,14 @@ public class VideoAds {
             if (wbVar != null) {
                 wbVar.b();
             }
-        } else if (d20.i(this.currentAccount).q()) {
+        } else if (e20.i(this.currentAccount).q()) {
             wb wbVar2 = this.bulletin;
             if (wbVar2 != null) {
                 wbVar2.b();
                 this.bulletin = null;
             }
-            vp.r1(this.currentAccount).o0(true);
-            this.bulletinFactory.c(cd.L0(2131754488, null)).j();
+            wp.r1(this.currentAccount).o0(true);
+            this.bulletinFactory.c(dd.L0(2131754488, null)).j();
         } else {
             showPremium();
         }
@@ -449,7 +449,7 @@ public class VideoAds {
     public void lambda$show$3(wb wbVar, TLRPC.TL_sponsoredMessage tL_sponsoredMessage) {
         wb wbVar2 = this.bulletin;
         if (wbVar2 != null && wbVar2 == wbVar) {
-            wbVar2.f32135j = (tL_sponsoredMessage.max_display_duration - tL_sponsoredMessage.min_display_duration) * 1000;
+            wbVar2.f32201j = (tL_sponsoredMessage.max_display_duration - tL_sponsoredMessage.min_display_duration) * 1000;
             wbVar2.i(true);
         }
     }
@@ -479,7 +479,7 @@ public class VideoAds {
                 }
             } else if (j11 <= 0) {
                 wb wbVar4 = this.bulletin;
-                wbVar4.f32135j = (int) j12;
+                wbVar4.f32201j = (int) j12;
                 wbVar4.i(true);
             } else {
                 i0.h3(runnable, j11);
@@ -513,7 +513,7 @@ public class VideoAds {
     public void lambda$show$7(z60 z60Var, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, Context context, View view) {
         z60Var.u();
         logSponsoredClicked(tL_sponsoredMessage);
-        gf.f.q(context, Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, vp.r1(this.currentAccount).f18777e6, false);
+        gf.f.q(context, Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, wp.r1(this.currentAccount).f19120e6, false);
     }
 
     public static boolean lambda$show$8(TLRPC.TL_sponsoredMessage tL_sponsoredMessage, View view) {
@@ -534,10 +534,10 @@ public class VideoAds {
 
     private void load() {
         if (!this.loading && !this.loaded) {
-            if (!d20.i(this.currentAccount).q() || !vp.r1(this.currentAccount).D2()) {
+            if (!e20.i(this.currentAccount).q() || !wp.r1(this.currentAccount).D2()) {
                 this.loading = true;
                 TLRPC.TL_messages_getSponsoredMessages tL_messages_getSponsoredMessages = new TLRPC.TL_messages_getSponsoredMessages();
-                tL_messages_getSponsoredMessages.peer = vp.r1(this.currentAccount).i1(this.dialogId);
+                tL_messages_getSponsoredMessages.peer = wp.r1(this.currentAccount).i1(this.dialogId);
                 tL_messages_getSponsoredMessages.flags = 1 | tL_messages_getSponsoredMessages.flags;
                 tL_messages_getSponsoredMessages.msg_id = this.msg_id;
                 this.requestId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getSponsoredMessages, new RequestDelegate() {
@@ -587,7 +587,7 @@ public class VideoAds {
             this.bulletin = null;
         }
         Context W = this.bulletinFactory.W();
-        p6 p6Var = this.bulletinFactory.f25043c;
+        p6 p6Var = this.bulletinFactory.f25078c;
         AdLayout adLayout = new AdLayout(W, p6Var) {
             {
                 VideoAds.this = this;
@@ -609,42 +609,42 @@ public class VideoAds {
         u5 u5Var = adLayout.titleTextView;
         Context W2 = this.bulletinFactory.W();
         int i10 = t6.Ci;
-        u5Var.i(new AdOptionsDrawable(W2, t6.w0(i10, this.bulletinFactory.f25043c)));
+        u5Var.i(new AdOptionsDrawable(W2, t6.w0(i10, this.bulletinFactory.f25078c)));
         adLayout.subtitleTextView.setText(tL_sponsoredMessage.message);
         TLRPC.MessageMedia messageMedia = tL_sponsoredMessage.media;
         if (messageMedia != null) {
             TLRPC.Document document = messageMedia.document;
             if (document != null) {
-                adLayout.imageView.g(0, 0L, null, "48_48", "48_48", null, ic.b(tL_sponsoredMessage.media.document), ic.c(b8.w(document.thumbs, 48, false, null, false), tL_sponsoredMessage.media.document));
+                adLayout.imageView.g(0, 0L, null, "48_48", "48_48", null, jc.b(tL_sponsoredMessage.media.document), jc.c(b8.w(document.thumbs, 48, false, null, false), tL_sponsoredMessage.media.document));
             } else {
                 TLRPC.Photo photo = messageMedia.photo;
                 if (photo != null) {
                     TLRPC.PhotoSize w9 = b8.w(photo.sizes, 48, true, null, true);
-                    adLayout.imageView.g(0, 0L, null, "48_48", "48_48", null, ic.i(w9, tL_sponsoredMessage.media.photo), ic.i(b8.w(tL_sponsoredMessage.media.photo.sizes, 48, true, w9, false), tL_sponsoredMessage.media.photo));
+                    adLayout.imageView.g(0, 0L, null, "48_48", "48_48", null, jc.i(w9, tL_sponsoredMessage.media.photo), jc.i(b8.w(tL_sponsoredMessage.media.photo.sizes, 48, true, w9, false), tL_sponsoredMessage.media.photo));
                 }
             }
         } else {
             TLRPC.Photo photo2 = tL_sponsoredMessage.photo;
             if (photo2 != null) {
                 TLRPC.PhotoSize w10 = b8.w(photo2.sizes, 48, true, null, true);
-                adLayout.imageView.g(0, 0L, null, "48_48", "48_48", null, ic.i(w10, tL_sponsoredMessage.photo), ic.i(b8.w(tL_sponsoredMessage.photo.sizes, 48, true, w10, false), tL_sponsoredMessage.photo));
+                adLayout.imageView.g(0, 0L, null, "48_48", "48_48", null, jc.i(w10, tL_sponsoredMessage.photo), jc.i(b8.w(tL_sponsoredMessage.photo.sizes, 48, true, w10, false), tL_sponsoredMessage.photo));
             } else {
                 adLayout.hideImage();
             }
         }
         final CloseDrawable closeDrawable = new CloseDrawable(adLayout.buttonView, tL_sponsoredMessage.min_display_duration, tL_sponsoredMessage.max_display_duration, this.currentBulletinPassedTime);
-        closeDrawable.setColor(t6.w0(i10, this.bulletinFactory.f25043c));
+        closeDrawable.setColor(t6.w0(i10, this.bulletinFactory.f25078c));
         adLayout.buttonView.setImageDrawable(closeDrawable);
         adLayout.buttonView.setOnClickListener(new t0(15, this, closeDrawable));
         final wb b10 = this.bulletinFactory.b(adLayout, tL_sponsoredMessage.max_display_duration * 1000);
         this.bulletin = b10;
-        b10.f32146u = false;
+        b10.f32212u = false;
         b10.i(false);
         final s sVar = new s(this, b10, tL_sponsoredMessage, 13);
         final long[] jArr = new long[1];
         final long[] jArr2 = new long[1];
         final boolean[] zArr = new boolean[1];
-        q20 q20Var = new q20() {
+        r20 r20Var = new r20() {
             @Override
             public final void a(Object obj) {
                 VideoAds.this.lambda$show$4(b10, zArr, closeDrawable, jArr2, sVar, jArr, currentTimeMillis, tL_sponsoredMessage, (Boolean) obj);
@@ -652,9 +652,9 @@ public class VideoAds {
         };
         i0.h3(sVar, tL_sponsoredMessage.min_display_duration * 1000);
         wb wbVar2 = this.bulletin;
-        wbVar2.f32143r = false;
+        wbVar2.f32209r = false;
         wbVar2.v = new s(this, b10, new boolean[1], 14);
-        adLayout.titleTextView.setRightDrawableOnClick(new f(this, b10, tL_sponsoredMessage, W, p6Var, adLayout, q20Var, 0));
+        adLayout.titleTextView.setRightDrawableOnClick(new f(this, b10, tL_sponsoredMessage, W, p6Var, adLayout, r20Var, 0));
         wb wbVar3 = this.bulletin;
         t0 t0Var = new t0(16, this, tL_sponsoredMessage);
         bb bbVar = wbVar3.e;
@@ -688,7 +688,7 @@ public class VideoAds {
 
             @Override
             public Activity getParentActivity() {
-                Activity W = i0.W(w0.f19025b);
+                Activity W = i0.W(w0.f18945b);
                 if (W == null) {
                     return LaunchActivity.I1;
                 }
@@ -696,7 +696,7 @@ public class VideoAds {
             }
         }, 3, true);
         this.premiumSheet = i1Var2;
-        i1Var2.o(new mh.k(9, this, i1Var2));
+        i1Var2.n(new mh.k(9, this, i1Var2));
         i1Var2.show();
         checkPopupShownCallback();
     }
@@ -721,7 +721,7 @@ public class VideoAds {
         tL_messages_clickSponsoredMessage.random_id = tL_sponsoredMessage.random_id;
         tL_messages_clickSponsoredMessage.media = false;
         tL_messages_clickSponsoredMessage.fullscreen = false;
-        boolean z10 = v2.f18448a;
+        boolean z10 = v2.f18578a;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_clickSponsoredMessage, null);
     }
 
@@ -731,7 +731,7 @@ public class VideoAds {
         }
         TLRPC.TL_messages_viewSponsoredMessage tL_messages_viewSponsoredMessage = new TLRPC.TL_messages_viewSponsoredMessage();
         tL_messages_viewSponsoredMessage.random_id = tL_sponsoredMessage.random_id;
-        boolean z10 = v2.f18448a;
+        boolean z10 = v2.f18578a;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_viewSponsoredMessage, null);
     }
 
@@ -854,7 +854,7 @@ public class VideoAds {
         public final int color;
         public final Drawable icon;
         public final Paint backgroundPaint = new Paint(1);
-        public final qz0 text = new qz0(cd.L0(2131745276, null), 11.0f, i0.o());
+        public final rz0 text = new rz0(dd.L0(2131745276, null), 11.0f, i0.o());
         private float alpha = 1.0f;
 
         public AdOptionsDrawable(Context context, int i10) {

@@ -4,11 +4,11 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.View;
-public final class uo extends org.telegram.ui.Components.in0 {
+public final class uo extends org.telegram.ui.Components.jn0 {
     public final cp N;
 
-    public uo(cp cpVar, Context context, org.telegram.ui.Components.hn0 hn0Var, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(context, hn0Var, p6Var, false);
+    public uo(cp cpVar, Context context, org.telegram.ui.Components.in0 in0Var, org.telegram.ui.ActionBar.p6 p6Var) {
+        super(context, in0Var, p6Var, false);
         this.N = cpVar;
     }
 

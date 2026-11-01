@@ -1,7 +1,6 @@
 package org.telegram.messenger;
 
-import android.view.View;
-import org.telegram.ui.Components.a51;
+import java.io.Serializable;
 public interface p20 {
-    Boolean a(a51 a51Var, View view, Integer num, Float f7, Float f10);
+    void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2);
 }

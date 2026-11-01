@@ -1,8 +1,8 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.tl.TL_chatlists;
+import java.util.ArrayList;
 public final class xo {
-    public boolean f19273a;
-    public long f19274b;
-    public TL_chatlists.TL_chatlists_chatlistUpdates f19275c;
+    public boolean f19459a;
+    public final ArrayList f19460b = new ArrayList();
+    public int f19461c;
 }

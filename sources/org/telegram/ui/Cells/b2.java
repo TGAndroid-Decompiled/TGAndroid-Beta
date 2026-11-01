@@ -7,7 +7,7 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.l00;
 import org.telegram.ui.Components.p80;
-import org.telegram.ui.Components.x41;
+import org.telegram.ui.Components.y41;
 import org.telegram.ui.kd;
 public final class b2 extends p80 {
     public final int L;
@@ -23,7 +23,7 @@ public final class b2 extends p80 {
     public int a() {
         switch (this.L) {
             case 4:
-                return ((UndoView) this.M).f24238a;
+                return ((UndoView) this.M).f24239a;
             default:
                 return super.a();
         }
@@ -79,12 +79,12 @@ public final class b2 extends p80 {
                     int indexOf = charSequence.toString().indexOf(10);
                     if (indexOf >= 0) {
                         charSequence.replace(indexOf, indexOf + 1, " ");
-                        charSequence.setSpan(new l00(org.telegram.ui.ActionBar.t6.f21153p7, ((org.telegram.ui.na) this.M).e.getResourceProvider()), 0, indexOf, 33);
+                        charSequence.setSpan(new l00(org.telegram.ui.ActionBar.t6.f21154p7, ((org.telegram.ui.na) this.M).e.getResourceProvider()), 0, indexOf, 33);
                     }
-                    x41[] x41VarArr = (x41[]) charSequence.getSpans(0, charSequence.length(), x41.class);
-                    for (int i10 = 0; i10 < x41VarArr.length; i10++) {
-                        charSequence.setSpan(new dh.a(this, 3), charSequence.getSpanStart(x41VarArr[i10]), charSequence.getSpanEnd(x41VarArr[i10]), 33);
-                        charSequence.removeSpan(x41VarArr[i10]);
+                    y41[] y41VarArr = (y41[]) charSequence.getSpans(0, charSequence.length(), y41.class);
+                    for (int i10 = 0; i10 < y41VarArr.length; i10++) {
+                        charSequence.setSpan(new dh.a(this, 3), charSequence.getSpanStart(y41VarArr[i10]), charSequence.getSpanEnd(y41VarArr[i10]), 33);
+                        charSequence.removeSpan(y41VarArr[i10]);
                     }
                 }
                 super.setText(charSequence, bufferType);
@@ -96,18 +96,18 @@ public final class b2 extends p80 {
                     int indexOf2 = charSequence.toString().indexOf(10);
                     if (indexOf2 >= 0) {
                         charSequence.replace(indexOf2, indexOf2 + 1, " ");
-                        charSequence.setSpan(new l00(org.telegram.ui.ActionBar.t6.f21153p7, kdVar.getResourceProvider()), 0, indexOf2, 33);
+                        charSequence.setSpan(new l00(org.telegram.ui.ActionBar.t6.f21154p7, kdVar.getResourceProvider()), 0, indexOf2, 33);
                     }
-                    x41[] x41VarArr2 = (x41[]) charSequence.getSpans(0, charSequence.length(), x41.class);
-                    EditTextBoldCursor editTextBoldCursor = kdVar.f38775y;
+                    y41[] y41VarArr2 = (y41[]) charSequence.getSpans(0, charSequence.length(), y41.class);
+                    EditTextBoldCursor editTextBoldCursor = kdVar.f38838y;
                     if (editTextBoldCursor != null && editTextBoldCursor.getText() != null) {
-                        str = kdVar.f38775y.getText().toString();
+                        str = kdVar.f38838y.getText().toString();
                     } else {
                         str = "";
                     }
-                    for (int i11 = 0; i11 < x41VarArr2.length; i11++) {
-                        charSequence.setSpan(new h(4, (Object) this, str), charSequence.getSpanStart(x41VarArr2[i11]), charSequence.getSpanEnd(x41VarArr2[i11]), 33);
-                        charSequence.removeSpan(x41VarArr2[i11]);
+                    for (int i11 = 0; i11 < y41VarArr2.length; i11++) {
+                        charSequence.setSpan(new h(4, (Object) this, str), charSequence.getSpanStart(y41VarArr2[i11]), charSequence.getSpanEnd(y41VarArr2[i11]), 33);
+                        charSequence.removeSpan(y41VarArr2[i11]);
                     }
                 }
                 super.setText(charSequence, bufferType);

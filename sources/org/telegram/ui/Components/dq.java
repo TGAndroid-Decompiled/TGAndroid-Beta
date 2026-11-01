@@ -12,19 +12,19 @@ public class dq extends ReplacementSpan {
     public float I;
     public boolean J;
     public Paint.FontMetricsInt K;
-    public boolean f25503a;
-    public int f25504b;
-    public Drawable f25505c;
+    public boolean f25563a;
+    public int f25564b;
+    public Drawable f25565c;
     public boolean d;
     public boolean e;
-    public boolean f25506f;
+    public boolean f25566f;
     public int h;
-    public int f25507n;
-    public float f25508r;
-    public float f25509s;
-    public float f25510w;
-    public float f25511x;
-    public int f25512y;
+    public int f25567n;
+    public float f25568r;
+    public float f25569s;
+    public float f25570w;
+    public float f25571x;
+    public int f25572y;
 
     public dq(int i10) {
         this(i10, 0);
@@ -54,12 +54,12 @@ public class dq extends ReplacementSpan {
 
     public final void c(int i10) {
         this.D = i10;
-        this.f25505c.setBounds(0, 0, i10, i10);
+        this.f25565c.setBounds(0, 0, i10, i10);
     }
 
     public final void d(float f7) {
-        this.f25508r = 0.0f;
-        this.f25509s = f7;
+        this.f25568r = 0.0f;
+        this.f25569s = f7;
     }
 
     @Override
@@ -85,7 +85,7 @@ public class dq extends ReplacementSpan {
             float abs = Math.abs(this.G) * Math.abs(this.H);
             int i12 = this.D;
             if (i12 == 0) {
-                i12 = this.f25505c.getIntrinsicWidth();
+                i12 = this.f25565c.getIntrinsicWidth();
             }
             return (int) (abs * i12);
         }
@@ -96,20 +96,20 @@ public class dq extends ReplacementSpan {
     }
 
     public dq(int i10, int i11) {
-        this(i11, org.telegram.messenger.w0.f19025b.getDrawable(i10).mutate());
+        this(i11, org.telegram.messenger.w0.f18945b.getDrawable(i10).mutate());
     }
 
     public dq(int i10, Drawable drawable) {
-        this.f25503a = true;
+        this.f25563a = true;
         this.d = true;
         this.e = true;
-        this.f25506f = false;
-        this.f25507n = 0;
-        this.f25511x = 1.0f;
+        this.f25566f = false;
+        this.f25567n = 0;
+        this.f25571x = 1.0f;
         this.G = 1.0f;
         this.H = 1.0f;
         this.I = 1.0f;
-        this.f25505c = drawable;
+        this.f25565c = drawable;
         if (drawable != null) {
             drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
         }

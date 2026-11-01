@@ -5,15 +5,15 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import org.telegram.ui.Components.ou0;
+import org.telegram.ui.Components.pu0;
 public final class u0 extends GestureDetector.SimpleOnGestureListener {
-    public float f49502a;
-    public float f49503b;
-    public final int f49504c;
+    public float f49516a;
+    public float f49517b;
+    public final int f49518c;
 
     public u0(int i10) {
-        ou0 ou0Var = w0.X;
-        this.f49504c = i10;
+        pu0 pu0Var = w0.X;
+        this.f49518c = i10;
     }
 
     @Override
@@ -28,8 +28,8 @@ public final class u0 extends GestureDetector.SimpleOnGestureListener {
                 }
             }
         }
-        this.f49502a = w0Var.N;
-        this.f49503b = w0Var.O;
+        this.f49516a = w0Var.N;
+        this.f49517b = w0Var.O;
         return true;
     }
 
@@ -41,26 +41,26 @@ public final class u0 extends GestureDetector.SimpleOnGestureListener {
         w0 w0Var = w0.Z;
         if (w0Var.E && !w0Var.F) {
             o1.j jVar = w0Var.P;
-            jVar.f13948a = f7;
+            jVar.f13949a = f7;
             float f12 = w0Var.N;
-            jVar.f13949b = f12;
-            jVar.f13950c = true;
-            o1.k kVar = jVar.f13957m;
+            jVar.f13950b = f12;
+            jVar.f13951c = true;
+            o1.k kVar = jVar.f13958m;
             int i10 = w0Var.J;
             float f13 = (f7 / 7.0f) + (i10 / 2.0f) + f12;
-            int i11 = org.telegram.messenger.i0.f16026q.x;
+            int i11 = org.telegram.messenger.i0.f16172q.x;
             if (f13 >= i11 / 2.0f) {
                 L = (i11 - i10) - org.telegram.messenger.i0.L(16.0f);
             } else {
                 L = org.telegram.messenger.i0.L(16.0f);
             }
-            kVar.f13964i = L;
+            kVar.f13965i = L;
             w0Var.P.h();
             o1.j jVar2 = w0Var.Q;
-            jVar2.f13948a = f7;
-            jVar2.f13949b = w0Var.O;
-            jVar2.f13950c = true;
-            jVar2.f13957m.f13964i = w7.u.a((f10 / 10.0f) + f11, org.telegram.messenger.i0.L(16.0f), (point.y - w0Var.K) - org.telegram.messenger.i0.L(16.0f));
+            jVar2.f13949a = f7;
+            jVar2.f13950b = w0Var.O;
+            jVar2.f13951c = true;
+            jVar2.f13958m.f13965i = w7.u.a((f10 / 10.0f) + f11, org.telegram.messenger.i0.L(16.0f), (point.y - w0Var.K) - org.telegram.messenger.i0.L(16.0f));
             w0Var.Q.h();
             return true;
         }
@@ -72,7 +72,7 @@ public final class u0 extends GestureDetector.SimpleOnGestureListener {
         w0 w0Var = w0.Z;
         if (!w0Var.E && w0Var.I == null && !w0Var.F) {
             float abs = Math.abs(f7);
-            float f11 = this.f49504c;
+            float f11 = this.f49518c;
             if (abs >= f11 || Math.abs(f10) >= f11) {
                 w0Var.E = true;
                 w0Var.P.d();
@@ -80,15 +80,15 @@ public final class u0 extends GestureDetector.SimpleOnGestureListener {
             }
         }
         if (w0Var.E) {
-            WindowManager.LayoutParams layoutParams = w0Var.f49551c;
-            float rawX = (motionEvent2.getRawX() + this.f49502a) - motionEvent.getRawX();
+            WindowManager.LayoutParams layoutParams = w0Var.f49565c;
+            float rawX = (motionEvent2.getRawX() + this.f49516a) - motionEvent.getRawX();
             w0Var.N = rawX;
             layoutParams.x = (int) rawX;
-            WindowManager.LayoutParams layoutParams2 = w0Var.f49551c;
-            float rawY = (motionEvent2.getRawY() + this.f49503b) - motionEvent.getRawY();
+            WindowManager.LayoutParams layoutParams2 = w0Var.f49565c;
+            float rawY = (motionEvent2.getRawY() + this.f49517b) - motionEvent.getRawY();
             w0Var.O = rawY;
             layoutParams2.y = (int) rawY;
-            org.telegram.messenger.i0.S3(w0Var.f49550b, w0Var.d, w0Var.f49551c);
+            org.telegram.messenger.i0.S3(w0Var.f49564b, w0Var.d, w0Var.f49565c);
         }
         return true;
     }

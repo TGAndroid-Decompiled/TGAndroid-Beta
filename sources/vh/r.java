@@ -3,26 +3,26 @@ package vh;
 import android.text.TextUtils;
 import java.util.ArrayList;
 public final class r {
-    public static ArrayList f51795f;
-    public final String f51796a;
-    public final int f51797b;
-    public final int f51798c;
+    public static ArrayList f51810f;
+    public final String f51811a;
+    public final int f51812b;
+    public final int f51813c;
     public final int[] d;
     public final ArrayList e = new ArrayList();
 
     public r(String str) {
         str = str == null ? "." : str;
-        this.f51796a = str;
+        this.f51811a = str;
         String[] split = str.split("/");
         int length = split.length;
-        this.f51798c = length;
+        this.f51813c = length;
         this.d = new int[length];
         int i10 = 0;
         for (int i11 = 0; i11 < split.length; i11++) {
             this.d[i11] = split[i11].length();
             i10 = Math.max(i10, split[i11].length());
         }
-        this.f51797b = i10;
+        this.f51812b = i10;
         for (int i12 = 0; i12 < split.length; i12++) {
             for (int i13 = 0; i13 < split[i12].length(); i13++) {
                 this.e.add(new q(this, i13, i12));
@@ -31,22 +31,22 @@ public final class r {
     }
 
     public static ArrayList a() {
-        if (f51795f == null) {
+        if (f51810f == null) {
             ArrayList arrayList = new ArrayList();
-            f51795f = arrayList;
+            f51810f = arrayList;
             arrayList.add(new r("./."));
-            f51795f.add(new r(".."));
-            f51795f.add(new r("../."));
-            f51795f.add(new r("./.."));
-            f51795f.add(new r("././."));
-            f51795f.add(new r("..."));
-            f51795f.add(new r("../.."));
-            f51795f.add(new r("./../.."));
-            f51795f.add(new r("../../."));
-            f51795f.add(new r("../../.."));
-            boolean z10 = org.telegram.messenger.v2.f18448a;
+            f51810f.add(new r(".."));
+            f51810f.add(new r("../."));
+            f51810f.add(new r("./.."));
+            f51810f.add(new r("././."));
+            f51810f.add(new r("..."));
+            f51810f.add(new r("../.."));
+            f51810f.add(new r("./../.."));
+            f51810f.add(new r("../../."));
+            f51810f.add(new r("../../.."));
+            boolean z10 = org.telegram.messenger.v2.f18578a;
         }
-        return f51795f;
+        return f51810f;
     }
 
     public static int b() {
@@ -64,12 +64,12 @@ public final class r {
 
     public final boolean equals(Object obj) {
         if (obj instanceof r) {
-            return TextUtils.equals(this.f51796a, ((r) obj).f51796a);
+            return TextUtils.equals(this.f51811a, ((r) obj).f51811a);
         }
         return false;
     }
 
     public final String toString() {
-        return this.f51796a;
+        return this.f51811a;
     }
 }

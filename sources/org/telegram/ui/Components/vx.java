@@ -30,11 +30,11 @@ public interface vx {
 
     void l(String str);
 
-    void m(View view, TLRPC.Document document, String str, Object obj, org.telegram.messenger.fj fjVar, boolean z10, int i10);
+    void m(View view, TLRPC.Document document, String str, Object obj, org.telegram.messenger.gj gjVar, boolean z10, int i10);
 
     void n();
 
-    void o(w41 w41Var);
+    void o(x41 x41Var);
 
     float p();
 

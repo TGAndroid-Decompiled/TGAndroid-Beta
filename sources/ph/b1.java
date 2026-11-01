@@ -7,56 +7,56 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Components.a51;
-import org.telegram.ui.Components.d01;
+import org.telegram.ui.Components.b51;
 import org.telegram.ui.Components.dq;
+import org.telegram.ui.Components.e01;
 import org.telegram.ui.Components.g9;
-import org.telegram.ui.Components.p51;
-import org.telegram.ui.Components.tk0;
-import org.telegram.ui.Components.u51;
-import org.telegram.ui.Components.x41;
-import org.telegram.ui.Components.z41;
+import org.telegram.ui.Components.q51;
+import org.telegram.ui.Components.uk0;
+import org.telegram.ui.Components.v51;
+import org.telegram.ui.Components.y41;
 import rh.h8;
-public final class b1 extends z41 {
-    public static final int f44980b = 0;
+public final class b1 extends a51 {
+    public static final int f44991b = 0;
 
     static {
-        z41.h(new z41());
+        a51.h(new a51());
     }
 
-    public static a51 i(int i10, TL_stars.StarGift starGift, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14) {
-        a51 K = a51.K(b1.class);
-        K.f24301u = 1;
-        K.f24305z = i10;
+    public static b51 i(int i10, TL_stars.StarGift starGift, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14) {
+        b51 K = b51.K(b1.class);
+        K.f24652u = 1;
+        K.f24656z = i10;
         K.G = starGift;
         K.e = z10;
         K.H = Boolean.valueOf(z11);
-        K.f24298r = z13;
-        K.f24297q = z12;
-        K.f24300t = z14;
+        K.f24649r = z13;
+        K.f24648q = z12;
+        K.f24651t = z14;
         return K;
     }
 
     @Override
-    public final void a(tk0 tk0Var, View view, a51 a51Var) {
-        ((c1) view).e(a51Var.h, false);
+    public final void a(uk0 uk0Var, View view, b51 b51Var) {
+        ((c1) view).e(b51Var.h, false);
     }
 
     @Override
-    public final void b(View view, a51 a51Var, boolean z10, p51 p51Var, u51 u51Var) {
+    public final void b(View view, b51 b51Var, boolean z10, q51 q51Var, v51 v51Var) {
         boolean z11;
         float f7;
         int i10;
         c1 c1Var = (c1) view;
-        Object obj = a51Var.G;
+        Object obj = b51Var.G;
         boolean z12 = false;
         if (obj instanceof kg.m) {
             kg.m mVar = (kg.m) obj;
-            org.telegram.ui.Components.voip.i0 i0Var = c1Var.J;
+            org.telegram.ui.Components.voip.j0 j0Var = c1Var.J;
             TextView textView = c1Var.I;
             TextView textView2 = c1Var.H;
             z0 z0Var = c1Var.e;
@@ -64,23 +64,23 @@ public final class b1 extends z41 {
             TextView textView3 = c1Var.L;
             TextView textView4 = c1Var.M;
             int d = mVar.d();
-            if (c1Var.f44997j0 != mVar) {
-                d01 e12 = h8.e1(g9Var, g9Var.getImageReceiver(), d);
-                c1Var.N = e12;
-                e12.run();
+            if (c1Var.f45008j0 != mVar) {
+                e01 f12 = h8.f1(g9Var, g9Var.getImageReceiver(), d);
+                c1Var.N = f12;
+                f12.run();
                 c1Var.N = null;
             }
             z0Var.d(null);
             z0Var.e(null);
             z0Var.g(null);
-            textView2.setText(cd.G(d, "Gift2Months", new Object[0]));
-            textView.setText(cd.L0(2131744255, null));
+            textView2.setText(dd.G(d, "Gift2Months", new Object[0]));
+            textView.setText(dd.L0(2131744255, null));
             textView2.setVisibility(0);
             textView.setVisibility(0);
             g9Var.setTranslationY(-org.telegram.messenger.i0.L(8.0f));
-            c1Var.f45000n.setVisibility(8);
+            c1Var.f45011n.setVisibility(8);
             c1Var.F.setVisibility(8);
-            if (mVar.f11180c == null && mVar.d == null) {
+            if (mVar.f11181c == null && mVar.d == null) {
                 textView4.setVisibility(8);
             } else {
                 if (t6.I.q()) {
@@ -90,10 +90,10 @@ public final class b1 extends z41 {
                 }
                 textView4.setTextColor(i10);
                 textView4.setVisibility(0);
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("" + cd.E(mVar.g(), ','));
-                spannableStringBuilder.setSpan(new x41(org.telegram.messenger.i0.o()), 0, spannableStringBuilder.length(), 33);
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("" + dd.E(mVar.g(), ','));
+                spannableStringBuilder.setSpan(new y41(org.telegram.messenger.i0.o()), 0, spannableStringBuilder.length(), 33);
                 dq[] dqVarArr = new dq[1];
-                textView4.setText(h8.Z0(false, cd.V(null, null, 2131747043, spannableStringBuilder), 0.48f, dqVarArr));
+                textView4.setText(h8.a1(false, dd.V(null, null, 2131747043, spannableStringBuilder), 0.48f, dqVarArr));
                 dqVarArr[0].G = 0.8f;
             }
             FrameLayout.LayoutParams layoutParams = c1Var.E;
@@ -102,94 +102,94 @@ public final class b1 extends z41 {
             textView3.setPadding(org.telegram.messenger.i0.L(10.0f), 0, org.telegram.messenger.i0.L(10.0f), 0);
             textView3.setTextSize(1, 12.0f);
             textView3.setText(mVar.c());
-            c1Var.f45008s0 = 0;
+            c1Var.f45019s0 = 0;
             c1Var.K.setBackground(t6.d0(org.telegram.messenger.i0.L(13.0f), 422810068));
             textView3.setTextColor(-13397548);
-            ((ViewGroup.MarginLayoutParams) i0Var.getLayoutParams()).topMargin = org.telegram.messenger.i0.L(130.0f);
-            ((FrameLayout.LayoutParams) i0Var.getLayoutParams()).gravity = 49;
-            c1Var.f44997j0 = mVar;
-            c1Var.f44998k0 = null;
-            c1Var.f44985a0 = mVar;
-            c1Var.f44987b0 = null;
-            c1Var.f44990d0 = false;
-            c1Var.f44991e0 = null;
-            c1Var.f44993f0 = false;
-            c1Var.f44994g0 = false;
-            c1Var.f44995h0 = false;
+            ((ViewGroup.MarginLayoutParams) j0Var.getLayoutParams()).topMargin = org.telegram.messenger.i0.L(130.0f);
+            ((FrameLayout.LayoutParams) j0Var.getLayoutParams()).gravity = 49;
+            c1Var.f45008j0 = mVar;
+            c1Var.f45009k0 = null;
+            c1Var.f44996a0 = mVar;
+            c1Var.f44998b0 = null;
+            c1Var.f45001d0 = false;
+            c1Var.f45002e0 = null;
+            c1Var.f45004f0 = false;
+            c1Var.f45005g0 = false;
+            c1Var.f45006h0 = false;
             c1Var.Q = null;
             c1Var.R = null;
             c1Var.d(false, false);
             c1Var.l();
         } else if (obj instanceof TL_stars.StarGift) {
             TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
-            boolean z13 = a51Var.e;
-            Object obj2 = a51Var.H;
+            boolean z13 = b51Var.e;
+            Object obj2 = b51Var.H;
             if (obj2 instanceof Boolean) {
                 z11 = ((Boolean) obj2).booleanValue();
             } else {
                 z11 = false;
             }
-            c1Var.h(starGift, z13, z11, a51Var.f24297q, a51Var.f24298r, a51Var.f24300t);
+            c1Var.h(starGift, z13, z11, b51Var.f24648q, b51Var.f24649r, b51Var.f24651t);
         } else if (obj instanceof TL_stars.SavedStarGift) {
-            z12 = c1Var.i((TL_stars.SavedStarGift) obj, a51Var.f24297q, a51Var.f24298r);
+            z12 = c1Var.i((TL_stars.SavedStarGift) obj, b51Var.f24648q, b51Var.f24649r);
         }
-        if (a51Var.f24287f) {
-            c1Var.c(a51Var.e, z12);
+        if (b51Var.f24638f) {
+            c1Var.c(b51Var.e, z12);
         }
-        c1Var.e(a51Var.h, z12);
+        c1Var.e(b51Var.h, z12);
         FrameLayout frameLayout = c1Var.d;
         float f10 = 1.0f;
-        if (a51Var.f24288g) {
+        if (b51Var.f24639g) {
             f7 = 1.0f;
         } else {
             f7 = 0.65f;
         }
         frameLayout.setAlpha(f7);
-        d1 d1Var = c1Var.f44992f;
-        if (!a51Var.f24288g) {
+        d1 d1Var = c1Var.f45003f;
+        if (!b51Var.f24639g) {
             f10 = 0.5f;
         }
         d1Var.setAlpha(f10);
     }
 
     @Override
-    public final View d(Context context, tk0 tk0Var, int i10, p6 p6Var) {
+    public final View d(Context context, uk0 uk0Var, int i10, p6 p6Var) {
         return new c1(i10, context, p6Var);
     }
 
     @Override
-    public final boolean e(a51 a51Var, a51 a51Var2) {
-        if (a51Var.f24297q == a51Var2.f24297q) {
-            Object obj = a51Var.G;
-            if (obj != null || a51Var2.G != null) {
+    public final boolean e(b51 b51Var, b51 b51Var2) {
+        if (b51Var.f24648q == b51Var2.f24648q) {
+            Object obj = b51Var.G;
+            if (obj != null || b51Var2.G != null) {
                 if (obj instanceof kg.m) {
-                    if (obj == a51Var2.G) {
+                    if (obj == b51Var2.G) {
                         return true;
                     }
                     return false;
                 }
                 if (obj instanceof TL_stars.StarGift) {
-                    Object obj2 = a51Var2.G;
+                    Object obj2 = b51Var2.G;
                     if (obj2 instanceof TL_stars.StarGift) {
-                        if (((TL_stars.StarGift) obj).f20021id == ((TL_stars.StarGift) obj2).f20021id) {
+                        if (((TL_stars.StarGift) obj).f20022id == ((TL_stars.StarGift) obj2).f20022id) {
                             return true;
                         }
                         return false;
                     }
                 }
                 if (obj instanceof TL_stars.SavedStarGift) {
-                    Object obj3 = a51Var2.G;
+                    Object obj3 = b51Var2.G;
                     if (obj3 instanceof TL_stars.SavedStarGift) {
                         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
                         TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) obj3;
-                        if (savedStarGift.gift.f20021id == savedStarGift2.gift.f20021id && savedStarGift.date == savedStarGift2.date && savedStarGift.saved_id == savedStarGift2.saved_id) {
+                        if (savedStarGift.gift.f20022id == savedStarGift2.gift.f20022id && savedStarGift.date == savedStarGift2.date && savedStarGift.saved_id == savedStarGift2.saved_id) {
                             return true;
                         }
                         return false;
                     }
                 }
             }
-            if (a51Var.f24305z == a51Var2.f24305z && a51Var.e == a51Var2.e && a51Var.B == a51Var2.B && TextUtils.equals(a51Var.f24292l, a51Var2.f24292l)) {
+            if (b51Var.f24656z == b51Var2.f24656z && b51Var.e == b51Var2.e && b51Var.B == b51Var2.B && TextUtils.equals(b51Var.f24643l, b51Var2.f24643l)) {
                 return true;
             }
             return false;

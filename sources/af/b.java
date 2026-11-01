@@ -28,7 +28,7 @@ public final class b {
         this.f441b = false;
         ByteArrayOutputStream byteArrayOutputStream2 = null;
         try {
-            inputStream = w0.f19025b.getAssets().open("PhoneFormats.dat");
+            inputStream = w0.f18945b.getAssets().open("PhoneFormats.dat");
             try {
                 try {
                     byteArrayOutputStream = new ByteArrayOutputStream();

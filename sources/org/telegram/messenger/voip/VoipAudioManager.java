@@ -4,7 +4,7 @@ import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.os.Build;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.j20;
+import org.telegram.messenger.k20;
 public class VoipAudioManager {
     private Boolean isSpeakerphoneOn;
 
@@ -20,7 +20,7 @@ public class VoipAudioManager {
     }
 
     private AudioManager getAudioManager() {
-        return (AudioManager) org.telegram.messenger.w0.f19025b.getSystemService("audio");
+        return (AudioManager) org.telegram.messenger.w0.f18945b.getSystemService("audio");
     }
 
     public static boolean isBluetoothDevice(AudioDeviceInfo audioDeviceInfo) {
@@ -41,12 +41,12 @@ public class VoipAudioManager {
         return true;
     }
 
-    public static void lambda$isBluetoothAndSpeakerOnAsync$3(j20 j20Var, boolean z10, boolean z11) {
-        j20Var.a(Boolean.valueOf(z10), Boolean.valueOf(z11));
+    public static void lambda$isBluetoothAndSpeakerOnAsync$3(k20 k20Var, boolean z10, boolean z11) {
+        k20Var.a(Boolean.valueOf(z10), Boolean.valueOf(z11));
     }
 
-    public void lambda$isBluetoothAndSpeakerOnAsync$4(j20 j20Var) {
-        org.telegram.messenger.i0.g3(new e2.m0(j20Var, isBluetoothOn(), getAudioManager().isSpeakerphoneOn(), 3));
+    public void lambda$isBluetoothAndSpeakerOnAsync$4(k20 k20Var) {
+        org.telegram.messenger.i0.g3(new e2.m0(k20Var, isBluetoothOn(), getAudioManager().isSpeakerphoneOn(), 3));
     }
 
     public static void lambda$stopBluetooth$2(AudioManager audioManager) {
@@ -67,8 +67,8 @@ public class VoipAudioManager {
         return null;
     }
 
-    public void isBluetoothAndSpeakerOnAsync(j20 j20Var) {
-        Utilities.e.c(new mh.k(21, this, j20Var));
+    public void isBluetoothAndSpeakerOnAsync(k20 k20Var) {
+        Utilities.e.c(new mh.k(21, this, k20Var));
     }
 
     public boolean isBluetoothOn() {

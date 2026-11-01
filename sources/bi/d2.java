@@ -37,7 +37,7 @@ public final class d2 extends ViewOutlineProvider {
                 outline.setRoundRect(org.telegram.messenger.i0.L(1.0f), org.telegram.messenger.i0.L(1.0f), view.getMeasuredWidth() - org.telegram.messenger.i0.L(1.0f), view.getMeasuredHeight() - org.telegram.messenger.i0.L(1.0f), org.telegram.messenger.i0.L(6.0f));
                 return;
             case 7:
-                int i10 = org.telegram.messenger.i0.f16030u;
+                int i10 = org.telegram.messenger.i0.f16176u;
                 outline.setOval(0, 0, i10, i10);
                 return;
             case 8:
@@ -90,7 +90,7 @@ public final class d2 extends ViewOutlineProvider {
                     outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), i11);
                     return;
                 }
-                int i13 = org.telegram.messenger.i0.f16030u;
+                int i13 = org.telegram.messenger.i0.f16176u;
                 outline.setOval(0, 0, i13, i13);
                 return;
             case 22:

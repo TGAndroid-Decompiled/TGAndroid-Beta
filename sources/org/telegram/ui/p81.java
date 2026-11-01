@@ -1,82 +1,63 @@
 package org.telegram.ui;
 
-import android.view.MotionEvent;
-import android.widget.Scroller;
-import org.telegram.messenger.Utilities;
-public final class p81 implements org.telegram.ui.Components.mn0, org.telegram.ui.Components.o10 {
-    public final m91 f40536a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.ViewGroup;
+public final class p81 extends AnimatorListenerAdapter {
+    public final int f40422a;
+    public final k91 f40423b;
 
-    public p81(m91 m91Var) {
-        this.f40536a = m91Var;
+    public p81(k91 k91Var, int i10) {
+        this.f40422a = i10;
+        this.f40423b = k91Var;
     }
 
     @Override
-    public CharSequence getContentDescription() {
-        return null;
-    }
-
-    @Override
-    public void k(boolean z10, float f7) {
-        m91 m91Var = this.f40536a;
-        m91Var.f39574m1 = f7;
-        m91Var.o1();
-    }
-
-    @Override
-    public boolean onDown(MotionEvent motionEvent) {
-        Scroller scroller = this.f40536a.f39544c;
-        if (scroller != null) {
-            scroller.abortAnimation();
-            return true;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f40422a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                k91 k91Var = this.f40423b;
+                k91Var.f38778y0.invalidate();
+                k91Var.f38775x0[1].setVisibility(8);
+                k91Var.f38725d2 = null;
+                return;
+            case 1:
+                this.f40423b.C0 = null;
+                return;
+            case 2:
+                k91 k91Var2 = this.f40423b;
+                if (k91Var2.E0.getTag() == null) {
+                    k91Var2.E0.setVisibility(4);
+                }
+                k91Var2.I0 = null;
+                return;
+            case 3:
+                k91 k91Var3 = this.f40423b;
+                if (k91Var3.F0.getTag() == null) {
+                    k91Var3.F0.setVisibility(4);
+                }
+                k91Var3.J0 = null;
+                return;
+            case 4:
+                k91 k91Var4 = this.f40423b;
+                ic icVar = k91Var4.f38741i2;
+                if (icVar != null) {
+                    if (icVar.getParent() != null) {
+                        ((ViewGroup) k91Var4.f38741i2.getParent()).removeView(k91Var4.f38741i2);
+                    }
+                    k91Var4.f38741i2 = null;
+                }
+                k91Var4.f38747k2 = null;
+                super.onAnimationEnd(animator);
+                return;
+            default:
+                k91 k91Var5 = this.f40423b;
+                if (!k91Var5.f38758q1.a()) {
+                    k91Var5.S1.setVisibility(8);
+                    return;
+                }
+                return;
         }
-        return true;
-    }
-
-    @Override
-    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        m91 m91Var = this.f40536a;
-        Scroller scroller = m91Var.f39544c;
-        if (scroller != null) {
-            scroller.abortAnimation();
-            m91Var.f39544c.fling((int) m91Var.Y1, 0, Math.round(-f7), Math.round(f10), 0, (int) m91Var.X1, 0, Integer.MAX_VALUE);
-            m91Var.f39603y0.postInvalidate();
-            return true;
-        }
-        return true;
-    }
-
-    @Override
-    public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        m91 m91Var = this.f40536a;
-        Scroller scroller = m91Var.f39544c;
-        if (scroller != null) {
-            scroller.abortAnimation();
-        }
-        m91Var.Y1 = Utilities.i(m91Var.Y1 + f7, m91Var.X1, 0.0f);
-        m91Var.Z0();
-        m91Var.f39603y0.invalidate();
-        return true;
-    }
-
-    @Override
-    public boolean onSingleTapUp(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public int p0() {
-        return 0;
-    }
-
-    @Override
-    public void onLongPress(MotionEvent motionEvent) {
-    }
-
-    @Override
-    public void C() {
-    }
-
-    @Override
-    public void e1() {
     }
 }

@@ -3,7 +3,7 @@ package ag;
 import android.util.SparseIntArray;
 import bi.n4;
 import java.util.ArrayList;
-import org.telegram.ui.Components.sx0;
+import org.telegram.ui.Components.tx0;
 import org.telegram.ui.Components.y20;
 public final class g3 implements Runnable {
     public final int f534a;
@@ -21,32 +21,32 @@ public final class g3 implements Runnable {
     }
 
     private final void a() {
-        sx0 sx0Var = (sx0) this.f536c;
+        tx0 tx0Var = (tx0) this.f536c;
         String str = (String) this.e;
         ArrayList arrayList = (ArrayList) this.d;
-        if (this.f535b == sx0Var.K) {
-            sx0Var.J = str;
-            sx0Var.I = 2;
+        if (this.f535b == tx0Var.K) {
+            tx0Var.J = str;
+            tx0Var.I = 2;
             arrayList.remove(arrayList.size() - 1);
             if (!arrayList.isEmpty()) {
-                sx0Var.f30383y = false;
-                sx0Var.f30381w = false;
-                sx0Var.c();
-                jg.l0 l0Var = sx0Var.d;
+                tx0Var.f30743y = false;
+                tx0Var.f30741w = false;
+                tx0Var.c();
+                jg.l0 l0Var = tx0Var.d;
                 if (l0Var != null) {
                     l0Var.setVisibility(0);
-                    sx0Var.d.invalidate();
+                    tx0Var.d.invalidate();
                 }
-                sx0Var.f30382x = arrayList;
-                fg.j jVar = sx0Var.f30376f;
+                tx0Var.f30742x = arrayList;
+                fg.j jVar = tx0Var.f30736f;
                 if (jVar != null) {
                     jVar.f();
                     return;
                 }
                 return;
             }
-            sx0Var.f30383y = true;
-            sx0Var.f();
+            tx0Var.f30743y = true;
+            tx0Var.f();
         }
     }
 
@@ -87,9 +87,9 @@ public final class g3 implements Runnable {
         this.d = arrayList;
     }
 
-    public g3(sx0 sx0Var, int i10, String str, ArrayList arrayList) {
+    public g3(tx0 tx0Var, int i10, String str, ArrayList arrayList) {
         this.f534a = 28;
-        this.f536c = sx0Var;
+        this.f536c = tx0Var;
         this.f535b = i10;
         this.e = str;
         this.d = arrayList;

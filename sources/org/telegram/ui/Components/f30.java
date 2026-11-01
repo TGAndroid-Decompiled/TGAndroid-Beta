@@ -2,14 +2,14 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public final class f30 implements ms0 {
+public final class f30 implements ns0 {
     @Override
-    public final boolean X() {
+    public final boolean Y() {
         return false;
     }
 
     @Override
-    public final tk0 f() {
+    public final uk0 f() {
         return null;
     }
 
@@ -24,15 +24,15 @@ public final class f30 implements ms0 {
     }
 
     @Override
-    public final boolean s() {
+    public final boolean t() {
         return true;
     }
 
     @Override
-    public final void I() {
+    public final void J() {
     }
 
     @Override
-    public final void V() {
+    public final void W() {
     }
 }

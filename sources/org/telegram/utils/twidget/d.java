@@ -1,9 +1,8 @@
 package org.telegram.utils.twidget;
 
 import android.graphics.Bitmap;
-import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
-import android.graphics.Color;
+import android.graphics.DashPathEffect;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
@@ -15,42 +14,71 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.SweepGradient;
-import android.util.Base64;
-import org.json.JSONArray;
-import org.json.JSONObject;
 public final class d {
-    public static final PorterDuff.Mode[] f44320r = {null, PorterDuff.Mode.SRC_IN, PorterDuff.Mode.SRC_OUT, PorterDuff.Mode.SRC_ATOP, PorterDuff.Mode.DST_OVER, PorterDuff.Mode.DST_IN, PorterDuff.Mode.DST_OUT, PorterDuff.Mode.DST_ATOP, PorterDuff.Mode.ADD, PorterDuff.Mode.SRC, PorterDuff.Mode.XOR, PorterDuff.Mode.MULTIPLY, PorterDuff.Mode.SCREEN, PorterDuff.Mode.OVERLAY, PorterDuff.Mode.DARKEN, PorterDuff.Mode.LIGHTEN};
-    public final Paint f44321a = new Paint(3);
-    public final Paint f44322b = new Paint();
-    public final Paint f44323c;
-    public final Path d;
+    public static final PorterDuff.Mode[] W = {null, PorterDuff.Mode.SRC_IN, PorterDuff.Mode.SRC_OUT, PorterDuff.Mode.SRC_ATOP, PorterDuff.Mode.DST_OVER, PorterDuff.Mode.DST_IN, PorterDuff.Mode.DST_OUT, PorterDuff.Mode.DST_ATOP, PorterDuff.Mode.ADD, PorterDuff.Mode.SRC, PorterDuff.Mode.XOR, PorterDuff.Mode.MULTIPLY, PorterDuff.Mode.SCREEN, PorterDuff.Mode.OVERLAY, PorterDuff.Mode.DARKEN, PorterDuff.Mode.LIGHTEN};
+    public float A;
+    public float B;
+    public float C;
+    public float D;
+    public int[] E;
+    public float[] F;
+    public int G;
+    public int H;
+    public float I;
+    public float J;
+    public float K;
+    public float[] L;
+    public int M;
+    public int N;
+    public int O;
+    public String P;
+    public float Q;
+    public float R;
+    public float S;
+    public float T;
+    public boolean U;
+    public boolean V;
+    public final Paint f44324a = new Paint(3);
+    public final Paint f44325b = new Paint(1);
+    public final Paint f44326c = new Paint();
+    public final Paint d;
     public final Path e;
-    public final Matrix f44324f;
-    public final Matrix f44325g;
-    public final float[] h;
-    public final float[] f44326i;
-    public final RectF f44327j;
-    public final Rect f44328k;
-    public final int f44329l;
-    public Bitmap f44330m;
-    public Bitmap f44331n;
-    public Canvas f44332o;
-    public int f44333p;
-    public int f44334q;
+    public final Path f44327f;
+    public final Matrix f44328g;
+    public final Matrix h;
+    public final float[] f44329i;
+    public final float[] f44330j;
+    public final float[] f44331k;
+    public final RectF f44332l;
+    public final Rect f44333m;
+    public final int f44334n;
+    public Bitmap f44335o;
+    public Bitmap f44336p;
+    public Canvas f44337q;
+    public int f44338r;
+    public int f44339s;
+    public int[] f44340t;
+    public int f44341u;
+    public int v;
+    public int f44342w;
+    public int f44343x;
+    public int f44344y;
+    public int f44345z;
 
     public d(int i10) {
         Paint paint = new Paint();
-        this.f44323c = paint;
-        this.d = new Path();
+        this.d = paint;
         this.e = new Path();
-        this.f44324f = new Matrix();
-        this.f44325g = new Matrix();
-        this.h = new float[9];
-        this.f44326i = new float[8];
-        this.f44327j = new RectF();
-        this.f44328k = new Rect();
-        this.f44334q = -1;
-        this.f44329l = i10;
+        this.f44327f = new Path();
+        this.f44328g = new Matrix();
+        this.h = new Matrix();
+        this.f44329i = new float[9];
+        this.f44330j = new float[6];
+        this.f44331k = new float[8];
+        this.f44332l = new RectF();
+        this.f44333m = new Rect();
+        this.f44339s = -1;
+        this.f44334n = i10;
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
@@ -58,147 +86,143 @@ public final class d {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.d.b(int, android.graphics.Paint):void");
     }
 
-    public final void a(Paint paint, JSONObject jSONObject) {
-        int length;
-        int optInt = jSONObject.optInt("pk");
-        JSONArray optJSONArray = jSONObject.optJSONArray("s");
-        if (optJSONArray == null) {
-            length = 0;
-        } else {
-            length = optJSONArray.length() / 2;
-        }
-        if (optInt != 0 && length != 0) {
-            int[] n10 = a0.n(optJSONArray);
-            float[] o10 = a0.o(optJSONArray);
-            float[] fArr = this.f44326i;
-            a0.d(jSONObject.optJSONArray("pa"), fArr, 6, new float[0]);
+    public final void a(Paint paint) {
+        int[] iArr;
+        if (this.f44343x != 0 && (iArr = this.E) != null) {
+            float[] fArr = this.F;
             paint.setColor(-16777216);
-            if (optInt == 1) {
-                paint.setShader(new LinearGradient(fArr[0], fArr[1], fArr[2], fArr[3], n10, o10, Shader.TileMode.CLAMP));
+            int i10 = this.f44343x;
+            float[] fArr2 = this.f44330j;
+            if (i10 == 1) {
+                paint.setShader(new LinearGradient(fArr2[0], fArr2[1], fArr2[2], fArr2[3], iArr, fArr, Shader.TileMode.CLAMP));
                 return;
-            } else if (optInt == 2) {
-                float f7 = fArr[2];
-                float max = Math.max(fArr[5], 0.01f);
+            } else if (i10 == 2) {
+                float f7 = fArr2[2];
+                float max = Math.max(fArr2[5], 0.01f);
                 if (f7 > 0.0f && f7 < max) {
-                    float[] fArr2 = new float[o10.length];
-                    for (int i10 = 0; i10 < o10.length; i10++) {
+                    float[] fArr3 = new float[fArr.length];
+                    for (int i11 = 0; i11 < fArr.length; i11++) {
                         float f10 = f7 / max;
-                        fArr2[i10] = c3.i0.z(1.0f, f10, o10[i10], f10);
+                        fArr3[i11] = c3.i0.z(1.0f, f10, fArr[i11], f10);
                     }
-                    o10 = fArr2;
+                    fArr = fArr3;
                 }
-                paint.setShader(new RadialGradient(fArr[3], fArr[4], max, n10, o10, Shader.TileMode.CLAMP));
+                paint.setShader(new RadialGradient(fArr2[3], fArr2[4], max, iArr, fArr, Shader.TileMode.CLAMP));
                 return;
             } else {
-                SweepGradient sweepGradient = new SweepGradient(fArr[1], fArr[2], n10, o10);
+                SweepGradient sweepGradient = new SweepGradient(fArr2[1], fArr2[2], iArr, fArr);
                 Matrix matrix = new Matrix();
-                matrix.setRotate((float) Math.toDegrees(fArr[0]), fArr[1], fArr[2]);
+                matrix.setRotate((float) Math.toDegrees(fArr2[0]), fArr2[1], fArr2[2]);
                 sweepGradient.setLocalMatrix(matrix);
                 paint.setShader(sweepGradient);
                 return;
             }
         }
         paint.setShader(null);
-        paint.setColor((int) jSONObject.optLong("c"));
+        paint.setColor(this.f44344y);
     }
 
-    public final void c(android.graphics.Canvas r23, org.json.JSONObject r24, org.telegram.utils.twidget.c r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.d.c(android.graphics.Canvas, org.json.JSONObject, org.telegram.utils.twidget.c):void");
+    public final void c(android.graphics.Canvas r18, org.telegram.utils.twidget.c r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.d.c(android.graphics.Canvas, org.telegram.utils.twidget.c):void");
     }
 
-    public final void d(JSONObject jSONObject, c cVar) {
-        int[] iArr;
-        int optInt = jSONObject.optInt("k");
-        if (optInt == 0) {
-            this.f44330m.eraseColor(0);
-        } else if (optInt == 6) {
-            int optInt2 = jSONObject.optInt("w");
-            int optInt3 = jSONObject.optInt("h");
-            try {
-                byte[] decode = Base64.decode(jSONObject.optString("px"), 0);
-                if (optInt2 > 0 && optInt3 > 0 && decode.length == optInt2 * optInt3 * 4) {
-                    int optDouble = (int) jSONObject.optDouble("x");
-                    int optDouble2 = (int) jSONObject.optDouble("y");
-                    int max = Math.max(0, optDouble);
-                    int max2 = Math.max(0, optDouble2);
-                    int min = Math.min(this.f44330m.getWidth(), optDouble + optInt2);
-                    int min2 = Math.min(this.f44330m.getHeight(), optInt3 + optDouble2);
-                    if (min > max && min2 > max2) {
-                        int i10 = min - max;
-                        int i11 = min2 - max2;
-                        int[] iArr2 = new int[i10 * i11];
-                        for (int i12 = max2; i12 < min2; i12++) {
-                            int i13 = max;
-                            while (i13 < min) {
-                                int i14 = ((i13 - optDouble) + ((i12 - optDouble2) * optInt2)) * 4;
-                                iArr2[(i13 - max) + ((i12 - max2) * i10)] = Color.argb(decode[i14 + 3] & 255, decode[i14] & 255, decode[i14 + 1] & 255, decode[i14 + 2] & 255);
-                                i13++;
-                                optDouble2 = optDouble2;
-                                optInt2 = optInt2;
-                            }
-                        }
-                        this.f44330m.setPixels(iArr2, 0, i10, max, max2, i10, i11);
-                    }
-                }
-            } catch (Exception unused) {
-            }
+    public final void d(Paint paint) {
+        Paint.Cap cap;
+        Paint.Join join;
+        int i10;
+        paint.setStrokeWidth(this.I);
+        int i11 = this.G;
+        if (i11 == 1) {
+            cap = Paint.Cap.ROUND;
+        } else if (i11 == 2) {
+            cap = Paint.Cap.SQUARE;
         } else {
-            this.f44332o.save();
-            JSONArray optJSONArray = jSONObject.optJSONArray("cl");
-            if (optJSONArray != null) {
-                for (int i15 = 0; i15 < optJSONArray.length(); i15++) {
-                    JSONObject optJSONObject = optJSONArray.optJSONObject(i15);
-                    if (optJSONObject != null) {
-                        Canvas canvas = this.f44332o;
-                        Path path = this.e;
-                        a0.j(optJSONObject, path);
-                        canvas.clipPath(path);
-                    }
-                }
-            }
-            if (optInt == 3) {
-                Canvas canvas2 = this.f44332o;
-                Path path2 = this.d;
-                a0.j(jSONObject, path2);
-                canvas2.drawPath(path2, this.f44323c);
-                this.f44332o.restore();
-                return;
-            }
-            float max3 = Math.max(0.0f, Math.min(1.0f, (float) jSONObject.optDouble("a", 1.0d)));
-            int optInt4 = jSONObject.optInt("cm");
-            JSONArray optJSONArray2 = jSONObject.optJSONArray("sh");
-            Paint paint = this.f44322b;
-            if (optJSONArray2 != null && jSONObject.has("shc")) {
-                Bitmap createBitmap = Bitmap.createBitmap(this.f44330m.getWidth(), this.f44330m.getHeight(), Bitmap.Config.ARGB_8888);
-                c(new Canvas(createBitmap), jSONObject, cVar);
-                Paint paint2 = new Paint(1);
-                float optDouble3 = ((float) optJSONArray2.optDouble(2)) / 2.0f;
-                if (optDouble3 > 0.5f) {
-                    paint2.setMaskFilter(new BlurMaskFilter((optDouble3 - 0.5f) / 0.57735f, BlurMaskFilter.Blur.NORMAL));
-                }
-                Bitmap extractAlpha = createBitmap.extractAlpha(paint2, new int[2]);
-                paint.reset();
-                paint.setAlpha(Math.round(max3 * 255.0f));
-                b(optInt4, paint);
-                this.f44332o.saveLayer(null, paint);
-                Paint paint3 = new Paint(1);
-                paint3.setColor((int) jSONObject.optLong("shc"));
-                this.f44332o.drawBitmap(extractAlpha, iArr[0] + ((float) optJSONArray2.optDouble(0)), iArr[1] + ((float) optJSONArray2.optDouble(1)), paint3);
-                this.f44332o.drawBitmap(createBitmap, 0.0f, 0.0f, (Paint) null);
-                this.f44332o.restore();
-                extractAlpha.recycle();
-                createBitmap.recycle();
-            } else if (max3 >= 1.0f && optInt4 == 0) {
-                c(this.f44332o, jSONObject, cVar);
-            } else {
-                paint.reset();
-                paint.setAlpha(Math.round(max3 * 255.0f));
-                b(optInt4, paint);
-                this.f44332o.saveLayer(null, paint);
-                c(this.f44332o, jSONObject, cVar);
-                this.f44332o.restore();
-            }
-            this.f44332o.restore();
+            cap = Paint.Cap.BUTT;
         }
+        paint.setStrokeCap(cap);
+        int i12 = this.H;
+        if (i12 == 1) {
+            join = Paint.Join.ROUND;
+        } else if (i12 == 2) {
+            join = Paint.Join.BEVEL;
+        } else {
+            join = Paint.Join.MITER;
+        }
+        paint.setStrokeJoin(join);
+        paint.setStrokeMiter(this.J);
+        paint.setPathEffect(null);
+        float[] fArr = this.L;
+        if (fArr != null) {
+            int length = fArr.length;
+            if (length % 2 == 1) {
+                i10 = length * 2;
+            } else {
+                i10 = length;
+            }
+            float[] fArr2 = new float[i10];
+            float f7 = 0.0f;
+            for (int i13 = 0; i13 < i10; i13++) {
+                float max = Math.max(0.0f, this.L[i13 % length]);
+                fArr2[i13] = max;
+                f7 += max;
+            }
+            if (f7 > 0.0f) {
+                paint.setPathEffect(new DashPathEffect(fArr2, this.K));
+            }
+        }
+    }
+
+    public final float e() {
+        int[] iArr = this.f44340t;
+        int i10 = this.f44341u;
+        this.f44341u = i10 + 1;
+        return Float.intBitsToFloat(iArr[i10]);
+    }
+
+    public final void f(Path path, boolean z10) {
+        path.rewind();
+        int[] iArr = this.f44340t;
+        int i10 = this.f44341u;
+        int i11 = i10 + 1;
+        this.f44341u = i11;
+        int i12 = iArr[i10];
+        int i13 = i10 + 2;
+        this.f44341u = i13;
+        int i14 = iArr[i11];
+        int i15 = i13 + i12;
+        int i16 = i15;
+        for (int i17 = i13; i17 < i15; i17++) {
+            int i18 = iArr[i17];
+            if (i18 != 0) {
+                if (i18 != 1) {
+                    if (i18 != 2) {
+                        if (i18 != 3) {
+                            if (i18 == 4) {
+                                path.close();
+                            }
+                        } else {
+                            path.cubicTo(Float.intBitsToFloat(iArr[i16]), Float.intBitsToFloat(iArr[i16 + 1]), Float.intBitsToFloat(iArr[i16 + 2]), Float.intBitsToFloat(iArr[i16 + 3]), Float.intBitsToFloat(iArr[i16 + 4]), Float.intBitsToFloat(iArr[i16 + 5]));
+                            i16 += 6;
+                        }
+                    } else {
+                        path.quadTo(Float.intBitsToFloat(iArr[i16]), Float.intBitsToFloat(iArr[i16 + 1]), Float.intBitsToFloat(iArr[i16 + 2]), Float.intBitsToFloat(iArr[i16 + 3]));
+                        i16 += 4;
+                    }
+                } else {
+                    path.lineTo(Float.intBitsToFloat(iArr[i16]), Float.intBitsToFloat(iArr[i16 + 1]));
+                }
+            } else {
+                path.moveTo(Float.intBitsToFloat(iArr[i16]), Float.intBitsToFloat(iArr[i16 + 1]));
+            }
+            i16 += 2;
+        }
+        this.f44341u = i12 + i14 + this.f44341u;
+        if (z10) {
+            path.setFillType(Path.FillType.WINDING);
+        }
+    }
+
+    public final void g(org.telegram.utils.twidget.c r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.d.g(org.telegram.utils.twidget.c):void");
     }
 }

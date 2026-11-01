@@ -8,37 +8,37 @@ import c6.p;
 import n6.l;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MusicPlayerService;
-import org.telegram.messenger.jj;
-import org.telegram.messenger.tz;
+import org.telegram.messenger.kj;
+import org.telegram.messenger.uz;
 import org.telegram.ui.Components.w7;
 public final class h extends s {
-    public final int f6941g;
+    public final int f6942g;
     public final Object h;
 
     public h(Object obj, int i10) {
         super(0);
-        this.f6941g = i10;
+        this.f6942g = i10;
         this.h = obj;
     }
 
     @Override
     public final void G(long j10) {
-        int i10 = this.f6941g;
+        int i10 = this.f6942g;
         Object obj = this.h;
         switch (i10) {
             case 0:
                 i.v.b("onSeekTo %d", Long.valueOf(j10));
-                e6.h hVar = ((i) obj).f6952n;
+                e6.h hVar = ((i) obj).f6953n;
                 if (hVar != null) {
                     hVar.q(new p(j10));
                     return;
                 }
                 return;
             default:
-                jj jjVar = MediaController.B().f14482u0;
-                if (jjVar != null) {
-                    MediaController.B().i0(jjVar, ((float) (j10 / 1000)) / ((float) jjVar.L0()));
-                    boolean z10 = MusicPlayerService.f14497w;
+                kj kjVar = MediaController.B().f14483u0;
+                if (kjVar != null) {
+                    MediaController.B().i0(kjVar, ((float) (j10 / 1000)) / ((float) kjVar.L0()));
+                    boolean z10 = MusicPlayerService.f14498w;
                     ((MusicPlayerService) obj).f(j10);
                     return;
                 }
@@ -48,7 +48,7 @@ public final class h extends s {
 
     @Override
     public void M(int i10) {
-        switch (this.f6941g) {
+        switch (this.f6942g) {
             case 1:
                 MusicPlayerService musicPlayerService = (MusicPlayerService) this.h;
                 int i11 = 2;
@@ -59,12 +59,12 @@ public final class h extends s {
                         i11 = 1;
                     }
                 }
-                tz.E(i11);
-                boolean z10 = MusicPlayerService.f14497w;
+                uz.E(i11);
+                boolean z10 = MusicPlayerService.f14498w;
                 musicPlayerService.g();
-                jj jjVar = MediaController.B().f14482u0;
-                if (jjVar != null) {
-                    musicPlayerService.a(jjVar, false);
+                kj kjVar = MediaController.B().f14483u0;
+                if (kjVar != null) {
+                    musicPlayerService.a(kjVar, false);
                     return;
                 }
                 return;
@@ -76,24 +76,24 @@ public final class h extends s {
 
     @Override
     public void P(int i10) {
-        switch (this.f6941g) {
+        switch (this.f6942g) {
             case 1:
                 MusicPlayerService musicPlayerService = (MusicPlayerService) this.h;
                 if (i10 != 1 && i10 != 2) {
-                    if (tz.N0) {
+                    if (uz.N0) {
                         MediaController.B().l0(0);
                     }
-                } else if (!tz.N0) {
+                } else if (!uz.N0) {
                     MediaController.B().l0(2);
                 }
-                boolean z10 = MusicPlayerService.f14497w;
-                a0 a0Var = musicPlayerService.f14500c;
+                boolean z10 = MusicPlayerService.f14498w;
+                a0 a0Var = musicPlayerService.f14501c;
                 if (a0Var != null) {
-                    a0Var.F(tz.N0 ? 1 : 0);
+                    a0Var.F(uz.N0 ? 1 : 0);
                 }
-                jj jjVar = MediaController.B().f14482u0;
-                if (jjVar != null) {
-                    musicPlayerService.a(jjVar, false);
+                kj kjVar = MediaController.B().f14483u0;
+                if (kjVar != null) {
+                    musicPlayerService.a(kjVar, false);
                     return;
                 }
                 return;
@@ -105,10 +105,10 @@ public final class h extends s {
 
     @Override
     public final void S() {
-        switch (this.f6941g) {
+        switch (this.f6942g) {
             case 0:
                 i.v.b("onSkipToNext", new Object[0]);
-                e6.h hVar = ((i) this.h).f6952n;
+                e6.h hVar = ((i) this.h).f6953n;
                 if (hVar != null) {
                     l.d("Must be called from the main thread.");
                     if (!hVar.w()) {
@@ -121,8 +121,8 @@ public final class h extends s {
                 }
                 return;
             default:
-                jj jjVar = MediaController.B().f14482u0;
-                if (jjVar != null && jjVar.I3()) {
+                kj kjVar = MediaController.B().f14483u0;
+                if (kjVar != null && kjVar.I3()) {
                     MediaController.B().U(false);
                     return;
                 }
@@ -132,10 +132,10 @@ public final class h extends s {
 
     @Override
     public final void V() {
-        switch (this.f6941g) {
+        switch (this.f6942g) {
             case 0:
                 i.v.b("onSkipToPrevious", new Object[0]);
-                e6.h hVar = ((i) this.h).f6952n;
+                e6.h hVar = ((i) this.h).f6953n;
                 if (hVar != null) {
                     l.d("Must be called from the main thread.");
                     if (!hVar.w()) {
@@ -148,8 +148,8 @@ public final class h extends s {
                 }
                 return;
             default:
-                jj jjVar = MediaController.B().f14482u0;
-                if (jjVar != null && jjVar.I3()) {
+                kj kjVar = MediaController.B().f14483u0;
+                if (kjVar != null && kjVar.I3()) {
                     MediaController.B().V();
                     return;
                 }
@@ -159,7 +159,7 @@ public final class h extends s {
 
     @Override
     public final void f(String str) {
-        int i10 = this.f6941g;
+        int i10 = this.f6942g;
         Object obj = this.h;
         switch (i10) {
             case 0:
@@ -169,10 +169,10 @@ public final class h extends s {
                     case -1699820260:
                         if (str.equals("com.google.android.gms.cast.framework.action.REWIND")) {
                             long j10 = -iVar.e.f6276c;
-                            e6.h hVar = iVar.f6952n;
+                            e6.h hVar = iVar.f6953n;
                             if (hVar != null) {
                                 long min = Math.min(hVar.g(), Math.max(0L, hVar.a() + j10));
-                                e6.h hVar2 = iVar.f6952n;
+                                e6.h hVar2 = iVar.f6953n;
                                 if (hVar2 != null) {
                                     hVar2.q(new p(min));
                                     return;
@@ -205,10 +205,10 @@ public final class h extends s {
                     case 1362116196:
                         if (str.equals("com.google.android.gms.cast.framework.action.FORWARD")) {
                             long j11 = iVar.e.f6276c;
-                            e6.h hVar3 = iVar.f6952n;
+                            e6.h hVar3 = iVar.f6953n;
                             if (hVar3 != null) {
                                 long min2 = Math.min(hVar3.g(), Math.max(0L, hVar3.a() + j11));
-                                e6.h hVar4 = iVar.f6952n;
+                                e6.h hVar4 = iVar.f6953n;
                                 if (hVar4 != null) {
                                     hVar4.q(new p(min2));
                                     return;
@@ -220,39 +220,39 @@ public final class h extends s {
                         break;
                 }
                 Intent intent = new Intent(str);
-                intent.setComponent(iVar.f6946g);
-                iVar.f6942a.sendBroadcast(intent);
+                intent.setComponent(iVar.f6947g);
+                iVar.f6943a.sendBroadcast(intent);
                 return;
             default:
                 MusicPlayerService musicPlayerService = (MusicPlayerService) obj;
                 if ("org.telegram.android.musicplayer.repeat".equals(str)) {
-                    tz.E((tz.S0 + 1) % 3);
-                    boolean z10 = MusicPlayerService.f14497w;
+                    uz.E((uz.S0 + 1) % 3);
+                    boolean z10 = MusicPlayerService.f14498w;
                     musicPlayerService.g();
                     w7 w7Var = w7.P2;
                     if (w7Var != null) {
                         w7Var.c1();
                     }
                 } else if ("org.telegram.android.musicplayer.shuffle".equals(str)) {
-                    if (tz.N0) {
+                    if (uz.N0) {
                         MediaController.B().l0(0);
                     } else {
                         MediaController.B().l0(2);
                     }
-                    boolean z11 = MusicPlayerService.f14497w;
-                    a0 a0Var = musicPlayerService.f14500c;
+                    boolean z11 = MusicPlayerService.f14498w;
+                    a0 a0Var = musicPlayerService.f14501c;
                     if (a0Var != null) {
-                        a0Var.F(tz.N0 ? 1 : 0);
+                        a0Var.F(uz.N0 ? 1 : 0);
                     }
                     w7 w7Var2 = w7.P2;
                     if (w7Var2 != null) {
                         w7Var2.c1();
                     }
                 }
-                jj jjVar = MediaController.B().f14482u0;
-                if (jjVar != null) {
-                    boolean z12 = MusicPlayerService.f14497w;
-                    musicPlayerService.a(jjVar, false);
+                kj kjVar = MediaController.B().f14483u0;
+                if (kjVar != null) {
+                    boolean z12 = MusicPlayerService.f14498w;
+                    musicPlayerService.a(kjVar, false);
                     return;
                 }
                 return;
@@ -262,12 +262,12 @@ public final class h extends s {
     @Override
     public boolean i(Intent intent) {
         e6.h hVar;
-        switch (this.f6941g) {
+        switch (this.f6942g) {
             case 0:
                 i.v.b("onMediaButtonEvent", new Object[0]);
                 KeyEvent keyEvent = (KeyEvent) intent.getParcelableExtra("android.intent.extra.KEY_EVENT");
                 if (keyEvent != null) {
-                    if ((keyEvent.getKeyCode() == 127 || keyEvent.getKeyCode() == 126) && (hVar = ((i) this.h).f6952n) != null) {
+                    if ((keyEvent.getKeyCode() == 127 || keyEvent.getKeyCode() == 126) && (hVar = ((i) this.h).f6953n) != null) {
                         hVar.r();
                         return true;
                     }
@@ -281,34 +281,34 @@ public final class h extends s {
 
     @Override
     public final void k() {
-        switch (this.f6941g) {
+        switch (this.f6942g) {
             case 0:
                 i.v.b("onPause", new Object[0]);
-                e6.h hVar = ((i) this.h).f6952n;
+                e6.h hVar = ((i) this.h).f6953n;
                 if (hVar != null) {
                     hVar.r();
                     return;
                 }
                 return;
             default:
-                MediaController.B().R(MediaController.B().f14482u0, true);
+                MediaController.B().R(MediaController.B().f14483u0, true);
                 return;
         }
     }
 
     @Override
     public final void n() {
-        switch (this.f6941g) {
+        switch (this.f6942g) {
             case 0:
                 i.v.b("onPlay", new Object[0]);
-                e6.h hVar = ((i) this.h).f6952n;
+                e6.h hVar = ((i) this.h).f6953n;
                 if (hVar != null) {
                     hVar.r();
                     return;
                 }
                 return;
             default:
-                MediaController.B().S(MediaController.B().f14482u0);
+                MediaController.B().S(MediaController.B().f14483u0);
                 return;
         }
     }

@@ -2,17 +2,17 @@ package org.telegram.ui.Components;
 
 import android.content.DialogInterface;
 public final class bu implements DialogInterface.OnShowListener {
-    public final hu f24879a;
+    public final hu f24922a;
 
     public bu(hu huVar) {
-        this.f24879a = huVar;
+        this.f24922a = huVar;
     }
 
     @Override
     public final void onShow(DialogInterface dialogInterface) {
-        m81 m81Var = this.f24879a.f26812j1;
-        if (jf0.f27345p0.P && m81Var.f()) {
-            m81Var.getViewTreeObserver().addOnPreDrawListener(new org.telegram.ui.ActionBar.l1(this, 2));
+        n81 n81Var = this.f24922a.f26921j1;
+        if (jf0.f27400p0.P && n81Var.f()) {
+            n81Var.getViewTreeObserver().addOnPreDrawListener(new org.telegram.ui.ActionBar.l1(this, 2));
         }
     }
 }

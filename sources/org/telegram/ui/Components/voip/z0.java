@@ -1,46 +1,89 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.ValueAnimator;
-import android.view.ViewTreeObserver;
-import org.telegram.ui.Components.gr;
-import org.telegram.ui.s9;
-public final class z0 implements ViewTreeObserver.OnPreDrawListener {
-    public final float f31793a;
-    public final float f31794b;
-    public final b1 f31795c;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class z0 extends FrameLayout {
+    public int f31844a;
+    public int f31845b;
+    public int f31846c;
+    public int d;
+    public boolean e;
 
-    public z0(b1 b1Var, float f7, float f10) {
-        this.f31795c = b1Var;
-        this.f31793a = f7;
-        this.f31794b = f10;
+    public z0(Context context) {
+        super(context);
+        this.d = 68;
+        this.e = true;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        b1 b1Var = this.f31795c;
-        if (!b1Var.P) {
-            ValueAnimator valueAnimator = b1Var.f31328d0;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(b1Var.J, 0.0f);
-            b1Var.f31328d0 = ofFloat;
-            ofFloat.addUpdateListener(b1Var.f31329e0);
-            b1Var.f31328d0.setDuration(300L);
-            b1Var.f31328d0.start();
-            float measuredWidth = this.f31793a - ((b1Var.getMeasuredWidth() - (b1Var.getMeasuredWidth() * 0.23f)) / 2.0f);
-            float measuredHeight = this.f31794b - ((b1Var.getMeasuredHeight() - (b1Var.getMeasuredHeight() * 0.23f)) / 2.0f);
-            b1Var.getViewTreeObserver().removeOnPreDrawListener(this);
-            b1Var.setTranslationX(measuredWidth);
-            b1Var.setTranslationY(measuredHeight);
-            b1Var.setScaleX(0.23f);
-            b1Var.setScaleY(0.23f);
-            b1Var.animate().setListener(null).cancel();
-            b1Var.animate().setListener(new s9(this, 26)).scaleX(1.0f).scaleY(1.0f).translationX(0.0f).translationY(0.0f).alpha(1.0f).setDuration(300L).setStartDelay(0L).setInterpolator(gr.f26495f).start();
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (!isEnabled()) {
             return false;
         }
-        b1Var.M = false;
-        b1Var.requestLayout();
-        return false;
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int i14;
+        if (this.e) {
+            int childCount = (int) (((getChildCount() - this.f31844a) / 2.0f) * ((this.f31846c * 2) + this.f31845b));
+            for (int i15 = 0; i15 < getChildCount(); i15++) {
+                View childAt = getChildAt(i15);
+                if (childAt.getVisibility() != 8) {
+                    int i16 = this.f31846c;
+                    childAt.layout(childCount + i16, 0, childAt.getMeasuredWidth() + i16 + childCount, childAt.getMeasuredHeight());
+                    childCount = childAt.getMeasuredWidth() + (this.f31846c * 2) + childCount;
+                }
+            }
+            return;
+        }
+        if (this.f31844a > 0) {
+            i14 = (getMeasuredWidth() - this.f31845b) / (this.f31844a - 1);
+        } else {
+            i14 = 0;
+        }
+        int i17 = 0;
+        for (int i18 = 0; i18 < getChildCount(); i18++) {
+            View childAt2 = getChildAt(i18);
+            if (childAt2.getVisibility() != 8) {
+                int i19 = i17 * i14;
+                childAt2.layout(i19, 0, childAt2.getMeasuredWidth() + i19, childAt2.getMeasuredHeight());
+                i17++;
+            }
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int size = View.MeasureSpec.getSize(i10);
+        this.f31844a = 0;
+        for (int i12 = 0; i12 < getChildCount(); i12++) {
+            if (getChildAt(i12).getVisibility() != 8) {
+                this.f31844a++;
+            }
+        }
+        this.f31845b = org.telegram.messenger.i0.L(this.d);
+        this.f31846c = ((size / getChildCount()) - this.f31845b) / 2;
+        int i13 = 0;
+        for (int i14 = 0; i14 < getChildCount(); i14++) {
+            if (getChildAt(i14).getVisibility() != 8) {
+                getChildAt(i14).measure(View.MeasureSpec.makeMeasureSpec(this.f31845b, 1073741824), i11);
+                if (getChildAt(i14).getMeasuredHeight() > i13) {
+                    i13 = getChildAt(i14).getMeasuredHeight();
+                }
+            }
+        }
+        setMeasuredDimension(size, Math.max(i13, org.telegram.messenger.i0.L(80.0f)));
+    }
+
+    public void setChildSize(int i10) {
+        this.d = i10;
+    }
+
+    public void setUseStartPadding(boolean z10) {
+        this.e = z10;
     }
 }

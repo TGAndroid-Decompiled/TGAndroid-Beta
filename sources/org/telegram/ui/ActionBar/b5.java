@@ -21,6 +21,8 @@ public interface b5 {
 
     p6 getMenuResourcesProvider();
 
+    int getMenuRise();
+
     View getMenuView();
 
     s5 getOpenMenuOverlay();

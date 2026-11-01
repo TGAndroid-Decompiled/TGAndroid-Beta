@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class pm implements vx {
-    public final jn f29383a;
+    public final jn f29452a;
 
     public pm(jn jnVar) {
-        this.f29383a = jnVar;
+        this.f29452a = jnVar;
     }
 
     @Override
@@ -51,9 +51,9 @@ public final class pm implements vx {
         } else {
             z10 = false;
         }
-        jn jnVar = this.f29383a;
-        jnVar.f27425h1 = z10;
-        jnVar.f30947b.f24695l3.requestLayout();
+        jn jnVar = this.f29452a;
+        jnVar.f27491h1 = z10;
+        jnVar.f30964b.f24786l3.requestLayout();
     }
 
     @Override
@@ -64,7 +64,7 @@ public final class pm implements vx {
     @Override
     public final boolean k() {
         EditTextBoldCursor editField;
-        org.telegram.ui.Cells.e6 e6Var = this.f29383a.f27423g1;
+        org.telegram.ui.Cells.e6 e6Var = this.f29452a.f27489g1;
         if (e6Var == null || (editField = e6Var.getEditField()) == null) {
             return false;
         }
@@ -75,7 +75,7 @@ public final class pm implements vx {
     @Override
     public final void l(String str) {
         EditTextBoldCursor editField;
-        org.telegram.ui.Cells.e6 e6Var = this.f29383a.f27423g1;
+        org.telegram.ui.Cells.e6 e6Var = this.f29452a.f27489g1;
         if (e6Var == null || (editField = e6Var.getEditField()) == null) {
             return;
         }
@@ -95,14 +95,14 @@ public final class pm implements vx {
 
     @Override
     public final void n() {
-        jn jnVar = this.f29383a;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, jnVar.getContext(), jnVar.f30946a);
-        String L0 = org.telegram.messenger.cd.L0(2131752068, null);
-        org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20134a;
+        jn jnVar = this.f29452a;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, jnVar.getContext(), jnVar.f30963a);
+        String L0 = org.telegram.messenger.dd.L0(2131752068, null);
+        org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20135a;
         x1Var.R = L0;
-        x1Var.T = org.telegram.messenger.cd.L0(2131752069, null);
-        alertDialog$Builder.k(org.telegram.messenger.cd.L0(2131752099, null), new t(this, 24));
-        alertDialog$Builder.h(org.telegram.messenger.cd.L0(2131752589, null), null);
+        x1Var.T = org.telegram.messenger.dd.L0(2131752069, null);
+        alertDialog$Builder.k(org.telegram.messenger.dd.L0(2131752099, null), new t(this, 24));
+        alertDialog$Builder.h(org.telegram.messenger.dd.L0(2131752589, null), null);
         alertDialog$Builder.p();
     }
 
@@ -115,7 +115,7 @@ public final class pm implements vx {
     public final void x(long j10, TLRPC.Document document, String str, boolean z10) {
         EditTextBoldCursor editField;
         o5 o5Var;
-        org.telegram.ui.Cells.e6 e6Var = this.f29383a.f27423g1;
+        org.telegram.ui.Cells.e6 e6Var = this.f29452a.f27489g1;
         if (e6Var == null || (editField = e6Var.getEditField()) == null) {
             return;
         }
@@ -142,7 +142,7 @@ public final class pm implements vx {
 
     @Override
     public final boolean z() {
-        return this.f29383a.f27425h1;
+        return this.f29452a.f27491h1;
     }
 
     @Override
@@ -150,7 +150,7 @@ public final class pm implements vx {
     }
 
     @Override
-    public final void o(w41 w41Var) {
+    public final void o(x41 x41Var) {
     }
 
     @Override
@@ -190,7 +190,7 @@ public final class pm implements vx {
     }
 
     @Override
-    public final void m(View view, TLRPC.Document document, String str, Object obj, org.telegram.messenger.fj fjVar, boolean z10, int i10) {
+    public final void m(View view, TLRPC.Document document, String str, Object obj, org.telegram.messenger.gj gjVar, boolean z10, int i10) {
     }
 
     @Override

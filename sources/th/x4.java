@@ -15,77 +15,77 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.TreeSet;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.at;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.hs;
-import org.telegram.messenger.jj;
-import org.telegram.messenger.q20;
-import org.telegram.messenger.vp;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.is;
+import org.telegram.messenger.kj;
+import org.telegram.messenger.r20;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ex0;
-import org.telegram.ui.px0;
+import org.telegram.ui.dx0;
+import org.telegram.ui.ox0;
 public class x4 {
     public static HashMap B;
-    public final int f49633c;
+    public final int f49647c;
     public final long d;
     public final int e;
-    public final int f49634f;
-    public final AbstractSet f49638k;
-    public final AbstractSet f49639l;
-    public boolean f49645r;
-    public boolean f49647t;
-    public boolean f49648u;
+    public final int f49648f;
+    public final AbstractSet f49652k;
+    public final AbstractSet f49653l;
+    public boolean f49659r;
+    public boolean f49661t;
+    public boolean f49662u;
     public boolean v;
-    public boolean f49649w;
-    public final o0 f49650x;
-    public w4 f49651y;
-    public boolean f49652z;
-    public int f49631a = 0;
-    public final ArrayList f49632b = new ArrayList();
-    public final ArrayList f49635g = new ArrayList();
+    public boolean f49663w;
+    public final o0 f49664x;
+    public w4 f49665y;
+    public boolean f49666z;
+    public int f49645a = 0;
+    public final ArrayList f49646b = new ArrayList();
+    public final ArrayList f49649g = new ArrayList();
     public final HashMap h = new HashMap();
-    public final ArrayList f49636i = new ArrayList();
-    public final HashMap f49637j = new HashMap();
-    public final HashSet f49640m = new HashSet();
-    public boolean f49641n = true;
-    public boolean f49642o = true;
-    public final ArrayList f49643p = new ArrayList();
-    public final u4 f49644q = new u4(this, 0);
-    public int f49646s = -1;
+    public final ArrayList f49650i = new ArrayList();
+    public final HashMap f49651j = new HashMap();
+    public final HashSet f49654m = new HashSet();
+    public boolean f49655n = true;
+    public boolean f49656o = true;
+    public final ArrayList f49657p = new ArrayList();
+    public final u4 f49658q = new u4(this, 0);
+    public int f49660s = -1;
     public int A = -1;
 
-    public x4(int i10, long j10, int i11, int i12, q20 q20Var) {
-        this.f49633c = i10;
+    public x4(int i10, long j10, int i11, int i12, r20 r20Var) {
+        this.f49647c = i10;
         this.d = j10;
         this.e = i11;
-        this.f49634f = i12;
-        this.f49650x = new o0(9, this, q20Var);
+        this.f49648f = i12;
+        this.f49664x = new o0(10, this, r20Var);
         if (i11 == 0 && i12 > 0) {
-            this.f49638k = new LinkedHashSet();
-            this.f49639l = new LinkedHashSet();
+            this.f49652k = new LinkedHashSet();
+            this.f49653l = new LinkedHashSet();
         } else {
-            this.f49638k = new TreeSet(Comparator$CC.reverseOrder());
-            this.f49639l = new TreeSet(Comparator$CC.reverseOrder());
+            this.f49652k = new TreeSet(Comparator$CC.reverseOrder());
+            this.f49653l = new TreeSet(Comparator$CC.reverseOrder());
         }
         s();
     }
 
-    public static long b(jj jjVar) {
-        if (jjVar == null) {
+    public static long b(kj kjVar) {
+        if (kjVar == null) {
             return 0L;
         }
-        long j10 = jjVar.f16337k.date;
+        long j10 = kjVar.f16690k.date;
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(j10 * 1000);
         return (calendar.get(2) * 100) + (calendar.get(1) * 10000) + calendar.get(5);
     }
 
-    public static boolean e(jj jjVar, boolean z10, boolean z11) {
-        if (jjVar != null && jjVar.x4()) {
-            if (!z10 || !jj.S3(jjVar.f16337k)) {
-                if ((z11 && jj.L4(jjVar.f16337k)) || (jjVar.f16341l.media instanceof TLRPC.TL_messageMediaUnsupported)) {
+    public static boolean e(kj kjVar, boolean z10, boolean z11) {
+        if (kjVar != null && kjVar.x4()) {
+            if (!z10 || !kj.S3(kjVar.f16690k)) {
+                if ((z11 && kj.L4(kjVar.f16690k)) || (kjVar.f16694l.media instanceof TLRPC.TL_messageMediaUnsupported)) {
                     return true;
                 }
                 return false;
@@ -131,20 +131,20 @@ public class x4 {
             for (int i10 = 0; i10 < list.size(); i10++) {
                 TL_stories.StoryItem storyItem = (TL_stories.StoryItem) list.get(i10);
                 if (storyItem != null) {
-                    Integer valueOf = Integer.valueOf(storyItem.f20031id);
-                    AbstractSet abstractSet = this.f49639l;
+                    Integer valueOf = Integer.valueOf(storyItem.f20032id);
+                    AbstractSet abstractSet = this.f49653l;
                     boolean contains = abstractSet.contains(valueOf);
-                    AbstractSet abstractSet2 = this.f49638k;
-                    if (contains || abstractSet2.contains(Integer.valueOf(storyItem.f20031id))) {
-                        abstractSet.remove(Integer.valueOf(storyItem.f20031id));
-                        abstractSet2.remove(Integer.valueOf(storyItem.f20031id));
-                        int i11 = this.f49646s;
+                    AbstractSet abstractSet2 = this.f49652k;
+                    if (contains || abstractSet2.contains(Integer.valueOf(storyItem.f20032id))) {
+                        abstractSet.remove(Integer.valueOf(storyItem.f20032id));
+                        abstractSet2.remove(Integer.valueOf(storyItem.f20032id));
+                        int i11 = this.f49660s;
                         if (i11 != -1) {
-                            this.f49646s = i11 - 1;
+                            this.f49660s = i11 - 1;
                         }
                         z10 = true;
                     }
-                    u(storyItem.f20031id, true);
+                    u(storyItem.f20032id, true);
                 }
             }
             if (z10) {
@@ -155,31 +155,31 @@ public class x4 {
     }
 
     public final void B(ArrayList arrayList, boolean z10) {
-        v(this.f49638k, arrayList);
-        v(this.f49639l, arrayList);
+        v(this.f49652k, arrayList);
+        v(this.f49653l, arrayList);
         d(false);
         if (z10) {
             TL_stories.TL_updateAlbum tL_updateAlbum = new TL_stories.TL_updateAlbum();
-            int i10 = this.f49633c;
-            tL_updateAlbum.peer = vp.r1(i10).i1(this.d);
-            tL_updateAlbum.album_id = this.f49634f;
+            int i10 = this.f49647c;
+            tL_updateAlbum.peer = wp.r1(i10).i1(this.d);
+            tL_updateAlbum.album_id = this.f49648f;
             tL_updateAlbum.order = new ArrayList<>(arrayList);
             ConnectionsManager.getInstance(i10).sendRequest(tL_updateAlbum, null);
         }
     }
 
     public void C(ArrayList arrayList, boolean z10) {
-        if (this.f49634f > 0) {
+        if (this.f49648f > 0) {
             B(arrayList, z10);
             return;
         }
         ArrayList arrayList2 = new ArrayList(arrayList);
-        int i10 = this.f49633c;
-        int i11 = vp.r1(i10).O5;
+        int i10 = this.f49647c;
+        int i11 = wp.r1(i10).O5;
         if (arrayList2.size() > i11) {
             arrayList2.subList(i11, arrayList2.size()).clear();
         }
-        ArrayList arrayList3 = this.f49635g;
+        ArrayList arrayList3 = this.f49649g;
         if (arrayList3.size() == arrayList2.size()) {
             for (int i12 = 0; i12 < arrayList3.size() && arrayList3.get(i12) == arrayList2.get(i12); i12++) {
             }
@@ -189,8 +189,8 @@ public class x4 {
         d(false);
         if (z10) {
             TL_stories.TL_togglePinnedToTop tL_togglePinnedToTop = new TL_stories.TL_togglePinnedToTop();
-            tL_togglePinnedToTop.f20044id.addAll(arrayList3);
-            tL_togglePinnedToTop.peer = vp.r1(i10).i1(this.d);
+            tL_togglePinnedToTop.f20045id.addAll(arrayList3);
+            tL_togglePinnedToTop.peer = wp.r1(i10).i1(this.d);
             ConnectionsManager.getInstance(i10).sendRequest(tL_togglePinnedToTop, new ag.c3(27));
         }
     }
@@ -199,7 +199,7 @@ public class x4 {
         int i10;
         boolean z11;
         boolean z12;
-        jj jjVar;
+        kj kjVar;
         TL_stories.StoryItem storyItem;
         StringBuilder sb2 = new StringBuilder("StoriesList ");
         int i11 = this.e;
@@ -215,17 +215,17 @@ public class x4 {
             boolean z13 = false;
             while (true) {
                 int size = list.size();
-                i10 = this.f49634f;
+                i10 = this.f49648f;
                 if (i12 >= size) {
                     break;
                 }
                 TL_stories.StoryItem storyItem2 = (TL_stories.StoryItem) list.get(i12);
                 if (storyItem2 != null) {
-                    Integer valueOf = Integer.valueOf(storyItem2.f20031id);
-                    AbstractSet abstractSet = this.f49639l;
+                    Integer valueOf = Integer.valueOf(storyItem2.f20032id);
+                    AbstractSet abstractSet = this.f49653l;
                     boolean contains = abstractSet.contains(valueOf);
-                    AbstractSet abstractSet2 = this.f49638k;
-                    if (!contains && !abstractSet2.contains(Integer.valueOf(storyItem2.f20031id))) {
+                    AbstractSet abstractSet2 = this.f49652k;
+                    if (!contains && !abstractSet2.contains(Integer.valueOf(storyItem2.f20032id))) {
                         z11 = false;
                     } else {
                         z11 = true;
@@ -246,42 +246,42 @@ public class x4 {
                     if (storyItem2 instanceof TL_stories.TL_storyItemDeleted) {
                         z12 = false;
                     }
-                    HashMap hashMap = this.f49637j;
+                    HashMap hashMap = this.f49651j;
                     if (z11 != z12) {
                         if (!z12) {
-                            i0.a.p(storyItem2.f20031id, new StringBuilder("StoriesList remove story "));
-                            u(storyItem2.f20031id, true);
-                            int i13 = this.f49646s;
+                            i0.a.p(storyItem2.f20032id, new StringBuilder("StoriesList remove story "));
+                            u(storyItem2.f20032id, true);
+                            int i13 = this.f49660s;
                             if (i13 != -1) {
-                                this.f49646s = i13 - 1;
+                                this.f49660s = i13 - 1;
                             }
-                        } else if (this.f49645r) {
-                            f8.b("StoriesList put story " + storyItem2.f20031id);
+                        } else if (this.f49659r) {
+                            f8.b("StoriesList put story " + storyItem2.f20032id);
                             t(y(storyItem2), false);
-                            arrayList.add(Integer.valueOf(storyItem2.f20031id));
-                            int i14 = this.f49646s;
+                            arrayList.add(Integer.valueOf(storyItem2.f20032id));
+                            int i14 = this.f49660s;
                             if (i14 != -1) {
-                                this.f49646s = i14 + 1;
+                                this.f49660s = i14 + 1;
                             }
-                        } else if (!this.f49648u) {
-                            f8.b("StoriesList cannot put story " + storyItem2.f20031id + " -> reload");
+                        } else if (!this.f49662u) {
+                            f8.b("StoriesList cannot put story " + storyItem2.f20032id + " -> reload");
                             if (this.A != -1) {
-                                ConnectionsManager.getInstance(this.f49633c).cancelRequest(this.A, true);
+                                ConnectionsManager.getInstance(this.f49647c).cancelRequest(this.A, true);
                                 this.A = -1;
                             }
                             w();
-                            int size2 = this.f49636i.size();
+                            int size2 = this.f49650i.size();
                             hashMap.clear();
                             abstractSet.clear();
                             abstractSet2.clear();
                             j();
-                            this.f49645r = false;
-                            this.f49649w = false;
+                            this.f49659r = false;
+                            this.f49663w = false;
                             p(Utilities.j(size2, 50, 10), true);
                         }
-                    } else if (z11 && z12 && ((jjVar = (jj) hashMap.get(Integer.valueOf(storyItem2.f20031id))) == null || z10 || (storyItem = jjVar.f16341l) == null || (storyItem != storyItem2 && (storyItem.f20031id != storyItem2.f20031id || storyItem.media != storyItem2.media || !TextUtils.equals(storyItem.caption, storyItem2.caption))))) {
-                        i0.a.p(storyItem2.f20031id, new StringBuilder("StoriesList update story "));
-                        hashMap.put(Integer.valueOf(storyItem2.f20031id), y(storyItem2));
+                    } else if (z11 && z12 && ((kjVar = (kj) hashMap.get(Integer.valueOf(storyItem2.f20032id))) == null || z10 || (storyItem = kjVar.f16694l) == null || (storyItem != storyItem2 && (storyItem.f20032id != storyItem2.f20032id || storyItem.media != storyItem2.media || !TextUtils.equals(storyItem.caption, storyItem2.caption))))) {
+                        i0.a.p(storyItem2.f20032id, new StringBuilder("StoriesList update story "));
+                        hashMap.put(Integer.valueOf(storyItem2.f20032id), y(storyItem2));
                     }
                     z13 = true;
                 }
@@ -310,8 +310,8 @@ public class x4 {
             i11++;
             Integer num = (Integer) obj;
             num.getClass();
-            jj jjVar = (jj) this.f49637j.get(num);
-            if (jjVar != null && (storyItem = jjVar.f16341l) != null) {
+            kj kjVar = (kj) this.f49651j.get(num);
+            if (kjVar != null && (storyItem = kjVar.f16694l) != null) {
                 if (storyItem.albums != null) {
                     hashSet = new HashSet(storyItem.albums);
                 } else {
@@ -340,7 +340,7 @@ public class x4 {
 
     public final boolean a() {
         Long l4;
-        if (B == null || (l4 = (Long) B.get(Integer.valueOf(Objects.hash(Integer.valueOf(this.f49633c), Integer.valueOf(this.e), Long.valueOf(this.d), Integer.valueOf(this.f49634f))))) == null || System.currentTimeMillis() - l4.longValue() > 120000) {
+        if (B == null || (l4 = (Long) B.get(Integer.valueOf(Objects.hash(Integer.valueOf(this.f49647c), Integer.valueOf(this.e), Long.valueOf(this.d), Integer.valueOf(this.f49648f))))) == null || System.currentTimeMillis() - l4.longValue() > 120000) {
             return true;
         }
         return false;
@@ -351,26 +351,26 @@ public class x4 {
     }
 
     public final void d(boolean z10) {
-        c(this.f49636i, this.f49641n, this.f49642o);
+        c(this.f49650i, this.f49655n, this.f49656o);
         if (z10) {
-            u4 u4Var = this.f49644q;
+            u4 u4Var = this.f49658q;
             org.telegram.messenger.i0.r(u4Var);
             org.telegram.messenger.i0.g3(u4Var);
         }
     }
 
-    public jj f(int i10) {
-        return (jj) this.f49637j.get(Integer.valueOf(i10));
+    public kj f(int i10) {
+        return (kj) this.f49651j.get(Integer.valueOf(i10));
     }
 
     public int g() {
-        boolean z10 = this.f49642o;
-        ArrayList arrayList = this.f49636i;
-        if (z10 && this.f49641n) {
-            if (this.f49646s < 0) {
+        boolean z10 = this.f49656o;
+        ArrayList arrayList = this.f49650i;
+        if (z10 && this.f49655n) {
+            if (this.f49660s < 0) {
                 return arrayList.size();
             }
-            return Math.max(arrayList.size(), this.f49646s);
+            return Math.max(arrayList.size(), this.f49660s);
         }
         return arrayList.size();
     }
@@ -378,23 +378,23 @@ public class x4 {
     public ArrayList h() {
         HashMap hashMap = this.h;
         ArrayList arrayList = new ArrayList(hashMap.keySet());
-        Collections.sort(arrayList, new ex0(24));
+        Collections.sort(arrayList, new dx0(24));
         ArrayList arrayList2 = new ArrayList();
         int i10 = 0;
         int i11 = this.e;
-        if (i11 == 0 && this.f49634f > 0) {
+        if (i11 == 0 && this.f49648f > 0) {
             ArrayList arrayList3 = new ArrayList();
-            ArrayList arrayList4 = this.f49636i;
+            ArrayList arrayList4 = this.f49650i;
             int size = arrayList4.size();
             while (i10 < size) {
                 Object obj = arrayList4.get(i10);
                 i10++;
-                arrayList3.add(Integer.valueOf(((jj) obj).f16341l.f20031id));
+                arrayList3.add(Integer.valueOf(((kj) obj).f16694l.f20032id));
             }
             arrayList2.add(arrayList3);
             return arrayList2;
         }
-        ArrayList arrayList5 = this.f49635g;
+        ArrayList arrayList5 = this.f49649g;
         if (i11 == 0 && !arrayList5.isEmpty()) {
             arrayList2.add(new ArrayList(arrayList5));
         }
@@ -426,48 +426,48 @@ public class x4 {
     }
 
     public int i() {
-        return this.f49639l.size();
+        return this.f49653l.size();
     }
 
     public void j() {
-        if (this.f49647t) {
+        if (this.f49661t) {
             this.v = true;
             return;
         }
         w();
-        hs a02 = hs.a0(this.f49633c);
-        a02.f15938a.c(new v4(this, a02, 1));
+        is a02 = is.a0(this.f49647c);
+        a02.f16331a.c(new v4(this, a02, 1));
     }
 
     public boolean k() {
-        if (!this.f49647t && !this.f49648u) {
+        if (!this.f49661t && !this.f49662u) {
             return false;
         }
         return true;
     }
 
     public boolean l() {
-        if (this.f49639l.isEmpty() && a()) {
+        if (this.f49653l.isEmpty() && a()) {
             return true;
         }
         return false;
     }
 
     public final boolean m(int i10) {
-        if (this.e == 0 && this.f49634f <= 0) {
-            return this.f49635g.contains(Integer.valueOf(i10));
+        if (this.e == 0 && this.f49648f <= 0) {
+            return this.f49649g.contains(Integer.valueOf(i10));
         }
         return false;
     }
 
     public final int n() {
-        AbstractSet abstractSet = this.f49639l;
+        AbstractSet abstractSet = this.f49653l;
         if (!abstractSet.isEmpty()) {
             ArrayList arrayList = new ArrayList(abstractSet);
             for (int size = arrayList.size() - 1; size >= 0; size--) {
                 Integer num = (Integer) arrayList.get(size);
                 int intValue = num.intValue();
-                if (!this.f49635g.contains(num)) {
+                if (!this.f49649g.contains(num)) {
                     return intValue;
                 }
             }
@@ -477,10 +477,10 @@ public class x4 {
     }
 
     public final int o() {
-        int i10 = this.f49631a;
-        this.f49631a = i10 + 1;
-        this.f49632b.add(Integer.valueOf(i10));
-        o0 o0Var = this.f49650x;
+        int i10 = this.f49645a;
+        this.f49645a = i10 + 1;
+        this.f49646b.add(Integer.valueOf(i10));
+        o0 o0Var = this.f49664x;
         if (o0Var != null) {
             org.telegram.messenger.i0.r(o0Var);
         }
@@ -495,40 +495,40 @@ public class x4 {
         int n10;
         TL_stories.TL_stories_getStoriesArchive tL_stories_getStoriesArchive;
         int i11;
-        if (this.f49648u || ((this.f49645r || this.f49649w || !a()) && !z10)) {
+        if (this.f49662u || ((this.f49659r || this.f49663w || !a()) && !z10)) {
             return false;
         }
-        if (this.f49647t) {
-            this.f49651y = new w4(this, z10, i10, list);
+        if (this.f49661t) {
+            this.f49665y = new w4(this, z10, i10, list);
             return false;
         }
         int i12 = this.e;
         long j10 = this.d;
-        int i13 = this.f49633c;
-        if (i12 == 0 && (i11 = this.f49634f) > 0) {
+        int i13 = this.f49647c;
+        if (i12 == 0 && (i11 = this.f49648f) > 0) {
             TL_stories.TL_stories_getAlbumStories tL_stories_getAlbumStories = new TL_stories.TL_stories_getAlbumStories();
             tL_stories_getAlbumStories.album_id = i11;
-            tL_stories_getAlbumStories.peer = vp.r1(i13).i1(j10);
-            n10 = this.f49639l.size();
+            tL_stories_getAlbumStories.peer = wp.r1(i13).i1(j10);
+            n10 = this.f49653l.size();
             tL_stories_getAlbumStories.offset = n10;
             tL_stories_getAlbumStories.limit = i10;
             tL_stories_getStoriesArchive = tL_stories_getAlbumStories;
         } else if (i12 == 0) {
             TL_stories.TL_stories_getPinnedStories tL_stories_getPinnedStories = new TL_stories.TL_stories_getPinnedStories();
-            tL_stories_getPinnedStories.peer = vp.r1(i13).i1(j10);
+            tL_stories_getPinnedStories.peer = wp.r1(i13).i1(j10);
             n10 = n();
             tL_stories_getPinnedStories.offset_id = n10;
             tL_stories_getPinnedStories.limit = i10;
             tL_stories_getStoriesArchive = tL_stories_getPinnedStories;
         } else if (i12 == 2) {
             TL_stories.TL_stories_getStoriesByID tL_stories_getStoriesByID = new TL_stories.TL_stories_getStoriesByID();
-            tL_stories_getStoriesByID.peer = vp.r1(i13).i1(j10);
-            tL_stories_getStoriesByID.f20038id.addAll(list);
+            tL_stories_getStoriesByID.peer = wp.r1(i13).i1(j10);
+            tL_stories_getStoriesByID.f20039id.addAll(list);
             n10 = -1;
             tL_stories_getStoriesArchive = tL_stories_getStoriesByID;
         } else {
             TL_stories.TL_stories_getStoriesArchive tL_stories_getStoriesArchive2 = new TL_stories.TL_stories_getStoriesArchive();
-            tL_stories_getStoriesArchive2.peer = vp.r1(i13).i1(j10);
+            tL_stories_getStoriesArchive2.peer = wp.r1(i13).i1(j10);
             n10 = n();
             tL_stories_getStoriesArchive2.offset_id = n10;
             tL_stories_getStoriesArchive2.limit = i10;
@@ -539,49 +539,49 @@ public class x4 {
         sb2.append("{");
         sb2.append(j10);
         a1.g.z("} load", sb2);
-        this.f49648u = true;
+        this.f49662u = true;
         this.A = ConnectionsManager.getInstance(i13).sendRequest(tL_stories_getStoriesArchive, new org.telegram.messenger.voip.g0(this, n10, 8));
         return true;
     }
 
     public boolean r(int i10) {
         Integer valueOf = Integer.valueOf(i10);
-        HashSet hashSet = this.f49640m;
+        HashSet hashSet = this.f49654m;
         if (hashSet.contains(valueOf)) {
             return false;
         }
         hashSet.add(Integer.valueOf(i10));
         x();
         TL_stories.TL_stories_incrementStoryViews tL_stories_incrementStoryViews = new TL_stories.TL_stories_incrementStoryViews();
-        int i11 = this.f49633c;
-        tL_stories_incrementStoryViews.peer = vp.r1(i11).i1(this.d);
-        tL_stories_incrementStoryViews.f20042id.add(Integer.valueOf(i10));
+        int i11 = this.f49647c;
+        tL_stories_incrementStoryViews.peer = wp.r1(i11).i1(this.d);
+        tL_stories_incrementStoryViews.f20043id.add(Integer.valueOf(i10));
         ConnectionsManager.getInstance(i11).sendRequest(tL_stories_incrementStoryViews, new ag.c3(4));
-        zs.f(i11).k(zs.F5, new Object[0]);
+        at.f(i11).k(at.F5, new Object[0]);
         return true;
     }
 
     public void s() {
-        if (!this.f49647t && !this.f49648u && !this.f49649w) {
-            this.f49647t = true;
-            hs a02 = hs.a0(this.f49633c);
-            a02.f15938a.c(new v4(this, a02, 0));
+        if (!this.f49661t && !this.f49662u && !this.f49663w) {
+            this.f49661t = true;
+            is a02 = is.a0(this.f49647c);
+            a02.f16331a.c(new v4(this, a02, 0));
         }
     }
 
-    public final void t(jj jjVar, boolean z10) {
+    public final void t(kj kjVar, boolean z10) {
         AbstractSet abstractSet;
-        if (jjVar == null) {
+        if (kjVar == null) {
             return;
         }
-        this.f49637j.put(Integer.valueOf(jjVar.f1()), jjVar);
+        this.f49651j.put(Integer.valueOf(kjVar.f1()), kjVar);
         if (z10) {
-            abstractSet = this.f49638k;
+            abstractSet = this.f49652k;
         } else {
-            abstractSet = this.f49639l;
+            abstractSet = this.f49653l;
         }
-        abstractSet.add(Integer.valueOf(jjVar.f1()));
-        long b10 = b(jjVar);
+        abstractSet.add(Integer.valueOf(kjVar.f1()));
+        long b10 = b(kjVar);
         Long valueOf = Long.valueOf(b10);
         HashMap hashMap = this.h;
         TreeSet treeSet = (TreeSet) hashMap.get(valueOf);
@@ -591,18 +591,18 @@ public class x4 {
             hashMap.put(valueOf2, treeSet2);
             treeSet = treeSet2;
         }
-        treeSet.add(Integer.valueOf(jjVar.f1()));
+        treeSet.add(Integer.valueOf(kjVar.f1()));
     }
 
     public final void u(int i10, boolean z10) {
-        jj jjVar = (jj) this.f49637j.remove(Integer.valueOf(i10));
+        kj kjVar = (kj) this.f49651j.remove(Integer.valueOf(i10));
         if (z10) {
-            this.f49638k.remove(Integer.valueOf(i10));
+            this.f49652k.remove(Integer.valueOf(i10));
         }
-        this.f49639l.remove(Integer.valueOf(i10));
-        this.f49635g.remove(Integer.valueOf(i10));
-        if (jjVar != null) {
-            long b10 = b(jjVar);
+        this.f49653l.remove(Integer.valueOf(i10));
+        this.f49649g.remove(Integer.valueOf(i10));
+        if (kjVar != null) {
+            long b10 = b(kjVar);
             Long valueOf = Long.valueOf(b10);
             HashMap hashMap = this.h;
             Collection collection = (Collection) hashMap.get(valueOf);
@@ -618,36 +618,36 @@ public class x4 {
     public final void w() {
         HashMap hashMap = B;
         if (hashMap != null) {
-            hashMap.remove(Integer.valueOf(Objects.hash(Integer.valueOf(this.f49633c), Integer.valueOf(this.e), Long.valueOf(this.d), Integer.valueOf(this.f49634f))));
+            hashMap.remove(Integer.valueOf(Objects.hash(Integer.valueOf(this.f49647c), Integer.valueOf(this.e), Long.valueOf(this.d), Integer.valueOf(this.f49648f))));
         }
     }
 
     public void x() {
-        if (this.f49652z) {
+        if (this.f49666z) {
             return;
         }
-        this.f49652z = true;
+        this.f49666z = true;
         ArrayList arrayList = new ArrayList();
-        ArrayList arrayList2 = new ArrayList(this.f49635g);
+        ArrayList arrayList2 = new ArrayList(this.f49649g);
         c(arrayList, true, true);
-        hs a02 = hs.a0(this.f49633c);
-        a02.f15938a.c(new px0(this, arrayList, a02, arrayList2, 25));
+        is a02 = is.a0(this.f49647c);
+        a02.f16331a.c(new ox0(this, arrayList, a02, arrayList2, 25));
     }
 
-    public final jj y(TL_stories.StoryItem storyItem) {
+    public final kj y(TL_stories.StoryItem storyItem) {
         storyItem.dialogId = this.d;
-        storyItem.messageId = storyItem.f20031id;
-        jj jjVar = new jj(this.f49633c, storyItem);
-        jjVar.r0(false);
-        return jjVar;
+        storyItem.messageId = storyItem.f20032id;
+        kj kjVar = new kj(this.f49647c, storyItem);
+        kjVar.r0(false);
+        return kjVar;
     }
 
     public final void z(int i10) {
         o0 o0Var;
         Integer valueOf = Integer.valueOf(i10);
-        ArrayList arrayList = this.f49632b;
+        ArrayList arrayList = this.f49646b;
         arrayList.remove(valueOf);
-        if (arrayList.isEmpty() && (o0Var = this.f49650x) != null) {
+        if (arrayList.isEmpty() && (o0Var = this.f49664x) != null) {
             org.telegram.messenger.i0.r(o0Var);
             org.telegram.messenger.i0.h3(o0Var, 300000L);
         }

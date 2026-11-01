@@ -7,13 +7,13 @@ import java.util.HashMap;
 import kg.y1;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.b1;
-import org.telegram.messenger.bj;
-import org.telegram.messenger.ef;
+import org.telegram.messenger.cj;
 import org.telegram.messenger.f0;
+import org.telegram.messenger.ff;
 import org.telegram.messenger.i0;
-import org.telegram.messenger.jj;
 import org.telegram.messenger.k6;
 import org.telegram.messenger.k7;
+import org.telegram.messenger.kj;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_update;
@@ -46,25 +46,25 @@ public final class d implements Comparator {
                 int i12 = ca.b.f4077f;
                 return name.substring(0, i12).compareTo(((File) obj2).getName().substring(0, i12));
             case 5:
-                top = ((c1) obj2).f47898a.getTop();
-                top2 = ((c1) obj).f47898a.getTop();
+                top = ((c1) obj2).f47909a.getTop();
+                top2 = ((c1) obj).f47909a.getTop();
                 break;
             case 6:
-                return Integer.compare(((i4.d) obj).f8182a.f8185b, ((i4.d) obj2).f8182a.f8185b);
+                return Integer.compare(((i4.d) obj).f8183a.f8186b, ((i4.d) obj2).f8183a.f8186b);
             case 7:
-                return Long.compare(((i4.c) obj).f8179b, ((i4.c) obj2).f8179b);
+                return Long.compare(((i4.c) obj).f8180b, ((i4.c) obj2).f8180b);
             case 8:
                 top = Integer.bitCount(((Integer) obj2).intValue());
                 top2 = Integer.bitCount(((Integer) obj).intValue());
                 break;
             case 9:
-                return (int) ((((y1) obj).f11339a * 100.0f) - (((y1) obj2).f11339a * 100.0f));
+                return (int) ((((y1) obj).f11340a * 100.0f) - (((y1) obj2).f11340a * 100.0f));
             case 10:
                 m2.b bVar = (m2.b) obj;
                 m2.b bVar2 = (m2.b) obj2;
-                int compare2 = Integer.compare(bVar.f12629c, bVar2.f12629c);
+                int compare2 = Integer.compare(bVar.f12630c, bVar2.f12630c);
                 if (compare2 == 0) {
-                    return bVar.f12628b.compareTo(bVar2.f12628b);
+                    return bVar.f12629b.compareTo(bVar2.f12629b);
                 }
                 return compare2;
             case 11:
@@ -86,12 +86,12 @@ public final class d implements Comparator {
             case 13:
                 f0 f0Var = (f0) obj;
                 f0 f0Var2 = (f0) obj2;
-                int i14 = f0Var.f15490b;
-                int i15 = f0Var2.f15490b;
+                int i14 = f0Var.f15671b;
+                int i15 = f0Var2.f15671b;
                 if (i14 < i15) {
                     return -1;
                 }
-                if (i14 > i15 || (i10 = f0Var.f15491c) < (i11 = f0Var2.f15491c)) {
+                if (i14 > i15 || (i10 = f0Var.f15672c) < (i11 = f0Var2.f15672c)) {
                     return 1;
                 }
                 if (i10 > i11) {
@@ -137,7 +137,7 @@ public final class d implements Comparator {
                 }
                 return 0;
             case 18:
-                int i18 = (((k7) obj).f16542a > ((k7) obj2).f16542a ? 1 : (((k7) obj).f16542a == ((k7) obj2).f16542a ? 0 : -1));
+                int i18 = (((k7) obj).f16576a > ((k7) obj2).f16576a ? 1 : (((k7) obj).f16576a == ((k7) obj2).f16576a ? 0 : -1));
                 if (i18 > 0) {
                     return 1;
                 }
@@ -146,13 +146,13 @@ public final class d implements Comparator {
                 }
                 return 0;
             case 19:
-                jj jjVar = (jj) obj;
-                jj jjVar2 = (jj) obj2;
+                kj kjVar = (kj) obj;
+                kj kjVar2 = (kj) obj2;
                 String[] strArr = MediaController.U1;
-                int f12 = jjVar.f1();
-                int f13 = jjVar2.f1();
-                long j10 = jjVar.f16337k.grouped_id;
-                long j11 = jjVar2.f16337k.grouped_id;
+                int f12 = kjVar.f1();
+                int f13 = kjVar2.f1();
+                long j10 = kjVar.f16690k.grouped_id;
+                long j11 = kjVar2.f16690k.grouped_id;
                 if (f12 < 0 && f13 < 0) {
                     if (j10 != 0 && j10 == j11) {
                         compare = Integer.compare(f12, f13);
@@ -167,7 +167,7 @@ public final class d implements Comparator {
                 return -compare;
             case 20:
                 String[] strArr2 = MediaController.U1;
-                int i19 = (((ef) obj).D > ((ef) obj2).D ? 1 : (((ef) obj).D == ((ef) obj2).D ? 0 : -1));
+                int i19 = (((ff) obj).D > ((ff) obj2).D ? 1 : (((ff) obj).D == ((ff) obj2).D ? 0 : -1));
                 if (i19 < 0) {
                     return 1;
                 }
@@ -242,7 +242,7 @@ public final class d implements Comparator {
                 top2 = ((String) obj).length();
                 break;
             default:
-                return ((bj) obj).f14775a - ((bj) obj2).f14775a;
+                return ((cj) obj).f15158a - ((cj) obj2).f15158a;
         }
         return top - top2;
     }

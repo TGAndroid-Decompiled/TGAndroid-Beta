@@ -1,100 +1,80 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.widget.TextView;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class yj0 implements View.OnClickListener {
-    public final int f43856a;
-    public final ll0 f43857b;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class yj0 implements org.telegram.ui.ActionBar.u1, pt, xk0 {
+    public final int f43680a;
+    public final jl0 f43681b;
 
-    public yj0(ll0 ll0Var, int i10) {
-        this.f43856a = i10;
-        this.f43857b = ll0Var;
+    public yj0(jl0 jl0Var, int i10) {
+        this.f43680a = i10;
+        this.f43681b = jl0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10 = this.f43856a;
-        ll0 ll0Var = this.f43857b;
-        switch (i10) {
-            case 0:
-                ll0Var.S0 = 2;
-                ll0Var.G1();
-                return;
-            case 1:
-                ll0Var.g1();
-                return;
+    public void c(mt mtVar) {
+        String str;
+        switch (this.f43680a) {
             case 2:
-                ll0Var.S0 = 3;
-                ll0Var.G1();
-                return;
-            case 3:
-                ll0Var.S0 = 1;
-                ll0Var.G1();
-                return;
-            case 4:
-                ll0Var.S0 = 4;
-                ll0Var.G1();
-                return;
-            case 5:
-                if (ll0Var.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
-                    ll0Var.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 22);
-                    return;
-                }
-                u9 u9Var = new u9(0);
-                u9Var.M = new kk0(ll0Var);
-                ll0Var.presentFragment(u9Var);
-                return;
-            case 6:
-                ll0Var.f39270f = true;
-                ll0Var.L.callOnClick();
-                ll0Var.f39270f = false;
-                return;
-            case 7:
-                ll0Var.S0 = 0;
-                ll0Var.G1();
-                return;
-            case 8:
-                ll0Var.S0 = 4;
-                ll0Var.G1();
-                return;
-            case 9:
-                ll0Var.g1();
-                return;
-            case 10:
-                ll0.f0(ll0Var);
-                return;
-            case 11:
-                ll0.g0(ll0Var);
-                return;
-            case 12:
-                ll0Var.F1();
-                return;
-            case 13:
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ll0Var.getParentActivity());
-                String L0 = org.telegram.messenger.cd.L0(2131744257, null);
-                org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20134a;
-                x1Var.R = L0;
-                x1Var.T = org.telegram.messenger.cd.L0(2131744258, null);
-                alertDialog$Builder.k(org.telegram.messenger.cd.L0(2131751599, null), new ak0(ll0Var, 5));
-                alertDialog$Builder.h(org.telegram.messenger.cd.L0(2131752589, null), null);
-                ll0Var.showDialog(x1Var);
-                TextView textView = (TextView) x1Var.d(-1);
-                if (textView != null) {
-                    org.telegram.ui.ActionBar.a7.V(textView, org.telegram.ui.ActionBar.t6.f21170q7, null);
-                    return;
-                }
-                return;
-            case 14:
-                ll0Var.F1();
-                return;
-            case 15:
-                ll0.Z(ll0Var);
+                jl0 jl0Var = this.f43681b;
+                jl0Var.Y[5].setText(mtVar.f39611a);
+                jl0Var.f38449s = mtVar.d;
                 return;
             default:
-                ll0Var.f39270f = true;
-                ll0Var.L.callOnClick();
-                ll0Var.f39270f = false;
+                jl0 jl0Var2 = this.f43681b;
+                jl0Var2.Y[0].setText(mtVar.f39611a);
+                if (jl0Var2.U0.indexOf(mtVar.f39611a) != -1) {
+                    jl0Var2.Z0 = true;
+                    String str2 = (String) jl0Var2.V0.get(mtVar.f39611a);
+                    jl0Var2.Y[1].setText(str2);
+                    String str3 = (String) jl0Var2.X0.get(str2);
+                    EditTextBoldCursor editTextBoldCursor = jl0Var2.Y[2];
+                    if (str3 != null) {
+                        str = str3.replace('X', (char) 8211);
+                    } else {
+                        str = null;
+                    }
+                    editTextBoldCursor.setHintText(str);
+                    jl0Var2.Z0 = false;
+                }
+                org.telegram.messenger.i0.h3(new vj0(jl0Var2, 3), 300L);
+                jl0Var2.Y[2].requestFocus();
+                EditTextBoldCursor editTextBoldCursor2 = jl0Var2.Y[2];
+                editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
+                return;
+        }
+    }
+
+    @Override
+    public void d(String str, String str2) {
+        this.f43681b.B1();
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
+        switch (this.f43680a) {
+            case 0:
+                jl0 jl0Var = this.f43681b;
+                try {
+                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent.setData(Uri.parse("package:" + org.telegram.messenger.w0.f18945b.getPackageName()));
+                    jl0Var.getParentActivity().startActivity(intent);
+                    return;
+                } catch (Exception e) {
+                    org.telegram.messenger.f8.g(e, true);
+                    return;
+                }
+            case 1:
+                this.f43681b.finishFragment();
+                return;
+            case 2:
+            case 3:
+            default:
+                jl0.f0(this.f43681b);
+                return;
+            case 4:
+                jl0.i0(this.f43681b);
                 return;
         }
     }

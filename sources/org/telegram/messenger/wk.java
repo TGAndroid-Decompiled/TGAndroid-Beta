@@ -1,17 +1,22 @@
 package org.telegram.messenger;
 public final class wk implements Runnable {
-    public final int f19103a;
-    public final vp f19104b;
-    public final long f19105c;
+    public final int f19064a;
+    public final boolean[] f19065b;
 
-    public wk(vp vpVar, long j10, int i10) {
-        this.f19103a = i10;
-        this.f19104b = vpVar;
-        this.f19105c = j10;
+    public wk(int i10, boolean[] zArr) {
+        this.f19064a = i10;
+        this.f19065b = zArr;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.wk.run():void");
+        switch (this.f19064a) {
+            case 0:
+                this.f19065b[0] = true;
+                return;
+            default:
+                this.f19065b[0] = true;
+                return;
+        }
     }
 }

@@ -98,7 +98,7 @@ public final class x {
                     boolean z12 = z11;
                     int H4 = xVar.H();
                     int i30 = A;
-                    System.arraycopy(f2.q.f6783a, i13, bArr, i28, i11);
+                    System.arraycopy(f2.q.f6784a, i13, bArr, i28, i11);
                     int i31 = i28 + 4;
                     System.arraycopy(xVar.f6207a, xVar.f6208b, bArr, i31, H4);
                     if (A3 == 32 && i29 == 0) {
@@ -106,21 +106,21 @@ public final class x {
                     } else {
                         if (A3 == 33 && i29 == 0) {
                             f2.m k10 = f2.q.k(bArr, i31, i31 + H4, nVar3);
-                            i17 = k10.f6752a + 1;
-                            i18 = k10.f6756g;
+                            i17 = k10.f6753a + 1;
+                            i18 = k10.f6757g;
                             int i32 = k10.h;
-                            i20 = k10.f6754c + 8;
+                            i20 = k10.f6755c + 8;
                             i21 = k10.d + 8;
-                            int i33 = k10.f6759k;
+                            int i33 = k10.f6760k;
                             i19 = i32;
-                            int i34 = k10.f6760l;
-                            int i35 = k10.f6761m;
-                            float f10 = k10.f6757i;
-                            int i36 = k10.f6758j;
-                            f2.j jVar = k10.f6753b;
+                            int i34 = k10.f6761l;
+                            int i35 = k10.f6762m;
+                            float f10 = k10.f6758i;
+                            int i36 = k10.f6759j;
+                            f2.j jVar = k10.f6754b;
                             if (jVar != null) {
                                 i10 = i36;
-                                str2 = e2.g.a(jVar.f6743a, jVar.f6745c, jVar.d, jVar.f6746f, jVar.f6744b, jVar.e);
+                                str2 = e2.g.a(jVar.f6744a, jVar.f6746c, jVar.d, jVar.f6747f, jVar.f6745b, jVar.e);
                             } else {
                                 i10 = i36;
                             }
@@ -131,7 +131,7 @@ public final class x {
                             i22 = i33;
                         } else if (A3 == 39 && i29 == 0 && (j10 = f2.q.j(i31, i31 + H4, bArr)) != null && nVar3 != null) {
                             i13 = 0;
-                            if (j10.f425a == ((f2.i) ((n0) nVar3.f53554a).get(0)).f6742b) {
+                            if (j10.f425a == ((f2.i) ((n0) nVar3.f53572a).get(0)).f6743b) {
                                 i25 = 4;
                             } else {
                                 i25 = 5;

@@ -2,19 +2,19 @@ package i2;
 
 import android.os.SystemClock;
 public final class w1 implements x0 {
-    public long f8110a;
-    public long f8111b;
-    public boolean f8112c;
+    public long f8111a;
+    public long f8112b;
+    public boolean f8113c;
     public Object d;
     public Object e;
 
     @Override
     public long a() {
         long j10;
-        long j11 = this.f8110a;
-        if (this.f8112c) {
+        long j11 = this.f8111a;
+        if (this.f8113c) {
             ((e2.g0) this.d).getClass();
-            long elapsedRealtime = SystemClock.elapsedRealtime() - this.f8111b;
+            long elapsedRealtime = SystemClock.elapsedRealtime() - this.f8112b;
             b2.z0 z0Var = (b2.z0) this.e;
             if (z0Var.f2443a == 1.0f) {
                 j10 = e2.l0.S(elapsedRealtime);
@@ -33,25 +33,25 @@ public final class w1 implements x0 {
 
     @Override
     public void c(b2.z0 z0Var) {
-        if (this.f8112c) {
+        if (this.f8113c) {
             d(a());
         }
         this.e = z0Var;
     }
 
     public void d(long j10) {
-        this.f8110a = j10;
-        if (this.f8112c) {
+        this.f8111a = j10;
+        if (this.f8113c) {
             ((e2.g0) this.d).getClass();
-            this.f8111b = SystemClock.elapsedRealtime();
+            this.f8112b = SystemClock.elapsedRealtime();
         }
     }
 
     public void e() {
-        if (!this.f8112c) {
+        if (!this.f8113c) {
             ((e2.g0) this.d).getClass();
-            this.f8111b = SystemClock.elapsedRealtime();
-            this.f8112c = true;
+            this.f8112b = SystemClock.elapsedRealtime();
+            this.f8113c = true;
         }
     }
 

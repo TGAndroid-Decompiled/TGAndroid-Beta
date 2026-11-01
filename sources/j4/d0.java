@@ -5,24 +5,24 @@ import c3.k0;
 import java.util.List;
 import v7.t6;
 public final class d0 {
-    public final int f9431a;
-    public final List f9432b;
-    public final k0[] f9433c;
+    public final int f9432a;
+    public final List f9433b;
+    public final k0[] f9434c;
     public final e2.c d;
 
     public d0(int i10, List list) {
-        this.f9431a = i10;
+        this.f9432a = i10;
         switch (i10) {
             case 1:
-                this.f9432b = list;
-                this.f9433c = new k0[list.size()];
+                this.f9433b = list;
+                this.f9434c = new k0[list.size()];
                 e2.c cVar = new e2.c(new ig.c0(this, 7));
                 this.d = cVar;
                 cVar.p(3);
                 return;
             default:
-                this.f9432b = list;
-                this.f9433c = new k0[list.size()];
+                this.f9433b = list;
+                this.f9434c = new k0[list.size()];
                 this.d = new e2.c(new ig.c0(this, 6));
                 return;
         }
@@ -42,16 +42,16 @@ public final class d0 {
     public final void b(c3.q qVar, g0 g0Var) {
         boolean z10;
         boolean z11;
-        switch (this.f9431a) {
+        switch (this.f9432a) {
             case 0:
                 int i10 = 0;
                 while (true) {
-                    k0[] k0VarArr = this.f9433c;
+                    k0[] k0VarArr = this.f9434c;
                     if (i10 < k0VarArr.length) {
                         g0Var.b();
                         g0Var.c();
-                        k0 I1 = qVar.I1(g0Var.f9491c, 3);
-                        b2.x xVar = (b2.x) this.f9432b.get(i10);
+                        k0 I1 = qVar.I1(g0Var.f9492c, 3);
+                        b2.x xVar = (b2.x) this.f9433b.get(i10);
                         String str = xVar.f2423s;
                         if (!"application/cea-608".equals(str) && !"application/cea-708".equals(str)) {
                             z10 = false;
@@ -83,12 +83,12 @@ public final class d0 {
             default:
                 int i11 = 0;
                 while (true) {
-                    k0[] k0VarArr2 = this.f9433c;
+                    k0[] k0VarArr2 = this.f9434c;
                     if (i11 < k0VarArr2.length) {
                         g0Var.b();
                         g0Var.c();
-                        k0 I12 = qVar.I1(g0Var.f9491c, 3);
-                        b2.x xVar2 = (b2.x) this.f9432b.get(i11);
+                        k0 I12 = qVar.I1(g0Var.f9492c, 3);
+                        b2.x xVar2 = (b2.x) this.f9433b.get(i11);
                         String str3 = xVar2.f2423s;
                         if (!"application/cea-608".equals(str3) && !"application/cea-708".equals(str3)) {
                             z11 = false;

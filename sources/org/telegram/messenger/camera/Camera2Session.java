@@ -22,7 +22,7 @@ import java.util.Comparator;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.f8;
 import org.telegram.messenger.i0;
-import org.telegram.messenger.q20;
+import org.telegram.messenger.r20;
 import org.telegram.messenger.w0;
 public class Camera2Session {
     private CameraCharacteristics cameraCharacteristics;
@@ -133,18 +133,18 @@ public class Camera2Session {
     public class AnonymousClass3 implements ImageReader.OnImageAvailableListener {
         final File val$file;
         final int val$orientation;
-        final q20 val$whenDone;
+        final r20 val$whenDone;
 
-        public AnonymousClass3(File file, q20 q20Var, int i10) {
+        public AnonymousClass3(File file, r20 r20Var, int i10) {
             Camera2Session.this = r1;
             this.val$file = file;
-            this.val$whenDone = q20Var;
+            this.val$whenDone = r20Var;
             this.val$orientation = i10;
         }
 
-        public static void lambda$onImageAvailable$0(q20 q20Var, int i10) {
-            if (q20Var != null) {
-                q20Var.a(Integer.valueOf(i10));
+        public static void lambda$onImageAvailable$0(r20 r20Var, int i10) {
+            if (r20Var != null) {
+                r20Var.a(Integer.valueOf(i10));
             }
         }
 
@@ -243,7 +243,7 @@ public class Camera2Session {
         float f7;
         boolean z11;
         boolean z12;
-        Context context = w0.f19025b;
+        Context context = w0.f18945b;
         CameraManager cameraManager = (CameraManager) context.getSystemService("camera");
         try {
             size = null;
@@ -520,14 +520,14 @@ public class Camera2Session {
         }
     }
 
-    public boolean takePicture(File file, q20 q20Var) {
+    public boolean takePicture(File file, r20 r20Var) {
         CameraDevice cameraDevice = this.cameraDevice;
         if (cameraDevice != null && this.captureSession != null) {
             try {
                 CaptureRequest.Builder createCaptureRequest = cameraDevice.createCaptureRequest(2);
                 int jpegOrientation = getJpegOrientation();
                 createCaptureRequest.set(CaptureRequest.JPEG_ORIENTATION, Integer.valueOf(jpegOrientation));
-                this.imageReader.setOnImageAvailableListener(new AnonymousClass3(file, q20Var, jpegOrientation), null);
+                this.imageReader.setOnImageAvailableListener(new AnonymousClass3(file, r20Var, jpegOrientation), null);
                 if (this.scanningBarcode) {
                     createCaptureRequest.set(CaptureRequest.CONTROL_SCENE_MODE, 16);
                 }

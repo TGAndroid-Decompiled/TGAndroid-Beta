@@ -7,12 +7,12 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 public final class hp extends FrameLayout {
-    public TextView[] f26787a;
-    public ei0[] f26788b;
-    public ImageView f26789c;
+    public TextView[] f26899a;
+    public fi0[] f26900b;
+    public ImageView f26901c;
     public AnimatorSet d;
     public ho e;
-    public float f26790f;
+    public float f26902f;
 
     public final void a() {
         if (getTag() == null) {
@@ -38,6 +38,6 @@ public final class hp extends FrameLayout {
     }
 
     public float getBaseTranslationY() {
-        return this.f26790f;
+        return this.f26902f;
     }
 }

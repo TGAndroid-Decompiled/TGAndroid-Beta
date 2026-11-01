@@ -4,33 +4,33 @@ import ag.j0;
 import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.q20;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.r20;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.Cells.l6;
 import org.telegram.ui.Components.ha;
-import org.telegram.ui.Components.p51;
+import org.telegram.ui.Components.q51;
 import org.telegram.ui.Components.s4;
-import org.telegram.ui.Components.sk0;
 import org.telegram.ui.Components.tk0;
+import org.telegram.ui.Components.uk0;
 public final class a extends ha {
-    public p51 P1;
+    public q51 P1;
     public boolean Q1;
     public final FrameLayout R1;
     public final boolean S1;
     public final boolean T1;
     public int U1;
 
-    public a(android.content.Context r17, org.telegram.tgnet.TLRPC.Chat r18, long r19, org.telegram.messenger.q20 r21) {
-        throw new UnsupportedOperationException("Method not decompiled: ai.a.<init>(android.content.Context, org.telegram.tgnet.TLRPC$Chat, long, org.telegram.messenger.q20):void");
+    public a(android.content.Context r17, org.telegram.tgnet.TLRPC.Chat r18, long r19, org.telegram.messenger.r20 r21) {
+        throw new UnsupportedOperationException("Method not decompiled: ai.a.<init>(android.content.Context, org.telegram.tgnet.TLRPC$Chat, long, org.telegram.messenger.r20):void");
     }
 
     @Override
-    public final sk0 L0(tk0 tk0Var) {
-        p51 p51Var = new p51(this.f26666k1, getContext(), this.f21583a, 0, false, new ag.a(this, 9), this.I0);
-        this.P1 = p51Var;
-        p51Var.f29295r = false;
-        return p51Var;
+    public final tk0 L0(uk0 uk0Var) {
+        q51 q51Var = new q51(this.f26724k1, getContext(), this.f21584a, 0, false, new ag.a(this, 9), this.I0);
+        this.P1 = q51Var;
+        q51Var.f29638r = false;
+        return q51Var;
     }
 
     @Override
@@ -41,24 +41,24 @@ public final class a extends ha {
         } else {
             i10 = 2131751977;
         }
-        return cd.L0(i10, null);
+        return dd.L0(i10, null);
     }
 
-    public final void d1(q20 q20Var, boolean z10, boolean z11) {
+    public final void d1(r20 r20Var, boolean z10, boolean z11) {
         int i10;
         if (z11 && !z10 && !this.T1) {
             Context context = getContext();
             p6 p6Var = this.I0;
-            String L0 = cd.L0(2131751970, null);
+            String L0 = dd.L0(2131751970, null);
             if (this.S1) {
                 i10 = 2131751973;
             } else {
                 i10 = 2131751972;
             }
-            s4.O(context, p6Var, L0, cd.L0(i10, null), cd.L0(2131754486, null), new j0(this, q20Var, z10, 1)).show();
+            s4.O(context, p6Var, L0, dd.L0(i10, null), dd.L0(2131754486, null), new j0(this, r20Var, z10, 1)).show();
             return;
         }
-        q20Var.a(Boolean.valueOf(z10));
+        r20Var.a(Boolean.valueOf(z10));
         dismiss();
     }
 
@@ -66,15 +66,15 @@ public final class a extends ha {
         boolean z11;
         if (this.Q1 != z10) {
             this.Q1 = z10;
-            tk0 tk0Var = this.f26666k1;
-            View T0 = tk0Var.T0(this.U1 + 1);
+            uk0 uk0Var = this.f26724k1;
+            View T0 = uk0Var.T0(this.U1 + 1);
             if (T0 instanceof l6) {
                 ((l6) T0).a(!z10);
                 z11 = false;
             } else {
                 z11 = true;
             }
-            View T02 = tk0Var.T0(this.U1 + 2);
+            View T02 = uk0Var.T0(this.U1 + 2);
             if (T02 instanceof l6) {
                 ((l6) T02).a(z10);
             } else {

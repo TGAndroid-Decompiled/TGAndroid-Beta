@@ -23,7 +23,7 @@ public final class o3 implements k5 {
         int indexOf = d4Var.f2946s3.indexOf(this.f3262b);
         if (indexOf >= 0) {
             d4Var.f2946s3.remove(indexOf);
-            d4Var.f30819f3.O(true);
+            d4Var.f31183f3.O(true);
         }
         d4Var.f2938o3.onContentChanged();
     }
@@ -36,11 +36,11 @@ public final class o3 implements k5 {
         wVar.f3416a = 2;
         TL_iv.PageBlock pageBlock = this.f3262b.f2818b;
         if (pageBlock instanceof TL_iv.pageBlockAudio) {
-            ((TL_iv.pageBlockAudio) pageBlock).audio_id = document.f19799id;
+            ((TL_iv.pageBlockAudio) pageBlock).audio_id = document.f19800id;
         }
         d4 d4Var = this.f3263c;
         d4Var.f2929g4.remove(wVar);
-        d4Var.f30819f3.O(false);
+        d4Var.f31183f3.O(false);
         d4Var.f2938o3.onContentChanged();
     }
 
@@ -51,7 +51,7 @@ public final class o3 implements k5 {
         d4 d4Var = this.f3263c;
         View C1 = d4Var.C1(aVar);
         if (C1 instanceof b0) {
-            ((b0) C1).o(false);
+            ((b0) C1).n(false);
             C1.invalidate();
         }
         d4Var.f2938o3.onContentChanged();

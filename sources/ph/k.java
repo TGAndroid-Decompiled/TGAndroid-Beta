@@ -26,35 +26,35 @@ import org.telegram.ui.Components.gr;
 import org.telegram.ui.Components.k7;
 import w7.b6;
 public final class k extends FrameLayout {
-    public final int f45141a;
-    public Object f45142b;
-    public Object f45143c;
+    public final int f45152a;
+    public Object f45153b;
+    public Object f45154c;
 
     public k(sg.b0 b0Var, Context context) {
         super(context);
-        this.f45141a = 4;
-        this.f45143c = b0Var;
-        this.f45142b = new k7(this, 7);
+        this.f45152a = 4;
+        this.f45154c = b0Var;
+        this.f45153b = new k7(this, 7);
     }
 
     public void b(int i10, CharSequence charSequence, boolean z10) {
-        ImageView imageView = (ImageView) this.f45142b;
+        ImageView imageView = (ImageView) this.f45153b;
         if (z10) {
             org.telegram.messenger.i0.Q3(imageView, i10);
         } else {
             imageView.setImageResource(i10);
         }
-        ((TextView) this.f45143c).setText(charSequence);
+        ((TextView) this.f45154c).setText(charSequence);
         requestLayout();
     }
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        switch (this.f45141a) {
+        switch (this.f45152a) {
             case 4:
                 if (keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 4) {
-                    sg.b0 b0Var = (sg.b0) this.f45143c;
-                    if (!b0Var.f48282k) {
+                    sg.b0 b0Var = (sg.b0) this.f45154c;
+                    if (!b0Var.f48293k) {
                         return true;
                     }
                     b0Var.d();
@@ -68,7 +68,7 @@ public final class k extends FrameLayout {
 
     @Override
     public void dispatchSetPressed(boolean z10) {
-        switch (this.f45141a) {
+        switch (this.f45152a) {
             case 4:
                 return;
             default:
@@ -81,11 +81,11 @@ public final class k extends FrameLayout {
     public boolean drawChild(Canvas canvas, View view, long j10) {
         boolean z10;
         float f7;
-        switch (this.f45141a) {
+        switch (this.f45152a) {
             case 5:
-                Path path = (Path) this.f45142b;
-                vh.z3 z3Var = (vh.z3) this.f45143c;
-                if (z3Var.h != null && (((z10 = z3Var.f52248f) && view == z3Var.d) || (!z10 && view == z3Var.f52247c))) {
+                Path path = (Path) this.f45153b;
+                vh.z3 z3Var = (vh.z3) this.f45154c;
+                if (z3Var.h != null && (((z10 = z3Var.f52266f) && view == z3Var.d) || (!z10 && view == z3Var.f52265c))) {
                     if (z10) {
                         f7 = z3Var.e;
                     } else {
@@ -107,30 +107,30 @@ public final class k extends FrameLayout {
 
     @Override
     public boolean fitSystemWindows(Rect rect) {
-        switch (this.f45141a) {
+        switch (this.f45152a) {
             case 4:
-                sg.b0 b0Var = (sg.b0) this.f45143c;
-                float f7 = b0Var.f48292u;
+                sg.b0 b0Var = (sg.b0) this.f45154c;
+                float f7 = b0Var.f48303u;
                 float f10 = rect.bottom;
                 if (f7 != f10 && b0Var.v) {
-                    b0Var.f48292u = f10;
-                    k kVar = b0Var.f48277c;
-                    sg.a0 a0Var = b0Var.f48275a;
-                    if (!b0Var.f48288q) {
-                        float f11 = b0Var.f48291t;
+                    b0Var.f48303u = f10;
+                    k kVar = b0Var.f48288c;
+                    sg.a0 a0Var = b0Var.f48286a;
+                    if (!b0Var.f48299q) {
+                        float f11 = b0Var.f48302t;
                         int L = org.telegram.messenger.i0.L(32.0f);
-                        int i10 = b0Var.f48295y;
+                        int i10 = b0Var.f48306y;
                         if (i10 == 1 || i10 == 2) {
                             L = org.telegram.messenger.i0.L(24.0f);
                         }
                         float f12 = L;
-                        if (a0Var.getMeasuredHeight() + f11 > (kVar.getMeasuredHeight() - b0Var.f48292u) - f12) {
-                            f11 = ((kVar.getMeasuredHeight() - b0Var.f48292u) - a0Var.getMeasuredHeight()) - f12;
+                        if (a0Var.getMeasuredHeight() + f11 > (kVar.getMeasuredHeight() - b0Var.f48303u) - f12) {
+                            f11 = ((kVar.getMeasuredHeight() - b0Var.f48303u) - a0Var.getMeasuredHeight()) - f12;
                         }
                         if (f11 < 0.0f) {
                             f11 = 0.0f;
                         }
-                        a0Var.animate().translationY(f11).setDuration(250L).setUpdateListener(new sg.u(b0Var, 1)).setInterpolator(gr.f26495f).start();
+                        a0Var.animate().translationY(f11).setDuration(250L).setUpdateListener(new sg.u(b0Var, 1)).setInterpolator(gr.f26523f).start();
                     }
                 }
                 return super.fitSystemWindows(rect);
@@ -141,14 +141,14 @@ public final class k extends FrameLayout {
 
     @Override
     public void onAttachedToWindow() {
-        switch (this.f45141a) {
+        switch (this.f45152a) {
             case 3:
                 super.onAttachedToWindow();
-                ((sg.k) this.f45142b).c();
+                ((sg.k) this.f45153b).c();
                 return;
             case 4:
                 super.onAttachedToWindow();
-                setTag(2131296351, (k7) this.f45142b);
+                setTag(2131296351, (k7) this.f45153b);
                 return;
             default:
                 super.onAttachedToWindow();
@@ -158,10 +158,10 @@ public final class k extends FrameLayout {
 
     @Override
     public void onDetachedFromWindow() {
-        switch (this.f45141a) {
+        switch (this.f45152a) {
             case 3:
                 super.onDetachedFromWindow();
-                ((sg.k) this.f45142b).d();
+                ((sg.k) this.f45153b).d();
                 return;
             case 4:
                 super.onDetachedFromWindow();
@@ -185,11 +185,11 @@ public final class k extends FrameLayout {
         StaticLayout staticLayout;
         float f12;
         int L;
-        switch (this.f45141a) {
+        switch (this.f45152a) {
             case 2:
                 float f13 = 8.0f;
                 int size = View.MeasureSpec.getSize(i10) - org.telegram.messenger.i0.L(8.0f);
-                TextView textView = (TextView) this.f45143c;
+                TextView textView = (TextView) this.f45154c;
                 CharSequence text = textView.getText();
                 if (size > 0 && !TextUtils.isEmpty(text)) {
                     FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) textView.getLayoutParams();
@@ -256,7 +256,7 @@ public final class k extends FrameLayout {
                         f11 = 35.0f;
                     }
                     layoutParams.topMargin = org.telegram.messenger.i0.L(f11);
-                    FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) ((ImageView) this.f45142b).getLayoutParams();
+                    FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) ((ImageView) this.f45153b).getLayoutParams();
                     if (i13 == i12) {
                         f13 = 4.0f;
                     }
@@ -265,8 +265,8 @@ public final class k extends FrameLayout {
                 super.onMeasure(i10, i11);
                 return;
             case 6:
-                ViewGroup viewGroup = (ViewGroup) this.f45142b;
-                zf.d dVar = (zf.d) this.f45143c;
+                ViewGroup viewGroup = (ViewGroup) this.f45153b;
+                zf.d dVar = (zf.d) this.f45154c;
                 if (dVar.K && dVar.J) {
                     super.onMeasure(i10, i11);
                     return;
@@ -276,16 +276,16 @@ public final class k extends FrameLayout {
                     size2 = viewGroup.getMeasuredHeight();
                 }
                 if (size2 == 0) {
-                    size2 = (org.telegram.messenger.i0.f16026q.y - org.telegram.ui.ActionBar.l.getCurrentActionBarHeight()) - org.telegram.messenger.i0.f16020m;
+                    size2 = (org.telegram.messenger.i0.f16172q.y - org.telegram.ui.ActionBar.l.getCurrentActionBarHeight()) - org.telegram.messenger.i0.f16166m;
                 }
                 int L2 = org.telegram.messenger.i0.L(50.0f);
                 int i15 = 0;
-                if (dVar.f55466w != 0) {
+                if (dVar.f55484w != 0) {
                     L = 0;
                 } else {
                     L = org.telegram.messenger.i0.L(30.0f) + L2;
                 }
-                if (!dVar.E && !dVar.f55467x) {
+                if (!dVar.E && !dVar.f55485x) {
                     L += L2;
                 }
                 int paddingTop = (size2 - viewGroup.getPaddingTop()) - viewGroup.getPaddingBottom();
@@ -302,31 +302,31 @@ public final class k extends FrameLayout {
 
     public k(sg.o oVar, Context context) {
         super(context);
-        this.f45141a = 3;
-        this.f45143c = oVar;
-        this.f45142b = new sg.k(this, this);
+        this.f45152a = 3;
+        this.f45154c = oVar;
+        this.f45153b = new sg.k(this, this);
     }
 
     public k(zf.d dVar, Context context, ViewGroup viewGroup) {
         super(context);
-        this.f45141a = 6;
-        this.f45143c = dVar;
-        this.f45142b = viewGroup;
+        this.f45152a = 6;
+        this.f45154c = dVar;
+        this.f45153b = viewGroup;
     }
 
     public k(Context context, p6 p6Var) {
         super(context);
-        this.f45141a = 0;
+        this.f45152a = 0;
         LinearLayout f7 = m5.f(context, 1);
         f6 f6Var = new f6(context, false, false, false);
-        this.f45142b = f6Var;
+        this.f45153b = f6Var;
         int i10 = t6.G6;
         a7.Z(f6Var, i10, p6Var);
         f6Var.setTextSize(org.telegram.messenger.i0.L(17.0f));
         f6Var.setTypeface(org.telegram.messenger.i0.o());
         f7.addView(f6Var, b6.r(-2, 23, 1));
         TextView textView = new TextView(context);
-        this.f45143c = textView;
+        this.f45154c = textView;
         textView.setTextSize(1, 11.0f);
         a7.V(textView, i10, p6Var);
         textView.setSingleLine();
@@ -338,17 +338,17 @@ public final class k extends FrameLayout {
 
     public k(Context context, int i10) {
         super(context);
-        this.f45141a = i10;
+        this.f45152a = i10;
         switch (i10) {
             case 2:
                 super(context);
                 ImageView imageView = new ImageView(context);
-                this.f45142b = imageView;
+                this.f45153b = imageView;
                 imageView.setScaleType(ImageView.ScaleType.CENTER);
                 imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
                 addView(imageView, b6.d(24, 24.0f, 49, 0.0f, 8.0f, 0.0f, 0.0f));
                 TextView textView = new TextView(context);
-                this.f45143c = textView;
+                this.f45154c = textView;
                 textView.setTypeface(org.telegram.messenger.i0.o());
                 textView.setTextSize(1, 12.0f);
                 textView.setTextColor(-1);
@@ -365,8 +365,8 @@ public final class k extends FrameLayout {
 
     public k(vh.z3 z3Var, Context context) {
         super(context);
-        this.f45141a = 5;
-        this.f45143c = z3Var;
-        this.f45142b = new Path();
+        this.f45152a = 5;
+        this.f45154c = z3Var;
+        this.f45153b = new Path();
     }
 }

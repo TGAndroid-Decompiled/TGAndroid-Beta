@@ -2,9 +2,9 @@ package ag;
 
 import android.text.TextUtils;
 import java.util.ArrayList;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.hs;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.at;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.is;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.Components.cc;
@@ -55,8 +55,8 @@ public final class s0 {
             ArrayList arrayList = this.f702b;
             int indexOf = arrayList.indexOf(c10);
             arrayList.remove(c10);
-            zs.f(this.f701a).k(zs.J1, new Object[0]);
-            cc.a0(i0Var).U(cd.L0(2131752715, null), true, new o0(this, indexOf, c10, 0), new a3.l0(this, str, c10, 4)).j();
+            at.f(this.f701a).k(at.J1, new Object[0]);
+            cc.a0(i0Var).U(dd.L0(2131752715, null), true, new o0(this, indexOf, c10, 0), new a3.l0(this, str, c10, 4)).j();
         }
     }
 
@@ -111,8 +111,8 @@ public final class s0 {
                 this.f703c = true;
                 int i10 = this.f701a;
                 if (z10) {
-                    hs a02 = hs.a0(i10);
-                    a02.f15938a.c(new j0(this, a02, z11, 0));
+                    is a02 = is.a0(i10);
+                    a02.f16331a.c(new j0(this, a02, z11, 0));
                     return;
                 }
                 ConnectionsManager.getInstance(i10).sendRequest(new TL_account.getBusinessChatLinks(), new m0(this, 0));
@@ -122,7 +122,7 @@ public final class s0 {
 
     public final void f() {
         ArrayList arrayList = new ArrayList(this.f702b);
-        hs a02 = hs.a0(this.f701a);
-        a02.f15938a.c(new r0(a02, arrayList, 0));
+        is a02 = is.a0(this.f701a);
+        a02.f16331a.c(new r0(a02, arrayList, 0));
     }
 }

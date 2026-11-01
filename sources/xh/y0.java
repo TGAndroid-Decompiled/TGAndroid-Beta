@@ -2,19 +2,19 @@ package xh;
 
 import android.text.style.CharacterStyle;
 import java.util.ArrayList;
-import org.telegram.messenger.c20;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.jj;
+import org.telegram.messenger.d20;
+import org.telegram.messenger.hj;
+import org.telegram.messenger.kj;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.Cells.l9;
 import org.telegram.ui.Components.o5;
-import org.telegram.ui.qs0;
+import org.telegram.ui.ps0;
 public final class y0 implements org.telegram.ui.Cells.l1 {
     @Override
-    public final boolean A1(org.telegram.ui.Cells.q1 q1Var, jj jjVar) {
+    public final boolean A1(org.telegram.ui.Cells.q1 q1Var, kj kjVar) {
         return false;
     }
 
@@ -24,7 +24,7 @@ public final class y0 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final qs0 H1() {
+    public final ps0 H1() {
         return null;
     }
 
@@ -69,8 +69,8 @@ public final class y0 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final boolean S0(jj jjVar) {
-        return org.telegram.ui.Cells.f1.a(jjVar);
+    public final boolean S0(kj kjVar) {
+        return org.telegram.ui.Cells.f1.a(kjVar);
     }
 
     @Override
@@ -164,7 +164,7 @@ public final class y0 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final boolean w0(jj jjVar) {
+    public final boolean w0(kj kjVar) {
         return true;
     }
 
@@ -232,7 +232,7 @@ public final class y0 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final void J(gj gjVar) {
+    public final void J(hj hjVar) {
     }
 
     @Override
@@ -248,7 +248,7 @@ public final class y0 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final void O(jj jjVar) {
+    public final void O(kj kjVar) {
     }
 
     @Override
@@ -304,7 +304,7 @@ public final class y0 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final void v1(jj jjVar) {
+    public final void v1(kj kjVar) {
     }
 
     @Override
@@ -320,7 +320,7 @@ public final class y0 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final void F1(org.telegram.ui.Cells.q1 q1Var, c20 c20Var) {
+    public final void F1(org.telegram.ui.Cells.q1 q1Var, d20 d20Var) {
     }
 
     @Override
@@ -432,6 +432,6 @@ public final class y0 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final void z1(jj jjVar, String str, String str2, String str3, String str4, int i10, int i11) {
+    public final void z1(kj kjVar, String str, String str2, String str3, String str4, int i10, int i11) {
     }
 }

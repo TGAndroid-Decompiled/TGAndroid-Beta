@@ -1,12 +1,12 @@
 package e9;
 
 import java.io.Serializable;
-import org.telegram.ui.ex0;
+import org.telegram.ui.dx0;
 public final class y extends v1 implements Serializable {
-    public final ex0 f6451a;
+    public final dx0 f6451a;
 
-    public y(ex0 ex0Var) {
-        this.f6451a = ex0Var;
+    public y(dx0 dx0Var) {
+        this.f6451a = dx0Var;
     }
 
     @Override

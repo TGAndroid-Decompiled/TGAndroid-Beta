@@ -2,7 +2,7 @@ package ag;
 
 import android.content.DialogInterface;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.qz0;
+import org.telegram.ui.pz0;
 import th.o7;
 public final class x implements DialogInterface.OnDismissListener {
     public final int f781a;
@@ -32,20 +32,20 @@ public final class x implements DialogInterface.OnDismissListener {
             case 4:
                 kg.q0 q0Var = (kg.q0) this.f782b;
                 q0Var.X1 = false;
-                q0Var.f11239p2.f24103d0 = true;
-                q0Var.f11246w2.invalidate();
-                q0Var.f11239p2.invalidate();
+                q0Var.f11240p2.f24104d0 = true;
+                q0Var.f11247w2.invalidate();
+                q0Var.f11240p2.invalidate();
                 return;
             case 5:
                 kg.v1 v1Var = (kg.v1) this.f782b;
-                kg.h hVar = v1Var.f11301j2;
+                kg.h hVar = v1Var.f11302j2;
                 if (hVar != null) {
                     hVar.setDialogVisible(false);
                 }
-                v1Var.f11300i2.setPaused(false);
+                v1Var.f11301i2.setPaused(false);
                 return;
             case 6:
-                ((oh.q) this.f782b).f14307s = null;
+                ((oh.q) this.f782b).f14308s = null;
                 return;
             case 7:
                 ((org.telegram.ui.ActionBar.x1) this.f782b).K = null;
@@ -61,13 +61,13 @@ public final class x implements DialogInterface.OnDismissListener {
                 return;
             case 9:
                 org.telegram.ui.web.z0 z0Var = ((org.telegram.ui.web.j0) this.f782b).e.Q;
-                if (z0Var != null && (d0Var = z0Var.f43261c) != null) {
+                if (z0Var != null && (d0Var = z0Var.f43063c) != null) {
                     d0Var.z();
                     return;
                 }
                 return;
             case 10:
-                org.telegram.ui.web.d0 d0Var2 = ((org.telegram.ui.web.r0) this.f782b).f43180b.e.Q.f43261c;
+                org.telegram.ui.web.d0 d0Var2 = ((org.telegram.ui.web.r0) this.f782b).f42982b.e.Q.f43063c;
                 if (d0Var2 != null) {
                     d0Var2.z();
                     return;
@@ -77,18 +77,18 @@ public final class x implements DialogInterface.OnDismissListener {
                 org.telegram.messenger.i0.v1((EditTextBoldCursor) this.f782b);
                 return;
             case 12:
-                ((rh.o) this.f782b).run();
+                ((rh.n) this.f782b).run();
                 return;
             case 13:
-                ((qz0) this.f782b).run();
+                ((pz0) this.f782b).run();
                 return;
             case 14:
                 ((sg.v) this.f782b).run();
                 return;
             default:
                 o7 o7Var = (o7) this.f782b;
-                if (dialogInterface == o7Var.f49335u0) {
-                    o7Var.f49335u0 = null;
+                if (dialogInterface == o7Var.f49349u0) {
+                    o7Var.f49349u0 = null;
                     o7Var.d0();
                     return;
                 }

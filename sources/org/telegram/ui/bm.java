@@ -12,7 +12,7 @@ public final class bm extends org.telegram.ui.Cells.f0 {
     @Override
     public final int getSideMenuWidth() {
         un unVar = this.L.Q;
-        int i10 = un.f42169ad;
-        return unVar.e9();
+        int i10 = un.f41979bd;
+        return unVar.i9();
     }
 }

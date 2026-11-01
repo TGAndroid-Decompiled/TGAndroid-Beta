@@ -2,14 +2,14 @@ package yd;
 
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public abstract class b extends p {
-    public static final AtomicReferenceFieldUpdater f54395a = AtomicReferenceFieldUpdater.newUpdater(b.class, Object.class, "_consensus$volatile");
-    private volatile Object _consensus$volatile = a.f54391a;
+    public static final AtomicReferenceFieldUpdater f54416a = AtomicReferenceFieldUpdater.newUpdater(b.class, Object.class, "_consensus$volatile");
+    private volatile Object _consensus$volatile = a.f54412a;
 
     @Override
     public final Object a(Object obj) {
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f54395a;
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f54416a;
         Object obj2 = atomicReferenceFieldUpdater.get(this);
-        ea.a aVar = a.f54391a;
+        ea.a aVar = a.f54412a;
         if (obj2 == aVar) {
             ea.a c10 = c(obj);
             obj2 = atomicReferenceFieldUpdater.get(this);

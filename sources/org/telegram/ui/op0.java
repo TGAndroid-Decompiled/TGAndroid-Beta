@@ -1,48 +1,32 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.SurfaceView;
-import android.view.View;
-import android.widget.ImageView;
-public final class op0 extends AnimatorListenerAdapter {
-    public final int f40362a;
-    public final View f40363b;
-    public final PhotoViewer f40364c;
+import android.graphics.Canvas;
+public final class op0 implements hi.a, tg.a {
+    public final org.telegram.ui.Components.w9 f40243a;
+    public final PhotoViewer f40244b;
 
-    public op0(PhotoViewer photoViewer, View view, int i10) {
-        this.f40362a = i10;
-        this.f40364c = photoViewer;
-        this.f40363b = view;
+    public op0(PhotoViewer photoViewer) {
+        this.f40244b = photoViewer;
+        this.f40243a = new org.telegram.ui.Components.w9(photoViewer.f33449b0, photoViewer.f33477e0, 0, false);
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f40362a) {
-            case 0:
-                PhotoViewer photoViewer = this.f40364c;
-                photoViewer.B3 = false;
-                this.f40363b.setOutlineProvider(null);
-                ImageView imageView = photoViewer.f33643x3;
-                if (imageView != null) {
-                    imageView.setOutlineProvider(null);
-                }
-                zr0 zr0Var = photoViewer.E2;
-                if (zr0Var != null) {
-                    zr0Var.setOutlineProvider(null);
-                }
-                SurfaceView surfaceView = photoViewer.C2;
-                if (surfaceView != null) {
-                    surfaceView.setVisibility(0);
-                    return;
-                }
-                return;
-            default:
-                PhotoViewer photoViewer2 = this.f40364c;
-                photoViewer2.B3 = false;
-                photoViewer2.f33509i4.run();
-                org.telegram.messenger.i0.h3(new uf0(24, this, this.f40363b), 100L);
-                return;
-        }
+    public final vg.f b() {
+        vg.f fVar = new vg.f(this, this, this);
+        this.f40244b.Z.add(fVar);
+        return fVar;
+    }
+
+    @Override
+    public final void e(Canvas canvas, float f7, float f10, float f11, float f12) {
+        canvas.save();
+        canvas.clipRect(f7, f10, f11, f12);
+        this.f40244b.U0(canvas, this.f40243a, -14277082, 855638016, false, true, true);
+        canvas.drawColor(637534208);
+        canvas.restore();
+    }
+
+    @Override
+    public final void c(vg.f fVar) {
     }
 }

@@ -1,81 +1,95 @@
 package org.telegram.ui;
 
+import android.text.TextUtils;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import java.util.regex.Pattern;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class z70 implements RequestDelegate {
-    public final int f44039a;
-    public final LaunchActivity f44040b;
-    public final int f44041c;
-    public final f70 d;
-    public final Object e;
-    public final Object f44042f;
-    public final Object f44043g;
-    public final Object h;
-    public final Object f44044i;
+public final class z70 implements org.telegram.messenger.k20 {
+    public final int f43840a;
+    public final long f43841b;
+    public final Object f43842c;
 
-    public z70(LaunchActivity launchActivity, f70 f70Var, int i10, TL_account.authorizationForm authorizationform, TL_account.getAuthorizationForm getauthorizationform, String str, String str2, String str3) {
-        this.f44039a = 0;
-        this.f44040b = launchActivity;
-        this.d = f70Var;
-        this.f44041c = i10;
-        this.f44044i = authorizationform;
-        this.e = getauthorizationform;
-        this.f44042f = str;
-        this.f44043g = str2;
-        this.h = str3;
+    public z70(Object obj, long j10, int i10) {
+        this.f43840a = i10;
+        this.f43842c = obj;
+        this.f43841b = j10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f44039a;
-        Object obj = this.h;
-        Object obj2 = this.f44043g;
-        Object obj3 = this.f44042f;
-        Object obj4 = this.e;
-        Object obj5 = this.f44044i;
-        switch (i10) {
+    public final void a(Object obj, Object obj2) {
+        boolean z10;
+        int i10;
+        int i11 = this.f43840a;
+        long j10 = this.f43841b;
+        Object obj3 = this.f43842c;
+        switch (i11) {
             case 0:
+                LaunchActivity launchActivity = (LaunchActivity) obj3;
+                Long l4 = (Long) obj2;
                 Pattern pattern = LaunchActivity.D1;
-                org.telegram.messenger.i0.g3(new t70(this.f44040b, this.d, tLObject, this.f44041c, (TL_account.authorizationForm) obj5, (TL_account.getAuthorizationForm) obj4, (String) obj3, (String) obj2, (String) obj));
-                return;
-            case 1:
-                int[] iArr = (int[]) obj5;
-                TL_account.getAuthorizationForm getauthorizationform = (TL_account.getAuthorizationForm) obj4;
-                String str = (String) obj3;
-                String str2 = (String) obj2;
-                String str3 = (String) obj;
-                Pattern pattern2 = LaunchActivity.D1;
-                TL_account.authorizationForm authorizationform = (TL_account.authorizationForm) tLObject;
-                LaunchActivity launchActivity = this.f44040b;
-                f70 f70Var = this.d;
-                if (authorizationform != null) {
-                    TL_account.getPassword getpassword = new TL_account.getPassword();
-                    int i11 = this.f44041c;
-                    iArr[0] = ConnectionsManager.getInstance(i11).sendRequest(getpassword, new z70(launchActivity, f70Var, i11, authorizationform, getauthorizationform, str, str2, str3));
+                if ("paid".equals((String) obj) && l4.longValue() != 0) {
+                    org.telegram.messenger.i0.g3(new a3.i0(launchActivity, l4, this.f43841b, 19));
                     return;
                 }
-                org.telegram.messenger.i0.g3(new qq(launchActivity, f70Var, tL_error, 15));
+                return;
+            case 1:
+                ph.m mVar = (ph.m) obj3;
+                Boolean bool = (Boolean) obj;
+                String str = (String) obj2;
+                FrameLayout frameLayout = mVar.f45226c2;
+                mVar.S1.setLoading(false);
+                mVar.f45241r2 = false;
+                if (bool != null) {
+                    if (j10 > 0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    org.telegram.ui.Components.sb sbVar = new org.telegram.ui.Components.sb(mVar.getContext(), mVar.I0);
+                    sbVar.f30254a.setImageResource(2131231117);
+                    if (z10) {
+                        i10 = 2131750316;
+                    } else {
+                        i10 = 2131750315;
+                    }
+                    String L0 = org.telegram.messenger.dd.L0(i10, null);
+                    TextView textView = sbVar.f30255b;
+                    textView.setText(L0);
+                    textView.setSingleLine(true);
+                    textView.setTextSize(1, 15.0f);
+                    textView.setMaxLines(1);
+                    textView.setTypeface(org.telegram.messenger.i0.o());
+                    String a02 = org.telegram.messenger.dd.a0(null, null, 2131750351, Integer.valueOf(mVar.f45227d2.d.gifts_per_round));
+                    TextView textView2 = sbVar.f30256c;
+                    textView2.setText(a02);
+                    textView2.setSingleLine(false);
+                    textView2.setMaxLines(5);
+                    mVar.h1();
+                    org.telegram.ui.Components.wb.f(frameLayout, sbVar, 2750).j();
+                    rh.e6.y(mVar.f21584a, false).q(null, false, true);
+                }
+                if (str != null) {
+                    mVar.h1();
+                    new org.telegram.ui.Components.cc(frameLayout, mVar.I0).Q(2131624011, 36, org.telegram.messenger.dd.a0(null, null, 2131743903, str)).j();
+                    return;
+                }
                 return;
             default:
-                Pattern pattern3 = LaunchActivity.D1;
-                org.telegram.messenger.i0.g3(new t70(this.f44040b, tLObject, (int[]) obj5, this.f44041c, this.d, (Integer) obj4, (Integer) obj3, (Long) obj2, (Integer) obj));
+                org.telegram.ui.ActionBar.k2 k2Var = (org.telegram.ui.ActionBar.k2) obj3;
+                TLRPC.Bool bool2 = (TLRPC.Bool) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                if (tL_error != null) {
+                    if (TextUtils.equals("COMMUNITY_REQUEST_CREATED", tL_error.text)) {
+                        yh.e0.d(k2Var, -j10, 2);
+                        return;
+                    } else {
+                        org.telegram.ui.Components.cc.a0(k2Var).f0(tL_error, false);
+                        return;
+                    }
+                }
+                yh.e0.d(k2Var, -j10, 1);
                 return;
         }
-    }
-
-    public z70(LaunchActivity launchActivity, int[] iArr, int i10, f70 f70Var, Object obj, Object obj2, Object obj3, Object obj4, int i11) {
-        this.f44039a = i11;
-        this.f44040b = launchActivity;
-        this.f44044i = iArr;
-        this.f44041c = i10;
-        this.d = f70Var;
-        this.e = obj;
-        this.f44042f = obj2;
-        this.f44043g = obj3;
-        this.h = obj4;
     }
 }

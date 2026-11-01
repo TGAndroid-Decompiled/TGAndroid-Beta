@@ -7,19 +7,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.HashSet;
 public final class ub extends sa implements org.telegram.ui.ActionBar.k6 {
-    public final org.telegram.ui.ActionBar.p6 f30889a;
-    public Runnable f30890b;
-    public Runnable f30891c;
+    public final org.telegram.ui.ActionBar.p6 f30923a;
+    public Runnable f30924b;
+    public Runnable f30925c;
     public wb d;
     public final TextView e;
-    public boolean f30892f;
+    public boolean f30926f;
     public final Drawable h;
-    public final Drawable f30893n;
+    public final Drawable f30927n;
 
     public ub(Context context, org.telegram.ui.ActionBar.p6 p6Var, boolean z10, boolean z11) {
         super(context);
         int x02;
-        this.f30889a = p6Var;
+        this.f30923a = p6Var;
         int i10 = org.telegram.ui.ActionBar.t6.uj;
         if (p6Var != null) {
             x02 = p6Var.h(i10);
@@ -32,10 +32,10 @@ public final class ub extends sa implements org.telegram.ui.ActionBar.k6 {
             textView.setBackground(org.telegram.ui.ActionBar.t6.h0((x02 & 16777215) | 419430400, 7, -1));
             this.h = textView.getBackground();
             sc.e.t(textView, 1, 14.0f);
-            org.telegram.messenger.z20.p(textView, i10, p6Var, null, 2131743910);
+            org.telegram.messenger.a30.p(textView, i10, p6Var, null, 2131743910);
             textView.setGravity(16);
             float f7 = z11 ? 34.0f : 12.0f;
-            boolean z12 = org.telegram.messenger.cd.X;
+            boolean z12 = org.telegram.messenger.dd.X;
             w7.i6.a(textView, z12 ? 12.0f : f7, 8.0f, z12 ? f7 : 12.0f, 8.0f);
             addView(textView, w7.b6.i(-2.0f, -2.0f, 16, 8.0f, 0.0f, 8.0f, 0.0f));
         }
@@ -45,7 +45,7 @@ public final class ub extends sa implements org.telegram.ui.ActionBar.k6 {
             org.telegram.ui.ActionBar.a7.t(imageView, i10, p6Var, PorterDuff.Mode.MULTIPLY);
             if (!z10) {
                 imageView.setBackground(org.telegram.ui.ActionBar.t6.h0((x02 & 16777215) | 419430400, 1, -1));
-                this.f30893n = imageView.getBackground();
+                this.f30927n = imageView.getBackground();
             }
             w7.i6.a(imageView, 0.0f, 12.0f, 0.0f, 12.0f);
             addView(imageView, w7.b6.h(56.0f, 48.0f, 16));
@@ -61,8 +61,8 @@ public final class ub extends sa implements org.telegram.ui.ActionBar.k6 {
     @Override
     public final void d() {
         this.d = null;
-        Runnable runnable = this.f30891c;
-        if (runnable != null && !this.f30892f) {
+        Runnable runnable = this.f30925c;
+        if (runnable != null && !this.f30926f) {
             runnable.run();
         }
     }
@@ -76,8 +76,8 @@ public final class ub extends sa implements org.telegram.ui.ActionBar.k6 {
 
     public final void f() {
         if (this.d != null) {
-            this.f30892f = true;
-            Runnable runnable = this.f30890b;
+            this.f30926f = true;
+            Runnable runnable = this.f30924b;
             if (runnable != null) {
                 runnable.run();
             }
@@ -94,7 +94,7 @@ public final class ub extends sa implements org.telegram.ui.ActionBar.k6 {
         Drawable drawable;
         try {
             int i10 = org.telegram.ui.ActionBar.t6.uj;
-            org.telegram.ui.ActionBar.p6 p6Var = this.f30889a;
+            org.telegram.ui.ActionBar.p6 p6Var = this.f30923a;
             if (p6Var != null) {
                 x02 = p6Var.h(i10);
             } else {
@@ -105,7 +105,7 @@ public final class ub extends sa implements org.telegram.ui.ActionBar.k6 {
             if (textView != null && (drawable = this.h) != null && textView.getBackground() == drawable) {
                 org.telegram.ui.ActionBar.t6.H1(drawable, i11, true);
             }
-            Drawable drawable2 = this.f30893n;
+            Drawable drawable2 = this.f30927n;
             if (drawable2 != null) {
                 org.telegram.ui.ActionBar.t6.H1(drawable2, i11, true);
             }

@@ -16,17 +16,17 @@ import org.telegram.ui.web.k0;
 import rh.l5;
 import vh.e0;
 public abstract class f extends Service {
-    public final ExecutorService f53538a;
-    public w f53539b;
-    public final Object f53540c;
+    public final ExecutorService f53556a;
+    public w f53557b;
+    public final Object f53558c;
     public int d;
     public int e;
 
     public f() {
         ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(1, 1, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue(), new c5.s("Firebase-Messaging-Intent-Handle"));
         threadPoolExecutor.allowCoreThreadTimeOut(true);
-        this.f53538a = Executors.unconfigurableExecutorService(threadPoolExecutor);
-        this.f53540c = new Object();
+        this.f53556a = Executors.unconfigurableExecutorService(threadPoolExecutor);
+        this.f53558c = new Object();
         this.e = 0;
     }
 
@@ -34,7 +34,7 @@ public abstract class f extends Service {
         if (intent != null) {
             v.b(intent);
         }
-        synchronized (this.f53540c) {
+        synchronized (this.f53558c) {
             try {
                 int i10 = this.e - 1;
                 this.e = i10;
@@ -55,24 +55,24 @@ public abstract class f extends Service {
             if (Log.isLoggable("EnhancedIntentService", 3)) {
                 Log.d("EnhancedIntentService", "Service received bind request");
             }
-            if (this.f53539b == null) {
-                this.f53539b = new w(new e0(this));
+            if (this.f53557b == null) {
+                this.f53557b = new w(new e0(this));
             }
         } catch (Throwable th2) {
             throw th2;
         }
-        return this.f53539b;
+        return this.f53557b;
     }
 
     @Override
     public final void onDestroy() {
-        this.f53538a.shutdown();
+        this.f53556a.shutdown();
         super.onDestroy();
     }
 
     @Override
     public final int onStartCommand(Intent intent, int i10, int i11) {
-        synchronized (this.f53540c) {
+        synchronized (this.f53558c) {
             this.d = i11;
             this.e++;
         }
@@ -82,7 +82,7 @@ public abstract class f extends Service {
             return 2;
         }
         TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        this.f53538a.execute(new l5(this, intent2, taskCompletionSource, 21));
+        this.f53556a.execute(new l5(this, intent2, taskCompletionSource, 21));
         Task task = taskCompletionSource.getTask();
         if (task.isComplete()) {
             a(intent);

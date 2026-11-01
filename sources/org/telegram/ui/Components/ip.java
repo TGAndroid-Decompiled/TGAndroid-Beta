@@ -4,23 +4,23 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.RectF;
-public final class ip extends qv0 {
-    public final int f27050a;
-    public boolean f27051b;
-    public long f27052c;
+public final class ip extends rv0 {
+    public final int f27136a;
+    public boolean f27137b;
+    public long f27138c;
     public boolean d;
     public float e;
-    public int f27053f;
-    public final Paint f27054g;
+    public int f27139f;
+    public final Paint f27140g;
     public final Object h;
 
     public ip() {
-        this.f27050a = 0;
-        this.f27052c = 0L;
-        this.f27051b = false;
+        this.f27136a = 0;
+        this.f27138c = 0L;
+        this.f27137b = false;
         this.d = true;
         Paint paint = new Paint(1);
-        this.f27054g = paint;
+        this.f27140g = paint;
         this.h = new Paint(1);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(org.telegram.messenger.i0.N(1.2f));
@@ -28,16 +28,16 @@ public final class ip extends qv0 {
 
     @Override
     public final void b(int i10) {
-        switch (this.f27050a) {
+        switch (this.f27136a) {
             case 0:
-                if (this.f27053f != i10) {
+                if (this.f27139f != i10) {
                     ((Paint) this.h).setColor(i10);
-                    this.f27054g.setColor(i10);
+                    this.f27140g.setColor(i10);
                 }
-                this.f27053f = i10;
+                this.f27139f = i10;
                 return;
             default:
-                Paint paint = this.f27054g;
+                Paint paint = this.f27140g;
                 if (paint != null) {
                     paint.setColor(i10);
                     return;
@@ -48,25 +48,25 @@ public final class ip extends qv0 {
 
     @Override
     public final void c(boolean z10) {
-        switch (this.f27050a) {
+        switch (this.f27136a) {
             case 0:
                 return;
             default:
-                this.f27051b = z10;
+                this.f27137b = z10;
                 return;
         }
     }
 
     @Override
     public final void d() {
-        switch (this.f27050a) {
+        switch (this.f27136a) {
             case 0:
-                this.f27052c = System.currentTimeMillis();
-                this.f27051b = true;
+                this.f27138c = System.currentTimeMillis();
+                this.f27137b = true;
                 invalidateSelf();
                 return;
             default:
-                this.f27052c = System.currentTimeMillis();
+                this.f27138c = System.currentTimeMillis();
                 this.d = true;
                 invalidateSelf();
                 return;
@@ -80,10 +80,10 @@ public final class ip extends qv0 {
         float L;
         float N;
         float f11;
-        switch (this.f27050a) {
+        switch (this.f27136a) {
             case 0:
                 float min = Math.min(this.e, 1.0f);
-                gr grVar = gr.f26497i;
+                gr grVar = gr.f26525i;
                 int i10 = (min > 0.3f ? 1 : (min == 0.3f ? 0 : -1));
                 if (i10 < 0) {
                     f7 = min / 0.3f;
@@ -91,7 +91,7 @@ public final class ip extends qv0 {
                     f7 = 1.0f;
                 }
                 float interpolation = grVar.getInterpolation(f7);
-                gr grVar2 = gr.f26496g;
+                gr grVar2 = gr.f26524g;
                 if (i10 < 0) {
                     f10 = 0.0f;
                 } else {
@@ -109,13 +109,13 @@ public final class ip extends qv0 {
                 float L2 = org.telegram.messenger.i0.L(11.0f) / 2.0f;
                 float N2 = org.telegram.messenger.i0.N(2.0f);
                 float N3 = (org.telegram.messenger.i0.N(0.5f) * interpolation) - (org.telegram.messenger.i0.N(0.5f) * interpolation2);
-                Paint paint = this.f27054g;
+                Paint paint = this.f27140g;
                 if (paint == null) {
-                    paint = org.telegram.ui.ActionBar.t6.f20925d2;
+                    paint = org.telegram.ui.ActionBar.t6.f20926d2;
                 }
                 Paint paint2 = (Paint) this.h;
                 if (paint2 == null) {
-                    paint2 = org.telegram.ui.ActionBar.t6.f20906c2;
+                    paint2 = org.telegram.ui.ActionBar.t6.f20907c2;
                 }
                 if (paint.getStrokeWidth() != org.telegram.messenger.i0.L(0.8f)) {
                     paint.setStrokeWidth(org.telegram.messenger.i0.L(0.8f));
@@ -132,10 +132,10 @@ public final class ip extends qv0 {
                     i11++;
                     f12 = f12;
                 }
-                if (this.f27051b) {
+                if (this.f27137b) {
                     long currentTimeMillis = System.currentTimeMillis();
-                    long j10 = currentTimeMillis - this.f27052c;
-                    this.f27052c = currentTimeMillis;
+                    long j10 = currentTimeMillis - this.f27138c;
+                    this.f27138c = currentTimeMillis;
                     if (j10 > 50) {
                         j10 = 50;
                     }
@@ -151,9 +151,9 @@ public final class ip extends qv0 {
                 return;
             default:
                 RectF rectF2 = (RectF) this.h;
-                Paint paint3 = this.f27054g;
+                Paint paint3 = this.f27140g;
                 if (paint3 == null) {
-                    paint3 = org.telegram.ui.ActionBar.t6.f20925d2;
+                    paint3 = org.telegram.ui.ActionBar.t6.f20926d2;
                 }
                 Paint paint4 = paint3;
                 float f14 = 2.0f;
@@ -162,17 +162,17 @@ public final class ip extends qv0 {
                 }
                 canvas.save();
                 int L3 = org.telegram.messenger.i0.L(14.0f) / 2;
-                if (this.f27051b) {
+                if (this.f27137b) {
                     f14 = 1.0f;
                 }
                 canvas.translate(0.0f, org.telegram.messenger.i0.L(f14) + L3);
                 for (int i12 = 0; i12 < 4; i12++) {
                     if (i12 == 0) {
-                        paint4.setAlpha((int) (this.f27053f * this.e));
+                        paint4.setAlpha((int) (this.f27139f * this.e));
                     } else if (i12 == 3) {
-                        paint4.setAlpha((int) ((1.0f - this.e) * this.f27053f));
+                        paint4.setAlpha((int) ((1.0f - this.e) * this.f27139f));
                     } else {
-                        paint4.setAlpha(this.f27053f);
+                        paint4.setAlpha(this.f27139f);
                     }
                     float L4 = (org.telegram.messenger.i0.L(4.0f) * this.e) + (org.telegram.messenger.i0.L(4.0f) * i12);
                     float f15 = -L4;
@@ -182,8 +182,8 @@ public final class ip extends qv0 {
                 canvas.restore();
                 if (this.d) {
                     long currentTimeMillis2 = System.currentTimeMillis();
-                    long j11 = currentTimeMillis2 - this.f27052c;
-                    this.f27052c = currentTimeMillis2;
+                    long j11 = currentTimeMillis2 - this.f27138c;
+                    this.f27138c = currentTimeMillis2;
                     if (j11 > 50) {
                         j11 = 50;
                     }
@@ -205,9 +205,9 @@ public final class ip extends qv0 {
 
     @Override
     public final void e() {
-        switch (this.f27050a) {
+        switch (this.f27136a) {
             case 0:
-                this.f27051b = false;
+                this.f27137b = false;
                 return;
             default:
                 this.d = false;
@@ -217,7 +217,7 @@ public final class ip extends qv0 {
 
     @Override
     public final int getIntrinsicHeight() {
-        switch (this.f27050a) {
+        switch (this.f27136a) {
             case 0:
                 return org.telegram.messenger.i0.L(18.0f);
             default:
@@ -227,7 +227,7 @@ public final class ip extends qv0 {
 
     @Override
     public final int getIntrinsicWidth() {
-        switch (this.f27050a) {
+        switch (this.f27136a) {
             case 0:
                 return org.telegram.messenger.i0.L(20.0f);
             default:
@@ -237,7 +237,7 @@ public final class ip extends qv0 {
 
     @Override
     public final int getOpacity() {
-        switch (this.f27050a) {
+        switch (this.f27136a) {
             case 0:
                 return 0;
             default:
@@ -247,30 +247,30 @@ public final class ip extends qv0 {
 
     @Override
     public final void setAlpha(int i10) {
-        switch (this.f27050a) {
+        switch (this.f27136a) {
             case 0:
                 return;
             default:
-                this.f27053f = i10;
+                this.f27139f = i10;
                 return;
         }
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        int i10 = this.f27050a;
+        int i10 = this.f27136a;
     }
 
     public ip(boolean z10) {
-        this.f27050a = 1;
-        this.f27051b = false;
-        this.f27052c = 0L;
+        this.f27136a = 1;
+        this.f27137b = false;
+        this.f27138c = 0L;
         this.d = false;
         this.h = new RectF();
-        this.f27053f = 255;
+        this.f27139f = 255;
         if (z10) {
             Paint paint = new Paint(1);
-            this.f27054g = paint;
+            this.f27140g = paint;
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeCap(Paint.Cap.ROUND);
             paint.setStrokeWidth(org.telegram.messenger.i0.L(2.0f));

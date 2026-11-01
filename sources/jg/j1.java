@@ -8,14 +8,14 @@ import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.messenger.ej;
-import org.telegram.messenger.jj;
-import org.telegram.messenger.tz;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.kj;
+import org.telegram.messenger.uz;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.c5;
 import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.Components.oj0;
+import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.s9;
 import vh.j4;
 import vh.n5;
@@ -34,16 +34,16 @@ public abstract class j1 extends j {
     public c5 J0;
     public c5 K0;
     public c5 L0;
-    public final b1 f10055q0;
-    public final c1 f10056r0;
-    public final ArrayList f10057s0;
-    public final ej f10058t0;
-    public boolean f10059u0;
-    public boolean f10060v0;
-    public TextureView f10061w0;
-    public boolean f10062x0;
-    public int f10063y0;
-    public int f10064z0;
+    public final b1 f10056q0;
+    public final c1 f10057r0;
+    public final ArrayList f10058s0;
+    public final fj f10059t0;
+    public boolean f10060u0;
+    public boolean f10061v0;
+    public TextureView f10062w0;
+    public boolean f10063x0;
+    public int f10064y0;
+    public int f10065z0;
 
     public j1(Context context, PointF pointF, ArrayList arrayList, s9 s9Var, boolean z10, j4 j4Var) {
         super(context, pointF);
@@ -53,9 +53,9 @@ public abstract class j1 extends j {
         Boolean D;
         TLRPC.MessageFwdHeader messageFwdHeader;
         TLRPC.Peer peer;
-        this.f10057s0 = new ArrayList();
-        this.f10063y0 = 1;
-        this.f10064z0 = 1;
+        this.f10058s0 = new ArrayList();
+        this.f10064y0 = 1;
+        this.f10065z0 = 1;
         this.A0 = true;
         this.B0 = t6.I.q();
         this.C0 = new SparseIntArray();
@@ -64,8 +64,8 @@ public abstract class j1 extends j {
         setRotation(0.0f);
         setScale(1.0f);
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            jj jjVar = (jj) arrayList.get(i10);
-            TLRPC.Message message2 = jjVar.f16337k;
+            kj kjVar = (kj) arrayList.get(i10);
+            TLRPC.Message message2 = kjVar.f16690k;
             int i11 = message2.date;
             if (message2 instanceof TLRPC.TL_message) {
                 tL_messageService = new TLRPC.TL_message();
@@ -73,7 +73,7 @@ public abstract class j1 extends j {
                 tL_messageService = new TLRPC.TL_messageService();
             } else {
                 message = message2;
-                D = n5.D(jjVar);
+                D = n5.D(kjVar);
                 if (D != null && D.booleanValue() && (messageFwdHeader = message.fwd_from) != null && (peer = messageFwdHeader.from_id) != null) {
                     message.from_id = peer;
                     message.peer_id = peer;
@@ -81,12 +81,12 @@ public abstract class j1 extends j {
                     message.fwd_from = null;
                 }
                 message.voiceTranscriptionOpen = false;
-                int i12 = jjVar.I1;
-                jj jjVar2 = new jj(i12, message, jjVar.C, vp.r1(i12).d, vp.r1(jjVar.I1).f18742b, null, null, true, true, 0L, true, z10, false, 0);
-                jjVar2.K5();
-                this.f10057s0.add(jjVar2);
+                int i12 = kjVar.I1;
+                kj kjVar2 = new kj(i12, message, kjVar.C, wp.r1(i12).d, wp.r1(kjVar.I1).f19085b, null, null, true, true, 0L, true, z10, false, 0);
+                kjVar2.K5();
+                this.f10058s0.add(kjVar2);
             }
-            tL_messageService.f19814id = message2.f19814id;
+            tL_messageService.f19815id = message2.f19815id;
             tL_messageService.from_id = message2.from_id;
             tL_messageService.peer_id = message2.peer_id;
             tL_messageService.date = message2.date;
@@ -153,7 +153,7 @@ public abstract class j1 extends j {
             tL_messageService.translatedText = message2.translatedText;
             tL_messageService.replyStory = message2.replyStory;
             message = tL_messageService;
-            D = n5.D(jjVar);
+            D = n5.D(kjVar);
             if (D != null) {
                 message.from_id = peer;
                 message.peer_id = peer;
@@ -161,48 +161,48 @@ public abstract class j1 extends j {
                 message.fwd_from = null;
             }
             message.voiceTranscriptionOpen = false;
-            int i122 = jjVar.I1;
-            jj jjVar22 = new jj(i122, message, jjVar.C, vp.r1(i122).d, vp.r1(jjVar.I1).f18742b, null, null, true, true, 0L, true, z10, false, 0);
-            jjVar22.K5();
-            this.f10057s0.add(jjVar22);
+            int i122 = kjVar.I1;
+            kj kjVar22 = new kj(i122, message, kjVar.C, wp.r1(i122).d, wp.r1(kjVar.I1).f19085b, null, null, true, true, 0L, true, z10, false, 0);
+            kjVar22.K5();
+            this.f10058s0.add(kjVar22);
         }
-        this.f10058t0 = null;
-        if (this.f10057s0.size() > 1) {
-            ej ejVar = new ej();
-            this.f10058t0 = ejVar;
-            ejVar.d.addAll(this.f10057s0);
-            ejVar.f15394a = ((jj) this.f10057s0.get(0)).d1();
-            ejVar.a();
+        this.f10059t0 = null;
+        if (this.f10058s0.size() > 1) {
+            fj fjVar = new fj();
+            this.f10059t0 = fjVar;
+            fjVar.d.addAll(this.f10058s0);
+            fjVar.f15735a = ((kj) this.f10058s0.get(0)).d1();
+            fjVar.a();
         }
         b1 b1Var = new b1(s3Var, context);
-        this.f10055q0 = b1Var;
+        this.f10056q0 = b1Var;
         addView(b1Var, b6.c(-1.0f, -1));
         c1 c1Var = new c1(s3Var, context, this.D0);
-        this.f10056r0 = c1Var;
+        this.f10057r0 = c1Var;
         c1Var.setAdapter(new f1(s3Var, context, s9Var, j4Var, z10));
         g1 g1Var = new g1(s3Var, 0);
         g1Var.O = new h1(s3Var, 0);
         c1Var.setLayoutManager(g1Var);
         c1Var.i(new dh.g(1));
         b1Var.addView(c1Var, b6.c(-1.0f, -1));
-        if (j4Var != null && j4Var.f51318g) {
+        if (j4Var != null && j4Var.f51333g) {
             ag.l lVar = new ag.l(s3Var, 13);
             ag.a aVar2 = new ag.a(s3Var, 15);
-            j4Var.f51315b = lVar;
-            j4Var.f51316c = aVar2;
-            TextureView textureView = j4Var.f51314a;
+            j4Var.f51330b = lVar;
+            j4Var.f51331c = aVar2;
+            TextureView textureView = j4Var.f51329a;
             if (textureView != null) {
                 lVar.a(textureView);
             }
-            if (j4Var.d && (aVar = j4Var.f51316c) != null) {
-                aVar.a(Integer.valueOf(j4Var.e), Integer.valueOf(j4Var.f51317f));
+            if (j4Var.d && (aVar = j4Var.f51331c) != null) {
+                aVar.a(Integer.valueOf(j4Var.e), Integer.valueOf(j4Var.f51332f));
             }
         }
         k();
     }
 
     public org.telegram.ui.Cells.q1 getCell() {
-        c1 c1Var = this.f10056r0;
+        c1 c1Var = this.f10057r0;
         if (c1Var != null) {
             for (int i10 = 0; i10 < c1Var.getChildCount(); i10++) {
                 if (c1Var.getChildAt(i10) instanceof org.telegram.ui.Cells.q1) {
@@ -225,13 +225,13 @@ public abstract class j1 extends j {
     }
 
     @Override
-    public oj0 getSelectionBounds() {
+    public pj0 getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
             return new Object();
         }
         float scaleX = viewGroup.getScaleX();
-        return new oj0(((getPositionX() * scaleX) - (((getScale() * getMeasuredWidth()) / 2.0f) * scaleX)) - org.telegram.messenger.i0.L(35.5f), ((getPositionY() * scaleX) - (((getScale() * getMeasuredHeight()) / 2.0f) * scaleX)) - org.telegram.messenger.i0.L(35.5f), (getScale() * getMeasuredWidth() * scaleX) + org.telegram.messenger.i0.L(71.0f), (getScale() * getMeasuredHeight() * scaleX) + org.telegram.messenger.i0.L(71.0f));
+        return new pj0(((getPositionX() * scaleX) - (((getScale() * getMeasuredWidth()) / 2.0f) * scaleX)) - org.telegram.messenger.i0.L(35.5f), ((getPositionY() * scaleX) - (((getScale() * getMeasuredHeight()) / 2.0f) * scaleX)) - org.telegram.messenger.i0.L(35.5f), (getScale() * getMeasuredWidth() * scaleX) + org.telegram.messenger.i0.L(71.0f), (getScale() * getMeasuredHeight() * scaleX) + org.telegram.messenger.i0.L(71.0f));
     }
 
     @Override
@@ -239,7 +239,7 @@ public abstract class j1 extends j {
         setX(getPositionX() - (getMeasuredWidth() / 2.0f));
         setY(getPositionY() - (getMeasuredHeight() / 2.0f));
         m();
-        if (this.f10060v0) {
+        if (this.f10061v0) {
             s();
         }
     }
@@ -260,11 +260,11 @@ public abstract class j1 extends j {
         float f13 = 2.1474836E9f;
         float f14 = -2.1474836E9f;
         while (true) {
-            c1 c1Var = this.f10056r0;
+            c1 c1Var = this.f10057r0;
             if (i10 < c1Var.getChildCount()) {
                 View childAt = c1Var.getChildAt(i10);
                 boolean z10 = childAt instanceof org.telegram.ui.Cells.q1;
-                b1 b1Var = this.f10055q0;
+                b1 b1Var = this.f10056q0;
                 if (z10) {
                     org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) childAt;
                     if (q1Var.getMessageObject() != null && q1Var.getMessageObject().h4() && q1Var.getPhotoImage() != null) {
@@ -274,7 +274,7 @@ public abstract class j1 extends j {
                         y3 = q1Var.getPhotoImage().A() + q1Var.getY() + b1Var.getY();
                     } else {
                         float x10 = childAt.getX() + b1Var.getX() + q1Var.getBackgroundDrawableLeft() + org.telegram.messenger.i0.L(1.0f);
-                        if (this.f10058t0 == null) {
+                        if (this.f10059t0 == null) {
                             x10 += org.telegram.messenger.i0.L(8.0f);
                         }
                         float x11 = ((childAt.getX() + b1Var.getX()) + q1Var.getBackgroundDrawableRight()) - org.telegram.messenger.i0.L(1.66f);
@@ -304,13 +304,13 @@ public abstract class j1 extends j {
                 i10++;
             } else {
                 rectF.set(f11, f13, f14, f12);
-                return org.telegram.messenger.i0.L(tz.Y0);
+                return org.telegram.messenger.i0.L(uz.Y0);
             }
         }
     }
 
     public final void s() {
-        c1 c1Var = this.f10056r0;
+        c1 c1Var = this.f10057r0;
         c1Var.invalidate();
         for (int i10 = 0; i10 < c1Var.getChildCount(); i10++) {
             c1Var.getChildAt(i10).invalidate();

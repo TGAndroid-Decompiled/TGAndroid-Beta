@@ -15,14 +15,14 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.ui.Components.gr;
 public final class b9 extends View implements y1 {
-    public final Drawable f51016a;
-    public final int f51017b;
-    public Bitmap f51018c;
+    public final Drawable f51023a;
+    public final int f51024b;
+    public Bitmap f51025c;
     public final Paint d;
     public final Paint e;
-    public float f51019f;
+    public float f51026f;
     public final org.telegram.ui.Components.t5 h;
-    public final Path f51020n;
+    public final Path f51027n;
 
     public b9(Activity activity) {
         super(activity);
@@ -31,9 +31,9 @@ public final class b9 extends View implements y1 {
         Paint paint2 = new Paint(3);
         this.e = paint2;
         this.h = new org.telegram.ui.Components.t5(this, 0L, 350L, gr.h);
-        this.f51020n = new Path();
-        this.f51016a = activity.getResources().getDrawable(2131231740).mutate();
-        this.f51017b = 2131231739;
+        this.f51027n = new Path();
+        this.f51023a = activity.getResources().getDrawable(2131231740).mutate();
+        this.f51024b = 2131231739;
         paint.setColor(-1);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
     }
@@ -41,26 +41,26 @@ public final class b9 extends View implements y1 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (this.f51018c == null) {
-            this.f51018c = BitmapFactory.decodeResource(getResources(), this.f51017b);
+        if (this.f51025c == null) {
+            this.f51025c = BitmapFactory.decodeResource(getResources(), this.f51024b);
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        Bitmap bitmap = this.f51018c;
+        Bitmap bitmap = this.f51025c;
         if (bitmap != null) {
             bitmap.recycle();
-            this.f51018c = null;
+            this.f51025c = null;
         }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float e = this.h.e(false, this.f51019f);
-        Drawable drawable = this.f51016a;
+        float e = this.h.e(false, this.f51026f);
+        Drawable drawable = this.f51023a;
         int intrinsicWidth = drawable.getIntrinsicWidth();
         int intrinsicHeight = drawable.getIntrinsicHeight();
         Rect rect = org.telegram.messenger.i0.Q;
@@ -70,7 +70,7 @@ public final class b9 extends View implements y1 {
             drawable.draw(canvas);
         } else if (e < 1.0f) {
             canvas.save();
-            Path path = this.f51020n;
+            Path path = this.f51027n;
             path.rewind();
             path.addCircle(getWidth() / 2.0f, getHeight() / 2.0f, org.telegram.messenger.i0.L(16.0f) * e, Path.Direction.CW);
             canvas.clipPath(path, Region.Op.DIFFERENCE);
@@ -82,7 +82,7 @@ public final class b9 extends View implements y1 {
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
             canvas.drawCircle(getWidth() / 2.0f, getHeight() / 2.0f, org.telegram.messenger.i0.L(16.0f) * e, this.d);
             canvas.save();
-            Bitmap bitmap = this.f51018c;
+            Bitmap bitmap = this.f51025c;
             if (bitmap != null) {
                 canvas.drawBitmap(bitmap, (Rect) null, rect, this.e);
             }
@@ -93,7 +93,7 @@ public final class b9 extends View implements y1 {
 
     @Override
     public void setInvert(float f7) {
-        this.f51016a.setColorFilter(new PorterDuffColorFilter(i0.b.f(f7, -1, -16777216), PorterDuff.Mode.MULTIPLY));
+        this.f51023a.setColorFilter(new PorterDuffColorFilter(i0.b.f(f7, -1, -16777216), PorterDuff.Mode.MULTIPLY));
         this.d.setColor(i0.b.f(f7, -1, -16777216));
     }
 
@@ -104,7 +104,7 @@ public final class b9 extends View implements y1 {
         } else {
             f7 = 0.0f;
         }
-        this.f51019f = f7;
+        this.f51026f = f7;
         invalidate();
     }
 }

@@ -7,15 +7,15 @@ import android.widget.TextView;
 import org.telegram.ui.Components.ce0;
 import org.telegram.ui.Components.de0;
 public final class x5 extends FrameLayout {
-    public TextView f23581a;
-    public TextView f23582b;
-    public de0 f23583c;
+    public TextView f23582a;
+    public TextView f23583b;
+    public de0 f23584c;
     public AnimatorSet d;
     public mg.c2 e;
 
     public final void a(String str, int i10, float f7) {
-        TextView textView = this.f23581a;
-        TextView textView2 = this.f23582b;
+        TextView textView = this.f23582a;
+        TextView textView2 = this.f23583b;
         AnimatorSet animatorSet = this.d;
         if (animatorSet != null) {
             animatorSet.cancel();
@@ -31,9 +31,9 @@ public final class x5 extends FrameLayout {
         }
         textView2.setAlpha(0.0f);
         textView.setAlpha(1.0f);
-        de0 de0Var = this.f23583c;
+        de0 de0Var = this.f23584c;
         de0Var.h = i10;
-        de0Var.f25401n = 100;
+        de0Var.f25476n = 100;
         de0Var.a((int) f7, false);
     }
 
@@ -43,12 +43,12 @@ public final class x5 extends FrameLayout {
     }
 
     public void setSeekBarDelegate(ce0 ce0Var) {
-        this.f23583c.setDelegate(new g9(this, ce0Var));
+        this.f23584c.setDelegate(new g9(this, ce0Var));
     }
 
     @Override
     public void setTag(Object obj) {
         super.setTag(obj);
-        this.f23583c.setTag(obj);
+        this.f23584c.setTag(obj);
     }
 }

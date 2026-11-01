@@ -1,12 +1,12 @@
 package org.telegram.messenger;
 public final class q5 {
-    public final int f17557a;
-    public final Runnable f17558b;
-    public final long f17559c;
+    public final int f17745a;
+    public final Runnable f17746b;
+    public final long f17747c;
 
     public q5(int i10, long j10, Runnable runnable) {
-        this.f17557a = i10;
-        this.f17558b = runnable;
-        this.f17559c = j10;
+        this.f17745a = i10;
+        this.f17746b = runnable;
+        this.f17747c = j10;
     }
 }

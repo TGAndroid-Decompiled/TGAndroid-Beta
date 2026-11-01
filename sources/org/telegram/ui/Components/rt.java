@@ -46,7 +46,7 @@ public final class rt extends mt {
             } else {
                 z10 = false;
             }
-            org.telegram.ui.un.t8(menu, null, z10, true, true, true);
+            org.telegram.ui.un.x8(menu, null, z10, true, true, true);
             return;
         }
         wtVar.i(actionMode, menu);
@@ -57,8 +57,8 @@ public final class rt extends mt {
         boolean z10;
         super.onSelectionChanged(i10, i11);
         wt wtVar = this.a2;
-        bl0 bl0Var = wtVar.f32241c;
-        if (bl0Var != null) {
+        cl0 cl0Var = wtVar.f32310c;
+        if (cl0Var != null) {
             boolean z11 = false;
             if (i11 != i10) {
                 z10 = true;
@@ -69,14 +69,14 @@ public final class rt extends mt {
                 org.telegram.messenger.d6.i();
                 z11 = true;
             }
-            if (wtVar.f32243n != z11) {
-                wtVar.f32243n = z11;
+            if (wtVar.f32312n != z11) {
+                wtVar.f32312n = z11;
                 if (z11) {
-                    this.Y1 = bl0Var.d;
-                    bl0Var.a(2131232115, true);
+                    this.Y1 = cl0Var.d;
+                    cl0Var.a(2131232115, true);
                     return;
                 }
-                bl0Var.b(this.Y1, true);
+                cl0Var.b(this.Y1, true);
                 this.Y1 = null;
             }
         }
@@ -89,9 +89,9 @@ public final class rt extends mt {
         wt wtVar = this.a2;
         if (wtVar.e && motionEvent.getAction() == 0) {
             wtVar.u();
-            if (wtVar.f32248y && (stVar = wtVar.d) != null) {
+            if (wtVar.f32317y && (stVar = wtVar.d) != null) {
                 stVar.t(false);
-                wtVar.f32248y = false;
+                wtVar.f32317y = false;
                 wtVar.k(true);
                 org.telegram.messenger.i0.J3(this);
             } else {

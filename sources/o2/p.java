@@ -35,7 +35,7 @@ public final class p extends c1 {
             while (true) {
                 if (i10 < length) {
                     t0 t0Var = t0VarArr[i10];
-                    if ((t0Var instanceof q3.n) && "com.apple.streaming.transportStreamTimestamp".equals(((q3.n) t0Var).f45449b)) {
+                    if ((t0Var instanceof q3.n) && "com.apple.streaming.transportStreamTimestamp".equals(((q3.n) t0Var).f45460b)) {
                         break;
                     }
                     i10++;

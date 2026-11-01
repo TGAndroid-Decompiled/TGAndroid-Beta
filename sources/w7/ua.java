@@ -3,12 +3,12 @@ package w7;
 import java.util.Iterator;
 import java.util.Map;
 public final class ua extends ra {
-    public final transient com.google.android.gms.internal.cast.i0 f52711c;
+    public final transient com.google.android.gms.internal.cast.i0 f52729c;
     public final transient Object[] d;
     public final transient int e = 1;
 
     public ua(com.google.android.gms.internal.cast.i0 i0Var, Object[] objArr) {
-        this.f52711c = i0Var;
+        this.f52729c = i0Var;
         this.d = objArr;
     }
 
@@ -18,7 +18,7 @@ public final class ua extends ra {
             Map.Entry entry = (Map.Entry) obj;
             Object key = entry.getKey();
             Object value = entry.getValue();
-            if (value != null && value.equals(this.f52711c.get(key))) {
+            if (value != null && value.equals(this.f52729c.get(key))) {
                 return true;
             }
         }
@@ -27,20 +27,20 @@ public final class ua extends ra {
 
     @Override
     public final Iterator iterator() {
-        qa qaVar = this.f52689b;
+        qa qaVar = this.f52707b;
         if (qaVar == null) {
             qaVar = new ta(this);
-            this.f52689b = qaVar;
+            this.f52707b = qaVar;
         }
         return qaVar.listIterator(0);
     }
 
     @Override
     public final int l(Object[] objArr) {
-        qa qaVar = this.f52689b;
+        qa qaVar = this.f52707b;
         if (qaVar == null) {
             qaVar = new ta(this);
-            this.f52689b = qaVar;
+            this.f52707b = qaVar;
         }
         return qaVar.l(objArr);
     }

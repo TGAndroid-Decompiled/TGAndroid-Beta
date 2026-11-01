@@ -4,25 +4,25 @@ import c3.a0;
 import c3.c0;
 import e2.l0;
 public final class i implements h {
-    public final long[] f50361a;
-    public final long[] f50362b;
-    public final long f50363c;
+    public final long[] f50375a;
+    public final long[] f50376b;
+    public final long f50377c;
     public final long d;
     public final long e;
-    public final int f50364f;
+    public final int f50378f;
 
     public i(long[] jArr, long[] jArr2, long j10, long j11, long j12, int i10) {
-        this.f50361a = jArr;
-        this.f50362b = jArr2;
-        this.f50363c = j10;
+        this.f50375a = jArr;
+        this.f50376b = jArr2;
+        this.f50377c = j10;
         this.d = j11;
         this.e = j12;
-        this.f50364f = i10;
+        this.f50378f = i10;
     }
 
     @Override
     public final long a(long j10) {
-        return this.f50361a[l0.f(this.f50362b, j10, true)];
+        return this.f50375a[l0.f(this.f50376b, j10, true)];
     }
 
     @Override
@@ -47,10 +47,10 @@ public final class i implements h {
 
     @Override
     public final a0 f(long j10) {
-        long[] jArr = this.f50361a;
+        long[] jArr = this.f50375a;
         int f7 = l0.f(jArr, j10, true);
         long j11 = jArr[f7];
-        long[] jArr2 = this.f50362b;
+        long[] jArr2 = this.f50376b;
         c0 c0Var = new c0(j11, jArr2[f7]);
         if (j11 < j10 && f7 != jArr.length - 1) {
             int i10 = f7 + 1;
@@ -61,11 +61,11 @@ public final class i implements h {
 
     @Override
     public final int g() {
-        return this.f50364f;
+        return this.f50378f;
     }
 
     @Override
     public final long h() {
-        return this.f50363c;
+        return this.f50377c;
     }
 }

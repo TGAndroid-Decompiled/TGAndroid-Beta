@@ -1,52 +1,45 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.tl.TL_stars;
-public final class vm0 implements org.telegram.messenger.j20 {
-    public final int f42769a;
-    public final TL_stars.TL_starGiftUnique f42770b;
-    public final long f42771c;
-    public final org.telegram.messenger.us d;
-    public final Object e;
-    public final Object f42772f;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class vm0 implements r0.m, org.telegram.ui.ActionBar.u1 {
+    public final int f42568a;
+    public final rn0 f42569b;
 
-    public vm0(org.telegram.messenger.us usVar, Object obj, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j10, Object obj2, int i10) {
-        this.f42769a = i10;
-        this.d = usVar;
-        this.e = obj;
-        this.f42770b = tL_starGiftUnique;
-        this.f42771c = j10;
-        this.f42772f = obj2;
+    public vm0(rn0 rn0Var, int i10) {
+        this.f42568a = i10;
+        this.f42569b = rn0Var;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        boolean z10;
-        switch (this.f42769a) {
-            case 0:
-                tn0.Y((tn0) this.d, (boolean[]) this.e, this.f42770b, this.f42771c, (tm0) this.f42772f, (rh.d3) obj, (gf.e) obj2);
+    public r0.j1 R0(View view, r0.j1 j1Var) {
+        i0.c I0 = org.telegram.messenger.i0.I0(j1Var, false);
+        rn0 rn0Var = this.f42569b;
+        rn0Var.f41113b0 = I0;
+        cn0 cn0Var = rn0Var.h.f39317b;
+        int i10 = I0.f7766a;
+        int paddingTop = cn0Var.getPaddingTop();
+        i0.c cVar = rn0Var.f41113b0;
+        cn0Var.setPadding(i10, paddingTop, cVar.f7768c, org.telegram.messenger.i0.L(72.0f) + cVar.d);
+        cn0 cn0Var2 = rn0Var.f41118n.f39317b;
+        int i11 = rn0Var.f41113b0.f7766a;
+        int paddingTop2 = cn0Var2.getPaddingTop();
+        i0.c cVar2 = rn0Var.f41113b0;
+        cn0Var2.setPadding(i11, paddingTop2, cVar2.f7768c, org.telegram.messenger.i0.L(72.0f) + cVar2.d);
+        FrameLayout frameLayout = rn0Var.P;
+        i0.c cVar3 = rn0Var.f41113b0;
+        frameLayout.setPadding(cVar3.f7766a, 0, cVar3.f7768c, cVar3.d);
+        return r0.j1.f46142b;
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
+        switch (this.f42568a) {
+            case 1:
+                this.f42569b.finishFragment();
                 return;
             default:
-                rh.e4 e4Var = (rh.e4) this.d;
-                ph.k0 k0Var = (ph.k0) this.f42772f;
-                String str = (String) obj2;
-                ((gf.e) this.e).b();
-                if (((Boolean) obj).booleanValue()) {
-                    rh.o2 o2Var = e4Var.J2;
-                    if (o2Var != null) {
-                        if (k0Var != null) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        o2Var.c(this.f42770b, this.f42771c, z10);
-                    }
-                    if (k0Var != null) {
-                        org.telegram.messenger.i0.g3(new ph.e0(k0Var, 3));
-                        e4Var.N0 = true;
-                    }
-                    e4Var.dismiss();
-                    return;
-                }
+                this.f42569b.D0();
                 return;
         }
     }

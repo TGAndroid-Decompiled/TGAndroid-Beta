@@ -15,19 +15,19 @@ public final class f extends o6.a {
     public static final Scope[] E = new Scope[0];
     public static final k6.c[] F = new k6.c[0];
     public final String D;
-    public final int f13568a;
-    public final int f13569b;
-    public final int f13570c;
+    public final int f13569a;
+    public final int f13570b;
+    public final int f13571c;
     public String d;
     public IBinder e;
-    public Scope[] f13571f;
+    public Scope[] f13572f;
     public Bundle h;
-    public Account f13572n;
-    public k6.c[] f13573r;
-    public k6.c[] f13574s;
-    public final boolean f13575w;
-    public final int f13576x;
-    public boolean f13577y;
+    public Account f13573n;
+    public k6.c[] f13574r;
+    public k6.c[] f13575s;
+    public final boolean f13576w;
+    public final int f13577x;
+    public boolean f13578y;
 
     public f(int i10, int i11, int i12, String str, IBinder iBinder, Scope[] scopeArr, Bundle bundle, Account account, k6.c[] cVarArr, k6.c[] cVarArr2, boolean z10, int i13, boolean z11, String str2) {
         Scope[] scopeArr2;
@@ -51,9 +51,9 @@ public final class f extends o6.a {
             cVarArr3 = cVarArr;
         }
         cVarArr4 = cVarArr2 != null ? cVarArr2 : cVarArr4;
-        this.f13568a = i10;
-        this.f13569b = i11;
-        this.f13570c = i12;
+        this.f13569a = i10;
+        this.f13570b = i11;
+        this.f13571c = i12;
         if ("com.google.android.gms".equals(str)) {
             this.d = "com.google.android.gms";
         } else {
@@ -62,7 +62,7 @@ public final class f extends o6.a {
         if (i10 < 2) {
             Account account2 = null;
             if (iBinder != null) {
-                int i14 = a.f13553b;
+                int i14 = a.f13554b;
                 IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.common.internal.IAccountAccessor");
                 if (queryLocalInterface instanceof h) {
                     aVar = (h) queryLocalInterface;
@@ -87,18 +87,18 @@ public final class f extends o6.a {
                     throw th2;
                 }
             }
-            this.f13572n = account2;
+            this.f13573n = account2;
         } else {
             this.e = iBinder;
-            this.f13572n = account;
+            this.f13573n = account;
         }
-        this.f13571f = scopeArr2;
+        this.f13572f = scopeArr2;
         this.h = bundle2;
-        this.f13573r = cVarArr3;
-        this.f13574s = cVarArr4;
-        this.f13575w = z10;
-        this.f13576x = i13;
-        this.f13577y = z11;
+        this.f13574r = cVarArr3;
+        this.f13575s = cVarArr4;
+        this.f13576w = z10;
+        this.f13577x = i13;
+        this.f13578y = z11;
         this.D = str2;
     }
 

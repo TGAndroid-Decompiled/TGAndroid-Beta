@@ -7,18 +7,18 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.regex.Pattern;
 public final class q {
     public static WeakReference d;
-    public final SharedPreferences f53563a;
-    public bh.d f53564b;
-    public final ScheduledThreadPoolExecutor f53565c;
+    public final SharedPreferences f53581a;
+    public bh.d f53582b;
+    public final ScheduledThreadPoolExecutor f53583c;
 
     public q(SharedPreferences sharedPreferences, ScheduledThreadPoolExecutor scheduledThreadPoolExecutor) {
-        this.f53565c = scheduledThreadPoolExecutor;
-        this.f53563a = sharedPreferences;
+        this.f53583c = scheduledThreadPoolExecutor;
+        this.f53581a = sharedPreferences;
     }
 
     public final synchronized p a() {
         p pVar;
-        String H = this.f53564b.H();
+        String H = this.f53582b.H();
         Pattern pattern = p.d;
         pVar = null;
         if (!TextUtils.isEmpty(H)) {
@@ -31,10 +31,10 @@ public final class q {
     }
 
     public final synchronized void b() {
-        this.f53564b = bh.d.o(this.f53563a, this.f53565c);
+        this.f53582b = bh.d.o(this.f53581a, this.f53583c);
     }
 
     public final synchronized void c(p pVar) {
-        this.f53564b.I(pVar.f53562c);
+        this.f53582b.I(pVar.f53580c);
     }
 }

@@ -26,31 +26,31 @@ public final class v extends View {
     public final AtomicBoolean G;
     public final Handler H;
     public final ew I;
-    public int f46559a;
-    public long f46560b;
-    public int f46561c;
+    public int f46570a;
+    public long f46571b;
+    public int f46572c;
     public jf.b d;
     public final AtomicInteger e;
-    public int f46562f;
+    public int f46573f;
     public final Paint h;
-    public final Paint f46563n;
-    public WindowManager f46564r;
-    public WindowManager.LayoutParams f46565s;
-    public Window f46566w;
-    public HandlerThread f46567x;
-    public t f46568y;
+    public final Paint f46574n;
+    public WindowManager f46575r;
+    public WindowManager.LayoutParams f46576s;
+    public Window f46577w;
+    public HandlerThread f46578x;
+    public t f46579y;
 
     public v(LaunchActivity launchActivity) {
         super(launchActivity.getApplicationContext());
-        this.f46559a = 0;
-        this.f46560b = 0L;
-        this.f46561c = 0;
+        this.f46570a = 0;
+        this.f46571b = 0L;
+        this.f46572c = 0;
         this.e = new AtomicInteger(0);
-        this.f46562f = 0;
+        this.f46573f = 0;
         Paint paint = new Paint(1);
         this.h = paint;
         Paint paint2 = new Paint(1);
-        this.f46563n = paint2;
+        this.f46574n = paint2;
         this.F = new AtomicBoolean(false);
         this.G = new AtomicBoolean(false);
         this.H = new Handler(Looper.getMainLooper());
@@ -66,8 +66,8 @@ public final class v extends View {
     public static void a(FrameMetrics frameMetrics) {
         u[] values;
         for (u uVar : u.values()) {
-            if (Build.VERSION.SDK_INT >= uVar.f46558c) {
-                long metric = frameMetrics.getMetric(uVar.f46556a);
+            if (Build.VERSION.SDK_INT >= uVar.f46569c) {
+                long metric = frameMetrics.getMetric(uVar.f46567a);
                 uVar.d = metric;
                 if (metric >= 0) {
                     double d = metric / 1000000.0d;
@@ -86,28 +86,28 @@ public final class v extends View {
     public static v b(LaunchActivity launchActivity, l0 l0Var) {
         v vVar = new v(launchActivity);
         vVar.setObservedView(l0Var);
-        vVar.f46564r = (WindowManager) launchActivity.getSystemService("window");
-        vVar.f46566w = launchActivity.getWindow();
+        vVar.f46575r = (WindowManager) launchActivity.getSystemService("window");
+        vVar.f46577w = launchActivity.getWindow();
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams(-2, -2, 2, 792, -3);
-        vVar.f46565s = layoutParams;
+        vVar.f46576s = layoutParams;
         layoutParams.gravity = 8388627;
         int L = i0.L(12);
-        WindowManager.LayoutParams layoutParams2 = vVar.f46565s;
+        WindowManager.LayoutParams layoutParams2 = vVar.f46576s;
         layoutParams2.x = L;
         layoutParams2.y = L;
         layoutParams2.width = i0.L(260.0f);
-        vVar.f46564r.addView(vVar, vVar.f46565s);
+        vVar.f46575r.addView(vVar, vVar.f46576s);
         vVar.G.set(true);
         if (vVar.F.getAndSet(true)) {
             return vVar;
         }
         HandlerThread handlerThread = new HandlerThread("FrameMetrics");
-        vVar.f46567x = handlerThread;
+        vVar.f46578x = handlerThread;
         handlerThread.start();
-        Handler handler = new Handler(vVar.f46567x.getLooper());
+        Handler handler = new Handler(vVar.f46578x.getLooper());
         ?? obj = new Object();
-        vVar.f46568y = obj;
-        vVar.f46566w.addOnFrameMetricsAvailableListener(obj, handler);
+        vVar.f46579y = obj;
+        vVar.f46577w.addOnFrameMetricsAvailableListener(obj, handler);
         vVar.d = new jf.b(vVar, 3);
         Choreographer.getInstance().postFrameCallback(vVar.d);
         View view = vVar.D;
@@ -126,8 +126,8 @@ public final class v extends View {
         t tVar;
         this.F.set(false);
         this.H.removeCallbacks(this.I);
-        Window window = this.f46566w;
-        if (window != null && (tVar = this.f46568y) != null) {
+        Window window = this.f46577w;
+        if (window != null && (tVar = this.f46579y) != null) {
             window.removeOnFrameMetricsAvailableListener(tVar);
         }
         if (this.d != null) {
@@ -142,19 +142,19 @@ public final class v extends View {
             }
             this.E = null;
         }
-        HandlerThread handlerThread = this.f46567x;
+        HandlerThread handlerThread = this.f46578x;
         if (handlerThread != null) {
             handlerThread.quitSafely();
         }
-        if (this.f46564r != null && this.G.getAndSet(false)) {
+        if (this.f46575r != null && this.G.getAndSet(false)) {
             try {
-                this.f46564r.removeViewImmediate(this);
+                this.f46575r.removeViewImmediate(this);
             } catch (Throwable unused) {
             }
         }
-        this.f46564r = null;
-        this.f46565s = null;
-        this.f46566w = null;
+        this.f46575r = null;
+        this.f46576s = null;
+        this.f46577w = null;
     }
 
     @Override
@@ -189,17 +189,17 @@ public final class v extends View {
         long j13 = 0;
         while (true) {
             float f11 = f10;
-            Paint paint = vVar.f46563n;
+            Paint paint = vVar.f46574n;
             if (i10 < length2) {
                 int i11 = length2;
                 u uVar = values[i10];
                 int i12 = i10;
-                if (Build.VERSION.SDK_INT >= uVar.f46558c) {
+                if (Build.VERSION.SDK_INT >= uVar.f46569c) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                String str2 = uVar.f46557b;
+                String str2 = uVar.f46568b;
                 long j14 = j13;
                 if (z10) {
                     long j15 = uVar.d;
@@ -280,14 +280,14 @@ public final class v extends View {
                 float f16 = f15 + f11;
                 canvas.drawText(String.format(locale, "%-16s : %5.2f / %5.2f ms", "frame", Double.valueOf(max / 1000000.0d), Double.valueOf(max2)), L2, f16, paint);
                 float f17 = f16 + f11 + f11;
-                canvas.drawText(String.format(locale, "%-16s : %d /s", "vsync", Integer.valueOf(this.f46561c)), L2, f17, paint);
+                canvas.drawText(String.format(locale, "%-16s : %d /s", "vsync", Integer.valueOf(this.f46572c)), L2, f17, paint);
                 float f18 = f17 + f11;
                 if (this.D != null) {
                     str = "onDraw";
                 } else {
                     str = "onDraw (none)";
                 }
-                canvas.drawText(String.format(locale, "%-16s : %d /s", str, Integer.valueOf(this.f46562f)), L2, f18, paint);
+                canvas.drawText(String.format(locale, "%-16s : %d /s", str, Integer.valueOf(this.f46573f)), L2, f18, paint);
                 return;
             }
         }

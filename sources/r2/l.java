@@ -19,11 +19,11 @@ public interface l {
 
     void e();
 
-    void f(v1 v1Var);
+    void f(int i10, long j10);
 
     void flush();
 
-    void g(int i10, long j10);
+    int g();
 
     ByteBuffer getInputBuffer(int i10);
 
@@ -31,7 +31,7 @@ public interface l {
 
     MediaFormat getOutputFormat();
 
-    int h();
+    void h(v1 v1Var);
 
     int i(MediaCodec.BufferInfo bufferInfo);
 

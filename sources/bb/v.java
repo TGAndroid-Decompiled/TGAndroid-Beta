@@ -85,11 +85,11 @@ public final class v extends ed.j implements ld.p {
                     if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                         Log.d("FirebaseCrashlytics", str2, null);
                     }
-                    x9.i iVar = jVar.f53458b;
+                    x9.i iVar = jVar.f53476b;
                     synchronized (iVar) {
-                        if (!Objects.equals(iVar.f53456c, str)) {
-                            x9.i.a(iVar.f53454a, iVar.f53455b, str);
-                            iVar.f53456c = str;
+                        if (!Objects.equals(iVar.f53474c, str)) {
+                            x9.i.a(iVar.f53472a, iVar.f53473b, str);
+                            iVar.f53474c = str;
                         }
                     }
                     Log.d("SessionLifecycleClient", "Notified " + cb.d.f4097a + " of new session " + str);

@@ -19,11 +19,11 @@ public final class s0 extends g3 implements ServiceConnection {
     public n0 D;
     public boolean E;
     public mg.l F;
-    public final ComponentName f44805r;
-    public final com.google.android.gms.internal.cast.z f44806s;
-    public final ArrayList f44807w;
-    public boolean f44808x;
-    public boolean f44809y;
+    public final ComponentName f44816r;
+    public final com.google.android.gms.internal.cast.z f44817s;
+    public final ArrayList f44818w;
+    public boolean f44819x;
+    public boolean f44820y;
 
     static {
         Log.isLoggable("MediaRouteProviderProxy", 3);
@@ -31,9 +31,9 @@ public final class s0 extends g3 implements ServiceConnection {
 
     public s0(Context context, ComponentName componentName) {
         super(context, new l2.f(componentName, 22));
-        this.f44807w = new ArrayList();
-        this.f44805r = componentName;
-        this.f44806s = new Handler();
+        this.f44818w = new ArrayList();
+        this.f44816r = componentName;
+        this.f44817s = new Handler();
     }
 
     @Override
@@ -46,7 +46,7 @@ public final class s0 extends g3 implements ServiceConnection {
                 for (int i10 = 0; i10 < size; i10++) {
                     if (((m) list.get(i10)).d().equals(str)) {
                         q0 q0Var = new q0(this, str);
-                        this.f44807w.add(q0Var);
+                        this.f44818w.add(q0Var);
                         if (this.E) {
                             q0Var.a(this.D);
                         }
@@ -88,7 +88,7 @@ public final class s0 extends g3 implements ServiceConnection {
             int i10 = n0Var.d;
             n0Var.d = i10 + 1;
             if (nVar != null) {
-                bundle = nVar.f44772a;
+                bundle = nVar.f44783a;
             } else {
                 bundle = null;
             }
@@ -99,16 +99,16 @@ public final class s0 extends g3 implements ServiceConnection {
 
     public final void n() {
         int i10;
-        if (!this.f44809y) {
+        if (!this.f44820y) {
             Intent intent = new Intent("android.media.MediaRouteProviderService");
-            intent.setComponent(this.f44805r);
+            intent.setComponent(this.f44816r);
             try {
                 if (Build.VERSION.SDK_INT >= 29) {
                     i10 = 4097;
                 } else {
                     i10 = 1;
                 }
-                this.f44809y = this.f5271a.bindService(intent, this, i10);
+                this.f44820y = this.f5271a.bindService(intent, this, i10);
             } catch (SecurityException unused) {
             }
         }
@@ -122,7 +122,7 @@ public final class s0 extends g3 implements ServiceConnection {
             for (int i10 = 0; i10 < size; i10++) {
                 if (((m) list.get(i10)).d().equals(str)) {
                     r0 r0Var = new r0(this, str, str2);
-                    this.f44807w.add(r0Var);
+                    this.f44818w.add(r0Var);
                     if (this.E) {
                         r0Var.a(this.D);
                     }
@@ -138,7 +138,7 @@ public final class s0 extends g3 implements ServiceConnection {
     @Override
     public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
         Messenger messenger;
-        if (this.f44809y) {
+        if (this.f44820y) {
             p();
             if (iBinder != null) {
                 messenger = new Messenger(iBinder);
@@ -151,10 +151,10 @@ public final class s0 extends g3 implements ServiceConnection {
                         n0 n0Var = new n0(this, messenger);
                         int i10 = n0Var.d;
                         n0Var.d = i10 + 1;
-                        n0Var.f44778g = i10;
+                        n0Var.f44789g = i10;
                         if (n0Var.b(1, i10, 4, null, null)) {
                             try {
-                                n0Var.f44774a.getBinder().linkToDeath(n0Var, 0);
+                                n0Var.f44785a.getBinder().linkToDeath(n0Var, 0);
                                 this.D = n0Var;
                                 return;
                             } catch (RemoteException unused) {
@@ -180,23 +180,23 @@ public final class s0 extends g3 implements ServiceConnection {
         if (this.D != null) {
             g(null);
             this.E = false;
-            ArrayList arrayList = this.f44807w;
+            ArrayList arrayList = this.f44818w;
             int size = arrayList.size();
             for (int i10 = 0; i10 < size; i10++) {
                 ((o0) arrayList.get(i10)).c();
             }
             n0 n0Var = this.D;
             n0Var.b(2, 0, 0, null, null);
-            n0Var.f44775b.f7169b.clear();
-            n0Var.f44774a.getBinder().unlinkToDeath(n0Var, 0);
-            n0Var.f44779i.f44806s.post(new m0(n0Var, 0));
+            n0Var.f44786b.f7170b.clear();
+            n0Var.f44785a.getBinder().unlinkToDeath(n0Var, 0);
+            n0Var.f44790i.f44817s.post(new m0(n0Var, 0));
             this.D = null;
         }
     }
 
     public final void q() {
-        if (this.f44809y) {
-            this.f44809y = false;
+        if (this.f44820y) {
+            this.f44820y = false;
             p();
             try {
                 this.f5271a.unbindService(this);
@@ -207,7 +207,7 @@ public final class s0 extends g3 implements ServiceConnection {
     }
 
     public final void r() {
-        if (this.f44808x && (((n) this.h) != null || !this.f44807w.isEmpty())) {
+        if (this.f44819x && (((n) this.h) != null || !this.f44818w.isEmpty())) {
             n();
         } else {
             q();
@@ -215,6 +215,6 @@ public final class s0 extends g3 implements ServiceConnection {
     }
 
     public final String toString() {
-        return "Service connection " + this.f44805r.flattenToShortString();
+        return "Service connection " + this.f44816r.flattenToShortString();
     }
 }

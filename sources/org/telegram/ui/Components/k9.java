@@ -7,12 +7,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 public final class k9 extends View {
-    public Bitmap f27694a;
-    public Bitmap f27695b;
-    public Paint f27696c;
+    public Bitmap f27787a;
+    public Bitmap f27788b;
+    public Paint f27789c;
     public int d;
     public int e;
-    public j9 f27697f;
+    public j9 f27790f;
 
     public int getRating() {
         return this.e;
@@ -22,18 +22,18 @@ public final class k9 extends View {
     public final void onDraw(Canvas canvas) {
         int i10;
         Bitmap bitmap;
-        Paint paint = this.f27696c;
+        Paint paint = this.f27789c;
         for (int i11 = 0; i11 < this.d; i11++) {
             if (i11 < this.e) {
-                i10 = org.telegram.ui.ActionBar.t6.f21094m5;
+                i10 = org.telegram.ui.ActionBar.t6.f21095m5;
             } else {
-                i10 = org.telegram.ui.ActionBar.t6.f21222t5;
+                i10 = org.telegram.ui.ActionBar.t6.f21223t5;
             }
             paint.setColor(org.telegram.ui.ActionBar.t6.x0(null, i10, false));
             if (i11 < this.e) {
-                bitmap = this.f27694a;
+                bitmap = this.f27787a;
             } else {
-                bitmap = this.f27695b;
+                bitmap = this.f27788b;
             }
             canvas.drawBitmap(bitmap, org.telegram.messenger.i0.L(48.0f) * i11, 0.0f, paint);
         }
@@ -54,9 +54,9 @@ public final class k9 extends View {
         for (int i12 = 0; i12 < this.d; i12++) {
             if (motionEvent.getX() > L && motionEvent.getX() < org.telegram.messenger.i0.L(48.0f) + L && this.e != (i10 = i12 + 1)) {
                 this.e = i10;
-                j9 j9Var = this.f27697f;
+                j9 j9Var = this.f27790f;
                 if (j9Var != null) {
-                    View view = ((fe.a) j9Var).f7017a;
+                    View view = ((fe.a) j9Var).f7018a;
                     if (i10 > 0) {
                         z10 = true;
                     }
@@ -67,7 +67,7 @@ public final class k9 extends View {
                     } else {
                         i11 = 2131745657;
                     }
-                    textView.setText(org.telegram.messenger.cd.L0(i11, null).toUpperCase());
+                    textView.setText(org.telegram.messenger.dd.L0(i11, null).toUpperCase());
                 }
                 invalidate();
                 return true;
@@ -78,6 +78,6 @@ public final class k9 extends View {
     }
 
     public void setOnRatingChangeListener(j9 j9Var) {
-        this.f27697f = j9Var;
+        this.f27790f = j9Var;
     }
 }

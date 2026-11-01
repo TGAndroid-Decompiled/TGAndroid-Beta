@@ -2,11 +2,11 @@ package td;
 
 import java.util.concurrent.CancellationException;
 public abstract class l0 extends ae.i {
-    public int f48637c;
+    public int f48648c;
 
     public l0(int i10) {
         super(0L, ae.l.f431g);
-        this.f48637c = i10;
+        this.f48648c = i10;
     }
 
     public abstract void b(Object obj, CancellationException cancellationException);
@@ -23,7 +23,7 @@ public abstract class l0 extends ae.i {
         if (vVar == null) {
             return null;
         }
-        return vVar.f48671a;
+        return vVar.f48682a;
     }
 
     public final void i(Throwable th2, Throwable th3) {

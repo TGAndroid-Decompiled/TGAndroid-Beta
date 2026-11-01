@@ -23,8 +23,8 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 public abstract class f {
-    public static volatile e f7273a;
-    public static volatile ArrayList f7274b;
+    public static volatile e f7274a;
+    public static volatile ArrayList f7275b;
 
     public static void a(Context context, ArrayList arrayList) {
         List p5 = p(arrayList);
@@ -145,16 +145,16 @@ public abstract class f {
     }
 
     public static e j(Context context) {
-        if (f7273a == null) {
+        if (f7274a == null) {
             try {
-                f7273a = (e) Class.forName("androidx.sharetarget.ShortcutInfoCompatSaverImpl", false, f.class.getClassLoader()).getMethod("getInstance", Context.class).invoke(null, context);
+                f7274a = (e) Class.forName("androidx.sharetarget.ShortcutInfoCompatSaverImpl", false, f.class.getClassLoader()).getMethod("getInstance", Context.class).invoke(null, context);
             } catch (Exception unused) {
             }
-            if (f7273a == null) {
-                f7273a = new Object();
+            if (f7274a == null) {
+                f7274a = new Object();
             }
         }
-        return f7273a;
+        return f7274a;
     }
 
     public static List k(Context context) {
@@ -211,9 +211,9 @@ public abstract class f {
                 if (b10.size() >= g10) {
                     String str2 = null;
                     for (c cVar2 : b10) {
-                        int i13 = cVar2.f7271m;
+                        int i13 = cVar2.f7272m;
                         if (i13 > i11) {
-                            str2 = cVar2.f7263b;
+                            str2 = cVar2.f7264b;
                             i11 = i13;
                         }
                     }
@@ -246,10 +246,10 @@ public abstract class f {
                     }
                     throw new ClassCastException();
                 }
-                q(context, cVar.f7263b);
+                q(context, cVar.f7264b);
                 throw th2;
             }
-            q(context, cVar.f7263b);
+            q(context, cVar.f7264b);
         }
     }
 

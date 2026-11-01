@@ -1,31 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class i51 implements View.OnClickListener {
-    public final int f26885a;
-    public final UndoView f26886b;
+import android.text.TextPaint;
+public final class i51 extends f51 {
+    public final int e;
+    public final zz0 f27005f;
 
-    public i51(UndoView undoView, int i10) {
-        this.f26885a = i10;
-        this.f26886b = undoView;
+    public i51(String str, int i10, zz0 zz0Var) {
+        super(str, (zz0) null);
+        this.e = i10;
+        this.f27005f = zz0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10 = this.f26885a;
-        UndoView undoView = this.f26886b;
-        switch (i10) {
-            case 0:
-                int i11 = UndoView.f24237i0;
-                if (undoView.a()) {
-                    undoView.d(1, false);
-                    return;
-                }
-                return;
-            default:
-                int i12 = UndoView.f24237i0;
-                undoView.d(1, false);
-                return;
+    public final void updateDrawState(TextPaint textPaint) {
+        super.updateDrawState(textPaint);
+        int i10 = this.e;
+        if (i10 == 3) {
+            textPaint.setColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.J6, false));
+        } else if (i10 == 2) {
+            textPaint.setColor(-1);
+        } else if (i10 == 1) {
+            textPaint.setColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.Vc, false));
+        } else {
+            textPaint.setColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.Uc, false));
+        }
+        zz0 zz0Var = this.f27005f;
+        if (zz0Var != null) {
+            zz0Var.a(textPaint);
+        } else {
+            textPaint.setUnderlineText(false);
         }
     }
 }

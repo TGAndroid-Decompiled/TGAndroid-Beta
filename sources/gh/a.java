@@ -16,17 +16,17 @@ public final class a {
     public static final a Q;
     public static final a R;
     public static final a[] S;
-    public static final a f7508f;
+    public static final a f7509f;
     public static final a h;
-    public static final a f7509n;
-    public static final a f7510r;
-    public static final a f7511s;
-    public static final a f7512w;
-    public static final a f7513x;
-    public static final a f7514y;
-    public final int f7515a;
-    public final int f7516b;
-    public final int f7517c;
+    public static final a f7510n;
+    public static final a f7511r;
+    public static final a f7512s;
+    public static final a f7513w;
+    public static final a f7514x;
+    public static final a f7515y;
+    public final int f7516a;
+    public final int f7517b;
+    public final int f7518c;
     public final int d;
     public final int e;
     a EF7;
@@ -34,21 +34,21 @@ public final class a {
 
     static {
         a aVar = new a("CONTACTS", 0, 2131624257);
-        f7508f = aVar;
+        f7509f = aVar;
         a aVar2 = new a("CALLS", 1, 2131624251);
         h = aVar2;
         a aVar3 = new a("CHATS", 2, 2131624252);
-        f7509n = aVar3;
+        f7510n = aVar3;
         a aVar4 = new a("SETTINGS", 3, 2131624276);
-        f7510r = aVar4;
+        f7511r = aVar4;
         a aVar5 = new a(4, 2131624253, "CHECKLIST", 2131624254);
-        f7511s = aVar5;
+        f7512s = aVar5;
         a aVar6 = new a(5, 2131624255, "COLORS", 2131624256);
-        f7512w = aVar6;
+        f7513w = aVar6;
         a aVar7 = new a(6, 2131624260, "FILES", 2131624261);
-        f7513x = aVar7;
+        f7514x = aVar7;
         a aVar8 = new a(7, 2131624262, "GALLERY", 2131624263);
-        f7514y = aVar8;
+        f7515y = aVar8;
         a aVar9 = new a(8, 2131624264, "GIFT", 2131624265);
         a aVar10 = new a(9, 2131624266, "LOCATION", 2131624267);
         D = aVar10;
@@ -85,11 +85,11 @@ public final class a {
     }
 
     public a(String str, int i10, int i11, int i12, int i13) {
-        this.f7515a = i11;
-        this.f7516b = i11;
+        this.f7516a = i11;
+        this.f7517b = i11;
         this.d = i12;
         this.e = i13;
-        this.f7517c = -1;
+        this.f7518c = -1;
     }
 
     public static a valueOf(String str) {
@@ -101,26 +101,26 @@ public final class a {
     }
 
     public a() {
-        this.f7517c = 2131232769;
-        this.f7515a = -1;
-        this.f7516b = -1;
+        this.f7518c = 2131232769;
+        this.f7516a = -1;
+        this.f7517b = -1;
         this.d = -1;
         this.e = -1;
     }
 
     public a(String str, int i10, int i11) {
-        this.f7515a = i11;
-        this.f7516b = i11;
+        this.f7516a = i11;
+        this.f7517b = i11;
         this.d = -1;
         this.e = -1;
-        this.f7517c = -1;
+        this.f7518c = -1;
     }
 
     public a(int i10, int i11, String str, int i12) {
-        this.f7515a = i11;
-        this.f7516b = i12;
+        this.f7516a = i11;
+        this.f7517b = i12;
         this.d = -1;
         this.e = -1;
-        this.f7517c = -1;
+        this.f7518c = -1;
     }
 }

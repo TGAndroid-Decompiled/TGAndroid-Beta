@@ -1,8 +1,8 @@
 package k2;
 public final class l {
-    public final boolean f10694a;
-    public final boolean f10695b;
-    public final boolean f10696c;
+    public final boolean f10695a;
+    public final boolean f10696b;
+    public final boolean f10697c;
     public final int d;
 
     static {
@@ -10,9 +10,9 @@ public final class l {
     }
 
     public l(k kVar) {
-        this.f10694a = kVar.f10691b;
-        this.f10695b = kVar.f10692c;
-        this.f10696c = kVar.d;
-        this.d = kVar.f10690a;
+        this.f10695a = kVar.f10692b;
+        this.f10696b = kVar.f10693c;
+        this.f10697c = kVar.d;
+        this.d = kVar.f10691a;
     }
 }

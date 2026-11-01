@@ -17,15 +17,15 @@ public final class c4 extends lg.w {
         switch (this.D) {
             case 0:
                 d4 d4Var = (d4) this.E;
-                d4Var.f34401o = true;
+                d4Var.f34406o = true;
                 setPaused(true);
                 setVisibility(8);
-                d4Var.f34377a.invalidate();
+                d4Var.f34382a.invalidate();
                 return;
             default:
                 setPaused(true);
                 setVisibility(8);
-                ((u8) this.E).f35281a.setVisibility(0);
+                ((u8) this.E).f35287a.setVisibility(0);
                 return;
         }
     }
@@ -34,9 +34,9 @@ public final class c4 extends lg.w {
     public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
         switch (this.D) {
             case 1:
-                ImageView imageView = ((u8) this.E).f35281a;
+                ImageView imageView = ((u8) this.E).f35287a;
                 super.onSurfaceTextureUpdated(surfaceTexture);
-                if (this.f11999n && imageView.getVisibility() == 0) {
+                if (this.f12000n && imageView.getVisibility() == 0) {
                     imageView.setVisibility(4);
                     return;
                 }

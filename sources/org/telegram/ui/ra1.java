@@ -1,58 +1,63 @@
 package org.telegram.ui;
 
-import android.graphics.BlendMode;
-import android.graphics.drawable.ShapeDrawable;
-import android.view.View;
-public final class ra1 implements org.telegram.ui.ActionBar.u1, org.telegram.ui.ActionBar.x6, org.telegram.ui.ActionBar.y6 {
-    public final int f41188a;
+import android.os.Build;
+import androidx.recyclerview.widget.RecyclerView;
+public final class ra1 extends s4.s0 {
+    public final int f41023a;
+    public final nb1 f41024b;
 
-    public ra1(int i10) {
-        this.f41188a = i10;
-    }
-
-    public static BlendMode a() {
-        return BlendMode.SRC_OVER;
+    public ra1(nb1 nb1Var, int i10) {
+        this.f41023a = i10;
+        this.f41024b = nb1Var;
     }
 
     @Override
-    public void d(int i10, View view) {
-        org.telegram.ui.Wallet.w3 w3Var = (org.telegram.ui.Wallet.w3) view;
-        ShapeDrawable shapeDrawable = w3Var.f35349e0;
-        if (shapeDrawable != null) {
-            shapeDrawable.getPaint().setColor(i10);
-            w3Var.f35349e0.invalidateSelf();
-        }
-    }
-
-    @Override
-    public int f(View view) {
-        ShapeDrawable shapeDrawable = ((org.telegram.ui.Wallet.w3) view).f35349e0;
-        if (shapeDrawable != null) {
-            return shapeDrawable.getPaint().getColor();
-        }
-        return 0;
-    }
-
-    @Override
-    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
-        switch (this.f41188a) {
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        int i12;
+        boolean z10;
+        nb1 nb1Var;
+        tg.f fVar;
+        switch (this.f41023a) {
             case 0:
-                x1Var.dismiss();
+                nb1 nb1Var2 = this.f41024b;
+                int L0 = nb1Var2.F.L0();
+                if (L0 != -1) {
+                    s4.c1 K = recyclerView.K(L0);
+                    boolean z11 = false;
+                    if (K != null) {
+                        i12 = K.f47909a.getTop();
+                    } else {
+                        i12 = 0;
+                    }
+                    if (L0 == 0) {
+                        int i13 = 0 - i12;
+                        if (i12 < 0) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        Math.abs(i13);
+                    } else if (L0 > 0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    if (z10 || !nb1Var2.K) {
+                        z11 = true;
+                    }
+                    nb1Var2.K0(z11, true);
+                    return;
+                }
                 return;
             case 1:
-            case 2:
-            case 3:
+                this.f41024b.C0();
+                return;
             default:
-                x1Var.dismiss();
-                return;
-            case 4:
-                x1Var.dismiss();
-                return;
-            case 5:
-                x1Var.dismiss();
-                return;
-            case 6:
-                x1Var.dismiss();
+                if (Build.VERSION.SDK_INT >= 31 && (fVar = (nb1Var = this.f41024b).f39814g1) != null) {
+                    fVar.f(i10, i11);
+                    nb1Var.B0();
+                    return;
+                }
                 return;
         }
     }

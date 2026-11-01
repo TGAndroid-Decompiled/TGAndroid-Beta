@@ -12,9 +12,9 @@ import java.util.IdentityHashMap;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.tz;
+import org.telegram.messenger.uz;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.j9;
 import org.telegram.ui.Cells.k9;
@@ -47,12 +47,12 @@ public final class z5 extends c0 implements org.telegram.ui.ActionBar.k6, j9 {
         n1Var.setAllowNewlines(false);
         n1Var.setInputType(147457);
         n1Var.setGravity(49);
-        n1Var.setTextSize(1, Math.max(8, tz.W0 - 2));
+        n1Var.setTextSize(1, Math.max(8, uz.W0 - 2));
         n1Var.setIncludeFontPadding(false);
         n1Var.setMinHeight(0);
         n1Var.setBackground(null);
         n1Var.setPadding(org.telegram.messenger.i0.L(2.0f), org.telegram.messenger.i0.L(4.0f), org.telegram.messenger.i0.L(2.0f), 0);
-        n1Var.setHint(cd.L0(2131753989, null));
+        n1Var.setHint(dd.L0(2131753989, null));
         n1Var.setCenterEmptyHint(true);
         n1Var.setListener(new k6.h(this, 12));
         n1Var.setDelegate(new a1.c(this, 14));
@@ -94,7 +94,7 @@ public final class z5 extends c0 implements org.telegram.ui.ActionBar.k6, j9 {
     @Override
     public final void addColorKeys(HashSet hashSet) {
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.G6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.f20929d6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.f20930d6));
     }
 
     @Override
@@ -421,7 +421,7 @@ public final class z5 extends c0 implements org.telegram.ui.ActionBar.k6, j9 {
         return m10.f2905a;
     }
 
-    public final TL_iv.pageTableCell o(int i10, int i11) {
+    public final TL_iv.pageTableCell n(int i10, int i11) {
         if (this.F != null) {
             h4 h4Var = this.f3482s;
             int left = i10 - h4Var.getLeft();
@@ -721,7 +721,7 @@ public final class z5 extends c0 implements org.telegram.ui.ActionBar.k6, j9 {
         b6Var.b();
         try {
             if (getBackground() instanceof h2) {
-                ((h2) getBackground()).a(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f20929d6, p6Var));
+                ((h2) getBackground()).a(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f20930d6, p6Var));
             }
         } catch (Exception e) {
             f8.g(e, true);

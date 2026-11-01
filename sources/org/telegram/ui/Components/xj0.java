@@ -1,200 +1,87 @@
 package org.telegram.ui.Components;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.util.SparseArray;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import java.util.WeakHashMap;
-public final class xj0 extends s4.i0 {
-    public final int f32492a;
-    public final Object f32493b;
+import java.util.HashSet;
+public final class xj0 {
+    public final uk0 f32592a;
+    public boolean d;
+    public final boolean e;
+    public final SparseArray f32593b = new SparseArray();
+    public final HashSet f32594c = new HashSet();
+    public final boolean f32595f = true;
+    public final ArrayList f32596g = new ArrayList();
+    public final ArrayList h = new ArrayList();
 
-    public xj0(Object obj, int i10) {
-        this.f32492a = i10;
-        this.f32493b = obj;
+    public xj0(uk0 uk0Var, boolean z10) {
+        this.f32592a = uk0Var;
+        this.e = z10;
+        uk0Var.setItemsEnterAnimator(this);
     }
 
-    @Override
     public final void a() {
-        int i10 = this.f32492a;
-        Object obj = this.f32493b;
-        switch (i10) {
-            case 0:
-                tk0 tk0Var = (tk0) obj;
-                tk0Var.K0(true);
-                if (tk0Var.f30631q2) {
-                    tk0Var.f30630q1 = -1;
-                    if (tk0Var.T1 == null) {
-                        tk0Var.E1.setEmpty();
-                    }
-                }
-                tk0Var.invalidate();
+        ArrayList arrayList = this.f32596g;
+        int i10 = 0;
+        if (!arrayList.isEmpty()) {
+            ArrayList arrayList2 = new ArrayList(arrayList);
+            for (int i11 = 0; i11 < arrayList2.size(); i11++) {
+                ((AnimatorSet) arrayList2.get(i11)).end();
+                ((AnimatorSet) arrayList2.get(i11)).cancel();
+            }
+        }
+        arrayList.clear();
+        while (true) {
+            ArrayList arrayList3 = this.h;
+            int size = arrayList3.size();
+            uk0 uk0Var = this.f32592a;
+            if (i10 < size) {
+                uk0Var.getViewTreeObserver().removeOnPreDrawListener((ViewTreeObserver.OnPreDrawListener) arrayList3.get(i10));
+                i10++;
+            } else {
+                arrayList3.clear();
+                this.f32593b.clear();
+                uk0Var.invalidate();
+                this.d = true;
                 return;
-            case 1:
-                RecyclerView recyclerView = (RecyclerView) obj;
-                recyclerView.l(null);
-                recyclerView.f1918u0.f48056f = true;
-                boolean z10 = org.telegram.messenger.v2.f18448a;
-                recyclerView.d.i("notifyDataSetChanged()");
-                recyclerView.n0(true);
-                if (!recyclerView.d.h()) {
-                    recyclerView.requestLayout();
-                    return;
-                }
-                return;
-            default:
-                ((zf.c1) obj).f();
-                return;
+            }
         }
     }
 
-    @Override
-    public void b(int i10, int i11) {
-        switch (this.f32492a) {
-            case 2:
-                ((zf.c1) this.f32493b).k(i10 + 1, i11);
-                return;
-            default:
-                return;
+    public final void b(int i10) {
+        Animator ofFloat;
+        uk0 uk0Var = this.f32592a;
+        int childCount = uk0Var.getChildCount();
+        zz zzVar = null;
+        for (int i11 = 0; i11 < childCount; i11++) {
+            View childAt = uk0Var.getChildAt(i11);
+            if (RecyclerView.R(childAt) >= 0 && (childAt instanceof zz)) {
+                zzVar = childAt;
+            }
         }
-    }
-
-    @Override
-    public void c(int i10, int i11, Object obj) {
-        switch (this.f32492a) {
-            case 1:
-                RecyclerView recyclerView = (RecyclerView) this.f32493b;
-                recyclerView.l(null);
-                kg.s0 s0Var = recyclerView.d;
-                ArrayList arrayList = (ArrayList) s0Var.d;
-                if (i11 >= 1) {
-                    boolean z10 = org.telegram.messenger.v2.f18448a;
-                    StringBuilder m10 = i0.a.m("onItemRangeChanged(", i10, ", ", i11, ", ");
-                    m10.append(obj);
-                    m10.append(")");
-                    s0Var.i(m10.toString());
-                    arrayList.add(s0Var.j(4, i10, obj, i11));
-                    s0Var.f11263b |= 4;
-                    if (arrayList.size() == 1) {
-                        g();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                super.c(i10, i11, obj);
-                return;
+        s4.n0 layoutManager = uk0Var.getLayoutManager();
+        if (zzVar != null && layoutManager != null) {
+            uk0Var.removeView(zzVar);
+            this.f32594c.add(zzVar);
+            uk0Var.addView(zzVar);
+            layoutManager.M(zzVar);
+            if (this.f32595f) {
+                ofFloat = ObjectAnimator.ofFloat(zzVar, View.ALPHA, zzVar.getAlpha(), 0.0f);
+            } else {
+                ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            }
+            ofFloat.addListener(new bg.f(this, zzVar, layoutManager));
+            ofFloat.start();
+            i10--;
         }
-    }
-
-    @Override
-    public final void d(int i10, int i11) {
-        int i12 = this.f32492a;
-        Object obj = this.f32493b;
-        switch (i12) {
-            case 0:
-                tk0 tk0Var = (tk0) obj;
-                tk0Var.K0(true);
-                View view = tk0Var.f30628p1;
-                if (view != null && view.getAlpha() == 0.0f) {
-                    tk0Var.f30630q1 = -1;
-                    tk0Var.g1();
-                    return;
-                }
-                return;
-            case 1:
-                RecyclerView recyclerView = (RecyclerView) obj;
-                recyclerView.l(null);
-                kg.s0 s0Var = recyclerView.d;
-                ArrayList arrayList = (ArrayList) s0Var.d;
-                if (i11 >= 1) {
-                    boolean z10 = org.telegram.messenger.v2.f18448a;
-                    s0Var.i("onItemRangeInserted(" + i10 + ", " + i11 + ")");
-                    arrayList.add(s0Var.j(1, i10, null, i11));
-                    s0Var.f11263b = s0Var.f11263b | 1;
-                    if (arrayList.size() == 1) {
-                        g();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                ((zf.c1) obj).o(i10 + 1, i11);
-                return;
-        }
-    }
-
-    @Override
-    public void e(int i10, int i11) {
-        int i12 = this.f32492a;
-        Object obj = this.f32493b;
-        switch (i12) {
-            case 1:
-                RecyclerView recyclerView = (RecyclerView) obj;
-                recyclerView.l(null);
-                kg.s0 s0Var = recyclerView.d;
-                ArrayList arrayList = (ArrayList) s0Var.d;
-                if (i10 != i11) {
-                    boolean z10 = org.telegram.messenger.v2.f18448a;
-                    s0Var.i("onItemRangeMoved(" + i10 + ", " + i11 + ", 1)");
-                    arrayList.add(s0Var.j(8, i10, null, i11));
-                    s0Var.f11263b = s0Var.f11263b | 8;
-                    if (arrayList.size() == 1) {
-                        g();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 2:
-                ((zf.c1) obj).k(i10 + 1, i11 + 2);
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final void f(int i10, int i11) {
-        int i12 = this.f32492a;
-        Object obj = this.f32493b;
-        switch (i12) {
-            case 0:
-                ((tk0) obj).K0(true);
-                return;
-            case 1:
-                RecyclerView recyclerView = (RecyclerView) obj;
-                recyclerView.l(null);
-                kg.s0 s0Var = recyclerView.d;
-                ArrayList arrayList = (ArrayList) s0Var.d;
-                if (i11 >= 1) {
-                    boolean z10 = org.telegram.messenger.v2.f18448a;
-                    s0Var.i("onItemRangeRemoved(" + i10 + ", " + i11 + ")");
-                    arrayList.add(s0Var.j(2, i10, null, i11));
-                    s0Var.f11263b = s0Var.f11263b | 2;
-                    if (arrayList.size() == 1) {
-                        g();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                ((zf.c1) obj).p(i10 + 1, i11);
-                return;
-        }
-    }
-
-    public void g() {
-        int[] iArr = RecyclerView.Q0;
-        RecyclerView recyclerView = (RecyclerView) this.f32493b;
-        if (recyclerView.H && recyclerView.G) {
-            s4.e0 e0Var = recyclerView.f1908n;
-            WeakHashMap weakHashMap = r0.h0.f46123a;
-            recyclerView.postOnAnimation(e0Var);
-            return;
-        }
-        recyclerView.requestLayout();
+        org.telegram.ui.uq uqVar = new org.telegram.ui.uq(this, zzVar, i10, 2);
+        this.h.add(uqVar);
+        uk0Var.getViewTreeObserver().addOnPreDrawListener(uqVar);
     }
 }

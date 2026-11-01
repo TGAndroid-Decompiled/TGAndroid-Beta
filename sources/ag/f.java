@@ -4,24 +4,24 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.us;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.at;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.vs;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.l5;
-import org.telegram.ui.Components.a51;
-import org.telegram.ui.Components.p51;
-import org.telegram.ui.Components.tk0;
-import org.telegram.ui.Components.u51;
+import org.telegram.ui.Components.b51;
+import org.telegram.ui.Components.q51;
+import org.telegram.ui.Components.uk0;
+import org.telegram.ui.Components.v51;
 import w7.b6;
-public final class f extends org.telegram.ui.ActionBar.k2 implements us {
+public final class f extends org.telegram.ui.ActionBar.k2 implements vs {
     public int D;
     public int E;
     public int F;
     public l5 f503a;
-    public u51 f504b;
+    public v51 f504b;
     public x0 f505c;
     public boolean d;
     public boolean e;
@@ -34,35 +34,35 @@ public final class f extends org.telegram.ui.ActionBar.k2 implements us {
     public int f511x;
     public int f512y;
 
-    public static void Y(f fVar, ArrayList arrayList, p51 p51Var) {
+    public static void Z(f fVar, ArrayList arrayList, q51 q51Var) {
         boolean z10;
         boolean z11;
-        String L0 = cd.L0(2131752838, null);
-        String L02 = cd.L0(2131752835, null);
-        a51 a51Var = new a51(2);
-        a51Var.f24292l = L0;
-        a51Var.f24295o = L02;
-        a51Var.f24293m = "RestrictedEmoji";
-        a51Var.f24294n = "💤";
-        arrayList.add(a51Var);
-        a51 i10 = a51.i(1, cd.L0(2131752821, null));
+        String L0 = dd.L0(2131752838, null);
+        String L02 = dd.L0(2131752835, null);
+        b51 b51Var = new b51(2);
+        b51Var.f24643l = L0;
+        b51Var.f24646o = L02;
+        b51Var.f24644m = "RestrictedEmoji";
+        b51Var.f24645n = "💤";
+        arrayList.add(b51Var);
+        b51 i10 = b51.i(1, dd.L0(2131752821, null));
         i10.L(fVar.f508r);
         arrayList.add(i10);
-        arrayList.add(a51.C(null));
+        arrayList.add(b51.C(null));
         if (fVar.f508r) {
             h3 d = i3.f(fVar.currentAccount).d("away");
             if (d != null) {
-                a51 a51Var2 = new a51(17);
-                a51Var2.G = d;
-                arrayList.add(a51Var2);
+                b51 b51Var2 = new b51(17);
+                b51Var2.G = d;
+                arrayList.add(b51Var2);
             } else {
-                a51 c10 = a51.c(2, 2131232021, cd.L0(2131752837, null));
-                c10.f24297q = true;
+                b51 c10 = b51.c(2, 2131232021, dd.L0(2131752837, null));
+                c10.f24648q = true;
                 arrayList.add(c10);
             }
-            arrayList.add(a51.C(null));
-            arrayList.add(a51.u(cd.L0(2131752830, null)));
-            a51 x10 = a51.x(3, cd.L0(2131752829, null));
+            arrayList.add(b51.C(null));
+            arrayList.add(b51.u(dd.L0(2131752830, null)));
+            b51 x10 = b51.x(3, dd.L0(2131752829, null));
             boolean z12 = false;
             if (fVar.f511x == 0) {
                 z10 = true;
@@ -72,7 +72,7 @@ public final class f extends org.telegram.ui.ActionBar.k2 implements us {
             x10.L(z10);
             arrayList.add(x10);
             if (fVar.d) {
-                a51 x11 = a51.x(4, cd.L0(2131752822, null));
+                b51 x11 = b51.x(4, dd.L0(2131752822, null));
                 if (fVar.f511x == 1) {
                     z11 = true;
                 } else {
@@ -81,44 +81,44 @@ public final class f extends org.telegram.ui.ActionBar.k2 implements us {
                 x11.L(z11);
                 arrayList.add(x11);
             }
-            a51 x12 = a51.x(5, cd.L0(2131752828, null));
+            b51 x12 = b51.x(5, dd.L0(2131752828, null));
             if (fVar.f511x == 2) {
                 z12 = true;
             }
             x12.L(z12);
             arrayList.add(x12);
             if (fVar.f511x == 2) {
-                arrayList.add(a51.C(null));
-                arrayList.add(a51.u(cd.L0(2131752830, null)));
-                arrayList.add(a51.f(cd.L0(2131752824, null), cd.Q(fVar.E), 8));
-                arrayList.add(a51.f(cd.L0(2131752827, null), cd.Q(fVar.F), 9));
+                arrayList.add(b51.C(null));
+                arrayList.add(b51.u(dd.L0(2131752830, null)));
+                arrayList.add(b51.f(dd.L0(2131752824, null), dd.Q(fVar.E), 8));
+                arrayList.add(b51.f(dd.L0(2131752827, null), dd.Q(fVar.F), 9));
             }
-            arrayList.add(a51.C(null));
-            a51 i11 = a51.i(10, cd.L0(2131752832, null));
+            arrayList.add(b51.C(null));
+            b51 i11 = b51.i(10, dd.L0(2131752832, null));
             i11.L(fVar.f510w);
             arrayList.add(i11);
-            arrayList.add(a51.C(cd.L0(2131752831, null)));
-            arrayList.add(a51.u(cd.L0(2131752688, null)));
-            a51 x13 = a51.x(6, cd.L0(2131752781, null));
+            arrayList.add(b51.C(dd.L0(2131752831, null)));
+            arrayList.add(b51.u(dd.L0(2131752688, null)));
+            b51 x13 = b51.x(6, dd.L0(2131752781, null));
             x13.L(fVar.f509s);
             arrayList.add(x13);
-            a51 x14 = a51.x(7, cd.L0(2131752776, null));
+            b51 x14 = b51.x(7, dd.L0(2131752776, null));
             x14.L(!fVar.f509s);
             arrayList.add(x14);
-            arrayList.add(a51.C(null));
-            fVar.f505c.a(arrayList, p51Var, true);
-            arrayList.add(a51.C(null));
+            arrayList.add(b51.C(null));
+            fVar.f505c.a(arrayList, q51Var, true);
+            arrayList.add(b51.C(null));
         }
     }
 
-    public final void Z(boolean z10) {
+    public final void a0(boolean z10) {
         if (this.f503a == null) {
             return;
         }
-        this.f503a.a(a0(), z10);
+        this.f503a.a(b0(), z10);
     }
 
-    public final boolean a0() {
+    public final boolean b0() {
         boolean z10;
         x0 x0Var;
         if (this.e) {
@@ -144,9 +144,9 @@ public final class f extends org.telegram.ui.ActionBar.k2 implements us {
         return false;
     }
 
-    public final void b0() {
-        if (!this.f503a.f20547y.f7021f) {
-            if (!a0()) {
+    public final void c0() {
+        if (!this.f503a.f20548y.f7022f) {
+            if (!b0()) {
                 finishFragment();
                 return;
             }
@@ -158,8 +158,8 @@ public final class f extends org.telegram.ui.ActionBar.k2 implements us {
                 int i10 = -this.f506f;
                 this.f506f = i10;
                 org.telegram.messenger.i0.F3(i10, B1, null);
-                u51 u51Var = this.f504b;
-                u51Var.y0(u51Var.A1(2));
+                v51 v51Var = this.f504b;
+                v51Var.y0(v51Var.A1(2));
             } else if (z10 && !this.f505c.k(this.f504b)) {
             } else {
                 this.f503a.b(true);
@@ -202,13 +202,45 @@ public final class f extends org.telegram.ui.ActionBar.k2 implements us {
         }
     }
 
-    public final void c0() {
+    @Override
+    public final View createView(Context context) {
+        TL_account.TL_businessRecipients tL_businessRecipients;
+        setHasOwnBackground(true);
+        this.simpleActionBar.setBackButtonImage(2131231241);
+        this.simpleActionBar.setTitle(dd.L0(2131752838, null));
+        this.simpleActionBar.setActionBarMenuOnItemClick(new e(this, 0));
+        this.f503a = this.simpleActionBar.n(dd.L0(2131745963, null));
+        a0(false);
+        FrameLayout frameLayout = new FrameLayout(context);
+        x0 x0Var = new x0(this, new a3.d(this, 3));
+        this.f505c = x0Var;
+        x0Var.h = this.f509s;
+        TL_account.TL_businessAwayMessage tL_businessAwayMessage = this.h;
+        if (tL_businessAwayMessage == null) {
+            tL_businessRecipients = null;
+        } else {
+            tL_businessRecipients = tL_businessAwayMessage.recipients;
+        }
+        x0Var.j(tL_businessRecipients);
+        v51 v51Var = new v51(this, new a(this, 0), new b(this, 0), null);
+        this.f504b = v51Var;
+        v51Var.r1();
+        this.f504b.setSectionsDrawBackground(true);
+        v51 v51Var2 = this.f504b;
+        v51Var2.f31183f3.f29638r = false;
+        frameLayout.addView(v51Var2, b6.c(-1.0f, -1));
+        d0();
+        this.fragmentView = frameLayout;
+        return frameLayout;
+    }
+
+    public final void d0() {
         boolean z10;
         boolean z11;
         boolean z12;
         boolean z13;
-        u51 u51Var;
-        p51 p51Var;
+        v51 v51Var;
+        q51 q51Var;
         TL_account.TL_businessRecipients tL_businessRecipients;
         if (this.e) {
             return;
@@ -266,11 +298,11 @@ public final class f extends org.telegram.ui.ActionBar.k2 implements us {
                 int i11 = tL_businessAwayMessageScheduleCustom.end_date;
                 this.D = i11;
                 this.F = i11;
-                u51Var = this.f504b;
-                if (u51Var != null && (p51Var = u51Var.f30819f3) != null) {
-                    p51Var.O(true);
+                v51Var = this.f504b;
+                if (v51Var != null && (q51Var = v51Var.f31183f3) != null) {
+                    q51Var.O(true);
                 }
-                Z(true);
+                a0(true);
                 this.e = true;
             }
         }
@@ -287,62 +319,30 @@ public final class f extends org.telegram.ui.ActionBar.k2 implements us {
             this.f507n = 0;
             this.f511x = 0;
         }
-        u51Var = this.f504b;
-        if (u51Var != null) {
-            p51Var.O(true);
+        v51Var = this.f504b;
+        if (v51Var != null) {
+            q51Var.O(true);
         }
-        Z(true);
+        a0(true);
         this.e = true;
     }
 
     @Override
-    public final View createView(Context context) {
-        TL_account.TL_businessRecipients tL_businessRecipients;
-        setHasOwnBackground(true);
-        this.simpleActionBar.setBackButtonImage(2131231241);
-        this.simpleActionBar.setTitle(cd.L0(2131752838, null));
-        this.simpleActionBar.setActionBarMenuOnItemClick(new e(this, 0));
-        this.f503a = this.simpleActionBar.n(cd.L0(2131745963, null));
-        Z(false);
-        FrameLayout frameLayout = new FrameLayout(context);
-        x0 x0Var = new x0(this, new a3.d(this, 3));
-        this.f505c = x0Var;
-        x0Var.h = this.f509s;
-        TL_account.TL_businessAwayMessage tL_businessAwayMessage = this.h;
-        if (tL_businessAwayMessage == null) {
-            tL_businessRecipients = null;
-        } else {
-            tL_businessRecipients = tL_businessAwayMessage.recipients;
-        }
-        x0Var.j(tL_businessRecipients);
-        u51 u51Var = new u51(this, new a(this, 0), new b(this, 0), null);
-        this.f504b = u51Var;
-        u51Var.r1();
-        this.f504b.setSectionsDrawBackground(true);
-        u51 u51Var2 = this.f504b;
-        u51Var2.f30819f3.f29295r = false;
-        frameLayout.addView(u51Var2, b6.c(-1.0f, -1));
-        c0();
-        this.fragmentView = frameLayout;
-        return frameLayout;
-    }
-
-    @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        p51 p51Var;
-        if (i10 == zs.F1) {
-            u51 u51Var = this.f504b;
-            if (u51Var != null && (p51Var = u51Var.f30819f3) != null) {
-                p51Var.O(true);
+        q51 q51Var;
+        if (i10 == at.F1) {
+            v51 v51Var = this.f504b;
+            if (v51Var != null && (q51Var = v51Var.f31183f3) != null) {
+                q51Var.O(true);
             }
-            Z(true);
-        } else if (i10 == zs.E0) {
-            c0();
+            a0(true);
+        } else if (i10 == at.E0) {
+            d0();
         }
     }
 
     @Override
-    public final tk0 getListViewForSimpleGlass() {
+    public final uk0 getListViewForSimpleGlass() {
         return this.f504b;
     }
 
@@ -353,19 +353,19 @@ public final class f extends org.telegram.ui.ActionBar.k2 implements us {
 
     @Override
     public final boolean onBackPressed(boolean z10) {
-        if (a0()) {
+        if (b0()) {
             if (z10) {
                 if (!this.f508r) {
-                    b0();
+                    c0();
                     return false;
                 }
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-                String L0 = cd.L0(2131743860, null);
-                org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20134a;
+                String L0 = dd.L0(2131743860, null);
+                org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20135a;
                 x1Var.R = L0;
-                x1Var.T = cd.L0(2131752820, null);
-                alertDialog$Builder.k(cd.L0(2131754216, null), new b(this, 1));
-                alertDialog$Builder.h(cd.L0(2131747596, null), new b(this, 2));
+                x1Var.T = dd.L0(2131752820, null);
+                alertDialog$Builder.k(dd.L0(2131754216, null), new b(this, 1));
+                alertDialog$Builder.h(dd.L0(2131747596, null), new b(this, 2));
                 showDialog(x1Var);
             }
             return false;
@@ -375,17 +375,17 @@ public final class f extends org.telegram.ui.ActionBar.k2 implements us {
 
     @Override
     public final boolean onFragmentCreate() {
-        getNotificationCenter().c(this, zs.F1);
-        getNotificationCenter().c(this, zs.E0);
+        getNotificationCenter().c(this, at.F1);
+        getNotificationCenter().c(this, at.E0);
         i3.f(this.currentAccount).h();
-        c0();
+        d0();
         return super.onFragmentCreate();
     }
 
     @Override
     public final void onFragmentDestroy() {
-        getNotificationCenter().n(this, zs.F1);
-        getNotificationCenter().n(this, zs.E0);
+        getNotificationCenter().n(this, at.F1);
+        getNotificationCenter().n(this, at.E0);
         super.onFragmentDestroy();
     }
 

@@ -1,50 +1,20 @@
 package org.telegram.ui;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_fragment;
-public final class qx0 extends ClickableSpan {
-    public final TLRPC.TL_username f41083a;
-    public final String f41084b;
-    public final xx0 f41085c;
+import android.content.Context;
+import android.graphics.RectF;
+public final class qx0 extends org.telegram.ui.Cells.z8 {
+    public final wx0 f40920r;
 
-    public qx0(xx0 xx0Var, TLRPC.TL_username tL_username, String str) {
-        this.f41085c = xx0Var;
-        this.f41083a = tL_username;
-        this.f41084b = str;
+    public qx0(wx0 wx0Var, Context context, org.telegram.ui.ActionBar.p6 p6Var, boolean z10, boolean z11) {
+        super(18, context, p6Var, z10, z11);
+        this.f40920r = wx0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        ProfileActivity profileActivity = this.f41085c.e;
-        TLRPC.TL_username tL_username = this.f41083a;
-        if (!tL_username.editable) {
-            if (profileActivity.f33836i5 != this) {
-                profileActivity.d5(this);
-                TL_fragment.TL_getCollectibleInfo tL_getCollectibleInfo = new TL_fragment.TL_getCollectibleInfo();
-                TL_fragment.TL_inputCollectibleUsername tL_inputCollectibleUsername = new TL_fragment.TL_inputCollectibleUsername();
-                tL_inputCollectibleUsername.username = tL_username.username;
-                tL_getCollectibleInfo.collectible = tL_inputCollectibleUsername;
-                profileActivity.getConnectionsManager().bindRequestToGuid(profileActivity.getConnectionsManager().sendRequest(tL_getCollectibleInfo, new ul0(8, this, tL_username)), profileActivity.getClassGuid());
-                return;
-            }
-            return;
-        }
-        profileActivity.d5(null);
-        String str = profileActivity.getMessagesController().U2 + "/" + this.f41084b;
-        TLRPC.Chat chat = profileActivity.D2;
-        if (chat != null && chat.noforwards) {
-            return;
-        }
-        org.telegram.messenger.i0.g(str);
-        profileActivity.L.j(56, 0L, null);
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setUnderlineText(false);
-        textPaint.setColor(textPaint.linkColor);
+    public final int a(int i10) {
+        ProfileActivity profileActivity = this.f40920r.e;
+        RectF rectF = ProfileActivity.S6;
+        profileActivity.getClass();
+        return i10;
     }
 }

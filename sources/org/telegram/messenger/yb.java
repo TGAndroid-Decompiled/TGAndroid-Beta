@@ -1,58 +1,35 @@
 package org.telegram.messenger;
 
-import android.os.AsyncTask;
-import android.os.SystemClock;
-import java.io.File;
-import java.io.RandomAccessFile;
-public final class yb extends AsyncTask {
-    public final String f19349a;
-    public final File f19350b;
-    public final String f19351c;
-    public int d;
-    public RandomAccessFile e = null;
-    public boolean f19352f = true;
-    public long f19353g;
-    public final int h;
-    public final hc f19354i;
+import j$.util.concurrent.ConcurrentHashMap;
+public final class yb implements Runnable {
+    public final int f19569a;
+    public final zb f19570b;
+    public final long f19571c;
+    public final long d;
 
-    public yb(hc hcVar, String str, File file, String str2, int i10) {
-        this.f19354i = hcVar;
-        this.f19349a = str;
-        this.f19350b = file;
-        this.f19351c = str2;
-        this.h = i10;
+    public yb(zb zbVar, long j10, long j11, int i10) {
+        this.f19569a = i10;
+        this.f19570b = zbVar;
+        this.f19571c = j10;
+        this.d = j11;
     }
 
-    public final void a(long j10, long j11) {
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        if (j10 != j11) {
-            long j12 = this.f19353g;
-            if (j12 != 0 && j12 >= elapsedRealtime - 100) {
+    @Override
+    public final void run() {
+        switch (this.f19569a) {
+            case 0:
+                zb zbVar = this.f19570b;
+                ConcurrentHashMap concurrentHashMap = zbVar.f19682i.f16263u;
+                String str = zbVar.f19677a;
+                long j10 = this.f19571c;
+                long j11 = this.d;
+                concurrentHashMap.put(str, new long[]{j10, j11});
+                i0.g3(new yb(zbVar, j10, j11, 1));
                 return;
-            }
+            default:
+                zb zbVar2 = this.f19570b;
+                at.f(zbVar2.h).k(141, zbVar2.f19677a, Long.valueOf(this.f19571c), Long.valueOf(this.d));
+                return;
         }
-        this.f19353g = elapsedRealtime;
-        Utilities.d.c(new xb(this, j10, j11, 0));
-    }
-
-    @Override
-    public final java.lang.Object doInBackground(java.lang.Object[] r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.yb.doInBackground(java.lang.Object[]):java.lang.Object");
-    }
-
-    @Override
-    public final void onCancelled() {
-        this.f19354i.U(this, 2);
-    }
-
-    @Override
-    public final void onPostExecute(Object obj) {
-        int i10;
-        if (((Boolean) obj).booleanValue()) {
-            i10 = 2;
-        } else {
-            i10 = 1;
-        }
-        this.f19354i.U(this, i10);
     }
 }

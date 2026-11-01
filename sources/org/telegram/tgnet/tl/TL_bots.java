@@ -2,7 +2,7 @@ package org.telegram.tgnet.tl;
 
 import android.graphics.Path;
 import java.util.ArrayList;
-import org.telegram.messenger.d00;
+import org.telegram.messenger.e00;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLMethod;
@@ -717,7 +717,7 @@ public class TL_bots {
             if (TLObject.hasFlag(readInt32, 1)) {
                 byte[] readByteArray = inputSerializedData.readByteArray(z10);
                 this.placeholder_path = readByteArray;
-                this.placeholder_svg_path = d00.b(d00.a(readByteArray));
+                this.placeholder_svg_path = e00.b(e00.a(readByteArray));
             }
             if (TLObject.hasFlag(this.flags, 2)) {
                 this.background_color = inputSerializedData.readInt32(z10);

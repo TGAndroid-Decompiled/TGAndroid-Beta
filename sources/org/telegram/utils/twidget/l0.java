@@ -6,14 +6,14 @@ import android.text.TextPaint;
 import java.util.Locale;
 import org.json.JSONObject;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.tz;
+import org.telegram.messenger.uz;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.Components.gl0;
+import org.telegram.ui.Components.hl0;
 public abstract class l0 {
-    public static final int[] f44392a = {t6.f21190ra, t6.Sc, t6.f20899be, t6.Uc, t6.Kd};
-    public static final int[] f44393b = {t6.f21139ob, t6.Tc, t6.gc, t6.Vc, t6.Qb};
-    public static final int[] f44394c = {t6.f21191rb, t6.f21209sb, t6.f21228tb};
+    public static final int[] f44403a = {t6.f21191ra, t6.Sc, t6.f20900be, t6.Uc, t6.Kd};
+    public static final int[] f44404b = {t6.f21140ob, t6.Tc, t6.gc, t6.Vc, t6.Qb};
+    public static final int[] f44405c = {t6.f21192rb, t6.f21210sb, t6.f21229tb};
 
     public static String a(p6 p6Var, boolean z10) {
         boolean q6;
@@ -27,9 +27,9 @@ public abstract class l0 {
             q6 = t6.I.q();
         }
         if (z10) {
-            iArr = f44393b;
+            iArr = f44404b;
         } else {
-            iArr = f44392a;
+            iArr = f44403a;
         }
         try {
             int b10 = b(p6Var, z10);
@@ -56,7 +56,7 @@ public abstract class l0 {
             jSONObject.put("secondary_bg_color", c(w10, w9));
             jSONObject.put("accent_text_color", c(w05, w9));
             jSONObject.put("subtitle_text_color", c(w03, w9));
-            jSONObject.put("destructive_text_color", c(t6.w0(t6.f21153p7, p6Var), w9));
+            jSONObject.put("destructive_text_color", c(t6.w0(t6.f21154p7, p6Var), w9));
             jSONObject.put("section_bg_color", c(w9, w9));
             jSONObject.put("section_header_text_color", c(w05, w9));
             jSONObject.put("section_separator_color", c(t6.r1(0.12f, w02), w9));
@@ -90,13 +90,13 @@ public abstract class l0 {
         int i11;
         int i12;
         if (z10) {
-            i10 = f44393b[0];
+            i10 = f44404b[0];
         } else {
-            i10 = f44392a[0];
+            i10 = f44403a[0];
         }
         int w02 = t6.w0(i10, p6Var);
         if (z10) {
-            int[] iArr = f44394c;
+            int[] iArr = f44405c;
             int i13 = iArr[0];
             if (p6Var != null) {
                 i11 = p6Var.j(i13);
@@ -157,15 +157,15 @@ public abstract class l0 {
             i10 = 0;
         }
         if (z10) {
-            iArr = f44393b;
+            iArr = f44404b;
         } else {
-            iArr = f44392a;
+            iArr = f44403a;
         }
         for (int i13 : iArr) {
             i10 = (i10 * 31) + t6.w0(i13, p6Var);
         }
         if (z10) {
-            for (int i14 : f44394c) {
+            for (int i14 : f44405c) {
                 int i15 = i10 * 31;
                 if (p6Var != null) {
                     i11 = p6Var.j(i14);
@@ -175,23 +175,23 @@ public abstract class l0 {
                 i10 = i15 + i11;
             }
         }
-        int w02 = (((t6.w0(t6.f21153p7, p6Var) + ((t6.w0(t6.Gi, p6Var) + ((t6.w0(t6.Ci, p6Var) + (i10 * 31)) * 31)) * 31)) * 31) + tz.W0) * 31;
-        TextPaint textPaint = t6.f21130o2;
+        int w02 = (((t6.w0(t6.f21154p7, p6Var) + ((t6.w0(t6.Gi, p6Var) + ((t6.w0(t6.Ci, p6Var) + (i10 * 31)) * 31)) * 31)) * 31) + uz.W0) * 31;
+        TextPaint textPaint = t6.f21131o2;
         if (textPaint != null) {
             i12 = Float.floatToIntBits(textPaint.getTextSize());
         }
-        return gl0.i0() + ((w02 + i12) * 31);
+        return hl0.i0() + ((w02 + i12) * 31);
     }
 
     public static JSONObject f() {
         JSONObject jSONObject = new JSONObject();
-        jSONObject.put("fontSize", tz.W0);
-        TextPaint textPaint = t6.f21130o2;
+        jSONObject.put("fontSize", uz.W0);
+        TextPaint textPaint = t6.f21131o2;
         if (textPaint != null && textPaint.getTextSize() > 0.0f) {
             Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
             jSONObject.put("lineHeight", Math.round(Math.max(1.0f, Math.min(3.0f, ((fontMetrics.descent - fontMetrics.ascent) + fontMetrics.leading) / textPaint.getTextSize())) * 100.0f) / 100.0d);
         }
-        int round = Math.round(gl0.i0() / org.telegram.messenger.i0.f16025p);
+        int round = Math.round(hl0.i0() / org.telegram.messenger.i0.f16171p);
         jSONObject.put("padding", "8px " + round + "px");
         return jSONObject;
     }

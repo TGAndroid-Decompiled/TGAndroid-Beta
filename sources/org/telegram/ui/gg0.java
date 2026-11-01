@@ -1,34 +1,35 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-public final class gg0 extends org.telegram.ui.Components.op0 {
-    public final hg0 R2;
+public final class gg0 implements org.telegram.ui.Components.i80 {
+    public final org.telegram.ui.Components.j80 f37507a;
+    public final hg0 f37508b;
 
-    public gg0(hg0 hg0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(context, null, str, false, str2, false, p6Var);
-        this.R2 = hg0Var;
+    public gg0(hg0 hg0Var, org.telegram.ui.Components.j80 j80Var) {
+        this.f37508b = hg0Var;
+        this.f37507a = j80Var;
     }
 
     @Override
-    public final void R0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        String a02;
-        kg0 kg0Var = this.R2.K;
-        if (!z10) {
-            return;
-        }
-        if (hVar != null && hVar.m() == 1) {
-            long j10 = ((TLRPC.Dialog) hVar.n(0)).f19797id;
-            if (j10 != 0 && j10 != kg0Var.getUserConfig().e()) {
-                a02 = org.telegram.messenger.cd.a0(null, null, 2131749194, kg0Var.getMessagesController().A1(j10, true));
-            } else {
-                a02 = org.telegram.messenger.cd.L0(2131749195, null);
-            }
-        } else {
-            a02 = org.telegram.messenger.cd.a0(null, null, 2131749197, org.telegram.messenger.cd.G(i10, "Chats", new Object[0]));
-        }
-        org.telegram.ui.Components.wb Q = org.telegram.ui.Components.cc.a0(kg0Var).Q(2131624027, 36, org.telegram.messenger.i0.W2(a02));
-        Q.f32143r = false;
-        Q.k(true);
+    public final void d() {
+        ig0.b0(this.f37508b.d);
+    }
+
+    @Override
+    public final void g() {
+        hg0 hg0Var = this.f37508b;
+        ig0 ig0Var = hg0Var.d;
+        Context context = this.f37507a.getContext();
+        ig0 ig0Var2 = hg0Var.d;
+        ig0Var.f38041l0 = new org.telegram.ui.Components.c60(context, ig0Var2.e, ig0Var2.d, ig0Var2.f38040k0, ig0Var2, ig0Var2.f38042n, true, ig0Var2.h);
+        hg0Var.d.f38041l0.show();
+    }
+
+    @Override
+    public final void b() {
+    }
+
+    @Override
+    public final void n() {
     }
 }

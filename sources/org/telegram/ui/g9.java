@@ -2,9 +2,9 @@ package org.telegram.ui;
 
 import java.util.ArrayList;
 public final class g9 {
-    public long f37489a;
-    public final ArrayList f37490b = new ArrayList();
-    public final ArrayList f37491c = new ArrayList();
+    public long f37405a;
+    public final ArrayList f37406b = new ArrayList();
+    public final ArrayList f37407c = new ArrayList();
     public int d;
     public boolean e;
 }

@@ -9,10 +9,10 @@ import android.os.SystemClock;
 import android.text.style.ReplacementSpan;
 import android.view.View;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Components.gr;
-import org.telegram.ui.Components.qz0;
+import org.telegram.ui.Components.rz0;
 public final class x2 extends ReplacementSpan {
     public static final int d = 0;
     public final int f797a;
@@ -34,22 +34,22 @@ public final class x2 extends ReplacementSpan {
                 float f10 = (i12 + i14) / 2.0f;
                 RectF rectF = org.telegram.messenger.i0.P;
                 float f11 = N / 2.0f;
-                rectF.set(f7, f10 - f11, ((int) (((qz0) this.f799c).f29774c + org.telegram.messenger.i0.L(10.0f))) + f7, f11 + f10);
+                rectF.set(f7, f10 - f11, ((int) (((rz0) this.f799c).f30126c + org.telegram.messenger.i0.L(10.0f))) + f7, f11 + f10);
                 Paint paint2 = (Paint) this.f798b;
-                int i15 = t6.f21330z6;
+                int i15 = t6.f21331z6;
                 paint2.setColor(t6.r1(0.15f, t6.x0(null, i15, false)));
                 canvas.drawRoundRect(rectF, org.telegram.messenger.i0.L(4.0f), org.telegram.messenger.i0.L(4.0f), paint2);
-                ((qz0) this.f799c).c(f7 + org.telegram.messenger.i0.L(5.0f), f10, Utilities.i((paint.getAlpha() * 2) / 255.0f, 1.0f, 0.0f), t6.x0(null, i15, false), canvas);
+                ((rz0) this.f799c).c(f7 + org.telegram.messenger.i0.L(5.0f), f10, Utilities.i((paint.getAlpha() * 2) / 255.0f, 1.0f, 0.0f), t6.x0(null, i15, false), canvas);
                 return;
             case 1:
                 float f12 = (i12 + i14) / 2.0f;
                 RectF rectF2 = org.telegram.messenger.i0.P;
-                rectF2.set(f7, f12 - org.telegram.messenger.i0.L(7.66f), ((qz0) this.f799c).f29774c + f7 + org.telegram.messenger.i0.L(6.66f), org.telegram.messenger.i0.L(7.66f) + f12);
+                rectF2.set(f7, f12 - org.telegram.messenger.i0.L(7.66f), ((rz0) this.f799c).f30126c + f7 + org.telegram.messenger.i0.L(6.66f), org.telegram.messenger.i0.L(7.66f) + f12);
                 canvas.saveLayerAlpha(rectF2, 255, 31);
                 Paint paint3 = (Paint) this.f798b;
                 paint3.setColor(paint.getColor());
                 canvas.drawRoundRect(rectF2, org.telegram.messenger.i0.L(5.0f), org.telegram.messenger.i0.L(5.0f), paint3);
-                ((qz0) this.f799c).c(f7 + org.telegram.messenger.i0.L(3.33f), f12, 1.0f, -1, canvas);
+                ((rz0) this.f799c).c(f7 + org.telegram.messenger.i0.L(3.33f), f12, 1.0f, -1, canvas);
                 canvas.restore();
                 return;
             default:
@@ -78,9 +78,9 @@ public final class x2 extends ReplacementSpan {
     public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
         switch (this.f797a) {
             case 0:
-                return (int) (((qz0) this.f799c).f29774c + org.telegram.messenger.i0.L(10.0f));
+                return (int) (((rz0) this.f799c).f30126c + org.telegram.messenger.i0.L(10.0f));
             case 1:
-                return (int) (((qz0) this.f799c).f29774c + org.telegram.messenger.i0.L(6.66f));
+                return (int) (((rz0) this.f799c).f30126c + org.telegram.messenger.i0.L(6.66f));
             default:
                 return org.telegram.messenger.i0.L(20.0f);
         }
@@ -89,14 +89,14 @@ public final class x2 extends ReplacementSpan {
     public x2(int i10) {
         this.f797a = 0;
         this.f798b = new Paint(1);
-        this.f799c = new qz0(cd.G(i10, "BusinessRepliesMore", new Object[0]), 9.33f, org.telegram.messenger.i0.o());
+        this.f799c = new rz0(dd.G(i10, "BusinessRepliesMore", new Object[0]), 9.33f, org.telegram.messenger.i0.o());
     }
 
     public x2() {
         this.f797a = 1;
         this.f798b = new Paint(1);
-        qz0 qz0Var = new qz0("x50", 13.0f, org.telegram.messenger.i0.o1("fonts/num.otf"));
-        this.f799c = qz0Var;
-        qz0Var.f29772a.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        rz0 rz0Var = new rz0("x50", 13.0f, org.telegram.messenger.i0.o1("fonts/num.otf"));
+        this.f799c = rz0Var;
+        rz0Var.f30124a.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 }

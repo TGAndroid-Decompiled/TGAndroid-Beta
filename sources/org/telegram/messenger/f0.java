@@ -1,6 +1,6 @@
 package org.telegram.messenger;
 public final class f0 {
-    public String f15489a;
-    public int f15490b;
-    public int f15491c;
+    public String f15670a;
+    public int f15671b;
+    public int f15672c;
 }

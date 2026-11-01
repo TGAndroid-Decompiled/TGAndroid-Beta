@@ -1,76 +1,99 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.view.KeyEvent;
-import java.util.Collections;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class m90 implements Runnable {
-    public final int f39533a;
-    public final Object f39534b;
-    public final Object f39535c;
-    public final Object d;
-    public final Object e;
-    public final Object f39536f;
+import android.graphics.Canvas;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
+import java.util.WeakHashMap;
+import java.util.regex.Pattern;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class m90 extends RelativeLayout {
+    public i0.c f39483a;
+    public boolean f39484b;
+    public final LaunchActivity f39485c;
 
-    public m90(KeyEvent.Callback callback, TLObject tLObject, Object obj, TLRPC.TL_error tL_error, TLObject tLObject2, int i10) {
-        this.f39533a = i10;
-        this.d = callback;
-        this.f39535c = tLObject;
-        this.e = obj;
-        this.f39534b = tL_error;
-        this.f39536f = tLObject2;
-    }
-
-    private final void a() {
-        ph.g4 g4Var = (ph.g4) this.d;
-        TLRPC.TL_inputStorePaymentGiftPremium tL_inputStorePaymentGiftPremium = (TLRPC.TL_inputStorePaymentGiftPremium) this.e;
-        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f39534b;
-        TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = (TLRPC.TL_payments_canPurchaseStore) this.f39536f;
-        int i10 = g4Var.Q1;
-        org.telegram.ui.ActionBar.k2 k2Var = g4Var.f26669o1;
-        if (((TLObject) this.f39535c) instanceof TLRPC.TL_boolTrue) {
-            org.telegram.messenger.u1 i11 = org.telegram.messenger.u1.i();
-            Activity parentActivity = k2Var.getParentActivity();
-            org.telegram.messenger.c a2 = org.telegram.messenger.c.a(i10);
-            hf.b bVar = new hf.b(9, false);
-            bVar.m0(g4Var.W1.h);
-            i11.l(parentActivity, a2, tL_inputStorePaymentGiftPremium, Collections.singletonList(bVar.K()));
-        } else if (tL_error != null) {
-            org.telegram.ui.Components.s4.e0(i10, tL_error, k2Var, tL_payments_canPurchaseStore, new Object[0]);
-        }
+    public m90(LaunchActivity launchActivity, LaunchActivity launchActivity2) {
+        super(launchActivity2);
+        this.f39485c = launchActivity;
+        this.f39483a = i0.c.e;
+        st stVar = new st(this, 16);
+        WeakHashMap weakHashMap = r0.h0.f46134a;
+        r0.z.i(this, stVar);
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.m90.run():void");
+    public final void dispatchDraw(Canvas canvas) {
+        ActionBarLayout actionBarLayout = this.f39485c.f33386r0;
+        if (actionBarLayout != null) {
+            actionBarLayout.P(canvas, this);
+        }
+        super.dispatchDraw(canvas);
     }
 
-    public m90(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i10) {
-        this.f39533a = i10;
-        this.d = obj;
-        this.f39535c = obj2;
-        this.e = obj3;
-        this.f39536f = obj4;
-        this.f39534b = obj5;
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int measuredWidth = getMeasuredWidth();
+        getMeasuredHeight();
+        LaunchActivity launchActivity = this.f39485c;
+        if (!launchActivity.O0) {
+            i0.c cVar = this.f39483a;
+            int l1 = org.telegram.messenger.i0.l1(measuredWidth, cVar.f7766a, cVar.f7768c);
+            launchActivity.f33384q0.getView().layout(0, 0, launchActivity.f33384q0.getView().getMeasuredWidth(), launchActivity.f33384q0.getView().getMeasuredHeight());
+            launchActivity.f33388s0.getView().layout(l1, 0, launchActivity.f33388s0.getView().getMeasuredWidth() + l1, launchActivity.f33388s0.getView().getMeasuredHeight());
+        } else {
+            launchActivity.f33384q0.getView().layout(0, 0, launchActivity.f33384q0.getView().getMeasuredWidth(), launchActivity.f33384q0.getView().getMeasuredHeight());
+        }
+        int measuredWidth2 = (measuredWidth - launchActivity.f33386r0.getView().getMeasuredWidth()) / 2;
+        int L = org.telegram.messenger.i0.L(8.0f) + this.f39483a.f7767b;
+        launchActivity.f33386r0.getView().layout(measuredWidth2, L, launchActivity.f33386r0.getView().getMeasuredWidth() + measuredWidth2, launchActivity.f33386r0.getView().getMeasuredHeight() + L);
+        w8 w8Var = launchActivity.f33394v0;
+        w8Var.layout(0, 0, w8Var.getMeasuredWidth(), launchActivity.f33394v0.getMeasuredHeight());
+        FrameLayout frameLayout = launchActivity.f33392u0;
+        frameLayout.layout(0, 0, frameLayout.getMeasuredWidth(), launchActivity.f33392u0.getMeasuredHeight());
     }
 
-    public m90(Object obj, TLRPC.TL_error tL_error, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f39533a = i10;
-        this.d = obj;
-        this.f39534b = tL_error;
-        this.f39535c = obj2;
-        this.e = obj3;
-        this.f39536f = obj4;
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        boolean z10;
+        this.f39484b = true;
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        setMeasuredDimension(size, size2);
+        Pattern pattern = LaunchActivity.D1;
+        boolean z11 = org.telegram.messenger.i0.E;
+        LaunchActivity launchActivity = this.f39485c;
+        if (!z11 && (!org.telegram.messenger.i0.P1() || launchActivity.getResources().getConfiguration().orientation == 2)) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (z10 == launchActivity.O0 && !launchActivity.P0) {
+            launchActivity.P0 = true;
+            org.telegram.messenger.i0.g3(new yy(this, 17));
+        }
+        if (!launchActivity.O0) {
+            i0.c cVar = this.f39483a;
+            int l1 = org.telegram.messenger.i0.l1(size, cVar.f7766a, cVar.f7768c);
+            launchActivity.f33384q0.getView().measure(View.MeasureSpec.makeMeasureSpec(l1, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+            launchActivity.f33388s0.getView().measure(View.MeasureSpec.makeMeasureSpec(size - l1, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        } else {
+            launchActivity.f33384q0.getView().measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        }
+        launchActivity.f33394v0.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        launchActivity.f33392u0.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        ViewGroup view = launchActivity.f33386r0.getView();
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.i0.L(500.0f), size - org.telegram.messenger.i0.L(16.0f)), 1073741824);
+        i0.c cVar2 = this.f39483a;
+        view.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(((size2 - cVar2.f7767b) - cVar2.d) - org.telegram.messenger.i0.L(16.0f), 1073741824));
+        this.f39484b = false;
     }
 
-    public m90(hl0 hl0Var, TLRPC.TL_error tL_error, Bundle bundle, TLObject tLObject, TLRPC.TL_auth_resendCode tL_auth_resendCode) {
-        this.f39533a = 10;
-        this.d = hl0Var;
-        this.f39534b = tL_error;
-        this.e = bundle;
-        this.f39535c = tLObject;
-        this.f39536f = tL_auth_resendCode;
+    @Override
+    public final void requestLayout() {
+        if (this.f39484b) {
+            return;
+        }
+        super.requestLayout();
     }
 }

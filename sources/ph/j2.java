@@ -13,14 +13,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.d20;
+import org.telegram.messenger.at;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.e20;
 import org.telegram.messenger.m5;
-import org.telegram.messenger.q20;
-import org.telegram.messenger.ui;
-import org.telegram.messenger.us;
-import org.telegram.messenger.vp;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.r20;
+import org.telegram.messenger.vi;
+import org.telegram.messenger.vs;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
@@ -31,19 +31,19 @@ import org.telegram.ui.Cells.sa;
 import org.telegram.ui.Components.bb;
 import org.telegram.ui.Components.ep;
 import org.telegram.ui.Components.ii;
-import org.telegram.ui.Components.tk0;
 import org.telegram.ui.Components.u60;
-import org.telegram.ui.Components.v71;
-import org.telegram.ui.Components.vq0;
+import org.telegram.ui.Components.uk0;
+import org.telegram.ui.Components.w71;
 import org.telegram.ui.Components.wb;
+import org.telegram.ui.Components.wq0;
 import org.telegram.ui.Components.z60;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.xy0;
+import org.telegram.ui.wy0;
 import rh.u5;
 import rh.v5;
 import w7.b6;
-public abstract class j2 extends FrameLayout implements us {
+public abstract class j2 extends FrameLayout implements vs {
     public static final HashMap U = new HashMap();
     public final LinearLayout D;
     public final TextView E;
@@ -62,19 +62,19 @@ public abstract class j2 extends FrameLayout implements us {
     public final fe.b R;
     public int S;
     public int T;
-    public final org.telegram.ui.ActionBar.k2 f45128a;
-    public final int f45129b;
-    public final long f45130c;
+    public final org.telegram.ui.ActionBar.k2 f45139a;
+    public final int f45140b;
+    public final long f45141c;
     public final v5 d;
     public final u5 e;
-    public final p6 f45131f;
-    public final xy0 h;
-    public final v71 f45132n;
-    public final FrameLayout f45133r;
-    public final SpannableStringBuilder f45134s;
-    public final SpannableStringBuilder f45135w;
-    public final vh.d f45136x;
-    public int f45137y;
+    public final p6 f45142f;
+    public final wy0 h;
+    public final w71 f45143n;
+    public final FrameLayout f45144r;
+    public final SpannableStringBuilder f45145s;
+    public final SpannableStringBuilder f45146w;
+    public final vh.d f45147x;
+    public int f45148y;
 
     public j2(org.telegram.ui.ActionBar.k2 r27, android.content.Context r28, int r29, long r30, org.telegram.ui.ActionBar.p6 r32, tg.b r33) {
         throw new UnsupportedOperationException("Method not decompiled: ph.j2.<init>(org.telegram.ui.ActionBar.k2, android.content.Context, int, long, org.telegram.ui.ActionBar.p6, tg.b):void");
@@ -90,33 +90,33 @@ public abstract class j2 extends FrameLayout implements us {
         f2 currentPage = getCurrentPage();
         if (currentPage != null && (v5Var = currentPage.e) != null && currentPage.d) {
             int i10 = v5Var.d;
-            new t3(this.f45128a, this.f45130c, i10, new jg.o2(this, i10, currentPage, 4)).show();
+            new t3(this.f45139a, this.f45141c, i10, new jg.o2(this, i10, currentPage, 4)).show();
         }
     }
 
     public final boolean b() {
         u5 u5Var = this.e;
-        if (!u5Var.h() || u5Var.d().size() >= ((org.telegram.messenger.l0) vp.r1(this.f45129b).f18957y7.f17854t.f10700a).f16658c) {
+        if (!u5Var.h() || u5Var.d().size() >= ((org.telegram.messenger.l0) wp.r1(this.f45140b).f19300y7.f18046t.f10701a).f16855c) {
             return false;
         }
         return true;
     }
 
     public final boolean c() {
-        long j10 = this.f45130c;
+        long j10 = this.f45141c;
         int i10 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
-        int i11 = this.f45129b;
+        int i11 = this.f45140b;
         if (i10 >= 0) {
-            if (i10 != 0 && j10 != d20.i(i11).e()) {
+            if (i10 != 0 && j10 != e20.i(i11).e()) {
                 return false;
             }
             return true;
         }
-        return org.telegram.messenger.w3.w(5, vp.r1(i11).L0(Long.valueOf(-j10)));
+        return org.telegram.messenger.w3.w(5, wp.r1(i11).L0(Long.valueOf(-j10)));
     }
 
     public final boolean d() {
-        if (this.f45130c >= 0 || this.d.h == null) {
+        if (this.f45141c >= 0 || this.d.h == null) {
             return false;
         }
         return true;
@@ -126,10 +126,10 @@ public abstract class j2 extends FrameLayout implements us {
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         int i12;
         int i13;
-        int i14 = zs.G3;
+        int i14 = at.G3;
         LinearLayout linearLayout = this.D;
-        vh.d dVar = this.f45136x;
-        long j10 = this.f45130c;
+        vh.d dVar = this.f45147x;
+        long j10 = this.f45141c;
         int i15 = 8;
         if (i10 == i14) {
             if (((Long) objArr[0]).longValue() == j10) {
@@ -143,18 +143,18 @@ public abstract class j2 extends FrameLayout implements us {
                     i15 = 0;
                 }
                 linearLayout.setVisibility(i15);
-                this.f45137y = 60;
+                this.f45148y = 60;
                 Boolean bool = this.d.h;
                 if (bool != null) {
                     this.F.a(bool.booleanValue(), true);
                 }
             }
-        } else if (i10 == zs.H3) {
+        } else if (i10 == at.H3) {
             if (((Long) objArr[0]).longValue() == j10) {
                 f(true);
                 o();
             }
-        } else if (i10 == zs.f19676r) {
+        } else if (i10 == at.f14772r) {
             if (d()) {
                 i12 = 8;
             } else {
@@ -165,7 +165,7 @@ public abstract class j2 extends FrameLayout implements us {
                 i15 = 0;
             }
             linearLayout.setVisibility(i15);
-            this.f45137y = 60;
+            this.f45148y = 60;
             setVisibleHeight(this.T);
         }
     }
@@ -190,15 +190,15 @@ public abstract class j2 extends FrameLayout implements us {
             }
             if (i10 >= 0 && tL_starGiftCollection != null) {
                 this.P = 0;
-                this.f45132n.d(tL_starGiftCollection.collection_id, i10 + 1);
+                this.f45143n.d(tL_starGiftCollection.collection_id, i10 + 1);
             }
         }
     }
 
     public final void f(boolean z10) {
-        xy0 xy0Var = this.h;
-        if (xy0Var != null && this.f45132n != null) {
-            xy0Var.o(z10);
+        wy0 wy0Var = this.h;
+        if (wy0Var != null && this.f45143n != null) {
+            wy0Var.o(z10);
             e();
         }
     }
@@ -215,12 +215,12 @@ public abstract class j2 extends FrameLayout implements us {
     }
 
     public int getBottomOffset() {
-        FrameLayout frameLayout = this.f45133r;
-        float translationY = frameLayout.getTranslationY() - m5.z(this.f45137y, Math.max(org.telegram.messenger.i0.L(240.0f), this.T) + (-frameLayout.getTop()), 1);
+        FrameLayout frameLayout = this.f45144r;
+        float translationY = frameLayout.getTranslationY() - m5.z(this.f45148y, Math.max(org.telegram.messenger.i0.L(240.0f), this.T) + (-frameLayout.getTop()), 1);
         if (this.T < org.telegram.messenger.i0.L(240.0f)) {
-            translationY += Math.min(org.telegram.messenger.i0.L(240.0f) - this.T, org.telegram.messenger.i0.L(this.f45137y));
+            translationY += Math.min(org.telegram.messenger.i0.L(240.0f) - this.T, org.telegram.messenger.i0.L(this.f45148y));
         }
-        return (int) (org.telegram.messenger.i0.L(this.f45137y) - translationY);
+        return (int) (org.telegram.messenger.i0.L(this.f45148y) - translationY);
     }
 
     public v5 getCurrentList() {
@@ -231,10 +231,10 @@ public abstract class j2 extends FrameLayout implements us {
         return this.d;
     }
 
-    public tk0 getCurrentListView() {
+    public uk0 getCurrentListView() {
         f2 currentPage = getCurrentPage();
         if (currentPage != null) {
-            return currentPage.f45045f;
+            return currentPage.f45056f;
         }
         return null;
     }
@@ -254,23 +254,23 @@ public abstract class j2 extends FrameLayout implements us {
         f2 currentPage = getCurrentPage();
         v5 v5Var2 = this.d;
         if (currentPage != null && (v5Var = currentPage.e) != v5Var2) {
-            if (v5Var != null && (i11 = v5Var.f47584n) > 0) {
+            if (v5Var != null && (i11 = v5Var.f47598n) > 0) {
                 return i11;
             }
-        } else if (v5Var2 != null && (i10 = v5Var2.f47584n) > 0) {
+        } else if (v5Var2 != null && (i10 = v5Var2.f47598n) > 0) {
             return i10;
         }
-        long j10 = this.f45130c;
+        long j10 = this.f45141c;
         int i12 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
-        int i13 = this.f45129b;
+        int i13 = this.f45140b;
         if (i12 >= 0) {
-            TLRPC.UserFull a2 = vp.r1(i13).a2(j10);
+            TLRPC.UserFull a2 = wp.r1(i13).a2(j10);
             if (a2 == null) {
                 return 0;
             }
             return a2.stargifts_count;
         }
-        TLRPC.ChatFull M0 = vp.r1(i13).M0(-j10);
+        TLRPC.ChatFull M0 = wp.r1(i13).M0(-j10);
         if (M0 == null) {
             return 0;
         }
@@ -280,13 +280,13 @@ public abstract class j2 extends FrameLayout implements us {
     public long getLastEmojisHash() {
         long j10 = 0;
         v5 v5Var = this.d;
-        if (v5Var != null && !v5Var.f47582l.isEmpty()) {
+        if (v5Var != null && !v5Var.f47596l.isEmpty()) {
             HashSet hashSet = new HashSet();
             int i10 = 0;
-            for (int i11 = 0; i10 < 3 && i11 < v5Var.f47582l.size(); i11++) {
-                TLRPC.Document document = ((TL_stars.SavedStarGift) v5Var.f47582l.get(i11)).gift.getDocument();
-                if (document != null && hashSet.add(Long.valueOf(document.f19799id))) {
-                    j10 = Objects.hash(Long.valueOf(j10), Long.valueOf(document.f19799id));
+            for (int i11 = 0; i10 < 3 && i11 < v5Var.f47596l.size(); i11++) {
+                TLRPC.Document document = ((TL_stars.SavedStarGift) v5Var.f47596l.get(i11)).gift.getDocument();
+                if (document != null && hashSet.add(Long.valueOf(document.f19800id))) {
+                    j10 = Objects.hash(Long.valueOf(j10), Long.valueOf(document.f19800id));
                     i10++;
                 }
             }
@@ -296,10 +296,10 @@ public abstract class j2 extends FrameLayout implements us {
 
     public float getTabsHeight() {
         View[] viewPages;
-        xy0 xy0Var = this.h;
+        wy0 wy0Var = this.h;
         float f7 = 0.0f;
-        if (xy0Var.getViewPages() != null) {
-            for (View view : xy0Var.getViewPages()) {
+        if (wy0Var.getViewPages() != null) {
+            for (View view : wy0Var.getViewPages()) {
                 if (view instanceof f2) {
                     f7 = (((f2) view).getTabsHeight() * (1.0f - (view.getTranslationX() / view.getWidth()))) + f7;
                 }
@@ -309,14 +309,14 @@ public abstract class j2 extends FrameLayout implements us {
     }
 
     public float getTabsVisibility() {
-        v71 v71Var = this.f45132n;
-        if (v71Var != null) {
-            return v71Var.getAlpha();
+        w71 w71Var = this.f45143n;
+        if (w71Var != null) {
+            return w71Var.getAlpha();
         }
         return 0.0f;
     }
 
-    public final void h(String str, q20 q20Var) {
+    public final void h(String str, r20 r20Var) {
         View view;
         int i10;
         u60 u60Var;
@@ -328,26 +328,26 @@ public abstract class j2 extends FrameLayout implements us {
             view = null;
         }
         org.telegram.ui.ActionBar.x1[] x1VarArr = new org.telegram.ui.ActionBar.x1[1];
-        p6 p6Var = this.f45131f;
+        p6 p6Var = this.f45142f;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, p6Var);
-        org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20134a;
+        org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20135a;
         if (str != null) {
-            x1Var.R = cd.L0(2131750224, null);
+            x1Var.R = dd.L0(2131750224, null);
         } else {
-            x1Var.R = cd.L0(2131750104, null);
-            x1Var.T = cd.L0(2131750105, null);
+            x1Var.R = dd.L0(2131750104, null);
+            x1Var.T = dd.L0(2131750105, null);
         }
         t1 t1Var = new t1(this, context, p6Var);
-        t1Var.f24014r0 = true;
-        t1Var.setOnEditorActionListener(new org.telegram.ui.web.q0(t1Var, q20Var, x1VarArr, view, 1));
-        ui.b0(this.f45129b).M(org.telegram.messenger.i0.G0(), true);
+        t1Var.f24015r0 = true;
+        t1Var.setOnEditorActionListener(new org.telegram.ui.web.q0(t1Var, r20Var, x1VarArr, view, 1));
+        vi.b0(this.f45140b).M(org.telegram.messenger.i0.G0(), true);
         t1Var.setTextSize(1, 18.0f);
-        a7.V(t1Var, t6.f21037j5, p6Var);
+        a7.V(t1Var, t6.f21038j5, p6Var);
         a7.m(t1Var, 34, t6.Li, p6Var);
-        t1Var.setHintText(cd.L0(2131750106, null));
+        t1Var.setHintText(dd.L0(2131750106, null));
         t1Var.setFocusable(true);
         t1Var.setInputType(147457);
-        a7.G(t1Var, t6.f21058k6, t6.f21076l6, t6.f21153p7, p6Var);
+        a7.G(t1Var, t6.f21059k6, t6.f21077l6, t6.f21154p7, p6Var);
         t1Var.setImeOptions(6);
         t1Var.setBackgroundDrawable(null);
         t1Var.setPadding(0, org.telegram.messenger.i0.L(6.0f), 0, org.telegram.messenger.i0.L(6.0f));
@@ -358,25 +358,25 @@ public abstract class j2 extends FrameLayout implements us {
         linearLayout.addView(t1Var, b6.k(24.0f, 0.0f, 24.0f, 10.0f, -1, -2));
         alertDialog$Builder.c();
         alertDialog$Builder.o(linearLayout);
-        x1Var.f21468a = org.telegram.messenger.i0.L(292.0f);
+        x1Var.f21469a = org.telegram.messenger.i0.L(292.0f);
         if (str != null) {
             i10 = 2131751336;
         } else {
             i10 = 2131751753;
         }
-        alertDialog$Builder.k(cd.L0(i10, null), new org.telegram.ui.web.k0(3, t1Var, q20Var));
-        alertDialog$Builder.h(cd.L0(2131752589, null), new org.telegram.utils.twidget.t(7));
+        alertDialog$Builder.k(dd.L0(i10, null), new org.telegram.ui.web.k0(3, t1Var, r20Var));
+        alertDialog$Builder.h(dd.L0(2131752589, null), new org.telegram.utils.twidget.t(7));
         x1VarArr[0] = x1Var;
         z60 z60Var = this.I;
-        if (z60Var != null && (u60Var = z60Var.f32931m) != null) {
+        if (z60Var != null && (u60Var = z60Var.f33034m) != null) {
             u60Var.setSoftInputMode(48);
         }
-        org.telegram.messenger.i0.Y2(W, this.f45128a.getClassGuid());
+        org.telegram.messenger.i0.Y2(W, this.f45139a.getClassGuid());
         x1VarArr[0].setOnDismissListener(new org.telegram.ui.Components.z1(this, t1Var, W, 4));
         x1VarArr[0].setOnShowListener(new ag.d0(t1Var, 3));
         x1VarArr[0].show();
         org.telegram.ui.ActionBar.x1 x1Var2 = x1VarArr[0];
-        x1Var2.f21490j0 = false;
+        x1Var2.f21491j0 = false;
         x1Var2.d(-1);
         t1Var.setSelection(t1Var.getText().length());
     }
@@ -404,7 +404,7 @@ public abstract class j2 extends FrameLayout implements us {
                     v5Var = null;
                 }
                 if (v5Var != null) {
-                    return v5Var.f47582l.isEmpty();
+                    return v5Var.f47596l.isEmpty();
                 }
             }
         }
@@ -418,30 +418,30 @@ public abstract class j2 extends FrameLayout implements us {
         boolean z10;
         SpannableStringBuilder spannableStringBuilder;
         bb bbVar;
-        xy0 xy0Var = this.h;
-        if (xy0Var != null) {
-            if (xy0Var.getCurrentPosition() == xy0Var.getNextPosition()) {
-                if (k(xy0Var.getCurrentPosition())) {
+        wy0 wy0Var = this.h;
+        if (wy0Var != null) {
+            if (wy0Var.getCurrentPosition() == wy0Var.getNextPosition()) {
+                if (k(wy0Var.getCurrentPosition())) {
                     nextPositionAlpha = 1.0f;
                 } else {
                     nextPositionAlpha = 0.0f;
                 }
             } else {
-                if (k(xy0Var.getCurrentPosition())) {
+                if (k(wy0Var.getCurrentPosition())) {
                     f7 = 1.0f;
                 } else {
                     f7 = 0.0f;
                 }
-                float currentPositionAlpha = xy0Var.getCurrentPositionAlpha() * f7;
-                if (k(xy0Var.getNextPosition())) {
+                float currentPositionAlpha = wy0Var.getCurrentPositionAlpha() * f7;
+                if (k(wy0Var.getNextPosition())) {
                     f10 = 1.0f;
                 } else {
                     f10 = 0.0f;
                 }
-                nextPositionAlpha = (xy0Var.getNextPositionAlpha() * f10) + currentPositionAlpha;
+                nextPositionAlpha = (wy0Var.getNextPositionAlpha() * f10) + currentPositionAlpha;
             }
-            FrameLayout frameLayout = this.f45133r;
-            float z11 = m5.z(this.f45137y, (-frameLayout.getTop()) + this.T, 1);
+            FrameLayout frameLayout = this.f45144r;
+            float z11 = m5.z(this.f45148y, (-frameLayout.getTop()) + this.T, 1);
             float L = ((org.telegram.messenger.i0.L(68.0f) + 2) * nextPositionAlpha) + z11;
             int i10 = 0;
             if (this.T > org.telegram.messenger.i0.L(184.0f)) {
@@ -461,13 +461,13 @@ public abstract class j2 extends FrameLayout implements us {
                 i10 = 4;
             }
             frameLayout.setVisibility(i10);
-            if (this.e.h() && xy0Var.getPositionAnimated() >= 0.5f) {
-                spannableStringBuilder = this.f45135w;
+            if (this.e.h() && wy0Var.getPositionAnimated() >= 0.5f) {
+                spannableStringBuilder = this.f45146w;
             } else {
-                spannableStringBuilder = this.f45134s;
+                spannableStringBuilder = this.f45145s;
             }
-            this.f45136x.i(spannableStringBuilder, true, true);
-            wb wbVar = wb.f32128w;
+            this.f45147x.i(spannableStringBuilder, true, true);
+            wb wbVar = wb.f32194w;
             if (wbVar != null && (bbVar = wbVar.e) != null) {
                 bbVar.updatePosition();
             }
@@ -475,37 +475,37 @@ public abstract class j2 extends FrameLayout implements us {
     }
 
     public final void m() {
-        vh.d dVar = this.f45136x;
+        vh.d dVar = this.f45147x;
         dVar.updateColors();
         int i10 = t6.Ci;
-        p6 p6Var = this.f45131f;
-        int c12 = ((vq0) this).V.c1(t6.w0(i10, p6Var));
+        p6 p6Var = this.f45142f;
+        int d12 = ((wq0) this).V.d1(t6.w0(i10, p6Var));
         if (dVar.getBackground() instanceof ShapeDrawable) {
-            if (((ShapeDrawable) dVar.getBackground()).getPaint().getColor() != c12) {
-                t6.C1(c12, dVar.getBackground());
+            if (((ShapeDrawable) dVar.getBackground()).getPaint().getColor() != d12) {
+                t6.C1(d12, dVar.getBackground());
                 dVar.invalidate();
             }
         } else {
-            dVar.setBackground(t6.d0(org.telegram.messenger.i0.L(19.0f), c12));
+            dVar.setBackground(t6.d0(org.telegram.messenger.i0.L(19.0f), d12));
         }
         View[] viewPages = this.h.getViewPages();
         if (viewPages != null) {
             for (View view : viewPages) {
                 if (view != null) {
                     f2 f2Var = (f2) view;
-                    p6 p6Var2 = f2Var.f45044c;
-                    if (f2Var.f45047r != null) {
-                        f2Var.f45049w.setTextColor(t6.w0(t6.G6, p6Var2));
-                        f2Var.f45050x.setTextColor(t6.w0(t6.Ci, p6Var2));
+                    p6 p6Var2 = f2Var.f45055c;
+                    if (f2Var.f45058r != null) {
+                        f2Var.f45060w.setTextColor(t6.w0(t6.G6, p6Var2));
+                        f2Var.f45061x.setTextColor(t6.w0(t6.Ci, p6Var2));
                     } else {
                         f2Var.E.setTextColor(t6.w0(t6.G6, p6Var2));
-                        f2Var.F.setTextColor(t6.w0(t6.f21311y6, p6Var2));
+                        f2Var.F.setTextColor(t6.w0(t6.f21312y6, p6Var2));
                         f2Var.G.updateColors();
                     }
                 }
             }
         }
-        this.E.setTextColor(t6.w0(t6.f21037j5, p6Var));
+        this.E.setTextColor(t6.w0(t6.f21038j5, p6Var));
     }
 
     public final void n() {
@@ -513,7 +513,7 @@ public abstract class j2 extends FrameLayout implements us {
         for (View view : this.h.getViewPages()) {
             if (view instanceof f2) {
                 f2 f2Var = (f2) view;
-                ii iiVar = f2Var.f45045f;
+                ii iiVar = f2Var.f45056f;
                 int paddingTop = iiVar.getPaddingTop();
                 f2Var.g();
                 int paddingTop2 = paddingTop - iiVar.getPaddingTop();
@@ -532,9 +532,9 @@ public abstract class j2 extends FrameLayout implements us {
         } else {
             z10 = true;
         }
-        xy0 xy0Var = this.h;
-        if (xy0Var.getViewPages() != null) {
-            for (View view : xy0Var.getViewPages()) {
+        wy0 wy0Var = this.h;
+        if (wy0Var.getViewPages() != null) {
+            for (View view : wy0Var.getViewPages()) {
                 if (view instanceof f2) {
                     ((f2) view).setHasTabs(z10);
                 }
@@ -545,10 +545,10 @@ public abstract class j2 extends FrameLayout implements us {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        int i10 = this.f45129b;
-        zs.f(i10).c(this, zs.G3);
-        zs.f(i10).c(this, zs.H3);
-        zs.f(i10).c(this, zs.f19676r);
+        int i10 = this.f45140b;
+        at.f(i10).c(this, at.G3);
+        at.f(i10).c(this, at.H3);
+        at.f(i10).c(this, at.f14772r);
         f2 currentPage = getCurrentPage();
         if (currentPage != null) {
             currentPage.f(false);
@@ -557,12 +557,12 @@ public abstract class j2 extends FrameLayout implements us {
         o();
         v5 v5Var = this.d;
         if (v5Var != null) {
-            v5Var.f47585o = true;
+            v5Var.f47599o = true;
             v5Var.b();
         }
         u5 u5Var = this.e;
         if (u5Var != null) {
-            u5Var.f47551j = true;
+            u5Var.f47558j = true;
             u5Var.i();
         }
     }
@@ -575,17 +575,17 @@ public abstract class j2 extends FrameLayout implements us {
             currentPage.e();
         }
         super.onDetachedFromWindow();
-        int i10 = this.f45129b;
-        zs.f(i10).n(this, zs.G3);
-        zs.f(i10).n(this, zs.H3);
-        zs.f(i10).n(this, zs.f19676r);
+        int i10 = this.f45140b;
+        at.f(i10).n(this, at.G3);
+        at.f(i10).n(this, at.H3);
+        at.f(i10).n(this, at.f14772r);
         v5 v5Var = this.d;
         if (v5Var != null) {
-            v5Var.f47585o = false;
+            v5Var.f47599o = false;
         }
         u5 u5Var = this.e;
         if (u5Var != null) {
-            u5Var.f47551j = false;
+            u5Var.f47558j = false;
         }
     }
 
@@ -593,20 +593,20 @@ public abstract class j2 extends FrameLayout implements us {
         float f7;
         View[] viewPages;
         float f10;
-        v71 v71Var = this.f45132n;
-        if (v71Var == null) {
+        w71 w71Var = this.f45143n;
+        if (w71Var == null) {
             return;
         }
         float min = Math.min(this.K, getTabsHeight() - org.telegram.messenger.i0.L(42.0f));
         float l4 = Utilities.l(org.telegram.messenger.i0.z1(min - this.K, -org.telegram.messenger.i0.L(42.0f), 0.0f));
         float T1 = org.telegram.messenger.i0.T1(0.9f, 1.0f, l4);
-        v71Var.setTranslationY(min);
-        v71Var.setScaleX(T1);
-        v71Var.setScaleY(T1);
-        xy0 xy0Var = this.h;
-        if (xy0Var.getViewPages() != null) {
+        w71Var.setTranslationY(min);
+        w71Var.setScaleX(T1);
+        w71Var.setScaleY(T1);
+        wy0 wy0Var = this.h;
+        if (wy0Var.getViewPages() != null) {
             f7 = 0.0f;
-            for (View view : xy0Var.getViewPages()) {
+            for (View view : wy0Var.getViewPages()) {
                 if (view instanceof f2) {
                     if (((f2) view).H) {
                         f10 = 1.0f;
@@ -619,7 +619,7 @@ public abstract class j2 extends FrameLayout implements us {
         } else {
             f7 = 0.0f;
         }
-        v71Var.setAlpha(w7.u.a(f7, 0.0f, 1.0f) * l4);
+        w71Var.setAlpha(w7.u.a(f7, 0.0f, 1.0f) * l4);
     }
 
     public abstract void q(boolean z10);
@@ -634,11 +634,11 @@ public abstract class j2 extends FrameLayout implements us {
     public void setGlassEngine(ei.r rVar) {
         View[] viewPages;
         this.N = rVar;
-        xy0 xy0Var = this.h;
-        rVar.c(xy0Var);
-        for (View view : xy0Var.getViewPages()) {
+        wy0 wy0Var = this.h;
+        rVar.c(wy0Var);
+        for (View view : wy0Var.getViewPages()) {
             if (view instanceof f2) {
-                rVar.b(((f2) view).f45045f);
+                rVar.b(((f2) view).f45056f);
             }
         }
     }
@@ -663,12 +663,12 @@ public abstract class j2 extends FrameLayout implements us {
         if (this.O != z10) {
             this.O = z10;
             q(g());
-            this.f45132n.setReordering(z10);
+            this.f45143n.setReordering(z10);
             if (z10) {
                 org.telegram.ui.ActionBar.k2 T = LaunchActivity.T();
                 if (T instanceof ProfileActivity) {
                     ProfileActivity profileActivity = (ProfileActivity) T;
-                    profileActivity.T4(false);
+                    profileActivity.U4(false);
                     org.telegram.messenger.i0.g3(new q1(profileActivity, 0));
                 }
             }
@@ -684,9 +684,9 @@ public abstract class j2 extends FrameLayout implements us {
         View[] viewPages;
         this.T = i10;
         l();
-        xy0 xy0Var = this.h;
-        if (xy0Var != null) {
-            for (View view : xy0Var.getViewPages()) {
+        wy0 wy0Var = this.h;
+        if (wy0Var != null) {
+            for (View view : wy0Var.getViewPages()) {
                 if (view instanceof f2) {
                     ((f2) view).setVisibleHeight(this.T);
                 }

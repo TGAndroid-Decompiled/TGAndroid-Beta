@@ -8,9 +8,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.at;
+import org.telegram.messenger.dd;
 import org.telegram.messenger.m5;
-import org.telegram.messenger.zs;
 import org.telegram.ui.ActionBar.a7;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.t6;
@@ -20,18 +20,18 @@ import org.telegram.ui.Components.p80;
 import w7.b6;
 import w7.e6;
 public final class k extends FrameLayout {
-    public static final int f53834n = 0;
-    public final p6 f53835a;
-    public final g9 f53836b;
-    public final ImageView f53837c;
+    public static final int f53852n = 0;
+    public final p6 f53853a;
+    public final g9 f53854b;
+    public final ImageView f53855c;
     public final TextView d;
     public final TextView e;
-    public final TextView f53838f;
+    public final TextView f53856f;
     public final p80 h;
 
     public k(Activity activity, p6 p6Var) {
         super(activity);
-        this.f53835a = p6Var;
+        this.f53853a = p6Var;
         LinearLayout e = m5.e(activity, 0);
         e.setPadding(org.telegram.messenger.i0.L(16.0f), org.telegram.messenger.i0.L(5.0f), org.telegram.messenger.i0.L(8.0f), org.telegram.messenger.i0.L(5.0f));
         e6.b(e, 0.025f, 1.4f);
@@ -53,9 +53,9 @@ public final class k extends FrameLayout {
         a7.V(textView, i11, p6Var);
         textView.setTypeface(org.telegram.messenger.i0.o());
         linearLayout.addView(textView, b6.p(-2, -2, 0.0f, 16));
-        zs.i(textView);
+        at.i(textView);
         TextView textView2 = new TextView(activity);
-        this.f53838f = textView2;
+        this.f53856f = textView2;
         textView2.setTextSize(1, 11.0f);
         a7.V(textView2, i10, p6Var);
         e6.b(textView2, 0.1f, 1.5f);
@@ -64,7 +64,7 @@ public final class k extends FrameLayout {
         w6 L2 = a7.L(0.1f, i10);
         textView2.setBackground(d02);
         a7.k(textView2, d02, L2, null, p6Var);
-        textView2.setText(cd.L0(2131753155, null));
+        textView2.setText(dd.L0(2131753155, null));
         linearLayout.addView(textView2, b6.q(-2, 17, 0.0f, 19, 5, 1, 0, 0));
         TextView textView3 = new TextView(activity);
         this.e = textView3;
@@ -73,21 +73,21 @@ public final class k extends FrameLayout {
         a7.V(textView3, i11, p6Var);
         textView3.setTypeface(org.telegram.messenger.i0.o());
         e7.addView(textView3, b6.k(0.0f, 0.0f, 0.0f, 2.0f, -1, -2));
-        zs.i(textView3);
+        at.i(textView3);
         p80 p80Var = new p80(activity, null);
         this.h = p80Var;
         p80Var.setTextSize(1, 13.0f);
         a7.H(p80Var, t6.Uc, p6Var);
         a7.V(p80Var, i11, p6Var);
         e7.addView(p80Var, b6.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
-        zs.i(p80Var);
+        at.i(p80Var);
         g9 g9Var = new g9(activity);
-        this.f53836b = g9Var;
+        this.f53854b = g9Var;
         g9Var.setRoundRadius(org.telegram.messenger.i0.L(4.0f));
         g9Var.setVisibility(8);
         e.addView(g9Var, b6.t(48, 48, 53, 10, 0, 2, 2));
         ImageView imageView = new ImageView(activity);
-        this.f53837c = imageView;
+        this.f53855c = imageView;
         imageView.setBackground(t6.h0(5, t6.r1(0.2f, t6.w0(t6.W5, p6Var)), -1));
         e6.a(imageView);
         imageView.setImageResource(2131232095);
@@ -98,7 +98,7 @@ public final class k extends FrameLayout {
         e.addView(imageView, b6.t(32, 32, 53, 10, 3, 0, 2));
     }
 
-    public final void a(final org.telegram.ui.un r24, final org.telegram.messenger.jj r25, org.telegram.ui.mf r26, org.telegram.ui.mf r27) {
-        throw new UnsupportedOperationException("Method not decompiled: xh.k.a(org.telegram.ui.un, org.telegram.messenger.jj, org.telegram.ui.mf, org.telegram.ui.mf):void");
+    public final void a(final org.telegram.ui.un r24, final org.telegram.messenger.kj r25, org.telegram.ui.nf r26, org.telegram.ui.nf r27) {
+        throw new UnsupportedOperationException("Method not decompiled: xh.k.a(org.telegram.ui.un, org.telegram.messenger.kj, org.telegram.ui.nf, org.telegram.ui.nf):void");
     }
 }

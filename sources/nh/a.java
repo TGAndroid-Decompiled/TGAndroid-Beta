@@ -2,11 +2,11 @@ package nh;
 
 import android.animation.TimeInterpolator;
 public final class a implements TimeInterpolator {
-    public final int f13800a;
+    public final int f13801a;
 
     @Override
     public final float getInterpolation(float f7) {
-        switch (this.f13800a) {
+        switch (this.f13801a) {
             case 0:
                 return f7;
             default:

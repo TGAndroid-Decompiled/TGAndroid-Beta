@@ -16,8 +16,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import org.telegram.messenger.d20;
-import org.telegram.messenger.jj;
+import org.telegram.messenger.e20;
+import org.telegram.messenger.kj;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.ActionBar.w5;
@@ -40,34 +40,34 @@ public final class j extends FrameLayout {
     public org.telegram.ui.p M;
     public org.telegram.ui.p N;
     public AsyncTask O;
-    public final x4 f43064a;
-    public boolean f43065b;
-    public final org.telegram.ui.Cells.y f43066c;
+    public final x4 f42866a;
+    public boolean f42867b;
+    public final org.telegram.ui.Cells.y f42868c;
     public final FrameLayout d;
     public final FrameLayout e;
-    public final ImageView f43067f;
+    public final ImageView f42869f;
     public final org.telegram.ui.Cells.y h;
-    public final ImageView f43068n;
-    public final TextView f43069r;
-    public final TextView f43070s;
-    public final bn f43071w;
-    public final ii f43072x;
-    public final ArrayList f43073y;
+    public final ImageView f42870n;
+    public final TextView f42871r;
+    public final TextView f42872s;
+    public final bn f42873w;
+    public final ii f42874x;
+    public final ArrayList f42875y;
 
     public j(Activity activity) {
         super(activity);
-        int i10 = d20.f15147s0;
-        this.f43073y = new ArrayList();
+        int i10 = e20.f15506s0;
+        this.f42875y = new ArrayList();
         this.J = 0.0f;
         setWillNotDraw(false);
-        int i11 = d20.f15147s0;
+        int i11 = e20.f15506s0;
         ag.a aVar = new ag.a(this, 19);
         a aVar2 = new a(this);
         x4 x4Var = new x4(1, null);
-        this.f43064a = x4Var;
+        this.f42866a = x4Var;
         ii iiVar = new ii(this, activity, i11, aVar, aVar2, x4Var);
-        this.f43072x = iiVar;
-        iiVar.f30819f3.f29295r = false;
+        this.f42874x = iiVar;
+        iiVar.f31183f3.f29638r = false;
         iiVar.setOverScrollMode(2);
         iiVar.setPadding(0, 0, 0, 0);
         addView(iiVar, b6.e(-1, -1, 119));
@@ -76,15 +76,15 @@ public final class j extends FrameLayout {
         FrameLayout frameLayout2 = new FrameLayout(activity);
         this.e = frameLayout2;
         org.telegram.ui.Cells.y b02 = t6.b0(this.G, this.I, 15, 15);
-        this.f43066c = b02;
+        this.f42868c = b02;
         frameLayout2.setBackground(b02);
         e6.b(frameLayout2, 0.04f, 1.25f);
         frameLayout.addView(frameLayout2, b6.d(-1, -2.0f, 7, 12.0f, 0.0f, 12.0f, 15.0f));
         ImageView imageView = new ImageView(activity);
-        this.f43067f = imageView;
+        this.f42869f = imageView;
         frameLayout2.addView(imageView, b6.d(24, 24.0f, 19, 16.0f, 16.0f, 16.0f, 16.0f));
         ImageView imageView2 = new ImageView(activity);
-        this.f43068n = imageView2;
+        this.f42870n = imageView2;
         e6.a(imageView2);
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
         imageView2.setImageResource(2131232102);
@@ -96,37 +96,37 @@ public final class j extends FrameLayout {
         linearLayout.setOrientation(1);
         frameLayout2.addView(linearLayout, b6.d(-1, -2.0f, 16, 54.0f, 9.0f, 54.0f, 9.0f));
         TextView textView = new TextView(activity);
-        this.f43069r = textView;
+        this.f42871r = textView;
         textView.setTextSize(1, 16.0f);
         textView.setTypeface(org.telegram.messenger.i0.o());
         textView.setMaxLines(4);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         linearLayout.addView(textView, b6.t(-1, -2, 55, 0, 0, 0, 2));
         TextView textView2 = new TextView(activity);
-        this.f43070s = textView2;
+        this.f42872s = textView2;
         textView2.setTextSize(1, 14.0f);
         textView2.setMaxLines(3);
         textView2.setEllipsize(TextUtils.TruncateAt.MIDDLE);
         linearLayout.addView(textView2, b6.t(-1, -2, 55, 0, 0, 0, 0));
         this.D = new h(null, i10, new w5(this, 12));
-        this.f43071w = new bn(activity, 24);
+        this.f42873w = new bn(activity, 24);
         int i12 = t6.Dl;
         c(t6.x0(null, i12, false), org.telegram.messenger.i0.B(t6.x0(null, i12, false)) >= 0.721f ? -16777216 : -1);
         setOpenProgress(0.0f);
         setImportantForAccessibility(4);
     }
 
-    public static String a(jj jjVar) {
-        TLRPC.Message message = jjVar.f16337k;
+    public static String a(kj kjVar) {
+        TLRPC.Message message = kjVar.f16690k;
         if (message != null) {
             TLRPC.MessageMedia messageMedia = message.media;
             if (messageMedia instanceof TLRPC.TL_messageMediaWebPage) {
                 return messageMedia.webpage.url;
             }
         }
-        CharSequence charSequence = jjVar.v;
+        CharSequence charSequence = kjVar.v;
         if (charSequence != null && charSequence.length() > 0) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(jjVar.v);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(kjVar.v);
             for (URLSpan uRLSpan : (URLSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), URLSpan.class)) {
                 String url = uRLSpan.getURL();
                 if (url != null && !url.startsWith("@") && !url.startsWith("#") && !url.startsWith("$")) {
@@ -158,29 +158,29 @@ public final class j extends FrameLayout {
         this.F = i10;
         this.I = i0.b.f(org.telegram.messenger.i0.T1(0.12f, 0.22f, f7), i10, i11);
         int i12 = this.G;
-        org.telegram.ui.Cells.y yVar = this.f43066c;
+        org.telegram.ui.Cells.y yVar = this.f42868c;
         t6.H1(yVar, i12, false);
         t6.H1(yVar, this.I, true);
         this.e.invalidate();
-        this.f43069r.setTextColor(i11);
-        this.f43070s.setTextColor(t6.r1(0.6f, i11));
-        ImageView imageView = this.f43067f;
+        this.f42871r.setTextColor(i11);
+        this.f42872s.setTextColor(t6.r1(0.6f, i11));
+        ImageView imageView = this.f42869f;
         if (imageView.getColorFilter() != null) {
             imageView.setColorFilter(new PorterDuffColorFilter(i11, PorterDuff.Mode.SRC_IN));
         }
-        this.f43068n.setColorFilter(new PorterDuffColorFilter(i11, PorterDuff.Mode.SRC_IN));
+        this.f42870n.setColorFilter(new PorterDuffColorFilter(i11, PorterDuff.Mode.SRC_IN));
         t6.H1(this.h, t6.r1(1.5f, this.I), true);
         int w9 = t6.w(i10, t6.r1(0.05f, i11));
         int w10 = t6.w(i10, t6.r1(0.55f, i11));
-        x4 x4Var = this.f43064a;
-        SparseIntArray sparseIntArray = (SparseIntArray) x4Var.f21528b;
-        ((SparseIntArray) x4Var.f21528b).put(t6.f20929d6, this.F);
+        x4 x4Var = this.f42866a;
+        SparseIntArray sparseIntArray = (SparseIntArray) x4Var.f21529b;
+        ((SparseIntArray) x4Var.f21529b).put(t6.f20930d6, this.F);
         sparseIntArray.put(t6.G6, i11);
         sparseIntArray.put(t6.e7, w9);
         sparseIntArray.put(t6.f7, w10);
         sparseIntArray.put(t6.G8, t6.r1(0.2f, i11));
-        sparseIntArray.put(t6.f21020i6, t6.r1(org.telegram.messenger.i0.T1(0.05f, 0.12f, f7), i11));
-        this.f43072x.g1();
+        sparseIntArray.put(t6.f21021i6, t6.r1(org.telegram.messenger.i0.T1(0.05f, 0.12f, f7), i11));
+        this.f42874x.g1();
     }
 
     @Override
@@ -225,20 +225,20 @@ public final class j extends FrameLayout {
             asyncTask.cancel(true);
             this.O = null;
         }
-        ArrayList arrayList = this.f43073y;
+        ArrayList arrayList = this.f42875y;
         boolean z10 = !arrayList.isEmpty();
         if (TextUtils.isEmpty(str)) {
             arrayList.clear();
-            ii iiVar = this.f43072x;
-            iiVar.f30819f3.O(true);
+            ii iiVar = this.f42874x;
+            iiVar.f31183f3.O(true);
             if (z10 != (!arrayList.isEmpty())) {
-                iiVar.f30818e3.h1(0, 0);
+                iiVar.f31182e3.h1(0, 0);
                 return;
             }
             return;
         }
         c1 c1Var = new c1(new nc(5, this, z10));
-        String str3 = g1.a().f43047c;
+        String str3 = g1.a().f42849c;
         if (str3 != null) {
             StringBuilder t10 = a1.g.t(str3);
             t10.append(URLEncoder.encode(str));

@@ -4,15 +4,15 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.d20;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.e20;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.p6;
-import org.telegram.ui.Components.a51;
-import org.telegram.ui.Components.p51;
-import org.telegram.ui.Components.u51;
+import org.telegram.ui.Components.b51;
+import org.telegram.ui.Components.q51;
+import org.telegram.ui.Components.v51;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.UsersSelectActivity;
 public final class x0 {
@@ -42,10 +42,10 @@ public final class x0 {
         this.f785c = k2Var.getResourceProvider();
     }
 
-    public final void a(ArrayList arrayList, p51 p51Var, boolean z10) {
+    public final void a(ArrayList arrayList, q51 q51Var, boolean z10) {
         String str;
         String str2;
-        p51Var.V();
+        q51Var.V();
         int d = d();
         String str3 = "";
         if (!this.h) {
@@ -85,15 +85,15 @@ public final class x0 {
                     str = i10.toString();
                 } else {
                     StringBuilder t10 = a1.g.t(str);
-                    t10.append(cd.H(',', "Chats", arrayList2.size()));
+                    t10.append(dd.H(',', "Chats", arrayList2.size()));
                     str = t10.toString();
                 }
             }
             if (TextUtils.isEmpty(str)) {
-                str = cd.L0(2131752777, null);
+                str = dd.L0(2131752777, null);
             }
-            a51 f7 = a51.f(cd.L0(2131752778, null), str, 101);
-            f7.f24288g = z10;
+            b51 f7 = b51.f(dd.L0(2131752778, null), str, 101);
+            f7.f24639g = z10;
             arrayList.add(f7);
         }
         boolean z11 = this.f788i;
@@ -132,18 +132,18 @@ public final class x0 {
                     str3 = i11.toString();
                 } else {
                     StringBuilder t11 = a1.g.t(str3);
-                    t11.append(cd.H(',', "Chats", arrayList3.size()));
+                    t11.append(dd.H(',', "Chats", arrayList3.size()));
                     str3 = t11.toString();
                 }
             }
             if (TextUtils.isEmpty(str3)) {
-                str3 = cd.L0(2131752779, null);
+                str3 = dd.L0(2131752779, null);
             }
-            a51 f10 = a51.f(cd.L0(2131752780, null), str3, 103);
-            f10.f24288g = z10;
+            b51 f10 = b51.f(dd.L0(2131752780, null), str3, 103);
+            f10.f24639g = z10;
             arrayList.add(f10);
         }
-        p51Var.U();
+        q51Var.U();
     }
 
     public final TL_account.TL_inputBusinessBotRecipients b() {
@@ -186,7 +186,7 @@ public final class x0 {
             arrayList = this.f789j;
         }
         if (!arrayList.isEmpty()) {
-            vp r12 = vp.r1(d20.f15147s0);
+            wp r12 = wp.r1(e20.f15506s0);
             tL_inputBusinessBotRecipients.flags |= 16;
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
                 Long l4 = (Long) arrayList.get(i10);
@@ -195,7 +195,7 @@ public final class x0 {
             }
         }
         if (!this.h) {
-            vp r13 = vp.r1(d20.f15147s0);
+            wp r13 = wp.r1(e20.f15506s0);
             tL_inputBusinessBotRecipients.flags |= 64;
             for (int i11 = 0; i11 < arrayList2.size(); i11++) {
                 Long l10 = (Long) arrayList2.get(i11);
@@ -246,7 +246,7 @@ public final class x0 {
             arrayList = this.f789j;
         }
         if (!arrayList.isEmpty()) {
-            vp r12 = vp.r1(d20.f15147s0);
+            wp r12 = wp.r1(e20.f15506s0);
             tL_businessBotRecipients.flags |= 16;
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
                 Long l4 = (Long) arrayList.get(i10);
@@ -256,7 +256,7 @@ public final class x0 {
             }
         }
         if (!this.h) {
-            vp r13 = vp.r1(d20.f15147s0);
+            wp r13 = wp.r1(e20.f15506s0);
             tL_businessBotRecipients.flags |= 64;
             for (int i11 = 0; i11 < arrayList2.size(); i11++) {
                 Long l10 = (Long) arrayList2.get(i11);
@@ -314,7 +314,7 @@ public final class x0 {
             arrayList = this.f789j;
         }
         if (!arrayList.isEmpty()) {
-            vp r12 = vp.r1(d20.f15147s0);
+            wp r12 = wp.r1(e20.f15506s0);
             tL_inputBusinessRecipients.flags |= 16;
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
                 Long l4 = (Long) arrayList.get(i10);
@@ -364,7 +364,7 @@ public final class x0 {
             arrayList = this.f789j;
         }
         if (!arrayList.isEmpty()) {
-            vp r12 = vp.r1(d20.f15147s0);
+            wp r12 = wp.r1(e20.f15506s0);
             tL_businessRecipients.flags |= 16;
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
                 Long l4 = (Long) arrayList.get(i10);
@@ -411,14 +411,14 @@ public final class x0 {
         return true;
     }
 
-    public final boolean h(a51 a51Var) {
+    public final boolean h(b51 b51Var) {
         boolean z10;
         ArrayList arrayList;
         boolean z11;
         boolean z12;
         int i10;
         int i11;
-        int i12 = a51Var.d;
+        int i12 = b51Var.d;
         org.telegram.ui.ActionBar.k2 k2Var = this.d;
         if (i12 != 101 && i12 != 103) {
             Runnable runnable = this.e;
@@ -428,28 +428,28 @@ public final class x0 {
             } else if (i12 == 104) {
                 runnable.run();
                 return true;
-            } else if (a51Var.f7680a != 11) {
+            } else if (b51Var.f7681a != 11) {
                 return false;
             } else {
-                boolean z13 = a51Var.f24302w;
-                String A1 = vp.r1(this.f784b).A1(a51Var.f24303x, false);
+                boolean z13 = b51Var.f24653w;
+                String A1 = wp.r1(this.f784b).A1(b51Var.f24654x, false);
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, this.f783a, this.f785c);
                 if (!z13) {
                     i10 = 2131752686;
                 } else {
                     i10 = 2131752684;
                 }
-                String L0 = cd.L0(i10, null);
-                org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20134a;
+                String L0 = dd.L0(i10, null);
+                org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20135a;
                 x1Var.R = L0;
                 if (!z13) {
                     i11 = 2131752687;
                 } else {
                     i11 = 2131752685;
                 }
-                x1Var.T = cd.a0(null, null, i11, A1);
-                alertDialog$Builder.k(cd.L0(2131746336, null), new v0(this, z13, a51Var, 0));
-                alertDialog$Builder.h(cd.L0(2131752589, null), null);
+                x1Var.T = dd.a0(null, null, i11, A1);
+                alertDialog$Builder.k(dd.L0(2131746336, null), new v0(this, z13, b51Var, 0));
+                alertDialog$Builder.h(dd.L0(2131752589, null), null);
                 if (k2Var != null) {
                     k2Var.showDialog(x1Var);
                     return true;
@@ -469,7 +469,7 @@ public final class x0 {
             arrayList = this.f790k;
         }
         UsersSelectActivity usersSelectActivity = new UsersSelectActivity(d(), arrayList, z10);
-        usersSelectActivity.f34155y = 2;
+        usersSelectActivity.f34162y = 2;
         usersSelectActivity.G = false;
         if (this.f788i && !this.h && !z10) {
             z11 = true;
@@ -484,7 +484,7 @@ public final class x0 {
             z12 = false;
         }
         usersSelectActivity.H = z12;
-        usersSelectActivity.f34150n = new w0(0, this, z10);
+        usersSelectActivity.f34157n = new w0(0, this, z10);
         if (k2Var != null) {
             k2Var.presentFragment(usersSelectActivity);
             return true;
@@ -494,7 +494,7 @@ public final class x0 {
             return true;
         }
         ?? obj = new Object();
-        obj.f20389a = true;
+        obj.f20390a = true;
         T.showAsSheet(usersSelectActivity, obj);
         return true;
     }
@@ -574,14 +574,14 @@ public final class x0 {
         arrayList2.addAll(this.f791l.exclude_users);
     }
 
-    public final boolean k(u51 u51Var) {
+    public final boolean k(v51 v51Var) {
         if (!this.h && this.f789j.isEmpty() && this.f786f == 0) {
             org.telegram.messenger.t2.APP_ERROR.a();
-            View B1 = u51Var.B1(101);
+            View B1 = v51Var.B1(101);
             int i10 = -this.f792m;
             this.f792m = i10;
             org.telegram.messenger.i0.F3(i10, B1, null);
-            u51Var.y0(u51Var.A1(101));
+            v51Var.y0(v51Var.A1(101));
             return false;
         }
         return true;

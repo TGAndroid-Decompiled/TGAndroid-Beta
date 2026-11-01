@@ -1,11 +1,11 @@
 package vh;
 public final class y6 implements Runnable {
-    public final int f52208a;
-    public final o8 f52209b;
+    public final int f52223a;
+    public final o8 f52224b;
 
     public y6(o8 o8Var, int i10) {
-        this.f52208a = i10;
-        this.f52209b = o8Var;
+        this.f52223a = i10;
+        this.f52224b = o8Var;
     }
 
     @Override

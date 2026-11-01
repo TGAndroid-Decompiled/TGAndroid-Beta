@@ -5,7 +5,7 @@ import se.b;
 import ve.g;
 import ve.r;
 public final class a implements ye.a {
-    public final char f48687a;
+    public final char f48698a;
 
     public a(int i10) {
         this('*');
@@ -20,13 +20,13 @@ public final class a implements ye.a {
 
     @Override
     public final int a(b bVar, b bVar2) {
-        if (bVar.d || bVar2.f48190c) {
+        if (bVar.d || bVar2.f48201c) {
             int i10 = bVar2.h;
             if (i10 % 3 != 0 && (bVar.h + i10) % 3 == 0) {
                 return 0;
             }
         }
-        if (bVar.f48192g >= 2 && bVar2.f48192g >= 2) {
+        if (bVar.f48203g >= 2 && bVar2.f48203g >= 2) {
             return 2;
         }
         return 1;
@@ -34,13 +34,13 @@ public final class a implements ye.a {
 
     @Override
     public final char b() {
-        return this.f48687a;
+        return this.f48698a;
     }
 
     @Override
     public final void c(r rVar, r rVar2, int i10) {
         g gVar;
-        String.valueOf(this.f48687a);
+        String.valueOf(this.f48698a);
         if (i10 == 1) {
             gVar = new g(0);
         } else {
@@ -71,10 +71,10 @@ public final class a implements ye.a {
 
     @Override
     public final char e() {
-        return this.f48687a;
+        return this.f48698a;
     }
 
     public a(char c10) {
-        this.f48687a = c10;
+        this.f48698a = c10;
     }
 }

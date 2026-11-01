@@ -1,28 +1,28 @@
 package org.telegram.ui;
 
 import android.view.View;
-public final class lq implements org.telegram.messenger.cs, org.telegram.ui.ActionBar.u1, org.telegram.ui.Components.hk0, org.telegram.ui.Components.ik0 {
-    public final int f39365a;
-    public final pr f39366b;
+public final class lq implements org.telegram.messenger.ds, org.telegram.ui.ActionBar.u1, org.telegram.ui.Components.ik0, org.telegram.ui.Components.jk0 {
+    public final int f39357a;
+    public final pr f39358b;
 
     public lq(pr prVar, int i10) {
-        this.f39365a = i10;
-        this.f39366b = prVar;
+        this.f39357a = i10;
+        this.f39358b = prVar;
     }
 
     @Override
     public void b(float f7, float f10, int i10, View view) {
-        pr.Z(this.f39366b, view, i10);
+        pr.a0(this.f39358b, view, i10);
     }
 
     @Override
     public boolean f(int i10, View view) {
-        pr prVar = this.f39366b;
+        pr prVar = this.f39358b;
         if (prVar.getParentActivity() != null) {
-            s4.g0 adapter = prVar.f40724c.getAdapter();
-            lr lrVar = prVar.f40718a;
+            s4.g0 adapter = prVar.f40531c.getAdapter();
+            lr lrVar = prVar.f40525a;
             if (adapter == lrVar) {
-                return prVar.l0(lrVar.E(i10), false, view);
+                return prVar.m0(lrVar.E(i10), false, view);
             }
         }
         return false;
@@ -30,12 +30,12 @@ public final class lq implements org.telegram.messenger.cs, org.telegram.ui.Acti
 
     @Override
     public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
-        switch (this.f39365a) {
+        switch (this.f39357a) {
             case 1:
-                this.f39366b.y0();
+                this.f39358b.z0();
                 return;
             default:
-                this.f39366b.finishFragment();
+                this.f39358b.finishFragment();
                 return;
         }
     }
@@ -47,7 +47,7 @@ public final class lq implements org.telegram.messenger.cs, org.telegram.ui.Acti
 
     @Override
     public void run(long j10) {
-        pr.Y(this.f39366b, j10);
+        pr.Z(this.f39358b, j10);
     }
 
     @Override

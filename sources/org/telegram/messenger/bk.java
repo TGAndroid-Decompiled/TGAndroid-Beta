@@ -1,19 +1,28 @@
 package org.telegram.messenger;
 
-import java.util.Comparator;
-public final class bk implements Comparator {
-    public final int f14793a;
+import org.telegram.tgnet.TLRPC;
+public final class bk implements Runnable {
+    public final int f14979a;
+    public final wp f14980b;
+    public final TLRPC.Updates f14981c;
+    public final boolean d;
 
-    public bk(int i10) {
-        this.f14793a = i10;
+    public bk(wp wpVar, TLRPC.Updates updates, boolean z10, int i10) {
+        this.f14979a = i10;
+        this.f14980b = wpVar;
+        this.f14981c = updates;
+        this.d = z10;
     }
 
     @Override
-    public final int compare(java.lang.Object r11, java.lang.Object r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.bk.compare(java.lang.Object, java.lang.Object):int");
-    }
-
-    public bk(vp vpVar, int i10) {
-        this.f14793a = i10;
+    public final void run() {
+        switch (this.f14979a) {
+            case 0:
+                this.f14980b.L3(this.f14981c, this.d);
+                return;
+            default:
+                Utilities.d.c(new bk(this.f14980b, this.f14981c, this.d, 0));
+                return;
+        }
     }
 }

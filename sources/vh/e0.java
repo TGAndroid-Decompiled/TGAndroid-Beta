@@ -3,17 +3,17 @@ package vh;
 import android.graphics.SurfaceTexture;
 import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.jj;
-import org.telegram.ui.Components.gn0;
-import org.telegram.ui.Components.s61;
-import org.telegram.ui.Components.u61;
-import org.telegram.ui.s00;
-import org.telegram.ui.y00;
-public final class e0 implements eg.p, s61, y00, zf.l1 {
-    public Object f51092a;
+import org.telegram.messenger.kj;
+import org.telegram.ui.Components.hn0;
+import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.v61;
+import org.telegram.ui.r00;
+import org.telegram.ui.x00;
+public final class e0 implements eg.p, t61, x00, zf.l1 {
+    public Object f51107a;
 
     public e0(Object obj) {
-        this.f51092a = obj;
+        this.f51107a = obj;
     }
 
     @Override
@@ -27,29 +27,29 @@ public final class e0 implements eg.p, s61, y00, zf.l1 {
     }
 
     @Override
-    public boolean b(s00 s00Var) {
+    public boolean b(r00 r00Var) {
         return false;
     }
 
     @Override
-    public void c(jj jjVar) {
-        yh.a0 a0Var = (yh.a0) this.f51092a;
-        a0Var.f54448q1.presentFragment(gn0.M(a0Var.f21583a, jjVar));
-        a0Var.dismiss();
+    public void c(kj kjVar) {
+        yh.z zVar = (yh.z) this.f51107a;
+        zVar.f54550q1.presentFragment(hn0.M(zVar.f21584a, kjVar));
+        zVar.dismiss();
     }
 
     @Override
     public void c0(ArrayList arrayList) {
-        zf.x0 x0Var = (zf.x0) this.f51092a;
+        zf.x0 x0Var = (zf.x0) this.f51107a;
         String str = x0Var.Z;
         if (str != null) {
-            x0Var.U(str, x0Var.f55648c0, x0Var.f55649d0, x0Var.f55646b0, x0Var.f55645a0);
+            x0Var.U(str, x0Var.f55666c0, x0Var.f55667d0, x0Var.f55664b0, x0Var.f55663a0);
         }
     }
 
     @Override
     public void d() {
-        ((g0) this.f51092a).e.invalidate();
+        ((g0) this.f51107a).e.invalidate();
     }
 
     @Override
@@ -59,7 +59,7 @@ public final class e0 implements eg.p, s61, y00, zf.l1 {
 
     @Override
     public void i(int i10) {
-        ((zf.x0) this.f51092a).f();
+        ((zf.x0) this.f51107a).f();
     }
 
     @Override
@@ -68,11 +68,11 @@ public final class e0 implements eg.p, s61, y00, zf.l1 {
 
     @Override
     public void onStateChanged(boolean z10, int i10) {
-        k4 k4Var = (k4) this.f51092a;
+        k4 k4Var = (k4) this.f51107a;
         i4 i4Var = k4Var.L;
         org.telegram.messenger.i0.r(i4Var);
-        u61 u61Var = k4Var.D;
-        if (u61Var != null && u61Var.d0()) {
+        v61 v61Var = k4Var.D;
+        if (v61Var != null && v61Var.d0()) {
             org.telegram.messenger.i0.g3(i4Var);
         }
     }
@@ -84,7 +84,7 @@ public final class e0 implements eg.p, s61, y00, zf.l1 {
 
     @Override
     public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        ((k4) this.f51092a).i();
+        ((k4) this.f51107a).i();
     }
 
     @Override
@@ -121,11 +121,11 @@ public final class e0 implements eg.p, s61, y00, zf.l1 {
     }
 
     @Override
-    public void onError(u61 u61Var, Exception exc) {
+    public void onError(v61 v61Var, Exception exc) {
     }
 
     @Override
-    public void e(jj jjVar, View view, int i10) {
+    public void e(kj kjVar, View view, int i10) {
     }
 
     @Override

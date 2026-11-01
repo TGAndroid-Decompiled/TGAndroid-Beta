@@ -1,13 +1,19 @@
 package org.telegram.ui;
-public final class n31 extends s4.j {
-    public final s31 F;
 
-    public n31(s31 s31Var) {
-        this.F = s31Var;
+import androidx.recyclerview.widget.RecyclerView;
+public final class n31 extends s4.s0 {
+    public final q31 f39685a;
+
+    public n31(q31 q31Var) {
+        this.f39685a = q31Var;
     }
 
     @Override
-    public final void P(s4.c1 c1Var) {
-        s31.d1(this.F);
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        q31 q31Var = this.f39685a;
+        if (q31Var.f26724k1.I1) {
+            org.telegram.messenger.i0.v1(q31Var.U1);
+        }
+        q31.d1(q31Var);
     }
 }

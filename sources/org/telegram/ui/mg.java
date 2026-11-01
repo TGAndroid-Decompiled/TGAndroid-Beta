@@ -1,55 +1,19 @@
 package org.telegram.ui;
+public final class mg implements org.telegram.messenger.r20 {
+    public final int f39528a;
+    public final long f39529b;
+    public final long f39530c;
+    public final Object d;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.ImageView;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class mg implements View.OnKeyListener {
-    public final int f39699a;
-    public final Object f39700b;
-
-    public mg(Object obj, int i10) {
-        this.f39699a = i10;
-        this.f39700b = obj;
+    public mg(Object obj, long j10, long j11, int i10) {
+        this.f39528a = i10;
+        this.d = obj;
+        this.f39529b = j10;
+        this.f39530c = j11;
     }
 
     @Override
-    public final boolean onKey(View view, int i10, KeyEvent keyEvent) {
-        switch (this.f39699a) {
-            case 0:
-                un unVar = (un) this.f39700b;
-                unVar.getClass();
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
-                if (i10 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor.length() == 0) {
-                    unVar.Ia();
-                    return true;
-                }
-                return false;
-            case 1:
-                ll0 ll0Var = (ll0) this.f39700b;
-                if (i10 == 67) {
-                    if (ll0Var.Y[2].length() == 0) {
-                        ll0Var.Y[1].requestFocus();
-                        EditTextBoldCursor editTextBoldCursor2 = ll0Var.Y[1];
-                        editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
-                        ll0Var.Y[1].dispatchKeyEvent(keyEvent);
-                        return true;
-                    }
-                } else {
-                    ll0Var.getClass();
-                }
-                return false;
-            default:
-                xs0 xs0Var = (xs0) this.f39700b;
-                EditTextBoldCursor editTextBoldCursor3 = (EditTextBoldCursor) view;
-                if (i10 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor3.length() == 0) {
-                    ImageView imageView = xs0Var.f21861f;
-                    if (imageView != null) {
-                        imageView.callOnClick();
-                    }
-                    return true;
-                }
-                return false;
-        }
+    public final void a(java.lang.Object r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.mg.a(java.lang.Object):void");
     }
 }

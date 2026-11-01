@@ -18,7 +18,7 @@ public final class i2 extends Drawable {
 
     public i2(Context context, int i10) {
         Drawable f7 = i0.a.f(context, i10);
-        this.d = org.telegram.ui.ActionBar.t6.f20929d6;
+        this.d = org.telegram.ui.ActionBar.t6.f20930d6;
         this.f3073g = true;
         this.f3069a = context;
         this.f3070b = f7;

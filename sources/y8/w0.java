@@ -22,12 +22,12 @@ public final class w0 extends n6.g {
     public final ib.c X;
     public final ib.c Y;
     public final ib.c Z;
-    public final ib.c f54292a0;
-    public final ib.c f54293b0;
-    public final ib.c f54294c0;
-    public final ib.c f54295d0;
-    public final ib.c f54296e0;
-    public final x0 f54297f0;
+    public final ib.c f54313a0;
+    public final ib.c f54314b0;
+    public final ib.c f54315c0;
+    public final ib.c f54316d0;
+    public final ib.c f54317e0;
+    public final x0 f54318f0;
 
     public w0(Context context, Looper looper, com.google.android.gms.common.api.k kVar, com.google.android.gms.common.api.l lVar, p3 p3Var) {
         super(context, looper, 14, p3Var, kVar, lVar, 0);
@@ -38,14 +38,14 @@ public final class w0 extends n6.g {
         this.X = new ib.c();
         this.Y = new ib.c();
         this.Z = new ib.c();
-        this.f54292a0 = new ib.c();
-        this.f54293b0 = new ib.c();
-        this.f54294c0 = new ib.c();
-        this.f54295d0 = new ib.c();
-        this.f54296e0 = new ib.c();
+        this.f54313a0 = new ib.c();
+        this.f54314b0 = new ib.c();
+        this.f54315c0 = new ib.c();
+        this.f54316d0 = new ib.c();
+        this.f54317e0 = new ib.c();
         n6.l.g(unconfigurableExecutorService);
         this.U = unconfigurableExecutorService;
-        this.f54297f0 = a2;
+        this.f54318f0 = a2;
         File file = new File(new File(context.getFilesDir(), "wearos_assets"), "streamtmp");
         file.mkdirs();
         File[] listFiles = file.listFiles();
@@ -66,11 +66,11 @@ public final class w0 extends n6.g {
             this.W.a(iBinder);
             this.X.a(iBinder);
             this.Z.a(iBinder);
-            this.f54292a0.a(iBinder);
-            this.f54293b0.a(iBinder);
-            this.f54294c0.a(iBinder);
-            this.f54295d0.a(iBinder);
-            this.f54296e0.a(iBinder);
+            this.f54313a0.a(iBinder);
+            this.f54314b0.a(iBinder);
+            this.f54315c0.a(iBinder);
+            this.f54316d0.a(iBinder);
+            this.f54317e0.a(iBinder);
             this.Y.a(iBinder);
             i10 = 0;
         }
@@ -85,9 +85,9 @@ public final class w0 extends n6.g {
     @Override
     public final void f(n6.b bVar) {
         int i10;
-        n6.a0 a0Var = this.f13588w;
+        n6.a0 a0Var = this.f13589w;
         AtomicInteger atomicInteger = this.R;
-        Context context = this.f13585n;
+        Context context = this.f13586n;
         if (!l()) {
             try {
                 Bundle bundle = context.getPackageManager().getApplicationInfo("com.google.android.wearable.app.cn", 128).metaData;
@@ -102,7 +102,7 @@ public final class w0 extends n6.g {
                     if (context.getPackageManager().resolveActivity(intent, 65536) == null) {
                         intent = new Intent("android.intent.action.VIEW", Uri.parse("market://details").buildUpon().appendQueryParameter("id", "com.google.android.wearable.app.cn").build());
                     }
-                    PendingIntent activity = PendingIntent.getActivity(context, 0, intent, f8.b.f6962a);
+                    PendingIntent activity = PendingIntent.getActivity(context, 0, intent, f8.b.f6963a);
                     n6.l.h(bVar, "Connection progress callbacks cannot be null.");
                     this.E = bVar;
                     a0Var.sendMessage(a0Var.obtainMessage(3, atomicInteger.get(), 6, activity));
@@ -120,7 +120,7 @@ public final class w0 extends n6.g {
 
     @Override
     public final boolean l() {
-        if (!this.f54297f0.b()) {
+        if (!this.f54318f0.b()) {
             return true;
         }
         return false;
@@ -145,7 +145,7 @@ public final class w0 extends n6.g {
 
     @Override
     public final k6.c[] s() {
-        return x8.c.f53427b;
+        return x8.c.f53445b;
     }
 
     @Override
@@ -160,7 +160,7 @@ public final class w0 extends n6.g {
 
     @Override
     public final String y() {
-        if (this.f54297f0.b()) {
+        if (this.f54318f0.b()) {
             return "com.google.android.wearable.app.cn";
         }
         return "com.google.android.gms";

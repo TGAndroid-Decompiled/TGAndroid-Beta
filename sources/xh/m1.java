@@ -7,13 +7,13 @@ import android.widget.ImageView;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.t6;
 public final class m1 {
-    public final SparseIntArray f53868a = new SparseIntArray();
-    public final SparseIntArray f53869b = new SparseIntArray();
-    public final int[] f53870c = {t6.G6, t6.f21244u8, t6.G8, t6.E8, t6.F8, t6.I5, t6.wj};
+    public final SparseIntArray f53885a = new SparseIntArray();
+    public final SparseIntArray f53886b = new SparseIntArray();
+    public final int[] f53887c = {t6.G6, t6.f21245u8, t6.G8, t6.E8, t6.F8, t6.I5, t6.wj};
     public float d;
 
     public final int a(int i10) {
-        return i0.b.f(this.d, this.f53868a.get(i10), this.f53869b.get(i10));
+        return i0.b.f(this.d, this.f53885a.get(i10), this.f53886b.get(i10));
     }
 
     public final void b(org.telegram.ui.ActionBar.l lVar, float f7) {
@@ -26,13 +26,13 @@ public final class m1 {
         if (imageView != null) {
             imageView.setColorFilter(new PorterDuffColorFilter(a(i10), PorterDuff.Mode.SRC_IN));
         }
-        lVar.C(a(t6.f21244u8), false);
+        lVar.C(a(t6.f21245u8), false);
     }
 
     public final void c(SparseIntArray sparseIntArray, int i10, p6 p6Var) {
         int i11;
         int i12;
-        int[] iArr = this.f53870c;
+        int[] iArr = this.f53887c;
         int i13 = 0;
         if (i10 == 0) {
             while (i13 < iArr.length) {
@@ -53,7 +53,7 @@ public final class m1 {
             if (i15 != t6.G8 && i15 != t6.E8 && i15 != t6.F8 && i15 != (i12 = t6.I5)) {
                 if (i15 == t6.wj) {
                     sparseIntArray.put(i15, i0.b.f(0.5f, i10, i11));
-                } else if (i15 != t6.f21244u8 && i15 != i12) {
+                } else if (i15 != t6.f21245u8 && i15 != i12) {
                     sparseIntArray.put(i15, i11);
                 } else {
                     sparseIntArray.put(i15, o10);

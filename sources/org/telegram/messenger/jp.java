@@ -1,6 +1,6 @@
 package org.telegram.messenger;
-public interface jp {
-    void a();
 
-    void g(boolean z10);
+import org.telegram.tgnet.TLRPC;
+public interface jp {
+    void a(boolean z10, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str);
 }

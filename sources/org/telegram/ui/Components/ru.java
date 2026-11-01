@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import org.telegram.tgnet.TLRPC;
-public final class ru extends op0 {
+public final class ru extends pp0 {
     public final cv R2;
 
     public ru(cv cvVar, Context context, String str, String str2, org.telegram.ui.ActionBar.p6 p6Var) {

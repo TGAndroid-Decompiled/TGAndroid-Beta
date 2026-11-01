@@ -10,19 +10,19 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 public final class l implements Runnable {
-    public final int f53462a;
-    public final long f53463b;
-    public final Object f53464c;
+    public final int f53480a;
+    public final long f53481b;
+    public final Object f53482c;
     public final Object d;
     public final Object e;
 
     public l(FirebaseMessaging firebaseMessaging, long j10) {
-        this.f53462a = 1;
+        this.f53480a = 1;
         this.e = new ThreadPoolExecutor(0, 1, 30L, TimeUnit.SECONDS, new LinkedBlockingQueue(), new c5.s("firebase-iid-executor"));
         this.d = firebaseMessaging;
-        this.f53463b = j10;
+        this.f53481b = j10;
         PowerManager.WakeLock newWakeLock = ((PowerManager) firebaseMessaging.f5591b.getSystemService("power")).newWakeLock(1, "fiid-sync");
-        this.f53464c = newWakeLock;
+        this.f53482c = newWakeLock;
         newWakeLock.setReferenceCounted(false);
     }
 
@@ -70,19 +70,19 @@ public final class l implements Runnable {
 
     @Override
     public final void run() {
-        switch (this.f53462a) {
+        switch (this.f53480a) {
             case 0:
                 n nVar = (n) this.e;
-                r rVar = nVar.f53478n;
+                r rVar = nVar.f53496n;
                 if (rVar == null || !rVar.e.get()) {
-                    long j10 = this.f53463b / 1000;
+                    long j10 = this.f53481b / 1000;
                     String e = nVar.e();
                     if (e == null) {
                         Log.w("FirebaseCrashlytics", "Tried to write a non-fatal exception while no session was open.", null);
                         return;
                     }
-                    j2.f fVar = nVar.f53477m;
-                    Throwable th2 = (Throwable) this.f53464c;
+                    j2.f fVar = nVar.f53495m;
+                    Throwable th2 = (Throwable) this.f53482c;
                     Thread thread = (Thread) this.d;
                     fVar.getClass();
                     String concat = "Persisting non-fatal event for session ".concat(e);
@@ -94,7 +94,7 @@ public final class l implements Runnable {
                 }
                 return;
             default:
-                PowerManager.WakeLock wakeLock = (PowerManager.WakeLock) this.f53464c;
+                PowerManager.WakeLock wakeLock = (PowerManager.WakeLock) this.f53482c;
                 xa.n D = xa.n.D();
                 FirebaseMessaging firebaseMessaging = (FirebaseMessaging) this.d;
                 if (D.I(firebaseMessaging.f5591b)) {
@@ -121,7 +121,7 @@ public final class l implements Runnable {
                             if (b()) {
                                 firebaseMessaging.e(false);
                             } else {
-                                firebaseMessaging.f(this.f53463b);
+                                firebaseMessaging.f(this.f53481b);
                             }
                             if (!xa.n.D().I(firebaseMessaging.f5591b)) {
                                 return;
@@ -146,10 +146,10 @@ public final class l implements Runnable {
     }
 
     public l(n nVar, long j10, Throwable th2, Thread thread) {
-        this.f53462a = 0;
+        this.f53480a = 0;
         this.e = nVar;
-        this.f53463b = j10;
-        this.f53464c = th2;
+        this.f53481b = j10;
+        this.f53482c = th2;
         this.d = thread;
     }
 }

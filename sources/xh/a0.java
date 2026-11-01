@@ -10,13 +10,13 @@ import android.graphics.drawable.Drawable;
 import org.telegram.ui.Components.gr;
 import org.telegram.ui.Components.t5;
 public final class a0 extends Drawable {
-    public final Paint f53679a = new Paint(1);
-    public final RectF f53680b = new RectF();
-    public final int f53681c;
+    public final Paint f53697a = new Paint(1);
+    public final RectF f53698b = new RectF();
+    public final int f53699c;
     public final Path d;
     public boolean e;
-    public int f53682f;
-    public final t5 f53683g;
+    public int f53700f;
+    public final t5 f53701g;
     public final t5 h;
 
     public a0(int i10) {
@@ -24,9 +24,9 @@ public final class a0 extends Drawable {
         this.d = path;
         vh.d0 d0Var = new vh.d0(this, 28);
         gr grVar = gr.h;
-        this.f53683g = new t5(d0Var, 320L, grVar, 0);
+        this.f53701g = new t5(d0Var, 320L, grVar, 0);
         this.h = new t5(new vh.d0(this, 28), 320L, grVar, 0);
-        this.f53681c = i10;
+        this.f53699c = i10;
         path.moveTo(-org.telegram.messenger.i0.L(6.5f), 0.0f);
         path.lineTo(org.telegram.messenger.i0.L(6.5f), 0.0f);
         path.lineTo(0.0f, -org.telegram.messenger.i0.L(6.16f));
@@ -36,14 +36,14 @@ public final class a0 extends Drawable {
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        RectF rectF = this.f53680b;
+        RectF rectF = this.f53698b;
         rectF.set(bounds);
         rectF.inset(org.telegram.messenger.i0.L(8.0f), org.telegram.messenger.i0.L(8.0f));
-        int i10 = this.f53681c;
-        Paint paint = this.f53679a;
+        int i10 = this.f53699c;
+        Paint paint = this.f53697a;
         canvas.drawRoundRect(rectF, i10, i10, paint);
-        float d = this.f53683g.d(this.e);
-        float L = (rectF.right + org.telegram.messenger.i0.L(8.0f)) - this.h.e(false, this.f53682f);
+        float d = this.f53701g.d(this.e);
+        float L = (rectF.right + org.telegram.messenger.i0.L(8.0f)) - this.h.e(false, this.f53700f);
         if (d > 0.0f) {
             canvas.save();
             canvas.translate(L, c3.i0.z(1.0f, d, org.telegram.messenger.i0.L(6.16f), org.telegram.messenger.i0.L(8.0f)));

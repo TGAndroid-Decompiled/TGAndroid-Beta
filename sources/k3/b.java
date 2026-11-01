@@ -13,22 +13,22 @@ import j$.util.Objects;
 import java.util.List;
 import w3.l;
 public final class b implements o {
-    public q f10831b;
-    public int f10832c;
+    public q f10832b;
+    public int f10833c;
     public int d;
     public int e;
-    public l3.b f10834g;
+    public l3.b f10835g;
     public p h;
-    public g0 f10835i;
-    public l f10836j;
-    public final x f10830a = new x(2);
-    public long f10833f = -1;
+    public g0 f10836i;
+    public l f10837j;
+    public final x f10831a = new x(2);
+    public long f10834f = -1;
 
     @Override
     public final boolean a(p pVar) {
         String v;
         c3.l lVar = (c3.l) pVar;
-        x xVar = this.f10830a;
+        x xVar = this.f10831a;
         xVar.K(2);
         lVar.j(xVar.f6207a, 0, 2, false);
         if (xVar.H() == 65496) {
@@ -52,7 +52,7 @@ public final class b implements o {
                     lVar.j(xVar.f6207a, 0, H2, false);
                     if (Objects.equals(xVar.v(), "http://ns.adobe.com/xap/1.0/") && (v = xVar.v()) != null) {
                         for (int i10 = 0; i10 < 4; i10++) {
-                            if (v.contains(d.f10840a[i10] + "=\"1\"")) {
+                            if (v.contains(d.f10841a[i10] + "=\"1\"")) {
                                 return true;
                             }
                         }
@@ -66,16 +66,16 @@ public final class b implements o {
 
     @Override
     public final void c(q qVar) {
-        this.f10831b = qVar;
+        this.f10832b = qVar;
     }
 
     @Override
     public final void d(long j10, long j11) {
         if (j10 == 0) {
-            this.f10832c = 0;
-            this.f10836j = null;
-        } else if (this.f10832c == 5) {
-            l lVar = this.f10836j;
+            this.f10833c = 0;
+            this.f10837j = null;
+        } else if (this.f10833c == 5) {
+            l lVar = this.f10837j;
             lVar.getClass();
             lVar.d(j10, j11);
         }
@@ -93,16 +93,16 @@ public final class b implements o {
     }
 
     public final void g() {
-        q qVar = this.f10831b;
+        q qVar = this.f10832b;
         qVar.getClass();
         qVar.Q0();
-        this.f10831b.G1(new t(-9223372036854775807L));
-        this.f10832c = 6;
+        this.f10832b.G1(new t(-9223372036854775807L));
+        this.f10833c = 6;
     }
 
     @Override
     public final void release() {
-        l lVar = this.f10836j;
+        l lVar = this.f10837j;
         if (lVar != null) {
             lVar.getClass();
         }

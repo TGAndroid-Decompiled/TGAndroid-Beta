@@ -25,13 +25,13 @@ public final class nk extends org.telegram.ui.Components.rc {
             mkVar.invalidate();
         }
         if (getVisibility() != 8) {
-            unVar.u9(true);
+            unVar.z9(true);
             FrameLayout frameLayout = unVar.Q;
             if (frameLayout != null) {
                 frameLayout.setTranslationY(f7);
             }
-            unVar.A9();
-            unVar.C9();
+            unVar.F9();
+            unVar.H9();
             View view = unVar.fragmentView;
             if (view != null) {
                 view.invalidate();

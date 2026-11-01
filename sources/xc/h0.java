@@ -13,23 +13,23 @@ public enum h0 extends a2 {
                 if (d != '<') {
                     if (d != 65535) {
                         kVar.f(d);
-                        kVar.f53646c = f0Var;
+                        kVar.f53664c = f0Var;
                         return;
                     }
                     kVar.l(this);
-                    kVar.f53646c = a2.f53598a;
+                    kVar.f53664c = a2.f53616a;
                     return;
                 }
                 kVar.f(d);
-                kVar.f53646c = a2.U;
+                kVar.f53664c = a2.U;
                 return;
             }
             kVar.f(d);
-            kVar.f53646c = a2.T;
+            kVar.f53664c = a2.T;
             return;
         }
         kVar.m(this);
         kVar.f((char) 65533);
-        kVar.f53646c = f0Var;
+        kVar.f53664c = f0Var;
     }
 }

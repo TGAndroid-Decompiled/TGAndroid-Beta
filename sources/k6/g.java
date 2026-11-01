@@ -8,35 +8,35 @@ import android.os.Build;
 import android.util.Log;
 import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class g {
-    public static boolean f10939b = false;
-    public static boolean f10940c = false;
+    public static boolean f10940b = false;
+    public static boolean f10941c = false;
     public static final int e = 0;
-    public static final AtomicBoolean f10938a = new AtomicBoolean();
+    public static final AtomicBoolean f10939a = new AtomicBoolean();
     public static final AtomicBoolean d = new AtomicBoolean();
 
     public static boolean a(Context context) {
         try {
-            if (!f10940c) {
+            if (!f10941c) {
                 try {
                     PackageInfo b10 = w6.b.a(context).b(64, "com.google.android.gms");
                     h.p(context);
                     if (b10 != null && !h.Q(b10, false) && h.Q(b10, true)) {
-                        f10939b = true;
+                        f10940b = true;
                     } else {
-                        f10939b = false;
+                        f10940b = false;
                     }
-                    f10940c = true;
+                    f10941c = true;
                 } catch (PackageManager.NameNotFoundException e7) {
                     Log.w("GooglePlayServicesUtil", "Cannot find Google Play services package name.", e7);
-                    f10940c = true;
+                    f10941c = true;
                 }
             }
-            if (!f10939b && "user".equals(Build.TYPE)) {
+            if (!f10940b && "user".equals(Build.TYPE)) {
                 return false;
             }
             return true;
         } catch (Throwable th2) {
-            f10940c = true;
+            f10941c = true;
             throw th2;
         }
     }

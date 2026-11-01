@@ -5,14 +5,14 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class h60 implements Runnable {
-    public final int f26630a;
-    public final i60 f26631b;
-    public final String f26632c;
+    public final int f26685a;
+    public final i60 f26686b;
+    public final String f26687c;
 
     public h60(i60 i60Var, String str, int i10) {
-        this.f26630a = i10;
-        this.f26631b = i60Var;
-        this.f26632c = str;
+        this.f26685a = i10;
+        this.f26686b = i60Var;
+        this.f26687c = str;
     }
 
     @Override
@@ -24,36 +24,36 @@ public final class h60 implements Runnable {
         boolean z10;
         char c10;
         Object obj;
-        switch (this.f26630a) {
+        switch (this.f26685a) {
             case 0:
-                i60 i60Var = this.f26631b;
-                String str2 = this.f26632c;
+                i60 i60Var = this.f26686b;
+                String str2 = this.f26687c;
                 i60Var.getClass();
                 org.telegram.messenger.i0.g3(new h60(i60Var, str2, 1));
                 return;
             case 1:
-                i60 i60Var2 = this.f26631b;
-                String str3 = this.f26632c;
+                i60 i60Var2 = this.f26686b;
+                String str3 = this.f26687c;
                 zf.m1 m1Var = i60Var2.e;
-                org.telegram.ui.tt ttVar = i60Var2.f26894n.f28299d2;
+                org.telegram.ui.st stVar = i60Var2.f27013n.f28382d2;
                 boolean z11 = false;
                 boolean z12 = false;
-                if (ttVar != null) {
+                if (stVar != null) {
                     z11 = true;
                 }
-                if (ttVar != null) {
+                if (stVar != null) {
                     z12 = true;
                 }
                 m1Var.g(str3, true, z11, true, z12, 0L, false, 0, 0);
-                org.telegram.messenger.r5 r5Var = Utilities.f14522g;
+                org.telegram.messenger.r5 r5Var = Utilities.f14523g;
                 h60 h60Var = new h60(i60Var2, str3, 2);
                 i60Var2.h = h60Var;
                 r5Var.c(h60Var);
                 return;
             default:
-                i60 i60Var3 = this.f26631b;
-                String str4 = this.f26632c;
-                ArrayList arrayList2 = i60Var3.f26894n.V1;
+                i60 i60Var3 = this.f26686b;
+                String str4 = this.f26687c;
+                ArrayList arrayList2 = i60Var3.f27013n.V1;
                 String lowerCase = str4.trim().toLowerCase();
                 if (lowerCase.length() == 0) {
                     org.telegram.messenger.i0.g3(new jg(i60Var3, new ArrayList(), new ArrayList(), 11));
@@ -61,7 +61,7 @@ public final class h60 implements Runnable {
                 }
                 boolean z13 = true;
                 ?? r62 = 0;
-                String R0 = org.telegram.messenger.cd.D0().R0(lowerCase, true, false);
+                String R0 = org.telegram.messenger.dd.D0().R0(lowerCase, true, false);
                 R0 = (lowerCase.equals(R0) || R0.length() == 0) ? null : null;
                 if (R0 != null) {
                     i10 = 1;
@@ -83,13 +83,13 @@ public final class h60 implements Runnable {
                     if (z14) {
                         TLRPC.User user = (TLRPC.User) tLObject;
                         str = org.telegram.messenger.i5.m(r62, user.first_name, user.last_name).toLowerCase();
-                        K = org.telegram.messenger.h20.n(user);
+                        K = org.telegram.messenger.i20.n(user);
                     } else {
                         TLRPC.Chat chat = (TLRPC.Chat) tLObject;
                         str = chat.title;
                         K = org.telegram.messenger.w3.K(chat, r62);
                     }
-                    String R02 = org.telegram.messenger.cd.D0().R0(str, z13, r62);
+                    String R02 = org.telegram.messenger.dd.D0().R0(str, z13, r62);
                     if (str.equals(R02)) {
                         R02 = null;
                     }

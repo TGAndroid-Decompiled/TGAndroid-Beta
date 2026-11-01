@@ -9,14 +9,14 @@ import android.view.WindowManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.voip.NativeInstance;
-import org.telegram.ui.Components.iu0;
-import org.telegram.ui.Components.mu0;
+import org.telegram.ui.Components.ju0;
 import org.telegram.ui.Components.nu0;
-public final class x6 implements iu0, s5.e, r9.d, qa.a, NativeInstance.AudioLevelsCallback, mu0, nu0, org.telegram.ui.ActionBar.u1 {
-    public final int f47693a;
+import org.telegram.ui.Components.ou0;
+public final class x6 implements ju0, s5.e, r9.d, qa.a, NativeInstance.AudioLevelsCallback, nu0, ou0, org.telegram.ui.ActionBar.u1 {
+    public final int f47707a;
 
     public x6(int i10) {
-        this.f47693a = i10;
+        this.f47707a = i10;
     }
 
     @Override
@@ -52,18 +52,18 @@ public final class x6 implements iu0, s5.e, r9.d, qa.a, NativeInstance.AudioLeve
     @Override
     public void b(Object obj, float f7) {
         th.w0 w0Var = (th.w0) obj;
-        switch (this.f47693a) {
+        switch (this.f47707a) {
             case 26:
-                WindowManager.LayoutParams layoutParams = w0Var.f49551c;
+                WindowManager.LayoutParams layoutParams = w0Var.f49565c;
                 w0Var.N = f7;
                 layoutParams.x = (int) f7;
-                org.telegram.messenger.i0.S3(w0Var.f49550b, w0Var.d, layoutParams);
+                org.telegram.messenger.i0.S3(w0Var.f49564b, w0Var.d, layoutParams);
                 return;
             default:
-                WindowManager.LayoutParams layoutParams2 = w0Var.f49551c;
+                WindowManager.LayoutParams layoutParams2 = w0Var.f49565c;
                 w0Var.O = f7;
                 layoutParams2.y = (int) f7;
-                org.telegram.messenger.i0.S3(w0Var.f49550b, w0Var.d, layoutParams2);
+                org.telegram.messenger.i0.S3(w0Var.f49564b, w0Var.d, layoutParams2);
                 return;
         }
     }
@@ -76,7 +76,7 @@ public final class x6 implements iu0, s5.e, r9.d, qa.a, NativeInstance.AudioLeve
     @Override
     public float get(Object obj) {
         th.w0 w0Var = (th.w0) obj;
-        switch (this.f47693a) {
+        switch (this.f47707a) {
             case 25:
                 return w0Var.N;
             default:
@@ -100,16 +100,16 @@ public final class x6 implements iu0, s5.e, r9.d, qa.a, NativeInstance.AudioLeve
 
     @Override
     public RecyclerView j(View view) {
-        return ((e8) view).f46874a;
+        return ((e8) view).f46888a;
     }
 
     @Override
-    public void p(RecyclerView recyclerView) {
+    public void q(RecyclerView recyclerView) {
         org.telegram.ui.Cells.f1.b(recyclerView);
     }
 
     public x6(Object obj, int i10) {
-        this.f47693a = i10;
+        this.f47707a = i10;
     }
 
     @Override

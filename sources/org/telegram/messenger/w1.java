@@ -5,13 +5,13 @@ import java.util.Calendar;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class w1 {
-    public final String f19037a;
-    public final ArrayList f19038b = new ArrayList();
-    public final ArrayList f19039c = new ArrayList();
+    public final String f18962a;
+    public final ArrayList f18963b = new ArrayList();
+    public final ArrayList f18964c = new ArrayList();
     public final ArrayList d = new ArrayList();
 
     public w1(String str) {
-        this.f19037a = str;
+        this.f18962a = str;
     }
 
     public static w1 b(TL_account.contactBirthdays contactbirthdays) {
@@ -43,9 +43,9 @@ public final class w1 {
             int i19 = tL_birthday.day;
             TLRPC.User user = null;
             if (i19 == i11 && tL_birthday.month == i12) {
-                arrayList = w1Var2.f19039c;
+                arrayList = w1Var2.f18964c;
             } else if (i19 == i14 && tL_birthday.month == i15) {
-                arrayList = w1Var2.f19038b;
+                arrayList = w1Var2.f18963b;
             } else if (i19 == i16 && tL_birthday.month == i17) {
                 arrayList = w1Var2.d;
             } else {
@@ -57,7 +57,7 @@ public final class w1 {
                     if (i20 < contactbirthdays.users.size()) {
                         w1Var = w1Var2;
                         i10 = i16;
-                        if (contactbirthdays.users.get(i20).f19942id == tL_contactBirthday2.contact_id) {
+                        if (contactbirthdays.users.get(i20).f19943id == tL_contactBirthday2.contact_id) {
                             user = contactbirthdays.users.get(i20);
                             break;
                         }
@@ -70,7 +70,7 @@ public final class w1 {
                         break;
                     }
                 }
-                if (user != null && !h20.B(user)) {
+                if (user != null && !i20.B(user)) {
                     arrayList.add(user);
                 }
             } else {
@@ -84,23 +84,23 @@ public final class w1 {
     }
 
     public final boolean a(long j10) {
-        ArrayList arrayList = this.f19038b;
+        ArrayList arrayList = this.f18963b;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
-            if (((TLRPC.User) obj).f19942id == j10) {
+            if (((TLRPC.User) obj).f19943id == j10) {
                 return true;
             }
         }
-        ArrayList arrayList2 = this.f19039c;
+        ArrayList arrayList2 = this.f18964c;
         int size2 = arrayList2.size();
         int i11 = 0;
         while (i11 < size2) {
             Object obj2 = arrayList2.get(i11);
             i11++;
-            if (((TLRPC.User) obj2).f19942id == j10) {
+            if (((TLRPC.User) obj2).f19943id == j10) {
                 return true;
             }
         }
@@ -110,7 +110,7 @@ public final class w1 {
         while (i12 < size3) {
             Object obj3 = arrayList3.get(i12);
             i12++;
-            if (((TLRPC.User) obj3).f19942id == j10) {
+            if (((TLRPC.User) obj3).f19943id == j10) {
                 return true;
             }
         }

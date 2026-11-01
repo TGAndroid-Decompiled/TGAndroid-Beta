@@ -12,7 +12,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.Components.ThemeEditorView;
 public class BubbleActivity extends f5 implements org.telegram.ui.ActionBar.v4 {
-    public static BubbleActivity f21640a0;
+    public static BubbleActivity f21641a0;
     public boolean P;
     public final ArrayList Q = new ArrayList();
     public org.telegram.ui.Components.zc0 R;
@@ -47,7 +47,7 @@ public class BubbleActivity extends f5 implements org.telegram.ui.ActionBar.v4 {
                 this.Y = null;
             }
             this.P = true;
-            f21640a0 = null;
+            f21641a0 = null;
         }
         finish();
         return false;
@@ -55,7 +55,7 @@ public class BubbleActivity extends f5 implements org.telegram.ui.ActionBar.v4 {
 
     @Override
     public final boolean l(ActionBarLayout actionBarLayout, org.telegram.ui.ActionBar.w4 w4Var) {
-        org.telegram.ui.ActionBar.k2 k2Var = w4Var.f21445a;
+        org.telegram.ui.ActionBar.k2 k2Var = w4Var.f21446a;
         return true;
     }
 
@@ -63,8 +63,8 @@ public class BubbleActivity extends f5 implements org.telegram.ui.ActionBar.v4 {
     public final void onActivityResult(int i10, int i11, Intent intent) {
         bh.d dVar;
         super.onActivityResult(i10, i11, intent);
-        ThemeEditorView themeEditorView = ThemeEditorView.f24207p;
-        if (themeEditorView != null && (dVar = themeEditorView.f24217m) != null) {
+        ThemeEditorView themeEditorView = ThemeEditorView.f24208p;
+        if (themeEditorView != null && (dVar = themeEditorView.f24218m) != null) {
             dVar.y(i10, i11, intent);
         }
         if (!this.S.getFragmentStack().isEmpty()) {
@@ -99,7 +99,7 @@ public class BubbleActivity extends f5 implements org.telegram.ui.ActionBar.v4 {
         requestWindowFeature(1);
         setTheme(2131755318);
         getWindow().setBackgroundDrawable(new org.telegram.ui.Cells.v6(1));
-        if (!org.telegram.messenger.tz.f18180s.isEmpty() && !org.telegram.messenger.tz.A) {
+        if (!org.telegram.messenger.uz.f18549s.isEmpty() && !org.telegram.messenger.uz.A) {
             try {
                 getWindow().setFlags(8192, 8192);
                 org.telegram.messenger.i0.h2();
@@ -108,10 +108,10 @@ public class BubbleActivity extends f5 implements org.telegram.ui.ActionBar.v4 {
             }
         }
         super.onCreate(bundle);
-        if (!org.telegram.messenger.tz.f18180s.isEmpty() && org.telegram.messenger.tz.f18194x) {
-            org.telegram.messenger.tz.B = (int) (SystemClock.elapsedRealtime() / 1000);
+        if (!org.telegram.messenger.uz.f18549s.isEmpty() && org.telegram.messenger.uz.f18563x) {
+            org.telegram.messenger.uz.B = (int) (SystemClock.elapsedRealtime() / 1000);
         }
-        Typeface typeface = org.telegram.messenger.i0.f15999a;
+        Typeface typeface = org.telegram.messenger.i0.f16145a;
         org.telegram.ui.ActionBar.t6.T(this);
         org.telegram.ui.ActionBar.t6.K(this, false);
         ActionBarLayout actionBarLayout = new ActionBarLayout(this, false);
@@ -131,7 +131,7 @@ public class BubbleActivity extends f5 implements org.telegram.ui.ActionBar.v4 {
         org.telegram.ui.Components.zc0 zc0Var = new org.telegram.ui.Components.zc0(this);
         this.R = zc0Var;
         this.T.addView(zc0Var, w7.b6.c(-1.0f, -1));
-        org.telegram.messenger.zs.e().k(org.telegram.messenger.zs.f19642k4, this);
+        org.telegram.messenger.at.e().k(org.telegram.messenger.at.f14738k4, this);
         this.S.Z();
         Intent intent = getIntent();
         if (bundle != null) {
@@ -139,8 +139,8 @@ public class BubbleActivity extends f5 implements org.telegram.ui.ActionBar.v4 {
         } else {
             z10 = false;
         }
-        x(intent, false, z10, false, org.telegram.messenger.d20.f15147s0);
-        f21640a0 = this;
+        x(intent, false, z10, false, org.telegram.messenger.e20.f15506s0);
+        f21641a0 = this;
     }
 
     @Override
@@ -148,8 +148,8 @@ public class BubbleActivity extends f5 implements org.telegram.ui.ActionBar.v4 {
         super.onDestroy();
         int i10 = this.O;
         if (i10 != -1) {
-            org.telegram.messenger.ot.f17304k0.c(new org.telegram.messenger.kt((org.telegram.messenger.us) org.telegram.messenger.ot.t(org.telegram.messenger.c.a(i10).f14863a), false, this.Z, 0));
-            ConnectionsManager.getInstance(org.telegram.messenger.c.a(this.O).f14863a).setAppPaused(false, false);
+            org.telegram.messenger.pt.f17637k0.c(new org.telegram.messenger.lt((org.telegram.messenger.vs) org.telegram.messenger.pt.t(org.telegram.messenger.c.a(i10).f15043a), false, this.Z, 0));
+            ConnectionsManager.getInstance(org.telegram.messenger.c.a(this.O).f15043a).setAppPaused(false, false);
         }
         if (!this.P) {
             m4 m4Var = this.Y;
@@ -158,9 +158,9 @@ public class BubbleActivity extends f5 implements org.telegram.ui.ActionBar.v4 {
                 this.Y = null;
             }
             this.P = true;
-            f21640a0 = null;
+            f21641a0 = null;
         }
-        f21640a0 = null;
+        f21641a0 = null;
     }
 
     @Override
@@ -172,7 +172,7 @@ public class BubbleActivity extends f5 implements org.telegram.ui.ActionBar.v4 {
     @Override
     public final void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        x(intent, true, false, false, org.telegram.messenger.d20.f15147s0);
+        x(intent, true, false, false, org.telegram.messenger.e20.f15506s0);
     }
 
     @Override
@@ -185,27 +185,27 @@ public class BubbleActivity extends f5 implements org.telegram.ui.ActionBar.v4 {
             org.telegram.messenger.i0.r(m4Var);
             this.Y = null;
         }
-        if (!org.telegram.messenger.tz.f18180s.isEmpty()) {
-            org.telegram.messenger.tz.B = (int) (SystemClock.elapsedRealtime() / 1000);
+        if (!org.telegram.messenger.uz.f18549s.isEmpty()) {
+            org.telegram.messenger.uz.B = (int) (SystemClock.elapsedRealtime() / 1000);
             m4 m4Var2 = new m4(this, 1);
             this.Y = m4Var2;
-            if (org.telegram.messenger.tz.f18194x) {
+            if (org.telegram.messenger.uz.f18563x) {
                 org.telegram.messenger.i0.h3(m4Var2, 1000L);
             } else {
-                int i10 = org.telegram.messenger.tz.f18197y;
+                int i10 = org.telegram.messenger.uz.f18566y;
                 if (i10 != 0) {
                     org.telegram.messenger.i0.h3(m4Var2, (i10 * 1000) + 1000);
                 }
             }
         } else {
-            org.telegram.messenger.tz.B = 0;
+            org.telegram.messenger.uz.B = 0;
         }
-        org.telegram.messenger.tz.y();
+        org.telegram.messenger.uz.y();
         org.telegram.ui.Components.zc0 zc0Var = this.R;
         if (zc0Var != null) {
             zc0Var.k();
         }
-        f21640a0 = null;
+        f21641a0 = null;
     }
 
     @Override
@@ -217,7 +217,7 @@ public class BubbleActivity extends f5 implements org.telegram.ui.ActionBar.v4 {
         if (!this.S.getFragmentStack().isEmpty()) {
             ((org.telegram.ui.ActionBar.k2) this.S.getFragmentStack().get(this.S.getFragmentStack().size() - 1)).onRequestPermissionsResultFragment(i10, strArr, iArr);
         }
-        be1.k(iArr, i10);
+        zd1.k(iArr, i10);
     }
 
     @Override
@@ -231,11 +231,11 @@ public class BubbleActivity extends f5 implements org.telegram.ui.ActionBar.v4 {
             this.Y = null;
         }
         if (org.telegram.messenger.i0.p2(true)) {
-            z();
+            y();
         }
-        if (org.telegram.messenger.tz.B != 0) {
-            org.telegram.messenger.tz.B = 0;
-            org.telegram.messenger.tz.y();
+        if (org.telegram.messenger.uz.B != 0) {
+            org.telegram.messenger.uz.B = 0;
+            org.telegram.messenger.uz.y();
         }
         if (this.R.getVisibility() != 0) {
             this.S.O();
@@ -243,23 +243,23 @@ public class BubbleActivity extends f5 implements org.telegram.ui.ActionBar.v4 {
             this.S.n();
             this.R.l();
         }
-        f21640a0 = this;
+        f21641a0 = this;
     }
 
     public final void x(Intent intent, boolean z10, boolean z11, boolean z12, int i10) {
         un unVar;
-        if (!z12 && (org.telegram.messenger.i0.p2(true) || org.telegram.messenger.tz.C)) {
-            z();
+        if (!z12 && (org.telegram.messenger.i0.p2(true) || org.telegram.messenger.uz.C)) {
+            y();
             this.U = intent;
             this.V = z10;
             this.X = z11;
             this.W = i10;
-            org.telegram.messenger.d20.i(i10).v(false);
+            org.telegram.messenger.e20.i(i10).v(false);
             return;
         }
-        int intExtra = intent.getIntExtra("currentAccount", org.telegram.messenger.d20.f15147s0);
+        int intExtra = intent.getIntExtra("currentAccount", org.telegram.messenger.e20.f15506s0);
         this.O = intExtra;
-        if (!org.telegram.messenger.d20.r(intExtra)) {
+        if (!org.telegram.messenger.e20.r(intExtra)) {
             finish();
             return;
         }
@@ -284,20 +284,20 @@ public class BubbleActivity extends f5 implements org.telegram.ui.ActionBar.v4 {
             finish();
             return;
         }
-        org.telegram.messenger.zs.f(this.O).k(org.telegram.messenger.zs.f19690t, Long.valueOf(this.Z));
+        org.telegram.messenger.at.f(this.O).k(org.telegram.messenger.at.f14786t, Long.valueOf(this.Z));
         this.S.Z();
         this.S.c(-1, unVar);
-        org.telegram.messenger.ot.f17304k0.c(new org.telegram.messenger.kt((org.telegram.messenger.us) org.telegram.messenger.ot.t(org.telegram.messenger.c.a(this.O).f14863a), true, this.Z, 0));
-        ConnectionsManager.getInstance(org.telegram.messenger.c.a(this.O).f14863a).setAppPaused(false, false);
+        org.telegram.messenger.pt.f17637k0.c(new org.telegram.messenger.lt((org.telegram.messenger.vs) org.telegram.messenger.pt.t(org.telegram.messenger.c.a(this.O).f15043a), true, this.Z, 0));
+        ConnectionsManager.getInstance(org.telegram.messenger.c.a(this.O).f15043a).setAppPaused(false, false);
         this.S.e0();
     }
 
-    public final void z() {
+    public final void y() {
         if (this.R == null) {
             return;
         }
-        org.telegram.messenger.tz.f18194x = true;
-        if (SecretMediaViewer.g() && SecretMediaViewer.f().f34016s) {
+        org.telegram.messenger.uz.f18563x = true;
+        if (SecretMediaViewer.g() && SecretMediaViewer.f().f34023s) {
             SecretMediaViewer.f().e(false, false);
         } else if (PhotoViewer.F1() && PhotoViewer.v1().U1()) {
             PhotoViewer.v1().H0(false, true);
@@ -305,7 +305,7 @@ public class BubbleActivity extends f5 implements org.telegram.ui.ActionBar.v4 {
             h4.v().m(false, true);
         }
         this.R.m(false, -1, -1, null);
-        org.telegram.messenger.tz.C = true;
+        org.telegram.messenger.uz.C = true;
         this.R.setDelegate(new y0(this, 6));
     }
 

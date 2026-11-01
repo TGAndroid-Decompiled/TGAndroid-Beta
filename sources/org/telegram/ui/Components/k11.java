@@ -1,73 +1,125 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
 import android.view.View;
-public abstract class k11 extends View {
-    public final l11 f27605a;
-    public org.telegram.messenger.q20 f27606b;
-    public final org.telegram.ui.ActionBar.p6 f27607c;
-    public int d;
+import android.widget.LinearLayout;
+import java.util.HashSet;
+public final class k11 extends LinearLayout implements org.telegram.ui.ActionBar.k6 {
+    public final org.telegram.ui.ActionBar.p6 f27693a;
+    public final g9 f27694b;
+    public final p80 f27695c;
+    public final p80 d;
+    public int e;
+    public int f27696f;
 
-    public k11(int i10, Context context, org.telegram.ui.ActionBar.p6 p6Var) {
+    public k11(Context context, org.telegram.ui.ActionBar.p6 p6Var) {
         super(context);
-        this.f27607c = p6Var;
-        l11 l11Var = new l11(i10, this, p6Var, false);
-        this.f27605a = l11Var;
-        l11Var.f27984s = new uo0(this, 21);
+        this.e = 90;
+        this.f27693a = p6Var;
+        setOrientation(1);
+        g9 g9Var = new g9(context);
+        this.f27694b = g9Var;
+        g9Var.getImageReceiver().X(1);
+        g9Var.getImageReceiver().W(1);
+        g9Var.setOnClickListener(new db0(this, 19));
+        addView(g9Var, w7.b6.t(90, 90, 17, 0, 9, 0, 9));
+        p80 p80Var = new p80(context, null);
+        this.f27695c = p80Var;
+        p80Var.setTextSize(1, 20.0f);
+        p80Var.setGravity(17);
+        p80Var.setTypeface(org.telegram.messenger.i0.o());
+        p80Var.setTextAlignment(4);
+        addView(p80Var, w7.b6.t(-1, -2, 17, 48, 0, 48, 10));
+        p80 p80Var2 = new p80(context, null);
+        this.d = p80Var2;
+        p80Var2.setTextSize(1, 14.0f);
+        p80Var2.setGravity(17);
+        p80Var2.setTextAlignment(4);
+        addView(p80Var2, w7.b6.t(-1, -2, 17, 48, 0, 48, 17));
+        updateColors();
+    }
+
+    public final void a(CharSequence charSequence, CharSequence charSequence2) {
+        p80 p80Var = this.f27695c;
+        p80Var.setText(charSequence);
+        p80Var.setVisibility(0);
+        p80 p80Var2 = this.d;
+        p80Var2.setText(charSequence2);
+        p80Var2.setMaxWidth(vh.p2.a(charSequence2, p80Var2.getPaint()));
+        p80Var2.requestLayout();
+        updateColors();
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        org.telegram.ui.ActionBar.p6 p6Var = this.f27607c;
-        if (p6Var != null) {
-            p6Var.b(0.0f, 0.0f, getMeasuredWidth(), this.d);
-        } else {
-            org.telegram.ui.ActionBar.t6.r(0.0f, 0.0f, getMeasuredWidth(), this.d);
-        }
-        this.f27605a.c(canvas, getWidth(), 0.0f, 0.0f, 0.75f, 1.0f, true);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f27605a.a();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f27605a.b();
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.G6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.Uc));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.B6));
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(33.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    }
+
+    public void setEmoji(int i10) {
+        if (this.f27696f != i10) {
+            this.f27696f = i10;
+            ci0 ci0Var = new ci0(i10, org.telegram.messenger.i0.L(90.0f), org.telegram.messenger.i0.L(90.0f));
+            g9 g9Var = this.f27694b;
+            g9Var.setImageDrawable(ci0Var);
+            g9Var.getImageReceiver().W(2);
+        }
+    }
+
+    public void setEmojiSize(int i10) {
+        if (this.e != i10) {
+            this.e = i10;
+            updateColors();
+        }
+    }
+
+    public void setEmojiStatic(int i10) {
+        if (this.f27696f != i10) {
+            g9 g9Var = this.f27694b;
+            g9Var.b();
+            this.f27696f = i10;
+            g9Var.setImageResource(i10);
+        }
+    }
+
+    public void setText(CharSequence charSequence) {
+        this.f27695c.setVisibility(8);
+        p80 p80Var = this.d;
+        p80Var.setText(charSequence);
+        p80Var.setMaxWidth(vh.p2.a(charSequence, p80Var.getPaint()));
+        p80Var.requestLayout();
+        updateColors();
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f27605a.d(motionEvent, false) && !super.onTouchEvent(motionEvent)) {
-            return false;
+    public final void updateColors() {
+        int i10;
+        int i11 = org.telegram.ui.ActionBar.t6.G6;
+        org.telegram.ui.ActionBar.p6 p6Var = this.f27693a;
+        int w02 = org.telegram.ui.ActionBar.t6.w0(i11, p6Var);
+        p80 p80Var = this.f27695c;
+        p80Var.setTextColor(w02);
+        int i12 = org.telegram.ui.ActionBar.t6.Uc;
+        p80Var.setLinkTextColor(org.telegram.ui.ActionBar.t6.w0(i12, p6Var));
+        if (p80Var.getVisibility() != 0) {
+            i11 = org.telegram.ui.ActionBar.t6.B6;
         }
-        return true;
-    }
-
-    public void set(org.telegram.messenger.jj jjVar) {
-        l11 l11Var = this.f27605a;
-        l11Var.e(jjVar);
-        if (isAttachedToWindow()) {
-            l11Var.a();
+        int w03 = org.telegram.ui.ActionBar.t6.w0(i11, p6Var);
+        p80 p80Var2 = this.d;
+        p80Var2.setTextColor(w03);
+        p80Var2.setLinkTextColor(org.telegram.ui.ActionBar.t6.w0(i12, p6Var));
+        int i13 = this.e;
+        if (p80Var.getVisibility() == 0) {
+            i10 = 0;
+        } else {
+            i10 = 9;
         }
-    }
-
-    public void setBackgroundHeight(int i10) {
-        this.d = i10;
-    }
-
-    public void setOnTopicClickListener(org.telegram.messenger.q20 q20Var) {
-        this.f27606b = q20Var;
+        this.f27694b.setLayoutParams(w7.b6.t(i13, i13, 17, 0, i10, 0, 9));
     }
 }

@@ -13,37 +13,37 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-public final class hx extends tk0 {
-    public boolean f26834e3;
-    public final SparseArray f26835f3;
-    public final ArrayList f26836g3;
-    public final ArrayList f26837h3;
-    public final ArrayList f26838i3;
-    public final ArrayList f26839j3;
-    public int f26840k3;
-    public SparseArray f26841l3;
-    public final vy f26842m3;
+public final class hx extends uk0 {
+    public boolean f26946e3;
+    public final SparseArray f26947f3;
+    public final ArrayList f26948g3;
+    public final ArrayList f26949h3;
+    public final ArrayList f26950i3;
+    public final ArrayList f26951j3;
+    public int f26952k3;
+    public SparseArray f26953l3;
+    public final vy f26954m3;
 
     public hx(vy vyVar, Context context) {
         super(context, null);
-        this.f26842m3 = vyVar;
-        this.f26835f3 = new SparseArray();
-        this.f26836g3 = new ArrayList();
-        this.f26837h3 = new ArrayList();
-        this.f26838i3 = new ArrayList();
-        this.f26839j3 = new ArrayList();
-        this.f26840k3 = -1;
+        this.f26954m3 = vyVar;
+        this.f26947f3 = new SparseArray();
+        this.f26948g3 = new ArrayList();
+        this.f26949h3 = new ArrayList();
+        this.f26950i3 = new ArrayList();
+        this.f26951j3 = new ArrayList();
+        this.f26952k3 = -1;
         new SparseIntArray();
-        gr grVar = gr.f26495f;
+        gr grVar = gr.f26523f;
     }
 
     public final void A1(View view) {
-        if (this.f26841l3 != null) {
+        if (this.f26953l3 != null) {
             int i10 = 0;
-            while (i10 < this.f26841l3.size()) {
-                gx gxVar = (gx) this.f26841l3.valueAt(i10);
+            while (i10 < this.f26953l3.size()) {
+                gx gxVar = (gx) this.f26953l3.valueAt(i10);
                 if (gxVar.d == view) {
-                    this.f26841l3.removeAt(i10);
+                    this.f26953l3.removeAt(i10);
                     i10--;
                     View view2 = gxVar.d;
                     if (view2 != null && (view2.getBackground() instanceof RippleDrawable)) {
@@ -60,8 +60,8 @@ public final class hx extends tk0 {
     }
 
     public final void B1() {
-        vy vyVar = this.f26842m3;
-        int i10 = vyVar.f31863c;
+        vy vyVar = this.f26954m3;
+        int i10 = vyVar.f31941c;
         hx hxVar = vyVar.P;
         hx hxVar2 = vyVar.P;
         o5[] o5VarArr = new o5[hxVar.getChildCount()];
@@ -71,7 +71,7 @@ public final class hx extends tk0 {
                 o5VarArr[i11] = ((ey) childAt).getSpan();
             }
         }
-        vyVar.f31869d2 = o5.update(i10, this, o5VarArr, vyVar.f31869d2);
+        vyVar.f31947d2 = o5.update(i10, this, o5VarArr, vyVar.f31947d2);
     }
 
     @Override
@@ -83,21 +83,21 @@ public final class hx extends tk0 {
         int i10;
         boolean z11;
         Canvas canvas2 = canvas;
-        vy vyVar = this.f26842m3;
+        vy vyVar = this.f26954m3;
         hx hxVar = vyVar.P;
         super.J0(canvas, rectF, j10);
         canvas2.save();
         canvas.clipRect(rectF);
-        if (this.f26840k3 != getChildCount()) {
+        if (this.f26952k3 != getChildCount()) {
             B1();
-            this.f26840k3 = getChildCount();
+            this.f26952k3 = getChildCount();
         }
         int i11 = 0;
         int i12 = 0;
         while (true) {
-            sparseArray = this.f26835f3;
+            sparseArray = this.f26947f3;
             int size = sparseArray.size();
-            arrayList = this.f26838i3;
+            arrayList = this.f26950i3;
             if (i12 >= size) {
                 break;
             }
@@ -108,13 +108,13 @@ public final class hx extends tk0 {
         }
         sparseArray.clear();
         int i13 = 1;
-        if (vyVar.f31925v2 > 0 && SystemClock.elapsedRealtime() - vyVar.f31925v2 < z1() && vyVar.f31916s2 != null && vyVar.f31919t2 >= 0) {
+        if (vyVar.f32003v2 > 0 && SystemClock.elapsedRealtime() - vyVar.f32003v2 < z1() && vyVar.f31994s2 != null && vyVar.f31997t2 >= 0) {
             z10 = true;
         } else {
             z10 = false;
         }
         float f7 = 0.0f;
-        if (vyVar.f31869d2 != null && hxVar != null) {
+        if (vyVar.f31947d2 != null && hxVar != null) {
             int i14 = 0;
             while (i14 < hxVar.getChildCount()) {
                 View childAt = hxVar.getChildAt(i14);
@@ -131,9 +131,9 @@ public final class hx extends tk0 {
                     }
                     arrayList4.add((ey) childAt);
                 }
-                if (z10 && childAt != null && RecyclerView.R(childAt) == vyVar.f31919t2 - i13) {
+                if (z10 && childAt != null && RecyclerView.R(childAt) == vyVar.f31997t2 - i13) {
                     z11 = z10;
-                    float interpolation = gr.f26496g.getInterpolation(w7.u.a(((float) (SystemClock.elapsedRealtime() - vyVar.f31925v2)) / 140.0f, f7, 1.0f));
+                    float interpolation = gr.f26524g.getInterpolation(w7.u.a(((float) (SystemClock.elapsedRealtime() - vyVar.f32003v2)) / 140.0f, f7, 1.0f));
                     if (interpolation >= 1.0f || (Build.VERSION.SDK_INT >= 30 && canvas2.quickReject(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom()))) {
                         i10 = i14;
                     } else {
@@ -143,7 +143,7 @@ public final class hx extends tk0 {
                         canvas2.translate(childAt.getLeft(), childAt.getTop());
                         float f11 = (f10 * 0.5f) + 0.5f;
                         canvas2.scale(f11, f11, childAt.getWidth() / 2.0f, childAt.getHeight() / 2.0f);
-                        vyVar.f31916s2.draw(canvas2);
+                        vyVar.f31994s2.draw(canvas2);
                         canvas2.restore();
                     }
                 } else {
@@ -156,9 +156,9 @@ public final class hx extends tk0 {
                 i13 = 1;
             }
         }
-        ArrayList arrayList5 = this.f26837h3;
+        ArrayList arrayList5 = this.f26949h3;
         arrayList5.clear();
-        ArrayList arrayList6 = this.f26836g3;
+        ArrayList arrayList6 = this.f26948g3;
         arrayList5.addAll(arrayList6);
         arrayList6.clear();
         long currentTimeMillis = System.currentTimeMillis();
@@ -166,13 +166,13 @@ public final class hx extends tk0 {
         while (true) {
             int size2 = sparseArray.size();
             fx fxVar = null;
-            arrayList2 = this.f26839j3;
+            arrayList2 = this.f26951j3;
             if (i15 >= size2) {
                 break;
             }
             ArrayList arrayList7 = (ArrayList) sparseArray.valueAt(i15);
             ey eyVar = (ey) arrayList7.get(i11);
-            int i16 = eyVar.f25888a;
+            int i16 = eyVar.f25965a;
             int i17 = i11;
             while (true) {
                 if (i17 >= arrayList5.size()) {
@@ -232,19 +232,19 @@ public final class hx extends tk0 {
         boolean z10;
         ArrayList arrayList2;
         super.dispatchDraw(canvas);
-        vy vyVar = this.f26842m3;
+        vy vyVar = this.f26954m3;
         hx hxVar = vyVar.P;
-        vyVar.f31899n2.g();
-        if (this.f26840k3 != getChildCount()) {
+        vyVar.f31977n2.g();
+        if (this.f26952k3 != getChildCount()) {
             B1();
-            this.f26840k3 = getChildCount();
+            this.f26952k3 = getChildCount();
         }
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            sparseArray = this.f26835f3;
+            sparseArray = this.f26947f3;
             int size = sparseArray.size();
-            arrayList = this.f26838i3;
+            arrayList = this.f26950i3;
             if (i11 >= size) {
                 break;
             }
@@ -254,12 +254,12 @@ public final class hx extends tk0 {
             i11++;
         }
         sparseArray.clear();
-        if (vyVar.f31925v2 > 0 && SystemClock.elapsedRealtime() - vyVar.f31925v2 < z1() && vyVar.f31916s2 != null && vyVar.f31919t2 >= 0) {
+        if (vyVar.f32003v2 > 0 && SystemClock.elapsedRealtime() - vyVar.f32003v2 < z1() && vyVar.f31994s2 != null && vyVar.f31997t2 >= 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (vyVar.f31869d2 != null && hxVar != null) {
+        if (vyVar.f31947d2 != null && hxVar != null) {
             for (int i12 = 0; i12 < hxVar.getChildCount(); i12++) {
                 View childAt = hxVar.getChildAt(i12);
                 if (childAt instanceof ey) {
@@ -275,24 +275,24 @@ public final class hx extends tk0 {
                     }
                     arrayList4.add((ey) childAt);
                 }
-                if (z10 && childAt != null && RecyclerView.R(childAt) == vyVar.f31919t2 - 1) {
-                    float interpolation = gr.f26496g.getInterpolation(w7.u.a(((float) (SystemClock.elapsedRealtime() - vyVar.f31925v2)) / 140.0f, 0.0f, 1.0f));
+                if (z10 && childAt != null && RecyclerView.R(childAt) == vyVar.f31997t2 - 1) {
+                    float interpolation = gr.f26524g.getInterpolation(w7.u.a(((float) (SystemClock.elapsedRealtime() - vyVar.f32003v2)) / 140.0f, 0.0f, 1.0f));
                     if (interpolation < 1.0f) {
                         float f7 = 1.0f - interpolation;
                         canvas.saveLayerAlpha(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom(), (int) (255.0f * f7), 31);
                         canvas.translate(childAt.getLeft(), childAt.getTop());
                         float f10 = (f7 * 0.5f) + 0.5f;
                         canvas.scale(f10, f10, childAt.getWidth() / 2.0f, childAt.getHeight() / 2.0f);
-                        vyVar.f31916s2.draw(canvas);
+                        vyVar.f31994s2.draw(canvas);
                         canvas.restore();
                     }
                 }
             }
         }
         Canvas canvas2 = canvas;
-        ArrayList arrayList5 = this.f26837h3;
+        ArrayList arrayList5 = this.f26949h3;
         arrayList5.clear();
-        ArrayList arrayList6 = this.f26836g3;
+        ArrayList arrayList6 = this.f26948g3;
         arrayList5.addAll(arrayList6);
         arrayList6.clear();
         long currentTimeMillis = System.currentTimeMillis();
@@ -300,13 +300,13 @@ public final class hx extends tk0 {
         while (true) {
             int size2 = sparseArray.size();
             fx fxVar = null;
-            arrayList2 = this.f26839j3;
+            arrayList2 = this.f26951j3;
             if (i13 >= size2) {
                 break;
             }
             ArrayList arrayList7 = (ArrayList) sparseArray.valueAt(i13);
             ey eyVar = (ey) arrayList7.get(i10);
-            int i14 = eyVar.f25888a;
+            int i14 = eyVar.f25965a;
             int i15 = i10;
             while (true) {
                 if (i15 >= arrayList5.size()) {
@@ -379,8 +379,8 @@ public final class hx extends tk0 {
         if (z10 || z11 || z12) {
             int actionIndex = motionEvent.getActionIndex();
             int pointerId = motionEvent.getPointerId(actionIndex);
-            if (this.f26841l3 == null) {
-                this.f26841l3 = new SparseArray();
+            if (this.f26953l3 == null) {
+                this.f26953l3 = new SparseArray();
             }
             float x10 = motionEvent.getX(actionIndex);
             float y3 = motionEvent.getY(actionIndex);
@@ -388,24 +388,24 @@ public final class hx extends tk0 {
             if (z10) {
                 if (E != null) {
                     ?? obj = new Object();
-                    obj.f26531a = x10;
-                    obj.f26532b = y3;
-                    obj.f26533c = SystemClock.elapsedRealtime();
+                    obj.f26563a = x10;
+                    obj.f26564b = y3;
+                    obj.f26565c = SystemClock.elapsedRealtime();
                     obj.d = E;
                     if (E.getBackground() instanceof RippleDrawable) {
                         E.getBackground().setState(new int[]{16842919, 16842910});
                     }
                     obj.d.setPressed(true);
-                    this.f26841l3.put(pointerId, obj);
+                    this.f26953l3.put(pointerId, obj);
                     C0();
                 }
             } else {
-                gx gxVar = (gx) this.f26841l3.get(pointerId);
-                this.f26841l3.remove(pointerId);
+                gx gxVar = (gx) this.f26953l3.get(pointerId);
+                this.f26953l3.remove(pointerId);
                 if (E != null && gxVar != null) {
-                    if (Math.sqrt(Math.pow(y3 - gxVar.f26532b, 2.0d) + Math.pow(x10 - gxVar.f26531a, 2.0d)) < org.telegram.messenger.i0.e * 3.0f && !z12) {
-                        vy vyVar = this.f26842m3;
-                        if (!vyVar.B1.isShowing() || SystemClock.elapsedRealtime() - gxVar.f26533c < ViewConfiguration.getLongPressTimeout()) {
+                    if (Math.sqrt(Math.pow(y3 - gxVar.f26564b, 2.0d) + Math.pow(x10 - gxVar.f26563a, 2.0d)) < org.telegram.messenger.i0.e * 3.0f && !z12) {
+                        vy vyVar = this.f26954m3;
+                        if (!vyVar.B1.isShowing() || SystemClock.elapsedRealtime() - gxVar.f26565c < ViewConfiguration.getLongPressTimeout()) {
                             View view = gxVar.d;
                             int R = RecyclerView.R(view);
                             try {
@@ -431,7 +431,7 @@ public final class hx extends tk0 {
                 }
             }
         }
-        if (!super.dispatchTouchEvent(motionEvent) && (z12 || this.f26841l3.size() <= 0)) {
+        if (!super.dispatchTouchEvent(motionEvent) && (z12 || this.f26953l3.size() <= 0)) {
             return false;
         }
         return true;
@@ -441,7 +441,7 @@ public final class hx extends tk0 {
     public final void k0(int i10) {
         if (i10 == 0) {
             boolean canScrollVertically = canScrollVertically(-1);
-            vy vyVar = this.f26842m3;
+            vy vyVar = this.f26954m3;
             if (!canScrollVertically || !canScrollVertically(1)) {
                 vyVar.N(true);
             }
@@ -461,11 +461,11 @@ public final class hx extends tk0 {
     public final void onDetachedFromWindow() {
         ArrayList arrayList;
         super.onDetachedFromWindow();
-        o5.release(this, this.f26842m3.f31869d2);
+        o5.release(this, this.f26954m3.f31947d2);
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            arrayList = this.f26836g3;
+            arrayList = this.f26948g3;
             if (i11 >= arrayList.size()) {
                 break;
             }
@@ -473,7 +473,7 @@ public final class hx extends tk0 {
             i11++;
         }
         while (true) {
-            ArrayList arrayList2 = this.f26839j3;
+            ArrayList arrayList2 = this.f26951j3;
             if (i10 < arrayList2.size()) {
                 ((fx) arrayList2.get(i10)).f();
                 i10++;
@@ -487,9 +487,9 @@ public final class hx extends tk0 {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        vy vyVar = this.f26842m3;
-        if (!vyVar.f31873f) {
-            boolean q6 = org.telegram.ui.lt.p().q(motionEvent, this, vyVar.f31879g2, this.f30625n2);
+        vy vyVar = this.f26954m3;
+        if (!vyVar.f31951f) {
+            boolean q6 = org.telegram.ui.kt.p().q(motionEvent, this, vyVar.f31957g2, this.f31008n2);
             if (!super.onInterceptTouchEvent(motionEvent) && !q6) {
                 return false;
             }
@@ -500,12 +500,12 @@ public final class hx extends tk0 {
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        vy vyVar = this.f26842m3;
-        if (vyVar.f31867d0 && vyVar.f31864c0) {
-            this.f26834e3 = true;
+        vy vyVar = this.f26954m3;
+        if (vyVar.f31945d0 && vyVar.f31942c0) {
+            this.f26946e3 = true;
             vyVar.Q.h1(0, 0);
-            vyVar.f31864c0 = false;
-            this.f26834e3 = false;
+            vyVar.f31942c0 = false;
+            this.f26946e3 = false;
         }
         super.onLayout(z10, i10, i11, i12, i13);
         vyVar.l(true);
@@ -515,9 +515,9 @@ public final class hx extends tk0 {
     @Override
     public final void onMeasure(int i10, int i11) {
         float f7;
-        this.f26834e3 = true;
+        this.f26946e3 = true;
         int size = View.MeasureSpec.getSize(i10);
-        vy vyVar = this.f26842m3;
+        vy vyVar = this.f26954m3;
         vw vwVar = vyVar.Q;
         int i12 = vwVar.J;
         if (org.telegram.messenger.i0.Q1()) {
@@ -526,7 +526,7 @@ public final class hx extends tk0 {
             f7 = 45.0f;
         }
         vwVar.y1(Math.max(1, size / org.telegram.messenger.i0.L(f7)));
-        this.f26834e3 = false;
+        this.f26946e3 = false;
         super.onMeasure(i10, i11);
         if (i12 != vwVar.J) {
             vyVar.R.F(false);
@@ -536,7 +536,7 @@ public final class hx extends tk0 {
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         String str;
-        vy vyVar = this.f26842m3;
+        vy vyVar = this.f26954m3;
         int[] iArr = vyVar.D1;
         ju juVar = vyVar.B1;
         if (vyVar.R1 != null && juVar != null) {
@@ -551,15 +551,15 @@ public final class hx extends tk0 {
                     }
                     getLocationOnScreen(iArr);
                     float x10 = motionEvent.getX() + iArr[0];
-                    juVar.f27495c.getLocationOnScreen(iArr);
+                    juVar.f27577c.getLocationOnScreen(iArr);
                     int L = (int) (x10 - (org.telegram.messenger.i0.L(3.0f) + iArr[0]));
                     boolean z10 = juVar.d;
-                    iu iuVar = juVar.f27495c;
+                    iu iuVar = juVar.f27577c;
                     if (!z10) {
                         int max = Math.max(0, Math.min(5, L / (org.telegram.messenger.i0.L(4.0f) + juVar.e)));
-                        if (iuVar.f27089n[0] != max) {
+                        if (iuVar.f27171n[0] != max) {
                             org.telegram.messenger.i0.b4(iuVar);
-                            int[] iArr2 = iuVar.f27089n;
+                            int[] iArr2 = iuVar.f27171n;
                             if (iArr2[0] != max) {
                                 iArr2[0] = max;
                                 iuVar.invalidate();
@@ -570,21 +570,21 @@ public final class hx extends tk0 {
             } else {
                 if (juVar != null && juVar.isShowing() && !juVar.d) {
                     juVar.dismiss();
-                    int i10 = juVar.f27495c.f27089n[0];
+                    int i10 = juVar.f27577c.f27171n[0];
                     if (i10 >= 1 && i10 <= 5) {
-                        str = (String) org.telegram.messenger.k4.f16523a.get(i10 - 1);
+                        str = (String) org.telegram.messenger.k4.f16557a.get(i10 - 1);
                     } else {
                         str = null;
                     }
                     String str2 = (String) vyVar.R1.getTag();
-                    if (!vyVar.R1.f25890c) {
+                    if (!vyVar.R1.f25967c) {
                         if (str != null) {
-                            org.telegram.messenger.k6.f16536j.put(str2, str);
+                            org.telegram.messenger.k6.f16570j.put(str2, str);
                             str2 = vy.g(str2, str);
                         } else {
-                            org.telegram.messenger.k6.f16536j.remove(str2);
+                            org.telegram.messenger.k6.f16570j.remove(str2);
                         }
-                        vyVar.R1.a(org.telegram.messenger.k6.f(str2), vyVar.R1.f25890c);
+                        vyVar.R1.a(org.telegram.messenger.k6.f(str2), vyVar.R1.f25967c);
                         vy.b(vyVar, vyVar.R1, null);
                         try {
                             performHapticFeedback(3, 1);
@@ -617,14 +617,14 @@ public final class hx extends tk0 {
 
     @Override
     public final void requestLayout() {
-        if (this.f26834e3) {
+        if (this.f26946e3) {
             return;
         }
         super.requestLayout();
     }
 
     public final long z1() {
-        vy vyVar = this.f26842m3;
-        return Math.max(400L, Math.min(45, vyVar.f31922u2 - vyVar.f31919t2) * 35) + Math.max(600L, Math.min(55, vyVar.f31922u2 - vyVar.f31919t2) * 40) + 150;
+        vy vyVar = this.f26954m3;
+        return Math.max(400L, Math.min(45, vyVar.f32000u2 - vyVar.f31997t2) * 35) + Math.max(600L, Math.min(55, vyVar.f32000u2 - vyVar.f31997t2) * 40) + 150;
     }
 }

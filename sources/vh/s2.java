@@ -11,41 +11,41 @@ import android.view.ViewPropertyAnimator;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import j$.util.Objects;
-import org.telegram.messenger.us;
+import org.telegram.messenger.a30;
+import org.telegram.messenger.at;
 import org.telegram.messenger.voip.VideoCapturerDevice;
-import org.telegram.messenger.z20;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.vs;
 import org.telegram.ui.Components.gr;
-import org.telegram.ui.yv0;
+import org.telegram.ui.xv0;
 import org.webrtc.RendererCommon;
 import org.webrtc.SurfaceViewRenderer;
 import org.webrtc.TextureViewRenderer;
 import org.webrtc.VideoSink;
-public final class s2 extends FrameLayout implements RendererCommon.RendererEvents, us {
+public final class s2 extends FrameLayout implements RendererCommon.RendererEvents, vs {
     public boolean D;
-    public int f51914a;
-    public final kg.x f51915b;
-    public final SurfaceViewRenderer f51916c;
+    public int f51927a;
+    public final kg.x f51928b;
+    public final SurfaceViewRenderer f51929c;
     public final TextureViewRenderer d;
     public final org.telegram.ui.Components.g9 e;
-    public final TextureView f51917f;
+    public final TextureView f51930f;
     public View h;
-    public Runnable f51918n;
-    public boolean f51919r;
-    public long f51920s;
-    public k2.t0 f51921w;
-    public boolean f51922x;
-    public float f51923y;
+    public Runnable f51931n;
+    public boolean f51932r;
+    public long f51933s;
+    public k2.t0 f51934w;
+    public boolean f51935x;
+    public float f51936y;
 
     public s2(Context context, int i10) {
         super(context);
-        this.f51914a = i10;
+        this.f51927a = i10;
         org.telegram.ui.Components.g9 g9Var = new org.telegram.ui.Components.g9(context);
         this.e = g9Var;
         g9Var.setAlpha(0.75f);
         addView(g9Var, w7.b6.e(-1, -1, 119));
         TextureView textureView = new TextureView(context);
-        this.f51917f = textureView;
+        this.f51930f = textureView;
         addView(textureView, w7.b6.e(-1, -1, 119));
         TextureViewRenderer textureViewRenderer = new TextureViewRenderer(context);
         this.d = textureViewRenderer;
@@ -56,9 +56,9 @@ public final class s2 extends FrameLayout implements RendererCommon.RendererEven
         textureViewRenderer.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FIT);
         addView(textureViewRenderer, w7.b6.e(-1, -1, 119));
         textureViewRenderer.setAlpha(1.0f);
-        this.f51916c = null;
+        this.f51929c = null;
         kg.x xVar = new kg.x(context);
-        this.f51915b = xVar;
+        this.f51928b = xVar;
         xVar.setAlpha(0.0f);
         xVar.setVisibility(8);
         addView(xVar, w7.b6.e(-1, -1, 119));
@@ -69,7 +69,7 @@ public final class s2 extends FrameLayout implements RendererCommon.RendererEven
         if (textureViewRenderer != null) {
             return textureViewRenderer.isAvailable();
         }
-        if (this.f51916c != null) {
+        if (this.f51929c != null) {
             return true;
         }
         return false;
@@ -80,11 +80,11 @@ public final class s2 extends FrameLayout implements RendererCommon.RendererEven
         if (textureViewRenderer != null) {
             textureViewRenderer.release();
         }
-        SurfaceViewRenderer surfaceViewRenderer = this.f51916c;
+        SurfaceViewRenderer surfaceViewRenderer = this.f51929c;
         if (surfaceViewRenderer != null) {
             surfaceViewRenderer.release();
         }
-        this.f51919r = false;
+        this.f51932r = false;
         e(false, false);
     }
 
@@ -95,7 +95,7 @@ public final class s2 extends FrameLayout implements RendererCommon.RendererEven
             return;
         }
         this.D = z10;
-        kg.x xVar = this.f51915b;
+        kg.x xVar = this.f51928b;
         int i10 = 0;
         xVar.setVisibility(0);
         d dVar = (d) xVar.d;
@@ -105,7 +105,7 @@ public final class s2 extends FrameLayout implements RendererCommon.RendererEven
         } else {
             f7 = 0.0f;
         }
-        animate.alpha(f7).setInterpolator(gr.h).setDuration(320L).withEndAction(new yv0(11, this, z10)).start();
+        animate.alpha(f7).setInterpolator(gr.h).setDuration(320L).withEndAction(new xv0(11, this, z10)).start();
         dVar.setVisibility((!z10 || runnable == null) ? 8 : 8);
         if (runnable == null) {
             uVar = null;
@@ -123,13 +123,13 @@ public final class s2 extends FrameLayout implements RendererCommon.RendererEven
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         th.s0 s0Var;
         th.n0 n0Var;
-        if (i10 == zs.G2) {
+        if (i10 == at.G2) {
             long longValue = ((Long) objArr[0]).longValue();
-            k2.t0 t0Var = this.f51921w;
-            if (t0Var != null && (s0Var = (th.s0) t0Var.f10766a) != null && s0Var.g() == longValue) {
-                boolean n10 = ((th.s0) this.f51921w.f10766a).n();
-                if (((th.s0) this.f51921w.f10766a).a()) {
-                    th.s0 s0Var2 = (th.s0) this.f51921w.f10766a;
+            k2.t0 t0Var = this.f51934w;
+            if (t0Var != null && (s0Var = (th.s0) t0Var.f10767a) != null && s0Var.g() == longValue) {
+                boolean n10 = ((th.s0) this.f51934w.f10767a).n();
+                if (((th.s0) this.f51934w.f10767a).a()) {
+                    th.s0 s0Var2 = (th.s0) this.f51934w.f10767a;
                     Objects.requireNonNull(s0Var2);
                     n0Var = new th.n0(s0Var2, 12);
                 } else {
@@ -149,7 +149,7 @@ public final class s2 extends FrameLayout implements RendererCommon.RendererEven
     public final void draw(Canvas canvas) {
         Bitmap bitmap;
         if (org.telegram.messenger.i0.m0) {
-            TextureView textureView = this.f51917f;
+            TextureView textureView = this.f51930f;
             if (textureView != null && (bitmap = textureView.getBitmap()) != null) {
                 canvas.save();
                 canvas.translate(textureView.getX(), textureView.getY());
@@ -178,7 +178,7 @@ public final class s2 extends FrameLayout implements RendererCommon.RendererEven
                 }
                 return true;
             }
-            TextureView textureView = this.f51917f;
+            TextureView textureView = this.f51930f;
             if (view == textureView) {
                 Bitmap bitmap2 = textureView.getBitmap();
                 if (bitmap2 != null) {
@@ -204,7 +204,7 @@ public final class s2 extends FrameLayout implements RendererCommon.RendererEven
             if (z10) {
                 f7 = 1.0f;
             }
-            z20.m(animate.alpha(f7), gr.h, 320L);
+            a30.m(animate.alpha(f7), gr.h, 320L);
             return;
         }
         getTextureView().animate().cancel();
@@ -221,9 +221,9 @@ public final class s2 extends FrameLayout implements RendererCommon.RendererEven
         if (isAttachedToWindow() && measuredWidth > 0 && measuredHeight > 0) {
             View view = this.d;
             if (view == null) {
-                view = this.f51916c;
+                view = this.f51929c;
             }
-            TextureView textureView = this.f51917f;
+            TextureView textureView = this.f51930f;
             int measuredWidth2 = textureView.getMeasuredWidth();
             int measuredHeight2 = textureView.getMeasuredHeight();
             textureView.setPivotX(0.0f);
@@ -236,14 +236,14 @@ public final class s2 extends FrameLayout implements RendererCommon.RendererEven
             textureView.setScaleX(max);
             textureView.setScaleY(max);
             textureView.setTranslationX((f7 - (f10 * max)) / 2.0f);
-            textureView.setTranslationY(((f11 - (f12 * max)) / 2.0f) - (this.f51923y / 2.0f));
+            textureView.setTranslationY(((f11 - (f12 * max)) / 2.0f) - (this.f51936y / 2.0f));
             float measuredWidth3 = view.getMeasuredWidth();
             float measuredHeight3 = view.getMeasuredHeight();
             float max2 = Math.max(measuredWidth3 / f7, measuredHeight3 / f11);
             view.setScaleX(max2);
             view.setScaleY(max2);
             view.setTranslationX((f7 - (measuredWidth3 * max2)) / 2.0f);
-            view.setTranslationY(((f11 - (measuredHeight3 * max2)) / 2.0f) - (this.f51923y / 2.0f));
+            view.setTranslationY(((f11 - (measuredHeight3 * max2)) / 2.0f) - (this.f51936y / 2.0f));
         }
     }
 
@@ -269,7 +269,7 @@ public final class s2 extends FrameLayout implements RendererCommon.RendererEven
         if (textureViewRenderer != null) {
             return textureViewRenderer;
         }
-        SurfaceViewRenderer surfaceViewRenderer = this.f51916c;
+        SurfaceViewRenderer surfaceViewRenderer = this.f51929c;
         if (surfaceViewRenderer != null) {
             return surfaceViewRenderer;
         }
@@ -281,7 +281,7 @@ public final class s2 extends FrameLayout implements RendererCommon.RendererEven
         if (textureViewRenderer != null) {
             return textureViewRenderer;
         }
-        SurfaceViewRenderer surfaceViewRenderer = this.f51916c;
+        SurfaceViewRenderer surfaceViewRenderer = this.f51929c;
         if (surfaceViewRenderer != null) {
             return surfaceViewRenderer;
         }
@@ -291,24 +291,24 @@ public final class s2 extends FrameLayout implements RendererCommon.RendererEven
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        SurfaceViewRenderer surfaceViewRenderer = this.f51916c;
+        SurfaceViewRenderer surfaceViewRenderer = this.f51929c;
         if (surfaceViewRenderer != null) {
             surfaceViewRenderer.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), this);
         }
         TextureViewRenderer textureViewRenderer = this.d;
         if (textureViewRenderer != null) {
             textureViewRenderer.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), this);
-            textureViewRenderer.setBackgroundRenderer(this.f51917f);
+            textureViewRenderer.setBackgroundRenderer(this.f51930f);
         }
-        zs.f(this.f51914a).c(this, zs.G2);
+        at.f(this.f51927a).c(this, at.G2);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f51919r = false;
+        this.f51932r = false;
         e(false, false);
-        SurfaceViewRenderer surfaceViewRenderer = this.f51916c;
+        SurfaceViewRenderer surfaceViewRenderer = this.f51929c;
         if (surfaceViewRenderer != null) {
             surfaceViewRenderer.release();
         }
@@ -316,7 +316,7 @@ public final class s2 extends FrameLayout implements RendererCommon.RendererEven
         if (textureViewRenderer != null) {
             textureViewRenderer.release();
         }
-        zs.f(this.f51914a).n(this, zs.G2);
+        at.f(this.f51927a).n(this, at.G2);
     }
 
     @Override
@@ -326,19 +326,19 @@ public final class s2 extends FrameLayout implements RendererCommon.RendererEven
 
     @Override
     public final void onFirstFrameRendered() {
-        if (!this.f51919r) {
-            k2.t0 t0Var = this.f51921w;
-            if (t0Var != null && !t0Var.f10767b) {
-                t0Var.f10767b = true;
+        if (!this.f51932r) {
+            k2.t0 t0Var = this.f51934w;
+            if (t0Var != null && !t0Var.f10768b) {
+                t0Var.f10768b = true;
                 t0Var.b();
             }
-            this.f51919r = true;
+            this.f51932r = true;
         }
         e(true, true);
-        Runnable runnable = this.f51918n;
+        Runnable runnable = this.f51931n;
         if (runnable != null) {
             runnable.run();
-            this.f51918n = null;
+            this.f51931n = null;
         }
     }
 
@@ -347,16 +347,16 @@ public final class s2 extends FrameLayout implements RendererCommon.RendererEven
         int i14 = i12 - i10;
         int i15 = i13 - i11;
         this.e.layout(0, 0, i14, i15);
-        this.f51915b.layout(0, 0, i14, i15);
+        this.f51928b.layout(0, 0, i14, i15);
         View view = this.h;
         if (view != null) {
             view.layout(0, 0, i14, i15);
         }
-        TextureView textureView = this.f51917f;
+        TextureView textureView = this.f51930f;
         textureView.layout(0, 0, textureView.getMeasuredWidth(), textureView.getMeasuredHeight());
         View view2 = this.d;
         if (view2 == null) {
-            view2 = this.f51916c;
+            view2 = this.f51929c;
         }
         view2.layout(0, 0, view2.getMeasuredWidth(), view2.getMeasuredHeight());
         f();
@@ -365,20 +365,20 @@ public final class s2 extends FrameLayout implements RendererCommon.RendererEven
     @Override
     public final void onMeasure(int i10, int i11) {
         View view;
-        this.f51922x = true;
+        this.f51935x = true;
         Display defaultDisplay = ((WindowManager) getContext().getSystemService("window")).getDefaultDisplay();
         TextureViewRenderer textureViewRenderer = this.d;
         if (textureViewRenderer != null) {
             textureViewRenderer.setScreenRotation(defaultDisplay.getRotation());
         }
-        this.f51922x = false;
+        this.f51935x = false;
         super.onMeasure(i10, i11);
         if (textureViewRenderer != null) {
             view = textureViewRenderer;
         } else {
-            view = this.f51916c;
+            view = this.f51929c;
         }
-        TextureView textureView = this.f51917f;
+        TextureView textureView = this.f51930f;
         textureView.getLayoutParams().width = view.getMeasuredWidth();
         textureView.getLayoutParams().height = view.getMeasuredHeight();
         super.onMeasure(i10, i11);
@@ -389,38 +389,38 @@ public final class s2 extends FrameLayout implements RendererCommon.RendererEven
 
     @Override
     public final void requestLayout() {
-        if (this.f51922x) {
+        if (this.f51935x) {
             return;
         }
         super.requestLayout();
     }
 
     public void setAccount(int i10) {
-        if (this.f51914a == i10) {
+        if (this.f51927a == i10) {
             return;
         }
         if (isAttachedToWindow()) {
-            zs f7 = zs.f(this.f51914a);
-            int i11 = zs.G2;
+            at f7 = at.f(this.f51927a);
+            int i11 = at.G2;
             f7.n(this, i11);
-            this.f51914a = i10;
-            zs.f(i10).c(this, i11);
+            this.f51927a = i10;
+            at.f(i10).c(this, i11);
             return;
         }
-        this.f51914a = i10;
+        this.f51927a = i10;
     }
 
     public void setKeyboardOffset(float f7) {
-        this.f51923y = f7;
+        this.f51936y = f7;
         f();
     }
 
     public void setOnFirstFrameCallback(Runnable runnable) {
-        this.f51918n = runnable;
+        this.f51931n = runnable;
     }
 
     public void setSecure(boolean z10) {
-        SurfaceViewRenderer surfaceViewRenderer = this.f51916c;
+        SurfaceViewRenderer surfaceViewRenderer = this.f51929c;
         if (surfaceViewRenderer != null) {
             surfaceViewRenderer.setSecure(z10);
         }

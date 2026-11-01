@@ -5,18 +5,18 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 import w7.r6;
 public final class t {
-    public final TextView f12549a;
-    public final k2.m0 f12550b;
+    public final TextView f12550a;
+    public final k2.m0 f12551b;
 
     public t(TextView textView) {
-        this.f12549a = textView;
+        this.f12550a = textView;
         ?? obj = new Object();
-        obj.f10700a = new q1.g(textView);
-        this.f12550b = obj;
+        obj.f10701a = new q1.g(textView);
+        this.f12551b = obj;
     }
 
     public final void a(AttributeSet attributeSet, int i10) {
-        TypedArray obtainStyledAttributes = this.f12549a.getContext().obtainStyledAttributes(attributeSet, f.a.f6699i, i10, 0);
+        TypedArray obtainStyledAttributes = this.f12550a.getContext().obtainStyledAttributes(attributeSet, f.a.f6700i, i10, 0);
         try {
             boolean z10 = true;
             if (obtainStyledAttributes.hasValue(14)) {
@@ -31,10 +31,10 @@ public final class t {
     }
 
     public final void b(boolean z10) {
-        ((r6) this.f12550b.f10700a).b(z10);
+        ((r6) this.f12551b.f10701a).b(z10);
     }
 
     public final void c(boolean z10) {
-        ((r6) this.f12550b.f10700a).c(z10);
+        ((r6) this.f12551b.f10701a).c(z10);
     }
 }

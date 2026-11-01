@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.telegram.ui.Components.ez;
-import org.telegram.ui.Components.q81;
+import org.telegram.ui.Components.r81;
 import org.telegram.ui.Wallet.x0;
 final class WidgetSandboxBackend implements z, c {
     private static final long MEMORY_BUDGET = 33554432;
@@ -54,11 +54,11 @@ final class WidgetSandboxBackend implements z, c {
             for (Map.Entry<Integer, d> entry : this.canvases.entrySet()) {
                 if (entry.getKey().intValue() != i10) {
                     d value = entry.getValue();
-                    Bitmap bitmap = value.f44330m;
+                    Bitmap bitmap = value.f44335o;
                     if (bitmap == null) {
                         width = 0;
                     } else {
-                        width = bitmap.getWidth() * value.f44330m.getHeight() * 8;
+                        width = bitmap.getWidth() * value.f44335o.getHeight() * 8;
                     }
                     j11 += width;
                 }
@@ -158,7 +158,7 @@ final class WidgetSandboxBackend implements z, c {
                         try {
                             a2.translate(-i13, -i12);
                             a2.scale(f7, f7);
-                            this.painter.g(a2, jSONArray2, this, f7);
+                            this.painter.f(a2, jSONArray2, this, f7);
                             fVar.e();
                             sVar = new s(fVar, (int) optLong2);
                         } catch (Throwable th2) {
@@ -169,7 +169,7 @@ final class WidgetSandboxBackend implements z, c {
                         i11 = i15;
                         j10 = optLong;
                         if (sVar != null) {
-                            if (sVar.f44446b != ((int) optLong2)) {
+                            if (sVar.f44457b != ((int) optLong2)) {
                             }
                         }
                         i15 = i11 + 1;
@@ -203,7 +203,7 @@ final class WidgetSandboxBackend implements z, c {
                     float[] fArr5 = new float[length2];
                     a0.d(optJSONArray5, fArr5, length2, new float[0]);
                     int i17 = i16 + 1;
-                    g gVar = sVar.f44445a;
+                    g gVar = sVar.f44456a;
                     double optDouble2 = optJSONObject.optDouble("ts");
                     double optDouble3 = optJSONObject.optDouble("td");
                     if (optJSONObject.optInt("tr") != 0) {
@@ -253,18 +253,18 @@ final class WidgetSandboxBackend implements z, c {
         }
         synchronized (dVar) {
             try {
-                Bitmap bitmap = dVar.f44330m;
+                Bitmap bitmap = dVar.f44335o;
                 if (bitmap == null) {
                     return null;
                 }
-                if (dVar.f44334q == dVar.f44333p) {
-                    if (dVar.f44331n == null) {
+                if (dVar.f44339s == dVar.f44338r) {
+                    if (dVar.f44336p == null) {
                     }
-                    return dVar.f44331n;
+                    return dVar.f44336p;
                 }
-                dVar.f44331n = bitmap.copy(Bitmap.Config.ARGB_8888, false);
-                dVar.f44334q = dVar.f44333p;
-                return dVar.f44331n;
+                dVar.f44336p = bitmap.copy(Bitmap.Config.ARGB_8888, false);
+                dVar.f44339s = dVar.f44338r;
+                return dVar.f44336p;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -277,7 +277,7 @@ final class WidgetSandboxBackend implements z, c {
         if (dVar == null) {
             return null;
         }
-        return dVar.f44330m;
+        return dVar.f44335o;
     }
 
     public byte[] canvasRead(int i10, int i11, int i12, int i13, int i14) {
@@ -289,16 +289,16 @@ final class WidgetSandboxBackend implements z, c {
                 return new byte[i13 * i14 * 4];
             }
             byte[] bArr = new byte[Math.max(i14, 0) * Math.max(i13, 0) * 4];
-            if (dVar.f44330m != null) {
+            if (dVar.f44335o != null) {
                 int max = Math.max(0, i15);
                 int max2 = Math.max(0, i12);
-                int min = Math.min(dVar.f44330m.getWidth(), i15 + i13);
-                int min2 = Math.min(dVar.f44330m.getHeight(), i14 + i12);
+                int min = Math.min(dVar.f44335o.getWidth(), i15 + i13);
+                int min2 = Math.min(dVar.f44335o.getHeight(), i14 + i12);
                 if (min > max && min2 > max2) {
                     int i16 = min - max;
                     int i17 = min2 - max2;
                     int[] iArr = new int[i16 * i17];
-                    dVar.f44330m.getPixels(iArr, 0, i16, max, max2, i16, i17);
+                    dVar.f44335o.getPixels(iArr, 0, i16, max, max2, i16, i17);
                     int i18 = max2;
                     while (i18 < min2) {
                         int i19 = max;
@@ -328,13 +328,13 @@ final class WidgetSandboxBackend implements z, c {
         if (remove != null) {
             synchronized (remove) {
                 try {
-                    Bitmap bitmap = remove.f44330m;
+                    Bitmap bitmap = remove.f44335o;
                     if (bitmap != null) {
                         bitmap.recycle();
                     }
-                    remove.f44330m = null;
-                    remove.f44332o = null;
-                    remove.f44331n = null;
+                    remove.f44335o = null;
+                    remove.f44337q = null;
+                    remove.f44336p = null;
                 } catch (Throwable th2) {
                     throw th2;
                 }
@@ -342,8 +342,8 @@ final class WidgetSandboxBackend implements z, c {
         }
     }
 
-    public void canvasRun(int r3, int r4, int r5, byte[] r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.WidgetSandboxBackend.canvasRun(int, int, int, byte[]):void");
+    public void canvasRun(int r3, int r4, int r5, int[] r6) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.WidgetSandboxBackend.canvasRun(int, int, int, int[]):void");
     }
 
     public float[] createFont(byte[] bArr, float f7, int i10, boolean z10, byte[] bArr2) {
@@ -355,7 +355,7 @@ final class WidgetSandboxBackend implements z, c {
         if (featureSettings != null) {
             paint.setFontFeatureSettings(featureSettings);
         }
-        float f10 = this.owner.f44374j;
+        float f10 = this.owner.f44385j;
         Paint paint2 = new Paint(paint);
         paint2.setTextSize(f7 * f10);
         Paint.FontMetrics fontMetrics = paint2.getFontMetrics();
@@ -425,7 +425,7 @@ final class WidgetSandboxBackend implements z, c {
                 Canvas a2 = gVar.a();
                 try {
                     a2.scale(f7, f7);
-                    this.painter.g(a2, jSONArray, this, f7);
+                    this.painter.f(a2, jSONArray, this, f7);
                     gVar.e();
                     j0[] layers = layers(jSONObject, f7);
                     k0 k0Var = this.owner;
@@ -461,7 +461,7 @@ final class WidgetSandboxBackend implements z, c {
             String text = text(bArr);
             ConcurrentHashMap<Integer, Paint> concurrentHashMap = this.deviceFonts;
             Objects.requireNonNull(concurrentHashMap);
-            this.text = q0.a(text, new r(concurrentHashMap), this.owner.f44374j);
+            this.text = q0.a(text, new r(concurrentHashMap), this.owner.f44385j);
         } catch (Exception unused) {
             this.text = null;
         }
@@ -472,17 +472,17 @@ final class WidgetSandboxBackend implements z, c {
         final k0 k0Var = this.owner;
         final String text = text(bArr);
         if (i10 == 8) {
-            k0Var.f44368a.post(new Runnable() {
+            k0Var.f44379a.post(new Runnable() {
                 @Override
                 public final void run() {
                     w wVar;
                     w wVar2;
-                    q81 q81Var;
+                    r81 r81Var;
                     switch (r3) {
                         case 0:
                             k0 k0Var2 = k0Var;
                             String str = text;
-                            if (!k0Var2.f44385u && (wVar = k0Var2.J) != null) {
+                            if (!k0Var2.f44396u && (wVar = k0Var2.J) != null) {
                                 try {
                                     wVar.f(new JSONObject(str));
                                 } catch (Exception unused) {
@@ -511,9 +511,9 @@ final class WidgetSandboxBackend implements z, c {
                         default:
                             k0 k0Var4 = k0Var;
                             String str3 = text;
-                            if (!k0Var4.f44385u && (wVar2 = k0Var4.J) != null && (q81Var = wVar2.h) != null) {
-                                if (q81Var.F || (q81Var.f29596w && q81Var.E)) {
-                                    q81Var.f29578a.f(str3);
+                            if (!k0Var4.f44396u && (wVar2 = k0Var4.J) != null && (r81Var = wVar2.h) != null) {
+                                if (r81Var.F || (r81Var.f29958w && r81Var.E)) {
+                                    r81Var.f29940a.f(str3);
                                     return;
                                 }
                                 return;
@@ -524,20 +524,20 @@ final class WidgetSandboxBackend implements z, c {
             });
         } else if (i10 == 10) {
             k0Var.getClass();
-        } else if (!k0Var.f44385u) {
+        } else if (!k0Var.f44396u) {
             if (i10 != 12 && i10 != 13 && i10 != 14 && i10 != 19) {
                 if (i10 == 11) {
-                    k0Var.f44368a.post(new Runnable() {
+                    k0Var.f44379a.post(new Runnable() {
                         @Override
                         public final void run() {
                             w wVar;
                             w wVar2;
-                            q81 q81Var;
+                            r81 r81Var;
                             switch (r3) {
                                 case 0:
                                     k0 k0Var2 = k0Var;
                                     String str = text;
-                                    if (!k0Var2.f44385u && (wVar = k0Var2.J) != null) {
+                                    if (!k0Var2.f44396u && (wVar = k0Var2.J) != null) {
                                         try {
                                             wVar.f(new JSONObject(str));
                                         } catch (Exception unused) {
@@ -566,9 +566,9 @@ final class WidgetSandboxBackend implements z, c {
                                 default:
                                     k0 k0Var4 = k0Var;
                                     String str3 = text;
-                                    if (!k0Var4.f44385u && (wVar2 = k0Var4.J) != null && (q81Var = wVar2.h) != null) {
-                                        if (q81Var.F || (q81Var.f29596w && q81Var.E)) {
-                                            q81Var.f29578a.f(str3);
+                                    if (!k0Var4.f44396u && (wVar2 = k0Var4.J) != null && (r81Var = wVar2.h) != null) {
+                                        if (r81Var.F || (r81Var.f29958w && r81Var.E)) {
+                                            r81Var.f29940a.f(str3);
                                             return;
                                         }
                                         return;
@@ -586,64 +586,64 @@ final class WidgetSandboxBackend implements z, c {
                         return;
                     } else if (i10 != 16 && i10 != 17 && i10 != 9) {
                         if (i10 == 6) {
-                            k0Var.f44377m.set(false);
-                            k0Var.f44368a.post(k0Var.O);
+                            k0Var.f44388m.set(false);
+                            k0Var.f44379a.post(k0Var.O);
                             return;
                         } else if (i10 == 1) {
-                            k0Var.f44378n.set(true);
-                            k0Var.f44368a.post(k0Var.S);
+                            k0Var.f44389n.set(true);
+                            k0Var.f44379a.post(k0Var.S);
                             return;
                         } else if (i10 == 2) {
-                            k0Var.f44376l.set(true);
-                            k0Var.f44368a.removeCallbacks(k0Var.O);
-                            k0Var.f44368a.post(k0Var.O);
+                            k0Var.f44387l.set(true);
+                            k0Var.f44379a.removeCallbacks(k0Var.O);
+                            k0Var.f44379a.post(k0Var.O);
                             return;
                         } else if (i10 == 3) {
                             JSONObject jSONObject2 = new JSONObject(text);
-                            k0Var.f44368a.post(new ez(k0Var, jSONObject2.optBoolean("x"), jSONObject2.optBoolean("y"), jSONObject2.optBoolean("hold"), 2));
+                            k0Var.f44379a.post(new ez(k0Var, jSONObject2.optBoolean("x"), jSONObject2.optBoolean("y"), jSONObject2.optBoolean("hold"), 2));
                             return;
                         } else if (i10 == 4) {
                             JSONObject jSONObject3 = new JSONObject(text);
                             if (jSONObject3.optBoolean("loaded")) {
                                 k0Var.v = true;
                             }
-                            k0Var.f44388y = "bottom".equals(jSONObject3.optString("resizeAnchor"));
-                            if (jSONObject3.optBoolean("rendered") && !k0Var.f44386w) {
+                            k0Var.f44399y = "bottom".equals(jSONObject3.optString("resizeAnchor"));
+                            if (jSONObject3.optBoolean("rendered") && !k0Var.f44397w) {
                                 double optDouble = jSONObject3.optDouble("height", -1.0d);
-                                double min = Math.min(600.0f, Math.max(50.0f, k0Var.f44382r / k0Var.f44374j));
-                                if (k0Var.f44383s && optDouble > 0.0d && Math.abs(min - optDouble) <= 1.0d) {
+                                double min = Math.min(600.0f, Math.max(50.0f, k0Var.f44393r / k0Var.f44385j));
+                                if (k0Var.f44394s && optDouble > 0.0d && Math.abs(min - optDouble) <= 1.0d) {
                                     z10 = true;
-                                    k0Var.f44387x = true;
+                                    k0Var.f44398x = true;
                                 } else {
                                     z10 = true;
                                 }
-                                k0Var.f44386w = z10;
+                                k0Var.f44397w = z10;
                             }
-                            synchronized (k0Var.f44381q) {
-                                if (k0Var.f44385u) {
+                            synchronized (k0Var.f44392q) {
+                                if (k0Var.f44396u) {
                                     return;
                                 }
                                 k0Var.H = jSONObject3;
                                 if (!k0Var.I) {
                                     k0Var.I = true;
-                                    k0Var.f44368a.post(k0Var.N);
+                                    k0Var.f44379a.post(k0Var.N);
                                 }
                                 return;
                             }
                         } else {
                             boolean z11 = true;
                             if (i10 == 5) {
-                                k0Var.f44368a.post(new Runnable() {
+                                k0Var.f44379a.post(new Runnable() {
                                     @Override
                                     public final void run() {
                                         w wVar;
                                         w wVar2;
-                                        q81 q81Var;
+                                        r81 r81Var;
                                         switch (r3) {
                                             case 0:
                                                 k0 k0Var2 = k0Var;
                                                 String str = text;
-                                                if (!k0Var2.f44385u && (wVar = k0Var2.J) != null) {
+                                                if (!k0Var2.f44396u && (wVar = k0Var2.J) != null) {
                                                     try {
                                                         wVar.f(new JSONObject(str));
                                                     } catch (Exception unused) {
@@ -672,9 +672,9 @@ final class WidgetSandboxBackend implements z, c {
                                             default:
                                                 k0 k0Var4 = k0Var;
                                                 String str3 = text;
-                                                if (!k0Var4.f44385u && (wVar2 = k0Var4.J) != null && (q81Var = wVar2.h) != null) {
-                                                    if (q81Var.F || (q81Var.f29596w && q81Var.E)) {
-                                                        q81Var.f29578a.f(str3);
+                                                if (!k0Var4.f44396u && (wVar2 = k0Var4.J) != null && (r81Var = wVar2.h) != null) {
+                                                    if (r81Var.F || (r81Var.f29958w && r81Var.E)) {
+                                                        r81Var.f29940a.f(str3);
                                                         return;
                                                     }
                                                     return;
@@ -686,12 +686,12 @@ final class WidgetSandboxBackend implements z, c {
                                 return;
                             } else if (i10 == 7) {
                                 float parseFloat = Float.parseFloat(text);
-                                AtomicBoolean atomicBoolean = k0Var.f44379o;
+                                AtomicBoolean atomicBoolean = k0Var.f44390o;
                                 if (parseFloat != 0.0f) {
                                     z11 = false;
                                 }
                                 atomicBoolean.set(z11);
-                                k0Var.f44368a.post(new org.telegram.ui.a0(k0Var, parseFloat, 4));
+                                k0Var.f44379a.post(new org.telegram.ui.a0(k0Var, parseFloat, 4));
                                 return;
                             } else {
                                 return;
@@ -704,7 +704,7 @@ final class WidgetSandboxBackend implements z, c {
                     return;
                 }
             }
-            k0Var.f44368a.post(new x0(k0Var, i10, text, 7));
+            k0Var.f44379a.post(new x0(k0Var, i10, text, 7));
         }
     }
 
@@ -713,6 +713,6 @@ final class WidgetSandboxBackend implements z, c {
         if (paint == null) {
             return 0.0f;
         }
-        return paint.measureText(text(bArr)) / this.owner.f44374j;
+        return paint.measureText(text(bArr)) / this.owner.f44385j;
     }
 }

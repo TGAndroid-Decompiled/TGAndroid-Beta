@@ -80,7 +80,7 @@ public abstract class v4 extends l80 implements fe.e {
             super.onDraw(canvas);
             return;
         }
-        float f7 = this.P0.f7031f;
+        float f7 = this.P0.f7032f;
         int L = org.telegram.messenger.i0.L(6.0f);
         canvas.save();
         canvas.translate(this.R0 - getTranslationX(), (-L) * f7);

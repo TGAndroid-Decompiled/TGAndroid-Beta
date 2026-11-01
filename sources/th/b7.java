@@ -3,11 +3,11 @@ package th;
 import org.telegram.ui.Components.ua;
 import org.telegram.ui.Components.wb;
 public final class b7 implements ua {
-    public final float[] f48808a = new float[2];
-    public final c7 f48809b;
+    public final float[] f48822a = new float[2];
+    public final c7 f48823b;
 
     public b7(c7 c7Var) {
-        this.f48809b = c7Var;
+        this.f48823b = c7Var;
     }
 
     @Override
@@ -22,15 +22,15 @@ public final class b7 implements ua {
 
     @Override
     public final int f(int i10) {
-        c7 c7Var = this.f48809b;
-        o7 o7Var = c7Var.f48858r0;
+        c7 c7Var = this.f48823b;
+        o7 o7Var = c7Var.f48872r0;
         z2 H = o7Var.H();
         if (H == null) {
             return 0;
         }
         g2 g2Var = H.L0;
-        c7 c7Var2 = o7Var.f49330s;
-        float[] fArr = this.f48808a;
+        c7 c7Var2 = o7Var.f49344s;
+        float[] fArr = this.f48822a;
         org.telegram.messenger.i0.r1(g2Var, c7Var2, fArr);
         return (int) (c7Var.getMeasuredHeight() - (fArr[1] + g2Var.getMeasuredHeight()));
     }

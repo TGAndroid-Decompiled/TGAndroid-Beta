@@ -1,11 +1,11 @@
 package rh;
 public final class h3 implements Runnable {
-    public final int f46998a;
-    public final n3 f46999b;
+    public final int f47012a;
+    public final n3 f47013b;
 
     public h3(n3 n3Var, int i10) {
-        this.f46998a = i10;
-        this.f46999b = n3Var;
+        this.f47012a = i10;
+        this.f47013b = n3Var;
     }
 
     @Override
@@ -25,65 +25,65 @@ public final class h3 implements Runnable {
         boolean z22;
         boolean z23;
         boolean z24;
-        switch (this.f46998a) {
+        switch (this.f47012a) {
             case 0:
-                this.f46999b.b();
+                this.f47013b.b();
                 return;
             case 1:
-                n3 n3Var = this.f46999b;
-                y3 y3Var = n3Var.f47233a;
-                if (!n3Var.f47250u) {
+                n3 n3Var = this.f47013b;
+                y3 y3Var = n3Var.f47244a;
+                if (!n3Var.f47261u) {
                     n3Var.v = false;
-                    if (n3Var.f47244o) {
-                        n3Var.f47250u = true;
+                    if (n3Var.f47255o) {
+                        n3Var.f47261u = true;
                         long currentTimeMillis = System.currentTimeMillis();
-                        float min = Math.min(((float) (currentTimeMillis - n3Var.f47242m)) / 1000.0f, 0.25f);
-                        float f7 = n3Var.f47243n + min;
-                        n3Var.f47243n = f7;
-                        j3 j3Var = n3Var.f47239j;
-                        if (f7 > org.telegram.messenger.i0.T1(0.1f, 1.0f, n3Var.f47249t)) {
+                        float min = Math.min(((float) (currentTimeMillis - n3Var.f47253m)) / 1000.0f, 0.25f);
+                        float f7 = n3Var.f47254n + min;
+                        n3Var.f47254n = f7;
+                        j3 j3Var = n3Var.f47250j;
+                        if (f7 > org.telegram.messenger.i0.T1(0.1f, 1.0f, n3Var.f47260t)) {
                             z10 = true;
                         } else {
                             z10 = false;
                         }
                         float f10 = j3Var.f(z10, min);
-                        j3 j3Var2 = n3Var.f47240k;
-                        if (n3Var.f47243n > org.telegram.messenger.i0.T1(0.1f, 1.0f, n3Var.f47249t)) {
+                        j3 j3Var2 = n3Var.f47251k;
+                        if (n3Var.f47254n > org.telegram.messenger.i0.T1(0.1f, 1.0f, n3Var.f47260t)) {
                             z11 = true;
                         } else {
                             z11 = false;
                         }
                         float f11 = j3Var2.f(z11, min);
-                        float f12 = n3Var.f47238i.f(n3Var.f47239j.b(0.5f), min);
+                        float f12 = n3Var.f47249i.f(n3Var.f47250j.b(0.5f), min);
                         j3 j3Var3 = n3Var.h;
-                        if (n3Var.f47239j.b(0.5f) && n3Var.f47238i.b(0.5f)) {
+                        if (n3Var.f47250j.b(0.5f) && n3Var.f47249i.b(0.5f)) {
                             z12 = true;
                         } else {
                             z12 = false;
                         }
                         float f13 = j3Var3.f(z12, min);
-                        n3Var.f47242m = currentTimeMillis;
-                        if (n3Var.f47239j.c() && n3Var.f47238i.c() && n3Var.h.c() && !n3Var.f47245p) {
-                            n3Var.f47245p = true;
+                        n3Var.f47253m = currentTimeMillis;
+                        if (n3Var.f47250j.c() && n3Var.f47249i.c() && n3Var.h.c() && !n3Var.f47256p) {
+                            n3Var.f47256p = true;
                             org.telegram.messenger.i0.g3(new h3(n3Var, 2));
                         }
-                        if (n3Var.f47239j.c() && n3Var.f47238i.c() && n3Var.h.b(0.25f) && !n3Var.f47246q) {
-                            n3Var.f47246q = true;
+                        if (n3Var.f47250j.c() && n3Var.f47249i.c() && n3Var.h.b(0.25f) && !n3Var.f47257q) {
+                            n3Var.f47257q = true;
                             org.telegram.messenger.i0.g3(new h3(n3Var, 3));
                         }
-                        s3 s3Var = n3Var.f47234b;
+                        s3 s3Var = n3Var.f47245b;
                         if (s3Var != null) {
                             j3 j3Var4 = n3Var.h;
-                            i3 i3Var = j3Var4.f47115b;
+                            i3 i3Var = j3Var4.f47129b;
                             float f14 = j3Var4.e - f13;
                             float f15 = f14 - 1.0f;
-                            i3 i3Var2 = j3Var4.f47119i;
+                            i3 i3Var2 = j3Var4.f47133i;
                             if (i3Var == i3Var2) {
                                 z22 = true;
                             } else {
                                 z22 = false;
                             }
-                            i3 i3Var3 = j3Var4.f47116c;
+                            i3 i3Var3 = j3Var4.f47130c;
                             if (i3Var3 == i3Var2) {
                                 z23 = true;
                             } else {
@@ -98,19 +98,19 @@ public final class h3 implements Runnable {
                             }
                             s3Var.a(i3Var, f15, z22, i3Var3, f14, z23, i3Var4, f16, z24);
                         }
-                        s3 s3Var2 = n3Var.f47235c;
+                        s3 s3Var2 = n3Var.f47246c;
                         if (s3Var2 != null) {
-                            j3 j3Var5 = n3Var.f47238i;
-                            i3 i3Var5 = j3Var5.f47115b;
+                            j3 j3Var5 = n3Var.f47249i;
+                            i3 i3Var5 = j3Var5.f47129b;
                             float f17 = j3Var5.e - f12;
                             float f18 = f17 - 1.0f;
-                            i3 i3Var6 = j3Var5.f47119i;
+                            i3 i3Var6 = j3Var5.f47133i;
                             if (i3Var5 == i3Var6) {
                                 z19 = true;
                             } else {
                                 z19 = false;
                             }
-                            i3 i3Var7 = j3Var5.f47116c;
+                            i3 i3Var7 = j3Var5.f47130c;
                             if (i3Var7 == i3Var6) {
                                 z20 = true;
                             } else {
@@ -127,17 +127,17 @@ public final class h3 implements Runnable {
                         }
                         s3 s3Var3 = n3Var.d;
                         if (s3Var3 != null) {
-                            j3 j3Var6 = n3Var.f47240k;
-                            i3 i3Var9 = j3Var6.f47115b;
+                            j3 j3Var6 = n3Var.f47251k;
+                            i3 i3Var9 = j3Var6.f47129b;
                             float f20 = j3Var6.e - f11;
                             float f21 = f20 - 1.0f;
-                            i3 i3Var10 = j3Var6.f47119i;
+                            i3 i3Var10 = j3Var6.f47133i;
                             if (i3Var9 == i3Var10) {
                                 z16 = true;
                             } else {
                                 z16 = false;
                             }
-                            i3 i3Var11 = j3Var6.f47116c;
+                            i3 i3Var11 = j3Var6.f47130c;
                             if (i3Var11 == i3Var10) {
                                 z17 = true;
                             } else {
@@ -152,20 +152,20 @@ public final class h3 implements Runnable {
                             }
                             s3Var3.a(i3Var9, f21, z16, i3Var11, f20, z17, i3Var12, f22, z18);
                         }
-                        y3Var.g(0, ((m3) n3Var.f47238i.f47116c).f47199c, true);
-                        q3 q3Var = y3Var.f47720c;
+                        y3Var.g(0, ((m3) n3Var.f47249i.f47130c).f47213c, true);
+                        q3 q3Var = y3Var.f47732c;
                         j3 j3Var7 = n3Var.h;
-                        i3 i3Var13 = j3Var7.f47115b;
+                        i3 i3Var13 = j3Var7.f47129b;
                         l3 l3Var = (l3) i3Var13;
                         float f23 = j3Var7.e - f13;
                         float f24 = f23 - 1.0f;
-                        i3 i3Var14 = j3Var7.f47119i;
+                        i3 i3Var14 = j3Var7.f47133i;
                         if (i3Var13 == i3Var14) {
                             z13 = true;
                         } else {
                             z13 = false;
                         }
-                        i3 i3Var15 = j3Var7.f47116c;
+                        i3 i3Var15 = j3Var7.f47130c;
                         l3 l3Var2 = (l3) i3Var15;
                         if (i3Var15 == i3Var14) {
                             z14 = true;
@@ -180,25 +180,25 @@ public final class h3 implements Runnable {
                         } else {
                             z15 = false;
                         }
-                        j3 j3Var8 = n3Var.f47239j;
+                        j3 j3Var8 = n3Var.f47250j;
                         float f26 = j3Var8.e - f10;
-                        q3Var.f47350a = l3Var;
-                        q3Var.f47351b = l3Var2;
-                        q3Var.f47352c = l3Var3;
+                        q3Var.f47363a = l3Var;
+                        q3Var.f47364b = l3Var2;
+                        q3Var.f47365c = l3Var3;
                         q3Var.d = f24;
                         q3Var.e = f23;
-                        q3Var.f47353f = f25;
+                        q3Var.f47366f = f25;
                         q3Var.h = z13;
-                        q3Var.f47354n = z14;
-                        q3Var.f47355r = z15;
-                        q3Var.f47356s = (k3) j3Var8.f47115b;
-                        q3Var.f47357w = (k3) j3Var8.f47116c;
-                        q3Var.f47358x = (k3) j3Var8.d;
-                        q3Var.f47359y = f26 - 1.0f;
+                        q3Var.f47367n = z14;
+                        q3Var.f47368r = z15;
+                        q3Var.f47369s = (k3) j3Var8.f47129b;
+                        q3Var.f47370w = (k3) j3Var8.f47130c;
+                        q3Var.f47371x = (k3) j3Var8.d;
+                        q3Var.f47372y = f26 - 1.0f;
                         q3Var.D = f26;
                         q3Var.E = f26 + 1.0f;
                         q3Var.invalidate();
-                        n3Var.f47250u = false;
+                        n3Var.f47261u = false;
                         n3Var.b();
                         return;
                     }
@@ -206,17 +206,17 @@ public final class h3 implements Runnable {
                 }
                 return;
             case 2:
-                n3 n3Var2 = this.f46999b;
-                n3Var2.f47244o = false;
-                n3Var2.f47233a.f47720c.c();
-                w0 w0Var = n3Var2.f47247r;
+                n3 n3Var2 = this.f47013b;
+                n3Var2.f47255o = false;
+                n3Var2.f47244a.f47732c.c();
+                w0 w0Var = n3Var2.f47258r;
                 if (w0Var != null) {
                     w0Var.run();
                     return;
                 }
                 return;
             default:
-                w0 w0Var2 = this.f46999b.f47248s;
+                w0 w0Var2 = this.f47013b.f47259s;
                 if (w0Var2 != null) {
                     w0Var2.run();
                     return;

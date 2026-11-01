@@ -1,5 +1,5 @@
 package org.telegram.ui;
-public final class hc extends z21 {
+public final class hc extends x21 {
     public final zc e;
 
     public hc(zc zcVar, gc gcVar) {

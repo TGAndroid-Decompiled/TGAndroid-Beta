@@ -31,10 +31,10 @@ import v0.m;
 import v0.o;
 import xa.n;
 public final class b implements k {
-    public Context f10520a;
+    public Context f10521a;
 
     public b(Context context, boolean z10) {
-        this.f10520a = context;
+        this.f10521a = context;
     }
 
     public static i c(b bVar, Object obj) {
@@ -42,10 +42,10 @@ public final class b implements k {
             return bVar.f();
         }
         if (obj instanceof m) {
-            for (o oVar : ((m) obj).f50277a) {
+            for (o oVar : ((m) obj).f50291a) {
             }
         }
-        Context ctx = bVar.f10520a;
+        Context ctx = bVar.f10521a;
         kotlin.jvm.internal.i.e(ctx, "ctx");
         if (!ctx.getPackageManager().hasSystemFeature("android.software.leanback") && !ctx.getPackageManager().hasSystemFeature("android.hardware.type.automotive")) {
             int i10 = Build.VERSION.SDK_INT;
@@ -101,7 +101,7 @@ public final class b implements k {
         } else {
             cancellationSignal = null;
         }
-        FingerprintManager e = e(this.f10520a);
+        FingerprintManager e = e(this.f10521a);
         if (e != null) {
             if (a0Var != null) {
                 Mac mac = (Mac) a0Var.d;
@@ -120,32 +120,32 @@ public final class b implements k {
     }
 
     public j b() {
-        Context context = this.f10520a;
+        Context context = this.f10521a;
         if (context != null) {
             ?? obj = new Object();
-            obj.f11667a = n5.a.a(l5.m.f11673a);
+            obj.f11668a = n5.a.a(l5.m.f11674a);
             m0 m0Var = new m0(context);
-            obj.f11668b = m0Var;
-            obj.f11669c = n5.a.a(new e(0, m0Var, new f(m0Var, 3)));
-            m0 m0Var2 = obj.f11668b;
+            obj.f11669b = m0Var;
+            obj.f11670c = n5.a.a(new e(0, m0Var, new f(m0Var, 3)));
+            m0 m0Var2 = obj.f11669b;
             obj.d = new n2.u(m0Var2, 24);
             zc.a a2 = n5.a.a(new e(23, obj.d, n5.a.a(new f(m0Var2, 29))));
             obj.e = a2;
             t7.u uVar = new t7.u(17);
-            m0 m0Var3 = obj.f11668b;
+            m0 m0Var3 = obj.f11669b;
             d dVar = new d(m0Var3, a2, uVar, 0);
-            zc.a aVar = obj.f11667a;
-            zc.a aVar2 = obj.f11669c;
+            zc.a aVar = obj.f11668a;
+            zc.a aVar2 = obj.f11670c;
             bh.d dVar2 = new bh.d(aVar, aVar2, dVar, a2, a2);
             ?? obj2 = new Object();
-            obj2.f12518a = m0Var3;
-            obj2.f12519b = aVar2;
-            obj2.f12520c = a2;
+            obj2.f12519a = m0Var3;
+            obj2.f12520b = aVar2;
+            obj2.f12521c = a2;
             obj2.d = dVar;
             obj2.e = aVar;
-            obj2.f12521f = a2;
+            obj2.f12522f = a2;
             obj2.h = a2;
-            obj.f11670f = n5.a.a(new a0(dVar2, (Object) obj2, new n(aVar, a2, dVar, a2), 29));
+            obj.f11671f = n5.a.a(new a0(dVar2, (Object) obj2, new n(aVar, a2, dVar, a2), 29));
             return obj;
         }
         throw new IllegalStateException(Context.class.getCanonicalName() + " must be set");
@@ -155,8 +155,8 @@ public final class b implements k {
     public l d(j2.f fVar) {
         Context context;
         int i10 = Build.VERSION.SDK_INT;
-        if (i10 >= 31 || ((context = this.f10520a) != null && i10 >= 28 && context.getPackageManager().hasSystemFeature("com.amazon.hardware.tv_screen"))) {
-            int h = v0.h(((x) fVar.f9349c).f2423s);
+        if (i10 >= 31 || ((context = this.f10521a) != null && i10 >= 28 && context.getPackageManager().hasSystemFeature("com.amazon.hardware.tv_screen"))) {
+            int h = v0.h(((x) fVar.f9350c).f2423s);
             e2.a.g("DMCodecAdapterFactory", "Creating an asynchronous MediaCodec adapter for track type " + l0.I(h));
             androidx.activity.o oVar = new androidx.activity.o(new r2.b(h, 0), new r2.b(h, 1));
             oVar.f953b = true;
@@ -167,7 +167,7 @@ public final class b implements k {
 
     public i f() {
         String string;
-        Context context = this.f10520a;
+        Context context = this.f10521a;
         PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 132);
         ArrayList arrayList = new ArrayList();
         ServiceInfo[] serviceInfoArr = packageInfo.services;
@@ -205,6 +205,6 @@ public final class b implements k {
 
     public b(Context context) {
         kotlin.jvm.internal.i.e(context, "context");
-        this.f10520a = context;
+        this.f10521a = context;
     }
 }

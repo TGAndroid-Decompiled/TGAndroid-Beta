@@ -14,10 +14,10 @@ public final class qj extends org.telegram.ui.Components.sn {
     public final boolean a() {
         boolean z10;
         un unVar = this.A0;
-        if (!unVar.f42289ib && !unVar.isInPreviewMode()) {
+        if (!unVar.f42100ib && !unVar.isInPreviewMode()) {
             z10 = ((org.telegram.ui.ActionBar.k2) unVar).inBubbleMode;
-            if (!z10 && unVar.f42291j0 != null && !unVar.G3) {
-                if (!unVar.T9() || unVar.f42445v4) {
+            if (!z10 && unVar.f42102j0 != null && !unVar.G3) {
+                if (!unVar.Y9() || unVar.f42256v4) {
                     return true;
                 }
                 return false;
@@ -30,14 +30,14 @@ public final class qj extends org.telegram.ui.Components.sn {
     @Override
     public final boolean d() {
         un unVar = this.A0;
-        TLRPC.User user = unVar.f42243f;
+        TLRPC.User user = unVar.f42054f;
         if (user != null && user.linked_community_id != 0) {
-            unVar.showDialog(new yh.a0(unVar, unVar.f42243f.linked_community_id, null, null));
+            unVar.showDialog(new yh.z(unVar, unVar.f42054f.linked_community_id, null, null));
             return true;
         }
         TLRPC.Chat chat = unVar.e;
         if (chat != null && chat.linked_community_id != 0) {
-            unVar.showDialog(new yh.a0(unVar, unVar.e.linked_community_id, null, null));
+            unVar.showDialog(new yh.z(unVar, unVar.e.linked_community_id, null, null));
             return true;
         }
         return false;
@@ -47,17 +47,17 @@ public final class qj extends org.telegram.ui.Components.sn {
     public final void f() {
         String str;
         un unVar = this.A0;
-        if (unVar.S9()) {
+        if (unVar.X9()) {
             str = "";
         } else {
             str = null;
         }
-        unVar.Ba(str);
+        unVar.Ga(str);
     }
 
     @Override
     public final boolean o() {
-        if (this.A0.f42248f4 == 3) {
+        if (this.A0.f42059f4 == 3) {
             return true;
         }
         return false;

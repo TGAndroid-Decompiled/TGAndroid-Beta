@@ -141,7 +141,7 @@ public final class f extends b1.d {
         String str4 = request.d;
         Context context = this.e;
         i.e(context, "context");
-        if (k6.d.d.d(context, k6.e.f10935a) == 0) {
+        if (k6.d.d.d(context, k6.e.f10936a) == 0) {
             PackageManager packageManager = context.getPackageManager();
             i.d(packageManager, "getPackageManager(...)");
             if (Build.VERSION.SDK_INT >= 28) {

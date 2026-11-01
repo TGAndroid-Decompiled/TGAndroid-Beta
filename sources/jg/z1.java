@@ -1,9 +1,9 @@
 package jg;
 
 import android.view.ViewGroup;
-import org.telegram.messenger.cd;
-import org.telegram.ui.Components.sk0;
-public final class z1 extends sk0 {
+import org.telegram.messenger.dd;
+import org.telegram.ui.Components.tk0;
+public final class z1 extends tk0 {
     @Override
     public final boolean D(s4.c1 c1Var) {
         return true;
@@ -16,13 +16,13 @@ public final class z1 extends sk0 {
 
     @Override
     public final void t(s4.c1 c1Var, int i10) {
-        s1 s1Var = (s1) c1Var.f47898a;
+        s1 s1Var = (s1) c1Var.f47909a;
         ig.h0 h0Var = (ig.h0) ig.h0.c().get(i10);
         s1Var.getClass();
         s1Var.setTypeface(h0Var.d());
-        String str = h0Var.f8321c;
+        String str = h0Var.f8322c;
         if (str == null) {
-            str = cd.M0(h0Var.f8320b);
+            str = dd.M0(h0Var.f8321b);
         }
         s1Var.setText(str);
     }

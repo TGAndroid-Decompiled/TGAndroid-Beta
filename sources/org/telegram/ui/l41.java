@@ -1,28 +1,34 @@
 package org.telegram.ui;
+public final class l41 implements Runnable {
+    public final int f39078a;
+    public final m41 f39079b;
 
-import android.content.Context;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.UndoView;
-public final class l41 extends UndoView {
-    public final SessionsActivity f39054j0;
-
-    public l41(SessionsActivity sessionsActivity, Context context) {
-        super(context);
-        this.f39054j0 = sessionsActivity;
+    public l41(m41 m41Var, int i10) {
+        this.f39078a = i10;
+        this.f39079b = m41Var;
     }
 
     @Override
-    public final void d(int i10, boolean z10) {
-        int i11;
-        if (!z10 && getCurrentInfoObject() != null) {
-            TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) getCurrentInfoObject();
-            TL_account.resetAuthorization resetauthorization = new TL_account.resetAuthorization();
-            resetauthorization.hash = tL_authorization.hash;
-            i11 = ((org.telegram.ui.ActionBar.k2) this.f39054j0).currentAccount;
-            ConnectionsManager.getInstance(i11).sendRequest(resetauthorization, new ul0(9, this, tL_authorization));
+    public final void run() {
+        String sb2;
+        int i10 = this.f39078a;
+        m41 m41Var = this.f39079b;
+        switch (i10) {
+            case 0:
+                String str = m41Var.f39431b.text;
+                if (str != null && str.equals("AUTH_TOKEN_EXCEPTION")) {
+                    sb2 = org.telegram.messenger.dd.L0(2131754709, null);
+                } else {
+                    StringBuilder sb3 = new StringBuilder();
+                    org.telegram.messenger.a30.q(null, 2131751106, sb3, "\n");
+                    sb3.append(m41Var.f39431b.text);
+                    sb2 = sb3.toString();
+                }
+                org.telegram.ui.Components.s4.t0(m41Var.f39432c, org.telegram.messenger.dd.L0(2131753894, null), sb2, null);
+                return;
+            default:
+                org.telegram.ui.Components.s4.t0(m41Var.f39432c, org.telegram.messenger.dd.L0(2131753894, null), org.telegram.messenger.dd.L0(2131751106, null), null);
+                return;
         }
-        super.d(i10, z10);
     }
 }

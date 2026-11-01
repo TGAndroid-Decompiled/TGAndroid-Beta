@@ -1,40 +1,40 @@
 package org.telegram.ui.Components;
 public final class bd implements Runnable {
-    public final int f24607a;
-    public final ChatActivityEnterView f24608b;
-    public final boolean f24609c;
+    public final int f24707a;
+    public final ChatActivityEnterView f24708b;
+    public final boolean f24709c;
 
     public bd(ChatActivityEnterView chatActivityEnterView, boolean z10, int i10) {
-        this.f24607a = i10;
-        this.f24608b = chatActivityEnterView;
-        this.f24609c = z10;
+        this.f24707a = i10;
+        this.f24708b = chatActivityEnterView;
+        this.f24709c = z10;
     }
 
     @Override
     public final void run() {
         pe peVar;
-        int i10 = this.f24607a;
-        ChatActivityEnterView chatActivityEnterView = this.f24608b;
-        boolean z10 = this.f24609c;
+        int i10 = this.f24707a;
+        ChatActivityEnterView chatActivityEnterView = this.f24708b;
+        boolean z10 = this.f24709c;
         switch (i10) {
             case 0:
                 if (!z10) {
-                    chatActivityEnterView.f23789t1.setVisibility(8);
+                    chatActivityEnterView.f23790t1.setVisibility(8);
                     return;
                 }
-                int i11 = ChatActivityEnterView.f23672s5;
+                int i11 = ChatActivityEnterView.f23673s5;
                 chatActivityEnterView.getClass();
                 return;
             case 1:
                 if (!z10) {
-                    chatActivityEnterView.f23794u1.setVisibility(8);
+                    chatActivityEnterView.f23795u1.setVisibility(8);
                     return;
                 }
-                int i12 = ChatActivityEnterView.f23672s5;
+                int i12 = ChatActivityEnterView.f23673s5;
                 chatActivityEnterView.getClass();
                 return;
             default:
-                ChatActivityEnterView chatActivityEnterView2 = this.f24608b;
+                ChatActivityEnterView chatActivityEnterView2 = this.f24708b;
                 tc tcVar = chatActivityEnterView2.F4;
                 chatActivityEnterView2.M0 = System.currentTimeMillis();
                 boolean R0 = chatActivityEnterView2.R0(false, 0, 0, 0L, true);

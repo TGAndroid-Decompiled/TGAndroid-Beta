@@ -3,22 +3,22 @@ package o2;
 import android.os.SystemClock;
 import java.util.List;
 public final class g extends x2.c {
-    public int f13980g;
+    public int f13981g;
 
     @Override
     public final int c() {
-        return this.f13980g;
+        return this.f13981g;
     }
 
     @Override
     public final void k(long j10, long j11, long j12, List list, v2.m[] mVarArr) {
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        if (!a(this.f13980g, elapsedRealtime)) {
+        if (!a(this.f13981g, elapsedRealtime)) {
             return;
         }
-        for (int i10 = this.f52904b - 1; i10 >= 0; i10--) {
+        for (int i10 = this.f52922b - 1; i10 >= 0; i10--) {
             if (!a(i10, elapsedRealtime)) {
-                this.f13980g = i10;
+                this.f13981g = i10;
                 return;
             }
         }

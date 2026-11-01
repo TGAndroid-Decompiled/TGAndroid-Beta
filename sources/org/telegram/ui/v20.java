@@ -1,17 +1,17 @@
 package org.telegram.ui;
-public final class v20 extends s4.j {
-    public final b50 F;
 
-    public v20(b50 b50Var) {
-        this.F = b50Var;
+import androidx.recyclerview.widget.RecyclerView;
+public final class v20 extends s4.s0 {
+    public final a50 f42397a;
+
+    public v20(a50 a50Var) {
+        this.f42397a = a50Var;
     }
 
     @Override
-    public final void P(s4.c1 c1Var) {
-        b50 b50Var = this.F;
-        b50Var.H1.invalidate();
-        b50Var.R3.invalidate();
-        b50Var.f21586b.invalidate();
-        b50.P0(b50Var);
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        a50 a50Var = this.f42397a;
+        a50Var.f21587b.invalidate();
+        a50Var.R3.invalidate();
     }
 }

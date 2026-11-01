@@ -1,125 +1,63 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-import java.io.File;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class me1 {
-    public String f39686a;
-    public final int f39687b;
-    public final int f39688c;
-    public final int d;
-    public final int e;
-    public int f39689f;
-    public TLRPC.TL_wallPaper f39690g;
-    public float h;
-    public final File f39691i;
-    public final boolean f39692j;
-    public final boolean f39693k;
-    public TLRPC.WallPaper f39694l;
-    public Bitmap f39695m;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+public final class me1 extends org.telegram.ui.Components.tk0 {
+    public final Context f39519c;
+    public final WallpapersListActivity d;
 
-    public me1(int i10, int i11, String str, int i12) {
-        this.f39686a = str;
-        this.f39687b = i10 | (-16777216);
-        int i13 = i11 == 0 ? 0 : i11 | (-16777216);
-        this.f39688c = i13;
-        this.f39689f = i13 == 0 ? 0 : i12;
-        this.h = 1.0f;
+    public me1(WallpapersListActivity wallpapersListActivity, Context context) {
+        this.d = wallpapersListActivity;
+        this.f39519c = context;
     }
 
-    public final String a() {
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(String.valueOf(this.f39687b));
-        sb2.append(this.f39688c);
-        sb2.append(this.d);
-        sb2.append(this.e);
-        sb2.append(this.f39689f);
-        sb2.append(this.h);
-        String str = this.f39686a;
-        if (str == null) {
-            str = "";
+    @Override
+    public final boolean D(s4.c1 c1Var) {
+        if (c1Var.f47912f == 0) {
+            return true;
         }
-        sb2.append(str);
-        return Utilities.a(sb2.toString());
+        return false;
     }
 
-    public final String b() {
-        String str;
-        String str2;
-        String str3 = null;
-        int i10 = this.f39688c;
+    @Override
+    public final int b() {
+        return this.d.f35481a;
+    }
+
+    @Override
+    public final int d(int i10) {
+        int i11;
+        WallpapersListActivity wallpapersListActivity = this.d;
+        i11 = wallpapersListActivity.uploadImageRow;
+        if (i10 != i11 && i10 != wallpapersListActivity.h && i10 != wallpapersListActivity.f35483b && i10 != wallpapersListActivity.e) {
+            if (i10 != wallpapersListActivity.f35489f && i10 != wallpapersListActivity.f35491n) {
+                return 2;
+            }
+            return 3;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void t(s4.c1 r17, int r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.me1.t(s4.c1, int):void");
+    }
+
+    @Override
+    public final s4.c1 w(ViewGroup viewGroup, int i10) {
+        View p8Var;
+        Context context = this.f39519c;
         if (i10 != 0) {
-            str = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i10 >> 16)) & 255), Integer.valueOf(((byte) (i10 >> 8)) & 255), Byte.valueOf((byte) (i10 & 255))).toLowerCase();
-        } else {
-            str = null;
-        }
-        int i11 = this.f39687b;
-        String lowerCase = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i11 >> 16)) & 255), Integer.valueOf(((byte) (i11 >> 8)) & 255), Byte.valueOf((byte) (i11 & 255))).toLowerCase();
-        int i12 = this.d;
-        if (i12 != 0) {
-            str2 = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i12 >> 16)) & 255), Integer.valueOf(((byte) (i12 >> 8)) & 255), Byte.valueOf((byte) (i12 & 255))).toLowerCase();
-        } else {
-            str2 = null;
-        }
-        int i13 = this.e;
-        if (i13 != 0) {
-            str3 = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i13 >> 16)) & 255), Integer.valueOf(((byte) (i13 >> 8)) & 255), Byte.valueOf((byte) (i13 & 255))).toLowerCase();
-        }
-        if (str != null && str2 != null) {
-            if (str3 != null) {
-                StringBuilder sb2 = new StringBuilder();
-                sb2.append(lowerCase);
-                sb2.append("~");
-                sb2.append(str);
-                sb2.append("~");
-                sb2.append(str2);
-                lowerCase = a1.g.r(sb2, "~", str3);
+            if (i10 != 3) {
+                p8Var = new org.telegram.ui.Components.pi(this, context, 1);
+                p8Var.setTag(-33024);
             } else {
-                lowerCase = lowerCase + "~" + str + "~" + str2;
+                p8Var = new org.telegram.ui.Cells.b9(context);
             }
-        } else if (str != null) {
-            String C = a1.g.C(lowerCase, "-", str);
-            if (this.f39690g != null) {
-                StringBuilder i14 = sc.e.i(C, "&rotation=");
-                i14.append(org.telegram.messenger.i0.s1(this.f39689f, true));
-                lowerCase = i14.toString();
-            } else {
-                StringBuilder i15 = sc.e.i(C, "?rotation=");
-                i15.append(org.telegram.messenger.i0.s1(this.f39689f, true));
-                lowerCase = i15.toString();
-            }
+        } else {
+            p8Var = new org.telegram.ui.Cells.p8(context);
         }
-        if (this.f39690g != null) {
-            String str4 = "https://" + org.telegram.messenger.vp.r1(org.telegram.messenger.d20.f15147s0).U2 + "/bg/" + this.f39690g.slug + "?intensity=" + ((int) (this.h * 100.0f)) + "&bg_color=" + lowerCase;
-            if (this.f39692j) {
-                return sc.e.A(str4, "&mode=motion");
-            }
-            return str4;
-        }
-        return a1.g.o(org.telegram.messenger.vp.r1(org.telegram.messenger.d20.f15147s0).U2, "/bg/", lowerCase, new StringBuilder("https://"));
-    }
-
-    public me1(String str, int i10, int i11, int i12, int i13) {
-        this.f39686a = str;
-        this.f39687b = i10 | (-16777216);
-        this.f39688c = i11 == 0 ? 0 : i11 | (-16777216);
-        this.d = i12 == 0 ? 0 : i12 | (-16777216);
-        this.e = i13 != 0 ? i13 | (-16777216) : 0;
-        this.h = 1.0f;
-        this.f39693k = true;
-    }
-
-    public me1(String str, int i10, int i11, int i12, int i13, int i14, float f7, boolean z10, File file) {
-        this.f39686a = str;
-        this.f39687b = i10 | (-16777216);
-        int i15 = i11 == 0 ? 0 : i11 | (-16777216);
-        this.f39688c = i15;
-        this.d = i12 == 0 ? 0 : i12 | (-16777216);
-        this.e = i13 != 0 ? i13 | (-16777216) : 0;
-        this.f39689f = i15 == 0 ? 45 : i14;
-        this.h = f7;
-        this.f39691i = file;
-        this.f39692j = z10;
+        return new s4.c1(p8Var);
     }
 }

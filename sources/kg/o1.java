@@ -2,56 +2,56 @@ package kg;
 
 import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.d20;
-import org.telegram.ui.Components.gk0;
-import org.telegram.ui.Components.om0;
-import org.telegram.ui.Components.qm0;
+import org.telegram.messenger.e20;
+import org.telegram.ui.Components.hk0;
+import org.telegram.ui.Components.pm0;
 import org.telegram.ui.Components.rm0;
+import org.telegram.ui.Components.sm0;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.fr;
-import org.telegram.ui.st0;
-public final class o1 implements gk0 {
-    public final int f11209a;
-    public final int f11210b;
-    public final org.telegram.ui.ActionBar.k2 f11211c;
+import org.telegram.ui.rt0;
+public final class o1 implements hk0 {
+    public final int f11210a;
+    public final int f11211b;
+    public final org.telegram.ui.ActionBar.k2 f11212c;
     public final Object d;
 
     public o1(Object obj, int i10, org.telegram.ui.ActionBar.k2 k2Var, int i11) {
-        this.f11209a = i11;
+        this.f11210a = i11;
         this.d = obj;
-        this.f11210b = i10;
-        this.f11211c = k2Var;
+        this.f11211b = i10;
+        this.f11212c = k2Var;
     }
 
     @Override
     public final void f(int i10, View view) {
         sg.o0 o0Var;
-        switch (this.f11209a) {
+        switch (this.f11210a) {
             case 0:
                 v1 v1Var = (v1) this.d;
-                if (view instanceof st0) {
-                    st0 st0Var = (st0) view;
-                    PremiumPreviewFragment.u0(this.f11210b, st0Var.f41647f.f37112a);
-                    v1Var.t(new i1(this.f11211c, st0Var.f41647f.f37112a, false));
+                if (view instanceof rt0) {
+                    rt0 rt0Var = (rt0) view;
+                    PremiumPreviewFragment.v0(this.f11211b, rt0Var.f41152f.f36680a);
+                    v1Var.t(new i1(this.f11212c, rt0Var.f41152f.f36680a, false));
                     return;
                 }
                 return;
             default:
-                rm0 rm0Var = (rm0) this.d;
-                ArrayList arrayList = rm0Var.f29961r;
-                ag.b1 b1Var = rm0Var.d;
+                sm0 sm0Var = (sm0) this.d;
+                ArrayList arrayList = sm0Var.f30340r;
+                ag.b1 b1Var = sm0Var.d;
                 if (i10 >= 0 && i10 < arrayList.size()) {
-                    if (!d20.i(this.f11210b).q()) {
-                        new i1(this.f11211c, 24, true).show();
+                    if (!e20.i(this.f11211b).q()) {
+                        new i1(this.f11212c, 24, true).show();
                         return;
                     }
-                    long j10 = ((om0) arrayList.get(i10)).f29100a.h;
-                    if (rm0Var.h == j10) {
+                    long j10 = ((pm0) arrayList.get(i10)).f29453a.h;
+                    if (sm0Var.h == j10) {
                         o0Var = null;
                     } else {
-                        o0Var = ((om0) arrayList.get(i10)).f29100a;
+                        o0Var = ((pm0) arrayList.get(i10)).f29453a;
                     }
-                    if (rm0Var.f(o0Var)) {
+                    if (sm0Var.f(o0Var)) {
                         for (int i11 = 0; i11 < b1Var.getChildCount(); i11++) {
                             if (b1Var.getChildAt(i11) == view) {
                                 float f7 = 50.0f;
@@ -69,12 +69,12 @@ public final class o1 implements gk0 {
                             }
                         }
                         b1Var.M(new fr(3));
-                        if (rm0Var.h == j10) {
-                            rm0Var.h = 0L;
+                        if (sm0Var.h == j10) {
+                            sm0Var.h = 0L;
                             return;
                         }
-                        rm0Var.h = j10;
-                        ((qm0) view).a(true, true);
+                        sm0Var.h = j10;
+                        ((rm0) view).a(true, true);
                         return;
                     }
                     return;

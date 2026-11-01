@@ -29,11 +29,11 @@ public final class qa0 extends ci.o {
 
     @Override
     public final void W() {
-        ab0 ab0Var = this.Y.f30881c0;
+        ab0 ab0Var = this.Y.f30915c0;
         org.telegram.messenger.i0.r(ab0Var.D);
         ab0Var.D.run();
         if (this.W == -1) {
-            this.W = org.telegram.messenger.zs.f(ab0Var.f24360x).q(null, this.W, false);
+            this.W = org.telegram.messenger.at.f(ab0Var.f24344x).q(null, this.W, false);
         }
         Runnable runnable = this.X;
         if (runnable != null) {

@@ -1,54 +1,40 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
 public final class gk implements Runnable {
-    public final int f15724a;
-    public final vp f15725b;
-    public final ArrayList f15726c;
+    public final int f15923a;
+    public final wp f15924b;
+    public final long f15925c;
+    public final long d;
+    public final int e;
 
-    public gk(vp vpVar, ArrayList arrayList, int i10) {
-        this.f15724a = i10;
-        this.f15725b = vpVar;
-        this.f15726c = arrayList;
+    public gk(int i10, long j10, long j11, wp wpVar) {
+        this.f15923a = 1;
+        this.f15924b = wpVar;
+        this.f15925c = j10;
+        this.d = j11;
+        this.e = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f15724a) {
+        switch (this.f15923a) {
             case 0:
-                this.f15725b.getNotificationsController().K(this.f15726c, true, false, null);
+                this.f15924b.z(this.f15925c, this.e, this.d);
                 return;
             case 1:
-                i0.g3(new gk(this.f15725b, this.f15726c, 3));
-                return;
-            case 2:
-                i0.g3(new gk(this.f15725b, this.f15726c, 5));
-                return;
-            case 3:
-                this.f15725b.getNotificationsController().K(this.f15726c, true, false, null);
-                return;
-            case 4:
-                vp vpVar = this.f15725b;
-                vpVar.getClass();
-                int i10 = 0;
-                while (true) {
-                    ArrayList arrayList = this.f15726c;
-                    if (i10 < arrayList.size()) {
-                        vpVar.Y3(vpVar.i1(-((Long) arrayList.get(i10)).longValue()), 0L);
-                        i10++;
-                    } else {
-                        return;
-                    }
-                }
-            case 5:
-                this.f15725b.getNotificationsController().K(this.f15726c, true, false, null);
-                return;
-            case 6:
-                this.f15725b.getNotificationsController().K(this.f15726c, true, false, null);
+                long j10 = this.d;
+                this.f15924b.p0(this.f15925c, this.e, j10);
                 return;
             default:
-                i0.g3(new gk(this.f15725b, this.f15726c, 0));
+                this.f15924b.z(this.f15925c, this.e, this.d);
                 return;
         }
+    }
+
+    public gk(wp wpVar, int i10, long j10, long j11, int i11) {
+        this.f15923a = i11;
+        this.f15924b = wpVar;
+        this.e = i10;
+        this.f15925c = j10;
+        this.d = j11;
     }
 }

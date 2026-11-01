@@ -6,9 +6,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 public final class td0 extends FrameLayout {
-    public TextView f30545a;
-    public TextView f30546b;
-    public ImageView f30547c;
+    public TextView f30627a;
+    public TextView f30628b;
+    public ImageView f30629c;
     public Switch d;
     public boolean e;
 
@@ -26,7 +26,7 @@ public final class td0 extends FrameLayout {
         float L;
         int i10;
         if (this.e) {
-            if (org.telegram.messenger.cd.X) {
+            if (org.telegram.messenger.dd.X) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.i0.L(70.0f);
@@ -34,30 +34,30 @@ public final class td0 extends FrameLayout {
             float f7 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (org.telegram.messenger.cd.X) {
+            if (org.telegram.messenger.dd.X) {
                 i10 = org.telegram.messenger.i0.L(70.0f);
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.t6.f21052k0);
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.t6.f21053k0);
         }
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        int L = org.telegram.messenger.i0.L(13.0f) + this.f30545a.getMeasuredHeight();
-        TextView textView = this.f30546b;
+        int L = org.telegram.messenger.i0.L(13.0f) + this.f30627a.getMeasuredHeight();
+        TextView textView = this.f30628b;
         textView.layout(textView.getLeft(), L, textView.getRight(), textView.getMeasuredHeight() + L);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        TextView textView = this.f30545a;
+        TextView textView = this.f30627a;
         measureChildWithMargins(textView, i10, 0, i11, 0);
-        TextView textView2 = this.f30546b;
+        TextView textView2 = this.f30628b;
         measureChildWithMargins(textView2, i10, 0, i11, 0);
-        measureChildWithMargins(this.f30547c, i10, 0, i11, 0);
+        measureChildWithMargins(this.f30629c, i10, 0, i11, 0);
         Switch r72 = this.d;
         if (r72 != null) {
             measureChildWithMargins(r72, i10, 0, i11, 0);

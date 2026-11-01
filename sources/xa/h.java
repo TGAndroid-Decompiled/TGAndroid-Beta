@@ -14,7 +14,7 @@ import java.util.WeakHashMap;
 import vh.d0;
 import w7.y8;
 public final class h implements Application.ActivityLifecycleCallbacks {
-    public final Set f53544a = Collections.newSetFromMap(new WeakHashMap());
+    public final Set f53562a = Collections.newSetFromMap(new WeakHashMap());
 
     public static void a(Intent intent) {
         boolean equals;
@@ -54,7 +54,7 @@ public final class h implements Application.ActivityLifecycleCallbacks {
     @Override
     public final void onActivityCreated(Activity activity, Bundle bundle) {
         Intent intent = activity.getIntent();
-        if (intent != null && this.f53544a.add(intent)) {
+        if (intent != null && this.f53562a.add(intent)) {
             if (Build.VERSION.SDK_INT <= 25) {
                 new Handler(Looper.getMainLooper()).post(new d0(this, intent));
             } else {
@@ -66,7 +66,7 @@ public final class h implements Application.ActivityLifecycleCallbacks {
     @Override
     public final void onActivityPaused(Activity activity) {
         if (activity.isFinishing()) {
-            this.f53544a.remove(activity.getIntent());
+            this.f53562a.remove(activity.getIntent());
         }
     }
 

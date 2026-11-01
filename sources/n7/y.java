@@ -2,32 +2,32 @@ package n7;
 
 import java.util.Iterator;
 public final class y extends o {
-    public static final Object[] f13724r;
-    public static final y f13725s;
+    public static final Object[] f13725r;
+    public static final y f13726s;
     public final transient Object[] d;
     public final transient int e;
-    public final transient Object[] f13726f;
+    public final transient Object[] f13727f;
     public final transient int h;
-    public final transient int f13727n;
+    public final transient int f13728n;
 
     static {
         Object[] objArr = new Object[0];
-        f13724r = objArr;
-        f13725s = new y(0, 0, 0, objArr, objArr);
+        f13725r = objArr;
+        f13726s = new y(0, 0, 0, objArr, objArr);
     }
 
     public y(int i10, int i11, int i12, Object[] objArr, Object[] objArr2) {
         this.d = objArr;
         this.e = i10;
-        this.f13726f = objArr2;
+        this.f13727f = objArr2;
         this.h = i11;
-        this.f13727n = i12;
+        this.f13728n = i12;
     }
 
     @Override
     public final boolean contains(Object obj) {
         if (obj != null) {
-            Object[] objArr = this.f13726f;
+            Object[] objArr = this.f13727f;
             if (objArr.length != 0) {
                 int rotateLeft = (int) (Integer.rotateLeft((int) (obj.hashCode() * (-862048943)), 15) * 461845907);
                 while (true) {
@@ -63,14 +63,14 @@ public final class y extends o {
     @Override
     public final int l(Object[] objArr) {
         Object[] objArr2 = this.d;
-        int i10 = this.f13727n;
+        int i10 = this.f13728n;
         System.arraycopy(objArr2, 0, objArr, 0, i10);
         return i10;
     }
 
     @Override
     public final int m() {
-        return this.f13727n;
+        return this.f13728n;
     }
 
     @Override
@@ -90,11 +90,11 @@ public final class y extends o {
 
     @Override
     public final int size() {
-        return this.f13727n;
+        return this.f13728n;
     }
 
     @Override
     public final m t() {
-        return m.s(this.f13727n, this.d);
+        return m.s(this.f13728n, this.d);
     }
 }

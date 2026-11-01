@@ -1,28 +1,33 @@
 package org.telegram.ui.Components;
-public final class ao0 implements xa {
-    public final wb f24440a;
-    public final ie f24441b;
 
-    public ao0(ie ieVar, wb wbVar) {
-        this.f24441b = ieVar;
-        this.f24440a = wbVar;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class ao0 extends FrameLayout {
+    public final ie f24465a;
+
+    public ao0(ie ieVar, Context context) {
+        super(context);
+        this.f24465a = ieVar;
     }
 
     @Override
-    public final void a() {
-        this.f24441b.G.add(this.f24440a);
-    }
-
-    @Override
-    public final void b() {
-        this.f24441b.G.remove(this.f24440a);
-    }
-
-    @Override
-    public final void c(wb wbVar) {
-    }
-
-    @Override
-    public final void d() {
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        ie ieVar = this.f24465a;
+        View contentView = ieVar.getContentView();
+        contentView.getLocationInWindow(r3);
+        int[] iArr = {iArr[0] + ieVar.E, iArr[1] + ieVar.F};
+        int[] iArr2 = new int[2];
+        getLocationInWindow(iArr2);
+        if ((motionEvent.getAction() != 0 || motionEvent.getX() > iArr[0]) && motionEvent.getX() < contentView.getWidth() + iArr[0] && motionEvent.getY() > iArr[1] && motionEvent.getY() < contentView.getHeight() + iArr[1]) {
+            motionEvent.offsetLocation(iArr2[0] - iArr[0], (org.telegram.messenger.i0.f16166m + iArr2[1]) - iArr[1]);
+            return contentView.dispatchTouchEvent(motionEvent);
+        }
+        if (!ieVar.A && !ieVar.D) {
+            ieVar.D = true;
+            ieVar.l(new o1.j[0]);
+        }
+        return true;
     }
 }

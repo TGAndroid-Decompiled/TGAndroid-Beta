@@ -1,7 +1,8 @@
 package org.telegram.ui;
-public final class h91 extends org.telegram.messenger.jj {
-    @Override
-    public final boolean k5() {
-        return false;
+public final class h91 {
+    public final i91 f37764a;
+
+    public h91(i91 i91Var) {
+        this.f37764a = i91Var;
     }
 }

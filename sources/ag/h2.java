@@ -7,24 +7,24 @@ import j$.time.DayOfWeek;
 import j$.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.Calendar;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.h20;
+import org.telegram.messenger.at;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.i20;
 import org.telegram.messenger.m5;
-import org.telegram.messenger.us;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.vs;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.l5;
 import org.telegram.ui.Cells.p8;
-import org.telegram.ui.Components.a51;
+import org.telegram.ui.Components.b51;
 import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.p51;
-import org.telegram.ui.Components.tk0;
-import org.telegram.ui.Components.u51;
+import org.telegram.ui.Components.q51;
+import org.telegram.ui.Components.uk0;
+import org.telegram.ui.Components.v51;
 import w7.b6;
-public final class h2 extends org.telegram.ui.ActionBar.k2 implements us {
-    public u51 f546a;
+public final class h2 extends org.telegram.ui.ActionBar.k2 implements vs {
+    public v51 f546a;
     public l5 f547b;
     public boolean f548c;
     public boolean d;
@@ -39,7 +39,7 @@ public final class h2 extends org.telegram.ui.ActionBar.k2 implements us {
         this.f549f = new ArrayList[]{new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList()};
     }
 
-    public static void Y(h2 h2Var, TLRPC.TL_error tL_error, TLObject tLObject) {
+    public static void Z(h2 h2Var, TLRPC.TL_error tL_error, TLObject tLObject) {
         if (tL_error != null) {
             h2Var.f547b.b(false);
             cc.d0(tL_error);
@@ -53,20 +53,20 @@ public final class h2 extends org.telegram.ui.ActionBar.k2 implements us {
         }
     }
 
-    public static void Z(h2 h2Var, ArrayList arrayList) {
-        String L0 = cd.L0(2131752764, null);
-        String L02 = cd.L0(2131752749, null);
-        a51 a51Var = new a51(2);
-        a51Var.f24292l = L0;
-        a51Var.f24295o = L02;
-        a51Var.f24291k = 2131623939;
-        arrayList.add(a51Var);
-        a51 i10 = a51.i(-1, cd.L0(2131752729, null));
+    public static void a0(h2 h2Var, ArrayList arrayList) {
+        String L0 = dd.L0(2131752764, null);
+        String L02 = dd.L0(2131752749, null);
+        b51 b51Var = new b51(2);
+        b51Var.f24643l = L0;
+        b51Var.f24646o = L02;
+        b51Var.f24642k = 2131623939;
+        arrayList.add(b51Var);
+        b51 i10 = b51.i(-1, dd.L0(2131752729, null));
         i10.L(h2Var.d);
         arrayList.add(i10);
-        arrayList.add(a51.B(-100, null));
+        arrayList.add(b51.B(-100, null));
         if (h2Var.d) {
-            arrayList.add(a51.u(cd.L0(2131752764, null)));
+            arrayList.add(b51.u(dd.L0(2131752764, null)));
             int i11 = 0;
             while (true) {
                 ArrayList[] arrayListArr = h2Var.f549f;
@@ -74,33 +74,33 @@ public final class h2 extends org.telegram.ui.ActionBar.k2 implements us {
                     if (arrayListArr[i11] == null) {
                         arrayListArr[i11] = new ArrayList();
                     }
-                    String displayName = DayOfWeek.values()[i11].getDisplayName(TextStyle.FULL, cd.D0().f15003y);
-                    String e02 = e0(h2Var.f549f[i11]);
-                    a51 a51Var2 = new a51(5);
-                    a51Var2.d = i11;
-                    a51Var2.f24292l = displayName.substring(0, 1).toUpperCase() + displayName.substring(1);
-                    a51Var2.f24293m = e02;
-                    a51Var2.L(!h2Var.f549f[i11].isEmpty());
-                    arrayList.add(a51Var2);
+                    String displayName = DayOfWeek.values()[i11].getDisplayName(TextStyle.FULL, dd.D0().f15365y);
+                    String f02 = f0(h2Var.f549f[i11]);
+                    b51 b51Var2 = new b51(5);
+                    b51Var2.d = i11;
+                    b51Var2.f24643l = displayName.substring(0, 1).toUpperCase() + displayName.substring(1);
+                    b51Var2.f24644m = f02;
+                    b51Var2.L(!h2Var.f549f[i11].isEmpty());
+                    arrayList.add(b51Var2);
                     i11++;
                 } else {
-                    arrayList.add(a51.B(-101, null));
-                    arrayList.add(a51.f(cd.L0(2131752728, null), n3.b(h2Var.currentAccount).d(h2Var.f550n, false), -2));
-                    arrayList.add(a51.B(-102, null));
+                    arrayList.add(b51.B(-101, null));
+                    arrayList.add(b51.f(dd.L0(2131752728, null), n3.b(h2Var.currentAccount).d(h2Var.f550n, false), -2));
+                    arrayList.add(b51.B(-102, null));
                     return;
                 }
             }
         }
     }
 
-    public static void a0(h2 h2Var, View view, String str) {
+    public static void b0(h2 h2Var, View view, String str) {
         n3 b10 = n3.b(h2Var.currentAccount);
         h2Var.f550n = str;
         ((p8) view).w(b10.d(str, false), true);
-        h2Var.c0(true);
+        h2Var.d0(true);
     }
 
-    public static ArrayList[] d0(ArrayList arrayList) {
+    public static ArrayList[] e0(ArrayList arrayList) {
         int i10;
         ArrayList[] arrayListArr = new ArrayList[7];
         for (int i11 = 0; i11 < 7; i11++) {
@@ -153,12 +153,12 @@ public final class h2 extends org.telegram.ui.ActionBar.k2 implements us {
         return arrayListArr;
     }
 
-    public static String e0(ArrayList arrayList) {
+    public static String f0(ArrayList arrayList) {
         if (arrayList.isEmpty()) {
-            return cd.L0(2131752755, null);
+            return dd.L0(2131752755, null);
         }
-        if (g0(arrayList)) {
-            return cd.L0(2131752754, null);
+        if (h0(arrayList)) {
+            return dd.L0(2131752754, null);
         }
         String str = "";
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
@@ -175,7 +175,7 @@ public final class h2 extends org.telegram.ui.ActionBar.k2 implements us {
         return str;
     }
 
-    public static boolean g0(ArrayList arrayList) {
+    public static boolean h0(ArrayList arrayList) {
         if (arrayList == null || arrayList.isEmpty()) {
             return false;
         }
@@ -193,26 +193,26 @@ public final class h2 extends org.telegram.ui.ActionBar.k2 implements us {
         return true;
     }
 
-    public static String j0(int i10, TLRPC.User user, TL_account.TL_businessWorkHours tL_businessWorkHours) {
+    public static String k0(int i10, TLRPC.User user, TL_account.TL_businessWorkHours tL_businessWorkHours) {
         int i11;
         if (tL_businessWorkHours == null) {
             return null;
         }
-        ArrayList[] d02 = d0(tL_businessWorkHours.weekly_open);
+        ArrayList[] e02 = e0(tL_businessWorkHours.weekly_open);
         StringBuilder sb2 = new StringBuilder();
         if (user != null) {
-            sb2.append(cd.a0(null, null, 2131752759, h20.p(user)));
+            sb2.append(dd.a0(null, null, 2131752759, i20.p(user)));
             sb2.append("\n");
         }
         for (int i12 = 0; i12 < 7; i12++) {
-            ArrayList arrayList = d02[i12];
-            String displayName = DayOfWeek.values()[i12].getDisplayName(TextStyle.FULL, cd.D0().f15003y);
+            ArrayList arrayList = e02[i12];
+            String displayName = DayOfWeek.values()[i12].getDisplayName(TextStyle.FULL, dd.D0().f15365y);
             sb2.append(displayName.substring(0, 1).toUpperCase() + displayName.substring(1));
             sb2.append(": ");
-            if (g0(arrayList)) {
-                sb2.append(cd.L0(2131752741, null));
+            if (h0(arrayList)) {
+                sb2.append(dd.L0(2131752741, null));
             } else if (arrayList.isEmpty()) {
-                sb2.append(cd.L0(2131752745, null));
+                sb2.append(dd.L0(2131752745, null));
             } else {
                 for (int i13 = 0; i13 < arrayList.size(); i13++) {
                     if (i13 > 0) {
@@ -235,12 +235,12 @@ public final class h2 extends org.telegram.ui.ActionBar.k2 implements us {
         }
         if ((rawOffset - i11) / 60 != 0 && a2 != null) {
             n3.b(i10);
-            sb2.append(cd.a0(null, null, 2131752760, n3.e(a2, true)));
+            sb2.append(dd.a0(null, null, 2131752760, n3.e(a2, true)));
         }
         return sb2.toString();
     }
 
-    public final void b0(int i10) {
+    public final void c0(int i10) {
         g2 g2Var;
         g2 g2Var2 = null;
         if (this.f549f[i10].isEmpty()) {
@@ -260,72 +260,72 @@ public final class h2 extends org.telegram.ui.ActionBar.k2 implements us {
                 }
                 View B1 = this.f546a.B1(i11);
                 if (B1 instanceof org.telegram.ui.Cells.l5) {
-                    ((org.telegram.ui.Cells.l5) B1).setValue(e0(this.f549f[i11]));
+                    ((org.telegram.ui.Cells.l5) B1).setValue(f0(this.f549f[i11]));
                 } else {
-                    this.f546a.f30819f3.O(true);
+                    this.f546a.f31183f3.O(true);
                 }
             }
         }
-    }
-
-    public final void c0(boolean z10) {
-        if (this.f547b == null) {
-            return;
-        }
-        this.f547b.a(f0(), z10);
     }
 
     @Override
     public final View createView(Context context) {
         setHasOwnBackground(true);
         this.simpleActionBar.setBackButtonImage(2131231241);
-        this.simpleActionBar.setTitle(cd.L0(2131752764, null));
+        this.simpleActionBar.setTitle(dd.L0(2131752764, null));
         this.simpleActionBar.setActionBarMenuOnItemClick(new e(this, 5));
-        this.f547b = this.simpleActionBar.n(cd.L0(2131745963, null));
-        c0(false);
+        this.f547b = this.simpleActionBar.n(dd.L0(2131745963, null));
+        d0(false);
         FrameLayout frameLayout = new FrameLayout(context);
-        u51 u51Var = new u51(this, new a(this, 6), new a1.c(this, 2), null);
-        this.f546a = u51Var;
-        u51Var.r1();
-        u51 u51Var2 = this.f546a;
-        u51Var2.f30819f3.f29295r = false;
-        u51Var2.setSectionsDrawBackground(true);
+        v51 v51Var = new v51(this, new a(this, 6), new a1.c(this, 2), null);
+        this.f546a = v51Var;
+        v51Var.r1();
+        v51 v51Var2 = this.f546a;
+        v51Var2.f31183f3.f29638r = false;
+        v51Var2.setSectionsDrawBackground(true);
         frameLayout.addView(this.f546a, b6.c(-1.0f, -1));
-        i0();
+        j0();
         this.fragmentView = frameLayout;
         return frameLayout;
     }
 
+    public final void d0(boolean z10) {
+        if (this.f547b == null) {
+            return;
+        }
+        this.f547b.a(g0(), z10);
+    }
+
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        p51 p51Var;
-        if (i10 == zs.E0) {
-            i0();
-        } else if (i10 == zs.f19680r3) {
+        q51 q51Var;
+        if (i10 == at.E0) {
+            j0();
+        } else if (i10 == at.f14776r3) {
             if (this.e == null) {
                 this.f550n = n3.b(this.currentAccount).c();
             }
-            u51 u51Var = this.f546a;
-            if (u51Var != null && (p51Var = u51Var.f30819f3) != null) {
-                p51Var.O(true);
+            v51 v51Var = this.f546a;
+            if (v51Var != null && (q51Var = v51Var.f31183f3) != null) {
+                q51Var.O(true);
             }
         }
     }
 
-    public final boolean f0() {
-        throw new UnsupportedOperationException("Method not decompiled: ag.h2.f0():boolean");
+    public final boolean g0() {
+        throw new UnsupportedOperationException("Method not decompiled: ag.h2.g0():boolean");
     }
 
     @Override
-    public final tk0 getListViewForSimpleGlass() {
+    public final uk0 getListViewForSimpleGlass() {
         return this.f546a;
     }
 
-    public final void h0() {
-        if (this.f547b.f20547y.f7021f) {
+    public final void i0() {
+        if (this.f547b.f20548y.f7022f) {
             return;
         }
-        if (!f0()) {
+        if (!g0()) {
             finishFragment();
             return;
         }
@@ -366,9 +366,14 @@ public final class h2 extends org.telegram.ui.ActionBar.k2 implements us {
         getMessagesStorage().j2(a2, false);
     }
 
-    public final void i0() {
+    @Override
+    public final boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    public final void j0() {
         boolean z10;
-        p51 p51Var;
+        q51 q51Var;
         if (this.f548c) {
             return;
         }
@@ -388,8 +393,8 @@ public final class h2 extends org.telegram.ui.ActionBar.k2 implements us {
             String str = tL_businessWorkHours.timezone_id;
             this.f550n = str;
             this.h = str;
-            this.e = d0(tL_businessWorkHours.weekly_open);
-            this.f549f = d0(a2.business_work_hours.weekly_open);
+            this.e = e0(tL_businessWorkHours.weekly_open);
+            this.f549f = e0(a2.business_work_hours.weekly_open);
         } else {
             String c10 = n3.b(this.currentAccount).c();
             this.f550n = c10;
@@ -409,32 +414,27 @@ public final class h2 extends org.telegram.ui.ActionBar.k2 implements us {
                 i10++;
             }
         }
-        u51 u51Var = this.f546a;
-        if (u51Var != null && (p51Var = u51Var.f30819f3) != null) {
-            p51Var.O(true);
+        v51 v51Var = this.f546a;
+        if (v51Var != null && (q51Var = v51Var.f31183f3) != null) {
+            q51Var.O(true);
         }
-        c0(false);
+        d0(false);
         this.f548c = true;
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
     }
 
     @Override
     public final boolean onFragmentCreate() {
         n3.b(this.currentAccount).g();
         this.f550n = n3.b(this.currentAccount).c();
-        getNotificationCenter().c(this, zs.E0);
+        getNotificationCenter().c(this, at.E0);
         return super.onFragmentCreate();
     }
 
     @Override
     public final void onFragmentDestroy() {
-        getNotificationCenter().n(this, zs.E0);
+        getNotificationCenter().n(this, at.E0);
         super.onFragmentDestroy();
-        h0();
+        i0();
     }
 
     @Override

@@ -7,89 +7,89 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.bi0;
+import org.telegram.ui.Components.ci0;
 public final class x2 {
-    public final Paint f49597a;
-    public final Paint f49598b;
-    public final Paint f49599c;
+    public final Paint f49611a;
+    public final Paint f49612b;
+    public final Paint f49613c;
     public final Drawable d;
     public final Drawable e;
-    public final ColorDrawable f49600f;
-    public final j2.f f49601g = new j2.f(5);
+    public final ColorDrawable f49614f;
+    public final j2.f f49615g = new j2.f(5);
     public final RectF h = new RectF();
-    public final RectF f49602i = new RectF();
-    public final RectF f49603j = new RectF();
-    public final RectF f49604k;
-    public final Paint f49605l;
-    public final Drawable f49606m;
-    public final Drawable f49607n;
-    public final Drawable f49608o;
-    public final Drawable f49609p;
-    public final Drawable f49610q;
-    public final Drawable f49611r;
-    public final Drawable f49612s;
-    public final bi0 f49613t;
-    public final bi0 f49614u;
+    public final RectF f49616i = new RectF();
+    public final RectF f49617j = new RectF();
+    public final RectF f49618k;
+    public final Paint f49619l;
+    public final Drawable f49620m;
+    public final Drawable f49621n;
+    public final Drawable f49622o;
+    public final Drawable f49623p;
+    public final Drawable f49624q;
+    public final Drawable f49625r;
+    public final Drawable f49626s;
+    public final ci0 f49627t;
+    public final ci0 f49628u;
 
     public x2(Context context) {
         new RectF();
-        this.f49604k = new RectF();
-        this.f49605l = new Paint();
-        this.f49606m = context.getDrawable(2131231756);
-        this.f49608o = context.getDrawable(2131231742);
-        this.f49607n = context.getDrawable(2131231753);
+        this.f49618k = new RectF();
+        this.f49619l = new Paint();
+        this.f49620m = context.getDrawable(2131231756);
+        this.f49622o = context.getDrawable(2131231742);
+        this.f49621n = context.getDrawable(2131231753);
         Drawable drawable = context.getDrawable(2131231743);
-        this.f49609p = drawable;
+        this.f49623p = drawable;
         drawable.setColorFilter(new PorterDuffColorFilter(-53704, PorterDuff.Mode.MULTIPLY));
-        this.f49610q = context.getDrawable(2131231748);
-        this.f49611r = context.getDrawable(2131231895);
-        this.f49612s = context.getDrawable(2131232107);
-        this.f49614u = new bi0(2131624086, org.telegram.messenger.i0.L(28.0f), org.telegram.messenger.i0.L(28.0f), true, null);
-        bi0 bi0Var = new bi0(2131624086, org.telegram.messenger.i0.L(28.0f), org.telegram.messenger.i0.L(28.0f), true, null);
-        this.f49613t = bi0Var;
-        bi0Var.N(20, false, true);
-        bi0Var.stop();
+        this.f49624q = context.getDrawable(2131231748);
+        this.f49625r = context.getDrawable(2131231895);
+        this.f49626s = context.getDrawable(2131232107);
+        this.f49628u = new ci0(2131624086, org.telegram.messenger.i0.L(28.0f), org.telegram.messenger.i0.L(28.0f), true, null);
+        ci0 ci0Var = new ci0(2131624086, org.telegram.messenger.i0.L(28.0f), org.telegram.messenger.i0.L(28.0f), true, null);
+        this.f49627t = ci0Var;
+        ci0Var.N(20, false, true);
+        ci0Var.stop();
         Paint paint = new Paint(1);
-        this.f49597a = paint;
+        this.f49611a = paint;
         paint.setColor(1442840575);
         Paint paint2 = new Paint(1);
-        this.f49598b = paint2;
+        this.f49612b = paint2;
         paint2.setColor(-1);
         int o10 = i0.b.o(-16777216, 102);
         this.d = context.getDrawable(2131232719);
         this.e = context.getDrawable(2131232718);
         Paint paint3 = new Paint();
-        this.f49599c = paint3;
+        this.f49613c = paint3;
         paint3.setColor(o10);
-        this.f49600f = new ColorDrawable(i0.b.f(0.1f, -16777216, -1));
+        this.f49614f = new ColorDrawable(i0.b.f(0.1f, -16777216, -1));
     }
 
     public final void a(boolean z10, boolean z11) {
         int i10;
         int i11 = 20;
-        bi0 bi0Var = this.f49614u;
+        ci0 ci0Var = this.f49628u;
         if (!z11) {
             if (z10) {
                 i10 = 20;
             } else {
                 i10 = 0;
             }
-            bi0Var.N(i10, false, false);
+            ci0Var.N(i10, false, false);
             if (!z10) {
                 i11 = 0;
             }
-            bi0Var.P(i11);
+            ci0Var.P(i11);
         } else if (z10) {
-            if (bi0Var.f24752a0 > 20) {
-                bi0Var.N(0, false, false);
+            if (ci0Var.f25131a0 > 20) {
+                ci0Var.N(0, false, false);
             }
-            bi0Var.P(20);
-            bi0Var.start();
+            ci0Var.P(20);
+            ci0Var.start();
         } else {
-            int i12 = bi0Var.f24752a0;
+            int i12 = ci0Var.f25131a0;
             if (i12 != 0 && i12 < 43) {
-                bi0Var.P(43);
-                bi0Var.start();
+                ci0Var.P(43);
+                ci0Var.start();
             }
         }
     }

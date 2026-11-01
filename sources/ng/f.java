@@ -13,18 +13,18 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.k2;
 import org.telegram.ui.ActionBar.p2;
 import org.telegram.ui.ActionBar.p6;
-import org.telegram.ui.Components.sk0;
+import org.telegram.ui.Components.tk0;
 import s4.c1;
-public abstract class f extends sk0 {
-    public final p6 f13776c;
+public abstract class f extends tk0 {
+    public final p6 f13777c;
     public boolean d;
     public k2 e;
-    public TLRPC.TL_payments_checkedGiftCode f13777f;
+    public TLRPC.TL_payments_checkedGiftCode f13778f;
     public String h;
-    public p2 f13778n;
+    public p2 f13779n;
 
     public f(p6 p6Var) {
-        this.f13776c = p6Var;
+        this.f13777c = p6Var;
     }
 
     @Override
@@ -71,7 +71,7 @@ public abstract class f extends sk0 {
     public final c1 w(ViewGroup viewGroup, int i10) {
         View vVar;
         Context context = viewGroup.getContext();
-        p6 p6Var = this.f13776c;
+        p6 p6Var = this.f13777c;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {

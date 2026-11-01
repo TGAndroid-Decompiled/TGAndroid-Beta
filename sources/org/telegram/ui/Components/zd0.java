@@ -3,22 +3,22 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class zd0 extends AnimatorListenerAdapter {
-    public final int f33024a;
-    public final be0 f33025b;
+    public final int f33120a;
+    public final be0 f33121b;
 
     public zd0(be0 be0Var, int i10) {
-        this.f33024a = i10;
-        this.f33025b = be0Var;
+        this.f33120a = i10;
+        this.f33121b = be0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f33024a) {
+        switch (this.f33120a) {
             case 0:
-                this.f33025b.f24620s = null;
+                this.f33121b.f24720s = null;
                 return;
             default:
-                this.f33025b.f24621w = null;
+                this.f33121b.f24721w = null;
                 return;
         }
     }

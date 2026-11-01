@@ -11,8 +11,8 @@ public final class xj extends ci.o {
     @Override
     public final void F() {
         un unVar = this.X;
-        if (unVar.f42188aa == -1) {
-            unVar.f42188aa = unVar.getNotificationCenter().q(un.f42175gd, unVar.f42188aa, false);
+        if (unVar.f41998aa == -1) {
+            unVar.f41998aa = unVar.getNotificationCenter().q(un.f41985hd, unVar.f41998aa, false);
         }
     }
 
@@ -32,13 +32,13 @@ public final class xj extends ci.o {
     @Override
     public final void W() {
         un unVar = this.X;
-        unVar.f42188aa = unVar.getNotificationCenter().q(un.f42175gd, unVar.f42188aa, false);
+        unVar.f41998aa = unVar.getNotificationCenter().q(un.f41985hd, unVar.f41998aa, false);
         Runnable runnable = this.W;
         if (runnable != null) {
             org.telegram.messenger.i0.r(runnable);
             this.W = null;
         }
-        if (org.telegram.messenger.v2.f18448a) {
+        if (org.telegram.messenger.v2.f18578a) {
             org.telegram.messenger.f8.b("chatItemAnimator disable notifications");
         }
         mg.c2 c2Var = unVar.Z.getAdjustPanLayoutHelper().h;

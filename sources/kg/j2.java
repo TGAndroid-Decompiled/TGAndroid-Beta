@@ -4,19 +4,19 @@ import android.view.TextureView;
 import bi.b3;
 import org.telegram.messenger.video.VideoPlayerHolderBase;
 public final class j2 extends VideoPlayerHolderBase {
-    public final int f11133a;
-    public final Object f11134b;
+    public final int f11134a;
+    public final Object f11135b;
 
     public j2(Object obj, int i10) {
-        this.f11133a = i10;
-        this.f11134b = obj;
+        this.f11134a = i10;
+        this.f11135b = obj;
     }
 
     @Override
     public boolean needRepeat() {
-        switch (this.f11133a) {
+        switch (this.f11134a) {
             case 1:
-                return !((vh.w) this.f11134b).f52083p.f52138n0;
+                return !((vh.w) this.f11135b).f52099p.f52156n0;
             default:
                 return super.needRepeat();
         }
@@ -24,9 +24,9 @@ public final class j2 extends VideoPlayerHolderBase {
 
     @Override
     public final void onRenderedFirstFrame() {
-        switch (this.f11133a) {
+        switch (this.f11134a) {
             case 0:
-                k2 k2Var = (k2) this.f11134b;
+                k2 k2Var = (k2) this.f11135b;
                 TextureView textureView = k2Var.J;
                 if (textureView != null && !k2Var.F) {
                     textureView.setAlpha(0.0f);
@@ -35,18 +35,18 @@ public final class j2 extends VideoPlayerHolderBase {
                 }
                 return;
             default:
-                vh.w wVar = (vh.w) this.f11134b;
-                wVar.f52074f = true;
-                wVar.f52083p.invalidate();
+                vh.w wVar = (vh.w) this.f11135b;
+                wVar.f52090f = true;
+                wVar.f52099p.invalidate();
                 return;
         }
     }
 
     @Override
     public void onStateChanged(boolean z10, int i10) {
-        switch (this.f11133a) {
+        switch (this.f11134a) {
             case 0:
-                k2 k2Var = (k2) this.f11134b;
+                k2 k2Var = (k2) this.f11135b;
                 j2 j2Var = k2Var.H;
                 if (j2Var != null) {
                     if (i10 == 4) {
@@ -69,7 +69,7 @@ public final class j2 extends VideoPlayerHolderBase {
 
     @Override
     public void onVideoSizeChanged(int i10, int i11, int i12, float f7) {
-        switch (this.f11133a) {
+        switch (this.f11134a) {
             case 1:
                 org.telegram.messenger.i0.g3(new b3(this, i10, i11, i12, 3));
                 return;

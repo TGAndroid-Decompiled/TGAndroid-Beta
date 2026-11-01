@@ -13,10 +13,10 @@ import k2.s0;
 import k2.w0;
 import k2.z;
 public final class e implements o, OnFailureListener {
-    public final int f9346a;
+    public final int f9347a;
 
     public e(int i10) {
-        this.f9346a = i10;
+        this.f9347a = i10;
     }
 
     public static AudioDescriptor a(Object obj) {
@@ -27,7 +27,7 @@ public final class e implements o, OnFailureListener {
     public void invoke(Object obj) {
         long j10;
         z zVar;
-        switch (this.f9346a) {
+        switch (this.f9347a) {
             case 0:
                 ((b) obj).getClass();
                 return;
@@ -100,45 +100,45 @@ public final class e implements o, OnFailureListener {
             case 25:
             default:
                 s0 s0Var = (s0) obj;
-                w0 w0Var = s0Var.f10762b;
-                if (s0Var.equals(w0Var.f10792j) && w0Var.M) {
+                w0 w0Var = s0Var.f10763b;
+                if (s0Var.equals(w0Var.f10793j) && w0Var.M) {
                     w0Var.N = true;
                     return;
                 }
                 return;
             case 26:
                 s0 s0Var2 = (s0) obj;
-                w0 w0Var2 = s0Var2.f10762b;
-                if (s0Var2.equals(w0Var2.f10792j) && w0Var2.f10796n != null) {
-                    ji.a aVar = w0Var2.f10798p;
-                    int i10 = aVar.f10422b;
+                w0 w0Var2 = s0Var2.f10763b;
+                if (s0Var2.equals(w0Var2.f10793j) && w0Var2.f10797n != null) {
+                    ji.a aVar = w0Var2.f10799p;
+                    int i10 = aVar.f10423b;
                     if (i10 != -1) {
-                        long j11 = ((k2.o) aVar.e).f10720f / i10;
-                        j0 j0Var = w0Var2.f10802t;
+                        long j11 = ((k2.o) aVar.e).f10721f / i10;
+                        j0 j0Var = w0Var2.f10803t;
                         j0Var.getClass();
-                        j10 = l0.Y(j0Var.f10674a.getSampleRate(), j11);
+                        j10 = l0.Y(j0Var.f10675a.getSampleRate(), j11);
                     } else {
                         j10 = -9223372036854775807L;
                     }
-                    w0Var2.f10796n.i0(l0.h0(j10), ((k2.o) w0Var2.f10798p.e).f10720f, SystemClock.elapsedRealtime() - w0Var2.W);
+                    w0Var2.f10797n.i0(l0.h0(j10), ((k2.o) w0Var2.f10799p.e).f10721f, SystemClock.elapsedRealtime() - w0Var2.W);
                     return;
                 }
                 return;
             case 27:
                 s0 s0Var3 = (s0) obj;
                 s0Var3.getClass();
-                w0.f10783c0.getAndDecrement();
-                z zVar2 = s0Var3.f10762b.f10796n;
+                w0.f10784c0.getAndDecrement();
+                z zVar2 = s0Var3.f10763b.f10797n;
                 if (zVar2 != 0) {
-                    int i11 = s0Var3.f10761a.f10717a;
+                    int i11 = s0Var3.f10762a.f10718a;
                     zVar2.e0(new Object());
                     return;
                 }
                 return;
             case 28:
                 s0 s0Var4 = (s0) obj;
-                w0 w0Var3 = s0Var4.f10762b;
-                if (s0Var4.equals(w0Var3.f10792j) && (zVar = w0Var3.f10796n) != null && w0Var3.O) {
+                w0 w0Var3 = s0Var4.f10763b;
+                if (s0Var4.equals(w0Var3.f10793j) && (zVar = w0Var3.f10797n) != null && w0Var3.O) {
                     zVar.f0();
                     return;
                 }
@@ -148,38 +148,38 @@ public final class e implements o, OnFailureListener {
 
     @Override
     public void onFailure(Exception exc) {
-        int i10 = v2.f10307r0;
+        int i10 = v2.f10308r0;
     }
 
     public e(a aVar, float f7) {
-        this.f9346a = 21;
+        this.f9347a = 21;
     }
 
     public e(a aVar, int i10) {
-        this.f9346a = i10;
+        this.f9347a = i10;
     }
 
     public e(a aVar, int i10, int i11) {
-        this.f9346a = i11;
+        this.f9347a = i11;
     }
 
     public e(a aVar, long j10) {
-        this.f9346a = 12;
+        this.f9347a = 12;
     }
 
     public e(a aVar, x xVar, i2.e eVar) {
-        this.f9346a = 3;
+        this.f9347a = 3;
     }
 
     public e(a aVar, p0 p0Var, int i10) {
-        this.f9346a = 20;
+        this.f9347a = 20;
     }
 
     public e(a aVar, Object obj, int i10) {
-        this.f9346a = i10;
+        this.f9347a = i10;
     }
 
     public e(a aVar, boolean z10, int i10) {
-        this.f9346a = i10;
+        this.f9347a = i10;
     }
 }

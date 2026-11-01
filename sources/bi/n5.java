@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.wh0;
+import org.telegram.ui.Components.xh0;
 public abstract class n5 {
     public static Object a(Spanned spanned, int i10, int i11, Class cls) {
         Object[] spans;
@@ -24,8 +24,8 @@ public abstract class n5 {
         Spanned spanned;
         int i10;
         di.i iVar;
-        wh0 wh0Var;
-        wh0 wh0Var2;
+        xh0 xh0Var;
+        xh0 xh0Var2;
         int i11;
         boolean z10;
         boolean z11;
@@ -71,20 +71,20 @@ public abstract class n5 {
                 iVar = (di.i) a(spanned, i15, i10, di.i.class);
             }
             if (spanned != null && iVar == null) {
-                wh0Var = (wh0) a(spanned, i15, i10, wh0.class);
+                xh0Var = (xh0) a(spanned, i15, i10, xh0.class);
             } else {
-                wh0Var = null;
+                xh0Var = null;
             }
-            if (iVar == null && wh0Var == null) {
+            if (iVar == null && xh0Var == null) {
                 CharSequence subSequence = charSequence.subSequence(i15, i10);
                 TL_iv.pageBlockParagraph pageblockparagraph2 = new TL_iv.pageBlockParagraph();
                 pageblockparagraph2.text = s6.f(subSequence);
                 arrayList.add(pageblockparagraph2);
             } else {
                 if (iVar != null) {
-                    wh0Var2 = iVar;
+                    xh0Var2 = iVar;
                 } else {
-                    wh0Var2 = wh0Var;
+                    xh0Var2 = xh0Var;
                 }
                 while (true) {
                     if (i14 < size) {
@@ -100,9 +100,9 @@ public abstract class n5 {
                         if (iVar != null) {
                             a2 = a(spanned, i16, length, di.i.class);
                         } else {
-                            a2 = a(spanned, i16, length, wh0.class);
+                            a2 = a(spanned, i16, length, xh0.class);
                         }
-                        if (a2 != wh0Var2) {
+                        if (a2 != xh0Var2) {
                             break;
                         }
                         i10 = length;
@@ -129,7 +129,7 @@ public abstract class n5 {
                     TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
                     pageblockblockquote.text = s6.f(subSequence2);
                     pageblockblockquote.caption = new TL_iv.textEmpty();
-                    if (wh0Var != null && wh0Var.e) {
+                    if (xh0Var != null && xh0Var.e) {
                         z11 = z10;
                     } else {
                         z11 = false;
@@ -263,7 +263,7 @@ public abstract class n5 {
                     i11++;
                 }
                 if (spannableStringBuilder.length() > 0) {
-                    wh0.b(spannableStringBuilder, 0, spannableStringBuilder.length(), false);
+                    xh0.b(spannableStringBuilder, 0, spannableStringBuilder.length(), false);
                 }
                 arrayList.add(spannableStringBuilder);
                 i10 = i11;
@@ -282,7 +282,7 @@ public abstract class n5 {
                     TL_iv.PageBlock pageBlock2 = aVar.f2818b;
                     z11 = ((pageBlock2 instanceof TL_iv.pageBlockBlockquote) && ((TL_iv.pageBlockBlockquote) pageBlock2).collapsed) ? false : false;
                     if (spannableStringBuilder2.length() > 0) {
-                        wh0.b(spannableStringBuilder2, 0, spannableStringBuilder2.length(), z11);
+                        xh0.b(spannableStringBuilder2, 0, spannableStringBuilder2.length(), z11);
                     }
                     arrayList.add(spannableStringBuilder2);
                 }

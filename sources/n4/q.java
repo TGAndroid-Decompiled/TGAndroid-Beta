@@ -55,24 +55,24 @@ import org.telegram.ui.ActionBar.k2;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.Components.bi;
 import org.telegram.ui.Components.z60;
-import org.telegram.ui.er0;
-import org.telegram.ui.qo0;
+import org.telegram.ui.cr0;
+import org.telegram.ui.oo0;
 import r0.h0;
 import r0.k0;
 import v7.p8;
 public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, z3.m, c3.i, b1, e2.d {
-    public Object f13526a;
-    public Object f13527b;
+    public Object f13527a;
+    public Object f13528b;
 
     public q(Object obj) {
-        this.f13526a = obj;
-        this.f13527b = null;
+        this.f13527a = obj;
+        this.f13528b = null;
     }
 
     public static String I(q qVar) {
-        Collection<String> collection = (Collection) qVar.f13527b;
+        Collection<String> collection = (Collection) qVar.f13528b;
         StringBuilder sb2 = new StringBuilder("com.google.android.gms.cast.CATEGORY_CAST");
-        String str = (String) qVar.f13526a;
+        String str = (String) qVar.f13527a;
         if (str != null) {
             String upperCase = str.toUpperCase(Locale.ROOT);
             if (upperCase.matches("[A-F0-9]+")) {
@@ -94,7 +94,7 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
                     if (!z10) {
                         sb2.append(",");
                     }
-                    if (!g6.a.f7365a.matcher(str2).matches()) {
+                    if (!g6.a.f7366a.matcher(str2).matches()) {
                         StringBuilder sb3 = new StringBuilder(str2.length());
                         for (int i10 = 0; i10 < str2.length(); i10++) {
                             char charAt = str2.charAt(i10);
@@ -125,22 +125,22 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
 
     public static void f(q qVar, i2.c cVar) {
         qVar.getClass();
-        for (Map.Entry entry : new HashMap((HashMap) qVar.f13526a).entrySet()) {
+        for (Map.Entry entry : new HashMap((HashMap) qVar.f13527a).entrySet()) {
             if (entry.getKey() == null) {
                 List list = (List) entry.getValue();
-                if (!i(cVar, list).equals(i((i2.c) qVar.f13527b, list))) {
+                if (!i(cVar, list).equals(i((i2.c) qVar.f13528b, list))) {
                     throw null;
                 }
             } else {
                 throw new ClassCastException();
             }
         }
-        qVar.f13527b = cVar;
+        qVar.f13528b = cVar;
     }
 
     public static i2.c i(i2.c cVar, List list) {
         cVar.getClass();
-        Map map = cVar.f7820a;
+        Map map = cVar.f7821a;
         HashMap hashMap = new HashMap(map);
         HashSet hashSet = new HashSet(list);
         for (String str : map.keySet()) {
@@ -153,20 +153,20 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
 
     @Override
     public void A() {
-        bi.t tVar = (bi.t) this.f13527b;
+        bi.t tVar = (bi.t) this.f13528b;
         if (tVar.getCurrentItemTop() != tVar.I) {
-            tVar.f30947b.L1(tVar, 0);
+            tVar.f30964b.L1(tVar, 0);
         }
         tVar.d0();
         bi.t.N(tVar);
     }
 
     public void B(k.a aVar) {
-        xa.n nVar = (xa.n) this.f13526a;
-        ((ActionMode.Callback) nVar.f53554a).onDestroyActionMode(nVar.v(aVar));
-        g.r rVar = (g.r) this.f13527b;
+        xa.n nVar = (xa.n) this.f13527a;
+        ((ActionMode.Callback) nVar.f53572a).onDestroyActionMode(nVar.v(aVar));
+        g.r rVar = (g.r) this.f13528b;
         if (rVar.E != null) {
-            rVar.f7228f.getDecorView().removeCallbacks(rVar.F);
+            rVar.f7229f.getDecorView().removeCallbacks(rVar.F);
         }
         if (rVar.D != null) {
             k0 k0Var = rVar.G;
@@ -178,24 +178,24 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
             rVar.G = a2;
             a2.d(new g.i(this, 2));
         }
-        rVar.f7244y = null;
+        rVar.f7245y = null;
         ViewGroup viewGroup = rVar.J;
-        WeakHashMap weakHashMap = h0.f46123a;
+        WeakHashMap weakHashMap = h0.f46134a;
         r0.x.c(viewGroup);
         rVar.y();
     }
 
     public boolean C(k.a aVar, Menu menu) {
-        ViewGroup viewGroup = ((g.r) this.f13527b).J;
-        WeakHashMap weakHashMap = h0.f46123a;
+        ViewGroup viewGroup = ((g.r) this.f13528b).J;
+        WeakHashMap weakHashMap = h0.f46134a;
         r0.x.c(viewGroup);
-        xa.n nVar = (xa.n) this.f13526a;
-        ActionMode.Callback callback = (ActionMode.Callback) nVar.f53554a;
+        xa.n nVar = (xa.n) this.f13527a;
+        ActionMode.Callback callback = (ActionMode.Callback) nVar.f53572a;
         k.e v = nVar.v(aVar);
         a0.l lVar = (a0.l) nVar.d;
         Menu menu2 = (Menu) lVar.get(menu);
         if (menu2 == null) {
-            menu2 = new b0((Context) nVar.f53555b, (l.l) menu);
+            menu2 = new b0((Context) nVar.f53573b, (l.l) menu);
             lVar.put(menu, menu2);
         }
         return callback.onPrepareActionMode(v, menu2);
@@ -203,9 +203,9 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
 
     @Override
     public void D(q6 q6Var, String str) {
-        bi.t tVar = (bi.t) this.f13527b;
+        bi.t tVar = (bi.t) this.f13528b;
         if (tVar.f3352w == null) {
-            p6 p6Var = (p6) this.f13526a;
+            p6 p6Var = (p6) this.f13527a;
             tVar.f3352w = new p3(new ag.m(3, this, p6Var), p6Var);
         }
         tVar.f3352w.g(q6Var, str);
@@ -213,24 +213,24 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
 
     @Override
     public void E(int i10) {
-        bi.t tVar = (bi.t) this.f13527b;
-        tVar.f30947b.L1(tVar, i10);
+        bi.t tVar = (bi.t) this.f13528b;
+        tVar.f30964b.L1(tVar, i10);
         tVar.d0();
         bi.t.N(tVar);
     }
 
     public void F(android.support.v4.media.session.s sVar, Handler handler) {
-        l lVar = (l) this.f13526a;
+        l lVar = (l) this.f13527a;
         synchronized (lVar.d) {
-            lVar.f13518l = sVar;
-            lVar.f13510a.setCallback((android.support.v4.media.session.r) sVar.e, handler);
+            lVar.f13519l = sVar;
+            lVar.f13511a.setCallback((android.support.v4.media.session.r) sVar.e, handler);
             sVar.d0(lVar, handler);
         }
     }
 
     public void G(int i10) {
         try {
-            i8.f fVar = (i8.f) this.f13526a;
+            i8.f fVar = (i8.f) this.f13527a;
             Parcel P0 = fVar.P0();
             P0.writeInt(i10);
             fVar.T0(P0, 16);
@@ -240,54 +240,54 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
     }
 
     public void H(w wVar) {
-        l lVar = (l) this.f13526a;
-        lVar.f13514g = wVar;
+        l lVar = (l) this.f13527a;
+        lVar.f13515g = wVar;
         synchronized (lVar.d) {
-            for (int beginBroadcast = lVar.f13513f.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
+            for (int beginBroadcast = lVar.f13514f.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
                 try {
-                    ((b) lVar.f13513f.getBroadcastItem(beginBroadcast)).u(wVar);
+                    ((b) lVar.f13514f.getBroadcastItem(beginBroadcast)).u(wVar);
                 } catch (RemoteException | SecurityException e) {
                     e2.a.d("MediaSessionCompat", "Dead object in setPlaybackState.", e);
                 }
             }
-            lVar.f13513f.finishBroadcast();
+            lVar.f13514f.finishBroadcast();
         }
-        MediaSession mediaSession = lVar.f13510a;
-        if (wVar.f13546x == null) {
+        MediaSession mediaSession = lVar.f13511a;
+        if (wVar.f13547x == null) {
             PlaybackState.Builder builder = new PlaybackState.Builder();
-            builder.setState(wVar.f13538a, wVar.f13539b, wVar.d, wVar.f13542n);
-            builder.setBufferedPosition(wVar.f13540c);
+            builder.setState(wVar.f13539a, wVar.f13540b, wVar.d, wVar.f13543n);
+            builder.setBufferedPosition(wVar.f13541c);
             builder.setActions(wVar.e);
             builder.setErrorMessage(wVar.h);
-            for (v vVar : wVar.f13543r) {
+            for (v vVar : wVar.f13544r) {
                 vVar.getClass();
-                PlaybackState.CustomAction.Builder builder2 = new PlaybackState.CustomAction.Builder(vVar.f13535a, vVar.f13536b, vVar.f13537c);
+                PlaybackState.CustomAction.Builder builder2 = new PlaybackState.CustomAction.Builder(vVar.f13536a, vVar.f13537b, vVar.f13538c);
                 builder2.setExtras(vVar.d);
                 PlaybackState.CustomAction build = builder2.build();
                 if (build != null) {
                     builder.addCustomAction(build);
                 }
             }
-            builder.setActiveQueueItemId(wVar.f13544s);
-            builder.setExtras(wVar.f13545w);
-            wVar.f13546x = builder.build();
+            builder.setActiveQueueItemId(wVar.f13545s);
+            builder.setExtras(wVar.f13546w);
+            wVar.f13547x = builder.build();
         }
-        mediaSession.setPlaybackState(wVar.f13546x);
+        mediaSession.setPlaybackState(wVar.f13547x);
     }
 
     @Override
     public void N(c4 c4Var, View view) {
-        bi.t tVar = (bi.t) this.f13527b;
-        z60 z60Var = new z60(tVar, (p6) this.f13526a, view, false, false, true);
+        bi.t tVar = (bi.t) this.f13528b;
+        z60 z60Var = new z60(tVar, (p6) this.f13527a, view, false, false, true);
         z60Var.Q = true;
-        k2 k2Var = tVar.f30947b.W1;
+        k2 k2Var = tVar.f30964b.W1;
         tVar.getContext();
         tVar.H = t4.b(z60Var, k2Var, c4Var, true);
     }
 
     @Override
     public void T() {
-        i4 i4Var = ((bi.t) this.f13527b).f3351s;
+        i4 i4Var = ((bi.t) this.f13528b).f3351s;
         if (i4Var != null) {
             int i10 = 0;
             i4Var.e(false, true);
@@ -301,22 +301,22 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
 
     @Override
     public z60 U(View view) {
-        bi.t tVar = (bi.t) this.f13527b;
-        z60 z60Var = new z60(tVar, (p6) this.f13526a, view, false, false, true);
+        bi.t tVar = (bi.t) this.f13528b;
+        z60 z60Var = new z60(tVar, (p6) this.f13527a, view, false, false, true);
         tVar.H = z60Var;
         return z60Var;
     }
 
     @Override
     public void Z() {
-        bi.t tVar = (bi.t) this.f13527b;
+        bi.t tVar = (bi.t) this.f13528b;
         tVar.a0();
         tVar.b0();
     }
 
     @Override
     public y a(s0 s0Var) {
-        y a2 = ((e2.d) this.f13526a).a(s0Var);
+        y a2 = ((e2.d) this.f13527a).a(s0Var);
         if (a2 == null) {
             return null;
         }
@@ -325,14 +325,14 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
 
     @Override
     public Object apply(Object obj) {
-        return ((d9.k) ((a4.l) this.f13526a).f279b).apply(obj);
+        return ((d9.k) ((a4.l) this.f13527a).f279b).apply(obj);
     }
 
     @Override
     public c3.h b(c3.p pVar, long j10) {
         long position = pVar.getPosition();
         int min = (int) Math.min(20000L, pVar.getLength() - position);
-        e2.x xVar = (e2.x) this.f13527b;
+        e2.x xVar = (e2.x) this.f13528b;
         xVar.K(min);
         pVar.b(0, min, xVar.f6207a);
         int i10 = -1;
@@ -345,7 +345,7 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
                 xVar.O(4);
                 long c10 = j4.y.c(xVar);
                 if (c10 != -9223372036854775807L) {
-                    long b10 = ((e2.k0) this.f13526a).b(c10);
+                    long b10 = ((e2.k0) this.f13527a).b(c10);
                     if (b10 > j10) {
                         if (j11 == -9223372036854775807L) {
                             return new c3.h(b10, -1, position);
@@ -414,20 +414,20 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
 
     @Override
     public void d() {
-        ((qo0) this.f13526a).run();
+        ((oo0) this.f13527a).run();
     }
 
     @Override
     public void d0(bi.a aVar) {
-        bi.t tVar = (bi.t) this.f13527b;
-        bi biVar = tVar.f30947b;
+        bi.t tVar = (bi.t) this.f13528b;
+        bi biVar = tVar.f30964b;
         k2 k2Var = biVar.W1;
         if (k2Var != null && aVar != null && (aVar.f2818b instanceof TL_iv.pageBlockMap) && i0.J1(k2Var)) {
             bi biVar2 = new bi(tVar.getContext(), biVar.W1, false, false, false, null);
             biVar2.T3 = new kb.a(3);
             biVar2.G1 = true;
-            biVar2.f24718r3.setVisibility(8);
-            biVar2.f24715q4 = new androidx.car.app.utils.a(tVar, aVar, biVar2, 2);
+            biVar2.f24809r3.setVisibility(8);
+            biVar2.f24806q4 = new androidx.car.app.utils.a(tVar, aVar, biVar2, 2);
             biVar2.d1();
             biVar2.show();
         }
@@ -435,7 +435,7 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
 
     @Override
     public void e() {
-        e2.x xVar = (e2.x) this.f13527b;
+        e2.x xVar = (e2.x) this.f13528b;
         byte[] bArr = l0.f6166b;
         xVar.getClass();
         xVar.L(bArr.length, bArr);
@@ -443,7 +443,7 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
 
     @Override
     public void g() {
-        t0 t0Var = ((er0) this.f13527b).G0;
+        t0 t0Var = ((cr0) this.f13528b).G0;
         if (t0Var != null) {
             t0Var.invalidate();
         }
@@ -451,7 +451,7 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
 
     @Override
     public void h(n1 n1Var, boolean z10) {
-        ((bi.t) this.f13527b).f30947b.g1(n1Var, z10);
+        ((bi.t) this.f13528b).f30964b.g1(n1Var, z10);
     }
 
     @Override
@@ -459,7 +459,7 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
         if (stackTraceElementArr.length <= 1024) {
             return stackTraceElementArr;
         }
-        fa.a[] aVarArr = (fa.a[]) this.f13526a;
+        fa.a[] aVarArr = (fa.a[]) this.f13527a;
         StackTraceElement[] stackTraceElementArr2 = stackTraceElementArr;
         for (int i10 = 0; i10 < 1; i10++) {
             fa.a aVar = aVarArr[i10];
@@ -469,33 +469,33 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
             stackTraceElementArr2 = aVar.h0(stackTraceElementArr);
         }
         if (stackTraceElementArr2.length > 1024) {
-            return ((hb.a) this.f13527b).h0(stackTraceElementArr2);
+            return ((hb.a) this.f13528b).h0(stackTraceElementArr2);
         }
         return stackTraceElementArr2;
     }
 
     @Override
     public void j() {
-        er0 er0Var = (er0) this.f13527b;
-        if (er0Var.T0) {
-            er0Var.T0 = false;
+        cr0 cr0Var = (cr0) this.f13528b;
+        if (cr0Var.T0) {
+            cr0Var.T0 = false;
             return;
         }
-        er0Var.f10165c1.b(1);
-        er0Var.z((ig.h) ig.h.f8315a.get(0));
+        cr0Var.f10166c1.b(1);
+        cr0Var.z((ig.h) ig.h.f8316a.get(0));
     }
 
     @Override
     public boolean k() {
         boolean z10;
-        er0 er0Var = (er0) this.f13527b;
-        if (er0Var.B0 == null) {
+        cr0 cr0Var = (cr0) this.f13528b;
+        if (cr0Var.B0 == null) {
             z10 = true;
         } else {
             z10 = false;
         }
         if (!z10) {
-            er0Var.q0(null, true);
+            cr0Var.q0(null, true);
         }
         return z10;
     }
@@ -507,12 +507,12 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
 
     public c3.o m(Object... objArr) {
         Constructor a2;
-        synchronized (((AtomicBoolean) this.f13527b)) {
-            if (!((AtomicBoolean) this.f13527b).get()) {
+        synchronized (((AtomicBoolean) this.f13528b)) {
+            if (!((AtomicBoolean) this.f13528b).get()) {
                 try {
-                    a2 = ((aa.a) this.f13526a).a();
+                    a2 = ((aa.a) this.f13527a).a();
                 } catch (ClassNotFoundException unused) {
-                    ((AtomicBoolean) this.f13527b).set(true);
+                    ((AtomicBoolean) this.f13528b).set(true);
                 } catch (Exception e) {
                     throw new RuntimeException("Error instantiating extension", e);
                 }
@@ -531,9 +531,9 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
 
     @Override
     public void n() {
-        er0 er0Var = (er0) this.f13527b;
-        er0Var.f10180o0.f8469a.B();
-        er0Var.U0.setViewHidden(false);
+        cr0 cr0Var = (cr0) this.f13528b;
+        cr0Var.f10181o0.f8470a.B();
+        cr0Var.U0.setViewHidden(false);
     }
 
     @Override
@@ -543,8 +543,8 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
 
     @Override
     public void onComplete(Task task) {
-        a9.e eVar = (a9.e) this.f13526a;
-        TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f13527b;
+        a9.e eVar = (a9.e) this.f13527a;
+        TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f13528b;
         synchronized (eVar.f328f) {
             eVar.e.remove(taskCompletionSource);
         }
@@ -552,7 +552,7 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
 
     @Override
     public void onContentChanged() {
-        bi.t tVar = (bi.t) this.f13527b;
+        bi.t tVar = (bi.t) this.f13528b;
         i4 i4Var = tVar.f3351s;
         if (i4Var != null) {
             i4Var.setSendLoading(tVar.f3350r.p3());
@@ -566,22 +566,22 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
 
     @Override
     public void p(int i10) {
-        bi.t.R((bi.t) this.f13527b, 74, i10);
+        bi.t.R((bi.t) this.f13528b, 74, i10);
     }
 
     @Override
     public void q(Bitmap bitmap) {
-        hf.b bVar = (hf.b) this.f13526a;
-        bVar.f7658c = bitmap;
-        f6.g gVar = (f6.g) this.f13527b;
-        gVar.f6932l = bVar;
+        hf.b bVar = (hf.b) this.f13527a;
+        bVar.f7659c = bitmap;
+        f6.g gVar = (f6.g) this.f13528b;
+        gVar.f6933l = bVar;
         gVar.b();
     }
 
     @Override
     public void r() {
         int i10;
-        bi.t tVar = (bi.t) this.f13527b;
+        bi.t tVar = (bi.t) this.f13528b;
         d4 d4Var = tVar.f3350r;
         i4 i4Var = tVar.f3351s;
         if (i4Var != null) {
@@ -605,7 +605,7 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
 
     @Override
     public void s(String str, long j10, long j11, long j12) {
-        g6.n nVar = (g6.n) this.f13526a;
+        g6.n nVar = (g6.n) this.f13527a;
         if (nVar != null) {
             nVar.s(str, j10, j11, j12);
         }
@@ -613,16 +613,16 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
 
     @Override
     public void t() {
-        er0 er0Var = (er0) this.f13527b;
-        if (er0Var.B0 != null) {
-            er0Var.q0(null, true);
+        cr0 cr0Var = (cr0) this.f13528b;
+        if (cr0Var.B0 != null) {
+            cr0Var.q0(null, true);
         }
-        er0Var.U0.setViewHidden(true);
+        cr0Var.U0.setViewHidden(true);
     }
 
     @Override
     public void u() {
-        i4 i4Var = ((bi.t) this.f13527b).f3351s;
+        i4 i4Var = ((bi.t) this.f13528b).f3351s;
         if (i4Var != null) {
             int i10 = i4Var.f3076a0;
             if (i10 == 2) {
@@ -636,38 +636,38 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
 
     @Override
     public void v(a4 a4Var, View view) {
-        bi.t tVar = (bi.t) this.f13527b;
-        z60 z60Var = new z60(tVar, (p6) this.f13526a, view, false, false, true);
+        bi.t tVar = (bi.t) this.f13528b;
+        z60 z60Var = new z60(tVar, (p6) this.f13527a, view, false, false, true);
         z60Var.Q = true;
-        tVar.H = t4.c(z60Var, tVar.f30947b.W1, tVar.getContext(), (p6) this.f13526a, a4Var, true);
+        tVar.H = t4.c(z60Var, tVar.f30964b.W1, tVar.getContext(), (p6) this.f13527a, a4Var, true);
     }
 
     @Override
     public y w(byte[] bArr) {
-        return p8.c(((e2.d) this.f13526a).w(bArr), new c0(this, 25));
+        return p8.c(((e2.d) this.f13527a).w(bArr), new c0(this, 25));
     }
 
     public synchronized Map x() {
         try {
-            if (((Map) this.f13527b) == null) {
-                this.f13527b = DesugarCollections.unmodifiableMap(new HashMap((HashMap) this.f13526a));
+            if (((Map) this.f13528b) == null) {
+                this.f13528b = DesugarCollections.unmodifiableMap(new HashMap((HashMap) this.f13527a));
             }
         } catch (Throwable th2) {
             throw th2;
         }
-        return (Map) this.f13527b;
+        return (Map) this.f13528b;
     }
 
     @Override
     public void y(String str, long j10, int i10, Object obj, long j11, long j12) {
         int i11;
-        g6.m mVar = (g6.m) this.f13527b;
-        if (((g6.n) this.f13526a) != null) {
+        g6.m mVar = (g6.m) this.f13528b;
+        if (((g6.n) this.f13527a) != null) {
             if (i10 == 2001) {
-                Object[] objArr = {Integer.valueOf(mVar.f7378i)};
-                g6.b bVar = mVar.f7397a;
-                Log.w(bVar.f7367a, bVar.d("Possibility of local queue out of sync with receiver queue. Refetching sequence number. Current Local Sequence Number = %d", objArr));
-                Iterator it = ((e6.h) mVar.h.f55432b).f6290i.iterator();
+                Object[] objArr = {Integer.valueOf(mVar.f7379i)};
+                g6.b bVar = mVar.f7398a;
+                Log.w(bVar.f7368a, bVar.d("Possibility of local queue out of sync with receiver queue. Refetching sequence number. Current Local Sequence Number = %d", objArr));
+                Iterator it = ((e6.h) mVar.h.f55450b).f6290i.iterator();
                 while (it.hasNext()) {
                     ((e6.g) it.next()).o();
                 }
@@ -675,7 +675,7 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
             } else {
                 i11 = i10;
             }
-            ((g6.n) this.f13526a).y(str, j10, i11, obj, j11, j12);
+            ((g6.n) this.f13527a).y(str, j10, i11, obj, j11, j12);
         }
     }
 
@@ -685,13 +685,13 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
     }
 
     public q(Object obj, Object obj2) {
-        this.f13526a = obj;
-        this.f13527b = obj2;
+        this.f13527a = obj;
+        this.f13528b = obj2;
     }
 
     public q(Object obj, Object obj2, boolean z10) {
-        this.f13527b = obj;
-        this.f13526a = obj2;
+        this.f13528b = obj;
+        this.f13527a = obj2;
     }
 
     public q(IBinder iBinder) {
@@ -701,30 +701,30 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
                 Log.w("MessengerIpcClient", "Invalid interface descriptor: ".concat(String.valueOf(interfaceDescriptor)));
                 throw new RemoteException();
             }
-            this.f13527b = new j6.f(iBinder);
-            this.f13526a = null;
+            this.f13528b = new j6.f(iBinder);
+            this.f13527a = null;
             return;
         }
-        this.f13526a = new Messenger(iBinder);
-        this.f13527b = null;
+        this.f13527a = new Messenger(iBinder);
+        this.f13528b = null;
     }
 
     public q(int i10) {
         switch (i10) {
             case 11:
-                this.f13526a = new ConcurrentHashMap(16, 0.75f, 10);
-                this.f13527b = new ReferenceQueue();
+                this.f13527a = new ConcurrentHashMap(16, 0.75f, 10);
+                this.f13528b = new ReferenceQueue();
                 return;
             case 19:
-                this.f13526a = new HashMap();
+                this.f13527a = new HashMap();
                 return;
             case 22:
-                this.f13526a = new HashMap();
-                this.f13527b = i2.c.f7819b;
+                this.f13527a = new HashMap();
+                this.f13528b = i2.c.f7820b;
                 return;
             case 23:
-                this.f13526a = new e2.x();
-                this.f13527b = new i4.a();
+                this.f13527a = new e2.x();
+                this.f13528b = new i4.a();
                 return;
             default:
                 return;
@@ -736,14 +736,14 @@ public final class q implements OnCompleteListener, b4, d9.k, f6.a, fa.a, g6.n, 
     }
 
     public q(Animator animator) {
-        this.f13526a = null;
+        this.f13527a = null;
         AnimatorSet animatorSet = new AnimatorSet();
-        this.f13527b = animatorSet;
+        this.f13528b = animatorSet;
         animatorSet.play(animator);
     }
 
     public q(aa.a aVar) {
-        this.f13526a = aVar;
-        this.f13527b = new AtomicBoolean(false);
+        this.f13527a = aVar;
+        this.f13528b = new AtomicBoolean(false);
     }
 }

@@ -13,8 +13,8 @@ public final class ji extends org.telegram.ui.Components.cv {
     @Override
     public final void dismiss() {
         super.dismiss();
-        un unVar = this.N1.f38872p;
+        un unVar = this.N1.f38895p;
         unVar.getClass();
-        unVar.o8(false, true, 0.0f);
+        unVar.s8(false, true, 0.0f);
     }
 }

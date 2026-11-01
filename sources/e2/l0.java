@@ -655,10 +655,10 @@ public abstract class l0 {
         boolean z10;
         boolean z11;
         f9.b bVar = f9.d.d;
-        f9.b bVar2 = bVar.f6970c;
+        f9.b bVar2 = bVar.f6971c;
         if (bVar2 == null) {
-            f9.a aVar = bVar.f6968a;
-            char[] cArr = aVar.f6964b;
+            f9.a aVar = bVar.f6969a;
+            char[] cArr = aVar.f6965b;
             int length = cArr.length;
             int i10 = 0;
             while (true) {
@@ -689,9 +689,9 @@ public abstract class l0 {
                         }
                         cArr2[i12] = c11;
                     }
-                    f9.a aVar2 = new f9.a(a1.g.r(new StringBuilder(), aVar.f6963a, ".lowerCase()"), cArr2);
+                    f9.a aVar2 = new f9.a(a1.g.r(new StringBuilder(), aVar.f6964a, ".lowerCase()"), cArr2);
                     if (aVar.h) {
-                        byte[] bArr2 = aVar2.f6967g;
+                        byte[] bArr2 = aVar2.f6968g;
                         if (!aVar2.h) {
                             byte[] copyOf = Arrays.copyOf(bArr2, bArr2.length);
                             for (int i13 = 65; i13 <= 90; i13++) {
@@ -715,7 +715,7 @@ public abstract class l0 {
                                     }
                                 }
                             }
-                            aVar = new f9.a(a1.g.r(new StringBuilder(), aVar2.f6963a, ".ignoreCase()"), aVar2.f6964b, copyOf, true);
+                            aVar = new f9.a(a1.g.r(new StringBuilder(), aVar2.f6964a, ".ignoreCase()"), aVar2.f6965b, copyOf, true);
                         }
                     }
                     aVar = aVar2;
@@ -723,18 +723,18 @@ public abstract class l0 {
                     i10++;
                 }
             }
-            if (aVar == bVar.f6968a) {
+            if (aVar == bVar.f6969a) {
                 bVar2 = bVar;
             } else {
                 bVar2 = new f9.b(aVar);
             }
-            bVar.f6970c = bVar2;
+            bVar.f6971c = bVar2;
         }
         int length3 = bArr.length;
         t6.n(0, length3, bArr.length);
-        f9.a aVar3 = bVar2.f6968a;
+        f9.a aVar3 = bVar2.f6969a;
         int i15 = aVar3.e;
-        int i16 = aVar3.f6966f;
+        int i16 = aVar3.f6967f;
         RoundingMode roundingMode = RoundingMode.CEILING;
         StringBuilder sb2 = new StringBuilder(n7.b(length3, i16) * i15);
         try {
@@ -752,7 +752,7 @@ public abstract class l0 {
     public static j9.e0 g0(j9.y yVar, j9.q qVar) {
         ?? obj = new Object();
         d1.e eVar = new d1.e(10, obj, yVar);
-        j9.r rVar = j9.r.f9763a;
+        j9.r rVar = j9.r.f9764a;
         obj.a(eVar, rVar);
         yVar.a(new a3.l0(yVar, obj, qVar, 20), rVar);
         return obj;

@@ -10,32 +10,32 @@ import android.view.MotionEvent;
 import android.view.View;
 import java.util.HashMap;
 import java.util.Map;
-import org.telegram.messenger.z20;
+import org.telegram.messenger.a30;
 import org.telegram.ui.Components.gr;
 public final class q extends View {
-    public final Paint f8404a;
-    public final int[] f8405b;
-    public final Paint f8406c;
+    public final Paint f8405a;
+    public final int[] f8406b;
+    public final Paint f8407c;
     public final LongSparseArray d;
     public long e;
-    public final Path f8407f;
+    public final Path f8408f;
     public final float[] h;
-    public final HashMap f8408n;
-    public final u f8409r;
+    public final HashMap f8409n;
+    public final u f8410r;
 
     public q(u uVar, Context context) {
         super(context);
         int f7;
-        this.f8409r = uVar;
-        this.f8404a = new Paint(1);
-        this.f8405b = new int[]{-16735784, -16752387, -11788361, -6804548, -4707235, -180718, -38656, -152832, -211200, -198077, -2495689, -8996289};
+        this.f8410r = uVar;
+        this.f8405a = new Paint(1);
+        this.f8406b = new int[]{-16735784, -16752387, -11788361, -6804548, -4707235, -180718, -38656, -152832, -211200, -198077, -2495689, -8996289};
         Paint paint = new Paint(1);
-        this.f8406c = paint;
+        this.f8407c = paint;
         this.d = new LongSparseArray();
         this.e = Long.MIN_VALUE;
-        this.f8407f = new Path();
+        this.f8408f = new Path();
         this.h = new float[8];
-        this.f8408n = new HashMap();
+        this.f8409n = new HashMap();
         setPadding(org.telegram.messenger.i0.L(14.0f), org.telegram.messenger.i0.L(3.0f), org.telegram.messenger.i0.L(14.0f), org.telegram.messenger.i0.L(3.0f));
         paint.setColor(-1);
         paint.setStyle(Paint.Style.STROKE);
@@ -44,21 +44,21 @@ public final class q extends View {
         for (int i10 = 0; i10 < 12; i10++) {
             for (int i11 = 0; i11 < 10; i11++) {
                 if (i11 == 0) {
-                    this.f8408n.put(Long.valueOf((i10 << 16) + i11), Integer.valueOf(i0.b.f(i10 / 11.0f, -1, -16777216)));
+                    this.f8409n.put(Long.valueOf((i10 << 16) + i11), Integer.valueOf(i0.b.f(i10 / 11.0f, -1, -16777216)));
                 } else {
                     if (i11 < 6) {
-                        f7 = i0.b.f(((5 - i11) / 4.0f) * 0.5f, this.f8405b[i10], -16777216);
+                        f7 = i0.b.f(((5 - i11) / 4.0f) * 0.5f, this.f8406b[i10], -16777216);
                     } else {
-                        f7 = i0.b.f(z20.v(9 - i11, 5.0f, 0.5f, 0.5f), this.f8405b[i10], -1);
+                        f7 = i0.b.f(a30.v(9 - i11, 5.0f, 0.5f, 0.5f), this.f8406b[i10], -1);
                     }
-                    this.f8408n.put(Long.valueOf((i10 << 16) + i11), Integer.valueOf(f7));
+                    this.f8409n.put(Long.valueOf((i10 << 16) + i11), Integer.valueOf(f7));
                 }
             }
         }
     }
 
     public final void a(int i10) {
-        for (Map.Entry entry : this.f8408n.entrySet()) {
+        for (Map.Entry entry : this.f8409n.entrySet()) {
             if (((Integer) entry.getValue()).intValue() == i10) {
                 long longValue = ((Long) entry.getKey()).longValue();
                 int i11 = (int) (longValue >> 16);
@@ -83,11 +83,11 @@ public final class q extends View {
     public final void c(MotionEvent motionEvent) {
         int x10 = (int) ((motionEvent.getX() - getPaddingLeft()) / (((getWidth() - getPaddingLeft()) - getPaddingRight()) / 12));
         int y3 = (int) (motionEvent.getY() / (((getHeight() - getPaddingTop()) - getPaddingBottom()) / 10));
-        Integer num = (Integer) this.f8408n.get(Long.valueOf((x10 << 16) + y3));
+        Integer num = (Integer) this.f8409n.get(Long.valueOf((x10 << 16) + y3));
         if (num != null) {
             int intValue = num.intValue();
-            int i10 = u.f8472q1;
-            this.f8409r.I0(intValue, 3);
+            int i10 = u.f8473q1;
+            this.f8410r.I0(intValue, 3);
             b(x10, y3);
         }
     }
@@ -105,7 +105,7 @@ public final class q extends View {
         RectF rectF = org.telegram.messenger.i0.P;
         rectF.set(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
         canvas.save();
-        Path path = this.f8409r.l1;
+        Path path = this.f8410r.l1;
         path.rewind();
         float f13 = 10.0f;
         path.addRoundRect(rectF, org.telegram.messenger.i0.L(10.0f), org.telegram.messenger.i0.L(10.0f), Path.Direction.CW);
@@ -114,7 +114,7 @@ public final class q extends View {
         float height = ((getHeight() - getPaddingTop()) - getPaddingBottom()) / 10.0f;
         int i11 = 0;
         while (true) {
-            hashMap = this.f8408n;
+            hashMap = this.f8409n;
             if (i11 >= 12) {
                 break;
             }
@@ -122,7 +122,7 @@ public final class q extends View {
                 Integer num = (Integer) hashMap.get(Long.valueOf((i11 << 16) + i12));
                 if (num != null) {
                     int intValue = num.intValue();
-                    Paint paint = this.f8404a;
+                    Paint paint = this.f8405a;
                     paint.setColor(intValue);
                     RectF rectF2 = org.telegram.messenger.i0.P;
                     rectF2.set((i11 * width) + getPaddingLeft(), (i12 * height) + getPaddingTop(), ((i11 + 1) * width) + getPaddingLeft(), ((i12 + 1) * height) + getPaddingTop());
@@ -147,7 +147,7 @@ public final class q extends View {
                 int i14 = (int) (keyAt >> 16);
                 int i15 = (int) (keyAt - (i14 << 16));
                 Integer num2 = (Integer) hashMap.get(Long.valueOf(keyAt));
-                Paint paint2 = this.f8406c;
+                Paint paint2 = this.f8407c;
                 if (num2 != null) {
                     if (org.telegram.messenger.i0.B(num2.intValue()) > 0.721f) {
                         i10 = -15658735;
@@ -157,7 +157,7 @@ public final class q extends View {
                     paint2.setColor(i10);
                 }
                 paint2.setStrokeWidth(gr.h.getInterpolation(max) * org.telegram.messenger.i0.L(3.0f));
-                Path path2 = this.f8407f;
+                Path path2 = this.f8408f;
                 path2.rewind();
                 RectF rectF3 = org.telegram.messenger.i0.P;
                 float f15 = width;

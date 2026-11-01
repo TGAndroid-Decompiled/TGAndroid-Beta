@@ -19,22 +19,22 @@ public final class ss extends zf.d {
         boolean z10 = false;
         X(false);
         ContactsActivity contactsActivity = this.O;
-        org.telegram.ui.Components.tk0 tk0Var = contactsActivity.d;
-        if (tk0Var != null && tk0Var.getAdapter() == this) {
+        org.telegram.ui.Components.uk0 uk0Var = contactsActivity.d;
+        if (uk0Var != null && uk0Var.getAdapter() == this) {
             int b10 = b();
             if (contactsActivity.F) {
-                org.telegram.ui.Components.tk0 tk0Var2 = contactsActivity.d;
+                org.telegram.ui.Components.uk0 uk0Var2 = contactsActivity.d;
                 if (b10 != 2) {
                     z10 = true;
                 }
-                tk0Var2.setFastScrollVisible(z10);
+                uk0Var2.setFastScrollVisible(z10);
                 return;
             }
-            org.telegram.ui.Components.tk0 tk0Var3 = contactsActivity.d;
+            org.telegram.ui.Components.uk0 uk0Var3 = contactsActivity.d;
             if (b10 != 0) {
                 z10 = true;
             }
-            tk0Var3.setFastScrollVisible(z10);
+            uk0Var3.setFastScrollVisible(z10);
         }
     }
 }

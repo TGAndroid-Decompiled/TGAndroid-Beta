@@ -14,16 +14,16 @@ import z7.tf;
 import z7.vf;
 import z7.xf;
 public final class r extends b2.h {
-    public final int f48556b;
+    public final int f48567b;
 
     public r(int i10) {
         super(3);
-        this.f48556b = i10;
+        this.f48567b = i10;
     }
 
     @Override
     public final Object Q0(Object obj) {
-        switch (this.f48556b) {
+        switch (this.f48567b) {
             case 0:
                 jb.g c10 = jb.g.c();
                 Context b10 = jb.g.c().b();
@@ -39,7 +39,7 @@ public final class r extends b2.h {
             case 1:
                 u8 u8Var = (u8) obj;
                 jb.g c11 = jb.g.c();
-                return new x8(c11.b(), (jb.k) c11.a(jb.k.class), new v8(jb.g.c().b(), u8Var), u8Var.f50620a);
+                return new x8(c11.b(), (jb.k) c11.a(jb.k.class), new v8(jb.g.c().b(), u8Var), u8Var.f50634a);
             case 2:
                 jb.g c12 = jb.g.c();
                 return new ja(c12.b(), (jb.k) c12.a(jb.k.class), new ia(jb.g.c().b(), (ga) obj));

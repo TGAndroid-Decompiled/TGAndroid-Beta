@@ -2,13 +2,13 @@ package th;
 
 import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.ui.uw;
+import org.telegram.ui.tw;
 public final class i extends hg.c {
     public final boolean d;
-    public final uw e;
+    public final tw e;
 
-    public i(uw uwVar, boolean z10) {
-        this.e = uwVar;
+    public i(tw twVar, boolean z10) {
+        this.e = twVar;
         this.d = z10;
     }
 
@@ -21,25 +21,25 @@ public final class i extends hg.c {
     public final int b() {
         ArrayList arrayList;
         boolean z10 = this.d;
-        uw uwVar = this.e;
+        tw twVar = this.e;
         if (z10) {
-            arrayList = uwVar.D;
+            arrayList = twVar.D;
         } else {
-            arrayList = uwVar.f49227y;
+            arrayList = twVar.f49241y;
         }
         return arrayList.size();
     }
 
     @Override
     public final void t(s4.c1 c1Var, int i10) {
-        l lVar = (l) c1Var.f47898a;
-        lVar.f49151b = i10;
+        l lVar = (l) c1Var.f47909a;
+        lVar.f49165b = i10;
         boolean z10 = this.d;
-        uw uwVar = this.e;
+        tw twVar = this.e;
         if (z10) {
-            lVar.setDialogId(((j) uwVar.D.get(i10)).f49078c);
+            lVar.setDialogId(((j) twVar.D.get(i10)).f49092c);
         } else {
-            lVar.setDialogId(((j) uwVar.f49227y.get(i10)).f49078c);
+            lVar.setDialogId(((j) twVar.f49241y.get(i10)).f49092c);
         }
     }
 

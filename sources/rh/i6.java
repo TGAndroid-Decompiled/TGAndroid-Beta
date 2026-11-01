@@ -1,36 +1,36 @@
 package rh;
 
-import org.telegram.ui.Components.gu0;
-public final class i6 implements fe.e, gu0 {
-    public final int f47099a;
-    public final h8 f47100b;
+import org.telegram.ui.Components.hu0;
+public final class i6 implements fe.e, hu0 {
+    public final int f47113a;
+    public final h8 f47114b;
 
     public i6(h8 h8Var, int i10) {
-        this.f47099a = i10;
-        this.f47100b = h8Var;
+        this.f47113a = i10;
+        this.f47114b = h8Var;
     }
 
     @Override
     public void E(float f7, int i10) {
-        int i11 = this.f47099a;
+        int i11 = this.f47113a;
     }
 
     @Override
     public int c() {
-        return this.f47100b.f47013a0;
+        return this.f47114b.f47027a0;
     }
 
     @Override
     public void v(int i10, float f7, float f10, fe.f fVar) {
-        switch (this.f47099a) {
+        switch (this.f47113a) {
             case 0:
-                this.f47100b.q1();
+                this.f47114b.r1();
                 return;
             case 1:
-                this.f47100b.q1();
+                this.f47114b.r1();
                 return;
             default:
-                this.f47100b.W.setAlpha(f7);
+                this.f47114b.W.setAlpha(f7);
                 return;
         }
     }

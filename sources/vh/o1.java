@@ -1,10 +1,10 @@
 package vh;
 
 import android.content.Context;
-import org.telegram.messenger.sc;
-import org.telegram.ui.Components.bw0;
-import org.telegram.ui.Components.xv0;
-public final class o1 extends bw0 {
+import org.telegram.messenger.tc;
+import org.telegram.ui.Components.cw0;
+import org.telegram.ui.Components.yv0;
+public final class o1 extends cw0 {
     public final boolean G3;
     public final p1 H3;
 
@@ -16,17 +16,17 @@ public final class o1 extends bw0 {
 
     @Override
     public final boolean D1() {
-        return sc.e(8200);
+        return tc.e(8200);
     }
 
     @Override
-    public final xv0[] E1(xv0[] xv0VarArr) {
-        if (xv0VarArr != null && this.G3) {
+    public final yv0[] E1(yv0[] yv0VarArr) {
+        if (yv0VarArr != null && this.G3) {
             int i10 = 0;
             while (true) {
-                if (i10 < xv0VarArr.length) {
-                    xv0 xv0Var = xv0VarArr[i10];
-                    if (xv0Var != null && xv0Var.f32549b) {
+                if (i10 < yv0VarArr.length) {
+                    yv0 yv0Var = yv0VarArr[i10];
+                    if (yv0Var != null && yv0Var.f32917b) {
                         break;
                     }
                     i10++;
@@ -36,16 +36,16 @@ public final class o1 extends bw0 {
                 }
             }
             if (i10 >= 0) {
-                int length = xv0VarArr.length;
-                xv0[] xv0VarArr2 = new xv0[length];
-                xv0VarArr2[0] = xv0VarArr[i10];
+                int length = yv0VarArr.length;
+                yv0[] yv0VarArr2 = new yv0[length];
+                yv0VarArr2[0] = yv0VarArr[i10];
                 for (int i11 = 1; i11 < length; i11++) {
-                    xv0VarArr2[i11] = xv0VarArr[i11 <= i10 ? i11 - 1 : i11];
+                    yv0VarArr2[i11] = yv0VarArr[i11 <= i10 ? i11 - 1 : i11];
                 }
-                return xv0VarArr2;
+                return yv0VarArr2;
             }
         }
-        return xv0VarArr;
+        return yv0VarArr;
     }
 
     @Override

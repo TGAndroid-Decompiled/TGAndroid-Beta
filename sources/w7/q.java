@@ -34,7 +34,7 @@ public abstract class q {
                 mediaExtractor.release();
                 int i10 = lVar.f141c;
                 synchronized (zVar) {
-                    zVar2.f12350s = i10;
+                    zVar2.f12351s = i10;
                 }
                 if (mediaFormat != null) {
                     zVar2.n(mediaFormat, false);
@@ -88,7 +88,7 @@ public abstract class q {
                             li.k kVar = new li.k(1);
                             j13 = 0;
                             r.c(file, j15, max, min, lVar.f139a, lVar.f140b, lVar.f141c, kVar);
-                            if (((MediaFormat) kVar.d) != null && !((ArrayList) kVar.f12100b).isEmpty()) {
+                            if (((MediaFormat) kVar.d) != null && !((ArrayList) kVar.f12101b).isEmpty()) {
                                 boolean m10 = li.z.m(trackFormat, (MediaFormat) kVar.d, "csd-0", "csd-1");
                                 if (min >= max2) {
                                     if (m10) {
@@ -148,9 +148,9 @@ public abstract class q {
                         }
                         long h = zVar.h();
                         ?? obj = new Object();
-                        obj.f10780a = max / 1000;
-                        obj.f10781b = h;
-                        obj.f10782c = str;
+                        obj.f10781a = max / 1000;
+                        obj.f10782b = h;
+                        obj.f10783c = str;
                         return obj;
                     }
                     throw new IOException("Trim range has no video sync sample");
@@ -237,9 +237,9 @@ public abstract class q {
     }
 
     public static void e(li.z zVar, li.k kVar, long j10) {
-        ArrayList arrayList = (ArrayList) kVar.f12100b;
+        ArrayList arrayList = (ArrayList) kVar.f12101b;
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            zVar.q(true, (ByteBuffer) arrayList.get(i10), (MediaCodec.BufferInfo) ((ArrayList) kVar.f12101c).get(i10), -j10);
+            zVar.q(true, (ByteBuffer) arrayList.get(i10), (MediaCodec.BufferInfo) ((ArrayList) kVar.f12102c).get(i10), -j10);
         }
     }
 }

@@ -8,16 +8,16 @@ import r7.n;
 import w7.h0;
 public final class a extends o6.a {
     public static final Parcelable.Creator<a> CREATOR = new g(2);
-    public final long f7446a;
-    public final int f7447b;
-    public final boolean f7448c;
+    public final long f7447a;
+    public final int f7448b;
+    public final boolean f7449c;
     public final String d;
     public final r7.j e;
 
     public a(long j10, int i10, boolean z10, String str, r7.j jVar) {
-        this.f7446a = j10;
-        this.f7447b = i10;
-        this.f7448c = z10;
+        this.f7447a = j10;
+        this.f7448b = i10;
+        this.f7449c = z10;
         this.d = str;
         this.e = jVar;
     }
@@ -27,25 +27,25 @@ public final class a extends o6.a {
             return false;
         }
         a aVar = (a) obj;
-        if (this.f7446a != aVar.f7446a || this.f7447b != aVar.f7447b || this.f7448c != aVar.f7448c || !l.k(this.d, aVar.d) || !l.k(this.e, aVar.e)) {
+        if (this.f7447a != aVar.f7447a || this.f7448b != aVar.f7448b || this.f7449c != aVar.f7449c || !l.k(this.d, aVar.d) || !l.k(this.e, aVar.e)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Long.valueOf(this.f7446a), Integer.valueOf(this.f7447b), Boolean.valueOf(this.f7448c)});
+        return Arrays.hashCode(new Object[]{Long.valueOf(this.f7447a), Integer.valueOf(this.f7448b), Boolean.valueOf(this.f7449c)});
     }
 
     public final String toString() {
         String str;
         StringBuilder t10 = a1.g.t("LastLocationRequest[");
-        long j10 = this.f7446a;
+        long j10 = this.f7447a;
         if (j10 != Long.MAX_VALUE) {
             t10.append("maxAge=");
             n.a(j10, t10);
         }
-        int i10 = this.f7447b;
+        int i10 = this.f7448b;
         if (i10 != 0) {
             t10.append(", ");
             if (i10 != 0) {
@@ -63,7 +63,7 @@ public final class a extends o6.a {
             }
             t10.append(str);
         }
-        if (this.f7448c) {
+        if (this.f7449c) {
             t10.append(", bypass");
         }
         String str2 = this.d;
@@ -84,11 +84,11 @@ public final class a extends o6.a {
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = h0.q(parcel, 20293);
         h0.s(parcel, 1, 8);
-        parcel.writeLong(this.f7446a);
+        parcel.writeLong(this.f7447a);
         h0.s(parcel, 2, 4);
-        parcel.writeInt(this.f7447b);
+        parcel.writeInt(this.f7448b);
         h0.s(parcel, 3, 4);
-        parcel.writeInt(this.f7448c ? 1 : 0);
+        parcel.writeInt(this.f7449c ? 1 : 0);
         h0.l(parcel, 4, this.d);
         h0.k(parcel, 5, this.e, i10);
         h0.r(parcel, q6);

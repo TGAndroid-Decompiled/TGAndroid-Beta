@@ -3,21 +3,21 @@ package th;
 import android.text.TextUtils;
 import j$.util.Objects;
 public final class l3 {
-    public boolean f49167a = true;
-    public boolean f49168b;
-    public String f49169c;
+    public boolean f49181a = true;
+    public boolean f49182b;
+    public String f49183c;
 
     public final boolean equals(Object obj) {
         boolean z10;
         if (this != obj) {
             if (obj != null && l3.class == obj.getClass()) {
                 l3 l3Var = (l3) obj;
-                if ((TextUtils.isEmpty(this.f49169c) && TextUtils.isEmpty(l3Var.f49169c)) || Objects.equals(this.f49169c, l3Var.f49169c)) {
+                if ((TextUtils.isEmpty(this.f49183c) && TextUtils.isEmpty(l3Var.f49183c)) || Objects.equals(this.f49183c, l3Var.f49183c)) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                if (this.f49167a != l3Var.f49167a || this.f49168b != l3Var.f49168b || !z10) {
+                if (this.f49181a != l3Var.f49181a || this.f49182b != l3Var.f49182b || !z10) {
                 }
             }
             return false;
@@ -26,6 +26,6 @@ public final class l3 {
     }
 
     public final int hashCode() {
-        return Objects.hash(Boolean.valueOf(this.f49167a), Boolean.valueOf(this.f49168b), this.f49169c);
+        return Objects.hash(Boolean.valueOf(this.f49181a), Boolean.valueOf(this.f49182b), this.f49183c);
     }
 }

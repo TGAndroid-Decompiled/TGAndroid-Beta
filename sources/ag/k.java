@@ -1,8 +1,8 @@
 package ag;
 
 import java.util.ArrayList;
-import org.telegram.messenger.q20;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.at;
+import org.telegram.messenger.r20;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_account;
 public final class k {
@@ -52,10 +52,10 @@ public final class k {
         c(null);
     }
 
-    public final void c(q20 q20Var) {
+    public final void c(r20 r20Var) {
         boolean z10;
-        if (q20Var != null) {
-            this.d.add(q20Var);
+        if (r20Var != null) {
+            this.d.add(r20Var);
         }
         if (!this.e) {
             if (System.currentTimeMillis() - this.f595b <= 60000 && (z10 = this.f597f)) {
@@ -76,12 +76,12 @@ public final class k {
             ArrayList arrayList = this.d;
             if (i10 < arrayList.size()) {
                 if (arrayList.get(i10) != null) {
-                    ((q20) arrayList.get(i10)).a(this.f596c);
+                    ((r20) arrayList.get(i10)).a(this.f596c);
                 }
                 i10++;
             } else {
                 arrayList.clear();
-                zs.f(this.f594a).k(zs.Z3, new Object[0]);
+                at.f(this.f594a).k(at.Z3, new Object[0]);
                 return;
             }
         }

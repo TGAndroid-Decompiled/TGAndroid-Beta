@@ -1,26 +1,35 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-public final class x30 extends org.telegram.ui.Components.op0 {
-    public final b50 R2;
+import android.graphics.Canvas;
+public final class x30 extends org.telegram.ui.ActionBar.l {
+    public final org.telegram.ui.Components.ip F1;
+    public final a50 G1;
 
-    public x30(b50 b50Var, Context context, String str, String str2, String str3, String str4) {
-        super(context, null, str, str2, false, str3, str4, true);
-        this.R2 = b50Var;
+    public x30(a50 a50Var, LaunchActivity launchActivity, org.telegram.ui.Components.ip ipVar) {
+        super(launchActivity, null);
+        this.G1 = a50Var;
+        this.F1 = ipVar;
     }
 
     @Override
-    public final void R0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        if (!z10) {
-            return;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (getAdditionalSubtitleTextView().getVisibility() == 0) {
+            canvas.save();
+            canvas.translate(getSubtitleTextView().getLeft(), getSubtitleTextView().getY() - org.telegram.messenger.i0.L(1.0f));
+            org.telegram.ui.Components.ip ipVar = this.F1;
+            ipVar.f27139f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
+            ipVar.draw(canvas);
+            canvas.restore();
+            invalidate();
         }
-        int m10 = hVar.m();
-        b50 b50Var = this.R2;
-        if (m10 == 1) {
-            b50Var.m1().m(((TLRPC.Dialog) hVar.n(0)).f19797id, Integer.valueOf(i10), 41);
-        } else {
-            b50Var.m1().k(0L, 41, Integer.valueOf(i10), Integer.valueOf(hVar.m()), null, null);
+    }
+
+    @Override
+    public final void setAlpha(float f7) {
+        if (getAlpha() != f7) {
+            super.setAlpha(f7);
+            this.G1.f21587b.invalidate();
         }
     }
 }

@@ -35,7 +35,7 @@ public final class l extends n {
                     } catch (JSONException unused) {
                     }
                     mVar.c(b10, jSONObject.toString());
-                    mVar.f7383n.a(b10, o10);
+                    mVar.f7384n.a(b10, o10);
                     return;
                 }
                 throw new IllegalArgumentException("Volume cannot be " + d);
@@ -43,19 +43,19 @@ public final class l extends n {
                 g6.m mVar2 = this.f6299t.f6287c;
                 g6.n o11 = o();
                 double d10 = this.f6298s;
-                if (mVar2.f7376f != null) {
+                if (mVar2.f7377f != null) {
                     JSONObject jSONObject3 = new JSONObject();
                     long b11 = mVar2.b();
                     try {
                         jSONObject3.put("requestId", b11);
                         jSONObject3.put("type", "SET_PLAYBACK_RATE");
                         jSONObject3.put("playbackRate", d10);
-                        n6.l.h(mVar2.f7376f, "mediaStatus should not be null");
-                        jSONObject3.put("mediaSessionId", mVar2.f7376f.f3922b);
+                        n6.l.h(mVar2.f7377f, "mediaStatus should not be null");
+                        jSONObject3.put("mediaSessionId", mVar2.f7377f.f3922b);
                     } catch (JSONException unused2) {
                     }
                     mVar2.c(b11, jSONObject3.toString());
-                    mVar2.f7390u.a(b11, o11);
+                    mVar2.f7391u.a(b11, o11);
                     return;
                 }
                 throw new Exception();

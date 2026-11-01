@@ -3,22 +3,22 @@ package org.telegram.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class fi extends AnimatorListenerAdapter {
-    public final tn f37277a;
-    public final boolean f37278b;
-    public final org.telegram.ui.ActionBar.u5 f37279c;
+    public final tn f37151a;
+    public final boolean f37152b;
+    public final org.telegram.ui.ActionBar.u5 f37153c;
     public final boolean d;
     public final jn e;
-    public final boolean f37280f;
+    public final boolean f37154f;
     public final un h;
 
     public fi(un unVar, tn tnVar, boolean z10, org.telegram.ui.ActionBar.u5 u5Var, boolean z11, jn jnVar, boolean z12) {
         this.h = unVar;
-        this.f37277a = tnVar;
-        this.f37278b = z10;
-        this.f37279c = u5Var;
+        this.f37151a = tnVar;
+        this.f37152b = z10;
+        this.f37153c = u5Var;
         this.d = z11;
         this.e = jnVar;
-        this.f37280f = z12;
+        this.f37154f = z12;
     }
 
     @Override
@@ -26,8 +26,8 @@ public final class fi extends AnimatorListenerAdapter {
         un unVar = this.h;
         if (unVar.T2.getTag() != null) {
             unVar.T2.setVisibility(4);
-            int T8 = unVar.T8();
-            unVar.T2.a(Math.min(T8 - 1, Math.max(1, T8 - unVar.Y4[0])), false);
+            int X8 = unVar.X8();
+            unVar.T2.a(Math.min(X8 - 1, Math.max(1, X8 - unVar.Y4[0])), false);
         } else {
             unVar.T2.setAlpha(1.0f);
         }
@@ -35,13 +35,13 @@ public final class fi extends AnimatorListenerAdapter {
         unVar.R2[0].setTranslationX(0.0f);
         unVar.R2[1].setTranslationX(0.0f);
         unVar.T2.setTranslationX(unVar.U2 + 0.0f);
-        tn tnVar = this.f37277a;
+        tn tnVar = this.f37151a;
         tnVar.setTranslationY(0.0f);
-        boolean z10 = this.f37278b;
+        boolean z10 = this.f37152b;
         if (!z10) {
             tnVar.setTranslationY(0.0f);
         }
-        org.telegram.ui.ActionBar.u5 u5Var = this.f37279c;
+        org.telegram.ui.ActionBar.u5 u5Var = this.f37153c;
         if (!z10) {
             u5Var.setTranslationY(0.0f);
         }
@@ -75,7 +75,7 @@ public final class fi extends AnimatorListenerAdapter {
             tnVarArr[0] = tnVar;
             tnVar2.setVisibility(4);
         }
-        if (this.f37280f) {
+        if (this.f37154f) {
             unVar.P2[1].setImageBitmap(null);
             unVar.P2[1].setVisibility(4);
         }

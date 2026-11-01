@@ -14,9 +14,9 @@ import j$.util.Objects;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.concurrent.LinkedBlockingDeque;
-import org.telegram.messenger.d20;
+import org.telegram.messenger.e20;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.wp;
 public final class d implements ServiceConnection {
     public final int f321a;
     public Object f322b;
@@ -42,10 +42,10 @@ public final class d implements ServiceConnection {
                 LinkedBlockingDeque linkedBlockingDeque = (LinkedBlockingDeque) fVar.d;
                 sb2.append(linkedBlockingDeque.size());
                 Log.d("SessionLifecycleClient", sb2.toString());
-                fVar.f10442c = new Messenger(iBinder);
+                fVar.f10443c = new Messenger(iBinder);
                 ArrayList arrayList = new ArrayList();
                 linkedBlockingDeque.drainTo(arrayList);
-                td.e0.q(td.e0.b((cd.h) fVar.f10441b), new bb.l(fVar, arrayList, null, 2));
+                td.e0.q(td.e0.b((cd.h) fVar.f10442b), new bb.l(fVar, arrayList, null, 2));
                 return;
             case 2:
                 com.google.android.gms.internal.play_billing.u.g("BillingClientTesting", "Billing Override Service connected.");
@@ -67,30 +67,30 @@ public final class d implements ServiceConnection {
                 hf.b bVar = zVar.h;
                 bVar.getClass();
                 try {
-                    bVar.B0(c10, (p3) bVar.f7657b);
+                    bVar.B0(c10, (p3) bVar.f7658b);
                     return;
                 } catch (Throwable th2) {
                     com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
                     return;
                 }
             default:
-                int i12 = pf.d.f44917a;
+                int i12 = pf.d.f44928a;
                 if (iBinder != null) {
                     IInterface queryLocalInterface2 = iBinder.queryLocalInterface("android.support.customtabs.ICustomTabsService");
                     if (queryLocalInterface2 != null && (queryLocalInterface2 instanceof pf.e)) {
                         eVar = (pf.e) queryLocalInterface2;
                     } else {
                         ?? obj = new Object();
-                        obj.f44916a = iBinder;
+                        obj.f44927a = iBinder;
                         eVar = obj;
                     }
                 }
                 m4.c cVar2 = new m4.c(eVar, componentName, false, 21);
                 if (((gf.d) ((WeakReference) this.f322b).get()) != null) {
-                    gf.f.f7488b = cVar2;
-                    if (vp.r1(d20.f15147s0).M2() && (cVar = gf.f.f7488b) != null) {
+                    gf.f.f7489b = cVar2;
+                    if (wp.r1(e20.f15506s0).M2() && (cVar = gf.f.f7489b) != null) {
                         try {
-                            ((pf.c) ((pf.e) cVar.f12705b)).I0();
+                            ((pf.c) ((pf.e) cVar.f12706b)).I0();
                             return;
                         } catch (RemoteException unused) {
                             return;
@@ -116,7 +116,7 @@ public final class d implements ServiceConnection {
             case 1:
                 Log.d("SessionLifecycleClient", "Disconnected from SessionLifecycleService");
                 ji.f fVar = (ji.f) this.f322b;
-                fVar.f10442c = null;
+                fVar.f10443c = null;
                 fVar.getClass();
                 return;
             case 2:
@@ -127,7 +127,7 @@ public final class d implements ServiceConnection {
                 return;
             default:
                 if (((gf.d) ((WeakReference) this.f322b).get()) != null) {
-                    gf.f.f7488b = null;
+                    gf.f.f7489b = null;
                     return;
                 }
                 return;

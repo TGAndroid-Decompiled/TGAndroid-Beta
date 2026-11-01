@@ -18,7 +18,7 @@ public final class cw extends s4.r {
             vyVar.Z();
         }
         if (vyVar.T0 == null) {
-            mw mwVar = new mw(vyVar, vyVar.f31865c1, vyVar.f31918t1.a(), vyVar.f31918t1.f(), 0);
+            mw mwVar = new mw(vyVar, vyVar.f31943c1, vyVar.f31996t1.a(), vyVar.f31996t1.f(), 0);
             vyVar.T0 = mwVar;
             mwVar.a();
         }
@@ -30,7 +30,7 @@ public final class cw extends s4.r {
     public final void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
         try {
             ci.p pVar = new ci.p(recyclerView.getContext(), 2);
-            pVar.f48045a = i10;
+            pVar.f48056a = i10;
             w0(pVar);
         } catch (Exception e) {
             org.telegram.messenger.f8.g(e, true);

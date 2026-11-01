@@ -18,13 +18,13 @@ public final class zd extends fg {
     public final void draw(Canvas canvas) {
         Drawable drawable;
         ChatActivityEnterView chatActivityEnterView = this.G;
-        if (chatActivityEnterView.f23675a1) {
+        if (chatActivityEnterView.f23676a1) {
             int measuredWidth = getMeasuredWidth();
             int measuredHeight = getMeasuredHeight();
             Rect rect = this.F;
             rect.set(0, 0, measuredWidth, measuredHeight);
             rect.inset(org.telegram.messenger.i0.L(7.5f), org.telegram.messenger.i0.L(7.5f));
-            if (getCurrentState() == dg.f25406b) {
+            if (getCurrentState() == dg.f25481b) {
                 drawable = chatActivityEnterView.O3;
             } else {
                 drawable = chatActivityEnterView.N3;

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.text.SpannableStringBuilder;
 import android.view.MotionEvent;
 import android.view.View;
-public final class hk extends org.telegram.ui.Components.w71 {
+public final class hk extends org.telegram.ui.Components.x71 {
     public final int V;
     public final Object W;
 
@@ -103,7 +103,7 @@ public final class hk extends org.telegram.ui.Components.w71 {
         switch (this.V) {
             case 9:
                 if (getCurrentPosition() == 1) {
-                    ((yh.a0) this.W).f54449r1.d.f30819f3.O(false);
+                    ((yh.z) this.W).f54551r1.d.f31183f3.O(false);
                     return;
                 }
                 return;
@@ -114,11 +114,11 @@ public final class hk extends org.telegram.ui.Components.w71 {
 
     @Override
     public void v() {
-        zz0 zz0Var;
+        yz0 yz0Var;
         switch (this.V) {
             case 3:
-                if ((getCurrentView() instanceof b01) && (zz0Var = ((b01) getCurrentView()).f35923n) != null) {
-                    org.telegram.messenger.i0.v1(zz0Var);
+                if ((getCurrentView() instanceof a01) && (yz0Var = ((a01) getCurrentView()).f35508n) != null) {
+                    org.telegram.messenger.i0.v1(yz0Var);
                     return;
                 }
                 return;
@@ -134,62 +134,62 @@ public final class hk extends org.telegram.ui.Components.w71 {
                 un unVar = (un) this.W;
                 unVar.l1.getClass();
                 unVar.l1.getClass();
-                unVar.t7();
+                unVar.x7();
                 return;
             case 1:
-                tn0 tn0Var = (tn0) this.W;
-                float positionAnimated = tn0Var.I.getPositionAnimated();
-                tn0Var.M.setSelected(positionAnimated);
-                tn0Var.e.setProgressToGradient(1.0f - w7.u.a((positionAnimated - 0.333333f) / 0.333333f, 0.0f, 1.0f));
-                tn0Var.J0();
-                nn0 G0 = tn0Var.G0();
-                vh.d dVar = tn0Var.Q;
-                if (dVar != null && G0 != null && G0 != tn0Var.R) {
-                    tn0Var.R = G0;
-                    m5.e eVar = G0.e;
-                    dVar.i((CharSequence) eVar.f13013b, true, true);
-                    tn0Var.Q.g((SpannableStringBuilder) eVar.f13014c, true);
+                rn0 rn0Var = (rn0) this.W;
+                float positionAnimated = rn0Var.I.getPositionAnimated();
+                rn0Var.M.setSelected(positionAnimated);
+                rn0Var.e.setProgressToGradient(1.0f - w7.u.a((positionAnimated - 0.333333f) / 0.333333f, 0.0f, 1.0f));
+                rn0Var.K0();
+                ln0 H0 = rn0Var.H0();
+                vh.d dVar = rn0Var.Q;
+                if (dVar != null && H0 != null && H0 != rn0Var.R) {
+                    rn0Var.R = H0;
+                    m5.e eVar = H0.e;
+                    dVar.i((CharSequence) eVar.f13014b, true, true);
+                    rn0Var.Q.g((SpannableStringBuilder) eVar.f13015c, true);
                     return;
                 }
                 return;
             case 2:
-                ((kt0) this.W).e();
+                ((jt0) this.W).e();
                 return;
             case 3:
-                ((c01) this.W).f21586b.invalidate();
+                ((b01) this.W).f21587b.invalidate();
                 return;
             case 4:
-                ((x91) this.W).e();
+                ((v91) this.W).e();
                 return;
             case 5:
-                ((org.telegram.ui.Wallet.y2) this.W).f21586b.invalidate();
+                ((org.telegram.ui.Wallet.z2) this.W).f21587b.invalidate();
                 return;
             case 6:
                 org.telegram.ui.Wallet.b6 b6Var = (org.telegram.ui.Wallet.b6) this.W;
-                b6Var.Y0();
-                org.telegram.ui.Wallet.h8 h8Var = b6Var.f34251j0;
-                if (h8Var != null && h8Var.f34645h1) {
+                b6Var.Z0();
+                org.telegram.ui.Wallet.h8 h8Var = b6Var.f34253j0;
+                if (h8Var != null && h8Var.f34652h1) {
                     h8Var.f0();
                     return;
                 }
                 return;
             case 7:
                 vh.u1 u1Var = (vh.u1) this.W;
-                hk hkVar = u1Var.f51997m1;
-                vh.t1 t1Var = u1Var.f51998n1;
+                hk hkVar = u1Var.f52004m1;
+                vh.t1 t1Var = u1Var.f52005n1;
                 if (t1Var != null) {
                     t1Var.F = hkVar.getPositionAnimated();
                     t1Var.invalidate();
                 }
-                u1Var.f21586b.invalidate();
+                u1Var.f21587b.invalidate();
                 invalidate();
-                vh.u1.f51993y1 = hkVar.getCurrentPosition();
+                vh.u1.f52000y1 = hkVar.getCurrentPosition();
                 return;
             case 8:
-                ((vh.w6) this.W).f21586b.invalidate();
+                ((vh.w6) this.W).f21587b.invalidate();
                 return;
             default:
-                ((yh.a0) this.W).f21586b.invalidate();
+                ((yh.z) this.W).f21587b.invalidate();
                 return;
         }
     }
@@ -200,12 +200,12 @@ public final class hk extends org.telegram.ui.Components.w71 {
         switch (this.V) {
             case 6:
                 org.telegram.ui.Wallet.b6 b6Var = (org.telegram.ui.Wallet.b6) this.W;
-                b6Var.f34245e0 = i10;
-                if (i10 != 1 && (y8Var = b6Var.f34250i0) != null) {
+                b6Var.f34247e0 = i10;
+                if (i10 != 1 && (y8Var = b6Var.f34252i0) != null) {
                     y8Var.b(false);
                 }
                 if (i10 == 1) {
-                    b6Var.f34257p0.post(new org.telegram.ui.Wallet.f4(b6Var, 13));
+                    b6Var.f34259p0.post(new org.telegram.ui.Wallet.f4(b6Var, 13));
                     return;
                 }
                 return;

@@ -9,19 +9,19 @@ import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import org.telegram.messenger.i0;
 public final class a extends Drawable {
-    public final TextPaint f46584a;
-    public final TextPaint f46585b;
-    public final RectF f46586c;
+    public final TextPaint f46595a;
+    public final TextPaint f46596b;
+    public final RectF f46597c;
     public final Drawable d;
     public float e;
-    public String f46587f;
+    public String f46598f;
 
     public a(Context context) {
         TextPaint textPaint = new TextPaint(1);
-        this.f46584a = textPaint;
+        this.f46595a = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
-        this.f46585b = textPaint2;
-        this.f46586c = new RectF();
+        this.f46596b = textPaint2;
+        this.f46597c = new RectF();
         textPaint.setColor(-1);
         textPaint.setTypeface(i0.o());
         textPaint.setTextSize(i0.L(12.0f));
@@ -32,18 +32,18 @@ public final class a extends Drawable {
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        RectF rectF = this.f46586c;
+        RectF rectF = this.f46597c;
         rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
-        canvas.drawRoundRect(rectF, i0.L(12.0f), i0.L(12.0f), this.f46585b);
+        canvas.drawRoundRect(rectF, i0.L(12.0f), i0.L(12.0f), this.f46596b);
         int L = i0.L(2.0f) + bounds.left;
         int L2 = i0.L(1.0f) + bounds.top;
         int L3 = i0.L(2.0f) + bounds.left;
         Drawable drawable = this.d;
         drawable.setBounds(L, L2, drawable.getIntrinsicWidth() + L3, drawable.getIntrinsicHeight() + i0.L(1.0f) + getBounds().top);
         drawable.draw(canvas);
-        String str = this.f46587f;
+        String str = this.f46598f;
         if (str != null) {
-            canvas.drawText(str, i0.L(16.5f) + bounds.left, i0.L(13.0f) + bounds.top, this.f46584a);
+            canvas.drawText(str, i0.L(16.5f) + bounds.left, i0.L(13.0f) + bounds.top, this.f46595a);
         }
     }
 

@@ -1,157 +1,115 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Rect;
-import android.view.MotionEvent;
+import android.graphics.Canvas;
+import android.os.Bundle;
+import android.text.TextPaint;
 import android.view.View;
-import android.view.ViewParent;
-public final class w71 extends org.telegram.ui.Components.tk0 {
-    public final int f42896e3;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import java.util.HashSet;
+public final class w71 extends FrameLayout implements org.telegram.ui.ActionBar.k6 {
+    public final org.telegram.ui.Cells.z9 f42716a;
+    public final org.telegram.ui.Components.on0 f42717b;
+    public final org.telegram.ui.Cells.t8 f42718c;
+    public final int d;
+    public final int e;
+    public final TextPaint f42719f;
+    public int h;
+    public int f42720n;
+    public final ThemeActivity f42721r;
 
-    public w71(int i10, Context context, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(context, p6Var);
-        this.f42896e3 = i10;
+    public w71(ThemeActivity themeActivity, Context context) {
+        super(context);
+        org.telegram.ui.ActionBar.z4 z4Var;
+        this.f42721r = themeActivity;
+        this.d = 12;
+        this.e = 30;
+        setWillNotDraw(false);
+        TextPaint textPaint = new TextPaint(1);
+        this.f42719f = textPaint;
+        textPaint.setTextSize(org.telegram.messenger.i0.L(16.0f));
+        org.telegram.ui.Components.on0 on0Var = new org.telegram.ui.Components.on0(context);
+        this.f42717b = on0Var;
+        on0Var.setReportChanges(true);
+        on0Var.setSeparatorsCount(19);
+        on0Var.setDelegate(new gt0(this, 4));
+        on0Var.setImportantForAccessibility(2);
+        addView(on0Var, w7.b6.d(-1, 38.0f, 51, 5.0f, 5.0f, 39.0f, 0.0f));
+        boolean z10 = org.telegram.messenger.v2.f18578a;
+        org.telegram.ui.Cells.t8 t8Var = new org.telegram.ui.Cells.t8(context);
+        this.f42718c = t8Var;
+        t8Var.setBackground(org.telegram.ui.ActionBar.t6.N0(false));
+        t8Var.f(org.telegram.messenger.dd.L0(2131751832, null), org.telegram.messenger.uz.H0, false);
+        t8Var.setOnClickListener(new zz0(this, 7));
+        z4Var = ((org.telegram.ui.ActionBar.k2) themeActivity).parentLayout;
+        org.telegram.ui.Cells.z9 z9Var = new org.telegram.ui.Cells.z9(context, z4Var, 0);
+        this.f42716a = z9Var;
+        z9Var.setImportantForAccessibility(4);
+        addView(z9Var, w7.b6.d(-1, -2.0f, 51, 0.0f, 53, 0.0f, 0.0f));
     }
 
     @Override
-    public Integer V0(int i10) {
-        switch (this.f42896e3) {
-            case 1:
-                return 0;
-            case 2:
-                return 0;
-            case 6:
-                return 0;
-            case 12:
-                return 0;
-            default:
-                return super.V0(i10);
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.Jj));
+    }
+
+    @Override
+    public final void invalidate() {
+        super.invalidate();
+        this.f42716a.invalidate();
+        this.f42717b.invalidate();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int x02 = org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.I6, false);
+        TextPaint textPaint = this.f42719f;
+        textPaint.setColor(x02);
+        canvas.drawText("" + org.telegram.messenger.uz.W0, getMeasuredWidth() - org.telegram.messenger.i0.L(39.0f), org.telegram.messenger.i0.L(28.0f), textPaint);
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        this.f42717b.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        int size = View.MeasureSpec.getSize(i10);
+        if (this.h != size) {
+            int i12 = org.telegram.messenger.uz.W0;
+            int i13 = this.d;
+            this.f42717b.setProgress((i12 - i13) / (this.e - i13));
+            this.h = size;
         }
     }
 
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.f42896e3) {
-            case 0:
-                if (getParent() != null && getParent().getParent() != null) {
-                    getParent().getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
-                }
-                return super.onInterceptTouchEvent(motionEvent);
-            case 4:
-                if (getParent() != null && getParent().getParent() != null) {
-                    ViewParent parent = getParent().getParent();
-                    boolean z10 = true;
-                    if (!canScrollHorizontally(-1) && !canScrollHorizontally(1)) {
-                        z10 = false;
-                    }
-                    parent.requestDisallowInterceptTouchEvent(z10);
-                }
-                return super.onInterceptTouchEvent(motionEvent);
-            case 11:
-                if (getParent() != null && getParent().getParent() != null) {
-                    getParent().getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
-                }
-                return super.onInterceptTouchEvent(motionEvent);
-            case 13:
-                if (getParent() != null && getParent().getParent() != null) {
-                    ViewParent parent2 = getParent().getParent();
-                    boolean z11 = true;
-                    if (!canScrollHorizontally(-1) && !canScrollHorizontally(1)) {
-                        z11 = false;
-                    }
-                    parent2.requestDisallowInterceptTouchEvent(z11);
-                }
-                return super.onInterceptTouchEvent(motionEvent);
-            default:
-                return super.onInterceptTouchEvent(motionEvent);
+    public final boolean performAccessibilityAction(int i10, Bundle bundle) {
+        if (!super.performAccessibilityAction(i10, bundle) && !this.f42717b.getSeekBarAccessibilityDelegate().g(this, i10, bundle)) {
+            return false;
         }
+        return true;
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f42896e3) {
-            case 5:
-                int size = View.MeasureSpec.getSize(i11);
-                int b10 = (getAdapter().b() * org.telegram.messenger.i0.L(50.0f)) + org.telegram.messenger.i0.L(4.0f);
-                if (b10 <= size) {
-                    size = b10;
-                }
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
-                return;
-            case 8:
-                int size2 = View.MeasureSpec.getSize(i11);
-                int b11 = (getAdapter().b() * org.telegram.messenger.i0.L(50.0f)) + org.telegram.messenger.i0.L(4.0f);
-                if (b11 <= size2) {
-                    size2 = b11;
-                }
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
+    public final void updateColors() {
+        org.telegram.ui.Components.on0 on0Var = this.f42717b;
+        if (on0Var == null) {
+            return;
         }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f42896e3) {
-            case 10:
-                if (motionEvent.getAction() == 0) {
-                    getParent().requestDisallowInterceptTouchEvent(true);
-                }
-                return super.onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
+        try {
+            int x02 = org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.Jj, false);
+            if (x02 != this.f42720n) {
+                this.f42720n = x02;
+                on0Var.setOuterColor(x02);
+            }
+            invalidate();
+        } catch (Exception e) {
+            org.telegram.messenger.f8.g(e, true);
         }
-    }
-
-    @Override
-    public void r0(View view, View view2) {
-        switch (this.f42896e3) {
-            case 3:
-                if (view instanceof org.telegram.ui.Cells.e6) {
-                    super.r0(view, view2);
-                    return;
-                }
-                return;
-            case 9:
-                if (view instanceof org.telegram.ui.Cells.e6) {
-                    super.r0(view, view2);
-                    return;
-                }
-                return;
-            default:
-                super.r0(view, view2);
-                return;
-        }
-    }
-
-    @Override
-    public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
-        switch (this.f42896e3) {
-            case 3:
-                rect.bottom = org.telegram.messenger.i0.L(60.0f) + rect.bottom;
-                return super.requestChildRectangleOnScreen(view, rect, z10);
-            case 9:
-                rect.bottom = org.telegram.messenger.i0.L(60.0f) + rect.bottom;
-                return super.requestChildRectangleOnScreen(view, rect, z10);
-            default:
-                return super.requestChildRectangleOnScreen(view, rect, z10);
-        }
-    }
-
-    @Override
-    public boolean requestFocus(int i10, Rect rect) {
-        switch (this.f42896e3) {
-            case 7:
-                return false;
-            default:
-                return super.requestFocus(i10, rect);
-        }
-    }
-
-    public w71(Context context) {
-        super(context, null);
-        this.f42896e3 = 10;
     }
 }

@@ -1,67 +1,139 @@
 package fi;
 
 import android.graphics.Canvas;
-import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.RenderNode;
-import android.support.v4.media.session.w;
 import v7.i7;
 public final class b extends i7 {
-    public final RenderNode f7108a = w.k();
-    public final Paint f7109b = new Paint(1);
-    public final f f7110c;
+    public final boolean f7104a;
+    public final Paint f7105b = new Paint();
+    public final Paint f7106c;
+    public final Paint d;
+    public int e;
+    public int f7107f;
+    public final g f7108g;
 
-    public b(f fVar) {
-        this.f7110c = fVar;
-    }
-
-    @Override
-    public final void a(Rect rect, RectF rectF) {
-        float f7;
-        f fVar = this.f7110c;
-        if (!fVar.f7129x && this.f7108a.hasDisplayList()) {
-            return;
-        }
-        int width = rect.width();
-        int height = rect.height();
-        int i10 = fVar.f7130y;
-        if (i10 != 1 && i10 != 4) {
-            f7 = width;
-        } else {
-            f7 = height;
-        }
-        float f10 = f7;
-        g gVar = fVar.F;
-        gVar.getClass();
-        LinearGradient l4 = f.l(fVar, gVar, f10, 0, fVar.J, 1);
-        Paint paint = this.f7109b;
-        paint.setShader(l4);
-        this.f7108a.setPosition(0, 0, width, height);
-        this.f7108a.beginRecording().drawRect(0.0f, 0.0f, width, height, paint);
-        this.f7108a.endRecording();
-        paint.setShader(null);
-        fVar.f7129x = false;
+    public b(g gVar, boolean z10) {
+        this.f7108g = gVar;
+        Paint paint = new Paint(1);
+        this.f7106c = paint;
+        this.d = new Paint(1);
+        this.e = -1;
+        this.f7107f = -1;
+        this.f7104a = z10;
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
     }
 
     @Override
     public final void b() {
-        this.f7108a.discardDisplayList();
+        this.e = -1;
     }
 
     @Override
     public final void c(Canvas canvas) {
-        canvas.drawRenderNode(this.f7108a);
+        boolean z10;
+        Paint paint;
+        boolean z11;
+        boolean z12;
+        g gVar;
+        float f7;
+        float f10;
+        g gVar2 = this.f7108g;
+        Rect bounds = gVar2.getBounds();
+        int width = bounds.width();
+        int height = bounds.height();
+        float f11 = width;
+        int ceil = (int) Math.ceil(f11 / 5.0f);
+        float f12 = height;
+        int ceil2 = (int) Math.ceil(f12 / 5.0f);
+        boolean z13 = this.f7104a;
+        if (z13) {
+            z10 = gVar2.f7129w;
+        } else {
+            z10 = gVar2.f7130x;
+        }
+        Paint paint2 = this.f7106c;
+        Paint paint3 = this.d;
+        if (!z10 && this.e == width && this.f7107f == height) {
+            gVar = gVar2;
+            paint = paint3;
+            z11 = z13;
+        } else {
+            int i10 = gVar2.f7131y;
+            if (i10 != 1 && i10 != 4) {
+                f12 = f11;
+            }
+            if (z13) {
+                h hVar = gVar2.D;
+                hVar.getClass();
+                float f13 = 0;
+                paint = paint3;
+                z11 = z13;
+                z12 = false;
+                paint2.setShader(g.k(gVar2, hVar, f12, f13, -1, 5));
+                h hVar2 = gVar2.E;
+                hVar2.getClass();
+                paint.setShader(g.k(gVar2, hVar2, f12, f13, gVar2.H, 5));
+                gVar = gVar2;
+            } else {
+                paint = paint3;
+                z11 = z13;
+                z12 = false;
+                h hVar3 = gVar2.F;
+                hVar3.getClass();
+                gVar = gVar2;
+                paint.setShader(g.k(gVar2, hVar3, f12, 0, gVar2.J, 5));
+            }
+            this.e = width;
+            this.f7107f = height;
+            if (z11) {
+                gVar.f7129w = z12;
+            } else {
+                gVar.f7130x = z12;
+            }
+        }
+        canvas.save();
+        canvas.scale(5.0f, 5.0f);
+        float f14 = ceil;
+        float f15 = ceil2;
+        int saveLayer = canvas.saveLayer(0.0f, 0.0f, f14, f15, this.f7105b);
+        if (z11) {
+            canvas.drawColor((gVar.H & 16777215) | (-16777216));
+            canvas.save();
+            canvas.scale(0.2f, 0.2f);
+            float f16 = gVar.d;
+            float f17 = bounds.left + f16;
+            float f18 = gVar.e;
+            float f19 = bounds.top + f18;
+            canvas.translate(-f17, -f19);
+            gVar.f7125f.e(canvas, f17, f19, bounds.right + f16, bounds.bottom + f18);
+            canvas.restore();
+            f7 = f14;
+            f10 = f15;
+            canvas.drawRect(0.0f, 0.0f, f7, f10, paint2);
+        } else {
+            f7 = f14;
+            f10 = f15;
+        }
+        canvas.drawRect(0.0f, 0.0f, f7, f10, paint);
+        canvas.restoreToCount(saveLayer);
+        canvas.restore();
     }
 
     @Override
     public final boolean d() {
-        return this.f7108a.hasDisplayList();
+        return false;
     }
 
     @Override
     public final void e(float f7) {
-        this.f7108a.setAlpha(f7);
+        this.f7105b.setAlpha(Math.round(f7 * 255.0f));
+    }
+
+    @Override
+    public final void a(Rect rect, RectF rectF) {
     }
 }

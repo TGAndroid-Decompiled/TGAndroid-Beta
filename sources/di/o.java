@@ -10,7 +10,7 @@ public final class o {
         long j10;
         this.f5979a = qVar2;
         long length2 = ((qVar.f5982b.length() + qVar.f5981a.length()) * 2) + 128;
-        s0 s0Var = (s0) qVar2.f13526a;
+        s0 s0Var = (s0) qVar2.f13527a;
         if (s0Var == null) {
             j10 = 1024;
         } else {

@@ -9,22 +9,22 @@ import java.util.List;
 import java.util.logging.Level;
 import p4.r;
 public final class a implements Runnable {
-    public final InputStream f48142a;
-    public final Socket f48143b;
-    public final j f48144c;
+    public final InputStream f48153a;
+    public final Socket f48154b;
+    public final j f48155c;
 
     public a(j jVar, InputStream inputStream, Socket socket) {
-        this.f48144c = jVar;
-        this.f48142a = inputStream;
-        this.f48143b = socket;
+        this.f48155c = jVar;
+        this.f48153a = inputStream;
+        this.f48154b = socket;
     }
 
     @Override
     public final void run() {
         OutputStream outputStream;
-        InputStream inputStream = this.f48142a;
-        j jVar = this.f48144c;
-        Socket socket = this.f48143b;
+        InputStream inputStream = this.f48153a;
+        j jVar = this.f48155c;
+        Socket socket = this.f48154b;
         OutputStream outputStream2 = null;
         try {
             try {
@@ -36,7 +36,7 @@ public final class a implements Runnable {
             th = th2;
         }
         try {
-            d dVar = new d(jVar, new r(1), this.f48142a, outputStream, socket.getInetAddress());
+            d dVar = new d(jVar, new r(1), this.f48153a, outputStream, socket.getInetAddress());
             while (!socket.isClosed()) {
                 dVar.c();
             }
@@ -50,18 +50,18 @@ public final class a implements Runnable {
             j.d(outputStream2);
             j.d(inputStream);
             j.d(socket);
-            ((List) jVar.f48177c.f3651c).remove(this);
+            ((List) jVar.f48188c.f3651c).remove(this);
         } catch (Throwable th3) {
             th = th3;
             outputStream2 = outputStream;
             j.d(outputStream2);
             j.d(inputStream);
             j.d(socket);
-            ((List) jVar.f48177c.f3651c).remove(this);
+            ((List) jVar.f48188c.f3651c).remove(this);
             throw th;
         }
         j.d(inputStream);
         j.d(socket);
-        ((List) jVar.f48177c.f3651c).remove(this);
+        ((List) jVar.f48188c.f3651c).remove(this);
     }
 }

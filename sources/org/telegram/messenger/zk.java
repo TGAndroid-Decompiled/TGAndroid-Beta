@@ -1,100 +1,56 @@
 package org.telegram.messenger;
 
-import android.util.SparseArray;
-import java.util.ArrayList;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_update;
-public final class zk implements Runnable {
-    public final int f19544a = 1;
-    public final vp f19545b;
-    public final long f19546c;
-    public final int d;
-    public final long e;
-    public final Object f19547f;
-    public final Object h;
-    public final Object f19548n;
-    public final Object f19549r;
+public final class zk implements RequestDelegate {
+    public final int f19728a;
+    public final wp f19729b;
+    public final long f19730c;
+    public final long d;
 
-    public zk(vp vpVar, ArrayList arrayList, long j10, TLRPC.updates_ChannelDifference updates_channeldifference, TLRPC.Chat chat, a0.h hVar, int i10, long j11) {
-        this.f19545b = vpVar;
-        this.f19547f = arrayList;
-        this.f19546c = j10;
-        this.h = updates_channeldifference;
-        this.f19548n = chat;
-        this.f19549r = hVar;
-        this.d = i10;
-        this.e = j11;
+    public zk(int i10, long j10, long j11, wp wpVar) {
+        this.f19728a = i10;
+        this.f19729b = wpVar;
+        this.f19730c = j10;
+        this.d = j11;
     }
 
     @Override
-    public final void run() {
-        TLRPC.Chat chat;
-        a0.h hVar;
-        switch (this.f19544a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f19728a) {
             case 0:
-                vp vpVar = this.f19545b;
-                boolean[] zArr = (boolean[]) this.f19547f;
-                hs hsVar = (hs) this.h;
-                long j10 = this.f19546c;
-                Runnable[] runnableArr = (Runnable[]) this.f19548n;
-                long j11 = this.e;
-                int i10 = this.d;
-                jp jpVar = (jp) this.f19549r;
-                if (!zArr[0]) {
-                    i0.g3(new qb(vpVar, zArr, hsVar.O(j10), runnableArr, j11, i10, jpVar));
+                wp wpVar = this.f19729b;
+                wpVar.getClass();
+                if (tL_error == null) {
+                    TLRPC.TL_messages_affectedMessages tL_messages_affectedMessages = (TLRPC.TL_messages_affectedMessages) tLObject;
+                    wpVar.I3(tL_messages_affectedMessages.pts, tL_messages_affectedMessages.pts_count, this.f19730c);
+                }
+                long j10 = this.d;
+                if (j10 != 0) {
+                    wpVar.getMessagesStorage().q1(j10);
                     return;
                 }
                 return;
             default:
-                vp vpVar2 = this.f19545b;
-                ArrayList arrayList = (ArrayList) this.f19547f;
-                long j12 = this.f19546c;
-                TLRPC.updates_ChannelDifference updates_channeldifference = (TLRPC.updates_ChannelDifference) this.h;
-                TLRPC.Chat chat2 = (TLRPC.Chat) this.f19548n;
-                a0.h hVar2 = (a0.h) this.f19549r;
-                int i11 = this.d;
-                long j13 = this.e;
-                if (!arrayList.isEmpty()) {
-                    SparseArray sparseArray = new SparseArray();
-                    int size = arrayList.size();
-                    int i12 = 0;
-                    while (i12 < size) {
-                        Object obj = arrayList.get(i12);
-                        i12++;
-                        TL_update.TL_updateMessageID tL_updateMessageID = (TL_update.TL_updateMessageID) obj;
-                        TLRPC.Chat chat3 = chat2;
-                        a0.h hVar3 = hVar2;
-                        ArrayList arrayList2 = arrayList;
-                        long[] a2 = vpVar2.getMessagesStorage().a2(tL_updateMessageID.random_id, -j12, null, tL_updateMessageID.f20050id, 0, -1, 0);
-                        if (a2 != null) {
-                            sparseArray.put(tL_updateMessageID.f20050id, a2);
-                        }
-                        chat2 = chat3;
-                        hVar2 = hVar3;
-                        arrayList = arrayList2;
+                wp wpVar2 = this.f19729b;
+                if (tLObject != null) {
+                    TLRPC.TL_messages_peerDialogs tL_messages_peerDialogs = (TLRPC.TL_messages_peerDialogs) tLObject;
+                    if (!tL_messages_peerDialogs.dialogs.isEmpty()) {
+                        TLRPC.TL_messages_dialogs tL_messages_dialogs = new TLRPC.TL_messages_dialogs();
+                        tL_messages_dialogs.dialogs.addAll(tL_messages_peerDialogs.dialogs);
+                        tL_messages_dialogs.messages.addAll(tL_messages_peerDialogs.messages);
+                        tL_messages_dialogs.users.addAll(tL_messages_peerDialogs.users);
+                        tL_messages_dialogs.chats.addAll(tL_messages_peerDialogs.chats);
+                        wpVar2.G3(tL_messages_dialogs, null, null, ((TLRPC.TL_dialog) tL_messages_peerDialogs.dialogs.get(0)).folder_id, 0, 1, wpVar2.Q7, false, false, false);
                     }
-                    chat = chat2;
-                    hVar = hVar2;
-                    if (sparseArray.size() != 0) {
-                        i0.g3(new tl(vpVar2, sparseArray, 1));
-                    }
-                } else {
-                    chat = chat2;
-                    hVar = hVar2;
                 }
-                Utilities.d.c(new zm(vpVar2, updates_channeldifference, j12, chat, hVar, i11, j13));
+                long j11 = this.f19730c;
+                if (j11 != 0) {
+                    wpVar2.getMessagesStorage().q1(j11);
+                }
+                wpVar2.f19097c1.e(this.d);
                 return;
         }
-    }
-
-    public zk(vp vpVar, boolean[] zArr, hs hsVar, long j10, Runnable[] runnableArr, long j11, int i10, jp jpVar) {
-        this.f19545b = vpVar;
-        this.f19547f = zArr;
-        this.h = hsVar;
-        this.f19546c = j10;
-        this.f19548n = runnableArr;
-        this.e = j11;
-        this.d = i10;
-        this.f19549r = jpVar;
     }
 }

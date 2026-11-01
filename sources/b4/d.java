@@ -196,7 +196,7 @@ public final class d implements w3.b {
 
     public d(f2.e eVar, b2.x xVar) {
         this.f2457a = 3;
-        x xVar2 = eVar.f6733c;
+        x xVar2 = eVar.f6734c;
         this.d = xVar2;
         xVar2.N(12);
         int E = xVar2.E();

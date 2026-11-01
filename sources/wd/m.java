@@ -19,7 +19,7 @@ public final class m extends xd.b implements k, b {
 
     public final Object c() {
         Object obj = e.get(this);
-        if (obj == xd.e.f53665a) {
+        if (obj == xd.e.f53683a) {
             return null;
         }
         return obj;
@@ -30,7 +30,7 @@ public final class m extends xd.b implements k, b {
         o[] oVarArr;
         ea.a aVar;
         if (obj == null) {
-            obj = xd.e.f53665a;
+            obj = xd.e.f53683a;
         }
         synchronized (this) {
             AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = e;
@@ -42,16 +42,16 @@ public final class m extends xd.b implements k, b {
             if ((i11 & 1) == 0) {
                 int i12 = i11 + 1;
                 this.d = i12;
-                o[] oVarArr2 = this.f53659a;
+                o[] oVarArr2 = this.f53677a;
                 while (true) {
                     if (oVarArr2 != null) {
                         for (o oVar : oVarArr2) {
                             if (oVar != null) {
-                                AtomicReference atomicReference = oVar.f52833a;
+                                AtomicReference atomicReference = oVar.f52851a;
                                 while (true) {
                                     Object obj2 = atomicReference.get();
-                                    if (obj2 != null && obj2 != (aVar = n.f52832b)) {
-                                        ea.a aVar2 = n.f52831a;
+                                    if (obj2 != null && obj2 != (aVar = n.f52850b)) {
+                                        ea.a aVar2 = n.f52849a;
                                         if (obj2 == aVar2) {
                                             while (!atomicReference.compareAndSet(obj2, aVar)) {
                                                 if (atomicReference.get() != obj2) {
@@ -78,7 +78,7 @@ public final class m extends xd.b implements k, b {
                             this.d = i12 + 1;
                             return;
                         }
-                        oVarArr = this.f53659a;
+                        oVarArr = this.f53677a;
                     }
                     oVarArr2 = oVarArr;
                     i12 = i10;

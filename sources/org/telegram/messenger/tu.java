@@ -1,151 +1,276 @@
 package org.telegram.messenger;
 
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.Spanned;
-import android.text.style.ReplacementSpan;
+import android.graphics.Rect;
+import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.tgnet.tl.TL_iv;
-public final class tu extends ReplacementSpan {
-    public final ru f18107a;
-    public final TL_iv.textButton f18108b;
-    public final RectF f18109c = new RectF();
-    public float d;
-    public boolean e;
-    public int f18110f;
-    public View h;
+import org.telegram.tgnet.tl.TL_keyboard;
+public final class tu extends ru {
+    public final su[] W;
+    public final int X;
+    public int Y;
+    public su Z;
+    public su f18308a0;
+    public final ge.b f18309b0;
 
-    public tu(org.telegram.messenger.vv r21, int r22, org.telegram.tgnet.tl.TL_iv.textButton r23, java.lang.Boolean r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.tu.<init>(org.telegram.messenger.vv, int, org.telegram.tgnet.tl.TL_iv$textButton, java.lang.Boolean):void");
-    }
-
-    public final void a(View view) {
-        this.h = view;
-        this.f18107a.f17780a.i(view);
-    }
-
-    @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        int i15;
-        float f10;
-        ru ruVar = this.f18107a;
-        int i16 = ruVar.f17780a.f18401s;
-        int i17 = 0;
-        if (i16 > 0 && this.f18110f > 0) {
-            i15 = 1;
-        } else {
-            i15 = 0;
+    public tu(wv wvVar, Rect rect, int i10, TL_iv.pageBlockButtonRow pageblockbuttonrow) {
+        super(wvVar, rect, i10);
+        this.Y = -1;
+        this.f18309b0 = new ge.b(new l2.f(this, 11));
+        this.W = new su[pageblockbuttonrow.buttons.size()];
+        int size = pageblockbuttonrow.buttons.size();
+        for (int i11 = 0; i11 < size; i11++) {
+            su[] suVarArr = this.W;
+            TL_keyboard.PageButton pageButton = pageblockbuttonrow.buttons.get(i11);
+            suVarArr[i11] = new su(wvVar, i10, wvVar.l(pageButton.text, wv.R(16, 13)), pageButton, pageButton.type, pageButton.style, sf.c.c(pageButton, TL_keyboard.TL_inlineButtonTypeDisabled.class), false, false, false, false, null, new ns(this, 6));
         }
-        if (i15 == 0 && i16 > 0 && (charSequence instanceof Spanned)) {
-            rv[] rvVarArr = (rv[]) ((Spanned) charSequence).getSpans(i10, i11, rv.class);
-            int length = rvVarArr.length;
-            int i18 = 0;
-            while (true) {
-                if (i18 >= length) {
-                    break;
-                } else if ((rvVarArr[i18].f17803b & 15) == 14) {
-                    i15 = 1;
-                    break;
-                } else {
-                    i18++;
+        if (pageblockbuttonrow.align_left) {
+            this.X = 1;
+        } else if (pageblockbuttonrow.align_center) {
+            this.X = 3;
+        } else if (pageblockbuttonrow.align_right) {
+            this.X = 2;
+        } else {
+            this.X = 4;
+        }
+        k0(j0());
+    }
+
+    public static su h0(tu tuVar, float f7, float f10) {
+        int c10;
+        int i10;
+        tuVar.l0();
+        su[] suVarArr = tuVar.W;
+        if (suVarArr.length == 0) {
+            c10 = i0.L(tuVar.f17967a.M + 18);
+        } else {
+            c10 = suVarArr[0].c();
+        }
+        float H = (tuVar.H() - c10) / 2.0f;
+        if (f10 >= H && f10 <= H + c10) {
+            for (su suVar : suVarArr) {
+                if (f7 >= suVar.d && f7 <= i10 + suVar.e) {
+                    return suVar;
                 }
             }
+            return null;
         }
-        if (i15 != 0) {
-            f10 = (i12 + i14) / 2.0f;
-        } else {
-            Paint.FontMetricsInt fontMetricsInt = paint.getFontMetricsInt();
-            f10 = ((fontMetricsInt.ascent + fontMetricsInt.descent) / 2.0f) + i13;
+        return null;
+    }
+
+    public static void i0(tu tuVar, su suVar) {
+        su suVar2 = tuVar.Z;
+        if (suVar2 != suVar) {
+            if (suVar2 != null) {
+                suVar2.m(false);
+            }
+            tuVar.Z = suVar;
+            if (suVar != null) {
+                suVar.m(true);
+            }
         }
-        canvas.save();
-        if (!ruVar.f17795s) {
-            i17 = i0.L(1.0f);
-        }
-        int round = Math.round(f7 + i17);
-        int ceil = (int) Math.ceil((f10 - (ruVar.c() / 2.0f)) + (i15 ^ 1));
-        float f11 = round;
-        float f12 = ceil;
-        this.f18109c.set(f11, f12, round + ruVar.e, ruVar.c() + ceil);
-        canvas.translate(f11, f12);
-        ruVar.a(canvas);
-        canvas.restore();
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        boolean z10;
+    public final int H() {
+        int c10;
+        su[] suVarArr = this.W;
+        if (suVarArr.length == 0) {
+            c10 = i0.L(this.f17967a.M + 18);
+        } else {
+            c10 = suVarArr[0].c();
+        }
+        Rect rect = this.f17968b;
+        return i0.L(4.333f) + rect.top + c10 + rect.bottom;
+    }
+
+    @Override
+    public final int J() {
+        Rect rect = this.f17968b;
+        return j0() + rect.left + rect.right;
+    }
+
+    @Override
+    public final boolean P() {
+        if (this.f18308a0 != null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void S() {
+        su[] suVarArr;
+        for (su suVar : this.W) {
+            suVar.f18144a.i(this.V);
+        }
+    }
+
+    @Override
+    public final void U() {
+        su[] suVarArr;
+        for (su suVar : this.W) {
+            suVar.f18144a.f(this.V);
+        }
+    }
+
+    @Override
+    public final boolean X(MotionEvent motionEvent) {
+        View view = this.V;
+        if (view == null) {
+            return false;
+        }
+        return this.f18309b0.a(view, motionEvent);
+    }
+
+    public final int j0() {
+        su[] suVarArr = this.W;
+        int length = suVarArr.length;
+        if (length == 0) {
+            return 0;
+        }
+        int L = (length - 1) * i0.L(7.0f);
+        for (su suVar : suVarArr) {
+            L += suVar.h();
+        }
+        return Math.min(this.f17969c, L);
+    }
+
+    public final void k0(int i10) {
+        int i11;
         int i12;
+        boolean z10;
         int i13;
         int i14;
         int i15;
         int i16;
-        int i17 = 0;
-        if (this.e && fontMetricsInt != null) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (z10) {
-            i12 = fontMetricsInt.top;
-        } else {
-            i12 = 0;
-        }
-        if (z10) {
-            i13 = fontMetricsInt.ascent;
-        } else {
-            i13 = 0;
-        }
-        if (z10) {
-            i14 = fontMetricsInt.descent;
-        } else {
-            i14 = 0;
-        }
-        if (z10) {
-            i15 = fontMetricsInt.bottom;
-        } else {
-            i15 = 0;
-        }
-        if (z10) {
-            i16 = fontMetricsInt.leading;
-        } else {
-            i16 = 0;
-        }
-        int L = i0.L(8.0f);
-        int L2 = i0.L(10.0f);
-        ru ruVar = this.f18107a;
-        if (fontMetricsInt != null && ruVar.f17795s) {
-            float f7 = this.d;
-            int i18 = (int) (((-L2) - L) * f7);
-            fontMetricsInt.top = i18;
-            int i19 = (int) ((L2 - L) * f7);
-            fontMetricsInt.bottom = i19;
-            fontMetricsInt.ascent = i18;
-            fontMetricsInt.descent = i19;
-            fontMetricsInt.leading = 0;
-        }
-        if (z10) {
-            fontMetricsInt.top = i12;
-            fontMetricsInt.ascent = i13;
-            fontMetricsInt.descent = i14;
-            fontMetricsInt.bottom = i15;
-            fontMetricsInt.leading = i16;
-            int i20 = this.f18110f;
-            int i21 = i14 - i13;
-            if (i20 > i21) {
-                int i22 = i20 - i21;
-                int i23 = (i22 + 1) / 2;
-                int i24 = i13 - i23;
-                fontMetricsInt.ascent = i24;
-                fontMetricsInt.descent = i14 + (i22 - i23);
-                fontMetricsInt.top = Math.min(i12, i24);
-                fontMetricsInt.bottom = Math.max(fontMetricsInt.bottom, fontMetricsInt.descent);
+        int i17;
+        this.Y = i10;
+        su[] suVarArr = this.W;
+        int length = suVarArr.length;
+        if (length != 0) {
+            int L = i0.L(7.0f);
+            int i18 = 1;
+            int i19 = (length - 1) * L;
+            int max = Math.max(0, i10 - i19);
+            int i20 = 0;
+            for (su suVar : suVarArr) {
+                int h = suVar.h();
+                suVar.e = h;
+                i20 += h;
+            }
+            int i21 = this.X;
+            if (i20 > max) {
+                int i22 = 0;
+                for (su suVar2 : suVarArr) {
+                    i22 += suVar2.e - suVar2.e();
+                }
+                if (i22 <= 0) {
+                    for (su suVar3 : suVarArr) {
+                        suVar3.e = suVar3.e();
+                    }
+                } else {
+                    int min = Math.min(i20 - max, i22);
+                    int i23 = 0;
+                    int i24 = 0;
+                    while (i23 < suVarArr.length) {
+                        su suVar4 = suVarArr[i23];
+                        int e = suVar4.e - suVar4.e();
+                        if (i23 == suVarArr.length - i18) {
+                            i17 = min - i24;
+                            i15 = i18;
+                            i16 = min;
+                        } else {
+                            i15 = i18;
+                            i16 = min;
+                            i17 = (int) ((min * e) / i22);
+                        }
+                        int min2 = Math.min(i17, e);
+                        suVar4.e -= min2;
+                        i24 += min2;
+                        i23++;
+                        i18 = i15;
+                        min = i16;
+                    }
+                }
+                i11 = i18;
+            } else {
+                i11 = 1;
+                if (i21 == 4) {
+                    boolean[] zArr = new boolean[suVarArr.length];
+                    int length2 = suVarArr.length;
+                    for (boolean z11 = true; z11 && length2 > 0; z11 = z10) {
+                        int i25 = max / length2;
+                        z10 = false;
+                        for (int i26 = 0; i26 < suVarArr.length; i26++) {
+                            if (!zArr[i26] && (i13 = suVarArr[i26].e) > i25) {
+                                zArr[i26] = true;
+                                max -= i13;
+                                length2--;
+                                z10 = true;
+                            }
+                        }
+                    }
+                    if (length2 > 0) {
+                        int i27 = max / length2;
+                        int i28 = max - (length2 * i27);
+                        for (int i29 = 0; i29 < suVarArr.length; i29++) {
+                            if (!zArr[i29]) {
+                                su suVar5 = suVarArr[i29];
+                                int i30 = i28 - 1;
+                                if (i28 > 0) {
+                                    i12 = 1;
+                                } else {
+                                    i12 = 0;
+                                }
+                                suVar5.e = i12 + i27;
+                                i28 = i30;
+                            }
+                        }
+                    }
+                }
+            }
+            for (su suVar6 : suVarArr) {
+                i19 += suVar6.e;
+            }
+            int c10 = m1.j.c(i21);
+            if (c10 != i11) {
+                if (c10 != 2) {
+                    i14 = 0;
+                } else {
+                    i14 = (i10 - i19) / 2;
+                }
+            } else {
+                i14 = i10 - i19;
+            }
+            for (su suVar7 : suVarArr) {
+                suVar7.d = i14;
+                i14 += suVar7.e + L;
             }
         }
-        int i25 = ruVar.e;
-        if (!ruVar.f17795s) {
-            i17 = i0.L(1.0f) * 2;
+    }
+
+    public final void l0() {
+        wv wvVar = this.f17967a;
+        int i10 = wvVar.C;
+        int i11 = wvVar.S;
+        Rect rect = this.f17968b;
+        int max = Math.max(0, ((((i10 + i11) + wvVar.T) - (i11 * 2)) - rect.left) - rect.right);
+        if (this.Y != max) {
+            k0(max);
         }
-        return i25 + i17;
+    }
+
+    @Override
+    public final void q(Canvas canvas) {
+        su[] suVarArr;
+        l0();
+        for (su suVar : this.W) {
+            canvas.save();
+            canvas.translate(suVar.d, Math.round((H() - suVar.c()) / 2.0f));
+            suVar.a(canvas);
+            canvas.restore();
+        }
     }
 }

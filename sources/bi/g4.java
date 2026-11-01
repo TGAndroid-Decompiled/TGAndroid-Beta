@@ -3,10 +3,10 @@ package bi;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.d20;
-import org.telegram.messenger.tz;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.e20;
+import org.telegram.messenger.uz;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.z60;
 public final class g4 implements View.OnClickListener {
@@ -46,7 +46,7 @@ public final class g4 implements View.OnClickListener {
                 return;
             default:
                 final t tVar = i4Var.f3075a.f3271a;
-                org.telegram.ui.ActionBar.p6 p6Var = tVar.f30946a;
+                org.telegram.ui.ActionBar.p6 p6Var = tVar.f30963a;
                 d4 d4Var = tVar.f3350r;
                 a T2 = d4Var.T2();
                 TL_iv.pageTableCell pagetablecell = null;
@@ -112,37 +112,37 @@ public final class g4 implements View.OnClickListener {
                     } else {
                         z17 = true;
                     }
-                    F.j(z17, 2131231069, null, cd.L0(2131753999, null), new h(tVar, T2, 1));
+                    F.j(z17, 2131231069, null, dd.L0(2131753999, null), new h(tVar, T2, 1));
                     if (T2 != null && T2.b() && !T2.a() && !T2.c()) {
                         z18 = true;
                     } else {
                         z18 = false;
                     }
-                    F.j(z18, 2131231565, null, cd.L0(2131754006, null), new h(tVar, T2, 2));
+                    F.j(z18, 2131231565, null, dd.L0(2131754006, null), new h(tVar, T2, 2));
                     if (T2 != null && T2.b() && !T2.a() && T2.c()) {
                         z19 = true;
                     } else {
                         z19 = false;
                     }
-                    F.j(z19, 2131231577, null, cd.L0(2131754003, null), new h(tVar, T2, 3));
+                    F.j(z19, 2131231577, null, dd.L0(2131754003, null), new h(tVar, T2, 3));
                     if (T2 != null && T2.b() && T2.a() && !T2.c()) {
                         z20 = true;
                     } else {
                         z20 = false;
                     }
-                    F.j(z20, 2131231598, null, cd.L0(2131754001, null), new h(tVar, T2, 4));
+                    F.j(z20, 2131231598, null, dd.L0(2131754001, null), new h(tVar, T2, 4));
                     if (T2 != null && (T2.f2818b instanceof TL_iv.pageBlockDetails)) {
                         z21 = true;
                     } else {
                         z21 = false;
                     }
-                    F.j(z21, 2131231553, null, cd.L0(2131753987, null), new b(d4Var, 1));
+                    F.j(z21, 2131231553, null, dd.L0(2131753987, null), new b(d4Var, 1));
                     boolean p22 = d4Var.p2();
                     boolean s22 = d4Var.s2();
                     if (p22 || s22) {
                         F.k();
                         if (p22) {
-                            F.c(2131231566, cd.L0(2131754013, null), new Runnable() {
+                            F.c(2131231566, dd.L0(2131754013, null), new Runnable() {
                                 @Override
                                 public final void run() {
                                     switch (r3) {
@@ -159,7 +159,7 @@ public final class g4 implements View.OnClickListener {
                             }, false);
                         }
                         if (s22) {
-                            F.c(2131231567, cd.L0(2131753998, null), new Runnable() {
+                            F.c(2131231567, dd.L0(2131753998, null), new Runnable() {
                                 @Override
                                 public final void run() {
                                     switch (r3) {
@@ -189,19 +189,19 @@ public final class g4 implements View.OnClickListener {
                 z60 G = z60.G(tVar, p6Var, view, true);
                 G.Q = true;
                 z60 J = G.J();
-                if (!vp.r1(i12).p4() && !d20.i(i12).q()) {
+                if (!wp.r1(i12).p4() && !e20.i(i12).q()) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                J.c(2131231241, cd.L0(2131753756, null), new j(G, 0), false);
+                J.c(2131231241, dd.L0(2131753756, null), new j(G, 0), false);
                 J.k();
-                tVar.S(J, T2, new TL_iv.pageBlockHeading1(), 2131231559, cd.L0(2131754030, null), tz.W0 + 2, G);
-                tVar.S(J, T2, new TL_iv.pageBlockHeading2(), 2131231560, cd.L0(2131754029, null), tz.W0 + 1, G);
-                tVar.S(J, T2, new TL_iv.pageBlockHeading3(), 2131231561, cd.L0(2131754028, null), tz.W0, G);
-                tVar.S(J, T2, new TL_iv.pageBlockHeading4(), 2131231562, cd.L0(2131754027, null), tz.W0 - 1, G);
-                tVar.S(J, T2, new TL_iv.pageBlockHeading5(), 2131231563, cd.L0(2131754026, null), tz.W0 - 2, G);
-                tVar.S(J, T2, new TL_iv.pageBlockHeading6(), 2131231564, cd.L0(2131754025, null), tz.W0 - 3, G);
+                tVar.S(J, T2, new TL_iv.pageBlockHeading1(), 2131231559, dd.L0(2131754030, null), uz.W0 + 2, G);
+                tVar.S(J, T2, new TL_iv.pageBlockHeading2(), 2131231560, dd.L0(2131754029, null), uz.W0 + 1, G);
+                tVar.S(J, T2, new TL_iv.pageBlockHeading3(), 2131231561, dd.L0(2131754028, null), uz.W0, G);
+                tVar.S(J, T2, new TL_iv.pageBlockHeading4(), 2131231562, dd.L0(2131754027, null), uz.W0 - 1, G);
+                tVar.S(J, T2, new TL_iv.pageBlockHeading5(), 2131231563, dd.L0(2131754026, null), uz.W0 - 2, G);
+                tVar.S(J, T2, new TL_iv.pageBlockHeading6(), 2131231564, dd.L0(2131754025, null), uz.W0 - 3, G);
                 if (T2 != null && d4.F3(T2.f2818b)) {
                     z11 = true;
                 } else {
@@ -209,19 +209,19 @@ public final class g4 implements View.OnClickListener {
                 }
                 i2 i2Var = new i2(tVar.getContext(), 2131231559);
                 i2Var.a(z10);
-                G.j(z11, 0, i2Var, cd.L0(2131754031, null), new k(G, J, 0));
+                G.j(z11, 0, i2Var, dd.L0(2131754031, null), new k(G, J, 0));
                 if (T2 != null && (T2.f2818b instanceof TL_iv.pageBlockParagraph)) {
                     z12 = true;
                 } else {
                     z12 = false;
                 }
-                G.j(z12, 2131231596, null, cd.L0(2131753988, null), new h(tVar, T2, 5));
+                G.j(z12, 2131231596, null, dd.L0(2131753988, null), new h(tVar, T2, 5));
                 if (T2 != null && (T2.f2818b instanceof TL_iv.pageBlockBlockquote)) {
                     z13 = true;
                 } else {
                     z13 = false;
                 }
-                G.j(z13, 2131231581, null, cd.L0(2131753996, null), new h(tVar, T2, 6));
+                G.j(z13, 2131231581, null, dd.L0(2131753996, null), new h(tVar, T2, 6));
                 if (T2 != null && (T2.f2818b instanceof TL_iv.pageBlockPullquote)) {
                     z14 = true;
                 } else {
@@ -229,13 +229,13 @@ public final class g4 implements View.OnClickListener {
                 }
                 i2 i2Var2 = new i2(tVar.getContext(), 2131231580);
                 i2Var2.a(z10);
-                G.j(z14, 0, i2Var2, cd.L0(2131753997, null), new h(tVar, T2, 7));
+                G.j(z14, 0, i2Var2, dd.L0(2131753997, null), new h(tVar, T2, 7));
                 if (T2 != null && (T2.f2818b instanceof TL_iv.pageBlockPreformatted)) {
                     z15 = true;
                 } else {
                     z15 = false;
                 }
-                G.j(z15, 2131231552, null, cd.L0(2131754055, null), new h(tVar, T2, 8));
+                G.j(z15, 2131231552, null, dd.L0(2131754055, null), new h(tVar, T2, 8));
                 if (T2 != null && (T2.f2818b instanceof TL_iv.pageBlockFooter)) {
                     z16 = true;
                 } else {
@@ -243,7 +243,7 @@ public final class g4 implements View.OnClickListener {
                 }
                 i2 i2Var3 = new i2(tVar.getContext(), 2131231555);
                 i2Var3.a(z10);
-                G.j(z16, 0, i2Var3, cd.L0(2131754032, null), new h(tVar, T2, 9));
+                G.j(z16, 0, i2Var3, dd.L0(2131754032, null), new h(tVar, T2, 9));
                 G.Z();
                 tVar.H = G;
                 return;

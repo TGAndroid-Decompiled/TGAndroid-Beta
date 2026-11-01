@@ -6,36 +6,36 @@ import android.view.VelocityTracker;
 import android.view.ViewConfiguration;
 import org.telegram.ui.PhotoViewer;
 public final class p10 {
-    public static final int f29242x;
-    public static final int f29243y;
-    public final int f29244a;
-    public final int f29245b;
-    public final int f29246c;
+    public static final int f29291x;
+    public static final int f29292y;
+    public final int f29293a;
+    public final int f29294b;
+    public final int f29295c;
     public final int d;
     public final int e;
-    public final android.support.v4.media.session.q f29247f;
-    public final o10 f29248g;
+    public final android.support.v4.media.session.q f29296f;
+    public final o10 f29297g;
     public n10 h;
-    public boolean f29249i;
-    public boolean f29250j;
-    public boolean f29251k;
-    public boolean f29252l;
-    public boolean f29253m;
-    public MotionEvent f29254n;
-    public MotionEvent f29255o;
-    public MotionEvent f29256p;
-    public boolean f29257q;
-    public float f29258r;
-    public float f29259s;
-    public float f29260t;
-    public float f29261u;
+    public boolean f29298i;
+    public boolean f29299j;
+    public boolean f29300k;
+    public boolean f29301l;
+    public boolean f29302m;
+    public MotionEvent f29303n;
+    public MotionEvent f29304o;
+    public MotionEvent f29305p;
+    public boolean f29306q;
+    public float f29307r;
+    public float f29308s;
+    public float f29309t;
+    public float f29310u;
     public boolean v;
-    public VelocityTracker f29262w;
+    public VelocityTracker f29311w;
 
     static {
         ViewConfiguration.getLongPressTimeout();
-        f29242x = ViewConfiguration.getTapTimeout();
-        f29243y = ViewConfiguration.getDoubleTapTimeout();
+        f29291x = ViewConfiguration.getTapTimeout();
+        f29292y = ViewConfiguration.getDoubleTapTimeout();
     }
 
     public p10(Context context, PhotoViewer photoViewer) {
@@ -54,8 +54,8 @@ public final class p10 {
         int scaledTouchSlop;
         int i10;
         int i11;
-        this.f29247f = new android.support.v4.media.session.q(this, 10);
-        this.f29248g = o10Var;
+        this.f29296f = new android.support.v4.media.session.q(this, 10);
+        this.f29297g = o10Var;
         if (o10Var instanceof n10) {
             this.h = (n10) o10Var;
         }
@@ -76,8 +76,8 @@ public final class p10 {
             i10 = scaledTouchSlop2;
             i11 = scaledDoubleTapSlop;
         }
-        this.f29244a = i10 * i10;
-        this.f29245b = scaledTouchSlop * scaledTouchSlop;
-        this.f29246c = i11 * i11;
+        this.f29293a = i10 * i10;
+        this.f29294b = scaledTouchSlop * scaledTouchSlop;
+        this.f29295c = i11 * i11;
     }
 }

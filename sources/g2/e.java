@@ -12,21 +12,21 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
 public final class e extends c {
-    public final ContentResolver f7285a;
-    public Uri f7286b;
-    public AssetFileDescriptor f7287c;
+    public final ContentResolver f7286a;
+    public Uri f7287b;
+    public AssetFileDescriptor f7288c;
     public FileInputStream d;
     public long e;
-    public boolean f7288f;
+    public boolean f7289f;
 
     public e(Context context) {
         super(false);
-        this.f7285a = context.getContentResolver();
+        this.f7286a = context.getContentResolver();
     }
 
     @Override
     public final void close() {
-        this.f7286b = null;
+        this.f7287b = null;
         try {
             try {
                 FileInputStream fileInputStream = this.d;
@@ -36,7 +36,7 @@ public final class e extends c {
                 this.d = null;
                 try {
                     try {
-                        AssetFileDescriptor assetFileDescriptor = this.f7287c;
+                        AssetFileDescriptor assetFileDescriptor = this.f7288c;
                         if (assetFileDescriptor != null) {
                             assetFileDescriptor.close();
                         }
@@ -44,9 +44,9 @@ public final class e extends c {
                         throw new k(e, 2000);
                     }
                 } finally {
-                    this.f7287c = null;
-                    if (this.f7288f) {
-                        this.f7288f = false;
+                    this.f7288c = null;
+                    if (this.f7289f) {
+                        this.f7289f = false;
                         transferEnded();
                     }
                 }
@@ -57,13 +57,13 @@ public final class e extends c {
             this.d = null;
             try {
                 try {
-                    AssetFileDescriptor assetFileDescriptor2 = this.f7287c;
+                    AssetFileDescriptor assetFileDescriptor2 = this.f7288c;
                     if (assetFileDescriptor2 != null) {
                         assetFileDescriptor2.close();
                     }
-                    this.f7287c = null;
-                    if (this.f7288f) {
-                        this.f7288f = false;
+                    this.f7288c = null;
+                    if (this.f7289f) {
+                        this.f7289f = false;
                         transferEnded();
                     }
                     throw th2;
@@ -71,9 +71,9 @@ public final class e extends c {
                     throw new k(e10, 2000);
                 }
             } finally {
-                this.f7287c = null;
-                if (this.f7288f) {
-                    this.f7288f = false;
+                this.f7288c = null;
+                if (this.f7289f) {
+                    this.f7289f = false;
                     transferEnded();
                 }
             }
@@ -82,7 +82,7 @@ public final class e extends c {
 
     @Override
     public final Uri getUri() {
-        return this.f7286b;
+        return this.f7287b;
     }
 
     @Override
@@ -92,14 +92,14 @@ public final class e extends c {
         long min;
         try {
             try {
-                Uri uri = nVar.f7314a;
-                long j10 = nVar.f7317f;
+                Uri uri = nVar.f7315a;
+                long j10 = nVar.f7318f;
                 long j11 = nVar.e;
                 Uri normalizeScheme = uri.normalizeScheme();
-                this.f7286b = normalizeScheme;
+                this.f7287b = normalizeScheme;
                 transferInitializing(nVar);
                 boolean equals = Objects.equals(normalizeScheme.getScheme(), "content");
-                ContentResolver contentResolver = this.f7285a;
+                ContentResolver contentResolver = this.f7286a;
                 if (equals) {
                     Bundle bundle = new Bundle();
                     bundle.putBoolean("android.provider.extra.ACCEPT_ORIGINAL_MEDIA_FORMAT", true);
@@ -107,7 +107,7 @@ public final class e extends c {
                 } else {
                     openAssetFileDescriptor = contentResolver.openAssetFileDescriptor(normalizeScheme, "r");
                 }
-                this.f7287c = openAssetFileDescriptor;
+                this.f7288c = openAssetFileDescriptor;
                 if (openAssetFileDescriptor != null) {
                     long length = openAssetFileDescriptor.getLength();
                     FileInputStream fileInputStream = new FileInputStream(openAssetFileDescriptor.getFileDescriptor());
@@ -148,7 +148,7 @@ public final class e extends c {
                             }
                             this.e = min;
                         }
-                        this.f7288f = true;
+                        this.f7289f = true;
                         transferStarted(nVar);
                         if (i12 != 0) {
                             return j10;

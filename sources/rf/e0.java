@@ -8,28 +8,28 @@ import android.os.Build;
 import android.os.Looper;
 import android.view.ViewOutlineProvider;
 import bi.d2;
-import org.telegram.ui.in0;
+import org.telegram.ui.gn0;
 import org.telegram.ui.s3;
 public abstract class e0 {
-    public static final d2 f46526a = new d2(22);
-    public static final d2 f46527b = new d2(23);
-    public static Path f46528c;
+    public static final d2 f46537a = new d2(22);
+    public static final d2 f46538b = new d2(23);
+    public static Path f46539c;
     public static Outline d;
     public static Rect e;
 
-    public static void a(Canvas canvas, in0 in0Var, s3 s3Var) {
+    public static void a(Canvas canvas, gn0 gn0Var, s3 s3Var) {
         Path path;
         Outline outline;
         Rect rect;
-        ViewOutlineProvider outlineProvider = in0Var.getOutlineProvider();
-        if (!canvas.isHardwareAccelerated() && Build.VERSION.SDK_INT >= 24 && in0Var.getClipToOutline() && outlineProvider != null) {
+        ViewOutlineProvider outlineProvider = gn0Var.getOutlineProvider();
+        if (!canvas.isHardwareAccelerated() && Build.VERSION.SDK_INT >= 24 && gn0Var.getClipToOutline() && outlineProvider != null) {
             if (Looper.myLooper() == Looper.getMainLooper()) {
-                if (f46528c == null) {
-                    f46528c = new Path();
+                if (f46539c == null) {
+                    f46539c = new Path();
                     d = new Outline();
                     e = new Rect();
                 }
-                path = f46528c;
+                path = f46539c;
                 outline = d;
                 rect = e;
                 outline.setEmpty();
@@ -40,7 +40,7 @@ public abstract class e0 {
                 rect = new Rect();
             }
             Path path2 = path;
-            outlineProvider.getOutline(in0Var, outline);
+            outlineProvider.getOutline(gn0Var, outline);
             path2.rewind();
             if (!outline.isEmpty() && outline.getRect(rect)) {
                 float radius = outline.getRadius();

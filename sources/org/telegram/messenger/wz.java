@@ -1,7 +1,12 @@
 package org.telegram.messenger;
 public final class wz {
-    public float f19162a;
-    public float f19163b;
-    public float f19164c;
-    public float d;
+    public final float f19361a;
+    public final float f19362b;
+    public final float f19363c;
+
+    public wz(float f7, float f10, float f11) {
+        this.f19361a = f7;
+        this.f19362b = f10;
+        this.f19363c = f11;
+    }
 }

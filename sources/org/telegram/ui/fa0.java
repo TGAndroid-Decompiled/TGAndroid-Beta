@@ -1,29 +1,18 @@
 package org.telegram.ui;
-public final class fa0 implements Runnable {
-    public final int f37216a;
-    public final ma0 f37217b;
 
-    public fa0(ma0 ma0Var, int i10) {
-        this.f37216a = i10;
-        this.f37217b = ma0Var;
+import android.content.Context;
+import android.graphics.Canvas;
+public final class fa0 extends org.telegram.ui.Components.in0 {
+    public final la0 f37091a;
+
+    public fa0(la0 la0Var, Context context) {
+        super(context);
+        this.f37091a = la0Var;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f37216a;
-        ma0 ma0Var = this.f37217b;
-        switch (i10) {
-            case 0:
-                gf.f.r(ma0Var.getParentActivity(), org.telegram.messenger.cd.L0(2131746173, null));
-                return;
-            case 1:
-                ma0Var.f39615r.d.requestFocus();
-                org.telegram.messenger.i0.J3(ma0Var.f39615r.d);
-                return;
-            default:
-                ma0Var.f39615r.d.clearFocus();
-                org.telegram.messenger.i0.v1(ma0Var.f39615r.d);
-                return;
-        }
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        this.f37091a.getClass();
     }
 }

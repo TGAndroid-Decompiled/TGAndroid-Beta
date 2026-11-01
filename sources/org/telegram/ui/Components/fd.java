@@ -2,19 +2,19 @@ package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
 import org.telegram.tgnet.tl.TL_iv;
-public final class fd implements org.telegram.messenger.q20 {
-    public final int f26031a;
-    public final ChatActivityEnterView f26032b;
+public final class fd implements org.telegram.messenger.r20 {
+    public final int f26130a;
+    public final ChatActivityEnterView f26131b;
 
     public fd(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f26031a = i10;
-        this.f26032b = chatActivityEnterView;
+        this.f26130a = i10;
+        this.f26131b = chatActivityEnterView;
     }
 
     @Override
     public final void a(Object obj) {
-        int i10 = this.f26031a;
-        ChatActivityEnterView chatActivityEnterView = this.f26032b;
+        int i10 = this.f26130a;
+        ChatActivityEnterView chatActivityEnterView = this.f26131b;
         switch (i10) {
             case 0:
                 chatActivityEnterView.O0((TL_iv.RichMessage) obj);
@@ -25,7 +25,7 @@ public final class fd implements org.telegram.messenger.q20 {
                 chatActivityEnterView.E0.setSelection(charSequence.length(), charSequence.length());
                 return;
             default:
-                int i11 = ChatActivityEnterView.f23672s5;
+                int i11 = ChatActivityEnterView.f23673s5;
                 chatActivityEnterView.a0((Canvas) obj, false);
                 return;
         }

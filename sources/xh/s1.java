@@ -1,22 +1,22 @@
 package xh;
 
-import org.telegram.messenger.q20;
+import org.telegram.messenger.r20;
 import org.telegram.tgnet.TLRPC;
-public final class s1 implements q20 {
-    public final int f54033a;
-    public final m2 f54034b;
+public final class s1 implements r20 {
+    public final int f54051a;
+    public final m2 f54052b;
 
     public s1(m2 m2Var, int i10) {
-        this.f54033a = i10;
-        this.f54034b = m2Var;
+        this.f54051a = i10;
+        this.f54052b = m2Var;
     }
 
     @Override
     public final void a(Object obj) {
-        switch (this.f54033a) {
+        switch (this.f54051a) {
             case 0:
                 Boolean bool = (Boolean) obj;
-                e2 e2Var = this.f54034b.D;
+                e2 e2Var = this.f54052b.D;
                 if (e2Var != null) {
                     if (bool.booleanValue()) {
                         e2Var.P = System.currentTimeMillis();
@@ -29,7 +29,7 @@ public final class s1 implements q20 {
                 }
                 return;
             default:
-                org.telegram.messenger.i0.g3(new vh.d1(23, this.f54034b, (TLRPC.UserFull) obj));
+                org.telegram.messenger.i0.g3(new vh.r0(24, this.f54052b, (TLRPC.UserFull) obj));
                 return;
         }
     }

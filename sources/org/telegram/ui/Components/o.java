@@ -4,22 +4,22 @@ import android.view.View;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_aicompose;
 public final class o implements View.OnClickListener {
-    public final int f28925a;
-    public final r f28926b;
+    public final int f28992a;
+    public final r f28993b;
 
     public o(r rVar, int i10) {
-        this.f28925a = i10;
-        this.f28926b = rVar;
+        this.f28992a = i10;
+        this.f28993b = rVar;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f28925a) {
+        switch (this.f28992a) {
             case 0:
-                this.f28926b.dismiss();
+                this.f28993b.dismiss();
                 return;
             default:
-                r rVar = this.f28926b;
+                r rVar = this.f28993b;
                 TL_aicompose.AiComposeTone aiComposeTone = rVar.P1;
                 if (aiComposeTone instanceof TL_aicompose.TL_aiComposeTone) {
                     int i10 = rVar.Z1 + 1;
@@ -33,7 +33,7 @@ public final class o implements View.OnClickListener {
                         TL_aicompose.getToneExample gettoneexample = new TL_aicompose.getToneExample();
                         gettoneexample.tone = TL_aicompose.InputAiComposeTone.from(aiComposeTone);
                         gettoneexample.num = i11;
-                        ConnectionsManager.getInstance(rVar.f21583a).sendRequestTyped(gettoneexample, new a3.b(1), new p(rVar, i11, 0));
+                        ConnectionsManager.getInstance(rVar.f21584a).sendRequestTyped(gettoneexample, new a3.b(1), new p(rVar, i11, 0));
                     }
                     rVar.Y1.O(true);
                     return;

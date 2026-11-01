@@ -15,19 +15,19 @@ public final class q3 extends View {
     public final Camera F;
     public final li.k G;
     public final RectF H;
-    public l3 f47350a;
-    public l3 f47351b;
-    public l3 f47352c;
+    public l3 f47363a;
+    public l3 f47364b;
+    public l3 f47365c;
     public float d;
     public float e;
-    public float f47353f;
+    public float f47366f;
     public boolean h;
-    public boolean f47354n;
-    public boolean f47355r;
-    public k3 f47356s;
-    public k3 f47357w;
-    public k3 f47358x;
-    public float f47359y;
+    public boolean f47367n;
+    public boolean f47368r;
+    public k3 f47369s;
+    public k3 f47370w;
+    public k3 f47371x;
+    public float f47372y;
 
     public q3(Context context) {
         super(context);
@@ -42,7 +42,7 @@ public final class q3 extends View {
         float f14;
         if (k3Var != null) {
             Matrix matrix = k3Var.d;
-            Paint paint = k3Var.f47150c;
+            Paint paint = k3Var.f47164c;
             if (paint != null) {
                 float f15 = (f7 - 0.5f) / 1.5f;
                 float l4 = Utilities.l(1.0f - Math.abs(f15));
@@ -74,7 +74,7 @@ public final class q3 extends View {
                     } else {
                         f14 = 0.0f;
                     }
-                    iArr[i10] = org.telegram.ui.ActionBar.t6.w(iArr[i10], org.telegram.ui.ActionBar.t6.r1(l4 * f14, k3Var.f47152g));
+                    iArr[i10] = org.telegram.ui.ActionBar.t6.w(iArr[i10], org.telegram.ui.ActionBar.t6.r1(l4 * f14, k3Var.f47166g));
                 }
                 for (int i11 = 0; i11 < iArr2.length; i11++) {
                     float width2 = (getWidth() / (iArr2.length - 1)) * i11;
@@ -83,7 +83,7 @@ public final class q3 extends View {
                     } else {
                         f13 = 0.0f;
                     }
-                    iArr2[i11] = org.telegram.ui.ActionBar.t6.w(iArr2[i11], org.telegram.ui.ActionBar.t6.r1(l4 * f13, k3Var.f47151f));
+                    iArr2[i11] = org.telegram.ui.ActionBar.t6.w(iArr2[i11], org.telegram.ui.ActionBar.t6.r1(l4 * f13, k3Var.f47165f));
                 }
                 for (int i12 = 0; i12 < iArr3.length; i12++) {
                     float width3 = (getWidth() / (iArr2.length - 1)) * i12;
@@ -139,26 +139,26 @@ public final class q3 extends View {
 
     public final void c() {
         boolean z10;
-        if (this.f47350a == null && this.f47351b == null && this.f47352c == null && this.f47356s == null && this.f47357w == null && this.f47358x == null) {
+        if (this.f47363a == null && this.f47364b == null && this.f47365c == null && this.f47369s == null && this.f47370w == null && this.f47371x == null) {
             z10 = false;
         } else {
             z10 = true;
         }
-        this.f47352c = null;
-        this.f47351b = null;
-        this.f47350a = null;
-        this.f47353f = 0.0f;
+        this.f47365c = null;
+        this.f47364b = null;
+        this.f47363a = null;
+        this.f47366f = 0.0f;
         this.e = 0.0f;
         this.d = 0.0f;
-        this.f47355r = false;
-        this.f47354n = false;
+        this.f47368r = false;
+        this.f47367n = false;
         this.h = false;
-        this.f47358x = null;
-        this.f47357w = null;
-        this.f47356s = null;
+        this.f47371x = null;
+        this.f47370w = null;
+        this.f47369s = null;
         this.E = 0.0f;
         this.D = 0.0f;
-        this.f47359y = 0.0f;
+        this.f47372y = 0.0f;
         if (z10) {
             invalidate();
         }
@@ -166,8 +166,8 @@ public final class q3 extends View {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        b(canvas, this.f47350a, this.d, this.h);
-        b(canvas, this.f47351b, this.e, this.f47354n);
-        b(canvas, this.f47352c, this.f47353f, this.f47355r);
+        b(canvas, this.f47363a, this.d, this.h);
+        b(canvas, this.f47364b, this.e, this.f47367n);
+        b(canvas, this.f47365c, this.f47366f, this.f47368r);
     }
 }

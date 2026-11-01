@@ -17,13 +17,13 @@ public final class q1 implements ValueAnimator.AnimatorUpdateListener {
                 k2 k2Var = this.f3292b;
                 k2Var.getClass();
                 k2Var.Q0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                k2Var.j0();
+                k2Var.k0();
                 return;
             default:
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 k2 k2Var2 = this.f3292b;
                 k2Var2.I = floatValue;
-                k2Var2.z0();
+                k2Var2.A0();
                 k2Var2.P.setTranslationX(org.telegram.messenger.i0.W1(k2Var2.I, k2Var2.G[0] - k2Var2.H[0], 0));
                 k2Var2.P.setTranslationY(org.telegram.messenger.i0.W1(k2Var2.I, k2Var2.G[1] - k2Var2.H[1], 0));
                 k2Var2.O.invalidate();

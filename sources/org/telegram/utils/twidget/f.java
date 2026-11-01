@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Picture;
 public final class f extends g {
     public final Picture e;
-    public boolean f44339f;
+    public boolean f44350f;
 
     public f(int i10, int i11, int i12, int i13) {
         super(i10, i11, i12, i13);
@@ -13,8 +13,8 @@ public final class f extends g {
 
     @Override
     public final Canvas a() {
-        this.f44339f = true;
-        return this.e.beginRecording(Math.max(1, this.f44343c - this.f44341a), Math.max(1, this.d - this.f44342b));
+        this.f44350f = true;
+        return this.e.beginRecording(Math.max(1, this.f44354c - this.f44352a), Math.max(1, this.d - this.f44353b));
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class f extends g {
 
     @Override
     public final void c() {
-        if (this.f44339f) {
+        if (this.f44350f) {
             e();
         }
     }
@@ -33,13 +33,13 @@ public final class f extends g {
     public final void d(Canvas canvas, float f7) {
         Canvas canvas2;
         int save;
-        if (!this.f44339f && f7 > 0.0f) {
+        if (!this.f44350f && f7 > 0.0f) {
             int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
-            int i11 = this.f44342b;
-            int i12 = this.f44341a;
+            int i11 = this.f44353b;
+            int i12 = this.f44352a;
             if (i10 < 0) {
                 canvas2 = canvas;
-                save = canvas2.saveLayerAlpha(i12, i11, this.f44343c, this.d, Math.round(f7 * 255.0f));
+                save = canvas2.saveLayerAlpha(i12, i11, this.f44354c, this.d, Math.round(f7 * 255.0f));
             } else {
                 canvas2 = canvas;
                 save = canvas2.save();
@@ -53,7 +53,7 @@ public final class f extends g {
     @Override
     public final void e() {
         this.e.endRecording();
-        this.f44339f = false;
+        this.f44350f = false;
     }
 
     @Override

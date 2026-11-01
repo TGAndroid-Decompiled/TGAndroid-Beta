@@ -10,36 +10,36 @@ import android.graphics.PorterDuff;
 import android.graphics.Shader;
 import java.util.ArrayList;
 public final class l {
-    public static final Matrix f53034p = new Matrix();
-    public final Path f53035a;
-    public final Path f53036b;
-    public final Matrix f53037c;
+    public static final Matrix f53052p = new Matrix();
+    public final Path f53053a;
+    public final Path f53054b;
+    public final Matrix f53055c;
     public Paint d;
     public Paint e;
-    public PathMeasure f53038f;
-    public final i f53039g;
+    public PathMeasure f53056f;
+    public final i f53057g;
     public float h;
-    public float f53040i;
-    public float f53041j;
-    public float f53042k;
-    public int f53043l;
-    public String f53044m;
-    public Boolean f53045n;
-    public final a0.f f53046o;
+    public float f53058i;
+    public float f53059j;
+    public float f53060k;
+    public int f53061l;
+    public String f53062m;
+    public Boolean f53063n;
+    public final a0.f f53064o;
 
     public l() {
-        this.f53037c = new Matrix();
+        this.f53055c = new Matrix();
         this.h = 0.0f;
-        this.f53040i = 0.0f;
-        this.f53041j = 0.0f;
-        this.f53042k = 0.0f;
-        this.f53043l = 255;
-        this.f53044m = null;
-        this.f53045n = null;
-        this.f53046o = new a0.l(0);
-        this.f53039g = new i();
-        this.f53035a = new Path();
-        this.f53036b = new Path();
+        this.f53058i = 0.0f;
+        this.f53059j = 0.0f;
+        this.f53060k = 0.0f;
+        this.f53061l = 255;
+        this.f53062m = null;
+        this.f53063n = null;
+        this.f53064o = new a0.l(0);
+        this.f53057g = new i();
+        this.f53053a = new Path();
+        this.f53054b = new Path();
     }
 
     public final void a(i iVar, Matrix matrix, Canvas canvas, int i10, int i11) {
@@ -50,11 +50,11 @@ public final class l {
         float f11;
         Path.FillType fillType;
         Path.FillType fillType2;
-        Matrix matrix2 = iVar.f53023a;
-        ArrayList arrayList = iVar.f53024b;
+        Matrix matrix2 = iVar.f53041a;
+        ArrayList arrayList = iVar.f53042b;
         matrix2.set(matrix);
-        Matrix matrix3 = iVar.f53023a;
-        matrix3.preConcat(iVar.f53029j);
+        Matrix matrix3 = iVar.f53041a;
+        matrix3.preConcat(iVar.f53047j);
         canvas.save();
         char c10 = 0;
         int i14 = 0;
@@ -64,10 +64,10 @@ public final class l {
                 a((i) jVar, matrix3, canvas, i10, i11);
             } else if (jVar instanceof k) {
                 k kVar = (k) jVar;
-                float f12 = i10 / this.f53041j;
-                float f13 = i11 / this.f53042k;
+                float f12 = i10 / this.f53059j;
+                float f13 = i11 / this.f53060k;
                 float min = Math.min(f12, f13);
-                Matrix matrix4 = this.f53037c;
+                Matrix matrix4 = this.f53055c;
                 matrix4.set(matrix3);
                 matrix4.postScale(f12, f13);
                 float[] fArr = {0.0f, 1.0f, 1.0f, 0.0f};
@@ -82,16 +82,16 @@ public final class l {
                     f7 = 0.0f;
                 }
                 if (f7 != 0.0f) {
-                    Path path = this.f53035a;
+                    Path path = this.f53053a;
                     path.reset();
-                    i0.e[] eVarArr = kVar.f53031a;
+                    i0.e[] eVarArr = kVar.f53049a;
                     if (eVarArr != null) {
                         i0.e.b(eVarArr, path);
                     }
-                    Path path2 = this.f53036b;
+                    Path path2 = this.f53054b;
                     path2.reset();
                     if (kVar instanceof g) {
-                        if (kVar.f53033c == 0) {
+                        if (kVar.f53051c == 0) {
                             fillType2 = Path.FillType.WINDING;
                         } else {
                             fillType2 = Path.FillType.EVEN_ODD;
@@ -101,31 +101,31 @@ public final class l {
                         canvas.clipPath(path2);
                     } else {
                         h hVar = (h) kVar;
-                        float f15 = hVar.f53017i;
-                        if (f15 != 0.0f || hVar.f53018j != 1.0f) {
-                            float f16 = hVar.f53019k;
+                        float f15 = hVar.f53035i;
+                        if (f15 != 0.0f || hVar.f53036j != 1.0f) {
+                            float f16 = hVar.f53037k;
                             float f17 = (f15 + f16) % 1.0f;
-                            float f18 = (hVar.f53018j + f16) % 1.0f;
-                            if (this.f53038f == null) {
-                                this.f53038f = new PathMeasure();
+                            float f18 = (hVar.f53036j + f16) % 1.0f;
+                            if (this.f53056f == null) {
+                                this.f53056f = new PathMeasure();
                             }
-                            this.f53038f.setPath(path, z10);
-                            float length = this.f53038f.getLength();
+                            this.f53056f.setPath(path, z10);
+                            float length = this.f53056f.getLength();
                             float f19 = f17 * length;
                             float f20 = f18 * length;
                             path.reset();
                             if (f19 > f20) {
-                                this.f53038f.getSegment(f19, length, path, true);
+                                this.f53056f.getSegment(f19, length, path, true);
                                 f10 = 0.0f;
-                                this.f53038f.getSegment(0.0f, f20, path, true);
+                                this.f53056f.getSegment(0.0f, f20, path, true);
                             } else {
                                 f10 = 0.0f;
-                                this.f53038f.getSegment(f19, f20, path, true);
+                                this.f53056f.getSegment(f19, f20, path, true);
                             }
                             path.rLineTo(f10, f10);
                         }
                         path2.addPath(path, matrix4);
-                        a5.a aVar = hVar.f53015f;
+                        a5.a aVar = hVar.f53033f;
                         if (((Shader) aVar.f282c) != null || aVar.f281b != 0) {
                             if (this.e == null) {
                                 i13 = 16777215;
@@ -147,12 +147,12 @@ public final class l {
                                 paint2.setAlpha(255);
                                 int i15 = aVar.f281b;
                                 float f21 = hVar.h;
-                                PorterDuff.Mode mode = o.f53057w;
+                                PorterDuff.Mode mode = o.f53075w;
                                 f11 = 255.0f;
                                 paint2.setColor((i15 & i13) | (((int) (Color.alpha(i15) * f21)) << 24));
                             }
                             paint2.setColorFilter(null);
-                            if (hVar.f53033c == 0) {
+                            if (hVar.f53051c == 0) {
                                 fillType = Path.FillType.WINDING;
                             } else {
                                 fillType = Path.FillType.EVEN_ODD;
@@ -171,26 +171,26 @@ public final class l {
                                 paint3.setStyle(Paint.Style.STROKE);
                             }
                             Paint paint4 = this.d;
-                            Paint.Join join = hVar.f53021m;
+                            Paint.Join join = hVar.f53039m;
                             if (join != null) {
                                 paint4.setStrokeJoin(join);
                             }
-                            Paint.Cap cap = hVar.f53020l;
+                            Paint.Cap cap = hVar.f53038l;
                             if (cap != null) {
                                 paint4.setStrokeCap(cap);
                             }
-                            paint4.setStrokeMiter(hVar.f53022n);
+                            paint4.setStrokeMiter(hVar.f53040n);
                             Shader shader2 = (Shader) aVar2.f282c;
                             if (shader2 != null) {
                                 shader2.setLocalMatrix(matrix4);
                                 paint4.setShader(shader2);
-                                paint4.setAlpha(Math.round(hVar.f53016g * f11));
+                                paint4.setAlpha(Math.round(hVar.f53034g * f11));
                             } else {
                                 paint4.setShader(null);
                                 paint4.setAlpha(255);
                                 int i16 = aVar2.f281b;
-                                float f22 = hVar.f53016g;
-                                PorterDuff.Mode mode2 = o.f53057w;
+                                float f22 = hVar.f53034g;
+                                PorterDuff.Mode mode2 = o.f53075w;
                                 paint4.setColor((i16 & i13) | (((int) (Color.alpha(i16) * f22)) << 24));
                             }
                             paint4.setColorFilter(null);
@@ -214,7 +214,7 @@ public final class l {
     }
 
     public int getRootAlpha() {
-        return this.f53043l;
+        return this.f53061l;
     }
 
     public void setAlpha(float f7) {
@@ -222,33 +222,33 @@ public final class l {
     }
 
     public void setRootAlpha(int i10) {
-        this.f53043l = i10;
+        this.f53061l = i10;
     }
 
     public l(l lVar) {
-        this.f53037c = new Matrix();
+        this.f53055c = new Matrix();
         this.h = 0.0f;
-        this.f53040i = 0.0f;
-        this.f53041j = 0.0f;
-        this.f53042k = 0.0f;
-        this.f53043l = 255;
-        this.f53044m = null;
-        this.f53045n = null;
+        this.f53058i = 0.0f;
+        this.f53059j = 0.0f;
+        this.f53060k = 0.0f;
+        this.f53061l = 255;
+        this.f53062m = null;
+        this.f53063n = null;
         ?? lVar2 = new a0.l(0);
-        this.f53046o = lVar2;
-        this.f53039g = new i(lVar.f53039g, lVar2);
-        this.f53035a = new Path(lVar.f53035a);
-        this.f53036b = new Path(lVar.f53036b);
+        this.f53064o = lVar2;
+        this.f53057g = new i(lVar.f53057g, lVar2);
+        this.f53053a = new Path(lVar.f53053a);
+        this.f53054b = new Path(lVar.f53054b);
         this.h = lVar.h;
-        this.f53040i = lVar.f53040i;
-        this.f53041j = lVar.f53041j;
-        this.f53042k = lVar.f53042k;
-        this.f53043l = lVar.f53043l;
-        this.f53044m = lVar.f53044m;
-        String str = lVar.f53044m;
+        this.f53058i = lVar.f53058i;
+        this.f53059j = lVar.f53059j;
+        this.f53060k = lVar.f53060k;
+        this.f53061l = lVar.f53061l;
+        this.f53062m = lVar.f53062m;
+        String str = lVar.f53062m;
         if (str != null) {
             lVar2.put(str, this);
         }
-        this.f53045n = lVar.f53045n;
+        this.f53063n = lVar.f53063n;
     }
 }

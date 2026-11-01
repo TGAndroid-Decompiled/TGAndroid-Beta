@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
 public abstract class c1 {
-    public static final x1 f10625a = e9.n0.y(12);
+    public static final x1 f10626a = e9.n0.y(12);
 
     public static e9.n0 a(AudioDeviceInfo audioDeviceInfo) {
         List<AudioProfile> audioProfiles = audioDeviceInfo.getAudioProfiles();
@@ -32,7 +32,7 @@ public abstract class c1 {
         e9.n0 n0Var;
         int speakerLayoutChannelMask;
         boolean a2 = w7.h.a(audioDeviceInfo.getType());
-        x1 x1Var = f10625a;
+        x1 x1Var = f10626a;
         if (!a2) {
             if (audioDeviceInfo.getType() == 1) {
                 return e9.n0.y(4);

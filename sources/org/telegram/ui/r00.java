@@ -1,65 +1,27 @@
 package org.telegram.ui;
+public final class r00 {
+    public long f40933a;
+    public int f40934b;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import java.util.HashSet;
-public final class r00 extends View implements org.telegram.ui.ActionBar.k6 {
-    public final org.telegram.ui.Components.e6 f41100a;
-    public vg.f f41101b;
-    public String f41102c;
-
-    public r00(Activity activity) {
-        super(activity);
-        org.telegram.ui.Components.e6 e6Var = new org.telegram.ui.Components.e6(true, false, false);
-        this.f41100a = e6Var;
-        e6Var.u(-1);
-        e6Var.f25695b = 17;
-        e6Var.x(org.telegram.messenger.i0.o());
-        e6Var.w(org.telegram.messenger.i0.L(14.0f));
-        e6Var.setCallback(this);
+    public r00(int i10, long j10) {
+        this.f40933a = j10;
+        this.f40934b = i10;
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        org.telegram.ui.Components.e6 e6Var = this.f41100a;
-        int N = (int) (org.telegram.messenger.i0.N(30.0f) + e6Var.c());
-        int width = (getWidth() - N) / 2;
-        int i10 = N + width;
-        vg.f fVar = this.f41101b;
-        if (fVar != null) {
-            fVar.setBounds(width, 0, i10, getHeight());
-            this.f41101b.draw(canvas);
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        e6Var.draw(canvas);
-    }
-
-    @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        this.f41100a.setBounds(0, 0, i10, i11);
-    }
-
-    @Override
-    public final void updateColors() {
-        vg.f fVar = this.f41101b;
-        if (fVar != null) {
-            fVar.updateColors();
-            invalidate();
+        if (obj != null && r00.class == obj.getClass()) {
+            r00 r00Var = (r00) obj;
+            if (this.f40933a == r00Var.f40933a && this.f40934b == r00Var.f40934b) {
+                return true;
+            }
         }
+        return false;
     }
 
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (!super.verifyDrawable(drawable) && drawable != this.f41100a) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final int hashCode() {
+        return this.f40934b;
     }
 }

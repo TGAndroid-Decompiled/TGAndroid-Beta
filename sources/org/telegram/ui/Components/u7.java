@@ -3,15 +3,15 @@ package org.telegram.ui.Components;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class u7 implements Runnable {
-    public final int f30852a = 0;
-    public final v7 f30853b;
-    public final ArrayList f30854c;
+    public final int f30880a = 0;
+    public final v7 f30881b;
+    public final ArrayList f30882c;
     public final String d;
 
     public u7(v7 v7Var, String str, ArrayList arrayList) {
-        this.f30853b = v7Var;
+        this.f30881b = v7Var;
         this.d = str;
-        this.f30854c = arrayList;
+        this.f30882c = arrayList;
     }
 
     @Override
@@ -20,11 +20,11 @@ public final class u7 implements Runnable {
         TLRPC.Document document;
         boolean z10;
         String str;
-        int i11 = this.f30852a;
+        int i11 = this.f30880a;
         String str2 = null;
         String str3 = this.d;
-        ArrayList arrayList = this.f30854c;
-        v7 v7Var = this.f30853b;
+        ArrayList arrayList = this.f30882c;
+        v7 v7Var = this.f30881b;
         switch (i11) {
             case 0:
                 v7Var.getClass();
@@ -33,7 +33,7 @@ public final class u7 implements Runnable {
                     org.telegram.messenger.i0.g3(new u7(v7Var, new ArrayList(), str3));
                     return;
                 }
-                String R0 = org.telegram.messenger.cd.D0().R0(lowerCase, true, false);
+                String R0 = org.telegram.messenger.dd.D0().R0(lowerCase, true, false);
                 if (!lowerCase.equals(R0) && R0.length() != 0) {
                     str2 = R0;
                 }
@@ -50,20 +50,20 @@ public final class u7 implements Runnable {
                 }
                 ArrayList arrayList2 = new ArrayList();
                 for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                    org.telegram.messenger.jj jjVar = (org.telegram.messenger.jj) arrayList.get(i13);
+                    org.telegram.messenger.kj kjVar = (org.telegram.messenger.kj) arrayList.get(i13);
                     int i14 = 0;
                     while (true) {
                         if (i14 < i12) {
                             String str4 = strArr[i14];
-                            String I0 = jjVar.I0();
+                            String I0 = kjVar.I0();
                             if (I0 != null && I0.length() != 0) {
                                 if (I0.toLowerCase().contains(str4)) {
-                                    arrayList2.add(jjVar);
+                                    arrayList2.add(kjVar);
                                 } else {
-                                    if (jjVar.D == 0) {
-                                        document = jjVar.f16337k.media.webpage.document;
+                                    if (kjVar.D == 0) {
+                                        document = kjVar.f16690k.media.webpage.document;
                                     } else {
-                                        document = jjVar.f16337k.media.document;
+                                        document = kjVar.f16690k.media.document;
                                     }
                                     int i15 = 0;
                                     while (true) {
@@ -87,7 +87,7 @@ public final class u7 implements Runnable {
                                         }
                                     }
                                     if (z10) {
-                                        arrayList2.add(jjVar);
+                                        arrayList2.add(kjVar);
                                     }
                                 }
                             }
@@ -98,14 +98,14 @@ public final class u7 implements Runnable {
                 org.telegram.messenger.i0.g3(new u7(v7Var, arrayList2, str3));
                 return;
             default:
-                w7 w7Var = v7Var.f31156n;
-                if (w7Var.f32060n1) {
-                    w7Var.f32058m1 = true;
+                w7 w7Var = v7Var.f31219n;
+                if (w7Var.f32108n1) {
+                    w7Var.f32106m1 = true;
                     v7Var.d = arrayList;
                     v7Var.e = str3;
                     v7Var.f();
-                    w7Var.f32064p1.n0(0);
-                    org.telegram.messenger.m5.q(null, null, 2131748257, new Object[]{str3}, w7Var.f32072t1);
+                    w7Var.f32112p1.n0(0);
+                    org.telegram.messenger.m5.q(null, null, 2131748257, new Object[]{str3}, w7Var.f32120t1);
                     return;
                 }
                 return;
@@ -113,8 +113,8 @@ public final class u7 implements Runnable {
     }
 
     public u7(v7 v7Var, ArrayList arrayList, String str) {
-        this.f30853b = v7Var;
-        this.f30854c = arrayList;
+        this.f30881b = v7Var;
+        this.f30882c = arrayList;
         this.d = str;
     }
 }

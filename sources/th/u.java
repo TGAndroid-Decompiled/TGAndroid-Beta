@@ -5,19 +5,19 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.Components.wb;
 public final class u implements Runnable {
-    public final int f49500a;
-    public final p1 f49501b;
+    public final int f49514a;
+    public final p1 f49515b;
 
     public u(p1 p1Var, int i10) {
-        this.f49500a = i10;
-        this.f49501b = p1Var;
+        this.f49514a = i10;
+        this.f49515b = p1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f49500a) {
+        switch (this.f49514a) {
             case 0:
-                p1 p1Var = this.f49501b;
+                p1 p1Var = this.f49515b;
                 if (p1Var.O != null && !p1Var.U) {
                     org.telegram.messenger.i0.r(p1Var.V);
                     p1Var.U = true;
@@ -28,8 +28,8 @@ public final class u implements Runnable {
                 }
                 return;
             case 1:
-                p1 p1Var2 = this.f49501b;
-                org.telegram.messenger.i0.r(p1Var2.f49085d0);
+                p1 p1Var2 = this.f49515b;
+                org.telegram.messenger.i0.r(p1Var2.f49099d0);
                 wb wbVar = p1Var2.W;
                 if (wbVar != null) {
                     wbVar.b();
@@ -45,9 +45,9 @@ public final class u implements Runnable {
                 p1Var2.j();
                 return;
             default:
-                p1 p1Var3 = this.f49501b;
+                p1 p1Var3 = this.f49515b;
                 p1Var3.e.O(true);
-                p1Var3.f49090n.O(true);
+                p1Var3.f49104n.O(true);
                 return;
         }
     }

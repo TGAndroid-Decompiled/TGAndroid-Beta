@@ -47,41 +47,41 @@ public final class c extends f {
 
     public static void g(c cVar, int i10) {
         f6.i iVar = cVar.h;
-        if (iVar.f6955q) {
-            iVar.f6955q = false;
-            e6.h hVar = iVar.f6952n;
+        if (iVar.f6956q) {
+            iVar.f6956q = false;
+            e6.h hVar = iVar.f6953n;
             if (hVar != null) {
-                c0 c0Var = iVar.f6951m;
+                c0 c0Var = iVar.f6952m;
                 n6.l.d("Must be called from the main thread.");
                 if (c0Var != null) {
                     hVar.f6290i.remove(c0Var);
                 }
             }
-            iVar.f6944c.M0(null);
+            iVar.f6945c.M0(null);
             bh.d dVar = iVar.h;
             if (dVar != null) {
                 dVar.N();
                 dVar.e = null;
             }
-            bh.d dVar2 = iVar.f6947i;
+            bh.d dVar2 = iVar.f6948i;
             if (dVar2 != null) {
                 dVar2.N();
                 dVar2.e = null;
             }
-            android.support.v4.media.session.a0 a0Var = iVar.f6954p;
+            android.support.v4.media.session.a0 a0Var = iVar.f6955p;
             if (a0Var != null) {
                 a0Var.z(null, null);
-                iVar.f6954p.B(new MediaMetadataCompat(new Bundle()));
+                iVar.f6955p.B(new MediaMetadataCompat(new Bundle()));
                 iVar.j(0, null);
             }
-            android.support.v4.media.session.a0 a0Var2 = iVar.f6954p;
+            android.support.v4.media.session.a0 a0Var2 = iVar.f6955p;
             if (a0Var2 != null) {
                 a0Var2.x(false);
-                iVar.f6954p.u();
-                iVar.f6954p = null;
+                iVar.f6955p.u();
+                iVar.f6955p = null;
             }
-            iVar.f6952n = null;
-            iVar.f6953o = null;
+            iVar.f6953n = null;
+            iVar.f6954o = null;
             iVar.h();
             if (i10 == 0) {
                 iVar.i();
@@ -116,7 +116,7 @@ public final class c extends f {
         try {
             if (task.isSuccessful()) {
                 g6.t tVar = (g6.t) task.getResult();
-                Status status = tVar.f7403a;
+                Status status = tVar.f7404a;
                 if (status.b()) {
                     bVar.b("%s() -> success result", str);
                     e6.h hVar = new e6.h(new g6.m());
@@ -128,9 +128,9 @@ public final class c extends f {
                     e6.h hVar2 = cVar.f5768j;
                     n6.l.d("Must be called from the main thread.");
                     iVar.a(hVar2, cVar.f5769k);
-                    c6.d dVar = tVar.f7404b;
+                    c6.d dVar = tVar.f7405b;
                     n6.l.g(dVar);
-                    String str2 = tVar.f7405c;
+                    String str2 = tVar.f7406c;
                     String str3 = tVar.d;
                     n6.l.g(str3);
                     boolean z10 = tVar.e;

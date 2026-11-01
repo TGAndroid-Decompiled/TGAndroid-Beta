@@ -2,7 +2,7 @@ package bi;
 
 import android.content.Context;
 import android.widget.FrameLayout;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 public abstract class c0 extends FrameLayout implements v4 {
     public a f2881a;
     public final d0 f2882b;
@@ -62,7 +62,7 @@ public abstract class c0 extends FrameLayout implements v4 {
         int i16 = d10 + d;
         int i17 = this.d;
         int i18 = this.f2884f;
-        if (cd.X) {
+        if (dd.X) {
             setPadding(i17 + i16, i11, i18 + i15, i14);
         } else {
             setPadding(i17 + i15, i11, i18 + i16, i14);
@@ -75,7 +75,7 @@ public abstract class c0 extends FrameLayout implements v4 {
         this.f2884f = i12;
         this.h = i13;
         int i14 = this.f2883c;
-        if (cd.X) {
+        if (dd.X) {
             setPadding(i10, i11, i12 + i14, i13);
         } else {
             setPadding(i10 + i14, i11, i12, i13);

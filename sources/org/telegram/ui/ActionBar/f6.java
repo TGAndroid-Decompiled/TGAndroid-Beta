@@ -7,14 +7,14 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 public final class f6 extends Drawable {
-    public final int f20327a = 1;
-    public final int f20328b;
-    public final int f20329c;
+    public final int f20328a = 1;
+    public final int f20329b;
+    public final int f20330c;
     public Object d;
 
     public f6(int i10, int i11, int i12) {
-        this.f20328b = i10;
-        this.f20329c = i12;
+        this.f20329b = i10;
+        this.f20330c = i12;
         Paint paint = new Paint(1);
         this.d = paint;
         paint.setStyle(Paint.Style.STROKE);
@@ -26,15 +26,15 @@ public final class f6 extends Drawable {
     public final void draw(Canvas canvas) {
         int i10;
         float f7;
-        switch (this.f20327a) {
+        switch (this.f20328a) {
             case 0:
                 Rect bounds = getBounds();
-                canvas.drawCircle(bounds.centerX(), bounds.centerY(), this.f20329c / 2.0f, (Paint) this.d);
+                canvas.drawCircle(bounds.centerX(), bounds.centerY(), this.f20330c / 2.0f, (Paint) this.d);
                 return;
             default:
                 Rect bounds2 = getBounds();
-                int i11 = this.f20329c;
-                int i12 = this.f20328b;
+                int i11 = this.f20330c;
+                int i12 = this.f20329b;
                 if (i12 == 7) {
                     if (((RectF) this.d) == null) {
                         this.d = new RectF();
@@ -45,7 +45,7 @@ public final class f6 extends Drawable {
                     } else {
                         f7 = i11;
                     }
-                    canvas.drawRoundRect((RectF) this.d, f7, f7, t6.f21323z);
+                    canvas.drawRoundRect((RectF) this.d, f7, f7, t6.f21324z);
                     return;
                 }
                 if (i12 != 1 && i12 != 6) {
@@ -60,16 +60,16 @@ public final class f6 extends Drawable {
                     }
                     i10 = i11;
                 }
-                canvas.drawCircle(bounds2.centerX(), bounds2.centerY(), i10, t6.f21323z);
+                canvas.drawCircle(bounds2.centerX(), bounds2.centerY(), i10, t6.f21324z);
                 return;
         }
     }
 
     @Override
     public int getIntrinsicHeight() {
-        switch (this.f20327a) {
+        switch (this.f20328a) {
             case 0:
-                return this.f20329c + this.f20328b;
+                return this.f20330c + this.f20329b;
             default:
                 return super.getIntrinsicHeight();
         }
@@ -77,9 +77,9 @@ public final class f6 extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        switch (this.f20327a) {
+        switch (this.f20328a) {
             case 0:
-                return this.f20329c + this.f20328b;
+                return this.f20330c + this.f20329b;
             default:
                 return super.getIntrinsicWidth();
         }
@@ -87,7 +87,7 @@ public final class f6 extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f20327a) {
+        switch (this.f20328a) {
             case 0:
                 return -2;
             default:
@@ -97,7 +97,7 @@ public final class f6 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        switch (this.f20327a) {
+        switch (this.f20328a) {
             case 0:
                 ((Paint) this.d).setAlpha(i10);
                 return;
@@ -108,7 +108,7 @@ public final class f6 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f20327a) {
+        switch (this.f20328a) {
             case 0:
                 ((Paint) this.d).setColorFilter(colorFilter);
                 return;
@@ -118,8 +118,8 @@ public final class f6 extends Drawable {
     }
 
     public f6(int i10, int i11) {
-        this.f20328b = i10;
-        this.f20329c = i11;
+        this.f20329b = i10;
+        this.f20330c = i11;
     }
 
     private final void a(int i10) {

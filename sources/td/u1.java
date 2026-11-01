@@ -9,24 +9,24 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import v7.g5;
 import v7.w6;
 public class u1 implements f1, r, y1 {
-    public static final AtomicReferenceFieldUpdater f48668a = AtomicReferenceFieldUpdater.newUpdater(u1.class, Object.class, "_state$volatile");
-    public static final AtomicReferenceFieldUpdater f48669b = AtomicReferenceFieldUpdater.newUpdater(u1.class, Object.class, "_parentHandle$volatile");
+    public static final AtomicReferenceFieldUpdater f48679a = AtomicReferenceFieldUpdater.newUpdater(u1.class, Object.class, "_state$volatile");
+    public static final AtomicReferenceFieldUpdater f48680b = AtomicReferenceFieldUpdater.newUpdater(u1.class, Object.class, "_parentHandle$volatile");
     private volatile Object _parentHandle$volatile;
     private volatile Object _state$volatile;
 
     public u1(boolean z10) {
         q0 q0Var;
         if (z10) {
-            q0Var = e0.f48618j;
+            q0Var = e0.f48629j;
         } else {
-            q0Var = e0.f48617i;
+            q0Var = e0.f48628i;
         }
         this._state$volatile = q0Var;
     }
 
     public static q D(yd.k kVar) {
         while (kVar.h()) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = yd.k.f54408b;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = yd.k.f54429b;
             yd.k d = kVar.d();
             if (d == null) {
                 Object obj = atomicReferenceFieldUpdater.get(kVar);
@@ -86,7 +86,7 @@ public class u1 implements f1, r, y1 {
             if (K == e0.e) {
                 return true;
             }
-        } while (K == e0.f48615f);
+        } while (K == e0.f48626f);
         b(K);
         return true;
     }
@@ -105,11 +105,11 @@ public class u1 implements f1, r, y1 {
                     vVar = null;
                 }
                 if (vVar != null) {
-                    th2 = vVar.f48671a;
+                    th2 = vVar.f48682a;
                 }
                 throw new IllegalStateException(str, th2);
             }
-        } while (K == e0.f48615f);
+        } while (K == e0.f48626f);
         return K;
     }
 
@@ -148,8 +148,8 @@ public class u1 implements f1, r, y1 {
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater;
         yd.k kVar = new yd.k();
         k1Var.getClass();
-        yd.k.f54408b.set(kVar, k1Var);
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = yd.k.f54407a;
+        yd.k.f54429b.set(kVar, k1Var);
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = yd.k.f54428a;
         atomicReferenceFieldUpdater2.set(kVar, k1Var);
         loop0: while (true) {
             if (k1Var.f() == k1Var) {
@@ -165,7 +165,7 @@ public class u1 implements f1, r, y1 {
         }
         yd.k g10 = k1Var.g();
         do {
-            atomicReferenceFieldUpdater = f48668a;
+            atomicReferenceFieldUpdater = f48679a;
             if (atomicReferenceFieldUpdater.compareAndSet(this, k1Var, g10)) {
                 return;
             }
@@ -174,10 +174,10 @@ public class u1 implements f1, r, y1 {
 
     public final int I(Object obj) {
         boolean z10 = obj instanceof q0;
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f48668a;
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f48679a;
         if (z10) {
-            if (!((q0) obj).f48653a) {
-                q0 q0Var = e0.f48618j;
+            if (!((q0) obj).f48664a) {
+                q0 q0Var = e0.f48629j;
                 while (!atomicReferenceFieldUpdater.compareAndSet(this, obj, q0Var)) {
                     if (atomicReferenceFieldUpdater.get(this) != obj) {
                         return -1;
@@ -187,7 +187,7 @@ public class u1 implements f1, r, y1 {
             }
             return 0;
         } else if (obj instanceof z0) {
-            v1 v1Var = ((z0) obj).f48683a;
+            v1 v1Var = ((z0) obj).f48694a;
             while (!atomicReferenceFieldUpdater.compareAndSet(this, obj, v1Var)) {
                 if (atomicReferenceFieldUpdater.get(this) != obj) {
                     return -1;
@@ -209,7 +209,7 @@ public class u1 implements f1, r, y1 {
         }
         if (((obj instanceof q0) || (obj instanceof k1)) && !(obj instanceof q) && !(obj2 instanceof v)) {
             a1 a1Var = (a1) obj;
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f48668a;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f48679a;
             if (obj2 instanceof a1) {
                 b1Var = new b1((a1) obj2);
             } else {
@@ -217,7 +217,7 @@ public class u1 implements f1, r, y1 {
             }
             while (!atomicReferenceFieldUpdater.compareAndSet(this, a1Var, b1Var)) {
                 if (atomicReferenceFieldUpdater.get(this) != a1Var) {
-                    return e0.f48615f;
+                    return e0.f48626f;
                 }
             }
             F(obj2);
@@ -227,7 +227,7 @@ public class u1 implements f1, r, y1 {
         a1 a1Var2 = (a1) obj;
         v1 t10 = t(a1Var2);
         if (t10 == null) {
-            return e0.f48615f;
+            return e0.f48626f;
         }
         q qVar2 = null;
         if (a1Var2 instanceof n1) {
@@ -242,12 +242,12 @@ public class u1 implements f1, r, y1 {
             if (n1Var.e()) {
                 return e0.d;
             }
-            n1.f48647b.set(n1Var, 1);
+            n1.f48658b.set(n1Var, 1);
             if (n1Var != a1Var2) {
-                AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = f48668a;
+                AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = f48679a;
                 while (!atomicReferenceFieldUpdater2.compareAndSet(this, a1Var2, n1Var)) {
                     if (atomicReferenceFieldUpdater2.get(this) != a1Var2) {
-                        return e0.f48615f;
+                        return e0.f48626f;
                     }
                 }
             }
@@ -258,7 +258,7 @@ public class u1 implements f1, r, y1 {
                 vVar = null;
             }
             if (vVar != null) {
-                n1Var.a(vVar.f48671a);
+                n1Var.a(vVar.f48682a);
             }
             Throwable b10 = n1Var.b();
             if (d) {
@@ -281,7 +281,7 @@ public class u1 implements f1, r, y1 {
                 qVar2 = qVar;
             }
             if (qVar2 != null) {
-                while (e0.n(qVar2.e, false, new m1(this, n1Var, qVar2, obj2), 1) == w1.f48676a) {
+                while (e0.n(qVar2.e, false, new m1(this, n1Var, qVar2, obj2), 1) == w1.f48687a) {
                     qVar2 = D(qVar2);
                     if (qVar2 == null) {
                         return o(n1Var, obj2);
@@ -297,7 +297,7 @@ public class u1 implements f1, r, y1 {
         yd.k d;
         p1 p1Var = new p1(k1Var, this, a1Var);
         loop0: while (true) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = yd.k.f54408b;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = yd.k.f54429b;
             d = v1Var.d();
             if (d == null) {
                 Object obj = atomicReferenceFieldUpdater.get(v1Var);
@@ -309,10 +309,10 @@ public class u1 implements f1, r, y1 {
                     obj = atomicReferenceFieldUpdater.get(d);
                 }
             }
-            yd.k.f54408b.set(k1Var, d);
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = yd.k.f54407a;
+            yd.k.f54429b.set(k1Var, d);
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = yd.k.f54428a;
             atomicReferenceFieldUpdater2.set(k1Var, v1Var);
-            p1Var.f48652c = v1Var;
+            p1Var.f48663c = v1Var;
             while (!atomicReferenceFieldUpdater2.compareAndSet(d, v1Var, p1Var)) {
                 if (atomicReferenceFieldUpdater2.get(d) != v1Var) {
                     break;
@@ -376,7 +376,7 @@ public class u1 implements f1, r, y1 {
             throw new IllegalStateException(("Job is still new or active: " + this).toString());
         } else if (!(u10 instanceof a1)) {
             if (u10 instanceof v) {
-                Throwable th2 = ((v) u10).f48671a;
+                Throwable th2 = ((v) u10).f48682a;
                 if (th2 instanceof CancellationException) {
                     cancellationException = (CancellationException) th2;
                 }
@@ -412,19 +412,19 @@ public class u1 implements f1, r, y1 {
             if (vVar == null) {
                 return null;
             }
-            return vVar.f48671a;
+            return vVar.f48682a;
         }
         throw new IllegalStateException("This job has not completed yet");
     }
 
     @Override
     public final cd.g getKey() {
-        return b0.f48601b;
+        return b0.f48612b;
     }
 
     @Override
     public final f1 getParent() {
-        p pVar = (p) f48669b.get(this);
+        p pVar = (p) f48680b.get(this);
         if (pVar != null) {
             return pVar.getParent();
         }
@@ -439,7 +439,7 @@ public class u1 implements f1, r, y1 {
                 if (!(u10 instanceof v)) {
                     return e0.u(u10);
                 }
-                throw ((v) u10).f48671a;
+                throw ((v) u10).f48682a;
             }
         } while (I(u10) < 0);
         l1 l1Var = new l1(w6.b(cVar), this);
@@ -483,8 +483,8 @@ public class u1 implements f1, r, y1 {
     public final boolean j(Throwable th2) {
         if (!z()) {
             boolean z10 = th2 instanceof CancellationException;
-            p pVar = (p) f48669b.get(this);
-            if (pVar != null && pVar != w1.f48676a) {
+            p pVar = (p) f48680b.get(this);
+            if (pVar != null && pVar != w1.f48687a) {
                 if (!pVar.b(th2) && !z10) {
                     return false;
                 }
@@ -539,11 +539,11 @@ public class u1 implements f1, r, y1 {
     public final void m(a1 a1Var, Object obj) {
         v vVar;
         Throwable th2;
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f48669b;
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f48680b;
         p pVar = (p) atomicReferenceFieldUpdater.get(this);
         if (pVar != null) {
             pVar.dispose();
-            atomicReferenceFieldUpdater.set(this, w1.f48676a);
+            atomicReferenceFieldUpdater.set(this, w1.f48687a);
         }
         ?? r12 = 0;
         if (obj instanceof v) {
@@ -552,7 +552,7 @@ public class u1 implements f1, r, y1 {
             vVar = null;
         }
         if (vVar != null) {
-            th2 = vVar.f48671a;
+            th2 = vVar.f48682a;
         } else {
             th2 = null;
         }
@@ -608,7 +608,7 @@ public class u1 implements f1, r, y1 {
         if (u10 instanceof n1) {
             th2 = ((n1) u10).b();
         } else if (u10 instanceof v) {
-            th2 = ((v) u10).f48671a;
+            th2 = ((v) u10).f48682a;
         } else if (!(u10 instanceof a1)) {
             th2 = null;
         } else {
@@ -634,7 +634,7 @@ public class u1 implements f1, r, y1 {
             vVar = null;
         }
         if (vVar != null) {
-            th2 = vVar.f48671a;
+            th2 = vVar.f48682a;
         }
         synchronized (n1Var) {
             n1Var.d();
@@ -659,10 +659,10 @@ public class u1 implements f1, r, y1 {
         }
         if (q6 != null && (j(q6) || v(q6))) {
             kotlin.jvm.internal.i.c(obj, "null cannot be cast to non-null type kotlinx.coroutines.CompletedExceptionally");
-            v.f48670b.compareAndSet((v) obj, 0, 1);
+            v.f48681b.compareAndSet((v) obj, 0, 1);
         }
         F(obj);
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f48668a;
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f48679a;
         if (obj instanceof a1) {
             obj2 = new b1((a1) obj);
         } else {
@@ -680,7 +680,7 @@ public class u1 implements f1, r, y1 {
             if (!(u10 instanceof v)) {
                 return e0.u(u10);
             }
-            throw ((v) u10).f48671a;
+            throw ((v) u10).f48682a;
         }
         throw new IllegalStateException("This job has not completed yet");
     }
@@ -786,7 +786,7 @@ public class u1 implements f1, r, y1 {
 
     public final Object u() {
         while (true) {
-            Object obj = f48668a.get(this);
+            Object obj = f48679a.get(this);
             if (!(obj instanceof yd.p)) {
                 return obj;
             }
@@ -799,8 +799,8 @@ public class u1 implements f1, r, y1 {
     }
 
     public final void x(f1 f1Var) {
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f48669b;
-        w1 w1Var = w1.f48676a;
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f48680b;
+        w1 w1Var = w1.f48687a;
         if (f1Var == null) {
             atomicReferenceFieldUpdater.set(this, w1Var);
             return;

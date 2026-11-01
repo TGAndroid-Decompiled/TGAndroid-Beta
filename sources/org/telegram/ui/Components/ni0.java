@@ -1,23 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-public final class ni0 extends tk0 {
-    public final vi0 f28800e3;
+import org.telegram.tgnet.TLObject;
+public final class ni0 implements Runnable {
+    public final int f28855a;
+    public final wi0 f28856b;
+    public final TLObject f28857c;
 
-    public ni0(vi0 vi0Var, Context context, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(context, p6Var);
-        this.f28800e3 = vi0Var;
+    public ni0(wi0 wi0Var, TLObject tLObject, int i10) {
+        this.f28855a = i10;
+        this.f28856b = wi0Var;
+        this.f28857c = tLObject;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        vi0 vi0Var = this.f28800e3;
-        da0 da0Var = vi0Var.J;
-        if (da0Var != null) {
-            da0Var.measure(i10, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 0));
+    public final void run() {
+        switch (this.f28855a) {
+            case 0:
+                wi0 wi0Var = this.f28856b;
+                org.telegram.messenger.at.f(wi0Var.f32252b).d(new ni0(wi0Var, this.f28857c, 1));
+                return;
+            default:
+                wi0.a(this.f28856b, this.f28857c);
+                return;
         }
-        super.onMeasure(i10, i11);
-        vi0Var.j();
     }
 }

@@ -6,7 +6,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import java.util.ArrayList;
-import org.telegram.messenger.r20;
+import org.telegram.messenger.s20;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.t6;
 public class f2 {
@@ -20,33 +20,33 @@ public class f2 {
     public p6 P;
     public long R;
     public long S;
-    public boolean f11072g;
+    public boolean f11073g;
     public boolean h;
-    public r20 f11076l;
-    public boolean f11077m;
-    public final int f11080p;
-    public boolean f11081q;
-    public int f11089z;
-    public final RectF f11068a = new RectF();
-    public final RectF f11069b = new RectF();
-    public final RectF f11070c = new RectF();
+    public s20 f11077l;
+    public boolean f11078m;
+    public final int f11081p;
+    public boolean f11082q;
+    public int f11090z;
+    public final RectF f11069a = new RectF();
+    public final RectF f11070b = new RectF();
+    public final RectF f11071c = new RectF();
     public Bitmap[] d = new Bitmap[3];
     public boolean[] e = new boolean[3];
-    public boolean[] f11071f = new boolean[3];
-    public final Paint f11073i = new Paint();
-    public float f11074j = 0.0f;
-    public float f11075k = 0.0f;
-    public final ArrayList f11078n = new ArrayList();
-    public float f11079o = 1.0f;
-    public int f11082r = 14;
-    public int f11083s = 12;
-    public int f11084t = 10;
-    public float f11085u = 0.85f;
+    public boolean[] f11072f = new boolean[3];
+    public final Paint f11074i = new Paint();
+    public float f11075j = 0.0f;
+    public float f11076k = 0.0f;
+    public final ArrayList f11079n = new ArrayList();
+    public float f11080o = 1.0f;
+    public int f11083r = 14;
+    public int f11084s = 12;
+    public int f11085t = 10;
+    public float f11086u = 0.85f;
     public float v = 0.85f;
-    public float f11086w = 0.9f;
-    public long f11087x = 2000;
-    public int f11088y = 1000;
-    public final float A = 1000.0f / org.telegram.messenger.i0.f16027r;
+    public float f11087w = 0.9f;
+    public long f11088x = 2000;
+    public int f11089y = 1000;
+    public final float A = 1000.0f / org.telegram.messenger.i0.f16173r;
     public boolean H = false;
     public boolean I = true;
     public boolean J = true;
@@ -58,7 +58,7 @@ public class f2 {
     public int T = 0;
 
     public f2(int i10) {
-        this.f11080p = i10;
+        this.f11081p = i10;
         this.B = i10 < 50;
     }
 
@@ -76,7 +76,7 @@ public class f2 {
     public final void c() {
         a();
         boolean z10 = this.G;
-        int i10 = this.f11080p;
+        int i10 = this.f11081p;
         if (z10) {
             int length = this.d.length;
             this.C = new Matrix[length];
@@ -88,7 +88,7 @@ public class f2 {
                 this.D[i11] = new float[i10 * 2];
             }
         }
-        ArrayList arrayList = this.f11078n;
+        ArrayList arrayList = this.f11079n;
         if (arrayList.isEmpty()) {
             for (int i12 = 0; i12 < i10; i12++) {
                 arrayList.add(new e2(this));
@@ -108,7 +108,7 @@ public class f2 {
         long currentTimeMillis = System.currentTimeMillis();
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f11078n;
+            ArrayList arrayList = this.f11079n;
             if (i10 < arrayList.size()) {
                 ((e2) arrayList.get(i10)).b(currentTimeMillis);
                 i10++;
@@ -120,8 +120,8 @@ public class f2 {
 
     public final void g() {
         int w02 = t6.w0(this.Q, this.P);
-        if (this.f11089z != w02) {
-            this.f11089z = w02;
+        if (this.f11090z != w02) {
+            this.f11090z = w02;
             a();
         }
     }

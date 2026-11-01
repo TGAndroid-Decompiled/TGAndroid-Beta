@@ -70,7 +70,7 @@ public abstract class h implements f1 {
     public void J0() {
         i2.i0 i0Var = (i2.i0) this;
         i0Var.F1();
-        a1(11, -i0Var.f7915l0);
+        a1(11, -i0Var.f7916l0);
     }
 
     @Override
@@ -149,7 +149,7 @@ public abstract class h implements f1 {
             if (T0) {
                 long M0 = i0Var.M0();
                 i0Var.F1();
-                if (M0 <= i0Var.f7918n0) {
+                if (M0 <= i0Var.f7919n0) {
                     b1(7);
                     return;
                 }

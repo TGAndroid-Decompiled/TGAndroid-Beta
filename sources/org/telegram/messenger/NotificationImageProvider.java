@@ -12,12 +12,12 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-public class NotificationImageProvider extends ContentProvider implements us {
+public class NotificationImageProvider extends ContentProvider implements vs {
     public static String d;
     public static UriMatcher e;
-    public final HashSet f14511a = new HashSet();
-    public final Object f14512b = new Object();
-    public final HashMap f14513c = new HashMap();
+    public final HashSet f14512a = new HashSet();
+    public final Object f14513b = new Object();
+    public final HashMap f14514c = new HashMap();
 
     @Override
     public final int delete(Uri uri, String str, String[] strArr) {
@@ -26,13 +26,13 @@ public class NotificationImageProvider extends ContentProvider implements us {
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == zs.Y1) {
-            synchronized (this.f14512b) {
+        if (i10 == at.Y1) {
+            synchronized (this.f14513b) {
                 try {
                     String str = (String) objArr[0];
-                    if (this.f14511a.remove(str)) {
-                        this.f14513c.remove(str);
-                        this.f14512b.notifyAll();
+                    if (this.f14512a.remove(str)) {
+                        this.f14514c.remove(str);
+                        this.f14513b.notifyAll();
                     }
                 } catch (Throwable th2) {
                     throw th2;
@@ -61,8 +61,8 @@ public class NotificationImageProvider extends ContentProvider implements us {
 
     @Override
     public final boolean onCreate() {
-        for (int i10 = 0; i10 < d20.c(); i10++) {
-            zs.f(i10).b(this, zs.Y1);
+        for (int i10 = 0; i10 < e20.c(); i10++) {
+            at.f(i10).b(this, at.Y1);
         }
         return true;
     }
@@ -90,18 +90,18 @@ public class NotificationImageProvider extends ContentProvider implements us {
                 w0.w();
                 if (!i0.I1(Uri.fromFile(file), 0)) {
                     if (!file.exists()) {
-                        Long l4 = (Long) this.f14513c.get(str2);
+                        Long l4 = (Long) this.f14514c.get(str2);
                         if (l4 != null) {
                             currentTimeMillis = l4.longValue();
                         } else {
                             currentTimeMillis = System.currentTimeMillis();
                         }
                         if (l4 == null) {
-                            this.f14513c.put(str2, Long.valueOf(currentTimeMillis));
+                            this.f14514c.put(str2, Long.valueOf(currentTimeMillis));
                         }
                         while (!file.exists()) {
                             if (System.currentTimeMillis() - currentTimeMillis >= 3000) {
-                                if (v2.f18448a) {
+                                if (v2.f18578a) {
                                     f8.l("Waiting for " + str2 + " to download timed out");
                                 }
                                 if (!TextUtils.isEmpty(queryParameter2)) {
@@ -113,10 +113,10 @@ public class NotificationImageProvider extends ContentProvider implements us {
                                 }
                                 throw new FileNotFoundException("Download timed out");
                             }
-                            synchronized (this.f14512b) {
-                                this.f14511a.add(str2);
+                            synchronized (this.f14513b) {
+                                this.f14512a.add(str2);
                                 try {
-                                    this.f14512b.wait(1000L);
+                                    this.f14513b.wait(1000L);
                                 } catch (InterruptedException unused) {
                                 }
                             }
@@ -141,8 +141,8 @@ public class NotificationImageProvider extends ContentProvider implements us {
 
     @Override
     public final void shutdown() {
-        for (int i10 = 0; i10 < d20.c(); i10++) {
-            zs.f(i10).n(this, zs.Y1);
+        for (int i10 = 0; i10 < e20.c(); i10++) {
+            at.f(i10).n(this, at.Y1);
         }
     }
 

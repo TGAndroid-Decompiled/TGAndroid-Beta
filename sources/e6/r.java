@@ -6,9 +6,9 @@ import java.util.ArrayDeque;
 import java.util.TimerTask;
 import org.telegram.messenger.i0;
 import org.telegram.ui.Components.ho;
-import org.telegram.ui.ld0;
-import org.telegram.ui.mg0;
-import org.telegram.ui.zy;
+import org.telegram.ui.kd0;
+import org.telegram.ui.kg0;
+import org.telegram.ui.yy;
 import vh.d0;
 public final class r extends TimerTask {
     public final int f6308a;
@@ -46,7 +46,7 @@ public final class r extends TimerTask {
                 return;
             case 1:
                 try {
-                    Socket socket = ((lc.q) this.f6309b).f11739a.f11778a.f11773g;
+                    Socket socket = ((lc.q) this.f6309b).f11740a.f11779a.f11774g;
                     if (socket != null) {
                         socket.close();
                         return;
@@ -59,13 +59,13 @@ public final class r extends TimerTask {
                 i0.g3(new ho(this, 25));
                 return;
             case 3:
-                if (((ld0) this.f6309b).N != null) {
-                    i0.g3(new zy(this, 25));
+                if (((kd0) this.f6309b).N != null) {
+                    i0.g3(new yy(this, 25));
                     return;
                 }
                 return;
             case 4:
-                i0.g3(new mg0(this, 8));
+                i0.g3(new kg0(this, 8));
                 return;
             default:
                 i0.g3(new d0(this, 6));

@@ -9,24 +9,24 @@ import java.util.ArrayList;
 import java.util.Collections;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.d20;
-import org.telegram.messenger.j20;
-import org.telegram.messenger.jj;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.e20;
+import org.telegram.messenger.k20;
+import org.telegram.messenger.kj;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.Components.a51;
+import org.telegram.ui.Components.b51;
 import org.telegram.ui.Components.gr;
-import org.telegram.ui.Components.p51;
-import org.telegram.ui.Components.vq0;
-import org.telegram.ui.ex0;
+import org.telegram.ui.Components.q51;
+import org.telegram.ui.Components.wq0;
+import org.telegram.ui.dx0;
 import ph.p3;
 import ph.q3;
 import ph.r3;
 import rh.v5;
-public final class a implements j20 {
+public final class a implements k20 {
     public final int f452a;
     public final Object f453b;
 
@@ -42,11 +42,11 @@ public final class a implements j20 {
         boolean z13;
         final org.telegram.ui.web.j jVar = (org.telegram.ui.web.j) this.f453b;
         ArrayList arrayList = (ArrayList) obj;
-        p51 p51Var = (p51) obj2;
+        q51 q51Var = (q51) obj2;
         org.telegram.ui.web.h hVar = jVar.D;
-        ArrayList arrayList2 = jVar.f43073y;
-        if (!jVar.f43065b && arrayList2.isEmpty()) {
-            arrayList.add(a51.k(jVar.d));
+        ArrayList arrayList2 = jVar.f42875y;
+        if (!jVar.f42867b && arrayList2.isEmpty()) {
+            arrayList.add(b51.k(jVar.d));
         }
         SharedPreferences sharedPreferences = jVar.getContext().getSharedPreferences("webhistory", 0);
         ArrayList arrayList3 = new ArrayList();
@@ -58,11 +58,11 @@ public final class a implements j20 {
                 for (JSONArray jSONArray = new JSONArray(string); i10 < jSONArray.length(); jSONArray = jSONArray) {
                     JSONObject jSONObject = jSONArray.getJSONObject(i10);
                     org.telegram.ui.web.i iVar = new org.telegram.ui.web.i(jSONObject.optString("name"), jSONObject.optLong("usage", System.currentTimeMillis()));
-                    iVar.f43059c = jSONObject.optDouble("rank", 0.0d);
+                    iVar.f42861c = jSONObject.optDouble("rank", 0.0d);
                     arrayList4.add(iVar);
                     i10++;
                 }
-                Collections.sort(arrayList4, new ex0(8));
+                Collections.sort(arrayList4, new dx0(8));
                 int size = arrayList4.size();
                 int i11 = 0;
                 while (i11 < size) {
@@ -72,7 +72,7 @@ public final class a implements j20 {
                     if (arrayList3.size() >= 20) {
                         break;
                     }
-                    arrayList3.add(iVar2.f43057a);
+                    arrayList3.add(iVar2.f42859a);
                 }
             } catch (Exception unused) {
             }
@@ -80,7 +80,7 @@ public final class a implements j20 {
         arrayList2.size();
         arrayList3.size();
         if (!arrayList2.isEmpty()) {
-            arrayList.add(a51.k(jVar.f43071w));
+            arrayList.add(b51.k(jVar.f42873w));
         }
         for (int i12 = 0; i12 < arrayList2.size(); i12++) {
             final String str = (String) arrayList2.get(i12);
@@ -115,19 +115,19 @@ public final class a implements j20 {
                     }
                 }
             };
-            int i13 = org.telegram.ui.web.c.f43003b;
-            a51 K = a51.K(org.telegram.ui.web.c.class);
-            K.f24305z = 1;
-            K.f24292l = str;
+            int i13 = org.telegram.ui.web.c.f42805b;
+            b51 K = b51.K(org.telegram.ui.web.c.class);
+            K.f24656z = 1;
+            K.f24643l = str;
             K.D = onClickListener;
-            K.f24297q = z12;
-            K.f24298r = z13;
+            K.f24648q = z12;
+            K.f24649r = z13;
             K.G = Boolean.TRUE;
             K.H = jVar;
             arrayList.add(K);
         }
         if (!arrayList3.isEmpty()) {
-            arrayList.add(a51.s(cd.L0(2131742938, null), cd.L0(2131742942, null), new g(jVar, 24)));
+            arrayList.add(b51.s(dd.L0(2131742938, null), dd.L0(2131742942, null), new g(jVar, 24)));
             for (int i14 = 0; i14 < arrayList3.size(); i14++) {
                 final String str2 = (String) arrayList3.get(i14);
                 if (i14 == 0) {
@@ -161,37 +161,37 @@ public final class a implements j20 {
                         }
                     }
                 };
-                int i15 = org.telegram.ui.web.c.f43003b;
-                a51 K2 = a51.K(org.telegram.ui.web.c.class);
-                K2.f24305z = 0;
-                K2.f24292l = str2;
+                int i15 = org.telegram.ui.web.c.f42805b;
+                b51 K2 = b51.K(org.telegram.ui.web.c.class);
+                K2.f24656z = 0;
+                K2.f24643l = str2;
                 K2.D = onClickListener2;
-                K2.f24297q = z10;
-                K2.f24298r = z11;
+                K2.f24648q = z10;
+                K2.f24649r = z11;
                 K2.G = Boolean.TRUE;
                 K2.H = jVar;
                 arrayList.add(K2);
             }
         }
         if (hVar != null) {
-            ArrayList arrayList5 = hVar.f43048a;
+            ArrayList arrayList5 = hVar.f42850a;
             if (!arrayList5.isEmpty()) {
-                arrayList.add(a51.r(cd.L0(2131742939, null)));
+                arrayList.add(b51.r(dd.L0(2131742939, null)));
                 for (int i16 = 0; i16 < arrayList5.size(); i16++) {
-                    jj jjVar = (jj) arrayList5.get(i16);
-                    if (!TextUtils.isEmpty(org.telegram.ui.web.j.a(jjVar))) {
-                        int i17 = org.telegram.ui.web.f.f43027b;
-                        a51 K3 = a51.K(org.telegram.ui.web.f.class);
-                        K3.f24305z = 3;
-                        K3.f24297q = true;
-                        K3.H = jjVar;
+                    kj kjVar = (kj) arrayList5.get(i16);
+                    if (!TextUtils.isEmpty(org.telegram.ui.web.j.a(kjVar))) {
+                        int i17 = org.telegram.ui.web.f.f42829b;
+                        b51 K3 = b51.K(org.telegram.ui.web.f.class);
+                        K3.f24656z = 3;
+                        K3.f24648q = true;
+                        K3.H = kjVar;
                         arrayList.add(K3);
                     }
                 }
-                if (!hVar.f43051f) {
-                    arrayList.add(a51.q(arrayList.size(), 32));
-                    arrayList.add(a51.q(arrayList.size(), 32));
-                    arrayList.add(a51.q(arrayList.size(), 32));
+                if (!hVar.f42853f) {
+                    arrayList.add(b51.q(arrayList.size(), 32));
+                    arrayList.add(b51.q(arrayList.size(), 32));
+                    arrayList.add(b51.q(arrayList.size(), 32));
                 }
             }
         }
@@ -205,19 +205,19 @@ public final class a implements j20 {
         int i12;
         ph.f2 f2Var = (ph.f2) this.f453b;
         ArrayList arrayList = (ArrayList) obj;
-        p51 p51Var = (p51) obj2;
-        p6 p6Var = f2Var.f45044c;
-        vq0 vq0Var = f2Var.f45042a;
+        q51 q51Var = (q51) obj2;
+        p6 p6Var = f2Var.f45055c;
+        wq0 wq0Var = f2Var.f45053a;
         v5 v5Var = f2Var.e;
         if (v5Var != null) {
-            if ((!v5Var.e || v5Var.f47578g != 783) && v5Var.f47582l.size() <= 0) {
+            if ((!v5Var.e || v5Var.f47592g != 783) && v5Var.f47596l.size() <= 0) {
                 v5 v5Var2 = f2Var.e;
-                if (v5Var2.f47580j && !v5Var2.f47579i) {
+                if (v5Var2.f47594j && !v5Var2.f47593i) {
                     return;
                 }
             }
             v5 v5Var3 = f2Var.e;
-            if (v5Var3 != null && (i12 = v5Var3.f47584n) != 0) {
+            if (v5Var3 != null && (i12 = v5Var3.f47598n) != 0) {
                 i10 = Math.min(3, i12);
             } else {
                 i10 = 3;
@@ -225,7 +225,7 @@ public final class a implements j20 {
             int max = Math.max(1, i10);
             v5 v5Var4 = f2Var.e;
             if (v5Var4 != null) {
-                ArrayList arrayList2 = v5Var4.f47582l;
+                ArrayList arrayList2 = v5Var4.f47596l;
                 int size = arrayList2.size();
                 int i13 = 3;
                 int i14 = 0;
@@ -234,15 +234,15 @@ public final class a implements j20 {
                     i14++;
                     TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj3;
                     boolean z11 = f2Var.d;
-                    int i15 = ph.b1.f44980b;
-                    a51 K = a51.K(ph.b1.class);
-                    K.f24301u = 1;
-                    K.f24305z = 0;
+                    int i15 = ph.b1.f44991b;
+                    b51 K = b51.K(ph.b1.class);
+                    K.f24652u = 1;
+                    K.f24656z = 0;
                     K.G = savedStarGift;
-                    K.f24297q = true;
-                    K.f24287f = false;
-                    K.f24298r = z11;
-                    if (f2Var.h && (f2Var.e != vq0Var.d || savedStarGift.pinned_to_top)) {
+                    K.f24648q = true;
+                    K.f24638f = false;
+                    K.f24649r = z11;
+                    if (f2Var.h && (f2Var.e != wq0Var.d || savedStarGift.pinned_to_top)) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -255,7 +255,7 @@ public final class a implements j20 {
                     }
                 }
                 v5 v5Var5 = f2Var.e;
-                if (v5Var5.f47579i || !v5Var5.f47580j) {
+                if (v5Var5.f47593i || !v5Var5.f47594j) {
                     int i16 = 0;
                     while (true) {
                         if (i13 <= 0) {
@@ -267,35 +267,35 @@ public final class a implements j20 {
                             break;
                         }
                         i16++;
-                        a51 q6 = a51.q(i16, 34);
-                        q6.f24301u = 1;
+                        b51 q6 = b51.q(i16, 34);
+                        q6.f24652u = 1;
                         arrayList.add(q6);
                     }
                 }
             }
-            if (vq0Var.d == f2Var.e) {
-                arrayList.add(a51.D(org.telegram.messenger.i0.L(20.0f)));
-                if (vq0Var.f45130c == d20.i(f2Var.f45043b).e()) {
-                    int i17 = t6.f21330z6;
+            if (wq0Var.d == f2Var.e) {
+                arrayList.add(b51.D(org.telegram.messenger.i0.L(20.0f)));
+                if (wq0Var.f45141c == e20.i(f2Var.f45054b).e()) {
+                    int i17 = t6.f21331z6;
                     int w02 = t6.w0(i17, p6Var);
-                    String L0 = cd.L0(2131746686, null);
+                    String L0 = dd.L0(2131746686, null);
                     int L = org.telegram.messenger.i0.L(24.0f);
-                    int i18 = ph.g2.f45066b;
-                    a51 K2 = a51.K(ph.g2.class);
-                    K2.f24292l = L0;
-                    K2.f24305z = 17;
+                    int i18 = ph.g2.f45077b;
+                    b51 K2 = b51.K(ph.g2.class);
+                    K2.f24643l = L0;
+                    K2.f24656z = 17;
                     K2.B = w02;
                     K2.A = 14.0f;
-                    K2.f24289i = L;
-                    K2.f24291k = 0;
-                    K2.f24297q = false;
+                    K2.f24640i = L;
+                    K2.f24642k = 0;
+                    K2.f24648q = false;
                     K2.G = p6Var;
                     K2.H = Integer.valueOf(i17);
                     arrayList.add(K2);
                 }
-                arrayList.add(a51.D(org.telegram.messenger.i0.L(82.0f)));
+                arrayList.add(b51.D(org.telegram.messenger.i0.L(82.0f)));
             } else if (!arrayList.isEmpty()) {
-                arrayList.add(a51.D(org.telegram.messenger.i0.L(82.0f)));
+                arrayList.add(b51.D(org.telegram.messenger.i0.L(82.0f)));
             }
             if (!arrayList.isEmpty()) {
                 if (f2Var.H) {
@@ -303,13 +303,13 @@ public final class a implements j20 {
                 } else {
                     f7 = 12.0f;
                 }
-                arrayList.add(0, a51.D(org.telegram.messenger.i0.L(f7)));
+                arrayList.add(0, b51.D(org.telegram.messenger.i0.L(f7)));
             }
-            if (f2Var.f45045f.getSpanCount() != max) {
+            if (f2Var.f45056f.getSpanCount() != max) {
                 org.telegram.messenger.i0.g3(new ph.p1(f2Var, max, 1));
             }
-            vq0Var.p();
-            vq0Var.post(new ph.x1(vq0Var, 0));
+            wq0Var.p();
+            wq0Var.post(new ph.x1(wq0Var, 0));
         }
     }
 
@@ -318,7 +318,7 @@ public final class a implements j20 {
         float f10;
         r3 r3Var = (r3) this.f453b;
         ArrayList arrayList = (ArrayList) obj;
-        p51 p51Var = (p51) obj2;
+        q51 q51Var = (q51) obj2;
         ph.h3 h3Var = r3Var.d;
         ArrayList arrayList2 = h3Var.d;
         int size = arrayList2.size();
@@ -329,64 +329,64 @@ public final class a implements j20 {
             arrayList.add(ph.b1.i(0, (TL_stars.TL_starGiftUnique) obj3, false, false, false, true, false));
         }
         boolean z10 = true;
-        if (h3Var.f45105t || !h3Var.f45106u) {
-            a51 q6 = a51.q(-1, 34);
-            q6.f24301u = 1;
+        if (h3Var.f45116t || !h3Var.f45117u) {
+            b51 q6 = b51.q(-1, 34);
+            q6.f24652u = 1;
             arrayList.add(q6);
-            a51 q10 = a51.q(-2, 34);
-            q10.f24301u = 1;
+            b51 q10 = b51.q(-2, 34);
+            q10.f24652u = 1;
             arrayList.add(q10);
-            a51 q11 = a51.q(-3, 34);
-            q11.f24301u = 1;
+            b51 q11 = b51.q(-3, 34);
+            q11.f24652u = 1;
             arrayList.add(q11);
             if (h3Var.d.isEmpty()) {
-                a51 q12 = a51.q(-4, 34);
-                q12.f24301u = 1;
+                b51 q12 = b51.q(-4, 34);
+                q12.f24652u = 1;
                 arrayList.add(q12);
-                a51 q13 = a51.q(-5, 34);
-                q13.f24301u = 1;
+                b51 q13 = b51.q(-5, 34);
+                q13.f24652u = 1;
                 arrayList.add(q13);
-                a51 q14 = a51.q(-6, 34);
-                q14.f24301u = 1;
+                b51 q14 = b51.q(-6, 34);
+                q14.f24652u = 1;
                 arrayList.add(q14);
-                a51 q15 = a51.q(-7, 34);
-                q15.f24301u = 1;
+                b51 q15 = b51.q(-7, 34);
+                q15.f24652u = 1;
                 arrayList.add(q15);
-                a51 q16 = a51.q(-8, 34);
-                q16.f24301u = 1;
+                b51 q16 = b51.q(-8, 34);
+                q16.f24652u = 1;
                 arrayList.add(q16);
-                a51 q17 = a51.q(-9, 34);
-                q17.f24301u = 1;
+                b51 q17 = b51.q(-9, 34);
+                q17.f24652u = 1;
                 arrayList.add(q17);
-                a51 q18 = a51.q(-10, 34);
-                q18.f24301u = 1;
+                b51 q18 = b51.q(-10, 34);
+                q18.f24652u = 1;
                 arrayList.add(q18);
-                a51 q19 = a51.q(-11, 34);
-                q19.f24301u = 1;
+                b51 q19 = b51.q(-11, 34);
+                q19.f24652u = 1;
                 arrayList.add(q19);
-                a51 q20 = a51.q(-12, 34);
-                q20.f24301u = 1;
+                b51 q20 = b51.q(-12, 34);
+                q20.f24652u = 1;
                 arrayList.add(q20);
-                a51 q21 = a51.q(-13, 34);
-                q21.f24301u = 1;
+                b51 q21 = b51.q(-13, 34);
+                q21.f24652u = 1;
                 arrayList.add(q21);
-                a51 q22 = a51.q(-14, 34);
-                q22.f24301u = 1;
+                b51 q22 = b51.q(-14, 34);
+                q22.f24652u = 1;
                 arrayList.add(q22);
-                a51 q23 = a51.q(-15, 34);
-                q23.f24301u = 1;
+                b51 q23 = b51.q(-15, 34);
+                q23.f24652u = 1;
                 arrayList.add(q23);
             }
         }
-        if (!arrayList.isEmpty() || h3Var.f45105t) {
+        if (!arrayList.isEmpty() || h3Var.f45116t) {
             z10 = false;
         }
-        if (r3Var.f45301y == z10) {
+        if (r3Var.f45312y == z10) {
             return;
         }
-        r3Var.f45301y = z10;
-        r3Var.f45300x.setVisibility(0);
-        ViewPropertyAnimator animate = r3Var.f45300x.animate();
+        r3Var.f45312y = z10;
+        r3Var.f45311x.setVisibility(0);
+        ViewPropertyAnimator animate = r3Var.f45311x.animate();
         float f11 = 1.0f;
         if (z10) {
             f7 = 1.0f;
@@ -410,15 +410,15 @@ public final class a implements j20 {
         boolean z10;
         q3 q3Var = (q3) this.f453b;
         ArrayList arrayList = (ArrayList) obj;
-        p51 p51Var = (p51) obj2;
+        q51 q51Var = (q51) obj2;
         p3 p3Var = q3Var.Q1;
         if (p3Var != null) {
-            v5 v5Var = p3Var.f45270b;
-            ph.h3 h3Var = p3Var.f45271c;
+            v5 v5Var = p3Var.f45281b;
+            ph.h3 h3Var = p3Var.f45282c;
             if (v5Var != null && h3Var != null) {
-                int currentTime = ConnectionsManager.getInstance(q3Var.f21583a).getCurrentTime();
-                arrayList.add(a51.t(-1, cd.L0(2131749779, null)));
-                ArrayList arrayList2 = v5Var.f47582l;
+                int currentTime = ConnectionsManager.getInstance(q3Var.f21584a).getCurrentTime();
+                arrayList.add(b51.t(-1, dd.L0(2131749779, null)));
+                ArrayList arrayList2 = v5Var.f47596l;
                 int size = arrayList2.size();
                 boolean z11 = true;
                 int i10 = 0;
@@ -428,7 +428,7 @@ public final class a implements j20 {
                     i11++;
                     TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj3;
                     boolean z12 = z11;
-                    if (q3Var.Y1.contains(Long.valueOf(savedStarGift.gift.f20021id))) {
+                    if (q3Var.Y1.contains(Long.valueOf(savedStarGift.gift.f20022id))) {
                         z11 = z12;
                     } else {
                         if (savedStarGift.can_craft_at <= currentTime) {
@@ -436,8 +436,8 @@ public final class a implements j20 {
                         } else {
                             z10 = false;
                         }
-                        a51 i12 = ph.b1.i(0, savedStarGift.gift, false, true, false, false, true);
-                        i12.f24288g = z10;
+                        b51 i12 = ph.b1.i(0, savedStarGift.gift, false, true, false, false, true);
+                        i12.f24639g = z10;
                         arrayList.add(i12);
                         i10++;
                         z11 = false;
@@ -445,32 +445,32 @@ public final class a implements j20 {
                 }
                 boolean z13 = z11;
                 int i13 = 1;
-                if (!v5Var.f47579i && v5Var.f47580j) {
+                if (!v5Var.f47593i && v5Var.f47594j) {
                     if (z13) {
-                        arrayList.add(a51.g(cd.L0(2131749778, null)));
+                        arrayList.add(b51.g(dd.L0(2131749778, null)));
                     }
                 } else {
                     int i14 = i10 % 3;
                     int i15 = 6 - i14;
                     int i16 = 0;
                     while (i16 < i15) {
-                        a51 q6 = a51.q((i16 - i14) + 1, 35);
-                        q6.f24301u = i13;
+                        b51 q6 = b51.q((i16 - i14) + 1, 35);
+                        q6.f24652u = i13;
                         arrayList.add(q6);
                         i16++;
                         i13 = 1;
                     }
                 }
-                if (h3Var.e > 0 || q3Var.f45281b2) {
-                    q3Var.f45281b2 = true;
-                    String L0 = cd.L0(2131749781, null);
-                    a51 a51Var = new a51(42);
-                    a51Var.d = -2;
-                    a51Var.f24295o = L0;
-                    arrayList.add(a51Var);
+                if (h3Var.e > 0 || q3Var.f45292b2) {
+                    q3Var.f45292b2 = true;
+                    String L0 = dd.L0(2131749781, null);
+                    b51 b51Var = new b51(42);
+                    b51Var.d = -2;
+                    b51Var.f24646o = L0;
+                    arrayList.add(b51Var);
                     HorizontalScrollView horizontalScrollView = q3Var.R1;
                     if (horizontalScrollView != null) {
-                        arrayList.add(a51.j(-3, horizontalScrollView));
+                        arrayList.add(b51.j(-3, horizontalScrollView));
                     }
                     ArrayList arrayList3 = h3Var.d;
                     int size2 = arrayList3.size();
@@ -480,24 +480,24 @@ public final class a implements j20 {
                         i17++;
                         arrayList.add(ph.b1.i(0, (TL_stars.TL_starGiftUnique) obj4, false, true, false, true, true));
                     }
-                    if (h3Var.f45105t || !h3Var.f45106u) {
-                        a51 q10 = a51.q(10, 35);
-                        q10.f24301u = 1;
+                    if (h3Var.f45116t || !h3Var.f45117u) {
+                        b51 q10 = b51.q(10, 35);
+                        q10.f24652u = 1;
                         arrayList.add(q10);
-                        a51 q11 = a51.q(11, 35);
-                        q11.f24301u = 1;
+                        b51 q11 = b51.q(11, 35);
+                        q11.f24652u = 1;
                         arrayList.add(q11);
-                        a51 q12 = a51.q(12, 35);
-                        q12.f24301u = 1;
+                        b51 q12 = b51.q(12, 35);
+                        q12.f24652u = 1;
                         arrayList.add(q12);
-                        a51 q13 = a51.q(13, 35);
-                        q13.f24301u = 1;
+                        b51 q13 = b51.q(13, 35);
+                        q13.f24652u = 1;
                         arrayList.add(q13);
-                        a51 q14 = a51.q(14, 35);
-                        q14.f24301u = 1;
+                        b51 q14 = b51.q(14, 35);
+                        q14.f24652u = 1;
                         arrayList.add(q14);
-                        a51 q15 = a51.q(15, 35);
-                        q15.f24301u = 1;
+                        b51 q15 = b51.q(15, 35);
+                        q15.f24652u = 1;
                         arrayList.add(q15);
                     }
                 }

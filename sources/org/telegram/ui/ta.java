@@ -6,30 +6,30 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 public final class ta implements RequestDelegate {
-    public final int f41778a;
-    public final sb f41779b;
+    public final int f41594a;
+    public final sb f41595b;
 
     public ta(sb sbVar, int i10) {
-        this.f41778a = i10;
-        this.f41779b = sbVar;
+        this.f41594a = i10;
+        this.f41595b = sbVar;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f41778a) {
+        switch (this.f41594a) {
             case 0:
                 if (tLObject != null) {
                     final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults = (TLRPC.TL_channels_adminLogResults) tLObject;
-                    final sb sbVar = this.f41779b;
+                    final sb sbVar = this.f41595b;
                     org.telegram.messenger.i0.g3(new Runnable() {
                         @Override
                         public final void run() {
                             switch (r3) {
                                 case 0:
-                                    sb.Y(sbVar, tL_channels_adminLogResults);
+                                    sb.Z(sbVar, tL_channels_adminLogResults);
                                     return;
                                 default:
-                                    sb.c0(sbVar, tL_channels_adminLogResults);
+                                    sb.d0(sbVar, tL_channels_adminLogResults);
                                     return;
                             }
                         }
@@ -38,7 +38,7 @@ public final class ta implements RequestDelegate {
                 }
                 return;
             case 1:
-                sb sbVar2 = this.f41779b;
+                sb sbVar2 = this.f41595b;
                 sbVar2.getClass();
                 if (tLObject instanceof Vector) {
                     ArrayList<T> arrayList = ((Vector) tLObject).objects;
@@ -53,21 +53,21 @@ public final class ta implements RequestDelegate {
                 }
                 return;
             case 2:
-                org.telegram.messenger.i0.g3(new h0(14, this.f41779b, tLObject));
+                org.telegram.messenger.i0.g3(new h0(14, this.f41595b, tLObject));
                 return;
             case 3:
                 if (tLObject != null) {
                     final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults2 = (TLRPC.TL_channels_adminLogResults) tLObject;
-                    final sb sbVar3 = this.f41779b;
+                    final sb sbVar3 = this.f41595b;
                     org.telegram.messenger.i0.g3(new Runnable() {
                         @Override
                         public final void run() {
                             switch (r3) {
                                 case 0:
-                                    sb.Y(sbVar3, tL_channels_adminLogResults2);
+                                    sb.Z(sbVar3, tL_channels_adminLogResults2);
                                     return;
                                 default:
-                                    sb.c0(sbVar3, tL_channels_adminLogResults2);
+                                    sb.d0(sbVar3, tL_channels_adminLogResults2);
                                     return;
                             }
                         }
@@ -76,7 +76,7 @@ public final class ta implements RequestDelegate {
                 }
                 return;
             default:
-                org.telegram.messenger.i0.g3(new p1(this.f41779b, tL_error, tLObject, 9));
+                org.telegram.messenger.i0.g3(new p1(this.f41595b, tL_error, tLObject, 9));
                 return;
         }
     }

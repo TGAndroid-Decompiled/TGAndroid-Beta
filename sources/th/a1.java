@@ -9,31 +9,31 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.ui.Components.gr;
 public final class a1 extends FrameLayout {
-    public final FrameLayout f48770a;
-    public final View f48771b;
-    public final ImageView f48772c;
+    public final FrameLayout f48784a;
+    public final View f48785b;
+    public final ImageView f48786c;
     public final org.telegram.ui.n5 d;
     public boolean e;
-    public ValueAnimator f48773f;
+    public ValueAnimator f48787f;
     public boolean h;
-    public float f48774n;
-    public ValueAnimator f48775r;
+    public float f48788n;
+    public ValueAnimator f48789r;
 
     public a1(Context context, wg.b bVar) {
         super(context);
         w7.e6.a(this);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f48770a = frameLayout;
+        this.f48784a = frameLayout;
         tg.i iVar = new tg.i();
-        iVar.f48750a = bVar;
+        iVar.f48764a = bVar;
         iVar.a();
-        iVar.f48754g.setColor(-14670806);
+        iVar.f48768g.setColor(-14670806);
         iVar.invalidateSelf();
-        iVar.f48753f = org.telegram.messenger.i0.L(1.0f);
+        iVar.f48767f = org.telegram.messenger.i0.L(1.0f);
         frameLayout.setBackground(iVar);
         addView(frameLayout, w7.b6.e(40, 40, 17));
         View view = new View(context);
-        this.f48771b = view;
+        this.f48785b = view;
         view.setBackground(org.telegram.ui.ActionBar.t6.L(org.telegram.messenger.i0.L(40.0f), -13522392));
         frameLayout.addView(view, w7.b6.e(38, 38, 17));
         view.setAlpha(0.0f);
@@ -43,7 +43,7 @@ public final class a1 extends FrameLayout {
         this.d = n5Var;
         addView(n5Var, w7.b6.e(42, 42, 17));
         ImageView imageView = new ImageView(context);
-        this.f48772c = imageView;
+        this.f48786c = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setScaleX(0.75f);
         imageView.setScaleY(0.75f);
@@ -58,10 +58,10 @@ public final class a1 extends FrameLayout {
             return;
         }
         this.e = z10;
-        ValueAnimator valueAnimator = this.f48773f;
+        ValueAnimator valueAnimator = this.f48787f;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f48773f = null;
+            this.f48787f = null;
         }
         boolean z12 = true;
         float f7 = 1.0f;
@@ -84,11 +84,11 @@ public final class a1 extends FrameLayout {
                 f7 = 0.0f;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(alpha, f7);
-            this.f48773f = ofFloat;
+            this.f48787f = ofFloat;
             ofFloat.addUpdateListener(new z0(this, 0));
-            this.f48773f.setDuration(320L);
-            this.f48773f.setInterpolator(gr.h);
-            this.f48773f.start();
+            this.f48787f.setDuration(320L);
+            this.f48787f.setInterpolator(gr.h);
+            this.f48787f.start();
         }
         if (!this.h && z10) {
             z12 = false;
@@ -100,7 +100,7 @@ public final class a1 extends FrameLayout {
         boolean z12;
         this.h = z10;
         int i10 = 2131232430;
-        ImageView imageView = this.f48772c;
+        ImageView imageView = this.f48786c;
         if (!z11) {
             if (z10) {
                 i10 = 2131232426;
@@ -121,34 +121,34 @@ public final class a1 extends FrameLayout {
     }
 
     public final void c(boolean z10, boolean z11) {
-        ValueAnimator valueAnimator = this.f48775r;
+        ValueAnimator valueAnimator = this.f48789r;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f48775r = null;
+            this.f48789r = null;
         }
         float f7 = 0.0f;
         if (!z11) {
             if (z10) {
                 f7 = 1.0f;
             }
-            this.f48774n = f7;
-            View view = this.f48771b;
+            this.f48788n = f7;
+            View view = this.f48785b;
             view.setAlpha(1.0f - f7);
-            view.setScaleX(1.0f - this.f48774n);
-            view.setScaleY(1.0f - this.f48774n);
-            this.f48772c.setColorFilter(new PorterDuffColorFilter(i0.b.f(this.f48774n, -1, -2960428), PorterDuff.Mode.SRC_IN));
-            this.f48770a.invalidate();
+            view.setScaleX(1.0f - this.f48788n);
+            view.setScaleY(1.0f - this.f48788n);
+            this.f48786c.setColorFilter(new PorterDuffColorFilter(i0.b.f(this.f48788n, -1, -2960428), PorterDuff.Mode.SRC_IN));
+            this.f48784a.invalidate();
             return;
         }
-        float f10 = this.f48774n;
+        float f10 = this.f48788n;
         if (z10) {
             f7 = 1.0f;
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-        this.f48775r = ofFloat;
+        this.f48789r = ofFloat;
         ofFloat.addUpdateListener(new z0(this, 1));
-        this.f48775r.setInterpolator(gr.h);
-        this.f48775r.setDuration(420L);
-        this.f48775r.start();
+        this.f48789r.setInterpolator(gr.h);
+        this.f48789r.setDuration(420L);
+        this.f48789r.start();
     }
 }

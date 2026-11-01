@@ -116,16 +116,16 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.Components.dr0;
+import org.telegram.ui.Components.er0;
 import org.telegram.ui.Components.jb0;
-import org.telegram.ui.Components.tk0;
-import org.telegram.ui.Components.uy0;
-import org.telegram.ui.Components.wy0;
-import org.telegram.ui.Components.x41;
+import org.telegram.ui.Components.uk0;
+import org.telegram.ui.Components.vy0;
+import org.telegram.ui.Components.xy0;
+import org.telegram.ui.Components.y41;
 import org.telegram.ui.Components.ze0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.et0;
-import org.telegram.ui.m91;
+import org.telegram.ui.hr0;
+import org.telegram.ui.k91;
 public abstract class i0 {
     public static final int C;
     public static boolean D;
@@ -137,47 +137,47 @@ public abstract class i0 {
     public static final Pattern U;
     public static final Pattern V;
     public static final Pattern W;
-    public static Typeface f15999a;
-    public static final int[] f16000a0;
-    public static final int[] f16002b0;
-    public static final f f16004c0;
-    public static CallReceiver f16005d0;
+    public static Typeface f16145a;
+    public static final int[] f16146a0;
+    public static final int[] f16148b0;
+    public static final f f16150c0;
+    public static CallReceiver f16151d0;
     public static float e;
-    public static Pattern f16006e0;
-    public static SimpleDateFormat f16008f0;
-    public static final String[] f16010g0;
-    public static final float[] f16011h0;
-    public static WeakReference f16012i;
-    public static final float[] f16013i0;
-    public static final char[] f16015j0;
-    public static HashSet f16017k0;
-    public static HashMap f16019l0;
+    public static Pattern f16152e0;
+    public static SimpleDateFormat f16154f0;
+    public static final String[] f16156g0;
+    public static final float[] f16157h0;
+    public static WeakReference f16158i;
+    public static final float[] f16159i0;
+    public static final char[] f16161j0;
+    public static HashSet f16163k0;
+    public static HashMap f16165l0;
     public static boolean m0;
-    public static Pattern f16022n0;
-    public static boolean f16023o;
-    public static final Paint f16024o0;
-    public static int f16030u;
+    public static Pattern f16168n0;
+    public static boolean f16169o;
+    public static final Paint f16170o0;
+    public static int f16176u;
     public static int v;
-    public static int f16031w;
-    public static int f16032x;
-    public static boolean f16033y;
-    public static final ThreadLocal f16001b = new ThreadLocal();
-    public static final ThreadLocal f16003c = new ThreadLocal();
+    public static int f16177w;
+    public static int f16178x;
+    public static boolean f16179y;
+    public static final ThreadLocal f16147b = new ThreadLocal();
+    public static final ThreadLocal f16149c = new ThreadLocal();
     public static final Hashtable d = new Hashtable();
-    public static int f16007f = -10;
-    public static int f16009g = -10;
+    public static int f16153f = -10;
+    public static int f16155g = -10;
     public static int h = -10;
-    public static boolean f16014j = false;
-    public static final Object f16016k = new Object();
-    public static final Object f16018l = new Object();
-    public static int f16020m = 0;
-    public static int f16021n = 0;
-    public static float f16025p = 1.0f;
-    public static final Point f16026q = new Point();
-    public static float f16027r = 60.0f;
-    public static float f16028s = 60.0f;
-    public static float f16029t = 16.666666f;
-    public static Integer f16034z = null;
+    public static boolean f16160j = false;
+    public static final Object f16162k = new Object();
+    public static final Object f16164l = new Object();
+    public static int f16166m = 0;
+    public static int f16167n = 0;
+    public static float f16171p = 1.0f;
+    public static final Point f16172q = new Point();
+    public static float f16173r = 60.0f;
+    public static float f16174s = 60.0f;
+    public static float f16175t = 16.666666f;
+    public static Integer f16180z = null;
     public static Integer A = null;
     public static final DisplayMetrics B = new DisplayMetrics();
     public static final DecelerateInterpolator F = new DecelerateInterpolator();
@@ -218,15 +218,15 @@ public abstract class i0 {
             i10 = 72;
         }
         C = i10;
-        v(w0.f19025b, null);
-        f16000a0 = new int[]{2131231729, 2131231731, 2131231733, 2131231735};
-        f16002b0 = new int[]{2131231730, 2131231732, 2131231734, 2131231736};
-        f16004c0 = new Object();
-        f16010g0 = new String[]{"", "K", "M", "B", "T", "P"};
-        f16011h0 = new float[9];
-        f16013i0 = new float[9];
-        f16015j0 = new char[]{160, ' ', '!', '\"', '#', '%', '&', '\'', '(', ')', '*', ',', '-', '.', '/', ':', ';', '?', '@', '[', '\\', ']', '_', '{', '}', 161, 167, 171, 182, 183, 187, 191, 894, 903, 1370, 1371, 1372, 1373, 1374, 1375, 1417, 1418, 1470, 1472, 1475, 1478, 1523, 1524, 1545, 1546, 1548, 1549, 1563, 1566, 1567, 1642, 1643, 1644, 1645, 1748, 1792, 1793, 1794, 1795, 1796, 1797, 1798, 1799, 1800, 1801, 1802, 1803, 1804, 1805, 2039, 2040, 2041, 2096, 2097, 2098, 2099, 2100, 2101, 2102, 2103, 2104, 2105, 2106, 2107, 2108, 2109, 2110, 2142, 2404, 2405, 2416, 2557, 2678, 2800, 3191, 3204, 3572, 3663, 3674, 3675, 3844, 3845, 3846, 3847, 3848, 3849, 3850, 3851, 3852, 3853, 3854, 3855, 3856, 3857, 3858, 3860, 3898, 3899, 3900, 3901, 3973, 4048, 4049, 4050, 4051, 4052, 4057, 4058, 4170, 4171, 4172, 4173, 4174, 4175, 4347, 4960, 4961, 4962, 4963, 4964, 4965, 4966, 4967, 4968, 5120, 5742, 5787, 5788, 5867, 5868, 5869, 5941, 5942, 6100, 6101, 6102, 6104, 6105, 6106, 6144, 6145, 6146, 6147, 6148, 6149, 6150, 6151, 6152, 6153, 6154, 6468, 6469, 6686, 6687, 6816, 6817, 6818, 6819, 6820, 6821, 6822, 6824, 6825, 6826, 6827, 6828, 6829, 7002, 7003, 7004, 7005, 7006, 7007, 7008, 7164, 7165, 7166, 7167, 7227, 7228, 7229, 7230, 7231, 7294, 7295, 7360, 7361, 7362, 7363, 7364, 7365, 7366, 7367, 7379, 8208, 8209, 8210, 8211, 8212, 8213, 8214, 8215, 8216, 8217, 8218, 8219, 8220, 8221, 8222, 8223, 8224, 8225, 8226, 8227, 8228, 8229, 8230, 8231, 8240, 8241, 8242, 8243, 8244, 8245, 8246, 8247, 8248, 8249, 8250, 8251, 8252, 8253, 8254, 8255, 8256, 8257, 8258, 8259, 8261, 8262, 8263, 8264, 8265, 8266, 8267, 8268, 8269, 8270, 8271, 8272, 8273, 8275, 8276, 8277, 8278, 8279, 8280, 8281, 8282, 8283, 8284, 8285, 8286, 8317, 8318, 8333, 8334, 8968, 8969, 8970, 8971, 9001, 9002, 10088, 10089, 10090, 10091, 10092, 10093, 10094, 10095, 10096, 10097, 10098, 10099, 10100, 10101, 10181, 10182, 10214, 10215, 10216, 10217, 10218, 10219, 10220, 10221, 10222, 10223, 10627, 10628, 10629, 10630, 10631, 10632, 10633, 10634, 10635, 10636, 10637, 10638, 10639, 10640, 10641, 10642, 10643, 10644, 10645, 10646, 10647, 10648, 10712, 10713, 10714, 10715, 10748, 10749, 11513, 11514, 11515, 11516, 11518, 11519, 11632, 11776, 11777, 11778, 11779, 11780, 11781, 11782, 11783, 11784, 11785, 11786, 11787, 11788, 11789, 11790, 11791, 11792, 11793, 11794, 11795, 11796, 11797, 11798, 11799, 11800, 11801, 11802, 11803, 11804, 11805, 11806, 11807, 11808, 11809, 11810, 11811, 11812, 11813, 11814, 11815, 11816, 11817, 11818, 11819, 11820, 11821, 11822, 11824, 11825, 11826, 11827, 11828, 11829, 11830, 11831, 11832, 11833, 11834, 11835, 11836, 11837, 11838, 11839, 11840, 11841, 11842, 11843, 11844, 11845, 11846, 11847, 11848, 11849, 11850, 11851, 11852, 11853, 11854, 11855, 12289, 12290, 12291, 12296, 12297, 12298, 12299, 12300, 12301, 12302, 12303, 12304, 12305, 12308, 12309, 12310, 12311, 12312, 12313, 12314, 12315, 12316, 12317, 12318, 12319, 12336, 12349, 12448, 12539, 42238, 42239, 42509, 42510, 42511, 42611, 42622, 42738, 42739, 42740, 42741, 42742, 42743, 43124, 43125, 43126, 43127, 43214, 43215, 43256, 43257, 43258, 43260, 43310, 43311, 43359, 43457, 43458, 43459, 43460, 43461, 43462, 43463, 43464, 43465, 43466, 43467, 43468, 43469, 43486, 43487, 43612, 43613, 43614, 43615, 43742, 43743, 43760, 43761, 44011, 64830, 64831, 65040, 65041, 65042, 65043, 65044, 65045, 65046, 65047, 65048, 65049, 65072, 65073, 65074, 65075, 65076, 65077, 65078, 65079, 65080, 65081, 65082, 65083, 65084, 65085, 65086, 65087, 65088, 65089, 65090, 65091, 65092, 65093, 65094, 65095, 65096, 65097, 65098, 65099, 65100, 65101, 65102, 65103, 65104, 65105, 65106, 65108, 65109, 65110, 65111, 65112, 65113, 65114, 65115, 65116, 65117, 65118, 65119, 65120, 65121, 65123, 65128, 65130, 65131, 65281, 65282, 65283, 65285, 65286, 65287, 65288, 65289, 65290, 65292, 65293, 65294, 65295, 65306, 65307, 65311, 65312, 65339, 65340, 65341, 65343, 65371, 65373, 65375, 65376, 65377, 65378, 65379, 65380, 65381};
-        f16024o0 = new Paint(1);
+        v(w0.f18945b, null);
+        f16146a0 = new int[]{2131231729, 2131231731, 2131231733, 2131231735};
+        f16148b0 = new int[]{2131231730, 2131231732, 2131231734, 2131231736};
+        f16150c0 = new Object();
+        f16156g0 = new String[]{"", "K", "M", "B", "T", "P"};
+        f16157h0 = new float[9];
+        f16159i0 = new float[9];
+        f16161j0 = new char[]{160, ' ', '!', '\"', '#', '%', '&', '\'', '(', ')', '*', ',', '-', '.', '/', ':', ';', '?', '@', '[', '\\', ']', '_', '{', '}', 161, 167, 171, 182, 183, 187, 191, 894, 903, 1370, 1371, 1372, 1373, 1374, 1375, 1417, 1418, 1470, 1472, 1475, 1478, 1523, 1524, 1545, 1546, 1548, 1549, 1563, 1566, 1567, 1642, 1643, 1644, 1645, 1748, 1792, 1793, 1794, 1795, 1796, 1797, 1798, 1799, 1800, 1801, 1802, 1803, 1804, 1805, 2039, 2040, 2041, 2096, 2097, 2098, 2099, 2100, 2101, 2102, 2103, 2104, 2105, 2106, 2107, 2108, 2109, 2110, 2142, 2404, 2405, 2416, 2557, 2678, 2800, 3191, 3204, 3572, 3663, 3674, 3675, 3844, 3845, 3846, 3847, 3848, 3849, 3850, 3851, 3852, 3853, 3854, 3855, 3856, 3857, 3858, 3860, 3898, 3899, 3900, 3901, 3973, 4048, 4049, 4050, 4051, 4052, 4057, 4058, 4170, 4171, 4172, 4173, 4174, 4175, 4347, 4960, 4961, 4962, 4963, 4964, 4965, 4966, 4967, 4968, 5120, 5742, 5787, 5788, 5867, 5868, 5869, 5941, 5942, 6100, 6101, 6102, 6104, 6105, 6106, 6144, 6145, 6146, 6147, 6148, 6149, 6150, 6151, 6152, 6153, 6154, 6468, 6469, 6686, 6687, 6816, 6817, 6818, 6819, 6820, 6821, 6822, 6824, 6825, 6826, 6827, 6828, 6829, 7002, 7003, 7004, 7005, 7006, 7007, 7008, 7164, 7165, 7166, 7167, 7227, 7228, 7229, 7230, 7231, 7294, 7295, 7360, 7361, 7362, 7363, 7364, 7365, 7366, 7367, 7379, 8208, 8209, 8210, 8211, 8212, 8213, 8214, 8215, 8216, 8217, 8218, 8219, 8220, 8221, 8222, 8223, 8224, 8225, 8226, 8227, 8228, 8229, 8230, 8231, 8240, 8241, 8242, 8243, 8244, 8245, 8246, 8247, 8248, 8249, 8250, 8251, 8252, 8253, 8254, 8255, 8256, 8257, 8258, 8259, 8261, 8262, 8263, 8264, 8265, 8266, 8267, 8268, 8269, 8270, 8271, 8272, 8273, 8275, 8276, 8277, 8278, 8279, 8280, 8281, 8282, 8283, 8284, 8285, 8286, 8317, 8318, 8333, 8334, 8968, 8969, 8970, 8971, 9001, 9002, 10088, 10089, 10090, 10091, 10092, 10093, 10094, 10095, 10096, 10097, 10098, 10099, 10100, 10101, 10181, 10182, 10214, 10215, 10216, 10217, 10218, 10219, 10220, 10221, 10222, 10223, 10627, 10628, 10629, 10630, 10631, 10632, 10633, 10634, 10635, 10636, 10637, 10638, 10639, 10640, 10641, 10642, 10643, 10644, 10645, 10646, 10647, 10648, 10712, 10713, 10714, 10715, 10748, 10749, 11513, 11514, 11515, 11516, 11518, 11519, 11632, 11776, 11777, 11778, 11779, 11780, 11781, 11782, 11783, 11784, 11785, 11786, 11787, 11788, 11789, 11790, 11791, 11792, 11793, 11794, 11795, 11796, 11797, 11798, 11799, 11800, 11801, 11802, 11803, 11804, 11805, 11806, 11807, 11808, 11809, 11810, 11811, 11812, 11813, 11814, 11815, 11816, 11817, 11818, 11819, 11820, 11821, 11822, 11824, 11825, 11826, 11827, 11828, 11829, 11830, 11831, 11832, 11833, 11834, 11835, 11836, 11837, 11838, 11839, 11840, 11841, 11842, 11843, 11844, 11845, 11846, 11847, 11848, 11849, 11850, 11851, 11852, 11853, 11854, 11855, 12289, 12290, 12291, 12296, 12297, 12298, 12299, 12300, 12301, 12302, 12303, 12304, 12305, 12308, 12309, 12310, 12311, 12312, 12313, 12314, 12315, 12316, 12317, 12318, 12319, 12336, 12349, 12448, 12539, 42238, 42239, 42509, 42510, 42511, 42611, 42622, 42738, 42739, 42740, 42741, 42742, 42743, 43124, 43125, 43126, 43127, 43214, 43215, 43256, 43257, 43258, 43260, 43310, 43311, 43359, 43457, 43458, 43459, 43460, 43461, 43462, 43463, 43464, 43465, 43466, 43467, 43468, 43469, 43486, 43487, 43612, 43613, 43614, 43615, 43742, 43743, 43760, 43761, 44011, 64830, 64831, 65040, 65041, 65042, 65043, 65044, 65045, 65046, 65047, 65048, 65049, 65072, 65073, 65074, 65075, 65076, 65077, 65078, 65079, 65080, 65081, 65082, 65083, 65084, 65085, 65086, 65087, 65088, 65089, 65090, 65091, 65092, 65093, 65094, 65095, 65096, 65097, 65098, 65099, 65100, 65101, 65102, 65103, 65104, 65105, 65106, 65108, 65109, 65110, 65111, 65112, 65113, 65114, 65115, 65116, 65117, 65118, 65119, 65120, 65121, 65123, 65128, 65130, 65131, 65281, 65282, 65283, 65285, 65286, 65287, 65288, 65289, 65290, 65292, 65293, 65294, 65295, 65306, 65307, 65311, 65312, 65339, 65340, 65341, 65343, 65371, 65373, 65375, 65376, 65377, 65378, 65379, 65380, 65381};
+        f16170o0 = new Paint(1);
     }
 
     public static int A(int i10, int i11) {
@@ -314,7 +314,7 @@ public abstract class i0 {
                     zArr2[0] = z10;
                     countDownLatch2.countDown();
                 }
-            }, Utilities.f14522g.b());
+            }, Utilities.f14523g.b());
             try {
                 countDownLatch.await();
             } catch (InterruptedException e7) {
@@ -406,7 +406,7 @@ public abstract class i0 {
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             bitmap.compress(compressFormat, 87, fileOutputStream);
             fileOutputStream.close();
-            Context context = w0.f19025b;
+            Context context = w0.f18945b;
             w0.d();
             Uri d10 = FileProvider.d(context, "org.telegram.messenger.beta.provider", file);
             fileOutputStream.close();
@@ -419,7 +419,7 @@ public abstract class i0 {
 
     public static boolean C1() {
         if (I == null) {
-            I = (AccessibilityManager) w0.f19025b.getSystemService("accessibility");
+            I = (AccessibilityManager) w0.f18945b.getSystemService("accessibility");
         }
         if (I.isEnabled() && I.isTouchExplorationEnabled()) {
             return true;
@@ -434,27 +434,27 @@ public abstract class i0 {
     }
 
     public static void C3(boolean z10) {
-        synchronized (f16018l) {
+        synchronized (f16164l) {
             try {
                 try {
                     if (z10) {
-                        if (f16005d0 == null) {
+                        if (f16151d0 == null) {
                             IntentFilter intentFilter = new IntentFilter("android.intent.action.PHONE_STATE");
                             if (Build.VERSION.SDK_INT >= 33) {
-                                Context context = w0.f19025b;
+                                Context context = w0.f18945b;
                                 CallReceiver callReceiver = new CallReceiver();
-                                f16005d0 = callReceiver;
+                                f16151d0 = callReceiver;
                                 context.registerReceiver(callReceiver, intentFilter, 4);
                             } else {
-                                Context context2 = w0.f19025b;
+                                Context context2 = w0.f18945b;
                                 CallReceiver callReceiver2 = new CallReceiver();
-                                f16005d0 = callReceiver2;
+                                f16151d0 = callReceiver2;
                                 context2.registerReceiver(callReceiver2, intentFilter);
                             }
                         }
-                    } else if (f16005d0 != null) {
-                        w0.f19025b.unregisterReceiver(f16005d0);
-                        f16005d0 = null;
+                    } else if (f16151d0 != null) {
+                        w0.f18945b.unregisterReceiver(f16151d0);
+                        f16151d0 = null;
                     }
                 } catch (Throwable th2) {
                     throw th2;
@@ -481,7 +481,7 @@ public abstract class i0 {
     public static String D0() {
         String str;
         try {
-            PackageInfo packageInfo = w0.f19025b.getPackageManager().getPackageInfo(w0.f19025b.getPackageName(), 0);
+            PackageInfo packageInfo = w0.f18945b.getPackageManager().getPackageInfo(w0.f18945b.getPackageName(), 0);
             int i10 = packageInfo.versionCode;
             int i11 = i10 / 10;
             int i12 = i10 % 10;
@@ -492,7 +492,7 @@ public abstract class i0 {
                 str = "store bundled " + Build.CPU_ABI + " " + Build.CPU_ABI2;
             }
             Locale locale = Locale.US;
-            return cd.a0("TelegramVersion", null, 2131744235, "v" + packageInfo.versionName + " (" + i11 + ") " + str);
+            return dd.a0("TelegramVersion", null, 2131744235, "v" + packageInfo.versionName + " (" + i11 + ") " + str);
         } catch (Exception e7) {
             f8.g(e7, true);
             return null;
@@ -519,14 +519,14 @@ public abstract class i0 {
     }
 
     public static void D3(boolean z10) {
-        synchronized (f16016k) {
+        synchronized (f16162k) {
             try {
-                f16014j = z10;
+                f16160j = z10;
                 if (z10) {
-                    ?? jVar = new com.google.android.gms.common.api.j(w0.f19025b, y5.a.f54187k, com.google.android.gms.common.api.b.f4337k, com.google.android.gms.common.api.i.f4346c);
+                    ?? jVar = new com.google.android.gms.common.api.j(w0.f18945b, y5.a.f54208k, com.google.android.gms.common.api.b.f4337k, com.google.android.gms.common.api.i.f4346c);
                     com.google.android.gms.common.api.internal.v b10 = com.google.android.gms.common.api.internal.w.b();
                     b10.f4496c = new hb.a((j7.a) jVar);
-                    b10.d = new k6.c[]{j7.b.f9702a};
+                    b10.d = new k6.c[]{j7.b.f9703a};
                     b10.f4494a = 1567;
                     jVar.e(1, b10.a()).addOnSuccessListener(new m4.v0(25));
                 }
@@ -577,14 +577,14 @@ public abstract class i0 {
         if (str == null || str.startsWith("mounted")) {
             f8.b("external dir mounted");
             try {
-                File[] externalCacheDirs = w0.f19025b.getExternalCacheDirs();
+                File[] externalCacheDirs = w0.f18945b.getExternalCacheDirs();
                 int i10 = 0;
                 File file = externalCacheDirs[0];
-                if (!TextUtils.isEmpty(tz.f18150h0)) {
+                if (!TextUtils.isEmpty(uz.f18519h0)) {
                     while (true) {
                         if (i10 < externalCacheDirs.length) {
                             File file2 = externalCacheDirs[i10];
-                            if (file2 != null && file2.getAbsolutePath().startsWith(tz.f18150h0)) {
+                            if (file2 != null && file2.getAbsolutePath().startsWith(uz.f18519h0)) {
                                 file = externalCacheDirs[i10];
                                 break;
                             }
@@ -613,7 +613,7 @@ public abstract class i0 {
             }
         }
         try {
-            File cacheDir = w0.f19025b.getCacheDir();
+            File cacheDir = w0.f18945b.getCacheDir();
             if (cacheDir != null) {
                 return cacheDir;
             }
@@ -621,7 +621,7 @@ public abstract class i0 {
             f8.g(e11, true);
         }
         try {
-            File filesDir = w0.f19025b.getFilesDir();
+            File filesDir = w0.f18945b.getFilesDir();
             if (filesDir != null) {
                 File file3 = new File(filesDir, "cache/");
                 file3.mkdirs();
@@ -733,11 +733,11 @@ public abstract class i0 {
         }
         view.setTag(2131296664, Float.valueOf(view.getTranslationX()));
         float translationX = view.getTranslationX();
-        o1.j jVar = new o1.j(view, o1.j.f13941o, translationX);
+        o1.j jVar = new o1.j(view, o1.j.f13942o, translationX);
         o1.k kVar = new o1.k(translationX);
         kVar.b(600.0f);
-        jVar.f13957m = kVar;
-        jVar.f13948a = (-L2) * 100;
+        jVar.f13958m = kVar;
+        jVar.f13949a = (-L2) * 100;
         jVar.a(new i(translationX, view, runnable));
         view.setTag(2131296663, jVar);
         jVar.h();
@@ -834,8 +834,8 @@ public abstract class i0 {
     }
 
     public static i0.c I0(r0.j1 j1Var, boolean z10) {
-        i0.c g10 = j1Var.f46132a.g(647);
-        r0.g1 g1Var = j1Var.f46132a;
+        i0.c g10 = j1Var.f46143a.g(647);
+        r0.g1 g1Var = j1Var.f46143a;
         i0.c a2 = i0.c.a(g10, g1Var.f(647));
         if (z10) {
             return i0.c.a(a2, g1Var.f(8));
@@ -850,7 +850,7 @@ public abstract class i0 {
             if (str == null) {
                 return false;
             }
-            if (str.matches(Pattern.quote(new File(w0.f19025b.getCacheDir(), "voip_logs").getAbsolutePath()) + "/\\d+\\.log")) {
+            if (str.matches(Pattern.quote(new File(w0.f18945b.getCacheDir(), "voip_logs").getAbsolutePath()) + "/\\d+\\.log")) {
                 return false;
             }
             int i11 = 0;
@@ -898,7 +898,7 @@ public abstract class i0 {
         if (str.endsWith(".attheme")) {
             return false;
         }
-        return str.toLowerCase().contains("/data/data/" + w0.f19025b.getPackageName());
+        return str.toLowerCase().contains("/data/data/" + w0.f18945b.getPackageName());
     }
 
     public static SpannableStringBuilder I2(CharSequence charSequence, boolean z10, float f7, float f10, float f11, int i10) {
@@ -906,11 +906,11 @@ public abstract class i0 {
         float f12 = f11 * 0.88f;
         dqVar.H = f12;
         dqVar.I = f12;
-        dqVar.f25508r = -f7;
-        dqVar.f25509s = f10;
+        dqVar.f25568r = -f7;
+        dqVar.f25569s = f10;
         dqVar.G = 0.8f;
         if (z10) {
-            dqVar.f25506f = z10;
+            dqVar.f25566f = z10;
         }
         SpannableString spannableString = new SpannableString(" >");
         spannableString.setSpan(dqVar, spannableString.length() - 1, spannableString.length(), 33);
@@ -921,12 +921,12 @@ public abstract class i0 {
         org.telegram.ui.Components.dq dqVar2 = new org.telegram.ui.Components.dq(i10, 0);
         dqVar2.H = f12;
         dqVar2.I = f12;
-        dqVar2.f25508r = f7;
-        dqVar2.f25509s = f10;
-        dqVar2.f25510w = 180.0f;
+        dqVar2.f25568r = f7;
+        dqVar2.f25569s = f10;
+        dqVar2.f25570w = 180.0f;
         dqVar2.G = 0.8f;
         if (z10) {
-            dqVar2.f25506f = z10;
+            dqVar2.f25566f = z10;
         }
         SpannableString spannableString3 = new SpannableString("<");
         spannableString3.setSpan(dqVar2, 0, 1, 33);
@@ -982,7 +982,7 @@ public abstract class i0 {
     public static boolean J1(org.telegram.ui.ActionBar.k2 k2Var) {
         ((t7.u) w0.k()).getClass();
         try {
-            w0.f19025b.getPackageManager().getApplicationInfo("com.google.android.apps.maps", 0);
+            w0.f18945b.getPackageManager().getApplicationInfo("com.google.android.apps.maps", 0);
             return true;
         } catch (PackageManager.NameNotFoundException unused) {
             if (k2Var.getParentActivity() == null) {
@@ -990,10 +990,10 @@ public abstract class i0 {
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(k2Var.getParentActivity());
             ((t7.u) w0.k()).getClass();
-            alertDialog$Builder.f20134a.T = cd.L0(2131749205, null);
-            alertDialog$Builder.k(cd.L0(2131747847, null), new p(0, "com.google.android.apps.maps", k2Var));
-            alertDialog$Builder.h(cd.L0(2131752589, null), null);
-            k2Var.showDialog(alertDialog$Builder.f20134a);
+            alertDialog$Builder.f20135a.T = dd.L0(2131749205, null);
+            alertDialog$Builder.k(dd.L0(2131747847, null), new p(0, "com.google.android.apps.maps", k2Var));
+            alertDialog$Builder.h(dd.L0(2131752589, null), null);
+            k2Var.showDialog(alertDialog$Builder.f20135a);
             return false;
         }
     }
@@ -1048,10 +1048,10 @@ public abstract class i0 {
 
     public static String K0(String str, boolean z10) {
         if (str != null) {
-            if (f16022n0 == null) {
-                f16022n0 = Pattern.compile("^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?");
+            if (f16168n0 == null) {
+                f16168n0 = Pattern.compile("^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?");
             }
-            Matcher matcher = f16022n0.matcher(str);
+            Matcher matcher = f16168n0.matcher(str);
             if (matcher.matches()) {
                 String group = matcher.group(4);
                 if (group != null) {
@@ -1068,27 +1068,27 @@ public abstract class i0 {
     }
 
     public static boolean K1(char c10) {
-        if (f16017k0 == null) {
-            f16017k0 = new HashSet();
+        if (f16163k0 == null) {
+            f16163k0 = new HashSet();
             int i10 = 0;
             while (true) {
-                char[] cArr = f16015j0;
+                char[] cArr = f16161j0;
                 if (i10 >= cArr.length) {
                     break;
                 }
-                f16017k0.add(Character.valueOf(cArr[i10]));
+                f16163k0.add(Character.valueOf(cArr[i10]));
                 i10++;
             }
         }
-        return f16017k0.contains(Character.valueOf(c10));
+        return f16163k0.contains(Character.valueOf(c10));
     }
 
     public static SpannableStringBuilder K2(String str, org.telegram.ui.ActionBar.p6 p6Var, org.telegram.ui.Components.as asVar) {
-        if (f16006e0 == null) {
-            f16006e0 = Pattern.compile("\\[(.+?)\\]\\((.+?)\\)");
+        if (f16152e0 == null) {
+            f16152e0 = Pattern.compile("\\[(.+?)\\]\\((.+?)\\)");
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        Matcher matcher = f16006e0.matcher(str);
+        Matcher matcher = f16152e0.matcher(str);
         int i10 = 0;
         while (matcher.find()) {
             spannableStringBuilder.append((CharSequence) str, i10, matcher.start());
@@ -1106,46 +1106,46 @@ public abstract class i0 {
         if (!bVar.f()) {
             return;
         }
-        String str = bVar.f10428b;
-        int i10 = bVar.f10429c;
+        String str = bVar.f10429b;
+        int i10 = bVar.f10430c;
         String str2 = bVar.d;
         String str3 = bVar.e;
-        String str4 = bVar.f10430f;
+        String str4 = bVar.f10431f;
         org.telegram.ui.ActionBar.z2 z2Var = new org.telegram.ui.ActionBar.z2(1, (Context) launchActivity, (org.telegram.ui.ActionBar.p6) null, false);
         z2Var.O();
-        z2Var.f21616u0 = false;
-        z2Var.f21617v0 = false;
+        z2Var.f21617u0 = false;
+        z2Var.f21618v0 = false;
         LinearLayout linearLayout = new LinearLayout(launchActivity);
         linearLayout.setOrientation(1);
         z2Var.N = linearLayout;
-        TextView b10 = w7.g6.b(launchActivity, 20.0f, org.telegram.ui.ActionBar.t6.f21037j5, true, null);
-        b10.setText(cd.L0(2131743801, null));
+        TextView b10 = w7.g6.b(launchActivity, 20.0f, org.telegram.ui.ActionBar.t6.f21038j5, true, null);
+        b10.setText(dd.L0(2131743801, null));
         linearLayout.addView(b10, w7.b6.t(-1, -2, 55, 22, 18, 22, 0));
-        wy0 wy0Var = new wy0(launchActivity, null);
-        linearLayout.addView(wy0Var, w7.b6.t(-1, -2, 55, 14, 18, 14, 0));
+        xy0 xy0Var = new xy0(launchActivity, null);
+        linearLayout.addView(xy0Var, w7.b6.t(-1, -2, 55, 14, 18, 14, 0));
         if (!TextUtils.isEmpty(str)) {
-            wy0Var.c(cd.L0(2131743817, null), str, null, null);
+            xy0Var.c(dd.L0(2131743817, null), str, null, null);
         }
         if (i10 != 0) {
-            wy0Var.c(cd.L0(2131743812, null), Integer.toString(i10), null, null);
+            xy0Var.c(dd.L0(2131743812, null), Integer.toString(i10), null, null);
         }
         if (!TextUtils.isEmpty(str4)) {
-            wy0Var.c(cd.L0(2131743810, null), str4, null, null);
+            xy0Var.c(dd.L0(2131743810, null), str4, null, null);
         }
         if (!TextUtils.isEmpty(str2)) {
-            wy0Var.c(cd.L0(2131743800, null), str2, null, null);
+            xy0Var.c(dd.L0(2131743800, null), str2, null, null);
         }
         if (!TextUtils.isEmpty(str3)) {
-            wy0Var.c(cd.L0(2131743813, null), str3, null, null);
+            xy0Var.c(dd.L0(2131743813, null), str3, null, null);
         }
         org.telegram.ui.Components.ec[] ecVarArr = new org.telegram.ui.Components.ec[1];
-        wy0Var.c(cd.L0(2131746615, null), "", null, ecVarArr);
+        xy0Var.c(dd.L0(2131746615, null), "", null, ecVarArr);
         ((View) ecVarArr[0].getParent()).setPadding(0, 0, 0, 0);
         ecVarArr[0].setDisablePaddingsOffsetY(true);
         ecVarArr[0].setPadding(L(12.66f), L(9.33f), L(12.66f), L(9.33f));
-        ecVarArr[0].setText(N2(cd.L0(2131746624, null), org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.Uc, false), new ul(new boolean[1], ecVarArr, bVar, launchActivity, 5)));
+        ecVarArr[0].setText(N2(dd.L0(2131746624, null), org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.Uc, false), new vl(new boolean[1], ecVarArr, bVar, launchActivity, 5)));
         if (!TextUtils.isEmpty(str4)) {
-            uy0 a2 = wy0Var.a(cd.L0(2131743802, null));
+            vy0 a2 = xy0Var.a(dd.L0(2131743802, null));
             a2.setFilled(true);
             nh.p pVar = (nh.p) a2.getChildAt(0);
             pVar.setTextSize(1, 11.0f);
@@ -1153,30 +1153,30 @@ public abstract class i0 {
         }
         vh.d dVar = new vh.d(launchActivity, null, true);
         dVar.setRoundRadius(24);
-        dVar.setText(cd.L0(2131751808, null));
-        final mg.l1 l1Var = z2Var.f21621x0;
+        dVar.setText(dd.L0(2131751808, null));
+        final mg.l1 l1Var = z2Var.f21622x0;
         dVar.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                SharedPreferences.Editor edit = vp.d1().edit();
+                SharedPreferences.Editor edit = wp.d1().edit();
                 edit.putBoolean("proxy_enabled", true);
                 ji.b bVar2 = ji.b.this;
                 bVar2.h(edit);
                 edit.commit();
-                tz.B1 = tz.a(new sz(bVar2));
+                uz.B1 = uz.a(new tz(bVar2));
                 ConnectionsManager.setProxySettings(true, bVar2);
-                zs.e().k(zs.A4, new Object[0]);
+                at.e().k(at.A4, new Object[0]);
                 org.telegram.ui.ActionBar.k2 lastFragment = launchActivity.M().getLastFragment();
                 if (lastFragment instanceof org.telegram.ui.un) {
                     org.telegram.ui.un unVar = (org.telegram.ui.un) lastFragment;
-                    unVar.Y7();
+                    unVar.c8();
                     UndoView undoView = unVar.M3;
                     if (undoView != null) {
                         undoView.j(87, 0L, null);
                         l1Var.run();
                     }
                 }
-                zs.e().k(zs.P4, 6, cd.L0(2131746625, null));
+                at.e().k(at.P4, 6, dd.L0(2131746625, null));
                 l1Var.run();
             }
         });
@@ -1188,7 +1188,7 @@ public abstract class i0 {
         if (f7 == 0.0f) {
             return 0;
         }
-        return (int) Math.ceil(f16025p * f7);
+        return (int) Math.ceil(f16171p * f7);
     }
 
     public static Pair L0(File file) {
@@ -1251,7 +1251,7 @@ public abstract class i0 {
         if (f7 == 0.0f) {
             return 0;
         }
-        return (int) Math.floor(f16025p * f7);
+        return (int) Math.floor(f16171p * f7);
     }
 
     public static Pair M0(InputStream inputStream) {
@@ -1330,7 +1330,7 @@ public abstract class i0 {
         if (f7 == 0.0f) {
             return 0.0f;
         }
-        return f16025p * f7;
+        return f16171p * f7;
     }
 
     public static Pair N0(String str) {
@@ -1342,9 +1342,9 @@ public abstract class i0 {
     }
 
     public static boolean N1() {
-        TelephonyManager telephonyManager = (TelephonyManager) w0.f19025b.getSystemService("phone");
+        TelephonyManager telephonyManager = (TelephonyManager) w0.f18945b.getSystemService("phone");
         int simState = telephonyManager.getSimState();
-        if (simState == 1 || simState == 0 || telephonyManager.getPhoneType() == 0 || Settings.Global.getInt(w0.f19025b.getContentResolver(), "airplane_mode_on", 0) != 0) {
+        if (simState == 1 || simState == 0 || telephonyManager.getPhoneType() == 0 || Settings.Global.getInt(w0.f18945b.getContentResolver(), "airplane_mode_on", 0) != 0) {
             return false;
         }
         return true;
@@ -1381,7 +1381,7 @@ public abstract class i0 {
                 return "";
             }
         }
-        String R0 = cd.D0().R0(str, true, false);
+        String R0 = dd.D0().R0(str, true, false);
         if (R0 == null) {
             return "";
         }
@@ -1390,7 +1390,7 @@ public abstract class i0 {
 
     public static void O(Canvas canvas, FrameLayout frameLayout, int i10, int i11, float f7) {
         int r12 = org.telegram.ui.ActionBar.t6.r1(T1(0.0f, 0.75f, R0(i11)) * f7, i10);
-        Paint paint = f16024o0;
+        Paint paint = f16170o0;
         paint.setColor(r12);
         canvas.drawRect(0.0f, (frameLayout.getY() + frameLayout.getMeasuredHeight()) - i11, frameLayout.getMeasuredWidth(), frameLayout.getY() + frameLayout.getMeasuredHeight(), paint);
     }
@@ -1441,8 +1441,8 @@ public abstract class i0 {
     public static boolean O1() {
         boolean z10;
         if (M == null) {
-            Point point = f16026q;
-            if (((Math.max(point.x, point.y) - f16020m) - f16021n) / f16025p <= 650.0f) {
+            Point point = f16172q;
+            if (((Math.max(point.x, point.y) - f16166m) - f16167n) / f16171p <= 650.0f) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -1526,7 +1526,7 @@ public abstract class i0 {
     public static File P0() {
         try {
             if ("mounted".equals(Environment.getExternalStorageState())) {
-                File externalFilesDir = w0.f19025b.getExternalFilesDir(null);
+                File externalFilesDir = w0.f18945b.getExternalFilesDir(null);
                 File file = new File(externalFilesDir.getAbsolutePath() + "/logs");
                 file.mkdirs();
                 return file;
@@ -1535,11 +1535,11 @@ public abstract class i0 {
         }
         try {
             try {
-                File file2 = new File(w0.f19025b.getCacheDir() + "/logs");
+                File file2 = new File(w0.f18945b.getCacheDir() + "/logs");
                 file2.mkdirs();
                 return file2;
             } catch (Exception unused2) {
-                File file3 = new File(w0.f19025b.getFilesDir() + "/logs");
+                File file3 = new File(w0.f18945b.getFilesDir() + "/logs");
                 file3.mkdirs();
                 return file3;
             }
@@ -1550,8 +1550,8 @@ public abstract class i0 {
     }
 
     public static boolean P1() {
-        Point point = f16026q;
-        if (Math.min(point.x, point.y) / f16025p <= 690.0f) {
+        Point point = f16172q;
+        if (Math.min(point.x, point.y) / f16171p <= 690.0f) {
             return true;
         }
         return false;
@@ -1584,20 +1584,20 @@ public abstract class i0 {
         boolean z10;
         if (activity != null) {
             try {
-                if (f16007f != -10) {
+                if (f16153f != -10) {
                     int requestedOrientation = activity.getRequestedOrientation();
-                    activity.setRequestedOrientation(f16007f);
+                    activity.setRequestedOrientation(f16153f);
                     if (activity.getResources().getConfiguration().smallestScreenWidthDp >= 600) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     if (z10) {
-                        f16009g = f16007f;
+                        f16155g = f16153f;
                         h = requestedOrientation;
-                        f16012i = new WeakReference(activity);
+                        f16158i = new WeakReference(activity);
                     }
-                    f16007f = -10;
+                    f16153f = -10;
                 }
             } catch (Exception e7) {
                 f8.g(e7, true);
@@ -1692,7 +1692,7 @@ public abstract class i0 {
 
     public static int Q0() {
         boolean P1 = P1();
-        Point point = f16026q;
+        Point point = f16172q;
         if (!P1) {
             int min = Math.min(point.x, point.y);
             return min - l1(min, 0, 0);
@@ -1703,14 +1703,14 @@ public abstract class i0 {
     }
 
     public static boolean Q1() {
-        if (R1() && !tz.W) {
+        if (R1() && !uz.W) {
             return true;
         }
         return false;
     }
 
-    public static SpannableStringBuilder Q2(String str, int i10, org.telegram.ui.ActionBar.p6 p6Var, et0 et0Var) {
-        return P2(str, i10, p6Var, et0Var, false);
+    public static SpannableStringBuilder Q2(String str, int i10, org.telegram.ui.ActionBar.p6 p6Var, hr0 hr0Var) {
+        return P2(str, i10, p6Var, hr0Var, false);
     }
 
     public static void Q3(ImageView imageView, int i10) {
@@ -1728,7 +1728,7 @@ public abstract class i0 {
     public static boolean R1() {
         boolean z10;
         if (K == null) {
-            if (w0.f19025b != null && w0.f19025b.getResources().getBoolean(2131034114)) {
+            if (w0.f18945b != null && w0.f18945b.getResources().getBoolean(2131034114)) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -1843,8 +1843,8 @@ public abstract class i0 {
         return true;
     }
 
-    public static SpannableStringBuilder S2(String str, int i10, org.telegram.ui.mf mfVar) {
-        return R2(str, i10, 0, mfVar, null);
+    public static SpannableStringBuilder S2(String str, int i10, org.telegram.ui.nf nfVar) {
+        return R2(str, i10, 0, nfVar, null);
     }
 
     public static void S3(WindowManager windowManager, View view, ViewGroup.LayoutParams layoutParams) {
@@ -1855,7 +1855,7 @@ public abstract class i0 {
 
     public static void T() {
         try {
-            TelephonyManager telephonyManager = (TelephonyManager) w0.f19025b.getSystemService("phone");
+            TelephonyManager telephonyManager = (TelephonyManager) w0.f18945b.getSystemService("phone");
             Method declaredMethod = Class.forName(telephonyManager.getClass().getName()).getDeclaredMethod("getITelephony", null);
             declaredMethod.setAccessible(true);
             if (declaredMethod.invoke(telephonyManager, null) == null) {
@@ -1874,13 +1874,13 @@ public abstract class i0 {
         Uri uri2;
         String[] split;
         try {
-            if (DocumentsContract.isDocumentUri(w0.f19025b, uri)) {
+            if (DocumentsContract.isDocumentUri(w0.f18945b, uri)) {
                 if ("com.android.externalstorage.documents".equals(uri.getAuthority())) {
                     if ("primary".equalsIgnoreCase(DocumentsContract.getDocumentId(uri).split(":")[0])) {
                         return Environment.getExternalStorageDirectory() + "/" + split[1];
                     }
                 } else if ("com.android.providers.downloads.documents".equals(uri.getAuthority())) {
-                    return H0(w0.f19025b, ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), Long.valueOf(DocumentsContract.getDocumentId(uri)).longValue()), null, null);
+                    return H0(w0.f18945b, ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), Long.valueOf(DocumentsContract.getDocumentId(uri)).longValue()), null, null);
                 } else if ("com.android.providers.media.documents".equals(uri.getAuthority())) {
                     String[] split2 = DocumentsContract.getDocumentId(uri).split(":");
                     String str = split2[0];
@@ -1889,27 +1889,27 @@ public abstract class i0 {
                         if (hashCode != 100313435) {
                             if (hashCode == 112202875 && str.equals("video")) {
                                 uri2 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                                return H0(w0.f19025b, uri2, "_id=?", new String[]{split2[1]});
+                                return H0(w0.f18945b, uri2, "_id=?", new String[]{split2[1]});
                             }
                             uri2 = null;
-                            return H0(w0.f19025b, uri2, "_id=?", new String[]{split2[1]});
+                            return H0(w0.f18945b, uri2, "_id=?", new String[]{split2[1]});
                         }
                         if (str.equals("image")) {
                             uri2 = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-                            return H0(w0.f19025b, uri2, "_id=?", new String[]{split2[1]});
+                            return H0(w0.f18945b, uri2, "_id=?", new String[]{split2[1]});
                         }
                         uri2 = null;
-                        return H0(w0.f19025b, uri2, "_id=?", new String[]{split2[1]});
+                        return H0(w0.f18945b, uri2, "_id=?", new String[]{split2[1]});
                     }
                     if (str.equals("audio")) {
                         uri2 = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-                        return H0(w0.f19025b, uri2, "_id=?", new String[]{split2[1]});
+                        return H0(w0.f18945b, uri2, "_id=?", new String[]{split2[1]});
                     }
                     uri2 = null;
-                    return H0(w0.f19025b, uri2, "_id=?", new String[]{split2[1]});
+                    return H0(w0.f18945b, uri2, "_id=?", new String[]{split2[1]});
                 }
             } else if ("content".equalsIgnoreCase(uri.getScheme())) {
-                return H0(w0.f19025b, uri, null, null);
+                return H0(w0.f18945b, uri, null, null);
             } else {
                 if ("file".equalsIgnoreCase(uri.getScheme())) {
                     return uri.getPath();
@@ -2046,7 +2046,7 @@ public abstract class i0 {
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(spannableStringBuilder);
             for (int i10 = 0; i10 < arrayList.size() / 2; i10++) {
                 int i11 = i10 * 2;
-                spannableStringBuilder2.setSpan(new x41(o()), ((Integer) arrayList.get(i11)).intValue(), ((Integer) arrayList.get(i11 + 1)).intValue(), 33);
+                spannableStringBuilder2.setSpan(new y41(o()), ((Integer) arrayList.get(i11)).intValue(), ((Integer) arrayList.get(i11 + 1)).intValue(), 33);
             }
             return spannableStringBuilder2;
         } catch (Exception e7) {
@@ -2194,7 +2194,7 @@ public abstract class i0 {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(sb2);
             for (int i10 = 0; i10 < arrayList.size() / 2; i10++) {
                 int i11 = i10 * 2;
-                spannableStringBuilder.setSpan(new x41(o()), ((Integer) arrayList.get(i11)).intValue(), ((Integer) arrayList.get(i11 + 1)).intValue(), 33);
+                spannableStringBuilder.setSpan(new y41(o()), ((Integer) arrayList.get(i11)).intValue(), ((Integer) arrayList.get(i11 + 1)).intValue(), 33);
             }
             return spannableStringBuilder;
         } catch (Exception e7) {
@@ -2346,7 +2346,7 @@ public abstract class i0 {
             if (childAt.getVisibility() == 0 && (!(childAt instanceof th.z2) || childAt == view)) {
                 if (childAt instanceof th.q6) {
                     th.s6 s6Var = (th.s6) viewGroup;
-                    if (s6Var.f49439b == null || (f7 >= L(60.0f) && f7 <= viewGroup.getWidth() - L(60.0f))) {
+                    if (s6Var.f49453b == null || (f7 >= L(60.0f) && f7 <= viewGroup.getWidth() - L(60.0f))) {
                         int i12 = 0;
                         while (i12 < s6Var.getChildCount()) {
                             View childAt2 = s6Var.getChildAt(i12);
@@ -2425,7 +2425,7 @@ public abstract class i0 {
         }
         for (int i10 = 0; i10 < list.size(); i10++) {
             TLRPC.Document document = (TLRPC.Document) list.get(i10);
-            if (document != null && document.f19799id == j10) {
+            if (document != null && document.f19800id == j10) {
                 return document;
             }
         }
@@ -2439,10 +2439,10 @@ public abstract class i0 {
             }
             return A.intValue();
         }
-        if (f16034z == null) {
-            f16034z = 1280;
+        if (f16180z == null) {
+            f16180z = 1280;
         }
-        return f16034z.intValue();
+        return f16180z.intValue();
     }
 
     public static void Z1(RectF rectF, RectF rectF2, float f7, RectF rectF3) {
@@ -2459,14 +2459,14 @@ public abstract class i0 {
         }
     }
 
-    public static void Z3(int i10, tk0 tk0Var) {
+    public static void Z3(int i10, uk0 uk0Var) {
         s4.g0 adapter;
         s4.c1 T2;
-        if (tk0Var != null && (adapter = tk0Var.getAdapter()) != null) {
-            for (int i11 = 0; i11 < tk0Var.getChildCount(); i11++) {
-                View childAt = tk0Var.getChildAt(i11);
+        if (uk0Var != null && (adapter = uk0Var.getAdapter()) != null) {
+            for (int i11 = 0; i11 < uk0Var.getChildCount(); i11++) {
+                View childAt = uk0Var.getChildAt(i11);
                 int R2 = RecyclerView.R(childAt);
-                if (R2 >= 0 && (T2 = tk0Var.T(childAt)) != null && !T2.r() && T2.b() == i10) {
+                if (R2 >= 0 && (T2 = uk0Var.T(childAt)) != null && !T2.r() && T2.b() == i10) {
                     adapter.t(T2, R2);
                 }
             }
@@ -2529,7 +2529,7 @@ public abstract class i0 {
     }
 
     public static void a0() {
-        SharedPreferences sharedPreferences = w0.f19025b.getSharedPreferences("google_bug_154855417", 0);
+        SharedPreferences sharedPreferences = w0.f18945b.getSharedPreferences("google_bug_154855417", 0);
         if (!sharedPreferences.contains("fixed")) {
             new File(w0.h(), "ZoomTables.data").delete();
             sharedPreferences.edit().putBoolean("fixed", true).apply();
@@ -2574,14 +2574,14 @@ public abstract class i0 {
         O = i10;
     }
 
-    public static void a4(tk0 tk0Var) {
+    public static void a4(uk0 uk0Var) {
         s4.g0 adapter;
         s4.c1 T2;
-        if (tk0Var != null && (adapter = tk0Var.getAdapter()) != null) {
-            for (int i10 = 0; i10 < tk0Var.getChildCount(); i10++) {
-                View childAt = tk0Var.getChildAt(i10);
+        if (uk0Var != null && (adapter = uk0Var.getAdapter()) != null) {
+            for (int i10 = 0; i10 < uk0Var.getChildCount(); i10++) {
+                View childAt = uk0Var.getChildAt(i10);
                 int R2 = RecyclerView.R(childAt);
-                if (R2 >= 0 && (T2 = tk0Var.T(childAt)) != null && !T2.r()) {
+                if (R2 >= 0 && (T2 = uk0Var.T(childAt)) != null && !T2.r()) {
                     adapter.t(T2, R2);
                 }
             }
@@ -2673,22 +2673,22 @@ public abstract class i0 {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.i0.c(android.text.Spannable, int, boolean, boolean):void");
     }
 
-    public static void c0(View view, q20 q20Var) {
+    public static void c0(View view, r20 r20Var) {
         if (view instanceof ViewGroup) {
             ViewGroup viewGroup = (ViewGroup) view;
             for (int i10 = 0; i10 < viewGroup.getChildCount(); i10++) {
-                q20Var.a(view);
-                c0(viewGroup.getChildAt(i10), q20Var);
+                r20Var.a(view);
+                c0(viewGroup.getChildAt(i10), r20Var);
             }
             return;
         }
-        q20Var.a(view);
+        r20Var.a(view);
     }
 
     public static Point c1() {
         Point point = new Point();
         try {
-            ((WindowManager) w0.f19025b.getSystemService("window")).getDefaultDisplay().getRealSize(point);
+            ((WindowManager) w0.f18945b.getSystemService("window")).getDefaultDisplay().getRealSize(point);
             return point;
         } catch (Exception e7) {
             f8.g(e7, true);
@@ -2713,21 +2713,21 @@ public abstract class i0 {
             L = Boolean.valueOf(R1());
         }
         K = null;
-        if (tz.X0) {
-            SharedPreferences sharedPreferences = w0.f19025b.getSharedPreferences("mainconfig", 0);
-            if (Q1() && (w0.f19025b == null || !w0.f19025b.getPackageManager().hasSystemFeature("android.hardware.sensor.hinge_angle"))) {
+        if (uz.X0) {
+            SharedPreferences sharedPreferences = w0.f18945b.getSharedPreferences("mainconfig", 0);
+            if (Q1() && (w0.f18945b == null || !w0.f18945b.getPackageManager().hasSystemFeature("android.hardware.sensor.hinge_angle"))) {
                 i10 = 18;
             } else {
                 i10 = 16;
             }
             int i11 = sharedPreferences.getInt("fons_size", i10);
-            tz.W0 = i11;
-            tz.Z0 = sharedPreferences.getInt("iv_font_size", i11);
+            uz.W0 = i11;
+            uz.Z0 = sharedPreferences.getInt("iv_font_size", i11);
         }
     }
 
     public static SpannableStringBuilder c4(CharSequence charSequence, Runnable runnable) {
-        SpannableString spannableString = new SpannableString(cd.L0(2131749019, null));
+        SpannableString spannableString = new SpannableString(dd.L0(2131749019, null));
         spannableString.setSpan(new y(0, runnable), 0, spannableString.length(), 33);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
         spannableStringBuilder.append((CharSequence) " ");
@@ -2743,25 +2743,25 @@ public abstract class i0 {
         try {
             Intent intent = new Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE");
             intent.setData(fromFile);
-            w0.f19025b.sendBroadcast(intent);
+            w0.f18945b.sendBroadcast(intent);
         } catch (Exception e7) {
             f8.g(e7, true);
         }
     }
 
-    public static void d0(RecyclerView recyclerView, q20 q20Var) {
+    public static void d0(RecyclerView recyclerView, r20 r20Var) {
         if (recyclerView != null) {
             for (int i10 = 0; i10 < recyclerView.getChildCount(); i10++) {
-                q20Var.a(recyclerView.getChildAt(i10));
+                r20Var.a(recyclerView.getChildAt(i10));
             }
             for (int i11 = 0; i11 < recyclerView.getCachedChildCount(); i11++) {
-                q20Var.a(recyclerView.P(i11));
+                r20Var.a(recyclerView.P(i11));
             }
             for (int i12 = 0; i12 < recyclerView.getHiddenChildCount(); i12++) {
-                q20Var.a(recyclerView.V(i12));
+                r20Var.a(recyclerView.V(i12));
             }
             for (int i13 = 0; i13 < recyclerView.getAttachedScrapChildCount(); i13++) {
-                q20Var.a(recyclerView.O(i13));
+                r20Var.a(recyclerView.O(i13));
             }
         }
     }
@@ -2772,7 +2772,7 @@ public abstract class i0 {
         int indexOf;
         HashSet hashSet = new HashSet();
         ArrayList arrayList = null;
-        File[] externalFilesDirs = w0.f19025b.getExternalFilesDirs(null);
+        File[] externalFilesDirs = w0.f18945b.getExternalFilesDirs(null);
         if (externalFilesDirs != null) {
             for (File file : externalFilesDirs) {
                 if (file != null && (indexOf = (absolutePath = file.getAbsolutePath()).indexOf("/Android")) >= 0) {
@@ -2864,14 +2864,14 @@ public abstract class i0 {
     public static String e0(int i10, double d10, double d11, int i11, int i12, boolean z10, int i13, int i14) {
         int i15;
         int i16 = 2;
-        int min = Math.min(2, (int) Math.ceil(f16025p));
+        int min = Math.min(2, (int) Math.ceil(f16171p));
         if (i14 == -1) {
-            i15 = vp.r1(i10).f18842m3;
+            i15 = wp.r1(i10).f19185m3;
         } else {
             i15 = i14;
         }
         if (i15 != 1 && i15 != 3) {
-            String str = vp.r1(i10).f18897s3;
+            String str = wp.r1(i10).f19240s3;
             if (!TextUtils.isEmpty(str)) {
                 if (z10) {
                     return String.format(Locale.US, "https://maps.googleapis.com/maps/api/staticmap?center=%.6f,%.6f&zoom=%d&size=%dx%d&maptype=roadmap&scale=%d&markers=color:red%%7Csize:mid%%7C%.6f,%.6f&sensor=false&key=%s", Double.valueOf(d10), Double.valueOf(d11), Integer.valueOf(i13), Integer.valueOf(i11), Integer.valueOf(i12), Integer.valueOf(min), Double.valueOf(d10), Double.valueOf(d11), str);
@@ -2884,12 +2884,12 @@ public abstract class i0 {
             }
         }
         String[] strArr = {"ru_RU", "tr_TR"};
-        zc zcVar = cd.D0().B;
+        ad adVar = dd.D0().B;
         String str2 = null;
         int i17 = 0;
         while (i17 < i16) {
             int i18 = i16;
-            if (strArr[i17].toLowerCase().contains(zcVar.f19497c)) {
+            if (strArr[i17].toLowerCase().contains(adVar.f14593c)) {
                 str2 = strArr[i17];
             }
             i17++;
@@ -3071,7 +3071,7 @@ public abstract class i0 {
             return;
         }
         try {
-            ((ClipboardManager) w0.f19025b.getSystemService("clipboard")).setPrimaryClip(ClipData.newHtmlText("label", charSequence, str));
+            ((ClipboardManager) w0.f18945b.getSystemService("clipboard")).setPrimaryClip(ClipData.newHtmlText("label", charSequence, str));
         } catch (Exception e7) {
             f8.g(e7, true);
         }
@@ -3102,7 +3102,7 @@ public abstract class i0 {
     }
 
     public static int f1() {
-        float f7 = f16025p;
+        float f7 = f16171p;
         if (f7 >= 4.0f) {
             return 3;
         }
@@ -3115,17 +3115,17 @@ public abstract class i0 {
     public static void f2(Activity activity) {
         int requestedOrientation;
         WeakReference weakReference;
-        if (activity != null && f16007f == -10 && !R1()) {
+        if (activity != null && f16153f == -10 && !R1()) {
             try {
-                if (f16009g != -10 && (weakReference = f16012i) != null && weakReference.get() == activity) {
-                    requestedOrientation = f16009g;
+                if (f16155g != -10 && (weakReference = f16158i) != null && weakReference.get() == activity) {
+                    requestedOrientation = f16155g;
                 } else {
                     requestedOrientation = activity.getRequestedOrientation();
                 }
-                f16007f = requestedOrientation;
-                f16009g = -10;
+                f16153f = requestedOrientation;
+                f16155g = -10;
                 h = -10;
-                f16012i = null;
+                f16158i = null;
                 WindowManager windowManager = (WindowManager) activity.getSystemService("window");
                 if (windowManager != null && windowManager.getDefaultDisplay() != null) {
                     int rotation = windowManager.getDefaultDisplay().getRotation();
@@ -3162,7 +3162,7 @@ public abstract class i0 {
 
     public static int f3(boolean z10, boolean z11) {
         if (z10) {
-            return f16031w;
+            return f16177w;
         }
         int i10 = v;
         if (z11) {
@@ -3173,7 +3173,7 @@ public abstract class i0 {
 
     public static boolean g(CharSequence charSequence) {
         try {
-            ClipboardManager clipboardManager = (ClipboardManager) w0.f19025b.getSystemService("clipboard");
+            ClipboardManager clipboardManager = (ClipboardManager) w0.f18945b.getSystemService("clipboard");
             if (charSequence instanceof Spanned) {
                 clipboardManager.setPrimaryClip(ClipData.newHtmlText("label", charSequence, rf.n.c((Spanned) charSequence)));
                 return true;
@@ -3211,15 +3211,15 @@ public abstract class i0 {
         WeakReference weakReference;
         if (activity != null && !R1()) {
             try {
-                if (f16009g != -10 && (weakReference = f16012i) != null && weakReference.get() == activity) {
-                    requestedOrientation = f16009g;
+                if (f16155g != -10 && (weakReference = f16158i) != null && weakReference.get() == activity) {
+                    requestedOrientation = f16155g;
                 } else {
                     requestedOrientation = activity.getRequestedOrientation();
                 }
-                f16007f = requestedOrientation;
-                f16009g = -10;
+                f16153f = requestedOrientation;
+                f16155g = -10;
                 h = -10;
-                f16012i = null;
+                f16158i = null;
                 activity.setRequestedOrientation(1);
             } catch (Exception e7) {
                 f8.g(e7, true);
@@ -3331,7 +3331,7 @@ public abstract class i0 {
 
     public static void i2(CharSequence charSequence) {
         if (!TextUtils.isEmpty(charSequence)) {
-            AccessibilityManager accessibilityManager = (AccessibilityManager) w0.f19025b.getSystemService("accessibility");
+            AccessibilityManager accessibilityManager = (AccessibilityManager) w0.f18945b.getSystemService("accessibility");
             if (accessibilityManager.isEnabled()) {
                 AccessibilityEvent obtain = AccessibilityEvent.obtain();
                 obtain.setEventType(16384);
@@ -3391,7 +3391,7 @@ public abstract class i0 {
         Canvas canvas = new Canvas(createBitmap);
         float f10 = 1.0f / f7;
         canvas.scale(f10, f10);
-        canvas.drawColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f20929d6, false));
+        canvas.drawColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f20930d6, false));
         view.draw(canvas);
         Utilities.stackBlurBitmap(createBitmap, Math.max(i10, Math.max(width, height) / 180));
         return createBitmap;
@@ -3403,8 +3403,8 @@ public abstract class i0 {
             try {
                 Field declaredField = k2Var.getClass().getDeclaredField("listView");
                 declaredField.setAccessible(true);
-                tk0 tk0Var = (tk0) declaredField.get(k2Var);
-                tk0Var.e1(new j(k2Var, str, tk0Var), 700, true);
+                uk0 uk0Var = (uk0) declaredField.get(k2Var);
+                uk0Var.e1(new j(k2Var, str, uk0Var), 700, true);
                 declaredField.setAccessible(false);
             } catch (Throwable unused) {
             }
@@ -3478,11 +3478,11 @@ public abstract class i0 {
         return createBitmap;
     }
 
-    public static SpannableStringBuilder l0(CharSequence charSequence, l9 l9Var, CharSequence... charSequenceArr) {
+    public static SpannableStringBuilder l0(CharSequence charSequence, m9 m9Var, CharSequence... charSequenceArr) {
         String charSequence2 = charSequence.toString();
         SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(charSequence);
         for (int i10 = 0; i10 < charSequenceArr.length; i10++) {
-            String str = (String) l9Var.l(Integer.valueOf(i10));
+            String str = (String) m9Var.l(Integer.valueOf(i10));
             int indexOf = charSequence2.indexOf(str);
             if (indexOf != -1) {
                 valueOf.replace(indexOf, str.length() + indexOf, charSequenceArr[i10]);
@@ -3496,8 +3496,8 @@ public abstract class i0 {
         return Math.max(L(320.0f), (((i10 - i11) - i12) * 35) / 100) + i11;
     }
 
-    public static void l2(q20 q20Var, float f7) {
-        m2(q20Var, f7, (int) f7, null);
+    public static void l2(r20 r20Var, float f7) {
+        m2(r20Var, f7, (int) f7, null);
     }
 
     public static void l3(Activity activity, boolean z10) {
@@ -3530,8 +3530,8 @@ public abstract class i0 {
     public static int m1(String str, boolean z10) {
         int i10;
         String substring;
-        int[] iArr = f16002b0;
-        int[] iArr2 = f16000a0;
+        int[] iArr = f16148b0;
+        int[] iArr2 = f16146a0;
         if (str != null && str.length() != 0) {
             if (!str.contains(".doc") && !str.contains(".txt") && !str.contains(".psd")) {
                 if (!str.contains(".xls") && !str.contains(".csv")) {
@@ -3574,24 +3574,24 @@ public abstract class i0 {
         }
     }
 
-    public static void m2(q20 q20Var, float f7, int i10, ArrayList arrayList) {
+    public static void m2(r20 r20Var, float f7, int i10, ArrayList arrayList) {
         List j10 = j();
         if (j10 == null) {
-            q20Var.a(null);
+            r20Var.a(null);
             return;
         }
         m0 = true;
         try {
             try {
-                Point point = f16026q;
+                Point point = f16172q;
                 int i11 = (int) (point.x / f7);
-                int i12 = (int) (((point.y + f16020m) + f16021n) / f7);
+                int i12 = (int) (((point.y + f16166m) + f16167n) / f7);
                 int[] iArr = new int[2];
                 Bitmap createBitmap = Bitmap.createBitmap(i11, i12, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
                 float f10 = 1.0f / f7;
                 canvas.scale(f10, f10);
-                canvas.drawColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f20929d6, false));
+                canvas.drawColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f20930d6, false));
                 for (int i13 = 0; i13 < j10.size(); i13++) {
                     View view = (View) j10.get(i13);
                     if (!(view instanceof ze0) && (arrayList == null || !arrayList.contains(view))) {
@@ -3614,10 +3614,10 @@ public abstract class i0 {
                     }
                 }
                 Utilities.stackBlurBitmap(createBitmap, Math.max(i10, Math.max(i11, i12) / 180));
-                q20Var.a(createBitmap);
+                r20Var.a(createBitmap);
             } catch (Exception e10) {
                 f8.g(e10, true);
-                q20Var.a(null);
+                r20Var.a(null);
             }
             m0 = false;
         } catch (Throwable th2) {
@@ -3711,14 +3711,14 @@ public abstract class i0 {
     }
 
     public static Typeface o() {
-        if (f15999a == null) {
-            if (tz.V0 && Build.VERSION.SDK_INT >= 28) {
-                f15999a = Typeface.create(null, 500, false);
+        if (f16145a == null) {
+            if (uz.V0 && Build.VERSION.SDK_INT >= 28) {
+                f16145a = Typeface.create(null, 500, false);
             } else {
-                f15999a = o1("fonts/rmedium.ttf");
+                f16145a = o1("fonts/rmedium.ttf");
             }
         }
-        return f15999a;
+        return f16145a;
     }
 
     public static String o0(int i10, int i11) {
@@ -3733,7 +3733,7 @@ public abstract class i0 {
             }
             int i12 = 0;
             while (true) {
-                strArr = f16010g0;
+                strArr = f16156g0;
                 if (i11 < 1000 || i12 >= strArr.length - 1) {
                     break;
                 }
@@ -3764,7 +3764,7 @@ public abstract class i0 {
                 if (!hashtable.containsKey(str)) {
                     try {
                         if (Build.VERSION.SDK_INT >= 26) {
-                            Typeface.Builder builder = new Typeface.Builder(w0.f19025b.getAssets(), str);
+                            Typeface.Builder builder = new Typeface.Builder(w0.f18945b.getAssets(), str);
                             if (str.contains("rextrabold")) {
                                 builder.setWeight(800);
                             }
@@ -3776,11 +3776,11 @@ public abstract class i0 {
                             }
                             createFromAsset = builder.build();
                         } else {
-                            createFromAsset = Typeface.createFromAsset(w0.f19025b.getAssets(), str);
+                            createFromAsset = Typeface.createFromAsset(w0.f18945b.getAssets(), str);
                         }
                         hashtable.put(str, createFromAsset);
                     } catch (Exception e7) {
-                        if (v2.f18448a) {
+                        if (v2.f18578a) {
                             f8.d("Could not get typeface '" + str + "' because " + e7.getMessage());
                         }
                         return null;
@@ -3826,7 +3826,7 @@ public abstract class i0 {
 
     public static String p0(int i10, String str) {
         Date date = new Date();
-        date.setTime(System.currentTimeMillis() + Utilities.f14519b.nextInt(1000) + 1);
+        date.setTime(System.currentTimeMillis() + Utilities.f14520b.nextInt(1000) + 1);
         String format = new SimpleDateFormat("yyyyMMdd_HHmmss_SSS", Locale.US).format(date);
         if (i10 == 0) {
             StringBuilder u10 = a1.g.u("IMG_", format, ".");
@@ -3841,30 +3841,30 @@ public abstract class i0 {
 
     public static Vibrator p1() {
         if (J == null) {
-            J = (Vibrator) w0.f19025b.getSystemService("vibrator");
+            J = (Vibrator) w0.f18945b.getSystemService("vibrator");
         }
         return J;
     }
 
     public static boolean p2(boolean z10) {
-        u0 u0Var = u0.f18205f;
+        u0 u0Var = u0.f18330f;
         if (z10) {
             u0Var.getClass();
-            if (SystemClock.elapsedRealtime() - u0Var.f18208c < 200) {
-                u0Var.f18207b = false;
+            if (SystemClock.elapsedRealtime() - u0Var.f18333c < 200) {
+                u0Var.f18332b = false;
             }
         }
-        boolean z11 = u0Var.f18207b;
+        boolean z11 = u0Var.f18332b;
         if (z10) {
-            u0.f18205f.f18207b = false;
+            u0.f18330f.f18332b = false;
         }
         int elapsedRealtime = (int) (SystemClock.elapsedRealtime() / 1000);
-        if (v2.f18448a && z10 && tz.f18180s.length() > 0) {
-            f8.b("wasInBackground = " + z11 + " appLocked = " + tz.f18194x + " autoLockIn = " + tz.f18197y + " lastPauseTime = " + tz.B + " uptime = " + elapsedRealtime);
+        if (v2.f18578a && z10 && uz.f18549s.length() > 0) {
+            f8.b("wasInBackground = " + z11 + " appLocked = " + uz.f18563x + " autoLockIn = " + uz.f18566y + " lastPauseTime = " + uz.B + " uptime = " + elapsedRealtime);
         }
-        if (tz.f18180s.length() > 0 && z11) {
-            if (!tz.f18194x) {
-                if ((tz.f18197y != 0 && tz.B != 0 && !tz.f18194x && tz.B + tz.f18197y <= elapsedRealtime) || elapsedRealtime + 5 < tz.B) {
+        if (uz.f18549s.length() > 0 && z11) {
+            if (!uz.f18563x) {
+                if ((uz.f18566y != 0 && uz.B != 0 && !uz.f18563x && uz.B + uz.f18566y <= elapsedRealtime) || elapsedRealtime + 5 < uz.B) {
                     return true;
                 }
             } else {
@@ -3892,7 +3892,7 @@ public abstract class i0 {
             } else if (drawable instanceof ColorDrawable) {
                 i10 = ((ColorDrawable) drawable).getColor();
             } else if (drawable instanceof org.telegram.ui.Components.f9) {
-                int[] iArr2 = ((org.telegram.ui.Components.f9) drawable).f26014a;
+                int[] iArr2 = ((org.telegram.ui.Components.f9) drawable).f26113a;
                 if (iArr2 != null) {
                     if (iArr2.length > 1) {
                         i10 = w0(iArr2[0], iArr2[1]);
@@ -3930,7 +3930,7 @@ public abstract class i0 {
             if (!z10 && z11 != null) {
                 return new File(z11, p0(0, str));
             }
-            return new File(w0.f19025b.getExternalFilesDir(Environment.DIRECTORY_PICTURES), p0(0, str));
+            return new File(w0.f18945b.getExternalFilesDir(Environment.DIRECTORY_PICTURES), p0(0, str));
         } catch (Exception e7) {
             f8.g(e7, true);
             return null;
@@ -3940,8 +3940,8 @@ public abstract class i0 {
     public static int q1(View view) {
         if (view != null) {
             int height = view.getHeight();
-            Point point = f16026q;
-            if (height != point.y && view.getHeight() != point.y - f16020m) {
+            Point point = f16172q;
+            if (height != point.y && view.getHeight() != point.y - f16166m) {
                 try {
                     WindowInsets rootWindowInsets = view.getRootWindowInsets();
                     if (rootWindowInsets != null) {
@@ -4050,14 +4050,14 @@ public abstract class i0 {
         }
     }
 
-    public static void r2(dr0 dr0Var) {
-        if (dr0Var == null || dr0Var.getAdapter() == null) {
+    public static void r2(er0 er0Var) {
+        if (er0Var == null || er0Var.getAdapter() == null) {
             return;
         }
-        if (dr0Var.c0()) {
-            dr0Var.post(new a(dr0Var, 1));
+        if (er0Var.c0()) {
+            er0Var.post(new a(er0Var, 1));
         } else {
-            dr0Var.getAdapter().f();
+            er0Var.getAdapter().f();
         }
     }
 
@@ -4085,11 +4085,11 @@ public abstract class i0 {
         try {
             File v02 = v0(z10);
             Date date = new Date();
-            date.setTime(System.currentTimeMillis() + Utilities.f14519b.nextInt(1000) + 1);
-            if (f16008f0 == null) {
-                f16008f0 = new SimpleDateFormat("yyyyMMdd_HHmmss_SSS", Locale.US);
+            date.setTime(System.currentTimeMillis() + Utilities.f14520b.nextInt(1000) + 1);
+            if (f16154f0 == null) {
+                f16154f0 = new SimpleDateFormat("yyyyMMdd_HHmmss_SSS", Locale.US);
             }
-            String format = f16008f0.format(date);
+            String format = f16154f0.format(date);
             return new File(v02, "VID_" + format + ".mp4");
         } catch (Exception e7) {
             f8.g(e7, true);
@@ -4113,7 +4113,7 @@ public abstract class i0 {
         return i11;
     }
 
-    public static void s2(jj jjVar, Activity activity, org.telegram.ui.ActionBar.k2 k2Var) {
+    public static void s2(kj kjVar, Activity activity, org.telegram.ui.ActionBar.k2 k2Var) {
         TLRPC.Document F0;
         String str;
         File file;
@@ -4121,27 +4121,27 @@ public abstract class i0 {
         String str2;
         String str3;
         String str4;
-        if (jjVar != null && (F0 = jjVar.F0()) != null) {
-            if (jjVar.f16337k.media != null) {
+        if (kjVar != null && (F0 = kjVar.F0()) != null) {
+            if (kjVar.f16690k.media != null) {
                 str = b8.r(null, F0);
             } else {
                 str = "";
             }
-            String str5 = jjVar.f16337k.attachPath;
+            String str5 = kjVar.f16690k.attachPath;
             if (str5 != null && str5.length() != 0) {
-                file = new File(jjVar.f16337k.attachPath);
+                file = new File(kjVar.f16690k.attachPath);
             } else {
                 file = null;
             }
             if (file == null || !file.exists()) {
-                b8.G(d20.f15147s0);
-                file = b8.N(jjVar.f16337k, false, true);
+                b8.G(e20.f15506s0);
+                file = b8.N(kjVar.f16690k, false, true);
             }
             if (file != null && file.exists()) {
                 if (k2Var != null && file.getName().toLowerCase().endsWith("attheme")) {
-                    org.telegram.ui.ActionBar.s6 v10 = org.telegram.ui.ActionBar.t6.v(file, jjVar.I0(), null, true);
+                    org.telegram.ui.ActionBar.s6 v10 = org.telegram.ui.ActionBar.t6.v(file, kjVar.I0(), null, true);
                     if (v10 != null) {
-                        k2Var.presentFragment(new m91(v10));
+                        k2Var.presentFragment(new k91(v10));
                         return;
                     }
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity);
@@ -4150,10 +4150,10 @@ public abstract class i0 {
                     hashMap.put("info1", Integer.valueOf(k2Var.getThemedColor(i10)));
                     hashMap.put("info2", Integer.valueOf(k2Var.getThemedColor(i10)));
                     alertDialog$Builder.m(2131624105, 52, k2Var.getThemedColor(i10), hashMap);
-                    org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20134a;
+                    org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20135a;
                     x1Var.W = true;
-                    x1Var.T = cd.L0(2131749209, null);
-                    alertDialog$Builder.k(cd.L0(2131747847, null), null);
+                    x1Var.T = dd.L0(2131749209, null);
+                    alertDialog$Builder.k(dd.L0(2131747847, null), null);
                     k2Var.showDialog(x1Var);
                     return;
                 }
@@ -4209,12 +4209,12 @@ public abstract class i0 {
                             hashMap2.put("info1", Integer.valueOf(k2Var.getThemedColor(i11)));
                             hashMap2.put("info2", Integer.valueOf(k2Var.getThemedColor(i11)));
                             alertDialog$Builder2.m(2131624105, 52, k2Var.getThemedColor(i11), hashMap2);
-                            org.telegram.ui.ActionBar.x1 x1Var2 = alertDialog$Builder2.f20134a;
+                            org.telegram.ui.ActionBar.x1 x1Var2 = alertDialog$Builder2.f20135a;
                             x1Var2.W = true;
-                            alertDialog$Builder2.k(cd.L0(2131747847, null), null);
+                            alertDialog$Builder2.k(dd.L0(2131747847, null), null);
                             Object[] objArr = new Object[1];
-                            objArr[c10] = jjVar.F0().mime_type;
-                            x1Var2.T = cd.a0("NoHandleAppInstalled", null, 2131748222, objArr);
+                            objArr[c10] = kjVar.F0().mime_type;
+                            x1Var2.T = dd.a0("NoHandleAppInstalled", null, 2131748222, objArr);
                             k2Var.showDialog(x1Var2);
                         }
                     }
@@ -4236,15 +4236,15 @@ public abstract class i0 {
     }
 
     public static int t0() {
-        if (d20.i(d20.f15147s0).p() && !ConnectionsManager.getInstance(d20.f15147s0).isTestBackend()) {
-            return d20.f15147s0;
+        if (e20.i(e20.f15506s0).p() && !ConnectionsManager.getInstance(e20.f15506s0).isTestBackend()) {
+            return e20.f15506s0;
         }
         for (int i10 = 0; i10 < 4; i10++) {
-            if (d20.i(i10).p() && !ConnectionsManager.getInstance(i10).isTestBackend()) {
+            if (e20.i(i10).p() && !ConnectionsManager.getInstance(i10).isTestBackend()) {
                 return i10;
             }
         }
-        return d20.f15147s0;
+        return e20.f15506s0;
     }
 
     public static boolean t1(LaunchActivity launchActivity, Intent intent) {
@@ -4295,21 +4295,21 @@ public abstract class i0 {
         if (W2 != null && !W2.isFinishing()) {
             return W2;
         }
-        return W(w0.f19025b);
+        return W(w0.f18945b);
     }
 
     public static boolean u1(org.telegram.ui.ActionBar.k2 k2Var) {
         List j10;
         if (k2Var != null) {
             Dialog dialog = k2Var.visibleDialog;
-            if (dialog == null || (dialog instanceof org.telegram.ui.ActionBar.x1) || ((dialog instanceof org.telegram.ui.ActionBar.z2) && ((org.telegram.ui.ActionBar.z2) dialog).f21598f1 != null)) {
+            if (dialog == null || (dialog instanceof org.telegram.ui.ActionBar.x1) || ((dialog instanceof org.telegram.ui.ActionBar.z2) && ((org.telegram.ui.ActionBar.z2) dialog).f21599f1 != null)) {
                 if (k2Var.getParentLayout() != null && (j10 = j()) != null && !j10.isEmpty()) {
                     View view = null;
                     for (int size = j10.size() - 1; size >= 0; size--) {
                         view = (View) j10.get(size);
                         Dialog dialog2 = k2Var.visibleDialog;
                         if (dialog2 instanceof org.telegram.ui.ActionBar.x1) {
-                            View view2 = ((org.telegram.ui.ActionBar.x1) dialog2).f21476c1;
+                            View view2 = ((org.telegram.ui.ActionBar.x1) dialog2).f21477c1;
                             while (view2 != null && (view2.getParent() instanceof View)) {
                                 view2 = (View) view2.getParent();
                             }
@@ -4337,25 +4337,25 @@ public abstract class i0 {
         return false;
     }
 
-    public static boolean u2(jj jjVar, Activity activity, org.telegram.ui.ActionBar.p6 p6Var, boolean z10) {
+    public static boolean u2(kj kjVar, Activity activity, org.telegram.ui.ActionBar.p6 p6Var, boolean z10) {
         File file;
-        String str = jjVar.f16337k.attachPath;
+        String str = kjVar.f16690k.attachPath;
         String str2 = null;
         if (str != null && str.length() != 0) {
-            file = new File(jjVar.f16337k.attachPath);
+            file = new File(kjVar.f16690k.attachPath);
         } else {
             file = null;
         }
         if (file == null || !file.exists()) {
-            b8.G(jjVar.I1);
-            file = b8.N(jjVar.f16337k, false, true);
+            b8.G(kjVar.I1);
+            file = b8.N(kjVar.f16690k, false, true);
         }
         File file2 = file;
-        int i10 = jjVar.D;
+        int i10 = kjVar.D;
         if (i10 == 9 || i10 == 0) {
-            str2 = jjVar.u1();
+            str2 = kjVar.u1();
         }
-        return t2(file2, jjVar.S0(), str2, activity, p6Var, z10);
+        return t2(file2, kjVar.S0(), str2, activity, p6Var, z10);
     }
 
     public static void u3(Window window, int i10, boolean z10, org.telegram.ui.Components.ig igVar) {
@@ -4363,17 +4363,17 @@ public abstract class i0 {
         if (window == null) {
             return;
         }
-        HashMap hashMap = f16019l0;
+        HashMap hashMap = f16165l0;
         if (hashMap != null && (valueAnimator = (ValueAnimator) hashMap.get(window)) != null) {
             valueAnimator.cancel();
-            f16019l0.remove(window);
+            f16165l0.remove(window);
         }
         if (!z10) {
             if (igVar != null) {
-                org.telegram.ui.Components.bi biVar = igVar.f26976b;
+                org.telegram.ui.Components.bi biVar = igVar.f27091b;
                 biVar.F0 = -1;
                 biVar.G0 = i10;
-                biVar.f21586b.invalidate();
+                biVar.f21587b.invalidate();
             }
             try {
                 window.setNavigationBarColor(i10);
@@ -4386,12 +4386,12 @@ public abstract class i0 {
         ofArgb.addUpdateListener(new r(0, igVar, window));
         ofArgb.addListener(new bg.e(window, 15));
         ofArgb.setDuration(200L);
-        ofArgb.setInterpolator(org.telegram.ui.Components.gr.f26495f);
+        ofArgb.setInterpolator(org.telegram.ui.Components.gr.f26523f);
         ofArgb.start();
-        if (f16019l0 == null) {
-            f16019l0 = new HashMap();
+        if (f16165l0 == null) {
+            f16165l0 = new HashMap();
         }
-        f16019l0.put(window, ofArgb);
+        f16165l0.put(window, ofArgb);
     }
 
     public static void v(Context context, Configuration configuration) {
@@ -4401,11 +4401,11 @@ public abstract class i0 {
         int i11;
         Display defaultDisplay;
         try {
-            float f10 = f16025p;
-            f16025p = context.getResources().getDisplayMetrics().density;
-            if (f16023o && Math.abs(f10 - f7) > 0.001d) {
-                if (org.telegram.ui.ActionBar.t6.f21092m3 != null) {
-                    org.telegram.ui.ActionBar.t6.f21092m3 = null;
+            float f10 = f16171p;
+            f16171p = context.getResources().getDisplayMetrics().density;
+            if (f16169o && Math.abs(f10 - f7) > 0.001d) {
+                if (org.telegram.ui.ActionBar.t6.f21093m3 != null) {
+                    org.telegram.ui.ActionBar.t6.f21093m3 = null;
                     org.telegram.ui.ActionBar.t6.K(context, false);
                 }
                 if (org.telegram.ui.ActionBar.t6.B0 != null) {
@@ -4417,7 +4417,7 @@ public abstract class i0 {
                     org.telegram.ui.ActionBar.t6.Z(context);
                 }
             }
-            f16023o = true;
+            f16169o = true;
             if (configuration == null) {
                 configuration = context.getResources().getConfiguration();
             }
@@ -4429,49 +4429,49 @@ public abstract class i0 {
             D = z10;
             WindowManager windowManager = (WindowManager) context.getSystemService("window");
             DisplayMetrics displayMetrics = B;
-            Point point = f16026q;
+            Point point = f16172q;
             if (windowManager != null && (defaultDisplay = windowManager.getDefaultDisplay()) != null) {
                 defaultDisplay.getMetrics(displayMetrics);
                 defaultDisplay.getSize(point);
                 float refreshRate = defaultDisplay.getRefreshRate();
-                f16027r = refreshRate;
-                f16028s = refreshRate;
+                f16173r = refreshRate;
+                f16174s = refreshRate;
                 float[] supportedRefreshRates = defaultDisplay.getSupportedRefreshRates();
                 if (supportedRefreshRates != null) {
                     for (float f11 : supportedRefreshRates) {
-                        if (f11 > f16028s) {
-                            f16028s = f11;
+                        if (f11 > f16174s) {
+                            f16174s = f11;
                         }
                     }
                 }
-                f16029t = 1000.0f / f16027r;
+                f16175t = 1000.0f / f16173r;
             }
             if (configuration.screenWidthDp != 0) {
-                int ceil = (int) Math.ceil(i10 * f16025p);
+                int ceil = (int) Math.ceil(i10 * f16171p);
                 if (Math.abs(point.x - ceil) > 3) {
                     point.x = ceil;
                 }
             }
             if (configuration.screenHeightDp != 0) {
-                int ceil2 = (int) Math.ceil(i11 * f16025p);
+                int ceil2 = (int) Math.ceil(i11 * f16171p);
                 if (Math.abs(point.y - ceil2) > 3) {
                     point.y = ceil2;
                 }
             }
-            if (f16030u == 0) {
+            if (f16176u == 0) {
                 if (Q1()) {
-                    f16030u = (int) (Q0() * 0.6f);
+                    f16176u = (int) (Q0() * 0.6f);
                     v = Q0() - L(28.0f);
-                    f16031w = Q0() - L(92.0f);
+                    f16177w = Q0() - L(92.0f);
                 } else {
-                    f16030u = (int) (Math.min(point.x, point.y) * 0.6f);
+                    f16176u = (int) (Math.min(point.x, point.y) * 0.6f);
                     v = Math.min(point.x, point.y) - L(28.0f);
-                    f16031w = Math.min(point.x - L(64.0f), point.y) - L(28.0f);
+                    f16177w = Math.min(point.x - L(64.0f), point.y) - L(28.0f);
                 }
-                f16032x = L(2.0f);
+                f16178x = L(2.0f);
             }
-            if (v2.f18448a) {
-                f8.d("density = " + f16025p + " display size = " + point.x + " " + point.y + " " + displayMetrics.xdpi + "x" + displayMetrics.ydpi + ", screen layout: " + configuration.screenLayout + ", statusbar height: " + f16020m + ", navbar height: " + f16021n);
+            if (v2.f18578a) {
+                f8.d("density = " + f16171p + " display size = " + point.x + " " + point.y + " " + displayMetrics.xdpi + "x" + displayMetrics.ydpi + ", screen layout: " + configuration.screenLayout + ", statusbar height: " + f16166m + ", navbar height: " + f16167n);
             }
             e = ViewConfiguration.get(context).getScaledTouchSlop();
             M = null;
@@ -4482,18 +4482,18 @@ public abstract class i0 {
 
     public static File v0(boolean z10) {
         int i10;
-        if (!z10 && v2.f18449b && (((i10 = Build.VERSION.SDK_INT) < 33 || w0.f19025b.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") == 0) && (i10 > 33 || w0.f19025b.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") == 0))) {
+        if (!z10 && v2.f18579b && (((i10 = Build.VERSION.SDK_INT) < 33 || w0.f18945b.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") == 0) && (i10 > 33 || w0.f18945b.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") == 0))) {
             if ("mounted".equals(Environment.getExternalStorageState())) {
                 File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "Telegram");
                 if (!file.mkdirs() && !file.exists()) {
-                    if (v2.f18448a) {
+                    if (v2.f18578a) {
                         f8.b("failed to create directory");
                         return null;
                     }
                 } else {
                     return file;
                 }
-            } else if (v2.f18448a) {
+            } else if (v2.f18578a) {
                 f8.b("External storage is not mounted READ/WRITE.");
             }
             return null;
@@ -4605,7 +4605,7 @@ public abstract class i0 {
 
     public static void w3(Window window) {
         WindowManager windowManager;
-        float f7 = f16028s;
+        float f7 = f16174s;
         if (window == null || (windowManager = window.getWindowManager()) == null) {
             return;
         }
@@ -4640,7 +4640,7 @@ public abstract class i0 {
         InputStream inputStream;
         Bitmap bitmap = null;
         try {
-            inputStream = w0.f19025b.getResources().openRawResource(2131624177);
+            inputStream = w0.f18945b.getResources().openRawResource(2131624177);
             try {
                 bitmap = BitmapFactory.decodeStream(inputStream);
             } catch (Throwable th2) {
@@ -4687,8 +4687,8 @@ public abstract class i0 {
     }
 
     public static void x3(WindowManager windowManager, View view, WindowManager.LayoutParams layoutParams) {
-        if (windowManager != null && Math.abs(layoutParams.preferredRefreshRate - f16028s) > 0.2d) {
-            layoutParams.preferredRefreshRate = f16028s;
+        if (windowManager != null && Math.abs(layoutParams.preferredRefreshRate - f16174s) > 0.2d) {
+            layoutParams.preferredRefreshRate = f16174s;
             if (view.isAttachedToWindow()) {
                 try {
                     windowManager.updateViewLayout(view, layoutParams);
@@ -4722,7 +4722,7 @@ public abstract class i0 {
             return;
         }
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        PixelCopy.request(surface, bitmap, new q(countDownLatch, 0), Utilities.f14522g.b());
+        PixelCopy.request(surface, bitmap, new q(countDownLatch, 0), Utilities.f14523g.b());
         try {
             countDownLatch.await();
         } catch (InterruptedException e7) {
@@ -4779,7 +4779,7 @@ public abstract class i0 {
 
     public static String y2(File file, int i10) {
         InputStream inputStream;
-        ThreadLocal threadLocal = f16001b;
+        ThreadLocal threadLocal = f16147b;
         byte[] bArr = (byte[]) threadLocal.get();
         if (bArr == null) {
             bArr = new byte[65536];
@@ -4789,10 +4789,10 @@ public abstract class i0 {
             if (file != null) {
                 inputStream = new FileInputStream(file);
             } else {
-                inputStream = w0.f19025b.getResources().openRawResource(i10);
+                inputStream = w0.f18945b.getResources().openRawResource(i10);
             }
             try {
-                ThreadLocal threadLocal2 = f16003c;
+                ThreadLocal threadLocal2 = f16149c;
                 byte[] bArr2 = (byte[]) threadLocal2.get();
                 if (bArr2 == null) {
                     bArr2 = new byte[4096];
@@ -4806,7 +4806,7 @@ public abstract class i0 {
                         if (bArr.length < i12) {
                             byte[] bArr3 = new byte[bArr.length * 2];
                             System.arraycopy(bArr, 0, bArr3, 0, i11);
-                            f16001b.set(bArr3);
+                            f16147b.set(bArr3);
                             bArr = bArr3;
                         }
                         if (read > 0) {
@@ -4879,7 +4879,7 @@ public abstract class i0 {
     public static void z0(SurfaceView surfaceView, Bitmap bitmap) {
         if (surfaceView != null && surfaceView.getHolder().getSurface().isValid()) {
             CountDownLatch countDownLatch = new CountDownLatch(1);
-            PixelCopy.request(surfaceView, bitmap, new q(countDownLatch, 1), Utilities.f14522g.b());
+            PixelCopy.request(surfaceView, bitmap, new q(countDownLatch, 1), Utilities.f14523g.b());
             try {
                 countDownLatch.await();
             } catch (InterruptedException e7) {

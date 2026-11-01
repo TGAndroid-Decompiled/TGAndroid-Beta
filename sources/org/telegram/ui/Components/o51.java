@@ -1,23 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.drawable.ColorDrawable;
-public final class o51 extends ColorDrawable {
-    public final int f28976a;
-    public final org.telegram.ui.ActionBar.p6 f28977b;
-
-    public o51(int i10, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(org.telegram.ui.ActionBar.t6.w0(i10, p6Var));
-        this.f28976a = i10;
-        this.f28977b = p6Var;
-    }
+import android.view.View;
+public final class o51 extends View {
+    public int f29030a;
 
     @Override
-    public final void draw(Canvas canvas) {
-        int w02 = org.telegram.ui.ActionBar.t6.w0(this.f28976a, this.f28977b);
-        if (getColor() != w02) {
-            setColor(w02);
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(this.f29030a, 1073741824));
+    }
+
+    public void setHeight(int i10) {
+        if (this.f29030a == i10) {
+            return;
         }
-        super.draw(canvas);
+        this.f29030a = i10;
+        requestLayout();
     }
 }

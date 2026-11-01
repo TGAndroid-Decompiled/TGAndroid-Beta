@@ -3,32 +3,32 @@ package k1;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 public final class m extends OutputStream {
-    public final FileOutputStream f10540a;
+    public final FileOutputStream f10541a;
 
     public m(FileOutputStream fileOutputStream) {
-        this.f10540a = fileOutputStream;
+        this.f10541a = fileOutputStream;
     }
 
     @Override
     public final void flush() {
-        this.f10540a.flush();
+        this.f10541a.flush();
     }
 
     @Override
     public final void write(int i10) {
-        this.f10540a.write(i10);
+        this.f10541a.write(i10);
     }
 
     @Override
     public final void write(byte[] b10) {
         kotlin.jvm.internal.i.e(b10, "b");
-        this.f10540a.write(b10);
+        this.f10541a.write(b10);
     }
 
     @Override
     public final void write(byte[] bytes, int i10, int i11) {
         kotlin.jvm.internal.i.e(bytes, "bytes");
-        this.f10540a.write(bytes, i10, i11);
+        this.f10541a.write(bytes, i10, i11);
     }
 
     @Override

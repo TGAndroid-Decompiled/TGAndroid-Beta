@@ -1,18 +1,18 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Bitmap;
-import org.telegram.ui.m91;
-public final class to extends m91 {
-    public final int f30661l2;
+import org.telegram.ui.k91;
+public final class to extends k91 {
+    public final int f30684l2;
 
     public to(Object obj, Bitmap bitmap, boolean z10, int i10) {
         super(obj, bitmap, z10);
-        this.f30661l2 = i10;
+        this.f30684l2 = i10;
     }
 
     @Override
-    public final boolean Y0() {
-        switch (this.f30661l2) {
+    public final boolean Z0() {
+        switch (this.f30684l2) {
             case 0:
                 return true;
             case 1:

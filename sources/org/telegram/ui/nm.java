@@ -6,58 +6,58 @@ import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-public final class nm extends yr0 {
-    public final ArrayList f39973a;
-    public final int[] f39974b = new int[2];
-    public final un f39975c;
+public final class nm extends xr0 {
+    public final ArrayList f39929a;
+    public final int[] f39930b = new int[2];
+    public final un f39931c;
 
     public nm(un unVar, ArrayList arrayList) {
-        this.f39975c = unVar;
-        this.f39973a = arrayList;
+        this.f39931c = unVar;
+        this.f39929a = arrayList;
     }
 
     @Override
-    public final gs0 E(org.telegram.messenger.jj jjVar, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+    public final fs0 E(org.telegram.messenger.kj kjVar, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
         char c10;
         char c11;
         ImageReceiver imageReceiver;
         org.telegram.ui.Cells.q1 q1Var;
-        org.telegram.messenger.jj messageObject;
-        org.telegram.messenger.vv vvVar;
+        org.telegram.messenger.kj messageObject;
+        org.telegram.messenger.wv wvVar;
         TL_iv.PageBlock pageBlock;
         ImageReceiver imageReceiver2;
         nm nmVar = this;
-        un unVar = nmVar.f39975c;
-        if (unVar.f42492z0 != null && i10 >= 0) {
-            ArrayList arrayList = nmVar.f39973a;
+        un unVar = nmVar.f39931c;
+        if (unVar.f42303z0 != null && i10 >= 0) {
+            ArrayList arrayList = nmVar.f39929a;
             if (i10 >= arrayList.size()) {
                 return null;
             }
             TL_iv.PageBlock pageBlock2 = (TL_iv.PageBlock) arrayList.get(i10);
-            int childCount = unVar.f42492z0.getChildCount();
+            int childCount = unVar.f42303z0.getChildCount();
             int i11 = 0;
             while (i11 < childCount) {
-                View childAt = unVar.f42492z0.getChildAt(i11);
+                View childAt = unVar.f42303z0.getChildAt(i11);
                 boolean z12 = childAt instanceof org.telegram.ui.Cells.q1;
-                int[] iArr = nmVar.f39974b;
-                if (z12 && (messageObject = (q1Var = (org.telegram.ui.Cells.q1) childAt).getMessageObject()) != null && (vvVar = messageObject.f16385w2) != null) {
+                int[] iArr = nmVar.f39930b;
+                if (z12 && (messageObject = (q1Var = (org.telegram.ui.Cells.q1) childAt).getMessageObject()) != null && (wvVar = messageObject.f16738w2) != null) {
                     int[] iArr2 = new int[2];
-                    ArrayList arrayList2 = vvVar.f18990g;
+                    ArrayList arrayList2 = wvVar.f19333g;
                     int i12 = 0;
                     while (true) {
                         if (i12 < arrayList2.size()) {
-                            org.telegram.messenger.qu quVar = (org.telegram.messenger.qu) arrayList2.get(i12);
-                            if (quVar instanceof org.telegram.messenger.dv) {
-                                org.telegram.messenger.dv dvVar = (org.telegram.messenger.dv) quVar;
-                                pageBlock = dvVar.f15312q0;
-                                imageReceiver2 = dvVar.X;
-                            } else if (quVar instanceof org.telegram.messenger.pv) {
-                                org.telegram.messenger.pv pvVar = (org.telegram.messenger.pv) quVar;
-                                TL_iv.pageBlockVideo pageblockvideo = pvVar.f17482q0;
-                                imageReceiver2 = pvVar.X;
+                            org.telegram.messenger.ru ruVar = (org.telegram.messenger.ru) arrayList2.get(i12);
+                            if (ruVar instanceof org.telegram.messenger.ev) {
+                                org.telegram.messenger.ev evVar = (org.telegram.messenger.ev) ruVar;
+                                pageBlock = evVar.f15647q0;
+                                imageReceiver2 = evVar.X;
+                            } else if (ruVar instanceof org.telegram.messenger.qv) {
+                                org.telegram.messenger.qv qvVar = (org.telegram.messenger.qv) ruVar;
+                                TL_iv.pageBlockVideo pageblockvideo = qvVar.f17817q0;
+                                imageReceiver2 = qvVar.X;
                                 pageBlock = pageblockvideo;
-                            } else if (quVar instanceof org.telegram.messenger.vu) {
-                                ArrayList arrayList3 = ((org.telegram.messenger.vu) quVar).X;
+                            } else if (ruVar instanceof org.telegram.messenger.wu) {
+                                ArrayList arrayList3 = ((org.telegram.messenger.wu) ruVar).X;
                                 int size = arrayList3.size();
                                 c10 = 0;
                                 int i13 = 0;
@@ -65,12 +65,12 @@ public final class nm extends yr0 {
                                     Object obj = arrayList3.get(i13);
                                     i13++;
                                     c11 = 1;
-                                    org.telegram.messenger.ju juVar = (org.telegram.messenger.ju) obj;
-                                    if (juVar.f16436b == pageBlock2) {
-                                        Rect rect = quVar.f17622b;
+                                    org.telegram.messenger.ku kuVar = (org.telegram.messenger.ku) obj;
+                                    if (kuVar.f16789b == pageBlock2) {
+                                        Rect rect = ruVar.f17968b;
                                         iArr2[0] = rect.left;
-                                        iArr2[1] = quVar.T + rect.top;
-                                        imageReceiver = juVar.f16437c;
+                                        iArr2[1] = ruVar.T + rect.top;
+                                        imageReceiver = kuVar.f16790c;
                                         break;
                                     }
                                 }
@@ -78,15 +78,15 @@ public final class nm extends yr0 {
                             } else {
                                 c10 = 0;
                                 c11 = 1;
-                                if (quVar instanceof org.telegram.messenger.hv) {
-                                    org.telegram.messenger.hv hvVar = (org.telegram.messenger.hv) quVar;
-                                    ArrayList arrayList4 = hvVar.X;
-                                    int i14 = hvVar.f15958a0;
-                                    if (i14 >= 0 && i14 < arrayList4.size() && ((org.telegram.messenger.ju) arrayList4.get(i14)).f16436b == pageBlock2) {
-                                        Rect rect2 = quVar.f17622b;
+                                if (ruVar instanceof org.telegram.messenger.iv) {
+                                    org.telegram.messenger.iv ivVar = (org.telegram.messenger.iv) ruVar;
+                                    ArrayList arrayList4 = ivVar.X;
+                                    int i14 = ivVar.f16350a0;
+                                    if (i14 >= 0 && i14 < arrayList4.size() && ((org.telegram.messenger.ku) arrayList4.get(i14)).f16789b == pageBlock2) {
+                                        Rect rect2 = ruVar.f17968b;
                                         iArr2[0] = rect2.left;
-                                        iArr2[1] = quVar.T + rect2.top;
-                                        imageReceiver = ((org.telegram.messenger.ju) arrayList4.get(i14)).f16437c;
+                                        iArr2[1] = ruVar.T + rect2.top;
+                                        imageReceiver = ((org.telegram.messenger.ku) arrayList4.get(i14)).f16790c;
                                         break;
                                     }
                                     i12++;
@@ -94,9 +94,9 @@ public final class nm extends yr0 {
                                     pageBlock = null;
                                     imageReceiver2 = null;
                                     if (pageBlock == pageBlock2 && imageReceiver2 != null) {
-                                        Rect rect3 = quVar.f17622b;
+                                        Rect rect3 = ruVar.f17968b;
                                         iArr2[c10] = rect3.left;
-                                        iArr2[c11] = quVar.T + rect3.top;
+                                        iArr2[c11] = ruVar.T + rect3.top;
                                         imageReceiver = imageReceiver2;
                                         break;
                                     }
@@ -106,9 +106,9 @@ public final class nm extends yr0 {
                             c10 = 0;
                             c11 = 1;
                             if (pageBlock == pageBlock2) {
-                                Rect rect32 = quVar.f17622b;
+                                Rect rect32 = ruVar.f17968b;
                                 iArr2[c10] = rect32.left;
-                                iArr2[c11] = quVar.T + rect32.top;
+                                iArr2[c11] = ruVar.T + rect32.top;
                                 imageReceiver = imageReceiver2;
                                 break;
                             }
@@ -135,16 +135,16 @@ public final class nm extends yr0 {
                     i11++;
                     nmVar = this;
                 } else {
-                    gs0 gs0Var = new gs0();
-                    gs0Var.f37628b = iArr[c10];
-                    gs0Var.f37629c = iArr[c11];
-                    gs0Var.d = unVar.f42492z0;
-                    gs0Var.f37627a = imageReceiver;
-                    gs0Var.e = imageReceiver.p();
-                    gs0Var.h = imageReceiver.E();
-                    gs0Var.f37633j = (int) ((unVar.L9 - unVar.N9) - org.telegram.messenger.i0.L(4.0f));
-                    gs0Var.f37632i = (int) (unVar.j9(org.telegram.ui.Components.k21.f27624c) + unVar.f42453w.d() + org.telegram.messenger.i0.L(9.0f) + unVar.Ua + unVar.Oc);
-                    return gs0Var;
+                    fs0 fs0Var = new fs0();
+                    fs0Var.f37216b = iArr[c10];
+                    fs0Var.f37217c = iArr[c11];
+                    fs0Var.d = unVar.f42303z0;
+                    fs0Var.f37215a = imageReceiver;
+                    fs0Var.e = imageReceiver.p();
+                    fs0Var.h = imageReceiver.E();
+                    fs0Var.f37221j = (int) ((unVar.L9 - unVar.N9) - org.telegram.messenger.i0.L(4.0f));
+                    fs0Var.f37220i = (int) (unVar.o9(org.telegram.ui.Components.l21.f28037c) + unVar.f42264w.d() + org.telegram.messenger.i0.L(9.0f) + unVar.Ua + unVar.Pc);
+                    return fs0Var;
                 }
             }
             return null;

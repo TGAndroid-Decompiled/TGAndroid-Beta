@@ -8,12 +8,12 @@ import android.view.KeyEvent;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.j20;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.k20;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.ActionBar.a7;
 import org.telegram.ui.Components.cc;
-public final class d implements j20 {
+public final class d implements k20 {
     public final int f2907a = 0;
     public final boolean[] f2908b;
     public final vh.d f2909c;
@@ -61,7 +61,7 @@ public final class d implements j20 {
                 Boolean bool = (Boolean) obj2;
                 if (TextUtils.equals((String) obj6, ((String[]) obj5)[0])) {
                     if (bool.booleanValue()) {
-                        a7.t(imageView, org.telegram.ui.ActionBar.t6.f21170q7, p6Var, PorterDuff.Mode.SRC_IN);
+                        a7.t(imageView, org.telegram.ui.ActionBar.t6.f21171q7, p6Var, PorterDuff.Mode.SRC_IN);
                         if (!z10) {
                             int i12 = -iArr[0];
                             iArr[0] = i12;
@@ -89,11 +89,11 @@ public final class d implements j20 {
                 boolean[] zArr2 = (boolean[]) obj5;
                 org.telegram.ui.Wallet.k0 k0Var = (org.telegram.ui.Wallet.k0) obj4;
                 TextView textView = (TextView) obj3;
-                org.telegram.ui.Wallet.y2 y2Var = (org.telegram.ui.Wallet.y2) callback;
+                org.telegram.ui.Wallet.z2 z2Var = (org.telegram.ui.Wallet.z2) callback;
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
                 String str = (String) obj2;
-                if (!zArr[0] && !a2Var.f34171m && !a2Var.f34172n) {
-                    boolean z11 = a2Var.f34174p;
+                if (!zArr[0] && !a2Var.f34178m && !a2Var.f34179n) {
+                    boolean z11 = a2Var.f34181p;
                     zArr2[0] = z11;
                     dVar.setEnabled(z11);
                     boolean z12 = zArr2[0];
@@ -101,9 +101,9 @@ public final class d implements j20 {
                         SpannableStringBuilder n10 = org.telegram.ui.Wallet.k0.n(wallettransaction.fee, true);
                         CharSequence m10 = k0Var.m(wallettransaction.fee, true);
                         if (TextUtils.isEmpty(m10)) {
-                            V = cd.V(null, null, 2131743146, n10);
+                            V = dd.V(null, null, 2131743146, n10);
                         } else {
-                            V = cd.V(null, null, 2131743145, n10, m10);
+                            V = dd.V(null, null, 2131743145, n10, m10);
                         }
                         textView.setText(V);
                         return;
@@ -111,12 +111,12 @@ public final class d implements j20 {
                         if (str != null) {
                             L0 = str;
                         } else {
-                            L0 = cd.L0(2131743012, null);
+                            L0 = dd.L0(2131743012, null);
                         }
                         if (str == null) {
                             org.telegram.ui.Wallet.e2.m("preview", L0);
                         }
-                        cc.c0(L0, y2Var.E, p6Var);
+                        cc.c0(L0, z2Var.E, p6Var);
                         return;
                     } else {
                         return;
@@ -126,7 +126,7 @@ public final class d implements j20 {
         }
     }
 
-    public d(boolean[] zArr, org.telegram.ui.Wallet.a2 a2Var, boolean[] zArr2, vh.d dVar, boolean z10, org.telegram.ui.Wallet.k0 k0Var, TextView textView, org.telegram.ui.Wallet.y2 y2Var, org.telegram.ui.ActionBar.p6 p6Var) {
+    public d(boolean[] zArr, org.telegram.ui.Wallet.a2 a2Var, boolean[] zArr2, vh.d dVar, boolean z10, org.telegram.ui.Wallet.k0 k0Var, TextView textView, org.telegram.ui.Wallet.z2 z2Var, org.telegram.ui.ActionBar.p6 p6Var) {
         this.f2908b = zArr;
         this.f2910f = a2Var;
         this.f2911g = zArr2;
@@ -134,7 +134,7 @@ public final class d implements j20 {
         this.d = z10;
         this.h = k0Var;
         this.f2912i = textView;
-        this.f2913j = y2Var;
+        this.f2913j = z2Var;
         this.e = p6Var;
     }
 }

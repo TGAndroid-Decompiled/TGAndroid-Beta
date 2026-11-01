@@ -6,12 +6,12 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 public final class w implements y {
-    public static final w f9768b = new w(null);
-    public static final s0 f9769c = new s0(w.class, 2);
-    public final Object f9770a;
+    public static final w f9769b = new w(null);
+    public static final s0 f9770c = new s0(w.class, 2);
+    public final Object f9771a;
 
     public w(Object obj) {
-        this.f9770a = obj;
+        this.f9771a = obj;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class w implements y {
         try {
             executor.execute(runnable);
         } catch (Exception e) {
-            Logger a2 = f9769c.a();
+            Logger a2 = f9770c.a();
             Level level = Level.SEVERE;
             a2.log(level, "RuntimeException while executing runnable " + runnable + " with executor " + executor, (Throwable) e);
         }
@@ -32,7 +32,7 @@ public final class w implements y {
 
     @Override
     public final Object get() {
-        return this.f9770a;
+        return this.f9771a;
     }
 
     @Override
@@ -46,12 +46,12 @@ public final class w implements y {
     }
 
     public final String toString() {
-        return super.toString() + "[status=SUCCESS, result=[" + this.f9770a + "]]";
+        return super.toString() + "[status=SUCCESS, result=[" + this.f9771a + "]]";
     }
 
     @Override
     public final Object get(long j10, TimeUnit timeUnit) {
         timeUnit.getClass();
-        return this.f9770a;
+        return this.f9771a;
     }
 }

@@ -5,35 +5,35 @@ import android.content.ClipboardManager;
 import android.text.TextUtils;
 import android.view.View;
 public final class u9 implements View.OnClickListener {
-    public final int f35290a;
-    public final ba f35291b;
+    public final int f35296a;
+    public final ba f35297b;
 
     public u9(ba baVar, int i10) {
-        this.f35290a = i10;
-        this.f35291b = baVar;
+        this.f35296a = i10;
+        this.f35297b = baVar;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f35290a) {
+        switch (this.f35296a) {
             case 0:
-                ba baVar = this.f35291b;
-                if (baVar.f34289y != null) {
+                ba baVar = this.f35297b;
+                if (baVar.f34291y != null) {
                     org.telegram.messenger.i0.v1(baVar.N);
-                    baVar.l0(baVar.f34289y, null);
+                    baVar.m0(baVar.f34291y, null);
                     return;
                 }
                 return;
             case 1:
-                ba baVar2 = this.f35291b;
-                if (baVar2.f34289y != null) {
+                ba baVar2 = this.f35297b;
+                if (baVar2.f34291y != null) {
                     org.telegram.messenger.i0.v1(baVar2.N);
-                    baVar2.l0(baVar2.f34289y, null);
+                    baVar2.m0(baVar2.f34291y, null);
                     return;
                 }
                 return;
             case 2:
-                ba baVar3 = this.f35291b;
+                ba baVar3 = this.f35297b;
                 ClipboardManager clipboardManager = (ClipboardManager) baVar3.getParentActivity().getSystemService("clipboard");
                 if (clipboardManager != null && clipboardManager.hasPrimaryClip()) {
                     ClipData primaryClip = clipboardManager.getPrimaryClip();
@@ -46,18 +46,18 @@ public final class u9 implements View.OnClickListener {
                             return;
                         }
                         baVar3.S = false;
-                        baVar3.o0(true);
+                        baVar3.p0(true);
                         return;
                     }
                     baVar3.S = false;
-                    baVar3.o0(true);
+                    baVar3.p0(true);
                     return;
                 }
                 baVar3.S = false;
-                baVar3.o0(true);
+                baVar3.p0(true);
                 return;
             default:
-                this.f35291b.h0();
+                this.f35297b.i0();
                 return;
         }
     }

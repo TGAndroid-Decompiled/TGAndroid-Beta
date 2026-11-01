@@ -7,32 +7,32 @@ import android.view.MotionEvent;
 import android.view.View;
 import java.util.Calendar;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 import org.telegram.messenger.f8;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.cv;
 import org.telegram.ui.Components.om;
-import org.telegram.ui.Components.sx0;
+import org.telegram.ui.Components.tx0;
 import org.telegram.ui.Components.v7;
 import org.telegram.ui.Components.w7;
 import org.telegram.ui.FiltersSetupActivity;
-import org.telegram.ui.b10;
-import org.telegram.ui.f10;
-import org.telegram.ui.fy;
-import org.telegram.ui.iy;
-import org.telegram.ui.ll0;
-import org.telegram.ui.lt;
-import org.telegram.ui.nb0;
-import org.telegram.ui.rv;
+import org.telegram.ui.a10;
+import org.telegram.ui.e10;
+import org.telegram.ui.ey;
+import org.telegram.ui.hy;
+import org.telegram.ui.jl0;
+import org.telegram.ui.kt;
+import org.telegram.ui.mb0;
+import org.telegram.ui.qv;
 public final class d1 implements View.OnTouchListener {
-    public final int f20244a;
-    public final Object f20245b;
-    public final Object f20246c;
+    public final int f20245a;
+    public final Object f20246b;
+    public final Object f20247c;
 
     public d1(int i10, Object obj, Object obj2) {
-        this.f20244a = i10;
-        this.f20245b = obj;
-        this.f20246c = obj2;
+        this.f20245a = i10;
+        this.f20246b = obj;
+        this.f20247c = obj2;
     }
 
     @Override
@@ -46,10 +46,10 @@ public final class d1 implements View.OnTouchListener {
         int i14;
         int i15;
         boolean z10;
-        int i16 = this.f20244a;
+        int i16 = this.f20245a;
         boolean z11 = true;
-        Object obj = this.f20246c;
-        Object obj2 = this.f20245b;
+        Object obj = this.f20247c;
+        Object obj2 = this.f20246b;
         switch (i16) {
             case 0:
                 k1 k1Var = (k1) obj2;
@@ -69,36 +69,36 @@ public final class d1 implements View.OnTouchListener {
                 v7 v7Var = (v7) obj2;
                 org.telegram.ui.Cells.w wVar = (org.telegram.ui.Cells.w) obj;
                 if (motionEvent.getAction() == 0) {
-                    w7 w7Var = v7Var.f31156n;
-                    w7Var.f32080x1.t(w7Var.f32062o1.T(wVar));
+                    w7 w7Var = v7Var.f31219n;
+                    w7Var.f32128x1.t(w7Var.f32110o1.T(wVar));
                 }
                 return false;
             case 2:
                 cv cvVar = (cv) obj2;
-                return lt.p().r(motionEvent, cvVar.f25165n1, (om) obj, cvVar.E1, cvVar.I0);
+                return kt.p().r(motionEvent, cvVar.f25246n1, (om) obj, cvVar.E1, cvVar.I0);
             case 3:
-                return sx0.a((sx0) obj2, (org.telegram.ui.Components.k) obj, motionEvent);
+                return tx0.a((tx0) obj2, (org.telegram.ui.Components.k) obj, motionEvent);
             case 4:
-                fy fyVar = (fy) obj2;
+                ey eyVar = (ey) obj2;
                 org.telegram.ui.Cells.j4 j4Var = (org.telegram.ui.Cells.j4) obj;
-                fyVar.getClass();
+                eyVar.getClass();
                 if (motionEvent.getAction() == 0) {
-                    iy iyVar = fyVar.f37363f;
-                    iyVar.f38366c.t(iyVar.f38365b.T(j4Var));
+                    hy hyVar = eyVar.f36925f;
+                    hyVar.f37884c.t(hyVar.f37883b.T(j4Var));
                 }
                 return false;
             case 5:
-                f10 f10Var = (f10) obj2;
-                b10 b10Var = (b10) obj;
+                e10 e10Var = (e10) obj2;
+                a10 a10Var = (a10) obj;
                 if (motionEvent.getAction() == 0) {
-                    FiltersSetupActivity filtersSetupActivity = f10Var.e;
-                    filtersSetupActivity.f33333c.t(filtersSetupActivity.f33331a.T(b10Var));
+                    FiltersSetupActivity filtersSetupActivity = e10Var.e;
+                    filtersSetupActivity.f33340c.t(filtersSetupActivity.f33338a.T(a10Var));
                 }
                 return false;
             case 6:
-                ll0 ll0Var = (ll0) obj2;
+                jl0 jl0Var = (jl0) obj2;
                 Context context = (Context) obj;
-                if (ll0Var.getParentActivity() == null) {
+                if (jl0Var.getParentActivity() == null) {
                     return false;
                 }
                 if (motionEvent.getAction() != 1) {
@@ -113,7 +113,7 @@ public final class d1 implements View.OnTouchListener {
                     int intValue = ((Integer) editTextBoldCursor.getTag()).intValue();
                     if (intValue == 8) {
                         try {
-                            L0 = cd.L0(2131747483, null);
+                            L0 = dd.L0(2131747483, null);
                             i11 = 0;
                             str = null;
                             i12 = 20;
@@ -126,7 +126,7 @@ public final class d1 implements View.OnTouchListener {
                     } else {
                         i10 = -120;
                         i11 = -18;
-                        L0 = cd.L0(2131747484, null);
+                        L0 = dd.L0(2131747484, null);
                         str = null;
                         i12 = 0;
                     }
@@ -148,11 +148,11 @@ public final class d1 implements View.OnTouchListener {
                     int i17 = i11;
                     int i18 = i14;
                     String str2 = str;
-                    AlertDialog$Builder w9 = org.telegram.ui.Components.s4.w(context, i10, i12, i17, i13, i15, i18, L0, z10, new ag.b0(ll0Var, intValue, editTextBoldCursor, 14));
+                    AlertDialog$Builder w9 = org.telegram.ui.Components.s4.w(context, i10, i12, i17, i13, i15, i18, L0, z10, new ag.b0(jl0Var, intValue, editTextBoldCursor, 14));
                     if (intValue == 8) {
-                        w9.h(cd.L0(2131747481, str2), new rv(26, ll0Var, editTextBoldCursor));
+                        w9.h(dd.L0(2131747481, str2), new qv(26, jl0Var, editTextBoldCursor));
                     }
-                    ll0Var.showDialog(w9.f20134a);
+                    jl0Var.showDialog(w9.f20135a);
                     return true;
                 } catch (Exception e7) {
                     e = e7;
@@ -160,12 +160,12 @@ public final class d1 implements View.OnTouchListener {
                 }
             default:
                 vh.g1 g1Var = (vh.g1) obj2;
-                lt p5 = lt.p();
-                nb0 nb0Var = g1Var.f51184b;
-                vh.c1 c1Var = g1Var.f51186f;
-                vh.u1 u1Var = g1Var.f51188r;
-                int i19 = vh.u1.f51993y1;
-                return p5.r(motionEvent, nb0Var, (ag.y0) obj, c1Var, u1Var.I0);
+                kt p5 = kt.p();
+                mb0 mb0Var = g1Var.f51199b;
+                vh.d1 d1Var = g1Var.f51201f;
+                vh.u1 u1Var = g1Var.f51203r;
+                int i19 = vh.u1.f52000y1;
+                return p5.r(motionEvent, mb0Var, (ag.y0) obj, d1Var, u1Var.I0);
         }
     }
 }

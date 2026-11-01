@@ -9,27 +9,27 @@ import c3.q;
 import c3.s;
 import v7.t6;
 public final class e implements q {
-    public static final s f50297w = new Object();
-    public final o f50298a;
-    public final int f50299b;
-    public final x f50300c;
+    public static final s f50311w = new Object();
+    public final o f50312a;
+    public final int f50313b;
+    public final x f50314c;
     public final SparseArray d = new SparseArray();
-    public final d e = d.f50296a;
-    public boolean f50301f;
+    public final d e = d.f50310a;
+    public boolean f50315f;
     public u9.b h;
-    public long f50302n;
-    public b0 f50303r;
-    public x[] f50304s;
+    public long f50316n;
+    public b0 f50317r;
+    public x[] f50318s;
 
     public e(o oVar, int i10, x xVar) {
-        this.f50298a = oVar;
-        this.f50299b = i10;
-        this.f50300c = xVar;
+        this.f50312a = oVar;
+        this.f50313b = i10;
+        this.f50314c = xVar;
     }
 
     @Override
     public final void G1(b0 b0Var) {
-        this.f50303r = b0Var;
+        this.f50317r = b0Var;
     }
 
     @Override
@@ -39,26 +39,26 @@ public final class e implements q {
         SparseArray sparseArray = this.d;
         c cVar = (c) sparseArray.get(i10);
         if (cVar == null) {
-            if (this.f50304s == null) {
+            if (this.f50318s == null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             t6.p(z10);
-            if (i11 == this.f50299b) {
-                xVar = this.f50300c;
+            if (i11 == this.f50313b) {
+                xVar = this.f50314c;
             } else {
                 xVar = null;
             }
             cVar = new c(i10, i11, xVar, this.e);
             u9.b bVar = this.h;
-            long j10 = this.f50302n;
+            long j10 = this.f50316n;
             if (bVar == null) {
-                cVar.f50294f = cVar.f50293c;
+                cVar.f50308f = cVar.f50307c;
             } else {
-                cVar.f50295g = j10;
+                cVar.f50309g = j10;
                 k0 c10 = bVar.c(i11);
-                cVar.f50294f = c10;
+                cVar.f50308f = c10;
                 x xVar2 = cVar.e;
                 if (xVar2 != null) {
                     c10.b(xVar2);
@@ -78,31 +78,31 @@ public final class e implements q {
             xVar.getClass();
             xVarArr[i10] = xVar;
         }
-        this.f50304s = xVarArr;
+        this.f50318s = xVarArr;
     }
 
     public final c3.j a() {
-        b0 b0Var = this.f50303r;
+        b0 b0Var = this.f50317r;
         if (b0Var instanceof c3.j) {
             return (c3.j) b0Var;
         }
         if (b0Var instanceof u3.d) {
-            return ((u3.d) b0Var).f50084a;
+            return ((u3.d) b0Var).f50098a;
         }
         return null;
     }
 
     public final void b(u9.b bVar, long j10, long j11) {
         this.h = bVar;
-        this.f50302n = j11;
-        boolean z10 = this.f50301f;
-        o oVar = this.f50298a;
+        this.f50316n = j11;
+        boolean z10 = this.f50315f;
+        o oVar = this.f50312a;
         if (!z10) {
             oVar.c(this);
             if (j10 != -9223372036854775807L) {
                 oVar.d(0L, j10);
             }
-            this.f50301f = true;
+            this.f50315f = true;
             return;
         }
         if (j10 == -9223372036854775807L) {
@@ -115,11 +115,11 @@ public final class e implements q {
             if (i10 < sparseArray.size()) {
                 c cVar = (c) sparseArray.valueAt(i10);
                 if (bVar == null) {
-                    cVar.f50294f = cVar.f50293c;
+                    cVar.f50308f = cVar.f50307c;
                 } else {
-                    cVar.f50295g = j11;
-                    k0 c10 = bVar.c(cVar.f50291a);
-                    cVar.f50294f = c10;
+                    cVar.f50309g = j11;
+                    k0 c10 = bVar.c(cVar.f50305a);
+                    cVar.f50308f = c10;
                     x xVar = cVar.e;
                     if (xVar != null) {
                         c10.b(xVar);

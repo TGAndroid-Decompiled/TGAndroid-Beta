@@ -7,8 +7,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import java.util.ArrayList;
 import org.telegram.ui.ActionBar.p6;
-import org.telegram.ui.e61;
-import org.telegram.ui.tj0;
+import org.telegram.ui.c61;
+import org.telegram.ui.rj0;
 public final class u extends i {
     public long[] D1;
 
@@ -58,9 +58,9 @@ public final class u extends i {
                 g gVar = this.Q0;
                 if (gVar != null) {
                     getSelectedDate();
-                    e61 e61Var = (e61) ((tj0) gVar).f41852b;
-                    e61Var.f();
-                    e61Var.f36960b.f2739t0.d(false, false);
+                    c61 c61Var = (c61) ((rj0) gVar).f41098b;
+                    c61Var.f();
+                    c61Var.f36206b.f2739t0.d(false, false);
                 }
                 invalidate();
                 B();

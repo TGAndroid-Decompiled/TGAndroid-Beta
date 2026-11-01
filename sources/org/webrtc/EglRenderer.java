@@ -15,8 +15,8 @@ import java.util.Iterator;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import org.telegram.messenger.f8;
-import org.telegram.ui.Components.u41;
-import org.telegram.ui.bk0;
+import org.telegram.ui.Components.v41;
+import org.telegram.ui.zj0;
 import org.webrtc.EglBase;
 import org.webrtc.GlGenericDrawer;
 import org.webrtc.GlUtil;
@@ -493,7 +493,7 @@ public class EglRenderer implements VideoSink {
                         }
                     });
                     this.renderThreadHandler = handlerWithExceptionCallback;
-                    handlerWithExceptionCallback.post(new u41(this, context, iArr, 10));
+                    handlerWithExceptionCallback.post(new v41(this, context, iArr, 10));
                     this.renderThreadHandler.post(this.eglSurfaceCreationRunnable);
                 } else {
                     throw new IllegalStateException(this.name + "Already initialized");
@@ -592,7 +592,7 @@ public class EglRenderer implements VideoSink {
                 Handler handler = this.renderThreadHandler;
                 if (handler != null) {
                     handler.removeCallbacks(this.eglSurfaceCreationRunnable);
-                    this.renderThreadHandler.postAtFrontOfQueue(new bk0(this, z10, runnable, 13));
+                    this.renderThreadHandler.postAtFrontOfQueue(new zj0(this, z10, runnable, 13));
                 } else if (runnable != null) {
                     runnable.run();
                 }
@@ -610,7 +610,7 @@ public class EglRenderer implements VideoSink {
                     return;
                 }
                 if (Thread.currentThread() != this.renderThreadHandler.getLooper().getThread()) {
-                    postToRenderThread(new u41(this, countDownLatch, frameListener, 11));
+                    postToRenderThread(new v41(this, countDownLatch, frameListener, 11));
                     ThreadUtils.awaitUninterruptibly(countDownLatch);
                     return;
                 }

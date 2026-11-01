@@ -9,16 +9,16 @@ import android.view.ViewGroup;
 import i8.g;
 import m.p3;
 public final class c {
-    public final int f53086a;
-    public final p3 f53087b;
+    public final int f53104a;
+    public final p3 f53105b;
 
     public c(p3 p3Var, int i10) {
-        this.f53086a = i10;
-        this.f53087b = p3Var;
+        this.f53104a = i10;
+        this.f53105b = p3Var;
     }
 
     public final int a() {
-        switch (this.f53086a) {
+        switch (this.f53104a) {
             case 0:
                 return 1;
             default:
@@ -27,9 +27,9 @@ public final class c {
     }
 
     public final void b() {
-        switch (this.f53086a) {
+        switch (this.f53104a) {
             case 0:
-                a0 a0Var = (a0) this.f53087b.f12519b;
+                a0 a0Var = (a0) this.f53105b.f12520b;
                 ViewGroup viewGroup = (ViewGroup) a0Var.f875b;
                 g gVar = (g) a0Var.f876c;
                 try {
@@ -49,7 +49,7 @@ public final class c {
                     throw new RuntimeException(e);
                 }
             default:
-                a0 a0Var2 = (a0) this.f53087b.f12519b;
+                a0 a0Var2 = (a0) this.f53105b.f12520b;
                 a0Var2.getClass();
                 try {
                     g gVar2 = (g) a0Var2.f876c;

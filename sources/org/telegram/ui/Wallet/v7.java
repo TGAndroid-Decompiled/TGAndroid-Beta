@@ -5,9 +5,9 @@ import android.util.LruCache;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
 public abstract class v7 {
-    public static final LruCache f35315a = new LruCache(128);
-    public static final float[] f35316b = {0.017513232f, 0.2844959f, 1.2347647f, 0.012535676f, 0.21663007f, 0.8356014f, 0.02682078f, 0.40080056f, 2.4040875f, 0.0032399998f, 0.171f, 0.47039998f};
-    public static final float[] f35317c = {0.0f, 0.47809f, 1.0f};
+    public static final LruCache f35319a = new LruCache(128);
+    public static final float[] f35320b = {0.017513232f, 0.2844959f, 1.2347647f, 0.012535676f, 0.21663007f, 0.8356014f, 0.02682078f, 0.40080056f, 2.4040875f, 0.0032399998f, 0.171f, 0.47039998f};
+    public static final float[] f35321c = {0.0f, 0.47809f, 1.0f};
     public static final LruCache d = new LruCache(64);
     public static final int e;
 
@@ -268,7 +268,7 @@ public abstract class v7 {
         float[] fArr;
         float f7;
         String str = i10 + ":" + i11 + ":" + i12;
-        LruCache lruCache = f35315a;
+        LruCache lruCache = f35319a;
         Integer num = (Integer) lruCache.get(str);
         if (num != null) {
             return num.intValue();
@@ -383,7 +383,7 @@ public abstract class v7 {
                     }
                     i12 = i16;
                     i13 = i17;
-                    dArr = org.telegram.ui.ActionBar.d5.d(org.telegram.ui.ActionBar.d5.f20271f, org.telegram.ui.ActionBar.d5.d(org.telegram.ui.ActionBar.d5.f20269b, d17));
+                    dArr = org.telegram.ui.ActionBar.d5.d(org.telegram.ui.ActionBar.d5.f20272f, org.telegram.ui.ActionBar.d5.d(org.telegram.ui.ActionBar.d5.f20270b, d17));
                     double d18 = dArr[i12];
                     if (d18 >= 0.0d) {
                         double d19 = dArr[i13];

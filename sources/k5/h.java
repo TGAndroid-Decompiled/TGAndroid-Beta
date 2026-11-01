@@ -1,31 +1,31 @@
 package k5;
 public final class h extends a {
-    public final Integer f10894a;
-    public final String f10895b;
-    public final String f10896c;
+    public final Integer f10895a;
+    public final String f10896b;
+    public final String f10897c;
     public final String d;
     public final String e;
-    public final String f10897f;
-    public final String f10898g;
+    public final String f10898f;
+    public final String f10899g;
     public final String h;
-    public final String f10899i;
-    public final String f10900j;
-    public final String f10901k;
-    public final String f10902l;
+    public final String f10900i;
+    public final String f10901j;
+    public final String f10902k;
+    public final String f10903l;
 
     public h(Integer num, String str, String str2, String str3, String str4, String str5, String str6, String str7, String str8, String str9, String str10, String str11) {
-        this.f10894a = num;
-        this.f10895b = str;
-        this.f10896c = str2;
+        this.f10895a = num;
+        this.f10896b = str;
+        this.f10897c = str2;
         this.d = str3;
         this.e = str4;
-        this.f10897f = str5;
-        this.f10898g = str6;
+        this.f10898f = str5;
+        this.f10899g = str6;
         this.h = str7;
-        this.f10899i = str8;
-        this.f10900j = str9;
-        this.f10901k = str10;
-        this.f10902l = str11;
+        this.f10900i = str8;
+        this.f10901j = str9;
+        this.f10902k = str10;
+        this.f10903l = str11;
     }
 
     public final boolean equals(Object obj) {
@@ -34,30 +34,30 @@ public final class h extends a {
         }
         if (obj instanceof a) {
             a aVar = (a) obj;
-            Integer num = this.f10894a;
-            if (num != null ? num.equals(((h) aVar).f10894a) : ((h) aVar).f10894a == null) {
-                String str = this.f10895b;
-                if (str != null ? str.equals(((h) aVar).f10895b) : ((h) aVar).f10895b == null) {
-                    String str2 = this.f10896c;
-                    if (str2 != null ? str2.equals(((h) aVar).f10896c) : ((h) aVar).f10896c == null) {
+            Integer num = this.f10895a;
+            if (num != null ? num.equals(((h) aVar).f10895a) : ((h) aVar).f10895a == null) {
+                String str = this.f10896b;
+                if (str != null ? str.equals(((h) aVar).f10896b) : ((h) aVar).f10896b == null) {
+                    String str2 = this.f10897c;
+                    if (str2 != null ? str2.equals(((h) aVar).f10897c) : ((h) aVar).f10897c == null) {
                         String str3 = this.d;
                         if (str3 != null ? str3.equals(((h) aVar).d) : ((h) aVar).d == null) {
                             String str4 = this.e;
                             if (str4 != null ? str4.equals(((h) aVar).e) : ((h) aVar).e == null) {
-                                String str5 = this.f10897f;
-                                if (str5 != null ? str5.equals(((h) aVar).f10897f) : ((h) aVar).f10897f == null) {
-                                    String str6 = this.f10898g;
-                                    if (str6 != null ? str6.equals(((h) aVar).f10898g) : ((h) aVar).f10898g == null) {
+                                String str5 = this.f10898f;
+                                if (str5 != null ? str5.equals(((h) aVar).f10898f) : ((h) aVar).f10898f == null) {
+                                    String str6 = this.f10899g;
+                                    if (str6 != null ? str6.equals(((h) aVar).f10899g) : ((h) aVar).f10899g == null) {
                                         String str7 = this.h;
                                         if (str7 != null ? str7.equals(((h) aVar).h) : ((h) aVar).h == null) {
-                                            String str8 = this.f10899i;
-                                            if (str8 != null ? str8.equals(((h) aVar).f10899i) : ((h) aVar).f10899i == null) {
-                                                String str9 = this.f10900j;
-                                                if (str9 != null ? str9.equals(((h) aVar).f10900j) : ((h) aVar).f10900j == null) {
-                                                    String str10 = this.f10901k;
-                                                    if (str10 != null ? str10.equals(((h) aVar).f10901k) : ((h) aVar).f10901k == null) {
-                                                        String str11 = this.f10902l;
-                                                        if (str11 != null ? str11.equals(((h) aVar).f10902l) : ((h) aVar).f10902l == null) {
+                                            String str8 = this.f10900i;
+                                            if (str8 != null ? str8.equals(((h) aVar).f10900i) : ((h) aVar).f10900i == null) {
+                                                String str9 = this.f10901j;
+                                                if (str9 != null ? str9.equals(((h) aVar).f10901j) : ((h) aVar).f10901j == null) {
+                                                    String str10 = this.f10902k;
+                                                    if (str10 != null ? str10.equals(((h) aVar).f10902k) : ((h) aVar).f10902k == null) {
+                                                        String str11 = this.f10903l;
+                                                        if (str11 != null ? str11.equals(((h) aVar).f10903l) : ((h) aVar).f10903l == null) {
                                                             return true;
                                                         }
                                                     }
@@ -88,21 +88,21 @@ public final class h extends a {
         int hashCode10;
         int hashCode11;
         int i10 = 0;
-        Integer num = this.f10894a;
+        Integer num = this.f10895a;
         if (num == null) {
             hashCode = 0;
         } else {
             hashCode = num.hashCode();
         }
         int i11 = (hashCode ^ 1000003) * 1000003;
-        String str = this.f10895b;
+        String str = this.f10896b;
         if (str == null) {
             hashCode2 = 0;
         } else {
             hashCode2 = str.hashCode();
         }
         int i12 = (i11 ^ hashCode2) * 1000003;
-        String str2 = this.f10896c;
+        String str2 = this.f10897c;
         if (str2 == null) {
             hashCode3 = 0;
         } else {
@@ -123,14 +123,14 @@ public final class h extends a {
             hashCode5 = str4.hashCode();
         }
         int i15 = (i14 ^ hashCode5) * 1000003;
-        String str5 = this.f10897f;
+        String str5 = this.f10898f;
         if (str5 == null) {
             hashCode6 = 0;
         } else {
             hashCode6 = str5.hashCode();
         }
         int i16 = (i15 ^ hashCode6) * 1000003;
-        String str6 = this.f10898g;
+        String str6 = this.f10899g;
         if (str6 == null) {
             hashCode7 = 0;
         } else {
@@ -144,28 +144,28 @@ public final class h extends a {
             hashCode8 = str7.hashCode();
         }
         int i18 = (i17 ^ hashCode8) * 1000003;
-        String str8 = this.f10899i;
+        String str8 = this.f10900i;
         if (str8 == null) {
             hashCode9 = 0;
         } else {
             hashCode9 = str8.hashCode();
         }
         int i19 = (i18 ^ hashCode9) * 1000003;
-        String str9 = this.f10900j;
+        String str9 = this.f10901j;
         if (str9 == null) {
             hashCode10 = 0;
         } else {
             hashCode10 = str9.hashCode();
         }
         int i20 = (i19 ^ hashCode10) * 1000003;
-        String str10 = this.f10901k;
+        String str10 = this.f10902k;
         if (str10 == null) {
             hashCode11 = 0;
         } else {
             hashCode11 = str10.hashCode();
         }
         int i21 = (i20 ^ hashCode11) * 1000003;
-        String str11 = this.f10902l;
+        String str11 = this.f10903l;
         if (str11 != null) {
             i10 = str11.hashCode();
         }
@@ -174,28 +174,28 @@ public final class h extends a {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("AndroidClientInfo{sdkVersion=");
-        sb2.append(this.f10894a);
+        sb2.append(this.f10895a);
         sb2.append(", model=");
-        sb2.append(this.f10895b);
+        sb2.append(this.f10896b);
         sb2.append(", hardware=");
-        sb2.append(this.f10896c);
+        sb2.append(this.f10897c);
         sb2.append(", device=");
         sb2.append(this.d);
         sb2.append(", product=");
         sb2.append(this.e);
         sb2.append(", osBuild=");
-        sb2.append(this.f10897f);
+        sb2.append(this.f10898f);
         sb2.append(", manufacturer=");
-        sb2.append(this.f10898g);
+        sb2.append(this.f10899g);
         sb2.append(", fingerprint=");
         sb2.append(this.h);
         sb2.append(", locale=");
-        sb2.append(this.f10899i);
+        sb2.append(this.f10900i);
         sb2.append(", country=");
-        sb2.append(this.f10900j);
+        sb2.append(this.f10901j);
         sb2.append(", mccMnc=");
-        sb2.append(this.f10901k);
+        sb2.append(this.f10902k);
         sb2.append(", applicationBuild=");
-        return a1.g.r(sb2, this.f10902l, "}");
+        return a1.g.r(sb2, this.f10903l, "}");
     }
 }

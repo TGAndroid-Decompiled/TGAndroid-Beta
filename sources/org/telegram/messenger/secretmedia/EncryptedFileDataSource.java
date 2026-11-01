@@ -56,11 +56,11 @@ public final class EncryptedFileDataSource extends c {
 
     @Override
     public long open(n nVar) {
-        this.uri = nVar.f7314a;
-        File file = new File(nVar.f7314a.getPath());
+        this.uri = nVar.f7315a;
+        File file = new File(nVar.f7315a.getPath());
         String name = file.getName();
         Pattern pattern = b8.I;
-        EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(w0.f19025b.getCacheDir(), e.A(name, ".key")));
+        EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(w0.f18945b.getCacheDir(), e.A(name, ".key")));
         this.fileInputStream = encryptedFileInputStream;
         encryptedFileInputStream.skip(nVar.e);
         int length = (int) file.length();
@@ -70,13 +70,13 @@ public final class EncryptedFileDataSource extends c {
         if (j10 <= j11) {
             int i10 = (int) (j11 - j10);
             this.bytesRemaining = i10;
-            long j12 = nVar.f7317f;
+            long j12 = nVar.f7318f;
             if (j12 != -1) {
                 this.bytesRemaining = (int) Math.min(i10, j12);
             }
             this.opened = true;
             transferStarted(nVar);
-            long j13 = nVar.f7317f;
+            long j13 = nVar.f7318f;
             if (j13 != -1) {
                 return j13;
             }

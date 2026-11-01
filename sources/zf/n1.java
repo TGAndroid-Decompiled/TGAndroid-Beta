@@ -1,13 +1,13 @@
 package zf;
 public final class n1 implements Runnable {
-    public final o1 f55595a;
+    public final o1 f55613a;
 
     public n1(o1 o1Var) {
-        this.f55595a = o1Var;
+        this.f55613a = o1Var;
     }
 
     public final void a() {
-        o1 o1Var = this.f55595a;
+        o1 o1Var = this.f55613a;
         if (o1Var.Q) {
             return;
         }

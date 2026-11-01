@@ -12,15 +12,15 @@ import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
-import org.telegram.messenger.us;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.at;
+import org.telegram.messenger.vs;
 import org.telegram.ui.Components.bn;
 import org.telegram.ui.Components.g9;
 import org.telegram.ui.Components.gr;
-import org.telegram.ui.Components.ou0;
-public final class w0 implements us, lf.a {
-    public static final ou0 X = new ou0(new rh.x6(25), new rh.x6(26));
-    public static final ou0 Y = new ou0(new rh.x6(27), new rh.x6(28));
+import org.telegram.ui.Components.pu0;
+public final class w0 implements vs, lf.a {
+    public static final pu0 X = new pu0(new rh.x6(25), new rh.x6(26));
+    public static final pu0 Y = new pu0(new rh.x6(27), new rh.x6(28));
     public static final w0 Z;
     public m2.t D;
     public boolean E;
@@ -42,24 +42,24 @@ public final class w0 implements us, lf.a {
     public sg.v U;
     public vh.s2 V;
     public boolean W;
-    public float f49549a;
-    public WindowManager f49550b;
-    public WindowManager.LayoutParams f49551c;
+    public float f49563a;
+    public WindowManager f49564b;
+    public WindowManager.LayoutParams f49565c;
     public v0 d;
     public org.telegram.ui.Wallet.f6 e;
-    public vh.s2 f49552f;
+    public vh.s2 f49566f;
     public FrameLayout h;
-    public g9 f49553n;
-    public bn f49554r;
-    public boolean f49555s;
-    public s0 f49556w;
-    public int f49557x;
-    public ScaleGestureDetector f49558y;
+    public g9 f49567n;
+    public bn f49568r;
+    public boolean f49569s;
+    public s0 f49570w;
+    public int f49571x;
+    public ScaleGestureDetector f49572y;
 
     static {
         ?? obj = new Object();
-        obj.f49549a = 1.4f;
-        obj.f49555s = true;
+        obj.f49563a = 1.4f;
+        obj.f49569s = true;
         obj.M = 1.0f;
         obj.U = new sg.v(obj, 5);
         Z = obj;
@@ -73,57 +73,57 @@ public final class w0 implements us, lf.a {
         Point point;
         float L;
         float f7;
-        s0 s0Var = this.f49556w;
+        s0 s0Var = this.f49570w;
         if (s0Var != null) {
             s0Var.v(1.0f);
             vh.s2 s2Var = this.V;
             if (s2Var != null) {
-                this.f49556w.s(s2Var.getSink());
+                this.f49570w.s(s2Var.getSink());
             } else {
-                this.f49556w.s(this.f49552f.getSink());
+                this.f49570w.s(this.f49566f.getSink());
             }
         }
-        if (this.f49555s) {
-            this.f49554r.animate().cancel();
-            ViewPropertyAnimator duration = this.f49554r.animate().alpha(0.0f).setDuration(150L);
-            gr grVar = gr.f26495f;
+        if (this.f49569s) {
+            this.f49568r.animate().cancel();
+            ViewPropertyAnimator duration = this.f49568r.animate().alpha(0.0f).setDuration(150L);
+            gr grVar = gr.f26523f;
             duration.setInterpolator(grVar).start();
-            this.f49553n.animate().cancel();
-            this.f49553n.animate().alpha(0.0f).setDuration(150L).setInterpolator(grVar).start();
-            this.f49552f.animate().cancel();
-            this.f49552f.animate().alpha(1.0f).setDuration(150L).setInterpolator(grVar).start();
-            this.f49555s = false;
+            this.f49567n.animate().cancel();
+            this.f49567n.animate().alpha(0.0f).setDuration(150L).setInterpolator(grVar).start();
+            this.f49566f.animate().cancel();
+            this.f49566f.animate().alpha(1.0f).setDuration(150L).setInterpolator(grVar).start();
+            this.f49569s = false;
         }
         if (this.J == h() * this.M && this.K == f() * this.M) {
             return;
         }
-        WindowManager.LayoutParams layoutParams = this.f49551c;
+        WindowManager.LayoutParams layoutParams = this.f49565c;
         int h = (int) (h() * this.M);
         this.J = h;
         layoutParams.width = h;
-        WindowManager.LayoutParams layoutParams2 = this.f49551c;
+        WindowManager.LayoutParams layoutParams2 = this.f49565c;
         int f10 = (int) (f() * this.M);
         this.K = f10;
         layoutParams2.height = f10;
-        org.telegram.messenger.i0.S3(this.f49550b, this.d, this.f49551c);
+        org.telegram.messenger.i0.S3(this.f49564b, this.d, this.f49565c);
         o1.j jVar = this.P;
         float f11 = this.N;
-        jVar.f13949b = f11;
-        jVar.f13950c = true;
-        o1.k kVar = jVar.f13957m;
+        jVar.f13950b = f11;
+        jVar.f13951c = true;
+        o1.k kVar = jVar.f13958m;
         float A = a1.g.A(h(), this.M, 2.0f, f11);
-        float f12 = org.telegram.messenger.i0.f16026q.x;
+        float f12 = org.telegram.messenger.i0.f16172q.x;
         if (A >= f12 / 2.0f) {
             L = (f12 - (h() * this.M)) - org.telegram.messenger.i0.L(16.0f);
         } else {
             L = org.telegram.messenger.i0.L(16.0f);
         }
-        kVar.f13964i = L;
+        kVar.f13965i = L;
         this.P.h();
         o1.j jVar2 = this.Q;
-        jVar2.f13949b = this.O;
-        jVar2.f13950c = true;
-        jVar2.f13957m.f13964i = w7.u.a(f7, org.telegram.messenger.i0.L(16.0f), (point.y - (f() * this.M)) - org.telegram.messenger.i0.L(16.0f));
+        jVar2.f13950b = this.O;
+        jVar2.f13951c = true;
+        jVar2.f13958m.f13965i = w7.u.a(f7, org.telegram.messenger.i0.L(16.0f), (point.y - (f() * this.M)) - org.telegram.messenger.i0.L(16.0f));
         this.Q.h();
     }
 
@@ -131,7 +131,7 @@ public final class w0 implements us, lf.a {
     public final void c(com.google.android.gms.internal.cast.o oVar) {
         a();
         this.W = true;
-        this.f49550b.removeView(this.d);
+        this.f49564b.removeView(this.d);
         this.d.invalidate();
     }
 
@@ -139,7 +139,7 @@ public final class w0 implements us, lf.a {
         if (this.S) {
             this.S = false;
             org.telegram.messenger.i0.h3(new r5.a(8), 100L);
-            zs.f(this.f49557x).n(this, zs.G2);
+            at.f(this.f49571x).n(this, at.G2);
             ValueAnimator valueAnimator = this.I;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
@@ -150,7 +150,7 @@ public final class w0 implements us, lf.a {
             }
             AnimatorSet animatorSet = new AnimatorSet();
             animatorSet.setDuration(250L);
-            animatorSet.setInterpolator(gr.f26495f);
+            animatorSet.setInterpolator(gr.f26523f);
             animatorSet.playTogether(ObjectAnimator.ofFloat(this.d, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.d, View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.d, View.SCALE_Y, 0.1f));
             animatorSet.addListener(new sg.y(3, this, z10));
             animatorSet.start();
@@ -164,9 +164,9 @@ public final class w0 implements us, lf.a {
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == zs.D2) {
+        if (i10 == at.D2) {
             b();
-        } else if (i10 == zs.f19713w2) {
+        } else if (i10 == at.f14809w2) {
             a();
         }
     }
@@ -174,8 +174,8 @@ public final class w0 implements us, lf.a {
     public final float e() {
         if (this.R == null) {
             this.R = Float.valueOf(1.7777778f);
-            Point point = org.telegram.messenger.i0.f16026q;
-            this.f49549a = (Math.min(point.x, point.y) - org.telegram.messenger.i0.L(32.0f)) / h();
+            Point point = org.telegram.messenger.i0.f16172q;
+            this.f49563a = (Math.min(point.x, point.y) - org.telegram.messenger.i0.L(32.0f)) / h();
         }
         return this.R.floatValue();
     }
@@ -188,17 +188,17 @@ public final class w0 implements us, lf.a {
     public final void g(com.google.android.gms.internal.cast.o oVar) {
         jf.f fVar = this.L;
         if (fVar != null && fVar.h.c()) {
-            WindowManager.LayoutParams layoutParams = this.f49551c;
-            int width = ((Rect) this.L.h.f10752a).width();
+            WindowManager.LayoutParams layoutParams = this.f49565c;
+            int width = ((Rect) this.L.h.f10753a).width();
             this.J = width;
             layoutParams.width = width;
-            WindowManager.LayoutParams layoutParams2 = this.f49551c;
-            int height = ((Rect) this.L.h.f10752a).height();
+            WindowManager.LayoutParams layoutParams2 = this.f49565c;
+            int height = ((Rect) this.L.h.f10753a).height();
             this.K = height;
             layoutParams2.height = height;
         }
         this.W = false;
-        this.f49550b.addView(this.d, this.f49551c);
+        this.f49564b.addView(this.d, this.f49565c);
         this.d.invalidate();
         vh.s2 s2Var = this.V;
         if (s2Var != null) {
@@ -212,11 +212,11 @@ public final class w0 implements us, lf.a {
         float min;
         float f7;
         if (e() >= 1.0f) {
-            Point point = org.telegram.messenger.i0.f16026q;
+            Point point = org.telegram.messenger.i0.f16172q;
             min = Math.min(point.x, point.y);
             f7 = 0.35f;
         } else {
-            Point point2 = org.telegram.messenger.i0.f16026q;
+            Point point2 = org.telegram.messenger.i0.f16172q;
             min = Math.min(point2.x, point2.y);
             f7 = 0.6f;
         }
@@ -245,7 +245,7 @@ public final class w0 implements us, lf.a {
         }
         ValueAnimator duration = ValueAnimator.ofFloat(f7, f10).setDuration(200L);
         this.I = duration;
-        duration.setInterpolator(gr.f26495f);
+        duration.setInterpolator(gr.f26523f);
         this.I.addUpdateListener(new qh.e0(this, 15));
         this.I.addListener(new sg.r(this, 5));
         this.I.start();
@@ -253,9 +253,9 @@ public final class w0 implements us, lf.a {
 
     @Override
     public final Bitmap m() {
-        vh.s2 s2Var = this.f49552f;
+        vh.s2 s2Var = this.f49566f;
         if (s2Var != null && s2Var.a()) {
-            return this.f49552f.getBitmap();
+            return this.f49566f.getBitmap();
         }
         return null;
     }
@@ -267,7 +267,7 @@ public final class w0 implements us, lf.a {
 
     @Override
     public final View r() {
-        vh.s2 s2Var = new vh.s2(this.f49552f.getContext(), this.f49557x);
+        vh.s2 s2Var = new vh.s2(this.f49566f.getContext(), this.f49571x);
         this.V = s2Var;
         return s2Var;
     }
@@ -277,6 +277,6 @@ public final class w0 implements us, lf.a {
     }
 
     @Override
-    public final void n(Canvas canvas) {
+    public final void o(Canvas canvas) {
     }
 }

@@ -13,7 +13,7 @@ public final class vw extends s4.r {
     public final void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
         try {
             qw qwVar = new qw(this, recyclerView.getContext(), 1);
-            qwVar.f48045a = i10;
+            qwVar.f48056a = i10;
             w0(qwVar);
         } catch (Exception e) {
             org.telegram.messenger.f8.g(e, true);

@@ -1,257 +1,50 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-public final class nb0 extends org.telegram.ui.Components.tk0 {
-    public final int f39894e3;
-    public final Object f39895f3;
+public final class nb0 extends zf.h0 {
+    public boolean m0;
+    public final xb0 f39795n0;
 
-    public nb0(KeyEvent.Callback callback, Context context, org.telegram.ui.ActionBar.p6 p6Var, int i10) {
-        super(context, p6Var);
-        this.f39894e3 = i10;
-        this.f39895f3 = callback;
+    public nb0(xb0 xb0Var, Context context, int i10, long j10, org.telegram.ui.ActionBar.p6 p6Var, boolean z10, boolean z11) {
+        super(context, i10, j10, false, p6Var, false, z10, z11);
+        this.f39795n0 = xb0Var;
+        this.m0 = true;
     }
 
     @Override
-    public boolean H0(View view, float f7, float f10) {
-        switch (this.f39894e3) {
-            case 3:
-                ((rh.t0) this.f39895f3).getClass();
-                return true;
-            default:
-                return super.H0(view, f7, f10);
-        }
+    public final void K() {
+        this.f39795n0.D0(null);
     }
 
     @Override
-    public Integer V0(int i10) {
-        int i11;
-        switch (this.f39894e3) {
-            case 2:
-                i11 = ((SessionsActivity) this.f39895f3).terminateAllSessionsRow;
-                org.telegram.ui.ActionBar.p6 p6Var = this.f30625n2;
-                if (i10 == i11) {
-                    return Integer.valueOf(org.telegram.ui.ActionBar.t6.r1(0.1f, org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f21153p7, p6Var)));
-                }
-                return Integer.valueOf(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f21020i6, p6Var));
-            case 3:
-            default:
-                return super.V0(i10);
-            case 4:
-                return 0;
-        }
-    }
-
-    @Override
-    public void dispatchDraw(Canvas canvas) {
-        int L;
-        ArrayList arrayList;
-        View view;
-        th.h0 h0Var;
-        switch (this.f39894e3) {
-            case 0:
-                yb0 yb0Var = (yb0) this.f39895f3;
-                RectF rectF = yb0Var.f43783b0;
-                if (yb0Var.f43781a0 != null) {
-                    int L2 = org.telegram.messenger.i0.L(12.0f);
-                    yb0Var.f43781a0.setBounds(-L2, yb0Var.f43785c0 - L2, getWidth() + L2, getHeight() + L2);
-                    yb0Var.f43781a0.draw(canvas);
-                    int i10 = yb0Var.O0;
-                    if (i10 == 0 || i10 == 1) {
-                        int L3 = org.telegram.messenger.i0.L(36.0f);
-                        rectF.set((getWidth() - L3) / 2.0f, org.telegram.messenger.i0.L(10.0f) + yb0Var.f43785c0, (getWidth() + L3) / 2.0f, org.telegram.messenger.i0.L(4.0f) + L);
-                        org.telegram.ui.ActionBar.t6.f21217t0.setColor(yb0Var.getThemedColor(org.telegram.ui.ActionBar.t6.wj));
-                        canvas.drawRoundRect(rectF, org.telegram.messenger.i0.L(2.0f), org.telegram.messenger.i0.L(2.0f), org.telegram.ui.ActionBar.t6.f21217t0);
+    public final void O(ArrayList arrayList) {
+        int i10;
+        xb0 xb0Var = this.f39795n0;
+        org.telegram.messenger.kj kjVar = xb0Var.J0;
+        if (kjVar != null && kjVar.C3()) {
+            int i11 = 0;
+            if (arrayList != null) {
+                i10 = 0;
+                for (int i12 = 0; i12 < arrayList.size(); i12++) {
+                    rb0 rb0Var = (rb0) arrayList.get(i12);
+                    if (rb0Var != null && !org.telegram.messenger.i20.B(rb0Var.f41031c)) {
+                        i10++;
                     }
                 }
-                super.dispatchDraw(canvas);
-                return;
-            case 1:
-                sn0 sn0Var = (sn0) this.f39895f3;
-                Paint paint = sn0Var.f41617x;
-                RectF rectF2 = sn0Var.f41615s;
-                RectF rectF3 = sn0Var.f41614r;
-                RectF rectF4 = sn0Var.f41613n;
-                s4.a0 a0Var = sn0Var.f41610b;
-                if (!sn0Var.f41612f.isEmpty()) {
-                    float e = sn0Var.e.e(false, sn0Var.d);
-                    double d = e;
-                    int j10 = Utilities.j((int) Math.floor(d), arrayList.size() - 1, 0);
-                    int j11 = Utilities.j((int) Math.ceil(d), arrayList.size() - 1, 0);
-                    View m10 = a0Var.m(j10);
-                    View m11 = a0Var.m(j11);
-                    if (m10 != null || m11 != null) {
-                        if (m10 != null) {
-                            view = m10;
-                        } else {
-                            view = m11;
-                        }
-                        rectF4.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
-                        if (m11 != null) {
-                            m10 = m11;
-                        }
-                        rectF3.set(m10.getLeft(), m10.getTop(), m10.getRight(), m10.getBottom());
-                        org.telegram.messenger.i0.Z1(rectF4, rectF3, e - j10, rectF2);
-                        paint.setColor(sn0Var.f41618y);
-                        float height = rectF2.height() / 2.0f;
-                        canvas.drawRoundRect(rectF2, height, height, paint);
-                        super.dispatchDraw(canvas);
-                        return;
-                    }
-                }
-                super.dispatchDraw(canvas);
-                return;
-            case 4:
-                th.p1 p1Var = (th.p1) this.f39895f3;
-                int i11 = -1;
-                if (!p1Var.f49088f0) {
-                    int i12 = 0;
-                    while (true) {
-                        if (i12 < getChildCount()) {
-                            View childAt = getChildAt(i12);
-                            if ((childAt instanceof th.c0) && (h0Var = ((th.c0) childAt).K) != null) {
-                                i11 = h0Var.f49006a;
-                            } else {
-                                i12++;
-                            }
-                        }
-                    }
-                }
-                if (i11 > p1Var.F) {
-                    p1Var.F = i11;
-                    th.a aVar = p1Var.f49354i0.G1;
-                    if (aVar != null) {
-                        aVar.setCount(p1Var.getUnreadMessagesCount());
-                    }
-                }
-                super.dispatchDraw(canvas);
-                return;
-            case 7:
-                org.telegram.ui.Components.qe qeVar = (org.telegram.ui.Components.qe) this.f39895f3;
-                nb0 nb0Var = qeVar.f54012c;
-                if (nb0Var.getLayoutManager() != null && nb0Var.getAdapter() != null && nb0Var.getAdapter().b() != 0) {
-                    float L4 = qeVar.h - org.telegram.messenger.i0.L(8.0f);
-                    qeVar.e = L4 - org.telegram.messenger.i0.L(16.0f);
-                    vg.f fVar = qeVar.f54015r;
-                    if (fVar != null) {
-                        fVar.draw(canvas);
-                    }
-                    RectF rectF5 = org.telegram.messenger.i0.P;
-                    rectF5.set((getMeasuredWidth() / 2.0f) - org.telegram.messenger.i0.L(12.0f), L4 - org.telegram.messenger.i0.L(4.0f), (getMeasuredWidth() / 2.0f) + org.telegram.messenger.i0.L(12.0f), L4);
-                    canvas.drawRoundRect(rectF5, org.telegram.messenger.i0.L(4.0f), org.telegram.messenger.i0.L(4.0f), qeVar.d);
-                    super.dispatchDraw(canvas);
-                    return;
-                }
-                super.dispatchDraw(canvas);
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
+            } else {
+                i10 = 0;
+            }
+            if (this.m0 && i10 == 1) {
+                xb0Var.f43322r0 = ((rb0) arrayList.get(0)).f41029a;
+            }
+            this.m0 = false;
+            org.telegram.ui.ActionBar.p5 p5Var = xb0Var.X;
+            if (i10 != 1) {
+                i11 = 8;
+            }
+            p5Var.setVisibility(i11);
         }
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f39894e3) {
-            case 0:
-                if (motionEvent.getActionMasked() == 0 && motionEvent.getY() < ((yb0) this.f39895f3).f43785c0) {
-                    return false;
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            case 4:
-                if (((th.p1) this.f39895f3).f49088f0) {
-                    return false;
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            case 6:
-                if (((vh.k2) this.f39895f3).K) {
-                    return false;
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            default:
-                return super.dispatchTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public void invalidate() {
-        switch (this.f39894e3) {
-            case 1:
-                super.invalidate();
-                dn0 dn0Var = ((sn0) this.f39895f3).F;
-                if (dn0Var != null) {
-                    dn0Var.run();
-                    return;
-                }
-                return;
-            case 4:
-                super.invalidate();
-                ((th.p1) this.f39895f3).invalidate();
-                return;
-            default:
-                super.invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.f39894e3) {
-            case 5:
-                lt p5 = lt.p();
-                vh.g1 g1Var = (vh.g1) this.f39895f3;
-                boolean q6 = p5.q(motionEvent, g1Var.f51184b, g1Var.f51186f, this.f30625n2);
-                if (!super.onInterceptTouchEvent(motionEvent) && !q6) {
-                    return false;
-                }
-                return true;
-            case 6:
-                if (((vh.k2) this.f39895f3).K) {
-                    return false;
-                }
-                return super.onInterceptTouchEvent(motionEvent);
-            default:
-                return super.onInterceptTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f39894e3) {
-            case 3:
-                ((rh.t0) this.f39895f3).I0();
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f39894e3) {
-            case 4:
-                int size = View.MeasureSpec.getSize(i10);
-                View.MeasureSpec.getSize(i11);
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size, View.MeasureSpec.getMode(i11)));
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
-        }
-    }
-
-    public nb0(Object obj, Context context, int i10) {
-        super(context, null);
-        this.f39894e3 = i10;
-        this.f39895f3 = obj;
+        super.O(arrayList);
     }
 }

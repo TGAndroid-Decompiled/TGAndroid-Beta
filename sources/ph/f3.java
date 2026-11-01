@@ -8,7 +8,7 @@ import org.telegram.ui.ActionBar.t6;
 public final class f3 extends org.telegram.ui.ActionBar.b1 {
     public final int V;
     public long W;
-    public d3 f45052a0;
+    public d3 f45063a0;
 
     public f3(int i10, Context context, p6 p6Var) {
         super(0, context, p6Var, false, false);
@@ -18,10 +18,10 @@ public final class f3 extends org.telegram.ui.ActionBar.b1 {
         int i12 = t6.F8;
         c(i11, i12);
         g(t6.w0(i12, p6Var), PorterDuff.Mode.SRC_IN);
-        this.f20166c.setTranslationX(org.telegram.messenger.i0.L(2.0f));
+        this.f20167c.setTranslationX(org.telegram.messenger.i0.L(2.0f));
         a(2);
         setBackground(null);
-        this.f20166c.addOnAttachStateChangeListener(new l.d(this, 13));
+        this.f20167c.addOnAttachStateChangeListener(new l.d(this, 13));
     }
 
     @Override

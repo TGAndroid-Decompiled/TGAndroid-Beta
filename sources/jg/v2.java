@@ -31,19 +31,19 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.at;
 import org.telegram.messenger.b8;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.d20;
-import org.telegram.messenger.j20;
-import org.telegram.messenger.jj;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.e20;
+import org.telegram.messenger.k20;
 import org.telegram.messenger.k6;
+import org.telegram.messenger.kj;
 import org.telegram.messenger.o6;
-import org.telegram.messenger.q20;
-import org.telegram.messenger.qz;
-import org.telegram.messenger.ui;
-import org.telegram.messenger.us;
-import org.telegram.messenger.x20;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.r20;
+import org.telegram.messenger.rz;
+import org.telegram.messenger.vi;
+import org.telegram.messenger.vs;
+import org.telegram.messenger.y20;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -52,17 +52,17 @@ import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Components.cc;
 import org.telegram.ui.Components.gr;
-import org.telegram.ui.Components.h01;
+import org.telegram.ui.Components.i01;
 import org.telegram.ui.Components.t5;
-import org.telegram.ui.wo0;
+import org.telegram.ui.uo0;
 import vh.n5;
 import w7.b6;
 import w7.w7;
 import x7.ga;
 import x7.m7;
 import x7.o7;
-public final class v2 extends FrameLayout implements us {
-    public static final int f10307r0 = 0;
+public final class v2 extends FrameLayout implements vs {
+    public static final int f10308r0 = 0;
     public volatile boolean D;
     public s2 E;
     public float F;
@@ -78,68 +78,68 @@ public final class v2 extends FrameLayout implements us {
     public float P;
     public float Q;
     public float R;
-    public h01 S;
+    public i01 S;
     public int T;
     public int U;
     public boolean V;
     public t2 W;
-    public int f10308a;
-    public final p6 f10309a0;
-    public final t5 f10310b;
-    public j2 f10311b0;
-    public final t5 f10312c;
-    public String f10313c0;
+    public int f10309a;
+    public final p6 f10310a0;
+    public final t5 f10311b;
+    public j2 f10312b0;
+    public final t5 f10313c;
+    public String f10314c0;
     public final Paint d;
-    public vh.m0 f10314d0;
+    public vh.m0 f10315d0;
     public final Paint e;
-    public final Matrix f10315e0;
-    public final Paint f10316f;
-    public float f10317f0;
-    public float f10318g0;
+    public final Matrix f10316e0;
+    public final Paint f10317f;
+    public float f10318f0;
+    public float f10319g0;
     public final Paint h;
-    public final d2 f10319h0;
-    public boolean f10320i0;
-    public final Matrix f10321j0;
-    public Path f10322k0;
-    public Path f10323l0;
+    public final d2 f10320h0;
+    public boolean f10321i0;
+    public final Matrix f10322j0;
+    public Path f10323k0;
+    public Path f10324l0;
     public final RectF m0;
-    public final PathMeasure f10324n;
-    public float f10325n0;
-    public float f10326o0;
-    public final ArrayList f10327p0;
-    public final Rect f10328q0;
-    public final Path f10329r;
-    public final Path f10330s;
-    public final Path f10331w;
-    public final Path f10332x;
-    public volatile boolean f10333y;
+    public final PathMeasure f10325n;
+    public float f10326n0;
+    public float f10327o0;
+    public final ArrayList f10328p0;
+    public final Rect f10329q0;
+    public final Path f10330r;
+    public final Path f10331s;
+    public final Path f10332w;
+    public final Path f10333x;
+    public volatile boolean f10334y;
 
     public v2(ContextThemeWrapper contextThemeWrapper, p6 p6Var) {
         super(contextThemeWrapper);
-        this.f10308a = -1;
+        this.f10309a = -1;
         gr grVar = gr.h;
-        this.f10310b = new t5(0.0f, (View) null, 0L, 420L, grVar);
-        this.f10312c = new t5(0.0f, (View) null, 0L, 420L, grVar);
+        this.f10311b = new t5(0.0f, (View) null, 0L, 420L, grVar);
+        this.f10313c = new t5(0.0f, (View) null, 0L, 420L, grVar);
         Paint paint = new Paint(1);
         this.d = paint;
         Paint paint2 = new Paint(1);
         this.e = paint2;
         Paint paint3 = new Paint(1);
-        this.f10316f = paint3;
+        this.f10317f = paint3;
         Paint paint4 = new Paint(1);
         this.h = paint4;
-        this.f10324n = new PathMeasure();
-        this.f10329r = new Path();
-        this.f10330s = new Path();
-        this.f10331w = new Path();
-        this.f10332x = new Path();
+        this.f10325n = new PathMeasure();
+        this.f10330r = new Path();
+        this.f10331s = new Path();
+        this.f10332w = new Path();
+        this.f10333x = new Path();
         this.F = 2.0f;
-        this.f10315e0 = new Matrix();
-        this.f10321j0 = new Matrix();
+        this.f10316e0 = new Matrix();
+        this.f10322j0 = new Matrix();
         this.m0 = new RectF();
-        this.f10327p0 = new ArrayList();
-        this.f10328q0 = new Rect();
-        this.f10309a0 = p6Var;
+        this.f10328p0 = new ArrayList();
+        this.f10329q0 = new Rect();
+        this.f10310a0 = p6Var;
         paint.setColor(-1);
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
@@ -173,7 +173,7 @@ public final class v2 extends FrameLayout implements us {
         paint2.setColor(1711276032);
         setLayerType(2, null);
         d2 d2Var = new d2(contextThemeWrapper);
-        this.f10319h0 = d2Var;
+        this.f10320h0 = d2Var;
         d2Var.setAlpha(0.0f);
         d2Var.setTranslationX(-org.telegram.messenger.i0.L(18.0f));
         d2Var.b(0.33f, 10.0f);
@@ -215,28 +215,28 @@ public final class v2 extends FrameLayout implements us {
     public final void a() {
         final t2 t2Var = this.W;
         if (t2Var != null) {
-            final int i10 = d20.f15147s0;
-            t2Var.f10280o = true;
-            if (t2Var.f10278m != null) {
+            final int i10 = e20.f15506s0;
+            t2Var.f10281o = true;
+            if (t2Var.f10279m != null) {
                 h();
-                t2Var.f10278m.a(t2Var.f10270b, t2Var.e.document);
+                t2Var.f10279m.a(t2Var.f10271b, t2Var.e.document);
                 org.telegram.messenger.i0.h3(new ag.f3(6), 250L);
-            } else if (t2Var.f10276k != null) {
+            } else if (t2Var.f10277k != null) {
                 TLRPC.TL_stickers_replaceSticker tL_stickers_replaceSticker = new TLRPC.TL_stickers_replaceSticker();
-                tL_stickers_replaceSticker.sticker = ui.a0(t2Var.f10276k, t2Var.f10271c).document;
+                tL_stickers_replaceSticker.sticker = vi.a0(t2Var.f10277k, t2Var.f10272c).document;
                 tL_stickers_replaceSticker.new_sticker = t2Var.e;
                 ConnectionsManager.getInstance(i10).sendRequest(tL_stickers_replaceSticker, new RequestDelegate(this) {
-                    public final v2 f10087b;
+                    public final v2 f10088b;
 
                     {
-                        this.f10087b = this;
+                        this.f10088b = this;
                     }
 
                     @Override
                     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
                         switch (r4) {
                             case 0:
-                                final v2 v2Var = this.f10087b;
+                                final v2 v2Var = this.f10088b;
                                 final int i11 = i10;
                                 final t2 t2Var2 = t2Var;
                                 org.telegram.messenger.i0.g3(new Runnable() {
@@ -255,11 +255,11 @@ public final class v2 extends FrameLayout implements us {
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
                                                     int i12 = i11;
                                                     z10 = true;
-                                                    ui.b0(i12).I1(tL_messages_stickerSet, true);
-                                                    if (!ui.b0(i12).B0(tL_messages_stickerSet.set.f19820id, true)) {
-                                                        ui.b0(i12).f2(null, tLObject2, 2, null, false, false);
+                                                    vi.b0(i12).I1(tL_messages_stickerSet, true);
+                                                    if (!vi.b0(i12).B0(tL_messages_stickerSet.set.f19821id, true)) {
+                                                        vi.b0(i12).f2(null, tLObject2, 2, null, false, false);
                                                     }
-                                                    vh.m0 m0Var = v2Var2.f10314d0;
+                                                    vh.m0 m0Var = v2Var2.f10315d0;
                                                     if (m0Var != null) {
                                                         m0Var.setProgress(1.0f);
                                                     }
@@ -272,21 +272,21 @@ public final class v2 extends FrameLayout implements us {
                                                             v2 v2Var3 = v2Var2;
                                                             switch (i13) {
                                                                 case 0:
-                                                                    zs f7 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document = t2Var4.f10272f.document;
-                                                                    String str = t2Var4.f10277l;
+                                                                    at f7 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document = t2Var4.f10273f.document;
+                                                                    String str = t2Var4.f10278l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     f7.m(215, bool, tLObject3, document, str, bool);
                                                                     v2Var3.h();
                                                                     return;
                                                                 case 1:
-                                                                    zs.f(d20.f15147s0).m(215, Boolean.FALSE, tLObject3, t2Var4.f10272f.document, t2Var4.f10277l, Boolean.TRUE);
+                                                                    at.f(e20.f15506s0).m(215, Boolean.FALSE, tLObject3, t2Var4.f10273f.document, t2Var4.f10278l, Boolean.TRUE);
                                                                     v2Var3.h();
                                                                     return;
                                                                 default:
-                                                                    zs f10 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document2 = t2Var4.f10272f.document;
-                                                                    String str2 = t2Var4.f10277l;
+                                                                    at f10 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document2 = t2Var4.f10273f.document;
+                                                                    String str2 = t2Var4.f10278l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     f10.m(215, bool2, tLObject3, document2, str2, bool2);
                                                                     v2Var3.h();
@@ -299,10 +299,10 @@ public final class v2 extends FrameLayout implements us {
                                                     v2Var2.h();
                                                     z10 = false;
                                                 }
-                                                q20 q20Var = t2Var3.f10279n;
-                                                if (q20Var != null) {
-                                                    q20Var.a(Boolean.valueOf(z10));
-                                                    t2Var3.f10279n = null;
+                                                r20 r20Var = t2Var3.f10280n;
+                                                if (r20Var != null) {
+                                                    r20Var.a(Boolean.valueOf(z10));
+                                                    t2Var3.f10280n = null;
                                                     return;
                                                 }
                                                 return;
@@ -314,9 +314,9 @@ public final class v2 extends FrameLayout implements us {
                                                 if (z14) {
                                                     int i13 = i11;
                                                     z11 = true;
-                                                    ui.b0(i13).I1((TLRPC.TL_messages_stickerSet) tLObject3, true);
-                                                    ui.b0(i13).f2(null, tLObject3, 2, null, false, false);
-                                                    vh.m0 m0Var2 = v2Var3.f10314d0;
+                                                    vi.b0(i13).I1((TLRPC.TL_messages_stickerSet) tLObject3, true);
+                                                    vi.b0(i13).f2(null, tLObject3, 2, null, false, false);
+                                                    vh.m0 m0Var2 = v2Var3.f10315d0;
                                                     if (m0Var2 != null) {
                                                         m0Var2.setProgress(1.0f);
                                                     }
@@ -329,21 +329,21 @@ public final class v2 extends FrameLayout implements us {
                                                             v2 v2Var32 = v2Var3;
                                                             switch (i132) {
                                                                 case 0:
-                                                                    zs f7 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document = t2Var42.f10272f.document;
-                                                                    String str = t2Var42.f10277l;
+                                                                    at f7 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document = t2Var42.f10273f.document;
+                                                                    String str = t2Var42.f10278l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     f7.m(215, bool, tLObject32, document, str, bool);
                                                                     v2Var32.h();
                                                                     return;
                                                                 case 1:
-                                                                    zs.f(d20.f15147s0).m(215, Boolean.FALSE, tLObject32, t2Var42.f10272f.document, t2Var42.f10277l, Boolean.TRUE);
+                                                                    at.f(e20.f15506s0).m(215, Boolean.FALSE, tLObject32, t2Var42.f10273f.document, t2Var42.f10278l, Boolean.TRUE);
                                                                     v2Var32.h();
                                                                     return;
                                                                 default:
-                                                                    zs f10 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document2 = t2Var42.f10272f.document;
-                                                                    String str2 = t2Var42.f10277l;
+                                                                    at f10 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document2 = t2Var42.f10273f.document;
+                                                                    String str2 = t2Var42.f10278l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     f10.m(215, bool2, tLObject32, document2, str2, bool2);
                                                                     v2Var32.h();
@@ -356,10 +356,10 @@ public final class v2 extends FrameLayout implements us {
                                                     v2Var3.h();
                                                     z11 = false;
                                                 }
-                                                q20 q20Var2 = t2Var4.f10279n;
-                                                if (q20Var2 != null) {
-                                                    q20Var2.a(Boolean.valueOf(z11));
-                                                    t2Var4.f10279n = null;
+                                                r20 r20Var2 = t2Var4.f10280n;
+                                                if (r20Var2 != null) {
+                                                    r20Var2.a(Boolean.valueOf(z11));
+                                                    t2Var4.f10280n = null;
                                                     return;
                                                 }
                                                 return;
@@ -372,11 +372,11 @@ public final class v2 extends FrameLayout implements us {
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject4;
                                                     int i14 = i11;
                                                     z12 = true;
-                                                    ui.b0(i14).I1(tL_messages_stickerSet2, true);
-                                                    if (!ui.b0(i14).B0(tL_messages_stickerSet2.set.f19820id, true)) {
-                                                        ui.b0(i14).f2(null, tLObject4, 2, null, false, false);
+                                                    vi.b0(i14).I1(tL_messages_stickerSet2, true);
+                                                    if (!vi.b0(i14).B0(tL_messages_stickerSet2.set.f19821id, true)) {
+                                                        vi.b0(i14).f2(null, tLObject4, 2, null, false, false);
                                                     }
-                                                    vh.m0 m0Var3 = v2Var4.f10314d0;
+                                                    vh.m0 m0Var3 = v2Var4.f10315d0;
                                                     if (m0Var3 != null) {
                                                         m0Var3.setProgress(1.0f);
                                                     }
@@ -389,21 +389,21 @@ public final class v2 extends FrameLayout implements us {
                                                             v2 v2Var32 = v2Var4;
                                                             switch (i132) {
                                                                 case 0:
-                                                                    zs f7 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document = t2Var42.f10272f.document;
-                                                                    String str = t2Var42.f10277l;
+                                                                    at f7 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document = t2Var42.f10273f.document;
+                                                                    String str = t2Var42.f10278l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     f7.m(215, bool, tLObject32, document, str, bool);
                                                                     v2Var32.h();
                                                                     return;
                                                                 case 1:
-                                                                    zs.f(d20.f15147s0).m(215, Boolean.FALSE, tLObject32, t2Var42.f10272f.document, t2Var42.f10277l, Boolean.TRUE);
+                                                                    at.f(e20.f15506s0).m(215, Boolean.FALSE, tLObject32, t2Var42.f10273f.document, t2Var42.f10278l, Boolean.TRUE);
                                                                     v2Var32.h();
                                                                     return;
                                                                 default:
-                                                                    zs f10 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document2 = t2Var42.f10272f.document;
-                                                                    String str2 = t2Var42.f10277l;
+                                                                    at f10 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document2 = t2Var42.f10273f.document;
+                                                                    String str2 = t2Var42.f10278l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     f10.m(215, bool2, tLObject32, document2, str2, bool2);
                                                                     v2Var32.h();
@@ -416,10 +416,10 @@ public final class v2 extends FrameLayout implements us {
                                                     v2Var4.h();
                                                     z12 = false;
                                                 }
-                                                q20 q20Var3 = t2Var5.f10279n;
-                                                if (q20Var3 != null) {
-                                                    q20Var3.a(Boolean.valueOf(z12));
-                                                    t2Var5.f10279n = null;
+                                                r20 r20Var3 = t2Var5.f10280n;
+                                                if (r20Var3 != null) {
+                                                    r20Var3.a(Boolean.valueOf(z12));
+                                                    t2Var5.f10280n = null;
                                                     return;
                                                 }
                                                 return;
@@ -428,7 +428,7 @@ public final class v2 extends FrameLayout implements us {
                                 });
                                 return;
                             case 1:
-                                final v2 v2Var2 = this.f10087b;
+                                final v2 v2Var2 = this.f10088b;
                                 final int i12 = i10;
                                 final t2 t2Var3 = t2Var;
                                 org.telegram.messenger.i0.g3(new Runnable() {
@@ -447,11 +447,11 @@ public final class v2 extends FrameLayout implements us {
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
                                                     int i122 = i12;
                                                     z10 = true;
-                                                    ui.b0(i122).I1(tL_messages_stickerSet, true);
-                                                    if (!ui.b0(i122).B0(tL_messages_stickerSet.set.f19820id, true)) {
-                                                        ui.b0(i122).f2(null, tLObject2, 2, null, false, false);
+                                                    vi.b0(i122).I1(tL_messages_stickerSet, true);
+                                                    if (!vi.b0(i122).B0(tL_messages_stickerSet.set.f19821id, true)) {
+                                                        vi.b0(i122).f2(null, tLObject2, 2, null, false, false);
                                                     }
-                                                    vh.m0 m0Var = v2Var22.f10314d0;
+                                                    vh.m0 m0Var = v2Var22.f10315d0;
                                                     if (m0Var != null) {
                                                         m0Var.setProgress(1.0f);
                                                     }
@@ -464,21 +464,21 @@ public final class v2 extends FrameLayout implements us {
                                                             v2 v2Var32 = v2Var22;
                                                             switch (i132) {
                                                                 case 0:
-                                                                    zs f7 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document = t2Var42.f10272f.document;
-                                                                    String str = t2Var42.f10277l;
+                                                                    at f7 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document = t2Var42.f10273f.document;
+                                                                    String str = t2Var42.f10278l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     f7.m(215, bool, tLObject32, document, str, bool);
                                                                     v2Var32.h();
                                                                     return;
                                                                 case 1:
-                                                                    zs.f(d20.f15147s0).m(215, Boolean.FALSE, tLObject32, t2Var42.f10272f.document, t2Var42.f10277l, Boolean.TRUE);
+                                                                    at.f(e20.f15506s0).m(215, Boolean.FALSE, tLObject32, t2Var42.f10273f.document, t2Var42.f10278l, Boolean.TRUE);
                                                                     v2Var32.h();
                                                                     return;
                                                                 default:
-                                                                    zs f10 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document2 = t2Var42.f10272f.document;
-                                                                    String str2 = t2Var42.f10277l;
+                                                                    at f10 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document2 = t2Var42.f10273f.document;
+                                                                    String str2 = t2Var42.f10278l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     f10.m(215, bool2, tLObject32, document2, str2, bool2);
                                                                     v2Var32.h();
@@ -491,10 +491,10 @@ public final class v2 extends FrameLayout implements us {
                                                     v2Var22.h();
                                                     z10 = false;
                                                 }
-                                                q20 q20Var = t2Var32.f10279n;
-                                                if (q20Var != null) {
-                                                    q20Var.a(Boolean.valueOf(z10));
-                                                    t2Var32.f10279n = null;
+                                                r20 r20Var = t2Var32.f10280n;
+                                                if (r20Var != null) {
+                                                    r20Var.a(Boolean.valueOf(z10));
+                                                    t2Var32.f10280n = null;
                                                     return;
                                                 }
                                                 return;
@@ -506,9 +506,9 @@ public final class v2 extends FrameLayout implements us {
                                                 if (z14) {
                                                     int i13 = i12;
                                                     z11 = true;
-                                                    ui.b0(i13).I1((TLRPC.TL_messages_stickerSet) tLObject3, true);
-                                                    ui.b0(i13).f2(null, tLObject3, 2, null, false, false);
-                                                    vh.m0 m0Var2 = v2Var3.f10314d0;
+                                                    vi.b0(i13).I1((TLRPC.TL_messages_stickerSet) tLObject3, true);
+                                                    vi.b0(i13).f2(null, tLObject3, 2, null, false, false);
+                                                    vh.m0 m0Var2 = v2Var3.f10315d0;
                                                     if (m0Var2 != null) {
                                                         m0Var2.setProgress(1.0f);
                                                     }
@@ -521,21 +521,21 @@ public final class v2 extends FrameLayout implements us {
                                                             v2 v2Var32 = v2Var3;
                                                             switch (i132) {
                                                                 case 0:
-                                                                    zs f7 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document = t2Var42.f10272f.document;
-                                                                    String str = t2Var42.f10277l;
+                                                                    at f7 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document = t2Var42.f10273f.document;
+                                                                    String str = t2Var42.f10278l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     f7.m(215, bool, tLObject32, document, str, bool);
                                                                     v2Var32.h();
                                                                     return;
                                                                 case 1:
-                                                                    zs.f(d20.f15147s0).m(215, Boolean.FALSE, tLObject32, t2Var42.f10272f.document, t2Var42.f10277l, Boolean.TRUE);
+                                                                    at.f(e20.f15506s0).m(215, Boolean.FALSE, tLObject32, t2Var42.f10273f.document, t2Var42.f10278l, Boolean.TRUE);
                                                                     v2Var32.h();
                                                                     return;
                                                                 default:
-                                                                    zs f10 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document2 = t2Var42.f10272f.document;
-                                                                    String str2 = t2Var42.f10277l;
+                                                                    at f10 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document2 = t2Var42.f10273f.document;
+                                                                    String str2 = t2Var42.f10278l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     f10.m(215, bool2, tLObject32, document2, str2, bool2);
                                                                     v2Var32.h();
@@ -548,10 +548,10 @@ public final class v2 extends FrameLayout implements us {
                                                     v2Var3.h();
                                                     z11 = false;
                                                 }
-                                                q20 q20Var2 = t2Var4.f10279n;
-                                                if (q20Var2 != null) {
-                                                    q20Var2.a(Boolean.valueOf(z11));
-                                                    t2Var4.f10279n = null;
+                                                r20 r20Var2 = t2Var4.f10280n;
+                                                if (r20Var2 != null) {
+                                                    r20Var2.a(Boolean.valueOf(z11));
+                                                    t2Var4.f10280n = null;
                                                     return;
                                                 }
                                                 return;
@@ -564,11 +564,11 @@ public final class v2 extends FrameLayout implements us {
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject4;
                                                     int i14 = i12;
                                                     z12 = true;
-                                                    ui.b0(i14).I1(tL_messages_stickerSet2, true);
-                                                    if (!ui.b0(i14).B0(tL_messages_stickerSet2.set.f19820id, true)) {
-                                                        ui.b0(i14).f2(null, tLObject4, 2, null, false, false);
+                                                    vi.b0(i14).I1(tL_messages_stickerSet2, true);
+                                                    if (!vi.b0(i14).B0(tL_messages_stickerSet2.set.f19821id, true)) {
+                                                        vi.b0(i14).f2(null, tLObject4, 2, null, false, false);
                                                     }
-                                                    vh.m0 m0Var3 = v2Var4.f10314d0;
+                                                    vh.m0 m0Var3 = v2Var4.f10315d0;
                                                     if (m0Var3 != null) {
                                                         m0Var3.setProgress(1.0f);
                                                     }
@@ -581,21 +581,21 @@ public final class v2 extends FrameLayout implements us {
                                                             v2 v2Var32 = v2Var4;
                                                             switch (i132) {
                                                                 case 0:
-                                                                    zs f7 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document = t2Var42.f10272f.document;
-                                                                    String str = t2Var42.f10277l;
+                                                                    at f7 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document = t2Var42.f10273f.document;
+                                                                    String str = t2Var42.f10278l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     f7.m(215, bool, tLObject32, document, str, bool);
                                                                     v2Var32.h();
                                                                     return;
                                                                 case 1:
-                                                                    zs.f(d20.f15147s0).m(215, Boolean.FALSE, tLObject32, t2Var42.f10272f.document, t2Var42.f10277l, Boolean.TRUE);
+                                                                    at.f(e20.f15506s0).m(215, Boolean.FALSE, tLObject32, t2Var42.f10273f.document, t2Var42.f10278l, Boolean.TRUE);
                                                                     v2Var32.h();
                                                                     return;
                                                                 default:
-                                                                    zs f10 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document2 = t2Var42.f10272f.document;
-                                                                    String str2 = t2Var42.f10277l;
+                                                                    at f10 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document2 = t2Var42.f10273f.document;
+                                                                    String str2 = t2Var42.f10278l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     f10.m(215, bool2, tLObject32, document2, str2, bool2);
                                                                     v2Var32.h();
@@ -608,10 +608,10 @@ public final class v2 extends FrameLayout implements us {
                                                     v2Var4.h();
                                                     z12 = false;
                                                 }
-                                                q20 q20Var3 = t2Var5.f10279n;
-                                                if (q20Var3 != null) {
-                                                    q20Var3.a(Boolean.valueOf(z12));
-                                                    t2Var5.f10279n = null;
+                                                r20 r20Var3 = t2Var5.f10280n;
+                                                if (r20Var3 != null) {
+                                                    r20Var3.a(Boolean.valueOf(z12));
+                                                    t2Var5.f10280n = null;
                                                     return;
                                                 }
                                                 return;
@@ -620,7 +620,7 @@ public final class v2 extends FrameLayout implements us {
                                 });
                                 return;
                             default:
-                                final v2 v2Var3 = this.f10087b;
+                                final v2 v2Var3 = this.f10088b;
                                 final int i13 = i10;
                                 final t2 t2Var4 = t2Var;
                                 org.telegram.messenger.i0.g3(new Runnable() {
@@ -639,11 +639,11 @@ public final class v2 extends FrameLayout implements us {
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
                                                     int i122 = i13;
                                                     z10 = true;
-                                                    ui.b0(i122).I1(tL_messages_stickerSet, true);
-                                                    if (!ui.b0(i122).B0(tL_messages_stickerSet.set.f19820id, true)) {
-                                                        ui.b0(i122).f2(null, tLObject2, 2, null, false, false);
+                                                    vi.b0(i122).I1(tL_messages_stickerSet, true);
+                                                    if (!vi.b0(i122).B0(tL_messages_stickerSet.set.f19821id, true)) {
+                                                        vi.b0(i122).f2(null, tLObject2, 2, null, false, false);
                                                     }
-                                                    vh.m0 m0Var = v2Var22.f10314d0;
+                                                    vh.m0 m0Var = v2Var22.f10315d0;
                                                     if (m0Var != null) {
                                                         m0Var.setProgress(1.0f);
                                                     }
@@ -656,21 +656,21 @@ public final class v2 extends FrameLayout implements us {
                                                             v2 v2Var32 = v2Var22;
                                                             switch (i132) {
                                                                 case 0:
-                                                                    zs f7 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document = t2Var42.f10272f.document;
-                                                                    String str = t2Var42.f10277l;
+                                                                    at f7 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document = t2Var42.f10273f.document;
+                                                                    String str = t2Var42.f10278l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     f7.m(215, bool, tLObject32, document, str, bool);
                                                                     v2Var32.h();
                                                                     return;
                                                                 case 1:
-                                                                    zs.f(d20.f15147s0).m(215, Boolean.FALSE, tLObject32, t2Var42.f10272f.document, t2Var42.f10277l, Boolean.TRUE);
+                                                                    at.f(e20.f15506s0).m(215, Boolean.FALSE, tLObject32, t2Var42.f10273f.document, t2Var42.f10278l, Boolean.TRUE);
                                                                     v2Var32.h();
                                                                     return;
                                                                 default:
-                                                                    zs f10 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document2 = t2Var42.f10272f.document;
-                                                                    String str2 = t2Var42.f10277l;
+                                                                    at f10 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document2 = t2Var42.f10273f.document;
+                                                                    String str2 = t2Var42.f10278l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     f10.m(215, bool2, tLObject32, document2, str2, bool2);
                                                                     v2Var32.h();
@@ -683,10 +683,10 @@ public final class v2 extends FrameLayout implements us {
                                                     v2Var22.h();
                                                     z10 = false;
                                                 }
-                                                q20 q20Var = t2Var32.f10279n;
-                                                if (q20Var != null) {
-                                                    q20Var.a(Boolean.valueOf(z10));
-                                                    t2Var32.f10279n = null;
+                                                r20 r20Var = t2Var32.f10280n;
+                                                if (r20Var != null) {
+                                                    r20Var.a(Boolean.valueOf(z10));
+                                                    t2Var32.f10280n = null;
                                                     return;
                                                 }
                                                 return;
@@ -698,9 +698,9 @@ public final class v2 extends FrameLayout implements us {
                                                 if (z14) {
                                                     int i132 = i13;
                                                     z11 = true;
-                                                    ui.b0(i132).I1((TLRPC.TL_messages_stickerSet) tLObject3, true);
-                                                    ui.b0(i132).f2(null, tLObject3, 2, null, false, false);
-                                                    vh.m0 m0Var2 = v2Var32.f10314d0;
+                                                    vi.b0(i132).I1((TLRPC.TL_messages_stickerSet) tLObject3, true);
+                                                    vi.b0(i132).f2(null, tLObject3, 2, null, false, false);
+                                                    vh.m0 m0Var2 = v2Var32.f10315d0;
                                                     if (m0Var2 != null) {
                                                         m0Var2.setProgress(1.0f);
                                                     }
@@ -713,21 +713,21 @@ public final class v2 extends FrameLayout implements us {
                                                             v2 v2Var322 = v2Var32;
                                                             switch (i1322) {
                                                                 case 0:
-                                                                    zs f7 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document = t2Var422.f10272f.document;
-                                                                    String str = t2Var422.f10277l;
+                                                                    at f7 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document = t2Var422.f10273f.document;
+                                                                    String str = t2Var422.f10278l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     f7.m(215, bool, tLObject32, document, str, bool);
                                                                     v2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    zs.f(d20.f15147s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10272f.document, t2Var422.f10277l, Boolean.TRUE);
+                                                                    at.f(e20.f15506s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10273f.document, t2Var422.f10278l, Boolean.TRUE);
                                                                     v2Var322.h();
                                                                     return;
                                                                 default:
-                                                                    zs f10 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document2 = t2Var422.f10272f.document;
-                                                                    String str2 = t2Var422.f10277l;
+                                                                    at f10 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document2 = t2Var422.f10273f.document;
+                                                                    String str2 = t2Var422.f10278l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     f10.m(215, bool2, tLObject32, document2, str2, bool2);
                                                                     v2Var322.h();
@@ -740,10 +740,10 @@ public final class v2 extends FrameLayout implements us {
                                                     v2Var32.h();
                                                     z11 = false;
                                                 }
-                                                q20 q20Var2 = t2Var42.f10279n;
-                                                if (q20Var2 != null) {
-                                                    q20Var2.a(Boolean.valueOf(z11));
-                                                    t2Var42.f10279n = null;
+                                                r20 r20Var2 = t2Var42.f10280n;
+                                                if (r20Var2 != null) {
+                                                    r20Var2.a(Boolean.valueOf(z11));
+                                                    t2Var42.f10280n = null;
                                                     return;
                                                 }
                                                 return;
@@ -756,11 +756,11 @@ public final class v2 extends FrameLayout implements us {
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject4;
                                                     int i14 = i13;
                                                     z12 = true;
-                                                    ui.b0(i14).I1(tL_messages_stickerSet2, true);
-                                                    if (!ui.b0(i14).B0(tL_messages_stickerSet2.set.f19820id, true)) {
-                                                        ui.b0(i14).f2(null, tLObject4, 2, null, false, false);
+                                                    vi.b0(i14).I1(tL_messages_stickerSet2, true);
+                                                    if (!vi.b0(i14).B0(tL_messages_stickerSet2.set.f19821id, true)) {
+                                                        vi.b0(i14).f2(null, tLObject4, 2, null, false, false);
                                                     }
-                                                    vh.m0 m0Var3 = v2Var4.f10314d0;
+                                                    vh.m0 m0Var3 = v2Var4.f10315d0;
                                                     if (m0Var3 != null) {
                                                         m0Var3.setProgress(1.0f);
                                                     }
@@ -773,21 +773,21 @@ public final class v2 extends FrameLayout implements us {
                                                             v2 v2Var322 = v2Var4;
                                                             switch (i1322) {
                                                                 case 0:
-                                                                    zs f7 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document = t2Var422.f10272f.document;
-                                                                    String str = t2Var422.f10277l;
+                                                                    at f7 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document = t2Var422.f10273f.document;
+                                                                    String str = t2Var422.f10278l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     f7.m(215, bool, tLObject32, document, str, bool);
                                                                     v2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    zs.f(d20.f15147s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10272f.document, t2Var422.f10277l, Boolean.TRUE);
+                                                                    at.f(e20.f15506s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10273f.document, t2Var422.f10278l, Boolean.TRUE);
                                                                     v2Var322.h();
                                                                     return;
                                                                 default:
-                                                                    zs f10 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document2 = t2Var422.f10272f.document;
-                                                                    String str2 = t2Var422.f10277l;
+                                                                    at f10 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document2 = t2Var422.f10273f.document;
+                                                                    String str2 = t2Var422.f10278l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     f10.m(215, bool2, tLObject32, document2, str2, bool2);
                                                                     v2Var322.h();
@@ -800,10 +800,10 @@ public final class v2 extends FrameLayout implements us {
                                                     v2Var4.h();
                                                     z12 = false;
                                                 }
-                                                q20 q20Var3 = t2Var5.f10279n;
-                                                if (q20Var3 != null) {
-                                                    q20Var3.a(Boolean.valueOf(z12));
-                                                    t2Var5.f10279n = null;
+                                                r20 r20Var3 = t2Var5.f10280n;
+                                                if (r20Var3 != null) {
+                                                    r20Var3.a(Boolean.valueOf(z12));
+                                                    t2Var5.f10280n = null;
                                                     return;
                                                 }
                                                 return;
@@ -821,17 +821,17 @@ public final class v2 extends FrameLayout implements us {
                 tL_stickers_createStickerSet.short_name = "";
                 tL_stickers_createStickerSet.stickers.add(t2Var.e);
                 ConnectionsManager.getInstance(i10).sendRequest(tL_stickers_createStickerSet, new RequestDelegate(this) {
-                    public final v2 f10087b;
+                    public final v2 f10088b;
 
                     {
-                        this.f10087b = this;
+                        this.f10088b = this;
                     }
 
                     @Override
                     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
                         switch (r4) {
                             case 0:
-                                final v2 v2Var = this.f10087b;
+                                final v2 v2Var = this.f10088b;
                                 final int i11 = i10;
                                 final t2 t2Var2 = t2Var;
                                 org.telegram.messenger.i0.g3(new Runnable() {
@@ -850,11 +850,11 @@ public final class v2 extends FrameLayout implements us {
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
                                                     int i122 = i11;
                                                     z10 = true;
-                                                    ui.b0(i122).I1(tL_messages_stickerSet, true);
-                                                    if (!ui.b0(i122).B0(tL_messages_stickerSet.set.f19820id, true)) {
-                                                        ui.b0(i122).f2(null, tLObject2, 2, null, false, false);
+                                                    vi.b0(i122).I1(tL_messages_stickerSet, true);
+                                                    if (!vi.b0(i122).B0(tL_messages_stickerSet.set.f19821id, true)) {
+                                                        vi.b0(i122).f2(null, tLObject2, 2, null, false, false);
                                                     }
-                                                    vh.m0 m0Var = v2Var22.f10314d0;
+                                                    vh.m0 m0Var = v2Var22.f10315d0;
                                                     if (m0Var != null) {
                                                         m0Var.setProgress(1.0f);
                                                     }
@@ -867,21 +867,21 @@ public final class v2 extends FrameLayout implements us {
                                                             v2 v2Var322 = v2Var22;
                                                             switch (i1322) {
                                                                 case 0:
-                                                                    zs f7 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document = t2Var422.f10272f.document;
-                                                                    String str = t2Var422.f10277l;
+                                                                    at f7 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document = t2Var422.f10273f.document;
+                                                                    String str = t2Var422.f10278l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     f7.m(215, bool, tLObject32, document, str, bool);
                                                                     v2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    zs.f(d20.f15147s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10272f.document, t2Var422.f10277l, Boolean.TRUE);
+                                                                    at.f(e20.f15506s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10273f.document, t2Var422.f10278l, Boolean.TRUE);
                                                                     v2Var322.h();
                                                                     return;
                                                                 default:
-                                                                    zs f10 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document2 = t2Var422.f10272f.document;
-                                                                    String str2 = t2Var422.f10277l;
+                                                                    at f10 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document2 = t2Var422.f10273f.document;
+                                                                    String str2 = t2Var422.f10278l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     f10.m(215, bool2, tLObject32, document2, str2, bool2);
                                                                     v2Var322.h();
@@ -894,10 +894,10 @@ public final class v2 extends FrameLayout implements us {
                                                     v2Var22.h();
                                                     z10 = false;
                                                 }
-                                                q20 q20Var = t2Var32.f10279n;
-                                                if (q20Var != null) {
-                                                    q20Var.a(Boolean.valueOf(z10));
-                                                    t2Var32.f10279n = null;
+                                                r20 r20Var = t2Var32.f10280n;
+                                                if (r20Var != null) {
+                                                    r20Var.a(Boolean.valueOf(z10));
+                                                    t2Var32.f10280n = null;
                                                     return;
                                                 }
                                                 return;
@@ -909,9 +909,9 @@ public final class v2 extends FrameLayout implements us {
                                                 if (z14) {
                                                     int i132 = i11;
                                                     z11 = true;
-                                                    ui.b0(i132).I1((TLRPC.TL_messages_stickerSet) tLObject3, true);
-                                                    ui.b0(i132).f2(null, tLObject3, 2, null, false, false);
-                                                    vh.m0 m0Var2 = v2Var32.f10314d0;
+                                                    vi.b0(i132).I1((TLRPC.TL_messages_stickerSet) tLObject3, true);
+                                                    vi.b0(i132).f2(null, tLObject3, 2, null, false, false);
+                                                    vh.m0 m0Var2 = v2Var32.f10315d0;
                                                     if (m0Var2 != null) {
                                                         m0Var2.setProgress(1.0f);
                                                     }
@@ -924,21 +924,21 @@ public final class v2 extends FrameLayout implements us {
                                                             v2 v2Var322 = v2Var32;
                                                             switch (i1322) {
                                                                 case 0:
-                                                                    zs f7 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document = t2Var422.f10272f.document;
-                                                                    String str = t2Var422.f10277l;
+                                                                    at f7 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document = t2Var422.f10273f.document;
+                                                                    String str = t2Var422.f10278l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     f7.m(215, bool, tLObject32, document, str, bool);
                                                                     v2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    zs.f(d20.f15147s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10272f.document, t2Var422.f10277l, Boolean.TRUE);
+                                                                    at.f(e20.f15506s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10273f.document, t2Var422.f10278l, Boolean.TRUE);
                                                                     v2Var322.h();
                                                                     return;
                                                                 default:
-                                                                    zs f10 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document2 = t2Var422.f10272f.document;
-                                                                    String str2 = t2Var422.f10277l;
+                                                                    at f10 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document2 = t2Var422.f10273f.document;
+                                                                    String str2 = t2Var422.f10278l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     f10.m(215, bool2, tLObject32, document2, str2, bool2);
                                                                     v2Var322.h();
@@ -951,10 +951,10 @@ public final class v2 extends FrameLayout implements us {
                                                     v2Var32.h();
                                                     z11 = false;
                                                 }
-                                                q20 q20Var2 = t2Var42.f10279n;
-                                                if (q20Var2 != null) {
-                                                    q20Var2.a(Boolean.valueOf(z11));
-                                                    t2Var42.f10279n = null;
+                                                r20 r20Var2 = t2Var42.f10280n;
+                                                if (r20Var2 != null) {
+                                                    r20Var2.a(Boolean.valueOf(z11));
+                                                    t2Var42.f10280n = null;
                                                     return;
                                                 }
                                                 return;
@@ -967,11 +967,11 @@ public final class v2 extends FrameLayout implements us {
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject4;
                                                     int i14 = i11;
                                                     z12 = true;
-                                                    ui.b0(i14).I1(tL_messages_stickerSet2, true);
-                                                    if (!ui.b0(i14).B0(tL_messages_stickerSet2.set.f19820id, true)) {
-                                                        ui.b0(i14).f2(null, tLObject4, 2, null, false, false);
+                                                    vi.b0(i14).I1(tL_messages_stickerSet2, true);
+                                                    if (!vi.b0(i14).B0(tL_messages_stickerSet2.set.f19821id, true)) {
+                                                        vi.b0(i14).f2(null, tLObject4, 2, null, false, false);
                                                     }
-                                                    vh.m0 m0Var3 = v2Var4.f10314d0;
+                                                    vh.m0 m0Var3 = v2Var4.f10315d0;
                                                     if (m0Var3 != null) {
                                                         m0Var3.setProgress(1.0f);
                                                     }
@@ -984,21 +984,21 @@ public final class v2 extends FrameLayout implements us {
                                                             v2 v2Var322 = v2Var4;
                                                             switch (i1322) {
                                                                 case 0:
-                                                                    zs f7 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document = t2Var422.f10272f.document;
-                                                                    String str = t2Var422.f10277l;
+                                                                    at f7 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document = t2Var422.f10273f.document;
+                                                                    String str = t2Var422.f10278l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     f7.m(215, bool, tLObject32, document, str, bool);
                                                                     v2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    zs.f(d20.f15147s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10272f.document, t2Var422.f10277l, Boolean.TRUE);
+                                                                    at.f(e20.f15506s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10273f.document, t2Var422.f10278l, Boolean.TRUE);
                                                                     v2Var322.h();
                                                                     return;
                                                                 default:
-                                                                    zs f10 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document2 = t2Var422.f10272f.document;
-                                                                    String str2 = t2Var422.f10277l;
+                                                                    at f10 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document2 = t2Var422.f10273f.document;
+                                                                    String str2 = t2Var422.f10278l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     f10.m(215, bool2, tLObject32, document2, str2, bool2);
                                                                     v2Var322.h();
@@ -1011,10 +1011,10 @@ public final class v2 extends FrameLayout implements us {
                                                     v2Var4.h();
                                                     z12 = false;
                                                 }
-                                                q20 q20Var3 = t2Var5.f10279n;
-                                                if (q20Var3 != null) {
-                                                    q20Var3.a(Boolean.valueOf(z12));
-                                                    t2Var5.f10279n = null;
+                                                r20 r20Var3 = t2Var5.f10280n;
+                                                if (r20Var3 != null) {
+                                                    r20Var3.a(Boolean.valueOf(z12));
+                                                    t2Var5.f10280n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1023,7 +1023,7 @@ public final class v2 extends FrameLayout implements us {
                                 });
                                 return;
                             case 1:
-                                final v2 v2Var2 = this.f10087b;
+                                final v2 v2Var2 = this.f10088b;
                                 final int i12 = i10;
                                 final t2 t2Var3 = t2Var;
                                 org.telegram.messenger.i0.g3(new Runnable() {
@@ -1042,11 +1042,11 @@ public final class v2 extends FrameLayout implements us {
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
                                                     int i122 = i12;
                                                     z10 = true;
-                                                    ui.b0(i122).I1(tL_messages_stickerSet, true);
-                                                    if (!ui.b0(i122).B0(tL_messages_stickerSet.set.f19820id, true)) {
-                                                        ui.b0(i122).f2(null, tLObject2, 2, null, false, false);
+                                                    vi.b0(i122).I1(tL_messages_stickerSet, true);
+                                                    if (!vi.b0(i122).B0(tL_messages_stickerSet.set.f19821id, true)) {
+                                                        vi.b0(i122).f2(null, tLObject2, 2, null, false, false);
                                                     }
-                                                    vh.m0 m0Var = v2Var22.f10314d0;
+                                                    vh.m0 m0Var = v2Var22.f10315d0;
                                                     if (m0Var != null) {
                                                         m0Var.setProgress(1.0f);
                                                     }
@@ -1059,21 +1059,21 @@ public final class v2 extends FrameLayout implements us {
                                                             v2 v2Var322 = v2Var22;
                                                             switch (i1322) {
                                                                 case 0:
-                                                                    zs f7 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document = t2Var422.f10272f.document;
-                                                                    String str = t2Var422.f10277l;
+                                                                    at f7 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document = t2Var422.f10273f.document;
+                                                                    String str = t2Var422.f10278l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     f7.m(215, bool, tLObject32, document, str, bool);
                                                                     v2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    zs.f(d20.f15147s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10272f.document, t2Var422.f10277l, Boolean.TRUE);
+                                                                    at.f(e20.f15506s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10273f.document, t2Var422.f10278l, Boolean.TRUE);
                                                                     v2Var322.h();
                                                                     return;
                                                                 default:
-                                                                    zs f10 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document2 = t2Var422.f10272f.document;
-                                                                    String str2 = t2Var422.f10277l;
+                                                                    at f10 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document2 = t2Var422.f10273f.document;
+                                                                    String str2 = t2Var422.f10278l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     f10.m(215, bool2, tLObject32, document2, str2, bool2);
                                                                     v2Var322.h();
@@ -1086,10 +1086,10 @@ public final class v2 extends FrameLayout implements us {
                                                     v2Var22.h();
                                                     z10 = false;
                                                 }
-                                                q20 q20Var = t2Var32.f10279n;
-                                                if (q20Var != null) {
-                                                    q20Var.a(Boolean.valueOf(z10));
-                                                    t2Var32.f10279n = null;
+                                                r20 r20Var = t2Var32.f10280n;
+                                                if (r20Var != null) {
+                                                    r20Var.a(Boolean.valueOf(z10));
+                                                    t2Var32.f10280n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1101,9 +1101,9 @@ public final class v2 extends FrameLayout implements us {
                                                 if (z14) {
                                                     int i132 = i12;
                                                     z11 = true;
-                                                    ui.b0(i132).I1((TLRPC.TL_messages_stickerSet) tLObject3, true);
-                                                    ui.b0(i132).f2(null, tLObject3, 2, null, false, false);
-                                                    vh.m0 m0Var2 = v2Var32.f10314d0;
+                                                    vi.b0(i132).I1((TLRPC.TL_messages_stickerSet) tLObject3, true);
+                                                    vi.b0(i132).f2(null, tLObject3, 2, null, false, false);
+                                                    vh.m0 m0Var2 = v2Var32.f10315d0;
                                                     if (m0Var2 != null) {
                                                         m0Var2.setProgress(1.0f);
                                                     }
@@ -1116,21 +1116,21 @@ public final class v2 extends FrameLayout implements us {
                                                             v2 v2Var322 = v2Var32;
                                                             switch (i1322) {
                                                                 case 0:
-                                                                    zs f7 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document = t2Var422.f10272f.document;
-                                                                    String str = t2Var422.f10277l;
+                                                                    at f7 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document = t2Var422.f10273f.document;
+                                                                    String str = t2Var422.f10278l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     f7.m(215, bool, tLObject32, document, str, bool);
                                                                     v2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    zs.f(d20.f15147s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10272f.document, t2Var422.f10277l, Boolean.TRUE);
+                                                                    at.f(e20.f15506s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10273f.document, t2Var422.f10278l, Boolean.TRUE);
                                                                     v2Var322.h();
                                                                     return;
                                                                 default:
-                                                                    zs f10 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document2 = t2Var422.f10272f.document;
-                                                                    String str2 = t2Var422.f10277l;
+                                                                    at f10 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document2 = t2Var422.f10273f.document;
+                                                                    String str2 = t2Var422.f10278l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     f10.m(215, bool2, tLObject32, document2, str2, bool2);
                                                                     v2Var322.h();
@@ -1143,10 +1143,10 @@ public final class v2 extends FrameLayout implements us {
                                                     v2Var32.h();
                                                     z11 = false;
                                                 }
-                                                q20 q20Var2 = t2Var42.f10279n;
-                                                if (q20Var2 != null) {
-                                                    q20Var2.a(Boolean.valueOf(z11));
-                                                    t2Var42.f10279n = null;
+                                                r20 r20Var2 = t2Var42.f10280n;
+                                                if (r20Var2 != null) {
+                                                    r20Var2.a(Boolean.valueOf(z11));
+                                                    t2Var42.f10280n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1159,11 +1159,11 @@ public final class v2 extends FrameLayout implements us {
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject4;
                                                     int i14 = i12;
                                                     z12 = true;
-                                                    ui.b0(i14).I1(tL_messages_stickerSet2, true);
-                                                    if (!ui.b0(i14).B0(tL_messages_stickerSet2.set.f19820id, true)) {
-                                                        ui.b0(i14).f2(null, tLObject4, 2, null, false, false);
+                                                    vi.b0(i14).I1(tL_messages_stickerSet2, true);
+                                                    if (!vi.b0(i14).B0(tL_messages_stickerSet2.set.f19821id, true)) {
+                                                        vi.b0(i14).f2(null, tLObject4, 2, null, false, false);
                                                     }
-                                                    vh.m0 m0Var3 = v2Var4.f10314d0;
+                                                    vh.m0 m0Var3 = v2Var4.f10315d0;
                                                     if (m0Var3 != null) {
                                                         m0Var3.setProgress(1.0f);
                                                     }
@@ -1176,21 +1176,21 @@ public final class v2 extends FrameLayout implements us {
                                                             v2 v2Var322 = v2Var4;
                                                             switch (i1322) {
                                                                 case 0:
-                                                                    zs f7 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document = t2Var422.f10272f.document;
-                                                                    String str = t2Var422.f10277l;
+                                                                    at f7 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document = t2Var422.f10273f.document;
+                                                                    String str = t2Var422.f10278l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     f7.m(215, bool, tLObject32, document, str, bool);
                                                                     v2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    zs.f(d20.f15147s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10272f.document, t2Var422.f10277l, Boolean.TRUE);
+                                                                    at.f(e20.f15506s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10273f.document, t2Var422.f10278l, Boolean.TRUE);
                                                                     v2Var322.h();
                                                                     return;
                                                                 default:
-                                                                    zs f10 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document2 = t2Var422.f10272f.document;
-                                                                    String str2 = t2Var422.f10277l;
+                                                                    at f10 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document2 = t2Var422.f10273f.document;
+                                                                    String str2 = t2Var422.f10278l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     f10.m(215, bool2, tLObject32, document2, str2, bool2);
                                                                     v2Var322.h();
@@ -1203,10 +1203,10 @@ public final class v2 extends FrameLayout implements us {
                                                     v2Var4.h();
                                                     z12 = false;
                                                 }
-                                                q20 q20Var3 = t2Var5.f10279n;
-                                                if (q20Var3 != null) {
-                                                    q20Var3.a(Boolean.valueOf(z12));
-                                                    t2Var5.f10279n = null;
+                                                r20 r20Var3 = t2Var5.f10280n;
+                                                if (r20Var3 != null) {
+                                                    r20Var3.a(Boolean.valueOf(z12));
+                                                    t2Var5.f10280n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1215,7 +1215,7 @@ public final class v2 extends FrameLayout implements us {
                                 });
                                 return;
                             default:
-                                final v2 v2Var3 = this.f10087b;
+                                final v2 v2Var3 = this.f10088b;
                                 final int i13 = i10;
                                 final t2 t2Var4 = t2Var;
                                 org.telegram.messenger.i0.g3(new Runnable() {
@@ -1234,11 +1234,11 @@ public final class v2 extends FrameLayout implements us {
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
                                                     int i122 = i13;
                                                     z10 = true;
-                                                    ui.b0(i122).I1(tL_messages_stickerSet, true);
-                                                    if (!ui.b0(i122).B0(tL_messages_stickerSet.set.f19820id, true)) {
-                                                        ui.b0(i122).f2(null, tLObject2, 2, null, false, false);
+                                                    vi.b0(i122).I1(tL_messages_stickerSet, true);
+                                                    if (!vi.b0(i122).B0(tL_messages_stickerSet.set.f19821id, true)) {
+                                                        vi.b0(i122).f2(null, tLObject2, 2, null, false, false);
                                                     }
-                                                    vh.m0 m0Var = v2Var22.f10314d0;
+                                                    vh.m0 m0Var = v2Var22.f10315d0;
                                                     if (m0Var != null) {
                                                         m0Var.setProgress(1.0f);
                                                     }
@@ -1251,21 +1251,21 @@ public final class v2 extends FrameLayout implements us {
                                                             v2 v2Var322 = v2Var22;
                                                             switch (i1322) {
                                                                 case 0:
-                                                                    zs f7 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document = t2Var422.f10272f.document;
-                                                                    String str = t2Var422.f10277l;
+                                                                    at f7 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document = t2Var422.f10273f.document;
+                                                                    String str = t2Var422.f10278l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     f7.m(215, bool, tLObject32, document, str, bool);
                                                                     v2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    zs.f(d20.f15147s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10272f.document, t2Var422.f10277l, Boolean.TRUE);
+                                                                    at.f(e20.f15506s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10273f.document, t2Var422.f10278l, Boolean.TRUE);
                                                                     v2Var322.h();
                                                                     return;
                                                                 default:
-                                                                    zs f10 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document2 = t2Var422.f10272f.document;
-                                                                    String str2 = t2Var422.f10277l;
+                                                                    at f10 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document2 = t2Var422.f10273f.document;
+                                                                    String str2 = t2Var422.f10278l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     f10.m(215, bool2, tLObject32, document2, str2, bool2);
                                                                     v2Var322.h();
@@ -1278,10 +1278,10 @@ public final class v2 extends FrameLayout implements us {
                                                     v2Var22.h();
                                                     z10 = false;
                                                 }
-                                                q20 q20Var = t2Var32.f10279n;
-                                                if (q20Var != null) {
-                                                    q20Var.a(Boolean.valueOf(z10));
-                                                    t2Var32.f10279n = null;
+                                                r20 r20Var = t2Var32.f10280n;
+                                                if (r20Var != null) {
+                                                    r20Var.a(Boolean.valueOf(z10));
+                                                    t2Var32.f10280n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1293,9 +1293,9 @@ public final class v2 extends FrameLayout implements us {
                                                 if (z14) {
                                                     int i132 = i13;
                                                     z11 = true;
-                                                    ui.b0(i132).I1((TLRPC.TL_messages_stickerSet) tLObject3, true);
-                                                    ui.b0(i132).f2(null, tLObject3, 2, null, false, false);
-                                                    vh.m0 m0Var2 = v2Var32.f10314d0;
+                                                    vi.b0(i132).I1((TLRPC.TL_messages_stickerSet) tLObject3, true);
+                                                    vi.b0(i132).f2(null, tLObject3, 2, null, false, false);
+                                                    vh.m0 m0Var2 = v2Var32.f10315d0;
                                                     if (m0Var2 != null) {
                                                         m0Var2.setProgress(1.0f);
                                                     }
@@ -1308,21 +1308,21 @@ public final class v2 extends FrameLayout implements us {
                                                             v2 v2Var322 = v2Var32;
                                                             switch (i1322) {
                                                                 case 0:
-                                                                    zs f7 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document = t2Var422.f10272f.document;
-                                                                    String str = t2Var422.f10277l;
+                                                                    at f7 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document = t2Var422.f10273f.document;
+                                                                    String str = t2Var422.f10278l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     f7.m(215, bool, tLObject32, document, str, bool);
                                                                     v2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    zs.f(d20.f15147s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10272f.document, t2Var422.f10277l, Boolean.TRUE);
+                                                                    at.f(e20.f15506s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10273f.document, t2Var422.f10278l, Boolean.TRUE);
                                                                     v2Var322.h();
                                                                     return;
                                                                 default:
-                                                                    zs f10 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document2 = t2Var422.f10272f.document;
-                                                                    String str2 = t2Var422.f10277l;
+                                                                    at f10 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document2 = t2Var422.f10273f.document;
+                                                                    String str2 = t2Var422.f10278l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     f10.m(215, bool2, tLObject32, document2, str2, bool2);
                                                                     v2Var322.h();
@@ -1335,10 +1335,10 @@ public final class v2 extends FrameLayout implements us {
                                                     v2Var32.h();
                                                     z11 = false;
                                                 }
-                                                q20 q20Var2 = t2Var42.f10279n;
-                                                if (q20Var2 != null) {
-                                                    q20Var2.a(Boolean.valueOf(z11));
-                                                    t2Var42.f10279n = null;
+                                                r20 r20Var2 = t2Var42.f10280n;
+                                                if (r20Var2 != null) {
+                                                    r20Var2.a(Boolean.valueOf(z11));
+                                                    t2Var42.f10280n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1351,11 +1351,11 @@ public final class v2 extends FrameLayout implements us {
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject4;
                                                     int i14 = i13;
                                                     z12 = true;
-                                                    ui.b0(i14).I1(tL_messages_stickerSet2, true);
-                                                    if (!ui.b0(i14).B0(tL_messages_stickerSet2.set.f19820id, true)) {
-                                                        ui.b0(i14).f2(null, tLObject4, 2, null, false, false);
+                                                    vi.b0(i14).I1(tL_messages_stickerSet2, true);
+                                                    if (!vi.b0(i14).B0(tL_messages_stickerSet2.set.f19821id, true)) {
+                                                        vi.b0(i14).f2(null, tLObject4, 2, null, false, false);
                                                     }
-                                                    vh.m0 m0Var3 = v2Var4.f10314d0;
+                                                    vh.m0 m0Var3 = v2Var4.f10315d0;
                                                     if (m0Var3 != null) {
                                                         m0Var3.setProgress(1.0f);
                                                     }
@@ -1368,21 +1368,21 @@ public final class v2 extends FrameLayout implements us {
                                                             v2 v2Var322 = v2Var4;
                                                             switch (i1322) {
                                                                 case 0:
-                                                                    zs f7 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document = t2Var422.f10272f.document;
-                                                                    String str = t2Var422.f10277l;
+                                                                    at f7 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document = t2Var422.f10273f.document;
+                                                                    String str = t2Var422.f10278l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     f7.m(215, bool, tLObject32, document, str, bool);
                                                                     v2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    zs.f(d20.f15147s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10272f.document, t2Var422.f10277l, Boolean.TRUE);
+                                                                    at.f(e20.f15506s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10273f.document, t2Var422.f10278l, Boolean.TRUE);
                                                                     v2Var322.h();
                                                                     return;
                                                                 default:
-                                                                    zs f10 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document2 = t2Var422.f10272f.document;
-                                                                    String str2 = t2Var422.f10277l;
+                                                                    at f10 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document2 = t2Var422.f10273f.document;
+                                                                    String str2 = t2Var422.f10278l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     f10.m(215, bool2, tLObject32, document2, str2, bool2);
                                                                     v2Var322.h();
@@ -1395,10 +1395,10 @@ public final class v2 extends FrameLayout implements us {
                                                     v2Var4.h();
                                                     z12 = false;
                                                 }
-                                                q20 q20Var3 = t2Var5.f10279n;
-                                                if (q20Var3 != null) {
-                                                    q20Var3.a(Boolean.valueOf(z12));
-                                                    t2Var5.f10279n = null;
+                                                r20 r20Var3 = t2Var5.f10280n;
+                                                if (r20Var3 != null) {
+                                                    r20Var3.a(Boolean.valueOf(z12));
+                                                    t2Var5.f10280n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1411,40 +1411,40 @@ public final class v2 extends FrameLayout implements us {
                 });
             } else if (t2Var.h) {
                 h();
-                zs.f(i10).m(zs.f19687s3, Boolean.FALSE);
+                at.f(i10).m(at.f14783s3, Boolean.FALSE);
                 org.telegram.messenger.i0.h3(new gg.c(t2Var, 16), 350L);
-                q20 q20Var = t2Var.f10279n;
-                if (q20Var != null) {
-                    q20Var.a(Boolean.TRUE);
+                r20 r20Var = t2Var.f10280n;
+                if (r20Var != null) {
+                    r20Var.a(Boolean.TRUE);
                 }
-            } else if (t2Var.f10274i != 0) {
-                qz.C(i10).v0(t2Var.f10272f.document, null, t2Var.f10274i, null, null, null, null, null, true, 0, 0, false, null, null, 0L, 0L, null);
-                vh.m0 m0Var = this.f10314d0;
+            } else if (t2Var.f10275i != 0) {
+                rz.C(i10).v0(t2Var.f10273f.document, null, t2Var.f10275i, null, null, null, null, null, true, 0, 0, false, null, null, 0L, 0L, null);
+                vh.m0 m0Var = this.f10315d0;
                 if (m0Var != null) {
                     m0Var.setProgress(1.0f);
                 }
                 org.telegram.messenger.i0.h3(new ag.d3(this, i10, 8), 450L);
-                q20 q20Var2 = t2Var.f10279n;
-                if (q20Var2 != null) {
-                    q20Var2.a(Boolean.TRUE);
-                    t2Var.f10279n = null;
+                r20 r20Var2 = t2Var.f10280n;
+                if (r20Var2 != null) {
+                    r20Var2.a(Boolean.TRUE);
+                    t2Var.f10280n = null;
                 }
-            } else if (t2Var.f10275j != null) {
+            } else if (t2Var.f10276j != null) {
                 TLRPC.TL_stickers_addStickerToSet tL_stickers_addStickerToSet = new TLRPC.TL_stickers_addStickerToSet();
-                tL_stickers_addStickerToSet.stickerset = ui.Z(t2Var.f10275j);
+                tL_stickers_addStickerToSet.stickerset = vi.Z(t2Var.f10276j);
                 tL_stickers_addStickerToSet.sticker = t2Var.e;
                 ConnectionsManager.getInstance(i10).sendRequest(tL_stickers_addStickerToSet, new RequestDelegate(this) {
-                    public final v2 f10087b;
+                    public final v2 f10088b;
 
                     {
-                        this.f10087b = this;
+                        this.f10088b = this;
                     }
 
                     @Override
                     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
                         switch (r4) {
                             case 0:
-                                final v2 v2Var = this.f10087b;
+                                final v2 v2Var = this.f10088b;
                                 final int i11 = i10;
                                 final t2 t2Var2 = t2Var;
                                 org.telegram.messenger.i0.g3(new Runnable() {
@@ -1463,11 +1463,11 @@ public final class v2 extends FrameLayout implements us {
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
                                                     int i122 = i11;
                                                     z10 = true;
-                                                    ui.b0(i122).I1(tL_messages_stickerSet, true);
-                                                    if (!ui.b0(i122).B0(tL_messages_stickerSet.set.f19820id, true)) {
-                                                        ui.b0(i122).f2(null, tLObject2, 2, null, false, false);
+                                                    vi.b0(i122).I1(tL_messages_stickerSet, true);
+                                                    if (!vi.b0(i122).B0(tL_messages_stickerSet.set.f19821id, true)) {
+                                                        vi.b0(i122).f2(null, tLObject2, 2, null, false, false);
                                                     }
-                                                    vh.m0 m0Var2 = v2Var22.f10314d0;
+                                                    vh.m0 m0Var2 = v2Var22.f10315d0;
                                                     if (m0Var2 != null) {
                                                         m0Var2.setProgress(1.0f);
                                                     }
@@ -1480,21 +1480,21 @@ public final class v2 extends FrameLayout implements us {
                                                             v2 v2Var322 = v2Var22;
                                                             switch (i1322) {
                                                                 case 0:
-                                                                    zs f7 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document = t2Var422.f10272f.document;
-                                                                    String str = t2Var422.f10277l;
+                                                                    at f7 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document = t2Var422.f10273f.document;
+                                                                    String str = t2Var422.f10278l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     f7.m(215, bool, tLObject32, document, str, bool);
                                                                     v2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    zs.f(d20.f15147s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10272f.document, t2Var422.f10277l, Boolean.TRUE);
+                                                                    at.f(e20.f15506s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10273f.document, t2Var422.f10278l, Boolean.TRUE);
                                                                     v2Var322.h();
                                                                     return;
                                                                 default:
-                                                                    zs f10 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document2 = t2Var422.f10272f.document;
-                                                                    String str2 = t2Var422.f10277l;
+                                                                    at f10 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document2 = t2Var422.f10273f.document;
+                                                                    String str2 = t2Var422.f10278l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     f10.m(215, bool2, tLObject32, document2, str2, bool2);
                                                                     v2Var322.h();
@@ -1507,10 +1507,10 @@ public final class v2 extends FrameLayout implements us {
                                                     v2Var22.h();
                                                     z10 = false;
                                                 }
-                                                q20 q20Var3 = t2Var32.f10279n;
-                                                if (q20Var3 != null) {
-                                                    q20Var3.a(Boolean.valueOf(z10));
-                                                    t2Var32.f10279n = null;
+                                                r20 r20Var3 = t2Var32.f10280n;
+                                                if (r20Var3 != null) {
+                                                    r20Var3.a(Boolean.valueOf(z10));
+                                                    t2Var32.f10280n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1522,9 +1522,9 @@ public final class v2 extends FrameLayout implements us {
                                                 if (z14) {
                                                     int i132 = i11;
                                                     z11 = true;
-                                                    ui.b0(i132).I1((TLRPC.TL_messages_stickerSet) tLObject3, true);
-                                                    ui.b0(i132).f2(null, tLObject3, 2, null, false, false);
-                                                    vh.m0 m0Var22 = v2Var32.f10314d0;
+                                                    vi.b0(i132).I1((TLRPC.TL_messages_stickerSet) tLObject3, true);
+                                                    vi.b0(i132).f2(null, tLObject3, 2, null, false, false);
+                                                    vh.m0 m0Var22 = v2Var32.f10315d0;
                                                     if (m0Var22 != null) {
                                                         m0Var22.setProgress(1.0f);
                                                     }
@@ -1537,21 +1537,21 @@ public final class v2 extends FrameLayout implements us {
                                                             v2 v2Var322 = v2Var32;
                                                             switch (i1322) {
                                                                 case 0:
-                                                                    zs f7 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document = t2Var422.f10272f.document;
-                                                                    String str = t2Var422.f10277l;
+                                                                    at f7 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document = t2Var422.f10273f.document;
+                                                                    String str = t2Var422.f10278l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     f7.m(215, bool, tLObject32, document, str, bool);
                                                                     v2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    zs.f(d20.f15147s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10272f.document, t2Var422.f10277l, Boolean.TRUE);
+                                                                    at.f(e20.f15506s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10273f.document, t2Var422.f10278l, Boolean.TRUE);
                                                                     v2Var322.h();
                                                                     return;
                                                                 default:
-                                                                    zs f10 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document2 = t2Var422.f10272f.document;
-                                                                    String str2 = t2Var422.f10277l;
+                                                                    at f10 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document2 = t2Var422.f10273f.document;
+                                                                    String str2 = t2Var422.f10278l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     f10.m(215, bool2, tLObject32, document2, str2, bool2);
                                                                     v2Var322.h();
@@ -1564,10 +1564,10 @@ public final class v2 extends FrameLayout implements us {
                                                     v2Var32.h();
                                                     z11 = false;
                                                 }
-                                                q20 q20Var22 = t2Var42.f10279n;
-                                                if (q20Var22 != null) {
-                                                    q20Var22.a(Boolean.valueOf(z11));
-                                                    t2Var42.f10279n = null;
+                                                r20 r20Var22 = t2Var42.f10280n;
+                                                if (r20Var22 != null) {
+                                                    r20Var22.a(Boolean.valueOf(z11));
+                                                    t2Var42.f10280n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1580,11 +1580,11 @@ public final class v2 extends FrameLayout implements us {
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject4;
                                                     int i14 = i11;
                                                     z12 = true;
-                                                    ui.b0(i14).I1(tL_messages_stickerSet2, true);
-                                                    if (!ui.b0(i14).B0(tL_messages_stickerSet2.set.f19820id, true)) {
-                                                        ui.b0(i14).f2(null, tLObject4, 2, null, false, false);
+                                                    vi.b0(i14).I1(tL_messages_stickerSet2, true);
+                                                    if (!vi.b0(i14).B0(tL_messages_stickerSet2.set.f19821id, true)) {
+                                                        vi.b0(i14).f2(null, tLObject4, 2, null, false, false);
                                                     }
-                                                    vh.m0 m0Var3 = v2Var4.f10314d0;
+                                                    vh.m0 m0Var3 = v2Var4.f10315d0;
                                                     if (m0Var3 != null) {
                                                         m0Var3.setProgress(1.0f);
                                                     }
@@ -1597,21 +1597,21 @@ public final class v2 extends FrameLayout implements us {
                                                             v2 v2Var322 = v2Var4;
                                                             switch (i1322) {
                                                                 case 0:
-                                                                    zs f7 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document = t2Var422.f10272f.document;
-                                                                    String str = t2Var422.f10277l;
+                                                                    at f7 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document = t2Var422.f10273f.document;
+                                                                    String str = t2Var422.f10278l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     f7.m(215, bool, tLObject32, document, str, bool);
                                                                     v2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    zs.f(d20.f15147s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10272f.document, t2Var422.f10277l, Boolean.TRUE);
+                                                                    at.f(e20.f15506s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10273f.document, t2Var422.f10278l, Boolean.TRUE);
                                                                     v2Var322.h();
                                                                     return;
                                                                 default:
-                                                                    zs f10 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document2 = t2Var422.f10272f.document;
-                                                                    String str2 = t2Var422.f10277l;
+                                                                    at f10 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document2 = t2Var422.f10273f.document;
+                                                                    String str2 = t2Var422.f10278l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     f10.m(215, bool2, tLObject32, document2, str2, bool2);
                                                                     v2Var322.h();
@@ -1624,10 +1624,10 @@ public final class v2 extends FrameLayout implements us {
                                                     v2Var4.h();
                                                     z12 = false;
                                                 }
-                                                q20 q20Var32 = t2Var5.f10279n;
-                                                if (q20Var32 != null) {
-                                                    q20Var32.a(Boolean.valueOf(z12));
-                                                    t2Var5.f10279n = null;
+                                                r20 r20Var32 = t2Var5.f10280n;
+                                                if (r20Var32 != null) {
+                                                    r20Var32.a(Boolean.valueOf(z12));
+                                                    t2Var5.f10280n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1636,7 +1636,7 @@ public final class v2 extends FrameLayout implements us {
                                 });
                                 return;
                             case 1:
-                                final v2 v2Var2 = this.f10087b;
+                                final v2 v2Var2 = this.f10088b;
                                 final int i12 = i10;
                                 final t2 t2Var3 = t2Var;
                                 org.telegram.messenger.i0.g3(new Runnable() {
@@ -1655,11 +1655,11 @@ public final class v2 extends FrameLayout implements us {
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
                                                     int i122 = i12;
                                                     z10 = true;
-                                                    ui.b0(i122).I1(tL_messages_stickerSet, true);
-                                                    if (!ui.b0(i122).B0(tL_messages_stickerSet.set.f19820id, true)) {
-                                                        ui.b0(i122).f2(null, tLObject2, 2, null, false, false);
+                                                    vi.b0(i122).I1(tL_messages_stickerSet, true);
+                                                    if (!vi.b0(i122).B0(tL_messages_stickerSet.set.f19821id, true)) {
+                                                        vi.b0(i122).f2(null, tLObject2, 2, null, false, false);
                                                     }
-                                                    vh.m0 m0Var2 = v2Var22.f10314d0;
+                                                    vh.m0 m0Var2 = v2Var22.f10315d0;
                                                     if (m0Var2 != null) {
                                                         m0Var2.setProgress(1.0f);
                                                     }
@@ -1672,21 +1672,21 @@ public final class v2 extends FrameLayout implements us {
                                                             v2 v2Var322 = v2Var22;
                                                             switch (i1322) {
                                                                 case 0:
-                                                                    zs f7 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document = t2Var422.f10272f.document;
-                                                                    String str = t2Var422.f10277l;
+                                                                    at f7 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document = t2Var422.f10273f.document;
+                                                                    String str = t2Var422.f10278l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     f7.m(215, bool, tLObject32, document, str, bool);
                                                                     v2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    zs.f(d20.f15147s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10272f.document, t2Var422.f10277l, Boolean.TRUE);
+                                                                    at.f(e20.f15506s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10273f.document, t2Var422.f10278l, Boolean.TRUE);
                                                                     v2Var322.h();
                                                                     return;
                                                                 default:
-                                                                    zs f10 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document2 = t2Var422.f10272f.document;
-                                                                    String str2 = t2Var422.f10277l;
+                                                                    at f10 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document2 = t2Var422.f10273f.document;
+                                                                    String str2 = t2Var422.f10278l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     f10.m(215, bool2, tLObject32, document2, str2, bool2);
                                                                     v2Var322.h();
@@ -1699,10 +1699,10 @@ public final class v2 extends FrameLayout implements us {
                                                     v2Var22.h();
                                                     z10 = false;
                                                 }
-                                                q20 q20Var3 = t2Var32.f10279n;
-                                                if (q20Var3 != null) {
-                                                    q20Var3.a(Boolean.valueOf(z10));
-                                                    t2Var32.f10279n = null;
+                                                r20 r20Var3 = t2Var32.f10280n;
+                                                if (r20Var3 != null) {
+                                                    r20Var3.a(Boolean.valueOf(z10));
+                                                    t2Var32.f10280n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1714,9 +1714,9 @@ public final class v2 extends FrameLayout implements us {
                                                 if (z14) {
                                                     int i132 = i12;
                                                     z11 = true;
-                                                    ui.b0(i132).I1((TLRPC.TL_messages_stickerSet) tLObject3, true);
-                                                    ui.b0(i132).f2(null, tLObject3, 2, null, false, false);
-                                                    vh.m0 m0Var22 = v2Var32.f10314d0;
+                                                    vi.b0(i132).I1((TLRPC.TL_messages_stickerSet) tLObject3, true);
+                                                    vi.b0(i132).f2(null, tLObject3, 2, null, false, false);
+                                                    vh.m0 m0Var22 = v2Var32.f10315d0;
                                                     if (m0Var22 != null) {
                                                         m0Var22.setProgress(1.0f);
                                                     }
@@ -1729,21 +1729,21 @@ public final class v2 extends FrameLayout implements us {
                                                             v2 v2Var322 = v2Var32;
                                                             switch (i1322) {
                                                                 case 0:
-                                                                    zs f7 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document = t2Var422.f10272f.document;
-                                                                    String str = t2Var422.f10277l;
+                                                                    at f7 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document = t2Var422.f10273f.document;
+                                                                    String str = t2Var422.f10278l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     f7.m(215, bool, tLObject32, document, str, bool);
                                                                     v2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    zs.f(d20.f15147s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10272f.document, t2Var422.f10277l, Boolean.TRUE);
+                                                                    at.f(e20.f15506s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10273f.document, t2Var422.f10278l, Boolean.TRUE);
                                                                     v2Var322.h();
                                                                     return;
                                                                 default:
-                                                                    zs f10 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document2 = t2Var422.f10272f.document;
-                                                                    String str2 = t2Var422.f10277l;
+                                                                    at f10 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document2 = t2Var422.f10273f.document;
+                                                                    String str2 = t2Var422.f10278l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     f10.m(215, bool2, tLObject32, document2, str2, bool2);
                                                                     v2Var322.h();
@@ -1756,10 +1756,10 @@ public final class v2 extends FrameLayout implements us {
                                                     v2Var32.h();
                                                     z11 = false;
                                                 }
-                                                q20 q20Var22 = t2Var42.f10279n;
-                                                if (q20Var22 != null) {
-                                                    q20Var22.a(Boolean.valueOf(z11));
-                                                    t2Var42.f10279n = null;
+                                                r20 r20Var22 = t2Var42.f10280n;
+                                                if (r20Var22 != null) {
+                                                    r20Var22.a(Boolean.valueOf(z11));
+                                                    t2Var42.f10280n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1772,11 +1772,11 @@ public final class v2 extends FrameLayout implements us {
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject4;
                                                     int i14 = i12;
                                                     z12 = true;
-                                                    ui.b0(i14).I1(tL_messages_stickerSet2, true);
-                                                    if (!ui.b0(i14).B0(tL_messages_stickerSet2.set.f19820id, true)) {
-                                                        ui.b0(i14).f2(null, tLObject4, 2, null, false, false);
+                                                    vi.b0(i14).I1(tL_messages_stickerSet2, true);
+                                                    if (!vi.b0(i14).B0(tL_messages_stickerSet2.set.f19821id, true)) {
+                                                        vi.b0(i14).f2(null, tLObject4, 2, null, false, false);
                                                     }
-                                                    vh.m0 m0Var3 = v2Var4.f10314d0;
+                                                    vh.m0 m0Var3 = v2Var4.f10315d0;
                                                     if (m0Var3 != null) {
                                                         m0Var3.setProgress(1.0f);
                                                     }
@@ -1789,21 +1789,21 @@ public final class v2 extends FrameLayout implements us {
                                                             v2 v2Var322 = v2Var4;
                                                             switch (i1322) {
                                                                 case 0:
-                                                                    zs f7 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document = t2Var422.f10272f.document;
-                                                                    String str = t2Var422.f10277l;
+                                                                    at f7 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document = t2Var422.f10273f.document;
+                                                                    String str = t2Var422.f10278l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     f7.m(215, bool, tLObject32, document, str, bool);
                                                                     v2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    zs.f(d20.f15147s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10272f.document, t2Var422.f10277l, Boolean.TRUE);
+                                                                    at.f(e20.f15506s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10273f.document, t2Var422.f10278l, Boolean.TRUE);
                                                                     v2Var322.h();
                                                                     return;
                                                                 default:
-                                                                    zs f10 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document2 = t2Var422.f10272f.document;
-                                                                    String str2 = t2Var422.f10277l;
+                                                                    at f10 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document2 = t2Var422.f10273f.document;
+                                                                    String str2 = t2Var422.f10278l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     f10.m(215, bool2, tLObject32, document2, str2, bool2);
                                                                     v2Var322.h();
@@ -1816,10 +1816,10 @@ public final class v2 extends FrameLayout implements us {
                                                     v2Var4.h();
                                                     z12 = false;
                                                 }
-                                                q20 q20Var32 = t2Var5.f10279n;
-                                                if (q20Var32 != null) {
-                                                    q20Var32.a(Boolean.valueOf(z12));
-                                                    t2Var5.f10279n = null;
+                                                r20 r20Var32 = t2Var5.f10280n;
+                                                if (r20Var32 != null) {
+                                                    r20Var32.a(Boolean.valueOf(z12));
+                                                    t2Var5.f10280n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1828,7 +1828,7 @@ public final class v2 extends FrameLayout implements us {
                                 });
                                 return;
                             default:
-                                final v2 v2Var3 = this.f10087b;
+                                final v2 v2Var3 = this.f10088b;
                                 final int i13 = i10;
                                 final t2 t2Var4 = t2Var;
                                 org.telegram.messenger.i0.g3(new Runnable() {
@@ -1847,11 +1847,11 @@ public final class v2 extends FrameLayout implements us {
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
                                                     int i122 = i13;
                                                     z10 = true;
-                                                    ui.b0(i122).I1(tL_messages_stickerSet, true);
-                                                    if (!ui.b0(i122).B0(tL_messages_stickerSet.set.f19820id, true)) {
-                                                        ui.b0(i122).f2(null, tLObject2, 2, null, false, false);
+                                                    vi.b0(i122).I1(tL_messages_stickerSet, true);
+                                                    if (!vi.b0(i122).B0(tL_messages_stickerSet.set.f19821id, true)) {
+                                                        vi.b0(i122).f2(null, tLObject2, 2, null, false, false);
                                                     }
-                                                    vh.m0 m0Var2 = v2Var22.f10314d0;
+                                                    vh.m0 m0Var2 = v2Var22.f10315d0;
                                                     if (m0Var2 != null) {
                                                         m0Var2.setProgress(1.0f);
                                                     }
@@ -1864,21 +1864,21 @@ public final class v2 extends FrameLayout implements us {
                                                             v2 v2Var322 = v2Var22;
                                                             switch (i1322) {
                                                                 case 0:
-                                                                    zs f7 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document = t2Var422.f10272f.document;
-                                                                    String str = t2Var422.f10277l;
+                                                                    at f7 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document = t2Var422.f10273f.document;
+                                                                    String str = t2Var422.f10278l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     f7.m(215, bool, tLObject32, document, str, bool);
                                                                     v2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    zs.f(d20.f15147s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10272f.document, t2Var422.f10277l, Boolean.TRUE);
+                                                                    at.f(e20.f15506s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10273f.document, t2Var422.f10278l, Boolean.TRUE);
                                                                     v2Var322.h();
                                                                     return;
                                                                 default:
-                                                                    zs f10 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document2 = t2Var422.f10272f.document;
-                                                                    String str2 = t2Var422.f10277l;
+                                                                    at f10 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document2 = t2Var422.f10273f.document;
+                                                                    String str2 = t2Var422.f10278l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     f10.m(215, bool2, tLObject32, document2, str2, bool2);
                                                                     v2Var322.h();
@@ -1891,10 +1891,10 @@ public final class v2 extends FrameLayout implements us {
                                                     v2Var22.h();
                                                     z10 = false;
                                                 }
-                                                q20 q20Var3 = t2Var32.f10279n;
-                                                if (q20Var3 != null) {
-                                                    q20Var3.a(Boolean.valueOf(z10));
-                                                    t2Var32.f10279n = null;
+                                                r20 r20Var3 = t2Var32.f10280n;
+                                                if (r20Var3 != null) {
+                                                    r20Var3.a(Boolean.valueOf(z10));
+                                                    t2Var32.f10280n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1906,9 +1906,9 @@ public final class v2 extends FrameLayout implements us {
                                                 if (z14) {
                                                     int i132 = i13;
                                                     z11 = true;
-                                                    ui.b0(i132).I1((TLRPC.TL_messages_stickerSet) tLObject3, true);
-                                                    ui.b0(i132).f2(null, tLObject3, 2, null, false, false);
-                                                    vh.m0 m0Var22 = v2Var32.f10314d0;
+                                                    vi.b0(i132).I1((TLRPC.TL_messages_stickerSet) tLObject3, true);
+                                                    vi.b0(i132).f2(null, tLObject3, 2, null, false, false);
+                                                    vh.m0 m0Var22 = v2Var32.f10315d0;
                                                     if (m0Var22 != null) {
                                                         m0Var22.setProgress(1.0f);
                                                     }
@@ -1921,21 +1921,21 @@ public final class v2 extends FrameLayout implements us {
                                                             v2 v2Var322 = v2Var32;
                                                             switch (i1322) {
                                                                 case 0:
-                                                                    zs f7 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document = t2Var422.f10272f.document;
-                                                                    String str = t2Var422.f10277l;
+                                                                    at f7 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document = t2Var422.f10273f.document;
+                                                                    String str = t2Var422.f10278l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     f7.m(215, bool, tLObject32, document, str, bool);
                                                                     v2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    zs.f(d20.f15147s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10272f.document, t2Var422.f10277l, Boolean.TRUE);
+                                                                    at.f(e20.f15506s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10273f.document, t2Var422.f10278l, Boolean.TRUE);
                                                                     v2Var322.h();
                                                                     return;
                                                                 default:
-                                                                    zs f10 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document2 = t2Var422.f10272f.document;
-                                                                    String str2 = t2Var422.f10277l;
+                                                                    at f10 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document2 = t2Var422.f10273f.document;
+                                                                    String str2 = t2Var422.f10278l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     f10.m(215, bool2, tLObject32, document2, str2, bool2);
                                                                     v2Var322.h();
@@ -1948,10 +1948,10 @@ public final class v2 extends FrameLayout implements us {
                                                     v2Var32.h();
                                                     z11 = false;
                                                 }
-                                                q20 q20Var22 = t2Var42.f10279n;
-                                                if (q20Var22 != null) {
-                                                    q20Var22.a(Boolean.valueOf(z11));
-                                                    t2Var42.f10279n = null;
+                                                r20 r20Var22 = t2Var42.f10280n;
+                                                if (r20Var22 != null) {
+                                                    r20Var22.a(Boolean.valueOf(z11));
+                                                    t2Var42.f10280n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1964,11 +1964,11 @@ public final class v2 extends FrameLayout implements us {
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject4;
                                                     int i14 = i13;
                                                     z12 = true;
-                                                    ui.b0(i14).I1(tL_messages_stickerSet2, true);
-                                                    if (!ui.b0(i14).B0(tL_messages_stickerSet2.set.f19820id, true)) {
-                                                        ui.b0(i14).f2(null, tLObject4, 2, null, false, false);
+                                                    vi.b0(i14).I1(tL_messages_stickerSet2, true);
+                                                    if (!vi.b0(i14).B0(tL_messages_stickerSet2.set.f19821id, true)) {
+                                                        vi.b0(i14).f2(null, tLObject4, 2, null, false, false);
                                                     }
-                                                    vh.m0 m0Var3 = v2Var4.f10314d0;
+                                                    vh.m0 m0Var3 = v2Var4.f10315d0;
                                                     if (m0Var3 != null) {
                                                         m0Var3.setProgress(1.0f);
                                                     }
@@ -1981,21 +1981,21 @@ public final class v2 extends FrameLayout implements us {
                                                             v2 v2Var322 = v2Var4;
                                                             switch (i1322) {
                                                                 case 0:
-                                                                    zs f7 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document = t2Var422.f10272f.document;
-                                                                    String str = t2Var422.f10277l;
+                                                                    at f7 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document = t2Var422.f10273f.document;
+                                                                    String str = t2Var422.f10278l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     f7.m(215, bool, tLObject32, document, str, bool);
                                                                     v2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    zs.f(d20.f15147s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10272f.document, t2Var422.f10277l, Boolean.TRUE);
+                                                                    at.f(e20.f15506s0).m(215, Boolean.FALSE, tLObject32, t2Var422.f10273f.document, t2Var422.f10278l, Boolean.TRUE);
                                                                     v2Var322.h();
                                                                     return;
                                                                 default:
-                                                                    zs f10 = zs.f(d20.f15147s0);
-                                                                    TLRPC.Document document2 = t2Var422.f10272f.document;
-                                                                    String str2 = t2Var422.f10277l;
+                                                                    at f10 = at.f(e20.f15506s0);
+                                                                    TLRPC.Document document2 = t2Var422.f10273f.document;
+                                                                    String str2 = t2Var422.f10278l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     f10.m(215, bool2, tLObject32, document2, str2, bool2);
                                                                     v2Var322.h();
@@ -2008,10 +2008,10 @@ public final class v2 extends FrameLayout implements us {
                                                     v2Var4.h();
                                                     z12 = false;
                                                 }
-                                                q20 q20Var32 = t2Var5.f10279n;
-                                                if (q20Var32 != null) {
-                                                    q20Var32.a(Boolean.valueOf(z12));
-                                                    t2Var5.f10279n = null;
+                                                r20 r20Var32 = t2Var5.f10280n;
+                                                if (r20Var32 != null) {
+                                                    r20Var32.a(Boolean.valueOf(z12));
+                                                    t2Var5.f10280n = null;
                                                     return;
                                                 }
                                                 return;
@@ -2042,7 +2042,7 @@ public final class v2 extends FrameLayout implements us {
                 }
                 s2 s2Var = s2VarArr[i10];
                 if (s2Var != null) {
-                    s2Var.f10221l.reset();
+                    s2Var.f10222l.reset();
                     Bitmap bitmap = s2Var.e;
                     if (bitmap != null) {
                         bitmap.recycle();
@@ -2053,15 +2053,15 @@ public final class v2 extends FrameLayout implements us {
                         bitmap2.recycle();
                         s2Var.d = null;
                     }
-                    Bitmap bitmap3 = s2Var.f10217g;
+                    Bitmap bitmap3 = s2Var.f10218g;
                     if (bitmap3 != null) {
                         bitmap3.recycle();
-                        s2Var.f10217g = null;
+                        s2Var.f10218g = null;
                     }
-                    Bitmap bitmap4 = s2Var.f10216f;
+                    Bitmap bitmap4 = s2Var.f10217f;
                     if (bitmap4 != null) {
                         bitmap4.recycle();
-                        s2Var.f10216f = null;
+                        s2Var.f10217f = null;
                     }
                 }
                 i10++;
@@ -2069,14 +2069,14 @@ public final class v2 extends FrameLayout implements us {
             this.H = null;
         }
         this.D = false;
-        this.f10333y = false;
+        this.f10334y = false;
         this.L = false;
         this.M.setAlpha(0.0f);
         this.M.setScaleX(0.3f);
         this.M.setScaleY(0.3f);
         t2 t2Var = this.W;
         if (t2Var != null) {
-            if (!t2Var.f10280o) {
+            if (!t2Var.f10281o) {
                 t2Var.a();
             }
             this.W = null;
@@ -2116,73 +2116,73 @@ public final class v2 extends FrameLayout implements us {
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         t2 t2Var;
-        if (i10 == zs.U1) {
+        if (i10 == at.U1) {
             String str = (String) objArr[0];
             TLRPC.InputFile inputFile = (TLRPC.InputFile) objArr[1];
             t2 t2Var2 = this.W;
-            if (t2Var2 != null && str.equalsIgnoreCase(t2Var2.f10270b)) {
+            if (t2Var2 != null && str.equalsIgnoreCase(t2Var2.f10271b)) {
                 t2 t2Var3 = this.W;
-                t2Var3.f10273g = inputFile;
+                t2Var3.f10274g = inputFile;
                 TLRPC.TL_messages_uploadMedia tL_messages_uploadMedia = new TLRPC.TL_messages_uploadMedia();
                 tL_messages_uploadMedia.peer = new TLRPC.TL_inputPeerSelf();
                 TLRPC.TL_inputMediaUploadedDocument tL_inputMediaUploadedDocument = new TLRPC.TL_inputMediaUploadedDocument();
                 tL_messages_uploadMedia.media = tL_inputMediaUploadedDocument;
-                tL_inputMediaUploadedDocument.file = t2Var3.f10273g;
-                if (t2Var3.f10284s != null) {
+                tL_inputMediaUploadedDocument.file = t2Var3.f10274g;
+                if (t2Var3.f10285s != null) {
                     tL_inputMediaUploadedDocument.mime_type = "video/webm";
                 } else {
                     tL_inputMediaUploadedDocument.mime_type = "image/webp";
                 }
                 TLRPC.TL_documentAttributeSticker tL_documentAttributeSticker = new TLRPC.TL_documentAttributeSticker();
-                tL_documentAttributeSticker.alt = t2Var3.f10271c;
+                tL_documentAttributeSticker.alt = t2Var3.f10272c;
                 tL_documentAttributeSticker.stickerset = new TLRPC.TL_inputStickerSetEmpty();
                 tL_messages_uploadMedia.media.attributes.add(tL_documentAttributeSticker);
-                ConnectionsManager.getInstance(d20.f15147s0).sendRequest(tL_messages_uploadMedia, new ag.k0(3, this, t2Var3), 2);
+                ConnectionsManager.getInstance(e20.f15506s0).sendRequest(tL_messages_uploadMedia, new ag.k0(3, this, t2Var3), 2);
             }
-        } else if (i10 == zs.W1) {
+        } else if (i10 == at.W1) {
             String str2 = (String) objArr[0];
             t2 t2Var4 = this.W;
-            if (t2Var4 != null && str2.equalsIgnoreCase(t2Var4.f10270b)) {
+            if (t2Var4 != null && str2.equalsIgnoreCase(t2Var4.f10271b)) {
                 long longValue = ((Long) objArr[1]).longValue();
                 long longValue2 = ((Long) objArr[2]).longValue();
                 if (longValue2 > 0) {
                     t2 t2Var5 = this.W;
-                    t2Var5.f10286u = Utilities.i(((float) longValue) / ((float) longValue2), 1.0f, t2Var5.f10286u);
-                    vh.m0 m0Var = this.f10314d0;
+                    t2Var5.f10287u = Utilities.i(((float) longValue) / ((float) longValue2), 1.0f, t2Var5.f10287u);
+                    vh.m0 m0Var = this.f10315d0;
                     if (m0Var != null) {
                         m0Var.setProgress(this.W.b());
                     }
                 }
             }
-        } else if (i10 == zs.V1) {
+        } else if (i10 == at.V1) {
             String str3 = (String) objArr[0];
             t2 t2Var6 = this.W;
-            if (t2Var6 != null && str3.equalsIgnoreCase(t2Var6.f10270b)) {
+            if (t2Var6 != null && str3.equalsIgnoreCase(t2Var6.f10271b)) {
                 h();
             }
-        } else if (i10 == zs.a2) {
+        } else if (i10 == at.a2) {
             t2 t2Var7 = this.W;
-            if (t2Var7 != null && objArr[0] == t2Var7.f10283r) {
-                b8.G(d20.f15147s0).i0(false, 67108864, this.W.f10270b, true);
+            if (t2Var7 != null && objArr[0] == t2Var7.f10284r) {
+                b8.G(e20.f15506s0).i0(false, 67108864, this.W.f10271b, true);
             }
-        } else if (i10 == zs.f19586b2) {
+        } else if (i10 == at.f14682b2) {
             t2 t2Var8 = this.W;
-            if (t2Var8 != null && objArr[0] == t2Var8.f10283r) {
+            if (t2Var8 != null && objArr[0] == t2Var8.f10284r) {
                 String str4 = (String) objArr[1];
                 long longValue3 = ((Long) objArr[2]).longValue();
                 long longValue4 = ((Long) objArr[3]).longValue();
                 Float f7 = (Float) objArr[4];
                 float floatValue = f7.floatValue();
-                this.W.f10283r.f16356p0.Y = true;
-                b8.G(this.f10308a).n(str4, false, Math.max(1L, longValue3), longValue4, f7);
+                this.W.f10284r.f16709p0.Y = true;
+                b8.G(this.f10309a).n(str4, false, Math.max(1L, longValue3), longValue4, f7);
                 t2 t2Var9 = this.W;
-                t2Var9.f10285t = Math.max(t2Var9.f10285t, floatValue);
-                vh.m0 m0Var2 = this.f10314d0;
+                t2Var9.f10286t = Math.max(t2Var9.f10286t, floatValue);
+                vh.m0 m0Var2 = this.f10315d0;
                 if (m0Var2 != null) {
                     m0Var2.setProgress(this.W.b());
                 }
             }
-        } else if (i10 == zs.f19592c2 && (t2Var = this.W) != null && objArr[0] == t2Var.f10283r) {
+        } else if (i10 == at.f14688c2 && (t2Var = this.W) != null && objArr[0] == t2Var.f10284r) {
             h();
         }
     }
@@ -2190,8 +2190,8 @@ public final class v2 extends FrameLayout implements us {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        canvas.drawPath(this.f10331w, this.e);
-        canvas.drawPath(this.f10332x, this.d);
+        canvas.drawPath(this.f10332w, this.e);
+        canvas.drawPath(this.f10333x, this.d);
     }
 
     @Override
@@ -2206,7 +2206,7 @@ public final class v2 extends FrameLayout implements us {
         s2 s2Var = this.E;
         if (s2Var != null) {
             this.K = bitmap;
-            if (s2Var.f10216f != null && this.L) {
+            if (s2Var.f10217f != null && this.L) {
                 Bitmap createBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
                 Paint paint = new Paint(3);
@@ -2216,12 +2216,12 @@ public final class v2 extends FrameLayout implements us {
                 Rect rect = new Rect();
                 rect.set(0, 0, bitmap.getWidth(), bitmap.getHeight());
                 s2 s2Var2 = this.E;
-                if (s2Var2.f10215c != 0) {
+                if (s2Var2.f10216c != 0) {
                     Matrix matrix = new Matrix();
                     s2 s2Var3 = this.E;
-                    matrix.postRotate(s2Var3.f10215c, s2Var3.a().getWidth() / 2.0f, this.E.a().getHeight() / 2.0f);
+                    matrix.postRotate(s2Var3.f10216c, s2Var3.a().getWidth() / 2.0f, this.E.a().getHeight() / 2.0f);
                     s2 s2Var4 = this.E;
-                    if ((s2Var4.f10215c / 90) % 2 != 0) {
+                    if ((s2Var4.f10216c / 90) % 2 != 0) {
                         float height = (s2Var4.b().getHeight() - this.E.b().getWidth()) / 2.0f;
                         matrix.postTranslate(height, -height);
                     }
@@ -2237,7 +2237,7 @@ public final class v2 extends FrameLayout implements us {
     }
 
     public final void f() {
-        this.f10310b.e(false, 0.0f);
+        this.f10311b.e(false, 0.0f);
         ValueAnimator valueAnimator = this.N;
         if (valueAnimator != null) {
             valueAnimator.cancel();
@@ -2255,10 +2255,10 @@ public final class v2 extends FrameLayout implements us {
         float d;
         float f7;
         Paint paint;
-        t5 t5Var = this.f10312c;
-        t5Var.f30443a = viewGroup;
-        boolean z13 = this.f10320i0;
-        if (z13 || t5Var.f30445c > 0.0f) {
+        t5 t5Var = this.f10313c;
+        t5Var.f30528a = viewGroup;
+        boolean z13 = this.f10321i0;
+        if (z13 || t5Var.f30530c > 0.0f) {
             if (viewGroup == null) {
                 d = 1.0f;
             } else {
@@ -2274,22 +2274,22 @@ public final class v2 extends FrameLayout implements us {
                 for (s2 s2Var : s2VarArr) {
                     if (s2Var != null && s2Var == this.E) {
                         if (this.F > 0.0f) {
-                            if (s2Var.f10229t.f10322k0 != null) {
+                            if (s2Var.f10230t.f10323k0 != null) {
                                 canvas.save();
-                                canvas.clipPath(s2Var.f10229t.f10322k0);
-                                if (s2Var.f10229t.I != null) {
+                                canvas.clipPath(s2Var.f10230t.f10323k0);
+                                if (s2Var.f10230t.I != null) {
                                     if (z10) {
-                                        paint = s2Var.f10226q;
+                                        paint = s2Var.f10227q;
                                     } else {
-                                        paint = s2Var.f10225p;
+                                        paint = s2Var.f10226p;
                                     }
                                     paint.setAlpha((int) (d * 255.0f));
                                     paint.setStrokeWidth(org.telegram.messenger.i0.L(f7));
-                                    canvas.drawPath(s2Var.f10221l, paint);
-                                    if (s2Var.f10229t.f10322k0 != null && z10) {
-                                        canvas.clipPath(s2Var.f10221l);
+                                    canvas.drawPath(s2Var.f10222l, paint);
+                                    if (s2Var.f10230t.f10323k0 != null && z10) {
+                                        canvas.clipPath(s2Var.f10222l);
                                         paint.setStrokeWidth(org.telegram.messenger.i0.L(f7 * 2.0f));
-                                        canvas.drawPath(s2Var.f10229t.f10322k0, paint);
+                                        canvas.drawPath(s2Var.f10230t.f10323k0, paint);
                                     }
                                 }
                                 canvas.restore();
@@ -2323,23 +2323,23 @@ public final class v2 extends FrameLayout implements us {
         return this.I;
     }
 
-    public h01 getThanosEffect() {
-        if (!h01.c()) {
+    public i01 getThanosEffect() {
+        if (!i01.c()) {
             return null;
         }
         if (this.S == null) {
-            h01 h01Var = new h01(getContext(), new k2(this, 1));
-            this.S = h01Var;
-            addView(h01Var, b6.c(-1.0f, -1));
+            i01 i01Var = new i01(getContext(), new k2(this, 1));
+            this.S = i01Var;
+            addView(i01Var, b6.c(-1.0f, -1));
         }
         return this.S;
     }
 
     public final void h() {
-        vh.m0 m0Var = this.f10314d0;
+        vh.m0 m0Var = this.f10315d0;
         if (m0Var != null) {
             m0Var.a();
-            this.f10314d0 = null;
+            this.f10315d0 = null;
         }
     }
 
@@ -2361,7 +2361,7 @@ public final class v2 extends FrameLayout implements us {
             }
             s2 s2Var = s2VarArr[i10];
             if (s2Var != null) {
-                if ((s2Var.f10215c / 90) % 2 != 0) {
+                if ((s2Var.f10216c / 90) % 2 != 0) {
                     width = this.I.getHeight();
                     height = this.I.getWidth();
                 } else {
@@ -2369,13 +2369,13 @@ public final class v2 extends FrameLayout implements us {
                     height = this.I.getHeight();
                 }
                 RectF rectF = org.telegram.messenger.i0.P;
-                RectF rectF2 = this.H[i10].f10218i;
+                RectF rectF2 = this.H[i10].f10219i;
                 float f11 = width;
-                float f12 = this.f10317f0;
+                float f12 = this.f10318f0;
                 float f13 = height;
-                float f14 = this.f10318g0;
+                float f14 = this.f10319g0;
                 rectF.set((rectF2.left / f11) * f12, (rectF2.top / f13) * f14, (rectF2.right / f11) * f12, (rectF2.bottom / f13) * f14);
-                this.f10315e0.mapRect(rectF);
+                this.f10316e0.mapRect(rectF);
                 if (rectF.contains(f7, f10)) {
                     return s2Var;
                 }
@@ -2392,10 +2392,10 @@ public final class v2 extends FrameLayout implements us {
                 if (s2Var != null && (bitmap = s2Var.e) != null) {
                     bitmap.recycle();
                     s2Var.e = null;
-                    Bitmap bitmap2 = s2Var.f10217g;
+                    Bitmap bitmap2 = s2Var.f10218g;
                     if (bitmap2 != null) {
                         bitmap2.recycle();
-                        s2Var.f10217g = null;
+                        s2Var.f10218g = null;
                     }
                     c(s2Var, this.T, this.U);
                 }
@@ -2403,28 +2403,28 @@ public final class v2 extends FrameLayout implements us {
         }
     }
 
-    public final void m(Bitmap bitmap, int i10, int i11, int i12, wo0 wo0Var) {
+    public final void m(Bitmap bitmap, int i10, int i11, int i12, uo0 uo0Var) {
         int i13;
         int i14;
         pb.c cVar;
         if (i11 <= 0) {
-            i13 = org.telegram.messenger.i0.f16026q.x;
+            i13 = org.telegram.messenger.i0.f16172q.x;
         } else {
             i13 = i11;
         }
         if (i12 <= 0) {
-            i14 = org.telegram.messenger.i0.f16026q.y;
+            i14 = org.telegram.messenger.i0.f16172q.y;
         } else {
             i14 = i12;
         }
         this.T = i13;
         this.U = i14;
-        if (!this.D && !this.f10333y && bitmap != null && Build.VERSION.SDK_INT >= 24) {
+        if (!this.D && !this.f10334y && bitmap != null && Build.VERSION.SDK_INT >= 24) {
             this.I = bitmap;
             this.J = i10;
-            this.f10313c0 = null;
-            o2 o2Var = new o2(this, i10, wo0Var, 0);
-            this.f10333y = true;
+            this.f10314c0 = null;
+            o2 o2Var = new o2(this, i10, uo0Var, 0);
+            this.f10334y = true;
             ea.b bVar = new ea.b();
             bVar.f6460b = true;
             bVar.f6461c = true;
@@ -2436,33 +2436,33 @@ public final class v2 extends FrameLayout implements us {
                 int min = (int) (Math.min(bitmap2.getWidth(), bitmap2.getHeight()) * 0.4f);
                 obj.e = min;
                 obj.d = min;
-                obj.f10295a = Bitmap.createBitmap(min, min, Bitmap.Config.ARGB_8888);
-                new Canvas(obj.f10295a).drawRect(0.0f, 0.0f, obj.d, obj.e, t6.Dm);
-                obj.f10296b = (bitmap2.getWidth() - obj.d) / 2;
-                obj.f10297c = (bitmap2.getHeight() - obj.e) / 2;
+                obj.f10296a = Bitmap.createBitmap(min, min, Bitmap.Config.ARGB_8888);
+                new Canvas(obj.f10296a).drawRect(0.0f, 0.0f, obj.d, obj.e, t6.Dm);
+                obj.f10297b = (bitmap2.getWidth() - obj.d) / 2;
+                obj.f10298c = (bitmap2.getHeight() - obj.e) / 2;
                 arrayList.add(obj);
                 o2Var.a(arrayList);
                 return;
             }
             ob.a a10 = ob.a.a(bitmap, i10);
-            a2.g(a10).addOnSuccessListener(new ig.c0(o2Var, 14)).addOnFailureListener(new q2(this, bitmap, i10, wo0Var, o2Var, 0));
-            if (this.f10313c0 == null) {
-                rb.a aVar = rb.a.f46478b;
+            a2.g(a10).addOnSuccessListener(new ig.c0(o2Var, 14)).addOnFailureListener(new q2(this, bitmap, i10, uo0Var, o2Var, 0));
+            if (this.f10314c0 == null) {
+                rb.a aVar = rb.a.f46489b;
                 n6.l.h(aVar, "options cannot be null");
                 synchronized (pb.c.class) {
                     cVar = (pb.c) jb.g.c().a(pb.c.class);
                 }
-                qa.b bVar2 = (qa.b) cVar.f44900a.get(rb.a.class);
+                qa.b bVar2 = (qa.b) cVar.f44911a.get(rb.a.class);
                 n6.l.g(bVar2);
                 sb.c cVar2 = (sb.c) bVar2.get();
                 cVar2.getClass();
-                ga gaVar = cVar2.f48135c;
+                ga gaVar = cVar2.f48146c;
                 ?? obj2 = new Object();
-                obj2.f9349c = m7.TYPE_THIN;
-                jb.m.f9797a.execute(new com.google.android.gms.internal.cast.o(gaVar, new a5.a((j2.f) obj2, 1), o7.ON_DEVICE_IMAGE_LABEL_CREATE, gaVar.b(), 7));
-                new ImageLabelerImpl((jb.e) cVar2.f48133a.R0(aVar), (Executor) cVar2.f48134b.f9778a.get(), new k6.c("vision.ica", 1L)).g(a10).addOnSuccessListener(new ig.c0(this, 15)).addOnFailureListener(new j2.e(24));
+                obj2.f9350c = m7.TYPE_THIN;
+                jb.m.f9798a.execute(new com.google.android.gms.internal.cast.o(gaVar, new a5.a((j2.f) obj2, 1), o7.ON_DEVICE_IMAGE_LABEL_CREATE, gaVar.b(), 7));
+                new ImageLabelerImpl((jb.e) cVar2.f48144a.R0(aVar), (Executor) cVar2.f48145b.f9779a.get(), new k6.c("vision.ica", 1L)).g(a10).addOnSuccessListener(new ig.c0(this, 15)).addOnFailureListener(new j2.e(24));
             }
-            ArrayList arrayList2 = ui.b0(this.f10308a).f18332n;
+            ArrayList arrayList2 = vi.b0(this.f10309a).f18661n;
             for (int i15 = 0; i15 < Math.min(arrayList2.size(), 9); i15++) {
                 k6.g(((TLRPC.TL_availableReaction) arrayList2.get(i15)).reaction);
             }
@@ -2471,49 +2471,49 @@ public final class v2 extends FrameLayout implements us {
 
     public final void n(TLRPC.TL_error tL_error) {
         if (tL_error != null && !"PACK_TITLE_INVALID".equals(tL_error.text)) {
-            new cc((FrameLayout) getParent(), this.f10309a0).t(tL_error.text, null).j();
+            new cc((FrameLayout) getParent(), this.f10310a0).t(tL_error.text, null).j();
         }
     }
 
     public final void o() {
-        Path path = this.f10322k0;
+        Path path = this.f10323k0;
         if (path == null) {
-            this.f10322k0 = new Path();
+            this.f10323k0 = new Path();
         } else {
             path.rewind();
         }
-        if (this.f10323l0 == null) {
-            this.f10323l0 = new Path();
+        if (this.f10324l0 == null) {
+            this.f10324l0 = new Path();
             RectF rectF = org.telegram.messenger.i0.P;
             rectF.set(0.0f, 0.0f, 1.0f, 1.0f);
-            this.f10323l0.addRoundRect(rectF, rectF.width() * 0.12f, rectF.height() * 0.12f, Path.Direction.CW);
+            this.f10324l0.addRoundRect(rectF, rectF.width() * 0.12f, rectF.height() * 0.12f, Path.Direction.CW);
         }
-        this.f10322k0.addPath(this.f10323l0, this.f10321j0);
-        this.f10322k0.computeBounds(this.m0, true);
+        this.f10323k0.addPath(this.f10324l0, this.f10322j0);
+        this.f10323k0.computeBounds(this.m0, true);
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        zs.f(this.f10308a).c(this, zs.U1);
-        zs.f(this.f10308a).c(this, zs.W1);
-        zs.f(this.f10308a).c(this, zs.V1);
-        zs.f(this.f10308a).c(this, zs.f19592c2);
-        zs.f(this.f10308a).c(this, zs.a2);
-        zs.f(this.f10308a).c(this, zs.f19586b2);
+        at.f(this.f10309a).c(this, at.U1);
+        at.f(this.f10309a).c(this, at.W1);
+        at.f(this.f10309a).c(this, at.V1);
+        at.f(this.f10309a).c(this, at.f14688c2);
+        at.f(this.f10309a).c(this, at.a2);
+        at.f(this.f10309a).c(this, at.f14682b2);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        int i10 = this.f10308a;
+        int i10 = this.f10309a;
         if (i10 >= 0) {
-            zs.f(i10).n(this, zs.U1);
-            zs.f(this.f10308a).n(this, zs.W1);
-            zs.f(this.f10308a).n(this, zs.V1);
-            zs.f(this.f10308a).n(this, zs.f19592c2);
-            zs.f(this.f10308a).n(this, zs.a2);
-            zs.f(this.f10308a).n(this, zs.f19586b2);
+            at.f(i10).n(this, at.U1);
+            at.f(this.f10309a).n(this, at.W1);
+            at.f(this.f10309a).n(this, at.V1);
+            at.f(this.f10309a).n(this, at.f14688c2);
+            at.f(this.f10309a).n(this, at.a2);
+            at.f(this.f10309a).n(this, at.f14682b2);
         }
     }
 
@@ -2529,17 +2529,17 @@ public final class v2 extends FrameLayout implements us {
         float f11 = measuredWidth + L;
         rectF.set(L, L, f11, f11);
         rectF.offset(0.0f, (measuredHeight - rectF.height()) / 2.0f);
-        Path path = this.f10330s;
+        Path path = this.f10331s;
         path.rewind();
         Path.Direction direction = Path.Direction.CW;
         path.addRoundRect(rectF, f10, f10, direction);
-        Path path2 = this.f10329r;
+        Path path2 = this.f10330r;
         path2.rewind();
         path2.addRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), direction);
-        Path path3 = this.f10331w;
+        Path path3 = this.f10332w;
         path3.reset();
         path3.op(path2, path, Path.Op.DIFFERENCE);
-        Path path4 = this.f10332x;
+        Path path4 = this.f10333x;
         path4.rewind();
         rectF.inset(org.telegram.messenger.i0.L(-1.0f), org.telegram.messenger.i0.L(-1.0f));
         path4.addRoundRect(rectF, f10, f10, direction);
@@ -2550,10 +2550,10 @@ public final class v2 extends FrameLayout implements us {
         super.onMeasure(i10, i11);
         this.M.setTranslationY(-((getMeasuredWidth() / 2.0f) + org.telegram.messenger.i0.L(10.0f)));
         if (Build.VERSION.SDK_INT >= 29) {
-            ArrayList arrayList = this.f10327p0;
+            ArrayList arrayList = this.f10328p0;
             arrayList.clear();
-            if (this.f10320i0) {
-                Rect rect = this.f10328q0;
+            if (this.f10321i0) {
+                Rect rect = this.f10329q0;
                 arrayList.add(rect);
                 int measuredHeight = (int) (getMeasuredHeight() * 0.3f);
                 rect.set(0, (getMeasuredHeight() - measuredHeight) / 2, org.telegram.messenger.i0.L(20.0f), (getMeasuredHeight() + measuredHeight) / 2);
@@ -2562,15 +2562,15 @@ public final class v2 extends FrameLayout implements us {
         }
     }
 
-    public final void p(final String str, final x20 x20Var, final String str2, final CharSequence charSequence, final boolean z10, final long j10, final TLRPC.StickerSet stickerSet, final TLRPC.Document document, final TLRPC.Document document2, final String str3, final q20 q20Var, final j20 j20Var) {
+    public final void p(final String str, final y20 y20Var, final String str2, final CharSequence charSequence, final boolean z10, final long j10, final TLRPC.StickerSet stickerSet, final TLRPC.Document document, final TLRPC.Document document2, final String str3, final r20 r20Var, final k20 k20Var) {
         org.telegram.messenger.i0.h3(new Runnable() {
             @Override
             public final void run() {
                 boolean z11;
                 t2 t2Var;
                 v2 v2Var = v2.this;
-                q20 q20Var2 = q20Var;
-                if (q20Var2 != null && (t2Var = v2Var.W) != null && t2Var.f10280o) {
+                r20 r20Var2 = r20Var;
+                if (r20Var2 != null && (t2Var = v2Var.W) != null && t2Var.f10281o) {
                     z11 = false;
                 } else {
                     z11 = true;
@@ -2581,36 +2581,36 @@ public final class v2 extends FrameLayout implements us {
                         t2Var2.a();
                     }
                     ?? obj = new Object();
-                    obj.f10281p = new ArrayList();
-                    obj.f10282q = new ArrayList();
-                    obj.f10285t = 0.0f;
-                    obj.f10286u = 0.0f;
+                    obj.f10282p = new ArrayList();
+                    obj.f10283q = new ArrayList();
+                    obj.f10286t = 0.0f;
+                    obj.f10287u = 0.0f;
                     v2Var.W = obj;
                 }
                 t2 t2Var3 = v2Var.W;
-                t2Var3.f10271c = str2;
+                t2Var3.f10272c = str2;
                 String str4 = str;
-                t2Var3.f10270b = str4;
-                t2Var3.f10269a = str4;
+                t2Var3.f10271b = str4;
+                t2Var3.f10270a = str4;
                 t2Var3.d = charSequence;
                 t2Var3.h = z10;
-                t2Var3.f10274i = j10;
-                t2Var3.f10275j = stickerSet;
-                t2Var3.f10276k = document;
-                x20 x20Var2 = x20Var;
-                t2Var3.f10284s = x20Var2;
-                t2Var3.f10277l = str3;
-                t2Var3.f10279n = q20Var2;
-                t2Var3.f10278m = j20Var;
-                ArrayList arrayList = t2Var3.f10282q;
+                t2Var3.f10275i = j10;
+                t2Var3.f10276j = stickerSet;
+                t2Var3.f10277k = document;
+                y20 y20Var2 = y20Var;
+                t2Var3.f10285s = y20Var2;
+                t2Var3.f10278l = str3;
+                t2Var3.f10280n = r20Var2;
+                t2Var3.f10279m = k20Var;
+                ArrayList arrayList = t2Var3.f10283q;
                 if (!TextUtils.isEmpty(str4)) {
-                    t2Var3.f10281p.add(new File(t2Var3.f10270b));
+                    t2Var3.f10282p.add(new File(t2Var3.f10271b));
                 }
-                if (!TextUtils.isEmpty(t2Var3.f10269a) && !TextUtils.equals(t2Var3.f10269a, t2Var3.f10270b)) {
-                    arrayList.add(new File(t2Var3.f10269a));
+                if (!TextUtils.isEmpty(t2Var3.f10270a) && !TextUtils.equals(t2Var3.f10270a, t2Var3.f10271b)) {
+                    arrayList.add(new File(t2Var3.f10270a));
                 }
-                if (!TextUtils.isEmpty(t2Var3.f10277l)) {
-                    arrayList.add(new File(t2Var3.f10277l));
+                if (!TextUtils.isEmpty(t2Var3.f10278l)) {
+                    arrayList.add(new File(t2Var3.f10278l));
                 }
                 if (!z11) {
                     v2Var.a();
@@ -2618,35 +2618,35 @@ public final class v2 extends FrameLayout implements us {
                     TLRPC.Document document3 = document2;
                     if (document3 != null) {
                         t2 t2Var4 = v2Var.W;
-                        t2Var4.e = ui.a0(document3, t2Var4.f10271c);
-                        v2Var.W.f10272f = new TLRPC.TL_messageMediaDocument();
-                        TLRPC.TL_messageMediaDocument tL_messageMediaDocument = v2Var.W.f10272f;
+                        t2Var4.e = vi.a0(document3, t2Var4.f10272c);
+                        v2Var.W.f10273f = new TLRPC.TL_messageMediaDocument();
+                        TLRPC.TL_messageMediaDocument tL_messageMediaDocument = v2Var.W.f10273f;
                         tL_messageMediaDocument.flags |= 1;
                         tL_messageMediaDocument.document = document3;
                         v2Var.a();
-                    } else if (x20Var2 != null) {
+                    } else if (y20Var2 != null) {
                         TLRPC.TL_message tL_message = new TLRPC.TL_message();
-                        tL_message.f19814id = 1;
+                        tL_message.f19815id = 1;
                         t2 t2Var5 = v2Var.W;
-                        String absolutePath = n5.w(d20.f15147s0, "webm").getAbsolutePath();
+                        String absolutePath = n5.w(e20.f15506s0, "webm").getAbsolutePath();
                         tL_message.attachPath = absolutePath;
-                        t2Var5.f10270b = absolutePath;
-                        v2Var.W.f10283r = new jj(d20.f15147s0, tL_message, null, false, false);
-                        v2Var.W.f10283r.f16356p0 = x20Var2;
-                        MediaController.B().h0(v2Var.W.f10283r, false, false, false);
+                        t2Var5.f10271b = absolutePath;
+                        v2Var.W.f10284r = new kj(e20.f15506s0, tL_message, null, false, false);
+                        v2Var.W.f10284r.f16709p0 = y20Var2;
+                        MediaController.B().h0(v2Var.W.f10284r, false, false, false);
                     } else {
-                        b8.G(v2Var.f10308a).i0(false, 67108864, str4, true);
+                        b8.G(v2Var.f10309a).i0(false, 67108864, str4, true);
                     }
                 }
-                if (q20Var2 == null) {
-                    if (v2Var.f10314d0 == null) {
-                        v2Var.f10314d0 = new vh.m0(v2Var.getContext(), cd.L0(2131746934, null));
+                if (r20Var2 == null) {
+                    if (v2Var.f10315d0 == null) {
+                        v2Var.f10315d0 = new vh.m0(v2Var.getContext(), dd.L0(2131746934, null));
                     }
-                    v2Var.f10314d0.setOnCancelListener(new k2(v2Var, 0));
-                    if (v2Var.f10314d0.getParent() == null) {
-                        v2Var.addView(v2Var.f10314d0, b6.e(-1, -1, 17));
+                    v2Var.f10315d0.setOnCancelListener(new k2(v2Var, 0));
+                    if (v2Var.f10315d0.getParent() == null) {
+                        v2Var.addView(v2Var.f10315d0, b6.e(-1, -1, 17));
                     }
-                    vh.m0 m0Var = v2Var.f10314d0;
+                    vh.m0 m0Var = v2Var.f10315d0;
                     m0Var.E = true;
                     m0Var.invalidate();
                 }
@@ -2655,39 +2655,39 @@ public final class v2 extends FrameLayout implements us {
     }
 
     public void setCurrentAccount(int i10) {
-        int i11 = this.f10308a;
+        int i11 = this.f10309a;
         if (i11 != i10) {
-            int i12 = zs.f19586b2;
-            int i13 = zs.a2;
-            int i14 = zs.f19592c2;
-            int i15 = zs.V1;
-            int i16 = zs.W1;
-            int i17 = zs.U1;
+            int i12 = at.f14682b2;
+            int i13 = at.a2;
+            int i14 = at.f14688c2;
+            int i15 = at.V1;
+            int i16 = at.W1;
+            int i17 = at.U1;
             if (i11 >= 0 && isAttachedToWindow()) {
-                zs.f(this.f10308a).n(this, i17);
-                zs.f(this.f10308a).n(this, i16);
-                zs.f(this.f10308a).n(this, i15);
-                zs.f(this.f10308a).n(this, i14);
-                zs.f(this.f10308a).n(this, i13);
-                zs.f(this.f10308a).n(this, i12);
+                at.f(this.f10309a).n(this, i17);
+                at.f(this.f10309a).n(this, i16);
+                at.f(this.f10309a).n(this, i15);
+                at.f(this.f10309a).n(this, i14);
+                at.f(this.f10309a).n(this, i13);
+                at.f(this.f10309a).n(this, i12);
             }
-            this.f10308a = i10;
+            this.f10309a = i10;
             if (i10 >= 0 && isAttachedToWindow()) {
-                zs.f(this.f10308a).c(this, i17);
-                zs.f(this.f10308a).c(this, i16);
-                zs.f(this.f10308a).c(this, i15);
-                zs.f(this.f10308a).c(this, i14);
-                zs.f(this.f10308a).c(this, i13);
-                zs.f(this.f10308a).c(this, i12);
+                at.f(this.f10309a).c(this, i17);
+                at.f(this.f10309a).c(this, i16);
+                at.f(this.f10309a).c(this, i15);
+                at.f(this.f10309a).c(this, i14);
+                at.f(this.f10309a).c(this, i13);
+                at.f(this.f10309a).c(this, i12);
             }
         }
     }
 
     public void setOutlineVisible(boolean z10) {
         float f7;
-        if (this.f10320i0 != z10) {
-            this.f10320i0 = z10;
-            ViewPropertyAnimator animate = this.f10319h0.animate();
+        if (this.f10321i0 != z10) {
+            this.f10321i0 = z10;
+            ViewPropertyAnimator animate = this.f10320h0.animate();
             float f10 = 0.0f;
             if (z10) {
                 f7 = 1.0f;
@@ -2703,10 +2703,10 @@ public final class v2 extends FrameLayout implements us {
                 ((View) getParent()).invalidate();
             }
             if (Build.VERSION.SDK_INT >= 29) {
-                ArrayList arrayList = this.f10327p0;
+                ArrayList arrayList = this.f10328p0;
                 arrayList.clear();
-                if (this.f10320i0) {
-                    Rect rect = this.f10328q0;
+                if (this.f10321i0) {
+                    Rect rect = this.f10329q0;
                     arrayList.add(rect);
                     int measuredHeight = (int) (getMeasuredHeight() * 0.3f);
                     rect.set(0, (getMeasuredHeight() - measuredHeight) / 2, org.telegram.messenger.i0.L(20.0f), (getMeasuredHeight() + measuredHeight) / 2);
@@ -2724,6 +2724,6 @@ public final class v2 extends FrameLayout implements us {
     }
 
     public void setStickerCutOutBtn(j2 j2Var) {
-        this.f10311b0 = j2Var;
+        this.f10312b0 = j2Var;
     }
 }

@@ -71,9 +71,9 @@ public abstract class m5 {
         return arrayList;
     }
 
-    public static ArrayList j(jj jjVar) {
+    public static ArrayList j(kj kjVar) {
         ArrayList arrayList = new ArrayList();
-        arrayList.add(jjVar);
+        arrayList.add(kjVar);
         return arrayList;
     }
 
@@ -85,7 +85,7 @@ public abstract class m5 {
 
     public static void l(TextView textView, int i10, String str, int i11) {
         textView.setGravity(i10);
-        textView.setText(cd.L0(i11, str));
+        textView.setText(dd.L0(i11, str));
     }
 
     public static void m(TextView textView, int i10, org.telegram.ui.ActionBar.p6 p6Var, int i11, float f7) {
@@ -95,25 +95,25 @@ public abstract class m5 {
     }
 
     public static void n(String str, int i10, org.telegram.ui.Components.cc ccVar, int i11, int i12) {
-        ccVar.Q(i11, i12, cd.L0(i10, str)).j();
+        ccVar.Q(i11, i12, dd.L0(i10, str)).j();
     }
 
     public static void o(String str, int i10, org.telegram.ui.Components.cc ccVar, org.telegram.ui.ActionBar.p6 p6Var) {
-        ccVar.t(cd.L0(i10, str), p6Var).j();
+        ccVar.t(dd.L0(i10, str), p6Var).j();
     }
 
     public static void p(String str, String str2, int i10, Object[] objArr, SpannableStringBuilder spannableStringBuilder) {
-        spannableStringBuilder.append((CharSequence) i0.W2(cd.a0(str, str2, i10, objArr)));
+        spannableStringBuilder.append((CharSequence) i0.W2(dd.a0(str, str2, i10, objArr)));
     }
 
     public static void q(String str, String str2, int i10, Object[] objArr, TextView textView) {
-        textView.setText(i0.W2(cd.a0(str, str2, i10, objArr)));
+        textView.setText(i0.W2(dd.a0(str, str2, i10, objArr)));
     }
 
     public static void r(StringBuilder sb2, char c10, char c11, int i10) {
         sb2.append(c10);
         sb2.append(c11);
-        sb2.append(cd.L0(i10, null));
+        sb2.append(dd.L0(i10, null));
     }
 
     public static void s(SQLiteDatabase sQLiteDatabase, String str) {

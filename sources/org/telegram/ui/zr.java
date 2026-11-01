@@ -7,18 +7,18 @@ import android.graphics.RectF;
 import android.view.View;
 import android.widget.LinearLayout;
 public abstract class zr extends LinearLayout {
-    public final Paint f44216a;
-    public final Paint f44217b;
-    public float f44218c;
+    public final Paint f44042a;
+    public final Paint f44043b;
+    public float f44044c;
     public boolean d;
     public boolean e;
-    public bs[] f44219f;
+    public bs[] f44045f;
 
     public zr(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f44216a = paint;
-        this.f44217b = new Paint(1);
+        this.f44042a = paint;
+        this.f44043b = new Paint(1);
         paint.setStyle(Paint.Style.STROKE);
         setOrientation(0);
     }
@@ -30,12 +30,12 @@ public abstract class zr extends LinearLayout {
     }
 
     public final void c(String str, boolean z10) {
-        if (this.f44219f != null) {
+        if (this.f44045f != null) {
             int i10 = 0;
             if (z10) {
                 int i11 = 0;
                 while (true) {
-                    bs[] bsVarArr = this.f44219f;
+                    bs[] bsVarArr = this.f44045f;
                     if (i11 >= bsVarArr.length) {
                         break;
                     } else if (bsVarArr[i11].isFocused()) {
@@ -46,8 +46,8 @@ public abstract class zr extends LinearLayout {
                     }
                 }
             }
-            for (int i12 = i10; i12 < Math.min(this.f44219f.length, str.length() + i10); i12++) {
-                this.f44219f[i12].setText(Character.toString(str.charAt(i12 - i10)));
+            for (int i12 = i10; i12 < Math.min(this.f44045f.length, str.length() + i10); i12++) {
+                this.f44045f[i12].setText(Character.toString(str.charAt(i12 - i10)));
             }
         }
     }
@@ -66,15 +66,15 @@ public abstract class zr extends LinearLayout {
                     }
                 }
                 float successProgress = bsVar.getSuccessProgress();
-                int f7 = i0.b.f(successProgress, i0.b.f(bsVar.getErrorProgress(), i0.b.f(bsVar.getFocusedProgress(), org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f21058k6, false), org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f21076l6, false)), org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f21170q7, false)), org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f21021i7, false));
-                Paint paint = this.f44216a;
+                int f7 = i0.b.f(successProgress, i0.b.f(bsVar.getErrorProgress(), i0.b.f(bsVar.getFocusedProgress(), org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f21059k6, false), org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f21077l6, false)), org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f21171q7, false)), org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f21022i7, false));
+                Paint paint = this.f44042a;
                 paint.setColor(f7);
                 RectF rectF = org.telegram.messenger.i0.P;
                 rectF.set(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom());
-                float f10 = this.f44218c;
+                float f10 = this.f44044c;
                 rectF.inset(f10, f10);
                 if (successProgress != 0.0f) {
-                    float f11 = -Math.max(0.0f, (bsVar.getSuccessScaleProgress() - 1.0f) * this.f44218c);
+                    float f11 = -Math.max(0.0f, (bsVar.getSuccessScaleProgress() - 1.0f) * this.f44044c);
                     rectF.inset(f11, f11);
                 }
                 canvas.drawRoundRect(rectF, org.telegram.messenger.i0.L(4.0f), org.telegram.messenger.i0.L(4.0f), paint);
@@ -91,7 +91,7 @@ public abstract class zr extends LinearLayout {
             float f7 = bsVar.P1;
             RectF rectF = org.telegram.messenger.i0.P;
             rectF.set(view.getX(), view.getY(), view.getX() + view.getMeasuredWidth(), view.getY() + view.getMeasuredHeight());
-            float f10 = this.f44218c;
+            float f10 = this.f44044c;
             rectF.inset(f10, f10);
             canvas.clipRect(rectF);
             if (bsVar.R1) {
@@ -110,7 +110,7 @@ public abstract class zr extends LinearLayout {
                 float f13 = 1.0f - f12;
                 float f14 = (f13 * 0.5f) + 0.5f;
                 canvas.scale(f14, f14, (bsVar.getMeasuredWidth() / 2.0f) + bsVar.getX(), (bsVar.getMeasuredHeight() / 2.0f) + bsVar.getY());
-                Paint paint = this.f44217b;
+                Paint paint = this.f44043b;
                 paint.setAlpha((int) (f13 * 255.0f));
                 canvas.drawBitmap(bsVar.S1, bsVar.getX(), bsVar.getY(), paint);
                 canvas.restore();
@@ -122,13 +122,13 @@ public abstract class zr extends LinearLayout {
     }
 
     public String getCode() {
-        if (this.f44219f == null) {
+        if (this.f44045f == null) {
             return "";
         }
         StringBuilder sb2 = new StringBuilder();
         int i10 = 0;
         while (true) {
-            bs[] bsVarArr = this.f44219f;
+            bs[] bsVarArr = this.f44045f;
             if (i10 < bsVarArr.length) {
                 sb2.append(af.b.d(bsVarArr[i10].getText().toString(), false));
                 i10++;
@@ -142,12 +142,12 @@ public abstract class zr extends LinearLayout {
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
         float L = org.telegram.messenger.i0.L(1.5f);
-        this.f44218c = L;
-        this.f44216a.setStrokeWidth(L);
+        this.f44044c = L;
+        this.f44042a.setStrokeWidth(L);
     }
 
     public void setCode(String str) {
-        this.f44219f[0].setText(str);
+        this.f44045f[0].setText(str);
     }
 
     public void setText(String str) {

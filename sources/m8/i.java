@@ -16,37 +16,37 @@ import p7.k;
 import p7.l;
 import w7.h0;
 public final class i implements Parcelable.Creator {
-    public final int f13032a;
+    public final int f13033a;
 
     public i(int i10) {
-        this.f13032a = i10;
+        this.f13033a = i10;
     }
 
     public static void a(n6.f fVar, Parcel parcel, int i10) {
         int q6 = h0.q(parcel, 20293);
-        int i11 = fVar.f13568a;
+        int i11 = fVar.f13569a;
         h0.s(parcel, 1, 4);
         parcel.writeInt(i11);
-        int i12 = fVar.f13569b;
+        int i12 = fVar.f13570b;
         h0.s(parcel, 2, 4);
         parcel.writeInt(i12);
-        int i13 = fVar.f13570c;
+        int i13 = fVar.f13571c;
         h0.s(parcel, 3, 4);
         parcel.writeInt(i13);
         h0.l(parcel, 4, fVar.d);
         h0.f(parcel, 5, fVar.e);
-        h0.o(parcel, 6, fVar.f13571f, i10);
+        h0.o(parcel, 6, fVar.f13572f, i10);
         h0.b(parcel, 7, fVar.h);
-        h0.k(parcel, 8, fVar.f13572n, i10);
-        h0.o(parcel, 10, fVar.f13573r, i10);
-        h0.o(parcel, 11, fVar.f13574s, i10);
-        boolean z10 = fVar.f13575w;
+        h0.k(parcel, 8, fVar.f13573n, i10);
+        h0.o(parcel, 10, fVar.f13574r, i10);
+        h0.o(parcel, 11, fVar.f13575s, i10);
+        boolean z10 = fVar.f13576w;
         h0.s(parcel, 12, 4);
         parcel.writeInt(z10 ? 1 : 0);
-        int i14 = fVar.f13576x;
+        int i14 = fVar.f13577x;
         h0.s(parcel, 13, 4);
         parcel.writeInt(i14);
-        boolean z11 = fVar.f13577y;
+        boolean z11 = fVar.f13578y;
         h0.s(parcel, 14, 4);
         parcel.writeInt(z11 ? 1 : 0);
         h0.l(parcel, 15, fVar.D);
@@ -60,7 +60,7 @@ public final class i implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f13032a) {
+        switch (this.f13033a) {
             case 0:
                 return new h[i10];
             case 1:

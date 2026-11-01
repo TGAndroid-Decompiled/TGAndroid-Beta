@@ -3,7 +3,7 @@ package bi;
 import android.content.Context;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
-import org.telegram.messenger.tz;
+import org.telegram.messenger.uz;
 import org.telegram.tgnet.tl.TL_iv;
 public final class c6 extends FrameLayout {
     public final n1 f2905a;
@@ -13,7 +13,7 @@ public final class c6 extends FrameLayout {
         super(context);
         n1 n1Var = new n1(context, p6Var);
         this.f2905a = n1Var;
-        n1Var.setTextSize(1, Math.max(8, tz.W0 - 2));
+        n1Var.setTextSize(1, Math.max(8, uz.W0 - 2));
         n1Var.setAllowNewlines(true);
         setCompact(false);
         addView(n1Var, w7.b6.e(-1, -2, 51));

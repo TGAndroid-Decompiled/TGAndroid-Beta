@@ -3,12 +3,12 @@ package org.telegram.ui.Components;
 import android.graphics.Path;
 import android.graphics.RectF;
 public final class wd0 extends Path {
-    public int f32154a;
-    public int f32155b;
-    public int f32156c;
+    public int f32220a;
+    public int f32221b;
+    public int f32222c;
 
     public final void a(int i10, int i11, int i12) {
-        if (this.f32154a == i10 && this.f32155b == i11 && this.f32156c == i12) {
+        if (this.f32220a == i10 && this.f32221b == i11 && this.f32222c == i12) {
             return;
         }
         rewind();
@@ -29,8 +29,8 @@ public final class wd0 extends Path {
         float f16 = i11;
         cubicTo(f12 - (74.5f * f11), f10 - (44.75f * f11), f7, (f11 * 18.87f) + f16, f7, f16);
         close();
-        this.f32154a = i10;
-        this.f32155b = i11;
-        this.f32156c = i12;
+        this.f32220a = i10;
+        this.f32221b = i11;
+        this.f32222c = i12;
     }
 }

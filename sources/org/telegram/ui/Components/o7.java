@@ -36,7 +36,7 @@ public final class o7 extends r7 {
                 h90Var2.setEllipsize(TextUtils.TruncateAt.END);
                 h90Var2.setSingleLine(true);
                 h90Var2.setPadding(org.telegram.messenger.i0.L(6.0f), 0, org.telegram.messenger.i0.L(6.0f), org.telegram.messenger.i0.L(1.0f));
-                int i11 = org.telegram.ui.ActionBar.t6.f21020i6;
+                int i11 = org.telegram.ui.ActionBar.t6.f21021i6;
                 org.telegram.ui.Cells.y a02 = org.telegram.ui.ActionBar.t6.a0(org.telegram.ui.ActionBar.t6.w0(i11, w7Var.I0), org.telegram.messenger.i0.L(4.0f), org.telegram.messenger.i0.L(4.0f));
                 org.telegram.ui.ActionBar.w6 N = org.telegram.ui.ActionBar.a7.N(i11);
                 org.telegram.ui.ActionBar.p6 p6Var = w7Var.I0;
@@ -46,7 +46,7 @@ public final class o7 extends r7 {
                 return h90Var2;
             default:
                 h90 h90Var3 = new h90(this.E);
-                org.telegram.ui.ActionBar.a7.V(h90Var3, org.telegram.ui.ActionBar.t6.Gj, ((nn0) this.F).N);
+                org.telegram.ui.ActionBar.a7.V(h90Var3, org.telegram.ui.ActionBar.t6.Gj, ((on0) this.F).N);
                 h90Var3.setTextSize(1, 12.0f);
                 h90Var3.setEllipsize(TextUtils.TruncateAt.END);
                 h90Var3.setSingleLine(true);

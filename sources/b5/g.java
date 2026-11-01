@@ -34,7 +34,7 @@ public final class g implements Callable {
             }
         }
         if (z10) {
-            ((y9.f) p3Var.f12518a).i((String) p3Var.f12520c, str);
+            ((y9.f) p3Var.f12519a).i((String) p3Var.f12521c, str);
         }
         return null;
     }
@@ -65,7 +65,7 @@ public final class g implements Callable {
                 }
                 if (map != null) {
                     p3 p3Var = (p3) aVar.d;
-                    ((y9.f) p3Var.f12518a).g((String) p3Var.f12520c, map, aVar.f362a);
+                    ((y9.f) p3Var.f12519a).g((String) p3Var.f12521c, map, aVar.f362a);
                 }
                 return null;
         }

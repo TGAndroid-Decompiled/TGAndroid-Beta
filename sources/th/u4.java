@@ -1,33 +1,33 @@
 package th;
 
-import org.telegram.messenger.zs;
+import org.telegram.messenger.at;
 public final class u4 implements Runnable {
-    public final int f49514a;
-    public final x4 f49515b;
+    public final int f49528a;
+    public final x4 f49529b;
 
     public u4(x4 x4Var, int i10) {
-        this.f49514a = i10;
-        this.f49515b = x4Var;
+        this.f49528a = i10;
+        this.f49529b = x4Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f49514a;
-        x4 x4Var = this.f49515b;
+        int i10 = this.f49528a;
+        x4 x4Var = this.f49529b;
         switch (i10) {
             case 0:
-                zs.f(x4Var.f49633c).k(326, x4Var);
+                at.f(x4Var.f49647c).k(326, x4Var);
                 return;
             case 1:
-                x4Var.f49648u = false;
-                x4Var.f49649w = true;
-                zs.f(x4Var.f49633c).k(326, x4Var, Boolean.FALSE);
+                x4Var.f49662u = false;
+                x4Var.f49663w = true;
+                at.f(x4Var.f49647c).k(326, x4Var, Boolean.FALSE);
                 return;
             case 2:
-                x4Var.f49652z = false;
+                x4Var.f49666z = false;
                 return;
             default:
-                x4Var.f49638k.clear();
+                x4Var.f49652k.clear();
                 x4Var.d(true);
                 return;
         }

@@ -3,19 +3,19 @@ package u2;
 import j$.util.Objects;
 public final class z extends s {
     public static final Object h = new Object();
-    public final Object f50069f;
-    public final Object f50070g;
+    public final Object f50083f;
+    public final Object f50084g;
 
     public z(b2.o1 o1Var, Object obj, Object obj2) {
         super(o1Var);
-        this.f50069f = obj;
-        this.f50070g = obj2;
+        this.f50083f = obj;
+        this.f50084g = obj2;
     }
 
     @Override
     public final int b(Object obj) {
         Object obj2;
-        if (h.equals(obj) && (obj2 = this.f50070g) != null) {
+        if (h.equals(obj) && (obj2 = this.f50084g) != null) {
             obj = obj2;
         }
         return this.e.b(obj);
@@ -24,7 +24,7 @@ public final class z extends s {
     @Override
     public final b2.l1 f(int i10, b2.l1 l1Var, boolean z10) {
         this.e.f(i10, l1Var, z10);
-        if (Objects.equals(l1Var.f2108b, this.f50070g) && z10) {
+        if (Objects.equals(l1Var.f2108b, this.f50084g) && z10) {
             l1Var.f2108b = h;
         }
         return l1Var;
@@ -33,7 +33,7 @@ public final class z extends s {
     @Override
     public final Object l(int i10) {
         Object l4 = this.e.l(i10);
-        if (Objects.equals(l4, this.f50070g)) {
+        if (Objects.equals(l4, this.f50084g)) {
             return h;
         }
         return l4;
@@ -42,7 +42,7 @@ public final class z extends s {
     @Override
     public final b2.n1 m(int i10, b2.n1 n1Var, long j10) {
         this.e.m(i10, n1Var, j10);
-        if (Objects.equals(n1Var.f2137a, this.f50069f)) {
+        if (Objects.equals(n1Var.f2137a, this.f50083f)) {
             n1Var.f2137a = b2.n1.f2128q;
         }
         return n1Var;

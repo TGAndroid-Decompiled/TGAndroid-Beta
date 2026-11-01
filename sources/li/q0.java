@@ -1,15 +1,15 @@
 package li;
 public final class q0 {
-    public static final q0 f12229a;
-    public static final q0 f12230b;
-    public static final q0[] f12231c;
+    public static final q0 f12230a;
+    public static final q0 f12231b;
+    public static final q0[] f12232c;
 
     static {
         ?? r02 = new Enum("FRONT", 0);
-        f12229a = r02;
+        f12230a = r02;
         ?? r12 = new Enum("BACK", 1);
-        f12230b = r12;
-        f12231c = new q0[]{r02, r12};
+        f12231b = r12;
+        f12232c = new q0[]{r02, r12};
     }
 
     public static q0 valueOf(String str) {
@@ -17,6 +17,6 @@ public final class q0 {
     }
 
     public static q0[] values() {
-        return (q0[]) f12231c.clone();
+        return (q0[]) f12232c.clone();
     }
 }

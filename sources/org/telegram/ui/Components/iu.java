@@ -11,24 +11,24 @@ import android.view.MotionEvent;
 import android.view.View;
 public final class iu extends View {
     public final org.telegram.ui.ActionBar.p6 D;
-    public org.telegram.messenger.j20 E;
+    public org.telegram.messenger.k20 E;
     public int F;
     public boolean G;
     public long H;
     public boolean I;
-    public final int f27085a;
-    public final Drawable[] f27086b;
-    public final Drawable f27087c;
+    public final int f27167a;
+    public final Drawable[] f27168b;
+    public final Drawable f27169c;
     public final Drawable d;
     public String e;
-    public boolean f27088f;
+    public boolean f27170f;
     public int h;
-    public final int[] f27089n;
-    public final int[] f27090r;
-    public final Paint f27091s;
-    public final RectF f27092w;
-    public final t5 f27093x;
-    public final t5 f27094y;
+    public final int[] f27171n;
+    public final int[] f27172r;
+    public final Paint f27173s;
+    public final RectF f27174w;
+    public final t5 f27175x;
+    public final t5 f27176y;
 
     public iu(Context context, org.telegram.ui.ActionBar.p6 p6Var) {
         super(context);
@@ -38,29 +38,29 @@ public final class iu extends View {
         } else {
             f7 = 32.0f;
         }
-        this.f27085a = org.telegram.messenger.i0.L(f7);
-        this.f27086b = new Drawable[11];
-        this.f27089n = new int[]{0, 0};
-        this.f27090r = new int[]{0, 0};
-        this.f27091s = new Paint(1);
-        this.f27092w = new RectF();
+        this.f27167a = org.telegram.messenger.i0.L(f7);
+        this.f27168b = new Drawable[11];
+        this.f27171n = new int[]{0, 0};
+        this.f27172r = new int[]{0, 0};
+        this.f27173s = new Paint(1);
+        this.f27174w = new RectF();
         gr grVar = gr.h;
-        this.f27093x = new t5(this, 125L, grVar);
-        this.f27094y = new t5(this, 125L, grVar);
+        this.f27175x = new t5(this, 125L, grVar);
+        this.f27176y = new t5(this, 125L, grVar);
         this.F = -1;
         this.G = true;
         this.D = p6Var;
-        this.f27087c = getResources().getDrawable(2131232753);
+        this.f27169c = getResources().getDrawable(2131232753);
         this.d = getResources().getDrawable(2131232754);
         a();
     }
 
     public final void a() {
-        int i10 = org.telegram.ui.ActionBar.t6.f21001h5;
+        int i10 = org.telegram.ui.ActionBar.t6.f21002h5;
         org.telegram.ui.ActionBar.p6 p6Var = this.D;
-        org.telegram.ui.ActionBar.t6.C1(org.telegram.ui.ActionBar.t6.w0(i10, p6Var), this.f27087c);
+        org.telegram.ui.ActionBar.t6.C1(org.telegram.ui.ActionBar.t6.w0(i10, p6Var), this.f27169c);
         org.telegram.ui.ActionBar.t6.C1(org.telegram.ui.ActionBar.t6.w0(i10, p6Var), this.d);
-        org.telegram.messenger.k4.f16524b.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.Bf, p6Var), PorterDuff.Mode.SRC_IN));
+        org.telegram.messenger.k4.f16558b.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.Bf, p6Var), PorterDuff.Mode.SRC_IN));
     }
 
     public String getEmoji() {
@@ -77,7 +77,7 @@ public final class iu extends View {
         iu iuVar = this;
         int measuredWidth = iuVar.getMeasuredWidth();
         int measuredHeight = iuVar.getMeasuredHeight() - org.telegram.messenger.i0.L(2.0f);
-        Drawable drawable = iuVar.f27087c;
+        Drawable drawable = iuVar.f27169c;
         boolean z10 = false;
         drawable.setBounds(0, 0, measuredWidth, measuredHeight);
         drawable.draw(canvas);
@@ -89,29 +89,29 @@ public final class iu extends View {
         drawable2.setBounds(L3, measuredHeight2, L4, measuredHeight3);
         drawable2.draw(canvas);
         if (iuVar.e != null) {
-            boolean z11 = iuVar.f27088f;
+            boolean z11 = iuVar.f27170f;
             org.telegram.ui.ActionBar.p6 p6Var = iuVar.D;
-            int[] iArr = iuVar.f27089n;
-            t5 t5Var2 = iuVar.f27093x;
-            Paint paint = iuVar.f27091s;
-            Drawable[] drawableArr = iuVar.f27086b;
-            RectF rectF = iuVar.f27092w;
+            int[] iArr = iuVar.f27171n;
+            t5 t5Var2 = iuVar.f27175x;
+            Paint paint = iuVar.f27173s;
+            Drawable[] drawableArr = iuVar.f27168b;
+            RectF rectF = iuVar.f27174w;
             float f10 = 1.0f;
-            int i10 = iuVar.f27085a;
+            int i10 = iuVar.f27167a;
             if (z11) {
                 int i11 = 0;
                 while (i11 < 2) {
                     if (i11 == 0) {
                         t5Var = t5Var2;
                     } else {
-                        t5Var = iuVar.f27094y;
+                        t5Var = iuVar.f27176y;
                     }
                     float e = t5Var.e(z10, iArr[i11]);
                     boolean z12 = z10;
                     float max = Math.max(0.0f, Math.min(f10, -e));
                     rectF.set((int) ((i10 * (e + f10)) + org.telegram.messenger.i0.L((f7 * 4.0f) + (Math.max(0.0f, Math.min(f10, f7)) * 3.0f) + 5.0f)), org.telegram.messenger.i0.W1(max, ((org.telegram.messenger.i0.L(f10) + i10) * i11) + org.telegram.messenger.i0.L(3.0f), (iuVar.getMeasuredHeight() - i10) / 2), L2 + i10, W1 + i10);
                     rectF.inset(org.telegram.messenger.i0.L(-2.0f), org.telegram.messenger.i0.L(max * (-2.0f)));
-                    paint.setColor(org.telegram.ui.ActionBar.t6.r1(org.telegram.messenger.i0.T1(f10, 0.5f, max), org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f21020i6, p6Var)));
+                    paint.setColor(org.telegram.ui.ActionBar.t6.r1(org.telegram.messenger.i0.T1(f10, 0.5f, max), org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f21021i6, p6Var)));
                     canvas.drawRoundRect(rectF, org.telegram.messenger.i0.L(4.0f), org.telegram.messenger.i0.L(4.0f), paint);
                     int i12 = z12;
                     while (i12 < 5) {
@@ -130,7 +130,7 @@ public final class iu extends View {
                 boolean z13 = z10;
                 drawableArr[z13 ? 1 : 0].setBounds(org.telegram.messenger.i0.L(5.0f), (getMeasuredHeight() - i10) / 2, org.telegram.messenger.i0.L(5.0f) + i10, (getMeasuredHeight() + i10) / 2);
                 drawableArr[z13 ? 1 : 0].draw(canvas);
-                canvas.drawRect(org.telegram.messenger.i0.L(8.45f) + i10, org.telegram.messenger.i0.L(2.0f), org.telegram.messenger.i0.L(8.45f) + i10 + 1, getMeasuredHeight() - org.telegram.messenger.i0.L(6.0f), org.telegram.ui.ActionBar.t6.f21052k0);
+                canvas.drawRect(org.telegram.messenger.i0.L(8.45f) + i10, org.telegram.messenger.i0.L(2.0f), org.telegram.messenger.i0.L(8.45f) + i10 + 1, getMeasuredHeight() - org.telegram.messenger.i0.L(6.0f), org.telegram.ui.ActionBar.t6.f21053k0);
                 return;
             }
             float e7 = t5Var2.e(false, iArr[0]);
@@ -138,7 +138,7 @@ public final class iu extends View {
             float f11 = L7;
             rectF.set((int) ((i10 * e7) + org.telegram.messenger.i0.L((e7 * 4.0f) + 5.0f)), f11, L + i10, L7 + i10);
             rectF.inset(org.telegram.messenger.i0.L(-2.0f), org.telegram.messenger.i0.L(-2.0f));
-            paint.setColor(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f21020i6, p6Var));
+            paint.setColor(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f21021i6, p6Var));
             canvas.drawRoundRect(rectF, org.telegram.messenger.i0.L(4.0f), org.telegram.messenger.i0.L(4.0f), paint);
             for (int i14 = 0; i14 < 6; i14++) {
                 Drawable drawable3 = drawableArr[i14];
@@ -165,12 +165,12 @@ public final class iu extends View {
         if (this.I) {
             this.I = false;
             return false;
-        } else if (!this.f27088f) {
+        } else if (!this.f27170f) {
             return super.onTouchEvent(motionEvent);
         } else {
             int i13 = 0;
             while (true) {
-                Drawable[] drawableArr = this.f27086b;
+                Drawable[] drawableArr = this.f27168b;
                 if (i13 < drawableArr.length) {
                     if (drawableArr[i13].getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY()) || ((i12 = this.F) != -1 && ((i13 == 0 || ((i12 == 0 && i13 >= 1 && i13 <= 5) || (i12 == 1 && i13 >= 6 && i13 <= 10))) && ((int) motionEvent.getX()) >= drawableArr[i13].getBounds().left && ((int) motionEvent.getX()) <= drawableArr[i13].getBounds().right))) {
                         break;
@@ -185,7 +185,7 @@ public final class iu extends View {
                 return false;
             }
             int action = motionEvent.getAction();
-            int[] iArr = this.f27089n;
+            int[] iArr = this.f27171n;
             if (action == 0) {
                 this.F = -1;
                 this.H = System.currentTimeMillis();
@@ -197,7 +197,7 @@ public final class iu extends View {
                 this.G = z11;
             }
             int i14 = iArr[0];
-            int[] iArr2 = this.f27090r;
+            int[] iArr2 = this.f27172r;
             iArr2[0] = i14;
             iArr2[1] = iArr[1];
             if (System.currentTimeMillis() - this.H > 300 && motionEvent.getAction() == 2) {
@@ -225,9 +225,9 @@ public final class iu extends View {
             }
             if (iArr2[0] != iArr[0] || iArr2[1] != iArr[1]) {
                 org.telegram.messenger.i0.b4(this);
-                org.telegram.messenger.j20 j20Var = this.E;
-                if (j20Var != null) {
-                    j20Var.a(Integer.valueOf(iArr[0]), Integer.valueOf(iArr[1]));
+                org.telegram.messenger.k20 k20Var = this.E;
+                if (k20Var != null) {
+                    k20Var.a(Integer.valueOf(iArr[0]), Integer.valueOf(iArr[1]));
                 }
             }
             invalidate();
@@ -243,7 +243,7 @@ public final class iu extends View {
         invalidate();
     }
 
-    public void setOnSelectionUpdateListener(org.telegram.messenger.j20 j20Var) {
-        this.E = j20Var;
+    public void setOnSelectionUpdateListener(org.telegram.messenger.k20 k20Var) {
+        this.E = k20Var;
     }
 }

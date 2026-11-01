@@ -18,17 +18,17 @@ import w7.ja;
 import w7.la;
 import w7.x6;
 public final class a {
-    public volatile Bitmap f14121a;
-    public final int f14122b;
-    public final int f14123c;
+    public volatile Bitmap f14122a;
+    public final int f14123b;
+    public final int f14124c;
     public final int d;
     public final int e;
 
     public a(Bitmap bitmap, int i10) {
         l.g(bitmap);
-        this.f14121a = bitmap;
-        this.f14122b = bitmap.getWidth();
-        this.f14123c = bitmap.getHeight();
+        this.f14122a = bitmap;
+        this.f14123b = bitmap.getWidth();
+        this.f14124c = bitmap.getHeight();
         boolean z10 = true;
         if (i10 != 0 && i10 != 90 && i10 != 180 && i10 != 270) {
             z10 = false;
@@ -67,7 +67,7 @@ public final class a {
         i7 i7Var = i7.INPUT_IMAGE_CONSTRUCTION;
         Task task2 = a2.e;
         long elapsedRealtime3 = SystemClock.elapsedRealtime();
-        HashMap hashMap = a2.f52610i;
+        HashMap hashMap = a2.f52628i;
         if (hashMap.get(i7Var) == null) {
             task = task2;
             aVar = aVar2;
@@ -80,12 +80,12 @@ public final class a {
         }
         hashMap.put(i7Var, Long.valueOf(elapsedRealtime3));
         ?? obj = new Object();
-        obj.f12520c = x6.BITMAP;
-        obj.f12519b = c7.BITMAP;
+        obj.f12521c = x6.BITMAP;
+        obj.f12520b = c7.BITMAP;
         obj.d = Integer.valueOf(allocationByteCount & Integer.MAX_VALUE);
-        obj.f12521f = Integer.valueOf(height & Integer.MAX_VALUE);
+        obj.f12522f = Integer.valueOf(height & Integer.MAX_VALUE);
         obj.e = Integer.valueOf(width & Integer.MAX_VALUE);
-        obj.f12518a = Long.valueOf(Long.MAX_VALUE & elapsedRealtime2);
+        obj.f12519a = Long.valueOf(Long.MAX_VALUE & elapsedRealtime2);
         obj.h = Integer.valueOf(i10 & Integer.MAX_VALUE);
         d7 d7Var = new d7(obj);
         d dVar = new d(17, false);
@@ -94,9 +94,9 @@ public final class a {
         if (task.isSuccessful()) {
             a10 = (String) task.getResult();
         } else {
-            a10 = i.f13599c.a(a2.f52609g);
+            a10 = i.f13600c.a(a2.f52627g);
         }
-        m.f9797a.execute(new w(a2, eVar, a10));
+        m.f9798a.execute(new w(a2, eVar, a10));
         return aVar;
     }
 }

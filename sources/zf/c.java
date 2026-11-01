@@ -5,11 +5,11 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.Locale;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.d20;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.e20;
 import org.telegram.messenger.o5;
 import org.telegram.messenger.r5;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -25,14 +25,14 @@ public abstract class c extends hg.c {
     public final boolean d;
     public final boolean e;
     public boolean h;
-    public boolean f55453n;
-    public Location f55456w;
-    public String f55457x;
-    public String f55458y;
-    public boolean f55452f = false;
-    public final ArrayList f55454r = new ArrayList();
-    public final ArrayList f55455s = new ArrayList();
-    public final int G = d20.f15147s0;
+    public boolean f55471n;
+    public Location f55474w;
+    public String f55475x;
+    public String f55476y;
+    public boolean f55470f = false;
+    public final ArrayList f55472r = new ArrayList();
+    public final ArrayList f55473s = new ArrayList();
+    public final int G = e20.f15506s0;
 
     public c(boolean z10, boolean z11) {
         this.d = z10;
@@ -49,18 +49,18 @@ public abstract class c extends hg.c {
     public final void G(String str, Location location) {
         if (str != null && str.length() != 0) {
             if (this.E != null) {
-                Utilities.f14522g.a(this.E);
+                Utilities.f14523g.a(this.E);
                 this.E = null;
             }
             this.J = true;
-            r5 r5Var = Utilities.f14522g;
+            r5 r5Var = Utilities.f14523g;
             a aVar = new a((i0) this, str, location, 0);
             this.E = aVar;
             r5Var.d(aVar, 400L);
             return;
         }
-        this.f55455s.clear();
-        this.f55454r.clear();
+        this.f55473s.clear();
+        this.f55472r.clear();
         this.J = false;
         f();
     }
@@ -75,15 +75,15 @@ public abstract class c extends hg.c {
         Location location4;
         Locale locale;
         String str5;
-        if ((location != null || this.d) && ((location2 = this.f55456w) == null || location == null || location.distanceTo(location2) >= 200.0f)) {
+        if ((location != null || this.d) && ((location2 = this.f55474w) == null || location == null || location.distanceTo(location2) >= 200.0f)) {
             Locale locale2 = null;
             if (location == null) {
                 location3 = null;
             } else {
                 location3 = new Location(location);
             }
-            this.f55456w = location3;
-            this.f55457x = str;
+            this.f55474w = location3;
+            this.f55475x = str;
             if (this.h) {
                 this.h = false;
                 if (this.F != 0) {
@@ -93,12 +93,12 @@ public abstract class c extends hg.c {
             }
             b();
             this.h = true;
-            this.f55452f = true;
-            vp r12 = vp.r1(this.G);
+            this.f55470f = true;
+            wp r12 = wp.r1(this.G);
             if (this.d) {
-                str2 = vp.r1(this.G).L3;
+                str2 = wp.r1(this.G).L3;
             } else {
-                str2 = vp.r1(this.G).K3;
+                str2 = wp.r1(this.G).K3;
             }
             TLObject e22 = r12.e2(str2);
             if (!(e22 instanceof TLRPC.User)) {
@@ -108,9 +108,9 @@ public abstract class c extends hg.c {
                         this.I = true;
                         TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
                         if (this.d) {
-                            str5 = vp.r1(i10).L3;
+                            str5 = wp.r1(i10).L3;
                         } else {
-                            str5 = vp.r1(i10).K3;
+                            str5 = wp.r1(i10).K3;
                         }
                         tL_contacts_resolveUsername.username = str5;
                         ConnectionsManager.getInstance(i10).sendRequest(tL_contacts_resolveUsername, new ag.c(this, 27));
@@ -125,7 +125,7 @@ public abstract class c extends hg.c {
                     str3 = str;
                 }
                 tL_messages_getInlineBotResults.query = str3;
-                tL_messages_getInlineBotResults.bot = vp.r1(this.G).p1(user);
+                tL_messages_getInlineBotResults.bot = wp.r1(this.G).p1(user);
                 tL_messages_getInlineBotResults.offset = "";
                 if (location != null) {
                     TLRPC.TL_inputGeoPoint tL_inputGeoPoint = new TLRPC.TL_inputGeoPoint();
@@ -137,16 +137,16 @@ public abstract class c extends hg.c {
                 if (o5.C(this.H)) {
                     tL_messages_getInlineBotResults.peer = new TLRPC.TL_inputPeerEmpty();
                 } else {
-                    tL_messages_getInlineBotResults.peer = vp.r1(this.G).i1(this.H);
+                    tL_messages_getInlineBotResults.peer = wp.r1(this.G).i1(this.H);
                 }
                 if (TextUtils.isEmpty(str) || (!this.d && !this.e)) {
                     cVar = this;
                     str4 = str;
                     location4 = location;
-                    cVar.f55453n = false;
+                    cVar.f55471n = false;
                 } else {
-                    this.f55453n = true;
-                    Locale locale3 = cd.D0().f15003y;
+                    this.f55471n = true;
+                    Locale locale3 = dd.D0().f15365y;
                     if (this.d) {
                         if (locale3.getLanguage().contains("en")) {
                             locale = locale3;

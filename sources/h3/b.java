@@ -16,23 +16,23 @@ import e9.x1;
 import java.util.List;
 public final class b implements o {
     public q e;
-    public k0 f7608f;
+    public k0 f7609f;
     public u0 h;
-    public u f7610i;
-    public int f7611j;
-    public int f7612k;
-    public a f7613l;
-    public int f7614m;
-    public long f7615n;
-    public final byte[] f7605a = new byte[42];
-    public final x f7606b = new x(new byte[32768], 0);
-    public final boolean f7607c = false;
+    public u f7611i;
+    public int f7612j;
+    public int f7613k;
+    public a f7614l;
+    public int f7615m;
+    public long f7616n;
+    public final byte[] f7606a = new byte[42];
+    public final x f7607b = new x(new byte[32768], 0);
+    public final boolean f7608c = false;
     public final s d = new Object();
-    public int f7609g = 0;
+    public int f7610g = 0;
 
     @Override
     public final boolean a(p pVar) {
-        u0 m0 = new i(12).m0(pVar, q3.i.f45440b, 0);
+        u0 m0 = new i(12).m0(pVar, q3.i.f45451b, 0);
         if (m0 != null) {
             int length = m0.f2302a.length;
         }
@@ -47,7 +47,7 @@ public final class b implements o {
     @Override
     public final void c(q qVar) {
         this.e = qVar;
-        this.f7608f = qVar.I1(0, 1);
+        this.f7609f = qVar.I1(0, 1);
         qVar.Q0();
     }
 
@@ -55,9 +55,9 @@ public final class b implements o {
     public final void d(long j10, long j11) {
         long j12 = 0;
         if (j10 == 0) {
-            this.f7609g = 0;
+            this.f7610g = 0;
         } else {
-            a aVar = this.f7613l;
+            a aVar = this.f7614l;
             if (aVar != null) {
                 aVar.d(j11);
             }
@@ -65,9 +65,9 @@ public final class b implements o {
         if (j11 != 0) {
             j12 = -1;
         }
-        this.f7615n = j12;
-        this.f7614m = 0;
-        this.f7606b.K(0);
+        this.f7616n = j12;
+        this.f7615m = 0;
+        this.f7607b.K(0);
     }
 
     @Override

@@ -3,7 +3,7 @@ package dh;
 import androidx.recyclerview.widget.RecyclerView;
 import ci.p;
 import org.telegram.messenger.i0;
-import org.telegram.ui.lq0;
+import org.telegram.ui.jq0;
 import org.telegram.ui.sb;
 import s4.a0;
 import s4.z0;
@@ -41,13 +41,13 @@ public final class f extends a0 {
         switch (this.I) {
             case 3:
                 p pVar = new p(recyclerView.getContext(), 0);
-                pVar.f48045a = i10;
+                pVar.f48056a = i10;
                 w0(pVar);
                 return;
             case 14:
-                lq0 lq0Var = new lq0(recyclerView.getContext());
-                lq0Var.f48045a = i10;
-                w0(lq0Var);
+                jq0 jq0Var = new jq0(recyclerView.getContext());
+                jq0Var.f48056a = i10;
+                w0(jq0Var);
                 return;
             default:
                 super.v0(recyclerView, z0Var, i10);

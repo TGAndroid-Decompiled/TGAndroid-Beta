@@ -3,7 +3,7 @@ package org.telegram.utils.twidget;
 import java.io.ByteArrayOutputStream;
 import java.util.zip.CRC32;
 public abstract class q {
-    public static final byte[] f44441a = {-119, 80, 78, 71, 13, 10, 26, 10};
+    public static final byte[] f44452a = {-119, 80, 78, 71, 13, 10, 26, 10};
 
     public static long a(int i10, byte[] bArr) {
         return (bArr[i10 + 3] & 255) | ((bArr[i10] & 255) << 24) | ((bArr[i10 + 1] & 255) << 16) | ((bArr[i10 + 2] & 255) << 8);

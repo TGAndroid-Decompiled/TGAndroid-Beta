@@ -1,30 +1,30 @@
 package org.telegram.messenger;
 public final class o3 implements Runnable {
-    public final int f17219a;
-    public final u3 f17220b;
+    public final int f17381a;
+    public final u3 f17382b;
 
     public o3(u3 u3Var, int i10) {
-        this.f17219a = i10;
-        this.f17220b = u3Var;
+        this.f17381a = i10;
+        this.f17382b = u3Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f17219a;
-        u3 u3Var = this.f17220b;
+        int i10 = this.f17381a;
+        u3 u3Var = this.f17382b;
         switch (i10) {
             case 0:
-                zs.f(u3Var.C.f14863a).k(166, Long.valueOf(u3Var.f18229c), Long.valueOf(u3Var.f18228b.f19803id), Boolean.FALSE);
+                at.f(u3Var.C.f15043a).k(166, Long.valueOf(u3Var.f18362c), Long.valueOf(u3Var.f18361b.f19804id), Boolean.FALSE);
                 return;
             case 1:
                 u3Var.E = false;
                 u3Var.d();
-                zs.f(u3Var.C.f14863a).k(172, new Object[0]);
+                at.f(u3Var.C.f15043a).k(172, new Object[0]);
                 return;
             default:
                 u3Var.M = null;
                 if (u3Var.I != 0 && System.currentTimeMillis() - u3Var.I >= 1500) {
-                    if (v2.f18448a) {
+                    if (v2.f18578a) {
                         f8.b("QUEUE GROUP CALL UPDATES WAIT TIMEOUT - CHECK QUEUE");
                     }
                     u3Var.r();

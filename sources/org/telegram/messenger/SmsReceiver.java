@@ -8,7 +8,7 @@ import android.text.TextUtils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class SmsReceiver extends BroadcastReceiver {
-    public static final int f14517a = 0;
+    public static final int f14518a = 0;
 
     @Override
     public final void onReceive(Context context, Intent intent) {
@@ -16,11 +16,11 @@ public class SmsReceiver extends BroadcastReceiver {
         if (intent != null) {
             try {
                 String str = "";
-                SharedPreferences sharedPreferences = w0.f19025b.getSharedPreferences("mainconfig", 0);
+                SharedPreferences sharedPreferences = w0.f18945b.getSharedPreferences("mainconfig", 0);
                 String string = sharedPreferences.getString("sms_hash", null);
                 if ("com.google.android.gms.auth.api.phone.SMS_RETRIEVED".equals(intent.getAction())) {
-                    synchronized (i0.f16016k) {
-                        z10 = i0.f16014j;
+                    synchronized (i0.f16162k) {
+                        z10 = i0.f16160j;
                     }
                     if (z10) {
                         str = (String) intent.getExtras().get("com.google.android.gms.auth.api.phone.EXTRA_SMS_MESSAGE");

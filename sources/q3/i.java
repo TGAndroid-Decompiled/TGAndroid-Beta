@@ -16,11 +16,11 @@ import java.util.Locale;
 import org.telegram.utils.twidget.t;
 import v7.r6;
 public final class i extends w7.l {
-    public static final t f45440b = new t(10);
-    public final g f45441a;
+    public static final t f45451b = new t(10);
+    public final g f45452a;
 
     public i(g gVar) {
-        this.f45441a = gVar;
+        this.f45452a = gVar;
     }
 
     public static a d(x xVar, int i10, int i11) {

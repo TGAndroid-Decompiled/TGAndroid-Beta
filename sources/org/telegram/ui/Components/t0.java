@@ -4,29 +4,29 @@ import android.view.KeyEvent;
 import android.widget.TextView;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class t0 implements TextView.OnEditorActionListener {
-    public final int f30390a;
-    public final Object f30391b;
+    public final int f30477a;
+    public final Object f30478b;
 
     public t0(Object obj, int i10) {
-        this.f30390a = i10;
-        this.f30391b = obj;
+        this.f30477a = i10;
+        this.f30478b = obj;
     }
 
     @Override
     public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        switch (this.f30390a) {
+        switch (this.f30477a) {
             case 0:
-                org.telegram.ui.fp fpVar = (org.telegram.ui.fp) this.f30391b;
+                org.telegram.ui.fp fpVar = (org.telegram.ui.fp) this.f30478b;
                 if (i10 == 6) {
                     fpVar.run();
                     return true;
                 }
                 return false;
             case 1:
-                kk kkVar = (kk) this.f30391b;
+                kk kkVar = (kk) this.f30478b;
                 if (i10 == 6) {
-                    vh.d dVar = kkVar.f27795o0;
-                    if (dVar.f51052c0) {
+                    vh.d dVar = kkVar.f27874o0;
+                    if (dVar.f51070c0) {
                         dVar.performClick();
                         return true;
                     }
@@ -35,7 +35,7 @@ public final class t0 implements TextView.OnEditorActionListener {
                 }
                 return false;
             case 2:
-                org.telegram.ui.Cells.k3 k3Var = ((org.telegram.ui.Cells.m3) this.f30391b).d;
+                org.telegram.ui.Cells.k3 k3Var = ((org.telegram.ui.Cells.m3) this.f30478b).d;
                 if (i10 == 5) {
                     k3Var.requestFocus();
                     k3Var.setSelection(k3Var.length());
@@ -43,14 +43,14 @@ public final class t0 implements TextView.OnEditorActionListener {
                 }
                 return false;
             case 3:
-                sq sqVar = (sq) this.f30391b;
+                sq sqVar = (sq) this.f30478b;
                 if (i10 == 6) {
                     sqVar.run();
                     return true;
                 }
                 return false;
             case 4:
-                zc0 zc0Var = (zc0) this.f30391b;
+                zc0 zc0Var = (zc0) this.f30478b;
                 if (i10 == 6) {
                     zc0Var.n(false);
                     return true;
@@ -58,14 +58,14 @@ public final class t0 implements TextView.OnEditorActionListener {
                 zc0Var.getClass();
                 return false;
             case 5:
-                h4 h4Var = (h4) this.f30391b;
+                h4 h4Var = (h4) this.f30478b;
                 if (i10 == 6) {
-                    h4Var.f26101i1.f25827a.callOnClick();
+                    h4Var.f26474i1.f26188a.callOnClick();
                     return true;
                 }
                 return false;
             case 6:
-                org.telegram.ui.ActionBar.n0 n0Var = ((hm0) this.f30391b).d;
+                org.telegram.ui.ActionBar.n0 n0Var = ((im0) this.f30478b).d;
                 if (keyEvent != null) {
                     if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
                         n0Var.m();
@@ -76,44 +76,44 @@ public final class t0 implements TextView.OnEditorActionListener {
                 }
                 return false;
             case 7:
-                op0 op0Var = (op0) this.f30391b;
+                pp0 pp0Var = (pp0) this.f30478b;
                 if (keyEvent != null) {
                     if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        org.telegram.messenger.i0.v1(op0Var.f29136q2.f26588r);
+                        org.telegram.messenger.i0.v1(pp0Var.f29491q2.f26635r);
                         return false;
                     }
                     return false;
                 }
                 return false;
             case 8:
-                AlertDialog$Builder alertDialog$Builder = (AlertDialog$Builder) this.f30391b;
+                AlertDialog$Builder alertDialog$Builder = (AlertDialog$Builder) this.f30478b;
                 if (i10 == 5) {
-                    alertDialog$Builder.f20134a.d(-1).callOnClick();
+                    alertDialog$Builder.f20135a.d(-1).callOnClick();
                     return true;
                 }
                 return false;
             case 9:
-                org.telegram.ui.ActionBar.x1 x1Var = (org.telegram.ui.ActionBar.x1) this.f30391b;
+                org.telegram.ui.ActionBar.x1 x1Var = (org.telegram.ui.ActionBar.x1) this.f30478b;
                 if (i10 == 6) {
                     x1Var.d(-1).callOnClick();
                     return true;
                 }
                 return false;
             case 10:
-                z01 z01Var = (z01) this.f30391b;
+                a11 a11Var = (a11) this.f30478b;
                 if (keyEvent != null) {
                     if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        org.telegram.messenger.i0.v1(z01Var.f32863b);
+                        org.telegram.messenger.i0.v1(a11Var.f24267b);
                         return false;
                     }
                     return false;
                 }
                 return false;
             default:
-                d61 d61Var = (d61) this.f30391b;
+                e61 e61Var = (e61) this.f30478b;
                 if (keyEvent != null) {
                     if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        org.telegram.messenger.i0.v1(d61Var.J);
+                        org.telegram.messenger.i0.v1(e61Var.J);
                         return false;
                     }
                     return false;

@@ -5,14 +5,14 @@ import android.graphics.ColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 public final class fr extends Drawable {
-    public final Drawable f26120a;
-    public final Drawable f26121b;
-    public float f26122c;
+    public final Drawable f26206a;
+    public final Drawable f26207b;
+    public float f26208c;
     public float d = 255.0f;
 
     public fr(Drawable drawable, Drawable drawable2) {
-        this.f26120a = drawable;
-        this.f26121b = drawable2;
+        this.f26206a = drawable;
+        this.f26207b = drawable2;
         if (drawable != null) {
             drawable.setCallback(new er(this, 0));
         }
@@ -22,17 +22,17 @@ public final class fr extends Drawable {
     }
 
     public final void a(float f7) {
-        this.f26122c = f7;
+        this.f26208c = f7;
         invalidateSelf();
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        int i10 = (int) ((1.0f - this.f26122c) * this.d);
-        Drawable drawable = this.f26120a;
+        int i10 = (int) ((1.0f - this.f26208c) * this.d);
+        Drawable drawable = this.f26206a;
         drawable.setAlpha(i10);
-        int i11 = (int) (this.d * this.f26122c);
-        Drawable drawable2 = this.f26121b;
+        int i11 = (int) (this.d * this.f26208c);
+        Drawable drawable2 = this.f26207b;
         drawable2.setAlpha(i11);
         if (i10 > 0) {
             drawable.draw(canvas);
@@ -44,12 +44,12 @@ public final class fr extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.f26120a.getIntrinsicHeight();
+        return this.f26206a.getIntrinsicHeight();
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f26120a.getIntrinsicWidth();
+        return this.f26206a.getIntrinsicWidth();
     }
 
     @Override
@@ -59,8 +59,8 @@ public final class fr extends Drawable {
 
     @Override
     public final void onBoundsChange(Rect rect) {
-        this.f26120a.setBounds(rect);
-        this.f26121b.setBounds(rect);
+        this.f26206a.setBounds(rect);
+        this.f26207b.setBounds(rect);
     }
 
     @Override
@@ -70,6 +70,6 @@ public final class fr extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f26120a.setColorFilter(colorFilter);
+        this.f26206a.setColorFilter(colorFilter);
     }
 }

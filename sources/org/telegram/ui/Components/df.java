@@ -13,7 +13,7 @@ public final class df extends xh.j0 {
     public final void setTranslationY(float f7) {
         super.setTranslationY(f7);
         ChatActivityEnterView chatActivityEnterView = this.D;
-        if (chatActivityEnterView.V0 != null && chatActivityEnterView.f23761o3 == 1) {
+        if (chatActivityEnterView.V0 != null && chatActivityEnterView.f23762o3 == 1) {
             chatActivityEnterView.Z2.y(f7);
         }
     }

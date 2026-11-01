@@ -3,22 +3,22 @@ package org.telegram.ui;
 import android.animation.ValueAnimator;
 import android.view.View;
 public final class ln implements ValueAnimator.AnimatorUpdateListener {
-    public final int f39321a;
-    public final mn f39322b;
+    public final int f39312a;
+    public final mn f39313b;
 
     public ln(mn mnVar, int i10) {
-        this.f39321a = i10;
-        this.f39322b = mnVar;
+        this.f39312a = i10;
+        this.f39313b = mnVar;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f39321a) {
+        switch (this.f39312a) {
             case 0:
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                mn mnVar = this.f39322b;
-                mnVar.f39736a = floatValue;
-                View view = mnVar.f39737b.fragmentView;
+                mn mnVar = this.f39313b;
+                mnVar.f39576a = floatValue;
+                View view = mnVar.f39577b.fragmentView;
                 if (view != null) {
                     view.invalidate();
                     return;
@@ -26,9 +26,9 @@ public final class ln implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 1:
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                mn mnVar2 = this.f39322b;
-                mnVar2.f39736a = floatValue2;
-                View view2 = mnVar2.f39737b.fragmentView;
+                mn mnVar2 = this.f39313b;
+                mnVar2.f39576a = floatValue2;
+                View view2 = mnVar2.f39577b.fragmentView;
                 if (view2 != null) {
                     view2.invalidate();
                     return;
@@ -36,9 +36,9 @@ public final class ln implements ValueAnimator.AnimatorUpdateListener {
                 return;
             default:
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                mn mnVar3 = this.f39322b;
-                mnVar3.f39736a = floatValue3;
-                View view3 = mnVar3.f39737b.fragmentView;
+                mn mnVar3 = this.f39313b;
+                mnVar3.f39576a = floatValue3;
+                View view3 = mnVar3.f39577b.fragmentView;
                 if (view3 != null) {
                     view3.invalidate();
                     return;

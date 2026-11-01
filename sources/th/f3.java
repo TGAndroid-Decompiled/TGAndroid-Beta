@@ -24,19 +24,19 @@ public abstract class f3 extends View {
     public int K;
     public boolean L;
     public ValueAnimator M;
-    public int f48951a;
-    public int f48952b;
-    public int f48953c;
+    public int f48965a;
+    public int f48966b;
+    public int f48967c;
     public Scroller d;
     public float e;
-    public float f48954f;
+    public float f48968f;
     public float h;
-    public int f48955n;
-    public int f48956r;
-    public int f48957s;
-    public boolean f48958w;
-    public int f48959x;
-    public float f48960y;
+    public int f48969n;
+    public int f48970r;
+    public int f48971s;
+    public boolean f48972w;
+    public int f48973x;
+    public float f48974y;
 
     public static void a(f3 f3Var, SpannableStringBuilder spannableStringBuilder, TL_stories.StoryViews storyViews, boolean z10) {
         int i10;
@@ -81,13 +81,13 @@ public abstract class f3 extends View {
                 this.M = null;
             }
             if (!z10) {
-                int i11 = this.f48957s;
-                this.e = (i11 / 2.0f) + ((-getMeasuredWidth()) / 2.0f) + ((i11 + this.f48955n) * i10);
+                int i11 = this.f48971s;
+                this.e = (i11 / 2.0f) + ((-getMeasuredWidth()) / 2.0f) + ((i11 + this.f48969n) * i10);
                 invalidate();
                 return;
             }
-            int i12 = this.f48957s;
-            float f7 = (i12 / 2.0f) + ((-getMeasuredWidth()) / 2.0f) + ((i12 + this.f48955n) * i10);
+            int i12 = this.f48971s;
+            float f7 = (i12 / 2.0f) + ((-getMeasuredWidth()) / 2.0f) + ((i12 + this.f48969n) * i10);
             float f10 = this.e;
             if (f7 == f10) {
                 return;
@@ -96,7 +96,7 @@ public abstract class f3 extends View {
             this.M = ofFloat;
             ofFloat.addUpdateListener(new bg.o(this, 11));
             this.M.addListener(new sg.r(this, 9));
-            this.M.setInterpolator(gr.f26495f);
+            this.M.setInterpolator(gr.f26523f);
             this.M.setDuration(200L);
             this.M.start();
         }
@@ -104,16 +104,16 @@ public abstract class f3 extends View {
 
     public final void d() {
         int measuredWidth = getMeasuredWidth();
-        int i10 = this.f48957s;
-        this.f48954f = (-(measuredWidth - i10)) / 2.0f;
-        int i11 = i10 + this.f48955n;
-        this.h = ((getMeasuredWidth() - this.f48957s) / 2.0f) + (((this.E.size() * i11) - this.f48955n) - getMeasuredWidth());
+        int i10 = this.f48971s;
+        this.f48968f = (-(measuredWidth - i10)) / 2.0f;
+        int i11 = i10 + this.f48969n;
+        this.h = ((getMeasuredWidth() - this.f48971s) / 2.0f) + (((this.E.size() * i11) - this.f48969n) - getMeasuredWidth());
     }
 
     public e3 getCenteredImageReciever() {
         ArrayList arrayList = this.G;
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            if (((e3) arrayList.get(i10)).f48899b == this.K) {
+            if (((e3) arrayList.get(i10)).f48913b == this.K) {
                 return (e3) arrayList.get(i10);
             }
         }
@@ -131,16 +131,16 @@ public abstract class f3 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f48958w = true;
+        this.f48972w = true;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         ArrayList arrayList = this.G;
         super.onDetachedFromWindow();
-        this.f48958w = false;
+        this.f48972w = false;
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            ((e3) arrayList.get(i10)).f48898a.R();
+            ((e3) arrayList.get(i10)).f48912a.R();
         }
         arrayList.clear();
     }
@@ -181,12 +181,12 @@ public abstract class f3 extends View {
         int i14 = -1;
         int i15 = 0;
         while (i15 < this.E.size()) {
-            int i16 = this.f48957s;
-            float f16 = (-this.e) + ((this.f48955n + i16) * i15);
+            int i16 = this.f48971s;
+            float f16 = (-this.e) + ((this.f48969n + i16) * i15);
             float f17 = ((i16 / f14) + f16) - measuredWidth;
             float abs = Math.abs(f17);
-            if (abs < this.f48957s) {
-                f10 = 1.0f - (Math.abs(f17) / this.f48957s);
+            if (abs < this.f48971s) {
+                f10 = 1.0f - (Math.abs(f17) / this.f48971s);
                 f7 = (0.2f * f10) + 1.0f;
             } else {
                 f7 = 1.0f;
@@ -197,11 +197,11 @@ public abstract class f3 extends View {
                 f15 = abs;
             }
             if (f17 < 0.0f) {
-                z10 = sc.e.z(1.0f, f10, this.f48957s * 0.1f, f16);
+                z10 = sc.e.z(1.0f, f10, this.f48971s * 0.1f, f16);
             } else {
-                z10 = c3.i0.z(1.0f, f10, this.f48957s * 0.1f, f16);
+                z10 = c3.i0.z(1.0f, f10, this.f48971s * 0.1f, f16);
             }
-            if (z10 > getMeasuredWidth() || this.f48957s + z10 < 0.0f) {
+            if (z10 > getMeasuredWidth() || this.f48971s + z10 < 0.0f) {
                 arrayList = arrayList4;
                 f11 = measuredWidth;
                 f12 = f15;
@@ -211,7 +211,7 @@ public abstract class f3 extends View {
                 int i17 = 0;
                 while (true) {
                     if (i17 < arrayList4.size()) {
-                        if (((e3) arrayList4.get(i17)).f48899b == i15) {
+                        if (((e3) arrayList4.get(i17)).f48913b == i15) {
                             e3Var = (e3) arrayList4.remove(i17);
                             break;
                         }
@@ -219,46 +219,46 @@ public abstract class f3 extends View {
                     } else {
                         e3Var = new e3(this);
                         e3Var.a(i15);
-                        e3Var.f48899b = i15;
+                        e3Var.f48913b = i15;
                         break;
                     }
                 }
-                float f18 = this.f48957s;
+                float f18 = this.f48971s;
                 float f19 = f18 * f7;
-                float f20 = this.f48956r;
+                float f20 = this.f48970r;
                 float f21 = f7 * f20;
                 f11 = measuredWidth;
                 float y3 = org.telegram.messenger.m5.y(f19, f18, 2.0f, z10);
-                float y10 = org.telegram.messenger.m5.y(f21, f20, 2.0f, this.f48960y);
+                float y10 = org.telegram.messenger.m5.y(f21, f20, 2.0f, this.f48974y);
                 if (this.D == 0.0f || i15 == (i12 = this.K)) {
                     arrayList2 = arrayList3;
                     arrayList = arrayList4;
                     f12 = f15;
                     i11 = i14;
-                    e3Var.f48898a.y0(y3, y10, f19, f21);
+                    e3Var.f48912a.y0(y3, y10, f19, f21);
                 } else {
                     f12 = f15;
                     i11 = i14;
                     arrayList = arrayList4;
                     arrayList2 = arrayList3;
-                    e3Var.f48898a.y0(org.telegram.messenger.i0.T1(getMeasuredWidth() * (i15 - i12), y3, this.D), org.telegram.messenger.i0.T1(this.f48951a, y10, this.D), org.telegram.messenger.i0.T1(this.f48952b, f19, this.D), org.telegram.messenger.i0.T1(this.f48953c, f21, this.D));
+                    e3Var.f48912a.y0(org.telegram.messenger.i0.T1(getMeasuredWidth() * (i15 - i12), y3, this.D), org.telegram.messenger.i0.T1(this.f48965a, y10, this.D), org.telegram.messenger.i0.T1(this.f48966b, f19, this.D), org.telegram.messenger.i0.T1(this.f48967c, f21, this.D));
                 }
                 if (this.D != 1.0f && i15 == this.K) {
                     arrayList3 = arrayList2;
                     f13 = 2.0f;
                 } else {
-                    ImageReceiver imageReceiver = e3Var.f48898a;
+                    ImageReceiver imageReceiver = e3Var.f48912a;
                     imageReceiver.h(canvas, null);
-                    if (e3Var.f48900c != null) {
+                    if (e3Var.f48914c != null) {
                         int C = (int) c3.i0.C(f10, 0.3f, 0.7f, 255.0f);
                         gradientDrawable.setAlpha(C);
                         gradientDrawable.setBounds((int) imageReceiver.K0, (int) (imageReceiver.A() - org.telegram.messenger.i0.L(24.0f)), (int) imageReceiver.y(), ((int) imageReceiver.A()) + 2);
                         gradientDrawable.draw(canvas);
                         canvas.save();
                         f13 = 2.0f;
-                        canvas.translate(imageReceiver.r() - (this.J / 2.0f), (imageReceiver.A() - org.telegram.messenger.i0.L(8.0f)) - e3Var.f48900c.getHeight());
+                        canvas.translate(imageReceiver.r() - (this.J / 2.0f), (imageReceiver.A() - org.telegram.messenger.i0.L(8.0f)) - e3Var.f48914c.getHeight());
                         e3Var.d.setAlpha(C);
-                        e3Var.f48900c.draw(canvas);
+                        e3Var.f48914c.draw(canvas);
                         canvas.restore();
                     } else {
                         f13 = 2.0f;
@@ -281,7 +281,7 @@ public abstract class f3 extends View {
             b(i14);
         }
         for (int i18 = 0; i18 < arrayList5.size(); i18++) {
-            ((e3) arrayList5.get(i18)).f48898a.R();
+            ((e3) arrayList5.get(i18)).f48912a.R();
         }
         arrayList5.clear();
     }
@@ -290,23 +290,23 @@ public abstract class f3 extends View {
     public final void onMeasure(int i10, int i11) {
         ArrayList arrayList = this.G;
         super.onMeasure(i10, i11);
-        this.f48955n = org.telegram.messenger.i0.L(8.0f);
+        this.f48969n = org.telegram.messenger.i0.L(8.0f);
         int L = (int) (org.telegram.messenger.i0.L(180.0f) / 1.2f);
-        this.f48956r = L;
+        this.f48970r = L;
         int i12 = (int) ((L / 16.0f) * 9.0f);
-        this.f48957s = i12;
+        this.f48971s = i12;
         float L2 = i12 - org.telegram.messenger.i0.L(8.0f);
-        this.f48960y = ((org.telegram.messenger.i0.L(180.0f) - this.f48956r) / 2.0f) + org.telegram.messenger.i0.L(20.0f);
+        this.f48974y = ((org.telegram.messenger.i0.L(180.0f) - this.f48970r) / 2.0f) + org.telegram.messenger.i0.L(20.0f);
         d();
-        if (this.f48959x >= 0 && getMeasuredWidth() > 0) {
+        if (this.f48973x >= 0 && getMeasuredWidth() > 0) {
             this.K = -1;
-            c(this.f48959x, false, false);
-            this.f48959x = -1;
+            c(this.f48973x, false, false);
+            this.f48973x = -1;
         }
         if (this.J != L2) {
             this.J = L2;
             for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                ((e3) arrayList.get(i13)).a(((e3) arrayList.get(i13)).f48899b);
+                ((e3) arrayList.get(i13)).a(((e3) arrayList.get(i13)).f48913b);
             }
         }
     }

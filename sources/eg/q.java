@@ -22,18 +22,18 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import org.telegram.messenger.b8;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 import org.telegram.messenger.f8;
 import org.telegram.messenger.i0;
-import org.telegram.messenger.tz;
+import org.telegram.messenger.uz;
 import org.telegram.messenger.v2;
-import org.telegram.messenger.v20;
-import org.telegram.messenger.ye;
+import org.telegram.messenger.w20;
+import org.telegram.messenger.ze;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.x1;
 import org.telegram.ui.BubbleActivity;
 import org.telegram.ui.Components.Crop.CropAreaView;
-import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.l61;
 public class q extends FrameLayout implements a {
     public float D;
     public float E;
@@ -50,7 +50,7 @@ public class q extends FrameLayout implements a {
     public final CropAreaView f6583a;
     public final ImageView f6584b;
     public final Matrix f6585c;
-    public k61 d;
+    public l61 d;
     public g e;
     public final RectF f6586f;
     public final RectF h;
@@ -72,7 +72,7 @@ public class q extends FrameLayout implements a {
         this.h = new RectF();
         this.f6585c = new Matrix();
         za.c cVar = new za.c(18, false);
-        cVar.f55432b = new float[8];
+        cVar.f55450b = new float[8];
         this.f6589s = cVar;
         this.f6590w = new Matrix();
         this.F = false;
@@ -86,30 +86,30 @@ public class q extends FrameLayout implements a {
         ?? viewGroup = new ViewGroup(context);
         viewGroup.d = new RectF();
         viewGroup.e = new RectF();
-        viewGroup.f23959f = new RectF();
+        viewGroup.f23960f = new RectF();
         viewGroup.h = new RectF();
-        viewGroup.f23967n = new RectF();
-        viewGroup.f23972r = new RectF();
-        viewGroup.f23974s = new RectF();
-        viewGroup.f23977w = new RectF();
-        viewGroup.f23979y = new RectF();
+        viewGroup.f23968n = new RectF();
+        viewGroup.f23973r = new RectF();
+        viewGroup.f23975s = new RectF();
+        viewGroup.f23978w = new RectF();
+        viewGroup.f23980y = new RectF();
         viewGroup.D = new RectF();
         viewGroup.K = -1.0f;
         viewGroup.L = 1.0f;
         viewGroup.M = -1.0f;
         viewGroup.U = new AccelerateDecelerateInterpolator();
-        viewGroup.f23960f0 = true;
-        viewGroup.f23966l0 = new RectF();
-        viewGroup.f23968n0 = 0.0f;
-        viewGroup.f23969o0 = 1.0f;
-        viewGroup.f23970p0 = 0.0f;
-        viewGroup.f23971q0 = 0.0f;
-        viewGroup.f23952a0 = z10;
+        viewGroup.f23961f0 = true;
+        viewGroup.f23967l0 = new RectF();
+        viewGroup.f23969n0 = 0.0f;
+        viewGroup.f23970o0 = 1.0f;
+        viewGroup.f23971p0 = 0.0f;
+        viewGroup.f23972q0 = 0.0f;
+        viewGroup.f23953a0 = z10;
         viewGroup.J = true;
         viewGroup.I = true;
         viewGroup.V = i0.L(16.0f);
         viewGroup.W = i0.L(32.0f);
-        viewGroup.f23976t0 = 1;
+        viewGroup.f23977t0 = 1;
         Paint paint = new Paint();
         viewGroup.O = paint;
         paint.setColor(2130706432);
@@ -133,7 +133,7 @@ public class q extends FrameLayout implements a {
         paint5.setStyle(style);
         paint5.setColor(-1291845633);
         Paint paint6 = new Paint(1);
-        viewGroup.f23962h0 = paint6;
+        viewGroup.f23963h0 = paint6;
         paint6.setColor(0);
         paint6.setStyle(style);
         paint6.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
@@ -202,12 +202,12 @@ public class q extends FrameLayout implements a {
                 int size = arrayList.size();
                 int i14 = 0;
                 while (i14 < size) {
-                    v20 v20Var = (v20) arrayList.get(i14);
-                    float width = ((v20Var.f18458f / 2.0f) + v20Var.f18457c) * decodeFile.getWidth();
-                    float height = ((v20Var.f18459g / 2.0f) + v20Var.d) * decodeFile.getHeight();
+                    w20 w20Var = (w20) arrayList.get(i14);
+                    float width = ((w20Var.f18973f / 2.0f) + w20Var.f18972c) * decodeFile.getWidth();
+                    float height = ((w20Var.f18974g / 2.0f) + w20Var.d) * decodeFile.getHeight();
                     char c11 = c10;
-                    float width2 = v20Var.f18475y * decodeFile.getWidth();
-                    float height2 = v20Var.f18476z * decodeFile.getHeight();
+                    float width2 = w20Var.f18990y * decodeFile.getWidth();
+                    float height2 = w20Var.f18991z * decodeFile.getHeight();
                     float[] fArr = new float[4];
                     fArr[0] = width;
                     fArr[1] = height;
@@ -220,24 +220,24 @@ public class q extends FrameLayout implements a {
                         width3 = decodeFile.getHeight();
                         height3 = decodeFile.getWidth();
                     }
-                    if (v20Var.f18455a == 1) {
-                        v20Var.f18458f = ((v20Var.f18458f * i12) / bitmap.getWidth()) * f12 * f7;
-                        v20Var.f18459g = ((v20Var.f18459g * i13) / bitmap.getHeight()) * f12 * f7;
+                    if (w20Var.f18970a == 1) {
+                        w20Var.f18973f = ((w20Var.f18973f * i12) / bitmap.getWidth()) * f12 * f7;
+                        w20Var.f18974g = ((w20Var.f18974g * i13) / bitmap.getHeight()) * f12 * f7;
                     } else {
                         float f13 = i12;
                         float f14 = width3;
-                        v20Var.f18468q = (int) ((v20Var.f18468q / f13) * f14);
+                        w20Var.f18983q = (int) ((w20Var.f18983q / f13) * f14);
                         float f15 = i13;
                         float f16 = height3;
-                        v20Var.f18469r = (int) ((v20Var.f18469r / f15) * f16);
-                        v20Var.f18458f = ((v20Var.f18458f * f13) / f14) * f12 * f7;
-                        v20Var.f18459g = ((v20Var.f18459g * f15) / f16) * f12 * f7;
+                        w20Var.f18984r = (int) ((w20Var.f18984r / f15) * f16);
+                        w20Var.f18973f = ((w20Var.f18973f * f13) / f14) * f12 * f7;
+                        w20Var.f18974g = ((w20Var.f18974g * f15) / f16) * f12 * f7;
                     }
-                    v20Var.f18457c = (fArr[0] / bitmap.getWidth()) - (v20Var.f18458f / 2.0f);
-                    v20Var.d = (fArr[1] / bitmap.getHeight()) - (v20Var.f18459g / 2.0f);
-                    v20Var.f18475y = fArr[c11] / bitmap.getWidth();
-                    v20Var.f18476z = fArr[3] / bitmap.getHeight();
-                    v20Var.e = (float) (v20Var.e - ((f10 + f11) * 0.017453292519943295d));
+                    w20Var.f18972c = (fArr[0] / bitmap.getWidth()) - (w20Var.f18973f / 2.0f);
+                    w20Var.d = (fArr[1] / bitmap.getHeight()) - (w20Var.f18974g / 2.0f);
+                    w20Var.f18990y = fArr[c11] / bitmap.getWidth();
+                    w20Var.f18991z = fArr[3] / bitmap.getHeight();
+                    w20Var.e = (float) (w20Var.e - ((f10 + f11) * 0.017453292519943295d));
                     i14++;
                     i12 = i10;
                     i13 = i11;
@@ -293,7 +293,7 @@ public class q extends FrameLayout implements a {
 
     public static String h(String str) {
         File z10 = b8.z(4);
-        File file = new File(z10, tz.p() + "_temp.jpg");
+        File file = new File(z10, uz.p() + "_temp.jpg");
         try {
             i0.E(new File(str), file);
         } catch (Exception e) {
@@ -323,7 +323,7 @@ public class q extends FrameLayout implements a {
         }
     }
 
-    public final void b(ye yeVar) {
+    public final void b(ze zeVar) {
         RectF rectF;
         float f7;
         int i10;
@@ -339,16 +339,16 @@ public class q extends FrameLayout implements a {
         matrix.getValues(fArr);
         o oVar = this.L;
         float f11 = oVar.f6577f * cropWidth;
-        yeVar.f19370k = (int) oVar.h;
-        if (v2.f18448a) {
-            i0.a.p(yeVar.f19370k, new StringBuilder("set transformRotation = "));
+        zeVar.f19698k = (int) oVar.h;
+        if (v2.f18578a) {
+            i0.a.p(zeVar.f19698k, new StringBuilder("set transformRotation = "));
         }
         while (true) {
-            i10 = yeVar.f19370k;
+            i10 = zeVar.f19698k;
             if (i10 >= 0) {
                 break;
             }
-            yeVar.f19370k = i10 + 360;
+            zeVar.f19698k = i10 + 360;
         }
         if (i10 != 90 && i10 != 270) {
             o oVar2 = this.L;
@@ -361,32 +361,32 @@ public class q extends FrameLayout implements a {
         }
         int i12 = (int) f10;
         float f12 = i11;
-        yeVar.e = (float) (ceil / Math.ceil(f12 * f11));
+        zeVar.e = (float) (ceil / Math.ceil(f12 * f11));
         float f13 = i12;
         float ceil3 = (float) (ceil2 / Math.ceil(f11 * f13));
-        yeVar.f19367f = ceil3;
-        float f14 = yeVar.e;
+        zeVar.f19695f = ceil3;
+        float f14 = zeVar.e;
         if (f14 > 1.0f || ceil3 > 1.0f) {
             float max = Math.max(f14, ceil3);
-            yeVar.e /= max;
-            yeVar.f19367f /= max;
+            zeVar.e /= max;
+            zeVar.f19695f /= max;
         }
-        yeVar.f19366c = Math.min(f12 / cropAreaView.getCropWidth(), f13 / cropAreaView.getCropHeight()) * this.L.e;
+        zeVar.f19694c = Math.min(f12 / cropAreaView.getCropWidth(), f13 / cropAreaView.getCropHeight()) * this.L.e;
         float f15 = fArr[2] / f12;
         o oVar4 = this.L;
         float f16 = oVar4.e;
-        yeVar.f19364a = f15 / f16;
-        yeVar.f19365b = (fArr[5] / f13) / f16;
-        yeVar.d = oVar4.f6579i;
-        yeVar.f19372m = f16;
-        yeVar.f19371l = oVar4.f6580j;
-        yeVar.f19373o = cropWidth;
-        yeVar.f19374r = oVar4.f6581k;
-        yeVar.f19375s = ceil;
-        yeVar.f19376t = ceil2;
-        yeVar.f19377u = this.f6592y;
-        yeVar.v = cropAreaView.getLockAspectRatio();
-        yeVar.C = true;
+        zeVar.f19692a = f15 / f16;
+        zeVar.f19693b = (fArr[5] / f13) / f16;
+        zeVar.d = oVar4.f6579i;
+        zeVar.f19700m = f16;
+        zeVar.f19699l = oVar4.f6580j;
+        zeVar.f19701o = cropWidth;
+        zeVar.f19702r = oVar4.f6581k;
+        zeVar.f19703s = ceil;
+        zeVar.f19704t = ceil2;
+        zeVar.f19705u = this.f6592y;
+        zeVar.v = cropAreaView.getLockAspectRatio();
+        zeVar.C = true;
     }
 
     public final void d(RectF rectF) {
@@ -408,7 +408,7 @@ public class q extends FrameLayout implements a {
         }
         float f10 = max;
         if (!this.f6588r) {
-            i10 = i0.f16020m;
+            i10 = i0.f16166m;
         } else {
             i10 = 0;
         }
@@ -420,13 +420,13 @@ public class q extends FrameLayout implements a {
         ofFloat.addUpdateListener(new h(this, f10, fArr, a2, b10, 0));
         ofFloat.addListener(new m(0, this, z10));
         AccelerateDecelerateInterpolator accelerateDecelerateInterpolator = cropAreaView.U;
-        AnimatorSet animatorSet = cropAreaView.f23965k0;
+        AnimatorSet animatorSet = cropAreaView.f23966k0;
         if (animatorSet != null) {
             animatorSet.cancel();
-            cropAreaView.f23965k0 = null;
+            cropAreaView.f23966k0 = null;
         }
         AnimatorSet animatorSet2 = new AnimatorSet();
-        cropAreaView.f23965k0 = animatorSet2;
+        cropAreaView.f23966k0 = animatorSet2;
         animatorSet2.setDuration(300L);
         ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(cropAreaView, "cropLeft", rectF.left);
         ofFloat2.setInterpolator(accelerateDecelerateInterpolator);
@@ -463,8 +463,8 @@ public class q extends FrameLayout implements a {
             o oVar = this.L;
             float f12 = oVar.e;
             za.c cVar = this.f6589s;
-            float[] fArr = (float[]) cVar.f55432b;
-            float[] fArr2 = (float[]) cVar.f55432b;
+            float[] fArr = (float[]) cVar.f55450b;
+            float[] fArr2 = (float[]) cVar.f55450b;
             float f13 = rectF2.left;
             fArr[0] = f13;
             float f14 = rectF2.top;
@@ -562,9 +562,9 @@ public class q extends FrameLayout implements a {
     }
 
     public int getCurrentHeight() {
-        k61 k61Var = this.d;
-        if (k61Var != null) {
-            return k61Var.getVideoHeight();
+        l61 l61Var = this.d;
+        if (l61Var != null) {
+            return l61Var.getVideoHeight();
         }
         Bitmap bitmap = this.f6591x;
         if (bitmap == null) {
@@ -578,9 +578,9 @@ public class q extends FrameLayout implements a {
     }
 
     public int getCurrentWidth() {
-        k61 k61Var = this.d;
-        if (k61Var != null) {
-            return k61Var.getVideoWidth();
+        l61 l61Var = this.d;
+        if (l61Var != null) {
+            return l61Var.getVideoWidth();
         }
         Bitmap bitmap = this.f6591x;
         if (bitmap == null) {
@@ -626,10 +626,10 @@ public class q extends FrameLayout implements a {
         }
         final float f7 = oVar.f6577f;
         CropAreaView cropAreaView = this.f6583a;
-        AnimatorSet animatorSet = cropAreaView.f23965k0;
+        AnimatorSet animatorSet = cropAreaView.f23966k0;
         if (animatorSet != null) {
             animatorSet.cancel();
-            cropAreaView.f23965k0 = null;
+            cropAreaView.f23966k0 = null;
         }
         o oVar2 = this.L;
         if ((oVar2.h + oVar2.f6578g) % 180.0f != 0.0f) {
@@ -653,7 +653,7 @@ public class q extends FrameLayout implements a {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         final RectF rectF = new RectF();
         final RectF rectF2 = new RectF();
-        rectF.set(cropAreaView.f23979y);
+        rectF.set(cropAreaView.f23980y);
         o oVar3 = this.L;
         final float f12 = oVar3.f6576c;
         final float f13 = oVar3.d;
@@ -723,10 +723,10 @@ public class q extends FrameLayout implements a {
         boolean z11;
         float f7;
         CropAreaView cropAreaView = this.f6583a;
-        AnimatorSet animatorSet = cropAreaView.f23965k0;
+        AnimatorSet animatorSet = cropAreaView.f23966k0;
         if (animatorSet != null) {
             animatorSet.cancel();
-            cropAreaView.f23965k0 = null;
+            cropAreaView.f23966k0 = null;
         }
         int currentWidth = getCurrentWidth();
         int currentHeight = getCurrentHeight();
@@ -763,10 +763,10 @@ public class q extends FrameLayout implements a {
         boolean z11;
         if (this.L != null) {
             CropAreaView cropAreaView = this.f6583a;
-            AnimatorSet animatorSet = cropAreaView.f23965k0;
+            AnimatorSet animatorSet = cropAreaView.f23966k0;
             if (animatorSet != null) {
                 animatorSet.cancel();
-                cropAreaView.f23965k0 = null;
+                cropAreaView.f23966k0 = null;
             }
             this.f6587n = 0.0f;
             o oVar = this.L;
@@ -812,8 +812,8 @@ public class q extends FrameLayout implements a {
         this.I = true;
         String[] strArr = new String[8];
         Integer[][] numArr = {new Integer[]{3, 2}, new Integer[]{5, 3}, new Integer[]{4, 3}, new Integer[]{5, 4}, new Integer[]{7, 5}, new Integer[]{16, 9}};
-        strArr[0] = cd.L0(2131751698, null);
-        strArr[1] = cd.L0(2131751696, null);
+        strArr[0] = dd.L0(2131751698, null);
+        strArr[1] = dd.L0(2131751696, null);
         int i10 = 2;
         for (int i11 = 0; i11 < 6; i11++) {
             Integer[] numArr2 = numArr[i11];
@@ -826,7 +826,7 @@ public class q extends FrameLayout implements a {
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext());
         alertDialog$Builder.f(strArr, new j(0, this, numArr));
-        x1 x1Var = alertDialog$Builder.f20134a;
+        x1 x1Var = alertDialog$Builder.f20135a;
         x1Var.setCanceledOnTouchOutside(true);
         x1Var.setOnCancelListener(new k(this, 0));
         x1Var.show();
@@ -867,7 +867,7 @@ public class q extends FrameLayout implements a {
         return true;
     }
 
-    public final void p(int i10, g gVar, ye yeVar) {
+    public final void p(int i10, g gVar, ze zeVar) {
         this.f6592y = true;
         this.d = null;
         this.e = gVar;
@@ -878,7 +878,7 @@ public class q extends FrameLayout implements a {
         int currentWidth = getCurrentWidth();
         int currentHeight = getCurrentHeight();
         this.L = new o(this, currentWidth, currentHeight);
-        cropAreaView.getViewTreeObserver().addOnPreDrawListener(new l(this, yeVar, currentHeight, currentWidth, 0));
+        cropAreaView.getViewTreeObserver().addOnPreDrawListener(new l(this, zeVar, currentHeight, currentWidth, 0));
     }
 
     public final void q() {
@@ -925,7 +925,7 @@ public class q extends FrameLayout implements a {
             }
             float f14 = ceil4;
             float f15 = ceil3;
-            RectF rectF2 = cropAreaView.f23966l0;
+            RectF rectF2 = cropAreaView.f23967l0;
             cropAreaView.a(rectF2, f12 / f13);
             if (this.f6592y) {
                 max = rectF2.width() / f12;

@@ -27,7 +27,7 @@ public class b implements Iterator {
                 }
                 return false;
             default:
-                if (this.f2649b < ((wc.b) this.f2650c).f52799a) {
+                if (this.f2649b < ((wc.b) this.f2650c).f52817a) {
                     return true;
                 }
                 return false;
@@ -55,19 +55,19 @@ public class b implements Iterator {
                 }
             default:
                 wc.b bVar = (wc.b) this.f2650c;
-                String[] strArr = bVar.f52801c;
+                String[] strArr = bVar.f52819c;
                 int i12 = this.f2649b;
                 String str = strArr[i12];
-                String str2 = bVar.f52800b[i12];
+                String str2 = bVar.f52818b[i12];
                 if (str == null) {
                     str = "";
                 }
                 ?? obj = new Object();
                 if (str2 != null) {
-                    obj.f52796a = str2.trim();
+                    obj.f52814a = str2.trim();
                     if (str2.length() != 0) {
-                        obj.f52797b = str;
-                        obj.f52798c = bVar;
+                        obj.f52815b = str;
+                        obj.f52816c = bVar;
                         this.f2649b++;
                         return obj;
                     }
@@ -89,19 +89,19 @@ public class b implements Iterator {
                 int i10 = this.f2649b;
                 int i11 = i10 - 1;
                 this.f2649b = i11;
-                int i12 = bVar.f52799a;
+                int i12 = bVar.f52817a;
                 if (i11 < i12) {
                     int i13 = (i12 - i11) - 1;
                     if (i13 > 0) {
-                        String[] strArr = bVar.f52800b;
+                        String[] strArr = bVar.f52818b;
                         System.arraycopy(strArr, i10, strArr, i11, i13);
-                        String[] strArr2 = bVar.f52801c;
+                        String[] strArr2 = bVar.f52819c;
                         System.arraycopy(strArr2, i10, strArr2, i11, i13);
                     }
-                    int i14 = bVar.f52799a - 1;
-                    bVar.f52799a = i14;
-                    bVar.f52800b[i14] = null;
-                    bVar.f52801c[i14] = null;
+                    int i14 = bVar.f52817a - 1;
+                    bVar.f52817a = i14;
+                    bVar.f52818b[i14] = null;
+                    bVar.f52819c[i14] = null;
                     return;
                 }
                 throw new IllegalArgumentException("Must be false");

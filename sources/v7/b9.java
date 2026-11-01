@@ -3,7 +3,7 @@ package v7;
 import java.lang.ref.Reference;
 import java.util.ArrayList;
 public abstract class b9 {
-    public static t7.r f50409a;
+    public static t7.r f50423a;
 
     public static void a(ArrayList arrayList, Object obj) {
         for (int size = arrayList.size() - 1; size >= 0; size--) {
@@ -19,10 +19,10 @@ public abstract class b9 {
         x8 x8Var;
         synchronized (b9.class) {
             try {
-                if (f50409a == null) {
-                    f50409a = new t7.r(1);
+                if (f50423a == null) {
+                    f50423a = new t7.r(1);
                 }
-                x8Var = (x8) f50409a.R0(u8Var);
+                x8Var = (x8) f50423a.R0(u8Var);
             } catch (Throwable th2) {
                 throw th2;
             }

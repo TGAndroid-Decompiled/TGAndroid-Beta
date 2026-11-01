@@ -5,7 +5,7 @@ import android.view.VelocityTracker;
 import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.z60;
 public final class b5 implements View.OnClickListener {
@@ -31,9 +31,9 @@ public final class b5 implements View.OnClickListener {
                 ArrayList arrayList = f5Var.E;
                 int indexOf = arrayList.indexOf(view);
                 if (f5Var.N != null && f5Var.f2881a != null) {
-                    List o10 = f5Var.o();
-                    if (indexOf >= 0 && indexOf < o10.size() && indexOf < arrayList.size()) {
-                        final w wVar = (w) o10.get(indexOf);
+                    List n10 = f5Var.n();
+                    if (indexOf >= 0 && indexOf < n10.size() && indexOf < arrayList.size()) {
+                        final w wVar = (w) n10.get(indexOf);
                         z60 U = f5Var.N.f3436a.f2938o3.U((View) arrayList.get(indexOf));
                         boolean z10 = wVar.f3426n;
                         if (z10) {
@@ -46,7 +46,7 @@ public final class b5 implements View.OnClickListener {
                         } else {
                             i11 = 2131751155;
                         }
-                        U.c(i10, cd.L0(i11, null), new Runnable() {
+                        U.c(i10, dd.L0(i11, null), new Runnable() {
                             @Override
                             public final void run() {
                                 a aVar3;
@@ -93,7 +93,7 @@ public final class b5 implements View.OnClickListener {
                                 }
                             }
                         }, false);
-                        U.c(2131232107, cd.L0(2131751599, null), new Runnable() {
+                        U.c(2131232107, dd.L0(2131751599, null), new Runnable() {
                             @Override
                             public final void run() {
                                 a aVar3;
@@ -142,9 +142,9 @@ public final class b5 implements View.OnClickListener {
                         }, true);
                         U.a0(0.0f, -org.telegram.messenger.i0.L(38.0f));
                         if (f5Var.H) {
-                            U.f32943u = false;
+                            U.f33046u = false;
                             U.v = true;
-                            U.f32941s = 0;
+                            U.f33044s = 0;
                         }
                         U.Z();
                         return;

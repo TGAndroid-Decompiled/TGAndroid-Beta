@@ -10,31 +10,31 @@ import e6.h;
 import e6.j;
 import n6.l;
 public final class a extends g {
-    public final h f7651a;
-    public final d6.g f7652b;
-    public final d6.c f7653c;
+    public final h f7652a;
+    public final d6.g f7653b;
+    public final d6.c f7654c;
     public j4 d;
     public int e;
-    public int f7654f;
-    public int f7655g;
+    public int f7655f;
+    public int f7656g;
     public int h;
 
     public a(d6.c cVar, d6.g gVar, h hVar) {
-        this.f7653c = cVar;
-        this.f7652b = gVar;
-        this.f7651a = hVar;
+        this.f7654c = cVar;
+        this.f7653b = gVar;
+        this.f7652a = hVar;
     }
 
     @Override
     public final void a() {
-        Log.d("CAST_CLIENT", "onAdBreakStatusUpdated " + this.f7653c.a());
+        Log.d("CAST_CLIENT", "onAdBreakStatusUpdated " + this.f7654c.a());
     }
 
     @Override
     public final void b(MediaError mediaError) {
         int i10;
         StringBuilder sb2 = new StringBuilder("onMediaError ");
-        sb2.append(this.f7653c.a());
+        sb2.append(this.f7654c.a());
         sb2.append(" ");
         Integer num = mediaError.f4300c;
         sb2.append(num);
@@ -51,33 +51,33 @@ public final class a extends g {
 
     @Override
     public final void c() {
-        Log.d("CAST_CLIENT", "onMetadataUpdated " + this.f7653c.a());
+        Log.d("CAST_CLIENT", "onMetadataUpdated " + this.f7654c.a());
     }
 
     @Override
     public final void d() {
-        Log.d("CAST_CLIENT", "onPreloadStatusUpdated " + this.f7653c.a());
+        Log.d("CAST_CLIENT", "onPreloadStatusUpdated " + this.f7654c.a());
     }
 
     @Override
     public final void e() {
-        Log.d("CAST_CLIENT", "onQueueStatusUpdated " + this.f7653c.a());
+        Log.d("CAST_CLIENT", "onQueueStatusUpdated " + this.f7654c.a());
     }
 
     @Override
     public final void f() {
-        Log.d("CAST_CLIENT", "onSendingRemoteMediaRequest " + this.f7653c.a());
+        Log.d("CAST_CLIENT", "onSendingRemoteMediaRequest " + this.f7654c.a());
     }
 
     @Override
     public final void g() {
-        Log.d("CAST_CLIENT", "onStatusUpdated " + this.f7653c.a());
-        int b10 = this.f7651a.b();
-        if (b10 != this.f7654f) {
+        Log.d("CAST_CLIENT", "onStatusUpdated " + this.f7654c.a());
+        int b10 = this.f7652a.b();
+        if (b10 != this.f7655f) {
             Log.d("CAST_CLIENT", "idleReason " + b10);
-            this.f7654f = b10;
+            this.f7655f = b10;
             if (b10 == 2) {
-                this.f7652b.b(true);
+                this.f7653b.b(true);
             } else if (b10 == 4) {
                 int i10 = this.e;
                 if (i10 == 104) {
@@ -97,17 +97,17 @@ public final class a extends g {
             return;
         }
         String i10 = d.i();
-        if (this.f7655g < this.d.f3120a.size()) {
-            fVar = this.d.c(this.f7655g);
+        if (this.f7656g < this.d.f3120a.size()) {
+            fVar = this.d.c(this.f7656g);
         } else {
-            fVar = d.f7662l;
+            fVar = d.f7663l;
         }
-        MediaInfo mediaInfo = new MediaInfo(d.j(i10, fVar.d) + ("?index=" + this.f7655g + "&attempt=" + this.h), 1, fVar.f7674a, fVar.f7675b, -1L, null, null, null, null, null, null, null, -1L, null, null, null, null);
+        MediaInfo mediaInfo = new MediaInfo(d.j(i10, fVar.d) + ("?index=" + this.f7656g + "&attempt=" + this.h), 1, fVar.f7675a, fVar.f7676b, -1L, null, null, null, null, null, null, null, -1L, null, null, null, null);
         Boolean bool = Boolean.TRUE;
         if (Double.compare(1.0d, 2.0d) <= 0 && Double.compare(1.0d, 0.5d) >= 0) {
             k kVar = new k(mediaInfo, null, bool, -1L, 1.0d, null, null, null, null, null, null, 0L);
             l.d("Must be called from the main thread.");
-            h hVar = this.f7651a;
+            h hVar = this.f7652a;
             if (!hVar.w()) {
                 h.t();
                 return;
@@ -121,16 +121,16 @@ public final class a extends g {
 
     public final void q(boolean z10) {
         if (z10) {
-            this.f7655g++;
+            this.f7656g++;
         } else {
             int i10 = this.h + 1;
             this.h = i10;
             if (i10 > 3) {
                 this.h = 0;
-                this.f7655g++;
+                this.f7656g++;
             }
         }
-        Log.e("CAST_CLIENT", "next attempt " + this.e + " " + this.f7655g + " " + this.h);
+        Log.e("CAST_CLIENT", "next attempt " + this.e + " " + this.f7656g + " " + this.h);
         p();
     }
 }

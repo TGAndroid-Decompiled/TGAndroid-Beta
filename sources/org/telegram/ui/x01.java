@@ -4,19 +4,19 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 public final class x01 extends AnimatorListenerAdapter {
-    public final int f43409a;
-    public final SecretMediaViewer f43410b;
+    public final int f43192a;
+    public final SecretMediaViewer f43193b;
 
     public x01(SecretMediaViewer secretMediaViewer, int i10) {
-        this.f43409a = i10;
-        this.f43410b = secretMediaViewer;
+        this.f43192a = i10;
+        this.f43193b = secretMediaViewer;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f43409a) {
+        switch (this.f43192a) {
             case 0:
-                SecretMediaViewer secretMediaViewer = this.f43410b;
+                SecretMediaViewer secretMediaViewer = this.f43193b;
                 Runnable runnable = secretMediaViewer.m0;
                 if (runnable != null) {
                     runnable.run();
@@ -25,7 +25,7 @@ public final class x01 extends AnimatorListenerAdapter {
                 }
                 return;
             case 1:
-                SecretMediaViewer secretMediaViewer2 = this.f43410b;
+                SecretMediaViewer secretMediaViewer2 = this.f43193b;
                 AnimatorSet animatorSet = secretMediaViewer2.G;
                 if (animatorSet != null && animatorSet.equals(animator)) {
                     secretMediaViewer2.F.setVisibility(8);
@@ -35,7 +35,7 @@ public final class x01 extends AnimatorListenerAdapter {
                 }
                 return;
             case 2:
-                SecretMediaViewer secretMediaViewer3 = this.f43410b;
+                SecretMediaViewer secretMediaViewer3 = this.f43193b;
                 Runnable runnable2 = secretMediaViewer3.m0;
                 if (runnable2 != null) {
                     runnable2.run();
@@ -44,7 +44,7 @@ public final class x01 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                SecretMediaViewer secretMediaViewer4 = this.f43410b;
+                SecretMediaViewer secretMediaViewer4 = this.f43193b;
                 secretMediaViewer4.I0 = null;
                 secretMediaViewer4.e.invalidate();
                 return;

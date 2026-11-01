@@ -1,68 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.view.View;
-public final class lm0 extends EditTextBoldCursor {
-    public final w4 G1;
-    public int H1;
-    public final e6 I1;
-    public final org.telegram.ui.ActionBar.p6 J1;
-
-    public lm0(Context context, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(context);
-        this.J1 = p6Var;
-        this.G1 = new w4(this);
-        e6 e6Var = new e6(false, true, true);
-        this.I1 = e6Var;
-        e6Var.n(0.2f, 160L, gr.h);
-        e6Var.w(org.telegram.messenger.i0.L(15.33f));
-        e6Var.setCallback(this);
-        e6Var.f25695b = 5;
-    }
-
+public final class lm0 extends s4.j {
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int i10;
-        super.dispatchDraw(canvas);
-        if (this.H1 < 0) {
-            i10 = org.telegram.ui.ActionBar.t6.f21153p7;
-        } else {
-            i10 = org.telegram.ui.ActionBar.t6.P5;
+    public final boolean r(s4.c1 c1Var, ac.g gVar, int i10, int i11, int i12, int i13) {
+        rm0 rm0Var;
+        qm0 qm0Var;
+        View view = c1Var.f47909a;
+        if ((view instanceof rm0) && (qm0Var = (rm0Var = (rm0) view).f30018a) != null) {
+            qm0Var.h = qm0Var.M;
+            qm0Var.f48410f = qm0Var.N;
+            qm0Var.f48412g = qm0Var.O;
+            rm0Var.f30019b.e(true, 0.0f);
+            rm0Var.invalidate();
         }
-        int a2 = this.G1.a(org.telegram.ui.ActionBar.t6.w0(i10, this.J1), false);
-        e6 e6Var = this.I1;
-        e6Var.u(a2);
-        e6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
-        e6Var.draw(canvas);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(36.0f), 1073741824));
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        super.onTextChanged(charSequence, i10, i11, i12);
-        e6 e6Var = this.I1;
-        if (e6Var != null) {
-            this.H1 = 12 - charSequence.length();
-            e6Var.a();
-            String str = "";
-            if (this.H1 <= 4) {
-                str = "" + this.H1;
-            }
-            e6Var.t(str, true, true);
-        }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.I1 && !super.verifyDrawable(drawable)) {
+        int translationX = i10 + ((int) view.getTranslationX());
+        int translationY = i11 + ((int) view.getTranslationY());
+        R(c1Var);
+        int i14 = i12 - translationX;
+        int i15 = i13 - translationY;
+        if (i14 == 0 && i15 == 0) {
+            v(c1Var);
             return false;
         }
+        if (i14 != 0) {
+            view.setTranslationX(-i14);
+        }
+        if (i15 != 0) {
+            view.setTranslationY(-i15);
+        }
+        this.f47959r.add(new s4.i(c1Var, translationX, translationY, i12, i13));
+        return true;
+    }
+
+    @Override
+    public final boolean t(s4.c1 c1Var) {
         return true;
     }
 }

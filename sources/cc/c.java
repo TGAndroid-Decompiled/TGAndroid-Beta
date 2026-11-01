@@ -158,20 +158,20 @@ public abstract class c {
                 aVar2.b(c(i44, 1335), 10);
                 wb.a aVar3 = new wb.a();
                 aVar3.b(21522, 15);
-                if (aVar2.f52774b == aVar3.f52774b) {
+                if (aVar2.f52792b == aVar3.f52792b) {
                     int i45 = i11;
                     while (true) {
-                        int[] iArr3 = aVar2.f52773a;
+                        int[] iArr3 = aVar2.f52791a;
                         if (i45 >= iArr3.length) {
                             break;
                         }
-                        iArr3[i45] = iArr3[i45] ^ aVar3.f52773a[i45];
+                        iArr3[i45] = iArr3[i45] ^ aVar3.f52791a[i45];
                         i45++;
                     }
-                    if (aVar2.f52774b == 15) {
+                    if (aVar2.f52792b == 15) {
                         int i46 = i11;
                         while (true) {
-                            int i47 = aVar2.f52774b;
+                            int i47 = aVar2.f52792b;
                             if (i46 >= i47) {
                                 break;
                             }
@@ -195,7 +195,7 @@ public abstract class c {
                             wb.a aVar4 = new wb.a();
                             aVar4.b(i28, 6);
                             aVar4.b(c(i28, 7973), 12);
-                            if (aVar4.f52774b == 18) {
+                            if (aVar4.f52792b == 18) {
                                 int i49 = 17;
                                 for (int i50 = i11; i50 < 6; i50++) {
                                     for (int i51 = i11; i51 < 3; i51++) {
@@ -209,7 +209,7 @@ public abstract class c {
                                     }
                                 }
                             } else {
-                                throw new Exception("should not happen but we got: " + aVar4.f52774b);
+                                throw new Exception("should not happen but we got: " + aVar4.f52792b);
                             }
                         }
                         int i53 = i40 - 1;
@@ -224,7 +224,7 @@ public abstract class c {
                                 for (int i57 = i11; i57 < 2; i57++) {
                                     int i58 = i53 - i57;
                                     if (g(dVar2.e(i58, i54))) {
-                                        if (i55 < aVar.f52774b) {
+                                        if (i55 < aVar.f52792b) {
                                             boolean d12 = aVar.d(i55);
                                             i55++;
                                             i14 = d12;
@@ -287,12 +287,12 @@ public abstract class c {
                             i54 += i56;
                             i53 -= 2;
                         }
-                        if (i55 == aVar.f52774b) {
+                        if (i55 == aVar.f52792b) {
                             return;
                         }
-                        throw new Exception("Not all bits consumed: " + i55 + '/' + aVar.f52774b);
+                        throw new Exception("Not all bits consumed: " + i55 + '/' + aVar.f52792b);
                     }
-                    throw new Exception("should not happen but we got: " + aVar2.f52774b);
+                    throw new Exception("should not happen but we got: " + aVar2.f52792b);
                 }
                 throw new IllegalArgumentException("Sizes don't match");
             }

@@ -1,33 +1,46 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class t00 implements RequestDelegate {
-    public final long f17980a;
-    public final int f17981b;
-    public final x00 f17982c;
+import android.content.SharedPreferences;
+public final class t00 implements Runnable {
+    public final int f18189a;
+    public final y00 f18190b;
 
-    public t00(x00 x00Var, long j10, int i10) {
-        this.f17982c = x00Var;
-        this.f17980a = j10;
-        this.f17981b = i10;
+    public t00(y00 y00Var, int i10) {
+        this.f18189a = i10;
+        this.f18190b = y00Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        if (tL_error == null) {
-            TLRPC.TL_messages_affectedHistory tL_messages_affectedHistory = (TLRPC.TL_messages_affectedHistory) tLObject;
-            x00 x00Var = this.f17982c;
-            vp messagesController = x00Var.getMessagesController();
-            int i10 = tL_messages_affectedHistory.pts;
-            int i11 = tL_messages_affectedHistory.pts_count;
-            long j10 = this.f17980a;
-            messagesController.I3(i10, i11, j10);
-            int i12 = tL_messages_affectedHistory.offset;
-            if (i12 > 0) {
-                x00Var.c(this.f17981b, i12, j10);
-            }
+    public final void run() {
+        int i10 = this.f18189a;
+        y00 y00Var = this.f18190b;
+        switch (i10) {
+            case 0:
+                at f7 = at.f(y00Var.currentAccount);
+                int i11 = wp.D8;
+                f7.k(2, 512);
+                return;
+            default:
+                y00Var.f19511a.b();
+                y00Var.f19512b.b();
+                y00Var.d.clear();
+                SharedPreferences.Editor edit = y00Var.getUserConfig().k().edit();
+                for (String str : y00Var.getUserConfig().k().getAll().keySet()) {
+                    if (str.startsWith("topics_load_offset_message_id_")) {
+                        edit.remove(str);
+                    }
+                    if (str.startsWith("topics_load_offset_date_")) {
+                        edit.remove(str);
+                    }
+                    if (str.startsWith("topics_load_offset_topic_id_")) {
+                        edit.remove(str);
+                    }
+                    if (str.startsWith("topics_end_reached_")) {
+                        edit.remove(str);
+                    }
+                }
+                edit.apply();
+                return;
         }
     }
 }

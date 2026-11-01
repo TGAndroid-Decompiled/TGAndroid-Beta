@@ -8,40 +8,40 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.TreeSet;
 public final class c {
-    public final String f6813a;
-    public final String f6814b;
-    public final boolean f6815c;
+    public final String f6814a;
+    public final String f6815b;
+    public final boolean f6816c;
     public final long d;
     public final long e;
-    public final g f6816f;
-    public final String[] f6817g;
+    public final g f6817f;
+    public final String[] f6818g;
     public final String h;
-    public final String f6818i;
-    public final c f6819j;
-    public final HashMap f6820k;
-    public final HashMap f6821l;
-    public ArrayList f6822m;
+    public final String f6819i;
+    public final c f6820j;
+    public final HashMap f6821k;
+    public final HashMap f6822l;
+    public ArrayList f6823m;
 
     public c(String str, String str2, long j10, long j11, g gVar, String[] strArr, String str3, String str4, c cVar) {
         boolean z10;
-        this.f6813a = str;
-        this.f6814b = str2;
-        this.f6818i = str4;
-        this.f6816f = gVar;
-        this.f6817g = strArr;
+        this.f6814a = str;
+        this.f6815b = str2;
+        this.f6819i = str4;
+        this.f6817f = gVar;
+        this.f6818g = strArr;
         if (str2 != null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f6815c = z10;
+        this.f6816c = z10;
         this.d = j10;
         this.e = j11;
         str3.getClass();
         this.h = str3;
-        this.f6819j = cVar;
-        this.f6820k = new HashMap();
-        this.f6821l = new HashMap();
+        this.f6820j = cVar;
+        this.f6821k = new HashMap();
+        this.f6822l = new HashMap();
     }
 
     public static c a(String str) {
@@ -61,7 +61,7 @@ public final class c {
     }
 
     public final c b(int i10) {
-        ArrayList arrayList = this.f6822m;
+        ArrayList arrayList = this.f6823m;
         if (arrayList != null) {
             return (c) arrayList.get(i10);
         }
@@ -69,7 +69,7 @@ public final class c {
     }
 
     public final int c() {
-        ArrayList arrayList = this.f6822m;
+        ArrayList arrayList = this.f6823m;
         if (arrayList == null) {
             return 0;
         }
@@ -78,10 +78,10 @@ public final class c {
 
     public final void d(TreeSet treeSet, boolean z10) {
         boolean z11;
-        String str = this.f6813a;
+        String str = this.f6814a;
         boolean equals = "p".equals(str);
         boolean equals2 = "div".equals(str);
-        if (z10 || equals || (equals2 && this.f6818i != null)) {
+        if (z10 || equals || (equals2 && this.f6819i != null)) {
             long j10 = this.d;
             if (j10 != -9223372036854775807L) {
                 treeSet.add(Long.valueOf(j10));
@@ -91,9 +91,9 @@ public final class c {
                 treeSet.add(Long.valueOf(j11));
             }
         }
-        if (this.f6822m != null) {
-            for (int i10 = 0; i10 < this.f6822m.size(); i10++) {
-                c cVar = (c) this.f6822m.get(i10);
+        if (this.f6823m != null) {
+            for (int i10 = 0; i10 < this.f6823m.size(); i10++) {
+                c cVar = (c) this.f6823m.get(i10);
                 if (!z10 && !equals) {
                     z11 = false;
                 } else {
@@ -129,7 +129,7 @@ public final class c {
         if (!"".equals(str3)) {
             str = str3;
         }
-        if (f(j10) && "div".equals(this.f6813a) && (str2 = this.f6818i) != null) {
+        if (f(j10) && "div".equals(this.f6814a) && (str2 = this.f6819i) != null) {
             arrayList.add(new Pair(str, str2));
             return;
         }
@@ -147,11 +147,11 @@ public final class c {
         boolean z11;
         TreeMap treeMap2;
         long j11;
-        HashMap hashMap = this.f6820k;
+        HashMap hashMap = this.f6821k;
         hashMap.clear();
-        HashMap hashMap2 = this.f6821l;
+        HashMap hashMap2 = this.f6822l;
         hashMap2.clear();
-        String str3 = this.f6813a;
+        String str3 = this.f6814a;
         if (!"metadata".equals(str3)) {
             String str4 = this.h;
             if ("".equals(str4)) {
@@ -159,9 +159,9 @@ public final class c {
             } else {
                 str2 = str4;
             }
-            if (this.f6815c && z10) {
+            if (this.f6816c && z10) {
                 SpannableStringBuilder e = e(str2, treeMap);
-                String str5 = this.f6814b;
+                String str5 = this.f6815b;
                 str5.getClass();
                 e.append((CharSequence) str5);
             } else if ("br".equals(str3) && z10) {

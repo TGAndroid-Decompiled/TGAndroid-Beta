@@ -17,7 +17,7 @@ public final class oi extends s4.r {
     public boolean Y0() {
         switch (this.Q) {
             case 2:
-                if (((cx0) this.R).N1 != null && org.telegram.messenger.cd.X) {
+                if (((dx0) this.R).N1 != null && org.telegram.messenger.dd.X) {
                     return true;
                 }
                 return false;
@@ -48,7 +48,7 @@ public final class oi extends s4.r {
     public int o0(int i10, hf.e eVar, s4.z0 z0Var) {
         switch (this.Q) {
             case 3:
-                if (((uh.i) this.R).f50246b) {
+                if (((uh.i) this.R).f50260b) {
                     i10 = 0;
                 }
                 return super.o0(i10, eVar, z0Var);
@@ -62,12 +62,12 @@ public final class oi extends s4.r {
         switch (this.Q) {
             case 0:
                 ni niVar = new ni(this, recyclerView.getContext());
-                niVar.f48045a = i10;
+                niVar.f48056a = i10;
                 w0(niVar);
                 return;
             case 1:
                 vl vlVar = new vl(this, recyclerView.getContext());
-                vlVar.f48045a = i10;
+                vlVar.f48056a = i10;
                 w0(vlVar);
                 return;
             default:
@@ -97,9 +97,9 @@ public final class oi extends s4.r {
         this.R = uhVar;
     }
 
-    public oi(cx0 cx0Var) {
+    public oi(dx0 dx0Var) {
         super(5);
         this.Q = 2;
-        this.R = cx0Var;
+        this.R = dx0Var;
     }
 }

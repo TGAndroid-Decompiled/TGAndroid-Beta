@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 public final class f {
-    public final int f9471a;
-    public final List f9472b;
+    public final int f9472a;
+    public final List f9473b;
 
     public f(int i10, List list) {
-        this.f9471a = i10;
-        this.f9472b = list;
+        this.f9472a = i10;
+        this.f9473b = list;
     }
 
     public j4.h0 a(int r6, j6.m r7) {
@@ -25,7 +25,7 @@ public final class f {
         List list;
         boolean z11;
         boolean c10 = c(32);
-        List list2 = this.f9472b;
+        List list2 = this.f9473b;
         if (c10) {
             return list2;
         }
@@ -79,19 +79,19 @@ public final class f {
     }
 
     public boolean c(int i10) {
-        if ((i10 & this.f9471a) != 0) {
+        if ((i10 & this.f9472a) != 0) {
             return true;
         }
         return false;
     }
 
     public f() {
-        this.f9471a = 1;
-        this.f9472b = Collections.singletonList(null);
+        this.f9472a = 1;
+        this.f9473b = Collections.singletonList(null);
     }
 
     public f(ArrayList arrayList) {
-        this.f9471a = 0;
-        this.f9472b = arrayList;
+        this.f9472a = 0;
+        this.f9473b = arrayList;
     }
 }

@@ -5,21 +5,21 @@ import e9.n0;
 import e9.x1;
 import java.util.List;
 public final class d implements c3.o {
-    public final int f9422a;
+    public final int f9423a;
     public final e2.x d;
     public final a4.g e;
-    public c3.q f9425f;
-    public long f9426g;
-    public boolean f9428j;
-    public boolean f9429k;
-    public boolean f9430l;
-    public final e f9423b = new e(0, null, "audio/mp4a-latm", true);
-    public final e2.x f9424c = new e2.x(2048);
-    public int f9427i = -1;
+    public c3.q f9426f;
+    public long f9427g;
+    public boolean f9429j;
+    public boolean f9430k;
+    public boolean f9431l;
+    public final e f9424b = new e(0, null, "audio/mp4a-latm", true);
+    public final e2.x f9425c = new e2.x(2048);
+    public int f9428i = -1;
     public long h = -1;
 
     public d(int i10) {
-        this.f9422a = i10;
+        this.f9423a = i10;
         e2.x xVar = new e2.x(10);
         this.d = xVar;
         byte[] bArr = xVar.f6207a;
@@ -67,16 +67,16 @@ public final class d implements c3.o {
 
     @Override
     public final void c(c3.q qVar) {
-        this.f9425f = qVar;
-        this.f9423b.f(qVar, new g0(0, 1));
+        this.f9426f = qVar;
+        this.f9424b.f(qVar, new g0(0, 1));
         qVar.Q0();
     }
 
     @Override
     public final void d(long j10, long j11) {
-        this.f9429k = false;
-        this.f9423b.e();
-        this.f9426g = j11;
+        this.f9430k = false;
+        this.f9424b.e();
+        this.f9427g = j11;
     }
 
     @Override

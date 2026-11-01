@@ -7,17 +7,17 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 public final class qb0 extends Drawable {
-    public pb0 f29625a;
-    public final Paint f29626b;
-    public int f29627c;
+    public pb0 f29706a;
+    public final Paint f29707b;
+    public int f29708c;
     public int d;
     public final long e;
-    public int f29628f;
+    public int f29709f;
 
     public qb0() {
         Paint paint = new Paint(1);
-        this.f29626b = paint;
-        this.f29627c = 255;
+        this.f29707b = paint;
+        this.f29708c = 255;
         this.d = 255;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -26,19 +26,19 @@ public final class qb0 extends Drawable {
     }
 
     public final void a(int i10) {
-        if (i10 != this.f29628f) {
+        if (i10 != this.f29709f) {
             int alpha = Color.alpha(i10);
             this.d = alpha;
-            this.f29626b.setColor(i0.b.o(i10, (int) ((alpha / 255.0f) * this.f29627c)));
+            this.f29707b.setColor(i0.b.o(i10, (int) ((alpha / 255.0f) * this.f29708c)));
         }
-        this.f29628f = i10;
+        this.f29709f = i10;
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
         int min = Math.min(bounds.width(), bounds.height());
-        Paint paint = this.f29626b;
+        Paint paint = this.f29707b;
         canvas.drawCircle(bounds.centerX(), bounds.centerY(), (min >> 1) - org.telegram.messenger.i0.L(0.5f), paint);
         long currentTimeMillis = System.currentTimeMillis();
         canvas.save();
@@ -54,10 +54,10 @@ public final class qb0 extends Drawable {
 
     @Override
     public final Drawable.ConstantState getConstantState() {
-        if (this.f29625a == null) {
-            this.f29625a = new Drawable.ConstantState();
+        if (this.f29706a == null) {
+            this.f29706a = new Drawable.ConstantState();
         }
-        return this.f29625a;
+        return this.f29706a;
     }
 
     @Override
@@ -77,9 +77,9 @@ public final class qb0 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        if (this.f29627c != i10) {
-            this.f29627c = i10;
-            this.f29626b.setAlpha((int) ((this.d / 255.0f) * i10));
+        if (this.f29708c != i10) {
+            this.f29708c = i10;
+            this.f29707b.setAlpha((int) ((this.d / 255.0f) * i10));
         }
     }
 

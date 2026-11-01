@@ -3,19 +3,19 @@ package org.telegram.ui.Wallet;
 import android.util.Base64;
 import org.json.JSONObject;
 public final class c2 {
-    public final String f34309a;
-    public final String f34310b;
-    public final String f34311c;
+    public final String f34311a;
+    public final String f34312b;
+    public final String f34313c;
     public final String d;
     public final long e;
-    public final boolean f34312f;
+    public final boolean f34314f;
 
     public c2(JSONObject jSONObject) {
         String str;
         String string = jSONObject.getString("address");
-        this.f34309a = string;
+        this.f34311a = string;
         if (!string.contains(":") && WalletEngine2.isValidAddress(string)) {
-            this.f34312f = (Base64.decode(string.replace('-', '+').replace('_', '/'), 2)[0] & Byte.MAX_VALUE) == 17;
+            this.f34314f = (Base64.decode(string.replace('-', '+').replace('_', '/'), 2)[0] & Byte.MAX_VALUE) == 17;
             Object obj = jSONObject.get("amount");
             if (obj instanceof String) {
                 String str2 = (String) obj;
@@ -31,9 +31,9 @@ public final class c2 {
                         } else {
                             str = null;
                         }
-                        this.f34310b = str;
+                        this.f34312b = str;
                         String string2 = jSONObject.has("stateInit") ? jSONObject.getString("stateInit") : null;
-                        this.f34311c = string2;
+                        this.f34313c = string2;
                         if ((str != null && !WalletEngine2.isValidCellBoc(str)) || (string2 != null && !WalletEngine2.isValidCellBoc(string2))) {
                             throw new IllegalArgumentException("Invalid transaction cell");
                         }

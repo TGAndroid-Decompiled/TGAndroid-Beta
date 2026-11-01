@@ -1,45 +1,37 @@
 package org.telegram.messenger;
-public final class sl implements Runnable {
-    public final int f17924a;
-    public final vp f17925b;
-    public final rf.q f17926c;
 
-    public sl(vp vpVar, rf.q qVar, int i10) {
-        this.f17924a = i10;
-        this.f17925b = vpVar;
-        this.f17926c = qVar;
+import org.telegram.tgnet.TLObject;
+public final class sl implements r20 {
+    public final int f18108a;
+    public final Object f18109b;
+    public final long f18110c;
+    public final Object d;
+    public final Object e;
+    public final Object f18111f;
+    public final Object f18112g;
+
+    public sl(wp wpVar, org.telegram.ui.ActionBar.x1 x1Var, org.telegram.ui.un unVar, org.telegram.ui.nf nfVar, long j10, org.telegram.ui.me meVar) {
+        this.f18108a = 0;
+        this.d = wpVar;
+        this.f18109b = x1Var;
+        this.e = unVar;
+        this.f18111f = nfVar;
+        this.f18110c = j10;
+        this.f18112g = meVar;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f17924a;
-        rf.q qVar = this.f17926c;
-        vp vpVar = this.f17925b;
-        switch (i10) {
-            case 0:
-                a0.h hVar = qVar.f46550c;
-                int m10 = hVar.m();
-                for (int i11 = 0; i11 < m10; i11++) {
-                    vpVar.getNotificationCenter().k(49, Long.valueOf(hVar.j(i11)), hVar.n(i11), Boolean.FALSE);
-                }
-                return;
-            case 1:
-                a0.h hVar2 = qVar.f46550c;
-                int m11 = hVar2.m();
-                for (int i12 = 0; i12 < m11; i12++) {
-                    vpVar.getNotificationCenter().k(49, Long.valueOf(hVar2.j(i12)), hVar2.n(i12), Boolean.FALSE);
-                }
-                return;
-            default:
-                a0.h hVar3 = qVar.f46550c;
-                if (!hVar3.i()) {
-                    int m12 = hVar3.m();
-                    for (int i13 = 0; i13 < m12; i13++) {
-                        vpVar.getNotificationCenter().k(1, Long.valueOf(hVar3.j(i13)), hVar3.n(i13), Boolean.FALSE, 0);
-                    }
-                    return;
-                }
-                return;
-        }
+    public final void a(java.lang.Object r32) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.sl.a(java.lang.Object):void");
+    }
+
+    public sl(org.telegram.ui.ActionBar.z2 z2Var, Object obj, Object obj2, long j10, TLObject tLObject, TLObject tLObject2, int i10) {
+        this.f18108a = i10;
+        this.d = z2Var;
+        this.f18109b = obj;
+        this.e = obj2;
+        this.f18110c = j10;
+        this.f18111f = tLObject;
+        this.f18112g = tLObject2;
     }
 }

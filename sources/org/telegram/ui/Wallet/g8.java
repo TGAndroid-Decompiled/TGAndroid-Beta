@@ -7,10 +7,10 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.ic;
+import org.telegram.messenger.jc;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.bi0;
+import org.telegram.ui.Components.ci0;
 public final class g8 {
     public int[] A;
     public int[] B;
@@ -38,76 +38,76 @@ public final class g8 {
     public float X;
     public float Y;
     public float Z;
-    public final String f34576a;
-    public float f34577a0;
-    public TL_wallet.nftItem f34578b;
-    public float f34579b0;
-    public final ag.c2 f34580c;
-    public float f34581c0;
+    public final String f34582a;
+    public float f34583a0;
+    public TL_wallet.nftItem f34584b;
+    public float f34585b0;
+    public final ag.c2 f34586c;
+    public float f34587c0;
     public final ImageReceiver d;
-    public final h8 f34582d0;
+    public final h8 f34588d0;
     public final f8 e;
-    public final f8 f34583f;
-    public final f8 f34584g;
+    public final f8 f34589f;
+    public final f8 f34590g;
     public final f8 h;
-    public final f8 f34585i;
-    public final f8 f34586j;
-    public final f8 f34587k;
-    public final f8 f34588l;
-    public final f8 f34589m;
-    public final f8 f34590n;
-    public final f8 f34591o;
-    public final f8 f34592p;
-    public final f8 f34593q;
-    public final f8 f34594r;
-    public final f8[] f34595s;
-    public final TL_stars.starGiftAttributeBackdrop f34596t;
-    public Bitmap f34597u;
+    public final f8 f34591i;
+    public final f8 f34592j;
+    public final f8 f34593k;
+    public final f8 f34594l;
+    public final f8 f34595m;
+    public final f8 f34596n;
+    public final f8 f34597o;
+    public final f8 f34598p;
+    public final f8 f34599q;
+    public final f8 f34600r;
+    public final f8[] f34601s;
+    public final TL_stars.starGiftAttributeBackdrop f34602t;
+    public Bitmap f34603u;
     public Bitmap v;
-    public Bitmap f34598w;
-    public Canvas f34599x;
-    public int[] f34600y;
-    public int[] f34601z;
+    public Bitmap f34604w;
+    public Canvas f34605x;
+    public int[] f34606y;
+    public int[] f34607z;
 
     public g8(h8 h8Var, TL_wallet.nftItem nftitem) {
-        org.telegram.ui.ActionBar.k2 k2Var = h8Var.f34626a;
-        this.f34582d0 = h8Var;
-        this.f34580c = new ag.c2(5, h8Var, this);
+        org.telegram.ui.ActionBar.k2 k2Var = h8Var.f34633a;
+        this.f34588d0 = h8Var;
+        this.f34586c = new ag.c2(5, h8Var, this);
         this.d = new ImageReceiver(h8Var.M);
         f8 f8Var = new f8(0.0f, 900.0f, 0.86f);
         this.e = f8Var;
         f8 f8Var2 = new f8(0.0f, 900.0f, 0.86f);
-        this.f34583f = f8Var2;
+        this.f34589f = f8Var2;
         f8 f8Var3 = new f8(1.0f, 420.0f, 0.78f);
-        this.f34584g = f8Var3;
+        this.f34590g = f8Var3;
         f8 f8Var4 = new f8(1.0f, 700.0f, 0.9f);
         this.h = f8Var4;
         f8 f8Var5 = new f8(0.0f, 700.0f, 0.9f);
-        this.f34585i = f8Var5;
+        this.f34591i = f8Var5;
         f8 f8Var6 = new f8(0.0f, 380.0f, 0.82f);
-        this.f34586j = f8Var6;
+        this.f34592j = f8Var6;
         f8 f8Var7 = new f8(0.0f, 30.0f, 1.0f);
-        this.f34587k = f8Var7;
+        this.f34593k = f8Var7;
         f8 f8Var8 = new f8(0.0f, 520.0f, 0.62f);
-        this.f34588l = f8Var8;
+        this.f34594l = f8Var8;
         f8 f8Var9 = new f8(0.0f, 300.0f, 1.0f);
-        this.f34589m = f8Var9;
+        this.f34595m = f8Var9;
         f8 f8Var10 = new f8(0.0f, 150.0f, 0.82f);
-        this.f34590n = f8Var10;
+        this.f34596n = f8Var10;
         f8 f8Var11 = new f8(0.0f, 150.0f, 0.82f);
-        this.f34591o = f8Var11;
+        this.f34597o = f8Var11;
         f8 f8Var12 = new f8(0.0f, 240.0f, 1.0f);
-        this.f34592p = f8Var12;
+        this.f34598p = f8Var12;
         f8 f8Var13 = new f8(0.0f, 700.0f, 1.0f);
-        this.f34593q = f8Var13;
+        this.f34599q = f8Var13;
         f8 f8Var14 = new f8(1.0f, 260.0f, 1.0f);
-        this.f34594r = f8Var14;
-        this.f34595s = new f8[]{f8Var, f8Var2, f8Var3, f8Var4, f8Var5, f8Var6, f8Var7, f8Var8, f8Var9, f8Var10, f8Var11, f8Var12, f8Var13, f8Var14};
+        this.f34600r = f8Var14;
+        this.f34601s = new f8[]{f8Var, f8Var2, f8Var3, f8Var4, f8Var5, f8Var6, f8Var7, f8Var8, f8Var9, f8Var10, f8Var11, f8Var12, f8Var13, f8Var14};
         this.E = -2;
         this.V = 1.0f;
-        this.f34581c0 = 1.0f;
-        this.f34578b = nftitem;
-        this.f34576a = nftitem.address;
+        this.f34587c0 = 1.0f;
+        this.f34584b = nftitem;
+        this.f34582a = nftitem.address;
         ArrayList<TL_stars.StarGiftAttribute> arrayList = nftitem.gift.attributes;
         int size = arrayList.size();
         int i10 = 0;
@@ -116,62 +116,62 @@ public final class g8 {
             i10++;
             TL_stars.StarGiftAttribute starGiftAttribute2 = starGiftAttribute;
             if (starGiftAttribute2 instanceof TL_stars.starGiftAttributeBackdrop) {
-                this.f34596t = (TL_stars.starGiftAttributeBackdrop) starGiftAttribute2;
+                this.f34602t = (TL_stars.starGiftAttributeBackdrop) starGiftAttribute2;
             }
             if (starGiftAttribute2 instanceof TL_stars.starGiftAttributePattern) {
-                this.d.q0(ic.b(((TL_stars.starGiftAttributePattern) starGiftAttribute2).document), "60_60_firstframe", null, null, nftitem.gift, 1);
+                this.d.q0(jc.b(((TL_stars.starGiftAttributePattern) starGiftAttribute2).document), "60_60_firstframe", null, null, nftitem.gift, 1);
             }
         }
-        d3 d3Var = new d3(this, 5);
-        ag.c2 c2Var = this.f34580c;
-        c2Var.f14382g1 = d3Var;
-        this.d.f14382g1 = d3Var;
+        e3 e3Var = new e3(this, 5);
+        ag.c2 c2Var = this.f34586c;
+        c2Var.f14383g1 = e3Var;
+        this.d.f14383g1 = e3Var;
         c2Var.d = k2Var.getCurrentAccount();
         this.d.d = k2Var.getCurrentAccount();
-        ag.c2 c2Var2 = this.f34580c;
-        c2Var2.f14410u0 = false;
+        ag.c2 c2Var2 = this.f34586c;
+        c2Var2.f14411u0 = false;
         c2Var2.W(1);
-        this.f34580c.q0(ic.b(nftitem.gift.getDocument()), "120_120_nolimit", null, null, nftitem.gift, 1);
+        this.f34586c.q0(jc.b(nftitem.gift.getDocument()), "120_120_nolimit", null, null, nftitem.gift, 1);
         if (h8Var.isAttachedToWindow()) {
-            this.f34580c.P();
+            this.f34586c.P();
             this.d.P();
         }
     }
 
     public final Bitmap a() {
         int i10;
-        h8 h8Var = this.f34582d0;
+        h8 h8Var = this.f34588d0;
         RectF rectF = h8Var.E;
-        ag.c2 c2Var = this.f34580c;
+        ag.c2 c2Var = this.f34586c;
         Bitmap n10 = c2Var.n();
         if (n10 != null && !n10.isRecycled()) {
-            bi0 B = c2Var.B();
+            ci0 B = c2Var.B();
             if (B == null) {
                 i10 = 0;
             } else {
-                i10 = B.f24752a0;
+                i10 = B.f25131a0;
             }
             Bitmap bitmap = this.v;
             if (bitmap != null && this.G == n10 && this.E == i10) {
-                return this.f34597u;
+                return this.f34603u;
             }
             this.G = n10;
             this.E = i10;
             if (bitmap == null) {
                 this.v = Bitmap.createBitmap(288, 288, Bitmap.Config.ARGB_8888);
-                this.f34599x = new Canvas(this.v);
+                this.f34605x = new Canvas(this.v);
             }
             this.v.eraseColor(0);
             rectF.set(10.0f, 10.0f, 278.0f, 278.0f);
-            this.f34599x.drawBitmap(n10, (Rect) null, rectF, h8Var.D);
+            this.f34605x.drawBitmap(n10, (Rect) null, rectF, h8Var.D);
             if (this.C) {
                 this.D = true;
             } else {
                 c();
             }
-            return this.f34597u;
+            return this.f34603u;
         }
-        return this.f34597u;
+        return this.f34603u;
     }
 
     public final boolean b() {
@@ -184,28 +184,28 @@ public final class g8 {
 
     public final void c() {
         boolean z10;
-        if (this.f34600y == null) {
-            this.f34600y = new int[82944];
-            this.f34601z = new int[82944];
+        if (this.f34606y == null) {
+            this.f34606y = new int[82944];
+            this.f34607z = new int[82944];
             this.A = new int[82944];
-            org.telegram.messenger.s5 s5Var = ga.f34604a;
+            org.telegram.messenger.s5 s5Var = ga.f34610a;
             this.B = new int[288];
         }
-        this.v.getPixels(this.f34600y, 0, 288, 0, 0, 288, 288);
+        this.v.getPixels(this.f34606y, 0, 288, 0, 0, 288, 288);
         this.C = true;
         this.D = false;
-        if (this.f34598w == null) {
+        if (this.f34604w == null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        int[] iArr = this.f34600y;
-        int[] iArr2 = this.f34601z;
+        int[] iArr = this.f34606y;
+        int[] iArr2 = this.f34607z;
         int[] iArr3 = this.A;
         int[] iArr4 = this.B;
-        if (ga.f34604a == null) {
-            ga.f34604a = new org.telegram.messenger.s5("walletStickerOutline", true);
+        if (ga.f34610a == null) {
+            ga.f34610a = new org.telegram.messenger.s5("walletStickerOutline", true);
         }
-        ga.f34604a.postRunnable(new i2.h1(this, iArr, iArr2, iArr3, iArr4, z10, 8));
+        ga.f34610a.postRunnable(new i2.h1(this, iArr, iArr2, iArr3, iArr4, z10, 8));
     }
 }

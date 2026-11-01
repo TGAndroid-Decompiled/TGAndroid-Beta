@@ -2,8 +2,8 @@ package bi;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.messenger.ef;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.at;
+import org.telegram.messenger.ff;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
 import org.telegram.ui.Components.ai;
@@ -20,7 +20,7 @@ public final class y1 implements ai {
 
     @Override
     public final void C(mg mgVar) {
-        zs.f(this.f3460b.getCurrentAccount()).d(mgVar);
+        at.f(this.f3460b.getCurrentAccount()).d(mgVar);
     }
 
     @Override
@@ -45,11 +45,11 @@ public final class y1 implements ai {
                     break;
                 }
                 Object obj = selectedPhotos.get(selectedPhotosOrder.get(i13));
-                if (obj instanceof ef) {
+                if (obj instanceof ff) {
                     if (aVar != null) {
-                        k2Var.P.W1(aVar, (ef) obj);
+                        k2Var.P.W1(aVar, (ff) obj);
                     } else {
-                        k2Var.P.i2((ef) obj);
+                        k2Var.P.i2((ff) obj);
                     }
                 } else {
                     i13++;

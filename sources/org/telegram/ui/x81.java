@@ -1,28 +1,26 @@
 package org.telegram.ui;
-public final class x81 implements e91 {
-    public boolean f43503a;
-    public final un f43504b;
 
-    public x81(un unVar, boolean z10) {
-        this.f43504b = unVar;
-        this.f43503a = z10;
+import android.app.Activity;
+import org.telegram.tgnet.TLRPC;
+public final class x81 extends org.telegram.ui.Components.pp0 {
+    public final z81 R2;
+
+    public x81(z81 z81Var, Activity activity, String str, String str2) {
+        super(activity, null, str, false, str2, false, null);
+        this.R2 = z81Var;
     }
 
     @Override
-    public final void M1(boolean z10) {
-        boolean z11 = !this.f43503a;
-        this.f43503a = z11;
-        sn snVar = this.f43504b.f42477xa;
-        snVar.r(snVar.f41590f, snVar.f41591g, z10, Boolean.valueOf(z11), false);
-    }
-
-    @Override
-    public final boolean a() {
-        return this.f43503a;
-    }
-
-    @Override
-    public final boolean b1() {
-        return true;
+    public final void R0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        if (!z10) {
+            return;
+        }
+        int m10 = hVar.m();
+        z81 z81Var = this.R2;
+        if (m10 == 1) {
+            z81Var.f43849a.m0.m(((TLRPC.Dialog) hVar.n(0)).f19798id, Integer.valueOf(i10), 61);
+        } else {
+            z81Var.f43849a.m0.k(0L, 61, Integer.valueOf(i10), Integer.valueOf(hVar.m()), null, null);
+        }
     }
 }

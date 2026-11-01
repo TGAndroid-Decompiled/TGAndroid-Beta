@@ -6,38 +6,38 @@ import android.widget.FrameLayout;
 import j$.util.Objects;
 import java.util.WeakHashMap;
 public class wb {
-    public static wb f32128w;
-    public int f32129a;
-    public int f32130b;
-    public ka f32131c;
+    public static wb f32194w;
+    public int f32195a;
+    public int f32196b;
+    public ka f32197c;
     public o1.j d;
     public final bb e;
-    public final oa f32132f;
-    public final org.telegram.ui.ActionBar.k2 f32133g;
+    public final oa f32198f;
+    public final org.telegram.ui.ActionBar.k2 f32199g;
     public final FrameLayout h;
-    public final Runnable f32134i;
-    public int f32135j;
-    public boolean f32136k;
-    public boolean f32137l;
-    public boolean f32138m;
-    public boolean f32139n;
-    public int f32140o;
-    public ua f32141p;
-    public ab f32142q;
-    public boolean f32143r;
-    public boolean f32144s;
-    public boolean f32145t;
-    public boolean f32146u;
+    public final Runnable f32200i;
+    public int f32201j;
+    public boolean f32202k;
+    public boolean f32203l;
+    public boolean f32204m;
+    public boolean f32205n;
+    public int f32206o;
+    public ua f32207p;
+    public ab f32208q;
+    public boolean f32209r;
+    public boolean f32210s;
+    public boolean f32211t;
+    public boolean f32212u;
     public Runnable v;
 
     public wb() {
-        this.f32134i = new ja(this, 0);
-        this.f32139n = true;
-        this.f32143r = true;
-        this.f32146u = true;
+        this.f32200i = new ja(this, 0);
+        this.f32205n = true;
+        this.f32209r = true;
+        this.f32212u = true;
         this.e = null;
-        this.f32132f = null;
-        this.f32133g = null;
+        this.f32198f = null;
+        this.f32199g = null;
         this.h = null;
     }
 
@@ -65,12 +65,12 @@ public class wb {
             }
         }
         if (wbVar != null) {
-            wbVar.c(0L, org.telegram.messenger.vp.d1().getBoolean("view_animations", true));
+            wbVar.c(0L, org.telegram.messenger.wp.d1().getBoolean("view_animations", true));
         }
     }
 
     public static void e() {
-        wb wbVar = f32128w;
+        wb wbVar = f32194w;
         if (wbVar != null) {
             wbVar.b();
         }
@@ -89,7 +89,7 @@ public class wb {
         }
         if (k2Var instanceof org.telegram.ui.un) {
             bb.access$000(taVar, -2, 1);
-        } else if (k2Var instanceof org.telegram.ui.ay) {
+        } else if (k2Var instanceof org.telegram.ui.zx) {
             bb.access$000(taVar, -1, 0);
         }
         return new wb(k2Var, k2Var.getBulletinLayoutContainer(), taVar, i10);
@@ -102,40 +102,40 @@ public class wb {
     }
 
     public final void b() {
-        c(0L, org.telegram.messenger.vp.d1().getBoolean("view_animations", true));
+        c(0L, org.telegram.messenger.wp.d1().getBoolean("view_animations", true));
     }
 
     public final void c(long j10, boolean z10) {
         bb bbVar = this.e;
-        if (bbVar != null && this.f32137l) {
-            this.f32137l = false;
-            if (f32128w == this) {
-                f32128w = null;
+        if (bbVar != null && this.f32203l) {
+            this.f32203l = false;
+            if (f32194w == this) {
+                f32194w = null;
             }
-            WeakHashMap weakHashMap = r0.h0.f46123a;
-            if (bbVar.isLaidOut() || this.f32145t) {
-                bbVar.removeCallbacks(this.f32134i);
+            WeakHashMap weakHashMap = r0.h0.f46134a;
+            if (bbVar.isLaidOut() || this.f32211t) {
+                bbVar.removeCallbacks(this.f32200i);
                 if (z10) {
                     bbVar.transitionRunningExit = true;
-                    bbVar.delegate = this.f32141p;
+                    bbVar.delegate = this.f32207p;
                     bbVar.invalidate();
                     if (j10 >= 0) {
                         ?? obj = new Object();
                         obj.f3687a = j10;
-                        this.f32142q = obj;
-                    } else if (bbVar != null && this.f32142q == null) {
-                        this.f32142q = bbVar.createTransition();
+                        this.f32208q = obj;
+                    } else if (bbVar != null && this.f32208q == null) {
+                        this.f32208q = bbVar.createTransition();
                     }
-                    ab abVar = this.f32142q;
+                    ab abVar = this.f32208q;
                     Objects.requireNonNull(bbVar);
                     abVar.m(bbVar, new la(bbVar, 0), new ja(this, 1), new ma(this, 0));
                     return;
                 }
             }
-            ua uaVar = this.f32141p;
+            ua uaVar = this.f32207p;
             if (uaVar != null && !bbVar.top) {
                 uaVar.c(0.0f);
-                this.f32141p.d(this);
+                this.f32207p.d(this);
             }
             bbVar.onExitTransitionStart();
             bbVar.onExitTransitionEnd();
@@ -154,16 +154,16 @@ public class wb {
     public final void i(boolean z10) {
         boolean z11;
         bb bbVar;
-        if (z10 && this.f32139n) {
+        if (z10 && this.f32205n) {
             z11 = true;
         } else {
             z11 = false;
         }
-        if (this.f32138m != z11 && (bbVar = this.e) != null) {
-            this.f32138m = z11;
-            Runnable runnable = this.f32134i;
+        if (this.f32204m != z11 && (bbVar = this.e) != null) {
+            this.f32204m = z11;
+            Runnable runnable = this.f32200i;
             if (z11) {
-                int i10 = this.f32135j;
+                int i10 = this.f32201j;
                 if (i10 >= 0) {
                     bbVar.postDelayed(runnable, i10);
                     return;
@@ -181,8 +181,8 @@ public class wb {
 
     public final void k(final boolean z10) {
         FrameLayout frameLayout;
-        if (!this.f32137l && (frameLayout = this.h) != 0) {
-            this.f32137l = true;
+        if (!this.f32203l && (frameLayout = this.h) != 0) {
+            this.f32203l = true;
             bb bbVar = this.e;
             bbVar.setTop(z10);
             CharSequence accessibilityText = bbVar.getAccessibilityText();
@@ -190,39 +190,39 @@ public class wb {
                 org.telegram.messenger.i0.i2(accessibilityText);
             }
             ViewParent parent = bbVar.getParent();
-            oa oaVar = this.f32132f;
+            oa oaVar = this.f32198f;
             if (parent == oaVar) {
-                wb wbVar = f32128w;
+                wb wbVar = f32194w;
                 if (wbVar != null) {
                     wbVar.b();
                 }
-                f32128w = this;
+                f32194w = this;
                 bbVar.onAttach(this);
                 ?? r22 = new View.OnLayoutChangeListener() {
                     @Override
                     public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
                         int i18;
                         wb wbVar2 = wb.this;
-                        ua uaVar = wbVar2.f32141p;
+                        ua uaVar = wbVar2.f32207p;
                         if ((uaVar == null || uaVar.a()) && !z10) {
-                            ua uaVar2 = wbVar2.f32141p;
+                            ua uaVar2 = wbVar2.f32207p;
                             if (uaVar2 != null) {
-                                i18 = uaVar2.f(wbVar2.f32129a);
+                                i18 = uaVar2.f(wbVar2.f32195a);
                             } else {
                                 i18 = 0;
                             }
-                            int i19 = wbVar2.f32140o;
+                            int i19 = wbVar2.f32206o;
                             if (i19 != i18) {
                                 o1.j jVar = wbVar2.d;
-                                if (jVar != null && jVar.f13951f) {
-                                    jVar.f13957m.f13964i = i18;
+                                if (jVar != null && jVar.f13952f) {
+                                    jVar.f13958m.f13965i = i18;
                                 } else {
                                     o1.j jVar2 = new o1.j(new o1.i(i19));
                                     o1.k kVar = new o1.k();
-                                    kVar.f13964i = i18;
+                                    kVar.f13965i = i18;
                                     kVar.b(900.0f);
                                     kVar.a(1.0f);
-                                    jVar2.f13957m = kVar;
+                                    jVar2.f13958m = kVar;
                                     wbVar2.d = jVar2;
                                     jVar2.b(new a7(wbVar2, 1));
                                     wbVar2.d.a(new na(wbVar2, 0));
@@ -232,10 +232,10 @@ public class wb {
                         }
                     }
                 };
-                this.f32131c = r22;
+                this.f32197c = r22;
                 frameLayout.addOnLayoutChangeListener(r22);
                 bbVar.addOnLayoutChangeListener(new pa(this, z10));
-                if (!this.f32145t) {
+                if (!this.f32211t) {
                     bbVar.addOnAttachStateChangeListener(new l.d(this, 6));
                 }
                 frameLayout.addView(oaVar);
@@ -253,14 +253,14 @@ public class wb {
     }
 
     public wb(org.telegram.ui.ActionBar.k2 k2Var, FrameLayout frameLayout, bb bbVar, int i10) {
-        this.f32134i = new ja(this, 0);
-        this.f32143r = true;
-        this.f32146u = true;
+        this.f32200i = new ja(this, 0);
+        this.f32209r = true;
+        this.f32212u = true;
         this.e = bbVar;
-        this.f32139n = true ^ (bbVar instanceof cb);
-        this.f32132f = new oa(this, bbVar, frameLayout);
-        this.f32133g = k2Var;
+        this.f32205n = true ^ (bbVar instanceof cb);
+        this.f32198f = new oa(this, bbVar, frameLayout);
+        this.f32199g = k2Var;
         this.h = frameLayout;
-        this.f32135j = i10;
+        this.f32201j = i10;
     }
 }

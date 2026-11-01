@@ -13,13 +13,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 import li.a1;
-import org.telegram.messenger.ot;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.pt;
+import org.telegram.messenger.wp;
 import org.telegram.ui.ActionBar.k2;
 import org.telegram.ui.Components.cc;
 import org.telegram.ui.Components.fo;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.uy0;
+import org.telegram.ui.ty0;
 import v7.t6;
 import v7.y8;
 public final class g0 implements p, q, OnFailureListener, l2.i, a1, fo {
@@ -38,7 +38,19 @@ public final class g0 implements p, q, OnFailureListener, l2.i, a1, fo {
         return ((j) this.f3651c).f3657a;
     }
 
-    public int B(int i10) {
+    public void B(int i10) {
+        if (i10 >= 64) {
+            g0 g0Var = (g0) this.f3651c;
+            if (g0Var != null) {
+                g0Var.B(i10 - 64);
+                return;
+            }
+            return;
+        }
+        this.f3650b &= ~(1 << i10);
+    }
+
+    public int C(int i10) {
         g0 g0Var = (g0) this.f3651c;
         if (g0Var == null) {
             if (i10 >= 64) {
@@ -48,17 +60,17 @@ public final class g0 implements p, q, OnFailureListener, l2.i, a1, fo {
         } else if (i10 < 64) {
             return Long.bitCount(this.f3650b & ((1 << i10) - 1));
         } else {
-            return Long.bitCount(this.f3650b) + g0Var.B(i10 - 64);
+            return Long.bitCount(this.f3650b) + g0Var.C(i10 - 64);
         }
     }
 
-    public void C() {
+    public void D() {
         if (((g0) this.f3651c) == null) {
             this.f3651c = new g0(7);
         }
     }
 
-    public void D(sc.a aVar) {
+    public void E(sc.a aVar) {
         this.f3650b++;
         Thread thread = new Thread(aVar);
         thread.setDaemon(true);
@@ -67,31 +79,9 @@ public final class g0 implements p, q, OnFailureListener, l2.i, a1, fo {
         thread.start();
     }
 
-    @Override
-    public void E(int i10) {
-        ProfileActivity profileActivity = (ProfileActivity) this.f3651c;
-        if (i10 == 0) {
-            if (profileActivity.getMessagesController().q2(this.f3650b, profileActivity.f33811f1, null)) {
-                v();
-            }
-            if (cc.a(profileActivity)) {
-                cc.z(profileActivity, 4, i10, profileActivity.f33950z0).j();
-                return;
-            }
-            return;
-        }
-        RectF rectF = ProfileActivity.R6;
-        profileActivity.getNotificationsController().H(this.f3650b, i10, profileActivity.f33811f1);
-        if (cc.a(profileActivity)) {
-            cc.z(profileActivity, 5, i10, profileActivity.f33950z0).j();
-        }
-        profileActivity.u5();
-        profileActivity.E5(true);
-    }
-
     public boolean F(int i10) {
         if (i10 >= 64) {
-            C();
+            D();
             return ((g0) this.f3651c).F(i10 - 64);
         } else if ((this.f3650b & (1 << i10)) != 0) {
             return true;
@@ -103,7 +93,7 @@ public final class g0 implements p, q, OnFailureListener, l2.i, a1, fo {
     public void G(int i10, boolean z10) {
         boolean z11;
         if (i10 >= 64) {
-            C();
+            D();
             ((g0) this.f3651c).G(i10 - 64, z10);
             return;
         }
@@ -118,12 +108,12 @@ public final class g0 implements p, q, OnFailureListener, l2.i, a1, fo {
         if (z10) {
             J(i10);
         } else {
-            w(i10);
+            B(i10);
         }
         if (!z11 && ((g0) this.f3651c) == null) {
             return;
         }
-        C();
+        D();
         ((g0) this.f3651c).G(0, z11);
     }
 
@@ -135,7 +125,7 @@ public final class g0 implements p, q, OnFailureListener, l2.i, a1, fo {
     public boolean H(int i10) {
         boolean z10;
         if (i10 >= 64) {
-            C();
+            D();
             return ((g0) this.f3651c).H(i10 - 64);
         }
         long j10 = 1 << i10;
@@ -174,7 +164,7 @@ public final class g0 implements p, q, OnFailureListener, l2.i, a1, fo {
 
     public void J(int i10) {
         if (i10 >= 64) {
-            C();
+            D();
             ((g0) this.f3651c).J(i10 - 64);
             return;
         }
@@ -271,7 +261,7 @@ public final class g0 implements p, q, OnFailureListener, l2.i, a1, fo {
         k2Var.d = new ArrayList();
         k2Var.e = new HashSet();
         ProfileActivity profileActivity = (ProfileActivity) this.f3651c;
-        k2Var.e = profileActivity.f33829h5;
+        k2Var.e = profileActivity.f33836h5;
         profileActivity.presentFragment((k2) k2Var);
     }
 
@@ -296,13 +286,13 @@ public final class g0 implements p, q, OnFailureListener, l2.i, a1, fo {
                 }
                 return;
             case 9:
-                ((y8) this.f3651c).f50659b.set(this.f3650b);
+                ((y8) this.f3651c).f50673b.set(this.f3650b);
                 return;
             case 10:
-                ((AtomicLong) ((u9.b) this.f3651c).f50195c).set(this.f3650b);
+                ((AtomicLong) ((u9.b) this.f3651c).f50209c).set(this.f3650b);
                 return;
             default:
-                ((y8) this.f3651c).f50659b.set(this.f3650b);
+                ((y8) this.f3651c).f50673b.set(this.f3650b);
                 return;
         }
     }
@@ -333,8 +323,15 @@ public final class g0 implements p, q, OnFailureListener, l2.i, a1, fo {
     }
 
     @Override
-    public void s(MediaFormat mediaFormat) {
-        ((li.z) this.f3651c).n(mediaFormat, true);
+    public void s() {
+        ProfileActivity profileActivity = (ProfileActivity) this.f3651c;
+        boolean z10 = !profileActivity.getMessagesController().q2(this.f3650b, profileActivity.f33818f1, null);
+        profileActivity.getNotificationsController().G(this.f3650b, profileActivity.f33818f1, z10);
+        if (profileActivity.fragmentView != null) {
+            cc.A(profileActivity, z10, null).j();
+        }
+        profileActivity.v5();
+        profileActivity.F5(true);
     }
 
     @Override
@@ -367,53 +364,56 @@ public final class g0 implements p, q, OnFailureListener, l2.i, a1, fo {
     @Override
     public void v() {
         ProfileActivity profileActivity = (ProfileActivity) this.f3651c;
-        boolean z10 = !profileActivity.getMessagesController().q2(this.f3650b, profileActivity.f33811f1, null);
-        profileActivity.getNotificationsController().G(this.f3650b, profileActivity.f33811f1, z10);
-        if (profileActivity.fragmentView != null) {
-            cc.A(profileActivity, z10, null).j();
+        long j10 = this.f3650b;
+        if (j10 != 0) {
+            Bundle bundle = new Bundle();
+            bundle.putLong("dialog_id", j10);
+            bundle.putLong("topic_id", profileActivity.f33818f1);
+            profileActivity.presentFragment(new ty0(bundle, profileActivity.f33957z0));
         }
-        profileActivity.u5();
-        profileActivity.E5(true);
     }
 
-    public void w(int i10) {
-        if (i10 >= 64) {
-            g0 g0Var = (g0) this.f3651c;
-            if (g0Var != null) {
-                g0Var.w(i10 - 64);
-                return;
-            }
-            return;
-        }
-        this.f3650b &= ~(1 << i10);
+    @Override
+    public void w(MediaFormat mediaFormat) {
+        ((li.z) this.f3651c).n(mediaFormat, true);
     }
 
     @Override
     public void x() {
         ProfileActivity profileActivity = (ProfileActivity) this.f3651c;
+        SharedPreferences sharedPreferences = wp.r1(ProfileActivity.k1(profileActivity)).e7;
+        StringBuilder sb2 = new StringBuilder("sound_enabled_");
         long j10 = this.f3650b;
-        if (j10 != 0) {
-            Bundle bundle = new Bundle();
-            bundle.putLong("dialog_id", j10);
-            bundle.putLong("topic_id", profileActivity.f33811f1);
-            profileActivity.presentFragment(new uy0(bundle, profileActivity.f33950z0));
+        sb2.append(pt.v(j10, profileActivity.f33818f1, false));
+        boolean z10 = sharedPreferences.getBoolean(sb2.toString(), true);
+        boolean z11 = !z10 ? 1 : 0;
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putBoolean("sound_enabled_" + pt.v(j10, profileActivity.f33818f1, false), z11).apply();
+        if (cc.a(profileActivity)) {
+            cc.S(z10 ? 1 : 0, profileActivity, profileActivity.f33957z0).j();
         }
     }
 
     @Override
-    public void y() {
+    public void y(int i10) {
         ProfileActivity profileActivity = (ProfileActivity) this.f3651c;
-        SharedPreferences sharedPreferences = vp.r1(ProfileActivity.j1(profileActivity)).e7;
-        StringBuilder sb2 = new StringBuilder("sound_enabled_");
-        long j10 = this.f3650b;
-        sb2.append(ot.v(j10, profileActivity.f33811f1, false));
-        boolean z10 = sharedPreferences.getBoolean(sb2.toString(), true);
-        boolean z11 = !z10 ? 1 : 0;
-        SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putBoolean("sound_enabled_" + ot.v(j10, profileActivity.f33811f1, false), z11).apply();
-        if (cc.a(profileActivity)) {
-            cc.S(z10 ? 1 : 0, profileActivity, profileActivity.f33950z0).j();
+        if (i10 == 0) {
+            if (profileActivity.getMessagesController().q2(this.f3650b, profileActivity.f33818f1, null)) {
+                s();
+            }
+            if (cc.a(profileActivity)) {
+                cc.z(profileActivity, 4, i10, profileActivity.f33957z0).j();
+                return;
+            }
+            return;
         }
+        RectF rectF = ProfileActivity.S6;
+        profileActivity.getNotificationsController().H(this.f3650b, i10, profileActivity.f33818f1);
+        if (cc.a(profileActivity)) {
+            cc.z(profileActivity, 5, i10, profileActivity.f33957z0).j();
+        }
+        profileActivity.v5();
+        profileActivity.F5(true);
     }
 
     @Override

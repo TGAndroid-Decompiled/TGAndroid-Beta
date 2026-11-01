@@ -126,7 +126,7 @@ public final class l implements z3.d, a0, androidx.activity.result.b, s, m0, m1,
     @Override
     public void G(float f7) {
         a1 a1Var = (a1) this.f279b;
-        s0.e(a1Var.f9877a).k("-1", f7);
+        s0.e(a1Var.f9878a).k("-1", f7);
         a1Var.e.setBrushSize(f7);
     }
 
@@ -200,15 +200,15 @@ public final class l implements z3.d, a0, androidx.activity.result.b, s, m0, m1,
             ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) rVar.D.getLayoutParams();
             boolean z12 = true;
             if (rVar.D.isShown()) {
-                if (rVar.f7235l0 == null) {
-                    rVar.f7235l0 = new Rect();
+                if (rVar.f7236l0 == null) {
+                    rVar.f7236l0 = new Rect();
                     rVar.m0 = new Rect();
                 }
-                Rect rect = rVar.f7235l0;
+                Rect rect = rVar.f7236l0;
                 Rect rect2 = rVar.m0;
                 rect.set(j1Var.b(), j1Var.d(), j1Var.c(), j1Var.a());
                 ViewGroup viewGroup = rVar.J;
-                Method method = s3.f12547a;
+                Method method = s3.f12548a;
                 if (method != null) {
                     try {
                         method.invoke(viewGroup, rect, rect2);
@@ -220,7 +220,7 @@ public final class l implements z3.d, a0, androidx.activity.result.b, s, m0, m1,
                 int i12 = rect.left;
                 int i13 = rect.right;
                 ViewGroup viewGroup2 = rVar.J;
-                WeakHashMap weakHashMap = h0.f46123a;
+                WeakHashMap weakHashMap = h0.f46134a;
                 j1 a2 = r0.a0.a(viewGroup2);
                 if (a2 == null) {
                     b10 = 0;
@@ -338,14 +338,14 @@ public final class l implements z3.d, a0, androidx.activity.result.b, s, m0, m1,
                 b7.b bVar = new b7.b(0, (TaskCompletionSource) obj2);
                 n7.m1 m1Var = (n7.m1) ((n7.l1) obj).v();
                 Parcel obtain = Parcel.obtain();
-                obtain.writeInterfaceToken(m1Var.f13697b);
-                int i10 = n7.j.f13683a;
+                obtain.writeInterfaceToken(m1Var.f13698b);
+                int i10 = n7.j.f13684a;
                 obtain.writeStrongBinder(bVar);
                 obtain.writeInt(1);
                 ((v) this.f279b).writeToParcel(obtain, 0);
                 Parcel obtain2 = Parcel.obtain();
                 try {
-                    m1Var.f13696a.transact(1, obtain, obtain2, 0);
+                    m1Var.f13697a.transact(1, obtain, obtain2, 0);
                     obtain2.readException();
                     return;
                 } finally {
@@ -357,7 +357,7 @@ public final class l implements z3.d, a0, androidx.activity.result.b, s, m0, m1,
                 com.google.android.gms.common.api.g gVar = new com.google.android.gms.common.api.g(new com.google.android.gms.common.api.h(-1, -1, 0, true));
                 Parcel obtain3 = Parcel.obtain();
                 obtain3.writeInterfaceToken("com.google.android.gms.identitycredentials.internal.IIdentityCredentialService");
-                int i11 = q7.a.f45489a;
+                int i11 = q7.a.f45500a;
                 obtain3.writeStrongBinder(fVar);
                 q7.a.b(obtain3, (g7.f) this.f279b);
                 q7.a.b(obtain3, gVar);
@@ -397,7 +397,7 @@ public final class l implements z3.d, a0, androidx.activity.result.b, s, m0, m1,
 
     @Override
     public void d(l.l lVar, MenuItem menuItem) {
-        ((l.f) this.f279b).f11479f.removeCallbacksAndMessages(lVar);
+        ((l.f) this.f279b).f11480f.removeCallbacksAndMessages(lVar);
     }
 
     @Override
@@ -430,7 +430,7 @@ public final class l implements z3.d, a0, androidx.activity.result.b, s, m0, m1,
                     }
                     arrayList.add(i10 + 1, aVar2);
                     d4Var.v4();
-                    d4Var.f30819f3.O(false);
+                    d4Var.f31183f3.O(false);
                     o2 o2Var2 = d4Var.Q3;
                     if (o2Var2 != null) {
                         o2Var2.h();
@@ -461,10 +461,10 @@ public final class l implements z3.d, a0, androidx.activity.result.b, s, m0, m1,
     @Override
     public float get() {
         a1 a1Var = (a1) this.f279b;
-        int i10 = a1Var.f9877a;
+        int i10 = a1Var.f9878a;
         ig.h currentBrush = a1Var.e.getCurrentBrush();
         if (currentBrush == null) {
-            return s0.e(i10).f8456i;
+            return s0.e(i10).f8457i;
         }
         return s0.e(i10).f("-1", currentBrush.d());
     }
@@ -533,25 +533,25 @@ public final class l implements z3.d, a0, androidx.activity.result.b, s, m0, m1,
         k4.d dVar;
         o oVar = (o) iVar;
         l2.h hVar = (l2.h) this.f279b;
-        long j12 = oVar.f54167a;
-        n nVar = oVar.f54168b;
+        long j12 = oVar.f54188a;
+        n nVar = oVar.f54189b;
         c0 c0Var = oVar.d;
-        u uVar = new u(nVar, c0Var.f7284c, c0Var.d, j10, j11, c0Var.f7283b);
-        int i11 = oVar.f54169c;
-        hVar.f11593m.getClass();
+        u uVar = new u(nVar, c0Var.f7285c, c0Var.d, j10, j11, c0Var.f7284b);
+        int i11 = oVar.f54190c;
+        hVar.f11594m.getClass();
         for (Throwable th2 = iOException; th2 != null; th2 = th2.getCause()) {
-            if ((th2 instanceof w0) || (th2 instanceof FileNotFoundException) || (th2 instanceof g2.v) || (th2 instanceof y2.k) || ((th2 instanceof g2.k) && ((g2.k) th2).f7304a == 2008)) {
+            if ((th2 instanceof w0) || (th2 instanceof FileNotFoundException) || (th2 instanceof g2.v) || (th2 instanceof y2.k) || ((th2 instanceof g2.k) && ((g2.k) th2).f7305a == 2008)) {
                 min = -9223372036854775807L;
                 break;
             }
         }
         min = Math.min((i10 - 1) * 1000, 5000);
         if (min == -9223372036854775807L) {
-            dVar = y2.l.f54163f;
+            dVar = y2.l.f54184f;
         } else {
             dVar = new k4.d(0, min, false);
         }
-        hVar.f11597q.s(uVar, i11, iOException, !dVar.a());
+        hVar.f11598q.s(uVar, i11, iOException, !dVar.a());
         return dVar;
     }
 
@@ -580,15 +580,15 @@ public final class l implements z3.d, a0, androidx.activity.result.b, s, m0, m1,
         o oVar = (o) iVar;
         l2.h hVar = (l2.h) this.f279b;
         if (i10 == 0) {
-            long j12 = oVar.f54167a;
-            uVar = new u(oVar.f54168b, j10);
+            long j12 = oVar.f54188a;
+            uVar = new u(oVar.f54189b, j10);
         } else {
-            long j13 = oVar.f54167a;
-            n nVar = oVar.f54168b;
+            long j13 = oVar.f54188a;
+            n nVar = oVar.f54189b;
             c0 c0Var = oVar.d;
-            uVar = new u(nVar, c0Var.f7284c, c0Var.d, j10, j11, c0Var.f7283b);
+            uVar = new u(nVar, c0Var.f7285c, c0Var.d, j10, j11, c0Var.f7284b);
         }
-        hVar.f11597q.u(uVar, oVar.f54169c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i10);
+        hVar.f11598q.u(uVar, oVar.f54190c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i10);
     }
 
     @Override
@@ -597,26 +597,26 @@ public final class l implements z3.d, a0, androidx.activity.result.b, s, m0, m1,
         long j12;
         o oVar = (o) iVar;
         l2.h hVar = (l2.h) this.f279b;
-        long j13 = oVar.f54167a;
-        n nVar = oVar.f54168b;
+        long j13 = oVar.f54188a;
+        n nVar = oVar.f54189b;
         c0 c0Var = oVar.d;
-        u uVar = new u(nVar, c0Var.f7284c, c0Var.d, j10, j11, c0Var.f7283b);
-        hVar.f11593m.getClass();
-        hVar.f11597q.q(uVar, oVar.f54169c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
-        m2.c cVar = (m2.c) oVar.f54170f;
+        u uVar = new u(nVar, c0Var.f7285c, c0Var.d, j10, j11, c0Var.f7284b);
+        hVar.f11594m.getClass();
+        hVar.f11598q.q(uVar, oVar.f54190c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        m2.c cVar = (m2.c) oVar.f54191f;
         m2.c cVar2 = hVar.G;
         if (cVar2 == null) {
             size = 0;
         } else {
-            size = cVar2.f12639m.size();
+            size = cVar2.f12640m.size();
         }
-        long j14 = cVar.b(0).f12656b;
+        long j14 = cVar.b(0).f12657b;
         int i10 = 0;
-        while (i10 < size && hVar.G.b(i10).f12656b < j14) {
+        while (i10 < size && hVar.G.b(i10).f12657b < j14) {
             i10++;
         }
         if (cVar.d) {
-            if (size - i10 > cVar.f12639m.size()) {
+            if (size - i10 > cVar.f12640m.size()) {
                 e2.a.l("DashMediaSource", "Loaded out of sync manifest");
             } else {
                 long j15 = hVar.M;
@@ -629,7 +629,7 @@ public final class l implements z3.d, a0, androidx.activity.result.b, s, m0, m1,
             }
             int i11 = hVar.L;
             hVar.L = i11 + 1;
-            if (i11 < hVar.f11593m.q0(oVar.f54169c)) {
+            if (i11 < hVar.f11594m.q0(oVar.f54190c)) {
                 hVar.D.postDelayed(hVar.v, Math.min((hVar.L - 1) * 1000, 5000));
                 return;
             }
@@ -642,12 +642,12 @@ public final class l implements z3.d, a0, androidx.activity.result.b, s, m0, m1,
         hVar.I = j10 - j11;
         hVar.J = j10;
         hVar.N += i10;
-        synchronized (hVar.f11600t) {
+        synchronized (hVar.f11601t) {
             try {
-                if (oVar.f54168b.f7314a.equals(hVar.E)) {
-                    Uri uri = hVar.G.f12637k;
+                if (oVar.f54189b.f7315a.equals(hVar.E)) {
+                    Uri uri = hVar.G.f12638k;
                     if (uri == null) {
-                        uri = f9.a(oVar.d.f7284c);
+                        uri = f9.a(oVar.d.f7285c);
                     }
                     hVar.E = uri;
                 }
@@ -657,7 +657,7 @@ public final class l implements z3.d, a0, androidx.activity.result.b, s, m0, m1,
         }
         m2.c cVar3 = hVar.G;
         if (cVar3.d && hVar.K == j12) {
-            c5.a aVar = cVar3.f12635i;
+            c5.a aVar = cVar3.f12636i;
             if (aVar != null) {
                 String str = aVar.f3731b;
                 if (!Objects.equals(str, "urn:mpeg:dash:utc:direct:2014") && !Objects.equals(str, "urn:mpeg:dash:utc:direct:2012")) {
@@ -735,15 +735,15 @@ public final class l implements z3.d, a0, androidx.activity.result.b, s, m0, m1,
     @Override
     public void t(l.l lVar, l.n nVar) {
         l.f fVar = (l.f) this.f279b;
-        Handler handler = fVar.f11479f;
+        Handler handler = fVar.f11480f;
         l.e eVar = null;
         handler.removeCallbacksAndMessages(null);
-        ArrayList arrayList = fVar.f11480n;
+        ArrayList arrayList = fVar.f11481n;
         int size = arrayList.size();
         int i10 = 0;
         while (true) {
             if (i10 < size) {
-                if (lVar == ((l.e) arrayList.get(i10)).f11474b) {
+                if (lVar == ((l.e) arrayList.get(i10)).f11475b) {
                     break;
                 }
                 i10++;
@@ -765,13 +765,13 @@ public final class l implements z3.d, a0, androidx.activity.result.b, s, m0, m1,
     public void u() {
         ig.a1 a1Var = ((c1) this.f279b).d;
         if (a1Var != null) {
-            z0 z0Var = a1Var.f8274s;
+            z0 z0Var = a1Var.f8275s;
             if (z0Var != null) {
                 a1Var.cancelRunnable(z0Var);
-                a1Var.f8274s = null;
+                a1Var.f8275s = null;
             }
             z0 z0Var2 = new z0(a1Var, 1);
-            a1Var.f8274s = z0Var2;
+            a1Var.f8275s = z0Var2;
             a1Var.postRunnable(z0Var2, 1L);
         }
     }
@@ -780,10 +780,10 @@ public final class l implements z3.d, a0, androidx.activity.result.b, s, m0, m1,
         StringWriter stringWriter = new StringWriter();
         try {
             la.d dVar = (la.d) this.f279b;
-            la.e eVar = new la.e(stringWriter, dVar.f11727a, dVar.f11728b, dVar.f11729c, dVar.d);
+            la.e eVar = new la.e(stringWriter, dVar.f11728a, dVar.f11729b, dVar.f11730c, dVar.d);
             eVar.h(obj);
             eVar.j();
-            eVar.f11731b.flush();
+            eVar.f11732b.flush();
         } catch (IOException unused) {
         }
         return stringWriter.toString();

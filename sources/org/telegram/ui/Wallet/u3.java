@@ -4,27 +4,27 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Components.a51;
-import org.telegram.ui.Components.p51;
-import org.telegram.ui.Components.tk0;
-import org.telegram.ui.Components.u51;
-import org.telegram.ui.Components.z41;
-public final class u3 extends z41 {
-    public static final int f35269b = 0;
+import org.telegram.ui.Components.b51;
+import org.telegram.ui.Components.q51;
+import org.telegram.ui.Components.uk0;
+import org.telegram.ui.Components.v51;
+public final class u3 extends a51 {
+    public static final int f35275b = 0;
 
     static {
-        z41.h(new z41());
+        a51.h(new a51());
     }
 
     public static boolean i(TL_wallet.walletTransaction wallettransaction, TL_wallet.walletTransaction wallettransaction2) {
         TL_wallet.walletTransaction wallettransaction3;
         TL_wallet.walletTransaction wallettransaction4;
         if (wallettransaction instanceof t3) {
-            wallettransaction3 = ((t3) wallettransaction).f35231a;
+            wallettransaction3 = ((t3) wallettransaction).f35233a;
         } else {
             wallettransaction3 = wallettransaction;
         }
         if (wallettransaction2 instanceof t3) {
-            wallettransaction4 = ((t3) wallettransaction2).f35231a;
+            wallettransaction4 = ((t3) wallettransaction2).f35233a;
         } else {
             wallettransaction4 = wallettransaction2;
         }
@@ -35,15 +35,15 @@ public final class u3 extends z41 {
     }
 
     @Override
-    public final void b(View view, a51 a51Var, boolean z10, p51 p51Var, u51 u51Var) {
-        ((w3) view).g((TL_wallet.walletTransaction) a51Var.G, (v3) a51Var.H, z10);
+    public final void b(View view, b51 b51Var, boolean z10, q51 q51Var, v51 v51Var) {
+        ((w3) view).g((TL_wallet.walletTransaction) b51Var.G, (v3) b51Var.H, z10);
     }
 
     @Override
-    public final boolean c(a51 a51Var, a51 a51Var2) {
-        Object obj = a51Var.G;
+    public final boolean c(b51 b51Var, b51 b51Var2) {
+        Object obj = b51Var.G;
         if (obj instanceof TL_wallet.walletTransaction) {
-            Object obj2 = a51Var2.G;
+            Object obj2 = b51Var2.G;
             if (obj2 instanceof TL_wallet.walletTransaction) {
                 return ((TL_wallet.walletTransaction) obj).equals((TL_wallet.walletTransaction) obj2);
             }
@@ -53,15 +53,15 @@ public final class u3 extends z41 {
     }
 
     @Override
-    public final View d(Context context, tk0 tk0Var, int i10, org.telegram.ui.ActionBar.p6 p6Var) {
+    public final View d(Context context, uk0 uk0Var, int i10, org.telegram.ui.ActionBar.p6 p6Var) {
         return new w3(i10, context, p6Var);
     }
 
     @Override
-    public final boolean e(a51 a51Var, a51 a51Var2) {
-        Object obj = a51Var.G;
+    public final boolean e(b51 b51Var, b51 b51Var2) {
+        Object obj = b51Var.G;
         if (obj instanceof TL_wallet.walletTransaction) {
-            Object obj2 = a51Var2.G;
+            Object obj2 = b51Var2.G;
             if (obj2 instanceof TL_wallet.walletTransaction) {
                 return i((TL_wallet.walletTransaction) obj, (TL_wallet.walletTransaction) obj2);
             }

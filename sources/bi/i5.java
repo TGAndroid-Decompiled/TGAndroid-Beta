@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.b8;
-import org.telegram.messenger.ic;
+import org.telegram.messenger.jc;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.RadialProgress2;
 public final class i5 {
@@ -42,7 +42,7 @@ public final class i5 {
             imageReceiver.w0(null);
             return;
         }
-        int i10 = org.telegram.messenger.i0.f16026q.x;
+        int i10 = org.telegram.messenger.i0.f16172q.x;
         String i11 = a1.g.i(i10, i10, "_");
         StringBuilder sb3 = new StringBuilder();
         w wVar2 = this.e;
@@ -66,11 +66,11 @@ public final class i5 {
                     w wVar3 = this.e;
                     TLRPC.Document document2 = wVar3.h;
                     if (document2 != null) {
-                        j10 = document2.f19799id;
+                        j10 = document2.f19800id;
                     } else {
                         TLRPC.Photo photo2 = wVar3.f3420g;
                         if (photo2 != null) {
-                            j10 = photo2.f19817id;
+                            j10 = photo2.f19818id;
                         }
                     }
                 }
@@ -92,7 +92,7 @@ public final class i5 {
         if (wVar4.f3417b) {
             if (wVar4.e != null) {
                 imageReceiver.G0(0, 0, false);
-                imageReceiver.u0(ic.o(this.e.e), "g", null, i11, null, i11, null, 0L, null, null, 0);
+                imageReceiver.u0(jc.o(this.e.e), "g", null, i11, null, i11, null, 0L, null, null, 0);
             } else if (wVar4.b() && (document = this.e.h) != null) {
                 ArrayList<TLRPC.PhotoSize> arrayList = document.thumbs;
                 int Z0 = org.telegram.messenger.i0.Z0(false);
@@ -103,7 +103,7 @@ public final class i5 {
                     photoSize = null;
                     for (int i15 = 0; i15 < arrayList.size(); i15++) {
                         TLRPC.PhotoSize photoSize3 = arrayList.get(i15);
-                        if (!(photoSize3 instanceof TLRPC.TL_photoStrippedSize) && !(photoSize3 instanceof TLRPC.TL_photoPathSize) && (abs = Math.abs(Math.max(photoSize3.f19818w, photoSize3.h) - Z0)) < i14) {
+                        if (!(photoSize3 instanceof TLRPC.TL_photoStrippedSize) && !(photoSize3 instanceof TLRPC.TL_photoPathSize) && (abs = Math.abs(Math.max(photoSize3.f19819w, photoSize3.h) - Z0)) < i14) {
                             photoSize = photoSize3;
                             i14 = abs;
                         }
@@ -124,18 +124,18 @@ public final class i5 {
                     }
                 }
                 imageReceiver.G0(0, 0, false);
-                imageReceiver.u0(ic.b(this.e.h), "g", ic.c(photoSize, this.e.h), i11, ic.c(photoSize2, this.e.h), i11, null, 0L, null, this.e.h, 0);
+                imageReceiver.u0(jc.b(this.e.h), "g", jc.c(photoSize, this.e.h), i11, jc.c(photoSize2, this.e.h), i11, null, 0L, null, this.e.h, 0);
             } else {
                 imageReceiver.w0(null);
             }
         } else if (wVar4.e != null) {
             imageReceiver.G0(wVar4.f3424l, wVar4.f3425m, true);
-            imageReceiver.q0(ic.g(this.e.e), i11, null, null, null, 0);
+            imageReceiver.q0(jc.g(this.e.e), i11, null, null, null, 0);
         } else if (wVar4.b() && (photo = this.e.f3420g) != null) {
             TLRPC.PhotoSize w9 = b8.w(photo.sizes, org.telegram.messenger.i0.Z0(false), false, null, false);
             TLRPC.PhotoSize w10 = b8.w(this.e.f3420g.sizes, 100, false, null, false);
             imageReceiver.G0(0, 0, false);
-            imageReceiver.r0(ic.i(w9, this.e.f3420g), i11, ic.i(w10, this.e.f3420g), i11, null, 0L, null, this.e.f3420g, 0);
+            imageReceiver.r0(jc.i(w9, this.e.f3420g), i11, jc.i(w10, this.e.f3420g), i11, null, 0L, null, this.e.f3420g, 0);
         } else {
             imageReceiver.w0(null);
         }
@@ -155,7 +155,7 @@ public final class i5 {
                     org.telegram.messenger.i0.i(colorMatrix, 0.6f);
                     f3098f = new ColorMatrixColorFilter(colorMatrix);
                 }
-                imageReceiver2.f14397o1 = f3098f;
+                imageReceiver2.f14398o1 = f3098f;
             }
             if (imageReceiver2.n() != null) {
                 return true;

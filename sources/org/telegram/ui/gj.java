@@ -15,6 +15,6 @@ public final class gj extends org.telegram.ui.Components.cv {
         super.dismiss();
         un unVar = this.N1;
         unVar.getClass();
-        unVar.o8(false, true, 0.0f);
+        unVar.s8(false, true, 0.0f);
     }
 }

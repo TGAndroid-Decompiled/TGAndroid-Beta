@@ -6,9 +6,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.w71;
-import org.telegram.ui.yv0;
-public final class l2 extends w71 {
+import org.telegram.ui.Components.x71;
+import org.telegram.ui.xv0;
+public final class l2 extends x71 {
     public final e4 V;
 
     public l2(e4 e4Var, Context context) {
@@ -30,7 +30,7 @@ public final class l2 extends w71 {
         }
         float i10 = Utilities.i(f7 / getMeasuredWidth(), 1.0f, -1.0f);
         e4 e4Var = this.V;
-        view.setTranslationX(((-i10) * 2.0f * e4Var.f21615t0) + f7);
+        view.setTranslationX(((-i10) * 2.0f * e4Var.f21616t0) + f7);
         float f10 = 0.0f;
         if (i10 <= 0.0f) {
             f10 = view.getMeasuredWidth();
@@ -74,14 +74,14 @@ public final class l2 extends w71 {
     @Override
     public final void G() {
         super.G();
-        int i10 = this.f32090b;
+        int i10 = this.f32493b;
         e4 e4Var = this.V;
         boolean z10 = false;
         if (i10 != e4Var.I1(false)) {
-            if (this.f32090b > e4Var.I1(false)) {
+            if (this.f32493b > e4Var.I1(false)) {
                 z10 = true;
             }
-            org.telegram.messenger.i0.g3(new yv0(7, this, z10));
+            org.telegram.messenger.i0.g3(new xv0(7, this, z10));
         }
     }
 
@@ -89,14 +89,14 @@ public final class l2 extends w71 {
     public final void dispatchDraw(Canvas canvas) {
         canvas.save();
         e4 e4Var = this.V;
-        canvas.clipRect(e4Var.f21615t0, -getHeight(), getWidth() - e4Var.f21615t0, getHeight() * 2);
+        canvas.clipRect(e4Var.f21616t0, -getHeight(), getWidth() - e4Var.f21616t0, getHeight() * 2);
         super.dispatchDraw(canvas);
         canvas.restore();
     }
 
     @Override
     public final float getAvailableTranslationX() {
-        return Math.max(1, getMeasuredWidth() - (this.V.f21615t0 * 2));
+        return Math.max(1, getMeasuredWidth() - (this.V.f21616t0 * 2));
     }
 
     @Override

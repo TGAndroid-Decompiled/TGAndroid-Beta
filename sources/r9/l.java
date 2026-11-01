@@ -6,23 +6,23 @@ import java.util.HashMap;
 import java.util.concurrent.Executor;
 import th.m1;
 public final class l implements na.b, na.a {
-    public final HashMap f46442a = new HashMap();
-    public ArrayDeque f46443b = new ArrayDeque();
-    public final Executor f46444c;
+    public final HashMap f46453a = new HashMap();
+    public ArrayDeque f46454b = new ArrayDeque();
+    public final Executor f46455c;
 
     public l(Executor executor) {
-        this.f46444c = executor;
+        this.f46455c = executor;
     }
 
     public final void a(m1 m1Var) {
-        Executor executor = this.f46444c;
+        Executor executor = this.f46455c;
         synchronized (this) {
             try {
                 executor.getClass();
-                if (!this.f46442a.containsKey(l9.b.class)) {
-                    this.f46442a.put(l9.b.class, new ConcurrentHashMap());
+                if (!this.f46453a.containsKey(l9.b.class)) {
+                    this.f46453a.put(l9.b.class, new ConcurrentHashMap());
                 }
-                ((ConcurrentHashMap) this.f46442a.get(l9.b.class)).put(m1Var, executor);
+                ((ConcurrentHashMap) this.f46453a.get(l9.b.class)).put(m1Var, executor);
             } catch (Throwable th2) {
                 throw th2;
             }

@@ -1,6 +1,6 @@
 package kotlin.jvm.internal;
 public abstract class m extends b implements pd.g {
-    public final boolean f11441a;
+    public final boolean f11442a;
 
     public m(java.lang.Object r9, java.lang.Class r10, java.lang.String r11, java.lang.String r12, int r13) {
         throw new UnsupportedOperationException("Method not decompiled: kotlin.jvm.internal.m.<init>(java.lang.Object, java.lang.Class, java.lang.String, java.lang.String, int):void");
@@ -8,7 +8,7 @@ public abstract class m extends b implements pd.g {
 
     @Override
     public final pd.g getReflected() {
-        if (!this.f11441a) {
+        if (!this.f11442a) {
             pd.b compute = compute();
             if (compute != this) {
                 return (pd.g) compute;
@@ -20,7 +20,7 @@ public abstract class m extends b implements pd.g {
 
     @Override
     public final pd.b compute() {
-        if (this.f11441a) {
+        if (this.f11442a) {
             return this;
         }
         return super.compute();

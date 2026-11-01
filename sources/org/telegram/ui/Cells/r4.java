@@ -1,6 +1,6 @@
 package org.telegram.ui.Cells;
 
-import org.telegram.messenger.jj;
+import org.telegram.messenger.kj;
 import org.telegram.tgnet.TLRPC;
 public interface r4 {
     boolean a();
@@ -21,7 +21,7 @@ public interface r4 {
 
     int getMeasuredHeight();
 
-    jj getMessageObject();
+    kj getMessageObject();
 
     float getPivotX();
 

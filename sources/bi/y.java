@@ -2,9 +2,9 @@ package bi;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.p51;
+import org.telegram.ui.Components.q51;
 public final class y implements TextWatcher {
     public final z f3453a;
 
@@ -18,10 +18,10 @@ public final class y implements TextWatcher {
         TL_iv.RichMessage richMessage = zVar.a2;
         if (richMessage != null && richMessage != null) {
             zVar.a2 = null;
-            zVar.X1.i(cd.L0(2131754059, null), true, true);
-            p51 p51Var = zVar.R1;
-            if (p51Var != null) {
-                p51Var.O(true);
+            zVar.X1.i(dd.L0(2131754059, null), true, true);
+            q51 q51Var = zVar.R1;
+            if (q51Var != null) {
+                q51Var.O(true);
             }
         }
         zVar.d1();

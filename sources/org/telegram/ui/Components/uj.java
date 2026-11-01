@@ -4,30 +4,30 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 public final class uj extends AnimatorListenerAdapter {
-    public final int f30952a = 0;
-    public final org.telegram.ui.uq f30953b;
+    public final int f30973a = 0;
+    public final org.telegram.ui.uq f30974b;
 
     public uj(org.telegram.ui.uq uqVar) {
-        this.f30953b = uqVar;
+        this.f30974b = uqVar;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f30952a) {
+        switch (this.f30973a) {
             case 0:
-                ((wj) this.f30953b.d).U.e();
+                ((wj) this.f30974b.d).U.e();
                 return;
             default:
-                org.telegram.ui.uq uqVar = this.f30953b;
-                View view = uqVar.f42515b;
+                org.telegram.ui.uq uqVar = this.f30974b;
+                View view = uqVar.f42325b;
                 view.setAlpha(1.0f);
                 s4.n0.x0(view);
-                ((wj) uqVar.d).X.f32487r.removeView(view);
+                ((wj) uqVar.d).X.f32587r.removeView(view);
                 return;
         }
     }
 
     public uj(org.telegram.ui.uq uqVar, s4.n0 n0Var) {
-        this.f30953b = uqVar;
+        this.f30974b = uqVar;
     }
 }

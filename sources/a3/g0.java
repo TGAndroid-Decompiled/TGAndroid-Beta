@@ -42,7 +42,7 @@ public final class g0 {
         long j12;
         b2.x xVar;
         final n4.q qVar = this.f107a;
-        f fVar = (f) qVar.f13527b;
+        f fVar = (f) qVar.f13528b;
         while (true) {
             e2.s sVar = this.f110f;
             int i10 = sVar.f6196c;
@@ -82,10 +82,10 @@ public final class g0 {
                             public final void run() {
                                 switch (r1) {
                                     case 0:
-                                        ((f) qVar.f13527b).h.onFirstFrameRendered();
+                                        ((f) qVar.f13528b).h.onFirstFrameRendered();
                                         return;
                                     default:
-                                        ((f) qVar.f13527b).h.V();
+                                        ((f) qVar.f13528b).h.V();
                                         return;
                                 }
                             }
@@ -114,7 +114,7 @@ public final class g0 {
                         wVar.f2376y = b2Var.f1987a;
                         wVar.f2377z = b2Var.f1988b;
                         wVar.f2370r = v0.n("video/raw");
-                        qVar.f13526a = new b2.x(wVar);
+                        qVar.f13527a = new b2.x(wVar);
                         fVar.f84i.execute(new a1.f(2, qVar, b2Var));
                     }
                     if (z10) {
@@ -135,16 +135,16 @@ public final class g0 {
                             public final void run() {
                                 switch (r1) {
                                     case 0:
-                                        ((f) qVar.f13527b).h.onFirstFrameRendered();
+                                        ((f) qVar.f13528b).h.onFirstFrameRendered();
                                         return;
                                     default:
-                                        ((f) qVar.f13527b).h.V();
+                                        ((f) qVar.f13528b).h.V();
                                         return;
                                 }
                             }
                         });
                     }
-                    b2.x xVar2 = (b2.x) qVar.f13526a;
+                    b2.x xVar2 = (b2.x) qVar.f13527a;
                     if (xVar2 == null) {
                         xVar = new b2.x(new b2.w());
                     } else {

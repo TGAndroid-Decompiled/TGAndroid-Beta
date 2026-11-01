@@ -1,32 +1,26 @@
 package org.telegram.ui.Components;
+public final class tq0 implements org.telegram.messenger.r20 {
+    public final int f30702a;
+    public final au0 f30703b;
 
-import android.content.Context;
-public final class tq0 extends wt0 {
-    public final zt0 G;
-
-    public tq0(zt0 zt0Var, Context context) {
-        super(zt0Var, context, 0, true);
-        this.G = zt0Var;
+    public tq0(au0 au0Var, int i10) {
+        this.f30702a = i10;
+        this.f30703b = au0Var;
     }
 
     @Override
-    public final void f() {
-        boolean z10;
-        super.f();
-        zt0 zt0Var = this.G;
-        ss0 e02 = zt0Var.e0(9);
-        if (e02 != null && e02.f30352n.getVisibility() == 0) {
-            zt0Var.f33193h0.f();
-        }
-        if (e02 != null) {
-            or0 or0Var = e02.f30355w;
-            th.x4 x4Var = this.f32251s;
-            if (x4Var != null && (x4Var.k() || (zt0Var.r0() && this.f32251s.g() > 0))) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            or0Var.e(z10, true);
+    public final void a(Object obj) {
+        int i10 = this.f30702a;
+        au0 au0Var = this.f30703b;
+        th.y4 y4Var = (th.y4) obj;
+        switch (i10) {
+            case 0:
+                org.telegram.messenger.i0.h3(new hi0(7, au0Var, y4Var), 100L);
+                return;
+            default:
+                int[] iArr = au0.f24493s2;
+                org.telegram.messenger.i0.h3(new hi0(7, au0Var, y4Var), 100L);
+                return;
         }
     }
 }

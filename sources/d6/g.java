@@ -31,7 +31,7 @@ public final class g {
         g6.b bVar = f5776c;
         n6.l.d("Must be called from the main thread.");
         try {
-            Log.i(bVar.f7367a, bVar.d("End session for %s", this.f5778b.getPackageName()));
+            Log.i(bVar.f7368a, bVar.d("End session for %s", this.f5778b.getPackageName()));
             y yVar = this.f5777a;
             Parcel P0 = yVar.P0();
             int i10 = com.google.android.gms.internal.cast.u.f4789a;

@@ -2,41 +2,41 @@ package org.telegram.ui.Wallet;
 
 import android.text.TextUtils;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.j20;
+import org.telegram.messenger.k20;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.t11;
-public final class i implements j20 {
-    public final int f34690a;
-    public final k0 f34691b;
+import org.telegram.ui.y01;
+public final class i implements k20 {
+    public final int f34697a;
+    public final k0 f34698b;
 
     public i(k0 k0Var, int i10) {
-        this.f34690a = i10;
-        this.f34691b = k0Var;
+        this.f34697a = i10;
+        this.f34698b = k0Var;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         String str;
         String str2;
-        switch (this.f34690a) {
+        switch (this.f34697a) {
             case 0:
-                k0 k0Var = this.f34691b;
+                k0 k0Var = this.f34698b;
                 TL_wallet.existingBalance existingbalance = (TL_wallet.existingBalance) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 k0Var.C = -1;
                 if (existingbalance != null) {
-                    k0Var.f34781i = Boolean.valueOf(existingbalance.has_balance);
-                    k0Var.f34782j = existingbalance.url;
+                    k0Var.f34786i = Boolean.valueOf(existingbalance.has_balance);
+                    k0Var.f34787j = existingbalance.url;
                 }
-                Boolean bool = k0Var.f34781i;
-                if (bool != null && bool.booleanValue() && !TextUtils.isEmpty(k0Var.f34782j)) {
+                Boolean bool = k0Var.f34786i;
+                if (bool != null && bool.booleanValue() && !TextUtils.isEmpty(k0Var.f34787j)) {
                     k0Var.L();
                     return;
                 }
                 return;
             case 1:
-                k0 k0Var2 = this.f34691b;
+                k0 k0Var2 = this.f34698b;
                 TL_wallet.WalletState walletState = (TL_wallet.WalletState) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 k0Var2.A = -1;
@@ -54,13 +54,13 @@ public final class i implements j20 {
                 long currentTimeMillis = System.currentTimeMillis();
                 if (walletState instanceof TL_wallet.TL_walletState) {
                     TL_wallet.WalletState walletState2 = k0Var2.e;
-                    if ((walletState2 instanceof TL_wallet.TL_walletState) && k0Var2.f34784l) {
+                    if ((walletState2 instanceof TL_wallet.TL_walletState) && k0Var2.f34789l) {
                         TL_wallet.TL_walletState tL_walletState = (TL_wallet.TL_walletState) walletState2;
                         TL_wallet.TL_walletState tL_walletState2 = (TL_wallet.TL_walletState) walletState;
-                        if (currentTimeMillis - k0Var2.f34783k < 30000) {
+                        if (currentTimeMillis - k0Var2.f34788k < 30000) {
                             tL_walletState2.balance = tL_walletState.balance;
                         } else {
-                            k0Var2.f34784l = false;
+                            k0Var2.f34789l = false;
                         }
                         k0Var2.e = walletState;
                         k0Var2.N();
@@ -68,13 +68,13 @@ public final class i implements j20 {
                         return;
                     }
                 }
-                k0Var2.f34784l = false;
+                k0Var2.f34789l = false;
                 k0Var2.e = walletState;
                 k0Var2.N();
                 k0Var2.L();
                 return;
             default:
-                k0 k0Var3 = this.f34691b;
+                k0 k0Var3 = this.f34698b;
                 TLRPC.Updates updates = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
                 k0Var3.B = -1;
@@ -89,7 +89,7 @@ public final class i implements j20 {
                     k0.j(sb3.toString());
                     return;
                 }
-                Utilities.d.c(new t11(23, k0Var3, updates));
+                Utilities.d.c(new y01(24, k0Var3, updates));
                 return;
         }
     }

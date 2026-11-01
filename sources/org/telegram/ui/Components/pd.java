@@ -6,31 +6,31 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class pd extends FrameLayout {
-    public final int f29342a;
-    public final ChatActivityEnterView f29343b;
+    public final int f29407a;
+    public final ChatActivityEnterView f29408b;
 
     public pd(ChatActivityEnterView chatActivityEnterView, Context context, int i10) {
         super(context);
-        this.f29342a = i10;
-        this.f29343b = chatActivityEnterView;
+        this.f29407a = i10;
+        this.f29408b = chatActivityEnterView;
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f29342a) {
+        switch (this.f29407a) {
             case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f29343b;
-                xh.a3 a3Var = chatActivityEnterView.f23736k0;
+                ChatActivityEnterView chatActivityEnterView = this.f29408b;
+                xh.a3 a3Var = chatActivityEnterView.f23737k0;
                 if (a3Var != null && a3Var.getVisibility() == 0) {
-                    return chatActivityEnterView.f23736k0.dispatchTouchEvent(motionEvent);
+                    return chatActivityEnterView.f23737k0.dispatchTouchEvent(motionEvent);
                 }
                 return super.dispatchTouchEvent(motionEvent);
             case 1:
             default:
                 return super.dispatchTouchEvent(motionEvent);
             case 2:
-                ChatActivityEnterView chatActivityEnterView2 = this.f29343b;
-                if (chatActivityEnterView2.J && chatActivityEnterView2.f23781r5 != 2) {
+                ChatActivityEnterView chatActivityEnterView2 = this.f29408b;
+                if (chatActivityEnterView2.J && chatActivityEnterView2.f23782r5 != 2) {
                     return super.dispatchTouchEvent(motionEvent);
                 }
                 return false;
@@ -39,11 +39,11 @@ public final class pd extends FrameLayout {
 
     @Override
     public boolean drawChild(final Canvas canvas, final View view, final long j10) {
-        switch (this.f29342a) {
+        switch (this.f29407a) {
             case 1:
-                ChatActivityEnterView chatActivityEnterView = this.f29343b;
+                ChatActivityEnterView chatActivityEnterView = this.f29408b;
                 if (view != null && view == chatActivityEnterView.E0) {
-                    return chatActivityEnterView.b0(canvas, new org.telegram.messenger.i20() {
+                    return chatActivityEnterView.b0(canvas, new org.telegram.messenger.j20() {
                         @Override
                         public final Object run() {
                             Boolean valueOf;
@@ -52,13 +52,13 @@ public final class pd extends FrameLayout {
                         }
                     });
                 }
-                if (chatActivityEnterView.f23824z4 && view == chatActivityEnterView.f23700e1) {
+                if (chatActivityEnterView.f23825z4 && view == chatActivityEnterView.f23701e1) {
                     return true;
                 }
                 return super.drawChild(canvas, view, j10);
             case 2:
-                ChatActivityEnterView chatActivityEnterView2 = this.f29343b;
-                if (view == chatActivityEnterView2.J0 && chatActivityEnterView2.f23718h0) {
+                ChatActivityEnterView chatActivityEnterView2 = this.f29408b;
+                if (view == chatActivityEnterView2.J0 && chatActivityEnterView2.f23719h0) {
                     return true;
                 }
                 return super.drawChild(canvas, view, j10);
@@ -69,17 +69,17 @@ public final class pd extends FrameLayout {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f29342a) {
+        switch (this.f29407a) {
             case 1:
                 super.onLayout(z10, i10, i11, i12, i13);
-                ChatActivityEnterView chatActivityEnterView = this.f29343b;
+                ChatActivityEnterView chatActivityEnterView = this.f29408b;
                 if (!chatActivityEnterView.B0.isEmpty()) {
                     for (int i14 = 0; i14 < getChildCount(); i14++) {
                         View childAt = getChildAt(i14);
                         Float f7 = (Float) chatActivityEnterView.B0.get(childAt);
                         if (f7 != null) {
                             childAt.setTranslationX(f7.floatValue() - childAt.getLeft());
-                            childAt.animate().translationX(0.0f).setDuration(150L).setInterpolator(gr.f26495f).start();
+                            childAt.animate().translationX(0.0f).setDuration(150L).setInterpolator(gr.f26523f).start();
                         }
                     }
                     chatActivityEnterView.B0.clear();
@@ -94,13 +94,13 @@ public final class pd extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f29342a) {
+        switch (this.f29407a) {
             case 1:
                 super.onMeasure(i10, i11);
                 int max = Math.max(org.telegram.messenger.i0.L(44.0f), getMeasuredHeight());
-                ChatActivityEnterView chatActivityEnterView = this.f29343b;
-                fe.f fVar = chatActivityEnterView.f23735j5;
-                if (fVar.f7031f > 0.0f) {
+                ChatActivityEnterView chatActivityEnterView = this.f29408b;
+                fe.f fVar = chatActivityEnterView.f23736j5;
+                if (fVar.f7032f > 0.0f) {
                     fVar.a(max);
                 } else {
                     fVar.c(max);
@@ -115,7 +115,7 @@ public final class pd extends FrameLayout {
 
     @Override
     public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f29342a) {
+        switch (this.f29407a) {
             case 2:
                 super.onSizeChanged(i10, i11, i12, i13);
                 setPivotX(i10 - org.telegram.messenger.i0.L(22.0f));
@@ -129,10 +129,10 @@ public final class pd extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f29342a) {
+        switch (this.f29407a) {
             case 2:
-                ChatActivityEnterView chatActivityEnterView = this.f29343b;
-                if (chatActivityEnterView.J && chatActivityEnterView.f23781r5 != 2) {
+                ChatActivityEnterView chatActivityEnterView = this.f29408b;
+                if (chatActivityEnterView.J && chatActivityEnterView.f23782r5 != 2) {
                     return super.onTouchEvent(motionEvent);
                 }
                 return false;
@@ -143,10 +143,10 @@ public final class pd extends FrameLayout {
 
     @Override
     public void setVisibility(int i10) {
-        switch (this.f29342a) {
+        switch (this.f29407a) {
             case 3:
                 super.setVisibility(i10);
-                this.f29343b.O1(true);
+                this.f29408b.O1(true);
                 return;
             default:
                 super.setVisibility(i10);

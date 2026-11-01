@@ -3,12 +3,12 @@ package h0;
 import android.content.res.Resources;
 import j$.util.Objects;
 public final class i {
-    public final Resources f7555a;
-    public final Resources.Theme f7556b;
+    public final Resources f7556a;
+    public final Resources.Theme f7557b;
 
     public i(Resources resources, Resources.Theme theme) {
-        this.f7555a = resources;
-        this.f7556b = theme;
+        this.f7556a = resources;
+        this.f7557b = theme;
     }
 
     public final boolean equals(Object obj) {
@@ -17,7 +17,7 @@ public final class i {
         }
         if (obj != null && i.class == obj.getClass()) {
             i iVar = (i) obj;
-            if (this.f7555a.equals(iVar.f7555a) && Objects.equals(this.f7556b, iVar.f7556b)) {
+            if (this.f7556a.equals(iVar.f7556a) && Objects.equals(this.f7557b, iVar.f7557b)) {
                 return true;
             }
         }
@@ -25,6 +25,6 @@ public final class i {
     }
 
     public final int hashCode() {
-        return Objects.hash(this.f7555a, this.f7556b);
+        return Objects.hash(this.f7556a, this.f7557b);
     }
 }

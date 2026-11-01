@@ -3,25 +3,25 @@ package ag;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.q20;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.r20;
 public final class v2 implements TextView.OnEditorActionListener {
     public final a2 f756a;
     public final int f757b;
     public final h3 f758c;
     public final TextView d;
     public final m2 e;
-    public final q20 f759f;
+    public final r20 f759f;
     public final org.telegram.ui.ActionBar.x1[] f760g;
     public final View h;
 
-    public v2(a2 a2Var, int i10, h3 h3Var, TextView textView, m2 m2Var, q20 q20Var, org.telegram.ui.ActionBar.x1[] x1VarArr, View view) {
+    public v2(a2 a2Var, int i10, h3 h3Var, TextView textView, m2 m2Var, r20 r20Var, org.telegram.ui.ActionBar.x1[] x1VarArr, View view) {
         this.f756a = a2Var;
         this.f757b = i10;
         this.f758c = h3Var;
         this.d = textView;
         this.e = m2Var;
-        this.f759f = q20Var;
+        this.f759f = r20Var;
         this.f760g = x1VarArr;
         this.h = view;
     }
@@ -45,7 +45,7 @@ public final class v2 implements TextView.OnEditorActionListener {
             h3 d = f7.d(obj);
             if (d != null && d.f551a != i11) {
                 org.telegram.messenger.i0.E3(a2Var);
-                this.d.setText(cd.L0(2131752662, null));
+                this.d.setText(dd.L0(2131752662, null));
                 this.e.a(Boolean.TRUE);
                 return true;
             }

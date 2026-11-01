@@ -2,13 +2,13 @@ package i2;
 
 import android.content.Context;
 public class j {
-    public final Context f7938a;
-    public final k0.b f7939b;
-    public int f7940c = 0;
+    public final Context f7939a;
+    public final k0.b f7940b;
+    public int f7941c = 0;
 
     public j(Context context) {
-        this.f7938a = context;
-        this.f7939b = new k0.b(context, false);
+        this.f7939a = context;
+        this.f7940b = new k0.b(context, false);
     }
 
     public k2.w0 a(Context context) {

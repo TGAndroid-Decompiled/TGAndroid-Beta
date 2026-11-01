@@ -17,8 +17,8 @@ import org.telegram.messenger.i0;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.Cells.e6;
 import org.telegram.ui.Components.mt;
-import org.telegram.ui.a21;
-import org.telegram.ui.w21;
+import org.telegram.ui.u21;
+import org.telegram.ui.y11;
 import sg.e0;
 public final class b extends mt {
     public final int Y1;
@@ -61,7 +61,7 @@ public final class b extends mt {
     public void invalidate() {
         switch (this.Y1) {
             case 2:
-                if (!e0.f48320b) {
+                if (!e0.f48331b) {
                     super.invalidate();
                     return;
                 }
@@ -81,7 +81,7 @@ public final class b extends mt {
                 return onCreateInputConnection;
             case 1:
                 InputConnection onCreateInputConnection2 = super.onCreateInputConnection(editorInfo);
-                if (((e6) this.Z1).f21864s) {
+                if (((e6) this.Z1).f21865s) {
                     editorInfo.imeOptions &= -1073741825;
                 }
                 return onCreateInputConnection2;
@@ -112,8 +112,8 @@ public final class b extends mt {
                 return;
             case 2:
                 if (z10) {
-                    ((a21) this.Z1).F.q();
-                    i0.h3(new w21(this, 0), 200L);
+                    ((y11) this.Z1).F.q();
+                    i0.h3(new u21(this, 0), 200L);
                 }
                 super.onFocusChanged(z10, i10, rect);
                 return;
@@ -179,8 +179,8 @@ public final class b extends mt {
                 }
                 return super.onTouchEvent(motionEvent);
             case 2:
-                if (motionEvent.getAction() == 1 && ((a21) this.Z1).F.u()) {
-                    i0.h3(new w21(this, 1), 200L);
+                if (motionEvent.getAction() == 1 && ((y11) this.Z1).F.u()) {
+                    i0.h3(new u21(this, 1), 200L);
                     return false;
                 }
                 return super.onTouchEvent(motionEvent);

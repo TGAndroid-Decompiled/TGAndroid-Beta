@@ -26,11 +26,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 import m.z0;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.at;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.jj;
+import org.telegram.messenger.kj;
 import org.telegram.messenger.w0;
-import org.telegram.messenger.zs;
-import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.v61;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.v9;
@@ -79,7 +79,7 @@ public abstract class d {
             PhotoViewer.v1().l3();
         } else if (i10 == 1) {
             MediaController B = MediaController.B();
-            if (B.f14482u0 != null) {
+            if (B.f14483u0 != null) {
                 B.S1 = true;
                 if (u() && ((atomicInteger = f2489b) == null || atomicInteger.get() <= 0)) {
                     e6.h e10 = e();
@@ -88,25 +88,25 @@ public abstract class d {
                     } else {
                         a2 = e10.a();
                     }
-                    long D = B.D(B.f14482u0);
+                    long D = B.D(B.f14483u0);
                     if (D >= 0 && a2 >= 0 && Math.abs(D - a2) > 1000) {
-                        jj jjVar = B.f14482u0;
-                        if ((B.f14457i0 != null || B.E0 != null) && jjVar != null && B.L(jjVar)) {
+                        kj kjVar = B.f14483u0;
+                        if ((B.f14458i0 != null || B.E0 != null) && kjVar != null && B.L(kjVar)) {
                             try {
-                                u61 u61Var = B.f14457i0;
-                                if (u61Var != null) {
-                                    j10 = u61Var.U();
+                                v61 v61Var = B.f14458i0;
+                                if (v61Var != null) {
+                                    j10 = v61Var.U();
                                     if (j10 != -9223372036854775807L) {
-                                        jjVar.f16299b0 = Utilities.l(((float) a2) / ((float) j10));
+                                        kjVar.f16652b0 = Utilities.l(((float) a2) / ((float) j10));
                                     }
-                                    B.f14457i0.q0(a2, false);
+                                    B.f14458i0.q0(a2, false);
                                     if (!B.S1) {
                                         v(a2);
                                     }
                                 } else {
-                                    u61 u61Var2 = B.E0;
-                                    if (u61Var2 != null) {
-                                        j10 = u61Var2.U();
+                                    v61 v61Var2 = B.E0;
+                                    if (v61Var2 != null) {
+                                        j10 = v61Var2.U();
                                         B.E0.p0(a2);
                                         if (!B.S1) {
                                             v(a2);
@@ -116,7 +116,7 @@ public abstract class d {
                                     }
                                 }
                                 if (j10 != 0) {
-                                    zs.f(jjVar.I1).k(zs.f19628i2, Integer.valueOf(jjVar.f1()), Float.valueOf(Utilities.l(((float) a2) / ((float) j10))));
+                                    at.f(kjVar.I1).k(at.f14724i2, Integer.valueOf(kjVar.f1()), Float.valueOf(Utilities.l(((float) a2) / ((float) j10))));
                                 }
                             } catch (Exception e11) {
                                 f8.g(e11, true);
@@ -132,9 +132,9 @@ public abstract class d {
                         m10 = e12.m();
                     }
                     if (m10) {
-                        B.S(B.f14482u0);
+                        B.S(B.f14483u0);
                     } else {
-                        B.R(B.f14482u0, true);
+                        B.R(B.f14483u0, true);
                     }
                     e6.h e13 = e();
                     float f7 = 1.0f;
@@ -254,7 +254,7 @@ public abstract class d {
     public static Context f() {
         LaunchActivity launchActivity = LaunchActivity.I1;
         if (launchActivity == null) {
-            return w0.f19025b;
+            return w0.f18945b;
         }
         return launchActivity;
     }

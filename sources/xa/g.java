@@ -10,14 +10,14 @@ import com.google.android.gms.tasks.Tasks;
 import java.util.concurrent.ExecutorService;
 import th.m1;
 public final class g {
-    public static final Object f53541c = new Object();
+    public static final Object f53559c = new Object();
     public static y d;
-    public final Object f53542a;
-    public final Object f53543b;
+    public final Object f53560a;
+    public final Object f53561b;
 
     public g(ExecutorService executorService) {
-        this.f53543b = new a0.l(0);
-        this.f53542a = executorService;
+        this.f53561b = new a0.l(0);
+        this.f53560a = executorService;
     }
 
     public static Task a(Context context, Intent intent, boolean z10) {
@@ -25,7 +25,7 @@ public final class g {
         if (Log.isLoggable("FirebaseMessaging", 3)) {
             Log.d("FirebaseMessaging", "Binding to service");
         }
-        synchronized (f53541c) {
+        synchronized (f53559c) {
             try {
                 if (d == null) {
                     d = new y(context);
@@ -54,8 +54,8 @@ public final class g {
             intent.putExtra("rawData", Base64.decode(stringExtra, 0));
             intent.removeExtra("gcm.rawData64");
         }
-        Context context = (Context) this.f53542a;
-        a3.b bVar = (a3.b) this.f53543b;
+        Context context = (Context) this.f53560a;
+        a3.b bVar = (a3.b) this.f53561b;
         if (u6.b.d() && context.getApplicationInfo().targetSdkVersion >= 26) {
             z10 = true;
         } else {
@@ -71,12 +71,12 @@ public final class g {
     }
 
     public g(Context context) {
-        this.f53542a = context;
-        this.f53543b = new a3.b(3);
+        this.f53560a = context;
+        this.f53561b = new a3.b(3);
     }
 
     public g(e0.r rVar, String str) {
-        this.f53542a = rVar;
-        this.f53543b = str;
+        this.f53560a = rVar;
+        this.f53561b = str;
     }
 }

@@ -4,7 +4,7 @@ import android.animation.ValueAnimator;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.z20;
+import org.telegram.messenger.a30;
 import org.telegram.ui.Components.f5;
 import org.telegram.ui.Components.gr;
 import org.telegram.ui.Components.tf;
@@ -35,9 +35,9 @@ public final class c2 extends ImageReceiver {
                 int L = org.telegram.messenger.i0.L(6.0f);
                 iArr2[3] = L;
                 iArr2[2] = L;
-                org.telegram.ui.Cells.w1 w1Var = q1Var.f22751v2;
-                if (w1Var != null && (hVar = w1Var.f23361m) != null) {
-                    hVar.f8540b.L0(iArr2);
+                org.telegram.ui.Cells.w1 w1Var = q1Var.f22752v2;
+                if (w1Var != null && (hVar = w1Var.f23362m) != null) {
+                    hVar.f8541b.L0(iArr2);
                     return;
                 }
                 return;
@@ -53,7 +53,7 @@ public final class c2 extends ImageReceiver {
         Object obj = this.K1;
         switch (i10) {
             case 2:
-                View view = ((xn) obj).f43603b;
+                View view = ((xn) obj).f43411b;
                 if (view != null) {
                     view.invalidate();
                     return;
@@ -69,7 +69,7 @@ public final class c2 extends ImageReceiver {
                 return;
             case 5:
                 super.invalidate();
-                h8 h8Var = ((g8) obj).f34582d0;
+                h8 h8Var = ((g8) obj).f34588d0;
                 int i11 = h8.G1;
                 h8Var.f0();
                 return;
@@ -84,7 +84,7 @@ public final class c2 extends ImageReceiver {
         switch (i12) {
             case 0:
                 if (drawable != null && i10 != 1) {
-                    z20.m(((f2) ((d2) obj).H).h.animate().alpha(1.0f).translationY(0.0f), gr.f26499k, 250L);
+                    a30.m(((f2) ((d2) obj).H).h.animate().alpha(1.0f).translationY(0.0f), gr.f26527k, 250L);
                 }
                 return super.x0(drawable, str, i10, z10, i11);
             case 1:
@@ -96,8 +96,8 @@ public final class c2 extends ImageReceiver {
                 f5 f5Var = (f5) obj;
                 f5Var.j();
                 boolean x02 = super.x0(drawable, str, i10, z10, i11);
-                if (f5Var.f25977m && J()) {
-                    f5Var.f25977m = false;
+                if (f5Var.f26072m && J()) {
+                    f5Var.f26072m = false;
                     org.telegram.messenger.i0.g3(new tf(f5Var, 5));
                 }
                 return x02;

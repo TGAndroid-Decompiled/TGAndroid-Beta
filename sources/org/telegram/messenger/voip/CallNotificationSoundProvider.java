@@ -30,7 +30,7 @@ public class CallNotificationSoundProvider extends ContentProvider {
     @Override
     public ParcelFileDescriptor openFile(Uri uri, String str) {
         if ("r".equals(str)) {
-            if (org.telegram.messenger.w0.f19025b != null) {
+            if (org.telegram.messenger.w0.f18945b != null) {
                 try {
                     VoIPService sharedInstance = VoIPService.getSharedInstance();
                     if (sharedInstance != null) {

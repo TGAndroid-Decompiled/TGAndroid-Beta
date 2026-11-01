@@ -25,7 +25,7 @@ public final class g1 implements ua {
 
     @Override
     public final int h(int i10) {
-        return org.telegram.messenger.i0.f16020m;
+        return org.telegram.messenger.i0.f16166m;
     }
 
     @Override

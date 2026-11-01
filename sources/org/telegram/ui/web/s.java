@@ -4,8 +4,8 @@ import ag.m2;
 import android.content.Context;
 import android.os.Bundle;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.j20;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.k20;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_keyboard;
@@ -14,36 +14,36 @@ import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.Components.cc;
 import org.telegram.ui.Components.vq;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.aj0;
-import org.telegram.ui.wh0;
-public final class s implements j20 {
-    public final int f43184a;
-    public final z0 f43185b;
-    public final x0 f43186c;
+import org.telegram.ui.uh0;
+import org.telegram.ui.yi0;
+public final class s implements k20 {
+    public final int f42986a;
+    public final z0 f42987b;
+    public final x0 f42988c;
     public final String d;
 
     public s(z0 z0Var, x0 x0Var, String str, int i10) {
-        this.f43184a = i10;
-        this.f43185b = z0Var;
-        this.f43186c = x0Var;
+        this.f42986a = i10;
+        this.f42987b = z0Var;
+        this.f42988c = x0Var;
         this.d = str;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         int i10;
-        wh0 wh0Var;
-        int i11 = this.f43184a;
+        uh0 uh0Var;
+        int i11 = this.f42986a;
         String str = this.d;
-        x0 x0Var = this.f43186c;
-        z0 z0Var = this.f43185b;
+        x0 x0Var = this.f42988c;
+        z0 z0Var = this.f42987b;
         switch (i11) {
             case 0:
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                z0 z0Var2 = this.f43185b;
+                z0 z0Var2 = this.f42987b;
                 p6 p6Var = z0Var2.e;
                 TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer = (TL_keyboard.TL_buttonTypeRequestPeer) sf.c.a((TL_keyboard.KeyboardButton) obj, TL_keyboard.TL_buttonTypeRequestPeer.class);
-                x0 x0Var2 = this.f43186c;
+                x0 x0Var2 = this.f42988c;
                 String str2 = this.d;
                 if (tL_buttonTypeRequestPeer != null) {
                     TLRPC.RequestPeerType requestPeerType = tL_buttonTypeRequestPeer.peer_type;
@@ -61,27 +61,27 @@ public final class s implements j20 {
                         Boolean bool = tL_requestPeerTypeUser.bot;
                         Boolean bool2 = tL_requestPeerTypeUser.premium;
                         y yVar = new y(z0Var2, zArr, str2, tL_buttonTypeRequestPeer, x0Var2);
-                        wh0 wh0Var2 = wh0.f43305m2;
+                        uh0 uh0Var2 = uh0.f41943m2;
                         k2 Q = LaunchActivity.Q();
                         if (Q == null) {
-                            wh0Var = null;
+                            uh0Var = null;
                         } else {
-                            wh0Var = wh0.f43305m2;
-                            if (wh0Var == null) {
-                                wh0 wh0Var3 = new wh0(Q, i10, bool, bool2, yVar);
-                                wh0Var3.show();
-                                wh0.f43305m2 = wh0Var3;
-                                wh0Var = wh0Var3;
+                            uh0Var = uh0.f41943m2;
+                            if (uh0Var == null) {
+                                uh0 uh0Var3 = new uh0(Q, i10, bool, bool2, yVar);
+                                uh0Var3.show();
+                                uh0.f41943m2 = uh0Var3;
+                                uh0Var = uh0Var3;
                             }
                         }
-                        if (wh0Var != null) {
-                            wh0Var.setOnDismissListener(new aj0(z0Var2, zArr, x0Var2, str2));
+                        if (uh0Var != null) {
+                            uh0Var.setOnDismissListener(new yi0(z0Var2, zArr, x0Var2, str2));
                             return;
                         }
                         return;
                     } else {
                         Bundle j10 = org.telegram.ui.Cells.f1.j(15, "onlySelect", "dialogsType", true);
-                        j10.putLong("requestPeerBotId", z0Var2.U.f19942id);
+                        j10.putLong("requestPeerBotId", z0Var2.U.f19943id);
                         try {
                             SerializedData serializedData = new SerializedData(tL_buttonTypeRequestPeer.peer_type.getObjectSize());
                             tL_buttonTypeRequestPeer.peer_type.serializeToStream(serializedData);
@@ -96,7 +96,7 @@ public final class s implements j20 {
                         k2 T = LaunchActivity.T();
                         if (T != 0) {
                             ?? obj3 = new Object();
-                            obj3.f20389a = true;
+                            obj3.f20390a = true;
                             T.showAsSheet(c0Var, obj3);
                             return;
                         }
@@ -116,7 +116,7 @@ public final class s implements j20 {
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 p6 p6Var3 = z0Var.e;
                 if (updates != null) {
-                    vp.r1(z0Var.M).L3(updates, false);
+                    wp.r1(z0Var.M).L3(updates, false);
                     z0Var.y(x0Var, "requested_chat_sent", z0.A(str, "req_id"));
                     return;
                 } else if (tL_error2 != null) {
@@ -133,7 +133,7 @@ public final class s implements j20 {
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
                 p6 p6Var4 = z0Var.e;
                 if (updates2 != null) {
-                    vp.r1(z0Var.M).L3(updates2, false);
+                    wp.r1(z0Var.M).L3(updates2, false);
                     z0Var.y(x0Var, "requested_chat_sent", z0.A(str, "req_id"));
                     return;
                 } else if (tL_error3 != null) {

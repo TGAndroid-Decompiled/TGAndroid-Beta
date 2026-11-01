@@ -3,10 +3,10 @@ package zf;
 import java.util.ArrayList;
 import org.telegram.ui.rs;
 public final class d1 implements l1 {
-    public final rs f55472a;
+    public final rs f55490a;
 
     public d1(rs rsVar) {
-        this.f55472a = rsVar;
+        this.f55490a = rsVar;
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class d1 implements l1 {
 
     @Override
     public final void i(int i10) {
-        rs rsVar = this.f55472a;
+        rs rsVar = this.f55490a;
         rsVar.f();
         if (i10 != 0) {
             rsVar.F();

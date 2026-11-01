@@ -7,27 +7,27 @@ import java.util.WeakHashMap;
 import r0.h0;
 import r0.m0;
 public final class i extends m0 {
-    public final int f7198a;
-    public final Object f7199b;
+    public final int f7199a;
+    public final Object f7200b;
 
     public i(Object obj, int i10) {
-        this.f7198a = i10;
-        this.f7199b = obj;
+        this.f7199a = i10;
+        this.f7200b = obj;
     }
 
     @Override
     public void b() {
-        int i10 = this.f7198a;
-        Object obj = this.f7199b;
+        int i10 = this.f7199a;
+        Object obj = this.f7200b;
         switch (i10) {
             case 0:
-                ((h) obj).f7197b.D.setVisibility(0);
+                ((h) obj).f7198b.D.setVisibility(0);
                 return;
             case 1:
                 r rVar = (r) obj;
                 rVar.D.setVisibility(0);
                 if (rVar.D.getParent() instanceof View) {
-                    WeakHashMap weakHashMap = h0.f46123a;
+                    WeakHashMap weakHashMap = h0.f46134a;
                     r0.x.c((View) rVar.D.getParent());
                     return;
                 }
@@ -39,11 +39,11 @@ public final class i extends m0 {
 
     @Override
     public final void c() {
-        int i10 = this.f7198a;
-        Object obj = this.f7199b;
+        int i10 = this.f7199a;
+        Object obj = this.f7200b;
         switch (i10) {
             case 0:
-                r rVar = ((h) obj).f7197b;
+                r rVar = ((h) obj).f7198b;
                 rVar.D.setAlpha(1.0f);
                 rVar.G.d(null);
                 rVar.G = null;
@@ -55,20 +55,20 @@ public final class i extends m0 {
                 rVar2.G = null;
                 return;
             default:
-                r rVar3 = (r) ((n4.q) obj).f13527b;
+                r rVar3 = (r) ((n4.q) obj).f13528b;
                 rVar3.D.setVisibility(8);
                 PopupWindow popupWindow = rVar3.E;
                 if (popupWindow != null) {
                     popupWindow.dismiss();
                 } else if (rVar3.D.getParent() instanceof View) {
-                    WeakHashMap weakHashMap = h0.f46123a;
+                    WeakHashMap weakHashMap = h0.f46134a;
                     r0.x.c((View) rVar3.D.getParent());
                 }
                 rVar3.D.e();
                 rVar3.G.d(null);
                 rVar3.G = null;
                 ViewGroup viewGroup = rVar3.J;
-                WeakHashMap weakHashMap2 = h0.f46123a;
+                WeakHashMap weakHashMap2 = h0.f46134a;
                 r0.x.c(viewGroup);
                 return;
         }

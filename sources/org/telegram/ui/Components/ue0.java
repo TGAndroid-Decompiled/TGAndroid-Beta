@@ -2,10 +2,10 @@ package org.telegram.ui.Components;
 
 import android.webkit.JavascriptInterface;
 public final class ue0 {
-    public final org.telegram.ui.mr0 f30912a;
+    public final org.telegram.ui.lr0 f30946a;
 
-    public ue0(org.telegram.ui.mr0 mr0Var) {
-        this.f30912a = mr0Var;
+    public ue0(org.telegram.ui.lr0 lr0Var) {
+        this.f30946a = lr0Var;
     }
 
     @JavascriptInterface
@@ -20,22 +20,22 @@ public final class ue0 {
 
     @JavascriptInterface
     public void onPlayerNotifyBufferedPosition(float f7) {
-        this.f30912a.J = f7;
+        this.f30946a.J = f7;
     }
 
     @JavascriptInterface
     public void onPlayerNotifyCurrentPosition(int i10) {
-        this.f30912a.I = i10 * 1000;
+        this.f30946a.I = i10 * 1000;
     }
 
     @JavascriptInterface
     public void onPlayerNotifyDuration(int i10) {
-        org.telegram.ui.mr0 mr0Var = this.f30912a;
-        mr0Var.H = i10 * 1000;
-        String str = mr0Var.f31240s;
+        org.telegram.ui.lr0 lr0Var = this.f30946a;
+        lr0Var.H = i10 * 1000;
+        String str = lr0Var.f31275s;
         if (str != null) {
-            ve0.a(mr0Var, str);
-            mr0Var.f31240s = null;
+            ve0.a(lr0Var, str);
+            lr0Var.f31275s = null;
         }
     }
 
@@ -43,8 +43,8 @@ public final class ue0 {
     public void onPlayerStateChange(String str) {
         boolean z10;
         int parseInt = Integer.parseInt(str);
-        org.telegram.ui.mr0 mr0Var = this.f30912a;
-        boolean z11 = mr0Var.G;
+        org.telegram.ui.lr0 lr0Var = this.f30946a;
+        boolean z11 = lr0Var.G;
         boolean z12 = false;
         int i10 = 1;
         if (parseInt != 1 && parseInt != 3) {
@@ -52,8 +52,8 @@ public final class ue0 {
         } else {
             z10 = true;
         }
-        mr0Var.G = z10;
-        mr0Var.b(z11);
+        lr0Var.G = z10;
+        lr0Var.b(z11);
         if (parseInt != 0) {
             if (parseInt != 1) {
                 if (parseInt != 2) {
@@ -69,7 +69,7 @@ public final class ue0 {
         } else {
             i10 = 4;
         }
-        if (i10 == 3 && mr0Var.h.getVisibility() != 4) {
+        if (i10 == 3 && lr0Var.h.getVisibility() != 4) {
             org.telegram.messenger.i0.h3(new se0(this, 1), 300L);
         }
         org.telegram.messenger.i0.g3(new i2.j0(this, z12, i10, 3));

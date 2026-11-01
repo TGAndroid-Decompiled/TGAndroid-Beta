@@ -1,30 +1,36 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class pu implements RequestDelegate {
-    public final int f40788a;
-    public final su f40789b;
+import android.content.DialogInterface;
+public final class pu implements DialogInterface.OnClickListener {
+    public final int f40614a;
+    public final int f40615b;
 
-    public pu(su suVar, int i10) {
-        this.f40788a = i10;
-        this.f40789b = suVar;
+    public pu(int i10, int i11) {
+        this.f40614a = i11;
+        this.f40615b = i10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f40788a) {
+    public final void onClick(DialogInterface dialogInterface, int i10) {
+        switch (this.f40614a) {
             case 0:
-                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
-                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
-                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
-                su suVar = this.f40789b;
-                suVar.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new pu(suVar, 1));
-                return;
+                int i11 = 2 - i10;
+                if (i11 == this.f40615b) {
+                    org.telegram.messenger.uz.w(-1);
+                    return;
+                } else {
+                    org.telegram.messenger.uz.w(i11);
+                    return;
+                }
             default:
-                this.f40789b.getMessagesController().P2(true);
-                return;
+                int i12 = 2 - i10;
+                if (i12 == this.f40615b) {
+                    org.telegram.messenger.uz.w(-1);
+                    return;
+                } else {
+                    org.telegram.messenger.uz.w(i12);
+                    return;
+                }
         }
     }
 }

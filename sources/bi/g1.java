@@ -16,7 +16,7 @@ public final class g1 implements Runnable {
                 u4 u4Var = n1Var.C2;
                 if (u4Var != null && n1Var.Z1 != null) {
                     n1Var.D2 = true;
-                    u4Var.b().f18107a.m(false);
+                    u4Var.b().f18476a.m(false);
                     try {
                         n1Var.performHapticFeedback(0);
                     } catch (Exception unused) {

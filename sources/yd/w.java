@@ -2,21 +2,21 @@ package yd;
 
 import td.c2;
 public final class w extends kotlin.jvm.internal.j implements ld.p {
-    public static final w f54422c = new w(2, 0);
+    public static final w f54443c = new w(2, 0);
     public static final w d = new w(2, 1);
     public static final w e = new w(2, 2);
-    public final int f54423b;
+    public final int f54444b;
 
     public w(int i10, int i11) {
         super(i10);
-        this.f54423b = i11;
+        this.f54444b = i11;
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
         Integer num;
         int i10;
-        switch (this.f54423b) {
+        switch (this.f54444b) {
             case 0:
                 cd.f fVar = (cd.f) obj2;
                 if (fVar instanceof c2) {

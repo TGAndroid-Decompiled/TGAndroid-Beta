@@ -8,17 +8,17 @@ import java.util.List;
 import ld.q;
 import td.e0;
 public final class g extends ed.c implements wd.c {
-    public final wd.c f53667a;
-    public final cd.h f53668b;
-    public final int f53669c;
+    public final wd.c f53685a;
+    public final cd.h f53686b;
+    public final int f53687c;
     public cd.h d;
     public ed.c e;
 
     public g(wd.c cVar, cd.h hVar) {
-        super(d.f53664a, cd.i.f4123a);
-        this.f53667a = cVar;
-        this.f53668b = hVar;
-        this.f53669c = ((Number) hVar.fold(0, f.f53666b)).intValue();
+        super(d.f53682a, cd.i.f4123a);
+        this.f53685a = cVar;
+        this.f53686b = hVar;
+        this.f53687c = ((Number) hVar.fold(0, f.f53684b)).intValue();
     }
 
     @Override
@@ -45,7 +45,7 @@ public final class g extends ed.c implements wd.c {
         if (hVar != context) {
             int i11 = 0;
             if (hVar instanceof c) {
-                String str2 = "\n            Flow exception transparency is violated:\n                Previous 'emit' call has thrown exception " + ((c) hVar).f53662a + ", but then emission attempt of value '" + obj + "' has been detected.\n                Emissions from 'catch' blocks are prohibited in order to avoid unspecified behaviour, 'Flow.catch' operator can be used instead.\n                For a more detailed explanation, please refer to Flow documentation.\n            ";
+                String str2 = "\n            Flow exception transparency is violated:\n                Previous 'emit' call has thrown exception " + ((c) hVar).f53680a + ", but then emission attempt of value '" + obj + "' has been detected.\n                Emissions from 'catch' blocks are prohibited in order to avoid unspecified behaviour, 'Flow.catch' operator can be used instead.\n                For a more detailed explanation, please refer to Flow documentation.\n            ";
                 kotlin.jvm.internal.i.e(str2, "<this>");
                 List a2 = qd.d.a(new qd.e(str2, 2));
                 List list = a2;
@@ -133,15 +133,15 @@ public final class g extends ed.c implements wd.c {
                 StringBuilder sb2 = new StringBuilder(length2);
                 bd.i.g(arrayList3, sb2, "\n", "", "", "...", null);
                 throw new IllegalStateException(sb2.toString().toString());
-            } else if (((Number) context.fold(0, new j(this))).intValue() == this.f53669c) {
+            } else if (((Number) context.fold(0, new j(this))).intValue() == this.f53687c) {
                 this.d = context;
             } else {
-                throw new IllegalStateException(("Flow invariant is violated:\n\t\tFlow was collected in " + this.f53668b + ",\n\t\tbut emission happened in " + context + ".\n\t\tPlease refer to 'flow' documentation or use 'flowOn' instead").toString());
+                throw new IllegalStateException(("Flow invariant is violated:\n\t\tFlow was collected in " + this.f53686b + ",\n\t\tbut emission happened in " + context + ".\n\t\tPlease refer to 'flow' documentation or use 'flowOn' instead").toString());
             }
         }
         this.e = cVar;
-        q qVar = i.f53671a;
-        wd.c cVar2 = this.f53667a;
+        q qVar = i.f53689a;
+        wd.c cVar2 = this.f53685a;
         kotlin.jvm.internal.i.c(cVar2, "null cannot be cast to non-null type kotlinx.coroutines.flow.FlowCollector<kotlin.Any?>");
         Object a11 = qVar.a(cVar2, obj, this);
         if (!kotlin.jvm.internal.i.a(a11, dd.a.f5864a)) {

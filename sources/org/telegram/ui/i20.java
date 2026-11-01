@@ -1,20 +1,17 @@
 package org.telegram.ui;
-public final class i20 extends g.o {
-    public final b50 f38101c;
+public final class i20 extends s4.j {
+    public final a50 F;
 
-    public i20(b50 b50Var) {
-        this.f38101c = b50Var;
+    public i20(a50 a50Var) {
+        this.F = a50Var;
     }
 
     @Override
-    public final int i(int i10) {
-        int size = this.f38101c.f36016f4.e.size();
-        if (size > 1 && size != 2) {
-            if (size != 3 || i10 == 0 || i10 == 1) {
-                return 3;
-            }
-            return 6;
-        }
-        return 6;
+    public final void P(s4.c1 c1Var) {
+        a50 a50Var = this.F;
+        a50Var.H1.invalidate();
+        a50Var.R3.invalidate();
+        a50Var.f21587b.invalidate();
+        a50.P0(a50Var);
     }
 }

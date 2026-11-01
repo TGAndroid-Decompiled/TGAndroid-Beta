@@ -11,11 +11,11 @@ public final class j extends h {
     public final df.c b() {
         int i10;
         this.d++;
-        df.c cVar = (df.c) this.f54375b.d;
+        df.c cVar = (df.c) this.f54396b.d;
         if (cVar instanceof r) {
             r rVar = (r) cVar;
-            if (rVar.f50811g.endsWith(" ")) {
-                String str = rVar.f50811g;
+            if (rVar.f50825g.endsWith(" ")) {
+                String str = rVar.f50825g;
                 Matcher matcher = e.matcher(str);
                 if (matcher.find()) {
                     i10 = matcher.end() - matcher.start();
@@ -23,7 +23,7 @@ public final class j extends h {
                     i10 = 0;
                 }
                 if (i10 > 0) {
-                    rVar.f50811g = i0.m(i10, 0, str);
+                    rVar.f50825g = i0.m(i10, 0, str);
                 }
                 if (i10 >= 2) {
                     return new ve.g(1);

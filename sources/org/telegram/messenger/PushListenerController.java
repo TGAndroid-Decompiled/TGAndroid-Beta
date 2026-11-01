@@ -466,165 +466,165 @@ public class PushListenerController {
         }
         switch (c10) {
             case 0:
-                return cd.a0(null, null, 2131746589, objArr);
+                return dd.a0(null, null, 2131746589, objArr);
             case 1:
-                return cd.a0(null, null, 2131746526, objArr);
+                return dd.a0(null, null, 2131746526, objArr);
             case 2:
-                return cd.a0(null, null, 2131746578, objArr);
+                return dd.a0(null, null, 2131746578, objArr);
             case 3:
-                return cd.a0(null, null, 2131746562, objArr);
+                return dd.a0(null, null, 2131746562, objArr);
             case 4:
-                return cd.a0(null, null, 2131746564, objArr);
+                return dd.a0(null, null, 2131746564, objArr);
             case 5:
-                return cd.a0(null, null, 2131746538, objArr);
+                return dd.a0(null, null, 2131746538, objArr);
             case 6:
             case 'F':
-                return cd.a0(null, null, 2131746570, objArr);
+                return dd.a0(null, null, 2131746570, objArr);
             case 7:
-                return cd.a0(null, null, 2131746548, objArr);
+                return dd.a0(null, null, 2131746548, objArr);
             case '\b':
-                return cd.a0(null, null, 2131746541, objArr);
+                return dd.a0(null, null, 2131746541, objArr);
             case '\t':
-                return cd.a0(null, null, 2131746557, objArr);
+                return dd.a0(null, null, 2131746557, objArr);
             case '\n':
-                return cd.a0(null, null, 2131746581, objArr);
+                return dd.a0(null, null, 2131746581, objArr);
             case 11:
-                return cd.a0(null, null, 2131746586, objArr);
+                return dd.a0(null, null, 2131746586, objArr);
             case '\f':
-                return cd.a0(null, null, 2131746555, objArr);
+                return dd.a0(null, null, 2131746555, objArr);
             case '\r':
-                return cd.a0(null, null, 2131746552, objArr);
+                return dd.a0(null, null, 2131746552, objArr);
             case 14:
-                return cd.a0(null, null, 2131746525, objArr);
+                return dd.a0(null, null, 2131746525, objArr);
             case 15:
-                return cd.a0(null, null, 2131746582, objArr);
+                return dd.a0(null, null, 2131746582, objArr);
             case 16:
             case '*':
-                return cd.a0(null, null, 2131746572, objArr);
+                return dd.a0(null, null, 2131746572, objArr);
             case 17:
-                return cd.a0(null, null, 2131746567, objArr);
+                return dd.a0(null, null, 2131746567, objArr);
             case 18:
-                return cd.a0(null, null, 2131746543, objArr);
+                return dd.a0(null, null, 2131746543, objArr);
             case 19:
-                return cd.a0(null, null, 2131746575, objArr);
+                return dd.a0(null, null, 2131746575, objArr);
             case 20:
-                return cd.a0(null, null, 2131746546, objArr);
+                return dd.a0(null, null, 2131746546, objArr);
             case 21:
-                return cd.a0(null, null, 2131746558, objArr);
+                return dd.a0(null, null, 2131746558, objArr);
             case 22:
-                return cd.a0(null, null, 2131746565, objArr);
+                return dd.a0(null, null, 2131746565, objArr);
             case 23:
-                return cd.a0(null, null, 2131746551, objArr);
+                return dd.a0(null, null, 2131746551, objArr);
             case 24:
-                return cd.a0(null, null, 2131746549, objArr);
+                return dd.a0(null, null, 2131746549, objArr);
             case 25:
-                return cd.a0(null, null, 2131746533, objArr);
+                return dd.a0(null, null, 2131746533, objArr);
             case 26:
-                return cd.a0(null, null, 2131746531, objArr);
+                return dd.a0(null, null, 2131746531, objArr);
             case 27:
-                return cd.a0(null, null, 2131746556, objArr);
+                return dd.a0(null, null, 2131746556, objArr);
             case 28:
-                return cd.a0(null, null, 2131746545, objArr);
+                return dd.a0(null, null, 2131746545, objArr);
             case 29:
-                return cd.a0(null, null, 2131746588, objArr);
+                return dd.a0(null, null, 2131746588, objArr);
             case 30:
-                return cd.a0(null, null, 2131746585, objArr);
+                return dd.a0(null, null, 2131746585, objArr);
             case 31:
-                return cd.a0(null, null, 2131746583, objArr);
+                return dd.a0(null, null, 2131746583, objArr);
             case ' ':
             case 'G':
-                return cd.a0(null, null, 2131746530, objArr);
+                return dd.a0(null, null, 2131746530, objArr);
             case '!':
             case ';':
             case 'H':
-                return cd.a0(null, null, 2131746532, objArr);
+                return dd.a0(null, null, 2131746532, objArr);
             case '\"':
-                return cd.a0(null, null, 2131746559, objArr);
+                return dd.a0(null, null, 2131746559, objArr);
             case '#':
-                return cd.a0(null, null, 2131746542, objArr);
+                return dd.a0(null, null, 2131746542, objArr);
             case '$':
-                return cd.a0(null, null, 2131746560, objArr);
+                return dd.a0(null, null, 2131746560, objArr);
             case '%':
-                return cd.a0(null, null, 2131746540, objArr);
+                return dd.a0(null, null, 2131746540, objArr);
             case '&':
-                return cd.a0(null, null, 2131746590, objArr);
+                return dd.a0(null, null, 2131746590, objArr);
             case '\'':
-                return cd.a0(null, null, 2131746580, objArr);
+                return dd.a0(null, null, 2131746580, objArr);
             case '(':
-                return cd.a0(null, null, 2131746576, objArr);
+                return dd.a0(null, null, 2131746576, objArr);
             case ')':
-                return cd.a0(null, null, 2131746574, objArr);
+                return dd.a0(null, null, 2131746574, objArr);
             case '+':
-                return cd.a0(null, null, 2131746569, objArr);
+                return dd.a0(null, null, 2131746569, objArr);
             case ',':
-                return cd.a0(null, null, 2131748064, objArr);
+                return dd.a0(null, null, 2131748064, objArr);
             case '-':
-                return cd.a0(null, null, 2131746529, objArr);
+                return dd.a0(null, null, 2131746529, objArr);
             case '.':
-                return cd.a0(null, null, 2131746536, objArr);
+                return dd.a0(null, null, 2131746536, objArr);
             case '/':
-                return cd.a0(null, null, 2131747953, objArr);
+                return dd.a0(null, null, 2131747953, objArr);
             case '0':
-                return cd.a0(null, null, 2131747953, objArr);
+                return dd.a0(null, null, 2131747953, objArr);
             case '1':
-                return cd.a0(null, null, 2131746544, objArr);
+                return dd.a0(null, null, 2131746544, objArr);
             case '2':
-                return cd.a0(null, null, 2131746584, objArr);
+                return dd.a0(null, null, 2131746584, objArr);
             case '3':
-                return cd.a0(null, null, 2131746527, objArr);
+                return dd.a0(null, null, 2131746527, objArr);
             case '4':
-                return cd.a0(null, null, 2131746535, objArr);
+                return dd.a0(null, null, 2131746535, objArr);
             case '5':
-                return cd.a0(null, null, 2131746550, objArr);
+                return dd.a0(null, null, 2131746550, objArr);
             case '6':
-                return cd.a0(null, null, 2131746554, objArr);
+                return dd.a0(null, null, 2131746554, objArr);
             case '7':
-                return cd.a0(null, null, 2131746568, objArr);
+                return dd.a0(null, null, 2131746568, objArr);
             case '8':
-                return cd.a0(null, null, 2131746553, objArr);
+                return dd.a0(null, null, 2131746553, objArr);
             case '9':
-                return cd.a0(null, null, 2131746547, objArr);
+                return dd.a0(null, null, 2131746547, objArr);
             case ':':
-                return cd.a0(null, null, 2131746539, objArr);
+                return dd.a0(null, null, 2131746539, objArr);
             case '<':
-                return cd.a0(null, null, 2131746528, objArr);
+                return dd.a0(null, null, 2131746528, objArr);
             case '=':
-                return cd.a0(null, null, 2131746534, objArr);
+                return dd.a0(null, null, 2131746534, objArr);
             case '>':
-                return cd.a0(null, null, 2131746566, objArr);
+                return dd.a0(null, null, 2131746566, objArr);
             case '?':
-                return cd.a0(null, null, 2131746563, objArr);
+                return dd.a0(null, null, 2131746563, objArr);
             case '@':
-                return cd.a0(null, null, 2131746561, objArr);
+                return dd.a0(null, null, 2131746561, objArr);
             case 'A':
-                return cd.a0(null, null, 2131746587, objArr);
+                return dd.a0(null, null, 2131746587, objArr);
             case 'B':
-                return cd.a0(null, null, 2131746579, objArr);
+                return dd.a0(null, null, 2131746579, objArr);
             case 'C':
-                return cd.a0(null, null, 2131746577, objArr);
+                return dd.a0(null, null, 2131746577, objArr);
             case 'D':
-                return cd.a0(null, null, 2131746573, objArr);
+                return dd.a0(null, null, 2131746573, objArr);
             case 'E':
-                return cd.a0(null, null, 2131746571, objArr);
+                return dd.a0(null, null, 2131746571, objArr);
             default:
                 return null;
         }
     }
 
     public static void lambda$processRemoteMessage$2(int i10, TLRPC.TL_updates tL_updates) {
-        vp.r1(i10).L3(tL_updates, false);
+        wp.r1(i10).L3(tL_updates, false);
     }
 
     public static void lambda$processRemoteMessage$3(int i10) {
-        if (d20.i(i10).e() != 0) {
-            d20.i(i10).b();
-            vp.r1(i10).x3(0);
+        if (e20.i(i10).e() != 0) {
+            e20.i(i10).b();
+            wp.r1(i10).x3(0);
         }
     }
 
     public static void lambda$processRemoteMessage$4(int i10) {
-        nd f7 = nd.f(i10);
-        if (f7.f17083b.isEmpty()) {
+        od f7 = od.f(i10);
+        if (f7.f17420b.isEmpty()) {
             return;
         }
         f7.H = SystemClock.elapsedRealtime() + 65000;
@@ -632,7 +632,7 @@ public class PushListenerController {
     }
 
     public static void lambda$processRemoteMessage$5(int i10, long j10, int i11) {
-        vp.r1(i10).k4(i11, j10, true);
+        wp.r1(i10).k4(i11, j10, true);
     }
 
     public static void lambda$processRemoteMessage$6(java.lang.String r86, java.lang.String r87, long r88) {
@@ -640,35 +640,35 @@ public class PushListenerController {
     }
 
     public static void lambda$processRemoteMessage$7(String str, String str2, long j10) {
-        if (v2.f18448a) {
+        if (v2.f18578a) {
             f8.b(str + " PRE INIT APP");
         }
         w0.w();
-        if (v2.f18448a) {
+        if (v2.f18578a) {
             f8.b(str + " POST INIT APP");
         }
-        Utilities.d.c(new du(0, j10, str, str2));
+        Utilities.d.c(new eu(0, j10, str, str2));
     }
 
     public static void lambda$sendRegistrationToServer$0(int i10, int i11, String str) {
-        vp.r1(i10).W3(i11, str);
+        wp.r1(i10).W3(i11, str);
     }
 
     public static void lambda$sendRegistrationToServer$1(String str, int i10) {
         boolean z10;
         String str2;
-        ConnectionsManager.setRegId(str, i10, tz.h);
+        ConnectionsManager.setRegId(str, i10, uz.h);
         if (str != null) {
-            if (tz.f18152i != 0 && tz.f18155j != 0 && (!tz.f18158k || !TextUtils.equals(tz.f18147g, str))) {
-                tz.f18158k = false;
+            if (uz.f18521i != 0 && uz.f18524j != 0 && (!uz.f18527k || !TextUtils.equals(uz.f18516g, str))) {
+                uz.f18527k = false;
                 z10 = true;
             } else {
                 z10 = false;
             }
-            tz.f18147g = str;
-            tz.f18144f = i10;
+            uz.f18516g = str;
+            uz.f18513f = i10;
             for (int i11 = 0; i11 < 4; i11++) {
-                d20 i12 = d20.i(i11);
+                e20 i12 = e20.i(i11);
                 i12.d = false;
                 i12.v(false);
                 if (i12.e() != 0) {
@@ -680,19 +680,19 @@ public class PushListenerController {
                         }
                         TLRPC.TL_help_saveAppLog tL_help_saveAppLog = new TLRPC.TL_help_saveAppLog();
                         TLRPC.TL_inputAppEvent tL_inputAppEvent = new TLRPC.TL_inputAppEvent();
-                        tL_inputAppEvent.time = tz.f18152i;
+                        tL_inputAppEvent.time = uz.f18521i;
                         tL_inputAppEvent.type = str2.concat("_token_request");
                         tL_inputAppEvent.peer = 0L;
                         tL_inputAppEvent.data = new TLRPC.TL_jsonNull();
                         tL_help_saveAppLog.events.add(tL_inputAppEvent);
                         TLRPC.TL_inputAppEvent tL_inputAppEvent2 = new TLRPC.TL_inputAppEvent();
-                        tL_inputAppEvent2.time = tz.f18155j;
+                        tL_inputAppEvent2.time = uz.f18524j;
                         tL_inputAppEvent2.type = str2.concat("_token_response");
-                        tL_inputAppEvent2.peer = tz.f18155j - tz.f18152i;
+                        tL_inputAppEvent2.peer = uz.f18524j - uz.f18521i;
                         tL_inputAppEvent2.data = new TLRPC.TL_jsonNull();
                         tL_help_saveAppLog.events.add(tL_inputAppEvent2);
-                        tz.f18158k = true;
-                        tz.y();
+                        uz.f18527k = true;
+                        uz.y();
                         ConnectionsManager.getInstance(i11).sendRequest(tL_help_saveAppLog, null);
                         z10 = false;
                     }
@@ -704,7 +704,7 @@ public class PushListenerController {
 
     private static void onDecryptError() {
         for (int i10 = 0; i10 < 4; i10++) {
-            if (d20.i(i10).p()) {
+            if (e20.i(i10).p()) {
                 ConnectionsManager.onInternalPushReceived(i10);
                 ConnectionsManager.getInstance(i10).resumeNetworkMaybe();
             }
@@ -720,16 +720,16 @@ public class PushListenerController {
             str2 = "HCM";
         }
         String str3 = str2;
-        if (v2.f18448a) {
+        if (v2.f18578a) {
             f8.b(str3.concat(" PRE START PROCESSING"));
         }
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        i0.g3(new du(1, j10, str3, str));
+        i0.g3(new eu(1, j10, str3, str));
         try {
             countDownLatch.await();
         } catch (Throwable unused) {
         }
-        boolean z10 = v2.f18448a;
+        boolean z10 = v2.f18578a;
         StringBuilder u10 = a1.g.u("finished ", str3, " service, time = ");
         u10.append(SystemClock.elapsedRealtime() - elapsedRealtime);
         f8.b(u10.toString());

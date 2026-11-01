@@ -5,29 +5,29 @@ import java.util.WeakHashMap;
 import r0.h0;
 import r0.k0;
 public final class h implements Runnable {
-    public final int f7196a;
-    public final r f7197b;
+    public final int f7197a;
+    public final r f7198b;
 
     public h(r rVar, int i10) {
-        this.f7196a = i10;
-        this.f7197b = rVar;
+        this.f7197a = i10;
+        this.f7198b = rVar;
     }
 
     @Override
     public final void run() {
         ViewGroup viewGroup;
-        int i10 = this.f7196a;
-        r rVar = this.f7197b;
+        int i10 = this.f7197a;
+        r rVar = this.f7198b;
         switch (i10) {
             case 0:
-                if ((rVar.f7232i0 & 1) != 0) {
+                if ((rVar.f7233i0 & 1) != 0) {
                     rVar.j(0);
                 }
-                if ((rVar.f7232i0 & 4096) != 0) {
+                if ((rVar.f7233i0 & 4096) != 0) {
                     rVar.j(108);
                 }
-                rVar.f7231h0 = false;
-                rVar.f7232i0 = 0;
+                rVar.f7232h0 = false;
+                rVar.f7233i0 = 0;
                 return;
             default:
                 rVar.E.showAtLocation(rVar.D, 55, 0, 0);
@@ -36,7 +36,7 @@ public final class h implements Runnable {
                     k0Var.b();
                 }
                 if (rVar.I && (viewGroup = rVar.J) != null) {
-                    WeakHashMap weakHashMap = h0.f46123a;
+                    WeakHashMap weakHashMap = h0.f46134a;
                     if (viewGroup.isLaidOut()) {
                         rVar.D.setAlpha(0.0f);
                         k0 a2 = h0.a(rVar.D);

@@ -8,34 +8,34 @@ import java.util.Collections;
 import java.util.List;
 import v7.t6;
 public final class q implements f0 {
-    public final p f49982a;
-    public final hf.b f49983b;
-    public t7.u f49984c;
+    public final p f49996a;
+    public final hf.b f49997b;
+    public t7.u f49998c;
     public final long d;
     public final long e;
-    public final long f49985f;
-    public final float f49986g;
+    public final long f49999f;
+    public final float f50000g;
     public final float h;
-    public boolean f49987i;
+    public boolean f50001i;
 
     public q(Context context, c3.m mVar) {
         hf.b bVar = new hf.b(context);
         t7.u uVar = new t7.u(28);
-        this.f49983b = bVar;
-        this.f49984c = uVar;
+        this.f49997b = bVar;
+        this.f49998c = uVar;
         p pVar = new p(mVar, uVar);
-        this.f49982a = pVar;
+        this.f49996a = pVar;
         if (bVar != pVar.d) {
             pVar.d = bVar;
-            pVar.f49973b.clear();
-            pVar.f49974c.clear();
+            pVar.f49987b.clear();
+            pVar.f49988c.clear();
         }
         this.d = -9223372036854775807L;
         this.e = -9223372036854775807L;
-        this.f49985f = -9223372036854775807L;
-        this.f49986g = -3.4028235E38f;
+        this.f49999f = -9223372036854775807L;
+        this.f50000g = -3.4028235E38f;
         this.h = -3.4028235E38f;
-        this.f49987i = true;
+        this.f50001i = true;
     }
 
     public static f0 e(Class cls, g2.g gVar) {
@@ -75,21 +75,21 @@ public final class q implements f0 {
             b2.k0 k0Var5 = p0Var2.f2182b;
             int K = e2.l0.K(k0Var5.f2091a, k0Var5.f2092b);
             if (p0Var2.f2182b.h != -9223372036854775807L) {
-                c3.m mVar = this.f49982a.f49972a;
+                c3.m mVar = this.f49996a.f49986a;
                 synchronized (mVar) {
                     mVar.e = 1;
                 }
-                p.a(this.f49982a);
+                p.a(this.f49996a);
             }
             try {
-                f0 b10 = this.f49982a.b(K);
+                f0 b10 = this.f49996a.b(K);
                 b2.i0 a2 = p0Var2.f2183c.a();
                 b2.j0 j0Var = p0Var2.f2183c;
                 if (j0Var.f2077a == -9223372036854775807L) {
                     a2.f2064a = this.d;
                 }
                 if (j0Var.d == -3.4028235E38f) {
-                    a2.d = this.f49986g;
+                    a2.d = this.f50000g;
                 }
                 if (j0Var.e == -3.4028235E38f) {
                     a2.e = this.h;
@@ -98,7 +98,7 @@ public final class q implements f0 {
                     a2.f2065b = this.e;
                 }
                 if (j0Var.f2079c == -9223372036854775807L) {
-                    a2.f2066c = this.f49985f;
+                    a2.f2066c = this.f49999f;
                 }
                 b2.j0 j0Var2 = new b2.j0(a2);
                 if (!j0Var2.equals(p0Var2.f2183c)) {
@@ -203,7 +203,7 @@ public final class q implements f0 {
                     a[] aVarArr = new a[n0Var3.size() + 1];
                     aVarArr[z11 ? 1 : 0] = a11;
                     for (int i10 = z11 ? 1 : 0; i10 < n0Var3.size(); i10++) {
-                        if (this.f49987i) {
+                        if (this.f50001i) {
                             b2.w wVar = new b2.w();
                             wVar.f2370r = b2.v0.n(((b2.o0) n0Var3.get(i10)).f2168b);
                             wVar.d = ((b2.o0) n0Var3.get(i10)).f2169c;
@@ -213,15 +213,15 @@ public final class q implements f0 {
                             wVar.f2356a = ((b2.o0) n0Var3.get(i10)).f2171g;
                             b2.x xVar = new b2.x(wVar);
                             org.telegram.ui.web.k0 k0Var7 = new org.telegram.ui.web.k0(21, this, xVar);
-                            hf.b bVar = this.f49983b;
+                            hf.b bVar = this.f49997b;
                             rh.d0 d0Var = new rh.d0(k0Var7, 19);
                             li.k kVar = new li.k(7);
                             hb.a aVar = new hb.a(27);
-                            if (this.f49984c.F(xVar)) {
+                            if (this.f49998c.F(xVar)) {
                                 b2.w a12 = xVar.a();
                                 a12.f2370r = b2.v0.n("application/x-media3-cues");
                                 a12.f2362j = xVar.f2423s;
-                                a12.P = this.f49984c.y(xVar);
+                                a12.P = this.f49998c.y(xVar);
                                 xVar = new b2.x(a12);
                             }
                             b2.x xVar2 = xVar;
@@ -256,9 +256,9 @@ public final class q implements f0 {
                             }
                             b2.p0 p0Var3 = new b2.p0("", new b2.e0(d0Var2), k0Var2, new b2.j0(i0Var), b2.s0.L, l0Var3);
                             k0Var2.getClass();
-                            aVarArr[i11] = new y0(p0Var3, bVar, d0Var, kVar.u(p0Var3), aVar, 1048576, xVar2);
+                            aVarArr[i11] = new y0(p0Var3, bVar, d0Var, kVar.s(p0Var3), aVar, 1048576, xVar2);
                         } else {
-                            hf.b bVar2 = this.f49983b;
+                            hf.b bVar2 = this.f49997b;
                             bVar2.getClass();
                             aVarArr[i10 + 1] = new n1((b2.o0) n0Var3.get(i10), bVar2, new hb.a(27));
                         }
@@ -274,10 +274,10 @@ public final class q implements f0 {
                     }
                     t6.f(z11);
                     t6.p(!eVar.h);
-                    eVar.f49868b = j11;
+                    eVar.f49882b = j11;
                     long j12 = f0Var2.d;
                     t6.p(!eVar.h);
-                    eVar.f49869c = j12;
+                    eVar.f49883c = j12;
                     t6.p(!eVar.h);
                     eVar.d = !f0Var2.f2013g;
                     boolean z14 = f0Var2.e;
@@ -285,10 +285,10 @@ public final class q implements f0 {
                     eVar.e = z14;
                     boolean z15 = f0Var2.f2012f;
                     t6.p(!eVar.h);
-                    eVar.f49870f = z15;
+                    eVar.f49884f = z15;
                     boolean z16 = f0Var2.h;
                     t6.p(!eVar.h);
-                    eVar.f49871g = z16;
+                    eVar.f49885g = z16;
                     t6.p(!eVar.h);
                     eVar.h = z10;
                     a11 = new h(eVar);
@@ -310,14 +310,14 @@ public final class q implements f0 {
 
     @Override
     public final f0 b(boolean z10) {
-        this.f49987i = z10;
-        p pVar = this.f49982a;
+        this.f50001i = z10;
+        p pVar = this.f49996a;
         pVar.e = z10;
-        c3.m mVar = pVar.f49972a;
+        c3.m mVar = pVar.f49986a;
         synchronized (mVar) {
             mVar.f3681b = z10;
         }
-        for (f0 f0Var : pVar.f49974c.values()) {
+        for (f0 f0Var : pVar.f49988c.values()) {
             f0Var.b(z10);
         }
         return this;
@@ -325,9 +325,9 @@ public final class q implements f0 {
 
     @Override
     public final f0 c(int i10) {
-        p pVar = this.f49982a;
-        pVar.f49976g = i10;
-        c3.m mVar = pVar.f49972a;
+        p pVar = this.f49996a;
+        pVar.f49990g = i10;
+        c3.m mVar = pVar.f49986a;
         synchronized (mVar) {
             mVar.d = i10;
         }
@@ -336,14 +336,14 @@ public final class q implements f0 {
 
     @Override
     public final f0 d(t7.u uVar) {
-        this.f49984c = uVar;
-        p pVar = this.f49982a;
-        pVar.f49975f = uVar;
-        c3.m mVar = pVar.f49972a;
+        this.f49998c = uVar;
+        p pVar = this.f49996a;
+        pVar.f49989f = uVar;
+        c3.m mVar = pVar.f49986a;
         synchronized (mVar) {
             mVar.f3682c = uVar;
         }
-        for (f0 f0Var : pVar.f49974c.values()) {
+        for (f0 f0Var : pVar.f49988c.values()) {
             f0Var.d(uVar);
         }
         return this;

@@ -1,42 +1,26 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.graphics.Paint;
-public final class w30 extends AnimatorListenerAdapter {
-    public final int f42866a;
-    public final b50 f42867b;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+public final class w30 extends org.telegram.ui.Components.pp0 {
+    public final a50 R2;
 
-    public w30(b50 b50Var, int i10) {
-        this.f42866a = i10;
-        this.f42867b = b50Var;
+    public w30(a50 a50Var, Context context, String str, String str2, String str3, String str4) {
+        super(context, null, str, str2, false, str3, str4, true);
+        this.R2 = a50Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        switch (this.f42866a) {
-            case 0:
-                b50 b50Var = this.f42867b;
-                b50Var.M1.setVisibility(4);
-                b50Var.N1.setVisibility(4);
-                b50Var.L1.setVisibility(4);
-                return;
-            case 1:
-                this.f42867b.Y1 = null;
-                return;
-            default:
-                b50 b50Var2 = this.f42867b;
-                b50Var2.Y2 = null;
-                Paint paint = b50Var2.X2;
-                if (b50Var2.K3 == 3) {
-                    i10 = -1163700;
-                } else {
-                    i10 = -12761513;
-                }
-                paint.setColor(i10);
-                b50Var2.W2.invalidate();
-                return;
+    public final void R0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        if (!z10) {
+            return;
+        }
+        int m10 = hVar.m();
+        a50 a50Var = this.R2;
+        if (m10 == 1) {
+            a50Var.m1().m(((TLRPC.Dialog) hVar.n(0)).f19798id, Integer.valueOf(i10), 41);
+        } else {
+            a50Var.m1().k(0L, 41, Integer.valueOf(i10), Integer.valueOf(hVar.m()), null, null);
         }
     }
 }

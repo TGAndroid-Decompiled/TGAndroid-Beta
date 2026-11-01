@@ -8,10 +8,10 @@ import com.google.android.gms.tasks.TaskCompletionSource;
 import rh.l5;
 import vh.e0;
 public final class w extends Binder {
-    public final e0 f53586a;
+    public final e0 f53604a;
 
     public w(e0 e0Var) {
-        this.f53586a = e0Var;
+        this.f53604a = e0Var;
     }
 
     public final void a(x xVar) {
@@ -19,10 +19,10 @@ public final class w extends Binder {
             if (Log.isLoggable("FirebaseMessaging", 3)) {
                 Log.d("FirebaseMessaging", "service received new intent via bind strategy");
             }
-            Intent intent = xVar.f53587a;
-            f fVar = (f) this.f53586a.f51092a;
+            Intent intent = xVar.f53605a;
+            f fVar = (f) this.f53604a.f51107a;
             TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-            fVar.f53538a.execute(new l5(fVar, intent, taskCompletionSource, 21));
+            fVar.f53556a.execute(new l5(fVar, intent, taskCompletionSource, 21));
             taskCompletionSource.getTask().addOnCompleteListener(new a3.b(3), new wh.b(xVar, 6));
             return;
         }

@@ -2,13 +2,13 @@ package xh;
 
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import org.telegram.ui.el0;
+import org.telegram.ui.cl0;
 public final class u extends LinearLayout {
-    public TextView f54064a;
-    public el0 f54065b;
-    public String f54066c;
+    public TextView f54085a;
+    public cl0 f54086b;
+    public String f54087c;
 
     public String getCommand() {
-        return this.f54066c;
+        return this.f54087c;
     }
 }

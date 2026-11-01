@@ -39,7 +39,7 @@ public final class w implements Runnable {
         if (fVar != null) {
             ((e6.h) fVar).o((String) this.d);
         } else {
-            g6.v.f7408n0.b("Discarded message for unknown namespace '%s'", (String) this.f3825c);
+            g6.v.f7409n0.b("Discarded message for unknown namespace '%s'", (String) this.f3825c);
         }
     }
 
@@ -101,9 +101,9 @@ public final class w implements Runnable {
             case 4:
                 da.b bVar2 = (da.b) this.d;
                 bVar2.b((x9.b) this.f3824b, (TaskCompletionSource) this.f3825c);
-                ((AtomicInteger) bVar2.f5827i.f53165c).set(0);
+                ((AtomicInteger) bVar2.f5827i.f53183c).set(0);
                 double min = Math.min(3600000.0d, Math.pow(bVar2.f5823b, bVar2.a()) * (60000.0d / bVar2.f5822a));
-                String str2 = "Delay for: " + String.format(Locale.US, "%.2f", Double.valueOf(min / 1000.0d)) + " s for report: " + bVar.f53441b;
+                String str2 = "Delay for: " + String.format(Locale.US, "%.2f", Double.valueOf(min / 1000.0d)) + " s for report: " + bVar.f53459b;
                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                     Log.d("FirebaseCrashlytics", str2, null);
                 }
@@ -135,7 +135,7 @@ public final class w implements Runnable {
                         mVar.get();
                         return;
                     } catch (Exception e) {
-                        eVar.f50162c.l(e);
+                        eVar.f50176c.l(e);
                         return;
                     }
                 }
@@ -176,13 +176,13 @@ public final class w implements Runnable {
                 return;
             default:
                 y8.c0 c0Var = (y8.c0) this.d;
-                WearAuthListenerService wearAuthListenerService = ((x8.d) this.f3824b).f53429c;
+                WearAuthListenerService wearAuthListenerService = ((x8.d) this.f3824b).f53447c;
                 ((i0) this.f3825c).getClass();
                 try {
                     c0Var.getClass();
                     Parcel obtain = Parcel.obtain();
                     obtain.writeInterfaceToken(c0Var.f318c);
-                    int i10 = f8.a.f6961a;
+                    int i10 = f8.a.f6962a;
                     obtain.writeInt(0);
                     obtain.writeByteArray(null);
                     c0Var.f317b.transact(1, obtain, null, 1);

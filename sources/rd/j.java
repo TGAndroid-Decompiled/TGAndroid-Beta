@@ -37,8 +37,8 @@ public abstract class j extends i {
         }
         od.d dVar = new od.d(i10, length, 1);
         boolean z13 = charSequence instanceof String;
-        int i11 = dVar.f14149c;
-        int i12 = dVar.f14148b;
+        int i11 = dVar.f14150c;
+        int i12 = dVar.f14149b;
         if (z13 && i0.t(string)) {
             if ((i11 > 0 && i10 <= i12) || (i11 < 0 && i12 <= i10)) {
                 int i13 = i10;

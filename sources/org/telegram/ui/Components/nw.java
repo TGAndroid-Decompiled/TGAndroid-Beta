@@ -16,21 +16,21 @@ public final class nw extends cv {
     @Override
     public final void K0(boolean z10) {
         vy vyVar = this.O1;
-        ArrayList arrayList = vyVar.f31904p1;
+        ArrayList arrayList = vyVar.f31982p1;
         TLRPC.StickerSet stickerSet = this.N1;
         if (z10) {
-            if (!arrayList.contains(Long.valueOf(stickerSet.f19820id))) {
-                arrayList.add(Long.valueOf(stickerSet.f19820id));
+            if (!arrayList.contains(Long.valueOf(stickerSet.f19821id))) {
+                arrayList.add(Long.valueOf(stickerSet.f19821id));
             }
         } else {
-            arrayList.remove(Long.valueOf(stickerSet.f19820id));
+            arrayList.remove(Long.valueOf(stickerSet.f19821id));
         }
         vyVar.U();
     }
 
     @Override
     public final void dismiss() {
-        this.O1.f31929w2 = false;
+        this.O1.f32007w2 = false;
         super.dismiss();
     }
 }

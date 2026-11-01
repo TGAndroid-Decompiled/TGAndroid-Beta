@@ -21,9 +21,9 @@ import java.util.ArrayList;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.m20;
-import org.telegram.messenger.q20;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.n20;
+import org.telegram.messenger.r20;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
@@ -32,10 +32,10 @@ import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.Components.kt;
 import org.telegram.ui.Components.z60;
-import org.telegram.ui.rm0;
-import org.telegram.ui.tb0;
+import org.telegram.ui.pm0;
+import org.telegram.ui.sb0;
 import v7.p8;
-public final class m implements m20, org.telegram.ui.ActionBar.u1, tb0, bi.q0, kt, s4, OnFailureListener, di.p, r9.d, e2.p, e2.o, m4.o0, e2.j, m4.h1, rm0 {
+public final class m implements n20, org.telegram.ui.ActionBar.u1, sb0, bi.q0, kt, s4, OnFailureListener, di.p, r9.d, e2.p, e2.o, m4.o0, e2.j, m4.h1, pm0 {
     public final int f629a;
     public final Object f630b;
     public final Object f631c;
@@ -52,7 +52,7 @@ public final class m implements m20, org.telegram.ui.ActionBar.u1, tb0, bi.q0, k
         r9.a aVar = (r9.a) this.f631c;
         try {
             Trace.beginSection(str);
-            return aVar.f46423f.K(dVar);
+            return aVar.f46434f.K(dVar);
         } finally {
             Trace.endSection();
         }
@@ -60,7 +60,7 @@ public final class m implements m20, org.telegram.ui.ActionBar.u1, tb0, bi.q0, k
 
     @Override
     public z60 a(bi.n1 n1Var) {
-        bi.t tVar = (bi.t) ((n4.q) this.f630b).f13527b;
+        bi.t tVar = (bi.t) ((n4.q) this.f630b).f13528b;
         z60 z60Var = new z60(tVar, (p6) this.f631c, n1Var, false, false, true);
         tVar.H = z60Var;
         return z60Var;
@@ -94,7 +94,7 @@ public final class m implements m20, org.telegram.ui.ActionBar.u1, tb0, bi.q0, k
             case 21:
                 m4.w wVar = (m4.w) this.f631c;
                 m4.n1 n1Var2 = (m4.n1) obj;
-                m4.f0 f0Var = (m4.f0) ((m4.j1) this.f630b).f12788a.get();
+                m4.f0 f0Var = (m4.f0) ((m4.j1) this.f630b).f12789a.get();
                 if (f0Var != null && !f0Var.j()) {
                     f0Var.g(wVar, false);
                     return;
@@ -104,14 +104,14 @@ public final class m implements m20, org.telegram.ui.ActionBar.u1, tb0, bi.q0, k
                 m4.j1 j1Var2 = (m4.j1) this.f630b;
                 Surface surface = (Surface) this.f631c;
                 m4.n1 n1Var3 = (m4.n1) obj;
-                ((m4.f0) j1Var2.f12788a.get()).getClass();
+                ((m4.f0) j1Var2.f12789a.get()).getClass();
                 if (surface == null) {
                     n1Var3.R(null);
-                    j1Var2.f12792i = null;
+                    j1Var2.f12793i = null;
                     return;
                 }
                 m4.i1 i1Var = new m4.i1(surface);
-                j1Var2.f12792i = i1Var;
+                j1Var2.f12793i = i1Var;
                 n1Var3.R(i1Var);
                 return;
         }
@@ -121,17 +121,17 @@ public final class m implements m20, org.telegram.ui.ActionBar.u1, tb0, bi.q0, k
     public void b(m4.w wVar) {
         switch (this.f629a) {
             case 18:
-                ((m4.e) this.f631c).f(((m4.p0) this.f630b).h.f12754t);
+                ((m4.e) this.f631c).f(((m4.p0) this.f630b).h.f12755t);
                 return;
             default:
                 m4.p0 p0Var = (m4.p0) this.f630b;
                 p0Var.getClass();
-                String str = ((n4.h) this.f631c).f13498a;
+                String str = ((n4.h) this.f631c).f13499a;
                 if (TextUtils.isEmpty(str)) {
                     e2.a.l("MediaSessionLegacyStub", "onRemoveQueueItem(): Media ID shouldn't be null");
                     return;
                 }
-                m4.n1 n1Var = p0Var.h.f12754t;
+                m4.n1 n1Var = p0Var.h.f12755t;
                 if (!n1Var.n0(17)) {
                     e2.a.l("MediaSessionLegacyStub", "Can't remove item by ID without COMMAND_GET_TIMELINE being available");
                     return;
@@ -174,13 +174,13 @@ public final class m implements m20, org.telegram.ui.ActionBar.u1, tb0, bi.q0, k
                     return;
                 }
             default:
-                q20 q20Var = (q20) this.f630b;
-                q20 q20Var2 = (q20) this.f631c;
+                r20 r20Var = (r20) this.f630b;
+                r20 r20Var2 = (r20) this.f631c;
                 if (i10 == 1) {
-                    q20Var.a(null);
+                    r20Var.a(null);
                     return;
                 } else if (i10 != 3) {
-                    q20Var2.a(null);
+                    r20Var2.a(null);
                     return;
                 } else {
                     return;
@@ -232,9 +232,9 @@ public final class m implements m20, org.telegram.ui.ActionBar.u1, tb0, bi.q0, k
                 q0Var.dismiss();
                 for (int i11 = 0; i11 < arrayList.size(); i11++) {
                     TLRPC.TL_channels_updateUsername tL_channels_updateUsername = new TLRPC.TL_channels_updateUsername();
-                    tL_channels_updateUsername.channel = vp.h1((TLRPC.Chat) arrayList.get(i11));
+                    tL_channels_updateUsername.channel = wp.h1((TLRPC.Chat) arrayList.get(i11));
                     tL_channels_updateUsername.username = "";
-                    ConnectionsManager.getInstance(q0Var.f21583a).sendRequest(tL_channels_updateUsername, new kg.z(q0Var, 1), 64);
+                    ConnectionsManager.getInstance(q0Var.f21584a).sendRequest(tL_channels_updateUsername, new kg.z(q0Var, 1), 64);
                 }
                 return;
             case 25:
@@ -256,7 +256,7 @@ public final class m implements m20, org.telegram.ui.ActionBar.u1, tb0, bi.q0, k
         wVar.f767y = document;
         pVar.setSticker(document);
         ((org.telegram.ui.Cells.p8) ((View) this.f631c)).setValueSticker(document);
-        wVar.i0(true);
+        wVar.j0(true);
     }
 
     @Override

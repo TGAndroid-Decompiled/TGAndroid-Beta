@@ -7,10 +7,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.d20;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.e20;
 import org.telegram.messenger.o5;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.a7;
@@ -21,19 +21,19 @@ import org.telegram.ui.Components.p80;
 import org.telegram.ui.Components.r8;
 import w7.b6;
 public final class n1 extends LinearLayout {
-    public final ArrayList f13194a;
-    public final j1 f13195b;
-    public final FrameLayout f13196c;
+    public final ArrayList f13195a;
+    public final j1 f13196b;
+    public final FrameLayout f13197c;
     public final FrameLayout d;
     public final p80 e;
 
     public n1(Context context) {
         super(context);
-        this.f13194a = new ArrayList();
+        this.f13195a = new ArrayList();
         setOrientation(1);
         setClipChildren(false);
         FrameLayout frameLayout = new FrameLayout(getContext());
-        this.f13196c = frameLayout;
+        this.f13197c = frameLayout;
         frameLayout.setClipChildren(false);
         FrameLayout frameLayout2 = new FrameLayout(getContext());
         this.d = frameLayout2;
@@ -46,13 +46,13 @@ public final class n1 extends LinearLayout {
         a5Var.addView(imageView);
         frameLayout.addView(a5Var, b6.e(24, 24, 17));
         j1 j1Var = new j1(context);
-        this.f13195b = j1Var;
+        this.f13196b = j1Var;
         j1Var.setLayerType(2, null);
         frameLayout.addView(j1Var, b6.e(70, 70, 17));
         addView(frameLayout, b6.k(0.0f, 15.0f, 0.0f, 0.0f, -1, 70));
         TextView textView = new TextView(context);
         textView.setTypeface(org.telegram.messenger.i0.o());
-        textView.setText(cd.L0(2131753321, null));
+        textView.setText(dd.L0(2131753321, null));
         textView.setTextSize(1, 20.0f);
         a7.V(textView, t6.G6, null);
         addView(textView, b6.t(-2, -2, 1, 0, 15, 0, 7));
@@ -60,7 +60,7 @@ public final class n1 extends LinearLayout {
         this.e = p80Var;
         p80Var.setTextSize(1, 14.0f);
         p80Var.setGravity(1);
-        a7.V(p80Var, t6.f21037j5, null);
+        a7.V(p80Var, t6.f21038j5, null);
         p80Var.setLineSpacing(p80Var.getLineSpacingExtra(), p80Var.getLineSpacingMultiplier() * 1.1f);
         addView(p80Var, b6.t(-2, -2, 1, 28, 0, 28, 18));
     }
@@ -80,15 +80,15 @@ public final class n1 extends LinearLayout {
         while (i13 < size) {
             Object obj = arrayList.get(i13);
             i13++;
-            arrayList3.add(vp.r1(d20.f15147s0).L0(Long.valueOf(-o5.o(((TL_stories.TL_myBoost) obj).peer))));
+            arrayList3.add(wp.r1(e20.f15506s0).L0(Long.valueOf(-o5.o(((TL_stories.TL_myBoost) obj).peer))));
         }
         ArrayList arrayList4 = new ArrayList();
         ArrayList arrayList5 = new ArrayList();
-        gr grVar = gr.f26495f;
+        gr grVar = gr.f26523f;
         int size2 = arrayList3.size();
         int i14 = 0;
         while (true) {
-            arrayList2 = this.f13194a;
+            arrayList2 = this.f13195a;
             if (i14 >= size2) {
                 break;
             }
@@ -137,7 +137,7 @@ public final class n1 extends LinearLayout {
             j1Var3.d = chat4;
             r8 r8Var = j1Var3.e;
             r8Var.q(chat4);
-            j1Var3.f13171a.e(chat4, r8Var);
+            j1Var3.f13172a.e(chat4, r8Var);
             int size5 = arrayList6.size();
             frameLayout.addView(j1Var3, i12, b6.e(70, 70, 17));
             j1Var3.setTranslationX(org.telegram.messenger.i0.L(23.0f) * (-size5));
@@ -147,7 +147,7 @@ public final class n1 extends LinearLayout {
             ArrayList arrayList7 = arrayList5;
             j1Var3.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setInterpolator(grVar).setDuration(200).start();
             if (size5 == 0) {
-                k1 k1Var = j1Var3.f13172b;
+                k1 k1Var = j1Var3.f13173b;
                 k1Var.setScaleY(1.0f);
                 k1Var.setScaleX(1.0f);
                 k1Var.setAlpha(1.0f);
@@ -201,9 +201,9 @@ public final class n1 extends LinearLayout {
                 i10 = size6;
                 if (i0.a.g(1, arrayList6) == j1Var && arrayList6.size() > 1) {
                     c11 = 2;
-                    ((j1) i0.a.g(2, arrayList6)).f13172b.setScaleY(0.1f);
-                    ((j1) arrayList6.get(arrayList6.size() - 2)).f13172b.setScaleX(0.1f);
-                    ((j1) arrayList6.get(arrayList6.size() - 2)).f13172b.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(j10).setInterpolator(grVar).start();
+                    ((j1) i0.a.g(2, arrayList6)).f13173b.setScaleY(0.1f);
+                    ((j1) arrayList6.get(arrayList6.size() - 2)).f13173b.setScaleX(0.1f);
+                    ((j1) arrayList6.get(arrayList6.size() - 2)).f13173b.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(j10).setInterpolator(grVar).start();
                     c10 = c11;
                     size6 = i10;
                 } else {
@@ -216,16 +216,16 @@ public final class n1 extends LinearLayout {
             c10 = c11;
             size6 = i10;
         }
-        j1 j1Var5 = this.f13195b;
+        j1 j1Var5 = this.f13196b;
         if (j1Var5.d == null) {
             j1Var5.d = chat;
             r8 r8Var2 = j1Var5.e;
             r8Var2.q(chat);
-            j1Var5.f13171a.e(chat, r8Var2);
+            j1Var5.f13172a.e(chat, r8Var2);
         }
         arrayList2.removeAll(arrayList4);
         arrayList2.addAll(arrayList8);
-        FrameLayout frameLayout2 = this.f13196c;
+        FrameLayout frameLayout2 = this.f13197c;
         frameLayout2.animate().cancel();
         if (!arrayList2.isEmpty() && arrayList2.size() != 1) {
             frameLayout2.animate().setInterpolator(grVar).translationX(org.telegram.messenger.i0.L(11.5f) * (arrayList2.size() - 1)).setDuration(200).start();

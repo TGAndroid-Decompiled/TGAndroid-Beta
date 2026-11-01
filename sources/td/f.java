@@ -1,8 +1,8 @@
 package td;
 public final class f extends ed.c {
-    public Object[] f48621a;
-    public int f48622b;
-    public int f48623c;
+    public Object[] f48632a;
+    public int f48633b;
+    public int f48634c;
     public Object d;
     public int e;
 

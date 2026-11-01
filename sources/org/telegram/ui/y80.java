@@ -1,33 +1,44 @@
 package org.telegram.ui;
 
+import android.graphics.Point;
+import android.os.SystemClock;
+import android.view.View;
+import android.view.ViewTreeObserver;
 import java.util.regex.Pattern;
-import org.telegram.tgnet.TLRPC;
-public final class y80 implements Runnable {
-    public final int f43757a;
-    public final un f43758b;
-    public final long f43759c;
-    public final TLRPC.Chat d;
+public final class y80 implements ViewTreeObserver.OnGlobalLayoutListener {
+    public final int f43605a;
+    public final Object f43606b;
 
-    public y80(un unVar, long j10, TLRPC.Chat chat, int i10) {
-        this.f43757a = i10;
-        this.f43758b = unVar;
-        this.f43759c = j10;
-        this.d = chat;
+    public y80(Object obj, int i10) {
+        this.f43605a = i10;
+        this.f43606b = obj;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f43757a;
-        TLRPC.Chat chat = this.d;
-        long j10 = this.f43759c;
-        un unVar = this.f43758b;
+    public final void onGlobalLayout() {
+        int i10 = this.f43605a;
+        Object obj = this.f43606b;
         switch (i10) {
             case 0:
                 Pattern pattern = LaunchActivity.D1;
-                org.telegram.ui.Components.cc.a0(unVar).I(2131624223, org.telegram.messenger.cd.L0(2131745012, null), org.telegram.messenger.i0.W2(org.telegram.messenger.cd.G((int) j10, "StarsSubscriptionCompletedText", chat.title))).k(true);
+                int measuredHeight = ((View) obj).getMeasuredHeight();
+                StringBuilder l4 = i0.a.l(measuredHeight, "height = ", " displayHeight = ");
+                Point point = org.telegram.messenger.i0.f16172q;
+                i0.a.p(point.y, l4);
+                int i11 = (measuredHeight - org.telegram.messenger.i0.f16167n) - org.telegram.messenger.i0.f16166m;
+                if (i11 > org.telegram.messenger.i0.L(100.0f) && i11 < point.y && org.telegram.messenger.i0.L(100.0f) + i11 > point.y) {
+                    point.y = i11;
+                    if (org.telegram.messenger.v2.f18578a) {
+                        i0.a.p(point.y, new StringBuilder("fix display size y to "));
+                        return;
+                    }
+                    return;
+                }
                 return;
             default:
-                org.telegram.ui.Components.cc.a0(unVar).I(2131624223, org.telegram.messenger.cd.L0(2131745012, null), org.telegram.messenger.i0.W2(org.telegram.messenger.cd.G((int) j10, "StarsSubscriptionCompletedText", chat.title))).k(true);
+                k91 k91Var = (k91) obj;
+                k91Var.Q = SystemClock.elapsedRealtime() + 1500;
+                k91Var.f38748l0.invalidate();
                 return;
         }
     }

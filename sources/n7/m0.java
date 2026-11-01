@@ -5,9 +5,9 @@ import java.io.IOException;
 import java.math.RoundingMode;
 public class m0 {
     public static final k0 d;
-    public final j0 f13693a;
-    public final Character f13694b;
-    public volatile m0 f13695c;
+    public final j0 f13694a;
+    public final Character f13695b;
+    public volatile m0 f13696c;
 
     static {
         new l0("base64()", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/");
@@ -18,30 +18,30 @@ public class m0 {
     }
 
     public m0(j0 j0Var, Character ch2) {
-        this.f13693a = j0Var;
+        this.f13694a = j0Var;
         if (ch2 != null) {
-            byte[] bArr = j0Var.f13688g;
+            byte[] bArr = j0Var.f13689g;
             if (bArr.length > 61 && bArr[61] != -1) {
                 throw new IllegalArgumentException(a.c("Padding character %s was already in alphabet", ch2));
             }
         }
-        this.f13694b = ch2;
+        this.f13695b = ch2;
     }
 
     public void a(StringBuilder sb2, byte[] bArr, int i10) {
         int i11 = 0;
         a.m(0, i10, bArr.length);
         while (i11 < i10) {
-            j0 j0Var = this.f13693a;
-            b(sb2, bArr, i11, Math.min(j0Var.f13687f, i10 - i11));
-            i11 += j0Var.f13687f;
+            j0 j0Var = this.f13694a;
+            b(sb2, bArr, i11, Math.min(j0Var.f13688f, i10 - i11));
+            i11 += j0Var.f13688f;
         }
     }
 
     public final void b(StringBuilder sb2, byte[] bArr, int i10, int i11) {
         a.m(i10, i10 + i11, bArr.length);
-        j0 j0Var = this.f13693a;
-        int i12 = j0Var.f13687f;
+        j0 j0Var = this.f13694a;
+        int i12 = j0Var.f13688f;
         int i13 = j0Var.d;
         if (i11 <= i12) {
             int i14 = 0;
@@ -51,11 +51,11 @@ public class m0 {
             }
             int i16 = (i11 + 1) * 8;
             while (i14 < i11 * 8) {
-                sb2.append(j0Var.f13685b[((int) (j10 >>> ((i16 - i13) - i14))) & j0Var.f13686c]);
+                sb2.append(j0Var.f13686b[((int) (j10 >>> ((i16 - i13) - i14))) & j0Var.f13687c]);
                 i14 += i13;
             }
-            if (this.f13694b != null) {
-                while (i14 < j0Var.f13687f * 8) {
+            if (this.f13695b != null) {
+                while (i14 < j0Var.f13688f * 8) {
                     sb2.append('=');
                     i14 += i13;
                 }
@@ -68,8 +68,8 @@ public class m0 {
 
     public final String c(int i10, byte[] bArr) {
         a.m(0, i10, bArr.length);
-        j0 j0Var = this.f13693a;
-        int i11 = j0Var.f13687f;
+        j0 j0Var = this.f13694a;
+        int i11 = j0Var.f13688f;
         RoundingMode roundingMode = RoundingMode.CEILING;
         StringBuilder sb2 = new StringBuilder(j0Var.e * a.a(i10, i11));
         try {
@@ -83,7 +83,7 @@ public class m0 {
     public final boolean equals(Object obj) {
         if (obj instanceof m0) {
             m0 m0Var = (m0) obj;
-            if (this.f13693a.equals(m0Var.f13693a) && Objects.equals(this.f13694b, m0Var.f13694b)) {
+            if (this.f13694a.equals(m0Var.f13694a) && Objects.equals(this.f13695b, m0Var.f13695b)) {
                 return true;
             }
         }
@@ -91,15 +91,15 @@ public class m0 {
     }
 
     public final int hashCode() {
-        return this.f13693a.hashCode() ^ Objects.hashCode(this.f13694b);
+        return this.f13694a.hashCode() ^ Objects.hashCode(this.f13695b);
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("BaseEncoding.");
-        j0 j0Var = this.f13693a;
+        j0 j0Var = this.f13694a;
         sb2.append(j0Var);
         if (8 % j0Var.d != 0) {
-            Character ch2 = this.f13694b;
+            Character ch2 = this.f13695b;
             if (ch2 == null) {
                 sb2.append(".omitPadding()");
             } else {

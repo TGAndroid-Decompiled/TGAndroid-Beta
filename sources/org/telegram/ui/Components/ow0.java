@@ -1,32 +1,48 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class ow0 extends op0 {
-    public final cx0 R2;
+import org.telegram.tgnet.tl.TL_account;
+public final class ow0 implements Runnable {
+    public final int f29238a;
+    public final TLObject f29239b;
+    public final org.telegram.messenger.r20 f29240c;
 
-    public ow0(cx0 cx0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(context, null, str, false, str2, false, p6Var);
-        this.R2 = cx0Var;
+    public ow0(TLObject tLObject, org.telegram.messenger.r20 r20Var, int i10) {
+        this.f29238a = i10;
+        this.f29239b = tLObject;
+        this.f29240c = r20Var;
     }
 
     @Override
-    public final void L() {
-        super.L();
-        org.telegram.ui.ActionBar.k2 k2Var = this.R2.C1;
-        if (k2Var instanceof org.telegram.ui.un) {
-            org.telegram.messenger.i0.Z2(k2Var.getParentActivity(), k2Var.getClassGuid());
-            if (((org.telegram.ui.un) k2Var).Z.getVisibility() == 0) {
-                k2Var.getFragmentView().requestLayout();
-            }
+    public final void run() {
+        boolean z10;
+        switch (this.f29238a) {
+            case 0:
+                TLObject tLObject = this.f29239b;
+                if (tLObject instanceof TLRPC.TL_messages_stickerSet) {
+                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject;
+                    z10 = true;
+                    org.telegram.messenger.vi.b0(org.telegram.messenger.e20.f15506s0).I1(tL_messages_stickerSet, true);
+                    if (!org.telegram.messenger.vi.b0(org.telegram.messenger.e20.f15506s0).B0(tL_messages_stickerSet.set.f19821id, true)) {
+                        org.telegram.messenger.vi.b0(org.telegram.messenger.e20.f15506s0).f2(null, tL_messages_stickerSet, 2, null, false, false);
+                    }
+                } else {
+                    z10 = false;
+                }
+                this.f29240c.a(Boolean.valueOf(z10));
+                return;
+            default:
+                TLObject tLObject2 = this.f29239b;
+                boolean z11 = tLObject2 instanceof TL_account.paidMessagesRevenue;
+                org.telegram.messenger.r20 r20Var = this.f29240c;
+                if (z11) {
+                    r20Var.a(Long.valueOf(((TL_account.paidMessagesRevenue) tLObject2).stars_amount));
+                    return;
+                } else {
+                    r20Var.a(0L);
+                    return;
+                }
         }
-    }
-
-    @Override
-    public final void R0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        if (!z10) {
-            return;
-        }
-        org.telegram.messenger.i0.h3(new ji0(this, hVar, i10, 10), 100L);
     }
 }

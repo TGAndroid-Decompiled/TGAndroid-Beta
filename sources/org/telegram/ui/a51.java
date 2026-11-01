@@ -3,80 +3,55 @@ package org.telegram.ui;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-public final class a51 extends org.telegram.ui.Components.z41 {
+public final class a51 extends org.telegram.ui.Components.a51 {
     static {
-        org.telegram.ui.Components.z41.h(new org.telegram.ui.Components.z41());
+        org.telegram.ui.Components.a51.h(new org.telegram.ui.Components.a51());
     }
 
-    public static org.telegram.ui.Components.a51 i(int i10, int i11, int i12, int i13, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3) {
-        org.telegram.ui.Components.a51 K = org.telegram.ui.Components.a51.K(a51.class);
-        K.d = i10;
-        K.f24291k = i13;
-        K.f24292l = charSequence;
-        K.f24293m = charSequence2;
-        K.f24294n = charSequence3;
-        K.B = (i11 & 4294967295L) | (i12 << 32);
+    public static org.telegram.ui.Components.b51 i(String str, CharSequence charSequence, String str2, View.OnClickListener onClickListener, CharSequence charSequence2, View.OnClickListener onClickListener2) {
+        org.telegram.ui.Components.b51 K = org.telegram.ui.Components.b51.K(a51.class);
+        K.f24643l = str;
+        K.f24644m = charSequence;
+        K.f24645n = str2;
+        K.D = onClickListener;
+        K.f24646o = charSequence2;
+        K.E = onClickListener2;
         return K;
     }
 
     @Override
-    public final void b(View view, org.telegram.ui.Components.a51 a51Var, boolean z10, org.telegram.ui.Components.p51 p51Var, org.telegram.ui.Components.u51 u51Var) {
-        boolean z11;
-        int i10;
-        float f7;
-        long j10 = a51Var.B;
-        int i11 = (int) j10;
-        int i12 = (int) (j10 >>> 32);
-        b51 b51Var = (b51) view;
-        int i13 = a51Var.f24291k;
-        CharSequence charSequence = a51Var.f24292l;
-        CharSequence charSequence2 = a51Var.f24293m;
-        CharSequence charSequence3 = a51Var.f24294n;
-        TextView textView = b51Var.e;
-        TextView textView2 = b51Var.f36109f;
-        int i14 = 0;
-        if (i11 == 0 && i12 == 0) {
-            z11 = false;
-        } else {
-            z11 = true;
-        }
-        b51Var.f36110n = z11;
-        FrameLayout frameLayout = b51Var.f36108c;
-        if (i13 != 0) {
-            i10 = 0;
-        } else {
+    public final void b(View view, org.telegram.ui.Components.b51 b51Var, boolean z10, org.telegram.ui.Components.q51 q51Var, org.telegram.ui.Components.v51 v51Var) {
+        b51 b51Var2 = (b51) view;
+        CharSequence charSequence = b51Var.f24643l;
+        CharSequence charSequence2 = b51Var.f24644m;
+        CharSequence charSequence3 = b51Var.f24645n;
+        View.OnClickListener onClickListener = b51Var.D;
+        CharSequence charSequence4 = b51Var.f24646o;
+        View.OnClickListener onClickListener2 = b51Var.E;
+        vh.d dVar = b51Var2.e;
+        org.telegram.ui.Components.p80 p80Var = b51Var2.f35949b;
+        int i10 = 0;
+        p80Var.setText(org.telegram.messenger.k6.m(charSequence, p80Var.getPaint().getFontMetricsInt(), false, null, 0));
+        org.telegram.ui.Components.p80 p80Var2 = b51Var2.f35950c;
+        p80Var2.setText(org.telegram.messenger.k6.m(charSequence2, p80Var2.getPaint().getFontMetricsInt(), false, null, 0));
+        vh.d dVar2 = b51Var2.d;
+        if (TextUtils.isEmpty(charSequence3)) {
             i10 = 8;
         }
-        frameLayout.setVisibility(i10);
-        float f10 = 0.0f;
-        if (i13 == 0) {
-            f7 = org.telegram.messenger.i0.L(2.0f);
-        } else {
-            f7 = 0.0f;
-        }
-        textView.setTranslationX(f7);
-        if (i13 == 0) {
-            f10 = org.telegram.messenger.i0.L(2.0f);
-        }
-        textView2.setTranslationX(f10);
-        b51Var.f36107b.b(i11, i12);
-        b51Var.d.setImageResource(i13);
-        textView.setText(charSequence);
-        boolean isEmpty = TextUtils.isEmpty(charSequence2);
-        b51Var.f36111r = !isEmpty;
-        if (isEmpty) {
-            i14 = 8;
-        }
-        textView2.setVisibility(i14);
-        textView2.setText(charSequence2);
-        b51Var.setValue(charSequence3);
-        b51Var.updateColors();
+        dVar2.setVisibility(i10);
+        dVar2.setText(charSequence3);
+        dVar2.setOnClickListener(onClickListener);
+        dVar.setText(charSequence4);
+        dVar.setOnClickListener(onClickListener2);
     }
 
     @Override
-    public final View d(Context context, org.telegram.ui.Components.tk0 tk0Var, int i10, org.telegram.ui.ActionBar.p6 p6Var) {
+    public final View d(Context context, org.telegram.ui.Components.uk0 uk0Var, int i10, org.telegram.ui.ActionBar.p6 p6Var) {
         return new b51(context, p6Var);
+    }
+
+    @Override
+    public final boolean f() {
+        return false;
     }
 }

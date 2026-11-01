@@ -33,10 +33,10 @@ public final class h implements Runnable {
                     Object obj = arrayList.get(i10);
                     i10++;
                     s4.i iVar = (s4.i) obj;
-                    oVar.T(iVar.f47942a, iVar, this.f4214b);
+                    oVar.T(iVar.f47953a, iVar, this.f4214b);
                 }
                 arrayList.clear();
-                oVar.f47951u.remove(arrayList);
+                oVar.f47962u.remove(arrayList);
                 return;
             case 1:
                 ActionBarLayout actionBarLayout = (ActionBarLayout) this.d;
@@ -49,19 +49,19 @@ public final class h implements Runnable {
                 return;
             default:
                 try {
-                    ((sc.j) this.d).f48175a.bind(new InetSocketAddress(61578));
+                    ((sc.j) this.d).f48186a.bind(new InetSocketAddress(61578));
                     this.f4214b = true;
                     do {
                         try {
-                            Socket accept = ((sc.j) this.d).f48175a.accept();
+                            Socket accept = ((sc.j) this.d).f48186a.accept();
                             accept.setSoTimeout(5000);
                             InputStream inputStream = accept.getInputStream();
                             sc.j jVar = (sc.j) this.d;
-                            jVar.f48177c.D(new sc.a(jVar, inputStream, accept));
+                            jVar.f48188c.E(new sc.a(jVar, inputStream, accept));
                         } catch (IOException e) {
                             sc.j.d.log(Level.FINE, "Communication with the client broken", (Throwable) e);
                         }
-                    } while (!((sc.j) this.d).f48175a.isClosed());
+                    } while (!((sc.j) this.d).f48186a.isClosed());
                     return;
                 } catch (IOException e7) {
                     this.f4215c = e7;

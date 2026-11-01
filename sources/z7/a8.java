@@ -1,6 +1,6 @@
 package z7;
 public final class a8 implements ja.d {
-    public static final a8 f54641a = new Object();
+    public static final a8 f54659a = new Object();
 
     static {
         sc.e.v(sc.e.n(w.class, new s(1)));

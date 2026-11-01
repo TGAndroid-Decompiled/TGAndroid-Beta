@@ -3,8 +3,8 @@ package rf;
 import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.b8;
-import org.telegram.messenger.hc;
 import org.telegram.messenger.ic;
+import org.telegram.messenger.jc;
 import org.telegram.tgnet.TLRPC;
 public abstract class z {
     public static void a(TLRPC.Photo photo, TLRPC.User user, boolean z10) {
@@ -16,7 +16,7 @@ public abstract class z {
         TLRPC.TL_userProfilePhoto tL_userProfilePhoto = new TLRPC.TL_userProfilePhoto();
         user.photo = tL_userProfilePhoto;
         tL_userProfilePhoto.personal = z10;
-        tL_userProfilePhoto.photo_id = photo.f19817id;
+        tL_userProfilePhoto.photo_id = photo.f19818id;
         ArrayList<TLRPC.VideoSize> arrayList2 = photo.video_sizes;
         if (arrayList2 != null && arrayList2.size() > 0) {
             z11 = true;
@@ -47,7 +47,7 @@ public abstract class z {
             StringBuilder sb3 = new StringBuilder();
             sb3.append(w11.location.volume_id);
             sb3.append("_");
-            hc.D().S(p5, a1.g.p(sb3, w11.location.local_id, "@50_50"), ic.i(w9, photo));
+            ic.D().S(p5, a1.g.p(sb3, w11.location.local_id, "@50_50"), jc.i(w9, photo));
         }
         if (w12 != null && w10 != null) {
             b8.G(i10);
@@ -61,7 +61,7 @@ public abstract class z {
             StringBuilder sb5 = new StringBuilder();
             sb5.append(w12.location.volume_id);
             sb5.append("_");
-            hc.D().S(p9, a1.g.p(sb5, w12.location.local_id, "@150_150"), ic.i(w10, photo));
+            ic.D().S(p9, a1.g.p(sb5, w12.location.local_id, "@150_150"), jc.i(w10, photo));
         }
     }
 }

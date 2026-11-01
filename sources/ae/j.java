@@ -3,8 +3,8 @@ package ae;
 import android.content.Context;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.jj;
-import org.telegram.ui.Components.u61;
+import org.telegram.messenger.kj;
+import org.telegram.ui.Components.v61;
 import org.telegram.ui.PhotoViewer;
 public final class j implements d6.h, y6.c {
     public int f425a;
@@ -23,7 +23,7 @@ public final class j implements d6.h, y6.c {
     @Override
     public void F(d6.f fVar, String str) {
         MediaController B;
-        jj jjVar;
+        kj kjVar;
         d6.c cVar = (d6.c) fVar;
         if (cVar != null) {
             n6.l.d("Must be called from the main thread.");
@@ -45,12 +45,12 @@ public final class j implements d6.h, y6.c {
             int i10 = this.f425a;
             long j10 = -1;
             if (i10 == 0) {
-                u61 u61Var = PhotoViewer.v1().F2;
-                if (u61Var != null) {
-                    j10 = u61Var.S();
+                v61 v61Var = PhotoViewer.v1().F2;
+                if (v61Var != null) {
+                    j10 = v61Var.S();
                 }
-            } else if (i10 == 1 && (jjVar = (B = MediaController.B()).f14482u0) != null) {
-                j10 = B.D(jjVar);
+            } else if (i10 == 1 && (kjVar = (B = MediaController.B()).f14483u0) != null) {
+                j10 = B.D(kjVar);
             }
             if (j10 >= 0) {
                 b5.d.v(j10);

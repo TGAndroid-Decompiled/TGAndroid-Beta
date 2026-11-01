@@ -8,10 +8,10 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 public final class r1 extends FrameLayout {
-    public final TextView f20721a;
-    public final ImageView f20722b;
+    public final TextView f20722a;
+    public final ImageView f20723b;
 
     public r1(Context context, p6 p6Var) {
         super(context);
@@ -23,41 +23,41 @@ public final class r1 extends FrameLayout {
         a7.k(this, h02, null, N, p6Var);
         setPadding(org.telegram.messenger.i0.L(23.0f), 0, org.telegram.messenger.i0.L(23.0f), 0);
         ImageView imageView = new ImageView(context);
-        this.f20722b = imageView;
+        this.f20723b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         a7.t(imageView, t6.J5, p6Var, PorterDuff.Mode.MULTIPLY);
-        if (cd.X) {
+        if (dd.X) {
             i10 = 5;
         } else {
             i10 = 3;
         }
         addView(imageView, w7.b6.e(-2, 40, i10 | 16));
         TextView textView = new TextView(context);
-        this.f20721a = textView;
+        this.f20722a = textView;
         textView.setLines(1);
         textView.setSingleLine(true);
         textView.setGravity(1);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        a7.V(textView, t6.f21037j5, p6Var);
+        a7.V(textView, t6.f21038j5, p6Var);
         textView.setTextSize(1, 16.0f);
-        addView(textView, w7.b6.e(-2, -2, (cd.X ? 5 : 3) | 16));
+        addView(textView, w7.b6.e(-2, -2, (dd.X ? 5 : 3) | 16));
     }
 
     public final void a(int i10, CharSequence charSequence) {
         int L;
         int i11;
-        TextView textView = this.f20721a;
+        TextView textView = this.f20722a;
         textView.setText(charSequence);
-        ImageView imageView = this.f20722b;
+        ImageView imageView = this.f20723b;
         if (i10 != 0) {
             imageView.setImageResource(i10);
             imageView.setVisibility(0);
-            if (cd.X) {
+            if (dd.X) {
                 L = 0;
             } else {
                 L = org.telegram.messenger.i0.L(56.0f);
             }
-            if (cd.X) {
+            if (dd.X) {
                 i11 = org.telegram.messenger.i0.L(56.0f);
             } else {
                 i11 = 0;
@@ -75,10 +75,10 @@ public final class r1 extends FrameLayout {
     }
 
     public void setGravity(int i10) {
-        this.f20721a.setGravity(i10);
+        this.f20722a.setGravity(i10);
     }
 
     public void setTextColor(int i10) {
-        this.f20721a.setTextColor(i10);
+        this.f20722a.setTextColor(i10);
     }
 }

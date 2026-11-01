@@ -9,7 +9,7 @@ public abstract class f0 {
     }
 
     public static g b(View view, g gVar) {
-        ContentInfo d = gVar.f46116a.d();
+        ContentInfo d = gVar.f46127a.d();
         Objects.requireNonNull(d);
         ContentInfo performReceiveContent = view.performReceiveContent(d);
         if (performReceiveContent == null) {

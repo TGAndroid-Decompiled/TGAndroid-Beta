@@ -8,22 +8,22 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 public final class qd implements View.OnClickListener {
-    public final int f40957a = 1;
-    public final int f40958b;
-    public final long f40959c;
+    public final int f40752a = 1;
+    public final int f40753b;
+    public final long f40754c;
     public final FrameLayout d;
     public final Object e;
 
     public qd(int i10, vh.d dVar, org.telegram.ui.ActionBar.z2 z2Var, long j10) {
-        this.f40958b = i10;
+        this.f40753b = i10;
         this.d = dVar;
         this.e = z2Var;
-        this.f40959c = j10;
+        this.f40754c = j10;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f40957a) {
+        switch (this.f40752a) {
             case 0:
                 le leVar = (le) this.d;
                 Context context = (Context) this.e;
@@ -32,8 +32,8 @@ public final class qd implements View.OnClickListener {
                     if (!dVar.Q) {
                         dVar.setLoading(true);
                         TLRPC.TL_payments_getStarsRevenueAdsAccountUrl tL_payments_getStarsRevenueAdsAccountUrl = new TLRPC.TL_payments_getStarsRevenueAdsAccountUrl();
-                        int i10 = this.f40958b;
-                        tL_payments_getStarsRevenueAdsAccountUrl.peer = org.telegram.messenger.vp.r1(i10).i1(this.f40959c);
+                        int i10 = this.f40753b;
+                        tL_payments_getStarsRevenueAdsAccountUrl.peer = org.telegram.messenger.wp.r1(i10).i1(this.f40754c);
                         ConnectionsManager.getInstance(i10).sendRequest(tL_payments_getStarsRevenueAdsAccountUrl, new ag.k0(14, leVar, context));
                         return;
                     }
@@ -44,17 +44,17 @@ public final class qd implements View.OnClickListener {
                 vh.d dVar2 = (vh.d) this.d;
                 org.telegram.ui.ActionBar.z2 z2Var = (org.telegram.ui.ActionBar.z2) this.e;
                 TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
-                createconferencecall.random_id = Utilities.f14519b.nextInt();
-                int i11 = this.f40958b;
-                ConnectionsManager.getInstance(i11).sendRequest(createconferencecall, new org.telegram.ui.Components.o2(i11, dVar2, z2Var, this.f40959c));
+                createconferencecall.random_id = Utilities.f14520b.nextInt();
+                int i11 = this.f40753b;
+                ConnectionsManager.getInstance(i11).sendRequest(createconferencecall, new org.telegram.ui.Components.o2(i11, dVar2, z2Var, this.f40754c));
                 return;
         }
     }
 
     public qd(le leVar, int i10, long j10, Context context) {
         this.d = leVar;
-        this.f40958b = i10;
-        this.f40959c = j10;
+        this.f40753b = i10;
+        this.f40754c = j10;
         this.e = context;
     }
 }

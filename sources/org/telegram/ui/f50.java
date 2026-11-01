@@ -1,17 +1,23 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class f50 implements View.OnClickListener {
-    public final int f37179a;
-    public final Object f37180b;
+import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
+public final class f50 implements ViewTreeObserver.OnGlobalLayoutListener {
+    public final FrameLayout f37000a;
+    public final h50 f37001b;
 
-    public f50(Object obj, int i10) {
-        this.f37179a = i10;
-        this.f37180b = obj;
+    public f50(h50 h50Var, FrameLayout frameLayout) {
+        this.f37001b = h50Var;
+        this.f37000a = frameLayout;
     }
 
     @Override
-    public final void onClick(android.view.View r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.f50.onClick(android.view.View):void");
+    public final void onGlobalLayout() {
+        this.f37000a.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+        h50 h50Var = this.f37001b;
+        if (h50Var.f37704z0 == null) {
+            h50Var.f37704z0 = (sc) h50Var.F0(h50Var.Z);
+        }
+        h50Var.f37704z0.f41340f.setOnClickListener(new e50(this, 0));
     }
 }

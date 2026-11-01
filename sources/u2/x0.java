@@ -1,8 +1,8 @@
 package u2;
 public final class x0 implements f0 {
-    public final g2.g f50050a;
-    public final rh.d0 f50051b;
-    public final li.k f50052c;
+    public final g2.g f50064a;
+    public final rh.d0 f50065b;
+    public final li.k f50066c;
     public final hb.a d;
     public final int e;
 
@@ -10,9 +10,9 @@ public final class x0 implements f0 {
         rh.d0 d0Var = new rh.d0(mVar, 19);
         li.k kVar = new li.k(7);
         hb.a aVar = new hb.a(27);
-        this.f50050a = gVar;
-        this.f50051b = d0Var;
-        this.f50052c = kVar;
+        this.f50064a = gVar;
+        this.f50065b = d0Var;
+        this.f50066c = kVar;
         this.d = aVar;
         this.e = 1048576;
     }
@@ -20,7 +20,7 @@ public final class x0 implements f0 {
     @Override
     public final y0 a(b2.p0 p0Var) {
         p0Var.f2182b.getClass();
-        return new y0(p0Var, this.f50050a, this.f50051b, this.f50052c.u(p0Var), this.d, this.e, null);
+        return new y0(p0Var, this.f50064a, this.f50065b, this.f50066c.s(p0Var), this.d, this.e, null);
     }
 
     @Override

@@ -1,11 +1,11 @@
 package org.telegram.ui.Components;
-public final class oy implements org.telegram.messenger.q20 {
-    public final int f29206a;
-    public final py f29207b;
+public final class oy implements org.telegram.messenger.r20 {
+    public final int f29252a;
+    public final py f29253b;
 
     public oy(py pyVar, int i10) {
-        this.f29206a = i10;
-        this.f29207b = pyVar;
+        this.f29252a = i10;
+        this.f29253b = pyVar;
     }
 
     @Override

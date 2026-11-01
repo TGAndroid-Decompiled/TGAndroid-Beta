@@ -1,25 +1,25 @@
 package ig;
 public final class y implements Runnable {
-    public final int f8504a;
-    public final a0 f8505b;
-    public final r0 f8506c;
+    public final int f8505a;
+    public final a0 f8506b;
+    public final r0 f8507c;
 
     public y(a0 a0Var, r0 r0Var, int i10) {
-        this.f8504a = i10;
-        this.f8505b = a0Var;
-        this.f8506c = r0Var;
+        this.f8505a = i10;
+        this.f8506b = a0Var;
+        this.f8507c = r0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f8504a) {
+        switch (this.f8505a) {
             case 0:
-                org.telegram.messenger.i0.g3(new y(this.f8505b, this.f8506c, 1));
+                org.telegram.messenger.i0.g3(new y(this.f8506b, this.f8507c, 1));
                 return;
             default:
-                a0 a0Var = this.f8505b;
+                a0 a0Var = this.f8506b;
                 a0Var.getClass();
-                a0Var.f8251i = this.f8506c.f8436a;
+                a0Var.f8252i = this.f8507c.f8437a;
                 return;
         }
     }

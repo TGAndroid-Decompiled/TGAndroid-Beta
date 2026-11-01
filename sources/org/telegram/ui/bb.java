@@ -1,8 +1,8 @@
 package org.telegram.ui;
 public final class bb {
-    public final sb f36155a;
+    public final sb f36019a;
 
     public bb(sb sbVar) {
-        this.f36155a = sbVar;
+        this.f36019a = sbVar;
     }
 }

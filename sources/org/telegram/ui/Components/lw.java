@@ -1,18 +1,18 @@
 package org.telegram.ui.Components;
 public final class lw implements z4.e {
-    public final boolean f28207a;
-    public final vy f28208b;
+    public final boolean f28295a;
+    public final vy f28296b;
 
     public lw(vy vyVar, boolean z10) {
-        this.f28208b = vyVar;
-        this.f28207a = z10;
+        this.f28296b = vyVar;
+        this.f28295a = z10;
     }
 
     @Override
     public final void a(int i10) {
         boolean z10;
         int i11;
-        vy vyVar = this.f28208b;
+        vy vyVar = this.f28296b;
         iw iwVar = vyVar.h;
         boolean z11 = false;
         if (iwVar != null) {
@@ -26,7 +26,7 @@ public final class lw implements z4.e {
             }
             if (vyVar.A1 != i11) {
                 vyVar.A1 = i11;
-                org.telegram.messenger.vp.c1().edit().putInt("selected_page", i11).commit();
+                org.telegram.messenger.wp.c1().edit().putInt("selected_page", i11).commit();
             }
         }
         if (i10 == 0) {
@@ -35,18 +35,18 @@ public final class lw implements z4.e {
             z10 = false;
         }
         vyVar.M(z10, true);
-        if (i10 == 2 && (this.f28207a || vyVar.f31923v0)) {
+        if (i10 == 2 && (this.f28295a || vyVar.f32001v0)) {
             z11 = true;
         }
         vyVar.R(z11, true);
-        if (vyVar.f31918t1.z()) {
+        if (vyVar.f31996t1.z()) {
             if (i10 == 0) {
                 tv tvVar = vyVar.V;
                 if (tvVar != null) {
                     tvVar.d.requestFocus();
                 }
             } else if (i10 == 1) {
-                yv yvVar = vyVar.f31900o0;
+                yv yvVar = vyVar.f31978o0;
                 if (yvVar != null) {
                     yvVar.d.requestFocus();
                 }
@@ -67,18 +67,18 @@ public final class lw implements z4.e {
         int i12;
         int i13;
         int i14;
-        vy vyVar = this.f28208b;
+        vy vyVar = this.f28296b;
         iy iyVar3 = vyVar.G0;
-        iy iyVar4 = vyVar.f31900o0;
+        iy iyVar4 = vyVar.f31978o0;
         iy iyVar5 = vyVar.V;
         hw hwVar = vyVar.C0;
         bw bwVar = vyVar.D0;
-        cx cxVar = vyVar.f31903p0;
-        wv wvVar = vyVar.f31880h0;
+        cx cxVar = vyVar.f31981p0;
+        wv wvVar = vyVar.f31958h0;
         hx hxVar = vyVar.P;
         int i15 = 2;
         boolean z10 = true;
-        if (vyVar.f31931x0 == null || vyVar.f31877g0 == null) {
+        if (vyVar.f32009x0 == null || vyVar.f31955g0 == null) {
             f10 = 0.0f;
         } else {
             int i16 = 8;
@@ -135,7 +135,7 @@ public final class lw implements z4.e {
         vyVar.getMeasuredWidth();
         vyVar.getPaddingLeft();
         vyVar.getPaddingRight();
-        vx vxVar = vyVar.f31918t1;
+        vx vxVar = vyVar.f31996t1;
         if (vxVar != null) {
             if (i10 == 1) {
                 if (i11 == 0) {

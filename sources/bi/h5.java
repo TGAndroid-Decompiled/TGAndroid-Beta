@@ -4,48 +4,48 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.IdentityHashMap;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.ef;
-import org.telegram.messenger.jj;
-import org.telegram.messenger.us;
-import org.telegram.messenger.v20;
-import org.telegram.messenger.x20;
-import org.telegram.messenger.zs;
-public final class h5 implements us {
+import org.telegram.messenger.at;
+import org.telegram.messenger.ff;
+import org.telegram.messenger.kj;
+import org.telegram.messenger.vs;
+import org.telegram.messenger.w20;
+import org.telegram.messenger.y20;
+public final class h5 implements vs {
     public final int f3059a;
     public final android.support.v4.media.session.a0 f3060b;
-    public jj f3061c;
-    public x20 d;
+    public kj f3061c;
+    public y20 d;
     public String e;
     public boolean f3062f;
     public boolean h;
     public boolean f3063n;
 
-    public h5(int i10, ef efVar, android.support.v4.media.session.a0 a0Var) {
+    public h5(int i10, ff ffVar, android.support.v4.media.session.a0 a0Var) {
         this.f3059a = i10;
         this.f3060b = a0Var;
     }
 
-    public static boolean c(ef efVar) {
+    public static boolean c(ff ffVar) {
         ArrayList arrayList;
-        if (!efVar.f19507b) {
-            ArrayList arrayList2 = efVar.f19519q;
+        if (!ffVar.f14603b) {
+            ArrayList arrayList2 = ffVar.f14615q;
             if (arrayList2 != null && !arrayList2.isEmpty()) {
-                arrayList = efVar.f19519q;
+                arrayList = ffVar.f14615q;
             } else {
-                arrayList = efVar.f19518p;
+                arrayList = ffVar.f14614p;
             }
             if (arrayList != null) {
                 int size = arrayList.size();
                 for (int i10 = 0; i10 < size; i10++) {
-                    v20 v20Var = (v20) arrayList.get(i10);
-                    if (v20Var != null) {
-                        if (v20Var.f18455a == 0) {
-                            byte b10 = v20Var.f18456b;
+                    w20 w20Var = (w20) arrayList.get(i10);
+                    if (w20Var != null) {
+                        if (w20Var.f18970a == 0) {
+                            byte b10 = w20Var.f18971b;
                             if ((b10 & 1) != 0 || (b10 & 4) != 0) {
                                 return true;
                             }
                         }
-                        ArrayList arrayList3 = v20Var.f18462k;
+                        ArrayList arrayList3 = w20Var.f18977k;
                         if (arrayList3 != null && !arrayList3.isEmpty()) {
                             return true;
                         }
@@ -86,10 +86,10 @@ public final class h5 implements us {
     }
 
     public final void d() {
-        zs f7 = zs.f(this.f3059a);
-        f7.n(this, zs.a2);
-        f7.n(this, zs.f19586b2);
-        f7.n(this, zs.f19592c2);
+        at f7 = at.f(this.f3059a);
+        f7.n(this, at.a2);
+        f7.n(this, at.f14682b2);
+        f7.n(this, at.f14688c2);
     }
 
     @Override
@@ -99,7 +99,7 @@ public final class h5 implements us {
         w wVar = (w) a0Var.f875b;
         d4 d4Var = (d4) a0Var.d;
         if (!this.h && !this.f3063n && i11 == this.f3059a && objArr.length != 0 && objArr[0] == this.f3061c) {
-            if (i10 == zs.f19586b2) {
+            if (i10 == at.f14682b2) {
                 long longValue = ((Long) objArr[3]).longValue();
                 wVar.f3419f = ((Float) objArr[4]).floatValue();
                 View C1 = d4Var.C1(aVar);
@@ -111,10 +111,10 @@ public final class h5 implements us {
                     this.f3063n = true;
                     d();
                     String str = this.e;
-                    x20 x20Var = this.d;
-                    int i12 = x20Var.f19192k;
-                    int i13 = x20Var.f19193l;
-                    int ceil = (int) Math.ceil(x20Var.f19199r / 1000.0d);
+                    y20 y20Var = this.d;
+                    int i12 = y20Var.f19535k;
+                    int i13 = y20Var.f19536l;
+                    int ceil = (int) Math.ceil(y20Var.f19542r / 1000.0d);
                     d4Var.f2930h4.remove(wVar);
                     wVar.f3417b = true;
                     wVar.e = str;
@@ -130,7 +130,7 @@ public final class h5 implements us {
                     d4Var.q4(aVar);
                     d4Var.O4((a) a0Var.f876c, wVar, str, true, wVar.f3422j, wVar.f3423k, ceil);
                 }
-            } else if (i10 == zs.f19592c2) {
+            } else if (i10 == at.f14688c2) {
                 b();
             }
         }

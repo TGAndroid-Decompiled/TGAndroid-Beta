@@ -1,7 +1,7 @@
 package bi;
 
 import java.util.ArrayList;
-import org.telegram.messenger.jj;
+import org.telegram.messenger.kj;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.bi;
@@ -25,7 +25,7 @@ public final class g implements wk, ji {
             TL_iv.pageBlockMap pageblockmap = new TL_iv.pageBlockMap();
             pageblockmap.geo = messageMedia.geo;
             pageblockmap.zoom = 15;
-            pageblockmap.f20017w = 600;
+            pageblockmap.f20018w = 600;
             pageblockmap.h = 400;
             tVar.f3350r.U1(pageblockmap);
             tVar.Y(true);
@@ -38,7 +38,7 @@ public final class g implements wk, ji {
     @Override
     public void l(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11) {
         if (!arrayList.isEmpty()) {
-            this.f3021a.f3350r.e2((jj) arrayList.get(0));
+            this.f3021a.f3350r.e2((kj) arrayList.get(0));
         }
         this.f3022b.a(true);
     }

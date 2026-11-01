@@ -14,34 +14,34 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.WearAuthListenerService;
-import org.telegram.messenger.e00;
+import org.telegram.messenger.f00;
 import org.telegram.messenger.f8;
 import org.telegram.ui.LaunchActivity;
 import org.xmlpull.v1.XmlSerializer;
 public final class z1 implements Runnable {
-    public final int f48684a;
-    public Object f48685b;
-    public final Object f48686c;
+    public final int f48695a;
+    public Object f48696b;
+    public final Object f48697c;
 
     public z1(int i10, Object obj, Object obj2) {
-        this.f48684a = i10;
-        this.f48685b = obj;
-        this.f48686c = obj2;
+        this.f48695a = i10;
+        this.f48696b = obj;
+        this.f48697c = obj2;
     }
 
     @Override
     public final void run() {
-        switch (this.f48684a) {
+        switch (this.f48695a) {
             case 0:
-                ((m) this.f48686c).D((y0) this.f48685b);
+                ((m) this.f48697c).D((y0) this.f48696b);
                 return;
             case 1:
-                ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl = (ShortcutInfoCompatSaverImpl) this.f48686c;
-                ArrayList arrayList = (ArrayList) this.f48685b;
+                ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl = (ShortcutInfoCompatSaverImpl) this.f48697c;
+                ArrayList arrayList = (ArrayList) this.f48696b;
                 shortcutInfoCompatSaverImpl.e(arrayList);
                 File file = shortcutInfoCompatSaverImpl.f1932f;
                 li.k kVar = new li.k(file);
-                File file2 = (File) kVar.f12101c;
+                File file2 = (File) kVar.f12102c;
                 FileOutputStream fileOutputStream = null;
                 try {
                     FileOutputStream K = kVar.K();
@@ -103,9 +103,9 @@ public final class z1 implements Runnable {
                     e = e11;
                 }
             case 2:
-                c0.m mVar = (c0.m) this.f48686c;
+                c0.m mVar = (c0.m) this.f48697c;
                 try {
-                    ((c0.m) this.f48685b).get();
+                    ((c0.m) this.f48696b).get();
                     mVar.k(null);
                     return;
                 } catch (Exception e12) {
@@ -113,10 +113,10 @@ public final class z1 implements Runnable {
                     return;
                 }
             case 3:
-                ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl2 = (ShortcutInfoCompatSaverImpl) this.f48686c;
+                ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl2 = (ShortcutInfoCompatSaverImpl) this.f48697c;
                 a0.f fVar = shortcutInfoCompatSaverImpl2.f1930b;
                 try {
-                    ShortcutInfoCompatSaverImpl.f((File) this.f48685b);
+                    ShortcutInfoCompatSaverImpl.f((File) this.f48696b);
                     ShortcutInfoCompatSaverImpl.f(shortcutInfoCompatSaverImpl2.f1933g);
                     fVar.putAll(u4.d.c(shortcutInfoCompatSaverImpl2.f1932f, shortcutInfoCompatSaverImpl2.f1929a));
                     shortcutInfoCompatSaverImpl2.e(new ArrayList(fVar.values()));
@@ -126,7 +126,7 @@ public final class z1 implements Runnable {
                     return;
                 }
             case 4:
-                ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl3 = (ShortcutInfoCompatSaverImpl) this.f48686c;
+                ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl3 = (ShortcutInfoCompatSaverImpl) this.f48697c;
                 shortcutInfoCompatSaverImpl3.f1930b.clear();
                 a0.f fVar2 = shortcutInfoCompatSaverImpl3.f1931c;
                 Iterator it = ((a0.e) fVar2.values()).iterator();
@@ -134,27 +134,27 @@ public final class z1 implements Runnable {
                     ((j9.y) it.next()).cancel(false);
                 }
                 fVar2.clear();
-                shortcutInfoCompatSaverImpl3.h((c0.m) this.f48685b);
+                shortcutInfoCompatSaverImpl3.h((c0.m) this.f48696b);
                 return;
             case 5:
-                if (!(((c0.m) this.f48685b).f3505a instanceof c0.a)) {
+                if (!(((c0.m) this.f48696b).f3505a instanceof c0.a)) {
                     try {
-                        ((Runnable) this.f48686c).run();
-                        ((c0.m) this.f48685b).k(null);
+                        ((Runnable) this.f48697c).run();
+                        ((c0.m) this.f48696b).k(null);
                         return;
                     } catch (Exception e14) {
-                        ((c0.m) this.f48685b).l(e14);
+                        ((c0.m) this.f48696b).l(e14);
                         return;
                     }
                 }
                 return;
             case 6:
-                ((m) this.f48686c).D((ud.d) this.f48685b);
+                ((m) this.f48697c).D((ud.d) this.f48696b);
                 return;
             case 7:
-                x1.a aVar = (x1.a) this.f48686c;
-                Object obj2 = this.f48685b;
-                if (aVar.f52885c.get()) {
+                x1.a aVar = (x1.a) this.f48697c;
+                Object obj2 = this.f48696b;
+                if (aVar.f52903c.get()) {
                     a6.d dVar = aVar.e;
                     if (dVar.h == aVar) {
                         SystemClock.uptimeMillis();
@@ -182,13 +182,13 @@ public final class z1 implements Runnable {
                         }
                     }
                 }
-                aVar.f52884b = 3;
+                aVar.f52902b = 3;
                 return;
             case 8:
-                DataHolder dataHolder = (DataHolder) this.f48685b;
+                DataHolder dataHolder = (DataHolder) this.f48696b;
                 int i11 = dataHolder.e;
                 try {
-                    ((x8.d) this.f48686c).f53429c.getClass();
+                    ((x8.d) this.f48697c).f53447c.getClass();
                     if (dataHolder != null) {
                         return;
                     }
@@ -199,11 +199,11 @@ public final class z1 implements Runnable {
                     }
                 }
             case 9:
-                WearAuthListenerService wearAuthListenerService = ((x8.d) this.f48686c).f53429c;
-                y8.i0 i0Var = (y8.i0) this.f48685b;
-                String str = i0Var.f54233b;
+                WearAuthListenerService wearAuthListenerService = ((x8.d) this.f48697c).f53447c;
+                y8.i0 i0Var = (y8.i0) this.f48696b;
+                String str = i0Var.f54254b;
                 String str2 = i0Var.d;
-                byte[] bArr = i0Var.f54234c;
+                byte[] bArr = i0Var.f54255c;
                 if ("/tg-wear-auth/offer".equals(str)) {
                     try {
                         Intent intent = new Intent(wearAuthListenerService, LaunchActivity.class);
@@ -213,33 +213,33 @@ public final class z1 implements Runnable {
                         f8.e("wear-auth: failed to pop LaunchActivity", e15);
                     }
                 }
-                org.telegram.messenger.i0.g3(new e00(bArr, str, str2));
+                org.telegram.messenger.i0.g3(new f00(bArr, str, str2));
                 return;
             case 10:
-                ((x8.d) this.f48686c).f53429c.getClass();
+                ((x8.d) this.f48697c).f53447c.getClass();
                 return;
             case 11:
-                y8.e eVar = (y8.e) this.f48685b;
-                x8.d dVar3 = (x8.d) this.f48686c;
-                eVar.b(dVar3.f53429c);
-                eVar.b(dVar3.f53429c.f14535n);
+                y8.e eVar = (y8.e) this.f48696b;
+                x8.d dVar3 = (x8.d) this.f48697c;
+                eVar.b(dVar3.f53447c);
+                eVar.b(dVar3.f53447c.f14536n);
                 return;
             case 12:
-                x9.p.a((x9.p) this.f48686c, (ea.d) this.f48685b);
+                x9.p.a((x9.p) this.f48697c, (ea.d) this.f48696b);
                 return;
             default:
-                yd.i iVar = (yd.i) this.f48686c;
-                a0 a0Var = iVar.f54405c;
+                yd.i iVar = (yd.i) this.f48697c;
+                a0 a0Var = iVar.f54426c;
                 int i12 = 0;
                 while (true) {
                     try {
-                        ((Runnable) this.f48685b).run();
+                        ((Runnable) this.f48696b).run();
                     } catch (Throwable th2) {
                         e0.m(cd.i.f4123a, th2);
                     }
                     Runnable f7 = iVar.f();
                     if (f7 != null) {
-                        this.f48685b = f7;
+                        this.f48696b = f7;
                         i12++;
                         if (i12 >= 16 && a0Var.d()) {
                             a0Var.c(iVar, this);
@@ -254,8 +254,8 @@ public final class z1 implements Runnable {
     }
 
     public z1(Object obj, Object obj2, boolean z10, int i10) {
-        this.f48684a = i10;
-        this.f48686c = obj;
-        this.f48685b = obj2;
+        this.f48695a = i10;
+        this.f48697c = obj;
+        this.f48696b = obj2;
     }
 }

@@ -3,21 +3,21 @@ package se;
 import java.io.Serializable;
 import java.util.ArrayList;
 public final class f extends xe.a {
-    public final int f48212a;
-    public final ve.a f48213b;
-    public final Serializable f48214c;
+    public final int f48223a;
+    public final ve.a f48224b;
+    public final Serializable f48225c;
 
     public f() {
-        this.f48212a = 1;
-        this.f48213b = new df.c();
-        this.f48214c = new ArrayList();
+        this.f48223a = 1;
+        this.f48224b = new df.c();
+        this.f48225c = new ArrayList();
     }
 
     @Override
     public void a(CharSequence charSequence) {
-        switch (this.f48212a) {
+        switch (this.f48223a) {
             case 1:
-                ((ArrayList) this.f48214c).add(charSequence);
+                ((ArrayList) this.f48225c).add(charSequence);
                 return;
             default:
                 return;
@@ -28,9 +28,9 @@ public final class f extends xe.a {
     public void d() {
         int i10;
         boolean z10;
-        switch (this.f48212a) {
+        switch (this.f48223a) {
             case 1:
-                ArrayList arrayList = (ArrayList) this.f48214c;
+                ArrayList arrayList = (ArrayList) this.f48225c;
                 int size = arrayList.size() - 1;
                 while (true) {
                     if (size >= 0) {
@@ -64,7 +64,7 @@ public final class f extends xe.a {
                     sb2.append((CharSequence) arrayList.get(i10));
                     sb2.append('\n');
                 }
-                ((ve.l) this.f48213b).f50807g = sb2.toString();
+                ((ve.l) this.f48224b).f50821g = sb2.toString();
                 return;
             default:
                 return;
@@ -73,19 +73,19 @@ public final class f extends xe.a {
 
     @Override
     public final ve.a e() {
-        switch (this.f48212a) {
+        switch (this.f48223a) {
             case 0:
-                return (ve.i) this.f48213b;
+                return (ve.i) this.f48224b;
             default:
-                return (ve.l) this.f48213b;
+                return (ve.l) this.f48224b;
         }
     }
 
     @Override
     public void g(we.a aVar) {
-        switch (this.f48212a) {
+        switch (this.f48223a) {
             case 0:
-                aVar.a((String) this.f48214c, (ve.i) this.f48213b);
+                aVar.a((String) this.f48225c, (ve.i) this.f48224b);
                 return;
             default:
                 return;
@@ -94,12 +94,12 @@ public final class f extends xe.a {
 
     @Override
     public final q3.h h(d dVar) {
-        switch (this.f48212a) {
+        switch (this.f48223a) {
             case 0:
                 return null;
             default:
-                if (dVar.f48201g >= 4) {
-                    return new q3.h(-1, dVar.f48199c + 4, false);
+                if (dVar.f48212g >= 4) {
+                    return new q3.h(-1, dVar.f48210c + 4, false);
                 }
                 if (dVar.h) {
                     return q3.h.a(dVar.e);
@@ -109,10 +109,10 @@ public final class f extends xe.a {
     }
 
     public f(int i10, String str) {
-        this.f48212a = 0;
+        this.f48223a = 0;
         ?? cVar = new df.c();
-        this.f48213b = cVar;
-        cVar.f50803g = i10;
-        this.f48214c = str;
+        this.f48224b = cVar;
+        cVar.f50817g = i10;
+        this.f48225c = str;
     }
 }

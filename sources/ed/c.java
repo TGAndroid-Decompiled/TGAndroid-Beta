@@ -44,7 +44,7 @@ public abstract class c extends a {
             kotlin.jvm.internal.i.b(fVar);
             cd.e eVar = (cd.e) fVar;
             yd.h hVar = (yd.h) cVar;
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = yd.h.f54402n;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = yd.h.f54423n;
             do {
             } while (atomicReferenceFieldUpdater.get(hVar) == yd.a.d);
             Object obj = atomicReferenceFieldUpdater.get(hVar);

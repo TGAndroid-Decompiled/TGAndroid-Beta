@@ -6,31 +6,31 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.Collections;
 public final class hn extends View {
-    public final ArrayList f37999a;
-    public final ArrayList f38000b;
-    public final un f38001c;
+    public final ArrayList f37837a;
+    public final ArrayList f37838b;
+    public final un f37839c;
 
     public hn(un unVar, Context context) {
         super(context);
-        this.f38001c = unVar;
-        this.f37999a = new ArrayList();
-        this.f38000b = new ArrayList();
+        this.f37839c = unVar;
+        this.f37837a = new ArrayList();
+        this.f37838b = new ArrayList();
     }
 
     public final void a() {
-        ArrayList arrayList = this.f37999a;
+        ArrayList arrayList = this.f37837a;
         arrayList.clear();
-        un unVar = this.f38001c;
+        un unVar = this.f37839c;
         arrayList.add(unVar.Y1);
-        arrayList.add(unVar.f42492z0);
+        arrayList.add(unVar.f42303z0);
         arrayList.add(unVar.Y);
         arrayList.add(unVar.Y3);
         arrayList.add(unVar.W1);
-        arrayList.add(unVar.f42319l3);
+        arrayList.add(unVar.f42130l3);
         arrayList.add(unVar.Z);
-        arrayList.add(unVar.f42468x1);
+        arrayList.add(unVar.f42279x1);
         arrayList.add(unVar.T);
-        arrayList.add(unVar.f42246f2);
+        arrayList.add(unVar.f42057f2);
         arrayList.removeAll(Collections.singleton(null));
     }
 
@@ -42,9 +42,9 @@ public final class hn extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        un unVar = this.f38001c;
-        unVar.Nc = true;
-        ArrayList arrayList = this.f38000b;
+        un unVar = this.f37839c;
+        unVar.Oc = true;
+        ArrayList arrayList = this.f37838b;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -53,16 +53,16 @@ public final class hn extends View {
             ((View) obj).setVisibility(0);
         }
         arrayList.clear();
-        unVar.Nc = false;
+        unVar.Oc = false;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         a();
-        un unVar = this.f38001c;
-        unVar.Nc = true;
-        ArrayList arrayList = this.f37999a;
+        un unVar = this.f37839c;
+        unVar.Oc = true;
+        ArrayList arrayList = this.f37837a;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -71,17 +71,17 @@ public final class hn extends View {
             View view = (View) obj;
             if (view.getVisibility() == 0) {
                 view.setVisibility(8);
-                this.f38000b.add(view);
+                this.f37838b.add(view);
             }
         }
-        unVar.Nc = false;
+        unVar.Oc = false;
     }
 
     @Override
     public void setTranslationX(float f7) {
         super.setTranslationX(f7);
         a();
-        ArrayList arrayList = this.f37999a;
+        ArrayList arrayList = this.f37837a;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {

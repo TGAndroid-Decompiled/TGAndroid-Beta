@@ -5,9 +5,9 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.ShapeDrawable;
 import android.widget.FrameLayout;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.h20;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.i20;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
@@ -29,11 +29,11 @@ public abstract class l1 {
         int i11;
         int i12 = (j11 > 0L ? 1 : (j11 == 0L ? 0 : -1));
         if (i12 >= 0) {
-            TLRPC.User Z1 = vp.r1(i10).Z1(Long.valueOf(j11));
-            str = h20.k(Z1);
+            TLRPC.User Z1 = wp.r1(i10).Z1(Long.valueOf(j11));
+            str = i20.k(Z1);
             user = Z1;
         } else {
-            TLRPC.Chat L0 = vp.r1(i10).L0(Long.valueOf(-j11));
+            TLRPC.Chat L0 = wp.r1(i10).L0(Long.valueOf(-j11));
             if (L0 == null) {
                 str = "";
                 user = L0;
@@ -58,11 +58,11 @@ public abstract class l1 {
         g9Var.e(user, r8Var);
         frameLayout2.addView(g9Var, b6.e(28, 28, 51));
         g9 g9Var2 = new g9(activity);
-        g9Var2.setEmojiColorFilter(new PorterDuffColorFilter(t6.x0(null, t6.f21333z9, false), PorterDuff.Mode.SRC_IN));
+        g9Var2.setEmojiColorFilter(new PorterDuffColorFilter(t6.x0(null, t6.f21334z9, false), PorterDuff.Mode.SRC_IN));
         g9Var2.setAnimatedEmojiDrawable(f5.m(i10, botVerifierSettings.icon, null, 3));
         frameLayout2.addView(g9Var2, b6.d(20, 20.0f, 19, 34.0f, 0.0f, 0.0f, 0.0f));
         u5 u5Var = new u5(activity);
-        a7.Y(u5Var, t6.f21037j5, null);
+        a7.Y(u5Var, t6.f21038j5, null);
         u5Var.setTextSize(13);
         u5Var.setEllipsizeByGradient(true);
         u5Var.l(str, false);
@@ -71,18 +71,18 @@ public abstract class l1 {
         frameLayout.addView(frameLayout2, b6.d(-2, -2.0f, 17, 16.0f, 0.0f, 16.0f, 0.0f));
         final boolean[] zArr = new boolean[1];
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity);
-        String L02 = cd.L0(2131752997, null);
-        org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20134a;
+        String L02 = dd.L0(2131752997, null);
+        org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20135a;
         x1Var.R = L02;
         if (i12 >= 0) {
             i11 = 2131752998;
         } else {
             i11 = 2131752999;
         }
-        x1Var.T = cd.L0(i11, null);
+        x1Var.T = dd.L0(i11, null);
         alertDialog$Builder.o(frameLayout);
-        alertDialog$Builder.h(cd.L0(2131752589, null), null);
-        alertDialog$Builder.k(cd.L0(2131746336, null), new org.telegram.ui.ActionBar.u1() {
+        alertDialog$Builder.h(dd.L0(2131752589, null), null);
+        alertDialog$Builder.k(dd.L0(2131746336, null), new org.telegram.ui.ActionBar.u1() {
             @Override
             public final void h(org.telegram.ui.ActionBar.x1 x1Var2, int i14) {
                 boolean[] zArr2 = zArr;
@@ -94,8 +94,8 @@ public abstract class l1 {
                 setcustomverification.enabled = false;
                 setcustomverification.flags |= 1;
                 int i15 = i10;
-                setcustomverification.bot = vp.r1(i15).n1(j10);
-                setcustomverification.peer = vp.r1(i15).i1(j11);
+                setcustomverification.bot = wp.r1(i15).n1(j10);
+                setcustomverification.peer = wp.r1(i15).i1(j11);
                 ConnectionsManager.getInstance(i15).sendRequest(setcustomverification, new h5(9, zArr2, h1Var));
             }
         });

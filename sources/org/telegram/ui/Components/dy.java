@@ -5,27 +5,27 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class dy {
-    public final ArrayList f25563a = new ArrayList();
-    public final vy f25564b;
+    public final ArrayList f25639a = new ArrayList();
+    public final vy f25640b;
 
     public dy(vy vyVar) {
-        this.f25564b = vyVar;
+        this.f25640b = vyVar;
     }
 
     public final void a(String str, boolean z10) {
-        vy vyVar = this.f25564b;
-        int i10 = vyVar.f31865c1;
+        vy vyVar = this.f25640b;
+        int i10 = vyVar.f31943c1;
         String n10 = a1.g.n("gif_search_", str, "_");
-        if (!z10 || !vyVar.f31892l0.containsKey(n10)) {
+        if (!z10 || !vyVar.f31970l0.containsKey(n10)) {
             String str2 = str;
             org.telegram.messenger.s6 s6Var = new org.telegram.messenger.s6(this, str2, z10, n10, 4);
-            ArrayList arrayList = this.f25563a;
+            ArrayList arrayList = this.f25639a;
             if (z10) {
                 arrayList.add(n10);
-                org.telegram.messenger.hs.a0(i10).M(n10, s6Var);
+                org.telegram.messenger.is.a0(i10).M(n10, s6Var);
                 return;
             }
-            org.telegram.messenger.vp r12 = org.telegram.messenger.vp.r1(i10);
+            org.telegram.messenger.wp r12 = org.telegram.messenger.wp.r1(i10);
             TLObject e22 = r12.e2(r12.M3);
             if (!(e22 instanceof TLRPC.User)) {
                 return;

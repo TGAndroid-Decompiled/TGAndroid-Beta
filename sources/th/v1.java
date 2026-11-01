@@ -17,15 +17,15 @@ public final class v1 extends y90 {
     @Override
     public final void f(Canvas canvas, Rect rect, float f7) {
         z2 z2Var = this.V;
-        j2.f fVar = z2Var.f49780y1;
+        j2.f fVar = z2Var.f49794y1;
         fVar.x(getX(), -getY(), getX() + getMeasuredWidth(), (-getY()) + getMeasuredHeight());
         RectF rectF = org.telegram.messenger.i0.P;
         rectF.set(rect);
         rectF.offset(0.0f, 0.0f);
-        canvas.drawRoundRect(rectF, f7, f7, (Paint) fVar.f9347a);
+        canvas.drawRoundRect(rectF, f7, f7, (Paint) fVar.f9348a);
         canvas.drawRoundRect(rectF, f7, f7, z2Var.W1);
         if (rectF.top < getMeasuredHeight() - 1) {
-            canvas.drawRect(0.0f, getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight() - 1, z2Var.f49725k0.d("paintDivider"));
+            canvas.drawRect(0.0f, getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight() - 1, z2Var.f49739k0.d("paintDivider"));
         }
     }
 }

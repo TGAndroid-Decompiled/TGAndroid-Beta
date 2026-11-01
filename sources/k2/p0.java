@@ -5,8 +5,8 @@ import java.nio.ByteOrder;
 import java.util.Arrays;
 import v7.t6;
 public final class p0 extends c2.n {
-    public int[] f10747i;
-    public int[] f10748j;
+    public int[] f10748i;
+    public int[] f10749j;
 
     @Override
     public final void b(ByteBuffer byteBuffer) {
@@ -14,7 +14,7 @@ public final class p0 extends c2.n {
         boolean z10;
         int i11;
         int i12;
-        int[] iArr = this.f10748j;
+        int[] iArr = this.f10749j;
         iArr.getClass();
         int position = byteBuffer.position();
         int limit = byteBuffer.limit();
@@ -99,7 +99,7 @@ public final class p0 extends c2.n {
         boolean z10;
         boolean z11;
         int i10 = jVar.f3549c;
-        int[] iArr = this.f10747i;
+        int[] iArr = this.f10748i;
         if (iArr == null) {
             return c2.j.e;
         }
@@ -133,12 +133,12 @@ public final class p0 extends c2.n {
 
     @Override
     public final void i() {
-        this.f10748j = this.f10747i;
+        this.f10749j = this.f10748i;
     }
 
     @Override
     public final void k() {
-        this.f10748j = null;
-        this.f10747i = null;
+        this.f10749j = null;
+        this.f10748i = null;
     }
 }

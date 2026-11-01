@@ -22,7 +22,7 @@ public interface g2 {
 
     cc k();
 
-    void o(Runnable runnable);
+    void n(Runnable runnable);
 
     void p();
 

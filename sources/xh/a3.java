@@ -10,14 +10,14 @@ import org.telegram.messenger.f8;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.t6;
 public final class a3 extends FrameLayout implements k6 {
-    public Path f53688a;
-    public float f53689b;
-    public int f53690c;
+    public Path f53706a;
+    public float f53707b;
+    public int f53708c;
     public boolean d;
     public int e;
-    public int f53691f;
+    public int f53709f;
     public View h;
-    public w f53692n;
+    public w f53710n;
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
@@ -29,25 +29,25 @@ public final class a3 extends FrameLayout implements k6 {
     public final void draw(Canvas canvas) {
         canvas.save();
         float height = (getHeight() - org.telegram.messenger.i0.L(32.0f)) / 2.0f;
-        float max = Math.max((getWidth() - this.f53691f) - org.telegram.messenger.i0.L(4.0f), getHeight()) * this.f53689b;
+        float max = Math.max((getWidth() - this.f53709f) - org.telegram.messenger.i0.L(4.0f), getHeight()) * this.f53707b;
         float L = org.telegram.messenger.i0.L(16.0f) + max;
         RectF rectF = org.telegram.messenger.i0.P;
-        rectF.set(org.telegram.messenger.i0.L(14.0f) - max, (org.telegram.messenger.i0.L(4.0f) + height) - max, org.telegram.messenger.i0.L(6.0f) + this.f53691f + max, (getHeight() - org.telegram.messenger.i0.L(12.0f)) + max);
-        Path path = this.f53688a;
+        rectF.set(org.telegram.messenger.i0.L(14.0f) - max, (org.telegram.messenger.i0.L(4.0f) + height) - max, org.telegram.messenger.i0.L(6.0f) + this.f53709f + max, (getHeight() - org.telegram.messenger.i0.L(12.0f)) + max);
+        Path path = this.f53706a;
         path.rewind();
         path.addRoundRect(rectF, L, L, Path.Direction.CW);
         canvas.clipPath(path);
         canvas.drawColor(this.e);
-        canvas.saveLayerAlpha(rectF, (int) ((1.0f - (Math.min(0.5f, this.f53689b) / 0.5f)) * 255.0f), 31);
+        canvas.saveLayerAlpha(rectF, (int) ((1.0f - (Math.min(0.5f, this.f53707b) / 0.5f)) * 255.0f), 31);
         canvas.translate(org.telegram.messenger.i0.L(10.0f), height);
-        w wVar = this.f53692n;
+        w wVar = this.f53710n;
         if (wVar != null) {
             wVar.setDrawBackgroundDrawable(false);
-            this.f53692n.draw(canvas);
-            this.f53692n.setDrawBackgroundDrawable(true);
+            this.f53710n.draw(canvas);
+            this.f53710n.setDrawBackgroundDrawable(true);
         }
         canvas.restore();
-        canvas.translate((1.0f - this.f53689b) * (-org.telegram.messenger.i0.L(8.0f)), 0.0f);
+        canvas.translate((1.0f - this.f53707b) * (-org.telegram.messenger.i0.L(8.0f)), 0.0f);
         super.draw(canvas);
         canvas.restore();
     }
@@ -68,18 +68,18 @@ public final class a3 extends FrameLayout implements k6 {
     }
 
     public void setBotMenuButton(w wVar) {
-        this.f53692n = wVar;
+        this.f53710n = wVar;
         invalidate();
     }
 
     public void setMeasuredButtonWidth(int i10) {
-        this.f53691f = i10;
+        this.f53709f = i10;
         invalidate();
     }
 
     public void setProgress(float f7) {
-        this.f53689b = f7;
-        this.e = i0.b.f(f7, t6.x0(null, t6.Rf, false), this.f53690c);
+        this.f53707b = f7;
+        this.e = i0.b.f(f7, t6.x0(null, t6.Rf, false), this.f53708c);
         for (int i10 = 0; i10 < getChildCount(); i10++) {
             getChildAt(i10).setAlpha(f7);
         }
@@ -90,10 +90,10 @@ public final class a3 extends FrameLayout implements k6 {
     public final void updateColors() {
         try {
             if (this.d) {
-                this.f53690c = t6.x0(null, t6.Ci, false);
+                this.f53708c = t6.x0(null, t6.Ci, false);
             }
             if (this.e != 0) {
-                this.e = i0.b.f(this.f53689b, t6.x0(null, t6.Rf, false), this.f53690c);
+                this.e = i0.b.f(this.f53707b, t6.x0(null, t6.Rf, false), this.f53708c);
                 invalidate();
             }
         } catch (Exception e) {

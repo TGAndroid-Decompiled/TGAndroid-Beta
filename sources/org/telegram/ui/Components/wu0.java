@@ -1,165 +1,74 @@
 package org.telegram.ui.Components;
 
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.view.View;
-import android.view.accessibility.AccessibilityEvent;
-import android.view.accessibility.AccessibilityNodeInfo;
-public final class wu0 extends ln0 {
-    public final int d;
-    public final View e;
+public abstract class wu0 extends vu0 {
+    public Activity f32320f0;
+    public final Rect f32321g0;
+    public int f32322h0;
+    public boolean f32323i0;
 
-    public wu0(int i10, View view) {
-        this.d = i10;
-        this.e = view;
+    public wu0(Context context, Activity activity) {
+        super(context, null);
+        this.f32321g0 = new Rect();
+        setActivity(activity);
     }
 
     @Override
-    public final boolean a() {
-        if (i() > 0) {
-            return true;
+    public int Q() {
+        View rootView = getRootView();
+        Rect rect = this.f32321g0;
+        getWindowVisibleDisplayFrame(rect);
+        int i10 = 0;
+        if (this.f32323i0) {
+            int height = rootView.getHeight();
+            if (rect.top != 0) {
+                i10 = org.telegram.messenger.i0.f16166m;
+            }
+            return ((height - i10) - org.telegram.messenger.i0.q1(rootView)) - (rect.bottom - rect.top);
         }
-        return false;
+        int height2 = (this.f32320f0.getWindow().getDecorView().getHeight() - org.telegram.messenger.i0.q1(rootView)) - rootView.getBottom();
+        if (height2 <= Math.max(org.telegram.messenger.i0.L(10.0f), org.telegram.messenger.i0.f16166m)) {
+            return 0;
+        }
+        return height2;
     }
 
     @Override
-    public final boolean b() {
-        if (i() < h()) {
-            return true;
+    public void R() {
+        boolean z10;
+        if (this.f31917n == null && this.f31918r.isEmpty()) {
+            return;
         }
-        return false;
+        this.f32322h0 = Q();
+        Point point = org.telegram.messenger.i0.f16172q;
+        if (point.x > point.y) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        post(new k2.v(23, this, z10));
     }
 
     @Override
-    public final void c(boolean z10) {
-        int i10;
-        int max;
-        switch (this.d) {
-            case 1:
-                i10 = 5;
-                break;
-            default:
-                i10 = 1;
-                break;
-        }
-        if (z10) {
-            i10 *= -1;
-        }
-        int min = Math.min(h(), Math.max(0, i() + i10));
-        switch (this.d) {
-            case 0:
-                ((yu0) this.e).setOption(min);
-                return;
-            case 1:
-                nn0 nn0Var = ((org.telegram.ui.za0) this.e).h;
-                float f7 = min / 100.0f;
-                nn0Var.f28853y.k(true, f7);
-                nn0Var.setProgress(f7);
-                return;
-            default:
-                if (((org.telegram.ui.hs0) this.e).f38029s.Z7 > 0 && (max = Math.max(0, Math.min(((org.telegram.ui.hs0) this.e).f38029s.Z7 - 1, min))) != ((org.telegram.ui.hs0) this.e).f38029s.Y7) {
-                    org.telegram.ui.hs0 hs0Var = (org.telegram.ui.hs0) this.e;
-                    hs0Var.f38028r = hs0Var.f38029s.Y7;
-                    ((org.telegram.ui.hs0) this.e).f38029s.Y7 = max;
-                    ((org.telegram.ui.hs0) this.e).f38029s.S0();
-                    ((org.telegram.ui.hs0) this.e).invalidate();
-                    int i11 = ((org.telegram.ui.hs0) this.e).f38029s.Y7;
-                    org.telegram.ui.hs0 hs0Var2 = (org.telegram.ui.hs0) this.e;
-                    if (i11 != hs0Var2.f38028r) {
-                        hs0Var2.f38029s.s2(1);
-                        return;
-                    }
-                    return;
-                }
-                return;
-        }
+    public int getKeyboardHeight() {
+        return this.f32322h0;
     }
 
     @Override
-    public CharSequence d() {
-        switch (this.d) {
-            case 0:
-                yu0 yu0Var = (yu0) this.e;
-                int i10 = yu0Var.I;
-                String[] strArr = yu0Var.F;
-                if (i10 < strArr.length) {
-                    return strArr[i10];
-                }
-                return null;
-            case 1:
-            default:
-                return super.d();
-            case 2:
-                StringBuilder sb2 = new StringBuilder();
-                sb2.append(org.telegram.messenger.cd.L0(2131754735, "AccDescrVideoQuality"));
-                if (((org.telegram.ui.hs0) this.e).f38029s.Z7 > 0) {
-                    sb2.append(", ");
-                    sb2.append(((org.telegram.ui.hs0) this.e).f38029s.Y7 + 1);
-                    sb2.append(" / ");
-                    sb2.append(((org.telegram.ui.hs0) this.e).f38029s.Z7);
-                }
-                sb2.append(", ");
-                sb2.append(((org.telegram.ui.hs0) this.e).h);
-                sb2.append(" – ");
-                sb2.append(((org.telegram.ui.hs0) this.e).f38027n);
-                return sb2.toString();
-        }
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        R();
     }
 
-    @Override
-    public void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.d) {
-            case 1:
-                super.e(view, accessibilityNodeInfo);
-                accessibilityNodeInfo.setEnabled(true);
-                return;
-            default:
-                super.e(view, accessibilityNodeInfo);
-                return;
-        }
+    public void setActivity(Activity activity) {
+        this.f32320f0 = activity;
     }
 
-    public final int h() {
-        switch (this.d) {
-            case 0:
-                return ((yu0) this.e).F.length - 1;
-            case 1:
-                return 100;
-            default:
-                return Math.max(0, ((org.telegram.ui.hs0) this.e).f38029s.Z7 - 1);
-        }
-    }
-
-    public final int i() {
-        switch (this.d) {
-            case 0:
-                return ((yu0) this.e).I;
-            case 1:
-                return org.telegram.messenger.sc.c();
-            default:
-                return ((org.telegram.ui.hs0) this.e).f38029s.Y7;
-        }
-    }
-
-    @Override
-    public void onPopulateAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
-        switch (this.d) {
-            case 1:
-                super.onPopulateAccessibilityEvent(view, accessibilityEvent);
-                StringBuilder sb2 = new StringBuilder(org.telegram.messenger.cd.L0(2131748878, null));
-                sb2.append(", ");
-                int c10 = org.telegram.messenger.sc.c();
-                if (c10 <= 0) {
-                    sb2.append(org.telegram.messenger.cd.L0(2131748886, null));
-                } else if (c10 >= 100) {
-                    sb2.append(org.telegram.messenger.cd.L0(2131748885, null));
-                } else {
-                    sb2.append(org.telegram.messenger.cd.a0(null, null, 2131754849, Integer.valueOf(Math.round(c10))));
-                }
-                accessibilityEvent.setContentDescription(sb2);
-                ((org.telegram.ui.za0) this.e).setContentDescription(sb2);
-                return;
-            default:
-                super.onPopulateAccessibilityEvent(view, accessibilityEvent);
-                return;
-        }
+    public void setWithoutWindow(boolean z10) {
+        this.f32323i0 = z10;
     }
 }

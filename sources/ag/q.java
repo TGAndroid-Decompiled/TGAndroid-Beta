@@ -7,7 +7,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.View;
 import android.widget.FrameLayout;
-import org.telegram.messenger.us;
+import org.telegram.messenger.vs;
 import org.telegram.ui.Components.bi;
 import org.telegram.ui.Components.gr;
 import org.telegram.ui.Components.t5;
@@ -16,7 +16,7 @@ public final class q extends FrameLayout {
     public int f680b;
     public final Object f681c;
     public final Object d;
-    public final us e;
+    public final vs e;
 
     public q(w wVar, Context context) {
         super(context);
@@ -33,10 +33,10 @@ public final class q extends FrameLayout {
                 li.k kVar = (li.k) this.d;
                 Path path = (Path) this.f681c;
                 bi biVar = (bi) this.e;
-                vg.f fVar = biVar.f24733v2;
+                vg.f fVar = biVar.f24824v2;
                 if (fVar != null) {
                     fVar.setBounds(0, (int) biVar.P3, getMeasuredWidth(), getMeasuredHeight());
-                    biVar.f24733v2.draw(canvas);
+                    biVar.f24824v2.draw(canvas);
                 }
                 float L = org.telegram.messenger.i0.L(20.0f);
                 int L2 = org.telegram.messenger.i0.L(7.0f);
@@ -87,12 +87,12 @@ public final class q extends FrameLayout {
             case 1:
                 int i14 = this.f680b;
                 bi biVar = (bi) this.e;
-                int top = i14 - biVar.f24720s1.getTop();
+                int top = i14 - biVar.f24811s1.getTop();
                 super.onLayout(z10, i10, i11, i12, i13);
                 this.f680b = getHeight();
-                if (biVar.f24720s1.getVisibility() == 0 && getHeight() - biVar.f24720s1.getTop() != top) {
-                    biVar.f24720s1.setTranslationY(biVar.f24720s1.getTranslationY() + ((getHeight() - biVar.f24720s1.getTop()) - top));
-                    biVar.f24720s1.animate().translationY(0.0f).setDuration(320L).setInterpolator(gr.h).start();
+                if (biVar.f24811s1.getVisibility() == 0 && getHeight() - biVar.f24811s1.getTop() != top) {
+                    biVar.f24811s1.setTranslationY(biVar.f24811s1.getTranslationY() + ((getHeight() - biVar.f24811s1.getTop()) - top));
+                    biVar.f24811s1.animate().translationY(0.0f).setDuration(320L).setInterpolator(gr.h).start();
                     return;
                 }
                 return;

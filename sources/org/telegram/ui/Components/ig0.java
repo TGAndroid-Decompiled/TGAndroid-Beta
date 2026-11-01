@@ -9,15 +9,15 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
-public final class ig0 extends bh0 {
+public final class ig0 extends ch0 {
     public final Drawable Q;
     public final Drawable R;
-    public final qz0 S;
-    public qz0 T;
+    public final rz0 S;
+    public rz0 T;
     public final Paint U;
     public final Path V;
     public float W;
-    public final DecimalFormat f26977a0;
+    public final DecimalFormat f27092a0;
 
     public ig0(Context context) {
         super(context);
@@ -25,10 +25,10 @@ public final class ig0 extends bh0 {
         this.U = paint;
         Path path = new Path();
         this.V = path;
-        this.f26977a0 = new DecimalFormat("#,##0.#########", new DecimalFormatSymbols(Locale.US));
+        this.f27092a0 = new DecimalFormat("#,##0.#########", new DecimalFormatSymbols(Locale.US));
         this.Q = i0.a.f(context, 2131232577);
         this.R = i0.a.f(context, 2131232578);
-        this.S = new qz0(org.telegram.messenger.cd.L0(2131745173, null) + ":", 11.0f, null);
+        this.S = new rz0(org.telegram.messenger.dd.L0(2131745173, null) + ":", 11.0f, null);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
@@ -68,19 +68,19 @@ public final class ig0 extends bh0 {
 
     @Override
     public final float c(float f7) {
-        qz0 qz0Var = this.S;
-        qz0Var.f29784p = -1.0f;
-        this.T.f29784p = -1.0f;
+        rz0 rz0Var = this.S;
+        rz0Var.f30136p = -1.0f;
+        this.T.f30136p = -1.0f;
         float max = Math.max(0.0f, f7 - org.telegram.messenger.i0.L(43.0f));
-        qz0Var.f29784p = Math.max(0.0f, max - this.T.k());
-        this.T.f29784p = Math.max(0.0f, max - qz0Var.k());
-        return this.T.k() + qz0Var.k() + org.telegram.messenger.i0.L(27.0f);
+        rz0Var.f30136p = Math.max(0.0f, max - this.T.k());
+        this.T.f30136p = Math.max(0.0f, max - rz0Var.k());
+        return this.T.k() + rz0Var.k() + org.telegram.messenger.i0.L(27.0f);
     }
 
     public void setBalance(long j10) {
-        String format = this.f26977a0.format(new BigDecimal(org.telegram.ui.Wallet.k0.p(j10, false)));
-        this.T = new qz0(format, 11.0f, org.telegram.messenger.i0.o());
-        setContentDescription(org.telegram.messenger.cd.L0(2131745173, null) + ": " + format);
+        String format = this.f27092a0.format(new BigDecimal(org.telegram.ui.Wallet.k0.p(j10, false)));
+        this.T = new rz0(format, 11.0f, org.telegram.messenger.i0.o());
+        setContentDescription(org.telegram.messenger.dd.L0(2131745173, null) + ": " + format);
         invalidate();
     }
 

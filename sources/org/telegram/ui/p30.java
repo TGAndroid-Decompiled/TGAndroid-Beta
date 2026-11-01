@@ -1,41 +1,39 @@
 package org.telegram.ui;
 
-import android.widget.LinearLayout;
-public final class p30 extends LinearLayout {
-    public boolean f40457a;
-    public final org.telegram.ui.Components.ac0 f40458b;
-    public final l30 f40459c;
-    public final m30 d;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.ViewGroup;
+public final class p30 extends ps0 {
+    public final a50 T;
 
-    public p30(LaunchActivity launchActivity, org.telegram.ui.Components.ac0 ac0Var, l30 l30Var, m30 m30Var) {
-        super(launchActivity);
-        this.f40458b = ac0Var;
-        this.f40459c = l30Var;
-        this.d = m30Var;
-        this.f40457a = false;
+    public p30(a50 a50Var, ViewGroup viewGroup, ViewGroup viewGroup2) {
+        super(viewGroup, viewGroup2);
+        this.T = a50Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        this.f40457a = true;
-        org.telegram.ui.Components.ac0 ac0Var = this.f40458b;
-        ac0Var.setItemCount(5);
-        l30 l30Var = this.f40459c;
-        l30Var.setItemCount(5);
-        m30 m30Var = this.d;
-        m30Var.setItemCount(5);
-        ac0Var.getLayoutParams().height = org.telegram.messenger.i0.L(54.0f) * 5;
-        l30Var.getLayoutParams().height = org.telegram.messenger.i0.L(54.0f) * 5;
-        m30Var.getLayoutParams().height = org.telegram.messenger.i0.L(54.0f) * 5;
-        this.f40457a = false;
-        super.onMeasure(i10, i11);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f40457a) {
-            return;
+    public final void c(Canvas canvas, float f7, float f10, float f11, float f12, float f13) {
+        a50 a50Var = this.T;
+        z20 z20Var = a50Var.f35610i1;
+        a30 a30Var = a50Var.f35665t4;
+        if (f7 > 0.0f) {
+            float x10 = a50Var.f21587b.getX() + a30Var.getX();
+            float y3 = a50Var.f21587b.getY() + a30Var.getY();
+            RectF rectF = org.telegram.messenger.i0.P;
+            rectF.set(x10, y3, z20Var.getMeasuredWidth() + x10, z20Var.getMeasuredHeight() + y3);
+            canvas.saveLayerAlpha(rectF, (int) (f7 * 255.0f), 31);
+            canvas.translate(x10, y3);
+            a30Var.draw(canvas);
+            canvas.restore();
         }
-        super.requestLayout();
+    }
+
+    @Override
+    public final void e() {
+        z20 z20Var = this.T.f35610i1;
+        super.e();
+        for (int i10 = 0; i10 < z20Var.getChildCount(); i10++) {
+            z20Var.getChildAt(i10).invalidate();
+        }
     }
 }

@@ -5,16 +5,16 @@ import android.content.SharedPreferences;
 import java.util.ArrayDeque;
 import java.util.Iterator;
 public final class d0 implements Runnable {
-    public final int f51067a;
-    public final Object f51068b;
+    public final int f51085a;
+    public final Object f51086b;
 
     public d0(Object obj, int i10) {
-        this.f51067a = i10;
-        this.f51068b = obj;
+        this.f51085a = i10;
+        this.f51086b = obj;
     }
 
     private final void a() {
-        bh.d dVar = (bh.d) this.f51068b;
+        bh.d dVar = (bh.d) this.f51086b;
         synchronized (((ArrayDeque) dVar.d)) {
             SharedPreferences.Editor edit = ((SharedPreferences) dVar.f2777a).edit();
             String str = (String) dVar.f2778b;
@@ -34,7 +34,7 @@ public final class d0 implements Runnable {
     }
 
     public d0(xa.h hVar, Intent intent) {
-        this.f51067a = 25;
-        this.f51068b = intent;
+        this.f51085a = 25;
+        this.f51086b = intent;
     }
 }

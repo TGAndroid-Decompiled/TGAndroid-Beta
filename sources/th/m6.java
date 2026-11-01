@@ -6,50 +6,50 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class m6 extends TLObject {
-    public final TL_stories.StoryItem f49242a;
-    public int f49243b;
+    public final TL_stories.StoryItem f49256a;
+    public int f49257b;
 
     public m6(TL_stories.StoryItem storyItem) {
         int i10;
         int i11;
-        this.f49243b = 0;
-        this.f49242a = storyItem;
+        this.f49257b = 0;
+        this.f49256a = storyItem;
         boolean z10 = storyItem.translated;
-        this.f49243b = z10 ? 1 : 0;
+        this.f49257b = z10 ? 1 : 0;
         if (storyItem.detectedLng != null) {
             i10 = 2;
         } else {
             i10 = 0;
         }
         int i12 = (z10 ? 1 : 0) + i10;
-        this.f49243b = i12;
+        this.f49257b = i12;
         if (storyItem.translatedText != null) {
             i11 = 4;
         } else {
             i11 = 0;
         }
         int i13 = i12 + i11;
-        this.f49243b = i13;
-        this.f49243b = i13 + (storyItem.translatedLng != null ? 8 : 0);
+        this.f49257b = i13;
+        this.f49257b = i13 + (storyItem.translatedLng != null ? 8 : 0);
     }
 
     @Override
     public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
         boolean z11 = true;
         int readInt32 = inputSerializedData.readInt32(true);
-        this.f49243b = readInt32;
+        this.f49257b = readInt32;
         if ((readInt32 & 1) == 0) {
             z11 = false;
         }
-        TL_stories.StoryItem storyItem = this.f49242a;
+        TL_stories.StoryItem storyItem = this.f49256a;
         storyItem.translated = z11;
         if ((readInt32 & 2) != 0) {
             storyItem.detectedLng = inputSerializedData.readString(z10);
         }
-        if ((this.f49243b & 4) != 0) {
+        if ((this.f49257b & 4) != 0) {
             storyItem.translatedText = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
         }
-        if ((this.f49243b & 8) != 0) {
+        if ((this.f49257b & 8) != 0) {
             storyItem.translatedLng = inputSerializedData.readString(z10);
         }
     }
@@ -57,16 +57,16 @@ public final class m6 extends TLObject {
     @Override
     public final void serializeToStream(OutputSerializedData outputSerializedData) {
         outputSerializedData.writeInt32(1);
-        outputSerializedData.writeInt32(this.f49243b);
-        int i10 = this.f49243b & 2;
-        TL_stories.StoryItem storyItem = this.f49242a;
+        outputSerializedData.writeInt32(this.f49257b);
+        int i10 = this.f49257b & 2;
+        TL_stories.StoryItem storyItem = this.f49256a;
         if (i10 != 0) {
             outputSerializedData.writeString(storyItem.detectedLng);
         }
-        if ((this.f49243b & 4) != 0) {
+        if ((this.f49257b & 4) != 0) {
             storyItem.translatedText.serializeToStream(outputSerializedData);
         }
-        if ((this.f49243b & 8) != 0) {
+        if ((this.f49257b & 8) != 0) {
             outputSerializedData.writeString(storyItem.translatedLng);
         }
     }

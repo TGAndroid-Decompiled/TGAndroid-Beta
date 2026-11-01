@@ -9,21 +9,21 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 public final class r80 extends View {
-    public final Drawable f29881a;
-    public final Paint f29882b;
-    public final Paint f29883c;
+    public final Drawable f29937a;
+    public final Paint f29938b;
+    public final Paint f29939c;
     public final t5 d;
     public boolean e;
 
     public r80(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f29882b = paint;
+        this.f29938b = paint;
         Paint paint2 = new Paint(1);
-        this.f29883c = paint2;
+        this.f29939c = paint2;
         this.d = new t5(this, 0L, 320L, gr.h);
         w7.e6.a(this);
-        this.f29881a = context.getResources().getDrawable(2131231746).mutate();
+        this.f29937a = context.getResources().getDrawable(2131231746).mutate();
         Paint.Style style = Paint.Style.STROKE;
         paint2.setStyle(style);
         paint2.setColor(-65536);
@@ -48,7 +48,7 @@ public final class r80 extends View {
         Canvas canvas2;
         float d = this.d.d(!this.e);
         int width = getWidth();
-        Drawable drawable = this.f29881a;
+        Drawable drawable = this.f29937a;
         drawable.setBounds((width - drawable.getIntrinsicWidth()) / 2, (getHeight() - drawable.getIntrinsicHeight()) / 2, (drawable.getIntrinsicWidth() + getWidth()) / 2, (drawable.getIntrinsicHeight() + getHeight()) / 2);
         Rect bounds = drawable.getBounds();
         float width2 = (bounds.width() * 0.325f) + bounds.left;
@@ -57,7 +57,7 @@ public final class r80 extends View {
         float width3 = bounds.right - (bounds.width() * 0.101f);
         int i10 = (d > 0.0f ? 1 : (d == 0.0f ? 0 : -1));
         if (i10 > 0) {
-            Paint paint = this.f29883c;
+            Paint paint = this.f29939c;
             paint.setStrokeWidth(org.telegram.messenger.i0.L(4.0f));
             canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
             drawable.draw(canvas);
@@ -74,7 +74,7 @@ public final class r80 extends View {
             drawable.draw(canvas2);
         }
         if (i10 > 0) {
-            Paint paint2 = this.f29882b;
+            Paint paint2 = this.f29938b;
             paint2.setStrokeWidth(org.telegram.messenger.i0.L(2.0f));
             if (this.e) {
                 canvas2.drawLine(width3, height2, org.telegram.messenger.i0.T1(width3, width2, d), org.telegram.messenger.i0.T1(height2, height, d), paint2);

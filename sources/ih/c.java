@@ -19,34 +19,34 @@ import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Components.e6;
 import org.telegram.ui.Components.gr;
-import org.telegram.ui.Components.j21;
 import org.telegram.ui.Components.jf0;
+import org.telegram.ui.Components.k21;
 import org.telegram.ui.Components.t5;
 import org.telegram.ui.Components.t80;
 import org.telegram.ui.Components.ve0;
 import org.telegram.ui.Components.y5;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.m40;
-import org.telegram.ui.v50;
+import org.telegram.ui.l40;
+import org.telegram.ui.u50;
 import th.z2;
 public final class c extends View {
-    public final int f8520a;
-    public final Object f8521b;
-    public Object f8522c;
+    public final int f8521a;
+    public final Object f8522b;
+    public Object f8523c;
     public Object d;
 
     public c(Context context, int i10) {
         super(context);
-        this.f8520a = i10;
+        this.f8521a = i10;
         switch (i10) {
             case 1:
                 super(context);
-                this.f8521b = new je.b();
-                this.f8522c = new nf.a(0, this);
+                this.f8522b = new je.b();
+                this.f8523c = new nf.a(0, this);
                 return;
             default:
-                this.f8521b = new fe.b(this, gr.h, 320L);
-                this.f8522c = i0.a.f(context, 2131232489);
+                this.f8522b = new fe.b(this, gr.h, 320L);
+                this.f8523c = i0.a.f(context, 2131232489);
                 this.d = i0.a.f(context, 2131231505);
                 return;
         }
@@ -55,10 +55,10 @@ public final class c extends View {
     @Override
     public void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
-        switch (this.f8520a) {
+        switch (this.f8521a) {
             case 3:
-                j21 j21Var = (j21) this.d;
-                e6 e6Var = j21Var.e;
+                k21 k21Var = (k21) this.d;
+                e6 e6Var = k21Var.e;
                 float i10 = e6Var.i();
                 if (i10 > 0.0f) {
                     float T1 = i0.T1(0.6f, 1.0f, i10);
@@ -67,31 +67,31 @@ public final class c extends View {
                     rectF.set(0.0f, 0.0f, max, getHeight());
                     canvas.save();
                     canvas.scale(T1, T1, rectF.centerX(), rectF.centerY());
-                    y5 y5Var = (y5) this.f8521b;
-                    y5Var.setColor(y5Var.f32638b.a(t6.w0(j21Var.I, y5Var.f32637a), false));
-                    y5Var.setColor(i0.b.f(j21Var.F, y5Var.getColor(), j21.a(j21Var)));
+                    y5 y5Var = (y5) this.f8522b;
+                    y5Var.setColor(y5Var.f32724b.a(t6.w0(k21Var.I, y5Var.f32723a), false));
+                    y5Var.setColor(i0.b.f(k21Var.F, y5Var.getColor(), k21.a(k21Var)));
                     y5Var.setAlpha((int) (y5Var.getAlpha() * i10));
                     canvas.drawRoundRect(rectF, i0.L(8.33f), i0.L(8.33f), y5Var);
                     e6Var.p(rectF);
                     e6Var.B = (int) (i10 * 255.0f);
-                    e6Var.u(t6.w0(t6.W8, (p6) this.f8522c));
+                    e6Var.u(t6.w0(t6.W8, (p6) this.f8523c));
                     e6Var.draw(canvas);
                     canvas.restore();
                 }
                 super.dispatchDraw(canvas);
                 return;
             case 4:
-                int[] iArr = (int[]) this.f8521b;
-                t0 t0Var = (t0) this.f8522c;
-                m40 m40Var = (m40) this.d;
-                if (m40Var.h > 0.0f && m40Var.d != null) {
-                    m40Var.f39471f.reset();
-                    float width = getWidth() / m40Var.f39470c.getWidth();
-                    m40Var.f39471f.postScale(width, width);
-                    m40Var.e.setLocalMatrix(m40Var.f39471f);
-                    m40Var.d.setAlpha((int) (m40Var.h * 255.0f));
+                int[] iArr = (int[]) this.f8522b;
+                t0 t0Var = (t0) this.f8523c;
+                l40 l40Var = (l40) this.d;
+                if (l40Var.h > 0.0f && l40Var.d != null) {
+                    l40Var.f39075f.reset();
+                    float width = getWidth() / l40Var.f39074c.getWidth();
+                    l40Var.f39075f.postScale(width, width);
+                    l40Var.e.setLocalMatrix(l40Var.f39075f);
+                    l40Var.d.setAlpha((int) (l40Var.h * 255.0f));
                     canvas2 = canvas;
-                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), m40Var.d);
+                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), l40Var.d);
                 } else {
                     canvas2 = canvas;
                 }
@@ -99,11 +99,11 @@ public final class c extends View {
                     if (t0Var.isAttachedToWindow() && t0Var.getAlpha() > 0.5f) {
                         t0Var.getLocationInWindow(iArr);
                     } else {
-                        m40Var.dismiss();
+                        l40Var.dismiss();
                     }
                     canvas2.save();
                     canvas2.translate(iArr[0] - ((1.0f - t0Var.getScaleX()) * t0Var.getMeasuredWidth()), iArr[1] - ((1.0f - t0Var.getScaleY()) * t0Var.getMeasuredHeight()));
-                    if (((g.b) t0Var.f3356b).a(canvas2, t0Var.getMeasuredWidth(), m40Var.h)) {
+                    if (((g.b) t0Var.f3356b).a(canvas2, t0Var.getMeasuredWidth(), l40Var.h)) {
                         invalidate();
                     }
                     canvas2.restore();
@@ -113,13 +113,13 @@ public final class c extends View {
             case 5:
                 super.dispatchDraw(canvas);
                 int L = i0.L(48.0f);
-                v50 v50Var = (v50) this.d;
-                int i11 = L + ((int) v50Var.f42607b.f7031f);
-                Paint paint = (Paint) this.f8522c;
-                paint.setColor(v50Var.getThemedColor(t6.f21206s8));
-                RectF rectF2 = (RectF) this.f8521b;
-                rectF2.set(0.0f, 0.0f, getMeasuredWidth(), v50.f0(v50Var).getMeasuredHeight() + i11);
-                v50.e0(v50Var, canvas, rectF2, paint);
+                u50 u50Var = (u50) this.d;
+                int i11 = L + ((int) u50Var.f41802b.f7032f);
+                Paint paint = (Paint) this.f8523c;
+                paint.setColor(u50Var.getThemedColor(t6.f21207s8));
+                RectF rectF2 = (RectF) this.f8522b;
+                rectF2.set(0.0f, 0.0f, getMeasuredWidth(), u50.g0(u50Var).getMeasuredHeight() + i11);
+                u50.f0(u50Var, canvas, rectF2, paint);
                 return;
             default:
                 super.dispatchDraw(canvas);
@@ -129,16 +129,16 @@ public final class c extends View {
 
     @Override
     public void onAttachedToWindow() {
-        switch (this.f8520a) {
+        switch (this.f8521a) {
             case 1:
                 super.onAttachedToWindow();
                 ViewTreeObserver viewTreeObserver = getViewTreeObserver();
                 this.d = viewTreeObserver;
-                viewTreeObserver.addOnDrawListener((nf.a) this.f8522c);
+                viewTreeObserver.addOnDrawListener((nf.a) this.f8523c);
                 return;
             case 7:
                 super.onAttachedToWindow();
-                if (((qh.f) this.f8522c) != null) {
+                if (((qh.f) this.f8523c) != null) {
                     postDelayed((org.telegram.ui.Wallet.l) this.d, 200L);
                     return;
                 }
@@ -151,12 +151,12 @@ public final class c extends View {
 
     @Override
     public void onDetachedFromWindow() {
-        switch (this.f8520a) {
+        switch (this.f8521a) {
             case 1:
                 super.onDetachedFromWindow();
                 ViewTreeObserver viewTreeObserver = (ViewTreeObserver) this.d;
                 if (viewTreeObserver != null && viewTreeObserver.isAlive()) {
-                    ((ViewTreeObserver) this.d).removeOnDrawListener((nf.a) this.f8522c);
+                    ((ViewTreeObserver) this.d).removeOnDrawListener((nf.a) this.f8523c);
                 }
                 this.d = null;
                 return;
@@ -175,17 +175,17 @@ public final class c extends View {
     @Override
     public void onDraw(Canvas canvas) {
         ve0 ve0Var;
-        switch (this.f8520a) {
+        switch (this.f8521a) {
             case 0:
                 super.onDraw(canvas);
-                float f7 = ((fe.b) this.f8521b).e;
-                rf.o.b(canvas, (Drawable) this.f8522c, 1.0f - f7);
+                float f7 = ((fe.b) this.f8522b).e;
+                rf.o.b(canvas, (Drawable) this.f8523c, 1.0f - f7);
                 rf.o.b(canvas, (Drawable) this.d, f7);
                 return;
             case 1:
                 Trace.beginSection("OnPostDraw");
                 try {
-                    Iterator it = ((je.b) this.f8521b).iterator();
+                    Iterator it = ((je.b) this.f8522b).iterator();
                     while (it.hasNext()) {
                         ((ei.i) it.next()).b();
                     }
@@ -196,18 +196,18 @@ public final class c extends View {
             case 2:
                 super.onDraw(canvas);
                 jf0 jf0Var = (jf0) this.d;
-                if (!jf0Var.f27362n || ((ve0Var = jf0Var.f27363r) != null && ve0Var.f31243y)) {
+                if (!jf0Var.f27417n || ((ve0Var = jf0Var.f27418r) != null && ve0Var.f31278y)) {
                     int width = getWidth();
                     int L = i0.L(10.0f);
                     float f10 = (width - L) - L;
                     int i10 = L + ((int) (jf0Var.Z * f10));
                     float height = getHeight() - i0.L(8.0f);
-                    float f11 = jf0Var.f27347a0;
+                    float f11 = jf0Var.f27402a0;
                     if (f11 != 0.0f) {
                         float f12 = L;
-                        canvas.drawLine(f12, height, (f11 * f10) + f12, height, (Paint) this.f8522c);
+                        canvas.drawLine(f12, height, (f11 * f10) + f12, height, (Paint) this.f8523c);
                     }
-                    canvas.drawLine(L, height, i10, height, (Paint) this.f8521b);
+                    canvas.drawLine(L, height, i10, height, (Paint) this.f8522b);
                     return;
                 }
                 return;
@@ -228,7 +228,7 @@ public final class c extends View {
                 rectF.set(L2, L2, f14, f14);
                 rectF.offset(0.0f, (measuredHeight - rectF.height()) / 2.0f);
                 float f15 = measuredWidth / 7.0f;
-                Path path = (Path) this.f8522c;
+                Path path = (Path) this.f8523c;
                 path.rewind();
                 path.addRoundRect(rectF, f15, f15, Path.Direction.CW);
                 canvas.clipPath(path);
@@ -243,7 +243,7 @@ public final class c extends View {
                     for (int i12 = 0; i12 < width2; i12++) {
                         int i13 = i12 % 2;
                         if ((i13 == 0 && i11 % 2 == 0) || (i13 != 0 && i11 % 2 != 0)) {
-                            canvas.drawRect(0.0f, 0.0f, f16, f16, (Paint) this.f8521b);
+                            canvas.drawRect(0.0f, 0.0f, f16, f16, (Paint) this.f8522b);
                         }
                         canvas.translate(f16, 0.0f);
                     }
@@ -254,24 +254,24 @@ public final class c extends View {
                 canvas.restore();
                 return;
             case 7:
-                qh.g gVar = (qh.g) this.f8521b;
+                qh.g gVar = (qh.g) this.f8522b;
                 gVar.e(canvas, 0.0f, 0.0f, getWidth());
-                if (gVar.f45628o < 1.0f || gVar.f45625l > 0) {
+                if (gVar.f45639o < 1.0f || gVar.f45636l > 0) {
                     invalidate();
                     return;
                 }
                 return;
             case 8:
-                t80 t80Var = (t80) this.f8521b;
+                t80 t80Var = (t80) this.f8522b;
                 super.onDraw(canvas);
-                t5 t5Var = (t5) this.f8522c;
-                t5Var.f30443a = this;
+                t5 t5Var = (t5) this.f8523c;
+                t5Var.f30528a = this;
                 ((z2) this.d).getClass();
                 t5Var.e(false, 0.0f);
-                float f17 = t5Var.f30445c;
+                float f17 = t5Var.f30530c;
                 if (f17 != 0.0f) {
                     if (f17 != 1.0f) {
-                        canvas.saveLayerAlpha(0.0f, 0.0f, getLayoutParams().width, getMeasuredHeight(), (int) (t5Var.f30445c * 255.0f), 31);
+                        canvas.saveLayerAlpha(0.0f, 0.0f, getLayoutParams().width, getMeasuredHeight(), (int) (t5Var.f30530c * 255.0f), 31);
                     } else {
                         canvas.save();
                     }
@@ -291,9 +291,9 @@ public final class c extends View {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f8520a) {
+        switch (this.f8521a) {
             case 3:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) Math.max(i0.L(16.66f), ((j21) this.d).e.d + i0.L(10.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(i0.L(16.66f), 1073741824));
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) Math.max(i0.L(16.66f), ((k21) this.d).e.d + i0.L(10.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(i0.L(16.66f), 1073741824));
                 return;
             default:
                 super.onMeasure(i10, i11);
@@ -303,12 +303,12 @@ public final class c extends View {
 
     @Override
     public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f8520a) {
+        switch (this.f8521a) {
             case 0:
                 super.onSizeChanged(i10, i11, i12, i13);
                 float f7 = i10 / 2.0f;
                 float f10 = i11 / 2.0f;
-                rf.o.d((Drawable) this.f8522c, f7, f10, 17);
+                rf.o.d((Drawable) this.f8523c, f7, f10, 17);
                 rf.o.d((Drawable) this.d, f7, f10, 17);
                 return;
             default:
@@ -319,10 +319,10 @@ public final class c extends View {
 
     @Override
     public void setAlpha(float f7) {
-        switch (this.f8520a) {
+        switch (this.f8521a) {
             case 6:
                 super.setAlpha(f7);
-                ((PhotoViewer) this.d).f33487g0.invalidate();
+                ((PhotoViewer) this.d).f33494g0.invalidate();
                 return;
             default:
                 super.setAlpha(f7);
@@ -332,9 +332,9 @@ public final class c extends View {
 
     @Override
     public boolean verifyDrawable(Drawable drawable) {
-        switch (this.f8520a) {
+        switch (this.f8521a) {
             case 3:
-                if (((j21) this.d).e != drawable && !super.verifyDrawable(drawable)) {
+                if (((k21) this.d).e != drawable && !super.verifyDrawable(drawable)) {
                     return false;
                 }
                 return true;
@@ -343,22 +343,22 @@ public final class c extends View {
         }
     }
 
-    public c(v50 v50Var, Context context) {
+    public c(u50 u50Var, Context context) {
         super(context);
-        this.f8520a = 5;
-        this.d = v50Var;
-        this.f8521b = new RectF();
-        this.f8522c = new Paint(1);
+        this.f8521a = 5;
+        this.d = u50Var;
+        this.f8522b = new RectF();
+        this.f8523c = new Paint(1);
     }
 
     public c(jf0 jf0Var, Context context) {
         super(context);
-        this.f8520a = 2;
+        this.f8521a = 2;
         this.d = jf0Var;
         Paint paint = new Paint();
-        this.f8521b = paint;
+        this.f8522b = paint;
         Paint paint2 = new Paint();
-        this.f8522c = paint2;
+        this.f8523c = paint2;
         paint.setColor(-1);
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
@@ -372,53 +372,53 @@ public final class c extends View {
         paint2.setStrokeWidth(i0.L(2.0f));
     }
 
-    public c(j21 j21Var, Context context, p6 p6Var) {
+    public c(k21 k21Var, Context context, p6 p6Var) {
         super(context);
-        this.f8520a = 3;
-        this.d = j21Var;
-        this.f8522c = p6Var;
-        this.f8521b = new y5(this, p6Var);
-        j21Var.e.setCallback(this);
+        this.f8521a = 3;
+        this.d = k21Var;
+        this.f8523c = p6Var;
+        this.f8522b = new y5(this, p6Var);
+        k21Var.e.setCallback(this);
     }
 
     public c(Context context, qh.f fVar) {
         super(context);
-        this.f8520a = 7;
+        this.f8521a = 7;
         qh.g gVar = new qh.g();
-        this.f8521b = gVar;
+        this.f8522b = gVar;
         this.d = new org.telegram.ui.Wallet.l(this, 9);
-        if (gVar.f45637y != -16777216 || gVar.f45638z == null) {
-            gVar.f45637y = -16777216;
-            gVar.f45638z = new PorterDuffColorFilter(-16777216, PorterDuff.Mode.SRC_IN);
+        if (gVar.f45648y != -16777216 || gVar.f45649z == null) {
+            gVar.f45648y = -16777216;
+            gVar.f45649z = new PorterDuffColorFilter(-16777216, PorterDuff.Mode.SRC_IN);
         }
-        this.f8522c = fVar;
+        this.f8523c = fVar;
     }
 
     public c(z2 z2Var, Context context) {
         super(context);
-        this.f8520a = 8;
+        this.f8521a = 8;
         this.d = z2Var;
-        this.f8521b = new t80();
-        this.f8522c = new t5(250L, gr.f26495f);
+        this.f8522b = new t80();
+        this.f8523c = new t5(250L, gr.f26523f);
     }
 
     public c(PhotoViewer photoViewer, ContextThemeWrapper contextThemeWrapper) {
         super(contextThemeWrapper);
-        this.f8520a = 6;
+        this.f8521a = 6;
         this.d = photoViewer;
         Paint paint = new Paint();
-        this.f8521b = paint;
-        this.f8522c = new Path();
+        this.f8522b = paint;
+        this.f8523c = new Path();
         paint.setColor(-1);
         paint.setAlpha(40);
         setLayerType(2, null);
     }
 
-    public c(m40 m40Var, Context context, t0 t0Var) {
+    public c(l40 l40Var, Context context, t0 t0Var) {
         super(context);
-        this.f8520a = 4;
-        this.d = m40Var;
-        this.f8522c = t0Var;
-        this.f8521b = new int[2];
+        this.f8521a = 4;
+        this.d = l40Var;
+        this.f8523c = t0Var;
+        this.f8522b = new int[2];
     }
 }

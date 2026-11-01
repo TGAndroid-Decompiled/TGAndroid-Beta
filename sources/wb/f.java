@@ -12,9 +12,9 @@ public final class f extends e {
         if (bVar != null) {
             return bVar;
         }
-        vb.d dVar = this.f52784a;
-        int i10 = dVar.f50754a;
-        int i11 = dVar.f50755b;
+        vb.d dVar = this.f52802a;
+        int i10 = dVar.f50768a;
+        int i11 = dVar.f50769b;
         if (i10 >= 40 && i11 >= 40) {
             byte[] a2 = dVar.a();
             int i12 = i10 >> 3;

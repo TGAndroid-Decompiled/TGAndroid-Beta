@@ -5,15 +5,15 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import java.util.ArrayList;
 public final class d3 implements GestureDetector.OnGestureListener {
-    public final z3 f48873a;
+    public final z3 f48887a;
 
     public d3(z3 z3Var) {
-        this.f48873a = z3Var;
+        this.f48887a = z3Var;
     }
 
     @Override
     public final boolean onDown(MotionEvent motionEvent) {
-        z3 z3Var = this.f48873a;
+        z3 z3Var = this.f48887a;
         z3Var.d.abortAnimation();
         ValueAnimator valueAnimator = z3Var.M;
         if (valueAnimator != null) {
@@ -22,24 +22,24 @@ public final class d3 implements GestureDetector.OnGestureListener {
             z3Var.M = null;
         }
         z3Var.L = false;
-        z3Var.O.f48969x = false;
+        z3Var.O.f48983x = false;
         return true;
     }
 
     @Override
     public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        z3 z3Var = this.f48873a;
-        z3Var.d.fling((int) z3Var.e, 0, (int) (-f7), 0, (int) z3Var.f48954f, (int) z3Var.h, 0, 0);
+        z3 z3Var = this.f48887a;
+        z3Var.d.fling((int) z3Var.e, 0, (int) (-f7), 0, (int) z3Var.f48968f, (int) z3Var.h, 0, 0);
         z3Var.invalidate();
         return false;
     }
 
     @Override
     public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        z3 z3Var = this.f48873a;
+        z3 z3Var = this.f48887a;
         float f11 = z3Var.e + f7;
         z3Var.e = f11;
-        float f12 = z3Var.f48954f;
+        float f12 = z3Var.f48968f;
         if (f11 < f12) {
             z3Var.e = f12;
         }
@@ -54,13 +54,13 @@ public final class d3 implements GestureDetector.OnGestureListener {
 
     @Override
     public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        z3 z3Var = this.f48873a;
+        z3 z3Var = this.f48887a;
         ArrayList arrayList = z3Var.G;
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             e3 e3Var = (e3) arrayList.get(i10);
-            if (((e3) arrayList.get(i10)).f48898a.P0.contains(motionEvent.getX(), motionEvent.getY())) {
+            if (((e3) arrayList.get(i10)).f48912a.P0.contains(motionEvent.getX(), motionEvent.getY())) {
                 int i11 = z3Var.K;
-                int i12 = e3Var.f48899b;
+                int i12 = e3Var.f48913b;
                 if (i11 != i12) {
                     z3Var.c(i12, true, false);
                 } else {

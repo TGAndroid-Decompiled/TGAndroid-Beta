@@ -13,7 +13,7 @@ public final class v3 extends ig.c1 {
 
     @Override
     public final void g(ig.h hVar) {
-        int indexOf = ig.h.f8315a.indexOf(hVar);
+        int indexOf = ig.h.f8316a.indexOf(hVar);
         int i10 = indexOf + 1;
         if (i10 <= 1) {
             indexOf = i10;

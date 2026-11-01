@@ -8,11 +8,11 @@ import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.dd;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.h20;
+import org.telegram.messenger.i20;
 import org.telegram.messenger.m5;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.a7;
@@ -22,11 +22,11 @@ import org.telegram.ui.ActionBar.u5;
 import org.telegram.ui.Components.g9;
 import org.telegram.ui.Components.gr;
 import org.telegram.ui.Components.ha;
-import org.telegram.ui.Components.p51;
+import org.telegram.ui.Components.q51;
 import org.telegram.ui.Components.qq;
 import org.telegram.ui.Components.r8;
-import org.telegram.ui.Components.sk0;
 import org.telegram.ui.Components.tk0;
+import org.telegram.ui.Components.uk0;
 import w7.b6;
 public final class j1 extends ha {
     public static final int f583c2 = -1;
@@ -38,7 +38,7 @@ public final class j1 extends ha {
     public final FrameLayout T1;
     public final vh.d U1;
     public final vh.d V1;
-    public p51 W1;
+    public q51 W1;
     public boolean X1;
     public Boolean Y1;
     public int Z1;
@@ -48,11 +48,11 @@ public final class j1 extends ha {
     public j1(Activity activity, TL_account.TL_connectedBot tL_connectedBot, qq qqVar, p6 p6Var) {
         super(2, (Context) activity, p6Var, false);
         this.P1 = tL_connectedBot;
-        TLRPC.User Z1 = vp.r1(this.f21583a).Z1(Long.valueOf(tL_connectedBot.bot_id));
+        TLRPC.User Z1 = wp.r1(this.f21584a).Z1(Long.valueOf(tL_connectedBot.bot_id));
         this.Q1 = Z1;
         this.B1 = org.telegram.messenger.i0.L(36.0f);
-        this.f26672r1 = 0.15f;
-        x0 x0Var = new x0(activity, this.f21583a, new a3.d(this, 5), p6Var);
+        this.f26730r1 = 0.15f;
+        x0 x0Var = new x0(activity, this.f21584a, new a3.d(this, 5), p6Var);
         this.R1 = x0Var;
         TL_account.TL_businessBotRecipients tL_businessBotRecipients = tL_connectedBot.recipients;
         this.X1 = tL_businessBotRecipients.exclude_selected;
@@ -71,15 +71,15 @@ public final class j1 extends ha {
         a7.V(textView, t6.G6, p6Var);
         textView.setGravity(17);
         textView.setTypeface(org.telegram.messenger.i0.o());
-        textView.setText(h20.p(Z1));
+        textView.setText(i20.p(Z1));
         linearLayout.addView(textView, b6.s(-1, -2, 1, 32.0f, 15.66f, 32.0f, 3.66f));
-        this.l1.setTitle(h20.p(Z1));
+        this.l1.setTitle(i20.p(Z1));
         TextView textView2 = new TextView(activity);
         textView2.setTextSize(1, 14.0f);
-        a7.V(textView2, t6.f21311y6, p6Var);
+        a7.V(textView2, t6.f21312y6, p6Var);
         m5.l(textView2, 17, null, 2131745577);
         linearLayout.addView(textView2, b6.s(-1, -2, 1, 32.0f, 0.0f, 32.0f, 3.66f));
-        String n10 = h20.n(Z1);
+        String n10 = i20.n(Z1);
         if (!TextUtils.isEmpty(n10)) {
             TextView textView3 = new TextView(activity);
             textView3.setTextSize(1, 14.0f);
@@ -88,15 +88,15 @@ public final class j1 extends ha {
             textView3.setGravity(17);
             linearLayout.addView(textView3, b6.t(-1, -2, 1, 32, 0, 32, 18));
         }
-        int i10 = t6.f20872a7;
+        int i10 = t6.f20873a7;
         v0(t6.w0(i10, this.I0));
         Q(i10);
         this.Z1 = this.G0;
-        tk0 tk0Var = this.f26666k1;
-        int i11 = this.f21615t0;
-        tk0Var.setPadding(i11, 0, i11, org.telegram.messenger.i0.L(72.0f));
-        this.f26666k1.r1();
-        this.f26666k1.setOnItemClickListener(new y0(this, 1));
+        uk0 uk0Var = this.f26724k1;
+        int i11 = this.f21616t0;
+        uk0Var.setPadding(i11, 0, i11, org.telegram.messenger.i0.L(72.0f));
+        this.f26724k1.r1();
+        this.f26724k1.setOnItemClickListener(new y0(this, 1));
         FrameLayout frameLayout = new FrameLayout(activity);
         this.T1 = frameLayout;
         frameLayout.setPadding(org.telegram.messenger.i0.L(12.0f), org.telegram.messenger.i0.L(6.0f), org.telegram.messenger.i0.L(12.0f), org.telegram.messenger.i0.L(12.0f));
@@ -107,31 +107,31 @@ public final class j1 extends ha {
         int w02 = t6.w0(t6.kk, this.I0);
         this.f585b2 = w02;
         dVar.setColor(w02);
-        dVar.setText(cd.L0(2131744230, null));
+        dVar.setText(dd.L0(2131744230, null));
         dVar.setOnClickListener(new i(this, tL_connectedBot, qqVar, 1));
         frameLayout.addView(dVar, b6.d(-1, 48.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
         vh.d dVar2 = new vh.d(activity, p6Var, true);
         dVar2.setRoundRadius(24);
         this.V1 = dVar2;
-        dVar2.setText(cd.L0(2131752785, null));
+        dVar2.setText(dd.L0(2131752785, null));
         dVar2.setOnClickListener(new t0(1, this, tL_connectedBot));
         frameLayout.addView(dVar2, b6.d(-1, 48.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
         d1(false);
         FrameLayout.LayoutParams e = b6.e(-1, -2, 80);
         int i12 = e.leftMargin;
-        int i13 = this.f21615t0;
+        int i13 = this.f21616t0;
         e.leftMargin = i12 + i13;
         e.rightMargin += i13;
-        this.f21586b.addView(frameLayout, e);
+        this.f21587b.addView(frameLayout, e);
         s4.j jVar = new s4.j();
-        jVar.f47927m = false;
+        jVar.f47938m = false;
         jVar.C = false;
         jVar.o(gr.h);
         jVar.n(350L);
-        this.f26666k1.setItemAnimator(jVar);
-        p51 p51Var = this.W1;
-        if (p51Var != null) {
-            p51Var.O(false);
+        this.f26724k1.setItemAnimator(jVar);
+        q51 q51Var = this.W1;
+        if (q51Var != null) {
+            q51Var.O(false);
         }
     }
 
@@ -150,15 +150,15 @@ public final class j1 extends ha {
         if (x0Var != null && x0Var.g()) {
             return false;
         }
-        return this.f21590c0;
+        return this.f21591c0;
     }
 
     @Override
-    public final sk0 L0(tk0 tk0Var) {
-        p51 p51Var = new p51(tk0Var, getContext(), this.f21583a, 0, true, new a(this, 2), this.I0);
-        this.W1 = p51Var;
-        p51Var.f29295r = false;
-        return p51Var;
+    public final tk0 L0(uk0 uk0Var) {
+        q51 q51Var = new q51(uk0Var, getContext(), this.f21584a, 0, true, new a(this, 2), this.I0);
+        this.W1 = q51Var;
+        q51Var.f29638r = false;
+        return q51Var;
     }
 
     @Override
@@ -357,7 +357,7 @@ public final class j1 extends ha {
         int i10;
         try {
             super.s0();
-            int i11 = t6.f20872a7;
+            int i11 = t6.f20873a7;
             int w02 = t6.w0(i11, this.I0);
             if (w02 != this.a2) {
                 this.a2 = w02;

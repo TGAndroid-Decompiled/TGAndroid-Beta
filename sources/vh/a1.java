@@ -1,209 +1,146 @@
 package vh;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.d20;
-import org.telegram.messenger.ic;
-import org.telegram.messenger.jc;
-import org.telegram.messenger.sc;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.dc;
-import org.telegram.ui.Components.eq;
-public final class a1 extends View {
-    public eq f50894a;
-    public boolean f50895b;
-    public final int f50896c;
-    public org.telegram.ui.Components.f5 d;
-    public final b1 e;
-    public ImageReceiver f50897f;
-    public long h;
-    public final jc[] f50898n;
-    public ImageReceiver f50899r;
-    public final dc f50900s;
-    public boolean f50901w;
+import org.telegram.messenger.kc;
+import org.telegram.messenger.tc;
+import org.telegram.ui.Components.ts;
+public final class a1 extends ts {
+    public int M;
+    public int N;
+    public ArrayList O;
+    public final ArrayList P = new ArrayList();
+    public final boolean Q = tc.e(8200);
+    public final c1 R;
 
-    public a1(Context context, b1 b1Var) {
-        super(context);
-        this.f50896c = d20.f15147s0;
-        this.f50898n = new jc[2];
-        this.f50900s = new dc(this);
-        setPadding(org.telegram.messenger.i0.L(2.0f), org.telegram.messenger.i0.L(2.0f), org.telegram.messenger.i0.L(2.0f), org.telegram.messenger.i0.L(2.0f));
-        this.e = b1Var;
+    public a1(c1 c1Var) {
+        this.R = c1Var;
     }
 
-    public final void a(TLRPC.Document document, boolean z10) {
-        long j10;
-        int i10;
-        long j11 = this.h;
-        if (document == null) {
-            j10 = 0;
+    public static void m(Canvas canvas, org.telegram.ui.Components.f5 f5Var, b1 b1Var, float f7) {
+        if (f5Var != null) {
+            f5Var.setAlpha((int) (f7 * 255.0f));
+            f5Var.draw(canvas);
+        } else if (b1Var.f50950f != null) {
+            canvas.save();
+            ImageReceiver imageReceiver = b1Var.f50950f;
+            canvas.clipRect(imageReceiver.K0, imageReceiver.L0, imageReceiver.y(), b1Var.f50950f.A());
+            b1Var.f50950f.setAlpha(f7);
+            b1Var.f50950f.h(canvas, null);
+            canvas.restore();
+        }
+    }
+
+    @Override
+    public final void a(Canvas canvas, long j10, int i10, int i11, float f7) {
+        boolean z10;
+        if (this.O == null) {
+            return;
+        }
+        boolean z11 = true;
+        if (!this.R.b0() && this.O.size() > 4 && this.Q) {
+            z10 = false;
         } else {
-            j10 = document.f19799id;
+            z10 = true;
         }
-        if (j11 != j10) {
-            org.telegram.ui.Components.f5 f5Var = this.d;
-            if (f5Var != null) {
-                f5Var.n(this);
+        if (!z10) {
+            for (int i12 = 0; i12 < this.O.size(); i12++) {
+                if (((b1) this.O.get(i12)).getScale() != 1.0f) {
+                    break;
+                }
             }
-            if (document != null) {
-                int i11 = 1;
-                this.f50895b = true;
-                this.h = document.f19799id;
-                int i12 = u1.f51993y1;
-                if (!z10) {
-                    i11 = 16388;
-                }
-                if (sc.e(i11)) {
-                    i10 = 3;
-                } else {
-                    i10 = 13;
-                }
-                org.telegram.ui.Components.f5 l4 = org.telegram.ui.Components.f5.l(this.f50896c, i10, document);
-                this.d = l4;
-                if (this.f50901w) {
-                    l4.a(this);
-                    return;
-                }
-                return;
-            }
-            this.f50895b = false;
-            this.h = 0L;
-            this.d = null;
         }
-    }
-
-    public float getScale() {
-        return this.f50900s.a(0.15f);
-    }
-
-    @Override
-    public final void invalidate() {
-        this.e.invalidate();
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f50901w = true;
-        org.telegram.ui.Components.f5 f5Var = this.d;
-        if (f5Var != null) {
-            f5Var.a(this);
-        }
-        ImageReceiver imageReceiver = this.f50897f;
-        if (imageReceiver != null) {
-            imageReceiver.P();
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f50901w = false;
-        org.telegram.ui.Components.f5 f5Var = this.d;
-        if (f5Var != null) {
-            f5Var.n(this);
-        }
-        ImageReceiver imageReceiver = this.f50897f;
-        if (imageReceiver != null) {
-            imageReceiver.R();
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        ImageReceiver imageReceiver = this.f50897f;
-        if (imageReceiver != null) {
-            imageReceiver.y0(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
-            this.f50897f.h(canvas, null);
+        z11 = z10;
+        if (z11) {
+            i(System.currentTimeMillis());
+            d(canvas, f7);
+            k();
             return;
         }
-        org.telegram.ui.Components.f5 f5Var = this.d;
-        if (f5Var != null) {
-            f5Var.setBounds(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
-            this.d.draw(canvas);
-        }
+        super.a(canvas, j10, i10, i11, f7);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
-        super.onMeasure(makeMeasureSpec, makeMeasureSpec);
-    }
-
-    public void setDrawable(Drawable drawable) {
-        org.telegram.ui.Components.f5 f5Var = this.d;
-        if (f5Var != null) {
-            f5Var.n(this);
-        }
-        this.d = null;
-        this.h = 0L;
-        this.f50895b = false;
-        if (this.f50897f == null) {
-            ImageReceiver imageReceiver = new ImageReceiver(null);
-            this.f50897f = imageReceiver;
-            imageReceiver.E0(7);
-            ImageReceiver imageReceiver2 = this.f50897f;
-            imageReceiver2.R0 = true;
-            if (this.f50901w) {
-                imageReceiver2.P();
-            }
-        }
-        this.f50897f.w0(drawable);
-    }
-
-    @Override
-    public void setPressed(boolean z10) {
-        super.setPressed(z10);
-        this.f50900s.c(z10);
-    }
-
-    public void setSticker(TLRPC.Document document) {
-        View view;
-        String str;
-        this.f50895b = false;
-        if (document != null) {
-            long j10 = this.h;
-            long j11 = document.f19799id;
-            if (j10 != j11) {
-                this.h = j11;
-                if (this.f50897f == null) {
-                    ImageReceiver imageReceiver = new ImageReceiver(null);
-                    this.f50897f = imageReceiver;
-                    imageReceiver.E0(7);
-                    ImageReceiver imageReceiver2 = this.f50897f;
-                    imageReceiver2.R0 = true;
-                    if (this.f50901w) {
-                        imageReceiver2.P();
-                    }
+    public final void c(Canvas canvas) {
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList = this.P;
+            if (i10 < arrayList.size()) {
+                b1 b1Var = (b1) arrayList.get(i10);
+                b1Var.getClass();
+                org.telegram.ui.Components.f5 f5Var = b1Var.d;
+                if (f5Var != null) {
+                    f5Var.setColorFilter(this.R.f51042o3);
                 }
-                ImageReceiver imageReceiver3 = this.f50897f;
-                if (!this.f50895b) {
-                    view = this;
-                } else {
-                    view = this.e;
-                }
-                imageReceiver3.H0(view);
-                TLRPC.PhotoSize w9 = org.telegram.messenger.b8.w(document.thumbs, 90, false, null, false);
-                if ("video/webm".equals(document.mime_type)) {
-                    str = "80_80_g";
-                } else {
-                    str = "80_80";
-                }
-                if (!sc.e(1)) {
-                    str = str.concat("_firstframe");
-                }
-                this.f50897f.r0(ic.b(document), str, ic.c(w9, document), "80_80", null, 0L, null, document, 0);
+                b1Var.f50952r.h(canvas, b1Var.f50951n[this.K]);
+                i10++;
+            } else {
                 return;
             }
-            return;
         }
-        ImageReceiver imageReceiver4 = this.f50897f;
-        if (imageReceiver4 != null) {
-            this.h = 0L;
-            imageReceiver4.f();
+    }
+
+    @Override
+    public final void d(Canvas canvas, float f7) {
+        org.telegram.ui.Components.f5 f5Var;
+        if (this.O != null) {
+            canvas.save();
+            canvas.translate(-this.N, 0.0f);
+            for (int i10 = 0; i10 < this.O.size(); i10++) {
+                b1 b1Var = (b1) this.O.get(i10);
+                b1Var.getClass();
+                float scale = b1Var.getScale();
+                float alpha = b1Var.getAlpha() * f7;
+                Rect rect = org.telegram.messenger.i0.Q;
+                rect.set(b1Var.getPaddingLeft() + ((int) b1Var.getX()), b1Var.getPaddingTop(), (b1Var.getWidth() + ((int) b1Var.getX())) - b1Var.getPaddingRight(), b1Var.getHeight() - b1Var.getPaddingBottom());
+                org.telegram.ui.Components.f5 f5Var2 = b1Var.d;
+                if (f5Var2 != null) {
+                    f5Var2.setBounds(rect);
+                }
+                ImageReceiver imageReceiver = b1Var.f50950f;
+                if (imageReceiver != null) {
+                    imageReceiver.z0(rect);
+                }
+                PorterDuffColorFilter porterDuffColorFilter = this.R.f51042o3;
+                if (porterDuffColorFilter != null && (f5Var = b1Var.d) != null) {
+                    f5Var.setColorFilter(porterDuffColorFilter);
+                }
+                if (scale != 1.0f) {
+                    canvas.save();
+                    canvas.scale(scale, scale, rect.centerX(), rect.centerY());
+                    m(canvas, f5Var2, b1Var, alpha);
+                    canvas.restore();
+                } else {
+                    m(canvas, f5Var2, b1Var, alpha);
+                }
+            }
+            canvas.restore();
         }
+    }
+
+    @Override
+    public final void g() {
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList = this.P;
+            if (i10 < arrayList.size()) {
+                kc kcVar = ((b1) arrayList.get(i10)).f50951n[this.K];
+                if (kcVar != null) {
+                    kcVar.a();
+                }
+                i10++;
+            } else {
+                this.R.invalidate();
+                return;
+            }
+        }
+    }
+
+    @Override
+    public final void i(long r14) {
+        throw new UnsupportedOperationException("Method not decompiled: vh.a1.i(long):void");
     }
 }

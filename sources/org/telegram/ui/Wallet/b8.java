@@ -14,11 +14,11 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 public final class b8 extends View {
-    public final h8 f34276a;
+    public final h8 f34278a;
 
     public b8(h8 h8Var, Context context) {
         super(context);
-        this.f34276a = h8Var;
+        this.f34278a = h8Var;
     }
 
     @Override
@@ -45,14 +45,14 @@ public final class b8 extends View {
         Path path;
         l6 l6Var;
         float f15;
-        h8 h8Var2 = this.f34276a;
+        h8 h8Var2 = this.f34278a;
         RectF rectF7 = h8Var2.D1;
         Path path2 = h8Var2.I;
-        l6 l6Var2 = h8Var2.f34632c;
+        l6 l6Var2 = h8Var2.f34639c;
         Matrix matrix = h8Var2.W;
         Paint paint2 = h8Var2.F;
         RectF rectF8 = h8Var2.H;
-        Paint paint3 = h8Var2.f34681y;
+        Paint paint3 = h8Var2.f34688y;
         Path path3 = h8Var2.T;
         if (h8Var2.Y0 > 0.0f) {
             paint3.setShader(null);
@@ -64,7 +64,7 @@ public final class b8 extends View {
                 Object obj = arrayList.get(i13);
                 int i14 = i13 + 1;
                 e8 e8Var = (e8) obj;
-                float f16 = e8Var.h / e8Var.f34468f;
+                float f16 = e8Var.h / e8Var.f34466f;
                 if (f16 < 0.1f) {
                     f15 = f16 / 0.1f;
                 } else {
@@ -76,8 +76,8 @@ public final class b8 extends View {
                 paint3.setColor(-1);
                 paint3.setAlpha((int) (Utilities.l(f15) * 130.0f));
                 canvas.save();
-                canvas.translate(e8Var.f34465a, e8Var.f34466b);
-                canvas.rotate(e8Var.f34469g);
+                canvas.translate(e8Var.f34463a, e8Var.f34464b);
+                canvas.rotate(e8Var.f34467g);
                 path3.rewind();
                 float f18 = -C;
                 float f19 = f18 * 2.0f;
@@ -100,27 +100,27 @@ public final class b8 extends View {
             }
             float f23 = 1.0f;
             paint3.setAlpha(255);
-            ArrayList arrayList3 = h8Var2.f34654n;
+            ArrayList arrayList3 = h8Var2.f34661n;
             int size2 = arrayList3.size();
             int i15 = 0;
             while (i15 < size2) {
                 Object obj2 = arrayList3.get(i15);
                 i15++;
                 d8 d8Var = (d8) obj2;
-                float l4 = f23 - Utilities.l(d8Var.f34431c / 0.42f);
+                float l4 = f23 - Utilities.l(d8Var.f34436c / 0.42f);
                 float x10 = org.telegram.ui.Cells.f1.x(l4, l4, l4, f23);
                 paint2.setColor(-1);
                 paint2.setAlpha((int) (l4 * 90.0f));
                 paint2.setStrokeWidth(org.telegram.messenger.i0.L(2.4f) * l4);
-                canvas.drawCircle(d8Var.f34429a, d8Var.f34430b, c3.i0.C(x10, 0.43f, 0.42f, h8Var2.U()), paint2);
+                canvas.drawCircle(d8Var.f34434a, d8Var.f34435b, c3.i0.C(x10, 0.43f, 0.42f, h8Var2.U()), paint2);
                 arrayList3 = arrayList3;
                 size2 = size2;
                 f23 = 1.0f;
             }
-            Paint paint4 = h8Var2.f34668s1;
-            Path path4 = h8Var2.f34672u1;
-            Paint paint5 = h8Var2.f34665r1;
-            float l10 = Utilities.l(h8Var2.f34662q1.f34508a);
+            Paint paint4 = h8Var2.f34675s1;
+            Path path4 = h8Var2.f34679u1;
+            Paint paint5 = h8Var2.f34672r1;
+            float l10 = Utilities.l(h8Var2.f34669q1.f34506a);
             if (l10 < 0.01f || !h8Var2.C()) {
                 i10 = 1;
             } else {
@@ -130,7 +130,7 @@ public final class b8 extends View {
                 float L2 = org.telegram.messenger.i0.L(4.5f);
                 float f24 = L + L2;
                 i10 = 1;
-                paint5.setPathEffect(new DashPathEffect(new float[]{L, L2}, f24 - ((h8Var2.f34656n1 * org.telegram.messenger.i0.L(18.0f)) % f24)));
+                paint5.setPathEffect(new DashPathEffect(new float[]{L, L2}, f24 - ((h8Var2.f34663n1 * org.telegram.messenger.i0.L(18.0f)) % f24)));
                 paint5.setStrokeWidth(org.telegram.messenger.i0.L(3.2f));
                 paint5.setColor(Color.argb((int) (40.0f * l10), 0, 18, 48));
                 canvas.drawPath(path4, paint5);
@@ -138,7 +138,7 @@ public final class b8 extends View {
                 paint5.setColor(Color.argb((int) (l10 * 180.0f), 255, 255, 255));
                 canvas.drawPath(path4, paint5);
             }
-            float x11 = c3.i0.x(h8Var2.f34627a0, 0.6f, h8Var2.f34630b0, 10.0f);
+            float x11 = c3.i0.x(h8Var2.f34634a0, 0.6f, h8Var2.f34637b0, 10.0f);
             matrix.setScale(h8Var2.Y0 * 1.5f, 1.0f);
             matrix.postRotate(-24.0f);
             float f25 = h8Var2.Y0;
@@ -166,18 +166,18 @@ public final class b8 extends View {
                 g8 g8Var = (g8) G.get(i16);
                 int i18 = g8Var.H;
                 int i19 = size3;
-                f8 f8Var = g8Var.f34585i;
+                f8 f8Var = g8Var.f34591i;
                 ArrayList arrayList4 = G;
-                f8 f8Var2 = g8Var.f34583f;
+                f8 f8Var2 = g8Var.f34589f;
                 f8 f8Var3 = g8Var.e;
                 RectF rectF15 = rectF11;
-                f8 f8Var4 = g8Var.f34586j;
+                f8 f8Var4 = g8Var.f34592j;
                 float f30 = f28;
-                f8 f8Var5 = g8Var.f34587k;
+                f8 f8Var5 = g8Var.f34593k;
                 RectF rectF16 = rectF14;
-                f8 f8Var6 = g8Var.f34592p;
+                f8 f8Var6 = g8Var.f34598p;
                 float f31 = f26;
-                if (i18 != 2 && (i18 != 1 || (g8Var.O && f8Var4.f34508a > 0.3f))) {
+                if (i18 != 2 && (i18 != 1 || (g8Var.O && f8Var4.f34506a > 0.3f))) {
                     rectF4 = rectF9;
                     rectF2 = rectF10;
                     rectF6 = rectF12;
@@ -208,22 +208,22 @@ public final class b8 extends View {
                     rectF14 = rectF3;
                 }
                 Bitmap a2 = g8Var.a();
-                float f32 = g8Var.f34588l.f34508a;
-                float l11 = Utilities.l(g8Var.f34594r.f34508a);
+                float f32 = g8Var.f34594l.f34506a;
+                float l11 = Utilities.l(g8Var.f34600r.f34506a);
                 RectF rectF17 = rectF10;
                 float f33 = f27;
-                float C2 = c3.i0.C(l11, 0.2f, 0.8f, (((1.0f - (g8Var.f34593q.f34508a * 0.9f)) * 0.04f * f32) + 1.0f) * h8Var2.U() * g8Var.f34584g.f34508a * g8Var.h.f34508a);
+                float C2 = c3.i0.C(l11, 0.2f, 0.8f, (((1.0f - (g8Var.f34599q.f34506a * 0.9f)) * 0.04f * f32) + 1.0f) * h8Var2.U() * g8Var.f34590g.f34506a * g8Var.h.f34506a);
                 if (a2 != null && C2 >= 1.0f) {
-                    float max2 = Math.max(f8Var4.f34508a, 0.7f * f32);
+                    float max2 = Math.max(f8Var4.f34506a, 0.7f * f32);
                     float L3 = (org.telegram.messenger.i0.L(9.0f) * max2) + org.telegram.messenger.i0.L(1.5f);
-                    float sin = ((float) Math.sin(Math.toRadians(h8Var2.f34630b0))) * L3 * 2.2f;
-                    float sin2 = ((float) Math.sin(Math.toRadians(h8Var2.f34627a0))) * L3 * 2.2f;
+                    float sin = ((float) Math.sin(Math.toRadians(h8Var2.f34637b0))) * L3 * 2.2f;
+                    float sin2 = ((float) Math.sin(Math.toRadians(h8Var2.f34634a0))) * L3 * 2.2f;
                     h8 h8Var3 = h8Var2;
-                    float f34 = f8Var3.f34508a + g8Var.f34590n.f34508a + sin;
-                    float L4 = ((f8Var2.f34508a + g8Var.f34591o.f34508a) + sin2) - (org.telegram.messenger.i0.L(4.0f) * max2);
-                    float f35 = f8Var3.f34508a - (sin * 0.3f);
-                    float f36 = (L3 * 0.22f) + (f8Var2.f34508a - (sin2 * 0.3f));
-                    float l12 = Utilities.l((f32 * 1.5f) + (3.0f * max2) + f8Var6.f34508a + f8Var5.f34508a);
+                    float f34 = f8Var3.f34506a + g8Var.f34596n.f34506a + sin;
+                    float L4 = ((f8Var2.f34506a + g8Var.f34597o.f34506a) + sin2) - (org.telegram.messenger.i0.L(4.0f) * max2);
+                    float f35 = f8Var3.f34506a - (sin * 0.3f);
+                    float f36 = (L3 * 0.22f) + (f8Var2.f34506a - (sin2 * 0.3f));
+                    float l12 = Utilities.l((f32 * 1.5f) + (3.0f * max2) + f8Var6.f34506a + f8Var5.f34506a);
                     rectF7.set(Math.min(f34, f35) - C2, Math.min(L4, f36) - C2, Math.max(f34, f35) + C2, Math.max(L4, f36) + C2);
                     boolean intersects = RectF.intersects(rectF7, rectF12);
                     float f37 = C2 * 0.4f;
@@ -241,14 +241,14 @@ public final class b8 extends View {
                         i11 = -1;
                     }
                     canvas.save();
-                    canvas.rotate(f8Var.f34508a, f35, f36);
+                    canvas.rotate(f8Var.f34506a, f35, f36);
                     rectF2 = rectF17;
                     rectF3 = rectF16;
                     rectF4 = rectF9;
                     rectF5 = rectF13;
                     rectF6 = rectF18;
                     rectF15 = rectF15;
-                    h8Var3.t(canvas, g8Var, f35, f36, c3.i0.C(f8Var6.f34508a, 0.07f, (0.08f * max2) + 0.97f, C2), Math.max(max2, f8Var5.f34508a * 0.5f), f8Var6.f34508a, l12 * l11);
+                    h8Var3.t(canvas, g8Var, f35, f36, c3.i0.C(f8Var6.f34506a, 0.07f, (0.08f * max2) + 0.97f, C2), Math.max(max2, f8Var5.f34506a * 0.5f), f8Var6.f34506a, l12 * l11);
                     canvas.restore();
                     float f38 = f34 - C2;
                     float f39 = L4 - C2;
@@ -257,9 +257,9 @@ public final class b8 extends View {
                     int saveLayer = canvas.saveLayer(f38, f39, f40, f41, null);
                     Paint paint7 = paint6;
                     paint7.setAlpha((int) (l11 * 255.0f));
-                    float f42 = f8Var5.f34508a;
+                    float f42 = f8Var5.f34506a;
                     if (f42 > 0.004f) {
-                        h8Var3.r(canvas, a2, f34, L4, C2, f42, 1.0f, f8Var.f34508a, g8Var.U, g8Var.V);
+                        h8Var3.r(canvas, a2, f34, L4, C2, f42, 1.0f, f8Var.f34506a, g8Var.U, g8Var.V);
                         h8Var = h8Var3;
                         canvas2 = canvas;
                         i12 = saveLayer;
@@ -270,7 +270,7 @@ public final class b8 extends View {
                         i12 = saveLayer;
                         h8Var = h8Var3;
                         canvas2.save();
-                        canvas2.rotate(f8Var.f34508a, f34, L4);
+                        canvas2.rotate(f8Var.f34506a, f34, L4);
                         float f43 = C2 / 2.0f;
                         rectF8.set(f34 - f43, L4 - f43, f34 + f43, L4 + f43);
                         canvas2.drawBitmap(a2, (Rect) null, rectF8, paint);
@@ -338,18 +338,18 @@ public final class b8 extends View {
             float f46 = f28;
             l6 l6Var4 = l6Var3;
             float f47 = f29;
-            Paint paint8 = h8Var4.f34650k0;
-            Paint paint9 = h8Var4.f34652l0;
-            Paint paint10 = h8Var4.f34648j0;
-            g8 g8Var2 = h8Var4.f34644h0;
+            Paint paint8 = h8Var4.f34657k0;
+            Paint paint9 = h8Var4.f34659l0;
+            Paint paint10 = h8Var4.f34655j0;
+            g8 g8Var2 = h8Var4.f34651h0;
             if (g8Var2 == null || g8Var2.H != 2) {
                 f7 = f45;
                 f10 = f44;
                 f11 = f46;
                 f12 = f47;
             } else {
-                float f48 = g8Var2.f34590n.f34508a + g8Var2.e.f34508a;
-                float f49 = g8Var2.f34591o.f34508a + g8Var2.f34583f.f34508a;
+                float f48 = g8Var2.f34596n.f34506a + g8Var2.e.f34506a;
+                float f49 = g8Var2.f34597o.f34506a + g8Var2.f34589f.f34506a;
                 float P = (h8Var4.P(g8Var2) * 0.5f) + org.telegram.messenger.i0.L(9.0f);
                 paint10.setColor(-1);
                 Paint.Style style = Paint.Style.STROKE;
@@ -369,7 +369,7 @@ public final class b8 extends View {
                 paint9.setShadowLayer(org.telegram.messenger.i0.L(0.75f), 0.0f, 0.0f, 1342177280);
                 paint8.setColor(-15033089);
                 canvas.save();
-                canvas.rotate(g8Var2.f34585i.f34508a, f48, f49);
+                canvas.rotate(g8Var2.f34591i.f34506a, f48, f49);
                 float f50 = f48 - P;
                 float f51 = f49 - P;
                 f10 = f44;
@@ -404,13 +404,13 @@ public final class b8 extends View {
             }
             float round2 = Math.round(f7 * 20.0f) / 20.0f;
             float round3 = Math.round(f10 * 20.0f) / 20.0f;
-            if (round2 != l6Var4.f34850d0) {
-                l6Var4.f34850d0 = round2;
+            if (round2 != l6Var4.f34854d0) {
+                l6Var4.f34854d0 = round2;
                 j6Var.invalidate();
                 l6Var4.O.invalidate();
             }
-            if (round3 != l6Var4.f34851e0) {
-                l6Var4.f34851e0 = round3;
+            if (round3 != l6Var4.f34855e0) {
+                l6Var4.f34855e0 = round3;
                 l6Var4.G.invalidate();
             }
         }

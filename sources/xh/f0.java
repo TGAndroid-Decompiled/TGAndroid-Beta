@@ -11,22 +11,22 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import org.json.JSONObject;
+import org.telegram.messenger.at;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.zs;
 public final class f0 {
-    public static final HashMap f53752g = new HashMap();
+    public static final HashMap f53770g = new HashMap();
     public static final HashMap h = new HashMap();
-    public final Context f53753a;
-    public final int f53754b;
-    public final long f53755c;
+    public final Context f53771a;
+    public final int f53772b;
+    public final long f53773c;
     public final DownloadManager d;
     public final ArrayList e = new ArrayList();
-    public e0 f53756f;
+    public e0 f53774f;
 
     public f0(Context context, int i10, long j10) {
-        this.f53753a = context;
-        this.f53754b = i10;
-        this.f53755c = j10;
+        this.f53771a = context;
+        this.f53772b = i10;
+        this.f53773c = j10;
         this.d = (DownloadManager) context.getSystemService("download");
         SharedPreferences sharedPreferences = context.getSharedPreferences("botdownloads_" + i10, 0);
         Set<String> stringSet = sharedPreferences.getStringSet("" + j10, null);
@@ -46,19 +46,19 @@ public final class f0 {
     }
 
     public static void a() {
-        Context context = org.telegram.messenger.w0.f19025b;
+        Context context = org.telegram.messenger.w0.f18945b;
         if (context == null) {
             return;
         }
         for (int i10 = 0; i10 < 4; i10++) {
             context.getSharedPreferences("botdownloads_" + i10, 0).edit().clear().apply();
         }
-        f53752g.clear();
+        f53770g.clear();
     }
 
     public static f0 c(Context context, int i10, long j10) {
         Pair pair = new Pair(Integer.valueOf(i10), Long.valueOf(j10));
-        HashMap hashMap = f53752g;
+        HashMap hashMap = f53770g;
         f0 f0Var = (f0) hashMap.get(pair);
         if (f0Var == null) {
             f0 f0Var2 = new f0(context, i10, j10);
@@ -71,14 +71,14 @@ public final class f0 {
     public final void b(String str, String str2) {
         e0 d = d(str);
         if (d != null) {
-            this.f53756f = d;
-            d.f53738k = true;
+            this.f53774f = d;
+            d.f53756k = true;
             e();
             return;
         }
         e0 e0Var = new e0(this, str, str2);
-        this.f53756f = e0Var;
-        e0Var.f53739l = false;
+        this.f53774f = e0Var;
+        e0Var.f53757l = false;
         this.e.add(e0Var);
         f();
         e();
@@ -92,7 +92,7 @@ public final class f0 {
             Object obj = arrayList.get(i10);
             i10++;
             e0 e0Var = (e0) obj;
-            if (TextUtils.equals(e0Var.f53732b, str) && e0Var.h) {
+            if (TextUtils.equals(e0Var.f53750b, str) && e0Var.h) {
                 return e0Var;
             }
         }
@@ -100,13 +100,13 @@ public final class f0 {
     }
 
     public final void e() {
-        zs.f(this.f53754b).k(zs.J3, new Object[0]);
+        at.f(this.f53772b).k(at.J3, new Object[0]);
     }
 
     public final void f() {
         String absolutePath;
         int i10 = 0;
-        SharedPreferences.Editor edit = this.f53753a.getSharedPreferences("botdownloads_" + this.f53754b, 0).edit();
+        SharedPreferences.Editor edit = this.f53771a.getSharedPreferences("botdownloads_" + this.f53772b, 0).edit();
         edit.clear();
         HashSet hashSet = new HashSet();
         ArrayList arrayList = this.e;
@@ -118,9 +118,9 @@ public final class f0 {
             e0Var.getClass();
             JSONObject jSONObject = new JSONObject();
             try {
-                jSONObject.put("url", e0Var.f53732b);
-                jSONObject.put("file_name", e0Var.f53733c);
-                jSONObject.put("size", e0Var.f53735g);
+                jSONObject.put("url", e0Var.f53750b);
+                jSONObject.put("file_name", e0Var.f53751c);
+                jSONObject.put("size", e0Var.f53753g);
                 File file = e0Var.d;
                 if (file == null) {
                     absolutePath = null;
@@ -135,7 +135,7 @@ public final class f0 {
             }
             hashSet.add(jSONObject.toString());
         }
-        edit.putStringSet("" + this.f53755c, hashSet);
+        edit.putStringSet("" + this.f53773c, hashSet);
         edit.apply();
     }
 }

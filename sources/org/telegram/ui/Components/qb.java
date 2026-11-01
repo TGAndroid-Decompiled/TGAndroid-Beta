@@ -6,9 +6,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 public final class qb extends ta {
-    public final ei0 f29622a;
-    public final f6 f29623b;
-    public final f6 f29624c;
+    public final fi0 f29703a;
+    public final f6 f29704b;
+    public final f6 f29705c;
     public final int d;
 
     public qb(Context context, org.telegram.ui.ActionBar.p6 p6Var) {
@@ -17,7 +17,7 @@ public final class qb extends ta {
         this.d = getThemedColor(i10);
         setBackground(getThemedColor(org.telegram.ui.ActionBar.t6.tj));
         ?? imageView = new ImageView(context);
-        this.f29622a = imageView;
+        this.f29703a = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView((View) imageView, w7.b6.h(56.0f, 48.0f, 8388627));
         getThemedColor(i10);
@@ -26,7 +26,7 @@ public final class qb extends ta {
         linearLayout.setOrientation(1);
         addView(linearLayout, w7.b6.i(-1.0f, -2.0f, 8388627, 52.0f, 8.0f, 8.0f, 8.0f));
         f6 f6Var = new f6(context, true, true, true);
-        this.f29623b = f6Var;
+        this.f29704b = f6Var;
         f6Var.setPadding(org.telegram.messenger.i0.L(4.0f), 0, org.telegram.messenger.i0.L(4.0f), 0);
         org.telegram.ui.ActionBar.a7.Z(f6Var, i10, p6Var);
         f6Var.setTextSize(org.telegram.messenger.i0.L(14.0f));
@@ -34,7 +34,7 @@ public final class qb extends ta {
         f6Var.setEllipsizeByGradient(true);
         linearLayout.addView(f6Var, w7.b6.o(-1, 20));
         f6 f6Var2 = new f6(context, true, true, true);
-        this.f29624c = f6Var2;
+        this.f29705c = f6Var2;
         f6Var2.setPadding(org.telegram.messenger.i0.L(4.0f), 0, org.telegram.messenger.i0.L(4.0f), 0);
         org.telegram.ui.ActionBar.a7.Z(f6Var2, i10, p6Var);
         f6Var2.setTypeface(Typeface.SANS_SERIF);
@@ -44,21 +44,21 @@ public final class qb extends ta {
     }
 
     public final void c(int i10, String... strArr) {
-        ei0 ei0Var = this.f29622a;
-        ei0Var.f(2131624224, 32, 32, null);
+        fi0 fi0Var = this.f29703a;
+        fi0Var.f(2131624224, 32, 32, null);
         for (String str : strArr) {
-            ei0Var.h(this.d, str);
+            fi0Var.h(this.d, str);
         }
     }
 
     @Override
     public CharSequence getAccessibilityText() {
-        return ((Object) this.f29623b.getText()) + ".\n" + ((Object) this.f29624c.getText());
+        return ((Object) this.f29704b.getText()) + ".\n" + ((Object) this.f29705c.getText());
     }
 
     @Override
     public final void onShow() {
         super.onShow();
-        this.f29622a.d();
+        this.f29703a.d();
     }
 }

@@ -1,16 +1,34 @@
 package org.telegram.ui.Components;
-public final class ez0 extends org.telegram.ui.Cells.q1 {
-    @Override
-    public final int getParentWidth() {
-        return org.telegram.messenger.z20.y(128.0f, org.telegram.messenger.i0.f16026q.x, 2);
+
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.style.ReplacementSpan;
+public final class ez0 extends ReplacementSpan {
+    public float f25976a;
+    public final String f25977b;
+    public final int f25978c;
+    public final Paint d;
+
+    public ez0(int i10, Paint paint, String str) {
+        this.f25977b = str;
+        this.f25978c = i10;
+        this.d = paint;
     }
 
     @Override
-    public final boolean isPressed() {
-        return false;
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        float f10 = (i12 + i14) / 2.0f;
+        paint.setColor(this.f25978c);
+        float L = org.telegram.messenger.i0.L(19.0f) / 2.0f;
+        canvas.drawRoundRect(f7, f10 - L, f7 + this.f25976a + org.telegram.messenger.i0.L(11.33f), f10 + L, L, L, this.d);
+        canvas.drawText(this.f25977b, org.telegram.messenger.i0.N(5.66f) + f7, i14 - org.telegram.messenger.i0.L(6.0f), paint);
     }
 
     @Override
-    public final void V3() {
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        float N = org.telegram.messenger.i0.N(11.33f);
+        float measureText = paint.measureText(this.f25977b);
+        this.f25976a = measureText;
+        return (int) (N + measureText);
     }
 }

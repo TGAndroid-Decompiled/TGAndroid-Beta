@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class nr implements org.telegram.ui.Cells.d5, zf.l1 {
-    public final or f40031a;
+    public final or f39960a;
 
     public nr(or orVar) {
-        this.f40031a = orVar;
+        this.f39960a = orVar;
     }
 
     @Override
@@ -23,26 +23,26 @@ public final class nr implements org.telegram.ui.Cells.d5, zf.l1 {
     @Override
     public boolean c(org.telegram.ui.Cells.e5 e5Var, boolean z10) {
         int intValue = ((Integer) e5Var.getTag()).intValue();
-        or orVar = this.f40031a;
+        or orVar = this.f39960a;
         TLObject E = orVar.E(intValue);
         if (E instanceof TLRPC.ChannelParticipant) {
-            return orVar.D.l0((TLRPC.ChannelParticipant) E, !z10, e5Var);
+            return orVar.D.m0((TLRPC.ChannelParticipant) E, !z10, e5Var);
         }
         return false;
     }
 
     @Override
     public void i(int i10) {
-        or orVar = this.f40031a;
+        or orVar = this.f39960a;
         pr prVar = orVar.D;
         if (!orVar.h.e()) {
-            int i11 = orVar.f40372r;
+            int i11 = orVar.f40254r;
             orVar.f();
-            if (orVar.f40372r > i11) {
-                prVar.C0(i11);
+            if (orVar.f40254r > i11) {
+                prVar.D0(i11);
             }
-            if (!orVar.f40373s && orVar.f40372r == 0 && i10 != 0) {
-                prVar.f40721b.e(false, true);
+            if (!orVar.f40255s && orVar.f40254r == 0 && i10 != 0) {
+                prVar.f40528b.e(false, true);
             }
         }
     }

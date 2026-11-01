@@ -1,46 +1,67 @@
 package org.telegram.ui;
 
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.Typeface;
-import android.text.TextPaint;
-import android.view.View;
-public final class d61 {
-    public final org.telegram.ui.Components.yz f36627a;
-    public dg.g f36628b;
-    public final int f36629c;
-    public final e61 d;
+import android.content.Context;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_stats;
+public abstract class d61 extends c61 {
+    public final int f36506w;
+    public final s61 f36507x;
 
-    public d61(e61 e61Var, int i10) {
-        this.d = e61Var;
-        this.f36629c = i10;
-        ?? view = new View(e61Var.getContext());
-        view.f32842c = true;
-        TextPaint textPaint = new TextPaint(1);
-        view.e = textPaint;
-        view.f32843f = new Paint(1);
-        Paint paint = new Paint(1);
-        view.h = paint;
-        Paint paint2 = new Paint(1);
-        view.f32844n = paint2;
-        view.f32848x = org.telegram.messenger.i0.L(35.0f);
-        view.f32849y = org.telegram.messenger.i0.L(22.0f);
-        view.D = org.telegram.messenger.i0.L(8.0f);
-        view.E = org.telegram.messenger.i0.L(3.5f);
-        view.F = new RectF();
-        view.G = 0.0f;
-        textPaint.setTextSize(org.telegram.messenger.i0.L(14.0f));
-        textPaint.setTextAlign(Paint.Align.CENTER);
-        textPaint.setTypeface(Typeface.create("sans-serif-medium", 0));
-        paint.setStrokeWidth(org.telegram.messenger.i0.N(1.5f));
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint2.setStyle(style);
-        paint2.setStrokeCap(Paint.Cap.ROUND);
-        paint2.setStrokeWidth(org.telegram.messenger.i0.L(2.0f));
-        this.f36627a = view;
-        view.setPadding(org.telegram.messenger.i0.L(16.0f), 0, org.telegram.messenger.i0.L(16.0f), 0);
-        e61Var.h.addView(view);
-        e61Var.f36963n.add(this);
+    public d61(s61 s61Var, Context context, int i10, int i11, bg.h hVar) {
+        super(context, i11, hVar, null);
+        this.f36507x = s61Var;
+        this.f36506w = i10;
+    }
+
+    @Override
+    public final void b(e61 e61Var) {
+        s61 s61Var = this.f36507x;
+        e61Var.a(this.f36506w, s61.e0(s61Var), s61Var.f41236a.stats_dc, new uh(2, s61Var, this.f36210r));
+    }
+
+    @Override
+    public final void c() {
+        if (this.f36210r.f36750c <= 0) {
+            performClick();
+            bg.i iVar = this.f36206b;
+            if (iVar.f2739t0.G) {
+                long selectedDate = iVar.getSelectedDate();
+                if (this.f36211s == 4) {
+                    e61 e61Var = this.f36210r;
+                    e61Var.e = new cg.e(e61Var.d, selectedDate);
+                    g(false);
+                } else if (this.f36210r.f36752g == null) {
+                } else {
+                    s61 s61Var = this.f36507x;
+                    s61.c0(s61Var);
+                    String str = this.f36210r.f36752g + "_" + selectedDate;
+                    cg.b bVar = (cg.b) s61Var.U.f(str);
+                    if (bVar != null) {
+                        this.f36210r.e = bVar;
+                        g(false);
+                        return;
+                    }
+                    TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
+                    tL_loadAsyncGraph.token = this.f36210r.f36752g;
+                    if (selectedDate != 0) {
+                        tL_loadAsyncGraph.f20026x = selectedDate;
+                        tL_loadAsyncGraph.flags |= 1;
+                    }
+                    ?? obj = new Object();
+                    s61Var.Y = obj;
+                    s61Var.S.getClass();
+                    obj.f40990a = RecyclerView.R(this);
+                    iVar.f2739t0.d(true, false);
+                    int i10 = this.f36506w;
+                    ConnectionsManager.getInstance(i10).bindRequestToGuid(ConnectionsManager.getInstance(i10).sendRequest(tL_loadAsyncGraph, new tp0(this, str, obj, 10), null, null, 0, s61Var.f41236a.stats_dc, 1, true), s61.d0(s61Var));
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void f() {
+        s61.c0(this.f36507x);
     }
 }

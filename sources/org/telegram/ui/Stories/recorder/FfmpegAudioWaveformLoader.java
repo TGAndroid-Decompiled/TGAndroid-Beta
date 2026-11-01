@@ -2,15 +2,15 @@ package org.telegram.ui.Stories.recorder;
 
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.i0;
-import org.telegram.messenger.j20;
+import org.telegram.messenger.k20;
 import org.telegram.ui.Wallet.x0;
 import vh.d0;
 public class FfmpegAudioWaveformLoader {
-    private j20 onChunkReceived;
+    private k20 onChunkReceived;
     private volatile boolean running = true;
 
-    public FfmpegAudioWaveformLoader(String str, int i10, j20 j20Var) {
-        this.onChunkReceived = j20Var;
+    public FfmpegAudioWaveformLoader(String str, int i10, k20 k20Var) {
+        this.onChunkReceived = k20Var;
         Utilities.h.c(new x0(this, str, i10, 19));
     }
 

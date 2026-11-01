@@ -1,6 +1,6 @@
 package tf;
 public abstract class a {
-    public float f48688a = 1.0f;
+    public float f48699a = 1.0f;
 
     public abstract short a();
 

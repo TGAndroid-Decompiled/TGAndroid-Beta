@@ -1,48 +1,28 @@
 package org.telegram.ui;
+public final class v81 implements c91 {
+    public boolean f42445a;
+    public final un f42446b;
 
-import android.graphics.Point;
-public final class v81 extends w7.y5 {
-    public final int f42681a;
-    public final org.telegram.messenger.us f42682b;
-
-    public v81(org.telegram.messenger.us usVar, int i10) {
-        this.f42681a = i10;
-        this.f42682b = usVar;
+    public v81(un unVar, boolean z10) {
+        this.f42446b = unVar;
+        this.f42445a = z10;
     }
 
     @Override
-    public void a() {
-        switch (this.f42681a) {
-            case 1:
-                ((be1) this.f42682b).f36236w.invalidate();
-                return;
-            default:
-                return;
-        }
+    public final void M1(boolean z10) {
+        boolean z11 = !this.f42445a;
+        this.f42445a = z11;
+        sn snVar = this.f42446b.f42288xa;
+        snVar.r(snVar.f41401f, snVar.f41402g, z10, Boolean.valueOf(z11), false);
     }
 
     @Override
-    public void b(int i10, int i11) {
-        boolean z10;
-        switch (this.f42681a) {
-            case 0:
-                Point point = org.telegram.messenger.i0.f16026q;
-                boolean z11 = false;
-                if (point.x <= point.y) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (i10 <= i11) {
-                    z11 = true;
-                }
-                if (z10 == z11) {
-                    ((m91) this.f42682b).f39603y0.invalidate();
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
+    public final boolean a() {
+        return this.f42445a;
+    }
+
+    @Override
+    public final boolean b1() {
+        return true;
     }
 }

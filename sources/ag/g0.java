@@ -10,8 +10,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.at;
+import org.telegram.messenger.dd;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.a7;
 import org.telegram.ui.ActionBar.p6;
@@ -50,7 +50,7 @@ public final class g0 extends FrameLayout {
         this.f528a = u5Var;
         u5Var.setTextSize(15);
         a7.Y(u5Var, t6.G6, null);
-        if (cd.X) {
+        if (dd.X) {
             i10 = 5;
         } else {
             i10 = 3;
@@ -60,9 +60,9 @@ public final class g0 extends FrameLayout {
         u5 u5Var2 = new u5(context);
         this.f530c = u5Var2;
         u5Var2.setTextSize(14);
-        int i13 = t6.f21330z6;
+        int i13 = t6.f21331z6;
         a7.Y(u5Var2, i13, null);
-        if (cd.X) {
+        if (dd.X) {
             i11 = 3;
         } else {
             i11 = 5;
@@ -75,10 +75,10 @@ public final class g0 extends FrameLayout {
         pVar.setMaxLines(1);
         pVar.setEllipsize(TextUtils.TruncateAt.END);
         a7.V(pVar, i13, p6Var);
-        pVar.setGravity(cd.X ? 5 : 3);
-        pVar.f13892r = false;
+        pVar.setGravity(dd.X ? 5 : 3);
+        pVar.f13893r = false;
         pVar.setUseAlphaForEmoji(false);
-        zs.i(pVar);
+        at.i(pVar);
         addView(pVar, b6.i(-1.0f, 20.0f, 87, 64.0f, 0.0f, 14.0f, 6.0f));
     }
 
@@ -89,11 +89,11 @@ public final class g0 extends FrameLayout {
         if (this.e) {
             Paint W0 = t6.W0("paintDivider", this.d);
             if (W0 == null) {
-                W0 = t6.f21052k0;
+                W0 = t6.f21053k0;
             }
             Paint paint = W0;
             float f10 = 64.0f;
-            if (cd.X) {
+            if (dd.X) {
                 f7 = 0.0f;
             } else {
                 f7 = 64.0f;
@@ -101,7 +101,7 @@ public final class g0 extends FrameLayout {
             float L = org.telegram.messenger.i0.L(f7);
             float measuredHeight = getMeasuredHeight() - 1;
             int width = getWidth();
-            if (!cd.X) {
+            if (!dd.X) {
                 f10 = 0.0f;
             }
             canvas.drawRect(L, measuredHeight, width - org.telegram.messenger.i0.L(f10), getMeasuredHeight(), paint);
@@ -111,7 +111,7 @@ public final class g0 extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        boolean z11 = cd.X;
+        boolean z11 = dd.X;
         u5 u5Var = this.f530c;
         u5 u5Var2 = this.f528a;
         if (z11) {

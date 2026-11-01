@@ -3,21 +3,21 @@ package vh;
 import android.animation.ValueAnimator;
 import android.view.MotionEvent;
 import org.telegram.ui.Components.r10;
-import org.telegram.ui.Components.s81;
+import org.telegram.ui.Components.t81;
 public final class l8 extends r10 {
-    public final n8 f51458a;
+    public final n8 f51473a;
 
     public l8(n8 n8Var) {
-        this.f51458a = n8Var;
+        this.f51473a = n8Var;
     }
 
     @Override
     public final boolean a() {
         t7 t7Var;
-        o8 o8Var = this.f51458a.f51578n0;
-        if (o8Var.f51622f0 == 0 && (t7Var = o8Var.B0) != null && !o8Var.S1 && t7Var.isInited() && !o8Var.P1 && !o8Var.O0.f51881x0) {
+        o8 o8Var = this.f51473a.f51593n0;
+        if (o8Var.f51637f0 == 0 && (t7Var = o8Var.B0) != null && !o8Var.S1 && t7Var.isInited() && !o8Var.P1 && !o8Var.O0.f51866x0) {
             a5 a5Var = o8Var.D0;
-            if ((a5Var == null || (!a5Var.f50915y.f25390i && !a5Var.L)) && !o8Var.I() && o8Var.f51653p2 == null) {
+            if ((a5Var == null || (!a5Var.f50925y.f25465i && !a5Var.L)) && !o8Var.I() && o8Var.f51668p2 == null) {
                 return true;
             }
             return false;
@@ -27,17 +27,17 @@ public final class l8 extends r10 {
 
     @Override
     public final boolean onDoubleTap(MotionEvent motionEvent) {
-        o8 o8Var = this.f51458a.f51578n0;
+        o8 o8Var = this.f51473a.f51593n0;
         t7 t7Var = o8Var.B0;
-        if (t7Var != null && !o8Var.S1 && !o8Var.P1 && t7Var.isInited() && o8Var.f51622f0 == 0 && o8Var.O1 != -1) {
+        if (t7Var != null && !o8Var.S1 && !o8Var.P1 && t7Var.isInited() && o8Var.f51637f0 == 0 && o8Var.O1 != -1) {
             o8Var.B0.switchCamera();
             o8Var.O0.d(180.0f);
             o8.Z(o8Var.B0.isFrontface());
             if (o8Var.p0()) {
-                o8Var.f51661s.c(null);
+                o8Var.f51676s.c(null);
                 return true;
             }
-            o8Var.f51661s.d();
+            o8Var.f51676s.d();
             return true;
         }
         return false;
@@ -45,7 +45,7 @@ public final class l8 extends r10 {
 
     @Override
     public final boolean onDoubleTapEvent(MotionEvent motionEvent) {
-        t7 t7Var = this.f51458a.f51578n0.B0;
+        t7 t7Var = this.f51473a.f51593n0.B0;
         if (t7Var != null) {
             t7Var.N = null;
             t7Var.K = -1L;
@@ -56,8 +56,8 @@ public final class l8 extends r10 {
 
     @Override
     public final boolean onDown(MotionEvent motionEvent) {
-        n8 n8Var = this.f51458a;
-        n8Var.f51577l0 = 0.0f;
+        n8 n8Var = this.f51473a;
+        n8Var.f51592l0 = 0.0f;
         n8Var.m0 = 0.0f;
         return false;
     }
@@ -66,20 +66,20 @@ public final class l8 extends r10 {
     public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
         a5 a5Var;
         t7 t7Var;
-        s81 s81Var;
+        t81 t81Var;
         c8 c8Var;
         boolean z10;
         boolean z11;
-        n8 n8Var = this.f51458a;
-        o8 o8Var = n8Var.f51578n0;
+        n8 n8Var = this.f51473a;
+        o8 o8Var = n8Var.f51593n0;
         ValueAnimator valueAnimator = o8Var.E;
-        if ((valueAnimator != null && valueAnimator.isRunning()) || (((a5Var = o8Var.D0) != null && (a5Var.f50915y.f25390i || a5Var.L)) || o8Var.O0.f51881x0 || (((t7Var = o8Var.B0) != null && t7Var.f51989s) || n8Var.f51575j0 || (((s81Var = o8Var.V0) != null && (s81Var.F || s81Var.G)) || o8Var.H())))) {
+        if ((valueAnimator != null && valueAnimator.isRunning()) || (((a5Var = o8Var.D0) != null && (a5Var.f50925y.f25465i || a5Var.L)) || o8Var.O0.f51866x0 || (((t7Var = o8Var.B0) != null && t7Var.f52048s) || n8Var.f51590j0 || (((t81Var = o8Var.V0) != null && (t81Var.F || t81Var.G)) || o8Var.H())))) {
             return false;
         }
         boolean z12 = true;
-        n8Var.f51573h0 = true;
+        n8Var.f51588h0 = true;
         if (o8Var.W) {
-            if (Math.abs(o8Var.f51657r.f51215a) >= org.telegram.messenger.i0.L(1.0f)) {
+            if (Math.abs(o8Var.f51672r.f51230a) >= org.telegram.messenger.i0.L(1.0f)) {
                 if ((f10 > 0.0f && Math.abs(f10) > 2000.0f && Math.abs(f10) > Math.abs(f7)) || o8Var.K > 0.4f) {
                     o8Var.p(true);
                 } else {
@@ -127,11 +127,11 @@ public final class l8 extends r10 {
 
     @Override
     public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
-        t7 t7Var = this.f51458a.f51578n0.B0;
+        t7 t7Var = this.f51473a.f51593n0.B0;
         if (t7Var != null) {
-            t0 t0Var = t7Var.N;
-            if (t0Var != null) {
-                t0Var.run();
+            u0 u0Var = t7Var.N;
+            if (u0Var != null) {
+                u0Var.run();
                 t7Var.N = null;
                 return true;
             }
@@ -142,7 +142,7 @@ public final class l8 extends r10 {
 
     @Override
     public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        o8 o8Var = this.f51458a.f51578n0;
+        o8 o8Var = this.f51473a.f51593n0;
         o8Var.W = false;
         o8Var.X = false;
         if (!a() && onSingleTapConfirmed(motionEvent)) {

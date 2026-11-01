@@ -60,44 +60,44 @@ import org.telegram.messenger.ILocationServiceProvider;
 import org.telegram.messenger.aa;
 import org.telegram.messenger.ba;
 import org.telegram.messenger.ca;
-import org.telegram.messenger.ef;
-import org.telegram.messenger.eu;
+import org.telegram.messenger.da;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.jp;
-import org.telegram.messenger.pa;
-import org.telegram.messenger.q20;
+import org.telegram.messenger.ff;
+import org.telegram.messenger.fu;
+import org.telegram.messenger.kp;
 import org.telegram.messenger.qa;
+import org.telegram.messenger.r20;
 import org.telegram.messenger.ra;
 import org.telegram.messenger.sa;
 import org.telegram.messenger.ta;
-import org.telegram.messenger.z9;
+import org.telegram.messenger.ua;
 import org.telegram.ui.ActionBar.b1;
 import org.telegram.ui.ActionBar.k2;
 import org.telegram.ui.Components.bi;
-import org.telegram.ui.Components.by0;
 import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.cy0;
+import org.telegram.ui.Components.i61;
 import org.telegram.ui.Components.jj;
-import org.telegram.ui.Components.lj0;
-import org.telegram.ui.Components.py0;
+import org.telegram.ui.Components.mj0;
+import org.telegram.ui.Components.qy0;
 import org.telegram.ui.Components.s4;
 import org.telegram.ui.Components.xj;
-import org.telegram.ui.ko0;
+import org.telegram.ui.io0;
 import org.telegram.ui.un;
-import org.telegram.ui.wv0;
-import org.telegram.ui.xz0;
+import org.telegram.ui.vv0;
+import org.telegram.ui.wz0;
 import org.xmlpull.v1.XmlPullParserException;
 import v7.c8;
 import v7.r7;
 import v7.t6;
-public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
-    public final int f12099a;
-    public Object f12100b;
-    public Object f12101c;
+public class k implements a1, ILocationServiceProvider, kp, mj0, io0, wz0 {
+    public final int f12100a;
+    public Object f12101b;
+    public Object f12102c;
     public Object d;
 
     public k(int i10, boolean z10) {
-        this.f12099a = i10;
+        this.f12100a = i10;
     }
 
     public static k G(Context context, AttributeSet attributeSet, int[] iArr, int i10) {
@@ -124,7 +124,7 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
                     if (readLine.indexOf(58) >= 0) {
                         if (readLine.startsWith("BEGIN:VCARD")) {
                             kVar = new k(15, false);
-                            kVar.f12101c = new ArrayList();
+                            kVar.f12102c = new ArrayList();
                             kVar.d = new ArrayList();
                         } else if (readLine.startsWith("END:VCARD") && kVar != null) {
                             z10 = true;
@@ -172,11 +172,11 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
                                 }
                             }
                             i10 = i12;
-                            kVar.f12100b = strArr[1];
-                            if (str3 != null && str3.equalsIgnoreCase("QUOTED-PRINTABLE") && (H = org.telegram.messenger.i0.H(org.telegram.messenger.i0.h1((String) kVar.f12100b))) != null && H.length != 0) {
-                                kVar.f12100b = new String(H, str4);
+                            kVar.f12101b = strArr[1];
+                            if (str3 != null && str3.equalsIgnoreCase("QUOTED-PRINTABLE") && (H = org.telegram.messenger.i0.H(org.telegram.messenger.i0.h1((String) kVar.f12101b))) != null && H.length != 0) {
+                                kVar.f12101b = new String(H, str4);
                             }
-                            kVar.f12100b = ((String) kVar.f12100b).replace(';', ' ');
+                            kVar.f12101b = ((String) kVar.f12101b).replace(';', ' ');
                         } else {
                             i10 = i12;
                             if (strArr[i10].startsWith("TEL")) {
@@ -186,7 +186,7 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
                             } else if (strArr[i10].startsWith("EMAIL")) {
                                 String str5 = strArr[1];
                                 if (str5.length() > 0) {
-                                    ((ArrayList) kVar.f12101c).add(str5);
+                                    ((ArrayList) kVar.f12102c).add(str5);
                                 }
                             }
                         }
@@ -216,17 +216,17 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
                 }
                 sb3.append(str6);
             }
-            for (int i16 = i14; i16 < ((ArrayList) kVar.f12101c).size(); i16++) {
+            for (int i16 = i14; i16 < ((ArrayList) kVar.f12102c).size(); i16++) {
                 if (sb3.length() > 0) {
                     sb3.append('\n');
                 }
-                sb3.append(af.b.c().b((String) ((ArrayList) kVar.f12101c).get(i16)));
+                sb3.append(af.b.c().b((String) ((ArrayList) kVar.f12102c).get(i16)));
             }
-            if (!TextUtils.isEmpty((String) kVar.f12100b)) {
+            if (!TextUtils.isEmpty((String) kVar.f12101b)) {
                 if (sb3.length() > 0) {
                     sb3.append('\n');
                 }
-                sb3.append((String) kVar.f12100b);
+                sb3.append((String) kVar.f12101b);
             }
             return sb3;
         } catch (Throwable unused2) {
@@ -250,7 +250,7 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
     public static Object[] m(Object[] objArr, int[] iArr) {
         int length = objArr.length;
         Class<?> componentType = objArr.getClass().getComponentType();
-        by0 by0Var = py0.R;
+        cy0 cy0Var = qy0.R;
         int i10 = -1;
         for (int i11 : iArr) {
             i10 = Math.max(i10, i11);
@@ -268,7 +268,7 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
         boolean z11;
         g2.p pVar = new g2.p();
         byte[] bArr = null;
-        pVar.f7329c = null;
+        pVar.f7330c = null;
         Uri uri2 = h0Var.f2057b;
         if (uri2 == null) {
             uri = null;
@@ -325,7 +325,7 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
         if (bArr2 != null) {
             bArr = Arrays.copyOf(bArr2, bArr2.length);
         }
-        t6.p(eVar.f13453x.isEmpty());
+        t6.p(eVar.f13454x.isEmpty());
         eVar.K = bArr;
         return eVar;
     }
@@ -339,14 +339,14 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
         e2.j0 j0Var2;
         XmlPullParserException xmlPullParserException;
         IOException iOException;
-        int resourceId = ((TypedArray) this.f12101c).getResourceId(i10, 0);
+        int resourceId = ((TypedArray) this.f12102c).getResourceId(i10, 0);
         if (resourceId != 0) {
             if (((TypedValue) this.d) == null) {
                 this.d = new TypedValue();
             }
-            Context context = (Context) this.f12100b;
+            Context context = (Context) this.f12101b;
             TypedValue typedValue = (TypedValue) this.d;
-            ThreadLocal threadLocal = h0.j.f7557a;
+            ThreadLocal threadLocal = h0.j.f7558a;
             if (!context.isRestricted()) {
                 Resources resources = context.getResources();
                 resources.getValue(resourceId, typedValue, true);
@@ -358,7 +358,7 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
                         return null;
                     }
                     int i12 = typedValue.assetCookie;
-                    a0.j jVar = i0.f.f7772b;
+                    a0.j jVar = i0.f.f7773b;
                     Typeface typeface = (Typeface) jVar.a(i0.f.b(resources, resourceId, charSequence2, i12, i11));
                     if (typeface != null) {
                         new Handler(Looper.getMainLooper()).post(new d1.e(14, j0Var, typeface));
@@ -407,7 +407,7 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
                         j0Var2 = j0Var;
                         try {
                             int i13 = typedValue.assetCookie;
-                            Typeface e12 = i0.f.f7771a.e(context, resources, resourceId, charSequence2, i11);
+                            Typeface e12 = i0.f.f7772a.e(context, resources, resourceId, charSequence2, i11);
                             if (e12 != null) {
                                 jVar.b(i0.f.b(resources, resourceId, charSequence2, i13, i11), e12);
                             }
@@ -446,7 +446,7 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
     }
 
     public Paint D(float f7, int i10) {
-        Paint[] paintArr = (Paint[]) this.f12100b;
+        Paint[] paintArr = (Paint[]) this.f12101b;
         if (paintArr[i10] == null) {
             Paint paint = new Paint(1);
             paintArr[i10] = paint;
@@ -460,7 +460,7 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
 
     public boolean E() {
         String trim;
-        ArrayDeque arrayDeque = (ArrayDeque) this.f12101c;
+        ArrayDeque arrayDeque = (ArrayDeque) this.f12102c;
         if (((String) this.d) != null) {
             return true;
         }
@@ -471,7 +471,7 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
             return true;
         }
         do {
-            String readLine = ((BufferedReader) this.f12100b).readLine();
+            String readLine = ((BufferedReader) this.f12101b).readLine();
             this.d = readLine;
             if (readLine != null) {
                 trim = readLine.trim();
@@ -493,14 +493,14 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
     }
 
     public void I() {
-        ((TypedArray) this.f12101c).recycle();
+        ((TypedArray) this.f12102c).recycle();
     }
 
     public FileOutputStream K() {
-        File file = (File) this.f12101c;
+        File file = (File) this.f12102c;
         File file2 = (File) this.d;
         if (file2.exists()) {
-            J(file2, (File) this.f12100b);
+            J(file2, (File) this.f12101b);
         }
         try {
             return new FileOutputStream(file);
@@ -525,50 +525,50 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
                 b1VarArr[i10].d(-328966, -328966);
             }
         }
-        ((org.telegram.ui.ActionBar.x0) this.f12101c).e(true, f7);
+        ((org.telegram.ui.ActionBar.x0) this.f12102c).e(true, f7);
     }
 
     public void M(Object obj, String str) {
         k kVar = new k(9, false);
         ((k) this.d).d = kVar;
         this.d = kVar;
-        kVar.f12101c = obj;
-        kVar.f12100b = str;
+        kVar.f12102c = obj;
+        kVar.f12101b = str;
     }
 
     @Override
     public void a() {
-        ((gf.e) this.f12100b).b();
-        ((k2) this.f12101c).presentFragment(new un((Bundle) this.d));
+        ((gf.e) this.f12101b).b();
+        ((k2) this.f12102c).presentFragment(new un((Bundle) this.d));
     }
 
     @Override
     public void b() {
-        q20 q20Var;
-        boolean[] zArr = (boolean[]) this.f12100b;
-        if (!zArr[0] && (q20Var = (q20) this.f12101c) != null) {
+        r20 r20Var;
+        boolean[] zArr = (boolean[]) this.f12101b;
+        if (!zArr[0] && (r20Var = (r20) this.f12102c) != null) {
             zArr[0] = true;
-            q20Var.a(Boolean.TRUE);
+            r20Var.a(Boolean.TRUE);
         }
-        org.telegram.messenger.i0.h3(new wv0((cc) this.d, 11), 200L);
+        org.telegram.messenger.i0.h3(new vv0((cc) this.d, 11), 200L);
     }
 
     @Override
-    public void checkLocationSettings(sa saVar, q0.a aVar) {
+    public void checkLocationSettings(ta taVar, q0.a aVar) {
         ArrayList arrayList = new ArrayList();
-        arrayList.add(((ca) saVar).f14925a);
-        r7.c cVar = (r7.c) this.f12101c;
+        arrayList.add(((da) taVar).f15332a);
+        r7.c cVar = (r7.c) this.f12102c;
         g8.c cVar2 = new g8.c(arrayList, false, false);
         cVar.getClass();
         com.google.android.gms.common.api.internal.v b10 = com.google.android.gms.common.api.internal.w.b();
         b10.f4496c = new l2.f(cVar2, 24);
         b10.f4494a = 2426;
-        cVar.e(0, b10.a()).addOnCompleteListener(new z9(aVar, 1));
+        cVar.e(0, b10.a()).addOnCompleteListener(new aa(aVar, 1));
     }
 
     @Override
     public boolean checkServices() {
-        return eu.f15451b.hasServices();
+        return fu.f15792b.hasServices();
     }
 
     @Override
@@ -583,18 +583,18 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
 
     @Override
     public void g(boolean z10) {
-        ((gf.e) this.f12100b).b();
-        ((k2) this.f12101c).presentFragment(new un((Bundle) this.d));
+        ((gf.e) this.f12101b).b();
+        ((k2) this.f12102c).presentFragment(new un((Bundle) this.d));
     }
 
     @Override
     public void getLastLocation(q0.a aVar) {
-        r7.c cVar = (r7.c) this.f12100b;
+        r7.c cVar = (r7.c) this.f12101b;
         cVar.getClass();
         com.google.android.gms.common.api.internal.v b10 = com.google.android.gms.common.api.internal.w.b();
-        b10.f4496c = r7.a.f46338c;
+        b10.f4496c = r7.a.f46349c;
         b10.f4494a = 2414;
-        cVar.e(0, b10.a()).addOnCompleteListener(new z9(aVar, 0));
+        cVar.e(0, b10.a()).addOnCompleteListener(new aa(aVar, 0));
     }
 
     @Override
@@ -604,23 +604,23 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
 
     @Override
     public void h0() {
-        ((xj) this.d).Q.A();
+        ((xj) this.d).Q.B();
     }
 
     @Override
     public void init(Context context) {
-        com.google.android.gms.common.api.e eVar = g8.b.f7449a;
+        com.google.android.gms.common.api.e eVar = g8.b.f7450a;
         com.google.android.gms.common.api.i iVar = com.google.android.gms.common.api.i.f4346c;
-        com.google.android.gms.common.api.e eVar2 = r7.c.f46340k;
+        com.google.android.gms.common.api.e eVar2 = r7.c.f46351k;
         com.google.android.gms.common.api.a aVar = com.google.android.gms.common.api.b.f4337k;
-        this.f12100b = new com.google.android.gms.common.api.j(context, eVar2, aVar, iVar);
-        this.f12101c = new com.google.android.gms.common.api.j(context, eVar2, aVar, iVar);
+        this.f12101b = new com.google.android.gms.common.api.j(context, eVar2, aVar, iVar);
+        this.f12102c = new com.google.android.gms.common.api.j(context, eVar2, aVar, iVar);
     }
 
     public String j(int i10, long j10, long j11, String str) {
-        ArrayList arrayList = (ArrayList) this.f12100b;
+        ArrayList arrayList = (ArrayList) this.f12101b;
         ArrayList arrayList2 = (ArrayList) this.d;
-        ArrayList arrayList3 = (ArrayList) this.f12101c;
+        ArrayList arrayList3 = (ArrayList) this.f12102c;
         StringBuilder sb2 = new StringBuilder();
         for (int i11 = 0; i11 < arrayList3.size(); i11++) {
             sb2.append((String) arrayList.get(i11));
@@ -639,44 +639,44 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
     }
 
     public void k() {
-        android.support.v4.media.session.a0 a0Var = (android.support.v4.media.session.a0) this.f12100b;
+        android.support.v4.media.session.a0 a0Var = (android.support.v4.media.session.a0) this.f12101b;
         if (a0Var != null) {
-            int i10 = ((p4.e) this.d).f44720n.d;
+            int i10 = ((p4.e) this.d).f44731n.d;
             android.support.v4.media.session.u uVar = (android.support.v4.media.session.u) a0Var.f875b;
             uVar.getClass();
             AudioAttributes.Builder builder = new AudioAttributes.Builder();
             builder.setLegacyStreamType(i10);
             uVar.f902a.setPlaybackToLocal(builder.build());
-            this.f12101c = null;
+            this.f12102c = null;
         }
     }
 
     public void l(Canvas canvas, RectF rectF, float f7) {
-        Paint[] paintArr = (Paint[]) this.f12100b;
+        Paint[] paintArr = (Paint[]) this.f12101b;
         if (paintArr[0] == null) {
             Paint paint = new Paint(1);
             paintArr[0] = paint;
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         }
-        paintArr[0].setShader((LinearGradient) this.f12101c);
+        paintArr[0].setShader((LinearGradient) this.f12102c);
         paintArr[0].setAlpha((int) (f7 * 255.0f));
         canvas.drawRect(rectF, paintArr[0]);
     }
 
     public void o(Canvas canvas, RectF rectF, int i10, float f7) {
-        Paint[] paintArr = (Paint[]) this.f12100b;
+        Paint[] paintArr = (Paint[]) this.f12101b;
         Matrix matrix = (Matrix) this.d;
         if (f7 <= 0.0f) {
             return;
         }
-        if (((LinearGradient) this.f12101c) == null) {
-            this.f12101c = new LinearGradient(0.0f, 0.0f, 0.0f, 16.0f, new int[]{-65536, 16711680}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        if (((LinearGradient) this.f12102c) == null) {
+            this.f12102c = new LinearGradient(0.0f, 0.0f, 0.0f, 16.0f, new int[]{-65536, 16711680}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
         }
         if (paintArr[i10] == null) {
             paintArr[i10] = new Paint(1);
             paintArr[i10].setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         }
-        paintArr[i10].setShader((LinearGradient) this.f12101c);
+        paintArr[i10].setShader((LinearGradient) this.f12102c);
         matrix.reset();
         if (i10 == 0) {
             matrix.postScale(1.0f, rectF.width() / 16.0f);
@@ -694,36 +694,36 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
             matrix.postScale(1.0f, -1.0f);
             matrix.postTranslate(rectF.left, rectF.bottom);
         }
-        ((LinearGradient) this.f12101c).setLocalMatrix(matrix);
+        ((LinearGradient) this.f12102c).setLocalMatrix(matrix);
         paintArr[i10].setAlpha((int) (255.0f * f7));
         canvas.drawRect(rectF, paintArr[i10]);
     }
 
     @Override
-    public sa onCreateLocationRequest() {
+    public ta onCreateLocationRequest() {
         LocationRequest locationRequest = new LocationRequest(102, 3600000L, 600000L, 0L, Long.MAX_VALUE, Long.MAX_VALUE, Integer.MAX_VALUE, 0.0f, true, 3600000L, 0, 0, null, false, new WorkSource(), null);
         ?? obj = new Object();
-        obj.f14925a = locationRequest;
+        obj.f15332a = locationRequest;
         return obj;
     }
 
     @Override
-    public ta onCreateLocationServicesAPI(Context context, pa paVar, final qa qaVar) {
+    public ua onCreateLocationServicesAPI(Context context, qa qaVar, final ra raVar) {
         List list;
         boolean z10;
-        Context context2 = org.telegram.messenger.w0.f19025b;
+        Context context2 = org.telegram.messenger.w0.f18945b;
         HashSet hashSet = new HashSet();
         HashSet hashSet2 = new HashSet();
         ?? lVar = new a0.l(0);
         ?? lVar2 = new a0.l(0);
-        Object obj = k6.d.f10934c;
-        a8.d dVar = n8.b.f13733a;
+        Object obj = k6.d.f10935c;
+        a8.d dVar = n8.b.f13734a;
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         Looper mainLooper = context2.getMainLooper();
         String packageName = context2.getPackageName();
         String name = context2.getClass().getName();
-        com.google.android.gms.common.api.e eVar = g8.b.f7449a;
+        com.google.android.gms.common.api.e eVar = g8.b.f7450a;
         n6.l.h(eVar, "Api must not be null");
         com.google.android.gms.common.api.e eVar2 = null;
         lVar2.put(eVar, null);
@@ -739,29 +739,29 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
         }
         hashSet2.addAll(list);
         hashSet.addAll(list);
-        arrayList.add(new ba(paVar));
+        arrayList.add(new ca(qaVar));
         arrayList2.add(new com.google.android.gms.common.api.l() {
             @Override
             public final void onConnectionFailed(k6.a aVar) {
-                nd ndVar = (nd) qa.this;
-                if (!ndVar.L) {
-                    ndVar.K = Boolean.FALSE;
-                    if (ndVar.D) {
-                        ndVar.D = false;
-                        ndVar.p();
+                od odVar = (od) ra.this;
+                if (!odVar.L) {
+                    odVar.K = Boolean.FALSE;
+                    if (odVar.D) {
+                        odVar.D = false;
+                        odVar.p();
                     }
                 }
             }
         });
         boolean z11 = true;
         n6.l.a("must call addApi() to add at least one API", !lVar2.isEmpty());
-        n8.a aVar = n8.a.f13732a;
-        com.google.android.gms.common.api.e eVar3 = n8.b.f13734b;
+        n8.a aVar = n8.a.f13733a;
+        com.google.android.gms.common.api.e eVar3 = n8.b.f13735b;
         if (lVar2.containsKey(eVar3)) {
             aVar = (n8.a) lVar2.get(eVar3);
         }
         p3 p3Var = new p3(hashSet, lVar, packageName, name, aVar);
-        Map map = (Map) p3Var.f12520c;
+        Map map = (Map) p3Var.f12521c;
         a0.l lVar3 = new a0.l(0);
         a0.l lVar4 = new a0.l(0);
         ArrayList arrayList3 = new ArrayList();
@@ -842,13 +842,13 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
         allocateDirect.put(byteBuffer).flip();
         MediaCodec.BufferInfo bufferInfo2 = new MediaCodec.BufferInfo();
         bufferInfo2.set(0, bufferInfo.size, bufferInfo.presentationTimeUs, bufferInfo.flags);
-        ((ArrayList) this.f12100b).add(allocateDirect);
-        ((ArrayList) this.f12101c).add(bufferInfo2);
+        ((ArrayList) this.f12101b).add(allocateDirect);
+        ((ArrayList) this.f12102c).add(bufferInfo2);
     }
 
     public void q(Object obj, ByteArrayOutputStream byteArrayOutputStream) {
-        HashMap hashMap = (HashMap) this.f12100b;
-        ma.f fVar = new ma.f(byteArrayOutputStream, hashMap, (HashMap) this.f12101c, (ja.d) this.d);
+        HashMap hashMap = (HashMap) this.f12101b;
+        ma.f fVar = new ma.f(byteArrayOutputStream, hashMap, (HashMap) this.f12102c, (ja.d) this.d);
         if (obj == null) {
             return;
         }
@@ -861,49 +861,66 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
     }
 
     @Override
-    public synchronized void removeLocationUpdates(ra raVar) {
-        aa aaVar = (aa) ((HashMap) this.d).remove(raVar);
-        if (aaVar != null) {
-            r7.c cVar = (r7.c) this.f12100b;
+    public synchronized void removeLocationUpdates(sa saVar) {
+        ba baVar = (ba) ((HashMap) this.d).remove(saVar);
+        if (baVar != null) {
+            r7.c cVar = (r7.c) this.f12101b;
             cVar.getClass();
-            String simpleName = aa.class.getSimpleName();
+            String simpleName = ba.class.getSimpleName();
             n6.l.f(simpleName, "Listener type must not be empty");
-            cVar.c(new com.google.android.gms.common.api.internal.n(aaVar, simpleName), 2418).continueWith(r7.b.f46339a, r7.a.f46337b);
+            cVar.c(new com.google.android.gms.common.api.internal.n(baVar, simpleName), 2418).continueWith(r7.b.f46350a, r7.a.f46348b);
         }
     }
 
     @Override
-    public synchronized void requestLocationUpdates(sa saVar, ra raVar) {
-        aa aaVar = (aa) ((HashMap) this.d).remove(raVar);
-        if (aaVar != null) {
-            r7.c cVar = (r7.c) this.f12100b;
+    public synchronized void requestLocationUpdates(ta taVar, sa saVar) {
+        ba baVar = (ba) ((HashMap) this.d).remove(saVar);
+        if (baVar != null) {
+            r7.c cVar = (r7.c) this.f12101b;
             cVar.getClass();
-            String simpleName = aa.class.getSimpleName();
+            String simpleName = ba.class.getSimpleName();
             n6.l.f(simpleName, "Listener type must not be empty");
-            cVar.c(new com.google.android.gms.common.api.internal.n(aaVar, simpleName), 2418).continueWith(r7.b.f46339a, r7.a.f46337b);
+            cVar.c(new com.google.android.gms.common.api.internal.n(baVar, simpleName), 2418).continueWith(r7.b.f46350a, r7.a.f46348b);
         }
-        aa aaVar2 = new aa(raVar);
-        ((HashMap) this.d).put(raVar, aaVar2);
-        ((r7.c) this.f12100b).f(((ca) saVar).f14925a, aaVar2, Looper.getMainLooper());
+        ba baVar2 = new ba(saVar);
+        ((HashMap) this.d).put(saVar, baVar2);
+        ((r7.c) this.f12101b).f(((da) taVar).f15332a, baVar2, Looper.getMainLooper());
     }
 
-    @Override
-    public void s(MediaFormat mediaFormat) {
-        this.d = mediaFormat;
+    public n2.m s(b2.p0 p0Var) {
+        n2.e eVar;
+        p0Var.f2182b.getClass();
+        b2.h0 h0Var = p0Var.f2182b.f2093c;
+        if (h0Var == null) {
+            return n2.m.f13466m;
+        }
+        synchronized (this.f12101b) {
+            try {
+                if (!h0Var.equals((b2.h0) this.f12102c)) {
+                    this.f12102c = h0Var;
+                    this.d = n(h0Var);
+                }
+                eVar = (n2.e) this.d;
+                eVar.getClass();
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+        return eVar;
     }
 
     public String toString() {
-        switch (this.f12099a) {
+        switch (this.f12100a) {
             case 10:
                 StringBuilder sb2 = new StringBuilder(32);
-                sb2.append((String) this.f12100b);
+                sb2.append((String) this.f12101b);
                 sb2.append('{');
-                k kVar = (k) ((k) this.f12101c).d;
+                k kVar = (k) ((k) this.f12102c).d;
                 String str = "";
                 while (kVar != null) {
-                    Object obj = kVar.f12101c;
+                    Object obj = kVar.f12102c;
                     sb2.append(str);
-                    String str2 = (String) kVar.f12100b;
+                    String str2 = (String) kVar.f12101b;
                     if (str2 != null) {
                         sb2.append(str2);
                         sb2.append('=');
@@ -924,26 +941,14 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
         }
     }
 
-    public n2.m u(b2.p0 p0Var) {
-        n2.e eVar;
-        p0Var.f2182b.getClass();
-        b2.h0 h0Var = p0Var.f2182b.f2093c;
-        if (h0Var == null) {
-            return n2.m.f13465m;
+    public ColorStateList u(int i10) {
+        int resourceId;
+        ColorStateList a2;
+        TypedArray typedArray = (TypedArray) this.f12102c;
+        if (typedArray.hasValue(i10) && (resourceId = typedArray.getResourceId(i10, 0)) != 0 && (a2 = r7.a((Context) this.f12101b, resourceId)) != null) {
+            return a2;
         }
-        synchronized (this.f12100b) {
-            try {
-                if (!h0Var.equals((b2.h0) this.f12101c)) {
-                    this.f12101c = h0Var;
-                    this.d = n(h0Var);
-                }
-                eVar = (n2.e) this.d;
-                eVar.getClass();
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-        return eVar;
+        return typedArray.getColorStateList(i10);
     }
 
     @Override
@@ -951,9 +956,9 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
         String str;
         if (!z10) {
             xj xjVar = (xj) this.d;
-            HashMap hashMap = (HashMap) this.f12100b;
-            ArrayList arrayList = (ArrayList) this.f12101c;
-            bi biVar = xjVar.f30947b;
+            HashMap hashMap = (HashMap) this.f12101b;
+            ArrayList arrayList = (ArrayList) this.f12102c;
+            bi biVar = xjVar.f30964b;
             if (!hashMap.isEmpty() && xjVar.Q != null && !xjVar.K) {
                 xjVar.K = true;
                 ArrayList arrayList2 = new ArrayList();
@@ -961,28 +966,28 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
                     Object obj = hashMap.get(arrayList.get(i11));
                     ?? obj2 = new Object();
                     arrayList2.add(obj2);
-                    if (obj instanceof ef) {
-                        ef efVar = (ef) obj;
-                        String str2 = efVar.h;
+                    if (obj instanceof ff) {
+                        ff ffVar = (ff) obj;
+                        String str2 = ffVar.h;
                         if (str2 != null) {
-                            obj2.f17515c = str2;
+                            obj2.f17850c = str2;
                         } else {
-                            obj2.f17515c = efVar.I;
+                            obj2.f17850c = ffVar.I;
                         }
-                        obj2.e = efVar.f19508c;
-                        obj2.f17516f = efVar.f19510g;
-                        obj2.f17520k = efVar.f19521s;
-                        obj2.f17524o = efVar.f19507b;
-                        CharSequence charSequence = efVar.f19506a;
+                        obj2.e = ffVar.f14604c;
+                        obj2.f17851f = ffVar.f14606g;
+                        obj2.f17855k = ffVar.f14617s;
+                        obj2.f17859o = ffVar.f14603b;
+                        CharSequence charSequence = ffVar.f14602a;
                         if (charSequence != null) {
                             str = charSequence.toString();
                         } else {
                             str = null;
                         }
                         obj2.d = str;
-                        obj2.f17518i = efVar.f19516n;
-                        obj2.f17519j = efVar.f19520r;
-                        obj2.h = efVar.f19525x;
+                        obj2.f17853i = ffVar.f14612n;
+                        obj2.f17854j = ffVar.f14616r;
+                        obj2.h = ffVar.f14621x;
                     }
                 }
                 s4.Z(biVar.D3, biVar.W0() + arrayList2.size(), biVar.a1(), new jj(i10, 0, xjVar, arrayList2, z11));
@@ -990,23 +995,18 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
         }
     }
 
-    public ColorStateList v(int i10) {
+    public Drawable v(int i10) {
         int resourceId;
-        ColorStateList a2;
-        TypedArray typedArray = (TypedArray) this.f12101c;
-        if (typedArray.hasValue(i10) && (resourceId = typedArray.getResourceId(i10, 0)) != 0 && (a2 = r7.a((Context) this.f12100b, resourceId)) != null) {
-            return a2;
-        }
-        return typedArray.getColorStateList(i10);
-    }
-
-    public Drawable w(int i10) {
-        int resourceId;
-        TypedArray typedArray = (TypedArray) this.f12101c;
+        TypedArray typedArray = (TypedArray) this.f12102c;
         if (typedArray.hasValue(i10) && (resourceId = typedArray.getResourceId(i10, 0)) != 0) {
-            return r7.b((Context) this.f12100b, resourceId);
+            return r7.b((Context) this.f12101b, resourceId);
         }
         return typedArray.getDrawable(i10);
+    }
+
+    @Override
+    public void w(MediaFormat mediaFormat) {
+        this.d = mediaFormat;
     }
 
     @Override
@@ -1017,11 +1017,11 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
     public Drawable z(int i10) {
         int resourceId;
         Drawable f7;
-        if (((TypedArray) this.f12101c).hasValue(i10) && (resourceId = ((TypedArray) this.f12101c).getResourceId(i10, 0)) != 0) {
+        if (((TypedArray) this.f12102c).hasValue(i10) && (resourceId = ((TypedArray) this.f12102c).getResourceId(i10, 0)) != 0) {
             m.q a2 = m.q.a();
-            Context context = (Context) this.f12100b;
+            Context context = (Context) this.f12101b;
             synchronized (a2) {
-                f7 = a2.f12524a.f(resourceId, context, true);
+                f7 = a2.f12525a.f(resourceId, context, true);
             }
             return f7;
         }
@@ -1029,116 +1029,116 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
     }
 
     public k(Object obj, Object obj2, Object obj3, int i10) {
-        this.f12099a = i10;
-        this.f12100b = obj;
-        this.f12101c = obj2;
+        this.f12100a = i10;
+        this.f12101b = obj;
+        this.f12102c = obj2;
         this.d = obj3;
     }
 
     public k(Object obj, Object obj2, Object obj3, boolean z10, int i10) {
-        this.f12099a = i10;
+        this.f12100a = i10;
         this.d = obj;
-        this.f12100b = obj2;
-        this.f12101c = obj3;
+        this.f12101b = obj2;
+        this.f12102c = obj3;
     }
 
     public k(String str) {
-        this.f12099a = 10;
+        this.f12100a = 10;
         k kVar = new k(9, false);
-        this.f12101c = kVar;
+        this.f12102c = kVar;
         this.d = kVar;
-        this.f12100b = str;
+        this.f12101b = str;
     }
 
     public k(Context context) {
-        this.f12099a = 13;
-        this.f12100b = context;
+        this.f12100a = 13;
+        this.f12101b = context;
     }
 
     public k(String str, Boolean bool, oc.a aVar, String str2) {
-        this.f12099a = 12;
-        this.f12100b = str;
-        this.f12101c = str2;
+        this.f12100a = 12;
+        this.f12101b = str;
+        this.f12102c = str2;
         this.d = aVar;
     }
 
     public k(View view) {
-        this.f12099a = 22;
+        this.f12100a = 22;
         this.d = view;
-        h61 h61Var = new h61(this, view);
-        this.f12100b = h61Var;
-        view.addOnLayoutChangeListener(h61Var);
+        i61 i61Var = new i61(this, view);
+        this.f12101b = i61Var;
+        view.addOnLayoutChangeListener(i61Var);
     }
 
     public k(File file) {
-        this.f12099a = 29;
-        this.f12100b = file;
-        this.f12101c = new File(file.getPath() + ".new");
+        this.f12100a = 29;
+        this.f12101b = file;
+        this.f12102c = new File(file.getPath() + ".new");
         this.d = new File(file.getPath() + ".bak");
     }
 
     public k(Context context, TypedArray typedArray) {
-        this.f12099a = 2;
-        this.f12100b = context;
-        this.f12101c = typedArray;
+        this.f12100a = 2;
+        this.f12101b = context;
+        this.f12102c = typedArray;
     }
 
     public k(byte[] bArr, j9.y yVar) {
-        this.f12099a = 4;
-        this.f12100b = bArr;
-        this.f12101c = null;
+        this.f12100a = 4;
+        this.f12101b = bArr;
+        this.f12102c = null;
         this.d = yVar;
     }
 
     public k(b2.s0 s0Var, j9.y yVar) {
-        this.f12099a = 4;
-        this.f12100b = s0Var.f2254k;
-        this.f12101c = s0Var.f2257n;
+        this.f12100a = 4;
+        this.f12101b = s0Var.f2254k;
+        this.f12102c = s0Var.f2257n;
         this.d = yVar;
     }
 
     public k(m2.t tVar) {
-        this.f12099a = 11;
-        this.f12099a = 11;
-        this.f12100b = tVar;
-        this.f12101c = Choreographer.getInstance();
+        this.f12100a = 11;
+        this.f12100a = 11;
+        this.f12101b = tVar;
+        this.f12102c = Choreographer.getInstance();
         this.d = new o1.a(this, 0);
     }
 
     public k(int i10) {
-        this.f12099a = i10;
+        this.f12100a = i10;
         switch (i10) {
             case 7:
-                this.f12100b = new Object();
+                this.f12101b = new Object();
                 return;
             case 14:
                 this.d = new HashMap();
                 return;
             case 23:
-                this.f12100b = new Paint[4];
+                this.f12101b = new Paint[4];
                 this.d = new Matrix();
                 return;
             default:
-                this.f12100b = new ArrayList();
-                this.f12101c = new ArrayList();
+                this.f12101b = new ArrayList();
+                this.f12102c = new ArrayList();
                 return;
         }
     }
 
     public k(p4.e eVar, android.support.v4.media.session.a0 a0Var) {
-        this.f12099a = 28;
+        this.f12100a = 28;
         this.d = eVar;
-        this.f12100b = a0Var;
+        this.f12101b = a0Var;
     }
 
     public k(ArrayDeque arrayDeque, BufferedReader bufferedReader) {
-        this.f12099a = 27;
-        this.f12101c = arrayDeque;
-        this.f12100b = bufferedReader;
+        this.f12100a = 27;
+        this.f12102c = arrayDeque;
+        this.f12101b = bufferedReader;
     }
 
     public k(Object[] objArr, Object[] objArr2) {
-        this.f12099a = 21;
+        this.f12100a = 21;
         int length = objArr.length;
         int[] iArr = new int[length];
         HashMap hashMap = new HashMap();
@@ -1151,8 +1151,8 @@ public class k implements a1, ILocationServiceProvider, jp, lj0, ko0, xz0 {
             }
             iArr[i10] = num.intValue();
         }
-        this.f12100b = iArr;
-        this.f12101c = m(objArr, iArr);
+        this.f12101b = iArr;
+        this.f12102c = m(objArr, iArr);
         this.d = m(objArr2, iArr);
     }
 

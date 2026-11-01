@@ -1,35 +1,34 @@
 package org.telegram.messenger;
-
-import j$.util.concurrent.ConcurrentHashMap;
 public final class bc implements Runnable {
-    public final int f14753a;
-    public final cc f14754b;
-    public final long f14755c;
-    public final long d;
+    public final int f14953a;
+    public final dc f14954b;
+    public final Boolean f14955c;
 
-    public bc(cc ccVar, long j10, long j11, int i10) {
-        this.f14753a = i10;
-        this.f14754b = ccVar;
-        this.f14755c = j10;
-        this.d = j11;
+    public bc(dc dcVar, Boolean bool, int i10) {
+        this.f14953a = i10;
+        this.f14954b = dcVar;
+        this.f14955c = bool;
     }
 
     @Override
     public final void run() {
-        switch (this.f14753a) {
+        int i10 = this.f14953a;
+        Boolean bool = this.f14955c;
+        dc dcVar = this.f14954b;
+        switch (i10) {
             case 0:
-                cc ccVar = this.f14754b;
-                ConcurrentHashMap concurrentHashMap = ccVar.h.f15870u;
-                String str = ccVar.f14974a.e;
-                long j10 = this.f14755c;
-                long j11 = this.d;
-                concurrentHashMap.put(str, new long[]{j10, j11});
-                i0.g3(new bc(ccVar, j10, j11, 1));
+                dcVar.h.f16263u.remove(dcVar.f15336a.e);
+                i0.g3(new bc(dcVar, bool, 1));
                 return;
             default:
-                vb vbVar = this.f14754b.f14974a;
-                zs.f(vbVar.f18498o).k(141, vbVar.e, Long.valueOf(this.f14755c), Long.valueOf(this.d));
-                return;
+                wb wbVar = dcVar.f15336a;
+                if (bool.booleanValue()) {
+                    at.f(wbVar.f19020o).k(142, wbVar.e, wbVar.f19021p);
+                    return;
+                } else {
+                    at.f(wbVar.f19020o).k(143, wbVar.e, 2);
+                    return;
+                }
         }
     }
 }

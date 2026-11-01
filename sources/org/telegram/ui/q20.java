@@ -1,26 +1,13 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.text.TextUtils;
-import android.widget.TextView;
-public final class q20 extends org.telegram.ui.Components.r7 {
-    public final Activity D;
-    public final b50 E;
-
-    public q20(b50 b50Var, LaunchActivity launchActivity, Activity activity) {
+import android.view.View;
+public final class q20 extends View {
+    public q20(LaunchActivity launchActivity) {
         super(launchActivity);
-        this.E = b50Var;
-        this.D = activity;
     }
 
     @Override
-    public final TextView a() {
-        TextView textView = new TextView(this.D);
-        org.telegram.messenger.m5.m(textView, org.telegram.ui.ActionBar.t6.Vg, null, 1, 20.0f);
-        textView.setGravity(51);
-        textView.setSingleLine(true);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setOnClickListener(new wu(9, this, textView));
-        return textView;
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), org.telegram.ui.ActionBar.l.getCurrentActionBarHeight());
     }
 }

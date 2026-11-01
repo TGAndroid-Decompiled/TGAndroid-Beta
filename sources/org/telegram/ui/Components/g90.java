@@ -20,14 +20,14 @@ import java.util.regex.Pattern;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public abstract class g90 {
-    public static final Pattern f26302a = Pattern.compile("^\\[\\^([^\\]]+)\\]:[ \\t]*(.*)$");
-    public static final Pattern f26303b = Pattern.compile("\\[\\^([^\\]]+)\\]");
-    public static final Pattern f26304c = Pattern.compile("^(\\d+)[.)]\\s");
+    public static final Pattern f26367a = Pattern.compile("^\\[\\^([^\\]]+)\\]:[ \\t]*(.*)$");
+    public static final Pattern f26368b = Pattern.compile("\\[\\^([^\\]]+)\\]");
+    public static final Pattern f26369c = Pattern.compile("^(\\d+)[.)]\\s");
 
     public static TL_iv.RichText a(df.c cVar, TL_iv.PageBlock pageBlock) {
         d90 d90Var = new d90(pageBlock);
         cVar.a(d90Var);
-        return k(l(d90.x(d90Var.f25372c)));
+        return k(l(d90.x(d90Var.f25447c)));
     }
 
     public static List b(TL_iv.RichText richText) {
@@ -76,7 +76,7 @@ public abstract class g90 {
         textmath.tried = true;
         bi.u a2 = bi.u.a(trim, org.telegram.messenger.i0.L(20.0f), true);
         if (a2 != null) {
-            textmath.f20019w = a2.f3370b;
+            textmath.f20020w = a2.f3370b;
             textmath.h = a2.f3371c;
             textmath.depth = a2.d;
             textmath.bitmap = a2.f3369a;
@@ -105,7 +105,7 @@ public abstract class g90 {
         while (it.hasNext()) {
             uc.a aVar = (uc.a) it.next();
             arrayList.add(aVar);
-            ArrayList arrayList2 = aVar.f50210f;
+            ArrayList arrayList2 = aVar.f50224f;
             if (arrayList2 == null) {
                 unmodifiableList = Collections.EMPTY_LIST;
             } else {
@@ -115,8 +115,8 @@ public abstract class g90 {
         }
     }
 
-    public static org.telegram.tgnet.TLRPC.TL_webPage g(org.telegram.messenger.jj r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.g90.g(org.telegram.messenger.jj):org.telegram.tgnet.TLRPC$TL_webPage");
+    public static org.telegram.tgnet.TLRPC.TL_webPage g(org.telegram.messenger.kj r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.g90.g(org.telegram.messenger.kj):org.telegram.tgnet.TLRPC$TL_webPage");
     }
 
     public static int h(int i10, CharSequence charSequence) {
@@ -137,22 +137,22 @@ public abstract class g90 {
         return 1;
     }
 
-    public static File i(org.telegram.messenger.jj jjVar) {
+    public static File i(org.telegram.messenger.kj kjVar) {
         File file;
-        TLRPC.Message message = jjVar.f16337k;
-        int i10 = jjVar.I1;
+        TLRPC.Message message = kjVar.f16690k;
+        int i10 = kjVar.I1;
         if (!TextUtils.isEmpty(message.attachPath)) {
-            file = new File(jjVar.f16337k.attachPath);
+            file = new File(kjVar.f16690k.attachPath);
         } else {
             file = null;
         }
         if (file == null || !file.exists()) {
             org.telegram.messenger.b8.G(i10);
-            file = org.telegram.messenger.b8.N(jjVar.f16337k, false, true);
+            file = org.telegram.messenger.b8.N(kjVar.f16690k, false, true);
         }
         if (file == null || !file.exists()) {
             org.telegram.messenger.b8.G(i10);
-            file = org.telegram.messenger.b8.N(jjVar.f16337k, true, true);
+            file = org.telegram.messenger.b8.N(kjVar.f16690k, true, true);
         }
         if (file == null || !file.exists()) {
             return null;
@@ -160,10 +160,10 @@ public abstract class g90 {
         return file;
     }
 
-    public static boolean j(org.telegram.messenger.jj jjVar) {
-        String Q0 = jjVar.Q0();
+    public static boolean j(org.telegram.messenger.kj kjVar) {
+        String Q0 = kjVar.Q0();
         if (!"diff".equalsIgnoreCase(Q0) && !"patch".equalsIgnoreCase(Q0)) {
-            String u12 = jjVar.u1();
+            String u12 = kjVar.u1();
             if (u12 != null) {
                 String lowerCase = u12.toLowerCase();
                 if (!lowerCase.startsWith("text/x-diff") && !lowerCase.startsWith("text/x-patch")) {
@@ -190,7 +190,7 @@ public abstract class g90 {
         } else if (richText instanceof f90) {
             f90 f90Var = (f90) richText;
             TL_iv.textStrike k10 = k(f90Var.text);
-            int i11 = f90Var.f26019a;
+            int i11 = f90Var.f26118a;
             if ((i11 & 4) != 0) {
                 TL_iv.textFixed textfixed = new TL_iv.textFixed();
                 textfixed.text = k10;
@@ -254,7 +254,7 @@ public abstract class g90 {
         StringBuilder sb2 = new StringBuilder();
         int i10 = 0;
         while (i10 < split2.length) {
-            Matcher matcher = f26302a.matcher(split2[i10]);
+            Matcher matcher = f26367a.matcher(split2[i10]);
             if (matcher.matches()) {
                 String group = matcher.group(1);
                 StringBuilder sb3 = new StringBuilder(matcher.group(2));
@@ -295,7 +295,7 @@ public abstract class g90 {
                 i10++;
             }
         }
-        Matcher matcher2 = f26303b.matcher(sb2.toString());
+        Matcher matcher2 = f26368b.matcher(sb2.toString());
         StringBuffer stringBuffer = new StringBuffer();
         while (matcher2.find()) {
             String group2 = matcher2.group(1);
@@ -304,7 +304,7 @@ public abstract class g90 {
         matcher2.appendTail(stringBuffer);
         String stringBuffer2 = stringBuffer.toString();
         List<ne.a> asList = Arrays.asList(new oe.b(0), new oe.b(1));
-        Pattern pattern = yc.i.f54377j;
+        Pattern pattern = yc.i.f54398j;
         ArrayList arrayList2 = new ArrayList(3);
         ArrayList arrayList3 = new ArrayList(3);
         arrayList2.addAll(Arrays.asList(new Object(), new Object(), new Object(), new yc.d(0), new Object(), new Object(), new Object(), new Object(), new yc.d(1)));
@@ -319,11 +319,11 @@ public abstract class g90 {
         obj.f2777a = new ArrayList();
         obj.f2778b = new ArrayList();
         obj.f2779c = new ArrayList();
-        obj.d = se.d.f48195p;
+        obj.d = se.d.f48206p;
         if (asList != null) {
             for (ne.a aVar : asList) {
                 if (aVar instanceof oe.b) {
-                    switch (((oe.b) aVar).f14150a) {
+                    switch (((oe.b) aVar).f14151a) {
                         case 0:
                             ((ArrayList) obj.f2778b).add(new Object());
                             continue;
@@ -355,7 +355,7 @@ public abstract class g90 {
                     if (!substring2.startsWith("```")) {
                         str5 = "~~~";
                         if (!substring2.startsWith("~~~")) {
-                            Matcher matcher3 = f26304c.matcher(str4);
+                            Matcher matcher3 = f26369c.matcher(str4);
                             if (matcher3.find()) {
                                 arrayDeque.add(matcher3.group(1));
                             }
@@ -370,7 +370,7 @@ public abstract class g90 {
             c90Var.y();
             if (!linkedHashMap.isEmpty()) {
                 TL_iv.pageBlockDetails pageblockdetails = new TL_iv.pageBlockDetails();
-                String L0 = org.telegram.messenger.cd.L0(2131749200, null);
+                String L0 = org.telegram.messenger.dd.L0(2131749200, null);
                 TL_iv.textBold textbold = new TL_iv.textBold();
                 textbold.text = n(L0);
                 pageblockdetails.title = textbold;
@@ -428,7 +428,7 @@ public abstract class g90 {
                 }
                 arrayList.add(pageblockdetails);
             }
-            TL_iv.RichText richText2 = c90Var.f25031b;
+            TL_iv.RichText richText2 = c90Var.f25066b;
             if (richText2 == null) {
                 return null;
             }

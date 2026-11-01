@@ -11,22 +11,22 @@ import org.telegram.ui.Components.gz;
 import org.telegram.ui.Components.oe0;
 import org.telegram.ui.Components.x9;
 public final class f extends TextureView {
-    public final int f13816a;
-    public final Object f13817b;
+    public final int f13817a;
+    public final Object f13818b;
 
     public f(Object obj, Context context, int i10) {
         super(context);
-        this.f13816a = i10;
-        this.f13817b = obj;
+        this.f13817a = i10;
+        this.f13818b = obj;
     }
 
     @Override
     public void invalidate() {
         w0 w0Var;
-        switch (this.f13816a) {
+        switch (this.f13817a) {
             case 1:
-                d50 d50Var = (d50) this.f13817b;
-                if (!d50Var.H0 && (w0Var = d50Var.Q) != null && w0Var.f12298a == 3) {
+                d50 d50Var = (d50) this.f13818b;
+                if (!d50Var.H0 && (w0Var = d50Var.Q) != null && w0Var.f12299a == 3) {
                     d50Var.H0 = true;
                     try {
                         d50Var.F0 = SystemClock.elapsedRealtimeNanos();
@@ -45,10 +45,10 @@ public final class f extends TextureView {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f13816a) {
+        switch (this.f13817a) {
             case 0:
-                h hVar = (h) this.f13817b;
-                setMeasuredDimension(hVar.f13833g, hVar.h);
+                h hVar = (h) this.f13818b;
+                setMeasuredDimension(hVar.f13834g, hVar.h);
                 return;
             case 1:
             default:
@@ -63,10 +63,10 @@ public final class f extends TextureView {
 
     @Override
     public void setTransform(Matrix matrix) {
-        switch (this.f13816a) {
+        switch (this.f13817a) {
             case 2:
                 super.setTransform(matrix);
-                gz gzVar = ((oe0) this.f13817b).f29051l0;
+                gz gzVar = ((oe0) this.f13818b).f29112l0;
                 if (gzVar != null) {
                     int width = getWidth();
                     int height = getHeight();

@@ -47,17 +47,17 @@ import m.p3;
 import m1.j;
 import n2.o;
 import n2.x;
-import org.telegram.messenger.hf;
 import org.telegram.messenger.i0;
+import org.telegram.messenger.jf;
 import org.telegram.messenger.u;
 import org.telegram.ui.ActionBar.g1;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.Components.b40;
-import org.telegram.ui.Components.c11;
+import org.telegram.ui.Components.d11;
 import org.telegram.ui.Components.gr;
 import org.telegram.ui.Wallet.z0;
 import org.telegram.ui.a5;
-import org.telegram.ui.ko0;
+import org.telegram.ui.io0;
 import org.telegram.ui.r4;
 import org.telegram.ui.t4;
 import org.telegram.ui.v4;
@@ -70,7 +70,7 @@ import v7.t6;
 import w7.d0;
 import z3.k;
 import z3.n;
-public final class a implements ko0, q {
+public final class a implements io0, q {
     public static a e;
     public boolean f362a;
     public Object f363b;
@@ -143,7 +143,7 @@ public final class a implements ko0, q {
     }
 
     public static boolean h(v4 v4Var) {
-        if (v4Var.f42590a == null && v4Var.f42591b == null) {
+        if (v4Var.f42404a == null && v4Var.f42405b == null) {
             return false;
         }
         return true;
@@ -180,7 +180,7 @@ public final class a implements ko0, q {
             r4 r4Var = new r4(this, context, p6Var, t4Var);
             this.d = r4Var;
             y0 y0Var = new y0(this, 3);
-            WeakHashMap weakHashMap = h0.f46123a;
+            WeakHashMap weakHashMap = h0.f46134a;
             z.i(r4Var, y0Var);
         }
         ((r4) this.d).a(v4Var);
@@ -231,7 +231,7 @@ public final class a implements ko0, q {
                     return;
                 }
                 s sVar = (s) ((ArrayDeque) this.f364c).remove();
-                F(sVar.f9811b, sVar.f9810a);
+                F(sVar.f9812b, sVar.f9811a);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -276,7 +276,7 @@ public final class a implements ko0, q {
         ((q) this.f363b).Q0();
         if (this.f362a) {
             for (int i10 = 0; i10 < sparseArray.size(); i10++) {
-                ((n) sparseArray.valueAt(i10)).f54579i = true;
+                ((n) sparseArray.valueAt(i10)).f54597i = true;
             }
         }
     }
@@ -306,9 +306,9 @@ public final class a implements ko0, q {
             try {
                 try {
                     v vVar = (v) this.f363b;
-                    z0 z0Var = y0Var.f35403c;
-                    int i11 = y0Var.f35401a;
-                    i0.g3(new c11(z0Var, vVar, i11, "websocket error: " + z0.a(wVar), 13));
+                    z0 z0Var = y0Var.f35409c;
+                    int i11 = y0Var.f35407a;
+                    i0.g3(new d11(z0Var, vVar, i11, "websocket error: " + z0.a(wVar), 13));
                 } catch (Throwable unused) {
                 }
             } catch (Throwable unused2) {
@@ -319,7 +319,7 @@ public final class a implements ko0, q {
 
     @Override
     public boolean e() {
-        return ((b40) this.d).f24524b.e();
+        return ((b40) this.d).f24619b.e();
     }
 
     public void f() {
@@ -360,7 +360,7 @@ public final class a implements ko0, q {
         ofInt.addUpdateListener(new p2(15, this, uVar));
         ofInt.setDuration(i13);
         ofInt.setStartDelay(i12);
-        ofInt.setInterpolator(gr.f26495f);
+        ofInt.setInterpolator(gr.f26523f);
         return ofInt;
     }
 
@@ -369,8 +369,8 @@ public final class a implements ko0, q {
         String str = (String) this.f363b;
         int length = str.length();
         wb.d dVar = (wb.d) this.f364c;
-        CharsetEncoder[] charsetEncoderArr = dVar.f52782a;
-        CharsetEncoder[] charsetEncoderArr2 = dVar.f52782a;
+        CharsetEncoder[] charsetEncoderArr = dVar.f52800a;
+        CharsetEncoder[] charsetEncoderArr2 = dVar.f52800a;
         cc.d[][][] dVarArr = (cc.d[][][]) Array.newInstance(cc.d.class, length + 1, charsetEncoderArr.length, 4);
         b(hVar, dVarArr, 0, null);
         for (int i11 = 1; i11 <= length; i11++) {
@@ -404,7 +404,7 @@ public final class a implements ko0, q {
 
     public n2.w l(UUID uuid, o oVar) {
         String str;
-        String str2 = oVar.f13468b;
+        String str2 = oVar.f13469b;
         if (this.f362a || TextUtils.isEmpty(str2)) {
             str2 = (String) this.f364c;
         }
@@ -425,7 +425,7 @@ public final class a implements ko0, q {
             synchronized (((HashMap) this.d)) {
                 hashMap.putAll((HashMap) this.d);
             }
-            return d0.a(((p) this.f363b).createDataSource(), str2, oVar.f13467a, hashMap);
+            return d0.a(((p) this.f363b).createDataSource(), str2, oVar.f13468a, hashMap);
         }
         Map map = Collections.EMPTY_MAP;
         Uri uri = Uri.EMPTY;
@@ -436,7 +436,7 @@ public final class a implements ko0, q {
     public n2.w m(n2.p pVar) {
         boolean z10;
         Charset charset = StandardCharsets.UTF_8;
-        byte[][] bArr = {"{\"signedRequest\":\"".getBytes(charset), pVar.f13469a, "\"}".getBytes(charset)};
+        byte[][] bArr = {"{\"signedRequest\":\"".getBytes(charset), pVar.f13470a, "\"}".getBytes(charset)};
         long j10 = 0;
         for (int i10 = 0; i10 < 3; i10++) {
             j10 += bArr[i10].length;
@@ -456,8 +456,8 @@ public final class a implements ko0, q {
             i12 += bArr3.length;
         }
         g2.h createDataSource = ((p) this.f363b).createDataSource();
-        String str = pVar.f13470b;
-        String aVar = h9.a.f7642i.toString();
+        String str = pVar.f13471b;
+        String aVar = h9.a.f7643i.toString();
         String valueOf = String.valueOf(i11);
         e9.s.e("Content-Type", aVar);
         e9.s.e("Content-Length", valueOf);
@@ -525,7 +525,7 @@ public final class a implements ko0, q {
         Bundle bundle;
         l9.h hVar = ((FirebaseMessaging) this.d).f5590a;
         hVar.a();
-        Context context = hVar.f11707a;
+        Context context = hVar.f11708a;
         SharedPreferences sharedPreferences = context.getSharedPreferences("com.google.firebase.messaging", 0);
         if (sharedPreferences.contains("auto_init")) {
             return Boolean.valueOf(sharedPreferences.getBoolean("auto_init", false));
@@ -555,7 +555,7 @@ public final class a implements ko0, q {
         for (int i14 = 5; i14 >= 0; i14--) {
             i13 = i(8, i14, i13);
         }
-        int i15 = ((wb.b) this.f363b).f52776b;
+        int i15 = ((wb.b) this.f363b).f52794b;
         int i16 = i15 - 7;
         for (int i17 = i15 - 1; i17 >= i16; i17--) {
             i10 = i(8, i17, i10);
@@ -579,7 +579,7 @@ public final class a implements ko0, q {
         if (hVar != null) {
             return hVar;
         }
-        int i10 = ((wb.b) this.f363b).f52776b;
+        int i10 = ((wb.b) this.f363b).f52794b;
         int i11 = (i10 - 17) / 4;
         if (i11 <= 6) {
             return h.c(i11);
@@ -616,33 +616,33 @@ public final class a implements ko0, q {
         ArrayList arrayList = (ArrayList) this.f364c;
         b40 b40Var = (b40) this.d;
         HashMap hashMap = (HashMap) this.f363b;
-        if (!hashMap.isEmpty() && b40Var.f24524b != null && !this.f362a && !z10) {
+        if (!hashMap.isEmpty() && b40Var.f24619b != null && !this.f362a && !z10) {
             this.f362a = true;
             ArrayList arrayList2 = new ArrayList();
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
                 Object obj = hashMap.get(arrayList.get(i11));
                 ?? obj2 = new Object();
                 arrayList2.add(obj2);
-                if (obj instanceof hf) {
-                    hf hfVar = (hf) obj;
-                    String str2 = hfVar.h;
+                if (obj instanceof jf) {
+                    jf jfVar = (jf) obj;
+                    String str2 = jfVar.h;
                     if (str2 != null) {
-                        obj2.f17515c = str2;
+                        obj2.f17850c = str2;
                     } else {
-                        obj2.f17521l = hfVar;
+                        obj2.f17856l = jfVar;
                     }
-                    obj2.f17520k = hfVar.f19521s;
-                    obj2.e = hfVar.f19508c;
-                    CharSequence charSequence = hfVar.I;
+                    obj2.f17855k = jfVar.f14617s;
+                    obj2.e = jfVar.f14604c;
+                    CharSequence charSequence = jfVar.I;
                     if (charSequence != null) {
                         str = charSequence.toString();
                     } else {
                         str = null;
                     }
                     obj2.d = str;
-                    obj2.f17518i = hfVar.f19516n;
-                    obj2.f17519j = hfVar.f19520r;
-                    obj2.h = hfVar.f19525x;
+                    obj2.f17853i = jfVar.f14612n;
+                    obj2.f17854j = jfVar.f14616r;
+                    obj2.h = jfVar.f14621x;
                 }
             }
             b40.a(b40Var, false, arrayList2);
@@ -653,7 +653,7 @@ public final class a implements ko0, q {
         if (((e) this.d) != null) {
             int i10 = j.d(8)[((e) this.d).f374b];
             wb.b bVar = (wb.b) this.f363b;
-            int i11 = bVar.f52776b;
+            int i11 = bVar.f52794b;
             for (int i12 = 0; i12 < i11; i12++) {
                 for (int i13 = 0; i13 < i11; i13++) {
                     if (a1.g.b(i10, i12, i13)) {
@@ -696,7 +696,7 @@ public final class a implements ko0, q {
                         return true;
                     }
                 }
-                ((xa.n) ((p3) this.d).f12519b).Y(gVar);
+                ((xa.n) ((p3) this.d).f12520b).Y(gVar);
                 return true;
             } catch (Throwable th2) {
                 throw th2;

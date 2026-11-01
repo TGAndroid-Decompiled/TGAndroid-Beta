@@ -6,36 +6,36 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.d20;
-import org.telegram.messenger.hs;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.e20;
+import org.telegram.messenger.is;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public abstract class x6 extends View {
-    public static final int f52173a = 0;
+    public static final int f52191a = 0;
 
     public static void a(int i10, n5 n5Var) {
         u6 u6Var;
         if (n5Var != null) {
             try {
-                String string = vp.r1(i10).f7.getString("story_privacy2", null);
+                String string = wp.r1(i10).f7.getString("story_privacy2", null);
                 if (string == null) {
                     u6Var = new u6();
                 } else {
                     SerializedData serializedData = new SerializedData(Utilities.v(string));
                     u6Var = b(serializedData);
                     serializedData.cleanup();
-                    if (u6Var.f52020f.isEmpty() && u6Var.f52018b.isEmpty()) {
+                    if (u6Var.f52027f.isEmpty() && u6Var.f52025b.isEmpty()) {
                         u6Var = new u6();
                     } else {
                         HashSet hashSet = new HashSet();
-                        hashSet.addAll(u6Var.f52019c);
+                        hashSet.addAll(u6Var.f52026c);
                         for (ArrayList arrayList : u6Var.d.values()) {
                             hashSet.addAll(arrayList);
                         }
                         if (!hashSet.isEmpty()) {
-                            hs a02 = hs.a0(i10);
-                            a02.f15938a.c(new org.telegram.ui.Wallet.x0(a02, hashSet, i10, 22));
+                            is a02 = is.a0(i10);
+                            a02.f16331a.c(new org.telegram.ui.Wallet.x0(a02, hashSet, i10, 22));
                         }
                     }
                 }
@@ -45,9 +45,9 @@ public abstract class x6 extends View {
             }
             n5Var.E0 = u6Var;
             n5Var.F0.clear();
-            n5Var.F0.addAll(n5Var.E0.f52018b);
-            if (d20.i(i10).q()) {
-                n5Var.I0 = vp.r1(i10).f7.getInt("story_period", 86400);
+            n5Var.F0.addAll(n5Var.E0.f52025b);
+            if (e20.i(i10).q()) {
+                n5Var.I0 = wp.r1(i10).f7.getInt("story_period", 86400);
             } else {
                 n5Var.I0 = 86400;
             }
@@ -90,7 +90,7 @@ public abstract class x6 extends View {
                         hashSet.addAll(arrayList4);
                     }
                     u6 u6Var = new u6(readInt32, arrayList, 0);
-                    ArrayList arrayList5 = u6Var.f52019c;
+                    ArrayList arrayList5 = u6Var.f52026c;
                     arrayList5.clear();
                     arrayList5.addAll(arrayList2);
                     HashMap hashMap2 = u6Var.d;
@@ -106,9 +106,9 @@ public abstract class x6 extends View {
     }
 
     public static void c(SerializedData serializedData, u6 u6Var) {
-        int i10 = u6Var.f52017a;
+        int i10 = u6Var.f52024a;
         HashMap hashMap = u6Var.d;
-        ArrayList arrayList = u6Var.f52019c;
+        ArrayList arrayList = u6Var.f52026c;
         serializedData.writeInt32(i10);
         serializedData.writeInt32(481674261);
         ArrayList arrayList2 = u6Var.e;

@@ -5,13 +5,13 @@ public enum w {
     Groups(4, 2131745765, 2131745764),
     Channels(2, 2131745770, 2131745769);
     
-    public final int f55640a;
-    public final int f55641b;
-    public final int f55642c;
+    public final int f55658a;
+    public final int f55659b;
+    public final int f55660c;
 
     w(int i10, int i11, int i12) {
-        this.f55640a = i10;
-        this.f55641b = i11;
-        this.f55642c = i12;
+        this.f55658a = i10;
+        this.f55659b = i11;
+        this.f55660c = i12;
     }
 }

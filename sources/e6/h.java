@@ -41,7 +41,7 @@ public final class h implements c6.f {
         this.d = a0Var;
         this.f6287c = mVar;
         mVar.h = new za.c(this, 17);
-        mVar.f7399c = a0Var;
+        mVar.f7400c = a0Var;
         this.e = new c(this);
     }
 
@@ -105,7 +105,7 @@ public final class h implements c6.f {
         MediaInfo mediaInfo;
         synchronized (this.f6285a) {
             n6.l.d("Must be called from the main thread.");
-            c6.q qVar = this.f6287c.f7376f;
+            c6.q qVar = this.f6287c.f7377f;
             if (qVar == null) {
                 mediaInfo = null;
             } else {
@@ -119,7 +119,7 @@ public final class h implements c6.f {
         c6.q qVar;
         synchronized (this.f6285a) {
             n6.l.d("Must be called from the main thread.");
-            qVar = this.f6287c.f7376f;
+            qVar = this.f6287c.f7377f;
         }
         return qVar;
     }
@@ -147,7 +147,7 @@ public final class h implements c6.f {
         long j10;
         synchronized (this.f6285a) {
             n6.l.d("Must be called from the main thread.");
-            c6.q qVar = this.f6287c.f7376f;
+            c6.q qVar = this.f6287c.f7377f;
             if (qVar == null) {
                 mediaInfo = null;
             } else {
@@ -302,7 +302,7 @@ public final class h implements c6.f {
             return;
         }
         n6.l.d("Must be called from the main thread.");
-        String str = this.f6287c.f7398b;
+        String str = this.f6287c.f7399b;
         e0 e0Var = (e0) f0Var;
         g6.a.b(str);
         synchronized (e0Var.C) {
@@ -328,7 +328,7 @@ public final class h implements c6.f {
                 this.f6287c.n();
                 this.e.c();
                 n6.l.d("Must be called from the main thread.");
-                String str = this.f6287c.f7398b;
+                String str = this.f6287c.f7399b;
                 e0 e0Var2 = (e0) f0Var;
                 if (!TextUtils.isEmpty(str)) {
                     synchronized (e0Var2.C) {

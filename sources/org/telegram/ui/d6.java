@@ -6,20 +6,20 @@ import android.util.SparseArray;
 import java.util.ArrayList;
 import java.util.Collections;
 public final class d6 implements Runnable {
-    public final int f36622a;
-    public final y6 f36623b;
-    public final ArrayList f36624c;
+    public final int f36493a;
+    public final y6 f36494b;
+    public final ArrayList f36495c;
     public final ArrayList d;
     public final ArrayList e;
-    public final sh.b f36625f;
+    public final sh.b f36496f;
 
     public d6(y6 y6Var, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, sh.b bVar, int i10) {
-        this.f36622a = i10;
-        this.f36623b = y6Var;
-        this.f36624c = arrayList;
+        this.f36493a = i10;
+        this.f36494b = y6Var;
+        this.f36495c = arrayList;
         this.d = arrayList2;
         this.e = arrayList3;
-        this.f36625f = bVar;
+        this.f36496f = bVar;
     }
 
     @Override
@@ -28,13 +28,13 @@ public final class d6 implements Runnable {
         float f7;
         boolean z11;
         boolean z12;
-        switch (this.f36622a) {
+        switch (this.f36493a) {
             case 0:
-                y6 y6Var = this.f36623b;
-                ArrayList arrayList = this.f36624c;
+                y6 y6Var = this.f36494b;
+                ArrayList arrayList = this.f36495c;
                 ArrayList arrayList2 = this.d;
                 ArrayList arrayList3 = this.e;
-                sh.b bVar = this.f36625f;
+                sh.b bVar = this.f36496f;
                 ArrayList arrayList4 = new ArrayList();
                 ArrayList arrayList5 = new ArrayList();
                 int i10 = 0;
@@ -53,21 +53,21 @@ public final class d6 implements Runnable {
                     }
                 }
                 while (i10 < arrayList3.size()) {
-                    if (((s6) arrayList3.get(i10)).f41382c <= 0) {
+                    if (((s6) arrayList3.get(i10)).f41233c <= 0) {
                         arrayList3.remove(i10);
                         i10--;
                     }
                     i10++;
                 }
-                Collections.sort(arrayList3, new org.telegram.messenger.bk(29));
+                Collections.sort(arrayList3, new org.telegram.messenger.ck(29));
                 org.telegram.messenger.i0.g3(new d6(y6Var, arrayList4, arrayList5, arrayList3, bVar, 1));
                 return;
             default:
-                y6 y6Var2 = this.f36623b;
-                ArrayList arrayList6 = this.f36624c;
+                y6 y6Var2 = this.f36494b;
+                ArrayList arrayList6 = this.f36495c;
                 ArrayList arrayList7 = this.d;
                 ArrayList arrayList8 = this.e;
-                sh.b bVar2 = this.f36625f;
+                sh.b bVar2 = this.f36496f;
                 boolean z13 = true;
                 y6Var2.getMessagesController().V3(arrayList6, true);
                 y6Var2.getMessagesController().P3(arrayList7, true);
@@ -76,8 +76,8 @@ public final class d6 implements Runnable {
                 int i11 = 0;
                 while (i11 < arrayList8.size()) {
                     s6 s6Var2 = (s6) arrayList8.get(i11);
-                    if (y6Var2.getMessagesController().d2(s6Var2.f41380a) == null) {
-                        s6Var2.f41380a = Long.MAX_VALUE;
+                    if (y6Var2.getMessagesController().d2(s6Var2.f41231a) == null) {
+                        s6Var2.f41231a = Long.MAX_VALUE;
                         if (s6Var != null) {
                             SparseArray sparseArray = s6Var.d;
                             int i12 = 0;
@@ -93,16 +93,16 @@ public final class d6 implements Runnable {
                                     }
                                     t6Var.getClass();
                                     s6 s6Var3 = s6Var;
-                                    t6Var2.f41741a += t6Var.f41741a;
-                                    s6Var3.f41382c += t6Var.f41741a;
-                                    t6Var2.f41742b.addAll(t6Var.f41742b);
+                                    t6Var2.f41549a += t6Var.f41549a;
+                                    s6Var3.f41233c += t6Var.f41549a;
+                                    t6Var2.f41550b.addAll(t6Var.f41550b);
                                     i12++;
                                     s6Var = s6Var3;
                                     z13 = z13;
                                     z14 = false;
                                 } else {
                                     z11 = z13;
-                                    s6Var.f41381b += s6Var2.f41381b;
+                                    s6Var.f41232b += s6Var2.f41232b;
                                     arrayList8.remove(i11);
                                     i11--;
                                     z12 = z11;
@@ -114,7 +114,7 @@ public final class d6 implements Runnable {
                             z12 = false;
                         }
                         if (z12) {
-                            Collections.sort(arrayList8, new org.telegram.messenger.bk(29));
+                            Collections.sort(arrayList8, new org.telegram.messenger.ck(29));
                         }
                     } else {
                         z11 = z13;
@@ -124,8 +124,8 @@ public final class d6 implements Runnable {
                     z14 = false;
                 }
                 boolean z15 = z13;
-                bVar2.f48498b = arrayList8;
-                LongSparseArray longSparseArray = bVar2.f48499c;
+                bVar2.f48509b = arrayList8;
+                LongSparseArray longSparseArray = bVar2.f48510c;
                 longSparseArray.clear();
                 int size = arrayList8.size();
                 int i13 = 0;
@@ -133,17 +133,17 @@ public final class d6 implements Runnable {
                     Object obj = arrayList8.get(i13);
                     i13++;
                     s6 s6Var4 = (s6) obj;
-                    longSparseArray.put(s6Var4.f41380a, s6Var4);
+                    longSparseArray.put(s6Var4.f41231a, s6Var4);
                 }
-                if (!y6.f43710h0) {
-                    y6Var2.f43721d0 = bVar2;
+                if (!y6.f43566h0) {
+                    y6Var2.f43577d0 = bVar2;
                     j6 j6Var = y6Var2.M;
                     if (j6Var != null) {
                         j6Var.setCacheModel(bVar2);
                     }
-                    y6Var2.z0(z15);
-                    y6Var2.x0();
-                    if (y6Var2.X != null && !y6Var2.K && System.currentTimeMillis() - y6Var2.f43716a0 > 120) {
+                    y6Var2.A0(z15);
+                    y6Var2.y0();
+                    if (y6Var2.X != null && !y6Var2.K && System.currentTimeMillis() - y6Var2.f43572a0 > 120) {
                         l6 l6Var = y6Var2.X;
                         long j10 = y6Var2.G;
                         if (j10 > 0) {

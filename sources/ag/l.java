@@ -19,13 +19,13 @@ import bi.q6;
 import bi.u3;
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.d20;
-import org.telegram.messenger.jj;
-import org.telegram.messenger.q20;
-import org.telegram.messenger.sc;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.e20;
+import org.telegram.messenger.kj;
+import org.telegram.messenger.r20;
+import org.telegram.messenger.tc;
 import org.telegram.messenger.w3;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
@@ -34,15 +34,15 @@ import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Components.eb;
 import org.telegram.ui.Components.ii;
 import org.telegram.ui.Components.mt;
-import org.telegram.ui.Components.p51;
-import org.telegram.ui.Components.u51;
+import org.telegram.ui.Components.q51;
 import org.telegram.ui.Components.ub;
+import org.telegram.ui.Components.v51;
 import org.telegram.ui.Components.wb;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.un;
 import org.telegram.ui.web.BotWebViewContainer$WebViewProxy;
 import vh.s3;
-public final class l implements q20 {
+public final class l implements r20 {
     public final int f617a;
     public final Object f618b;
 
@@ -59,14 +59,14 @@ public final class l implements q20 {
         TL_account.TL_businessBotRights makeDefault;
         boolean z11;
         boolean z12;
-        p51 p51Var;
+        q51 q51Var;
         Editable editable;
         int i10;
         float f7;
         TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway;
         boolean z13;
         float f10;
-        p51 p51Var2;
+        q51 q51Var2;
         int i11 = this.f617a;
         float f11 = 0.08f;
         String str = "";
@@ -84,7 +84,7 @@ public final class l implements q20 {
                 if (wVar.F != z10) {
                     wVar.F = z10;
                     if (!z10) {
-                        wVar.f29837a.y0(0);
+                        wVar.f30217a.y0(0);
                         return;
                     }
                     return;
@@ -131,20 +131,20 @@ public final class l implements q20 {
                     }
                     x0Var.i(tL_businessBotRecipients);
                 }
-                u51 u51Var = t1Var.f729c;
-                if (u51Var != null && (p51Var = u51Var.f30819f3) != null) {
+                v51 v51Var = t1Var.f729c;
+                if (v51Var != null && (q51Var = v51Var.f31183f3) != null) {
                     z12 = true;
-                    p51Var.O(true);
+                    q51Var.O(true);
                 } else {
                     z12 = true;
                 }
-                t1Var.c0(z12);
+                t1Var.d0(z12);
                 t1Var.T = z12;
                 return;
             case 3:
                 v1 v1Var = (v1) obj2;
                 v1Var.f755w = v1Var.d[((Integer) obj).intValue()];
-                v1Var.Z(true);
+                v1Var.a0(true);
                 return;
             case 4:
                 z2 z2Var = (z2) obj2;
@@ -248,7 +248,7 @@ public final class l implements q20 {
                         }
                         arrayList2.addAll(i13, arrayList3);
                         d4Var.v4();
-                        d4Var.f30819f3.O(false);
+                        d4Var.f31183f3.O(false);
                         bi.o2 o2Var2 = d4Var.Q3;
                         if (o2Var2 != null) {
                             o2Var2.h();
@@ -282,29 +282,29 @@ public final class l implements q20 {
                 return;
             case 10:
                 hh.i iVar = (hh.i) obj2;
-                if (((hh.b) obj) == hh.b.d && ((i10 = iVar.f7701s) == 2 || i10 == 3)) {
-                    iVar.f7701s = 1;
+                if (((hh.b) obj) == hh.b.d && ((i10 = iVar.f7702s) == 2 || i10 == 3)) {
+                    iVar.f7702s = 1;
                 }
                 iVar.h.run();
                 return;
             case 11:
                 ig.a0 a0Var = (ig.a0) obj2;
                 ig.f1 f1Var = (ig.f1) obj;
-                ig.c1 c1Var = a0Var.f8246a;
+                ig.c1 c1Var = a0Var.f8247a;
                 if (f1Var != null) {
                     float currentWeight = c1Var.getCurrentWeight();
-                    f1Var.f8302f = currentWeight;
-                    double d = a0Var.f8258p;
+                    f1Var.f8303f = currentWeight;
+                    double d = a0Var.f8259p;
                     if (d > 0.0d) {
-                        f1Var.f8302f = (float) ((d / a0Var.f8259q) * currentWeight);
+                        f1Var.f8303f = (float) ((d / a0Var.f8260q) * currentWeight);
                     }
-                    if (f1Var.f8299a.o() == 4) {
-                        f1Var.f8306k *= f1Var.f8302f;
+                    if (f1Var.f8300a.o() == 4) {
+                        f1Var.f8307k *= f1Var.f8303f;
                     }
                 }
                 ig.q0 painting = c1Var.getPainting();
                 if (painting.L == null) {
-                    painting.f8413f.f(new ig.l0(painting, f1Var, 1));
+                    painting.f8414f.f(new ig.l0(painting, f1Var, 1));
                     return;
                 }
                 return;
@@ -312,27 +312,27 @@ public final class l implements q20 {
                 ih.d dVar = (ih.d) obj2;
                 ih.f fVar = (ih.f) obj;
                 dVar.h = fVar;
-                dVar.f8525c.b(fVar, true);
+                dVar.f8526c.b(fVar, true);
                 org.telegram.messenger.i0.h3(new gg.c(dVar, 10), 200L);
                 return;
             case 13:
                 s3 s3Var = (s3) obj2;
                 TextureView textureView = (TextureView) obj;
-                s3Var.f10061w0 = textureView;
+                s3Var.f10062w0 = textureView;
                 if (textureView != null) {
-                    s3Var.f10055q0.addView(textureView, 0);
+                    s3Var.f10056q0.addView(textureView, 0);
                     return;
                 }
                 return;
             case 14:
                 jg.d3 d3Var = (jg.d3) obj2;
-                d3Var.f9935n = (Bitmap) obj;
+                d3Var.f9936n = (Bitmap) obj;
                 Paint paint = new Paint(1);
-                d3Var.f9937s = paint;
-                Bitmap bitmap = d3Var.f9935n;
+                d3Var.f9938s = paint;
+                Bitmap bitmap = d3Var.f9936n;
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
-                d3Var.f9936r = bitmapShader;
+                d3Var.f9937r = bitmapShader;
                 paint.setShader(bitmapShader);
                 ColorMatrix colorMatrix = new ColorMatrix();
                 if (!t6.I.q()) {
@@ -345,8 +345,8 @@ public final class l implements q20 {
                     f7 = -0.07f;
                 }
                 org.telegram.messenger.i0.h(colorMatrix, f7);
-                d3Var.f9937s.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-                d3Var.f9938w = new Matrix();
+                d3Var.f9938s.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+                d3Var.f9939w = new Matrix();
                 return;
             case 15:
                 ((kg.q0) obj2).y1((HashMap) obj);
@@ -354,7 +354,7 @@ public final class l implements q20 {
             case 16:
                 kg.g2 g2Var = (kg.g2) obj2;
                 Boolean bool = (Boolean) obj;
-                boolean e = sc.e(131072);
+                boolean e = tc.e(131072);
                 if (g2Var.e != e) {
                     g2Var.e = e;
                     g2Var.invalidate();
@@ -365,9 +365,9 @@ public final class l implements q20 {
                 lh.g.d1((lh.g) obj2, (Pair) obj);
                 return;
             case 18:
-                jj jjVar = (jj) obj2;
+                kj kjVar = (kj) obj2;
                 TLRPC.payments_GiveawayInfo payments_giveawayinfo = (TLRPC.payments_GiveawayInfo) obj;
-                TLRPC.MessageMedia messageMedia = jjVar.f16337k.media;
+                TLRPC.MessageMedia messageMedia = kjVar.f16690k.media;
                 if (messageMedia instanceof TLRPC.TL_messageMediaGiveawayResults) {
                     TLRPC.TL_messageMediaGiveawayResults tL_messageMediaGiveawayResults = (TLRPC.TL_messageMediaGiveawayResults) messageMedia;
                     tL_messageMediaGiveaway = new TLRPC.TL_messageMediaGiveaway();
@@ -384,11 +384,11 @@ public final class l implements q20 {
                     tL_messageMediaGiveaway = (TLRPC.TL_messageMediaGiveaway) messageMedia;
                 }
                 TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway2 = tL_messageMediaGiveaway;
-                long j10 = jjVar.f16337k.date * 1000;
+                long j10 = kjVar.f16690k.date * 1000;
                 org.telegram.ui.ActionBar.k2 Q = LaunchActivity.Q();
                 if (Q != null) {
-                    String b10 = mg.p.b(jjVar);
-                    TLRPC.Chat L0 = vp.r1(d20.f15147s0).L0(Long.valueOf(-jjVar.Z0()));
+                    String b10 = mg.p.b(kjVar);
+                    TLRPC.Chat L0 = wp.r1(e20.f15506s0).L0(Long.valueOf(-kjVar.Z0()));
                     if (L0 != null && w3.V(L0)) {
                         z13 = true;
                     } else {
@@ -397,21 +397,21 @@ public final class l implements q20 {
                     eb ebVar = new eb(Q.getParentActivity(), Q.getResourceProvider());
                     if (payments_giveawayinfo instanceof TLRPC.TL_payments_giveawayInfoResults) {
                         ebVar.c(2131623981, 30, 30, new String[0]);
-                        ebVar.f25745b.setText(cd.L0(2131753371, null));
+                        ebVar.f25779b.setText(dd.L0(2131753371, null));
                     } else if (payments_giveawayinfo instanceof TLRPC.TL_payments_giveawayInfo) {
                         if (((TLRPC.TL_payments_giveawayInfo) payments_giveawayinfo).participating) {
                             ebVar.c(2131624027, 30, 30, new String[0]);
-                            ebVar.f25745b.setText(cd.L0(2131753369, null));
+                            ebVar.f25779b.setText(dd.L0(2131753369, null));
                         } else {
                             ebVar.c(2131623981, 30, 30, new String[0]);
-                            ebVar.f25745b.setText(cd.L0(2131753370, null));
+                            ebVar.f25779b.setText(dd.L0(2131753370, null));
                         }
                     }
-                    ebVar.f25745b.setSingleLine(false);
-                    ebVar.f25745b.setMaxLines(2);
+                    ebVar.f25779b.setSingleLine(false);
+                    ebVar.f25779b.setMaxLines(2);
                     ub ubVar = new ub(Q.getParentActivity(), Q.getResourceProvider(), true);
-                    ubVar.e(cd.L0(2131749020, null));
-                    ubVar.f30890b = new n0(payments_giveawayinfo, z13, b10, j10, tL_messageMediaGiveaway2, Q);
+                    ubVar.e(dd.L0(2131749020, null));
+                    ubVar.f30924b = new n0(payments_giveawayinfo, z13, b10, j10, tL_messageMediaGiveaway2, Q);
                     ebVar.setButton(ubVar);
                     wb.g(Q, ebVar, 2750).j();
                     return;
@@ -454,7 +454,7 @@ public final class l implements q20 {
                 jVar.J.setLocalMatrix(matrix);
                 return;
             case 21:
-                HashMap hashMap = ((ng.b) obj2).f13767x;
+                HashMap hashMap = ((ng.b) obj2).f13768x;
                 hashMap.clear();
                 hashMap.putAll((HashMap) obj);
                 return;
@@ -462,7 +462,7 @@ public final class l implements q20 {
                 ((ng.f) obj2).F((TLObject) obj);
                 return;
             case 23:
-                HashMap hashMap2 = ((ng.i) obj2).f13795r;
+                HashMap hashMap2 = ((ng.i) obj2).f13796r;
                 hashMap2.clear();
                 hashMap2.putAll((HashMap) obj);
                 return;
@@ -471,20 +471,20 @@ public final class l implements q20 {
                 Bitmap bitmap4 = (Bitmap) obj;
                 Paint paint3 = y0Var.F;
                 y0Var.W = false;
-                y0Var.f21545f = bitmap4;
+                y0Var.f21546f = bitmap4;
                 Shader.TileMode tileMode3 = Shader.TileMode.CLAMP;
                 y0Var.h = new BitmapShader(bitmap4, tileMode3, tileMode3);
-                Matrix matrix2 = y0Var.f21547n;
+                Matrix matrix2 = y0Var.f21548n;
                 if (matrix2 == null) {
-                    y0Var.f21547n = new Matrix();
+                    y0Var.f21548n = new Matrix();
                 } else {
                     matrix2.reset();
                 }
-                y0Var.f21547n.postScale(8.0f, 8.0f);
-                Matrix matrix3 = y0Var.f21547n;
-                int[] iArr = y0Var.f21548r;
+                y0Var.f21548n.postScale(8.0f, 8.0f);
+                Matrix matrix3 = y0Var.f21548n;
+                int[] iArr = y0Var.f21549r;
                 matrix3.postTranslate(-iArr[0], -iArr[1]);
-                y0Var.h.setLocalMatrix(y0Var.f21547n);
+                y0Var.h.setLocalMatrix(y0Var.f21548n);
                 paint3.setShader(y0Var.h);
                 ColorMatrix colorMatrix3 = new ColorMatrix();
                 org.telegram.messenger.i0.i(colorMatrix3, -0.2f);
@@ -511,17 +511,17 @@ public final class l implements q20 {
                 x1Var.F0 = matrix4;
                 matrix4.postScale(8.0f, 8.0f);
                 Matrix matrix5 = x1Var.F0;
-                int[] iArr2 = x1Var.f21513z0;
+                int[] iArr2 = x1Var.f21514z0;
                 matrix5.postTranslate(-iArr2[0], -iArr2[1]);
                 x1Var.G0.setLocalMatrix(x1Var.F0);
-                x1Var.f21476c1.invalidate();
+                x1Var.f21477c1.invalidate();
                 return;
             case 26:
                 org.telegram.messenger.i0.v1((mt) obj2);
                 org.telegram.messenger.i0.h3((Runnable) obj, 80L);
                 return;
             case 27:
-                org.telegram.ui.web.v0 v0Var = ((BotWebViewContainer$WebViewProxy) obj2).f42977b;
+                org.telegram.ui.web.v0 v0Var = ((BotWebViewContainer$WebViewProxy) obj2).f42779b;
                 StringBuilder sb2 = new StringBuilder("window.navigator.__share__receive(");
                 String str3 = str;
                 if (!((Boolean) obj).booleanValue()) {
@@ -533,19 +533,19 @@ public final class l implements q20 {
                 return;
             case 28:
                 org.telegram.ui.web.b1 b1Var = (org.telegram.ui.web.b1) obj2;
-                b1Var.f42995f = (ArrayList) obj;
-                ii iiVar = b1Var.f29837a;
+                b1Var.f42797f = (ArrayList) obj;
+                ii iiVar = b1Var.f30217a;
                 if (iiVar.G) {
-                    iiVar.f30819f3.O(true);
+                    iiVar.f31183f3.O(true);
                     return;
                 }
                 return;
             default:
                 org.telegram.ui.web.p1 p1Var = (org.telegram.ui.web.p1) obj2;
-                p1Var.f43164r = ((ArrayList) obj).size();
-                ii iiVar2 = p1Var.f29837a;
-                if (iiVar2 != null && (p51Var2 = iiVar2.f30819f3) != null && iiVar2.G) {
-                    p51Var2.O(true);
+                p1Var.f42966r = ((ArrayList) obj).size();
+                ii iiVar2 = p1Var.f30217a;
+                if (iiVar2 != null && (q51Var2 = iiVar2.f31183f3) != null && iiVar2.G) {
+                    q51Var2.O(true);
                     return;
                 }
                 return;

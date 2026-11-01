@@ -1,24 +1,24 @@
 package org.telegram.ui;
 public final class e70 implements Runnable {
-    public final int f36968a;
-    public final LanguageSelectActivity f36969b;
+    public final int f36762a;
+    public final LanguageSelectActivity f36763b;
 
     public e70(LanguageSelectActivity languageSelectActivity, int i10) {
-        this.f36968a = i10;
-        this.f36969b = languageSelectActivity;
+        this.f36762a = i10;
+        this.f36763b = languageSelectActivity;
     }
 
     @Override
     public final void run() {
-        switch (this.f36968a) {
+        switch (this.f36762a) {
             case 0:
-                LanguageSelectActivity.c0(this.f36969b);
+                LanguageSelectActivity.d0(this.f36763b);
                 return;
             case 1:
-                LanguageSelectActivity.a0(this.f36969b);
+                LanguageSelectActivity.b0(this.f36763b);
                 return;
             default:
-                this.f36969b.f33341a.f();
+                this.f36763b.f33348a.f();
                 return;
         }
     }

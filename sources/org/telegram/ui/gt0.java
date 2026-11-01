@@ -1,66 +1,144 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
+import android.graphics.Point;
 import android.view.View;
-import android.widget.LinearLayout;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class gt0 implements View.OnClickListener {
-    public final rg0 f37644a;
-    public final un f37645b;
-    public final org.telegram.ui.Components.tk0 f37646c;
-    public final LinearLayout d;
-    public final org.telegram.ui.Components.z60 e;
-    public final org.telegram.ui.Components.z60 f37647f;
-    public final kt0 h;
+import java.util.HashSet;
+public final class gt0 implements r0.m, org.telegram.ui.Components.w61, org.telegram.ui.Components.fp0, org.telegram.ui.Components.nn0, org.telegram.ui.Components.dn0 {
+    public final int f37564a;
+    public final Object f37565b;
 
-    public gt0(kt0 kt0Var, rg0 rg0Var, un unVar, org.telegram.ui.Components.tk0 tk0Var, LinearLayout linearLayout, org.telegram.ui.Components.z60 z60Var, org.telegram.ui.Components.z60 z60Var2) {
-        this.h = kt0Var;
-        this.f37644a = rg0Var;
-        this.f37645b = unVar;
-        this.f37646c = tk0Var;
-        this.d = linearLayout;
-        this.e = z60Var;
-        this.f37647f = z60Var2;
+    public gt0(Object obj, int i10) {
+        this.f37564a = i10;
+        this.f37565b = obj;
     }
 
     @Override
-    public final void onClick(View view) {
-        rg0 rg0Var = this.f37644a;
-        ArrayList arrayList = rg0Var.f41222b;
-        ArrayList arrayList2 = rg0Var.f41223c;
-        if (!arrayList2.isEmpty()) {
-            int size = arrayList2.size();
-            kt0 kt0Var = this.h;
-            un unVar = this.f37645b;
-            if (size == 1 && (arrayList.size() <= 0 || ((Integer) arrayList.get(0)).intValue() <= 0)) {
-                TLObject tLObject = (TLObject) arrayList2.get(0);
-                if (tLObject == null) {
-                    return;
-                }
-                Bundle bundle = new Bundle();
-                if (tLObject instanceof TLRPC.User) {
-                    bundle.putLong("user_id", ((TLRPC.User) tLObject).f19942id);
-                } else if (tLObject instanceof TLRPC.Chat) {
-                    bundle.putLong("chat_id", ((TLRPC.Chat) tLObject).f19793id);
-                }
-                unVar.presentFragment(new ProfileActivity(bundle, null));
-                kt0Var.c(false);
-                return;
-            }
-            if (org.telegram.messenger.tz.f18139c1 > 0 && unVar.l1.getKeyboardHeight() < org.telegram.messenger.i0.L(20.0f)) {
-                org.telegram.ui.Components.wb t10 = new org.telegram.ui.Components.cc(org.telegram.ui.Components.ra.a(kt0Var.getContext()), kt0Var.f38936b).t(org.telegram.messenger.i0.W2(org.telegram.messenger.cd.L0(2131748503, null)), null);
-                unVar.B1 = t10;
-                t10.f32135j = 4000;
-                t10.j();
-                org.telegram.messenger.tz.S(org.telegram.messenger.tz.f18139c1 - 1);
-            }
-            org.telegram.ui.Components.tk0 tk0Var = this.f37646c;
-            tk0Var.requestLayout();
-            this.d.requestLayout();
-            tk0Var.getAdapter().f();
-            this.e.K(this.f37647f);
+    public void B0() {
+        ((StickersActivity) this.f37565b).o0();
+    }
+
+    @Override
+    public void C() {
+        int i10 = this.f37564a;
+    }
+
+    @Override
+    public void L(org.telegram.ui.Cells.v2 v2Var) {
+        nb1 nb1Var = ((jb1) this.f37565b).f38356v0;
+        HashSet hashSet = nb1.f39796q1;
+        nb1Var.Q0(v2Var);
+    }
+
+    @Override
+    public r0.j1 R0(View view, r0.j1 j1Var) {
+        switch (this.f37564a) {
+            case 0:
+                jt0 jt0Var = (jt0) this.f37565b;
+                i0.c g10 = j1Var.f46143a.g(519);
+                jt0Var.f38552r = g10;
+                jt0Var.d.setPadding(g10.f7766a, g10.f7767b, g10.f7768c, g10.d);
+                jt0Var.f38544c.requestLayout();
+                return r0.j1.f46142b;
+            default:
+                v91 v91Var = (v91) this.f37565b;
+                i0.c g11 = j1Var.f46143a.g(519);
+                v91Var.f42457n = g11;
+                v91Var.f42452c.setPadding(g11.f7766a, g11.f7767b, g11.f7768c, g11.d);
+                v91Var.f42450b.requestLayout();
+                return r0.j1.f46142b;
         }
+    }
+
+    @Override
+    public void V() {
+        ((StickersActivity) this.f37565b).o0();
+    }
+
+    @Override
+    public void a(float f7) {
+        Point point = org.telegram.messenger.i0.f16172q;
+        if (point.x > point.y) {
+            ((jb1) this.f37565b).f38356v0.movePreviewFragment(f7);
+        }
+    }
+
+    @Override
+    public void c(float f7) {
+        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f37565b;
+        sq0 sq0Var = secretMediaViewer.D;
+        if (sq0Var != null) {
+            long U = sq0Var.U();
+            if (U != -9223372036854775807L) {
+                secretMediaViewer.D.q0(f7 * ((float) U), false);
+            }
+            secretMediaViewer.D.h0();
+        }
+    }
+
+    @Override
+    public void d(float f7) {
+        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f37565b;
+        sq0 sq0Var = secretMediaViewer.D;
+        if (sq0Var != null) {
+            sq0Var.g0();
+            long U = secretMediaViewer.D.U();
+            if (U != -9223372036854775807L) {
+                secretMediaViewer.D.q0(f7 * ((float) U), false);
+            }
+        }
+    }
+
+    @Override
+    public void finish() {
+        Point point = org.telegram.messenger.i0.f16172q;
+        if (point.x > point.y) {
+            ((jb1) this.f37565b).f38356v0.finishPreviewFragment();
+        }
+    }
+
+    @Override
+    public CharSequence getContentDescription() {
+        switch (this.f37564a) {
+            case 3:
+                m71 m71Var = (m71) this.f37565b;
+                return String.valueOf(Math.round((m71Var.f39461a.getProgress() * m71Var.f39462b) + 0));
+            default:
+                w71 w71Var = (w71) this.f37565b;
+                int i10 = w71Var.d;
+                return String.valueOf(Math.round((w71Var.f42717b.getProgress() * (w71Var.e - i10)) + i10));
+        }
+    }
+
+    @Override
+    public void k(boolean z10, float f7) {
+        switch (this.f37564a) {
+            case 3:
+                m71 m71Var = (m71) this.f37565b;
+                ThemeActivity.d0(m71Var.e, Math.round((m71Var.f39462b * f7) + 0), false);
+                return;
+            default:
+                w71 w71Var = (w71) this.f37565b;
+                ThemeActivity themeActivity = w71Var.f42721r;
+                int i10 = w71Var.d;
+                ThemeActivity.p0(themeActivity, Math.round(((w71Var.e - i10) * f7) + i10));
+                return;
+        }
+    }
+
+    @Override
+    public int p0() {
+        switch (this.f37564a) {
+            case 3:
+                return ((m71) this.f37565b).f39462b;
+            default:
+                w71 w71Var = (w71) this.f37565b;
+                return w71Var.e - w71Var.d;
+        }
+    }
+
+    private final void b() {
+    }
+
+    private final void e() {
     }
 }

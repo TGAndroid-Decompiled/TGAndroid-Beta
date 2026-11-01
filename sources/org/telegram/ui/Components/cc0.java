@@ -8,7 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
-public final class cc0 extends pj0 implements org.telegram.messenger.z5 {
+public final class cc0 extends qj0 implements org.telegram.messenger.z5 {
     public static final Paint H;
     public static final Paint I;
     public static final TextPaint J;
@@ -22,19 +22,19 @@ public final class cc0 extends pj0 implements org.telegram.messenger.z5 {
     public String E;
     public String F;
     public String G;
-    public long f25044a;
-    public float f25045b;
-    public float f25046c;
+    public long f25079a;
+    public float f25080b;
+    public float f25081c;
     public long d;
     public float e;
-    public float f25047f;
+    public float f25082f;
     public boolean h;
-    public View f25048n;
-    public org.telegram.messenger.jj f25049r;
-    public int f25050s;
-    public boolean f25051w;
-    public boolean f25052x;
-    public Drawable f25053y;
+    public View f25083n;
+    public org.telegram.messenger.kj f25084r;
+    public int f25085s;
+    public boolean f25086w;
+    public boolean f25087x;
+    public Drawable f25088y;
 
     static {
         Paint paint = new Paint();
@@ -70,12 +70,12 @@ public final class cc0 extends pj0 implements org.telegram.messenger.z5 {
     }
 
     @Override
-    public final void C(boolean z10) {
+    public final void D(boolean z10) {
         a();
     }
 
     @Override
-    public final void M(String str) {
+    public final void N(String str) {
         b(true, 1.0f);
         a();
     }
@@ -87,18 +87,18 @@ public final class cc0 extends pj0 implements org.telegram.messenger.z5 {
     public final void b(boolean z10, float f7) {
         if (!z10) {
             this.e = f7;
-            this.f25046c = f7;
+            this.f25081c = f7;
         } else {
-            this.f25046c = this.e;
+            this.f25081c = this.e;
         }
         this.G = String.format("%d%%", Integer.valueOf((int) (100.0f * f7)));
         if (f7 != 1.0f) {
-            this.f25047f = 1.0f;
+            this.f25082f = 1.0f;
         }
-        this.f25045b = f7;
+        this.f25080b = f7;
         this.d = 0L;
-        this.f25044a = System.currentTimeMillis();
-        this.f25048n.invalidate();
+        this.f25079a = System.currentTimeMillis();
+        this.f25083n.invalidate();
     }
 
     @Override
@@ -120,23 +120,23 @@ public final class cc0 extends pj0 implements org.telegram.messenger.z5 {
         canvas.save();
         canvas.translate(bounds.left, bounds.top);
         canvas.drawRect(0.0f, 0.0f, width, height, H);
-        int y3 = org.telegram.messenger.z20.y(240.0f, height, 2);
-        int y10 = org.telegram.messenger.z20.y(48.0f, width, 2);
-        Drawable drawable = this.f25053y;
+        int y3 = org.telegram.messenger.a30.y(240.0f, height, 2);
+        int y10 = org.telegram.messenger.a30.y(48.0f, width, 2);
+        Drawable drawable = this.f25088y;
         drawable.setBounds(y10, y3, org.telegram.messenger.i0.L(48.0f) + y10, org.telegram.messenger.i0.L(48.0f) + y3);
         drawable.draw(canvas);
         canvas.drawText(this.D, (width - ((int) Math.ceil(textPaint.measureText(str)))) / 2, org.telegram.messenger.i0.L(31.0f) + y3, J);
         canvas.drawText(this.E, (width - ((int) Math.ceil(textPaint2.measureText(str2)))) / 2, org.telegram.messenger.i0.L(96.0f) + y3, K);
         canvas.drawText(this.F, (width - ((int) Math.ceil(textPaint3.measureText(str3)))) / 2, org.telegram.messenger.i0.L(125.0f) + y3, L);
-        if (this.f25052x) {
-            L0 = org.telegram.messenger.cd.L0(2131747822, null);
+        if (this.f25087x) {
+            L0 = org.telegram.messenger.dd.L0(2131747822, null);
             textPaint4 = O;
             L2 = 0;
         } else {
-            if (this.f25051w) {
-                L0 = org.telegram.messenger.cd.L0(2131752589, null).toUpperCase();
+            if (this.f25086w) {
+                L0 = org.telegram.messenger.dd.L0(2131752589, null).toUpperCase();
             } else {
-                L0 = org.telegram.messenger.cd.L0(2131744284, null);
+                L0 = org.telegram.messenger.dd.L0(2131744284, null);
             }
             L2 = org.telegram.messenger.i0.L(28.0f);
             textPaint4 = M;
@@ -146,50 +146,50 @@ public final class cc0 extends pj0 implements org.telegram.messenger.z5 {
             if (this.G != null) {
                 canvas.drawText(this.G, (width - ((int) Math.ceil(textPaint5.measureText(str4)))) / 2, org.telegram.messenger.i0.L(210.0f) + y3, N);
             }
-            int y11 = org.telegram.messenger.z20.y(240.0f, width, 2);
+            int y11 = org.telegram.messenger.a30.y(240.0f, width, 2);
             int L3 = org.telegram.messenger.i0.L(232.0f) + y3;
             Paint paint = I;
             paint.setColor(-10327179);
-            paint.setAlpha((int) (this.f25047f * 255.0f));
+            paint.setAlpha((int) (this.f25082f * 255.0f));
             float f7 = L3;
             canvas.drawRect(((int) (org.telegram.messenger.i0.L(240.0f) * this.e)) + y11, f7, org.telegram.messenger.i0.L(240.0f) + y11, org.telegram.messenger.i0.L(2.0f) + L3, paint);
             paint.setColor(-1);
-            paint.setAlpha((int) (this.f25047f * 255.0f));
+            paint.setAlpha((int) (this.f25082f * 255.0f));
             float f10 = y11;
             canvas.drawRect(f10, f7, (org.telegram.messenger.i0.L(240.0f) * this.e) + f10, org.telegram.messenger.i0.L(2.0f) + L3, paint);
             long currentTimeMillis = System.currentTimeMillis();
-            long j10 = currentTimeMillis - this.f25044a;
-            this.f25044a = currentTimeMillis;
+            long j10 = currentTimeMillis - this.f25079a;
+            this.f25079a = currentTimeMillis;
             float f11 = this.e;
             if (f11 != 1.0f) {
-                float f12 = this.f25045b;
+                float f12 = this.f25080b;
                 if (f11 != f12) {
-                    float f13 = this.f25046c;
+                    float f13 = this.f25081c;
                     float f14 = f12 - f13;
                     if (f14 > 0.0f) {
                         long j11 = this.d + j10;
                         this.d = j11;
                         if (j11 >= 300) {
                             this.e = f12;
-                            this.f25046c = f12;
+                            this.f25081c = f12;
                             this.d = 0L;
                         } else {
                             this.e = (P.getInterpolation(((float) j11) / 300.0f) * f14) + f13;
                         }
                     }
-                    this.f25048n.invalidate();
+                    this.f25083n.invalidate();
                 }
             }
             int i10 = (this.e > 1.0f ? 1 : (this.e == 1.0f ? 0 : -1));
             if (i10 >= 0 && i10 == 0) {
-                float f15 = this.f25047f;
+                float f15 = this.f25082f;
                 if (f15 != 0.0f) {
                     float f16 = f15 - (((float) j10) / 200.0f);
-                    this.f25047f = f16;
+                    this.f25082f = f16;
                     if (f16 <= 0.0f) {
-                        this.f25047f = 0.0f;
+                        this.f25082f = 0.0f;
                     }
-                    this.f25048n.invalidate();
+                    this.f25083n.invalidate();
                 }
             }
         }
@@ -198,27 +198,27 @@ public final class cc0 extends pj0 implements org.telegram.messenger.z5 {
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.f25048n.getMeasuredHeight();
+        return this.f25083n.getMeasuredHeight();
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f25048n.getMeasuredWidth();
+        return this.f25083n.getMeasuredWidth();
     }
 
     @Override
     public final int getMinimumHeight() {
-        return this.f25048n.getMeasuredHeight();
+        return this.f25083n.getMeasuredHeight();
     }
 
     @Override
     public final int getMinimumWidth() {
-        return this.f25048n.getMeasuredWidth();
+        return this.f25083n.getMeasuredWidth();
     }
 
     @Override
     public final int getObserverTag() {
-        return this.f25050s;
+        return this.f25085s;
     }
 
     @Override
@@ -236,7 +236,7 @@ public final class cc0 extends pj0 implements org.telegram.messenger.z5 {
 
     @Override
     public final void setAlpha(int i10) {
-        Drawable drawable = this.f25053y;
+        Drawable drawable = this.f25088y;
         if (drawable != null) {
             drawable.setAlpha(i10);
         }
@@ -254,6 +254,6 @@ public final class cc0 extends pj0 implements org.telegram.messenger.z5 {
     }
 
     @Override
-    public final void n(long j10, long j11) {
+    public final void o(long j10, long j11) {
     }
 }

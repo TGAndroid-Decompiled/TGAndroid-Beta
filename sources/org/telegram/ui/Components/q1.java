@@ -1,27 +1,27 @@
 package org.telegram.ui.Components;
 public final class q1 implements Runnable {
-    public final int f29487a;
-    public final org.telegram.messenger.zr f29488b;
+    public final int f29586a;
+    public final org.telegram.messenger.as f29587b;
 
-    public q1(org.telegram.messenger.zr zrVar, int i10) {
-        this.f29487a = i10;
-        this.f29488b = zrVar;
+    public q1(org.telegram.messenger.as asVar, int i10) {
+        this.f29586a = i10;
+        this.f29587b = asVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f29487a) {
+        switch (this.f29586a) {
             case 0:
-                org.telegram.messenger.zr zrVar = this.f29488b;
-                if (zrVar != null) {
-                    zrVar.i(false);
+                org.telegram.messenger.as asVar = this.f29587b;
+                if (asVar != null) {
+                    asVar.i(false);
                     return;
                 }
                 return;
             default:
-                org.telegram.messenger.zr zrVar2 = this.f29488b;
-                if (zrVar2 != null) {
-                    zrVar2.i(false);
+                org.telegram.messenger.as asVar2 = this.f29587b;
+                if (asVar2 != null) {
+                    asVar2.i(false);
                     return;
                 }
                 return;

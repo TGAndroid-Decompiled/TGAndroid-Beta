@@ -1,8 +1,8 @@
 package li;
 public final class y {
-    public long f12329a = Long.MIN_VALUE;
-    public long f12330b = Long.MIN_VALUE;
-    public long f12331c = Long.MIN_VALUE;
+    public long f12330a = Long.MIN_VALUE;
+    public long f12331b = Long.MIN_VALUE;
+    public long f12332c = Long.MIN_VALUE;
     public long d;
 
     public y(long j10) {
@@ -10,7 +10,7 @@ public final class y {
     }
 
     public final long a() {
-        long j10 = this.f12331c;
+        long j10 = this.f12332c;
         if (j10 == Long.MIN_VALUE) {
             return 0L;
         }

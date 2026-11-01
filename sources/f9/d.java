@@ -4,9 +4,9 @@ import j$.util.Objects;
 import v7.t6;
 public class d {
     public static final b d;
-    public final a f6968a;
-    public final Character f6969b;
-    public volatile d f6970c;
+    public final a f6969a;
+    public final Character f6970b;
+    public volatile d f6971c;
 
     static {
         new c("base64()", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/");
@@ -18,26 +18,26 @@ public class d {
 
     public d(a aVar, Character ch2) {
         boolean z10;
-        this.f6968a = aVar;
+        this.f6969a = aVar;
         if (ch2 != null) {
             char charValue = ch2.charValue();
-            byte[] bArr = aVar.f6967g;
+            byte[] bArr = aVar.f6968g;
             if (charValue < bArr.length && bArr[charValue] != -1) {
                 z10 = false;
                 t6.h(z10, "Padding character %s was already in alphabet", ch2);
-                this.f6969b = ch2;
+                this.f6970b = ch2;
             }
         }
         z10 = true;
         t6.h(z10, "Padding character %s was already in alphabet", ch2);
-        this.f6969b = ch2;
+        this.f6970b = ch2;
     }
 
     public final void a(StringBuilder sb2, byte[] bArr, int i10, int i11) {
         boolean z10;
         t6.n(i10, i10 + i11, bArr.length);
-        a aVar = this.f6968a;
-        int i12 = aVar.f6966f;
+        a aVar = this.f6969a;
+        int i12 = aVar.f6967f;
         int i13 = aVar.d;
         int i14 = 0;
         if (i11 <= i12) {
@@ -52,12 +52,12 @@ public class d {
         }
         int i16 = ((i11 + 1) * 8) - i13;
         while (i14 < i11 * 8) {
-            sb2.append(aVar.f6964b[((int) (j10 >>> (i16 - i14))) & aVar.f6965c]);
+            sb2.append(aVar.f6965b[((int) (j10 >>> (i16 - i14))) & aVar.f6966c]);
             i14 += i13;
         }
-        Character ch2 = this.f6969b;
+        Character ch2 = this.f6970b;
         if (ch2 != null) {
-            while (i14 < aVar.f6966f * 8) {
+            while (i14 < aVar.f6967f * 8) {
                 sb2.append(ch2.charValue());
                 i14 += i13;
             }
@@ -68,16 +68,16 @@ public class d {
         int i11 = 0;
         t6.n(0, i10, bArr.length);
         while (i11 < i10) {
-            a aVar = this.f6968a;
-            a(sb2, bArr, i11, Math.min(aVar.f6966f, i10 - i11));
-            i11 += aVar.f6966f;
+            a aVar = this.f6969a;
+            a(sb2, bArr, i11, Math.min(aVar.f6967f, i10 - i11));
+            i11 += aVar.f6967f;
         }
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof d) {
             d dVar = (d) obj;
-            if (this.f6968a.equals(dVar.f6968a) && Objects.equals(this.f6969b, dVar.f6969b)) {
+            if (this.f6969a.equals(dVar.f6969a) && Objects.equals(this.f6970b, dVar.f6970b)) {
                 return true;
             }
         }
@@ -85,15 +85,15 @@ public class d {
     }
 
     public final int hashCode() {
-        return this.f6968a.hashCode() ^ Objects.hashCode(this.f6969b);
+        return this.f6969a.hashCode() ^ Objects.hashCode(this.f6970b);
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("BaseEncoding.");
-        a aVar = this.f6968a;
+        a aVar = this.f6969a;
         sb2.append(aVar);
         if (8 % aVar.d != 0) {
-            Character ch2 = this.f6969b;
+            Character ch2 = this.f6970b;
             if (ch2 == null) {
                 sb2.append(".omitPadding()");
             } else {

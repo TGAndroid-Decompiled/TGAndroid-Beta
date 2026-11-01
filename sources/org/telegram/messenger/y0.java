@@ -6,12 +6,12 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public abstract class y0 {
     public static void a() {
-        w0.f19025b.getSharedPreferences("saved_tokens_login", 0).edit().clear().apply();
-        w0.f19025b.getSharedPreferences("saved_tokens", 0).edit().clear().apply();
+        w0.f18945b.getSharedPreferences("saved_tokens_login", 0).edit().clear().apply();
+        w0.f18945b.getSharedPreferences("saved_tokens", 0).edit().clear().apply();
     }
 
     public static ArrayList b() {
-        SharedPreferences sharedPreferences = w0.f19025b.getSharedPreferences("saved_tokens_login", 0);
+        SharedPreferences sharedPreferences = w0.f18945b.getSharedPreferences("saved_tokens_login", 0);
         int i10 = sharedPreferences.getInt("count", 0);
         if (i10 == 0) {
             return null;

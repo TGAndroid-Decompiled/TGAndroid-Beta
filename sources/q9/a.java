@@ -6,29 +6,29 @@ import p7.n;
 import w7.h0;
 public final class a extends o6.a {
     public static final Parcelable.Creator<a> CREATOR = new n(2);
-    public int f45496a;
-    public final boolean f45497b;
-    public final String f45498c;
+    public int f45507a;
+    public final boolean f45508b;
+    public final String f45509c;
     public final String d;
     public final byte[] e;
-    public final boolean f45499f;
+    public final boolean f45510f;
 
     public a() {
-        this.f45496a = 0;
-        this.f45497b = true;
-        this.f45498c = null;
+        this.f45507a = 0;
+        this.f45508b = true;
+        this.f45509c = null;
         this.d = null;
         this.e = null;
-        this.f45499f = false;
+        this.f45510f = false;
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("MetadataImpl { { eventStatus: '");
-        sb2.append(this.f45496a);
+        sb2.append(this.f45507a);
         sb2.append("' } { uploadable: '");
-        sb2.append(this.f45497b);
+        sb2.append(this.f45508b);
         sb2.append("' } ");
-        String str = this.f45498c;
+        String str = this.f45509c;
         if (str != null) {
             sb2.append("{ completionToken: '");
             sb2.append(str);
@@ -51,7 +51,7 @@ public final class a extends o6.a {
             sb2.append("] } ");
         }
         sb2.append("{ contextOnly: '");
-        sb2.append(this.f45499f);
+        sb2.append(this.f45510f);
         sb2.append("' } }");
         return sb2.toString();
     }
@@ -59,25 +59,25 @@ public final class a extends o6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = h0.q(parcel, 20293);
-        int i11 = this.f45496a;
+        int i11 = this.f45507a;
         h0.s(parcel, 1, 4);
         parcel.writeInt(i11);
         h0.s(parcel, 2, 4);
-        parcel.writeInt(this.f45497b ? 1 : 0);
-        h0.l(parcel, 3, this.f45498c);
+        parcel.writeInt(this.f45508b ? 1 : 0);
+        h0.l(parcel, 3, this.f45509c);
         h0.l(parcel, 4, this.d);
         h0.c(parcel, 5, this.e);
         h0.s(parcel, 6, 4);
-        parcel.writeInt(this.f45499f ? 1 : 0);
+        parcel.writeInt(this.f45510f ? 1 : 0);
         h0.r(parcel, q6);
     }
 
     public a(int i10, boolean z10, String str, String str2, byte[] bArr, boolean z11) {
-        this.f45496a = i10;
-        this.f45497b = z10;
-        this.f45498c = str;
+        this.f45507a = i10;
+        this.f45508b = z10;
+        this.f45509c = str;
         this.d = str2;
         this.e = bArr;
-        this.f45499f = z11;
+        this.f45510f = z11;
     }
 }

@@ -1,7 +1,7 @@
 package bi;
 
 import android.text.Editable;
-import org.telegram.messenger.tu;
+import org.telegram.messenger.uu;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.Components.kt;
@@ -75,10 +75,10 @@ public final class a3 implements w5, l1 {
                     textbutton.style = richButtonStyle;
                     Editable text2 = n1Var.getText();
                     if (text2 != null && text2.getSpanStart(u4Var) >= 0) {
-                        tu tuVar = u4Var.f3386b;
-                        if (tuVar != null && u4Var.f3387c == n1Var) {
-                            tuVar.h = null;
-                            tuVar.f18107a.f17780a.f(n1Var);
+                        uu uuVar = u4Var.f3386b;
+                        if (uuVar != null && u4Var.f3387c == n1Var) {
+                            uuVar.h = null;
+                            uuVar.f18476a.f18144a.f(n1Var);
                             u4Var.f3387c = null;
                         }
                         text2.removeSpan(u4Var);

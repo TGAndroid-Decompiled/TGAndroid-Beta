@@ -2,10 +2,10 @@ package org.telegram.ui.web;
 
 import android.webkit.DownloadListener;
 public final class u0 implements DownloadListener {
-    public final v0 f43201a;
+    public final v0 f43003a;
 
     public u0(v0 v0Var) {
-        this.f43201a = v0Var;
+        this.f43003a = v0Var;
     }
 
     @Override

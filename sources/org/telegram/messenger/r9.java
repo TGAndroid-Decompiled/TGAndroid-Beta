@@ -1,68 +1,56 @@
 package org.telegram.messenger;
 
+import android.util.LongSparseArray;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.ui.af0;
-public final class r9 implements j20 {
-    public final int f17709a;
-    public final long f17710b;
-    public final Object f17711c;
-    public final Object d;
+public final class r9 implements k20 {
+    public final int f17915a = 1;
+    public final long f17916b;
+    public final f1 f17917c;
 
-    public r9(Object obj, Object obj2, long j10, int i10) {
-        this.f17709a = i10;
-        this.f17711c = obj;
-        this.d = obj2;
-        this.f17710b = j10;
+    public r9(y9 y9Var, long j10) {
+        this.f17917c = y9Var;
+        this.f17916b = j10;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        switch (this.f17709a) {
+        int i10 = this.f17915a;
+        long j10 = this.f17916b;
+        f1 f1Var = this.f17917c;
+        switch (i10) {
             case 0:
+                y9 y9Var = (y9) f1Var;
                 TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState = (TL_payments.TL_StarGiftAuctionState) obj;
-                ((org.telegram.ui.Components.s2) this.d).a(((x9) this.f17711c).b(this.f17710b), (TLRPC.TL_error) obj2);
-                return;
-            case 1:
-                vp vpVar = (vp) this.f17711c;
-                yh.c0 c0Var = (yh.c0) this.d;
-                TLRPC.Bool bool = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                if (bool != null) {
-                    vpVar.T2(0, this.f17710b, true);
+                LongSparseArray longSparseArray = y9Var.e;
+                if (tL_StarGiftAuctionState != null) {
+                    y9Var.getMessagesController().V3(tL_StarGiftAuctionState.users, false);
+                    y9Var.getMessagesController().P3(tL_StarGiftAuctionState.chats, false);
                 }
-                c0Var.a(bool, tL_error);
-                return;
-            case 2:
-                vp vpVar2 = (vp) this.f17711c;
-                yh.c0 c0Var2 = (yh.c0) this.d;
-                TLRPC.Bool bool2 = (TLRPC.Bool) obj;
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                if (bool2 != null) {
-                    vpVar2.T2(0, this.f17710b, true);
-                }
-                c0Var2.a(bool2, tL_error2);
-                return;
-            default:
-                af0 af0Var = (af0) this.d;
-                TLRPC.auth_Authorization auth_authorization = (TLRPC.auth_Authorization) obj;
-                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
-                ((org.telegram.ui.ActionBar.x1) this.f17711c).dismiss();
-                long j10 = this.f17710b;
-                if (tL_error3 != null) {
-                    af0Var.a(Long.valueOf(j10), null, tL_error3.text);
+                if (tL_StarGiftAuctionState != null && !((Boolean) longSparseArray.get(j10, Boolean.FALSE)).booleanValue()) {
+                    longSparseArray.put(j10, Boolean.TRUE);
+                    y9Var.j(j10, new i10(y9Var, j10, tL_StarGiftAuctionState));
+                    return;
+                } else if (tL_StarGiftAuctionState != null) {
+                    y9Var.f(j10, tL_StarGiftAuctionState);
                     return;
                 } else {
-                    af0Var.a(Long.valueOf(j10), auth_authorization, null);
                     return;
                 }
+            default:
+                wp wpVar = (wp) f1Var;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                if (((TLRPC.Bool) obj) != null) {
+                    wpVar.T2(0, j10, true);
+                }
+                int i11 = org.telegram.ui.Components.vr.f31870z2;
+                return;
         }
     }
 
-    public r9(vp vpVar, long j10, j20 j20Var, int i10) {
-        this.f17709a = i10;
-        this.f17711c = vpVar;
-        this.f17710b = j10;
-        this.d = j20Var;
+    public r9(wp wpVar, long j10, z1 z1Var) {
+        this.f17917c = wpVar;
+        this.f17916b = j10;
     }
 }

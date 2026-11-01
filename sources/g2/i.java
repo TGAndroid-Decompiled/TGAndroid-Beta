@@ -15,14 +15,14 @@ import java.util.Collections;
 import java.util.concurrent.Callable;
 import org.webrtc.audio.WebRtcAudioRecord;
 public final class i implements Callable {
-    public final int f7298a;
-    public final Object f7299b;
-    public final Object f7300c;
+    public final int f7299a;
+    public final Object f7300b;
+    public final Object f7301c;
 
     public i(int i10, Object obj, Object obj2) {
-        this.f7298a = i10;
-        this.f7299b = obj;
-        this.f7300c = obj2;
+        this.f7299a = i10;
+        this.f7300b = obj;
+        this.f7301c = obj2;
     }
 
     @Override
@@ -33,21 +33,21 @@ public final class i implements Callable {
         String str2;
         int i10;
         ComponentName startService;
-        switch (this.f7298a) {
+        switch (this.f7299a) {
             case 0:
-                j jVar = (j) this.f7299b;
-                byte[] bArr = (byte[]) this.f7300c;
+                j jVar = (j) this.f7300b;
+                byte[] bArr = (byte[]) this.f7301c;
                 boolean z10 = jVar.d;
-                Bitmap b10 = e0.f0.b(bArr.length, jVar.f7303c, bArr);
+                Bitmap b10 = e0.f0.b(bArr.length, jVar.f7304c, bArr);
                 if (z10) {
                     return e0.f0.e(b10);
                 }
                 return b10;
             case 1:
-                j jVar2 = (j) this.f7299b;
-                Uri uri = (Uri) this.f7300c;
-                h createDataSource = jVar2.f7302b.createDataSource();
-                int i11 = jVar2.f7303c;
+                j jVar2 = (j) this.f7300b;
+                Uri uri = (Uri) this.f7301c;
+                h createDataSource = jVar2.f7303b.createDataSource();
+                int i11 = jVar2.f7304c;
                 boolean z11 = jVar2.d;
                 try {
                     n nVar = new n(uri, 1, null, Collections.EMPTY_MAP, 0L, -1L, null, 0);
@@ -77,11 +77,11 @@ public final class i implements Callable {
                     throw th2;
                 }
             case 2:
-                lambda$scheduleLogRecordingConfigurationsTask$0 = ((WebRtcAudioRecord) this.f7299b).lambda$scheduleLogRecordingConfigurationsTask$0((AudioRecord) this.f7300c);
+                lambda$scheduleLogRecordingConfigurationsTask$0 = ((WebRtcAudioRecord) this.f7300b).lambda$scheduleLogRecordingConfigurationsTask$0((AudioRecord) this.f7301c);
                 return lambda$scheduleLogRecordingConfigurationsTask$0;
             default:
-                Context context = (Context) this.f7299b;
-                Intent intent = (Intent) this.f7300c;
+                Context context = (Context) this.f7300b;
+                Intent intent = (Intent) this.f7301c;
                 xa.n D = xa.n.D();
                 D.getClass();
                 if (Log.isLoggable("FirebaseMessaging", 3)) {
@@ -92,17 +92,17 @@ public final class i implements Callable {
                 intent2.setPackage(context.getPackageName());
                 synchronized (D) {
                     try {
-                        str = (String) D.f53554a;
+                        str = (String) D.f53572a;
                         if (str == null) {
                             ResolveInfo resolveService = context.getPackageManager().resolveService(intent2, 0);
                             if (resolveService != null && (serviceInfo = resolveService.serviceInfo) != null) {
                                 if (context.getPackageName().equals(serviceInfo.packageName) && (str2 = serviceInfo.name) != null) {
                                     if (str2.startsWith(".")) {
-                                        D.f53554a = context.getPackageName() + serviceInfo.name;
+                                        D.f53572a = context.getPackageName() + serviceInfo.name;
                                     } else {
-                                        D.f53554a = serviceInfo.name;
+                                        D.f53572a = serviceInfo.name;
                                     }
-                                    str = (String) D.f53554a;
+                                    str = (String) D.f53572a;
                                 }
                                 Log.e("FirebaseMessaging", "Error resolving target intent service, skipping classname enforcement. Resolved service was: " + serviceInfo.packageName + "/" + serviceInfo.name);
                                 str = null;

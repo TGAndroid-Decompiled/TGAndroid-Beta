@@ -1,28 +1,34 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Canvas;
 import android.view.View;
-public final class go0 implements o1.g {
-    public final int f26485a;
-    public final int[] f26486b;
-    public final org.telegram.messenger.us f26487c;
-    public final View d;
+import org.telegram.messenger.Utilities;
+public final class go0 {
+    public final zt f26513a;
+    public final long f26514b;
+    public final float f26515c;
+    public final float d;
+    public final float e;
 
-    public go0(org.telegram.messenger.us usVar, View view, int[] iArr, int i10) {
-        this.f26485a = i10;
-        this.f26487c = usVar;
-        this.d = view;
-        this.f26486b = iArr;
+    public go0(View view) {
+        zt ztVar = new zt(1, view);
+        this.f26514b = System.currentTimeMillis();
+        this.f26513a = ztVar;
+        d5.a aVar = Utilities.f14521c;
+        this.f26515c = org.telegram.messenger.i0.T1(5.0f, 9.0f, Utilities.l(aVar.nextFloat()));
+        this.d = org.telegram.messenger.i0.T1(2.5f, 5.0f, Utilities.l(aVar.nextFloat()));
+        this.e = org.telegram.messenger.i0.T1(2.5f, 5.2f, Utilities.l(aVar.nextFloat()));
     }
 
-    @Override
-    public final void a(o1.j jVar, float f7, float f10) {
-        switch (this.f26485a) {
-            case 0:
-                ((op0) this.f26487c).Q0((org.telegram.ui.Cells.h7) this.d, this.f26486b, f7 / 1000.0f);
-                return;
-            default:
-                ((xo0) this.f26487c).d.Q0(this.d, this.f26486b, f7 / 1000.0f);
-                return;
+    public final void a(Canvas canvas, float f7) {
+        zt ztVar;
+        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.f26514b)) / 1000.0f;
+        canvas.translate(0.0f, 0.0f);
+        canvas.rotate(((float) Math.sin(this.f26515c * currentTimeMillis * 3.141592653589793d)) * 1.0f * f7);
+        canvas.translate(((float) Math.cos(this.d * currentTimeMillis * 3.141592653589793d)) * org.telegram.messenger.i0.L(0.5f) * f7, ((float) Math.sin(currentTimeMillis * this.e * 3.141592653589793d)) * org.telegram.messenger.i0.L(0.5f) * f7);
+        canvas.translate(-0.0f, -0.0f);
+        if (f7 > 0.0f && (ztVar = this.f26513a) != null) {
+            ztVar.run();
         }
     }
 }

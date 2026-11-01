@@ -13,34 +13,34 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import org.telegram.messenger.cd;
+import org.telegram.messenger.a20;
+import org.telegram.messenger.a30;
+import org.telegram.messenger.dd;
 import org.telegram.messenger.m5;
-import org.telegram.messenger.q20;
-import org.telegram.messenger.vp;
-import org.telegram.messenger.z10;
-import org.telegram.messenger.z20;
+import org.telegram.messenger.r20;
+import org.telegram.messenger.wp;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.a7;
 import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.ActionBar.w6;
 import org.telegram.ui.Cells.ma;
-import org.telegram.ui.Components.a51;
+import org.telegram.ui.Components.b51;
 import org.telegram.ui.Components.bl;
 import org.telegram.ui.Components.cc;
 import org.telegram.ui.Components.gz;
 import org.telegram.ui.Components.ii;
-import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.l61;
 import org.telegram.ui.Components.oe0;
 import org.telegram.ui.Components.ra;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Wallet.WalletEngine2;
 import org.telegram.ui.Wallet.ba;
-import org.telegram.ui.i50;
+import org.telegram.ui.h50;
 import vh.k4;
 import vh.n5;
 import w7.b6;
 import w7.e6;
-public final class s2 implements q20 {
+public final class s2 implements r20 {
     public final int f705a;
     public final int f706b;
     public final Object f707c;
@@ -67,7 +67,7 @@ public final class s2 implements q20 {
         switch (i11) {
             case 0:
                 z2 z2Var = (z2) ((e) obj2).f489b;
-                z2.b0(z2Var);
+                z2.c0(z2Var);
                 i10 = ((org.telegram.ui.ActionBar.k2) z2Var).currentAccount;
                 i3.f(i10).k(i12, (String) obj);
                 return;
@@ -95,30 +95,30 @@ public final class s2 implements q20 {
                         textView.setTypeface(org.telegram.messenger.i0.o());
                         textView.setTextSize(1, 20.0f);
                         textView.setGravity(17);
-                        textView.setText(cd.G(arrayList.size(), "UnconfirmedAuthDeniedTitle", new Object[0]));
-                        a7.V(textView, t6.f21037j5, null);
+                        textView.setText(dd.G(arrayList.size(), "UnconfirmedAuthDeniedTitle", new Object[0]));
+                        a7.V(textView, t6.f21038j5, null);
                         linearLayout.addView(textView, b6.k(28.0f, 14.0f, 28.0f, 0.0f, -1, -2));
                         TextView textView2 = new TextView(maVar.getContext());
                         textView2.setTextSize(1, 14.0f);
                         textView2.setGravity(17);
                         if (arrayList.size() == 1) {
-                            textView2.setText(cd.a0(null, null, 2131743930, ma.a((z10) arrayList.get(0))));
+                            textView2.setText(dd.a0(null, null, 2131743930, ma.a((a20) arrayList.get(0))));
                         } else {
                             String str2 = "\n";
                             for (int i14 = 0; i14 < Math.min(arrayList.size(), 10); i14++) {
                                 StringBuilder i15 = sc.e.i(str2, "• ");
-                                i15.append(ma.a((z10) arrayList.get(i14)));
+                                i15.append(ma.a((a20) arrayList.get(i14)));
                                 i15.append("\n");
                                 str2 = i15.toString();
                             }
-                            textView2.setText(cd.a0(null, null, 2131743931, str2));
+                            textView2.setText(dd.a0(null, null, 2131743931, str2));
                         }
-                        a7.V(textView2, t6.f21037j5, null);
+                        a7.V(textView2, t6.f21038j5, null);
                         linearLayout.addView(textView2, b6.k(40.0f, 9.0f, 40.0f, 0.0f, -1, -2));
                         FrameLayout frameLayout = new FrameLayout(maVar.getContext());
                         frameLayout.setPadding(org.telegram.messenger.i0.L(24.0f), org.telegram.messenger.i0.L(10.0f), org.telegram.messenger.i0.L(24.0f), org.telegram.messenger.i0.L(10.0f));
                         int L3 = org.telegram.messenger.i0.L(12.0f);
-                        int i16 = t6.f21170q7;
+                        int i16 = t6.f21171q7;
                         int x02 = t6.x0(null, i16, false);
                         float f10 = 0.15f;
                         if (t6.I.q()) {
@@ -137,26 +137,26 @@ public final class s2 implements q20 {
                         textView3.setTypeface(org.telegram.messenger.i0.o());
                         textView3.setTextSize(1, 14.0f);
                         textView3.setGravity(17);
-                        z20.p(textView3, i16, null, null, 2131743926);
+                        a30.p(textView3, i16, null, null, 2131743926);
                         frameLayout.addView(textView3, b6.e(-1, -1, 119));
                         linearLayout.addView(frameLayout, b6.k(14.0f, 19.0f, 14.0f, 0.0f, -1, -2));
                         vh.d dVar = new vh.d(maVar.getContext(), null, true);
                         dVar.setRoundRadius(24);
                         e6.b(dVar, 0.02f, 1.5f);
-                        dVar.i(cd.L0(2131749540, null), false, true);
+                        dVar.i(dd.L0(2131749540, null), false, true);
                         linearLayout.addView(dVar, b6.k(14.0f, 20.0f, 14.0f, 4.0f, -1, 48));
                         org.telegram.ui.ActionBar.z2 k10 = m5.k(1, maVar.getContext(), null, false);
                         k10.N = linearLayout;
                         k10.show();
-                        k10.f21587b0 = false;
-                        k10.f21590c0 = false;
+                        k10.f21588b0 = false;
+                        k10.f21591c0 = false;
                         org.telegram.ui.Cells.f fVar = new org.telegram.ui.Cells.f(k10, 11);
                         org.telegram.messenger.i0.r(dVar.J);
                         dVar.setCountFilled(false);
                         dVar.I = 5;
                         dVar.c(5, false);
                         dVar.setShowZero(false);
-                        th.o0 o0Var = new th.o0(28, dVar, fVar);
+                        th.o0 o0Var = new th.o0(29, dVar, fVar);
                         dVar.J = o0Var;
                         org.telegram.messenger.i0.h3(o0Var, 1000L);
                         dVar.setOnClickListener(new org.telegram.ui.Cells.c3(dVar, k10, 1));
@@ -165,40 +165,40 @@ public final class s2 implements q20 {
                     }
                 }
                 maVar.e.a(false, true);
-                vp.r1(i12).T1().a();
+                wp.r1(i12).T1().a();
                 return;
             case 2:
                 bl blVar = (bl) obj2;
                 TLRPC.TL_messageMediaGeoLive tL_messageMediaGeoLive = new TLRPC.TL_messageMediaGeoLive();
                 TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
                 tL_messageMediaGeoLive.geo = tL_geoPoint;
-                tL_geoPoint.lat = org.telegram.messenger.i0.b0(blVar.f24808n0.getLatitude());
-                tL_messageMediaGeoLive.geo._long = org.telegram.messenger.i0.b0(blVar.f24808n0.getLongitude());
+                tL_geoPoint.lat = org.telegram.messenger.i0.b0(blVar.f24863n0.getLatitude());
+                tL_messageMediaGeoLive.geo._long = org.telegram.messenger.i0.b0(blVar.f24863n0.getLongitude());
                 tL_messageMediaGeoLive.period = i12;
-                blVar.f24817u0.d(tL_messageMediaGeoLive, blVar.f24818v0, true, 0, ((Long) obj).longValue());
-                blVar.f30947b.a(true);
+                blVar.f24872u0.d(tL_messageMediaGeoLive, blVar.f24873v0, true, 0, ((Long) obj).longValue());
+                blVar.f30964b.a(true);
                 return;
             case 3:
-                i50.k1((i50) obj2, i12, (org.telegram.messenger.h3) obj);
+                h50.l1((h50) obj2, i12, (org.telegram.messenger.h3) obj);
                 return;
             case 4:
-                q20 q20Var = (q20) obj2;
+                r20 r20Var = (r20) obj2;
                 Long l4 = (Long) obj;
                 if (l4 != null && l4.longValue() > 0 && l4.longValue() != Long.MAX_VALUE) {
-                    user = vp.r1(i12).Z1(l4);
+                    user = wp.r1(i12).Z1(l4);
                 }
-                q20Var.a(user);
+                r20Var.a(user);
                 return;
             case 5:
                 ba baVar = (ba) obj2;
                 String str3 = (String) obj;
-                if (!baVar.f34285r && i12 == baVar.J) {
+                if (!baVar.f34287r && i12 == baVar.J) {
                     baVar.E = 0;
                     baVar.L = false;
                     if (WalletEngine2.isValidRecipientAddress(str3)) {
                         str = WalletEngine2.toUserFriendlyAddress(str3);
                     }
-                    baVar.f34289y = str;
+                    baVar.f34291y = str;
                     vh.d dVar2 = baVar.Z;
                     if (dVar2 != null) {
                         if (str != null) {
@@ -206,18 +206,18 @@ public final class s2 implements q20 {
                         }
                         dVar2.setEnabled(z11);
                     }
-                    baVar.f29837a.f30819f3.O(true);
+                    baVar.f30217a.f31183f3.O(true);
                     return;
                 }
                 return;
             case 6:
                 vh.y2 y2Var = (vh.y2) obj2;
                 View view = (View) obj;
-                ii iiVar = y2Var.f52192b;
+                ii iiVar = y2Var.f52207b;
                 if (view instanceof vh.x2) {
                     iiVar.getClass();
                     int R = RecyclerView.R(view);
-                    a51 G = iiVar.f30819f3.G(R);
+                    b51 G = iiVar.f31183f3.G(R);
                     if (G != null) {
                         vh.x2 x2Var = (vh.x2) view;
                         x2Var.setPosition(y2Var.b(R));
@@ -245,23 +245,23 @@ public final class s2 implements q20 {
                 n5Var.B0 = i18;
                 k4Var.T.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, i12, iArr, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
                 k4Var.invalidate();
-                k61 k61Var = k4Var.f51417n;
-                if (k61Var != null) {
+                l61 l61Var = k4Var.f51432n;
+                if (l61Var != null) {
                     int i19 = k4Var.U;
                     int i20 = k4Var.V;
-                    gz gzVar = k61Var.f27647b;
+                    gz gzVar = l61Var.f28063b;
                     if (gzVar == null) {
-                        k61Var.f27650n = i19;
-                        k61Var.f27651r = i20;
+                        l61Var.f28066n = i19;
+                        l61Var.f28067r = i20;
                     } else {
                         gzVar.h(i19, i20);
                     }
                 }
-                oe0 oe0Var = k4Var.f51424s;
+                oe0 oe0Var = k4Var.f51439s;
                 if (oe0Var != null) {
                     int i21 = k4Var.U;
                     int i22 = k4Var.V;
-                    gz gzVar2 = oe0Var.f29051l0;
+                    gz gzVar2 = oe0Var.f29112l0;
                     if (gzVar2 != null) {
                         gzVar2.h(i21, i22);
                         return;
@@ -274,9 +274,9 @@ public final class s2 implements q20 {
         }
     }
 
-    public s2(q20 q20Var, int i10) {
+    public s2(r20 r20Var, int i10) {
         this.f705a = 4;
         this.f706b = i10;
-        this.f707c = q20Var;
+        this.f707c = r20Var;
     }
 }

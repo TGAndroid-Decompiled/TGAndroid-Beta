@@ -1,25 +1,389 @@
 package org.telegram.ui;
 
-import android.text.TextPaint;
-import android.text.style.URLSpan;
-import android.view.View;
-public final class ox0 extends URLSpan {
-    public final String f40389a;
-    public final xx0 f40390b;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import java.io.File;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.video.MediaCodecVideoConvertor;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ox0 implements Runnable {
+    public final int f40282a;
+    public final Object f40283b;
+    public final Object f40284c;
+    public final Object d;
+    public final Object e;
 
-    public ox0(xx0 xx0Var, String str, String str2) {
-        super(str);
-        this.f40390b = xx0Var;
-        this.f40389a = str2;
+    public ox0(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
+        this.f40282a = i10;
+        this.f40284c = obj;
+        this.d = obj2;
+        this.e = obj3;
+        this.f40283b = obj4;
+    }
+
+    private final void a() {
+        vh.k4 k4Var = (vh.k4) this.f40284c;
+        Bitmap[] bitmapArr = (Bitmap[]) this.d;
+        vh.n5 n5Var = (vh.n5) this.e;
+        boolean[] zArr = (boolean[]) this.f40283b;
+        org.telegram.ui.Components.s9 s9Var = k4Var.G;
+        Bitmap bitmap = k4Var.f51416a;
+        if (bitmap != null && !bitmap.isRecycled()) {
+            k4Var.f51416a.recycle();
+        }
+        Bitmap bitmap2 = bitmapArr[0];
+        k4Var.f51416a = bitmap2;
+        if (n5Var != null && !n5Var.f51535c && n5Var.K && bitmap2 != null) {
+            n5Var.f51552k0 = bitmap2.getWidth();
+            n5Var.f51554l0 = k4Var.f51416a.getHeight();
+            n5Var.A();
+        }
+        if (zArr[0] && n5Var != null && s9Var != null && k4Var.f51416a != null) {
+            s9Var.e();
+            s9Var.f(n5Var.b(0.2f, k4Var.f51416a), false);
+            vh.y6 y6Var = k4Var.f51444w;
+            if (y6Var != null) {
+                y6Var.run();
+            }
+        }
+        k4Var.r();
+        k4Var.invalidate();
+    }
+
+    private final void b() {
+        String path;
+        String path2;
+        String path3;
+        String path4;
+        int i10;
+        long j10;
+        float f7;
+        float f10;
+        int i11;
+        long j11;
+        long j12;
+        int[] iArr;
+        int i12;
+        String path5;
+        ArrayList arrayList;
+        vh.n5 n5Var = (vh.n5) this.f40284c;
+        String str = (String) this.d;
+        int[][] iArr2 = (int[][]) this.e;
+        org.telegram.messenger.r20 r20Var = (org.telegram.messenger.r20) this.f40283b;
+        n5Var.getClass();
+        org.telegram.messenger.y20 y20Var = new org.telegram.messenger.y20();
+        char c10 = 1;
+        y20Var.J = true;
+        y20Var.f19527a0 = n5Var.f51537c1;
+        y20Var.h = n5Var.f51552k0;
+        y20Var.f19533i = n5Var.f51554l0;
+        y20Var.f19535k = n5Var.f51548i0;
+        y20Var.f19536l = n5Var.f51550j0;
+        File file = n5Var.P0;
+        if (file == null) {
+            path = null;
+        } else {
+            path = file.getPath();
+        }
+        y20Var.B = path;
+        File file2 = n5Var.W0;
+        if (file2 == null) {
+            path2 = null;
+        } else {
+            path2 = file2.getPath();
+        }
+        y20Var.D = path2;
+        File file3 = n5Var.X0;
+        if (file3 == null) {
+            path3 = null;
+        } else {
+            path3 = file3.getPath();
+        }
+        y20Var.E = path3;
+        File file4 = n5Var.Y0;
+        if (file4 == null) {
+            path4 = null;
+        } else {
+            path4 = file4.getPath();
+        }
+        y20Var.F = path4;
+        int v = MediaController.v(y20Var.f19535k, y20Var.f19536l, y20Var.f19537m, true);
+        if (n5Var.K && str != null && !n5Var.v()) {
+            y20Var.f19539o = str;
+            y20Var.I = false;
+            y20Var.f19538n = Math.min(59, iArr2[0][7]);
+            int E = MediaController.E(str);
+            if (E == -1) {
+                E = iArr2[0][3];
+            }
+            y20Var.f19534j = E;
+            if (E < 1000000 && (arrayList = n5Var.T0) != null && !arrayList.isEmpty()) {
+                y20Var.f19537m = 2000000;
+                y20Var.f19534j = -1;
+            } else {
+                int i13 = y20Var.f19534j;
+                if (i13 < 500000) {
+                    y20Var.f19537m = 2500000;
+                    y20Var.f19534j = -1;
+                } else {
+                    y20Var.f19537m = Utilities.j(i13, 3000000, 500000);
+                }
+            }
+            StringBuilder sb2 = new StringBuilder("story bitrate, original = ");
+            sb2.append(y20Var.f19534j);
+            sb2.append(" => ");
+            i0.a.p(y20Var.f19537m, sb2);
+            long j13 = iArr2[0][4];
+            n5Var.f51546h0 = j13;
+            y20Var.v = j13 * 1000;
+            float f11 = (float) j13;
+            long j14 = n5Var.Z * f11 * 1000;
+            y20Var.f19526a = j14;
+            long j15 = n5Var.f51530a0 * f11 * 1000;
+            y20Var.f19528b = j15;
+            y20Var.f19542r = j15 - j14;
+            y20Var.f19545u = n5Var.P;
+            y20Var.f19544t = n5Var.Y;
+            y20Var.f19541q = a1.g.A(i12 / 1000.0f, v, 8.0f, iArr[5]);
+            y20Var.f19541q = Math.max(n5Var.L.length(), y20Var.f19541q);
+            y20Var.A = n5Var.f51531a1;
+            File file5 = n5Var.Q0;
+            if (file5 == null) {
+                path5 = null;
+            } else {
+                path5 = file5.getPath();
+            }
+            y20Var.C = path5;
+            j10 = 0;
+        } else {
+            File file6 = n5Var.Z0;
+            if (file6 != null) {
+                y20Var.f19539o = file6.getAbsolutePath();
+            } else {
+                y20Var.f19539o = str;
+            }
+            y20Var.I = true;
+            y20Var.L = n5Var.S;
+            if (n5Var.v()) {
+                int i14 = 0;
+                boolean z10 = false;
+                while (i14 < n5Var.T.size()) {
+                    vh.n5 n5Var2 = (vh.n5) n5Var.T.get(i14);
+                    if (n5Var2.K) {
+                        n5Var2.f51552k0 = Math.max(n5Var2.f51552k0, iArr2[i14][c10]);
+                        n5Var2.f51554l0 = Math.max(n5Var2.f51554l0, iArr2[i14][2]);
+                        i11 = v;
+                        n5Var2.f51546h0 = Math.max(n5Var2.f51546h0, iArr2[i14][4]);
+                        z10 = true;
+                    } else {
+                        i11 = v;
+                    }
+                    i14++;
+                    v = i11;
+                    c10 = 1;
+                }
+                i10 = v;
+                ArrayList a2 = org.telegram.messenger.x20.a(n5Var);
+                y20Var.M = a2;
+                if (!z10) {
+                    long j16 = n5Var.S0;
+                    n5Var.f51546h0 = j16;
+                    y20Var.v = j16;
+                    y20Var.f19542r = j16;
+                } else {
+                    int size = a2.size();
+                    long j17 = 0;
+                    org.telegram.messenger.x20 x20Var = null;
+                    int i15 = 0;
+                    while (i15 < size) {
+                        Object obj = a2.get(i15);
+                        i15++;
+                        org.telegram.messenger.x20 x20Var2 = (org.telegram.messenger.x20) obj;
+                        if (x20Var2.f19381b) {
+                            long j18 = x20Var2.f19389o;
+                            if (j18 > j17) {
+                                x20Var = x20Var2;
+                                j17 = j18;
+                            }
+                        }
+                    }
+                    if (x20Var != null) {
+                        long j19 = (x20Var.f19386k - x20Var.f19385j) * ((float) x20Var.f19389o);
+                        n5Var.f51546h0 = j19;
+                        y20Var.v = j19;
+                        y20Var.f19542r = j19;
+                        j10 = -(x20Var.f19383f + (f10 * f7));
+                        x20Var.f19383f = j10;
+                        ArrayList arrayList2 = y20Var.M;
+                        int size2 = arrayList2.size();
+                        int i16 = 0;
+                        while (i16 < size2) {
+                            Object obj2 = arrayList2.get(i16);
+                            i16++;
+                            org.telegram.messenger.x20 x20Var3 = (org.telegram.messenger.x20) obj2;
+                            if (x20Var3.f19381b && x20Var3 != x20Var) {
+                                x20Var3.f19383f += j10;
+                            }
+                        }
+                        y20Var.f19526a = -1L;
+                        y20Var.f19528b = -1L;
+                        y20Var.f19544t = true;
+                        y20Var.f19534j = -1;
+                        y20Var.f19545u = 1.0f;
+                        y20Var.f19537m = -1;
+                        y20Var.f19538n = 30;
+                        y20Var.f19541q = ((((float) n5Var.f51546h0) / 1000.0f) * i10) / 8.0f;
+                        y20Var.A = null;
+                    }
+                }
+            } else {
+                i10 = v;
+                if (n5Var.f51559o0 != null) {
+                    long j20 = (n5Var.f51569t0 - n5Var.f51567s0) * ((float) n5Var.f51563q0);
+                    n5Var.f51546h0 = j20;
+                    y20Var.v = j20;
+                    y20Var.f19542r = j20;
+                } else if (n5Var.f51577y != null) {
+                    long j21 = (n5Var.F - n5Var.E) * ((float) n5Var.C);
+                    n5Var.f51546h0 = j21;
+                    y20Var.v = j21;
+                    y20Var.f19542r = j21;
+                } else {
+                    long j22 = n5Var.S0;
+                    n5Var.f51546h0 = j22;
+                    y20Var.v = j22;
+                    y20Var.f19542r = j22;
+                }
+            }
+            j10 = 0;
+            y20Var.f19526a = -1L;
+            y20Var.f19528b = -1L;
+            y20Var.f19544t = true;
+            y20Var.f19534j = -1;
+            y20Var.f19545u = 1.0f;
+            y20Var.f19537m = -1;
+            y20Var.f19538n = 30;
+            y20Var.f19541q = ((((float) n5Var.f51546h0) / 1000.0f) * i10) / 8.0f;
+            y20Var.A = null;
+        }
+        y20Var.S = n5Var.f51529a;
+        y20Var.U = n5Var.f51580z0;
+        y20Var.T = n5Var.f51578y0;
+        y20Var.f19530c = -1L;
+        org.telegram.messenger.ze zeVar = n5Var.m0;
+        if (zeVar != null) {
+            y20Var.H = zeVar.clone();
+        } else {
+            y20Var.H = new org.telegram.messenger.ze();
+        }
+        y20Var.H.B = new Matrix();
+        y20Var.H.B.set(n5Var.f51557n0);
+        y20Var.G = n5Var.T0;
+        y20Var.Q = Integer.valueOf(n5Var.A0);
+        y20Var.R = Integer.valueOf(n5Var.B0);
+        y20Var.V = true;
+        y20Var.K = n5Var.f51539d1;
+        y20Var.f19529b0.clear();
+        if (n5Var.v() && !n5Var.Y) {
+            ArrayList arrayList3 = y20Var.M;
+            int size3 = arrayList3.size();
+            int i17 = 0;
+            while (i17 < size3) {
+                Object obj3 = arrayList3.get(i17);
+                i17++;
+                org.telegram.messenger.x20 x20Var4 = (org.telegram.messenger.x20) obj3;
+                if (x20Var4.f19381b && x20Var4.e > 0.0f && !x20Var4.f19382c) {
+                    MediaCodecVideoConvertor.MixedSoundInfo mixedSoundInfo = new MediaCodecVideoConvertor.MixedSoundInfo(x20Var4.d);
+                    mixedSoundInfo.volume = x20Var4.e;
+                    float f12 = x20Var4.f19385j;
+                    float f13 = (float) x20Var4.f19389o;
+                    mixedSoundInfo.audioOffset = f12 * f13 * 1000;
+                    mixedSoundInfo.startTime = x20Var4.f19383f * 1000;
+                    mixedSoundInfo.duration = (x20Var4.f19386k - f12) * f13 * 1000;
+                    y20Var.f19529b0.add(mixedSoundInfo);
+                }
+            }
+        }
+        File file7 = n5Var.f51559o0;
+        if (file7 != null) {
+            MediaCodecVideoConvertor.MixedSoundInfo mixedSoundInfo2 = new MediaCodecVideoConvertor.MixedSoundInfo(file7.getAbsolutePath());
+            mixedSoundInfo2.volume = n5Var.f51571u0;
+            float f14 = n5Var.f51567s0;
+            float f15 = (float) n5Var.f51563q0;
+            long j23 = f14 * f15 * 1000;
+            mixedSoundInfo2.audioOffset = j23;
+            if (n5Var.K) {
+                mixedSoundInfo2.startTime = (((float) n5Var.f51565r0) - (n5Var.Z * ((float) n5Var.f51546h0))) * 1000;
+                j12 = 0;
+            } else {
+                j12 = 0;
+                mixedSoundInfo2.startTime = 0L;
+            }
+            long j24 = mixedSoundInfo2.startTime + j10;
+            mixedSoundInfo2.startTime = j24;
+            if (j24 < j12) {
+                mixedSoundInfo2.audioOffset = j23 - j24;
+                mixedSoundInfo2.startTime = j12;
+            }
+            mixedSoundInfo2.duration = (n5Var.f51569t0 - f14) * f15 * 1000;
+            y20Var.f19529b0.add(mixedSoundInfo2);
+        }
+        String str2 = n5Var.f51577y;
+        if (str2 != null) {
+            MediaCodecVideoConvertor.MixedSoundInfo mixedSoundInfo3 = new MediaCodecVideoConvertor.MixedSoundInfo(str2);
+            mixedSoundInfo3.volume = n5Var.G;
+            float f16 = n5Var.E;
+            float f17 = (float) n5Var.C;
+            long j25 = f16 * f17 * 1000;
+            mixedSoundInfo3.audioOffset = j25;
+            if (n5Var.K) {
+                mixedSoundInfo3.startTime = (((float) n5Var.D) - (n5Var.Z * ((float) n5Var.f51546h0))) * 1000;
+                j11 = 0;
+            } else {
+                j11 = 0;
+                mixedSoundInfo3.startTime = 0L;
+            }
+            long j26 = mixedSoundInfo3.startTime + j10;
+            mixedSoundInfo3.startTime = j26;
+            if (j26 < j11) {
+                mixedSoundInfo3.audioOffset = j25 - j26;
+                mixedSoundInfo3.startTime = j11;
+            }
+            mixedSoundInfo3.duration = (n5Var.F - f16) * f17 * 1000;
+            y20Var.f19529b0.add(mixedSoundInfo3);
+        }
+        r20Var.a(y20Var);
     }
 
     @Override
-    public final void onClick(View view) {
-        gf.f.r(this.f40390b.e.getParentActivity(), this.f40389a);
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ox0.run():void");
     }
 
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setUnderlineText(true);
+    public ox0(Object obj, Object obj2, TLRPC.TL_error tL_error, Object obj3, int i10) {
+        this.f40282a = i10;
+        this.f40284c = obj;
+        this.d = obj2;
+        this.f40283b = tL_error;
+        this.e = obj3;
+    }
+
+    public ox0(Object obj, TLRPC.TL_error tL_error, Object obj2, Object obj3, int i10) {
+        this.f40282a = i10;
+        this.f40284c = obj;
+        this.f40283b = tL_error;
+        this.d = obj2;
+        this.e = obj3;
+    }
+
+    public ox0(TwoStepVerificationActivity twoStepVerificationActivity, byte[] bArr, TLObject tLObject, byte[] bArr2) {
+        this.f40282a = 8;
+        this.f40284c = twoStepVerificationActivity;
+        this.e = bArr;
+        this.d = tLObject;
+        this.f40283b = bArr2;
     }
 }

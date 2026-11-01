@@ -2,35 +2,35 @@ package org.telegram.ui.Components;
 
 import android.animation.ValueAnimator;
 public final class c20 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f24957a;
-    public final g20 f24958b;
+    public final int f24985a;
+    public final g20 f24986b;
 
     public c20(g20 g20Var, int i10) {
-        this.f24957a = i10;
-        this.f24958b = g20Var;
+        this.f24985a = i10;
+        this.f24986b = g20Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f24957a) {
+        switch (this.f24985a) {
             case 0:
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                g20 g20Var = this.f24958b;
-                g20Var.f26234r.x = (int) floatValue;
+                g20 g20Var = this.f24986b;
+                g20Var.f26306r.x = (int) floatValue;
                 g20Var.h();
-                e20 e20Var = g20Var.f26226a;
+                e20 e20Var = g20Var.f26298a;
                 if (e20Var.getParent() != null) {
-                    g20Var.f26233n.updateViewLayout(e20Var, g20Var.f26234r);
+                    g20Var.f26305n.updateViewLayout(e20Var, g20Var.f26306r);
                     return;
                 }
                 return;
             default:
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                g20 g20Var2 = this.f24958b;
-                g20Var2.f26234r.y = (int) floatValue2;
-                e20 e20Var2 = g20Var2.f26226a;
+                g20 g20Var2 = this.f24986b;
+                g20Var2.f26306r.y = (int) floatValue2;
+                e20 e20Var2 = g20Var2.f26298a;
                 if (e20Var2.getParent() != null) {
-                    g20Var2.f26233n.updateViewLayout(e20Var2, g20Var2.f26234r);
+                    g20Var2.f26305n.updateViewLayout(e20Var2, g20Var2.f26306r);
                     return;
                 }
                 return;

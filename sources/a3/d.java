@@ -18,13 +18,13 @@ import java.nio.MappedByteBuffer;
 import java.util.Iterator;
 import java.util.Locale;
 import m.p3;
+import org.telegram.messenger.at;
 import org.telegram.messenger.voip.GroupCallMessage;
-import org.telegram.messenger.zs;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.Cells.k3;
 import org.telegram.ui.Cells.m3;
 import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.p51;
+import org.telegram.ui.Components.q51;
 import org.telegram.ui.LaunchActivity;
 import v7.r6;
 import v7.x7;
@@ -54,17 +54,17 @@ public final class d implements Runnable {
                         }
                     }
                     if (i10 == 0) {
-                        int i11 = n0.g.f13407a;
+                        int i11 = n0.g.f13408a;
                         Trace.beginSection("EmojiCompat.FontRequestEmojiCompatConfig.buildTypeface");
                         jb.b bVar = qVar.f1407c;
                         Context context = qVar.f1405a;
                         bVar.getClass();
                         o0.h[] hVarArr = {d};
-                        x7 x7Var = i0.f.f7771a;
+                        x7 x7Var = i0.f.f7772a;
                         m8.a("TypefaceCompat.createFromFontInfo");
-                        Typeface b10 = i0.f.f7771a.b(context, hVarArr, 0);
+                        Typeface b10 = i0.f.f7772a.b(context, hVarArr, 0);
                         Trace.endSection();
-                        MappedByteBuffer e = y7.e(qVar.f1405a, d.f13925a);
+                        MappedByteBuffer e = y7.e(qVar.f1405a, d.f13926a);
                         if (e != null && b10 != null) {
                             Trace.beginSection("EmojiCompat.MetadataRepo.create");
                             ji.f fVar = new ji.f(b10, v7.u.a(e));
@@ -116,8 +116,8 @@ public final class d implements Runnable {
                 return;
             case 3:
                 ag.f fVar = (ag.f) this.f76b;
-                fVar.f504b.f30819f3.O(true);
-                fVar.Z(true);
+                fVar.f504b.f31183f3.O(true);
+                fVar.a0(true);
                 return;
             case 4:
                 org.telegram.messenger.i0.g(((TL_account.TL_businessChatLink) this.f76b).link);
@@ -125,32 +125,32 @@ public final class d implements Runnable {
                 return;
             case 5:
                 j1 j1Var = (j1) this.f76b;
-                p51 p51Var = j1Var.W1;
-                if (p51Var != null) {
-                    p51Var.O(true);
+                q51 q51Var = j1Var.W1;
+                if (q51Var != null) {
+                    q51Var.O(true);
                 }
                 j1Var.d1(true);
                 return;
             case 6:
                 t1 t1Var = (t1) ((a6.i) this.f76b).f307b;
-                t1Var.f729c.f30819f3.O(true);
-                t1Var.f0();
+                t1Var.f729c.f31183f3.O(true);
+                t1Var.g0();
                 return;
             case 7:
                 v1 v1Var = (v1) this.f76b;
-                v1Var.f749b.f30819f3.O(true);
-                v1Var.Z(true);
+                v1Var.f749b.f31183f3.O(true);
+                v1Var.a0(true);
                 return;
             case 8:
                 h2 h2Var = (h2) this.f76b;
-                h2Var.f546a.f30819f3.O(true);
-                h2Var.c0(true);
+                h2Var.f546a.f31183f3.O(true);
+                h2Var.d0(true);
                 return;
             case 9:
                 ((m2) this.f76b).a(Boolean.FALSE);
                 return;
             case 10:
-                zs.f(((i3) this.f76b).f566a).k(121, new Object[0]);
+                at.f(((i3) this.f76b).f566a).k(121, new Object[0]);
                 return;
             case 11:
                 ((androidx.activity.m) this.f76b).invalidateOptionsMenu();
@@ -208,10 +208,10 @@ public final class d implements Runnable {
                 return;
             case 21:
                 p3 p3Var = (p3) this.f76b;
-                p3Var.f12520c = null;
+                p3Var.f12521c = null;
                 p3Var.d = null;
                 p3Var.e = null;
-                p3Var.f12521f = null;
+                p3Var.f12522f = null;
                 p3Var.e(null);
                 return;
             case 22:
@@ -230,7 +230,7 @@ public final class d implements Runnable {
             case 26:
                 c2.a aVar2 = (c2.a) this.f76b;
                 if (aVar2.f3525c.f362a) {
-                    aVar2.f3523a.f7821a.C1(3, false);
+                    aVar2.f3523a.f7822a.C1(3, false);
                     return;
                 }
                 return;
@@ -251,43 +251,43 @@ public final class d implements Runnable {
                 y2.e eVar = (y2.e) vVar2.f6198a.get();
                 if (eVar != null) {
                     int b10 = vVar2.f6200c.b();
-                    y2.f fVar2 = eVar.f54137a;
+                    y2.f fVar2 = eVar.f54158a;
                     synchronized (fVar2) {
                         synchronized (fVar2) {
-                            int i11 = fVar2.f54154n;
+                            int i11 = fVar2.f54175n;
                             if (i11 == 0 || fVar2.e) {
-                                if (i11 != b10 || fVar2.f54155o == null) {
-                                    fVar2.f54154n = b10;
+                                if (i11 != b10 || fVar2.f54176o == null) {
+                                    fVar2.f54175n = b10;
                                     if (b10 != 1 && b10 != 0 && b10 != 8) {
-                                        if (fVar2.f54155o == null) {
-                                            Context context = fVar2.f54144a;
+                                        if (fVar2.f54176o == null) {
+                                            Context context = fVar2.f54165a;
                                             String str = e2.l0.f6165a;
                                             if (context != null && (telephonyManager = (TelephonyManager) context.getSystemService("phone")) != null) {
                                                 String networkCountryIso = telephonyManager.getNetworkCountryIso();
                                                 if (!TextUtils.isEmpty(networkCountryIso)) {
                                                     d = r6.d(networkCountryIso);
-                                                    fVar2.f54155o = d;
+                                                    fVar2.f54176o = d;
                                                 }
                                             }
                                             d = r6.d(Locale.getDefault().getCountry());
-                                            fVar2.f54155o = d;
+                                            fVar2.f54176o = d;
                                         }
-                                        fVar2.f54152l = fVar2.b(b10);
+                                        fVar2.f54173l = fVar2.b(b10);
                                         fVar2.d.getClass();
                                         long elapsedRealtime = SystemClock.elapsedRealtime();
-                                        if (fVar2.f54148g > 0) {
+                                        if (fVar2.f54169g > 0) {
                                             i10 = (int) (elapsedRealtime - fVar2.h);
                                         } else {
                                             i10 = 0;
                                         }
-                                        fVar2.d(fVar2.f54149i, i10, fVar2.f54152l);
+                                        fVar2.d(fVar2.f54170i, i10, fVar2.f54173l);
                                         fVar2.h = elapsedRealtime;
-                                        fVar2.f54149i = 0L;
-                                        fVar2.f54151k = 0L;
-                                        fVar2.f54150j = 0L;
-                                        y2.q qVar = fVar2.f54147f;
-                                        qVar.f54175a.clear();
-                                        qVar.f54177c = -1;
+                                        fVar2.f54170i = 0L;
+                                        fVar2.f54172k = 0L;
+                                        fVar2.f54171j = 0L;
+                                        y2.q qVar = fVar2.f54168f;
+                                        qVar.f54196a.clear();
+                                        qVar.f54198c = -1;
                                         qVar.d = 0;
                                         qVar.e = 0;
                                         return;

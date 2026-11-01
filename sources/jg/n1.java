@@ -7,35 +7,35 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.view.View;
 import org.telegram.ui.Components.gr;
-import org.telegram.ui.Components.tk0;
-public abstract class n1 extends tk0 {
-    public static final Paint f10105j3;
-    public static final Paint f10106k3;
-    public static final Path f10107l3;
-    public static final Paint f10108m3;
-    public final Paint f10109e3;
-    public final Paint f10110f3;
-    public int f10111g3;
-    public ig.s0 f10112h3;
-    public q0.a f10113i3;
+import org.telegram.ui.Components.uk0;
+public abstract class n1 extends uk0 {
+    public static final Paint f10106j3;
+    public static final Paint f10107k3;
+    public static final Path f10108l3;
+    public static final Paint f10109m3;
+    public final Paint f10110e3;
+    public final Paint f10111f3;
+    public int f10112g3;
+    public ig.s0 f10113h3;
+    public q0.a f10114i3;
 
     static {
         Paint paint = new Paint(1);
-        f10105j3 = paint;
+        f10106j3 = paint;
         Paint paint2 = new Paint(1);
-        f10106k3 = paint2;
+        f10107k3 = paint2;
         paint.setColor(-2013265920);
         paint2.setColor(-1996488705);
-        f10107l3 = new Path();
-        f10108m3 = new Paint(1);
+        f10108l3 = new Path();
+        f10109m3 = new Paint(1);
     }
 
     public n1(Context context) {
         super(context, null);
-        this.f10109e3 = new Paint(1);
+        this.f10110e3 = new Paint(1);
         Paint paint = new Paint(1);
-        this.f10110f3 = paint;
-        this.f10111g3 = -1;
+        this.f10111f3 = paint;
+        this.f10112g3 = -1;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(org.telegram.messenger.i0.L(2.0f));
         setPadding(org.telegram.messenger.i0.L(8.0f), org.telegram.messenger.i0.L(8.0f), org.telegram.messenger.i0.L(8.0f), org.telegram.messenger.i0.L(8.0f));
@@ -46,14 +46,14 @@ public abstract class n1 extends tk0 {
     }
 
     public static void A1(float f7, float f10, float f11, int i10, Canvas canvas) {
-        Paint paint = f10108m3;
+        Paint paint = f10109m3;
         paint.setColor(i10);
         if (paint.getAlpha() != 255) {
             RectF rectF = org.telegram.messenger.i0.P;
             rectF.set(f7 - f11, f10 - f11, f7 + f11, f10 + f11);
             paint.setAlpha(255);
             canvas.drawArc(rectF, -45.0f, -180.0f, true, paint);
-            Path path = f10107l3;
+            Path path = f10108l3;
             path.rewind();
             path.moveTo(rectF.centerX(), rectF.centerY());
             path.lineTo((float) i0.a.c(-1.5707963267948966d, rectF.width() / 2.0f, rectF.centerX()), (float) ((Math.sin(-1.5707963267948966d) * (rectF.height() / 2.0f)) + rectF.centerY()));
@@ -79,12 +79,12 @@ public abstract class n1 extends tk0 {
                 float f11 = i10;
                 float f12 = f7 + f11;
                 float f13 = f10 + f11;
-                Paint paint = f10105j3;
+                Paint paint = f10106j3;
                 Canvas canvas2 = canvas;
                 canvas2.drawRect(f7, f10, f12, f13, paint);
                 float f14 = i10 * 2;
                 float f15 = f7 + f14;
-                Paint paint2 = f10106k3;
+                Paint paint2 = f10107k3;
                 float f16 = f10;
                 canvas2.drawRect(f12, f16, f15, f13, paint2);
                 float f17 = f16 + f14;
@@ -102,9 +102,9 @@ public abstract class n1 extends tk0 {
         float interpolation;
         float f10;
         if (z10) {
-            interpolation = gr.f26496g.getInterpolation(f7);
+            interpolation = gr.f26524g.getInterpolation(f7);
         } else {
-            interpolation = gr.f26497i.getInterpolation(f7);
+            interpolation = gr.f26525i.getInterpolation(f7);
         }
         float childCount = 1.0f / (getChildCount() - 1);
         for (int i10 = 0; i10 < getChildCount(); i10++) {
@@ -127,20 +127,20 @@ public abstract class n1 extends tk0 {
     }
 
     public int getSelectedColorIndex() {
-        return this.f10111g3;
+        return this.f10112g3;
     }
 
     public void setColorListener(q0.a aVar) {
-        this.f10113i3 = aVar;
+        this.f10114i3 = aVar;
     }
 
     public void setColorPalette(ig.s0 s0Var) {
-        this.f10112h3 = s0Var;
+        this.f10113h3 = s0Var;
         getAdapter().f();
     }
 
     public void setSelectedColorIndex(int i10) {
-        this.f10111g3 = i10;
+        this.f10112g3 = i10;
         getAdapter().f();
     }
 }

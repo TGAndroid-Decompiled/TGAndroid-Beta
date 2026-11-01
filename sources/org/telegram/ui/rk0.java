@@ -1,55 +1,17 @@
 package org.telegram.ui;
+public final class rk0 extends org.telegram.ui.ActionBar.k {
+    public final jl0 f41099a;
 
-import java.util.Comparator;
-import org.telegram.tgnet.TLRPC;
-public final class rk0 implements Comparator {
-    public final ll0 f41241a;
-
-    public rk0(ll0 ll0Var) {
-        this.f41241a = ll0Var;
-    }
-
-    public final int a(TLRPC.SecureValueError secureValueError) {
-        if (secureValueError instanceof TLRPC.TL_secureValueError) {
-            return 0;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorFrontSide) {
-            return 1;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorReverseSide) {
-            return 2;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorSelfie) {
-            return 3;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorTranslationFile) {
-            return 4;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorTranslationFiles) {
-            return 5;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorFile) {
-            return 6;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorFiles) {
-            return 7;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorData) {
-            return ll0.F0(this.f41241a, ((TLRPC.TL_secureValueErrorData) secureValueError).field);
-        }
-        return 100;
+    public rk0(jl0 jl0Var) {
+        this.f41099a = jl0Var;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int a2 = a((TLRPC.SecureValueError) obj);
-        int a10 = a((TLRPC.SecureValueError) obj2);
-        if (a2 < a10) {
-            return -1;
-        }
-        if (a2 > a10) {
-            return 1;
-        }
-        return 0;
+    public final void b(int r24) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.rk0.b(int):void");
+    }
+
+    public final boolean c(org.telegram.ui.kg0 r34, m4.c r35) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.rk0.c(org.telegram.ui.kg0, m4.c):boolean");
     }
 }

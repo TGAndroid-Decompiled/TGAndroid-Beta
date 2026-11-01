@@ -3,28 +3,28 @@ package gi;
 import android.graphics.RectF;
 import java.util.ArrayList;
 public final class a {
-    public final ArrayList f7531a = new ArrayList();
-    public int f7532b;
+    public final ArrayList f7532a = new ArrayList();
+    public int f7533b;
 
     public final RectF a(float f7, float f10, float f11, float f12) {
         RectF rectF;
-        int i10 = this.f7532b;
-        ArrayList arrayList = this.f7531a;
+        int i10 = this.f7533b;
+        ArrayList arrayList = this.f7532a;
         if (i10 < arrayList.size()) {
-            rectF = (RectF) arrayList.get(this.f7532b);
+            rectF = (RectF) arrayList.get(this.f7533b);
             rectF.set(f7, f10, f11, f12);
         } else {
             rectF = new RectF(f7, f10, f11, f12);
             arrayList.add(rectF);
         }
-        this.f7532b++;
+        this.f7533b++;
         return rectF;
     }
 
     public final void b(float f7, float f10, float f11) {
         int i10 = 0;
-        while (i10 < this.f7532b) {
-            RectF rectF = (RectF) this.f7531a.get(i10);
+        while (i10 < this.f7533b) {
+            RectF rectF = (RectF) this.f7532a.get(i10);
             float f12 = rectF.right;
             if (f12 > 0.0f) {
                 float f13 = rectF.bottom;
@@ -55,29 +55,29 @@ public final class a {
     }
 
     public final RectF c(int i10) {
-        if (i10 >= 0 && i10 < this.f7532b) {
-            return (RectF) this.f7531a.get(i10);
+        if (i10 >= 0 && i10 < this.f7533b) {
+            return (RectF) this.f7532a.get(i10);
         }
         StringBuilder l4 = i0.a.l(i10, "index=", ", size=");
-        l4.append(this.f7532b);
+        l4.append(this.f7533b);
         throw new IndexOutOfBoundsException(l4.toString());
     }
 
     public final void d(int i10) {
         int i11;
-        if (i10 >= 0 && i10 < (i11 = this.f7532b)) {
+        if (i10 >= 0 && i10 < (i11 = this.f7533b)) {
             int i12 = i11 - 1;
-            ArrayList arrayList = this.f7531a;
+            ArrayList arrayList = this.f7532a;
             RectF rectF = (RectF) arrayList.get(i10);
             if (i10 != i12) {
                 arrayList.set(i10, (RectF) arrayList.get(i12));
                 arrayList.set(i12, rectF);
             }
-            this.f7532b = i12;
+            this.f7533b = i12;
             return;
         }
         StringBuilder l4 = i0.a.l(i10, "index=", ", size=");
-        l4.append(this.f7532b);
+        l4.append(this.f7533b);
         throw new IndexOutOfBoundsException(l4.toString());
     }
 
@@ -89,11 +89,11 @@ public final class a {
             return false;
         }
         a aVar = (a) obj;
-        if (this.f7532b != aVar.f7532b) {
+        if (this.f7533b != aVar.f7533b) {
             return false;
         }
-        for (int i10 = 0; i10 < this.f7532b; i10++) {
-            if (!((RectF) this.f7531a.get(i10)).equals(aVar.f7531a.get(i10))) {
+        for (int i10 = 0; i10 < this.f7533b; i10++) {
+            if (!((RectF) this.f7532a.get(i10)).equals(aVar.f7532a.get(i10))) {
                 return false;
             }
         }
@@ -102,8 +102,8 @@ public final class a {
 
     public final int hashCode() {
         int i10 = 1;
-        for (int i11 = 0; i11 < this.f7532b; i11++) {
-            i10 = (i10 * 31) + ((RectF) this.f7531a.get(i11)).hashCode();
+        for (int i11 = 0; i11 < this.f7533b; i11++) {
+            i10 = (i10 * 31) + ((RectF) this.f7532a.get(i11)).hashCode();
         }
         return i10;
     }

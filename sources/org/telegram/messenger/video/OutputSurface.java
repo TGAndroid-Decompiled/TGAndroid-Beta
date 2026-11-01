@@ -12,10 +12,10 @@ import android.view.Surface;
 import java.util.ArrayList;
 import javax.microedition.khronos.egl.EGL10;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.ff;
-import org.telegram.messenger.v20;
+import org.telegram.messenger.gf;
 import org.telegram.messenger.video.MediaCodecVideoConvertor;
-import org.telegram.messenger.ye;
+import org.telegram.messenger.w20;
+import org.telegram.messenger.ze;
 import vh.m5;
 public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     private static final int EGL_CONTEXT_CLIENT_VERSION = 12440;
@@ -31,8 +31,8 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     private EGLSurface mEGLSurface = null;
     private final Object mFrameSyncObject = new Object();
 
-    public OutputSurface(ff ffVar, String str, String str2, String str3, ArrayList<v20> arrayList, ye yeVar, int i10, int i11, int i12, int i13, int i14, float f7, boolean z10, Integer num, Integer num2, m5 m5Var, MediaCodecVideoConvertor.ConvertVideoParams convertVideoParams) {
-        TextureRenderer textureRenderer = new TextureRenderer(ffVar, str, str2, str3, arrayList, yeVar, i10, i11, i12, i13, i14, f7, z10, num, num2, m5Var, convertVideoParams);
+    public OutputSurface(gf gfVar, String str, String str2, String str3, ArrayList<w20> arrayList, ze zeVar, int i10, int i11, int i12, int i13, int i14, float f7, boolean z10, Integer num, Integer num2, m5 m5Var, MediaCodecVideoConvertor.ConvertVideoParams convertVideoParams) {
+        TextureRenderer textureRenderer = new TextureRenderer(gfVar, str, str2, str3, arrayList, zeVar, i10, i11, i12, i13, i14, f7, z10, num, num2, m5Var, convertVideoParams);
         this.mTextureRender = textureRenderer;
         textureRenderer.surfaceCreated();
         this.mSurfaceTexture = new SurfaceTexture(this.mTextureRender.getTextureId());

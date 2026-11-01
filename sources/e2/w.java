@@ -7,13 +7,13 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Executor;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.jj;
+import org.telegram.messenger.kj;
 import org.telegram.ui.Components.PipRoundVideoView;
-import org.telegram.ui.Components.s61;
-import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.v61;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.k4;
-public final class w implements s61 {
+public final class w implements t61 {
     public static w f6201f;
     public boolean f6202a;
     public int f6203b;
@@ -80,7 +80,7 @@ public final class w implements s61 {
     }
 
     @Override
-    public void onError(u61 u61Var, Exception exc) {
+    public void onError(v61 v61Var, Exception exc) {
         f8.g(exc, true);
     }
 
@@ -95,7 +95,7 @@ public final class w implements s61 {
         if (i11 != mediaController.m0) {
             return;
         }
-        MediaController.f(mediaController, (jj) this.f6204c, (int[]) this.d, this.f6202a, z10, i10);
+        MediaController.f(mediaController, (kj) this.f6204c, (int[]) this.d, this.f6202a, z10, i10);
     }
 
     @Override
@@ -132,10 +132,10 @@ public final class w implements s61 {
                     }
                     PipRoundVideoView pipRoundVideoView2 = mediaController.H0;
                     if (pipRoundVideoView2 != null) {
-                        if (pipRoundVideoView2.f24078c.getSurfaceTexture() != surfaceTexture) {
-                            mediaController.H0.f24078c.setSurfaceTexture(surfaceTexture);
+                        if (pipRoundVideoView2.f24079c.getSurfaceTexture() != surfaceTexture) {
+                            mediaController.H0.f24079c.setSurfaceTexture(surfaceTexture);
                         }
-                        mediaController.E0.A0(mediaController.H0.f24078c);
+                        mediaController.E0.A0(mediaController.H0.f24079c);
                     }
                 }
                 mediaController.I0 = 0;
@@ -188,10 +188,10 @@ public final class w implements s61 {
         e.execute(new d1.e(8, this, context));
     }
 
-    public w(MediaController mediaController, int i10, jj jjVar, int[] iArr, boolean z10) {
+    public w(MediaController mediaController, int i10, kj kjVar, int[] iArr, boolean z10) {
         this.e = mediaController;
         this.f6203b = i10;
-        this.f6204c = jjVar;
+        this.f6204c = kjVar;
         this.d = iArr;
         this.f6202a = z10;
     }

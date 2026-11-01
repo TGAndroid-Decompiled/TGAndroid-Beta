@@ -1,7 +1,12 @@
 package org.telegram.ui;
-public final class v51 extends s4.j {
+
+import android.graphics.Canvas;
+public final class v51 extends org.telegram.ui.Cells.a8 {
     @Override
-    public final long K(long j10, long j11, long j12) {
-        return j10;
+    public final void onDraw(Canvas canvas) {
+        if (getTranslationY() != 0.0f) {
+            canvas.drawColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f20930d6, false));
+        }
+        super.onDraw(canvas);
     }
 }

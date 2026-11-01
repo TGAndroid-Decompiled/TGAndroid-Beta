@@ -11,32 +11,32 @@ import org.telegram.messenger.w0;
 import org.telegram.ui.ActionBar.t6;
 import rf.o;
 public final class c extends Drawable {
-    public final int f54433a;
-    public final Drawable f54434b;
-    public int f54435c;
+    public final int f54454a;
+    public final Drawable f54455b;
+    public int f54456c;
     public int d;
 
     public c() {
-        this.f54433a = 1;
+        this.f54454a = 1;
         this.d = 255;
-        this.f54434b = i0.a.f(w0.f19025b, 2131232694);
+        this.f54455b = i0.a.f(w0.f18945b, 2131232694);
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        switch (this.f54433a) {
+        switch (this.f54454a) {
             case 0:
-                this.f54434b.draw(canvas);
+                this.f54455b.draw(canvas);
                 return;
             default:
                 float exactCenterX = getBounds().exactCenterX();
                 float exactCenterY = getBounds().exactCenterY();
                 int x02 = t6.x0(null, t6.G6, false);
-                int x03 = t6.x0(null, t6.f20929d6, false);
-                int i10 = this.f54435c;
-                Drawable drawable = this.f54434b;
+                int x03 = t6.x0(null, t6.f20930d6, false);
+                int i10 = this.f54456c;
+                Drawable drawable = this.f54455b;
                 if (i10 != x03) {
-                    this.f54435c = x03;
+                    this.f54456c = x03;
                     drawable.setColorFilter(new PorterDuffColorFilter(x03, PorterDuff.Mode.SRC_IN));
                 }
                 canvas.drawCircle(exactCenterX, exactCenterY, i0.L(7.6666665f), t6.n0(i0.b.o(x03, this.d)));
@@ -53,9 +53,9 @@ public final class c extends Drawable {
 
     @Override
     public final int getAlpha() {
-        switch (this.f54433a) {
+        switch (this.f54454a) {
             case 0:
-                return this.f54434b.getAlpha();
+                return this.f54455b.getAlpha();
             default:
                 return this.d;
         }
@@ -63,7 +63,7 @@ public final class c extends Drawable {
 
     @Override
     public int getIntrinsicHeight() {
-        switch (this.f54433a) {
+        switch (this.f54454a) {
             case 1:
                 return i0.L(13.333333f);
             default:
@@ -73,7 +73,7 @@ public final class c extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        switch (this.f54433a) {
+        switch (this.f54454a) {
             case 1:
                 return i0.L(13.333333f);
             default:
@@ -83,9 +83,9 @@ public final class c extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f54433a) {
+        switch (this.f54454a) {
             case 0:
-                return this.f54434b.getOpacity();
+                return this.f54455b.getOpacity();
             default:
                 return -3;
         }
@@ -93,16 +93,16 @@ public final class c extends Drawable {
 
     @Override
     public void onBoundsChange(Rect rect) {
-        switch (this.f54433a) {
+        switch (this.f54454a) {
             case 0:
                 super.onBoundsChange(rect);
                 int width = rect.width();
-                int i10 = this.f54435c;
+                int i10 = this.f54456c;
                 int i11 = (width - i10) / 2;
                 int height = rect.height();
                 int i12 = this.d;
                 int i13 = (height - i12) / 2;
-                this.f54434b.setBounds(i11, i13, i10 + i11, i12 + i13);
+                this.f54455b.setBounds(i11, i13, i10 + i11, i12 + i13);
                 return;
             default:
                 super.onBoundsChange(rect);
@@ -112,27 +112,27 @@ public final class c extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        switch (this.f54433a) {
+        switch (this.f54454a) {
             case 0:
-                this.f54434b.setAlpha(i10);
+                this.f54455b.setAlpha(i10);
                 return;
             default:
                 this.d = i10;
-                this.f54434b.setAlpha(i10);
+                this.f54455b.setAlpha(i10);
                 return;
         }
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        int i10 = this.f54433a;
+        int i10 = this.f54454a;
     }
 
     public c(int i10, int i11, Drawable drawable) {
-        this.f54433a = 0;
-        this.f54435c = i10;
+        this.f54454a = 0;
+        this.f54456c = i10;
         this.d = i11;
-        this.f54434b = drawable;
+        this.f54455b = drawable;
     }
 
     private final void a(ColorFilter colorFilter) {

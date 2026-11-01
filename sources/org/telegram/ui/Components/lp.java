@@ -1,15 +1,15 @@
 package org.telegram.ui.Components;
 public final class lp implements z4.e {
-    public int f28153a;
-    public final ug0 f28154b;
+    public int f28237a;
+    public final vg0 f28238b;
 
-    public lp(ug0 ug0Var) {
-        this.f28154b = ug0Var;
+    public lp(vg0 vg0Var) {
+        this.f28238b = vg0Var;
     }
 
     @Override
     public final void b(float f7, int i10, int i11) {
-        if (i10 == this.f28154b.getCurrentItem() && f7 == 0.0f && this.f28153a == 1) {
+        if (i10 == this.f28238b.getCurrentItem() && f7 == 0.0f && this.f28237a == 1) {
             d();
         }
     }
@@ -19,16 +19,16 @@ public final class lp implements z4.e {
         if (i10 == 0) {
             d();
         }
-        this.f28153a = i10;
+        this.f28237a = i10;
     }
 
     public final void d() {
-        ug0 ug0Var = this.f28154b;
-        if (ug0Var.f28859w0 != null) {
-            int currentItem = ug0Var.getCurrentItem();
-            int k10 = ug0Var.f28859w0.k(currentItem) + ug0Var.f28859w0.j();
+        vg0 vg0Var = this.f28238b;
+        if (vg0Var.f28931w0 != null) {
+            int currentItem = vg0Var.getCurrentItem();
+            int k10 = vg0Var.f28931w0.k(currentItem) + vg0Var.f28931w0.j();
             if (currentItem != k10) {
-                ug0Var.x(k10, false);
+                vg0Var.x(k10, false);
             }
         }
     }

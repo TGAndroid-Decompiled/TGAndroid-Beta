@@ -1,6 +1,6 @@
 package w7;
 public final class s3 implements ja.d {
-    public static final s3 f52693a = new Object();
+    public static final s3 f52711a = new Object();
 
     static {
         sc.e.v(sc.e.l(d.class, new a(1)));

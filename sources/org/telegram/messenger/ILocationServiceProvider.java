@@ -10,7 +10,7 @@ public interface ILocationServiceProvider {
     public static final int STATUS_SETTINGS_CHANGE_UNAVAILABLE = 2;
     public static final int STATUS_SUCCESS = 0;
 
-    void checkLocationSettings(sa saVar, q0.a aVar);
+    void checkLocationSettings(ta taVar, q0.a aVar);
 
     boolean checkServices();
 
@@ -18,11 +18,11 @@ public interface ILocationServiceProvider {
 
     void init(Context context);
 
-    sa onCreateLocationRequest();
+    ta onCreateLocationRequest();
 
-    ta onCreateLocationServicesAPI(Context context, pa paVar, qa qaVar);
+    ua onCreateLocationServicesAPI(Context context, qa qaVar, ra raVar);
 
-    void removeLocationUpdates(ra raVar);
+    void removeLocationUpdates(sa saVar);
 
-    void requestLocationUpdates(sa saVar, ra raVar);
+    void requestLocationUpdates(ta taVar, sa saVar);
 }

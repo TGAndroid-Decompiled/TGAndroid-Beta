@@ -5,7 +5,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.r20;
+import org.telegram.messenger.s20;
 public class TLJsonParser {
     private final JSONObject jsonObject;
 
@@ -17,9 +17,9 @@ public class TLJsonParser {
         this.jsonObject = jSONObject;
     }
 
-    private static <T extends Deserializable> T parse(TLJsonParser tLJsonParser, r20 r20Var) {
+    private static <T extends Deserializable> T parse(TLJsonParser tLJsonParser, s20 s20Var) {
         try {
-            return (T) r20Var.a(tLJsonParser);
+            return (T) s20Var.a(tLJsonParser);
         } catch (Exception e) {
             f8.g(e, true);
             return null;
@@ -90,10 +90,10 @@ public class TLJsonParser {
         return parseInt64(this.jsonObject.opt(str), i10);
     }
 
-    public <T extends Deserializable> T readObject(String str, r20 r20Var) {
+    public <T extends Deserializable> T readObject(String str, s20 s20Var) {
         JSONObject optJSONObject = this.jsonObject.optJSONObject(str);
         if (optJSONObject != null) {
-            return (T) parse(new TLJsonParser(optJSONObject), r20Var);
+            return (T) parse(new TLJsonParser(optJSONObject), s20Var);
         }
         return null;
     }
@@ -102,14 +102,14 @@ public class TLJsonParser {
         return readString(str, null);
     }
 
-    public <T extends Deserializable> ArrayList<T> readVector(String str, r20 r20Var) {
+    public <T extends Deserializable> ArrayList<T> readVector(String str, s20 s20Var) {
         ArrayList<T> arrayList = (ArrayList<T>) new ArrayList();
         JSONArray optJSONArray = this.jsonObject.optJSONArray(str);
         if (optJSONArray != null) {
             int length = optJSONArray.length();
             for (int i10 = 0; i10 < length; i10++) {
                 try {
-                    Deserializable parse = parse(new TLJsonParser(optJSONArray.getJSONObject(i10)), r20Var);
+                    Deserializable parse = parse(new TLJsonParser(optJSONArray.getJSONObject(i10)), s20Var);
                     if (parse != null) {
                         arrayList.add(parse);
                     }

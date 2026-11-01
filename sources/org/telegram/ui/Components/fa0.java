@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
-public final class fa0 extends w71 {
+public final class fa0 extends x71 {
     public final ab0 V;
 
     public fa0(ab0 ab0Var, Context context, wa0 wa0Var) {
@@ -16,13 +16,13 @@ public final class fa0 extends w71 {
         boolean z10;
         int i10 = 0;
         while (true) {
-            View[] viewArr = this.V.f24355f.e;
+            View[] viewArr = this.V.f24339f.e;
             if (i10 < viewArr.length) {
                 View view = viewArr[i10];
                 if (view != null) {
                     ua0 ua0Var = (ua0) view;
-                    if (ua0Var.f30876a == 0) {
-                        z10 = ua0Var.e.f23425i;
+                    if (ua0Var.f30910a == 0) {
+                        z10 = ua0Var.e.f23426i;
                         break;
                     }
                 }
@@ -49,7 +49,7 @@ public final class fa0 extends w71 {
     @Override
     public final void w(boolean z10) {
         ab0 ab0Var = this.V;
-        ab0Var.e.setSelectedTab(ab0Var.f24355f.getPositionAnimated());
+        ab0Var.e.setSelectedTab(ab0Var.f24339f.getPositionAnimated());
         View[] viewArr = this.e;
         View view = viewArr[0];
         if (view instanceof ua0) {

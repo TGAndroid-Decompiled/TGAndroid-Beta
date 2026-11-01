@@ -7,12 +7,12 @@ import c3.i0;
 import w7.h0;
 public final class h extends o6.a {
     public static final Parcelable.Creator<h> CREATOR = new e6.p(18);
-    public final String f7437a;
-    public final Bundle f7438b;
-    public final Bundle f7439c;
+    public final String f7438a;
+    public final Bundle f7439b;
+    public final Bundle f7440c;
     public final String d;
     public final String e;
-    public final String f7440f;
+    public final String f7441f;
 
     public h(String type, Bundle credentialRetrievalData, Bundle candidateQueryData, String requestMatcher, String requestType, String protocolType) {
         boolean z10;
@@ -22,12 +22,12 @@ public final class h extends o6.a {
         kotlin.jvm.internal.i.e(requestMatcher, "requestMatcher");
         kotlin.jvm.internal.i.e(requestType, "requestType");
         kotlin.jvm.internal.i.e(protocolType, "protocolType");
-        this.f7437a = type;
-        this.f7438b = credentialRetrievalData;
-        this.f7439c = candidateQueryData;
+        this.f7438a = type;
+        this.f7439b = credentialRetrievalData;
+        this.f7440c = candidateQueryData;
         this.d = requestMatcher;
         this.e = requestType;
-        this.f7440f = protocolType;
+        this.f7441f = protocolType;
         boolean z11 = true;
         if (!rd.j.e(requestType) && !rd.j.e(protocolType)) {
             z10 = true;
@@ -46,12 +46,12 @@ public final class h extends o6.a {
     public final void writeToParcel(Parcel dest, int i10) {
         kotlin.jvm.internal.i.e(dest, "dest");
         int q6 = h0.q(dest, 20293);
-        h0.l(dest, 1, this.f7437a);
-        h0.b(dest, 2, this.f7438b);
-        h0.b(dest, 3, this.f7439c);
+        h0.l(dest, 1, this.f7438a);
+        h0.b(dest, 2, this.f7439b);
+        h0.b(dest, 3, this.f7440c);
         h0.l(dest, 4, this.d);
         h0.l(dest, 5, this.e);
-        h0.l(dest, 6, this.f7440f);
+        h0.l(dest, 6, this.f7441f);
         h0.r(dest, q6);
     }
 }

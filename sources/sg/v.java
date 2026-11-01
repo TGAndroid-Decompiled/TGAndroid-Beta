@@ -5,17 +5,17 @@ import android.graphics.LinearGradient;
 import android.graphics.Shader;
 import java.util.ArrayList;
 import kg.i1;
-import org.telegram.messenger.zs;
+import org.telegram.messenger.at;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.ActionBar.k2;
 import org.telegram.ui.Components.bi;
-import org.telegram.ui.Components.uq0;
+import org.telegram.ui.Components.vq0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stories.ProfileStoriesView;
-import org.telegram.ui.ay;
+import org.telegram.ui.tw;
 import org.telegram.ui.un;
-import org.telegram.ui.uw;
+import org.telegram.ui.zx;
 import th.c7;
 import th.d2;
 import th.e5;
@@ -42,25 +42,26 @@ import th.z2;
 import th.z5;
 import vh.i6;
 import vh.p2;
+import vh.t0;
 public final class v implements Runnable {
-    public final int f48479a;
-    public final Object f48480b;
+    public final int f48490a;
+    public final Object f48491b;
 
     public v(Object obj, int i10) {
-        this.f48479a = i10;
-        this.f48480b = obj;
+        this.f48490a = i10;
+        this.f48491b = obj;
     }
 
     @Override
     public final void run() {
         String str;
         boolean z10 = false;
-        switch (this.f48479a) {
+        switch (this.f48490a) {
             case 0:
-                ((ValueAnimator) this.f48480b).start();
+                ((ValueAnimator) this.f48491b).start();
                 return;
             case 1:
-                k2 k2Var = ((w) this.f48480b).f48483g2.f48289r;
+                k2 k2Var = ((w) this.f48491b).f48494g2.f48300r;
                 if (k2Var instanceof un) {
                     k2Var.showDialog(new i1(k2Var, 11, false));
                     return;
@@ -72,43 +73,43 @@ public final class v implements Runnable {
                 }
                 return;
             case 2:
-                ay ayVar = ((uw) this.f48480b).O0;
-                if (ayVar.L && ayVar.i4().I()) {
-                    ayVar.E0.h();
+                zx zxVar = ((tw) this.f48491b).O0;
+                if (zxVar.L && zxVar.j4().I()) {
+                    zxVar.E0.h();
                     return;
                 } else {
-                    ayVar.I4(true, true);
+                    zxVar.J4(true, true);
                     return;
                 }
             case 3:
-                ((th.q0) this.f48480b).f49378a.t(false);
+                ((th.q0) this.f48491b).f49392a.t(false);
                 return;
             case 4:
-                s0 s0Var = ((th.r0) this.f48480b).f49404a;
-                zs.f(s0Var.e).k(176, Long.valueOf(s0Var.g()));
+                s0 s0Var = ((th.r0) this.f48491b).f49418a;
+                at.f(s0Var.e).k(176, Long.valueOf(s0Var.g()));
                 return;
             case 5:
-                w0 w0Var = (w0) this.f48480b;
+                w0 w0Var = (w0) this.f48491b;
                 w0Var.H = false;
                 w0Var.j(false);
                 w0Var.T = false;
                 return;
             case 6:
-                ((d2) this.f48480b).f48872a.O0();
+                ((d2) this.f48491b).f48886a.O0();
                 return;
             case 7:
-                z2 z2Var = ((g2) this.f48480b).f48995y;
-                v2 v2Var = z2Var.f49783z1;
+                z2 z2Var = ((g2) this.f48491b).f49009y;
+                v2 v2Var = z2Var.f49797z1;
                 if (v2Var != null) {
                     if (!z2Var.C1 && !z2Var.D1 && !z2Var.E1) {
                         o7 o7Var = ((f7) v2Var).d;
-                        if (!o7Var.f49319n0.getCurrentPeerView().b1(true) && !o7Var.f49319n0.E(true)) {
+                        if (!o7Var.f49333n0.getCurrentPeerView().b1(true) && !o7Var.f49333n0.E(true)) {
                             o7Var.D(true);
                             return;
                         }
                         return;
-                    } else if (z2Var.f49776x1.e) {
-                        ((n7) z2Var.f49769v2.f10768c).loopBack();
+                    } else if (z2Var.f49790x1.e) {
+                        ((n7) z2Var.f49783v2.f10769c).loopBack();
                         return;
                     } else {
                         z2Var.F0 = 0L;
@@ -117,61 +118,61 @@ public final class v implements Runnable {
                 }
                 return;
             case 8:
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f48480b;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f48491b;
                 if (actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack() != null) {
                     actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
                     return;
                 }
                 return;
             case 9:
-                ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.f48480b;
-                int i10 = ProfileStoriesView.f34056s0;
+                ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.f48491b;
+                int i10 = ProfileStoriesView.f34063s0;
                 profileStoriesView.getClass();
                 org.telegram.messenger.i0.b4(profileStoriesView);
                 return;
             case 10:
-                y3.a(((u3) this.f48480b).d);
+                y3.a(((u3) this.f48491b).d);
                 return;
             case 11:
-                h4 h4Var = (h4) this.f48480b;
+                h4 h4Var = (h4) this.f48491b;
                 if (h4Var.isShowing()) {
                     h4Var.J0(true);
                     return;
                 }
                 return;
             case 12:
-                vh.s0 s0Var2 = (vh.s0) this.f48480b;
-                s0Var2.b(s0Var2.f51902b);
-                s0Var2.f51903c = false;
+                t0 t0Var = (t0) this.f48491b;
+                t0Var.b(t0Var.f51963b);
+                t0Var.f51964c = false;
                 return;
             case 13:
-                ((i6) this.f48480b).run();
+                ((i6) this.f48491b).run();
                 return;
             case 14:
-                i5 i5Var = (i5) this.f48480b;
+                i5 i5Var = (i5) this.f48491b;
                 i5Var.c();
                 i5Var.a(true);
                 return;
             case 15:
-                ((j4) this.f48480b).a(null);
+                ((j4) this.f48491b).a(null);
                 return;
             case 16:
-                ((s5) this.f48480b).R();
+                ((s5) this.f48491b).R();
                 return;
             case 17:
-                z5 z5Var = (z5) this.f48480b;
-                ArrayList arrayList = z5Var.f49788c;
+                z5 z5Var = (z5) this.f48491b;
+                ArrayList arrayList = z5Var.f49802c;
                 if (arrayList != null) {
-                    z5Var.f49786a.f49718i1 = arrayList;
+                    z5Var.f49800a.f49732i1 = arrayList;
                 }
-                z2 z2Var2 = z5Var.f49786a;
-                long j10 = z5Var.f49787b;
-                if (z2Var2.f49726k1 != j10 || z2Var2.f49718i1 != null) {
-                    z2Var2.f49726k1 = j10;
+                z2 z2Var2 = z5Var.f49800a;
+                long j10 = z5Var.f49801b;
+                if (z2Var2.f49740k1 != j10 || z2Var2.f49732i1 != null) {
+                    z2Var2.f49740k1 = j10;
                     z2Var2.h1();
                     z2Var2.g1();
                     z2Var2.d1(true);
-                    TL_stories.PeerStories peerStories = z2Var2.f49755s0.Q0;
+                    TL_stories.PeerStories peerStories = z2Var2.f49769s0.Q0;
                     if (peerStories != null) {
                         z2Var2.B1.V(peerStories, true);
                         return;
@@ -187,43 +188,43 @@ public final class v implements Runnable {
                 }
                 return;
             case 18:
-                ((ji.a) this.f48480b).f(true);
+                ((ji.a) this.f48491b).f(true);
                 return;
             case 19:
-                ((l6) this.f48480b).requestLayout();
+                ((l6) this.f48491b).requestLayout();
                 return;
             case 20:
-                s6 s6Var = (s6) this.f48480b;
-                p2 p2Var = s6Var.f49440c;
+                s6 s6Var = (s6) this.f48491b;
+                p2 p2Var = s6Var.f49454c;
                 if (p2Var != null) {
                     p2Var.e(true);
-                    s6Var.f49440c = null;
+                    s6Var.f49454c = null;
                 }
                 s6Var.b(false);
                 return;
             case 21:
-                q6 q6Var = (q6) this.f48480b;
-                if (q6Var.f49398w) {
+                q6 q6Var = (q6) this.f48491b;
+                if (q6Var.f49412w) {
                     q6Var.E = true;
                     q6Var.F = System.currentTimeMillis();
                     Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                     q6Var.e = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 771751935, 771751935, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, tileMode);
-                    q6Var.f49394f = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 553648127, 553648127, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, tileMode);
+                    q6Var.f49408f = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 553648127, 553648127, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, tileMode);
                     q6Var.invalidate();
                     return;
                 }
                 return;
             case 22:
-                o7 o7Var2 = ((x6) this.f48480b).f49654b;
+                o7 o7Var2 = ((x6) this.f48491b).f49668b;
                 try {
-                    c7 c7Var = o7Var2.f49330s;
+                    c7 c7Var = o7Var2.f49344s;
                     if (c7Var != null) {
-                        if (o7Var2.f49293b) {
+                        if (o7Var2.f49307b) {
                             org.telegram.messenger.i0.E2(c7Var);
                         } else {
-                            o7Var2.f49318n.removeView(c7Var);
+                            o7Var2.f49332n.removeView(c7Var);
                         }
-                        o7Var2.f49330s = null;
+                        o7Var2.f49344s = null;
                         o7Var2.E();
                         return;
                     }
@@ -232,33 +233,33 @@ public final class v implements Runnable {
                     return;
                 }
             case 23:
-                ((c7) this.f48480b).f48858r0.Y(true);
+                ((c7) this.f48491b).f48872r0.Y(true);
                 return;
             case 24:
-                ((x7) this.f48480b).c();
+                ((x7) this.f48491b).c();
                 return;
             case 25:
-                ((bi) this.f48480b).hide();
+                ((bi) this.f48491b).hide();
                 return;
             case 26:
-                uh.i iVar = (uh.i) this.f48480b;
-                uq0 uq0Var = iVar.W;
-                q4 q4Var = iVar.f50245a;
+                uh.i iVar = (uh.i) this.f48491b;
+                vq0 vq0Var = iVar.W;
+                q4 q4Var = iVar.f50259a;
                 if (q4Var == null) {
                     str = "";
                 } else {
                     str = q4Var.E;
                 }
-                uq0Var.a(str);
+                vq0Var.a(str);
                 return;
             case 27:
-                ((vh.g) this.f48480b).f51173c.W = false;
+                ((vh.g) this.f48491b).f51188c.W = false;
                 return;
             case 28:
-                ((vh.j) this.f48480b).invalidateSelf();
+                ((vh.j) this.f48491b).invalidateSelf();
                 return;
             default:
-                ((vh.w) this.f48480b).f52075g = -1L;
+                ((vh.w) this.f48491b).f52091g = -1L;
                 return;
         }
     }

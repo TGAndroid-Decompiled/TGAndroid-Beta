@@ -16,8 +16,8 @@ public final class b extends u8 {
     public void invalidate() {
         switch (this.e) {
             case 1:
-                if (th.p.f49348c) {
-                    th.p.f49347b.add(this);
+                if (th.p.f49362c) {
+                    th.p.f49361b.add(this);
                     return;
                 } else {
                     super.invalidate();
@@ -34,7 +34,7 @@ public final class b extends u8 {
         int e;
         switch (this.e) {
             case 0:
-                int i12 = this.f30863a.f30489n;
+                int i12 = this.f30897a.f30561n;
                 if (i12 == 0) {
                     e = 0;
                 } else {
@@ -52,8 +52,8 @@ public final class b extends u8 {
     public void invalidate(int i10, int i11, int i12, int i13) {
         switch (this.e) {
             case 1:
-                if (th.p.f49348c) {
-                    th.p.f49347b.add(this);
+                if (th.p.f49362c) {
+                    th.p.f49361b.add(this);
                     return;
                 } else {
                     super.invalidate(i10, i11, i12, i13);

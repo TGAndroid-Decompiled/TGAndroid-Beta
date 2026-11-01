@@ -1,7 +1,7 @@
 package org.telegram.ui.ActionBar;
 
 import android.util.SparseIntArray;
-import org.telegram.ui.m91;
+import org.telegram.ui.k91;
 public final class a6 extends c5 {
     public final int U;
     public final Object V;
@@ -45,7 +45,7 @@ public final class a6 extends c5 {
     public void p(int i10, int i11, int i12) {
         switch (this.U) {
             case 2:
-                if (!((m91) this.V).f39553e2) {
+                if (!((k91) this.V).f38728e2) {
                     super.p(i10, i11, i12);
                     return;
                 }
@@ -60,7 +60,7 @@ public final class a6 extends c5 {
     public void q(int i10, int i11, int i12, int i13, int i14, int i15, boolean z10, boolean z11) {
         switch (this.U) {
             case 2:
-                if (!((m91) this.V).f39553e2) {
+                if (!((k91) this.V).f38728e2) {
                     super.q(i10, i11, i12, i13, i14, i15, z10, z11);
                     return;
                 }
@@ -71,9 +71,9 @@ public final class a6 extends c5 {
         }
     }
 
-    public a6(m91 m91Var, int i10, boolean z10) {
+    public a6(k91 k91Var, int i10, boolean z10) {
         super(i10, true, z10, null);
         this.U = 2;
-        this.V = m91Var;
+        this.V = k91Var;
     }
 }

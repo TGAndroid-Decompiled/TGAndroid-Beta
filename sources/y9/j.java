@@ -9,12 +9,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 public final class j implements Closeable {
     public static final Logger h = Logger.getLogger(j.class.getName());
-    public final RandomAccessFile f54340a;
-    public final int f54341b;
-    public final int f54342c;
+    public final RandomAccessFile f54361a;
+    public final int f54362b;
+    public final int f54363c;
     public final g d;
     public final g e;
-    public final byte[] f54343f = new byte[16];
+    public final byte[] f54364f = new byte[16];
 
     public j(File file) {
         if (!file.exists()) {
@@ -45,21 +45,21 @@ public final class j implements Closeable {
             }
         }
         RandomAccessFile randomAccessFile2 = new RandomAccessFile(file, "rwd");
-        this.f54340a = randomAccessFile2;
+        this.f54361a = randomAccessFile2;
         randomAccessFile2.seek(0L);
-        byte[] bArr2 = this.f54343f;
+        byte[] bArr2 = this.f54364f;
         randomAccessFile2.readFully(bArr2);
         int c10 = c(0, bArr2);
-        this.f54341b = c10;
+        this.f54362b = c10;
         if (c10 <= randomAccessFile2.length()) {
-            this.f54342c = c(4, bArr2);
+            this.f54363c = c(4, bArr2);
             int c11 = c(8, bArr2);
             int c12 = c(12, bArr2);
             this.d = b(c11);
             this.e = b(c12);
             return;
         }
-        throw new IOException("File is truncated. Expected length: " + this.f54341b + ", Actual length: " + randomAccessFile2.length());
+        throw new IOException("File is truncated. Expected length: " + this.f54362b + ", Actual length: " + randomAccessFile2.length());
     }
 
     public static int c(int i10, byte[] bArr) {
@@ -67,30 +67,30 @@ public final class j implements Closeable {
     }
 
     public final synchronized void a(i iVar) {
-        int i10 = this.d.f54335a;
-        for (int i11 = 0; i11 < this.f54342c; i11++) {
+        int i10 = this.d.f54356a;
+        for (int i11 = 0; i11 < this.f54363c; i11++) {
             g b10 = b(i10);
-            iVar.a(new h(this, b10), b10.f54336b);
-            i10 = d(b10.f54335a + 4 + b10.f54336b);
+            iVar.a(new h(this, b10), b10.f54357b);
+            i10 = d(b10.f54356a + 4 + b10.f54357b);
         }
     }
 
     public final g b(int i10) {
         if (i10 == 0) {
-            return g.f54334c;
+            return g.f54355c;
         }
-        RandomAccessFile randomAccessFile = this.f54340a;
+        RandomAccessFile randomAccessFile = this.f54361a;
         randomAccessFile.seek(i10);
         return new g(i10, randomAccessFile.readInt());
     }
 
     @Override
     public final synchronized void close() {
-        this.f54340a.close();
+        this.f54361a.close();
     }
 
     public final int d(int i10) {
-        int i11 = this.f54341b;
+        int i11 = this.f54362b;
         if (i10 < i11) {
             return i10;
         }
@@ -101,16 +101,16 @@ public final class j implements Closeable {
         StringBuilder sb2 = new StringBuilder();
         sb2.append(j.class.getSimpleName());
         sb2.append("[fileLength=");
-        sb2.append(this.f54341b);
+        sb2.append(this.f54362b);
         sb2.append(", size=");
-        sb2.append(this.f54342c);
+        sb2.append(this.f54363c);
         sb2.append(", first=");
         sb2.append(this.d);
         sb2.append(", last=");
         sb2.append(this.e);
         sb2.append(", element lengths=[");
         try {
-            a(new u(sb2, 8));
+            a(new u(sb2, 9));
         } catch (IOException e) {
             h.log(Level.WARNING, "read error", (Throwable) e);
         }

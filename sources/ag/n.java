@@ -12,10 +12,10 @@ public final class n implements Runnable {
     public final void run() {
         switch (this.f646a) {
             case 0:
-                w.c0(this.f647b);
+                w.d0(this.f647b);
                 return;
             case 1:
-                w.d0(this.f647b);
+                w.e0(this.f647b);
                 return;
             default:
                 n nVar = this.f647b.e;

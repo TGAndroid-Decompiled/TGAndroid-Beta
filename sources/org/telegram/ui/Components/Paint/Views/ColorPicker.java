@@ -13,9 +13,9 @@ import org.telegram.messenger.i0;
 public class ColorPicker extends FrameLayout {
     public static final int[] d = {-1431751, -2409774, -13610525, -11942419, -8337308, -205211, -223667, -16777216, -1};
     public static final float[] e = {0.0f, 0.14f, 0.24f, 0.39f, 0.49f, 0.62f, 0.73f, 0.85f, 1.0f};
-    public float f24073a;
-    public float f24074b;
-    public float f24075c;
+    public float f24074a;
+    public float f24075b;
+    public float f24076c;
 
     public static int a(float f7) {
         float[] fArr;
@@ -57,12 +57,12 @@ public class ColorPicker extends FrameLayout {
     }
 
     private void setDraggingFactor(float f7) {
-        this.f24075c = f7;
+        this.f24076c = f7;
         invalidate();
     }
 
     public float getDraggingFactor() {
-        return this.f24075c;
+        return this.f24076c;
     }
 
     public View getSettingsButton() {
@@ -70,7 +70,7 @@ public class ColorPicker extends FrameLayout {
     }
 
     public q1 getSwatch() {
-        return new q1(this.f24073a, this.f24074b, a(this.f24073a));
+        return new q1(this.f24074a, this.f24075b, a(this.f24074a));
     }
 
     @Override
@@ -96,7 +96,7 @@ public class ColorPicker extends FrameLayout {
     }
 
     public void setLocation(float f7) {
-        this.f24073a = f7;
+        this.f24074a = f7;
         a(f7);
         throw null;
     }
@@ -106,8 +106,8 @@ public class ColorPicker extends FrameLayout {
     }
 
     public void setSwatch(q1 q1Var) {
-        setLocation(q1Var.f8433b);
-        setWeight(q1Var.f8434c);
+        setLocation(q1Var.f8434b);
+        setWeight(q1Var.f8435c);
     }
 
     public void setUndoEnabled(boolean z10) {
@@ -115,7 +115,7 @@ public class ColorPicker extends FrameLayout {
     }
 
     public void setWeight(float f7) {
-        this.f24074b = f7;
+        this.f24075b = f7;
         invalidate();
     }
 

@@ -36,9 +36,9 @@ import m2.t;
 import n2.o;
 import n2.p;
 import org.json.JSONObject;
-import org.telegram.messenger.c20;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.jj;
+import org.telegram.messenger.d20;
+import org.telegram.messenger.hj;
+import org.telegram.messenger.kj;
 import org.telegram.messenger.s2;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -64,15 +64,15 @@ import org.telegram.ui.Components.o5;
 import org.telegram.ui.Components.tf;
 import org.telegram.ui.Components.ya;
 import org.telegram.ui.Components.za;
-import org.telegram.ui.qs0;
+import org.telegram.ui.ps0;
 import r2.u;
 import r9.d;
 import y2.n;
 public class a implements ai, q, e, g, d, OnFailureListener, n, x, n2.q, ab, l1, q0, u, uf.a, vf.a, Continuation, y6.d {
-    public final int f10962a;
+    public final int f10963a;
 
     public a(int i10) {
-        this.f10962a = i10;
+        this.f10963a = i10;
     }
 
     public static c O1(t7.u uVar) {
@@ -84,7 +84,7 @@ public class a implements ai, q, e, g, d, OnFailureListener, n, x, n2.q, ab, l1,
     }
 
     @Override
-    public boolean A1(q1 q1Var, jj jjVar) {
+    public boolean A1(q1 q1Var, kj kjVar) {
         return false;
     }
 
@@ -109,7 +109,7 @@ public class a implements ai, q, e, g, d, OnFailureListener, n, x, n2.q, ab, l1,
     }
 
     @Override
-    public qs0 H1() {
+    public ps0 H1() {
         return null;
     }
 
@@ -127,8 +127,8 @@ public class a implements ai, q, e, g, d, OnFailureListener, n, x, n2.q, ab, l1,
     public Object K(bh.d dVar) {
         jb.a aVar = new jb.a();
         androidx.emoji2.text.n nVar = new androidx.emoji2.text.n(2);
-        ReferenceQueue referenceQueue = aVar.f9774a;
-        Set set = aVar.f9775b;
+        ReferenceQueue referenceQueue = aVar.f9775a;
+        Set set = aVar.f9776b;
         set.add(new jb.l(aVar, referenceQueue, set, nVar));
         Thread thread = new Thread(new j9.u(18, referenceQueue, set), "MlKitCleaner");
         thread.setDaemon(true);
@@ -213,8 +213,8 @@ public class a implements ai, q, e, g, d, OnFailureListener, n, x, n2.q, ab, l1,
     }
 
     @Override
-    public boolean S0(jj jjVar) {
-        return f1.a(jjVar);
+    public boolean S0(kj kjVar) {
+        return f1.a(kjVar);
     }
 
     @Override
@@ -344,7 +344,7 @@ public class a implements ai, q, e, g, d, OnFailureListener, n, x, n2.q, ab, l1,
 
     @Override
     public boolean f() {
-        switch (this.f10962a) {
+        switch (this.f10963a) {
             case 15:
                 return true;
             default:
@@ -410,8 +410,8 @@ public class a implements ai, q, e, g, d, OnFailureListener, n, x, n2.q, ab, l1,
     @Override
     public void m(bb bbVar, la laVar, ja jaVar, ma maVar) {
         o1.j jVar = new o1.j(bbVar, bb.IN_OUT_OFFSET_Y, bbVar.getHeight());
-        jVar.f13957m.a(0.8f);
-        jVar.f13957m.b(400.0f);
+        jVar.f13958m.a(0.8f);
+        jVar.f13958m.b(400.0f);
         jVar.a(new na(jaVar, 1));
         jVar.b(new ya(maVar, bbVar, 0));
         jVar.h();
@@ -438,8 +438,8 @@ public class a implements ai, q, e, g, d, OnFailureListener, n, x, n2.q, ab, l1,
         bbVar.setInOutOffset(bbVar.getMeasuredHeight());
         glVar.accept(Float.valueOf(bbVar.getTranslationY()));
         o1.j jVar = new o1.j((Object) bbVar, bb.IN_OUT_OFFSET_Y, 0.0f);
-        jVar.f13957m.a(0.8f);
-        jVar.f13957m.b(400.0f);
+        jVar.f13958m.a(0.8f);
+        jVar.f13958m.b(400.0f);
         jVar.a(new za(0, bbVar, tfVar));
         jVar.b(new ya(glVar, bbVar, 1));
         jVar.h();
@@ -496,7 +496,7 @@ public class a implements ai, q, e, g, d, OnFailureListener, n, x, n2.q, ab, l1,
     }
 
     @Override
-    public boolean w0(jj jjVar) {
+    public boolean w0(kj kjVar) {
         return true;
     }
 
@@ -609,7 +609,7 @@ public class a implements ai, q, e, g, d, OnFailureListener, n, x, n2.q, ab, l1,
     }
 
     @Override
-    public void J(gj gjVar) {
+    public void J(hj hjVar) {
     }
 
     @Override
@@ -625,7 +625,7 @@ public class a implements ai, q, e, g, d, OnFailureListener, n, x, n2.q, ab, l1,
     }
 
     @Override
-    public void O(jj jjVar) {
+    public void O(kj kjVar) {
     }
 
     @Override
@@ -693,7 +693,7 @@ public class a implements ai, q, e, g, d, OnFailureListener, n, x, n2.q, ab, l1,
     }
 
     @Override
-    public void v1(jj jjVar) {
+    public void v1(kj kjVar) {
     }
 
     @Override
@@ -717,7 +717,7 @@ public class a implements ai, q, e, g, d, OnFailureListener, n, x, n2.q, ab, l1,
     }
 
     @Override
-    public void F1(q1 q1Var, c20 c20Var) {
+    public void F1(q1 q1Var, d20 d20Var) {
     }
 
     @Override
@@ -865,7 +865,7 @@ public class a implements ai, q, e, g, d, OnFailureListener, n, x, n2.q, ab, l1,
     }
 
     @Override
-    public void z1(jj jjVar, String str, String str2, String str3, String str4, int i10, int i11) {
+    public void z1(kj kjVar, String str, String str2, String str3, String str4, int i10, int i11) {
     }
 
     @Override

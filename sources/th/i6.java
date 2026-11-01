@@ -20,12 +20,12 @@ import android.text.TextUtils;
 import android.view.View;
 import java.util.regex.Pattern;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.d20;
-import org.telegram.messenger.ui;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.e20;
+import org.telegram.messenger.vi;
 import org.telegram.ui.Cells.s9;
 import org.telegram.ui.Components.gr;
-import org.telegram.ui.Components.ov0;
+import org.telegram.ui.Components.pv0;
 public final class i6 extends View implements s9 {
     public final boolean D;
     public int E;
@@ -34,33 +34,33 @@ public final class i6 extends View implements s9 {
     public boolean H;
     public ValueAnimator I;
     public final j6 J;
-    public final PorterDuffColorFilter f49068a;
-    public boolean f49069b;
-    public final TextPaint f49070c;
+    public final PorterDuffColorFilter f49082a;
+    public boolean f49083b;
+    public final TextPaint f49084c;
     public final TextPaint d;
     public final Paint e;
-    public final Paint f49071f;
+    public final Paint f49085f;
     public float h;
-    public float f49072n;
-    public final h6[] f49073r;
-    public int f49074s;
-    public StaticLayout f49075w;
-    public float f49076x;
-    public boolean f49077y;
+    public float f49086n;
+    public final h6[] f49087r;
+    public int f49088s;
+    public StaticLayout f49089w;
+    public float f49090x;
+    public boolean f49091y;
 
     public i6(j6 j6Var, Context context) {
         super(context);
         this.J = j6Var;
         TextPaint textPaint = new TextPaint(1);
-        this.f49070c = textPaint;
+        this.f49084c = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
         this.d = textPaint2;
         Paint paint = new Paint();
         this.e = paint;
         Paint paint2 = new Paint(1);
-        this.f49071f = paint2;
-        this.f49073r = r7;
-        this.f49074s = 0;
+        this.f49085f = paint2;
+        this.f49087r = r7;
+        this.f49088s = 0;
         new Path();
         this.D = true;
         this.H = false;
@@ -76,17 +76,17 @@ public final class i6 extends View implements s9 {
         paint.setXfermode(new PorterDuffXfermode(mode));
         paint2.setShader(new LinearGradient(0.0f, 0.0f, org.telegram.messenger.i0.L(16.0f), 0.0f, new int[]{0, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
         paint2.setXfermode(new PorterDuffXfermode(mode));
-        this.f49068a = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+        this.f49082a = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
     }
 
     public static StaticLayout a(i6 i6Var, TextPaint textPaint, CharSequence charSequence, int i10) {
         Layout.Alignment alignment;
         if (Build.VERSION.SDK_INT >= 24) {
             StaticLayout.Builder hyphenationFrequency = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i10).setBreakStrategy(0).setHyphenationFrequency(0);
-            if (cd.X) {
-                alignment = ov0.a();
+            if (dd.X) {
+                alignment = pv0.a();
             } else {
-                Layout.Alignment[] alignmentArr = ov0.f29202a;
+                Layout.Alignment[] alignmentArr = pv0.f29558a;
                 if (alignmentArr.length >= 5) {
                     alignment = alignmentArr[3];
                 } else {
@@ -103,23 +103,23 @@ public final class i6 extends View implements s9 {
         if (charSequence == null) {
             charSequence = "";
         }
-        h6[] h6VarArr = this.f49073r;
-        CharSequence charSequence2 = h6VarArr[0].f49041n;
-        Pattern pattern = ui.R1;
+        h6[] h6VarArr = this.f49087r;
+        CharSequence charSequence2 = h6VarArr[0].f49055n;
+        Pattern pattern = vi.R1;
         if (charSequence2 == null || !TextUtils.equals(charSequence2, charSequence)) {
             z12 = false;
         } else {
-            z12 = ui.K(ui.b0(d20.f15147s0).W(new CharSequence[]{new SpannableStringBuilder(charSequence2)}, true, true), ui.b0(d20.f15147s0).W(new CharSequence[]{new SpannableStringBuilder(charSequence)}, true, true));
+            z12 = vi.K(vi.b0(e20.f15506s0).W(new CharSequence[]{new SpannableStringBuilder(charSequence2)}, true, true), vi.b0(e20.f15506s0).W(new CharSequence[]{new SpannableStringBuilder(charSequence)}, true, true));
         }
         if (z12) {
             h6 h6Var = h6VarArr[0];
-            if (h6Var.f49042o == e6Var && h6Var.f49043p == e6Var2) {
-                h6Var.f49044q = z10;
+            if (h6Var.f49056o == e6Var && h6Var.f49057p == e6Var2) {
+                h6Var.f49058q = z10;
                 invalidate();
                 return;
             }
         }
-        this.f49077y = false;
+        this.f49091y = false;
         ValueAnimator valueAnimator = this.I;
         if (valueAnimator != null) {
             valueAnimator.cancel();
@@ -131,15 +131,15 @@ public final class i6 extends View implements s9 {
             }
             h6 h6Var2 = h6VarArr[1];
             h6 h6Var3 = h6VarArr[0];
-            h6Var2.g(h6Var3.f49041n, h6Var3.f49042o, h6Var3.f49043p);
+            h6Var2.g(h6Var3.f49055n, h6Var3.f49056o, h6Var3.f49057p);
             h6 h6Var4 = h6VarArr[1];
             h6 h6Var5 = h6VarArr[0];
-            h6Var4.f49044q = h6Var5.f49044q;
-            h6Var4.f49045r.e(true, h6Var5.f49045r.f30445c);
+            h6Var4.f49058q = h6Var5.f49058q;
+            h6Var4.f49059r.e(true, h6Var5.f49059r.f30530c);
             h6VarArr[0].g(charSequence, e6Var, e6Var2);
             h6 h6Var6 = h6VarArr[0];
-            h6Var6.f49044q = z10;
-            h6Var6.f49045r.e(true, 0.0f);
+            h6Var6.f49058q = z10;
+            h6Var6.f49059r.e(true, 0.0f);
             this.G = 1.0f;
             ValueAnimator valueAnimator2 = this.I;
             if (valueAnimator2 != null) {
@@ -151,12 +151,12 @@ public final class i6 extends View implements s9 {
             ofFloat.addUpdateListener(new qh.e0(this, 22));
             this.I.addListener(new sg.r(this, 12));
             this.I.setDuration(180L);
-            this.I.setInterpolator(gr.f26496g);
+            this.I.setInterpolator(gr.f26524g);
             this.I.start();
             return;
         }
         h6VarArr[0].g(charSequence, e6Var, e6Var2);
-        h6VarArr[0].f49044q = z10;
+        h6VarArr[0].f49058q = z10;
         invalidate();
         this.G = 0.0f;
     }
@@ -168,38 +168,38 @@ public final class i6 extends View implements s9 {
 
     public float getAnimatedHeight() {
         int i10 = this.F * 2;
-        h6[] h6VarArr = this.f49073r;
+        h6[] h6VarArr = this.f49087r;
         int i11 = 0;
-        int i12 = h6VarArr[0].f49039l;
+        int i12 = h6VarArr[0].f49053l;
         h6 h6Var = h6VarArr[1];
         if (h6Var != null) {
-            i11 = h6Var.f49039l;
+            i11 = h6Var.f49053l;
         }
         return org.telegram.messenger.i0.W1(this.G, i12, i11) + i10;
     }
 
     public Paint getPaint() {
-        return this.f49070c;
+        return this.f49084c;
     }
 
     @Override
     public Layout getStaticTextLayout() {
-        return this.f49073r[0].e;
+        return this.f49087r[0].e;
     }
 
     @Override
     public CharSequence getText() {
-        return this.f49073r[0].f49041n;
+        return this.f49087r[0].f49055n;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         int i10 = 0;
-        h6 h6Var = this.f49073r[0];
+        h6 h6Var = this.f49087r[0];
         i6 i6Var = h6Var.v;
         org.telegram.ui.Components.o5.release(i6Var, h6Var.d);
-        org.telegram.ui.Components.o5.release(i6Var, h6Var.f49034f);
+        org.telegram.ui.Components.o5.release(i6Var, h6Var.f49048f);
         if (h6Var.h == null) {
             return;
         }
@@ -208,7 +208,7 @@ public final class i6 extends View implements s9 {
             if (i10 < f6VarArr.length) {
                 f6 f6Var = f6VarArr[i10];
                 if (f6Var != null) {
-                    org.telegram.ui.Components.o5.release(i6Var, f6Var.f48973a);
+                    org.telegram.ui.Components.o5.release(i6Var, f6Var.f48987a);
                 }
                 i10++;
             } else {
@@ -220,35 +220,35 @@ public final class i6 extends View implements s9 {
     @Override
     public final void onDraw(Canvas canvas) {
         Canvas canvas2;
-        if (this.f49075w != null) {
+        if (this.f49089w != null) {
             canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31);
             canvas2 = canvas;
         } else {
             canvas2 = canvas;
             canvas2.save();
         }
-        h6[] h6VarArr = this.f49073r;
+        h6[] h6VarArr = this.f49087r;
         h6VarArr[0].b(canvas2, 1.0f - this.G);
         h6 h6Var = h6VarArr[1];
         if (h6Var != null) {
             h6Var.b(canvas2, this.G);
         }
-        if (this.f49075w != null) {
+        if (this.f49089w != null) {
             float scrollY = this.h + this.J.getScrollY();
-            int i10 = (int) ((1.0f - Utilities.i(this.f49076x / 0.5f, 1.0f, 0.0f)) * 255.0f);
-            Paint paint = this.f49071f;
+            int i10 = (int) ((1.0f - Utilities.i(this.f49090x / 0.5f, 1.0f, 0.0f)) * 255.0f);
+            Paint paint = this.f49085f;
             paint.setAlpha(i10);
             Paint paint2 = this.e;
             paint2.setAlpha(i10);
             this.d.setAlpha(i10);
             canvas2.save();
-            canvas2.translate(this.f49072n - org.telegram.messenger.i0.L(32.0f), scrollY);
-            canvas2.drawRect(0.0f, 0.0f, org.telegram.messenger.i0.L(32.0f), this.f49075w.getHeight() + this.F, paint);
+            canvas2.translate(this.f49086n - org.telegram.messenger.i0.L(32.0f), scrollY);
+            canvas2.drawRect(0.0f, 0.0f, org.telegram.messenger.i0.L(32.0f), this.f49089w.getHeight() + this.F, paint);
             canvas2.restore();
-            canvas2.drawRect(this.f49072n - org.telegram.messenger.i0.L(16.0f), scrollY, getMeasuredWidth(), this.f49075w.getHeight() + scrollY + this.F, paint2);
+            canvas2.drawRect(this.f49086n - org.telegram.messenger.i0.L(16.0f), scrollY, getMeasuredWidth(), this.f49089w.getHeight() + scrollY + this.F, paint2);
             canvas2.save();
-            canvas2.translate(this.f49072n, scrollY);
-            this.f49075w.draw(canvas2);
+            canvas2.translate(this.f49086n, scrollY);
+            this.f49089w.draw(canvas2);
             canvas2.restore();
         }
         canvas2.restore();
@@ -259,11 +259,11 @@ public final class i6 extends View implements s9 {
         int i12 = (i11 + i10) << 16;
         this.E = org.telegram.messenger.i0.L(16.0f);
         this.F = org.telegram.messenger.i0.L(8.0f);
-        int i13 = this.f49074s;
-        h6[] h6VarArr = this.f49073r;
+        int i13 = this.f49088s;
+        h6[] h6VarArr = this.f49087r;
         int i14 = 0;
         if (i13 != i12) {
-            this.f49074s = i12;
+            this.f49088s = i12;
             int max = Math.max(0, View.MeasureSpec.getSize(i10) - (this.E * 2));
             h6VarArr[0].e(max);
             h6 h6Var = h6VarArr[1];
@@ -272,10 +272,10 @@ public final class i6 extends View implements s9 {
             }
         }
         int i15 = this.F * 2;
-        int i16 = h6VarArr[0].f49039l;
+        int i16 = h6VarArr[0].f49053l;
         h6 h6Var2 = h6VarArr[1];
         if (h6Var2 != null) {
-            i14 = h6Var2.f49039l;
+            i14 = h6Var2.f49053l;
         }
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.W1(this.G, i16, i14) + i15, 1073741824));
     }
@@ -314,9 +314,9 @@ public final class i6 extends View implements s9 {
         e6 e6Var2;
         e6 e6Var3;
         e6 e6Var4;
-        h6[] h6VarArr = this.f49073r;
+        h6[] h6VarArr = this.f49087r;
         h6 h6Var2 = h6VarArr[0];
-        if ((h6Var2 != null && (h6Var2.f49046s == drawable || (((e6Var3 = h6Var2.f49042o) != null && e6Var3.f48933j == drawable) || ((e6Var4 = h6Var2.f49043p) != null && e6Var4.f48933j == drawable)))) || ((h6Var = h6VarArr[1]) != null && (h6Var.f49046s == drawable || (((e6Var = h6Var.f49042o) != null && e6Var.f48933j == drawable) || ((e6Var2 = h6Var.f49043p) != null && e6Var2.f48933j == drawable))))) {
+        if ((h6Var2 != null && (h6Var2.f49060s == drawable || (((e6Var3 = h6Var2.f49056o) != null && e6Var3.f48947j == drawable) || ((e6Var4 = h6Var2.f49057p) != null && e6Var4.f48947j == drawable)))) || ((h6Var = h6VarArr[1]) != null && (h6Var.f49060s == drawable || (((e6Var = h6Var.f49056o) != null && e6Var.f48947j == drawable) || ((e6Var2 = h6Var.f49057p) != null && e6Var2.f48947j == drawable))))) {
             return true;
         }
         return super.verifyDrawable(drawable);

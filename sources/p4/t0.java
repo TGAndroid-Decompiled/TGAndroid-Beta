@@ -20,21 +20,21 @@ import java.util.concurrent.Executor;
 import org.telegram.ui.Components.ew;
 import org.telegram.ui.Wallet.x0;
 public final class t0 {
-    public boolean f44810a;
-    public final Object f44811b;
-    public final Object f44812c;
+    public boolean f44821a;
+    public final Object f44822b;
+    public final Object f44823c;
     public final Object d;
     public final Object e;
-    public final Serializable f44813f;
-    public Object f44814g;
+    public final Serializable f44824f;
+    public Object f44825g;
     public Object h;
 
     public t0(Context context, e eVar) {
-        this.f44813f = new ArrayList();
-        this.f44814g = new androidx.mediarouter.app.f(this, 13);
+        this.f44824f = new ArrayList();
+        this.f44825g = new androidx.mediarouter.app.f(this, 13);
         this.h = new ew(this, 21);
-        this.f44811b = context;
-        this.f44812c = eVar;
+        this.f44822b = context;
+        this.f44823c = eVar;
         this.d = new Handler();
         this.e = context.getPackageManager();
     }
@@ -45,7 +45,7 @@ public final class t0 {
         } catch (FileNotFoundException e) {
             String message = e.getMessage();
             if (message != null && message.contains("compressed")) {
-                ((r4.c) this.f44812c).p();
+                ((r4.c) this.f44823c).p();
                 return null;
             }
             return null;
@@ -53,16 +53,16 @@ public final class t0 {
     }
 
     public void b(int i10, Serializable serializable) {
-        ((Executor) this.f44811b).execute(new x0(this, i10, serializable, 10));
+        ((Executor) this.f44822b).execute(new x0(this, i10, serializable, 10));
     }
 
     public void c() {
         boolean f7;
         int i10;
-        e eVar = (e) this.f44812c;
+        e eVar = (e) this.f44823c;
         PackageManager packageManager = (PackageManager) this.e;
-        ArrayList arrayList = (ArrayList) this.f44813f;
-        if (this.f44810a) {
+        ArrayList arrayList = (ArrayList) this.f44824f;
+        if (this.f44821a) {
             ArrayList arrayList2 = new ArrayList();
             if (Build.VERSION.SDK_INT >= 30) {
                 Intent intent = new Intent("android.media.MediaRoute2ProviderService");
@@ -81,7 +81,7 @@ public final class t0 {
                 }
                 ServiceInfo serviceInfo = it.next().serviceInfo;
                 if (serviceInfo != null) {
-                    if (y.f44842c == null) {
+                    if (y.f44853c == null) {
                         f7 = false;
                     } else {
                         f7 = y.c().f();
@@ -103,7 +103,7 @@ public final class t0 {
                     int i13 = 0;
                     while (true) {
                         if (i13 < size2) {
-                            ComponentName componentName = ((s0) arrayList.get(i13)).f44805r;
+                            ComponentName componentName = ((s0) arrayList.get(i13)).f44816r;
                             if (componentName.getPackageName().equals(str) && componentName.getClassName().equals(str2)) {
                                 break;
                             }
@@ -114,10 +114,10 @@ public final class t0 {
                         }
                     }
                     if (i13 < 0) {
-                        s0 s0Var = new s0((Context) this.f44811b, new ComponentName(serviceInfo.packageName, serviceInfo.name));
+                        s0 s0Var = new s0((Context) this.f44822b, new ComponentName(serviceInfo.packageName, serviceInfo.name));
                         s0Var.F = new mg.l(this, s0Var);
-                        if (!s0Var.f44808x) {
-                            s0Var.f44808x = true;
+                        if (!s0Var.f44819x) {
+                            s0Var.f44819x = true;
                             s0Var.r();
                         }
                         i10 = i11 + 1;
@@ -125,12 +125,12 @@ public final class t0 {
                         eVar.a(s0Var, false);
                     } else if (i13 >= i11) {
                         s0 s0Var2 = (s0) arrayList.get(i13);
-                        if (!s0Var2.f44808x) {
-                            s0Var2.f44808x = true;
+                        if (!s0Var2.f44819x) {
+                            s0Var2.f44819x = true;
                             s0Var2.r();
                         }
                         if (s0Var2.D == null) {
-                            if (!s0Var2.f44808x || (((n) s0Var2.h) == null && s0Var2.f44807w.isEmpty())) {
+                            if (!s0Var2.f44819x || (((n) s0Var2.h) == null && s0Var2.f44818w.isEmpty())) {
                                 z10 = false;
                             }
                             if (z10) {
@@ -154,13 +154,13 @@ public final class t0 {
                         s0Var3.f5274f = null;
                         s0Var3.h(null);
                         eVar.m(d, null);
-                        eVar.f44710a.b(514, d);
-                        eVar.f44718l.remove(d);
+                        eVar.f44721a.b(514, d);
+                        eVar.f44729l.remove(d);
                     }
                     arrayList.remove(s0Var3);
                     s0Var3.F = null;
-                    if (s0Var3.f44808x) {
-                        s0Var3.f44808x = false;
+                    if (s0Var3.f44819x) {
+                        s0Var3.f44819x = false;
                         s0Var3.r();
                     }
                 }
@@ -169,10 +169,10 @@ public final class t0 {
     }
 
     public t0(AssetManager assetManager, Executor executor, r4.c cVar, String str, File file) {
-        this.f44810a = false;
-        this.f44811b = executor;
-        this.f44812c = cVar;
-        this.f44813f = str;
+        this.f44821a = false;
+        this.f44822b = executor;
+        this.f44823c = cVar;
+        this.f44824f = str;
         this.e = file;
         int i10 = Build.VERSION.SDK_INT;
         byte[] bArr = null;
@@ -183,10 +183,10 @@ public final class t0 {
                     bArr = r4.d.h;
                     break;
                 case 26:
-                    bArr = r4.d.f46307g;
+                    bArr = r4.d.f46318g;
                     break;
                 case 27:
-                    bArr = r4.d.f46306f;
+                    bArr = r4.d.f46317f;
                     break;
                 case 28:
                 case 29:

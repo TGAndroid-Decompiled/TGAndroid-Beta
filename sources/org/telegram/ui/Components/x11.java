@@ -1,33 +1,43 @@
 package org.telegram.ui.Components;
-public final class x11 implements Runnable {
-    public final int f32300a;
-    public final o21 f32301b;
 
-    public x11(o21 o21Var, int i10) {
-        this.f32300a = i10;
-        this.f32301b = o21Var;
+import android.view.View;
+import java.io.Serializable;
+import org.telegram.tgnet.TLRPC;
+public final class x11 implements org.telegram.messenger.p20, org.telegram.messenger.q20, fe.e {
+    public final p21 f32359a;
+
+    public x11(p21 p21Var) {
+        this.f32359a = p21Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f32300a) {
-            case 0:
-                o21 o21Var = this.f32301b;
-                if (o21Var.l()) {
-                    o21Var.m();
-                    return;
-                }
-                return;
-            default:
-                o21 o21Var2 = this.f32301b;
-                e21 e21Var = o21Var2.M;
-                e21Var.z1(true);
-                c21 c21Var = o21Var2.F;
-                c21Var.z1(true);
-                o21Var2.P.a(true, true);
-                org.telegram.messenger.i0.a4(c21Var);
-                org.telegram.messenger.i0.a4(e21Var);
-                return;
+    public Boolean a(b51 b51Var, View view, Integer num, Float f7, Float f10) {
+        p21 p21Var = this.f32359a;
+        boolean z10 = false;
+        if (!p21Var.J.f31187j3 && !p21Var.f29342y.f31187j3) {
+            Object obj = b51Var.G;
+            if (obj instanceof TLRPC.TL_forumTopic) {
+                z10 = p21Var.o((TLRPC.TL_forumTopic) obj, view, false);
+            }
         }
+        return Boolean.valueOf(z10);
+    }
+
+    @Override
+    public void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        View view = (View) obj2;
+        Integer num = (Integer) number;
+        Float f7 = (Float) serializable;
+        Float f10 = (Float) serializable2;
+        p21.a(this.f32359a, (b51) obj);
+    }
+
+    @Override
+    public void v(int i10, float f7, float f10, fe.f fVar) {
+        this.f32359a.h();
+    }
+
+    @Override
+    public void E(float f7, int i10) {
     }
 }

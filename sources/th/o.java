@@ -2,16 +2,16 @@ package th;
 
 import j$.util.DesugarArrays;
 import j$.util.stream.Collectors;
-import org.telegram.messenger.cl;
+import org.telegram.messenger.dl;
 import org.telegram.messenger.f8;
-import org.telegram.messenger.vp;
+import org.telegram.messenger.wp;
 public abstract class o {
     public static int[] a() {
         return new int[]{10000, 3600, 400, 20, -10787210, -8681059, -14341066, 2000, 1800, 280, 10, -2013375, -1482439, -7666429, 500, 900, 200, 7, -1214690, -1214690, -6606592, 250, 600, 150, 4, -1926647, -1926647, -6668800, 100, 300, 110, 3, -12539616, -12539616, -15244800, 50, 120, 80, 2, -12147733, -12147733, -16756594, 10, 60, 60, 1, -6988581, -6988581, -11991141, 0, 30, 30, 0, -6988581, -6988581, -11991141};
     }
 
     public static int b(int i10, int i11, int i12) {
-        int[] iArr = vp.r1(i10).Y6;
+        int[] iArr = wp.r1(i10).Y6;
         for (int i13 = 0; i13 < iArr.length / 7; i13++) {
             int i14 = i13 * 7;
             if (i11 >= iArr[i14]) {
@@ -49,6 +49,6 @@ public abstract class o {
     }
 
     public static String f(int[] iArr) {
-        return (String) DesugarArrays.stream(iArr).mapToObj(new cl(1)).collect(Collectors.joining(","));
+        return (String) DesugarArrays.stream(iArr).mapToObj(new dl(1)).collect(Collectors.joining(","));
     }
 }

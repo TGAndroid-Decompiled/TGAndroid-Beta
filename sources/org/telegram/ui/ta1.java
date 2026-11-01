@@ -1,64 +1,22 @@
 package org.telegram.ui;
 
-import android.os.Build;
-import androidx.recyclerview.widget.RecyclerView;
-public final class ta1 extends s4.s0 {
-    public final int f41784a;
-    public final pb1 f41785b;
+import android.view.View;
+public final class ta1 implements View.OnClickListener {
+    public final nb1 f41604a;
 
-    public ta1(pb1 pb1Var, int i10) {
-        this.f41784a = i10;
-        this.f41785b = pb1Var;
+    public ta1(nb1 nb1Var) {
+        this.f41604a = nb1Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        int i12;
-        boolean z10;
-        pb1 pb1Var;
-        tg.f fVar;
-        switch (this.f41784a) {
-            case 0:
-                pb1 pb1Var2 = this.f41785b;
-                int L0 = pb1Var2.F.L0();
-                if (L0 != -1) {
-                    s4.c1 K = recyclerView.K(L0);
-                    boolean z11 = false;
-                    if (K != null) {
-                        i12 = K.f47898a.getTop();
-                    } else {
-                        i12 = 0;
-                    }
-                    if (L0 == 0) {
-                        int i13 = 0 - i12;
-                        if (i12 < 0) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        Math.abs(i13);
-                    } else if (L0 > 0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    if (z10 || !pb1Var2.K) {
-                        z11 = true;
-                    }
-                    pb1Var2.J0(z11, true);
-                    return;
-                }
-                return;
-            case 1:
-                this.f41785b.B0();
-                return;
-            default:
-                if (Build.VERSION.SDK_INT >= 31 && (fVar = (pb1Var = this.f41785b).f40583g1) != null) {
-                    fVar.f(i10, i11);
-                    pb1Var.A0();
-                    return;
-                }
-                return;
+    public final void onClick(View view) {
+        nb1 nb1Var = this.f41604a;
+        if (nb1Var.M == 1) {
+            org.telegram.ui.Components.s4.i0(nb1Var, -nb1Var.f39797a, null, nb1Var.g(), null, false, nb1Var.J, new ra(this, 5), nb1Var.getResourceProvider());
+            return;
         }
+        nb1Var.getMessagesController().m(nb1Var.f39797a, nb1Var.getUserConfig().f(), 0, null, nb1Var, false, new la1(nb1Var, 2), new ma1(nb1Var), null);
+        org.telegram.messenger.at.e().k(org.telegram.messenger.at.I4, new Object[0]);
+        nb1Var.S0(false);
     }
 }

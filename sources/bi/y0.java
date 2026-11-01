@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 import java.util.HashSet;
-import org.telegram.messenger.cd;
-import org.telegram.messenger.tz;
+import org.telegram.messenger.dd;
+import org.telegram.messenger.uz;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.j9;
 import org.telegram.ui.Cells.k9;
@@ -40,8 +40,8 @@ public final class y0 extends FrameLayout implements org.telegram.ui.ActionBar.k
         n1 n1Var = new n1(context, p6Var);
         this.d = n1Var;
         n1Var.setAllowNewlines(false);
-        n1Var.setTextSize(1, tz.W0);
-        n1Var.setHint(cd.L0(2131754018, null));
+        n1Var.setTextSize(1, uz.W0);
+        n1Var.setHint(dd.L0(2131754018, null));
         n1Var.setPadding(0, org.telegram.messenger.i0.L(14.0f), 0, org.telegram.messenger.i0.L(12.66f));
         n1Var.setListener(new v0(this));
         n1Var.setDelegate(new a1.c(this, 8));
@@ -123,7 +123,7 @@ public final class y0 extends FrameLayout implements org.telegram.ui.ActionBar.k
         org.telegram.ui.ActionBar.p6 p6Var = this.f3454a;
         int w02 = org.telegram.ui.ActionBar.t6.w0(i10, p6Var);
         AnimatedArrowDrawable animatedArrowDrawable = this.f3456c;
-        animatedArrowDrawable.f23663a.setColor(w02);
+        animatedArrowDrawable.f23664a.setColor(w02);
         animatedArrowDrawable.invalidateSelf();
         this.e.setColor(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.tl, p6Var));
     }

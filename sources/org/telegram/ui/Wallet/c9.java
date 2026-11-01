@@ -4,19 +4,19 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.cc;
 import org.telegram.ui.un;
 public final class c9 implements Runnable {
-    public final int f34359a;
-    public final r9 f34360b;
+    public final int f34360a;
+    public final r9 f34361b;
 
     public c9(r9 r9Var, int i10) {
-        this.f34359a = i10;
-        this.f34360b = r9Var;
+        this.f34360a = i10;
+        this.f34361b = r9Var;
     }
 
     @Override
     public final void run() {
         EditTextBoldCursor editTextBoldCursor;
-        int i10 = this.f34359a;
-        r9 r9Var = this.f34360b;
+        int i10 = this.f34360a;
+        r9 r9Var = this.f34361b;
         switch (i10) {
             case 0:
                 if (r9Var.I && (editTextBoldCursor = r9Var.H) != null && editTextBoldCursor.isAttachedToWindow() && r9Var.H.hasWindowFocus()) {
@@ -29,32 +29,32 @@ public final class c9 implements Runnable {
                 }
                 return;
             case 1:
-                float f7 = r9Var.f35126b0;
-                if (f7 < 1.0f && r9Var.f35125a0 == null) {
+                float f7 = r9Var.f35131b0;
+                if (f7 < 1.0f && r9Var.f35130a0 == null) {
                     o1.j jVar = new o1.j(new o1.i(f7));
-                    r9Var.f35125a0 = jVar;
+                    r9Var.f35130a0 = jVar;
                     o1.k kVar = new o1.k(1.0f);
                     kVar.a(0.55f);
                     kVar.b(65.0f);
-                    jVar.f13957m = kVar;
-                    r9Var.f35125a0.f(0.001f);
-                    r9Var.f35125a0.b(new q3(r9Var, 2));
-                    r9Var.f35125a0.a(new v6(r9Var, 1));
-                    r9Var.f35125a0.h();
+                    jVar.f13958m = kVar;
+                    r9Var.f35130a0.f(0.001f);
+                    r9Var.f35130a0.b(new q3(r9Var, 2));
+                    r9Var.f35130a0.a(new v6(r9Var, 1));
+                    r9Var.f35130a0.h();
                     return;
                 }
                 return;
             case 2:
-                r9Var.f35128d0.setLoading(false);
+                r9Var.f35133d0.setLoading(false);
                 return;
             case 3:
-                r9Var.f35128d0.setLoading(false);
+                r9Var.f35133d0.setLoading(false);
                 return;
             case 4:
-                r9Var.v0();
+                r9Var.w0();
                 return;
             case 5:
-                r9Var.presentFragment(un.ha(r9Var.f35130f.f19942id));
+                r9Var.presentFragment(un.ma(r9Var.f35135f.f19943id));
                 return;
             default:
                 org.telegram.messenger.m5.n(null, 2131743227, cc.a0(r9Var), 2131623993, 36);

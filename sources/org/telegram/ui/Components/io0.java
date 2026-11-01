@@ -1,68 +1,93 @@
 package org.telegram.ui.Components;
 
-import android.os.Build;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowInsets;
-public final class io0 implements ei.n, r0.m, org.telegram.ui.ActionBar.i1, ei.o {
-    public final int f27048a;
-    public final op0 f27049b;
+import android.widget.Toast;
+import org.telegram.ui.PhotoViewer;
+public final class io0 implements View.OnClickListener {
+    public final int f27134a;
+    public final pp0 f27135b;
 
-    public io0(op0 op0Var, int i10) {
-        this.f27048a = i10;
-        this.f27049b = op0Var;
+    public io0(pp0 pp0Var, int i10) {
+        this.f27134a = i10;
+        this.f27135b = pp0Var;
     }
 
     @Override
-    public r0.j1 R0(View view, r0.j1 j1Var) {
-        WindowInsets g10 = j1Var.g();
-        op0 op0Var = this.f27049b;
-        op0Var.t0(g10);
-        i0.c f7 = j1Var.f46132a.f(519);
-        if (!op0Var.f29152y2.equals(f7)) {
-            op0Var.f29152y2 = f7;
-            op0Var.f21589c.requestLayout();
-        }
-        return r0.j1.f46131b;
-    }
-
-    @Override
-    public int c() {
-        op0 op0Var = this.f27049b;
-        op0Var.getClass();
-        return org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f20929d6, op0Var.I0);
-    }
-
-    @Override
-    public void j(int i10) {
-        op0 op0Var = this.f27049b;
-        tg.f fVar = op0Var.G2;
-        if (Build.VERSION.SDK_INT >= 31 && fVar != null) {
-            if (v7.u7.a(i10, 4)) {
-                fVar.h(op0Var.X0.e());
-            }
-            fVar.e(op0Var.L2, op0Var.f21586b.getWidth(), op0Var.f21586b.getHeight());
-        }
-    }
-
-    @Override
-    public void r(KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.k1 k1Var;
-        org.telegram.ui.ActionBar.k1 k1Var2;
-        switch (this.f27048a) {
+    public final void onClick(View view) {
+        int i10 = this.f27134a;
+        pp0 pp0Var = this.f27135b;
+        switch (i10) {
+            case 0:
+                pp0Var.V0(true);
+                return;
+            case 1:
+                ep epVar = pp0Var.W1;
+                epVar.a(!epVar.f25895a.f23920q, true);
+                pp0Var.a1();
+                return;
             case 2:
-                op0 op0Var = this.f27049b;
-                op0Var.getClass();
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (k1Var = op0Var.B2) != null && k1Var.isShowing()) {
-                    op0Var.B2.d(true);
+                org.telegram.ui.ActionBar.k1 k1Var = pp0Var.B2;
+                if (k1Var != null && k1Var.isShowing()) {
+                    pp0Var.B2.d(true);
+                }
+                pp0Var.V0(false);
+                return;
+            case 3:
+                org.telegram.ui.ActionBar.k1 k1Var2 = pp0Var.B2;
+                if (k1Var2 != null && k1Var2.isShowing()) {
+                    pp0Var.B2.d(true);
+                }
+                pp0Var.V0(true);
+                return;
+            case 4:
+                String[] strArr = pp0Var.f29473g2;
+                if (pp0Var.M1.m() == 0) {
+                    if (pp0Var.f29472f2 || strArr[0] != null) {
+                        pp0Var.dismiss();
+                        PhotoViewer.v1().H0(true, false);
+                        if (strArr[0] == null && pp0Var.f29470d2) {
+                            pp0Var.f29471e2 = true;
+                            Toast.makeText(pp0Var.getContext(), org.telegram.messenger.dd.L0(2131748789, null), 0).show();
+                            return;
+                        }
+                        pp0Var.getContext();
+                        pp0Var.M0();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 5:
+                String[] strArr2 = pp0Var.f29473g2;
+                if (pp0Var.M1.m() == 0) {
+                    if (pp0Var.f29472f2 || strArr2[0] != null) {
+                        pp0Var.dismiss();
+                        if (strArr2[0] == null && pp0Var.f29470d2) {
+                            pp0Var.f29471e2 = true;
+                            Toast.makeText(pp0Var.getContext(), org.telegram.messenger.dd.L0(2131748789, null), 0).show();
+                            return;
+                        }
+                        pp0Var.getContext();
+                        pp0Var.M0();
+                        return;
+                    }
                     return;
                 }
                 return;
             default:
-                op0 op0Var2 = this.f27049b;
-                op0Var2.getClass();
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (k1Var2 = op0Var2.B2) != null && k1Var2.isShowing()) {
-                    op0Var2.B2.d(true);
+                String[] strArr3 = pp0Var.f29473g2;
+                if (pp0Var.M1.m() == 0) {
+                    if (pp0Var.f29472f2 || strArr3[0] != null) {
+                        pp0Var.dismiss();
+                        if (strArr3[0] == null && pp0Var.f29470d2) {
+                            pp0Var.f29471e2 = true;
+                            Toast.makeText(pp0Var.getContext(), org.telegram.messenger.dd.L0(2131748789, null), 0).show();
+                            return;
+                        }
+                        pp0Var.getContext();
+                        pp0Var.M0();
+                        return;
+                    }
                     return;
                 }
                 return;

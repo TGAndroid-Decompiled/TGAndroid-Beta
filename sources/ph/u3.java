@@ -1,13 +1,13 @@
 package ph;
 
-import org.telegram.messenger.j20;
-public final class u3 implements j20 {
-    public final int f45322a;
-    public final g4 f45323b;
+import org.telegram.messenger.k20;
+public final class u3 implements k20 {
+    public final int f45333a;
+    public final g4 f45334b;
 
     public u3(g4 g4Var, int i10) {
-        this.f45322a = i10;
-        this.f45323b = g4Var;
+        this.f45333a = i10;
+        this.f45334b = g4Var;
     }
 
     @Override

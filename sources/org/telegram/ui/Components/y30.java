@@ -2,18 +2,18 @@ package org.telegram.ui.Components;
 
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class y30 extends org.telegram.ui.yr0 {
-    public final ArrayList f32620a;
-    public final b40 f32621b;
+public final class y30 extends org.telegram.ui.xr0 {
+    public final ArrayList f32708a;
+    public final b40 f32709b;
 
     public y30(b40 b40Var, ArrayList arrayList) {
-        this.f32621b = b40Var;
-        this.f32620a = arrayList;
+        this.f32709b = b40Var;
+        this.f32708a = arrayList;
     }
 
     @Override
-    public final org.telegram.ui.gs0 E(org.telegram.messenger.jj jjVar, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        a40 a40Var = this.f32621b.f24524b;
+    public final org.telegram.ui.fs0 E(org.telegram.messenger.kj kjVar, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        a40 a40Var = this.f32709b.f24619b;
         if (a40Var == null) {
             return null;
         }
@@ -26,8 +26,8 @@ public final class y30 extends org.telegram.ui.yr0 {
     }
 
     @Override
-    public final void o(int i10, org.telegram.messenger.x20 x20Var, boolean z10, int i11, int i12, boolean z11) {
-        this.f32621b.s((org.telegram.messenger.ef) this.f32620a.get(0));
+    public final void o(int i10, org.telegram.messenger.y20 y20Var, boolean z10, int i11, int i12, boolean z11) {
+        this.f32709b.s((org.telegram.messenger.ff) this.f32708a.get(0));
     }
 
     @Override

@@ -6,13 +6,13 @@ import java.util.concurrent.locks.LockSupport;
 public final class f0 extends v0 implements Runnable {
     private static volatile Thread _thread;
     private static volatile int debugStatus;
-    public static final f0 f48624s;
-    public static final long f48625w;
+    public static final f0 f48635s;
+    public static final long f48636w;
 
     static {
         Long l4;
         ?? v0Var = new v0();
-        f48624s = v0Var;
+        f48635s = v0Var;
         v0Var.h(false);
         TimeUnit timeUnit = TimeUnit.MILLISECONDS;
         try {
@@ -20,7 +20,7 @@ public final class f0 extends v0 implements Runnable {
         } catch (SecurityException unused) {
             l4 = 1000L;
         }
-        f48625w = timeUnit.toNanos(l4.longValue());
+        f48636w = timeUnit.toNanos(l4.longValue());
     }
 
     @Override
@@ -39,7 +39,7 @@ public final class f0 extends v0 implements Runnable {
             o(nanoTime, s0Var);
             return s0Var;
         }
-        return w1.f48676a;
+        return w1.f48687a;
     }
 
     @Override
@@ -89,7 +89,7 @@ public final class f0 extends v0 implements Runnable {
         }
         debugStatus = 3;
         v0.h.set(this, null);
-        v0.f48672n.set(this, null);
+        v0.f48683n.set(this, null);
         notifyAll();
     }
 
@@ -98,7 +98,7 @@ public final class f0 extends v0 implements Runnable {
         boolean z10;
         boolean z11;
         boolean n10;
-        d2.f48609a.set(this);
+        d2.f48620a.set(this);
         try {
             synchronized (this) {
                 int i10 = debugStatus;
@@ -122,7 +122,7 @@ public final class f0 extends v0 implements Runnable {
                     if (i11 == Long.MAX_VALUE) {
                         long nanoTime = System.nanoTime();
                         if (j10 == Long.MAX_VALUE) {
-                            j10 = f48625w + nanoTime;
+                            j10 = f48636w + nanoTime;
                         }
                         long j11 = j10 - nanoTime;
                         if (j11 <= 0) {

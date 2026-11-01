@@ -4,20 +4,20 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import java.util.ArrayList;
 public final class y8 extends Path {
-    public final int f52218a = org.telegram.messenger.i0.L(10.0f);
-    public final float[] f52219b;
-    public ArrayList f52220c;
+    public final int f52233a = org.telegram.messenger.i0.L(10.0f);
+    public final float[] f52234b;
+    public ArrayList f52235c;
     public ArrayList d;
     public float e;
-    public float f52221f;
-    public float f52222g;
+    public float f52236f;
+    public float f52237g;
     public float h;
-    public float f52223i;
-    public float f52224j;
-    public float f52225k;
+    public float f52238i;
+    public float f52239j;
+    public float f52240k;
 
     public y8() {
-        this.f52219b = r0;
+        this.f52234b = r0;
         float L = org.telegram.messenger.i0.L(2.0f);
         float[] fArr = {L, L, L, L, 0.0f, 0.0f, 0.0f, 0.0f};
     }
@@ -48,15 +48,15 @@ public final class y8 extends Path {
         float f19 = f11;
         if (arrayList != null && !arrayList.isEmpty()) {
             float f20 = 0.0f;
-            if (Math.abs(this.e - f12) <= 1.0f && Math.abs(this.f52221f - f13) <= 0.01f && Math.abs(this.f52222g - 0.0f) <= 0.1f && Math.abs(this.h - f14) <= 1.0f && Math.abs(this.f52223i - f18) <= 1.0f && Math.abs(this.f52224j - f10) <= 1.0f && Math.abs(this.f52225k - f19) <= 1.0f) {
-                ArrayList arrayList2 = this.f52220c;
+            if (Math.abs(this.e - f12) <= 1.0f && Math.abs(this.f52236f - f13) <= 0.01f && Math.abs(this.f52237g - 0.0f) <= 0.1f && Math.abs(this.h - f14) <= 1.0f && Math.abs(this.f52238i - f18) <= 1.0f && Math.abs(this.f52239j - f10) <= 1.0f && Math.abs(this.f52240k - f19) <= 1.0f) {
+                ArrayList arrayList2 = this.f52235c;
                 if (arrayList2 != null && arrayList2.size() == arrayList.size()) {
                     for (int i12 = 0; i12 < arrayList2.size(); i12++) {
                         int intValue = ((Integer) arrayList2.get(i12)).intValue();
                         if (arrayList.get(i12) == null) {
                             i11 = 0;
                         } else {
-                            i11 = ((s8) arrayList.get(i12)).f51937b;
+                            i11 = ((s8) arrayList.get(i12)).f51950b;
                         }
                         if (intValue == i11) {
                         }
@@ -69,7 +69,7 @@ public final class y8 extends Path {
                         if (arrayList.get(i13) == null) {
                             e7 = 0.0f;
                         } else {
-                            e7 = ((s8) arrayList.get(i13)).f51936a.e(false, ((s8) arrayList.get(i13)).f51938c);
+                            e7 = ((s8) arrayList.get(i13)).f51949a.e(false, ((s8) arrayList.get(i13)).f51951c);
                         }
                         if (floatValue != e7) {
                             return;
@@ -79,19 +79,19 @@ public final class y8 extends Path {
                     return;
                 }
             }
-            ArrayList arrayList4 = this.f52220c;
+            ArrayList arrayList4 = this.f52235c;
             if (arrayList4 == null) {
-                this.f52220c = new ArrayList();
+                this.f52235c = new ArrayList();
             } else {
                 arrayList4.clear();
             }
             int i14 = 0;
             while (i14 < arrayList.size()) {
-                ArrayList arrayList5 = this.f52220c;
+                ArrayList arrayList5 = this.f52235c;
                 if (arrayList.get(i14) == null) {
                     i10 = 0;
                 } else {
-                    i10 = ((s8) arrayList.get(i14)).f51937b;
+                    i10 = ((s8) arrayList.get(i14)).f51950b;
                 }
                 i14 = c3.i0.j(i10, i14, 1, arrayList5);
             }
@@ -106,15 +106,15 @@ public final class y8 extends Path {
                 if (arrayList.get(i15) == null) {
                     e = 0.0f;
                 } else {
-                    e = ((s8) arrayList.get(i15)).f51936a.e(false, ((s8) arrayList.get(i15)).f51938c);
+                    e = ((s8) arrayList.get(i15)).f51949a.e(false, ((s8) arrayList.get(i15)).f51951c);
                 }
                 arrayList7.add(Float.valueOf(e));
             }
-            this.f52223i = f18;
-            this.f52224j = f10;
-            this.f52225k = f19;
-            this.f52222g = 0.0f;
-            this.f52221f = f13;
+            this.f52238i = f18;
+            this.f52239j = f10;
+            this.f52240k = f19;
+            this.f52237g = 0.0f;
+            this.f52236f = f13;
             this.e = f12;
             this.h = f14;
             ArrayList arrayList8 = this.d;
@@ -123,10 +123,10 @@ public final class y8 extends Path {
             int i16 = 0;
             for (int i17 = 0; i17 < arrayList.size(); i17++) {
                 if (arrayList.get(i17) != null) {
-                    i16 = Math.max(i16, ((s8) arrayList.get(i17)).f51937b);
+                    i16 = Math.max(i16, ((s8) arrayList.get(i17)).f51950b);
                 }
             }
-            int max = Math.max(0, (int) (((f10 - this.f52218a) - f18) / round));
+            int max = Math.max(0, (int) (((f10 - this.f52233a) - f18) / round));
             int min = Math.min(i16 - 1, (int) Math.ceil(((f19 + f15) - f18) / round));
             while (max <= min) {
                 float f21 = max;
@@ -134,7 +134,7 @@ public final class y8 extends Path {
                 float f22 = f20;
                 int i18 = 0;
                 for (int i19 = 0; i19 < arrayList.size(); i19++) {
-                    if (arrayList.get(i19) != null && max < ((s8) arrayList.get(i19)).f51937b) {
+                    if (arrayList.get(i19) != null && max < ((s8) arrayList.get(i19)).f51950b) {
                         s10 = ((s8) arrayList.get(i19)).d[max];
                     } else {
                         s10 = 0;
@@ -165,7 +165,7 @@ public final class y8 extends Path {
                 float max2 = Math.max(f16, org.telegram.messenger.i0.T1(org.telegram.messenger.i0.N(0.66f), org.telegram.messenger.i0.N(1.5f), f17));
                 RectF rectF = org.telegram.messenger.i0.P;
                 rectF.set(L, org.telegram.messenger.i0.T1(f14 - max2, f14 - ((f12 + max2) / 2.0f), f17), org.telegram.messenger.i0.N(1.66f) + L, org.telegram.messenger.i0.T1(f14, org.telegram.messenger.m5.y(f12, max2, 2.0f, f14), f17));
-                addRoundRect(rectF, this.f52219b, Path.Direction.CW);
+                addRoundRect(rectF, this.f52234b, Path.Direction.CW);
                 max++;
                 f18 = f7;
                 f19 = f11;
@@ -188,10 +188,10 @@ public final class y8 extends Path {
             rewind();
             return;
         }
-        int i10 = s8Var.f51937b;
-        org.telegram.ui.Components.t5 t5Var = s8Var.f51936a;
-        float e = t5Var.e(false, s8Var.f51938c);
-        if (0 == j10 && Math.abs(this.e - f13) <= 1.0f && Math.abs(this.f52221f - f14) <= 0.01f && Math.abs(this.f52222g - f12) <= 0.1f && Math.abs(this.h - f15) <= 1.0f && Math.abs(this.f52223i - f19) <= 1.0f && Math.abs(this.f52224j - f20) <= 1.0f && Math.abs(this.f52225k - f21) <= 1.0f && (arrayList = this.f52220c) != null && arrayList.size() == 1) {
+        int i10 = s8Var.f51950b;
+        org.telegram.ui.Components.t5 t5Var = s8Var.f51949a;
+        float e = t5Var.e(false, s8Var.f51951c);
+        if (0 == j10 && Math.abs(this.e - f13) <= 1.0f && Math.abs(this.f52236f - f14) <= 0.01f && Math.abs(this.f52237g - f12) <= 0.1f && Math.abs(this.h - f15) <= 1.0f && Math.abs(this.f52238i - f19) <= 1.0f && Math.abs(this.f52239j - f20) <= 1.0f && Math.abs(this.f52240k - f21) <= 1.0f && (arrayList = this.f52235c) != null && arrayList.size() == 1) {
             ArrayList arrayList2 = this.d;
             if (arrayList2 != null && !arrayList2.isEmpty()) {
                 f18 = ((Float) this.d.get(0)).floatValue();
@@ -202,13 +202,13 @@ public final class y8 extends Path {
                 return;
             }
         }
-        ArrayList arrayList3 = this.f52220c;
+        ArrayList arrayList3 = this.f52235c;
         if (arrayList3 == null) {
-            this.f52220c = new ArrayList();
+            this.f52235c = new ArrayList();
         } else {
             arrayList3.clear();
         }
-        this.f52220c.add(Integer.valueOf(i10));
+        this.f52235c.add(Integer.valueOf(i10));
         ArrayList arrayList4 = this.d;
         if (arrayList4 == null) {
             this.d = new ArrayList();
@@ -216,17 +216,17 @@ public final class y8 extends Path {
             arrayList4.clear();
         }
         this.d.add(Float.valueOf(e));
-        this.f52223i = f19;
-        this.f52224j = f20;
-        this.f52225k = f21;
-        this.f52222g = f12;
-        this.f52221f = f14;
+        this.f52238i = f19;
+        this.f52239j = f20;
+        this.f52240k = f21;
+        this.f52237g = f12;
+        this.f52236f = f14;
         this.e = f13;
         this.h = f15;
-        float e7 = t5Var.e(false, s8Var.f51938c);
+        float e7 = t5Var.e(false, s8Var.f51951c);
         rewind();
         float round = Math.round(org.telegram.messenger.i0.N(3.3333f));
-        int max = Math.max(0, (int) (((f20 - this.f52218a) - f19) / round));
+        int max = Math.max(0, (int) (((f20 - this.f52233a) - f19) / round));
         int min = Math.min(i10 - 1, (int) Math.ceil(((f16 + f21) - f19) / round));
         while (max <= min) {
             float f22 = max;
@@ -254,7 +254,7 @@ public final class y8 extends Path {
             float max2 = Math.max(f17, org.telegram.messenger.i0.T1(org.telegram.messenger.i0.N(0.66f), org.telegram.messenger.i0.N(1.5f), f12));
             RectF rectF = org.telegram.messenger.i0.P;
             rectF.set(L, org.telegram.messenger.i0.T1(f15 - max2, f15 - ((f13 + max2) / 2.0f), f12), org.telegram.messenger.i0.N(1.66f) + L, org.telegram.messenger.i0.T1(f15, org.telegram.messenger.m5.y(f13, max2, 2.0f, f15), f12));
-            addRoundRect(rectF, this.f52219b, Path.Direction.CW);
+            addRoundRect(rectF, this.f52234b, Path.Direction.CW);
             max++;
             f19 = f7;
             f20 = f10;

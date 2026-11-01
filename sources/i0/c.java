@@ -3,20 +3,20 @@ package i0;
 import android.graphics.Insets;
 public final class c {
     public static final c e = new c(0, 0, 0, 0);
-    public final int f7765a;
-    public final int f7766b;
-    public final int f7767c;
+    public final int f7766a;
+    public final int f7767b;
+    public final int f7768c;
     public final int d;
 
     public c(int i10, int i11, int i12, int i13) {
-        this.f7765a = i10;
-        this.f7766b = i11;
-        this.f7767c = i12;
+        this.f7766a = i10;
+        this.f7767b = i11;
+        this.f7768c = i12;
         this.d = i13;
     }
 
     public static c a(c cVar, c cVar2) {
-        return b(Math.max(cVar.f7765a, cVar2.f7765a), Math.max(cVar.f7766b, cVar2.f7766b), Math.max(cVar.f7767c, cVar2.f7767c), Math.max(cVar.d, cVar2.d));
+        return b(Math.max(cVar.f7766a, cVar2.f7766a), Math.max(cVar.f7767b, cVar2.f7767b), Math.max(cVar.f7768c, cVar2.f7768c), Math.max(cVar.d, cVar2.d));
     }
 
     public static c b(int i10, int i11, int i12, int i13) {
@@ -31,7 +31,7 @@ public final class c {
     }
 
     public final Insets d() {
-        return b2.d.h(this.f7765a, this.f7766b, this.f7767c, this.d);
+        return b2.d.h(this.f7766a, this.f7767b, this.f7768c, this.d);
     }
 
     public final boolean equals(Object obj) {
@@ -42,17 +42,17 @@ public final class c {
             return false;
         }
         c cVar = (c) obj;
-        if (this.d == cVar.d && this.f7765a == cVar.f7765a && this.f7767c == cVar.f7767c && this.f7766b == cVar.f7766b) {
+        if (this.d == cVar.d && this.f7766a == cVar.f7766a && this.f7768c == cVar.f7768c && this.f7767b == cVar.f7767b) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return (((((this.f7765a * 31) + this.f7766b) * 31) + this.f7767c) * 31) + this.d;
+        return (((((this.f7766a * 31) + this.f7767b) * 31) + this.f7768c) * 31) + this.d;
     }
 
     public final String toString() {
-        return "Insets{left=" + this.f7765a + ", top=" + this.f7766b + ", right=" + this.f7767c + ", bottom=" + this.d + '}';
+        return "Insets{left=" + this.f7766a + ", top=" + this.f7767b + ", right=" + this.f7768c + ", bottom=" + this.d + '}';
     }
 }

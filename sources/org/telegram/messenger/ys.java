@@ -1,71 +1,39 @@
 package org.telegram.messenger;
 
-import android.app.Activity;
 import java.lang.ref.WeakReference;
-import org.json.JSONObject;
-public final class ys implements vs, us {
-    public final int f19430a;
-    public final Object f19431b;
-    public final Object f19432c;
+public final class ys implements vs {
+    public final at f19621a;
+    public final WeakReference f19622b;
+    public final int f19623c;
 
-    public ys(us usVar, Object obj, int i10) {
-        this.f19430a = i10;
-        this.f19432c = usVar;
-        this.f19431b = obj;
-    }
-
-    @Override
-    public void a() {
-        ((xa.n) this.f19431b).a();
+    public ys(at atVar, vs vsVar) {
+        this.f19621a = atVar;
+        this.f19622b = new WeakReference(vsVar);
+        this.f19623c = System.identityHashCode(vsVar);
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        switch (this.f19430a) {
-            case 0:
-                us usVar = (us) ((WeakReference) this.f19432c).get();
-                if (usVar != null) {
-                    usVar.didReceivedNotification(i10, i11, objArr);
-                    return;
-                }
-                f8.d("MEMORY_LEAK observer " + i10 + " with destroyed WeakReference");
-                a();
-                return;
-            case 1:
-                if (i10 == 274) {
-                    ((org.telegram.ui.ActionBar.x1) this.f19431b).dismiss();
-                    zs.e().n(this, i10);
-                    i0.h3(new org.telegram.ui.zy(this, 13), 100L);
-                    return;
-                }
-                return;
-            default:
-                org.telegram.ui.web.z0 z0Var = (org.telegram.ui.web.z0) this.f19432c;
-                if (i10 == 306) {
-                    int intValue = ((Integer) objArr[0]).intValue();
-                    int[] iArr = (int[]) objArr[2];
-                    if (intValue == 5000) {
-                        zs.e().n(this, 306);
-                        if (iArr[0] == 0) {
-                            Activity activity = z0Var.W;
-                            if (activity != null) {
-                                z0Var.f43267g0 = org.telegram.ui.u9.i0(activity, 3, new l2.f(z0Var, 21));
-                                return;
-                            }
-                            return;
-                        }
-                        z0Var.y((org.telegram.ui.web.x0) this.f19431b, "scan_qr_popup_closed", new JSONObject());
-                        return;
-                    }
-                    return;
-                }
-                return;
+        vs vsVar = (vs) this.f19622b.get();
+        if (vsVar != null) {
+            vsVar.didReceivedNotification(i10, i11, objArr);
+        } else {
+            this.f19621a.n(this, i10);
         }
     }
 
-    public ys(zs zsVar, us usVar) {
-        this.f19430a = 0;
-        this.f19431b = new xa.n(zsVar, this);
-        this.f19432c = new WeakReference(usVar);
+    public final boolean equals(Object obj) {
+        vs vsVar;
+        if (this == obj) {
+            return true;
+        }
+        if ((obj instanceof ys) && (vsVar = (vs) this.f19622b.get()) != null && vsVar == ((ys) obj).f19622b.get()) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.f19623c;
     }
 }

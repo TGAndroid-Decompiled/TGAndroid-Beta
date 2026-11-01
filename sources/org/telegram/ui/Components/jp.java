@@ -6,21 +6,21 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import java.util.Random;
 public final class jp {
-    public float f27464g;
-    public float f27467k;
-    public final Path f27460a = new Path();
-    public final float[] f27461b = new float[4];
-    public final float[] f27462c = new float[4];
+    public float f27540g;
+    public float f27543k;
+    public final Path f27536a = new Path();
+    public final float[] f27537b = new float[4];
+    public final float[] f27538c = new float[4];
     public final Matrix d = new Matrix();
     public final float h = 1.0f;
-    public final Random f27465i = new Random();
-    public final int f27463f = 6;
+    public final Random f27541i = new Random();
+    public final int f27539f = 6;
     public final float e = (float) (Math.tan(3.141592653589793d / 12) * 1.3333333333333333d);
-    public final float[] f27466j = new float[6];
+    public final float[] f27542j = new float[6];
 
     public jp() {
-        for (int i10 = 0; i10 < this.f27463f; i10++) {
-            this.f27466j[i10] = (this.f27465i.nextInt() % 100) / 100.0f;
+        for (int i10 = 0; i10 < this.f27539f; i10++) {
+            this.f27542j[i10] = (this.f27541i.nextInt() % 100) / 100.0f;
         }
     }
 
@@ -29,17 +29,17 @@ public final class jp {
         int i10;
         float f12;
         jp jpVar = this;
-        float f13 = jpVar.f27464g;
+        float f13 = jpVar.f27540g;
         float f14 = (f13 - 0.0f) - 0.0f;
         float f15 = f13 + 0.0f + 0.0f;
         float max = Math.max(f14, f15);
         float f16 = jpVar.e;
         float f17 = max * f16 * jpVar.h;
-        Path path = jpVar.f27460a;
+        Path path = jpVar.f27536a;
         path.reset();
         int i11 = 0;
         while (true) {
-            int i12 = jpVar.f27463f;
+            int i12 = jpVar.f27539f;
             if (i11 < i12) {
                 Matrix matrix = jpVar.d;
                 matrix.reset();
@@ -50,10 +50,10 @@ public final class jp {
                 } else {
                     f11 = f15;
                 }
-                float f19 = jpVar.f27467k;
-                float[] fArr = jpVar.f27466j;
+                float f19 = jpVar.f27543k;
+                float[] fArr = jpVar.f27542j;
                 float f20 = (fArr[i11] * f19) + f11;
-                float[] fArr2 = jpVar.f27461b;
+                float[] fArr2 = jpVar.f27537b;
                 fArr2[0] = f7;
                 float f21 = f10 - f20;
                 fArr2[1] = f21;
@@ -72,8 +72,8 @@ public final class jp {
                 } else {
                     f12 = f22;
                 }
-                float f23 = jpVar.f27467k;
-                float[] fArr3 = jpVar.f27462c;
+                float f23 = jpVar.f27543k;
+                float[] fArr3 = jpVar.f27538c;
                 fArr3[0] = f7;
                 float f24 = f10 - ((fArr[i10] * f23) + f12);
                 fArr3[1] = f24;

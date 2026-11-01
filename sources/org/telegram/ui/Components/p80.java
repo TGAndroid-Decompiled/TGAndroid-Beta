@@ -22,19 +22,19 @@ public class p80 extends TextView {
     public boolean F;
     public PorterDuffColorFilter G;
     public int H;
-    public final boolean f29310a;
-    public final ji.a f29311b;
-    public final org.telegram.ui.ActionBar.p6 f29312c;
+    public final boolean f29373a;
+    public final ji.a f29374b;
+    public final org.telegram.ui.ActionBar.p6 f29375c;
     public k5 d;
     public q80 e;
-    public o80 f29313f;
+    public o80 f29376f;
     public o80 h;
-    public boolean f29314n;
-    public boolean f29315r;
-    public boolean f29316s;
-    public CharacterStyle f29317w;
-    public int f29318x;
-    public boolean f29319y;
+    public boolean f29377n;
+    public boolean f29378r;
+    public boolean f29379s;
+    public CharacterStyle f29380w;
+    public int f29381x;
+    public boolean f29382y;
 
     public p80(Context context) {
         this(context, null);
@@ -65,7 +65,7 @@ public class p80 extends TextView {
     }
 
     public int c() {
-        return org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f21336ze, this.f29312c);
+        return org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f21337ze, this.f29375c);
     }
 
     public int getTextPaddingTop() {
@@ -78,8 +78,8 @@ public class p80 extends TextView {
 
     @Override
     public final void invalidate() {
-        if (!this.f29319y) {
-            this.f29319y = true;
+        if (!this.f29382y) {
+            this.f29382y = true;
             try {
                 if (J == null) {
                     Field declaredField = TextView.class.getDeclaredField("mEditor");
@@ -134,7 +134,7 @@ public class p80 extends TextView {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        int i12 = this.f29318x;
+        int i12 = this.f29381x;
         if (i12 > 0) {
             i10 = View.MeasureSpec.makeMeasureSpec(Math.min(i12, View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10));
         }
@@ -145,18 +145,18 @@ public class p80 extends TextView {
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         CharacterStyle characterStyle;
-        ji.a aVar = this.f29311b;
+        ji.a aVar = this.f29374b;
         if (aVar != null) {
             Layout layout = getLayout();
             ClickableSpan b10 = b((int) motionEvent.getX(), (int) motionEvent.getY());
             if (b10 != null && motionEvent.getAction() == 0) {
-                q80 q80Var = new q80(b10, this.f29312c, motionEvent.getX(), motionEvent.getY(), 0);
+                q80 q80Var = new q80(b10, this.f29375c, motionEvent.getX(), motionEvent.getY(), 0);
                 q80Var.d(c());
                 this.e = q80Var;
                 aVar.b(q80Var, null);
                 SpannableString spannableString = new SpannableString(layout.getText());
-                int spanStart = spannableString.getSpanStart(this.e.f29568i);
-                int spanEnd = spannableString.getSpanEnd(this.e.f29568i);
+                int spanStart = spannableString.getSpanStart(this.e.f29671i);
+                int spanEnd = spannableString.getSpanEnd(this.e.f29671i);
                 k80 b11 = this.e.b();
                 b11.d(layout, spanStart, getPaddingTop());
                 layout.getSelectionPath(spanStart, spanEnd, b11);
@@ -166,8 +166,8 @@ public class p80 extends TextView {
             if (motionEvent.getAction() == 1) {
                 aVar.f(true);
                 q80 q80Var2 = this.e;
-                if (q80Var2 != null && (characterStyle = q80Var2.f29568i) == b10) {
-                    o80 o80Var = this.f29313f;
+                if (q80Var2 != null && (characterStyle = q80Var2.f29671i) == b10) {
+                    o80 o80Var = this.f29376f;
                     if (o80Var != null) {
                         o80Var.a((ClickableSpan) characterStyle);
                     } else if (characterStyle != null) {
@@ -190,15 +190,15 @@ public class p80 extends TextView {
     }
 
     public void setDisablePaddingsOffset(boolean z10) {
-        this.f29314n = z10;
+        this.f29377n = z10;
     }
 
     public void setDisablePaddingsOffsetX(boolean z10) {
-        this.f29315r = z10;
+        this.f29378r = z10;
     }
 
     public void setDisablePaddingsOffsetY(boolean z10) {
-        this.f29316s = z10;
+        this.f29379s = z10;
     }
 
     public void setEmojiColor(int i10) {
@@ -208,15 +208,15 @@ public class p80 extends TextView {
     }
 
     public void setLoading(CharacterStyle characterStyle) {
-        if (this.f29317w != characterStyle) {
-            ji.a aVar = this.f29311b;
+        if (this.f29380w != characterStyle) {
+            ji.a aVar = this.f29374b;
             aVar.g();
-            this.f29317w = characterStyle;
+            this.f29380w = characterStyle;
             t80 k10 = ji.a.k(getLayout(), characterStyle, getPaddingTop());
             if (k10 != null) {
-                int d = d(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f21336ze, this.f29312c));
+                int d = d(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f21337ze, this.f29375c));
                 k10.g(org.telegram.ui.ActionBar.t6.r1(0.8f, d), org.telegram.ui.ActionBar.t6.r1(1.3f, d), org.telegram.ui.ActionBar.t6.r1(1.0f, d), org.telegram.ui.ActionBar.t6.r1(4.0f, d));
-                k10.f30520x.setStrokeWidth(org.telegram.messenger.i0.N(1.25f));
+                k10.f30592x.setStrokeWidth(org.telegram.messenger.i0.N(1.25f));
                 aVar.c(k10, null);
             }
         }
@@ -224,7 +224,7 @@ public class p80 extends TextView {
 
     @Override
     public void setMaxWidth(int i10) {
-        this.f29318x = i10;
+        this.f29381x = i10;
     }
 
     public void setOnLinkLongPressListener(o80 o80Var) {
@@ -232,7 +232,7 @@ public class p80 extends TextView {
     }
 
     public void setOnLinkPressListener(o80 o80Var) {
-        this.f29313f = o80Var;
+        this.f29376f = o80Var;
     }
 
     @Override
@@ -245,18 +245,18 @@ public class p80 extends TextView {
         super(context);
         this.E = false;
         this.F = true;
-        this.f29310a = false;
-        this.f29311b = new ji.a(this);
-        this.f29312c = p6Var;
+        this.f29373a = false;
+        this.f29374b = new ji.a(this);
+        this.f29375c = p6Var;
     }
 
     public p80(Context context, ji.a aVar, org.telegram.ui.ActionBar.p6 p6Var) {
         super(context);
         this.E = false;
         this.F = true;
-        this.f29310a = true;
-        this.f29311b = aVar;
-        this.f29312c = p6Var;
+        this.f29373a = true;
+        this.f29374b = aVar;
+        this.f29375c = p6Var;
     }
 
     public int d(int i10) {
